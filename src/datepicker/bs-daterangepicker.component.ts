@@ -15,8 +15,7 @@ import {
 import { BsDaterangepickerConfig } from './bs-daterangepicker.config';
 import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
 import { Subscription } from 'rxjs';
-import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
-import { ComponentLoader } from '../component-loader/component-loader.class';
+import { ComponentLoaderFactory, ComponentLoader } from 'ngx-bootstrap/component-loader';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { filter } from 'rxjs/operators';
 
@@ -45,6 +44,8 @@ export class BsDaterangepickerDirective
    */
   @Input() container = 'body';
 
+  @Input() outsideEsc = true;
+
   /**
    * Returns whether or not the daterangepicker is currently being shown
    */
@@ -64,10 +65,12 @@ export class BsDaterangepickerDirective
   /**
    * Emits an event when the daterangepicker is shown
    */
+  /* tslint:disable-next-line: no-any*/
   @Output() onShown: EventEmitter<any>;
   /**
    * Emits an event when the daterangepicker is hidden
    */
+  /* tslint:disable-next-line: no-any*/
   @Output() onHidden: EventEmitter<any>;
 
   _bsValue: Date[];
@@ -124,9 +127,10 @@ export class BsDaterangepickerDirective
     this.onHidden = this._datepicker.onHidden;
   }
 
-  ngOnInit(): any {
+  ngOnInit(): void {
     this._datepicker.listen({
       outsideClick: this.outsideClick,
+      outsideEsc: this.outsideEsc,
       triggers: this.triggers,
       show: () => this.show()
     });
@@ -231,7 +235,7 @@ export class BsDaterangepickerDirective
     this.show();
   }
 
-  ngOnDestroy(): any {
+  ngOnDestroy(): void {
     this._datepicker.dispose();
   }
 }

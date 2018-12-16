@@ -3,15 +3,19 @@ import { DateFormatterOptions } from '../types';
 
 // todo: add support for timezones
 
-// FORMATTING
-addFormatToken('z', null, null,
-  function (date: Date, opts: DateFormatterOptions): string {
-    return opts.isUTC ? 'UTC' : '';
-  });
-addFormatToken('zz', null, null,
-  function (date: Date, opts: DateFormatterOptions): string {
-    return opts.isUTC ? 'Coordinated Universal Time' : '';
-  });
+export function initTimezone() {
+  // FORMATTING
+  addFormatToken('z', null, null,
+    function(date: Date, opts: DateFormatterOptions): string {
+      return opts.isUTC ? 'UTC' : '';
+    }
+  );
+  addFormatToken('zz', null, null,
+    function(date: Date, opts: DateFormatterOptions): string {
+      return opts.isUTC ? 'Coordinated Universal Time' : '';
+    }
+  );
+}
 
 // MOMENTS
 

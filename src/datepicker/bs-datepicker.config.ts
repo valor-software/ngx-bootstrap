@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {
-  DatepickerRenderOptions
-} from './models/index';
+  DatepickerRenderOptions,
+  BsDatepickerViewMode
+} from './models';
 
 
 /**
@@ -9,8 +10,7 @@ import {
  * except `displayMonths`, for range picker it default to `2`
  */
 @Injectable()
-export class BsDatepickerConfig
-  implements DatepickerRenderOptions {
+export class BsDatepickerConfig implements DatepickerRenderOptions {
   value?: Date | Date[];
   isDisabled?: boolean;
   /**
@@ -21,6 +21,22 @@ export class BsDatepickerConfig
    * Default max date for all date/range pickers
    */
   maxDate?: Date;
+
+  daysDisabled?: number[];
+  /**
+   * Makes dates from other months active
+   */
+  selectFromOtherMonth?: boolean;
+
+  /**
+   * Add class to current day
+   */
+  customTodayClass?: string;
+
+  /**
+   * Defaut mode for all date pickers
+   */
+  minMode?: BsDatepickerViewMode;
 
   /** CSS class which will be applied to datepicker container,
    * usually used to set color theme

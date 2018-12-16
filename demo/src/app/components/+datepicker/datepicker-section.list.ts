@@ -1,33 +1,38 @@
+import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section';
+import { ContentSection } from '../../docs/models/content-section.model';
+import { DatepickerDemoComponent } from './demos/datepicker-demo.component';
 import { DemoDatepickerBasicComponent } from './demos/basic/basic';
-import { DemoDatepickerDateInitialStateComponent } from './demos/date-initial-state/date-initial-state';
-import { DemoDatepickerColorThemingComponent } from './demos/color-theming/color-theming';
+import { DemoDatepickerByIsOpenPropComponent } from './demos/trigger-by-isopen-property/trigger-by-isopen-property';
 import { DemoDatepickerChangeLocaleComponent } from './demos/change-locale/change-locale';
-import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max.component';
+import { DemoDatepickerColorThemingComponent } from './demos/color-theming/color-theming';
+import { DemoDatepickerConfigMethodComponent } from './demos/config-method/config-method';
+import { DemoDatePickerConfigObjectComponent } from './demos/config-object/config-object';
+import { DemoDatePickerCustomFormatComponent } from './demos/custom-format/custom-format';
+import { DemoDatepickerDateInitialStateComponent } from './demos/date-initial-state/date-initial-state';
 import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
-import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
-import { DemoDatepickerConfigMethodComponent } from './demos/config-method/config-method';
-import { DemoDatepickerTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
-import { DemoDatePickerConfigObjectComponent } from './demos/config-object/config-object';
-import { DemoDatepickerOutsideClickComponent } from './demos/outside-click/outside-click';
-import { DemoDatepickerByIsOpenPropComponent } from './demos/trigger-by-isopen-property/trigger-by-isopen-property';
-import { DatepickerDemoComponent } from './demos/datepicker-demo.component';
-import { DemoDatePickerCustomFormatComponent } from './demos/custom-format/custom-format';
-import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
-import { DemoDatePickerVisibilityEventsComponent } from './demos/visibility-events/visibility-events';
-import { DemoDatepickerValueChangeEventComponent } from './demos/value-change-event/value-change-event';
-import { DemoDatepickerTriggersCustomComponent } from './demos/triggers-custom/triggers-custom';
 import { DemoDatepickerHideOnScrollComponent } from './demos/hide-on-scroll/hide-on-scroll';
-
-import { ContentSection } from '../../docs/models/content-section.model';
-import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
-import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
-import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
+import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max.component';
+import { DemoDatepickerMinModeComponent } from './demos/min-mode/min-mode.component';
+import { DemoDatepickerOutsideClickComponent } from './demos/outside-click/outside-click';
+import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
+import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
+import {
+  DemoDatePickerSelectDatesFromOtherMonthsComponent
+} from './demos/select-dates-from-other-months/select-dates-from-other-months';
+import { DemoDatepickerCustomTodayClassComponent } from './demos/custom-today-class/custom-today-class.component';
+import { DemoDatepickerTriggersCustomComponent } from './demos/triggers-custom/triggers-custom';
+import { DemoDatepickerTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
+import { DemoDatepickerValueChangeEventComponent } from './demos/value-change-event/value-change-event';
+import { DemoDatePickerVisibilityEventsComponent } from './demos/visibility-events/visibility-events';
+import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section';
+import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section';
 
 import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
+import { DemoDatepickerDaysDisabledComponent } from './demos/disable-days/disable-days';
 
 
 export const demoComponentContent: ContentSection[] = [
@@ -50,6 +55,7 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         description: `
+          <p>Note: If you installed ngx-bootstrap not via ng add command, you will need to perform a several actions</p>
           <p>Notable change is additional css for it <code> "/datepicker/bs-datepicker.css"</code> <br></p>
           <p>There are two ways of adding css:</p>
           <ul>
@@ -147,6 +153,27 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDatepickerMinMaxComponent
       },
       {
+        title: 'Days disabled',
+        anchor: 'days-disabled',
+        component: require('!!raw-loader?lang=typescript!./demos/disable-days/disable-days.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/disable-days/disable-days.html'),
+        description: `
+          <p>You can set which days of the week should be disabled with <code>daysDisabled</code>
+          <p>In the following example <code>daysDisabled</code> is set with an array which disabled saturday and sunday.
+          Sunday is considered the first day of the week and thus has the value 0</p>`,
+        outlet: DemoDatepickerDaysDisabledComponent
+      },
+      {
+        title: 'Min-mode',
+        anchor: 'min-mode',
+        component: require('!!raw-loader?lang=typescript!./demos/min-mode/min-mode.component.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/min-mode/min-mode.component.html'),
+        description: `
+          <p>You can set min view mode of datepicker using <code>minMode</code> property</p>
+          <p>In the following example <code>minMode</code> is set to 'month'</p>`,
+        outlet: DemoDatepickerMinModeComponent
+      },
+      {
         title: 'Disabled',
         anchor: 'disabled-datepicker',
         component: require('!!raw-loader?lang=typescript!./demos/disabled/disabled.component.ts'),
@@ -155,12 +182,20 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDatepickerDisabledComponent
       },
       {
+        title: 'Custom today class',
+        anchor: 'today-class',
+        component: require('!!raw-loader?lang=typescript!./demos/custom-today-class/custom-today-class.component.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/custom-today-class/custom-today-class.component.html'),
+        description: `<p>If you want to add custom class to current day datepicker's content set value to <code>customTodayClass</code> option in <code>bsConfig</code></p>`,
+        outlet: DemoDatepickerCustomTodayClassComponent
+      },
+      {
         title: 'Forms',
         anchor: 'forms',
         component: require('!!raw-loader?lang=typescript!./demos/forms/forms.component.ts'),
         html: require('!!raw-loader?lang=markup!./demos/forms/forms.component.html'),
         description: `<p>Datepicker and daterangepicker can be used in forms. Keep in mind that
-          value of <code>ngModel</code> is <code>Date</code> object for datepicker and array of 2 
+          value of <code>ngModel</code> is <code>Date</code> object for datepicker and array of 2
           <code>Date</code> objects for daterangepicker</p>`,
         outlet: DemoDatepickerFormsComponent
       },
@@ -221,11 +256,19 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDatePickerConfigObjectComponent
       },
       {
+        title: 'Select dates from other month',
+        anchor: 'select-dates-from-other-month',
+        component: require('!!raw-loader?lang=typescript!./demos/select-dates-from-other-months/select-dates-from-other-months.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/select-dates-from-other-months/select-dates-from-other-months.html'),
+        description: `<p>You can enable dates from other months via <code>selectFromOtherMonth</code> option in <code>bsConfig</code></p>`,
+        outlet: DemoDatePickerSelectDatesFromOtherMonthsComponent
+      },
+      {
         title: 'Outside click',
         anchor: 'outside-click',
         component: require('!!raw-loader?lang=typescript!./demos/outside-click/outside-click.ts'),
         html: require('!!raw-loader?lang=markup!./demos/outside-click/outside-click.html'),
-        description: `<p>Datepicker closes after outside click by default. To change 
+        description: `<p>Datepicker closes after outside click by default. To change
           this behavior, use <code>outsideClick</code> property.</p>`,
         outlet: DemoDatepickerOutsideClickComponent
       },
@@ -308,4 +351,3 @@ export const demoComponentContentOld: ContentSection[] = [
     ]
   }
 ];
-

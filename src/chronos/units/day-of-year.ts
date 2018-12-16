@@ -9,30 +9,37 @@ import { DateParsingConfig } from '../create/parsing.types';
 import { toInt } from '../utils/type-checks';
 import { add } from '../moment/add-subtract';
 
+
+export function initDayOfYear() {
 // FORMATTING
 
-addFormatToken('DDD', ['DDDD', 3, false], 'DDDo',
-  function (date: Date): string {
-    return getDayOfYear(date).toString(10);
-  });
+  addFormatToken('DDD', ['DDDD', 3, false], 'DDDo',
+    function(date: Date): string {
+      return getDayOfYear(date)
+        .toString(10);
+    }
+  );
 
 
 // ALIASES
 
-addUnitAlias('dayOfYear', 'DDD');
+  addUnitAlias('dayOfYear', 'DDD');
 
 // PRIORITY
 
-addUnitPriority('dayOfYear', 4);
+  addUnitPriority('dayOfYear', 4);
 
-addRegexToken('DDD', match1to3);
-addRegexToken('DDDD', match3);
-addParseToken(['DDD', 'DDDD'],
-  function (input: string, array: DateArray, config: DateParsingConfig): DateParsingConfig {
-    config._dayOfYear = toInt(input);
+  addRegexToken('DDD', match1to3);
+  addRegexToken('DDDD', match3);
+  addParseToken(
+    ['DDD', 'DDDD'],
+    function(input: string, array: DateArray, config: DateParsingConfig): DateParsingConfig {
+      config._dayOfYear = toInt(input);
 
-    return config;
-  });
+      return config;
+    }
+  );
+}
 
 export function getDayOfYear(date: Date, isUTC?: boolean): number {
   const date1 = +startOf(date, 'day', isUTC);
