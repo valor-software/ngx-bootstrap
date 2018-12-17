@@ -39,7 +39,7 @@ import { BsDatepickerConfig } from '../../bs-datepicker.config';
         </thead>
         <tbody>
         <tr *ngFor="let week of calendar.weeks; let i = index">
-          <td class="week" [class.active-week]="_config.selectWeek" *ngIf="options.showWeekNumbers">
+          <td class="week" [class.active-week]="isWeekHovered" *ngIf="options.showWeekNumbers">
             <span
                 (click)="selectWeek(week)"
                 (mouseenter)="hoverWeek(week, true)"
@@ -70,6 +70,8 @@ export class BsDaysCalendarViewComponent {
   @Output() onHover = new EventEmitter<CellHoverEvent>();
   @Output() onHoverWeek = new EventEmitter<WeekViewModel>();
 
+  isWeekHovered: boolean;
+
   constructor(private _config: BsDatepickerConfig) { }
 
   navigateTo(event: BsNavigationDirection): void {
@@ -86,17 +88,58 @@ export class BsDaysCalendarViewComponent {
   }
 
   selectWeek(week: WeekViewModel): void {
-    // console.log(week)
-    if (this._config.selectWeek && week.days && week.days[0]) {
+    if (this._config.selectWeek && week.days && week.days[0] && !week.days[0].isOtherMonth && !week.days[0].isDisabled && !this._config.selectFromOtherMonth) {
       this.onSelect.emit(week.days[0]);
+      return;
+    }
+
+    if (this._config.selectWeek && week.days && week.days[0] && !week.days[0].isDisabled && this._config.selectFromOtherMonth) {
+      this.onSelect.emit(week.days[0]);
+      return;
+    }
+
+    if (this._config.selectWeek && !this._config.selectFromOtherMonth && week.days.length > 0) {
+     for (let i = 0; i <= 6; i++) {
+       if (!week.days[i].isOtherMonth && !week.days[i].isDisabled) {
+          this.onSelect.emit(week.days[i]);
+         return;
+       }
+     }
+    }
+
+    if (this._config.selectWeek && this._config.selectFromOtherMonth && week.days.length > 0) {
+      for (let i = 0; i <= 6; i++) {
+        if (!week.days[i].isDisabled) {
+          this.onSelect.emit(week.days[i]);
+          return;
+        }
+      }
     }
   }
 
   hoverWeek(cell: WeekViewModel, isHovered: boolean): void {
-    if (this._config.selectWeek) {
-      cell.isHovered = isHovered;
-      this.onHoverWeek.emit(cell);
+    console.log(cell)
+    if (this._config.selectWeek && this._config.selectFromOtherMonth) {
+      for (let i = 0; i <= 6; i++) {
+        if (!cell.days[i].isDisabled) {
+          cell.isHovered = isHovered;
+          this.isWeekHovered = isHovered;
+          this.onHoverWeek.emit(cell);
+          return;
+        }
+      }
     }
+
+
+    if (this._config.selectWeek && !this._config.selectFromOtherMonth)
+      for (let i = 0; i <= 6; i++) {
+        if (!cell.days[i].isOtherMonth && !cell.days[i].isDisabled) {
+          cell.isHovered = isHovered;
+          this.isWeekHovered = isHovered;
+          this.onHoverWeek.emit(cell);
+          return;
+        }
+      }
   }
 
   hoverDay(cell: DayViewModel, isHovered: boolean): void {
