@@ -4,6 +4,7 @@ import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { PositioningService } from 'ngx-bootstrap/positioning';
 import { BsDropdownContainerComponent } from './bs-dropdown-container.component';
 import { BsDropdownMenuDirective } from './bs-dropdown-menu.directive';
+import { BsDropdownNestedDirective } from './bs-dropdown-nested.directive';
 import { BsDropdownToggleDirective } from './bs-dropdown-toggle.directive';
 import { BsDropdownConfig } from './bs-dropdown.config';
 
@@ -14,12 +15,14 @@ import { BsDropdownState } from './bs-dropdown.state';
   declarations: [
     BsDropdownMenuDirective,
     BsDropdownToggleDirective,
+    BsDropdownNestedDirective,
     BsDropdownContainerComponent,
     BsDropdownDirective
   ],
   exports: [
     BsDropdownMenuDirective,
     BsDropdownToggleDirective,
+    BsDropdownNestedDirective,
     BsDropdownDirective
   ],
   entryComponents: [BsDropdownContainerComponent]
