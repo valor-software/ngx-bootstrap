@@ -22,7 +22,6 @@ import { TypeaheadMatch } from './typeahead-match.class';
 import { TypeaheadConfig } from './typeahead.config';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
 import { debounceTime, filter, mergeMap, switchMap, toArray } from 'rxjs/operators';
-import { TypeaheadConfig } from './typeahead.config';
 
 @Directive({selector: '[typeahead]', exportAs: 'bs-typeahead'})
 export class TypeaheadDirective implements OnInit, OnDestroy {
