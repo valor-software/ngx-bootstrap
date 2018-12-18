@@ -8,6 +8,7 @@ import {
   TypeaheadMatch,
   TypeaheadOptions
 } from '../typeahead';
+import { TypeaheadConfig } from '../typeahead/typeahead.config';
 
 describe('Component: TypeaheadContainer', () => {
   let fixture: ComponentFixture<TypeaheadContainerComponent>;
@@ -21,7 +22,11 @@ describe('Component: TypeaheadContainer', () => {
       providers: [{
         provide: TypeaheadOptions,
         useValue: new TypeaheadOptions({ animation: false, placement: 'bottom-left', typeaheadRef: undefined })
-      }]
+      },
+        {
+          provide: TypeaheadConfig,
+          useValue: new TypeaheadConfig()
+        }]
     });
     fixture = testModule.createComponent(TypeaheadContainerComponent);
 

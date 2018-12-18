@@ -13,6 +13,7 @@ import { isBs3, Utils } from 'ngx-bootstrap/utils';
 import { latinize } from './typeahead-utils';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { TypeaheadDirective } from './typeahead.directive';
+import { TypeaheadConfig } from './typeahead.config';
 
 @Component({
   selector: 'typeahead-container',
@@ -54,8 +55,11 @@ export class TypeaheadContainerComponent {
   @ViewChildren('liElements')
   private liElements: QueryList<ElementRef>;
 
-  constructor(element: ElementRef, private renderer: Renderer2) {
+  constructor(element: ElementRef,
+              private renderer: Renderer2,
+              config: TypeaheadConfig) {
     this.element = element;
+    Object.assign(this, config);
   }
 
   get active(): TypeaheadMatch {

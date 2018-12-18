@@ -5,4 +5,6 @@ import { Injectable } from '@angular/core';
 export class TypeaheadConfig {
   /** used to hide results on blur */
   hideResultsOnBlur = true;
+  /** used to choose the first item in typeahead container */
+  selectFirstItem = true;
 }
