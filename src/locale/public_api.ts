@@ -1,5 +1,6 @@
 export { arLocale } from 'ngx-bootstrap/chronos';
 export { bgLocale } from 'ngx-bootstrap/chronos';
+export { caLocale } from 'ngx-bootstrap/chronos';
 export { csLocale } from 'ngx-bootstrap/chronos';
 export { daLocale } from 'ngx-bootstrap/chronos';
 export { deLocale } from 'ngx-bootstrap/chronos';

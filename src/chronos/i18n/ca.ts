@@ -13,7 +13,7 @@ import { getHours, getMonth } from '../utils/date-getters';
 let monthsShortDot = 'gen._feb._mar._abr._mai._jun._jul._ago._set._oct._nov._des.'.split('_'),
   monthsShort = 'ene_feb_mar_abr_mai_jun_jul_ago_set_oct_nov_des'.split('_');
 
-let monthsParse = [/^gen/i, /^feb/i, /^mar/i, /^abr/i, /^mai/i, /^jun/i, /^jul/i, /^ago/i, /^sep/i, /^oct/i, /^nov/i, /^des/i];
+let monthsParse = [/^gen/i, /^feb/i, /^mar/i, /^abr/i, /^mai/i, /^jun/i, /^jul/i, /^ago/i, /^set/i, /^oct/i, /^nov/i, /^des/i];
 let monthsRegex = /^(gener|febrer|març|abril|maig|juny|juliol|agost|setembre|octubre|novembre|desembre|gen\.?|feb\.?|mar\.?|abr\.?|mai\.?|jun\.?|jul\.?|ago\.?|set\.?|oct\.?|nov\.?|des\.?)/i;
 
 export const caLocale: LocaleData = {
@@ -38,8 +38,8 @@ export const caLocale: LocaleData = {
   longMonthsParse: monthsParse,
   shortMonthsParse: monthsParse,
   weekdays: 'diumenge_dilluns_dimarts_dimecres_dijous_divendres_dissabte'.split('_'),
-  weekdaysShort: 'diu._dill._dim._dix._dij._div._dis.'.split('_'),
-  weekdaysMin: 'dm_dl_dm_dx_dj_dv_ds'.split('_'),
+  weekdaysShort: 'diu._dil._dim._dix._dij._div._dis.'.split('_'),
+  weekdaysMin: 'dg_dl_dt_dc_dj_dv_ds'.split('_'),
   weekdaysParseExact: true,
   longDateFormat: {
     LT: 'H:mm',
@@ -83,8 +83,15 @@ export const caLocale: LocaleData = {
     y: 'un any',
     yy: '%d anys'
   },
-  dayOfMonthOrdinalParse: /\d{1,2}º/,
-  ordinal: '%dº',
+  dayOfMonthOrdinalParse: /\d{1,2}(er|on|er|rt|é)/,
+  ordinal(_num: number): string {
+    const num = Number(_num);
+    const output = (num > 4) ? 'é' :
+        (num === 1 || num === 3) ? 'r' :
+          (num === 2) ? 'n' :
+            (num === 4) ? 't' : 'é';
+    return num + output;
+  },
   week: {
     dow: 1, // Monday is the first day of the week.
     doy: 4  // The week that contains Jan 4th is the first week of the year.
