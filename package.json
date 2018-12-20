@@ -100,7 +100,7 @@
     "@cypress/webpack-preprocessor": "3.0.1",
     "@nguniversal/express-engine": "6.0.0",
     "@nguniversal/module-map-ngfactory-loader": "6.0.0",
-    "@schematics/angular": "0.8.5",
+    "@schematics/angular": "7.1.4",
     "@types/chai": "4.1.3",
     "@types/jasmine": "2.8.7",
     "@types/marked": "0.3.0",
