@@ -88,58 +88,67 @@ export class BsDaysCalendarViewComponent {
   }
 
   selectWeek(week: WeekViewModel): void {
-    if (this._config.selectWeek && week.days && week.days[0] && !week.days[0].isOtherMonth && !week.days[0].isDisabled && !this._config.selectFromOtherMonth) {
+    if (this._config.selectWeek && week.days && week.days[0] && !week.days[0].isOtherMonth
+      && !week.days[0].isDisabled && !this._config.selectFromOtherMonth) {
       this.onSelect.emit(week.days[0]);
+
       return;
     }
 
-    if (this._config.selectWeek && week.days && week.days[0] && !week.days[0].isDisabled && this._config.selectFromOtherMonth) {
+    if (this._config.selectWeek && week.days && week.days[0] &&
+      !week.days[0].isDisabled && this._config.selectFromOtherMonth) {
       this.onSelect.emit(week.days[0]);
+
       return;
     }
 
-    if (this._config.selectWeek && !this._config.selectFromOtherMonth && week.days.length > 0) {
-     for (let i = 0; i <= 6; i++) {
-       if (!week.days[i].isOtherMonth && !week.days[i].isDisabled) {
-          this.onSelect.emit(week.days[i]);
-         return;
-       }
-     }
-    }
+    if (this._config.selectWeek && week.days.length > 0) {
+      if (this._config.selectFromOtherMonth) {
+        for (let i = 0; i <= 6; i++) {
+          if (!week.days[i].isDisabled) {
+            this.onSelect.emit(week.days[i]);
 
-    if (this._config.selectWeek && this._config.selectFromOtherMonth && week.days.length > 0) {
-      for (let i = 0; i <= 6; i++) {
-        if (!week.days[i].isDisabled) {
-          this.onSelect.emit(week.days[i]);
-          return;
+            return;
+          }
+        }
+      } else {
+        for (let i = 0; i <= 6; i++) {
+          if (!week.days[i].isOtherMonth && !week.days[i].isDisabled) {
+            this.onSelect.emit(week.days[i]);
+
+            return;
+          }
         }
       }
     }
   }
 
   hoverWeek(cell: WeekViewModel, isHovered: boolean): void {
-    console.log(cell)
+    // console.log(cell)
     if (this._config.selectWeek && this._config.selectFromOtherMonth) {
       for (let i = 0; i <= 6; i++) {
         if (!cell.days[i].isDisabled) {
           cell.isHovered = isHovered;
           this.isWeekHovered = isHovered;
           this.onHoverWeek.emit(cell);
+
           return;
         }
       }
     }
 
 
-    if (this._config.selectWeek && !this._config.selectFromOtherMonth)
+    if (this._config.selectWeek && !this._config.selectFromOtherMonth) {
       for (let i = 0; i <= 6; i++) {
         if (!cell.days[i].isOtherMonth && !cell.days[i].isDisabled) {
           cell.isHovered = isHovered;
           this.isWeekHovered = isHovered;
           this.onHoverWeek.emit(cell);
+
           return;
         }
       }
+    }
   }
 
   hoverDay(cell: DayViewModel, isHovered: boolean): void {
