@@ -6,7 +6,6 @@ import { moment } from '../chain';
 import { defineLocale } from '../../locale/locales';
 import { enGbLocale } from '../../i18n/en-gb';
 import { frLocale } from '../../i18n/fr';
-import { caLocale } from '../../i18n/ca';
 import { esLocale } from '../../i18n/es';
 import { zhCnLocale } from '../../i18n/zh-cn';
 import { itLocale as italy } from '../../i18n/it';
@@ -14,7 +13,6 @@ import { getDate } from '../../utils/date-getters';
 
 defineLocale('en-gb', enGbLocale);
 defineLocale('en-ca', enGbLocale);
-defineLocale('ca', caLocale);
 defineLocale('es', esLocale);
 defineLocale('fr', frLocale);
 defineLocale('fr-ca', frLocale);

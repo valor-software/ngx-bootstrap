@@ -169,10 +169,5 @@
     "webpack-bundle-analyzer": "2.11.3",
     "webpack-cli": "3.1.2",
     "zone.js": "0.8.26"
-  },
-  "dependencies": {
-    "jquery": "1.9.1",
-    "popper.js": "1.14.6",
-    "rxjs-compat": "6.3.3"
   }
 }
