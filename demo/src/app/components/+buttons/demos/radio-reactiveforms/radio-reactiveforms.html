@@ -2,12 +2,11 @@
 <form [formGroup]="myForm" class="form-inline">
   <div class="form-group">
     <div class="btn-group" btnRadioGroup formControlName="radio">
-      <label btnRadio="A" class="btn btn-primary"
-             tabindex="0" role="button">A</label>
-      <label btnRadio="B" class="btn btn-primary"
-             tabindex="0" role="button">B</label>
-      <label btnRadio="C" class="btn btn-primary"
-             tabindex="0" role="button">C</label>
+      <label btnRadio="A" class="btn btn-primary">A</label>
+      <label btnRadio="B" class="btn btn-primary">B</label>
+      <label btnRadio="C" class="btn btn-primary">C</label>
     </div>
+    <button class="btn btn-primary" (click)="myForm.disabled ? myForm.enable() : myForm.disable()">Enable/Disable</button>
   </div>
+
 </form>

@@ -89,13 +89,17 @@ describe('Buttons page test suite', () => {
           .should('to.contain', name);
       });
     });
+  });
 
-    it('checked radio buttons created with btnRadioGroup is displayed in output', () => {
-      // for now we need creating this alias due to same selectors' names
-      cy.get(radioCheck).eq(0).as('radio').find(`${ buttons.btnRadioGroupSel }`).as('checkBtnRadioGroup');
+  describe('Radio buttons with group', () => {
+    const radioGroup = buttons.exampleDemosArr.radioBtnWithGroup;
+
+    it('checked radio button created with ngModel is displayed in output', () => {
+      // for now we need creating this alias due to same selectors' names and classes
+      cy.get(radioGroup).eq(0).as('radio').find('.btn-group').first().as('radioNgModel');
 
       buttonNames.forEach(name => {
-        buttons.clickByText('@checkBtnRadioGroup', name);
+        buttons.clickByText('@radioNgModel', name);
 
         cy.get(`${ '@radio' }${ buttons.output }`)
           .should('to.contain', name);
