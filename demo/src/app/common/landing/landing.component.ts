@@ -4,6 +4,7 @@ import { setTheme } from 'ngx-bootstrap/utils';
 
 import { StyleManager } from '../../theme/style-manager';
 import { ThemeStorage } from '../../theme/theme-storage';
+import { Router } from '@angular/router';
 
 const _bs4Css = 'assets/css/bootstrap-4.0.0/css/bootstrap.min.css';
 
@@ -15,7 +16,10 @@ export class LandingComponent implements AfterViewInit {
   currentVersion: string;
   currentTheme: 'bs3' | 'bs4';
 
-  constructor(public styleManager: StyleManager, private http: HttpClient, private themeStorage: ThemeStorage) {
+  constructor(public styleManager: StyleManager,
+              private http: HttpClient,
+              private themeStorage: ThemeStorage,
+              private router: Router) {
     const currentTheme = this.themeStorage.getStoredTheme();
     if (currentTheme && currentTheme === 'bs3') {
       this.installTheme('bs4');
@@ -37,5 +41,9 @@ export class LandingComponent implements AfterViewInit {
     if (this.currentTheme) {
       this.themeStorage.storeTheme(this.currentTheme);
     }
+  }
+
+  scrollToSection() {
+    this.router.navigate(['.', 'getting-started' ], {fragment: 'getting-started'});
   }
 }
