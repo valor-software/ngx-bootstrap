@@ -52,12 +52,17 @@ describe('Landing Page test suite', () => {
         .should('include', searchedUrl);
     });
 
-    it('Github button is enabled and contains link to ngx-bootstrap repo', () => {
-      const buttonText = 'Github';
+    it('Documentation button is enabled and contains link to documentation', () => {
+      const buttonText = 'Documentation';
+      const searchedUrl = '/getting-started';
 
       cy.get(landing.navBtn).contains(buttonText)
-        .should('be.enabled')
-        .and('have.attr', 'href', landing.githubUrl);
+        .should('be.enabled');
+
+      landing.clickByText(landing.navBtn, buttonText);
+
+      cy.url()
+        .should('include', searchedUrl);
     });
 
     it('Info buttons in header are enabled and contains links to slack, github and stackoverflow', () => {
