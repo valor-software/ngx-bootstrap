@@ -124,7 +124,6 @@ export class BsDaysCalendarViewComponent {
   }
 
   hoverWeek(cell: WeekViewModel, isHovered: boolean): void {
-    // console.log(cell)
     if (this._config.selectWeek && this._config.selectFromOtherMonth) {
       for (let i = 0; i <= 6; i++) {
         if (!cell.days[i].isDisabled) {
