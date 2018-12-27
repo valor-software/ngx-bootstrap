@@ -13,7 +13,6 @@ import { isBs3, Utils } from 'ngx-bootstrap/utils';
 import { latinize } from './typeahead-utils';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { TypeaheadDirective } from './typeahead.directive';
-import { TypeaheadConfig } from './typeahead.config';
 
 @Component({
   selector: 'typeahead-container',
@@ -56,10 +55,8 @@ export class TypeaheadContainerComponent {
   private liElements: QueryList<ElementRef>;
 
   constructor(element: ElementRef,
-              private renderer: Renderer2,
-              config: TypeaheadConfig) {
+              private renderer: Renderer2) {
     this.element = element;
-    Object.assign(this, config);
   }
 
   get active(): TypeaheadMatch {
@@ -78,16 +75,8 @@ export class TypeaheadContainerComponent {
         this.setScrollableMode();
       });
     }
-    if (this._active) {
-      const match = this._matches.find(m => m.value === this._active.value);
-      if (match) {
-        this.selectActive(match);
 
-        return;
-      }
-      this._active = undefined;
-    }
-    if (this._matches.length > 0 && this.parent.typeaheadSelectFirstItem && !this._active) {
+    if (this._matches.length > 0) {
       this._active = this._matches[0];
       if (this._active.isHeader()) {
         this.nextActiveMatch();
@@ -112,8 +101,12 @@ export class TypeaheadContainerComponent {
     return this.parent ? this.parent.typeaheadItemTemplate : undefined;
   }
 
-  selectActiveMatch(value?: boolean): void {
-    if (this._active) {
+  selectActiveMatch(isActiveItemChanged?: boolean): void {
+    if (this._active && this.parent.typeaheadSelectFirstItem) {
+      this.selectMatch(this._active);
+    }
+
+    if (!this.parent.typeaheadSelectFirstItem && isActiveItemChanged) {
       this.selectMatch(this._active);
     }
   }

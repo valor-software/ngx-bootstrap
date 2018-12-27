@@ -98,8 +98,11 @@ describe('Component: TypeaheadContainer', () => {
         expect(ms[1].nativeElement.innerHTML).toBe('<strong>fo</strong>od');
       });
 
-      it('should not set the "active" class on any matches', () => {
-        expect(matches[0].classList.contains('active')).toBeFalsy();
+      it('should set the "active" class on the first match', () => {
+        expect(matches[0].classList.contains('active')).toBeTruthy();
+      });
+
+      it('should not set the "active" class on other matches', () => {
         expect(matches[1].classList.contains('active')).toBeFalsy();
       });
     });
@@ -108,22 +111,22 @@ describe('Component: TypeaheadContainer', () => {
       it('should select the first match on first use', () => {
         component.nextActiveMatch();
 
-        expect(component.isActive(component.matches[0])).toBeTruthy();
+        expect(component.isActive(component.matches[1])).toBeTruthy();
       });
 
       it('should select the next match after the first', () => {
         component.nextActiveMatch();
         component.nextActiveMatch();
 
-        expect(component.isActive(component.matches[1])).toBeTruthy();
+        expect(component.isActive(component.matches[0])).toBeTruthy();
       });
 
-      it('should select the first match again, when triggered three times', () => {
+      it('should not select the first match again, when triggered three times', () => {
         component.nextActiveMatch();
         component.nextActiveMatch();
         component.nextActiveMatch();
 
-        expect(component.isActive(component.matches[0])).toBeTruthy();
+        expect(component.isActive(component.matches[0])).toBeFalsy();
       });
     });
 
@@ -240,7 +243,7 @@ describe('Component: TypeaheadContainer', () => {
       });
 
       it('should not set the "active" class on any matches', () => {
-        expect(itemMatches[0].classList.contains('active')).toBeFalsy();
+        expect(itemMatches[0].classList.contains('active')).toBeTruthy();
         expect(itemMatches[1].classList.contains('active')).toBeFalsy();
       });
 
@@ -257,7 +260,7 @@ describe('Component: TypeaheadContainer', () => {
       it('should select the first item match', () => {
         component.nextActiveMatch();
 
-        expect(component.isActive(component.matches[1])).toBeTruthy();
+        expect(component.isActive(component.matches[2])).toBeTruthy();
       });
 
       it('should skip the header match, when triggered three times', () => {
@@ -339,6 +342,7 @@ describe('Component: TypeaheadContainer', () => {
       expect(component.isFocused).toBeFalsy();
     });
   });
+
   describe('scrollable matches', () => {
     let itemMatches: HTMLLIElement[];
     /* tslint:disable-next-line: no-unused-variable */
@@ -433,8 +437,8 @@ describe('Component: TypeaheadContainer', () => {
         expect(itemMatches[1].children[0].children[0].innerHTML).toBe('<strong>a</strong>pple');
       });
 
-      it('should not set the \"active\" class on any matches', () => {
-        for (let i = 0; i < 9; i++) {
+      it('should not set the \"active\" class on any matches except first', () => {
+        for (let i = 1; i < 9; i++) {
           expect(itemMatches[i].classList.contains('active')).toBeFalsy();
         }
       });
@@ -443,7 +447,7 @@ describe('Component: TypeaheadContainer', () => {
     describe('nextActiveMatch', () => {
       it('should select the first item match', () => {
         component.nextActiveMatch();
-        expect(component.isActive(component.matches[0])).toBeTruthy();
+        expect(component.isActive(component.matches[1])).toBeTruthy();
       });
       it('should select the next item match and scroll', fakeAsync(() => {
         component.nextActiveMatch();
@@ -451,20 +455,22 @@ describe('Component: TypeaheadContainer', () => {
         component.nextActiveMatch();
         fixture.detectChanges();
         tick(1);
-        expect(component.isActive(component.matches[2])).toBeTruthy();
+        expect(component.isActive(component.matches[3])).toBeTruthy();
         expect(containingElementScrollable[0].scrollTop).toBe(0);
       }));
       it('should select the last item match and scroll', () => {
-        for (let i = 0; i < 9; i++) {
+        for (let i = 0; i < 8; i++) {
           component.nextActiveMatch();
         }
+
         expect(component.isActive(component.matches[10])).toBeTruthy();
       });
 
       it('should select the first item match and scroll to top', () => {
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 9; i++) {
           component.nextActiveMatch();
         }
+
         expect(component.isActive(component.matches[0])).toBeTruthy();
         expect(containingElementScrollable[0].scrollTop).toBe(0);
       });
@@ -482,7 +488,8 @@ describe('Component: TypeaheadContainer', () => {
         component.nextActiveMatch();
         component.nextActiveMatch();
         component.prevActiveMatch();
-        expect(component.isActive(component.matches[1])).toBeTruthy();
+
+        expect(component.isActive(component.matches[2])).toBeTruthy();
       });
     });
 

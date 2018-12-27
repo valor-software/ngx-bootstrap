@@ -446,6 +446,7 @@ describe('Directive: Typeahead', () => {
       tick();
 
       directive.typeaheadSelectFirstItem = false;
+      directive.isActiveItemChanged = true;
       inputElement.value = 'Alab';
       inputElement.dispatchEvent(new Event('input'));
       tick();

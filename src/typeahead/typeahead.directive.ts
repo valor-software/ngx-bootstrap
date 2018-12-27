@@ -129,6 +129,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     // @Input() protected typeaheadFocusOnSelect:boolean;
 
   _container: TypeaheadContainerComponent;
+  isActiveItemChanged = false;
   isTypeaheadOptionsListActive = false;
 
   // tslint:disable-next-line:no-any
@@ -158,7 +159,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
     Object.assign(this,
       { typeaheadHideResultsOnBlur: config.hideResultsOnBlur,
-               typeaheadSelectFirstItem: config.selectFirstItem
+               typeaheadSelectFirstItem: config.selectFirstItem,
+               typeaheadMinLength: config.minLength
       });
   }
 
@@ -226,6 +228,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       // up
       /* tslint:disable-next-line: deprecation */
       if (e.keyCode === 38) {
+        this.isActiveItemChanged = true;
         this._container.prevActiveMatch();
 
         return;
@@ -234,15 +237,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       // down
       /* tslint:disable-next-line: deprecation */
       if (e.keyCode === 40) {
+        this.isActiveItemChanged = true;
         this._container.nextActiveMatch();
-
-        return;
-      }
-
-      // enter, tab
-      /* tslint:disable-next-line: deprecation */
-      if (e.keyCode === 13) {
-        this._container.selectActiveMatch();
 
         return;
       }
@@ -272,24 +268,20 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       return;
     }
 
-    // if an item is visible - prevent form submission
     /* tslint:disable-next-line: deprecation */
-    if (this._container.active && e.keyCode === 13) {
+    if (e.keyCode === 9 || e.keyCode === 13) {
       e.preventDefault();
-
-      return;
-    }
-
-    // if an item is visible - don't change focus
-    /* tslint:disable-next-line: deprecation */
-    if (e.keyCode === 9) {
-      if (this._container.active || this.typeaheadSelectFirstItem) {
-        e.preventDefault();
-        this._container.selectActiveMatch(this.typeaheadSelectFirstItem);
+      if (this.typeaheadSelectFirstItem) {
+        this._container.selectActiveMatch();
 
         return;
       }
-      this.hide();
+
+      if (!this.typeaheadSelectFirstItem) {
+        this._container.selectActiveMatch(this.isActiveItemChanged);
+        this.isActiveItemChanged = false;
+        this.hide();
+      }
     }
   }
 
