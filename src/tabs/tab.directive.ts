@@ -13,7 +13,7 @@ import {
 import { TabsetComponent } from './tabset.component';
 
 @Directive({ selector: 'tab, [tab]' })
-export class TabDirective implements OnInit, OnDestroy {
+export class TabDirective implements OnInit, OnDestroy, OnInit {
   /** tab header text */
   @Input() heading: string;
   /** tab id. The same id with suffix '-link' will be added to the corresponding &lt;li&gt; element  */
@@ -23,6 +23,7 @@ export class TabDirective implements OnInit, OnDestroy {
   @Input() disabled: boolean;
   /** if true tab can be removable, additional button will appear */
   @Input() removable: boolean;
+
   /** if set, will be added to the tab's class attribute. Multiple classes are supported. */
   @Input()
   get customClass(): string {
@@ -95,11 +96,11 @@ export class TabDirective implements OnInit, OnDestroy {
     public renderer: Renderer2
   ) {
     this.tabset = tabset;
-    this.tabset.addTab(this);
   }
 
   ngOnInit(): void {
     this.removable = this.removable;
+    this.tabset.addTab(this);
   }
 
   ngOnDestroy(): void {
