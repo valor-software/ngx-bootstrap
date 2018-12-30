@@ -448,7 +448,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   protected finalizeAsyncCall(matches: TypeaheadMatch[]): void {
-    this.prepareMatches(matches);
+    this.prepareMatches(matches || []);
 
     this.typeaheadLoading.emit(false);
     this.typeaheadNoResults.emit(!this.hasMatches());
