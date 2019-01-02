@@ -154,7 +154,7 @@
         }
 
         // todo: check first :not(.disabled) usage
-        &:not(.disabled):not(.week) span:not(.disabled) {
+        &:not(.disabled):not(.week) span:not(.disabled):not(.is-other-month) {
           cursor: pointer;
         }
 
@@ -168,7 +168,7 @@
         span.is-active-other-month:not(.disabled):not(.selected) {
           background-color: $highlighted;
           transition: 0s;
-          cursor: pointer !important;
+          cursor: pointer;
         }
 
         span.disabled,
@@ -179,6 +179,11 @@
         span.selected,
         &.selected span {
           color: $font-color-01;
+        }
+
+        span.is-other-month,
+        &.is-other-month span {
+          color: rgba(0, 0, 0, 0.25);
         }
 
         &.active {
@@ -435,12 +440,6 @@
         background-color: $btn-bg2-hover;
       }
     }
-  }
-
-  /* .is-other-month */
-  .is-other-month {
-    color: rgba(0, 0, 0, 0.25);
-    cursor: default !important;
   }
 
   /* .bs-datepicker-buttons */

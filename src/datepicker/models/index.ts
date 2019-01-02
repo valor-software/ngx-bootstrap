@@ -29,6 +29,7 @@ export interface DayViewModel extends CalendarCellViewModel {
   isSelectionStart?: boolean;
   isSelectionEnd?: boolean;
   isSelected?: boolean;
+  isToday?: boolean;
   // day index
   monthIndex?: number;
   weekIndex?: number;

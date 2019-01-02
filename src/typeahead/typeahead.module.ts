@@ -5,6 +5,7 @@ import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadDirective } from './typeahead.directive';
 import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { PositioningService } from 'ngx-bootstrap/positioning';
+import { TypeaheadConfig } from './typeahead.config';
 
 @NgModule({
   imports: [CommonModule],
@@ -16,7 +17,7 @@ export class TypeaheadModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: TypeaheadModule,
-      providers: [ComponentLoaderFactory, PositioningService]
+      providers: [ComponentLoaderFactory, PositioningService, TypeaheadConfig]
     };
   }
 }
