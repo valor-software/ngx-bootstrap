@@ -10,6 +10,7 @@ import { DemoTabsDisabledComponent } from './demos/disabled/disabled';
 import { DemoTabsCustomComponent } from './demos/custom-template/custom-template';
 import { DemoTabsSelectEventComponent } from './demos/select-event/select-event';
 import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
+import { DemoTabsDynamicInsertComponent } from './demos/dynamic-insert/dynamic-insert';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -62,6 +63,16 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic'),
         html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
         outlet: DemoTabsDynamicComponent
+      },
+      {
+        title: 'Dynamic insert tabs content into DOM',
+        anchor: 'dynamic-insert',
+        component: require('!!raw-loader?lang=typescript!./demos/dynamic-insert/dynamic-insert'),
+        html: require('!!raw-loader?lang=markup!./demos/dynamic-insert/dynamic-insert.html'),
+        description: `<p>By default, the tabs contents are added into DOM when page is loaded, for all tabs even not 
+          selected. Dynamic insert tabs into DOM will initialize and add the tab directives only when the tab is activated.
+          Tab contents can be dynamic insert by declaring the tabset component with attribute <code>[dynamic]="true"</code>.</p>`,
+        outlet: DemoTabsDynamicInsertComponent
       },
       {
         title: 'Pills',

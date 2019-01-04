@@ -10,6 +10,7 @@ import { DemoTabsDisabledComponent } from './disabled/disabled';
 import { DemoTabsCustomComponent } from './custom-template/custom-template';
 import { DemoTabsSelectEventComponent } from './select-event/select-event';
 import { DemoAccessibilityComponent } from './accessibility/accessibility';
+import { DemoTabsDynamicInsertComponent } from "./dynamic-insert/dynamic-insert";
 
 export const DEMO_COMPONENTS = [
   DemoTabsBasicComponent,
@@ -23,5 +24,6 @@ export const DEMO_COMPONENTS = [
   DemoTabsConfigComponent,
   DemoTabsCustomComponent,
   DemoTabsSelectEventComponent,
-  DemoAccessibilityComponent
+  DemoAccessibilityComponent,
+  DemoTabsDynamicInsertComponent
 ];

@@ -1,4 +1,14 @@
-import { Component, HostBinding, Input, OnDestroy, Renderer2 } from '@angular/core';
+import {
+  AfterContentInit,
+  Component,
+  ContentChild,
+  ElementRef,
+  forwardRef,
+  HostBinding,
+  Input,
+  OnDestroy,
+  Renderer2
+} from '@angular/core';
 
 import { TabDirective } from './tab.directive';
 import { TabsetConfig } from './tabset.config';
@@ -8,12 +18,13 @@ import { TabsetConfig } from './tabset.config';
   selector: 'tabset',
   templateUrl: './tabset.component.html'
 })
-export class TabsetComponent implements OnDestroy {
+export class TabsetComponent implements OnDestroy, AfterContentInit {
   /** if true tabs will be placed vertically */
   @Input()
   get vertical(): boolean {
     return this._vertical;
   }
+
   set vertical(value: boolean) {
     this._vertical = value;
     this.setClassMap();
@@ -24,6 +35,7 @@ export class TabsetComponent implements OnDestroy {
   get justified(): boolean {
     return this._justified;
   }
+
   set justified(value: boolean) {
     this._justified = value;
     this.setClassMap();
@@ -34,12 +46,17 @@ export class TabsetComponent implements OnDestroy {
   get type(): string {
     return this._type;
   }
+
   set type(value: string) {
     this._type = value;
     this.setClassMap();
   }
 
+  /** if true, tab content will be inject to DOM only if tab is selected */
+  @Input() dynamic = false;
+
   @HostBinding('class.tab-container') clazz = true;
+  @ContentChild(forwardRef(() => TabDirective)) content: TabDirective;
 
   tabs: TabDirective[] = [];
   classMap: { [key: string]: boolean } = {};
@@ -49,12 +66,33 @@ export class TabsetComponent implements OnDestroy {
   protected _justified: boolean;
   protected _type: string;
 
-  constructor(config: TabsetConfig, private renderer: Renderer2) {
+  constructor(config: TabsetConfig, private renderer: Renderer2, private elRef: ElementRef) {
     Object.assign(this, config);
+  }
+
+  ngAfterContentInit() {
+    if (this.dynamic && typeof this.content !== 'undefined') {
+      const container = this.elRef.nativeElement.querySelector('.tab-content');
+      this.renderer.appendChild(container, this.content.elementRef.nativeElement);
+    }
   }
 
   ngOnDestroy(): void {
     this.isDestroyed = true;
+  }
+
+  selectTab(selectedTab: TabDirective): void {
+    selectedTab.active = true;
+
+    if (this.dynamic) {
+      const container = this.elRef.nativeElement.querySelector('.tab-content');
+
+      while (container.firstChild) {
+        container.firstChild.remove();
+      }
+
+      this.renderer.appendChild(container, selectedTab.elementRef.nativeElement);
+    }
   }
 
   addTab(tab: TabDirective): void {
