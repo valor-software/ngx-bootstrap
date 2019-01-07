@@ -23,6 +23,7 @@ import {
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
 import { DemoTimepickerIsValidComponent } from './demos/isvalid/isvalid';
+import { DemoTimepickerFormComponent } from './demos/form/form';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -44,6 +45,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoTimepickerBasicComponent
+      },
+      {
+        title: 'Form',
+        anchor: 'form',
+        component: require('!!raw-loader?lang=typescript!./demos/form/form'),
+        html: require('!!raw-loader?lang=markup!./demos/form/form.html'),
+        outlet: DemoTimepickerFormComponent
       },
       {
         title: 'Meridian',

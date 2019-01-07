@@ -44,7 +44,7 @@ describe('Landing Page test suite', () => {
   describe('Navigation buttons', () => {
     it('Get started button redirects to Getting Started page', () => {
       const buttonText = 'Get started';
-      const searchedUrl = '/getting-started';
+      const searchedUrl = '/documentation';
 
       landing.clickByText(landing.navBtn, buttonText);
 
@@ -54,7 +54,7 @@ describe('Landing Page test suite', () => {
 
     it('Documentation button is enabled and contains link to documentation', () => {
       const buttonText = 'Documentation';
-      const searchedUrl = '/getting-started';
+      const searchedUrl = '/documentation';
 
       cy.get(landing.navBtn).contains(buttonText)
         .should('be.enabled');
