@@ -39,7 +39,7 @@ import { BsDatepickerConfig } from '../../bs-datepicker.config';
         </thead>
         <tbody>
         <tr *ngFor="let week of calendar.weeks; let i = index">
-          <td class="week" [class.active-week]="isWeekHovered" *ngIf="options.showWeekNumbers">
+          <td class="week" [class.active-week]="isWeekHovered"  *ngIf="options.showWeekNumbers">
             <span
                 (click)="selectWeek(week)"
                 (mouseenter)="hoverWeek(week, true)"
