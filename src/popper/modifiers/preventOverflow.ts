@@ -86,9 +86,7 @@ export function preventOverflow(data, options) {
     popper = { ...popper, ...check[side](placement) };
   });
 
-  data.offsets.popper = popper;
-
-  console.dir(data);
+  // data.offsets.popper = popper;
 
   return data;
 }

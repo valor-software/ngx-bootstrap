@@ -139,13 +139,16 @@ export class Positioning {
       }
     };
 
+    let side: string;
+
     order.forEach(placement => {
-      const side = ['left', 'top']
+      side = ['left', 'top']
         .indexOf(placement) !== -1
         ? 'primary'
         : 'secondary';
 
       popper = { ...popper, ...check[side](placement) };
+
     });
 
     offsetsPopper = popper;
@@ -233,8 +236,6 @@ export class Positioning {
       }
     });
 
-    console.log(placement);
-
     return placement;
   }
 
@@ -260,9 +261,9 @@ export class Positioning {
 
     const overPlacement = this.preventOverflow('scrollParent', targetElement, hostElement, popperOffsets);
 
+    console.log(overPlacement);
 
-    window.addEventListener('scroll', () => this.flip('viewport', targetElement, hostElement, popperOffsets, referenceOffsets, placement), true);
-    window.addEventListener('resize', () => this.flip('viewport', targetElement, hostElement, popperOffsets, referenceOffsets, placement), true);
+    this.flip('viewport', targetElement, hostElement, popperOffsets, referenceOffsets, placement);
 
     // const hostElPosition = appendToBody
     //   ? this.offset(hostElement, false)

@@ -25,13 +25,11 @@ export function flip(data, options) {
   if (isModifierEnabled(data.instance.modifiers, 'inner')) {
     return data;
   }
-  console.log(data.placement);
 
   if (data.flipped && data.placement === data.originalPlacement) {
     // seems like flip is trying to loop, probably there's not enough space on any of the flippable sides
     return data;
   }
-  console.log(data.placement);
 
   const boundaries = getBoundaries(
     data.instance.popper,
@@ -96,8 +94,6 @@ export function flip(data, options) {
       (placement === 'top' && overflowsTop) ||
       (placement === 'bottom' && overflowsBottom);
 
-    console.log(overflowsBoundaries);
-
     // flip the variation if required
     const isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
 
@@ -137,8 +133,6 @@ export function flip(data, options) {
       data = runModifiers(data.instance.modifiers, data, 'flip');
     }
   });
-
-  console.log(data.placement);
 
   return data;
 }
