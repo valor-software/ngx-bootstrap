@@ -49,8 +49,8 @@ describe('datepicker:', () => {
   let fixture: TestFixture;
   beforeEach(
     async(() => TestBed.configureTestingModule({
-        declarations: [TestComponent],
-        imports: [BsDatepickerModule.forRoot()]
+      declarations: [TestComponent],
+      imports: [BsDatepickerModule.forRoot()]
     }).compileComponents()
     ));
   beforeEach(() => {
@@ -79,7 +79,7 @@ describe('datepicker:', () => {
     datepickerContainerInstance[`_store`]
       .select(state => state.view)
       .subscribe(view => {
-          expect(view.date.getFullYear()).toEqual(monthSelection.date.getFullYear());
+        expect(view.date.getFullYear()).toEqual(monthSelection.date.getFullYear());
       });
   });
 
@@ -102,4 +102,19 @@ describe('datepicker:', () => {
 
     expect(spy).toHaveBeenCalled();
   }));
+
+  it('should display day selection for the correct month when month is selected from month-selection view', () => {
+    const datepicker = showDatepicker(fixture);
+    const datepickerContainerInstance = getDatepickerContainer(datepicker);
+    const daySelection: CalendarCellViewModel = { date: new Date(2018, 9, 31), label: 'label' };
+    const monthSelection: CalendarCellViewModel = { date: new Date(2018, 10, 1), label: 'label' };
+    datepickerContainerInstance.daySelectHandler(daySelection);
+    datepickerContainerInstance.monthSelectHandler(monthSelection);
+    fixture.detectChanges();
+    datepickerContainerInstance[`_store`]
+      .select(state => state.view)
+      .subscribe(view => {
+        expect(view.date.getMonth()).toEqual(monthSelection.date.getMonth());
+      });
+  });
 });
