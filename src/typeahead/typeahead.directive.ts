@@ -37,7 +37,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @Input() typeaheadMinLength: number = void 0;
   /** minimal wait time after last character typed before typeahead kicks-in */
   @Input() typeaheadWaitMs: number;
-  /** maximum length of options items list */
+  /** maximum length of options items list. The default value is 20 */
   @Input() typeaheadOptionsLimit: number;
   /** when options source is an array of objects, the name of field
    * that contains the options value, we use array item as option in case
