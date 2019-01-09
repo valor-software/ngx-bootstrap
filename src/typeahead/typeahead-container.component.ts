@@ -71,6 +71,7 @@ export class TypeaheadContainerComponent implements OnDestroy, OnInit {
   }
 
   get typeaheadTemplateMethods(): {} {
+    /* tslint:disable:no-this-assignment */
     const _that = this;
 
     return {
