@@ -1,6 +1,6 @@
 <!-- inject options list template -->
 <ng-template [ngTemplateOutlet]="optionsListTemplate || (isBs4 ? bs4Template : bs3Template)"
-             [ngTemplateOutletContext]="{matches:matches, itemTemplate:itemTemplate, query:query, isBs4: this.isBs4, actionEmitter: this.actionEmitter, getIsActiveClass: this.getIsActiveClass}"></ng-template>
+             [ngTemplateOutletContext]="{matches:matches, itemTemplate:itemTemplate, query:query, $implicit: typeaheadTemplateMethods}"></ng-template>
 
 <!-- default options item template -->
 <ng-template #bsItemTemplate let-match="match" let-query="query"><span [innerHtml]="highlight(match, query)"></span>

@@ -1,15 +1,10 @@
-<ng-template #customItemTemplate let-model="item" let-index="index">
-  <h5>This is: {{model | json}} Index: {{ index }}</h5>
-</ng-template>
-
-<ng-template #customListTemplate let-matches="matches" let-itemTemplate="itemTemplate" let-query="query" let-isBs4="isBs4" let-actionEmitter="actionEmitter" let-getIsActiveClass="getIsActiveClass">
-  <ul class="list-unstyled mb-0"  [class.dropdown-menu]="!isBs4">
-    <li class="p-1 pl-3 pr-3 dropdown-item list-group-item border-0" *ngFor="let match of matches; let i = index"
-        [class.active]="setActive(actionEmitter, getIsActiveClass, {eventType: 'isHasClass', match: match})"
-        (click)="actionEmitter.emit({eventType: 'click', match: match, event: $event})"
-        (mouseenter)="actionEmitter.emit({eventType: 'mouseenter', match: match})">
-        <ng-template [ngTemplateOutlet]="customItemTemplate"
-                     [ngTemplateOutletContext]="{item:match.item, index:i}"></ng-template>
+<ng-template #customListTemplate let-matches="matches" let-itemTemplate="itemTemplate" let-query="query" let-typeaheadItem="$implicit">
+  <ul class="list-unstyled mb-0"  [class.dropdown-menu]="!typeaheadItem.isBs4">
+    <li class="p-1 pl-3 pr-3  list-group-item border-0" *ngFor="let match of matches; let i = index"
+        [class.active]="typeaheadItem.isActive(match)"
+        (click)="typeaheadItem.selectMatch(match, $event)"
+        (mouseenter)="typeaheadItem.selectActive(match)">
+        <span>{{match.item}}</span>
     </li>
   </ul>
 </ng-template>

@@ -70,6 +70,17 @@ export class TypeaheadContainerComponent implements OnDestroy, OnInit {
     return !isBs3();
   }
 
+  get typeaheadTemplateMethods(): {} {
+    const _that = this;
+
+    return {
+      isBs4: _that.isBs4,
+      selectMatch: this.selectMatch.bind(_that),
+      selectActive: this.selectActive.bind(_that),
+      isActive: this.isActive.bind(_that)
+    };
+  }
+
   protected _active: TypeaheadMatch;
   protected _matches: TypeaheadMatch[] = [];
 
