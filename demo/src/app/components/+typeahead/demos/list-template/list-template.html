@@ -1,16 +1,17 @@
-<ng-template #customListTemplate let-matches="matches" let-itemTemplate="itemTemplate" let-query="query" let-typeaheadItem="$implicit">
-  <ul class="list-unstyled mb-0"  [class.dropdown-menu]="!typeaheadItem.isBs4">
-    <li class="p-1 pl-3 pr-3  list-group-item border-0" *ngFor="let match of matches; let i = index"
-        [class.active]="typeaheadItem.isActive(match)"
-        (click)="typeaheadItem.selectMatch(match, $event)"
-        (mouseenter)="typeaheadItem.selectActive(match)">
-        <span>{{match.item}}</span>
-    </li>
-  </ul>
-</ng-template>
-
 <pre class="card card-block card-header mb-3">Model: {{selected | json}}</pre>
 <input [(ngModel)]="selected"
        [typeahead]="states"
        [optionsListTemplate]="customListTemplate"
        class="form-control">
+
+<ng-template #customListTemplate let-matches="matches" let-query="query" let-typeaheadTemplateMethods>
+  <ul class="custom-list-group" [class.dropdown-menu]="isBs3">
+    <li class="custom-list-group-item"
+        *ngFor="let match of matches"
+        [class.active]="typeaheadTemplateMethods.isActive(match)"
+        (click)="typeaheadTemplateMethods.selectMatch(match, $event)"
+        (mouseenter)="typeaheadTemplateMethods.selectActive(match)">
+      {{ match.item }}
+    </li>
+  </ul>
+</ng-template>

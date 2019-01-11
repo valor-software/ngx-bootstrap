@@ -1,11 +1,37 @@
 import { Component } from '@angular/core';
 
+import { isBs3 } from 'ngx-bootstrap/utils';
+
 @Component({
   selector: 'demo-typeahead-templates',
   templateUrl: './list-template.html',
-  styles: ['.border-0 { border: 0; }']
+  styles: [`
+    .custom-list-group {
+      display: flex;
+      flex-direction: column;
+      width: 300px;
+      padding-left: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .custom-list-group-item {
+      position: relative;
+      display: block;
+      padding: .75rem 1.25rem;
+      background-color: #fff;
+    }
+
+    .custom-list-group-item.active {
+      z-index: 2;
+      color: #fff;
+      background-color: #FF4461;
+      border-color: #FF4461;
+    }
+  `]
 })
 export class DemoTypeaheadListTemplateComponent {
+  isBs3 = isBs3();
   selected: string;
   states: string[] = [
     'Alabama',

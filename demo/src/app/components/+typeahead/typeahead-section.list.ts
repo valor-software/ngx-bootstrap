@@ -82,8 +82,8 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'List template',
         anchor: 'list-template',
-        component: require('!!raw-loader?lang=typescript!./demos/list-template/list-template.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/list-template/list-template.html'),
+        component: require('!!raw-loader!./demos/list-template/list-template.ts'),
+        html: require('!!raw-loader!./demos/list-template/list-template.html'),
         outlet: DemoTypeaheadListTemplateComponent
       },
       {
@@ -324,7 +324,23 @@ export const demoComponentContent: ContentSection[] = [
         title: 'TypeaheadConfig',
         anchor: 'bs-typeahead-config',
         outlet: NgApiDocConfigComponent
+      },
+      {
+        title: 'TypeaheadOptionListContext',
+        anchor: 'typeahead-option-list-context',
+        outlet: NgApiDocConfigComponent
+      },
+      {
+        title: 'TypeaheadOptionItemContext',
+        anchor: 'typeahead-option-item-context',
+        outlet: NgApiDocConfigComponent
+      },
+      {
+        title: 'TypeaheadTemplateMethods',
+        anchor: 'typeahead-template method',
+        outlet: NgApiDocConfigComponent
       }
     ]
   }
+// tslint:disable-next-line:max-file-line-count
 ];

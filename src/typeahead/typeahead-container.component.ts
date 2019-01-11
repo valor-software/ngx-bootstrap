@@ -9,20 +9,18 @@ import {
   Renderer2,
   TemplateRef,
   ViewChild,
-  ViewChildren,
-  EventEmitter,
-  OnInit,
-  Output
+  ViewChildren
 } from '@angular/core';
 
 import { isBs3, Utils } from 'ngx-bootstrap/utils';
 import { PositioningService } from 'ngx-bootstrap/positioning';
+import { Subscription } from 'rxjs';
 
 import { latinize } from './typeahead-utils';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { TypeaheadDirective } from './typeahead.directive';
 import { typeaheadAnimation } from './typeahead-animations';
-import { Subscription } from 'rxjs';
+import { TypeaheadOptionItemContext, TypeaheadOptionListContext, TypeaheadTemplateMethods } from './models';
 
 @Component({
   selector: 'typeahead-container',
@@ -49,7 +47,7 @@ import { Subscription } from 'rxjs';
   ],
   animations: [typeaheadAnimation]
 })
-export class TypeaheadContainerComponent implements OnDestroy, OnInit {
+export class TypeaheadContainerComponent implements OnDestroy {
   parent: TypeaheadDirective;
   query: string[] | string;
   isFocused = false;
@@ -63,19 +61,16 @@ export class TypeaheadContainerComponent implements OnDestroy, OnInit {
   animationState: string;
   positionServiceSubscription: Subscription;
   height = 0;
-  actionEmitter = new EventEmitter<any>();
-  @Output() getIsActiveClass = new EventEmitter<any>();
 
   get isBs4(): boolean {
     return !isBs3();
   }
 
-  get typeaheadTemplateMethods(): {} {
+  get typeaheadTemplateMethods(): TypeaheadTemplateMethods {
     /* tslint:disable:no-this-assignment */
     const _that = this;
 
     return {
-      isBs4: _that.isBs4,
       selectMatch: this.selectMatch.bind(_that),
       selectActive: this.selectActive.bind(_that),
       isActive: this.isActive.bind(_that)
@@ -162,7 +157,7 @@ export class TypeaheadContainerComponent implements OnDestroy, OnInit {
   }
 
   // tslint:disable-next-line:no-any
-  get optionsListTemplate(): TemplateRef<any> {
+  get optionsListTemplate(): TemplateRef<TypeaheadOptionListContext> {
     return this.parent ? this.parent.optionsListTemplate : undefined;
   }
 
@@ -186,30 +181,8 @@ export class TypeaheadContainerComponent implements OnDestroy, OnInit {
     return this.parent ? this.parent.typeaheadIsFirstItemActive : true;
   }
   // tslint:disable-next-line:no-any
-  get itemTemplate(): TemplateRef<any> {
+  get itemTemplate(): TemplateRef<TypeaheadOptionItemContext> {
     return this.parent ? this.parent.typeaheadItemTemplate : undefined;
-  }
-
-  ngOnInit(): void {
-    this.actionEmitter.subscribe((data: any) => {
-      switch (data.eventType) {
-        case 'click':
-          this.selectMatch(data.match, data.event);
-          break;
-        case 'mouseenter':
-          this.selectActive(data.match);
-          break;
-        case 'isHasClass':
-          const value = this.isActive(data.match);
-          if (value) {
-            data.isActive = true;
-            this.getIsActiveClass.emit(data.isActive);
-          }
-          break;
-        default:
-          return;
-      }
-    });
   }
 
   selectActiveMatch(isActiveItemChanged?: boolean): void {
