@@ -21,7 +21,8 @@
     "noUnusedParameters": false,
     "lib": ["dom", "es6"],
     "types": [
-      "jasmine"
+      "jasmine",
+      "node"
     ]
   },
   "exclude": [

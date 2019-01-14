@@ -7,6 +7,7 @@ import {
   Output,
   Renderer2
 } from '@angular/core';
+
 import Timer = NodeJS.Timer;
 
 @Directive({
