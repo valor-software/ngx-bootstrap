@@ -6,6 +6,7 @@ import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
 import { Subscription } from 'rxjs';
 import { BsDatepickerConfig } from './bs-datepicker.config';
+import { BsDatepickerViewMode } from './models';
 
 @Directive({
   selector: '[bsDatepicker]',
@@ -30,6 +31,8 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    * Currently only supports "body".
    */
   @Input() container = 'body';
+
+  @Input() outsideEsc = true;
 
   /**
    * Returns whether or not the datepicker is currently being shown
@@ -87,6 +90,16 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    * Maximum date which is available for selection
    */
   @Input() maxDate: Date;
+
+  /**
+   * Minimum view mode : day, month, or year
+   */
+  @Input() minMode: BsDatepickerViewMode;
+
+  /**
+   * Disable Certain days in the week
+   */
+  @Input() daysDisabled: number[];
   /**
    * Emits when datepicker value has been changed
    */
@@ -116,6 +129,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   ngOnInit(): void {
     this._datepicker.listen({
       outsideClick: this.outsideClick,
+      outsideEsc: this.outsideEsc,
       triggers: this.triggers,
       show: () => this.show()
     });
@@ -133,6 +147,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
 
     if (changes.maxDate) {
       this._datepickerRef.instance.maxDate = this.maxDate;
+    }
+
+    if (changes.daysDisabled) {
+      this._datepickerRef.instance.daysDisabled = this.daysDisabled;
     }
 
     if (changes.isDisabled) {
@@ -207,7 +225,9 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
       value: this._bsValue,
       isDisabled: this.isDisabled,
       minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
-      maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate
+      maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
+      daysDisabled: this.daysDisabled || this.bsConfig && this.bsConfig.daysDisabled,
+      minMode: this.minMode || this.bsConfig && this.bsConfig.minMode
     });
   }
 

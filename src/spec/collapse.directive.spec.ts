@@ -2,7 +2,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CollapseDirective, CollapseModule } from 'ngx-bootstrap/collapse';
+import { CollapseDirective, CollapseModule } from '../../collapse';
 import { Subscription } from 'rxjs';
 
 const template = `

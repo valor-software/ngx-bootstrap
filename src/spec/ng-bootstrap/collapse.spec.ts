@@ -1,9 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { createGenericTestComponent } from './test/common';
-
 import { Component, ViewChild } from '@angular/core';
 
-import { CollapseDirective, CollapseModule } from 'ngx-bootstrap/collapse';
+import { createGenericTestComponent } from './test/common';
+import { CollapseDirective, CollapseModule } from '../../collapse';
 import { Subscription } from 'rxjs';
 
 @Component({selector: 'test-cmp', template: ''})

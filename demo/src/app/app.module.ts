@@ -10,7 +10,7 @@ import { environment } from '../environments/environment';
 import { ngdoc } from '../ng-api-doc';
 import { AppComponent } from './app.component';
 import { routes } from './app.routing';
-import { GettingStartedComponent } from './common/getting-started/getting-started.component';
+import { DocumentationComponent } from './common/documentation/documentation.component';
 import { LandingComponent } from './common/landing/landing.component';
 import { TopMenuComponent } from './common/top-menu/top-menu.component';
 import { DocsModule } from './docs';
@@ -19,7 +19,7 @@ import { StyleManager } from './theme/style-manager';
 import { ThemeStorage } from './theme/theme-storage';
 
 @NgModule({
-  declarations: [AppComponent, GettingStartedComponent, TopMenuComponent, LandingComponent],
+  declarations: [AppComponent, DocumentationComponent, TopMenuComponent, LandingComponent],
   imports: [
     DocsModule,
     FormsModule,

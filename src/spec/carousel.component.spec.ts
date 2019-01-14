@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { CarouselModule } from '../carousel';
 
 @Component({selector: 'carousel-test', template: ''})
 class TestCarouselComponent {

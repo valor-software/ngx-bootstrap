@@ -15,12 +15,13 @@ import {
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
-import { from, Observable, Subscription } from 'rxjs';
+import { from, Subscription, isObservable } from 'rxjs';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
 import { debounceTime, filter, mergeMap, switchMap, toArray } from 'rxjs/operators';
+import { TypeaheadConfig } from './typeahead.config';
 
 @Directive({selector: '[typeahead]', exportAs: 'bs-typeahead'})
 export class TypeaheadDirective implements OnInit, OnDestroy {
@@ -83,6 +84,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @Input() typeaheadScrollable = false;
   /** specifies number of options to show in scroll view  */
   @Input() typeaheadOptionsInScrollableView = 5;
+  /** used to hide result on blur */
+  @Input() typeaheadHideResultsOnBlur: boolean;
   /** fired when 'busy' state of this component was changed,
    * fired on async mode only, returns boolean
    */
@@ -137,30 +140,37 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
               private element: ElementRef,
               viewContainerRef: ViewContainerRef,
               private renderer: Renderer2,
+              config: TypeaheadConfig,
               cis: ComponentLoaderFactory,
               private changeDetection: ChangeDetectorRef) {
+
     this._typeahead = cis.createLoader<TypeaheadContainerComponent>(
       element,
       viewContainerRef,
       renderer
-    );
+    )
+      .provide({ provide: TypeaheadConfig, useValue: config });
+
+    Object.assign(this, { typeaheadHideResultsOnBlur: config.hideResultsOnBlur });
   }
 
   ngOnInit(): void {
     this.typeaheadOptionsLimit = this.typeaheadOptionsLimit || 20;
+
     this.typeaheadMinLength =
       this.typeaheadMinLength === void 0 ? 1 : this.typeaheadMinLength;
+
     this.typeaheadWaitMs = this.typeaheadWaitMs || 0;
 
     // async should be false in case of array
     if (
       this.typeaheadAsync === undefined &&
-      !(this.typeahead instanceof Observable)
+      !(isObservable(this.typeahead))
     ) {
       this.typeaheadAsync = false;
     }
 
-    if (this.typeahead instanceof Observable) {
+    if (isObservable(this.typeahead)) {
       this.typeaheadAsync = true;
     }
 
@@ -198,6 +208,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   onChange(e: KeyboardEvent): void {
     if (this._container) {
       // esc
+      /* tslint:disable-next-line: deprecation */
       if (e.keyCode === 27) {
         this.hide();
 
@@ -205,6 +216,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       }
 
       // up
+      /* tslint:disable-next-line: deprecation */
       if (e.keyCode === 38) {
         this._container.prevActiveMatch();
 
@@ -212,6 +224,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       }
 
       // down
+      /* tslint:disable-next-line: deprecation */
       if (e.keyCode === 40) {
         this._container.nextActiveMatch();
 
@@ -219,6 +232,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       }
 
       // enter, tab
+      /* tslint:disable-next-line: deprecation */
       if (e.keyCode === 13) {
         this._container.selectActiveMatch();
 
@@ -251,6 +265,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
 
     // if an item is visible - prevent form submission
+    /* tslint:disable-next-line: deprecation */
     if (e.keyCode === 13) {
       e.preventDefault();
 
@@ -258,6 +273,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
 
     // if an item is visible - don't change focus
+    /* tslint:disable-next-line: deprecation */
     if (e.keyCode === 9) {
       e.preventDefault();
       this._container.selectActiveMatch();
@@ -293,6 +309,9 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
     this._outsideClickListener = this.renderer.listen('document', 'click', (e: MouseEvent) => {
       if (this.typeaheadMinLength === 0 && this.element.nativeElement.contains(e.target)) {
+        return undefined;
+      }
+      if (!this.typeaheadHideResultsOnBlur || this.element.nativeElement.contains(e.target)) {
         return undefined;
       }
       this.onOutsideClick();
@@ -429,7 +448,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   protected finalizeAsyncCall(matches: TypeaheadMatch[]): void {
-    this.prepareMatches(matches);
+    this.prepareMatches(matches || []);
 
     this.typeaheadLoading.emit(false);
     this.typeaheadNoResults.emit(!this.hasMatches());

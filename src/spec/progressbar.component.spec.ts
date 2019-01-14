@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProgressbarComponent, ProgressbarModule } from 'ngx-bootstrap/progressbar';
+import { ProgressbarComponent, ProgressbarModule } from '../progressbar';
 
 @Component({
   selector: 'progressbar-test',

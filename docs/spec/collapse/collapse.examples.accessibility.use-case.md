@@ -1,4 +1,4 @@
-4.4: Collapse accessibility example
+4.5: Collapse accessibility example
 ===================================
 **Primary Actor**: User
 

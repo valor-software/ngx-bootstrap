@@ -5,20 +5,29 @@ describe('Pagination demo page test suite', () => {
 
   beforeEach(() => pagination.navigateTo());
 
-  describe('Pager', () => {
-    const pager = pagination.exampleDemosArr.pager;
+  describe('Basic', () => {
+    const basic = pagination.exampleDemosArr.basic;
 
-    it('active page can be changed by clicking on Next or Previous button', () => {
-      cy.get(`${ pager } ${ pagination.classActive }`)
-        .should('to.contain', '4');
+    it('example contains: 1st page is active, previous button is disabled', () => {
+      pagination.isActivePositionEqual(basic, '1');
+      pagination.isPagerDisabled(basic, 'Next', false);
+      pagination.isPagerDisabled(basic, 'Previous', true);
+    });
 
-      pagination.clickByText(pager, pagination.btnPrev);
-      cy.get(`${ pager } ${ pagination.classActive }`)
-        .should('to.contain', '3');
+    it('when user clicks on 3, then "Next" - disabled, "Previous" - enabled, 1st - inactive, 3rd - active', () => {
+      pagination.clickOnPage(basic, '3');
+      pagination.isPagerDisabled(basic, 'Next', true);
+      pagination.isPagerDisabled(basic, 'Previous', false);
+      pagination.isActivePositionEqual(basic, '3');
+      pagination.isPageActive(basic, '1', false);
+    });
 
-      pagination.clickByText(pager, pagination.btnNext);
-      cy.get(`${ pager } ${ pagination.classActive }`)
-        .should('to.contain', '4');
+    it('when user clicks on 2, previous and next buttons are enabled, 2d page is active, other - inactive', () => {
+      pagination.clickOnPage(basic, '2');
+      pagination.isPagerDisabled(basic, 'Next', false);
+      pagination.isPagerDisabled(basic, 'Previous', false);
+      pagination.isActivePositionEqual(basic, '2');
+      pagination.isPageActive(basic, '1', false);
     });
   });
 });

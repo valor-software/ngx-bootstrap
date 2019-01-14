@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { AccordionConfig, AccordionModule } from 'ngx-bootstrap/accordion';
+import { AccordionConfig, AccordionModule } from '../accordion';
 
 @Component({
   selector: 'accordion-test',
@@ -126,7 +126,7 @@ describe('Component: Accordion', () => {
 
   it('should have the appropriate heading', () => {
     const titles = Array.from(
-      element.querySelectorAll('.panel-heading .accordion-toggle div')
+      element.querySelectorAll('.panel-heading .accordion-toggle button')
     );
     titles.forEach((title: HTMLElement, idx: number) => {
       const expectedTitle = `Panel ${idx + 1}`;

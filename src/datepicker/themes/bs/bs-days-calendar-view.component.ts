@@ -13,6 +13,7 @@ import {
   DaysCalendarViewModel,
   DayViewModel
 } from '../../models';
+import { BsDatepickerConfig } from '../../bs-datepicker.config';
 
 @Component({
   selector: 'bs-days-calendar-view',
@@ -65,6 +66,8 @@ export class BsDaysCalendarViewComponent {
   @Output() onSelect = new EventEmitter<DayViewModel>();
   @Output() onHover = new EventEmitter<CellHoverEvent>();
 
+  constructor(private _config: BsDatepickerConfig) { }
+
   navigateTo(event: BsNavigationDirection): void {
     const step = BsNavigationDirection.DOWN === event ? -1 : 1;
     this.onNavigate.emit({ step: { month: step } });
@@ -79,6 +82,10 @@ export class BsDaysCalendarViewComponent {
   }
 
   hoverDay(cell: DayViewModel, isHovered: boolean): void {
+    if (this._config.selectFromOtherMonth && cell.isOtherMonth) {
+      cell.isOtherMonthHovered = isHovered;
+    }
+
     this.onHover.emit({ cell, isHovered });
   }
 }
