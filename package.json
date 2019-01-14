@@ -98,6 +98,7 @@
     "@angular/router": "6.0.1",
     "@angular/service-worker": "6.0.1",
     "@cypress/webpack-preprocessor": "3.0.1",
+    "@netbasal/spectator": "2.2.0-rc.2",
     "@nguniversal/express-engine": "6.0.0",
     "@nguniversal/module-map-ngfactory-loader": "6.0.0",
     "@schematics/angular": "0.8.5",
