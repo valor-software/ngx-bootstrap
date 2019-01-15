@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 /* tslint:disable:max-classes-per-file max-file-line-count component-class-suffix */
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { fireEvent } from '../../scripts/helpers';
 import { TooltipModule } from '../tooltip';
 
 @Component({
@@ -100,7 +99,7 @@ xdescribe('Directives: Tooltips', () => {
       const element: HTMLElement = fixture.debugElement.nativeElement;
       /* tslint:disable-next-line: no-any */
       const tooltipElement: any = element.querySelector('#test-tooltip1');
-      fireEvent(tooltipElement, 'mouseenter');
+      element.dispatchEvent(new Event('mouseenter'));
       fixture.detectChanges();
       tick(context.delay);
       fixture.detectChanges();

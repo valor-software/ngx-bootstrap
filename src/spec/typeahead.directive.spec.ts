@@ -4,7 +4,6 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testin
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { BehaviorSubject, of, Subject } from 'rxjs';
-import { fireEvent } from '../../scripts/helpers';
 import { TypeaheadMatch, TypeaheadDirective, TypeaheadModule } from '../typeahead';
 
 interface State {
@@ -110,7 +109,7 @@ describe('Directive: ', () => {
       beforeEach(
         fakeAsync(() => {
           inputElement.value = 'Ala';
-          fireEvent(inputElement, 'input');
+          inputElement.dispatchEvent(new Event('input'));
 
           fixture.detectChanges();
           tick(100);
@@ -157,7 +156,7 @@ describe('Directive: ', () => {
         'should result in 0 matches, when input does not match',
         fakeAsync(() => {
           inputElement.value = 'foo';
-          fireEvent(inputElement, 'input');
+          inputElement.dispatchEvent(new Event('input'));
 
           fixture.detectChanges();
           tick(100);
@@ -171,7 +170,7 @@ describe('Directive: ', () => {
         fakeAsync(() => {
           component.states.push({id: 3, name: null, region: 'West'});
           inputElement.value = 'Ala';
-          fireEvent(inputElement, 'input');
+          inputElement.dispatchEvent(new Event('input'));
           fixture.detectChanges();
           tick(100);
 
@@ -184,7 +183,7 @@ describe('Directive: ', () => {
       beforeEach(
         fakeAsync(() => {
           inputElement.value = 'Ala';
-          fireEvent(inputElement, 'input');
+          inputElement.dispatchEvent(new Event('input'));
           directive.typeaheadGroupField = 'region';
 
           fixture.detectChanges();
@@ -247,7 +246,7 @@ describe('Directive: ', () => {
       beforeEach(
         fakeAsync(() => {
           inputElement.value = 'Alab';
-          fireEvent(inputElement, 'input');
+          inputElement.dispatchEvent(new Event('input'));
 
           fixture.detectChanges();
           tick(100);
@@ -267,7 +266,7 @@ describe('Directive: ', () => {
       beforeEach(
         fakeAsync(() => {
           inputElement.value = 'Ala';
-          fireEvent(inputElement, 'input');
+          inputElement.dispatchEvent(new Event('input'));
           directive.typeaheadHideResultsOnBlur = false;
           fixture.detectChanges();
           tick(100);
@@ -333,7 +332,7 @@ describe('Directive: ', () => {
       beforeEach(
         fakeAsync(() => {
           inputElement.value = 'Ala';
-          fireEvent(inputElement, 'input');
+          inputElement.dispatchEvent(new Event('input'));
           fixture.detectChanges();
           tick(100);
         })

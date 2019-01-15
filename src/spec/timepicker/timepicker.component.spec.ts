@@ -3,7 +3,6 @@ import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 
-import { fireEvent } from '../../../scripts/helpers';
 import {
   TimepickerActions,
   TimepickerComponent,
@@ -107,7 +106,7 @@ describe('Component: TimepickerComponent', () => {
     });
 
     it('should validate the data in the minutes input with valid data', () => {
-      fireEvent(inputMinutes, 'change');
+      inputMinutes.dispatchEvent(new Event('change'));
 
       component.writeValue(testTime(0, 12, 0));
 
@@ -127,7 +126,7 @@ describe('Component: TimepickerComponent', () => {
       expect(inputHours.value).toBeFalsy();
       expect(inputMinutes.value).toBeFalsy();
 
-      fireEvent(buttonChanges[0], 'click');
+      buttonChanges[0].dispatchEvent(new Event('click'));
 
       fixture.detectChanges();
 
@@ -152,7 +151,7 @@ describe('Component: TimepickerComponent', () => {
     });
 
     it('should validate the data in the hours input at time format 12h', () => {
-      fireEvent(inputHours, 'change');
+      inputHours.dispatchEvent(new Event('change'));
 
       component.writeValue(testTime(22));
 
@@ -322,7 +321,7 @@ describe('Component: TimepickerComponent', () => {
       fixture.whenStable().then(() => {
         inputSeconds = getInputElements(fixture)[2];
 
-        fireEvent(inputSeconds, 'change');
+        inputSeconds.dispatchEvent(new Event('change'));
 
         expect(inputSeconds).toBeTruthy();
       });
@@ -337,7 +336,7 @@ describe('Component: TimepickerComponent', () => {
       fixture.whenStable().then(() => {
         inputSeconds = getInputElements(fixture)[2];
 
-        fireEvent(inputSeconds, 'change');
+        inputSeconds.dispatchEvent(new Event('change'));
 
         expect(inputSeconds.value).toBe('07');
       });
@@ -441,7 +440,7 @@ describe('Component: TimepickerComponent', () => {
 
       component.writeValue(testTime());
 
-      fireEvent(buttonChanges[0], 'click');
+      buttonChanges[0].dispatchEvent(new Event('click'));
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
@@ -454,7 +453,7 @@ describe('Component: TimepickerComponent', () => {
 
       component.writeValue(testTime(6));
 
-      fireEvent(buttonChanges[2], 'click');
+      buttonChanges[2].dispatchEvent(new Event('click'));
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
@@ -467,7 +466,7 @@ describe('Component: TimepickerComponent', () => {
 
       component.writeValue(testTime(6, 22));
 
-      fireEvent(buttonChanges[1], 'click');
+      buttonChanges[1].dispatchEvent(new Event('click'));
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
@@ -480,7 +479,7 @@ describe('Component: TimepickerComponent', () => {
 
       component.writeValue(testTime(6, 22));
 
-      fireEvent(buttonChanges[3], 'click');
+      buttonChanges[3].dispatchEvent(new Event('click'));
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
@@ -498,7 +497,7 @@ describe('Component: TimepickerComponent', () => {
       fixture.whenStable().then(() => {
         buttonChanges = getElements(fixture, 'a.btn');
 
-        fireEvent(buttonChanges[2], 'click');
+        buttonChanges[2].dispatchEvent(new Event('click'));
 
         fixture.detectChanges();
         inputSeconds = getInputElements(fixture)[2];
@@ -515,7 +514,7 @@ describe('Component: TimepickerComponent', () => {
       fixture.detectChanges();
       fixture.whenStable().then(() => {
         buttonChanges = getElements(fixture, 'a.btn');
-        fireEvent(buttonChanges[5], 'click');
+        buttonChanges[5].dispatchEvent(new Event('click'));
 
         fixture.detectChanges();
         inputSeconds = getInputElements(fixture)[2];

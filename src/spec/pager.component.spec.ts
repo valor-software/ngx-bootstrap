@@ -6,7 +6,6 @@ import {
   tick
 } from '@angular/core/testing';
 import { PagerComponent, PaginationModule } from '../pagination';
-import { fireEvent } from '../../scripts/helpers';
 
 describe('Component: Pager:', () => {
   let fixture: ComponentFixture<PagerComponent>;
@@ -120,7 +119,7 @@ describe('Component: Pager:', () => {
 
     context.page = 2;
     fixture.detectChanges();
-    fireEvent(element, 'input');
+    element.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
     fixture.whenStable().then(() => {
