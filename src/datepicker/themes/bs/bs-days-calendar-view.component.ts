@@ -88,65 +88,48 @@ export class BsDaysCalendarViewComponent {
   }
 
   selectWeek(week: WeekViewModel): void {
-    if (this._config.selectWeek && week.days && week.days[0] && !week.days[0].isOtherMonth
-      && !week.days[0].isDisabled && !this._config.selectFromOtherMonth) {
+    if (!this._config.selectWeek) {
+      return;
+    }
+
+    if (week.days
+      && week.days[0]
+      && !week.days[0].isDisabled
+      && this._config.selectFromOtherMonth) {
+
       this.onSelect.emit(week.days[0]);
 
       return;
     }
 
-    if (this._config.selectWeek && week.days && week.days[0] &&
-      !week.days[0].isDisabled && this._config.selectFromOtherMonth) {
-      this.onSelect.emit(week.days[0]);
-
+    if (week.days.length === 0) {
       return;
     }
 
-    if (this._config.selectWeek && week.days.length > 0) {
-      if (this._config.selectFromOtherMonth) {
-        for (let i = 0; i <= 6; i++) {
-          if (!week.days[i].isDisabled) {
-            this.onSelect.emit(week.days[i]);
+    const selectedDay = week.days.find((day: DayViewModel) => {
+      return this._config.selectFromOtherMonth
+        ? !day.isDisabled
+        : !day.isOtherMonth && !day.isDisabled;
+    });
 
-            return;
-          }
-        }
-      } else {
-        for (let i = 0; i <= 6; i++) {
-          if (!week.days[i].isOtherMonth && !week.days[i].isDisabled) {
-            this.onSelect.emit(week.days[i]);
-
-            return;
-          }
-        }
-      }
-    }
+    this.onSelect.emit(selectedDay);
   }
 
   hoverWeek(cell: WeekViewModel, isHovered: boolean): void {
-    if (this._config.selectWeek && this._config.selectFromOtherMonth) {
-      for (let i = 0; i <= 6; i++) {
-        if (!cell.days[i].isDisabled) {
-          cell.isHovered = isHovered;
-          this.isWeekHovered = isHovered;
-          this.onHoverWeek.emit(cell);
-
-          return;
-        }
-      }
+    if (!this._config.selectWeek) {
+      return;
     }
 
+    const hasActiveDays = cell.days.find((day: DayViewModel) => {
+      return this._config.selectFromOtherMonth
+        ? !day.isDisabled
+        : !day.isOtherMonth && !day.isDisabled;
+    });
 
-    if (this._config.selectWeek && !this._config.selectFromOtherMonth) {
-      for (let i = 0; i <= 6; i++) {
-        if (!cell.days[i].isOtherMonth && !cell.days[i].isDisabled) {
-          cell.isHovered = isHovered;
-          this.isWeekHovered = isHovered;
-          this.onHoverWeek.emit(cell);
-
-          return;
-        }
-      }
+    if (hasActiveDays) {
+      cell.isHovered = isHovered;
+      this.isWeekHovered = isHovered;
+      this.onHoverWeek.emit(cell);
     }
   }
 

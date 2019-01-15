@@ -11,7 +11,8 @@ import {
   DatepickerRenderOptions,
   DaysCalendarViewModel,
   DayViewModel,
-  MonthsCalendarViewModel, WeekViewModel,
+  MonthsCalendarViewModel,
+  WeekViewModel,
   YearsCalendarViewModel
 } from '../models';
 
