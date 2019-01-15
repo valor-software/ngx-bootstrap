@@ -270,7 +270,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
     /* tslint:disable-next-line: deprecation */
     if (event.keyCode === 9 || event.key === 'Tab' || event.keyCode === 13 || event.key === 'Enter') {
-      e.preventDefault();
+      event.preventDefault();
       if (this.typeaheadSelectFirstItem) {
         this._container.selectActiveMatch();
 
