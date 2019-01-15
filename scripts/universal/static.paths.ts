@@ -1,6 +1,6 @@
 export const ROUTES = [
   '/',
-  '/getting-started',
+  '/documentation',
   '/accordion',
   '/alerts',
   '/buttons',

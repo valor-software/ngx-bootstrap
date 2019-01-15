@@ -205,11 +205,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   @HostListener('keyup', ['$event'])
-  onChange(e: KeyboardEvent): void {
+  onChange(event: KeyboardEvent): void {
     if (this._container) {
       // esc
       /* tslint:disable-next-line: deprecation */
-      if (e.keyCode === 27) {
+      if (event.keyCode === 27 || event.key === 'Escape') {
         this.hide();
 
         return;
@@ -217,7 +217,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
       // up
       /* tslint:disable-next-line: deprecation */
-      if (e.keyCode === 38) {
+      if (event.keyCode === 38 || event.key === 'ArrowUp') {
         this._container.prevActiveMatch();
 
         return;
@@ -225,7 +225,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
       // down
       /* tslint:disable-next-line: deprecation */
-      if (e.keyCode === 40) {
+      if (event.keyCode === 40 || event.key === 'ArrowDown') {
         this._container.nextActiveMatch();
 
         return;
@@ -233,7 +233,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
       // enter, tab
       /* tslint:disable-next-line: deprecation */
-      if (e.keyCode === 13) {
+      if (event.keyCode === 13 || event.key === 'Enter') {
         this._container.selectActiveMatch();
 
         return;
@@ -258,7 +258,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   @HostListener('keydown', ['$event'])
-  onKeydown(e: KeyboardEvent): void {
+  onKeydown(event: KeyboardEvent): void {
     // no container - no problems
     if (!this._container) {
       return;
@@ -266,16 +266,16 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
     // if an item is visible - prevent form submission
     /* tslint:disable-next-line: deprecation */
-    if (e.keyCode === 13) {
-      e.preventDefault();
+    if (event.keyCode === 13 || event.key === 'Enter') {
+      event.preventDefault();
 
       return;
     }
 
     // if an item is visible - don't change focus
     /* tslint:disable-next-line: deprecation */
-    if (e.keyCode === 9) {
-      e.preventDefault();
+    if (event.keyCode === 9 || event.key === 'Tab') {
+      event.preventDefault();
       this._container.selectActiveMatch();
 
       return;
