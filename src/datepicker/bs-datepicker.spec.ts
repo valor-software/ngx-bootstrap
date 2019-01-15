@@ -4,6 +4,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BsDatepickerConfig, BsDatepickerDirective, BsDatepickerModule } from '.';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
 import { CalendarCellViewModel } from './models';
+import { dispatchKeyboardEvent } from '@netbasal/spectator';
 import { registerEscClick } from '../utils';
 
 @Component({
@@ -94,11 +95,7 @@ describe('datepicker:', () => {
       hide: () => datepicker.hide()
     });
 
-    const event = new KeyboardEvent('keyup', {
-      key: 'Escape'
-    });
-
-    document.dispatchEvent(event);
+    dispatchKeyboardEvent(document, 'keyup', 'Escape');
 
     expect(spy).toHaveBeenCalled();
   }));

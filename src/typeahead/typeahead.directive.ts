@@ -215,11 +215,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   @HostListener('keyup', ['$event'])
-  onChange(e: KeyboardEvent): void {
+  onChange(event: KeyboardEvent): void {
     if (this._container) {
       // esc
       /* tslint:disable-next-line: deprecation */
-      if (e.keyCode === 27) {
+      if (event.keyCode === 27 || event.key === 'Escape') {
         this.hide();
 
         return;
@@ -227,7 +227,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
       // up
       /* tslint:disable-next-line: deprecation */
-      if (e.keyCode === 38) {
+      if (event.keyCode === 38 || event.key === 'ArrowUp') {
         this.isActiveItemChanged = true;
         this._container.prevActiveMatch();
 
@@ -236,7 +236,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
       // down
       /* tslint:disable-next-line: deprecation */
-      if (e.keyCode === 40) {
+      if (event.keyCode === 40 || event.key === 'ArrowDown') {
         this.isActiveItemChanged = true;
         this._container.nextActiveMatch();
 
@@ -262,14 +262,14 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   @HostListener('keydown', ['$event'])
-  onKeydown(e: KeyboardEvent): void {
+  onKeydown(event: KeyboardEvent): void {
     // no container - no problems
     if (!this._container) {
       return;
     }
 
     /* tslint:disable-next-line: deprecation */
-    if (e.keyCode === 9 || e.keyCode === 13) {
+    if (event.keyCode === 9 || event.key === 'Tab' || event.keyCode === 13 || event.key === 'Enter') {
       e.preventDefault();
       if (this.typeaheadSelectFirstItem) {
         this._container.selectActiveMatch();
