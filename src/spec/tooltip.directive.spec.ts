@@ -99,7 +99,7 @@ xdescribe('Directives: Tooltips', () => {
       const element: HTMLElement = fixture.debugElement.nativeElement;
       /* tslint:disable-next-line: no-any */
       const tooltipElement: any = element.querySelector('#test-tooltip1');
-      element.dispatchEvent(new Event('mouseenter'));
+      tooltipElement.dispatchEvent(new Event('mouseenter'));
       fixture.detectChanges();
       tick(context.delay);
       fixture.detectChanges();
