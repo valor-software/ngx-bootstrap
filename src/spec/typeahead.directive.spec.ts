@@ -1,10 +1,11 @@
 /* tslint:disable:max-file-line-count */
+import { BehaviorSubject, of, Subject } from 'rxjs';
+import { By } from '@angular/platform-browser';
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
-import { BehaviorSubject, of, Subject } from 'rxjs';
+import { dispatchMouseEvent } from '@netbasal/spectator';
 import { fireEvent } from '../../scripts/helpers';
+import { FormsModule } from '@angular/forms';
 import { TypeaheadMatch, TypeaheadDirective, TypeaheadModule } from '../typeahead';
 
 interface State {
@@ -276,7 +277,7 @@ describe('Directive: ', () => {
 
       it('equal true should be opened',
         fakeAsync(() => {
-          document.dispatchEvent(new Event('click'));
+          dispatchMouseEvent(document, 'click');
           tick();
 
           expect(fixture.nativeElement.querySelector('.dropdown').classList).toContain('open');
@@ -286,7 +287,7 @@ describe('Directive: ', () => {
       it('equal false should be closed',
         fakeAsync(() => {
           directive.typeaheadHideResultsOnBlur = true;
-          document.dispatchEvent(new Event('click'));
+          dispatchMouseEvent(document, 'click');
           tick();
 
           expect(fixture.debugElement.query(By.css('typeahead-container'))).toBeNull();
