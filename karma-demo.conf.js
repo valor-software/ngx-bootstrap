@@ -115,7 +115,7 @@ module.exports = function (config) {
         'SL_SAFARI': {
             base: 'SauceLabs',
             browserName: 'safari',
-            version: 'latest'
+            version: 'latest-1'
           }
         //LATEST-1
         /*'SL_CHROME_1': {
