@@ -29,12 +29,17 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
   selectFromOtherMonth?: boolean;
 
   /**
+   * Makes dates from other months active
+   */
+  selectWeek?: boolean;
+
+  /**
    * Add class to current day
    */
   customTodayClass?: string;
 
   /**
-   * Defaut mode for all date pickers
+   * Default mode for all date pickers
    */
   minMode?: BsDatepickerViewMode;
 
