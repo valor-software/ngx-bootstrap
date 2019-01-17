@@ -53,6 +53,7 @@ export function update() {
   data.positionFixed = this.options.positionFixed;
 
   // compute the popper offsets
+
   data.offsets.popper = getPopperOffsets(
     this.popper,
     data.offsets.reference,

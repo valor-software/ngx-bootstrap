@@ -44,6 +44,39 @@ export class PositioningService {
       attachment,
       appendToBody
     );
+
+    requestAnimationFrame(() => {
+      console.log('requestAnimationFrame');
+
+      positionElements(
+        _getHtmlElement(target),
+        _getHtmlElement(element),
+        attachment,
+        appendToBody
+      );
+    });
+
+    window.addEventListener('scroll', () => {
+      console.log('on scroll');
+
+      positionElements(
+        _getHtmlElement(target),
+        _getHtmlElement(element),
+        attachment,
+        appendToBody
+      );
+    });
+
+    window.addEventListener('resize', () => {
+      console.log('on resize');
+
+      positionElements(
+        _getHtmlElement(target),
+        _getHtmlElement(element),
+        attachment,
+        appendToBody
+      );
+    });
   }
 
 }

@@ -9,6 +9,7 @@ import { getBoundingClientRect } from '../utils/getBoundingClientRect';
  * @argument {Object} options - Modifiers configuration and options
  */
 export function computeStyle(data, options) {
+
   const { x, y } = options;
   const { popper } = data.offsets;
 

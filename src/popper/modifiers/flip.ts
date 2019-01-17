@@ -105,11 +105,12 @@ export function flip(data, options) {
         (!isVertical && variation === 'end' && overflowsBottom));
 
     if (overlapsRef || overflowsBoundaries || flippedVariation) {
+
       // this boolean to detect any flip loop
       data.flipped = true;
-
       if (overlapsRef || overflowsBoundaries) {
         placement = flipOrder[index + 1];
+
       }
 
       if (flippedVariation) {

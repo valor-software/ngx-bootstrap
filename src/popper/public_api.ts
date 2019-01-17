@@ -8,7 +8,8 @@ export {
   getReferenceOffsets,
   getSupportedPropertyName,
   getOppositePlacement,
-  getOppositeVariation
+  getOppositeVariation,
+  getClientRect
 } from './utils';
 
 // Utils
