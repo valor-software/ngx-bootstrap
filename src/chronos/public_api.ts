@@ -35,6 +35,7 @@ export { TimeUnit } from './types';
 
 export { arLocale } from './i18n/ar';
 export { bgLocale } from './i18n/bg';
+export { caLocale } from './i18n/ca';
 export { csLocale } from './i18n/cs';
 export { daLocale } from './i18n/da';
 export { deLocale } from './i18n/de';
