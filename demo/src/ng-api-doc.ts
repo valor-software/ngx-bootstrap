@@ -693,6 +693,11 @@ export const ngdoc: any = {
         "description": "<p>A selector specifying the element the datepicker should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
       },
       {
+        "name": "daysDisabled",
+        "type": "number[]",
+        "description": "<p>Disable Certain days in the week</p>\n"
+      },
+      {
         "name": "isDisabled",
         "type": "boolean",
         "description": "<p>Indicates whether datepicker&#39;s content is enabled or not</p>\n"
@@ -715,13 +720,19 @@ export const ngdoc: any = {
       {
         "name": "minMode",
         "type": "BsDatepickerViewMode",
-        "description": "<p> Minimum view mode : day, month, or year</p>\n"
+        "description": "<p>Minimum view mode : day, month, or year</p>\n"
       },
       {
         "name": "outsideClick",
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>Close datepicker on outside click</p>\n"
+      },
+      {
+        "name": "outsideEsc",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": ""
       },
       {
         "name": "placement",
@@ -791,6 +802,11 @@ export const ngdoc: any = {
         "description": "<p>CSS class which will be applied to datepicker container,\nusually used to set color theme</p>\n"
       },
       {
+        "name": "customTodayClass",
+        "type": "string",
+        "description": "<p>Add class to current day</p>\n"
+      },
+      {
         "name": "maxDate",
         "type": "Date",
         "description": "<p>Default max date for all date/range pickers</p>\n"
@@ -801,14 +817,9 @@ export const ngdoc: any = {
         "description": "<p>Default min date for all date/range pickers</p>\n"
       },
       {
-        "name": "customTodayClass",
-        "type": "string",
-        "description": "<p>Allows to add custom class for today</p>\n"
-      },
-      {
         "name": "minMode",
         "type": "BsDatepickerViewMode",
-        "description": "<p> Defaut minimum view mode : day, month, or year</p>\n"
+        "description": "<p>Defaut mode for all date pickers</p>\n"
       },
       {
         "name": "rangeInputFormat",
@@ -817,16 +828,15 @@ export const ngdoc: any = {
         "description": "<p>Date format for date range input field</p>\n"
       },
       {
+        "name": "selectFromOtherMonth",
+        "type": "boolean",
+        "description": "<p>Makes dates from other months active</p>\n"
+      },
+      {
         "name": "showWeekNumbers",
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>Allows to hide week numbers in datepicker</p>\n"
-      },
-      {
-        "name": "selectFromOtherMonth",
-        "defaultValue": "false",
-        "type": "boolean",
-        "description": "<p>Allows to use dates from previous/future month as active</p>\n"
       }
     ]
   },
@@ -888,6 +898,12 @@ export const ngdoc: any = {
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>Close daterangepicker on outside click</p>\n"
+      },
+      {
+        "name": "outsideEsc",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": ""
       },
       {
         "name": "placement",
@@ -1736,6 +1752,12 @@ export const ngdoc: any = {
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>default dropdown auto closing behavior </p>\n"
+      },
+      {
+        "name": "insideClick",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>default dropdown auto closing behavior </p>\n"
       }
     ]
   },
@@ -1760,6 +1782,11 @@ export const ngdoc: any = {
         "name": "dropup",
         "type": "boolean",
         "description": "<p>This attribute indicates that the dropdown should be opened upwards</p>\n"
+      },
+      {
+        "name": "insideClick",
+        "type": "boolean",
+        "description": "<p>This attribute indicates that the dropdown shouldn&#39;t close on inside click when autoClose is set to true</p>\n"
       },
       {
         "name": "isDisabled",
@@ -1801,6 +1828,11 @@ export const ngdoc: any = {
         "name": "autoClose",
         "type": "boolean",
         "description": "<p>Indicates that dropdown will be closed on item or document click,\nand after pressing ESC</p>\n"
+      },
+      {
+        "name": "insideClick",
+        "type": "boolean",
+        "description": "<p>This attribute indicates that the dropdown shouldn&#39;t close on inside click when autoClose is set to true</p>\n"
       },
       {
         "name": "isDisabled",
@@ -1870,6 +1902,12 @@ export const ngdoc: any = {
         "defaultValue": "Function",
         "type": "() => void",
         "description": "<p>Hides the modal</p>\n"
+      },
+      {
+        "name": "setClass",
+        "defaultValue": "Function",
+        "type": "(newClass: string) => void",
+        "description": "<p>Sets new class to modal window</p>\n"
       }
     ]
   },
@@ -3313,7 +3351,7 @@ export const ngdoc: any = {
       {
         "name": "typeaheadOptionsLimit",
         "type": "number",
-        "description": "<p>maximum length of options items list </p>\n"
+        "description": "<p>maximum length of options items list. The default value is 20 </p>\n"
       },
       {
         "name": "typeaheadPhraseDelimiters",
