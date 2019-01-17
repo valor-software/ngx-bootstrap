@@ -1874,7 +1874,7 @@ export const ngdoc: any = {
     "properties": [
       {
         "name": "dropdownMenu",
-        "type": "Promise<BsComponentRef<any>>",
+        "type": "Promise<any>",
         "description": "<p>Content to be displayed as popover.</p>\n"
       }
     ]
@@ -3094,6 +3094,12 @@ export const ngdoc: any = {
         "name": "container",
         "type": "string",
         "description": "<p>a selector specifying the element the tooltip should be appended to. Currently only supports &quot;body&quot; </p>\n"
+      },
+      {
+        "name": "delay",
+        "defaultValue": "0",
+        "type": "number",
+        "description": "<p>delay before showing the tooltip </p>\n"
       },
       {
         "name": "placement",
