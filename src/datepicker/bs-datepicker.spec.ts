@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BsDatepickerConfig, BsDatepickerDirective, BsDatepickerModule } from '.';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
-import { CalendarCellViewModel } from './models';
+import { CalendarCellViewModel, WeekViewModel } from './models';
 import { dispatchKeyboardEvent } from '@netbasal/spectator';
 import { registerEscClick } from '../utils';
 
@@ -14,7 +14,8 @@ import { registerEscClick } from '../utils';
 class TestComponent {
   @ViewChild(BsDatepickerDirective) datepicker: BsDatepickerDirective;
   bsConfig: Partial<BsDatepickerConfig> = {
-    displayMonths: 2
+    displayMonths: 2,
+    selectWeek: true
   };
 }
 
@@ -81,6 +82,28 @@ describe('datepicker:', () => {
       .select(state => state.view)
       .subscribe(view => {
           expect(view.date.getFullYear()).toEqual(monthSelection.date.getFullYear());
+      });
+  });
+
+  it('should select a week, when selectWeek flag is true', () => {
+    const datepicker = showDatepicker(fixture);
+    const datepickerContainerInstance = getDatepickerContainer(datepicker);
+    datepickerContainerInstance.setViewMode('day');
+    const weekSelection: WeekViewModel = { days: [
+      { date: new Date(2019, 1 , 6), label: 'label' },
+        { date: new Date(2019, 1, 7), label: 'label' },
+        { date: new Date(2019, 1, 8), label: 'label' },
+        { date: new Date(2019, 1, 9), label: 'label' },
+        { date: new Date(2019, 1, 10), label: 'label' },
+        { date: new Date(2019, 1, 11), label: 'label' },
+        { date: new Date(2019, 1, 12), label: 'label' }
+      ], isHovered: true};
+    datepickerContainerInstance.weekHoverHandler(weekSelection);
+    fixture.detectChanges();
+    datepickerContainerInstance[`_store`]
+      .select(state => state.view)
+      .subscribe(view => {
+        expect(view.date.getDay()).not.toEqual((weekSelection.days[0].date.getDay()));
       });
   });
 

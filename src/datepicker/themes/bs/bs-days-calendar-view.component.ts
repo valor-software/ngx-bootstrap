@@ -42,8 +42,8 @@ import { BsDatepickerConfig } from '../../bs-datepicker.config';
           <td class="week" [class.active-week]="isWeekHovered"  *ngIf="options.showWeekNumbers">
             <span
                 (click)="selectWeek(week)"
-                (mouseenter)="hoverWeek(week, true)"
-                (mouseleave)="hoverWeek(week, false)">{{ calendar.weekNumbers[i] }}</span>
+                (mouseenter)="weekHoverHandler(week, true)"
+                (mouseleave)="weekHoverHandler(week, false)">{{ calendar.weekNumbers[i] }}</span>
           </td>
           <td *ngFor="let day of week.days" role="gridcell">
           <span bsDatepickerDayDecorator
@@ -59,7 +59,7 @@ import { BsDatepickerConfig } from '../../bs-datepicker.config';
     </bs-calendar-layout>
   `
 })
-export class BsDaysCalendarViewComponent {
+export class BsDaysCalendarViewComponent  {
   @Input() calendar: DaysCalendarViewModel;
   @Input() options: DatepickerRenderOptions;
 
@@ -115,7 +115,7 @@ export class BsDaysCalendarViewComponent {
     this.onSelect.emit(selectedDay);
   }
 
-  hoverWeek(cell: WeekViewModel, isHovered: boolean): void {
+  weekHoverHandler(cell: WeekViewModel, isHovered: boolean): void {
     if (!this._config.selectWeek) {
       return;
     }
