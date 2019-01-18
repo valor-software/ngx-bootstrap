@@ -20,10 +20,12 @@ import { DemoDatepickerReactiveFormsComponent } from './reactive-forms/reactive-
 import {
   DemoDatePickerSelectDatesFromOtherMonthsComponent
 } from './select-dates-from-other-months/select-dates-from-other-months';
+import { DemoDatePickerSelectWeekComponent } from './select-week/select-week';
 import { DemoDatepickerTriggersCustomComponent } from './triggers-custom/triggers-custom';
 import { DemoDatepickerTriggersManualComponent } from './triggers-manual/triggers-manual';
 import { DemoDatepickerValueChangeEventComponent } from './value-change-event/value-change-event';
 import { DemoDatePickerVisibilityEventsComponent } from './visibility-events/visibility-events';
+
 
 export const DEMO_COMPONENTS = [
   DatepickerDemoComponent,
@@ -48,6 +50,7 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerReactiveFormsComponent,
   DemoDatepickerReactiveFormsComponent,
   DemoDatePickerSelectDatesFromOtherMonthsComponent,
+  DemoDatePickerSelectWeekComponent,
   DemoDatepickerTriggersCustomComponent,
   DemoDatepickerTriggersManualComponent,
   DemoDatepickerValueChangeEventComponent,

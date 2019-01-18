@@ -108,7 +108,7 @@
     "@types/node": "10.0.8",
     "@types/tapable": "1.0.2",
     "@types/webpack": "4.1.6",
-    "bootstrap": "4.1.1",
+    "bootstrap": "4.2.1",
     "chai": "4.1.2",
     "classlist-polyfill": "1.2.0",
     "codecov": "3.1.0",

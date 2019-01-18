@@ -1,10 +1,12 @@
 /* tslint:disable:max-file-line-count */
+import { By } from '@angular/platform-browser';
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { By } from '@angular/platform-browser';
-import { of } from 'rxjs';
+
+import { dispatchMouseEvent } from '@netbasal/spectator';
 import { fireEvent } from '../../scripts/helpers';
+import { of } from 'rxjs';
 import { TypeaheadMatch, TypeaheadDirective, TypeaheadModule } from '../typeahead';
 
 interface State {
@@ -265,6 +267,38 @@ describe('Directive: Typeahead', () => {
       expect(directive._container.isFocused).toBeFalsy();
       fixture.detectChanges();
     }));
+
+  });
+
+  describe('if typeaheadHideResultsOnBlur', () => {
+    beforeEach(
+      fakeAsync(() => {
+        inputElement.value = 'Ala';
+        fireEvent(inputElement, 'input');
+        directive.typeaheadHideResultsOnBlur = false;
+        fixture.detectChanges();
+        tick(100);
+      })
+    );
+
+    it('equal true should be opened',
+      fakeAsync(() => {
+        dispatchMouseEvent(document, 'click');
+        tick();
+
+        expect(fixture.nativeElement.querySelector('.dropdown').classList).toContain('open');
+      })
+    );
+
+    it('equal false should be closed',
+      fakeAsync(() => {
+        directive.typeaheadHideResultsOnBlur = true;
+        dispatchMouseEvent(document, 'click');
+        tick();
+
+        expect(fixture.debugElement.query(By.css('typeahead-container'))).toBeNull();
+      })
+    );
   });
 
   describe('onChange', () => {

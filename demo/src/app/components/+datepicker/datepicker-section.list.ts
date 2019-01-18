@@ -20,6 +20,7 @@ import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/rea
 import {
   DemoDatePickerSelectDatesFromOtherMonthsComponent
 } from './demos/select-dates-from-other-months/select-dates-from-other-months';
+import { DemoDatePickerSelectWeekComponent } from './demos/select-week/select-week';
 import { DemoDatepickerCustomTodayClassComponent } from './demos/custom-today-class/custom-today-class.component';
 import { DemoDatepickerTriggersCustomComponent } from './demos/triggers-custom/triggers-custom';
 import { DemoDatepickerTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
@@ -262,6 +263,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/select-dates-from-other-months/select-dates-from-other-months.html'),
         description: `<p>You can enable dates from other months via <code>selectFromOtherMonth</code> option in <code>bsConfig</code></p>`,
         outlet: DemoDatePickerSelectDatesFromOtherMonthsComponent
+      },
+      {
+        title: 'Select week',
+        anchor: 'select-week',
+        component: require('!!raw-loader?lang=typescript!./demos/select-week/select-week.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/select-week/select-week.html'),
+        description: `<p>You can enable ability to select a week number (first day of the week will be selected) via <code>selectWeek</code> option in <code>bsConfig</code></p>`,
+        outlet: DemoDatePickerSelectWeekComponent
       },
       {
         title: 'Outside click',
