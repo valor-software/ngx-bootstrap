@@ -1,27 +1,23 @@
 /* tslint:disable: no-unused-variable */
-import { AccordionModule } from './accordion';
-import { AlertModule } from './alert';
-
-import {
-  BsDatepickerInlineConfig,
-  BsDaterangepickerConfig,
-  DatepickerModule
-} from './datepicker';
-
-import { BsDropdownModule } from './dropdown';
-import { ButtonsModule } from './buttons';
-import { CarouselModule } from './carousel';
-import { CollapseModule } from './collapse';
-import { ModalModule } from './modal';
-import { PaginationModule } from './pagination';
-import { PopoverModule } from './popover';
-import { ProgressbarModule } from './progressbar';
-import { RatingModule } from './rating';
-import { SortableModule } from './sortable';
-import { TabsModule } from './tabs';
-import { TimepickerModule } from './timepicker';
-import { TooltipModule } from './tooltip';
-import { TypeaheadModule } from './typeahead';
+import { AccordionModule } from './accordion/accordion.module';
+import { AlertModule } from './alert/alert.module';
+import { BsDatepickerInlineConfig } from './datepicker/bs-datepicker-inline.config';
+import { BsDaterangepickerConfig } from './datepicker/bs-daterangepicker.config';
+import { BsDropdownModule } from './dropdown/bs-dropdown.module';
+import { ButtonsModule } from './buttons/buttons.module';
+import { CarouselModule } from './carousel/carousel.module';
+import { CollapseModule } from './collapse/collapse.module';
+import { DatepickerModule } from './datepicker/datepicker.module';
+import { ModalModule } from './modal/modal.module';
+import { PaginationModule } from './pagination/pagination.module';
+import { PopoverModule } from './popover/popover.module';
+import { ProgressbarModule } from './progressbar/progressbar.module';
+import { RatingModule } from './rating/rating.module';
+import { SortableModule } from './sortable/index';
+import { TabsModule } from './tabs/tabs.module';
+import { TimepickerModule } from './timepicker/timepicker.module';
+import { TooltipModule } from './tooltip/tooltip.module';
+import { TypeaheadModule } from './typeahead/typeahead.module';
 
 export { listLocales } from './chronos/locale/locales';
 export { setTheme } from './utils/theme-provider';
@@ -68,31 +64,31 @@ export {
 } from './datepicker/index';
 
 export {
-  BsModalRef,
-  BsModalService,
-  ModalBackdropComponent,
-  ModalBackdropOptions,
   ModalDirective,
+  ModalOptions,
+  ModalBackdropOptions,
+  ModalBackdropComponent,
   ModalModule,
-  ModalOptions
+  BsModalRef,
+  BsModalService
 } from './modal/index';
 
 export {
+  BsDropdownModule,
   BsDropdownConfig,
+  BsDropdownState,
   BsDropdownContainerComponent,
   BsDropdownDirective,
   BsDropdownMenuDirective,
-  BsDropdownModule,
-  BsDropdownState,
   BsDropdownToggleDirective
 } from './dropdown/index';
 
 export {
-  PageChangedEvent,
   PagerComponent,
   PaginationComponent,
   PaginationConfig,
-  PaginationModule
+  PaginationModule,
+  PageChangedEvent
 } from './pagination/index';
 
 export {
@@ -107,8 +103,8 @@ export { RatingComponent, RatingModule } from './rating/index';
 export {
   DraggableItem,
   DraggableItemService,
-  SortableComponent,
   SortableItem,
+  SortableComponent,
   SortableModule
 } from './sortable/index';
 
@@ -171,10 +167,10 @@ export {
 } from './component-loader/index';
 
 export {
-  positionElements,
   Positioning,
   PositioningOptions,
-  PositioningService
+  PositioningService,
+  positionElements
 } from './positioning/index';
 
 export {
@@ -185,30 +181,30 @@ export {
 
 export {
   defineLocale,
-  endOf,
-  formatDate,
-  getDay,
-  getFirstDayOfMonth,
-  getFullYear,
-  getLocale,
-  getMonth,
   getSetGlobalLocale,
-  isAfter,
-  isArray,
-  isBefore,
-  isDate,
-  isDateValid,
-  isFirstDayOfWeek,
-  isSameDay,
-  isSameMonth,
-  isSameYear,
   LocaleData,
   parseDate,
-  setFullDate,
+  formatDate,
+  getDay,
+  isFirstDayOfWeek,
+  isSameYear,
+  isSameDay,
+  isSameMonth,
+  getFullYear,
+  getFirstDayOfMonth,
+  getMonth,
+  getLocale,
+  updateLocale,
+  isAfter,
+  isBefore,
+  isArray,
+  isDateValid,
+  isDate,
   shiftDate,
+  setFullDate,
+  endOf,
   startOf,
-  TimeUnit,
-  updateLocale
+  TimeUnit
 } from './chronos/index';
 
 export * from './locale';
