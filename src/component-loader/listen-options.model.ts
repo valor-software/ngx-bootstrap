@@ -6,6 +6,7 @@ export interface ListenOptions {
   targets?: HTMLElement[];
   triggers?: string;
   outsideClick?: boolean;
+  outsideEsc?: boolean;
   show?: BsEventCallback;
   hide?: BsEventCallback;
   toggle?: BsEventCallback;

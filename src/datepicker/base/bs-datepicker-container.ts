@@ -12,6 +12,7 @@ import {
   DaysCalendarViewModel,
   DayViewModel,
   MonthsCalendarViewModel,
+  WeekViewModel,
   YearsCalendarViewModel
 } from '../models';
 
@@ -48,6 +49,8 @@ export abstract class BsDatepickerAbstractComponent {
   navigateTo(event: BsNavigationEvent): void {}
 
   dayHoverHandler(event: CellHoverEvent): void {}
+
+  weekHoverHandler(event: WeekViewModel): void {}
 
   monthHoverHandler(event: CellHoverEvent): void {}
 

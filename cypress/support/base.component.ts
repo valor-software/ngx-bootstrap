@@ -55,6 +55,14 @@ export abstract class BaseComponent {
     cy.get(`${ baseSelector } input`).eq(inputIndex ? inputIndex : 0).dblclick();
   }
 
+  hoverOnBtn(baseSelector: string, buttonIndex?: number) {
+    cy.get(`${baseSelector} button`).eq(buttonIndex ? buttonIndex : 0).trigger('mouseenter');
+  }
+
+  mouseLeave(baseSelector: string, buttonIndex?: number) {
+    cy.get(`${baseSelector} button`).eq(buttonIndex ? buttonIndex : 0).trigger('mouseleave');
+  }
+
   isInputHaveAttrs(baseSelector: string, attributes: AttrObj[]) {
     cy.get(`${baseSelector} input`)
       .then(input => {

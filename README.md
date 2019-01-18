@@ -12,14 +12,14 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 <a href="https://travis-ci.org/valor-software/ngx-bootstrap"><img alt="" src="https://travis-ci.org/valor-software/ngx-bootstrap.svg?branch=development"></a>
 
 <br/>
-<a href="https://ngx-slack.herokuapp.com"><img src="https://ngx-slack.herokuapp.com/badge.svg" alt="slack" ></a>
+<a href="https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWQ5M2Y4OWM0OGJjNmZiOGYyNjFlZTdlOGI1YjcxYWQ2ODhiOTY4NzhiODgwMTIzNDczODIyNWNmM2RlYWRhNTg"><img src="https://a.slack-edge.com/66f9/img/icons/ios-256.png" width="25" height="25" alt="slack" ></a>
 </p>
 
 ## Links
 
 - [Documentation](http://valor-software.com/ngx-bootstrap/)
 - [Release Notes](https://github.com/valor-software/ngx-bootstrap/blob/development/CHANGELOG.md)
-- [Slack Community](https://ngx-slack.herokuapp.com)
+- [Slack Community](https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWQ5M2Y4OWM0OGJjNmZiOGYyNjFlZTdlOGI1YjcxYWQ2ODhiOTY4NzhiODgwMTIzNDczODIyNWNmM2RlYWRhNTg)
 
 <!-- [![codecov](https://codecov.io/gh/valor-software/ngx-bootstrap/branch/development/graph/badge.svg)](https://codecov.io/gh/valor-software/ngx-bootstrap) -->
 
@@ -157,7 +157,7 @@ If you want to run the demo with Angular Universal:
 So if you are in trouble, here's where you can look for help.
 
 The best place to ask questions is on [StackOverflow (under the `ngx-bootstrap` tag)](https://stackoverflow.com/questions/tagged/ngx-bootstrap)
-You can also join [our Slack channel](https://ngx-slack.herokuapp.com/) and link your stackoverflow question there. But try to avoid asking generic help questions directly on Slack since they can easily get lost in the chat. You can also [search among the existing GitHub issues](https://github.com/valor-software/ngx-bootstrap/issues?utf8=%E2%9C%93&q=is%3Aissue).
+You can also join [our Slack channel](https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWQ5M2Y4OWM0OGJjNmZiOGYyNjFlZTdlOGI1YjcxYWQ2ODhiOTY4NzhiODgwMTIzNDczODIyNWNmM2RlYWRhNTg) and link your stackoverflow question there. But try to avoid asking generic help questions directly on Slack since they can easily get lost in the chat. You can also [search among the existing GitHub issues](https://github.com/valor-software/ngx-bootstrap/issues?utf8=%E2%9C%93&q=is%3Aissue).
 
 If, **and only if**, none of the above helped, please open a [new issue](https://github.com/valor-software/ngx-bootstrap/issues/new).
 
@@ -172,8 +172,8 @@ Please read our [contribution guidelines](https://github.com/valor-software/ngx-
 Please read central `ngx` modules [readme](https://github.com/valor-software/ng2-plans) for details, plans and approach
 
 ### Credits
-Crossbrowser testing sponsored by [Browser Stack](https://www.browserstack.com)
-[<img src="https://camo.githubusercontent.com/a7b268f2785656ab3ca7b1cbb1633ee5affceb8f/68747470733a2f2f64677a6f7139623561736a67312e636c6f756466726f6e742e6e65742f70726f64756374696f6e2f696d616765732f6c61796f75742f6c6f676f2d6865616465722e706e67" alt="Browser Stack" height="31px" style="background: cornflowerblue;">](https://www.browserstack.com)
+Crossbrowser testing sponsored by [Saucelabs](https://saucelabs.com/)
+[<img src="https://saucelabs.com/content/images/circle-logo@2x.png" alt="Saucelabs" width="31" height="31">](https://saucelabs.com/)
 
 ### License
 

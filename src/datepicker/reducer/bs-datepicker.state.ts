@@ -41,6 +41,7 @@ export class BsDatepickerState
   monthsModel?: DaysCalendarModel[];
   formattedMonths?: DaysCalendarViewModel[];
   flaggedMonths?: DaysCalendarViewModel[];
+  selectFromOtherMonth?: boolean;
 
   // months calendar
   monthsCalendar?: MonthsCalendarViewModel[];
@@ -56,7 +57,6 @@ export class BsDatepickerState
   // DatepickerRenderOptions
   showWeekNumbers?: boolean;
   displayMonths?: number;
-  selectFromOtherMonth?: boolean;
 
   // DatepickerFormatOptions
   locale: string;

@@ -32,6 +32,8 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    */
   @Input() container = 'body';
 
+  @Input() outsideEsc = true;
+
   /**
    * Returns whether or not the datepicker is currently being shown
    */
@@ -127,6 +129,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   ngOnInit(): void {
     this._datepicker.listen({
       outsideClick: this.outsideClick,
+      outsideEsc: this.outsideEsc,
       triggers: this.triggers,
       show: () => this.show()
     });
