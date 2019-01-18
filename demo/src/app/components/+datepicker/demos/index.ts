@@ -12,14 +12,17 @@ import { DemoDatepickerDaysDisabledComponent } from './disable-days/disable-days
 import { DemoDatepickerDisabledComponent } from './disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './forms/forms.component';
 import { DemoDatepickerHideOnScrollComponent } from './hide-on-scroll/hide-on-scroll';
+import { DemoDatepickerInlineComponent } from './inline-datepicker/inline-datepicker.component';
 import { DemoDatepickerMinMaxComponent } from './min-max/min-max.component';
 import { DemoDatepickerMinModeComponent } from './min-mode/min-mode.component';
 import { DemoDatepickerOutsideClickComponent } from './outside-click/outside-click';
 import { DemoDatepickerPlacementComponent } from './placement/placement';
 import { DemoDatepickerReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
+
 import {
   DemoDatePickerSelectDatesFromOtherMonthsComponent
 } from './select-dates-from-other-months/select-dates-from-other-months';
+
 import { DemoDatePickerSelectWeekComponent } from './select-week/select-week';
 import { DemoDatepickerTriggersCustomComponent } from './triggers-custom/triggers-custom';
 import { DemoDatepickerTriggersManualComponent } from './triggers-manual/triggers-manual';
@@ -42,6 +45,7 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerDisabledComponent,
   DemoDatepickerFormsComponent,
   DemoDatepickerHideOnScrollComponent,
+  DemoDatepickerInlineComponent,
   DemoDatepickerMinMaxComponent,
   DemoDatepickerMinModeComponent,
   DemoDatepickerOutsideClickComponent,

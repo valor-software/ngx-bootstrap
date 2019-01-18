@@ -107,7 +107,7 @@ export class ComponentLoader<T> {
   }
 
   // todo: add behaviour: to target element, `body`, custom element
-  to(container?: string): ComponentLoader<T> {
+  to(container?: string | ElementRef): ComponentLoader<T> {
     this.container = container || this.container;
 
     return this;

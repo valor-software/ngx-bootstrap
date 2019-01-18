@@ -659,6 +659,62 @@ export const ngdoc: any = {
     "methods": [],
     "properties": []
   },
+  "BsDatepickerInlineDirective": {
+    "fileName": "src/datepicker/bs-datepicker-inline.component.ts",
+    "className": "BsDatepickerInlineDirective",
+    "description": "",
+    "selector": "bs-datepicker-inline",
+    "exportAs": "bsDatepickerInline",
+    "inputs": [
+      {
+        "name": "bsConfig",
+        "type": "Partial<BsDatepickerInlineConfig>",
+        "description": "<p>Config object for datepicker</p>\n"
+      },
+      {
+        "name": "bsValue",
+        "type": "Date",
+        "description": "<p>Initial value of datepicker</p>\n"
+      },
+      {
+        "name": "isDisabled",
+        "type": "boolean",
+        "description": "<p>Indicates whether datepicker is enabled or not</p>\n"
+      },
+      {
+        "name": "maxDate",
+        "type": "Date",
+        "description": "<p>Maximum date which is available for selection</p>\n"
+      },
+      {
+        "name": "minDate",
+        "type": "Date",
+        "description": "<p>Minimum date which is available for selection</p>\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "bsValueChange",
+        "description": "<p>Emits when datepicker value has been changed</p>\n"
+      }
+    ],
+    "properties": [],
+    "methods": [
+      {
+        "name": "setConfig",
+        "description": "<p>Set config for datepicker</p>\n",
+        "args": [],
+        "returnType": "void"
+      }
+    ]
+  },
+  "BsDatepickerInlineConfig": {
+    "fileName": "src/datepicker/bs-datepicker-inline.config.ts",
+    "className": "BsDatepickerInlineConfig",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
   "BsDatepickerInputDirective": {
     "fileName": "src/datepicker/bs-datepicker-input.directive.ts",
     "className": "BsDatepickerInputDirective",
@@ -1539,6 +1595,16 @@ export const ngdoc: any = {
         "description": ""
       }
     ],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsDatepickerInlineContainerComponent": {
+    "fileName": "src/datepicker/themes/bs/bs-datepicker-inline-container.component.ts",
+    "className": "BsDatepickerInlineContainerComponent",
+    "description": "",
+    "selector": "bs-datepicker-inline-container",
+    "inputs": [],
     "outputs": [],
     "properties": [],
     "methods": []
@@ -2888,6 +2954,11 @@ export const ngdoc: any = {
         "description": "<p>if true hours and minutes fields will be disabled </p>\n"
       },
       {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "<p>if true hours and minutes fields will be disabled </p>\n"
+      },
+      {
         "name": "hourStep",
         "type": "number",
         "description": "<p>hours change step </p>\n"
@@ -2968,6 +3039,12 @@ export const ngdoc: any = {
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if true the values of hours and minutes can be changed using the up/down arrow keys on the keyboard </p>\n"
+      },
+      {
+        "name": "disabled",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>if true hours and minutes fields will be disabled </p>\n"
       },
       {
         "name": "disabled",
