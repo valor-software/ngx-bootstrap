@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ClassName, DismissReasons, Selector, TransitionDurations } from './models';
 
 @Injectable()
-export class ModalOptions<T=Object> {
+export class ModalOptions<T = Object> {
   /**
    *  Includes a modal-backdrop element. Alternatively,
    *  specify static for a backdrop which doesn't close the modal on click.
