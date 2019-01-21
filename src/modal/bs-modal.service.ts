@@ -57,7 +57,7 @@ export class BsModalService {
 
   /** Shows a modal */
   // tslint:disable-next-line:no-any
-  show(content: string | TemplateRef<any> | any, config?: ModalOptions): BsModalRef {
+  show<T=Object>(content: string | TemplateRef<any> | { new(...args: any[]): T }, config?: ModalOptions<T>): BsModalRef {
     this.modalsCount++;
     this._createLoaders();
     this.config = Object.assign({}, modalConfigDefaults, config);
