@@ -38,16 +38,8 @@ export interface PositioningOptions {
 export class PositioningService {
   position(options: PositioningOptions): void {
     const {element, target, attachment, appendToBody} = options;
-    positionElements(
-      _getHtmlElement(target),
-      _getHtmlElement(element),
-      attachment,
-      appendToBody
-    );
 
     requestAnimationFrame(() => {
-      console.log('requestAnimationFrame');
-
       positionElements(
         _getHtmlElement(target),
         _getHtmlElement(element),
@@ -56,9 +48,7 @@ export class PositioningService {
       );
     });
 
-    window.addEventListener('scroll', () => {
-      console.log('on scroll');
-
+    addEventListener('scroll', () => {
       positionElements(
         _getHtmlElement(target),
         _getHtmlElement(element),
@@ -67,9 +57,7 @@ export class PositioningService {
       );
     });
 
-    window.addEventListener('resize', () => {
-      console.log('on resize');
-
+    addEventListener('resize', () => {
       positionElements(
         _getHtmlElement(target),
         _getHtmlElement(element),

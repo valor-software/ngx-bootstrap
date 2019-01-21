@@ -22,14 +22,6 @@ import { isBs3 } from 'ngx-bootstrap/utils';
       display: block;
       pointer-events: none;
     }
-    :host.bs-tooltip-top .arrow, :host.bs-tooltip-bottom .arrow {
-      left: 50%;
-      margin-left: -6px;
-    }
-    :host.bs-tooltip-left .arrow, :host.bs-tooltip-right .arrow {
-      top: 50%;
-      margin-top: -6px;
-    }
   `
   ],
   template: `

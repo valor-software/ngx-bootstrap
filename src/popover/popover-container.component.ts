@@ -13,18 +13,6 @@ import { isBs3 } from 'ngx-bootstrap/utils';
     role: 'tooltip',
     style: 'display:block;'
   },
-  styles: [
-    `
-    :host.bs-popover-top .arrow, :host.bs-popover-bottom .arrow {
-      left: 50%;
-      margin-left: -8px;
-    }
-    :host.bs-popover-left .arrow, :host.bs-popover-right .arrow {
-      top: 50%;
-      margin-top: -8px;
-    }
-  `
-  ],
   templateUrl: './popover-container.component.html'
 })
 export class PopoverContainerComponent {

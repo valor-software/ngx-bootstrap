@@ -9,8 +9,10 @@ import {
   getOffsetParent,
   getOppositePlacement,
   getOppositeVariation,
+  getOuterSizes,
   getPopperOffsets,
-  getReferenceOffsets
+  getReferenceOffsets,
+  getStyleComputedProperty
 } from './utils';
 
 // previous version:`
@@ -68,92 +70,168 @@ export class Positioning {
     return elPosition;
   }
 
-  // preventOverflow(boundariesEl, tooltip, reference, offsetsPopper) {
-  //   let boundariesElement =
-  //     boundariesEl || getOffsetParent(tooltip);
-  //
-  //   // If offsetParent is the reference element, we really want to
-  //   // go one step up and use the next offsetParent as reference to
-  //   // avoid to make this modifier completely useless and look like broken
-  //   if (reference === boundariesElement) {
-  //     boundariesElement = getOffsetParent(boundariesElement);
-  //   }
-  //
-  //   // NOTE: DOM access here
-  //   // resets the popper's position so that the document size can be calculated excluding
-  //   // the size of the popper element itself
-  //   const transformProp = 'transform';
-  //   const popperStyles = tooltip.style; // assignment to help minification
-  //   const { top, left, [transformProp]: transform } = popperStyles;
-  //   popperStyles.top = '';
-  //   popperStyles.left = '';
-  //   popperStyles[transformProp] = '';
-  //
-  //   const boundaries = getBoundaries(
-  //     tooltip,
-  //     reference,
-  //     0, // options.padding
-  //     boundariesElement,
-  //     false // data.positionFixed
-  //   );
-  //
-  //   // NOTE: DOM access here
-  //   // restores the original style properties after the offsets have been computed
-  //   popperStyles.top = top;
-  //   popperStyles.left = left;
-  //   popperStyles[transformProp] = transform;
-  //
-  //   // options.boundaries = boundaries;
-  //
-  //   const order = ['left', 'right', 'top', 'bottom'];
-  //   let popper = offsetsPopper;
-  //
-  //   const check = {
-  //     primary(placement) {
-  //       let value = popper[placement];
-  //       if (
-  //         popper[placement] < boundaries[placement] &&
-  //         !false // options.escapeWithReference
-  //       ) {
-  //         value = Math.max(popper[placement], boundaries[placement]);
-  //       }
-  //
-  //       return { [placement]: value };
-  //     },
-  //     secondary(placement) {
-  //       const mainSide = placement === 'right' ? 'left' : 'top';
-  //       let value = popper[mainSide];
-  //       if (
-  //         popper[placement] > boundaries[placement] &&
-  //         !false // options.escapeWithReference
-  //       ) {
-  //         value = Math.min(
-  //           popper[mainSide],
-  //           boundaries[placement] -
-  //           (placement === 'right' ? popper.width : popper.height)
-  //         );
-  //       }
-  //
-  //       return { [mainSide]: value };
-  //     }
-  //   };
-  //
-  //   let side: string;
-  //
-  //   order.forEach(placement => {
-  //     side = ['left', 'top']
-  //       .indexOf(placement) !== -1
-  //       ? 'primary'
-  //       : 'secondary';
-  //
-  //     popper = { ...popper, ...check[side](placement) };
-  //
-  //   });
-  //
-  //   offsetsPopper = popper;
-  //
-  //   return offsetsPopper;
-  // }
+  preventOverflow(boundariesEl, tooltip, reference, offsetsPopper) {
+    let boundariesElement =
+      boundariesEl || getOffsetParent(tooltip);
+
+    // If offsetParent is the reference element, we really want to
+    // go one step up and use the next offsetParent as reference to
+    // avoid to make this modifier completely useless and look like broken
+    if (reference === boundariesElement) {
+      boundariesElement = getOffsetParent(boundariesElement);
+    }
+
+    // NOTE: DOM access here
+    // resets the popper's position so that the document size can be calculated excluding
+    // the size of the popper element itself
+    const transformProp = 'transform';
+    const popperStyles = tooltip.style; // assignment to help minification
+    const { top, left, [transformProp]: transform } = popperStyles;
+    popperStyles.top = '';
+    popperStyles.left = '';
+    popperStyles[transformProp] = '';
+
+    const boundaries = getBoundaries(
+      tooltip,
+      reference,
+      0, // options.padding
+      boundariesElement,
+      false // data.positionFixed
+    );
+
+    // NOTE: DOM access here
+    // restores the original style properties after the offsets have been computed
+    popperStyles.top = top;
+    popperStyles.left = left;
+    popperStyles[transformProp] = transform;
+
+    // options.boundaries = boundaries;
+
+    const order = ['left', 'right', 'top', 'bottom'];
+    let popper = offsetsPopper;
+
+    const check = {
+      primary(placement) {
+        let value = popper[placement];
+        if (
+          popper[placement] < boundaries[placement] &&
+          !false // options.escapeWithReference
+        ) {
+          value = Math.max(popper[placement], boundaries[placement]);
+        }
+
+        return { [placement]: value };
+      },
+      secondary(placement) {
+        const mainSide = placement === 'right' ? 'left' : 'top';
+        let value = popper[mainSide];
+        if (
+          popper[placement] > boundaries[placement] &&
+          !false // options.escapeWithReference
+        ) {
+          value = Math.min(
+            popper[mainSide],
+            boundaries[placement] -
+            (placement === 'right' ? popper.width : popper.height)
+          );
+        }
+
+        return { [mainSide]: value };
+      }
+    };
+
+    let side: string;
+
+    order.forEach(placement => {
+      side = ['left', 'top']
+        .indexOf(placement) !== -1
+        ? 'primary'
+        : 'secondary';
+
+      popper = { ...popper, ...check[side](placement) };
+
+    });
+
+    offsetsPopper = popper;
+
+    return offsetsPopper;
+  }
+
+  arrow(popper, offsetsPopper, referenceOffset, arrowElement, placement) {
+    // if arrowElement is a string, suppose it's a CSS selector
+    if (typeof arrowElement === 'string') {
+      arrowElement = popper.querySelector(arrowElement);
+
+      // if arrowElement is not found, don't run the modifier
+      if (!arrowElement) {
+        return;
+      }
+    } else {
+      // if the arrowElement isn't a query selector we must check that the
+      // provided DOM node is child of its popper node
+      if (!popper.contains(arrowElement)) {
+        console.warn(
+          'WARNING: `arrow.element` must be child of its popper element!'
+        );
+        return;
+      }
+    }
+
+    const isVertical = ['left', 'right'].indexOf(placement) !== -1;
+
+    const len = isVertical ? 'height' : 'width';
+    const sideCapitalized = isVertical ? 'Top' : 'Left';
+    const side = sideCapitalized.toLowerCase();
+    const altSide = isVertical ? 'left' : 'top';
+    const opSide = isVertical ? 'bottom' : 'right';
+    const arrowElementSize = getOuterSizes(arrowElement)[len];
+
+    // let resOffsetsPopper = {};
+
+    //
+    // extends keepTogether behavior making sure the popper and its
+    // reference have enough pixels in conjunction
+    //
+
+    // top/left side
+    if (referenceOffset[opSide] - arrowElementSize < offsetsPopper[side]) {
+      offsetsPopper[side] -=
+        offsetsPopper[side] - (referenceOffset[opSide] - arrowElementSize);
+    }
+    // bottom/right side
+    if (referenceOffset[side] + arrowElementSize > offsetsPopper[opSide]) {
+      offsetsPopper[side] +=
+        referenceOffset[side] + arrowElementSize - offsetsPopper[opSide];
+    }
+    offsetsPopper = getClientRect(offsetsPopper);
+
+    // compute center of the popper
+    const center = referenceOffset[side] + referenceOffset[len] / 2 - arrowElementSize / 2;
+
+    // Compute the sideValue using the updated popper offsets
+    // take popper margin in account because we don't have this info available
+    const css = getStyleComputedProperty(popper);
+
+    const popperMarginSide = parseFloat(css[`margin${sideCapitalized}`]);
+    const popperBorderSide = parseFloat(css[`border${sideCapitalized}Width`]);
+    let sideValue =
+      center - offsetsPopper[side] - popperMarginSide - popperBorderSide;
+
+    // prevent arrowElement from being placed not contiguously to its popper
+    sideValue = Math.max(Math.min(offsetsPopper[len] - arrowElementSize, sideValue), 0);
+
+    const offsetsArrow = {
+      [side]: Math.round(sideValue),
+      [altSide]: '', // make sure to unset any eventual altSide value from the DOM node
+    };
+
+    offsetsArrow.arrowElement = arrowElement;
+
+    arrowElement.style.top = `${offsetsArrow.top}px`;
+    arrowElement.style.left = `${offsetsArrow.left}px`;
+
+    return offsetsArrow;
+  }
 
   flip(boundariesEl, tooltip, reference, offsetsPopper, referenceOffsets, inputPlacement) {
     let boundariesElement =
@@ -176,6 +254,8 @@ export class Positioning {
     flipOrder = [placement, placementOpposite];
 
     let popperOffsets = offsetsPopper;
+    // popperOffsets.right = 0;
+
     let refOffsets = referenceOffsets;
 
     /* tslint:disable-next-line: cyclomatic-complexity */
@@ -243,6 +323,7 @@ export class Positioning {
       }
 
       tooltip.className = tooltip.className.replace(/bs-popover-.*/g, `bs-popover-${placement}`);
+      // tooltip.className = tooltip.className.replace(/(.*)tooltip-.*/g, `$1tooltip-${placement}`);
     });
 
     return popperOffsets;
@@ -272,7 +353,9 @@ export class Positioning {
 
     popperOffsets = this.flip('viewport', targetElement, hostElement, popperOffsets, referenceOffsets, placement);
 
-    // const overPlacement = this.preventOverflow('scrollParent', targetElement, hostElement, popperOffsets);
+    popperOffsets = this.preventOverflow('scrollParent', targetElement, hostElement, popperOffsets);
+
+    const arrowOffsets = this.arrow(targetElement, popperOffsets, referenceOffsets, '.arrow', placement);
 
     // const hostElPosition = appendToBody
     //   ? this.offset(hostElement, false)
@@ -326,6 +409,10 @@ export function positionElements(
     appendToBody
   );
 
-  targetElement.style.top = `${pos.top}px`;
-  targetElement.style.left = `${pos.left}px`;
+  targetElement.style['will-change'] = 'transform';
+  targetElement.style.top = '0px';
+  targetElement.style.left = '0px';
+  targetElement.style.transform = `translate3d(${pos.left}px, ${pos.top}px, 0px)`;
+  // targetElement.style.top = `${pos.top}px`;
+  // targetElement.style.left = `${pos.left}px`;
 }
