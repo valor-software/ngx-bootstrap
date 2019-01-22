@@ -157,6 +157,28 @@ export class Positioning {
     return offsetsPopper;
   }
 
+  shift(offsetsPopper, referenceOffset, placement) {
+    const basePlacement = placement.split(' ')[0];
+    const shiftvariation = placement.split(' ')[1];
+
+    if (shiftvariation) {
+      const isVertical = ['bottom', 'top'].indexOf(basePlacement) !== -1;
+      const side = isVertical ? 'left' : 'top';
+      const measurement = isVertical ? 'width' : 'height';
+
+      const shiftOffsets = {
+        left: { [side]: referenceOffset[side] },
+        right: {
+          [side]: referenceOffset[side] + referenceOffset[measurement] - offsetsPopper[measurement],
+        }
+      };
+
+      offsetsPopper = { ...offsetsPopper, ...shiftOffsets[shiftvariation] };
+    }
+
+    return offsetsPopper;
+  }
+
   arrow(popper, offsetsPopper, referenceOffset, arrowElement, placement) {
     // if arrowElement is a string, suppose it's a CSS selector
     if (typeof arrowElement === 'string') {
@@ -322,8 +344,8 @@ export class Positioning {
         };
       }
 
-      tooltip.className = tooltip.className.replace(/bs-popover-.*/g, `bs-popover-${placement}`);
-      // tooltip.className = tooltip.className.replace(/(.*)tooltip-.*/g, `$1tooltip-${placement}`);
+      tooltip.className = tooltip.className.replace(/bs-popover-\w*/g, `bs-popover-${placement}`);
+      tooltip.className = tooltip.className.replace(/bs-tooltip-\w*/g, `bs-tooltip-${placement}`);
     });
 
     return popperOffsets;
@@ -356,6 +378,8 @@ export class Positioning {
     popperOffsets = this.preventOverflow('scrollParent', targetElement, hostElement, popperOffsets);
 
     const arrowOffsets = this.arrow(targetElement, popperOffsets, referenceOffsets, '.arrow', placement);
+
+    popperOffsets = this.shift(popperOffsets, referenceOffsets, placement);
 
     // const hostElPosition = appendToBody
     //   ? this.offset(hostElement, false)
