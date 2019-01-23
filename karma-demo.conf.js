@@ -6,24 +6,26 @@ const customLaunchers = require('./scripts/sauce-browsers').customLaunchers;
 module.exports = function (config) {
   const configuration = {
     basePath: '',
-    frameworks: ['jasmine', '@angular/cli'],
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
       require('karma-chrome-launcher'),
       require('karma-firefox-launcher'),
+      require('karma-ie-launcher'),
+      require('karma-edge-launcher'),
+      require('karma-safari-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
-      require('@angular/cli/plugins/karma'),
-      require('karma-sauce-launcher')
+      require('@angular-devkit/build-angular/plugins/karma')
     ],
-    files: [
-      {pattern: './scripts/test.ts', watched: false}
-    ],
-    preprocessors: {
-      './scripts/test.ts': ['@angular/cli']
-    },
+    // files: [
+    //   {pattern: './scripts/test.ts', watched: false}
+    // ],
+    // preprocessors: {
+    //   './scripts/test.ts': ['@angular-devkit/build-angular']
+    // },
     coverageIstanbulReporter: {
-      reports: ['html', 'lcovonly'],
+      dir: require('path').join(__dirname, 'coverage'), reports: ['html', 'lcovonly'],
       fixWebpackSourcePaths: true
     },
     angularCli: {
@@ -40,7 +42,7 @@ module.exports = function (config) {
     browserNoActivityTimeout: 20000,
     browserDisconnectTolerance: 2,
     browserDisconnectTimeout: 5000,
-    singleRun: false,
+    singleRun: true,
     customLaunchers: {
       Chrome_travis_ci: {
           base: 'ChromeHeadless',
@@ -70,14 +72,14 @@ module.exports = function (config) {
     Object.assign(configuration, {
       logLevel: config.LOG_INFO,
       reporters: ['dots', 'saucelabs'],
-      singleRun: false,
+      singleRun: true,
       concurrency: 2,
       captureTimeout: 60000,
       sauceLabs: {
         testName: 'ngx-bootstrap',
         build: process.env.TRAVIS_JOB_NUMBER,
         tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
-        retryLimit: 5,
+       // retryLimit: 5,
         startConnect: false,
         recordVideo: false,
         recordScreenshots: false,
@@ -88,31 +90,16 @@ module.exports = function (config) {
         }
       },
       customLaunchers: {
-        'SL_CHROME': {
+        //LATEST
+        /*'SL_CHROME': {
           base: 'SauceLabs',
           browserName: 'chrome',
           version: 'latest'
-        },
-        'SL_CHROME_1': {
-          base: 'SauceLabs',
-          browserName: 'chrome',
-          version: 'latest-1'
-        },
+        },*/
         'SL_FIREFOX': {
           base: 'SauceLabs',
           browserName: 'firefox',
           version: 'latest'
-        },
-        'SL_FIREFOX_1': {
-          base: 'SauceLabs',
-          browserName: 'firefox',
-          version: 'latest-1'
-        },
-        'SL_IE10': {
-          base: 'SauceLabs',
-          browserName: 'internet explorer',
-          // platform: 'Windows 2012',
-          version: '10'
         },
         'SL_IE11': {
           base: 'SauceLabs',
@@ -120,39 +107,44 @@ module.exports = function (config) {
           platform: 'Windows 8.1',
           version: '11.0'
         },
-        'SL_EDGE13': {
+        'SL_EDGE': {
           base: 'SauceLabs',
           browserName: 'MicrosoftEdge',
-          platform: 'Windows 10',
-          version: '13'
+          version: 'latest'
         },
-        'SL_EDGE14': {
+        'SL_SAFARI': {
+            base: 'SauceLabs',
+            browserName: 'safari',
+            version: 'latest-1'
+          }
+        //LATEST-1
+        /*'SL_CHROME_1': {
+          base: 'SauceLabs',
+          browserName: 'chrome',
+          version: 'latest-1'
+        },
+        'SL_FIREFOX_1': {
+          base: 'SauceLabs',
+          browserName: 'firefox',
+          version: 'latest-1'
+        },
+        'SL_IE_1': {
+          base: 'SauceLabs',
+          browserName: 'internet explorer',
+          version: 'latest-1'
+        },
+        'SL_EDGE_1': {
           base: 'SauceLabs',
           browserName: 'MicrosoftEdge',
-          platform: 'Windows 10',
-          version: '14'
+          version: 'latest-1'
         },
-        'SL_EDGE15': {
-          base: 'SauceLabs',
-          browserName: 'MicrosoftEdge',
-          platform: 'Windows 10',
-          version: '15'
-        },
-        'SL_SAFARI9': {
+        'SL_SAFARI_1': {
           base: 'SauceLabs',
           browserName: 'safari',
-          // platform: 'OS X 10.11',
-          version: '9.0'
-        },
-        'SL_SAFARI10': {
-          base: 'SauceLabs',
-          browserName: 'safari',
-          // platform: 'OS X 10.11',
-          version: '10.0'
-        }
+          version: 'latest-1'
+        }*/
       }
     });
-
 
     configuration.browsers = Object.keys(configuration.customLaunchers);
   }

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Input, Component } from '@angular/core';
 import { PopoverConfig } from './popover.config';
-import { isBs3 } from '../utils/theme-provider';
+import { isBs3 } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'popover-container',
@@ -17,9 +17,11 @@ import { isBs3 } from '../utils/theme-provider';
     `
     :host.bs-popover-top .arrow, :host.bs-popover-bottom .arrow {
       left: 50%;
+      transform: translateX(-50%);
     }
     :host.bs-popover-left .arrow, :host.bs-popover-right .arrow {
       top: 50%;
+      transform: translateY(-50%);
     }
   `
   ],

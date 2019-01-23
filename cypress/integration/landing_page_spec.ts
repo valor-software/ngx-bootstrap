@@ -5,63 +5,76 @@ describe('Landing Page test suite', () => {
 
   beforeEach(() => landing.navigateTo());
 
-  it('Successfully loads and displays all content of the ngx-bootstrap LP', () => {
-    cy.get('.logo')
-      .should('be.visible');
-    cy.get('.header-info')
-      .should('be.visible');
-    cy.get('.content-logo')
-      .should('be.visible');
-    cy.get('.slogan')
-      .should('be.visible');
-    cy.get('.descr')
-      .should('be.visible');
-    cy.get('.version')
-      .should('be.visible');
-    cy.get('.advantages')
-      .should('be.visible');
+  describe('Content', () => {
+
+    it('header displays ngx-bootstrap logo and info buttons', () => {
+      cy.get(landing.logoAtHeader)
+        .should('be.visible');
+      cy.get(landing.infoButtons)
+        .should('be.visible');
+    });
+
+    it('main content displays ngx-bootstrap logo, slogan, description, version and advantages block', () => {
+      cy.get(landing.logoAtContent)
+        .should('be.visible');
+      cy.get(landing.sloganBs)
+        .should('be.visible');
+      cy.get(landing.descriptionBs)
+        .should('be.visible');
+      cy.get(landing.versionBs)
+        .should('be.visible');
+      cy.get(landing.advantagesBs)
+        .should('be.visible');
+    });
+
+    it('footer contains links to ng-team, contributors, MIT license, Creative Commons, original Bootstrap', () => {
+      const footerLinks = [
+        landing.teamUrl,
+        landing.contributorsUrl,
+        landing.mitLicenseUrl,
+        landing.crCommonsUrl,
+        landing.originalBsUrl
+      ];
+
+      footerLinks.forEach(link =>
+        cy.get(`footer [href="${ link }"]`).should('to.be.exist'));
+    });
   });
 
-  it('Get started button redirects to Getting Started page', () => {
-    const buttonText = 'Get started';
-    const searchedUrl = '/getting-started';
+  describe('Navigation buttons', () => {
+    it('Get started button redirects to Getting Started page', () => {
+      const buttonText = 'Get started';
+      const searchedUrl = '/documentation';
 
-    landing.clickByText('.btn', buttonText);
+      landing.clickByText(landing.navBtn, buttonText);
 
-    cy.url()
-      .should('include', searchedUrl);
-  });
+      cy.url()
+        .should('include', searchedUrl);
+    });
 
-  it('Github button is enabled and contains link to ngx-bootstrap repo', () => {
-    const buttonText = 'Github';
+    it('Documentation button is enabled and contains link to documentation', () => {
+      const buttonText = 'Documentation';
+      const searchedUrl = '/documentation';
 
-    cy.get('.btn').contains(buttonText)
-      .should('be.enabled')
-      .and('have.attr', 'href', landing.githubUrl);
-  });
+      cy.get(landing.navBtn).contains(buttonText)
+        .should('be.enabled');
 
-  it('Info buttons in header are enabled and contains links to slack, github and stackoverflow', () => {
-    cy.get('.header-list li a').as('infoButton').eq(0)
-      .should('be.enabled')
-      .and('have.attr', 'href', landing.stackoverflowUrl);
-    cy.get('@infoButton').eq(1)
-      .should('be.enabled')
-      .and('have.attr', 'href', landing.githubUrl);
-    cy.get('@infoButton').eq(2)
-      .should('be.enabled')
-      .and('have.attr', 'href', landing.slackUrl);
-  });
+      landing.clickByText(landing.navBtn, buttonText);
 
-  it('Footer contains links to ng-team, contributors, MIT license, Creative Commons and to original Bootstrap', () => {
-    cy.get('footer p').as('footer').eq(0).children('a').eq(0)
-      .should('have.attr', 'href', landing.ngTeamUrl);
-    cy.get('@footer').eq(0).children('a').eq(1)
-      .should('have.attr', 'href', landing.contributorsUrl);
-    cy.get('@footer').eq(1).children('a').eq(0)
-      .should('have.attr', 'href', landing.mitLicenseUrl);
-    cy.get('@footer').eq(1).children('a').eq(1)
-      .should('have.attr', 'href', landing.crCommonsUrl);
-    cy.get('@footer').eq(2).children('a')
-      .should('have.attr', 'href', landing.originalBsUrl);
+      cy.url()
+        .should('include', searchedUrl);
+    });
+
+    it('Info buttons in header are enabled and contains links to slack, github and stackoverflow', () => {
+      const linksArr = [
+        landing.stackoverflowUrl,
+        landing.githubUrl,
+        landing.slackUrl
+      ];
+
+      linksArr.forEach(link =>
+        cy.get(`${ landing.infoButtons } [href="${ link }"]`)
+          .should('be.enabled'));
+    });
   });
 });

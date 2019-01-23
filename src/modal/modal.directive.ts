@@ -8,16 +8,12 @@ import {
   OnDestroy, OnInit, Output, Renderer2, ViewContainerRef
 } from '@angular/core';
 
-import { document, window } from '../utils/facade/browser';
-
-import { isBs3 } from '../utils/theme-provider';
-import { Utils } from '../utils/utils.class';
+import { document, window, isBs3, Utils } from 'ngx-bootstrap/utils';
 import { ModalBackdropComponent } from './modal-backdrop.component';
 import {
   CLASS_NAME, DISMISS_REASONS, modalConfigDefaults, ModalOptions
 } from './modal-options.class';
-import { ComponentLoader } from '../component-loader/component-loader.class';
-import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
+import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 
 const TRANSITION_DURATION = 300;
 const BACKDROP_TRANSITION_DURATION = 150;
@@ -74,8 +70,8 @@ export class ModalDirective implements OnDestroy, OnInit {
   protected originalBodyPadding = 0;
   protected scrollbarWidth = 0;
 
-  protected timerHideModal: any = 0;
-  protected timerRmBackDrop: any = 0;
+  protected timerHideModal = 0;
+  protected timerRmBackDrop = 0;
 
   // reference to backdrop component
   protected backdrop: ComponentRef<ModalBackdropComponent>;
@@ -95,7 +91,7 @@ export class ModalDirective implements OnDestroy, OnInit {
   }
 
   @HostListener('click', ['$event'])
-  onClick(event: any): void {
+  onClick(event: MouseEvent): void {
     if (
       this.config.ignoreBackdropClick ||
       this.config.backdrop === 'static' ||
@@ -108,15 +104,23 @@ export class ModalDirective implements OnDestroy, OnInit {
   }
 
   // todo: consider preventing default and stopping propagation
-  @HostListener('keydown.esc')
-  onEsc(): void {
+  @HostListener('keydown.esc', ['$event'])
+  onEsc(event: KeyboardEvent): void {
+    if (!this._isShown) {
+      return;
+    }
+    // tslint:disable-next-line:deprecation
+    if (event.keyCode === 27 || event.key === 'Escape') {
+      event.preventDefault();
+    }
+
     if (this.config.keyboard) {
       this.dismissReason = DISMISS_REASONS.ESC;
       this.hide();
     }
   }
 
-  ngOnDestroy(): any {
+  ngOnDestroy() {
     this.config = void 0;
     if (this._isShown) {
       this._isShown = false;
@@ -125,7 +129,7 @@ export class ModalDirective implements OnDestroy, OnInit {
     }
   }
 
-  ngOnInit(): any {
+  ngOnInit(): void {
     this._config = this._config || this.getConfig();
     setTimeout(() => {
       if (this._config.show) {
@@ -182,8 +186,8 @@ export class ModalDirective implements OnDestroy, OnInit {
       return;
     }
 
-    clearTimeout(this.timerHideModal);
-    clearTimeout(this.timerRmBackDrop);
+    window.clearTimeout(this.timerHideModal);
+    window.clearTimeout(this.timerRmBackDrop);
 
     this._isShown = false;
     this._renderer.removeClass(this._element.nativeElement, CLASS_NAME.IN);
@@ -193,7 +197,7 @@ export class ModalDirective implements OnDestroy, OnInit {
     // this._addClassIn = false;
 
     if (this._config.animated) {
-      this.timerHideModal = setTimeout(
+      this.timerHideModal = window.setTimeout(
         () => this.hideModal(),
         TRANSITION_DURATION
       );
@@ -227,6 +231,11 @@ export class ModalDirective implements OnDestroy, OnInit {
       this._element.nativeElement,
       'aria-hidden',
       'false'
+    );
+    this._renderer.setAttribute(
+      this._element.nativeElement,
+      'aria-modal',
+      'true'
     );
     this._renderer.setStyle(
       this._element.nativeElement,
@@ -326,7 +335,7 @@ export class ModalDirective implements OnDestroy, OnInit {
       };
 
       if (this.backdrop.instance.isAnimated) {
-        this.timerRmBackDrop = setTimeout(
+        this.timerRmBackDrop = window.setTimeout(
           callbackRemove,
           BACKDROP_TRANSITION_DURATION
         );
@@ -369,7 +378,9 @@ export class ModalDirective implements OnDestroy, OnInit {
   // }
 
   protected focusOtherModal() {
-    if (this._element.nativeElement.parentElement == null) return;
+    if (this._element.nativeElement.parentElement == null) {
+      return;
+    }
     const otherOpenedModals = this._element.nativeElement.parentElement.querySelectorAll('.in[bsModal]');
     if (!otherOpenedModals.length) {
       return;
@@ -417,7 +428,7 @@ export class ModalDirective implements OnDestroy, OnInit {
   }
 
   protected resetScrollbar(): void {
-    document.body.style.paddingRight = this.originalBodyPadding + 'px';
+    document.body.style.paddingRight = `${this.originalBodyPadding}px`;
   }
 
   // thx d.walsh

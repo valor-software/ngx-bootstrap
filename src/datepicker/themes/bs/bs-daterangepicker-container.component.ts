@@ -1,11 +1,11 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { BsDatepickerAbstractComponent } from '../../base/bs-datepicker-container';
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
-import { DayViewModel } from '../../models/index';
+import { DayViewModel } from '../../models';
 import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
 import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'bs-daterangepicker-container',
@@ -13,7 +13,9 @@ import { Subscription } from 'rxjs/Subscription';
   templateUrl: './bs-datepicker-view.html',
   host: {
     '(click)': '_stopPropagation($event)',
-    style: 'position: absolute; display: block;'
+    style: 'position: absolute; display: block;',
+    role: 'dialog',
+    'aria-label': 'calendar'
   }
 })
 export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractComponent
@@ -38,6 +40,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
 
   ngOnInit(): void {
     this.containerClass = this._config.containerClass;
+    this.isOtherMonthsActive = this._config.selectFromOtherMonth;
     this._effects
       .init(this._store)
       // intial state options
@@ -59,7 +62,9 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   }
 
   daySelectHandler(day: DayViewModel): void {
-    if (day.isOtherMonth || day.isDisabled) {
+    const isDisabled = this.isOtherMonthsActive ? day.isDisabled : (day.isOtherMonth || day.isDisabled);
+
+    if (isDisabled) {
       return;
     }
 

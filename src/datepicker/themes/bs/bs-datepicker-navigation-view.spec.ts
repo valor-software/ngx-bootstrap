@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {
   BsNavigationDirection,
   DaysCalendarViewModel
-} from '../../models/index';
+} from '../../models';
 import { BsDatepickerNavigationViewComponent } from './bs-datepicker-navigation-view.component';
 
 @Component({

@@ -1,30 +1,30 @@
 // tslint:disable:max-line-length max-file-line-count prefer-const forin prefer-template one-variable-per-declaration newline-before-return
 // tslint:disable:binary-expression-operand-order comment-format one-line no-var-keyword object-literal-shorthand
 // tslint:disable:variable-name
-import { assert } from 'chai';
+import { assertEq, assertDeepEq, assertOk } from '../test-helpers';
 import { moment } from '../chain';
 
 xdescribe('listers', () => {
 
   it('default', function () {
-    assert.deepEqual(moment.months(), ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']);
-    assert.deepEqual(moment.monthsShort(), ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
-    assert.deepEqual(moment.weekdays(), ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
-    assert.deepEqual(moment.weekdaysShort(), ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
-    assert.deepEqual(moment.weekdaysMin(), ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']);
+    assertDeepEq(moment.months(), ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']);
+    assertDeepEq(moment.monthsShort(), ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
+    assertDeepEq(moment.weekdays(), ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
+    assertDeepEq(moment.weekdaysShort(), ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
+    assertDeepEq(moment.weekdaysMin(), ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']);
   });
 
   it('index', function () {
-    assert.equal(moment.months(0), 'January');
-    assert.equal(moment.months(2), 'March');
-    assert.equal(moment.monthsShort(0), 'Jan');
-    assert.equal(moment.monthsShort(2), 'Mar');
-    assert.equal(moment.weekdays(0), 'Sunday');
-    assert.equal(moment.weekdays(2), 'Tuesday');
-    assert.equal(moment.weekdaysShort(0), 'Sun');
-    assert.equal(moment.weekdaysShort(2), 'Tue');
-    assert.equal(moment.weekdaysMin(0), 'Su');
-    assert.equal(moment.weekdaysMin(2), 'Tu');
+    assertEq(moment.months(0), 'January');
+    assertEq(moment.months(2), 'March');
+    assertEq(moment.monthsShort(0), 'Jan');
+    assertEq(moment.monthsShort(2), 'Mar');
+    assertEq(moment.weekdays(0), 'Sunday');
+    assertEq(moment.weekdays(2), 'Tuesday');
+    assertEq(moment.weekdaysShort(0), 'Sun');
+    assertEq(moment.weekdaysShort(2), 'Tue');
+    assertEq(moment.weekdaysMin(0), 'Su');
+    assertEq(moment.weekdaysMin(2), 'Tu');
   });
 
   xit('localized', function () {
@@ -50,35 +50,35 @@ xdescribe('listers', () => {
       week: week
     });
 
-    assert.deepEqual(moment.months(), months);
-    assert.deepEqual(moment.monthsShort(), monthsShort);
-    assert.deepEqual(moment.weekdays(), weekdays);
-    assert.deepEqual(moment.weekdaysShort(), weekdaysShort);
-    assert.deepEqual(moment.weekdaysMin(), weekdaysMin);
+    assertDeepEq(moment.months(), months);
+    assertDeepEq(moment.monthsShort(), monthsShort);
+    assertDeepEq(moment.weekdays(), weekdays);
+    assertDeepEq(moment.weekdaysShort(), weekdaysShort);
+    assertDeepEq(moment.weekdaysMin(), weekdaysMin);
 
-    assert.equal(moment.months(0), 'one');
-    assert.equal(moment.monthsShort(0), 'on');
-    assert.equal(moment.weekdays(0), 'one');
-    assert.equal(moment.weekdaysShort(0), 'on');
-    assert.equal(moment.weekdaysMin(0), '1');
+    assertEq(moment.months(0), 'one');
+    assertEq(moment.monthsShort(0), 'on');
+    assertEq(moment.weekdays(0), 'one');
+    assertEq(moment.weekdaysShort(0), 'on');
+    assertEq(moment.weekdaysMin(0), '1');
 
-    assert.equal(moment.months(2), 'three');
-    assert.equal(moment.monthsShort(2), 'th');
-    assert.equal(moment.weekdays(2), 'three');
-    assert.equal(moment.weekdaysShort(2), 'th');
-    assert.equal(moment.weekdaysMin(2), '3');
+    assertEq(moment.months(2), 'three');
+    assertEq(moment.monthsShort(2), 'th');
+    assertEq(moment.weekdays(2), 'three');
+    assertEq(moment.weekdaysShort(2), 'th');
+    assertEq(moment.weekdaysMin(2), '3');
 
-    assert.deepEqual(moment.weekdays(true), weekdaysLocale);
-    assert.deepEqual(moment.weekdaysShort(true), weekdaysShortLocale);
-    assert.deepEqual(moment.weekdaysMin(true), weekdaysMinLocale);
+    assertDeepEq(moment.weekdays(true), weekdaysLocale);
+    assertDeepEq(moment.weekdaysShort(true), weekdaysShortLocale);
+    assertDeepEq(moment.weekdaysMin(true), weekdaysMinLocale);
 
-    assert.equal(moment.weekdays(true, 0), 'four');
-    assert.equal(moment.weekdaysShort(true, 0), 'fo');
-    assert.equal(moment.weekdaysMin(true, 0), '4');
+    assertEq(moment.weekdays(true, 0), 'four');
+    assertEq(moment.weekdaysShort(true, 0), 'fo');
+    assertEq(moment.weekdaysMin(true, 0), '4');
 
-    assert.equal(moment.weekdays(false, 2), 'three');
-    assert.equal(moment.weekdaysShort(false, 2), 'th');
-    assert.equal(moment.weekdaysMin(false, 2), '3');
+    assertEq(moment.weekdays(false, 2), 'three');
+    assertEq(moment.weekdaysShort(false, 2), 'th');
+    assertEq(moment.weekdaysMin(false, 2), '3');
   });
 
   // todo: not sure we need this
@@ -93,13 +93,13 @@ xdescribe('listers', () => {
     //   }
     // });
 
-    assert.deepEqual(moment.monthsShort(), monthsShort);
-    assert.deepEqual(moment.monthsShort('MMM'), monthsShort);
-    assert.deepEqual(moment.monthsShort('-MMM-'), monthsShortWeird);
+    assertDeepEq(moment.monthsShort(), monthsShort);
+    assertDeepEq(moment.monthsShort('MMM'), monthsShort);
+    assertDeepEq(moment.monthsShort('-MMM-'), monthsShortWeird);
 
-    assert.deepEqual(moment.monthsShort('MMM', 2), 'three');
-    assert.deepEqual(moment.monthsShort('-MMM-', 2), 'threesy');
-    assert.deepEqual(moment.monthsShort(2), 'three');
+    assertDeepEq(moment.monthsShort('MMM', 2), 'three');
+    assertDeepEq(moment.monthsShort('-MMM-', 2), 'threesy');
+    assertDeepEq(moment.monthsShort(2), 'three');
 
     // moment.defineLocale('difficult', null);
   });
@@ -120,10 +120,10 @@ xdescribe('listers', () => {
 
     var customLocale = moment.localeData('numerologists');
 
-    assert.deepEqual(customLocale.months(), months);
-    assert.deepEqual(customLocale.monthsShort(), monthsShort);
-    assert.deepEqual(customLocale.weekdays(), weekdays);
-    assert.deepEqual(customLocale.weekdaysShort(), weekdaysShort);
-    assert.deepEqual(customLocale.weekdaysMin(), weekdaysMin);
+    assertDeepEq(customLocale.months(), months);
+    assertDeepEq(customLocale.monthsShort(), monthsShort);
+    assertDeepEq(customLocale.weekdays(), weekdays);
+    assertDeepEq(customLocale.weekdaysShort(), weekdaysShort);
+    assertDeepEq(customLocale.weekdaysMin(), weekdaysMin);
   });
 });
