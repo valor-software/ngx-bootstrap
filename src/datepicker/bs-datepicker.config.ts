@@ -48,6 +48,12 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    */
   containerClass = 'theme-green';
 
+  /**
+   * Shows today button
+   */
+
+  showTodayButton = false;
+
   // DatepickerRenderOptions
   displayMonths = 1;
   /**

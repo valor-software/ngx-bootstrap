@@ -47,10 +47,16 @@
 
   </div>
 
-  <!--applycancel buttons-->
-    <div class="bs-datepicker-buttons" *ngIf="false">
-      <button class="btn btn-success">Apply</button>
-      <button class="btn btn-default">Cancel</button>
+    <!--buttons section-->
+
+    <div class="bs-datepicker-buttons">
+      <div class="btn-today-wrapper" *ngIf="showTodayBtn">
+        <button class="btn btn-success" (click)="setToday()">Today</button>
+      </div>
+      <ng-container *ngIf="false">
+        <button class="btn btn-success">Apply</button>
+        <button class="btn btn-default">Cancel</button>
+      </ng-container>
     </div>
 
   </div>

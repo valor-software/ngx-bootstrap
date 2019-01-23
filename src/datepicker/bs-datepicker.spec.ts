@@ -122,4 +122,16 @@ describe('datepicker:', () => {
 
     expect(spy).toHaveBeenCalled();
   }));
+
+  it('should set today date', () => {
+    const datepicker = showDatepicker(fixture);
+    const datepickerContainerInstance = getDatepickerContainer(datepicker);
+    datepickerContainerInstance.setToday();
+    fixture.detectChanges();
+    datepickerContainerInstance[`_store`]
+      .select(state => state.view)
+      .subscribe(view => {
+        expect(view.date.getDay()).toEqual((new Date().getDay()));
+      });
+  });
 });

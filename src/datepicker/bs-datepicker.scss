@@ -453,6 +453,12 @@
     .btn-default {
       margin-left: 10px;
     }
+
+    .btn-today-wrapper {
+      display: flex;
+      flex-flow: row wrap;
+      flex-grow: 1;
+    }
   }
 }
 

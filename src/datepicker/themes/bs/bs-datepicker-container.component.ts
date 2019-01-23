@@ -40,6 +40,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
   ngOnInit(): void {
     this.isOtherMonthsActive = this._config.selectFromOtherMonth;
     this.containerClass = this._config.containerClass;
+    this.showTodayBtn = this._config.showTodayButton;
     this._effects
       .init(this._store)
       // intial state options
@@ -69,6 +70,10 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     }
 
     this._store.dispatch(this._actions.select(day.date));
+  }
+
+  setToday() {
+    this._store.dispatch(this._actions.select(new Date()));
   }
 
   ngOnDestroy(): void {

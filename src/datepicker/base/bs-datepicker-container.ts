@@ -19,6 +19,7 @@ import {
 export abstract class BsDatepickerAbstractComponent {
   containerClass: string;
   isOtherMonthsActive: boolean;
+  showTodayBtn: boolean;
 
   _effects: BsDatepickerEffects;
   _customRangesFish: BsCustomDates[] = [];
@@ -61,6 +62,8 @@ export abstract class BsDatepickerAbstractComponent {
   monthSelectHandler(event: CalendarCellViewModel): void {}
 
   yearSelectHandler(event: CalendarCellViewModel): void {}
+
+  setToday(): void {}
 
   /* tslint:disable-next-line: no-any */
   _stopPropagation(event: any): void {
