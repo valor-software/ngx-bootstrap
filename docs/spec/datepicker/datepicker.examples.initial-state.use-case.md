@@ -16,7 +16,7 @@ Main success scenario:
 6. By default, value in Daterangepicker input is interval from current day to current + 7 days
 7. When user clicks on "Date Picker" button, bs-datepicker-container opened and current date selected
 8. When user clicks on other date, that date selected and shown in input
-9. When user clicks on "Date Range Picker" button, bs-dateragdepicker-container opened and appropriate interval selected
+9. When user clicks on "Date Range Picker" button, bs-daterangepicker-container opened and appropriate interval selected
 10. When user chose another interval, that interval selected and shown in input
 
 Variations:

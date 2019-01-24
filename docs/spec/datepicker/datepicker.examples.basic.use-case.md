@@ -66,8 +66,8 @@ Extentions:
 
 21a. When user clicks on "‹" button - interval with previous 16 years shown in each table
 21b. When user clicks on "›" button - interval with next 16 years shown in each table
-21c. When user clicks on any year from the left table - then this year shown in head block and tables with 12 months in each shown //TODO should work with right table also
-21d. When user clicks on any month from the left table - then this month and year shown in head block and tables with dates in each shown //TODO should work with right table also
+21c. When user clicks on any year from the left table - then this year shown in head block and tables with 12 months in each shown
+21d. When user clicks on any month from the left table - then this month and year shown in head block and tables with dates in each shown
 
 25a. When user clears input and add there date interval in bad format, click "Enter" - nothing happens
 25b. When user clears input and add there date interval in format "mmddyyyy" - "mmddyyyy", click "Enter" - date converted to "mm/dd/yyyy" - "mm/dd/yyyy"
