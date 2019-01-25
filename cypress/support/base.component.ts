@@ -63,8 +63,8 @@ export abstract class BaseComponent {
     cy.get(`${baseSelector} button`).eq(buttonIndex ? buttonIndex : 0).trigger('mouseleave');
   }
 
-  isInputHaveAttrs(baseSelector: string, attributes: AttrObj[]) {
-    cy.get(`${baseSelector} input`)
+  isInputHaveAttrs(baseSelector: string, attributes: AttrObj[], inputIndex = 0) {
+    cy.get(`${baseSelector} input`).eq(inputIndex)
       .then(input => {
         let i = 0;
         for (; i < attributes.length; i++) {
@@ -73,8 +73,22 @@ export abstract class BaseComponent {
       });
   }
 
-  clearInputAndSendKeys(baseSelector: string, dataToSend: string) {
-    cy.get(`${baseSelector} input`).clear().type(dataToSend);
+  isInputValueEqual(baseSelector: string, expectedTxt: string, inputIndex = 0) {
+    cy.get(`${baseSelector} input`).eq(inputIndex).should('to.have.value', expectedTxt);
+  }
+
+  isInputValueContain(baseSelector: string, expectedTxt: string, inputIndex = 0) {
+    cy.get(`${baseSelector} input`).eq(inputIndex).then(input => {
+      expect(input.val()).to.contains(expectedTxt);
+    });
+  }
+
+  clearInputAndSendKeys(baseSelector: string, dataToSend: string, inputIndex = 0) {
+    cy.get(`${baseSelector} input`).eq(inputIndex).clear().type(dataToSend);
+  }
+
+  clickEnterOnInput(baseSelector: string, inputIndex = 0) {
+    cy.get(`${baseSelector} input`).eq(inputIndex).type('{enter}');
   }
 
   isDemoContainsTxt(baseSelector: string, expectedTxt: string, expectedTxtOther?: string) {
@@ -88,6 +102,15 @@ export abstract class BaseComponent {
   isButtonExist(baseSelector: string, buttonName: string, buttonNumber?: number) {
     cy.get(`${baseSelector} button`).eq(buttonNumber ? buttonNumber : 0).invoke('text')
       .should(btnTxt => expect(btnTxt).to.equal(buttonName));
+  }
+
+  isSelectExist(baseSelector: string, selectText: string, selectNumber = 0) {
+    cy.get(`${baseSelector} select`).eq(selectNumber).invoke('text')
+      .should(btnTxt => expect(btnTxt).to.contain(selectText));
+  }
+
+  selectOne(baseSelector: string, selectToChose: string, selectNumber = 0) {
+    cy.get(`${baseSelector} select`).eq(selectNumber).select(selectToChose);
   }
 
   isPreviewExist(baseSelector: string, previewText: string, previewNumber?: number) {
