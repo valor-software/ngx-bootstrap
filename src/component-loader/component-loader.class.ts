@@ -199,6 +199,8 @@ export class ComponentLoader<T> {
       return this;
     }
 
+    this._posService.deletePositionElement(this._componentRef.location);
+
     this.onBeforeHide.emit(this._componentRef.instance);
 
     const componentEl = this._componentRef.location.nativeElement;
@@ -334,6 +336,7 @@ export class ComponentLoader<T> {
     if (!this._zoneSubscription) {
       return;
     }
+
     this._zoneSubscription.unsubscribe();
     this._zoneSubscription = null;
   }

@@ -16,5 +16,6 @@ export function isFixed(element) {
   if (getStyleComputedProperty(element, 'position') === 'fixed') {
     return true;
   }
+
   return isFixed(getParentNode(element));
 }

@@ -1,5 +1,8 @@
 import { Injectable, ElementRef } from '@angular/core';
+
 import { positionElements } from './ng-positioning';
+import { fromEvent, merge, of, animationFrameScheduler, Subject } from 'rxjs';
+
 
 export interface PositioningOptions {
   /** The DOM element, ElementRef, or a selector string of an element which will be moved */
@@ -34,39 +37,47 @@ export interface PositioningOptions {
   appendToBody?: boolean;
 }
 
+
 @Injectable()
 export class PositioningService {
-  position(options: PositioningOptions): void {
-    const {element, target, attachment, appendToBody} = options;
+  private update$$ = new Subject();
 
-    requestAnimationFrame(() => {
-      positionElements(
-        _getHtmlElement(target),
-        _getHtmlElement(element),
-        attachment,
-        appendToBody
-      );
-    });
+  private events$: any = merge(
+    fromEvent(window, 'scroll'),
+    fromEvent(window, 'resize'),
+    of(0, animationFrameScheduler),
+    this.update$$
+  );
 
-    addEventListener('scroll', () => {
-      positionElements(
-        _getHtmlElement(target),
-        _getHtmlElement(element),
-        attachment,
-        appendToBody
-      );
-    });
+  private positionElements = new Map();
 
-    addEventListener('resize', () => {
-      positionElements(
-        _getHtmlElement(target),
-        _getHtmlElement(element),
-        attachment,
-        appendToBody
-      );
-    });
+  constructor() {
+    this.events$
+      .subscribe(() => {
+        this.positionElements
+          .forEach((positionElement: PositioningOptions) => {
+            positionElements(
+              _getHtmlElement(positionElement.target),
+              _getHtmlElement(positionElement.element),
+              positionElement.attachment,
+              positionElement.appendToBody
+            );
+          });
+      });
   }
 
+  position(options: PositioningOptions): void {
+    this.addPositionElement(options);
+    this.update$$.next();
+  }
+
+  addPositionElement(options: PositioningOptions): void {
+    this.positionElements.set(_getHtmlElement(options.element), options);
+  }
+
+  deletePositionElement(elRef: ElementRef): void {
+    this.positionElements.delete(_getHtmlElement(elRef));
+  }
 }
 
 function _getHtmlElement(element: HTMLElement | ElementRef | string): HTMLElement {
