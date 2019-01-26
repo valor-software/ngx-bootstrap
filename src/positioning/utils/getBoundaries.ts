@@ -1,3 +1,6 @@
+/**
+ * Computed the boundaries limits and return them
+ */
 import { getScrollParent } from './getScrollParent';
 import { getParentNode } from './getParentNode';
 import { findCommonOffsetParent } from './findCommonOffsetParent';
@@ -7,16 +10,11 @@ import { getWindowSizes } from './getWindowSizes';
 import { isFixed } from './isFixed';
 import { getFixedPositionOffsetParent } from './getFixedPositionOffsetParent';
 
-/**
- * Computed the boundaries limits and return them
- * @method
- * @memberof Popper.Utils
- */
 export function getBoundaries(
-  popper,
-  reference,
-  padding,
-  boundariesElement,
+  popper: HTMLElement,
+  reference: HTMLElement,
+  paddingValue: any,
+  boundariesElement: string,
   fixedPosition = false
 ) {
   // NOTE: 1 DOM access here
@@ -27,9 +25,7 @@ export function getBoundaries(
   // Handle viewport case
   if (boundariesElement === 'viewport') {
     boundaries = getViewportOffsetRectRelativeToArtbitraryNode(offsetParent, fixedPosition);
-  }
-
-  else {
+  } else {
     // Handle other cases based on DOM element used as boundaries
     let boundariesNode;
     if (boundariesElement === 'scrollParent') {
@@ -53,9 +49,9 @@ export function getBoundaries(
     if (boundariesNode.nodeName === 'HTML' && !isFixed(offsetParent)) {
       const { height, width } = getWindowSizes(popper.ownerDocument);
       boundaries.top += offsets.top - offsets.marginTop;
-      boundaries.bottom = height + offsets.top;
+      boundaries.bottom = Number(height) + Number(offsets.top);
       boundaries.left += offsets.left - offsets.marginLeft;
-      boundaries.right = width + offsets.left;
+      boundaries.right = Number(width) + Number(offsets.left);
     } else {
       // for all the other DOM elements, this one is good
       boundaries = offsets;
@@ -63,7 +59,7 @@ export function getBoundaries(
   }
 
   // Add paddings
-  padding = padding || 0;
+  const padding = paddingValue || 0;
   const isPaddingNumber = typeof padding === 'number';
   boundaries.left += isPaddingNumber ? padding : padding.left || 0;
   boundaries.top += isPaddingNumber ? padding : padding.top || 0;

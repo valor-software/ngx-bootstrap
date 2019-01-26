@@ -1,3 +1,6 @@
+/**
+ * Get bounding client rect of given element
+ */
 import { getStyleComputedProperty } from './getStyleComputedProperty';
 import { getBordersSize } from './getBordersSize';
 import { getWindowSizes } from './getWindowSizes';
@@ -5,13 +8,8 @@ import { getScroll } from './getScroll';
 import { getClientRect } from './getClientRect';
 import { isIE } from './isIE';
 
-/**
- * Get bounding client rect of given element
- * @method
- * @memberof Popper.Utils
- */
-export function getBoundingClientRect(element) {
-  let rect: { [key: string]: number} = {};
+export function getBoundingClientRect(element: HTMLElement) {
+  let rect: any = {};
 
   // IE10 10 FIX: Please, don't ask, the element isn't
   // considered in DOM in some circumstances...
@@ -25,17 +23,18 @@ export function getBoundingClientRect(element) {
       rect.left += scrollLeft;
       rect.bottom += scrollTop;
       rect.right += scrollLeft;
-    }
-    else {
+    } else {
       rect = element.getBoundingClientRect();
     }
-  } catch (e){}
+  } catch (e) {
+    return undefined;
+  }
 
   const result: any = {
     left: rect.left,
     top: rect.top,
     width: rect.right - rect.left,
-    height: rect.bottom - rect.top,
+    height: rect.bottom - rect.top
   };
 
   // subtract scrollbar size from sizes

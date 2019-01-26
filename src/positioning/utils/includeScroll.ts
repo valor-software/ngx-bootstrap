@@ -1,11 +1,9 @@
+/**
+ * Sum or subtract the element scroll values (left and top) from a given rect object
+ */
 import { getScroll } from './getScroll';
 
-/*
- * Sum or subtract the element scroll values (left and top) from a given rect object
- * @method
- * @memberof Popper.Utils
- */
-export function includeScroll(rect, element, subtract = false) {
+export function includeScroll(rect: ClientRect, element: HTMLElement, subtract = false) {
   const scrollTop = getScroll(element, 'top');
   const scrollLeft = getScroll(element, 'left');
   const modifier = subtract ? -1 : 1;

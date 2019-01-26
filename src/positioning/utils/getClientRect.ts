@@ -1,13 +1,10 @@
 /**
  * Given element offsets, generate an output similar to getBoundingClientRect
- * @method
- * @memberof Popper.Utils
- * @argument {Object} offsets
  */
-export function getClientRect(offsets) {
+export function getClientRect(offsets: { [key: string]: number }) {
   return {
     ...offsets,
     right: offsets.left + offsets.width,
-    bottom: offsets.top + offsets.height,
+    bottom: offsets.top + offsets.height
   };
 }

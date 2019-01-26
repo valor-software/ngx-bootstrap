@@ -1,4 +1,9 @@
-export function shift(offsetsPopper, referenceOffset, placement) {
+export function shift(
+  offsetsTarget: { [key: string]: number },
+  referenceOffset: { [key: string]: number },
+  placement: string
+) {
+  let offsetsPopper = offsetsTarget;
   const basePlacement = placement.split(' ')[0];
   const shiftvariation = placement.split(' ')[1];
 
@@ -10,7 +15,7 @@ export function shift(offsetsPopper, referenceOffset, placement) {
     const shiftOffsets = {
       left: { [side]: referenceOffset[side] },
       right: {
-        [side]: referenceOffset[side] + referenceOffset[measurement] - offsetsPopper[measurement],
+        [side]: referenceOffset[side] + referenceOffset[measurement] - offsetsPopper[measurement]
       }
     };
 

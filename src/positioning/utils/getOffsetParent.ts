@@ -1,12 +1,10 @@
-import { getStyleComputedProperty } from './getStyleComputedProperty';
-import { isIE } from './isIE';
 /**
  * Returns the offset parent of the given element
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element
  */
-export function getOffsetParent(element) {
+import { getStyleComputedProperty } from './getStyleComputedProperty';
+import { isIE } from './isIE';
+
+export function getOffsetParent(element: any): any {
   if (!element) {
     return document.documentElement;
   }
@@ -16,14 +14,18 @@ export function getOffsetParent(element) {
   // NOTE: 1 DOM access here
   let offsetParent = element.offsetParent || null;
   // Skip hidden elements which don't have an offsetParent
+
+  let sibling: any;
+
   while (offsetParent === noOffsetParent && element.nextElementSibling) {
-    offsetParent = (element = element.nextElementSibling).offsetParent;
+    sibling = element.nextElementSibling;
+    offsetParent = sibling.offsetParent;
   }
 
   const nodeName = offsetParent && offsetParent.nodeName;
 
   if (!nodeName || nodeName === 'BODY' || nodeName === 'HTML') {
-    return element ? element.ownerDocument.documentElement : document.documentElement;
+    return sibling ? sibling.ownerDocument.documentElement : document.documentElement;
   }
 
   // .offsetParent will return the closest TH, TD or TABLE in case

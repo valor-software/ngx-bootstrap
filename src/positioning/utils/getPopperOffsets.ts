@@ -1,13 +1,15 @@
+/**
+ * Get offsets to the popper
+ */
 import { getOuterSizes } from './getOuterSizes';
 import { getOppositePlacement } from './getOppositePlacement';
 
-/**
- * Get offsets to the popper
- * @method
- * @memberof Popper.Utils
- */
-export function getPopperOffsets(popper, referenceOffsets, placement) {
-  placement = placement.split('-')[0];
+export function getPopperOffsets(
+  popper: HTMLElement,
+  referenceOffsets: { [key: string]: number },
+  position: string
+) {
+  const placement = position.split('-')[0];
 
   // Get popper node sizes
   const popperRect = getOuterSizes(popper);
@@ -30,13 +32,9 @@ export function getPopperOffsets(popper, referenceOffsets, placement) {
     referenceOffsets[measurement] / 2 -
     popperRect[measurement] / 2;
 
-  if (placement === secondarySide) {
-    popperOffsets[secondarySide] =
-      referenceOffsets[secondarySide] - popperRect[secondaryMeasurement];
-  } else {
-    popperOffsets[secondarySide] =
-      referenceOffsets[getOppositePlacement(secondarySide)];
-  }
+  popperOffsets[secondarySide] = placement === secondarySide
+    ? referenceOffsets[secondarySide] - popperRect[secondaryMeasurement]
+    : referenceOffsets[getOppositePlacement(secondarySide)];
 
   return popperOffsets;
 }

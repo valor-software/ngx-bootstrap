@@ -1,14 +1,14 @@
+/**
+ * Get offsets to the reference element
+ */
 import { findCommonOffsetParent } from './findCommonOffsetParent';
 import { getOffsetRectRelativeToArbitraryNode } from './getOffsetRectRelativeToArbitraryNode';
 import { getFixedPositionOffsetParent } from './getFixedPositionOffsetParent';
 
-/**
- * Get offsets to the reference element
- * @method
- * @memberof Popper.Utils
- */
-export function getReferenceOffsets(state, popper, reference, fixedPosition = null) {
-  const commonOffsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
+export function getReferenceOffsets(popper: HTMLElement, reference: HTMLElement, fixedPosition: boolean = null) {
+  const commonOffsetParent = fixedPosition
+    ? getFixedPositionOffsetParent(popper)
+    : findCommonOffsetParent(popper, reference);
 
   return getOffsetRectRelativeToArbitraryNode(reference, commonOffsetParent, fixedPosition);
 }

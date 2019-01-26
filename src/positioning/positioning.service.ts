@@ -40,7 +40,7 @@ export interface PositioningOptions {
 
 @Injectable()
 export class PositioningService {
-  private update$$ = new Subject();
+  private update$$ = new Subject<null>();
 
   private events$: any = merge(
     fromEvent(window, 'scroll'),

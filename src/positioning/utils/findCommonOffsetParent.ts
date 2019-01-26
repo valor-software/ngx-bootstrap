@@ -1,24 +1,20 @@
+/**
+ * Finds the offset parent common to the two provided nodes
+ */
 import { isOffsetContainer } from './isOffsetContainer';
 import { getRoot } from './getRoot';
 import { getOffsetParent } from './getOffsetParent';
 
-// /**
-//  * Finds the offset parent common to the two provided nodes
-//  * @method
-//  * @memberof Popper.Utils
-//  * @argument {Element} element1
-//  * @argument {Element} element2
-//  */
-export function findCommonOffsetParent(element1, element2) {
+export function findCommonOffsetParent(element1: HTMLElement, element2: HTMLElement): any {
   // This check is needed to avoid errors in case one of the elements isn't defined for any reason
   if (!element1 || !element1.nodeType || !element2 || !element2.nodeType) {
     return document.documentElement;
   }
 
   // Here we make sure to give as "start" the element that comes first in the DOM
-  const order =
-    element1.compareDocumentPosition(element2) &
-    Node.DOCUMENT_POSITION_FOLLOWING;
+  /* tslint:disable-next-line: no-bitwise */
+  const order = element1.compareDocumentPosition(element2) & Node.DOCUMENT_POSITION_FOLLOWING;
+
   const start = order ? element1 : element2;
   const end = order ? element2 : element1;
 

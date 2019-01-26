@@ -1,6 +1,6 @@
 {
   "name": "ngx-bootstrap-base",
-  "version": "3.1.2",
+  "version": "3.2.0",
   "description": "Native Angular Bootstrap Components",
   "private": true,
   "scripts": {
@@ -17,14 +17,13 @@
     "demo.deploy": "run-s demo.build demo.deploy-gh-pages",
     "link": "npm link ./dist && npm link ngx-bootstrap",
     "lint-pretty": "prettier --config .prettierrc --write -l  \"{demo/src,src}/**/*.ts\"",
-    "lint-src": "tslint \"src/**/*.ts\" -c tslint.json -p src/tsconfig.spec.json -e \"src/chronos/**\" -e \"src/popper/**\"",
+    "lint-src": "tslint \"src/**/*.ts\" -c tslint.json -p src/tsconfig.spec.json -e \"src/chronos/**\"",
     "lint": "exit 0",
     "disable-lint": "tslint \"**/*.ts\" -c tslint.json --fix --type-check -t prose -e \"node_modules/**\" -e \"dist/**\" -e \"temp/**\" -e \"scripts/docs/**\"",
     "flow.changelog": "conventional-changelog -i CHANGELOG.md -s -p angular",
     "flow.github-release": "conventional-github-releaser -p angular",
     "build": "run-s build.modules build:schematics build.sass build.es2015",
     "build.position": "rimraf dist/positioning && node scripts/ng-packagr/api ../../src/positioning/package.json",
-    "build.loader": "rimraf dist/component-loader && node scripts/ng-packagr/api ../../src/component-loader/package.json",
     "build.watch": "node scripts/build-modules --watch",
     "build:schematics": "node scripts/schematics/build",
     "build.modules": "node scripts/build-modules",

@@ -1,15 +1,10 @@
-import { getBoundaries, getOffsetParent } from '../utils';
+import { getBoundaries } from '../utils';
 
-export function preventOverflow(boundariesEl, tooltip, reference, offsetsPopper) {
-  let boundariesElement =
-    boundariesEl || getOffsetParent(tooltip);
-
-  // If offsetParent is the reference element, we really want to
-  // go one step up and use the next offsetParent as reference to
-  // avoid to make this modifier completely useless and look like broken
-  if (reference === boundariesElement) {
-    boundariesElement = getOffsetParent(boundariesElement);
-  }
+export function preventOverflow(
+  tooltip: HTMLElement,
+  reference: HTMLElement,
+  offsetsPopper: { [key: string]: number }
+) {
 
   // NOTE: DOM access here
   // resets the popper's position so that the document size can be calculated excluding
@@ -24,9 +19,9 @@ export function preventOverflow(boundariesEl, tooltip, reference, offsetsPopper)
   const boundaries = getBoundaries(
     tooltip,
     reference,
-    0, // options.padding
-    boundariesElement,
-    false // data.positionFixed
+    0, // padding
+    'scrollParent',
+    false // positionFixed
   );
 
   // NOTE: DOM access here
@@ -35,13 +30,11 @@ export function preventOverflow(boundariesEl, tooltip, reference, offsetsPopper)
   popperStyles.left = left;
   popperStyles[transformProp] = transform;
 
-  // options.boundaries = boundaries;
-
   const order = ['left', 'right', 'top', 'bottom'];
   let popper = offsetsPopper;
 
   const check = {
-    primary(placement) {
+    primary(placement: string) {
       let value = popper[placement];
       if (
         popper[placement] < boundaries[placement] &&
@@ -52,12 +45,12 @@ export function preventOverflow(boundariesEl, tooltip, reference, offsetsPopper)
 
       return { [placement]: value };
     },
-    secondary(placement) {
+    secondary(placement: string) {
       const mainSide = placement === 'right' ? 'left' : 'top';
       let value = popper[mainSide];
       if (
         popper[placement] > boundaries[placement] &&
-        !false // options.escapeWithReference
+        !false // escapeWithReference
       ) {
         value = Math.min(
           popper[mainSide],
@@ -82,7 +75,5 @@ export function preventOverflow(boundariesEl, tooltip, reference, offsetsPopper)
 
   });
 
-  offsetsPopper = popper;
-
-  return offsetsPopper;
+  return popper;
 }

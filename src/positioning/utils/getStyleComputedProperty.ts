@@ -1,11 +1,7 @@
-// /**
-//  * Get CSS computed property of the given element
-//  * @method
-//  * @memberof Popper.Utils
-//  * @argument {Eement} element
-//  * @argument {String} property
-//  */
-export function getStyleComputedProperty(element, property?) {
+/**
+ * Get CSS computed property of the given element
+ */
+export function getStyleComputedProperty(element: HTMLElement, property?: string): any {
   if (element.nodeType !== 1) {
     return [];
   }

@@ -1,13 +1,11 @@
+/**
+ * Finds the first parent of an element that has a transformed property defined
+ */
+
 import { getStyleComputedProperty } from './getStyleComputedProperty';
 import { isIE } from './isIE';
-// /**
-//  * Finds the first parent of an element that has a transformed property defined
-//  * @method
-//  * @memberof Popper.Utils
-//  * @argument {Element} element
-//  */
 
-export function getFixedPositionOffsetParent(element) {
+export function getFixedPositionOffsetParent(element: HTMLElement): HTMLElement {
   // This check is needed to avoid errors in case one of the elements isn't defined for any reason
   if (!element || !element.parentElement || isIE()) {
    return document.documentElement;

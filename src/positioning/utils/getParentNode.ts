@@ -1,10 +1,7 @@
 /**
  * Returns the parentNode or the host of the element
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element
  */
-export function getParentNode(element) {
+export function getParentNode(element: any): any {
   if (element.nodeName === 'HTML') {
     return element;
   }

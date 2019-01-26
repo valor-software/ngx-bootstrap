@@ -1,24 +1,20 @@
 import { getClientRect, getOuterSizes, getStyleComputedProperty } from '../utils';
 
-export function arrow(popper, offsetsPopper, referenceOffset, arrowElement, placement) {
+export function arrow(
+  popper: HTMLElement,
+  offsetsTarget: { [key: string]: number },
+  referenceOffset: { [key: string]: number },
+  arrowElementClass: string,
+  placement: string
+) {
+
+  let offsetsPopper = offsetsTarget;
   // if arrowElement is a string, suppose it's a CSS selector
-  if (typeof arrowElement === 'string') {
-    arrowElement = popper.querySelector(arrowElement);
+  const arrowElement: HTMLElement = popper.querySelector(arrowElementClass);
 
-    // if arrowElement is not found, don't run the modifier
-    if (!arrowElement) {
-      return;
-    }
-  } else {
-    // if the arrowElement isn't a query selector we must check that the
-    // provided DOM node is child of its popper node
-    if (!popper.contains(arrowElement)) {
-      console.warn(
-        'WARNING: `arrow.element` must be child of its popper element!'
-      );
-
-      return;
-    }
+  // if arrowElement is not found, don't run the modifier
+  if (!arrowElement) {
+    return;
   }
 
   const isVertical = ['left', 'right'].indexOf(placement) !== -1;
@@ -36,9 +32,9 @@ export function arrow(popper, offsetsPopper, referenceOffset, arrowElement, plac
       offsetsPopper[side] - (referenceOffset[opSide] - arrowElementSize);
   }
   // bottom/right side
-  if (referenceOffset[side] + arrowElementSize > offsetsPopper[opSide]) {
+  if (Number(referenceOffset[side]) + Number(arrowElementSize) > offsetsPopper[opSide]) {
     offsetsPopper[side] +=
-      referenceOffset[side] + arrowElementSize - offsetsPopper[opSide];
+      Number(referenceOffset[side]) + Number(arrowElementSize) - Number(offsetsPopper[opSide]);
   }
   offsetsPopper = getClientRect(offsetsPopper);
 
@@ -57,9 +53,9 @@ export function arrow(popper, offsetsPopper, referenceOffset, arrowElement, plac
   // prevent arrowElement from being placed not contiguously to its popper
   sideValue = Math.max(Math.min(offsetsPopper[len] - arrowElementSize, sideValue), 0);
 
-  const offsetsArrow = {
+  const offsetsArrow: any = {
     [side]: Math.round(sideValue),
-    [altSide]: '', // make sure to unset any eventual altSide value from the DOM node
+    [altSide]: '' // make sure to unset any eventual altSide value from the DOM node
   };
 
   offsetsArrow.arrowElement = arrowElement;

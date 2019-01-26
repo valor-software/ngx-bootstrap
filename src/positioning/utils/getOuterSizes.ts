@@ -1,18 +1,14 @@
 /**
  * Get the outer sizes of the given element (offset size + margins)
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element
  */
-export function getOuterSizes(element) {
+export function getOuterSizes(element: any) {
   const window = element.ownerDocument.defaultView;
   const styles = window.getComputedStyle(element);
   const x = parseFloat(styles.marginTop || 0) + parseFloat(styles.marginBottom || 0);
   const y = parseFloat(styles.marginLeft || 0) + parseFloat(styles.marginRight || 0);
-  const result: any = {
-    width: element.offsetWidth + y,
-    height: element.offsetHeight + x
-  };
 
-  return result;
+  return {
+    width: Number(element.offsetWidth) + y,
+    height: Number(element.offsetHeight) + x
+  };
 }

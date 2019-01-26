@@ -1,14 +1,10 @@
+/**
+ * Check if the given element is fixed or is inside a fixed parent
+ */
 import { getStyleComputedProperty } from './getStyleComputedProperty';
 import { getParentNode } from './getParentNode';
 
-/**
- * Check if the given element is fixed or is inside a fixed parent
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element
- * @argument {Element} customContainer
- */
-export function isFixed(element) {
+export function isFixed(element: HTMLElement): boolean {
   const nodeName = element.nodeName;
   if (nodeName === 'BODY' || nodeName === 'HTML') {
     return false;

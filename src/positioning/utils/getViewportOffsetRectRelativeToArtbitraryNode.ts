@@ -2,7 +2,7 @@ import { getOffsetRectRelativeToArbitraryNode } from './getOffsetRectRelativeToA
 import { getScroll } from './getScroll';
 import { getClientRect } from './getClientRect';
 
-export function getViewportOffsetRectRelativeToArtbitraryNode(element, excludeScroll = false) {
+export function getViewportOffsetRectRelativeToArtbitraryNode(element: HTMLElement, excludeScroll = false) {
   const html = element.ownerDocument.documentElement;
   const relativeOffset = getOffsetRectRelativeToArbitraryNode(element, html);
   const width = Math.max(html.clientWidth, window.innerWidth || 0);
@@ -12,10 +12,10 @@ export function getViewportOffsetRectRelativeToArtbitraryNode(element, excludeSc
   const scrollLeft = !excludeScroll ? getScroll(html, 'left') : 0;
 
   const offset = {
-    top: scrollTop - relativeOffset.top + relativeOffset.marginTop,
-    left: scrollLeft - relativeOffset.left + relativeOffset.marginLeft,
+    top: scrollTop - Number(relativeOffset.top) + Number(relativeOffset.marginTop),
+    left: scrollLeft - Number(relativeOffset.left) + Number(relativeOffset.marginLeft),
     width,
-    height,
+    height
   };
 
   return getClientRect(offset);

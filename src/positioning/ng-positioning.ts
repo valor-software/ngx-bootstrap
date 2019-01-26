@@ -1,6 +1,6 @@
 /**
  * @copyright Valor Software
- * @copyright popper.js team
+ * @copyright Federico Zivolo and contributors
  */
 import {
   computeAutoPlacement,
@@ -12,26 +12,26 @@ import {
 import { arrow, flip, preventOverflow, shift } from './modifiers';
 
 export class Positioning {
-  position(hostElement: HTMLElement, targetElement: HTMLElement, round = true): ClientRect {
+  position(hostElement: HTMLElement, targetElement: HTMLElement, round = true): { [key: string]: number } {
     return this.offset(hostElement, targetElement, false);
   }
 
-  offset(hostElement: HTMLElement, targetElement: HTMLElement, round = true): ClientRect {
-    return getReferenceOffsets({}, targetElement, hostElement);
+  offset(hostElement: HTMLElement, targetElement: HTMLElement, round = true): { [key: string]: number } {
+    return getReferenceOffsets(targetElement, hostElement);
   }
 
 
   positionElements(
     hostElement: HTMLElement,   // button or reference
     targetElement: HTMLElement, // tooltip or popper
-    placement: string,
+    position: string,
     appendToBody?: boolean
-  ): ClientRect {
+  ): { [key: string]: number } {
 
     const hostElPosition = this.offset(hostElement, targetElement, false);
 
-    placement = computeAutoPlacement(
-      placement,
+    const placement = computeAutoPlacement(
+      position,
       hostElPosition,
       targetElement,
       hostElement,
@@ -39,10 +39,10 @@ export class Positioning {
       0
     );
 
-    let targetElPosition: any = getPopperOffsets(targetElement, hostElPosition, placement);
+    let targetElPosition: { [key: string]: number } = getPopperOffsets(targetElement, hostElPosition, placement);
     targetElPosition = getClientRect(targetElPosition);
-    targetElPosition = flip('viewport', targetElement, hostElement, targetElPosition, hostElPosition, placement);
-    targetElPosition = preventOverflow('scrollParent', targetElement, hostElement, targetElPosition);
+    targetElPosition = flip(targetElement, hostElement, targetElPosition, hostElPosition, placement);
+    targetElPosition = preventOverflow(targetElement, hostElement, targetElPosition);
     arrow(targetElement, targetElPosition, hostElPosition, '.arrow', placement);
     targetElPosition = shift(targetElPosition, hostElPosition, placement);
 
