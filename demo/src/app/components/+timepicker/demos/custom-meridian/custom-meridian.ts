@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
 })
 export class DemoTimepickerCustomMeridianComponent {
   mytime: Date = new Date();
-  meridians = ['12H', '24H'];
+  meridians = ['AM(Midnight to Noon)', 'PM(Noon to Midnight)'];
 }

@@ -128,9 +128,9 @@ a:hover {
     margin: 40px 0 20px;
 
     .btn {
-      width: 160px;
+      min-width: 160px;
       margin: 0 13px;
-      padding: 12px 0;
+      padding: 12px 10px;
       cursor: pointer;
       text-transform: uppercase;
       letter-spacing: 2px;

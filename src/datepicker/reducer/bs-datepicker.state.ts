@@ -30,6 +30,8 @@ export class BsDatepickerState
   // bounds
   minDate?: Date;
   maxDate?: Date;
+  daysDisabled?: number[];
+  minMode?: BsDatepickerViewMode;
 
   hoveredDate?: Date;
   hoveredMonth?: Date;
@@ -39,6 +41,7 @@ export class BsDatepickerState
   monthsModel?: DaysCalendarModel[];
   formattedMonths?: DaysCalendarViewModel[];
   flaggedMonths?: DaysCalendarViewModel[];
+  selectFromOtherMonth?: boolean;
 
   // months calendar
   monthsCalendar?: MonthsCalendarViewModel[];

@@ -4,6 +4,8 @@
     "baseUrl": "./",
     "outDir": "./temp/out-tsc",
     "sourceMap": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
     "declaration": false,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,

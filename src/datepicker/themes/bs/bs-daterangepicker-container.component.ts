@@ -40,6 +40,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
 
   ngOnInit(): void {
     this.containerClass = this._config.containerClass;
+    this.isOtherMonthsActive = this._config.selectFromOtherMonth;
     this._effects
       .init(this._store)
       // intial state options
@@ -61,7 +62,9 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   }
 
   daySelectHandler(day: DayViewModel): void {
-    if (day.isOtherMonth || day.isDisabled) {
+    const isDisabled = this.isOtherMonthsActive ? day.isDisabled : (day.isOtherMonth || day.isDisabled);
+
+    if (isDisabled) {
       return;
     }
 

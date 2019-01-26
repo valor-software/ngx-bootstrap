@@ -44,6 +44,8 @@ export class BsDaterangepickerDirective
    */
   @Input() container = 'body';
 
+  @Input() outsideEsc = true;
+
   /**
    * Returns whether or not the daterangepicker is currently being shown
    */
@@ -128,6 +130,7 @@ export class BsDaterangepickerDirective
   ngOnInit(): void {
     this._datepicker.listen({
       outsideClick: this.outsideClick,
+      outsideEsc: this.outsideEsc,
       triggers: this.triggers,
       show: () => this.show()
     });

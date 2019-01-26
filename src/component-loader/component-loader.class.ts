@@ -18,8 +18,15 @@ import {
   Type,
   ViewContainerRef
 } from '@angular/core';
+
 import { PositioningOptions, PositioningService } from 'ngx-bootstrap/positioning';
-import { listenToTriggersV2, registerOutsideClick } from 'ngx-bootstrap/utils';
+
+import {
+  listenToTriggersV2,
+  registerEscClick,
+  registerOutsideClick
+} from 'ngx-bootstrap/utils';
+
 import { ContentRef } from './content-ref.class';
 import { ListenOptions } from './listen-options.model';
 import { Subscription } from 'rxjs';
@@ -100,7 +107,7 @@ export class ComponentLoader<T> {
   }
 
   // todo: add behaviour: to target element, `body`, custom element
-  to(container?: string): ComponentLoader<T> {
+  to(container?: string | ElementRef): ComponentLoader<T> {
     this.container = container || this.container;
 
     return this;
@@ -252,6 +259,7 @@ export class ComponentLoader<T> {
   listen(listenOpts: ListenOptions): ComponentLoader<T> {
     this.triggers = listenOpts.triggers || this.triggers;
     this._listenOpts.outsideClick = listenOpts.outsideClick;
+    this._listenOpts.outsideEsc = listenOpts.outsideEsc;
     listenOpts.target = listenOpts.target || this._elementRef.nativeElement;
 
     const hide = (this._listenOpts.hide = () =>
@@ -306,6 +314,14 @@ export class ComponentLoader<T> {
           outsideClick: this._listenOpts.outsideClick,
           hide: () => this._listenOpts.hide()
         });
+      });
+    }
+    if (this._listenOpts.outsideEsc) {
+      const target = this._componentRef.location.nativeElement;
+      this._globalListener = registerEscClick(this._renderer, {
+        targets: [target, this._elementRef.nativeElement],
+        outsideEsc: this._listenOpts.outsideEsc,
+        hide: () => this._listenOpts.hide()
       });
     }
   }

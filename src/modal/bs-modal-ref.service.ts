@@ -12,4 +12,8 @@ export class BsModalRef {
    * Hides the modal
    */
   hide: () => void = Function;
+  /**
+   * Sets new class to modal window
+   */
+  setClass: (newClass: string) => void = Function;
 }

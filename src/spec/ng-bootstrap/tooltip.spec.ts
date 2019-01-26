@@ -8,7 +8,7 @@ import { fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
 
 import { By } from '@angular/platform-browser';
 
-import { TooltipConfig, TooltipContainerComponent, TooltipDirective, TooltipModule } from 'ngx-bootstrap/tooltip';
+import { TooltipConfig, TooltipContainerComponent, TooltipDirective, TooltipModule } from '../../tooltip';
 import { createGenericTestComponent } from './test/common';
 
 @Component({
@@ -523,6 +523,7 @@ describe('tooltip', () => {
         config.placement = 'bottom';
         config.triggers = 'click';
         config.container = 'body';
+        config.delay = 500;
       })
     );
 
@@ -534,6 +535,7 @@ describe('tooltip', () => {
       expect(tooltip.placement).toBe(config.placement);
       expect(tooltip.triggers).toBe(config.triggers);
       expect(tooltip.container).toBe(config.container);
+      expect(tooltip.delay).toBe(config.delay);
     });
   });
 
@@ -542,6 +544,7 @@ describe('tooltip', () => {
     config.placement = 'bottom';
     config.triggers = 'click';
     config.container = 'body';
+    config.delay = 500;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
@@ -557,6 +560,7 @@ describe('tooltip', () => {
       expect(tooltip.placement).toBe(config.placement);
       expect(tooltip.triggers).toBe(config.triggers);
       expect(tooltip.container).toBe(config.container);
+      expect(tooltip.delay).toBe(config.delay);
     });
   });
 });

@@ -17,6 +17,7 @@ import { DemoDropdownAutoCloseComponent } from './autoclose/autoclose';
 import { DemoDropdownCustomHtmlComponent } from './custom-html/custom-html';
 import { DemoAccessibilityComponent } from './accessibility/accessibility';
 import { DemoDropdownByIsOpenPropComponent } from './trigger-by-isopen-property/trigger-by-isopen-property';
+import { DemoDropdownInsideClickComponent } from './inside-click/inside-click';
 
 export const DEMO_COMPONENTS = [
   DemoDropdownBasicComponent,
@@ -37,5 +38,6 @@ export const DEMO_COMPONENTS = [
   DemoDropdownStateChangeEventComponent,
   DemoDropdownAutoCloseComponent,
   DemoDropdownCustomHtmlComponent,
-  DemoAccessibilityComponent
+  DemoAccessibilityComponent,
+  DemoDropdownInsideClickComponent
 ];
