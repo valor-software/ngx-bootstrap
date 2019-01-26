@@ -1,6 +1,6 @@
 import { getClientRect, getOuterSizes, getStyleComputedProperty } from '../utils';
 
-export function arrow(
+export function updateArrowPosition(
   popper: HTMLElement,
   offsetsTarget: { [key: string]: number },
   referenceOffset: { [key: string]: number },

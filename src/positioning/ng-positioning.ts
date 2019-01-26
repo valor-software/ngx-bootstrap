@@ -9,7 +9,8 @@ import {
   getReferenceOffsets
 } from './utils';
 
-import { arrow, flip, preventOverflow, shift } from './modifiers';
+import { updateArrowPosition, flip, preventOverflow, shift } from './modifiers';
+import { roundOffset } from './utils/roundOffset';
 
 export class Positioning {
   position(hostElement: HTMLElement, targetElement: HTMLElement, round = true): { [key: string]: number } {
@@ -20,33 +21,27 @@ export class Positioning {
     return getReferenceOffsets(targetElement, hostElement);
   }
 
-
   positionElements(
     hostElement: HTMLElement,   // button or reference
     targetElement: HTMLElement, // tooltip or popper
     position: string,
     appendToBody?: boolean
-  ): { [key: string]: number } {
+  ): ClientRect {
 
     const hostElPosition = this.offset(hostElement, targetElement, false);
 
-    const placement = computeAutoPlacement(
-      position,
-      hostElPosition,
-      targetElement,
-      hostElement,
-      'viewport',
-      0
-    );
+    const placement = computeAutoPlacement(position, hostElPosition, targetElement, hostElement, 'viewport', 0);
 
-    let targetElPosition: { [key: string]: number } = getPopperOffsets(targetElement, hostElPosition, placement);
+    let targetElPosition: any = getPopperOffsets(targetElement, hostElPosition, placement);
+
+    updateArrowPosition(targetElement, targetElPosition, hostElPosition, '.arrow', placement);
+
     targetElPosition = getClientRect(targetElPosition);
     targetElPosition = flip(targetElement, hostElement, targetElPosition, hostElPosition, placement);
     targetElPosition = preventOverflow(targetElement, hostElement, targetElPosition);
-    arrow(targetElement, targetElPosition, hostElPosition, '.arrow', placement);
     targetElPosition = shift(targetElPosition, hostElPosition, placement);
 
-    return targetElPosition;
+    return roundOffset(targetElPosition);
   }
 }
 
@@ -69,5 +64,5 @@ export function positionElements(
   targetElement.style['will-change'] = 'transform';
   targetElement.style.top = '0px';
   targetElement.style.left = '0px';
-  targetElement.style.transform = `translate3d(${pos.left}px, ${pos.top}px, 0px)`;
+  targetElement.style.transform = `translate3d(${Math.floor(pos.left)}px, ${Math.floor(pos.top)}px, 0px)`;
 }

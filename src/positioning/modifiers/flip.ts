@@ -15,7 +15,7 @@ export function flip(
   const boundaries = getBoundaries(
     tooltip,
     reference,
-    5, // padding
+    0, // padding
     'viewport',
     false // positionFixed
   );

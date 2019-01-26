@@ -13,7 +13,7 @@ import { getFixedPositionOffsetParent } from './getFixedPositionOffsetParent';
 export function getBoundaries(
   popper: HTMLElement,
   reference: HTMLElement,
-  paddingValue: any,
+  padding = 0,
   boundariesElement: string,
   fixedPosition = false
 ) {
@@ -59,12 +59,10 @@ export function getBoundaries(
   }
 
   // Add paddings
-  const padding = paddingValue || 0;
-  const isPaddingNumber = typeof padding === 'number';
-  boundaries.left += isPaddingNumber ? padding : padding.left || 0;
-  boundaries.top += isPaddingNumber ? padding : padding.top || 0;
-  boundaries.right -= isPaddingNumber ? padding : padding.right || 0;
-  boundaries.bottom -= isPaddingNumber ? padding : padding.bottom || 0;
+  boundaries.left += padding;
+  boundaries.top += padding;
+  boundaries.right -= padding;
+  boundaries.bottom -= padding;
 
   return boundaries;
 }
