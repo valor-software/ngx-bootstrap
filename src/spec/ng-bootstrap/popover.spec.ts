@@ -2,7 +2,7 @@
 /**
  * @copyright Angular ng-bootstrap team
  */
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed, inject, fakeAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   Component,
@@ -11,6 +11,7 @@ import {
   Injectable,
   OnDestroy
 } from '@angular/core';
+
 import {
   PopoverModule,
   PopoverContainerComponent,
@@ -18,6 +19,7 @@ import {
   PopoverConfig
 } from '../../popover';
 import { createGenericTestComponent } from './test/common';
+import { tick } from '../../../node_modules/@angular/core/testing';
 
 @Component({selector: 'test-cmpt', template: ``})
 export class TestComponent {
@@ -95,7 +97,7 @@ describe('popover-container', () => {
   });
 });
 
-describe('popover', () => {
+fdescribe('popover', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestComponent, TestOnPushComponent, DestroyableCmpt],
@@ -235,8 +237,8 @@ describe('popover', () => {
     });
   });
 
-  describe('positioning', () => {
-    it('should use requested position', () => {
+  fdescribe('positioning', () => {
+    it('should use requested position', fakeAsync(() => {
       const fixture = createTestComponent(
         `<div popover="Great tip!" placement="left"></div>`
       );
@@ -248,12 +250,13 @@ describe('popover', () => {
       fixture.detectChanges();
       const windowEl = getWindow(fixture.nativeElement);
 
+      tick(1000);
       expect(windowEl).toHaveCssClass('popover');
       expect(windowEl).toHaveCssClass('popover-left');
       expect(windowEl.textContent.trim()).toBe('Great tip!');
-    });
+    }));
 
-    it('should properly position popovers when a component is using the OnPush strategy', () => {
+    it('should properly position popovers when a component is using the OnPush strategy', fakeAsync(() => {
       const fixture = createOnPushTestComponent(
         `<div popover="Great tip!" placement="left"></div>`
       );
@@ -265,12 +268,14 @@ describe('popover', () => {
       fixture.detectChanges();
       const windowEl = getWindow(fixture.nativeElement);
 
-      expect(windowEl).toHaveCssClass('popover');
-      expect(windowEl).toHaveCssClass('popover-left');
-      expect(windowEl.textContent.trim()).toBe('Great tip!');
-    });
+      fixture.whenStable().then(() => {
+        expect(windowEl).toHaveCssClass('popover');
+        expect(windowEl).toHaveCssClass('popover-left');
+        expect(windowEl.textContent.trim()).toBe('Great tip!');
+      });
+    }));
 
-    it('should set position to right when use auto position and fit on screen', () => {
+    it('should set position to right when use auto position and fit on screen', fakeAsync(() => {
       const fixture = createTestComponent(
         `<div popover="Great tip!" placement="auto"></div>`
       );
@@ -282,13 +287,15 @@ describe('popover', () => {
       fixture.detectChanges();
       const windowEl = getWindow(fixture.nativeElement);
 
-      expect(windowEl).toHaveCssClass('popover');
-      expect(windowEl).toHaveCssClass('popover-auto');
-      expect(windowEl).toHaveCssClass('right');
-      expect(windowEl.textContent.trim()).toBe('Great tip!');
-    });
+      fixture.whenStable().then(() => {
+        expect(windowEl).toHaveCssClass('popover');
+        expect(windowEl).toHaveCssClass('popover-auto');
+        expect(windowEl).toHaveCssClass('right');
+        expect(windowEl.textContent.trim()).toBe('Great tip!');
+      });
+    }));
 
-    it('should set position to bottom when use auto position', () => {
+    it('should set position to bottom when use auto position', fakeAsync(() => {
       const fixture = createTestComponent(
         `<div popover="Great tip!" placement="auto bottom"></div>`
       );
@@ -300,13 +307,15 @@ describe('popover', () => {
       fixture.detectChanges();
       const windowEl = getWindow(fixture.nativeElement);
 
-      expect(windowEl).toHaveCssClass('popover');
-      expect(windowEl).toHaveCssClass('popover-auto');
-      expect(windowEl).toHaveCssClass('bottom');
-      expect(windowEl.textContent.trim()).toBe('Great tip!');
-    });
+      fixture.whenStable().then(() => {
+        expect(windowEl).toHaveCssClass('popover');
+        expect(windowEl).toHaveCssClass('popover-auto');
+        expect(windowEl).toHaveCssClass('bottom');
+        expect(windowEl.textContent.trim()).toBe('Great tip!');
+      });
+    }));
 
-    it('should set position to top when use auto position and fit on screen', () => {
+    it('should set position to top when use auto position and fit on screen', fakeAsync(() => {
       const fixture = createTestComponent(
         `<div popover="Great tip!" placement="auto top"></div>`
       );
@@ -318,13 +327,16 @@ describe('popover', () => {
       fixture.detectChanges();
       const windowEl = getWindow(fixture.nativeElement);
 
-      expect(windowEl).toHaveCssClass('popover');
-      expect(windowEl).toHaveCssClass('popover-auto');
-      expect(windowEl).toHaveCssClass('top');
-      expect(windowEl.textContent.trim()).toBe('Great tip!');
-    });
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(windowEl).toHaveCssClass('popover');
+        expect(windowEl).toHaveCssClass('popover-auto');
+        expect(windowEl).toHaveCssClass('top');
+        expect(windowEl.textContent.trim()).toBe('Great tip!');
+      });
+    }));
 
-    it('should set position to right when use auto position and fit on screen', () => {
+    it('should set position to right when use auto position and fit on screen', fakeAsync(() => {
       const fixture = createTestComponent(
         `<div popover="Great tip!" placement="auto right"></div>`
       );
@@ -336,13 +348,16 @@ describe('popover', () => {
       fixture.detectChanges();
       const windowEl = getWindow(fixture.nativeElement);
 
-      expect(windowEl).toHaveCssClass('popover');
-      expect(windowEl).toHaveCssClass('popover-auto');
-      expect(windowEl).toHaveCssClass('right');
-      expect(windowEl.textContent.trim()).toBe('Great tip!');
-    });
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(windowEl).toHaveCssClass('popover');
+        expect(windowEl).toHaveCssClass('popover-auto');
+        expect(windowEl).toHaveCssClass('right');
+        expect(windowEl.textContent.trim()).toBe('Great tip!');
+      });
+    }));
 
-    it('should set position to left when use auto position and fit on screen', () => {
+    it('should set position to left when use auto position and fit on screen', fakeAsync(() => {
       const fixture = createTestComponent(
         `<div popover="Great tip!" placement="auto left"></div>`
       );
@@ -351,14 +366,17 @@ describe('popover', () => {
       );
 
       directive.triggerEventHandler('click', {});
+
       fixture.detectChanges();
       const windowEl = getWindow(fixture.nativeElement);
 
-      expect(windowEl).toHaveCssClass('popover');
-      expect(windowEl).toHaveCssClass('popover-auto');
-      expect(windowEl).toHaveCssClass('left');
-      expect(windowEl.textContent.trim()).toBe('Great tip!');
-    });
+      fixture.whenStable().then(() => {
+        expect(windowEl).toHaveCssClass('popover');
+        expect(windowEl).toHaveCssClass('popover-auto');
+        expect(windowEl).toHaveCssClass('left');
+        expect(windowEl.textContent.trim()).toBe('Great tip!');
+      });
+    }));
   });
 
   describe('container', () => {

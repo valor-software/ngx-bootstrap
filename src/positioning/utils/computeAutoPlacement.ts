@@ -58,6 +58,8 @@ export function computeAutoPlacement(
     ? filteredAreas[0].key
     : sortedAreas[0].key;
 
+  popper.classList.add(computedPlacement);
+
   const variation = placement.split('-')[1];
 
   return computedPlacement + (variation ? `-${variation}` : '');

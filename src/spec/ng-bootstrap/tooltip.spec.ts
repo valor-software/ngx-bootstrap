@@ -205,7 +205,7 @@ describe('tooltip', () => {
     });
 
     describe('positioning', () => {
-      it('should use requested position', () => {
+      it('should use requested position', fakeAsync(() => {
         const fixture = createTestComponent(
           `<div tooltip="Great tip!" placement="left"></div>`
         );
@@ -217,12 +217,15 @@ describe('tooltip', () => {
         fixture.detectChanges();
         const windowEl = getWindow(fixture.nativeElement);
 
-        expect(windowEl).toHaveCssClass('tooltip');
-        expect(windowEl).toHaveCssClass('tooltip-left');
-        expect(windowEl.textContent.trim()).toBe('Great tip!');
-      });
+        fixture.detectChanges();
+        fixture.whenStable().then(() => {
+          expect(windowEl).toHaveCssClass('tooltip');
+          expect(windowEl).toHaveCssClass('tooltip-left');
+          expect(windowEl.textContent.trim()).toBe('Great tip!');
+        });
+      }));
 
-      it('should properly position tooltips when a component is using the OnPush strategy', () => {
+      it('should properly position tooltips when a component is using the OnPush strategy', fakeAsync(() => {
         const fixture = createOnPushTestComponent(
           `<div tooltip="Great tip!" placement="left"></div>`
         );
@@ -234,10 +237,13 @@ describe('tooltip', () => {
         fixture.detectChanges();
         const windowEl = getWindow(fixture.nativeElement);
 
-        expect(windowEl).toHaveCssClass('tooltip');
-        expect(windowEl).toHaveCssClass('tooltip-left');
-        expect(windowEl.textContent.trim()).toBe('Great tip!');
-      });
+        fixture.detectChanges();
+        fixture.whenStable().then(() => {
+          expect(windowEl).toHaveCssClass('tooltip');
+          expect(windowEl).toHaveCssClass('tooltip-left');
+          expect(windowEl.textContent.trim()).toBe('Great tip!');
+        });
+      }));
 
       it('should use auto position', () => {
         const fixture = createTestComponent(
