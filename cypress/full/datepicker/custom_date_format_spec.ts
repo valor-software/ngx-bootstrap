@@ -25,10 +25,10 @@ describe('Datepicker demo test suite: Custom date format', () => {
     datepicker.isButtonExist(customFormat, 'Date Picker', 1);
     datepicker.isButtonExist(customFormat, 'Date Picker', 2);
     datepicker.isInputValueEqual(customFormat,
-      new Date(`${currentYearNum}-${currentMonthNum + 1}-${currentDay + 1}`).toISOString().split('T')[0], 0);
+     newDate.toLocaleDateString('Lt'), 0);
     datepicker.isInputValueEqual(customFormat, `${monthToChose}/${dayToChose}/${currentYearNum}`, 1);
     datepicker.isInputValueContain(customFormat,
-      `${newDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}`, 2);
+      newDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric' }), 2);
     datepicker.isInputValueContain(customFormat,
       `${newDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }).toLowerCase().split('')[1]}`, 2);
   });
@@ -38,7 +38,7 @@ describe('Datepicker demo test suite: Custom date format', () => {
     datepicker.clickOnBtn(customFormat, 0);
     datepicker.clickOnDatepickerTableItem('date', 'body', undefined, dayToChose);
     datepicker.isInputValueEqual(customFormat,
-      new Date(`${currentYearNum}-${currentMonthNum + 1}-${Number(dayToChose) + 1}`).toISOString().split('T')[0], 0);
+      new Date(`${currentYearNum}-${currentMonthNum + 1}-${Number(dayToChose)}`).toLocaleDateString('Lt'), 0);
   });
 
   it('when user click on the second "Date Picker" btn, chose other date - it chosen, appear in "MM/DD/YYYY"', () => {
