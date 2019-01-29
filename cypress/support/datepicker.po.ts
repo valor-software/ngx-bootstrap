@@ -12,6 +12,7 @@ export class DatepickerPo extends BaseComponent {
   daterangepickerInput = 'input[bsdaterangepicker]';
   datepickerNavView = 'bs-datepicker-navigation-view';
   datepickerContainer = 'bs-datepicker-container';
+  datepickerInlineContainer = 'bs-datepicker-inline-container';
   daterangepickerContainer = 'bs-daterangepicker-container';
   datepickerDays = '[bsdatepickerdaydecorator]';
   datepickerBodyDaysView = 'bs-days-calendar-view';
@@ -44,32 +45,37 @@ export class DatepickerPo extends BaseComponent {
     selectFromOtherMonth: 'demo-datepicker-select-dates-from-other-months',
     outsideClick: 'demo-datepicker-outside-click',
     triggerByIsOpen: 'demo-datepicker-trigger-by-isopen',
-    customTriggers: 'demo-datepicker-triggers-custom'
+    customTriggers: 'demo-datepicker-triggers-custom',
+    selectWeek: 'demo-datepicker-select-week',
+    inlineDatepicker: 'bs-datepicker-inline'
   };
 
   clickOnDatepickerInput(baseSelector: string, datepickerIndex = 0) {
     cy.get(`${baseSelector} ${this.datepickerInput}`).eq(datepickerIndex).click();
   }
 
-  clickOnDaterangepickerInput(baseSelector: string) {
-    cy.get(`${baseSelector} ${this.daterangepickerInput}`).click();
+  clickOnDaterangepickerInput(baseSelector: string, dateRangeIndex = 0) {
+    cy.get(`${baseSelector} ${this.daterangepickerInput}`).eq(dateRangeIndex).click();
   }
 
-  isSelectedDateExist(picker = 'datepicker' || 'daterangepicker', exist: boolean, baseSelector = 'body', expectedDay?: string) {
+  isSelectedDateExist(picker = 'datepicker', exist: boolean, baseSelector = 'body', expectedDay?: string) {
+    const appropriateContainer: string = this.getAppropriateContainer(picker);
+
     if (!exist) {
-      cy.get(`${baseSelector}>${picker === 'datepicker' ?
-        this.datepickerContainer : this.daterangepickerContainer} .selected`)
+      cy.get(`${baseSelector}>${appropriateContainer} .selected`)
         .should('not.exist');
     } else {
-      cy.get(`${baseSelector}>${picker === 'datepicker' ?
-        this.datepickerContainer : this.daterangepickerContainer} .selected`)
+      cy.get(`${baseSelector}>${appropriateContainer} .selected`)
         .should('be.visible')
-        .and('contain', expectedDay);
+        .and('contain', expectedDay ? expectedDay : '');
     }
   }
 
   isVisibleMonthOrYearEqual(expectedMonth: string, baseSelector = 'body') {
-    cy.get(`${baseSelector}>${this.datepickerContainer} ${this.datepickerNavView} button`).eq(1)
+    const appropriateContainer: string =
+      this.getAppropriateContainer(baseSelector === 'body' ? 'datepicker' : 'datepickerInline');
+
+    cy.get(`${baseSelector}>${appropriateContainer} ${this.datepickerNavView} button`).eq(1)
       .should('be.visible')
       .and('to.have.text', expectedMonth);
   }
@@ -132,15 +138,15 @@ export class DatepickerPo extends BaseComponent {
                                                    expectedMonth?: string,
                                                    expectedYear?: string) {
     const currentMonth: string = expectedMonth ? expectedMonth
-                                               : this.monthNames[new Date().getMonth()];
+      : this.monthNames[new Date().getMonth()];
     const nextMonth: string = expectedMonth ? this.monthNames[this.monthNames.indexOf(expectedMonth) + 1]
-                                            : this.monthNames[new Date().getMonth() + 1];
+      : this.monthNames[new Date().getMonth() + 1];
     const currentYearSrt: string = expectedYear ? expectedYear
-                                                : new Date().getFullYear().toString();
+      : new Date().getFullYear().toString();
     const currentYearNum: number = expectedYear ? Number(expectedYear)
-                                                : new Date().getFullYear();
+      : new Date().getFullYear();
     const nextYearStr: string = expectedYear ? (Number(expectedYear) + 1).toString()
-                                             : (new Date().getFullYear() + 1).toString();
+      : (new Date().getFullYear() + 1).toString();
 
     cy.get(`${baseSelector}>${this.daterangepickerContainer} ${this.datepickerNavView}`)
       .eq(0)
@@ -242,56 +248,37 @@ export class DatepickerPo extends BaseComponent {
   }
 
   isDatepickerOpened(opened: boolean, baseSelector = 'body') {
-    cy.get(`${baseSelector}>${this.datepickerContainer}`).should(opened ? 'to.be.exist' : 'not.to.be.exist');
+    cy.get(`${baseSelector}>${baseSelector === 'body' ? this.datepickerContainer : this.datepickerInlineContainer}`)
+      .should(opened ? 'to.be.exist' : 'not.to.be.exist');
   }
 
   isDaterangepickerOpened(opened: boolean, baseSelector = 'body') {
     cy.get(`${baseSelector}>${this.daterangepickerContainer}`).should(opened ? 'to.be.exist' : 'not.to.be.exist');
   }
 
-  getBodyParams(mode: string) {
-    let bodyView: string;
-    let expectedLength: number;
-    switch (mode) {
-      case 'date':
-        bodyView = this.datepickerBodyDaysView;
-        expectedLength = 48;
-        break;
-      case 'month':
-        bodyView = this.datepickerBodyMonthView;
-        expectedLength = 12;
-        break;
-      case 'year':
-        bodyView = this.datepickerBodyYearsView;
-        expectedLength = 16;
-        break;
-      default:
-        throw new Error('Unknown view mode');
-    }
-
-    return { bodyView, expectedLength };
-  }
-
   clickOnNavigation(baseSelector: string, navigationItem: string) {
+    const appropriateContainer =
+      this.getAppropriateContainer(baseSelector === 'body' ? 'datepicker' : 'datepickerInline');
+
     switch (navigationItem) {
       case '<' :
-        cy.get(`${baseSelector}>${this.datepickerContainer} ${this.datepickerNavView} .previous`).click();
+        cy.get(`${baseSelector}>${appropriateContainer} ${this.datepickerNavView} .previous`).click();
         break;
 
       case '>' :
-        cy.get(`${baseSelector}>${this.datepickerContainer} ${this.datepickerNavView} .next`).click();
+        cy.get(`${baseSelector}>${appropriateContainer} ${this.datepickerNavView} .next`).click();
         break;
 
       case 'month' :
-        cy.get(`${baseSelector}>${this.datepickerContainer} ${this.datepickerNavView} button`).eq(1).click();
+        cy.get(`${baseSelector}>${appropriateContainer} ${this.datepickerNavView} button`).eq(1).click();
         break;
 
       case 'year' :
-        cy.get(`${baseSelector}>${this.datepickerContainer} ${this.datepickerNavView} button`).eq(2).click();
+        cy.get(`${baseSelector}>${appropriateContainer} ${this.datepickerNavView} button`).eq(2).click();
         break;
 
       default:
-        throw new Error('Unknown navigation item');
+        throw new Error('Unknown navigation item, correct: <, >, month, year');
     }
   }
 
@@ -351,17 +338,35 @@ export class DatepickerPo extends BaseComponent {
 
   clickOnDatepickerTableItem(mode: string, baseSelector = 'body', itemIndex?: number, itemText?: string) {
     const bodyView = this.getBodyParams(mode).bodyView;
+    const appropriateContainer =
+      this.getAppropriateContainer(baseSelector === 'body' ? 'datepicker' : 'datepickerInline');
 
     if (itemText === undefined) {
-      cy.get(`${baseSelector}>${this.datepickerContainer} ${bodyView} td`).eq(itemIndex).click();
+      cy.get(`${baseSelector}>${appropriateContainer} ${bodyView} td`).eq(itemIndex).click();
     } else {
-      cy.get(`${baseSelector}>${this.datepickerContainer} ${bodyView} td span`)
+      cy.get(`${baseSelector}>${appropriateContainer} ${bodyView} td span`)
         .not('[class*="is-other-month"]')
         .contains(itemText).click();
     }
   }
 
-  clickOnDaterangePickerTableItem(mode: string, pickerIndex = 0, baseSelector = 'body', itemIndex?: number, itemText?: string) {
+  clickOnDatepickerWeekItem(itemIndex?: number, itemText?: string) {
+    if (itemText === undefined) {
+      cy.get(`body>${this.datepickerContainer} .week`)
+        .eq(itemIndex)
+        .click();
+    } else {
+      cy.get(`body>${this.datepickerContainer} .week`)
+        .contains(itemText)
+        .click();
+    }
+  }
+
+  clickOnDaterangePickerTableItem(mode: string,
+                                  pickerIndex = 0,
+                                  baseSelector = 'body',
+                                  itemIndex?: number,
+                                  itemText?: string) {
     const bodyView = this.getBodyParams(mode).bodyView;
 
     if (itemText === undefined) {
@@ -439,7 +444,8 @@ export class DatepickerPo extends BaseComponent {
       default:
         actualMonthArr = undefined;
     }
-    cy.get(`${baseSelector}>${pickerType === 'datepicker' ? this.datepickerContainer : this.daterangepickerContainer} tbody td`)
+    cy.get(`${baseSelector}>${
+      pickerType === 'datepicker' ? this.datepickerContainer : this.daterangepickerContainer} tbody td`)
       .eq(0).each((month, monthIndex) => {
       expect(month.text().toLowerCase()).to.contains(
         actualMonthArr ? actualMonthArr[monthIndex].toLowerCase() :
@@ -450,16 +456,17 @@ export class DatepickerPo extends BaseComponent {
   }
 
   isWeekdayLocaleAppropriate(expectedLocale: string, pickerType = 'datepicker', baseSelector = 'body') {
-    cy.get(`${baseSelector}>${pickerType === 'datepicker' ? this.datepickerContainer : this.daterangepickerContainer} table`)
+    cy.get(`${baseSelector}>${
+      pickerType === 'datepicker' ? this.datepickerContainer : this.daterangepickerContainer} table`)
       .eq(0)
       .find('th[aria-label*="weekday"]')
       .each((weekday, weekdayIndex) => {
-          Object.values(globalLocales).forEach(globalLocale => {
-            if (globalLocale === expectedLocale) {
-              expect(weekday.text().toLowerCase())
-                .to.contains(globalLocale.weekdaysShort[globalLocale.week.dow + weekdayIndex]);
-            }
-          });
+        Object.values(globalLocales).forEach(globalLocale => {
+          if (globalLocale === expectedLocale) {
+            expect(weekday.text().toLowerCase())
+              .to.contains(globalLocale.weekdaysShort[globalLocale.week.dow + weekdayIndex]);
+          }
+        });
       });
   }
 
@@ -474,20 +481,15 @@ export class DatepickerPo extends BaseComponent {
     }
   }
 
-  isSaturdaySundayDisabled(disabled: boolean) {
+  isWeekdayDisabled(disabled: boolean, weekdayIndex: number) {
     cy.get(`body>${this.datepickerContainer} ${this.datepickerBodyDaysView} tbody tr`)
       .each(week => {
         cy.wrap(week)
           .find('td')
           .not('.week')
           .find('span')
-          .first()
+          .eq(weekdayIndex)
           .should(disabled ? 'have.class' : 'not.to.have.class', 'disabled');
-        cy.wrap(week)
-          .find('td')
-          .not('.week')
-          .find('span')
-          .last().should(disabled ? 'have.class' : 'not.to.have.class', 'disabled');
       });
   }
 
@@ -530,6 +532,43 @@ export class DatepickerPo extends BaseComponent {
         .not('[class*="is-other-month"]')
         .contains(max.getDate())
         .should(disabled ? 'have.class' : 'not.to.have.class', 'disabled');
+    }
+  }
+
+  private getBodyParams(mode: string) {
+    let bodyView: string;
+    let expectedLength: number;
+    switch (mode) {
+      case 'date':
+        bodyView = this.datepickerBodyDaysView;
+        expectedLength = 48;
+        break;
+      case 'month':
+        bodyView = this.datepickerBodyMonthView;
+        expectedLength = 12;
+        break;
+      case 'year':
+        bodyView = this.datepickerBodyYearsView;
+        expectedLength = 16;
+        break;
+      default:
+        throw new Error('Unknown view mode');
+    }
+
+    return { bodyView, expectedLength };
+  }
+
+  private getAppropriateContainer(picker: string) {
+    let appropriateContainer: string;
+    switch (picker) {
+      case 'datepicker':
+        return appropriateContainer = this.datepickerContainer;
+      case 'daterangepicker':
+        return appropriateContainer = this.daterangepickerContainer;
+      case 'datepickerInline':
+        return appropriateContainer = this.datepickerInlineContainer;
+      default:
+        return appropriateContainer = this.datepickerContainer;
     }
   }
 }

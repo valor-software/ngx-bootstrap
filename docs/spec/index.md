@@ -107,6 +107,8 @@
 
 [Datepicker. Basic](datepicker/datepicker.examples.basic.use-case.md)
 
+[Datepicker. Inline Datepicker](datepicker/datepicker.examples.inline-datepicker.use-case.md)
+
 [Datepicker. Initial state](datepicker/datepicker.examples.initial-state.use-case.md)
 
 [Datepicker. Custom date format](datepicker/datepicker.examples.custom-date-format.use-case.md)
@@ -119,7 +121,13 @@
 
 [Datepicker. Min-max](datepicker/datepicker.examples.min-max.use-case.md)
 
+[Datepicker. Days disabled](datepicker/datepicker.examples.days-disabled.use-case.md)
+
+[Datepicker. Min-mode](datepicker/datepicker.examples.min-mode.use-case.md)
+
 [Datepicker. Disabled](datepicker/datepicker.examples.disabled.use-case.md)
+
+[Datepicker. Custom today class](datepicker/datepicker.examples.custom-today-class.use-case.md)
 
 [Datepicker. Forms](datepicker/datepicker.examples.forms.use-case.md)
 
@@ -136,6 +144,10 @@
 [Datepicker. Value change event](datepicker/datepicker.examples.value-change-event.use-case.md)
 
 [Datepicker. Config properties](datepicker/datepicker.examples.config-properties.md)
+
+[Datepicker. Select dates from other month](datepicker/datepicker.examples.select-dates-from-other-month.use-case.md)
+
+[Datepicker. Select week](datepicker/datepicker.examples.select-week.use-case.md)
 
 [Datepicker. Outside click](datepicker/datepicker.examples.outside-click.md)
 

@@ -63,6 +63,10 @@ export abstract class BaseComponent {
     cy.get(`${baseSelector} button`).eq(buttonIndex ? buttonIndex : 0).trigger('mouseleave');
   }
 
+  mouseMove(baseSelector: string, elementIndex?: number) {
+    cy.get(baseSelector).eq(elementIndex ? elementIndex : 0).trigger('mouseenter');
+  }
+
   isInputHaveAttrs(baseSelector: string, attributes: AttrObj[], inputIndex = 0) {
     cy.get(`${baseSelector} input`).eq(inputIndex)
       .then(input => {
@@ -116,5 +120,9 @@ export abstract class BaseComponent {
   isPreviewExist(baseSelector: string, previewText: string, previewNumber?: number) {
     cy.get(`${baseSelector} .card.card-block`).eq(previewNumber ? previewNumber : 0).invoke('text')
       .should(btnTxt => expect(btnTxt).to.contain(previewText));
+  }
+
+  clickOutside(baseSelector: string) {
+    cy.get(baseSelector).eq(0).trigger('click', { clientX: 100, clientY: 100 });
   }
 }
