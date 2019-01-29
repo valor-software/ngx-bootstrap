@@ -7,7 +7,7 @@ export { getOffsetParent } from './getOffsetParent';
 export { getOffsetRectRelativeToArbitraryNode } from './getOffsetRectRelativeToArbitraryNode';
 export { getOuterSizes } from './getOuterSizes';
 export { getParentNode } from './getParentNode';
-export { getPopperOffsets } from './getPopperOffsets';
+export { getTargetOffsets } from './getTargetOffsets';
 export { getReferenceOffsets } from './getReferenceOffsets';
 export { getScroll } from './getScroll';
 export { getScrollParent } from './getScrollParent';

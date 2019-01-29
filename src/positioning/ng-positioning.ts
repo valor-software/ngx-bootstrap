@@ -5,19 +5,20 @@
 import {
   computeAutoPlacement,
   getClientRect,
-  getPopperOffsets,
+  getTargetOffsets,
   getReferenceOffsets
 } from './utils';
 
 import { updateArrowPosition, flip, preventOverflow, shift } from './modifiers';
 import { roundOffset } from './utils/roundOffset';
+import { Offsets } from './models';
 
 export class Positioning {
-  position(hostElement: HTMLElement, targetElement: HTMLElement, round = true): { [key: string]: number } {
+  position(hostElement: HTMLElement, targetElement: HTMLElement, round = true): Offsets {
     return this.offset(hostElement, targetElement, false);
   }
 
-  offset(hostElement: HTMLElement, targetElement: HTMLElement, round = true): { [key: string]: number } {
+  offset(hostElement: HTMLElement, targetElement: HTMLElement, round = true): Offsets {
     return getReferenceOffsets(targetElement, hostElement);
   }
 
@@ -26,22 +27,28 @@ export class Positioning {
     targetElement: HTMLElement, // tooltip or popper
     position: string,
     appendToBody?: boolean
-  ): ClientRect {
+  ): Offsets {
 
     const hostElPosition = this.offset(hostElement, targetElement, false);
 
     const placement = computeAutoPlacement(position, hostElPosition, targetElement, hostElement, 'viewport', 0);
 
-    let targetElPosition: any = getPopperOffsets(targetElement, hostElPosition, placement);
+    const targetElPosition: Offsets = getTargetOffsets(targetElement, hostElPosition, placement);
 
     updateArrowPosition(targetElement, targetElPosition, hostElPosition, '.arrow', placement);
 
-    targetElPosition = getClientRect(targetElPosition);
-    targetElPosition = flip(targetElement, hostElement, targetElPosition, hostElPosition, placement);
-    targetElPosition = preventOverflow(targetElement, hostElement, targetElPosition);
-    targetElPosition = shift(targetElPosition, hostElPosition, placement);
+    const chainOfModifiers = [
+      getClientRect,
+      (targetPosition: Offsets) => flip(targetElement, hostElement, targetPosition, hostElPosition, placement),
+      (targetPosition: Offsets) => preventOverflow(targetElement, hostElement, targetPosition),
+      (targetPosition: Offsets) => shift(targetPosition, hostElPosition, placement),
+      roundOffset
+    ];
 
-    return roundOffset(targetElPosition);
+
+    return chainOfModifiers.reduce((targetPosition, modifier) => {
+      return modifier(targetPosition);
+    }, targetElPosition);
   }
 }
 
@@ -64,5 +71,5 @@ export function positionElements(
   targetElement.style['will-change'] = 'transform';
   targetElement.style.top = '0px';
   targetElement.style.left = '0px';
-  targetElement.style.transform = `translate3d(${Math.floor(pos.left)}px, ${Math.floor(pos.top)}px, 0px)`;
+  targetElement.style.transform = `translate3d(${pos.left}px, ${pos.top}px, 0px)`;
 }

@@ -1,24 +1,25 @@
 import { getBoundaries } from '../utils';
+import { Offsets } from '../models';
 
 export function preventOverflow(
-  tooltip: HTMLElement,
-  reference: HTMLElement,
-  offsetsPopper: { [key: string]: number }
+  target: HTMLElement,
+  host: HTMLElement,
+  offsetsTarget: Offsets
 ) {
 
   // NOTE: DOM access here
-  // resets the popper's position so that the document size can be calculated excluding
-  // the size of the popper element itself
+  // resets the targetOffsets's position so that the document size can be calculated excluding
+  // the size of the targetOffsets element itself
   const transformProp = 'transform';
-  const popperStyles = tooltip.style; // assignment to help minification
-  const { top, left, [transformProp]: transform } = popperStyles;
-  popperStyles.top = '';
-  popperStyles.left = '';
-  popperStyles[transformProp] = '';
+  const targetStyles = target.style; // assignment to help minification
+  const { top, left, [transformProp]: transform } = targetStyles;
+  targetStyles.top = '';
+  targetStyles.left = '';
+  targetStyles[transformProp] = '';
 
   const boundaries = getBoundaries(
-    tooltip,
-    reference,
+    target,
+    host,
     0, // padding
     'scrollParent',
     false // positionFixed
@@ -26,36 +27,36 @@ export function preventOverflow(
 
   // NOTE: DOM access here
   // restores the original style properties after the offsets have been computed
-  popperStyles.top = top;
-  popperStyles.left = left;
-  popperStyles[transformProp] = transform;
+  targetStyles.top = top;
+  targetStyles.left = left;
+  targetStyles[transformProp] = transform;
 
   const order = ['left', 'right', 'top', 'bottom'];
-  let popper = offsetsPopper;
+  let targetOffsets = offsetsTarget;
 
   const check = {
     primary(placement: string) {
-      let value = popper[placement];
+      let value = targetOffsets[placement];
       if (
-        popper[placement] < boundaries[placement] &&
+        targetOffsets[placement] < boundaries[placement] &&
         !false // options.escapeWithReference
       ) {
-        value = Math.max(popper[placement], boundaries[placement]);
+        value = Math.max(targetOffsets[placement], boundaries[placement]);
       }
 
       return { [placement]: value };
     },
     secondary(placement: string) {
       const mainSide = placement === 'right' ? 'left' : 'top';
-      let value = popper[mainSide];
+      let value = targetOffsets[mainSide];
       if (
-        popper[placement] > boundaries[placement] &&
+        targetOffsets[placement] > boundaries[placement] &&
         !false // escapeWithReference
       ) {
         value = Math.min(
-          popper[mainSide],
+          targetOffsets[mainSide],
           boundaries[placement] -
-          (placement === 'right' ? popper.width : popper.height)
+          (placement === 'right' ? targetOffsets.width : targetOffsets.height)
         );
       }
 
@@ -71,9 +72,9 @@ export function preventOverflow(
       ? 'primary'
       : 'secondary';
 
-    popper = { ...popper, ...check[side](placement) };
+    targetOffsets = { ...targetOffsets, ...check[side](placement) };
 
   });
 
-  return popper;
+  return targetOffsets;
 }

@@ -4,11 +4,16 @@
 import { findCommonOffsetParent } from './findCommonOffsetParent';
 import { getOffsetRectRelativeToArbitraryNode } from './getOffsetRectRelativeToArbitraryNode';
 import { getFixedPositionOffsetParent } from './getFixedPositionOffsetParent';
+import { Offsets } from '../models';
 
-export function getReferenceOffsets(popper: HTMLElement, reference: HTMLElement, fixedPosition: boolean = null) {
+export function getReferenceOffsets(
+  target: HTMLElement,
+  host: HTMLElement,
+  fixedPosition: boolean = null
+): Offsets {
   const commonOffsetParent = fixedPosition
-    ? getFixedPositionOffsetParent(popper)
-    : findCommonOffsetParent(popper, reference);
+    ? getFixedPositionOffsetParent(target)
+    : findCommonOffsetParent(target, host);
 
-  return getOffsetRectRelativeToArbitraryNode(reference, commonOffsetParent, fixedPosition);
+  return getOffsetRectRelativeToArbitraryNode(host, commonOffsetParent, fixedPosition);
 }

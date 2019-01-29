@@ -1,16 +1,17 @@
 import { getClientRect, getOuterSizes, getStyleComputedProperty } from '../utils';
+import { Offsets } from '../models';
 
 export function updateArrowPosition(
-  popper: HTMLElement,
-  offsetsTarget: { [key: string]: number },
-  referenceOffset: { [key: string]: number },
+  target: HTMLElement,
+  offsetsTarget: Offsets,
+  hostOffset: Offsets,
   arrowElementClass: string,
   placement: string
 ) {
 
-  let offsetsPopper = offsetsTarget;
+  let targetOffsets = offsetsTarget;
   // if arrowElement is a string, suppose it's a CSS selector
-  const arrowElement: HTMLElement = popper.querySelector(arrowElementClass);
+  const arrowElement: HTMLElement = target.querySelector(arrowElementClass);
 
   // if arrowElement is not found, don't run the modifier
   if (!arrowElement) {
@@ -27,31 +28,31 @@ export function updateArrowPosition(
   const arrowElementSize = getOuterSizes(arrowElement)[len];
 
   // top/left side
-  if (referenceOffset[opSide] - arrowElementSize < offsetsPopper[side]) {
-    offsetsPopper[side] -=
-      offsetsPopper[side] - (referenceOffset[opSide] - arrowElementSize);
+  if (hostOffset[opSide] - arrowElementSize < targetOffsets[side]) {
+    targetOffsets[side] -=
+      targetOffsets[side] - (hostOffset[opSide] - arrowElementSize);
   }
   // bottom/right side
-  if (Number(referenceOffset[side]) + Number(arrowElementSize) > offsetsPopper[opSide]) {
-    offsetsPopper[side] +=
-      Number(referenceOffset[side]) + Number(arrowElementSize) - Number(offsetsPopper[opSide]);
+  if (Number(hostOffset[side]) + Number(arrowElementSize) > targetOffsets[opSide]) {
+    targetOffsets[side] +=
+      Number(hostOffset[side]) + Number(arrowElementSize) - Number(targetOffsets[opSide]);
   }
-  offsetsPopper = getClientRect(offsetsPopper);
+  targetOffsets = getClientRect(targetOffsets);
 
-  // compute center of the popper
-  const center = referenceOffset[side] + referenceOffset[len] / 2 - arrowElementSize / 2;
+  // compute center of the target
+  const center = Number(hostOffset[side]) + Number(hostOffset[len] / 2 - arrowElementSize / 2);
 
-  // Compute the sideValue using the updated popper offsets
-  // take popper margin in account because we don't have this info available
-  const css = getStyleComputedProperty(popper);
+  // Compute the sideValue using the updated target offsets
+  // take target margin in account because we don't have this info available
+  const css = getStyleComputedProperty(target);
 
-  const popperMarginSide = parseFloat(css[`margin${sideCapitalized}`]);
-  const popperBorderSide = parseFloat(css[`border${sideCapitalized}Width`]);
+  const targetMarginSide = parseFloat(css[`margin${sideCapitalized}`]);
+  const targetBorderSide = parseFloat(css[`border${sideCapitalized}Width`]);
   let sideValue =
-    center - offsetsPopper[side] - popperMarginSide - popperBorderSide;
+    center - targetOffsets[side] - targetMarginSide - targetBorderSide;
 
-  // prevent arrowElement from being placed not contiguously to its popper
-  sideValue = Math.max(Math.min(offsetsPopper[len] - arrowElementSize, sideValue), 0);
+  // prevent arrowElement from being placed not contiguously to its target
+  sideValue = Math.max(Math.min(targetOffsets[len] - arrowElementSize, sideValue), 0);
 
   const offsetsArrow: any = {
     [side]: Math.round(sideValue),

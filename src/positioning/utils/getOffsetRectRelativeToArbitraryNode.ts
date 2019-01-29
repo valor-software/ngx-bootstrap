@@ -1,15 +1,16 @@
+import { getBoundingClientRect } from './getBoundingClientRect';
+import { getClientRect } from './getClientRect';
+import { getScrollParent } from './getScrollParent';
 import { getStyleComputedProperty } from './getStyleComputedProperty';
 import { includeScroll } from './includeScroll';
-import { getScrollParent } from './getScrollParent';
-import { getBoundingClientRect } from './getBoundingClientRect';
 import { isIE as runIsIE } from './isIE';
-import { getClientRect } from './getClientRect';
+import { Offsets } from '../models';
 
 export function getOffsetRectRelativeToArbitraryNode(
   children: HTMLElement,
   parent: HTMLElement,
   fixedPosition = false
-) {
+): Offsets {
   const isIE10 = runIsIE(10);
   const isHTML = parent.nodeName === 'HTML';
   const childrenRect: any = getBoundingClientRect(children);
@@ -26,7 +27,7 @@ export function getOffsetRectRelativeToArbitraryNode(
     parentRect.left = Math.max(parentRect.left, 0);
   }
 
-  let offsets: any = getClientRect({
+  let offsets: Offsets = getClientRect({
     top: childrenRect.top - parentRect.top - borderTopWidth,
     left: childrenRect.left - parentRect.left - borderLeftWidth,
     width: childrenRect.width,

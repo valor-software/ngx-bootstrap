@@ -3,6 +3,7 @@
  * available space.
  */
 import { getBoundaries } from './getBoundaries';
+import { Offsets } from '../models';
 
 function getArea({ width, height }: { [key: string]: number }) {
   return width * height;
@@ -10,9 +11,9 @@ function getArea({ width, height }: { [key: string]: number }) {
 
 export function computeAutoPlacement(
   placement: string,
-  refRect: { [key: string]: number },
-  popper: HTMLElement,
-  reference: HTMLElement,
+  refRect: Offsets,
+  target: HTMLElement,
+  host: HTMLElement,
   boundariesElement: string,
   padding = 0
 ) {
@@ -20,7 +21,18 @@ export function computeAutoPlacement(
     return placement;
   }
 
-  const boundaries = getBoundaries(popper, reference, padding, boundariesElement);
+  if (placement.indexOf('auto') !== -1
+    && (placement.indexOf('left') !== -1
+    || placement.indexOf('right') !== -1
+    || placement.indexOf('top') !== -1
+    || placement.indexOf('bottom') !== -1)) {
+
+    target.classList.add('auto');
+
+    return placement.split(' ')[1] || '';
+  }
+
+  const boundaries = getBoundaries(target, host, padding, boundariesElement);
 
   const rects: any = {
     top: {
@@ -51,14 +63,14 @@ export function computeAutoPlacement(
 
   const filteredAreas = sortedAreas.filter(
     ({ width, height }) =>
-      width >= popper.clientWidth && height >= popper.clientHeight
+      width >= target.clientWidth && height >= target.clientHeight
   );
 
   const computedPlacement: string = filteredAreas.length > 0
     ? filteredAreas[0].key
     : sortedAreas[0].key;
 
-  popper.classList.add(computedPlacement);
+  target.classList.add(computedPlacement);
 
   const variation = placement.split('-')[1];
 

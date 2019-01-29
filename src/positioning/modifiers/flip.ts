@@ -1,20 +1,22 @@
 import {
-  getPopperOffsets,
+  getTargetOffsets,
   getBoundaries,
   getOppositePlacement,
   getOppositeVariation
 } from '../utils';
 
+import { Offsets } from '../models';
+
 export function flip(
-  tooltip: HTMLElement,
-  reference: HTMLElement,
-  offsetsPopper: { [key: string]: number },
-  referenceOffsets: { [key: string]: number },
+  target: HTMLElement,
+  host: HTMLElement,
+  offsetsTarget: Offsets,
+  hostOffsets: Offsets,
   position: string
-) {
+): Offsets {
   const boundaries = getBoundaries(
-    tooltip,
-    reference,
+    target,
+    host,
     0, // padding
     'viewport',
     false // positionFixed
@@ -28,7 +30,7 @@ export function flip(
 
   flipOrder = [placement, placementOpposite];
 
-  let popperOffsets = offsetsPopper;
+  let targetOffsets = offsetsTarget;
 
   /* tslint:disable-next-line: cyclomatic-complexity */
   flipOrder.forEach((step, index) => {
@@ -39,21 +41,21 @@ export function flip(
     placement = position.split('-')[0];
     placementOpposite = getOppositePlacement(placement);
 
-    // using floor because the reference offsets may contain decimals we are not going to consider here
+    // using floor because the host offsets may contain decimals we are not going to consider here
     const overlapsRef =
       (placement === 'left' &&
-        Math.floor(popperOffsets.right) > Math.floor(referenceOffsets.left)) ||
+        Math.floor(targetOffsets.right) > Math.floor(hostOffsets.left)) ||
       (placement === 'right' &&
-        Math.floor(popperOffsets.left) < Math.floor(referenceOffsets.right)) ||
+        Math.floor(targetOffsets.left) < Math.floor(hostOffsets.right)) ||
       (placement === 'top' &&
-        Math.floor(popperOffsets.bottom) > Math.floor(referenceOffsets.top)) ||
+        Math.floor(targetOffsets.bottom) > Math.floor(hostOffsets.top)) ||
       (placement === 'bottom' &&
-        Math.floor(popperOffsets.top) < Math.floor(referenceOffsets.bottom));
+        Math.floor(targetOffsets.top) < Math.floor(hostOffsets.bottom));
 
-    const overflowsLeft = Math.floor(popperOffsets.left) < Math.floor(boundaries.left);
-    const overflowsRight = Math.floor(popperOffsets.right) > Math.floor(boundaries.right);
-    const overflowsTop = Math.floor(popperOffsets.top) < Math.floor(boundaries.top);
-    const overflowsBottom = Math.floor(popperOffsets.bottom) > Math.floor(boundaries.bottom);
+    const overflowsLeft = Math.floor(targetOffsets.left) < Math.floor(boundaries.left);
+    const overflowsRight = Math.floor(targetOffsets.right) > Math.floor(boundaries.right);
+    const overflowsTop = Math.floor(targetOffsets.top) < Math.floor(boundaries.top);
+    const overflowsBottom = Math.floor(targetOffsets.bottom) > Math.floor(boundaries.bottom);
 
     const overflowsBoundaries =
       (placement === 'left' && overflowsLeft) ||
@@ -83,18 +85,18 @@ export function flip(
 
       placement = placement + (variation ? `-${variation}` : '');
 
-      popperOffsets = {
-        ...popperOffsets,
-        ...getPopperOffsets(
-          tooltip,
-          referenceOffsets,
+      targetOffsets = {
+        ...targetOffsets,
+        ...getTargetOffsets(
+          target,
+          hostOffsets,
           placement
         )
       };
     }
 
-    tooltip.className = tooltip.className.replace(/left|right|top|bottom/g, `${placement}`);
+    target.className = target.className.replace(/left|right|top|bottom/g, `${placement}`);
   });
 
-  return popperOffsets;
+  return targetOffsets;
 }

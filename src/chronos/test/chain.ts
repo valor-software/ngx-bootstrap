@@ -812,7 +812,7 @@ export class Khronos {
   }
 
 
-  // Offset
+  // Offsets
 
   utcOffset(): number;
   utcOffset(b: number | string, keepLocalTime?: boolean): Khronos;

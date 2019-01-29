@@ -1,4 +1,6 @@
-export function roundOffset(offsets: ClientRect): ClientRect {
+import { Offsets } from '../models';
+
+export function roundOffset(offsets: Offsets): Offsets {
   return {
     width: offsets.width,
     height: offsets.height,

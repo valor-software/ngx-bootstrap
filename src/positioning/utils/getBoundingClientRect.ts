@@ -7,8 +7,9 @@ import { getWindowSizes } from './getWindowSizes';
 import { getScroll } from './getScroll';
 import { getClientRect } from './getClientRect';
 import { isIE } from './isIE';
+import { Offsets } from '../models';
 
-export function getBoundingClientRect(element: HTMLElement) {
+export function getBoundingClientRect(element: HTMLElement): Offsets {
   let rect: any = {};
 
   // IE10 10 FIX: Please, don't ask, the element isn't

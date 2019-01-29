@@ -19,7 +19,6 @@ import {
   PopoverConfig
 } from '../../popover';
 import { createGenericTestComponent } from './test/common';
-import { tick } from '../../../node_modules/@angular/core/testing';
 
 @Component({selector: 'test-cmpt', template: ``})
 export class TestComponent {
@@ -237,10 +236,10 @@ fdescribe('popover', () => {
     });
   });
 
-  fdescribe('positioning', () => {
+  describe('positioning', () => {
     it('should use requested position', fakeAsync(() => {
       const fixture = createTestComponent(
-        `<div popover="Great tip!" placement="left"></div>`
+        `<div width="1000" height="1000" style="padding: 200px"><div popover="Great tip!" placement="left"></div></div>`
       );
       const directive = fixture.debugElement.query(
         By.directive(PopoverDirective)
@@ -248,17 +247,19 @@ fdescribe('popover', () => {
 
       directive.triggerEventHandler('click', {});
       fixture.detectChanges();
+
       const windowEl = getWindow(fixture.nativeElement);
 
-      tick(1000);
-      expect(windowEl).toHaveCssClass('popover');
-      expect(windowEl).toHaveCssClass('popover-left');
-      expect(windowEl.textContent.trim()).toBe('Great tip!');
+      fixture.whenStable().then(() => {
+        expect(windowEl).toHaveCssClass('popover');
+        expect(windowEl).toHaveCssClass('popover-left');
+        expect(windowEl.textContent.trim()).toBe('Great tip!');
+      });
     }));
 
     it('should properly position popovers when a component is using the OnPush strategy', fakeAsync(() => {
       const fixture = createOnPushTestComponent(
-        `<div popover="Great tip!" placement="left"></div>`
+        `<div width="1000" height="1000"><div popover="Great tip!" placement="left"></div></div>`
       );
       const directive = fixture.debugElement.query(
         By.directive(PopoverDirective)
@@ -266,6 +267,7 @@ fdescribe('popover', () => {
 
       directive.triggerEventHandler('click', {});
       fixture.detectChanges();
+
       const windowEl = getWindow(fixture.nativeElement);
 
       fixture.whenStable().then(() => {
@@ -277,7 +279,7 @@ fdescribe('popover', () => {
 
     it('should set position to right when use auto position and fit on screen', fakeAsync(() => {
       const fixture = createTestComponent(
-        `<div popover="Great tip!" placement="auto"></div>`
+        `<div width="1000" height="1000"><div popover="Great tip!" placement="auto"></div></div>`
       );
       const directive = fixture.debugElement.query(
         By.directive(PopoverDirective)
@@ -317,7 +319,7 @@ fdescribe('popover', () => {
 
     it('should set position to top when use auto position and fit on screen', fakeAsync(() => {
       const fixture = createTestComponent(
-        `<div popover="Great tip!" placement="auto top"></div>`
+        `<div width="1000" height="1000"><div popover="Great tip!" placement="auto top"></div></div>`
       );
       const directive = fixture.debugElement.query(
         By.directive(PopoverDirective)
@@ -327,7 +329,6 @@ fdescribe('popover', () => {
       fixture.detectChanges();
       const windowEl = getWindow(fixture.nativeElement);
 
-      fixture.detectChanges();
       fixture.whenStable().then(() => {
         expect(windowEl).toHaveCssClass('popover');
         expect(windowEl).toHaveCssClass('popover-auto');

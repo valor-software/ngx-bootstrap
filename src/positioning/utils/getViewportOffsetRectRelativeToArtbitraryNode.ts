@@ -1,8 +1,9 @@
+import { getClientRect } from './getClientRect';
 import { getOffsetRectRelativeToArbitraryNode } from './getOffsetRectRelativeToArbitraryNode';
 import { getScroll } from './getScroll';
-import { getClientRect } from './getClientRect';
+import { Offsets } from '../models';
 
-export function getViewportOffsetRectRelativeToArtbitraryNode(element: HTMLElement, excludeScroll = false) {
+export function getViewportOffsetRectRelativeToArtbitraryNode(element: HTMLElement, excludeScroll = false): Offsets {
   const html = element.ownerDocument.documentElement;
   const relativeOffset = getOffsetRectRelativeToArbitraryNode(element, html);
   const width = Math.max(html.clientWidth, window.innerWidth || 0);

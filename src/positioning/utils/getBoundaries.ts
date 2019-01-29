@@ -11,8 +11,8 @@ import { isFixed } from './isFixed';
 import { getFixedPositionOffsetParent } from './getFixedPositionOffsetParent';
 
 export function getBoundaries(
-  popper: HTMLElement,
-  reference: HTMLElement,
+  target: HTMLElement,
+  host: HTMLElement,
   padding = 0,
   boundariesElement: string,
   fixedPosition = false
@@ -20,7 +20,7 @@ export function getBoundaries(
   // NOTE: 1 DOM access here
 
   let boundaries: any = { top: 0, left: 0 };
-  const offsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
+  const offsetParent = fixedPosition ? getFixedPositionOffsetParent(target) : findCommonOffsetParent(target, host);
 
   // Handle viewport case
   if (boundariesElement === 'viewport') {
@@ -29,12 +29,12 @@ export function getBoundaries(
     // Handle other cases based on DOM element used as boundaries
     let boundariesNode;
     if (boundariesElement === 'scrollParent') {
-      boundariesNode = getScrollParent(getParentNode(reference));
+      boundariesNode = getScrollParent(getParentNode(host));
       if (boundariesNode.nodeName === 'BODY') {
-        boundariesNode = popper.ownerDocument.documentElement;
+        boundariesNode = target.ownerDocument.documentElement;
       }
     } else if (boundariesElement === 'window') {
-      boundariesNode = popper.ownerDocument.documentElement;
+      boundariesNode = target.ownerDocument.documentElement;
     } else {
       boundariesNode = boundariesElement;
     }
@@ -47,7 +47,7 @@ export function getBoundaries(
 
     // In case of HTML, we need a different computation
     if (boundariesNode.nodeName === 'HTML' && !isFixed(offsetParent)) {
-      const { height, width } = getWindowSizes(popper.ownerDocument);
+      const { height, width } = getWindowSizes(target.ownerDocument);
       boundaries.top += offsets.top - offsets.marginTop;
       boundaries.bottom = Number(height) + Number(offsets.top);
       boundaries.left += offsets.left - offsets.marginLeft;
