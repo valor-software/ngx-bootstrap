@@ -2,7 +2,7 @@
 /**
  * @copyright Angular ng-bootstrap team
  */
-import { TestBed, inject, fakeAsync } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import {
   Component,
@@ -96,7 +96,7 @@ describe('popover-container', () => {
   });
 });
 
-fdescribe('popover', () => {
+describe('popover', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestComponent, TestOnPushComponent, DestroyableCmpt],
@@ -237,9 +237,9 @@ fdescribe('popover', () => {
   });
 
   describe('positioning', () => {
-    it('should use requested position', fakeAsync(() => {
+    it('should use requested position', () => {
       const fixture = createTestComponent(
-        `<div width="1000" height="1000" style="padding: 200px"><div popover="Great tip!" placement="left"></div></div>`
+        `<div style="padding: 300px"><div popover="Great tip!" placement="left"></div></div>`
       );
       const directive = fixture.debugElement.query(
         By.directive(PopoverDirective)
@@ -250,36 +250,32 @@ fdescribe('popover', () => {
 
       const windowEl = getWindow(fixture.nativeElement);
 
-      fixture.whenStable().then(() => {
-        expect(windowEl).toHaveCssClass('popover');
-        expect(windowEl).toHaveCssClass('popover-left');
-        expect(windowEl.textContent.trim()).toBe('Great tip!');
-      });
-    }));
+      expect(windowEl).toHaveCssClass('popover');
+      expect(windowEl).toHaveCssClass('popover-left');
+      expect(windowEl.textContent.trim()).toBe('Great tip!');
+    });
 
-    it('should properly position popovers when a component is using the OnPush strategy', fakeAsync(() => {
+    it('should properly position popovers when a component is using the OnPush strategy', () => {
       const fixture = createOnPushTestComponent(
-        `<div width="1000" height="1000"><div popover="Great tip!" placement="left"></div></div>`
+        `<div style="padding: 300px"><div popover="Great tip!" placement="left"></div></div>`
       );
+
       const directive = fixture.debugElement.query(
         By.directive(PopoverDirective)
       );
 
       directive.triggerEventHandler('click', {});
       fixture.detectChanges();
-
       const windowEl = getWindow(fixture.nativeElement);
 
-      fixture.whenStable().then(() => {
-        expect(windowEl).toHaveCssClass('popover');
-        expect(windowEl).toHaveCssClass('popover-left');
-        expect(windowEl.textContent.trim()).toBe('Great tip!');
-      });
-    }));
+      expect(windowEl).toHaveCssClass('popover');
+      expect(windowEl).toHaveCssClass('popover-left');
+      expect(windowEl.textContent.trim()).toBe('Great tip!');
+    });
 
-    it('should set position to right when use auto position and fit on screen', fakeAsync(() => {
+    it('should set position to right when use auto position and fit on screen', () => {
       const fixture = createTestComponent(
-        `<div width="1000" height="1000"><div popover="Great tip!" placement="auto"></div></div>`
+        `<div style="padding: 300px"><div popover="Great tip!" placement="auto"></div></div>`
       );
       const directive = fixture.debugElement.query(
         By.directive(PopoverDirective)
@@ -289,17 +285,15 @@ fdescribe('popover', () => {
       fixture.detectChanges();
       const windowEl = getWindow(fixture.nativeElement);
 
-      fixture.whenStable().then(() => {
-        expect(windowEl).toHaveCssClass('popover');
-        expect(windowEl).toHaveCssClass('popover-auto');
-        expect(windowEl).toHaveCssClass('right');
-        expect(windowEl.textContent.trim()).toBe('Great tip!');
-      });
-    }));
+      expect(windowEl).toHaveCssClass('popover');
+      expect(windowEl).toHaveCssClass('popover-auto');
+      expect(windowEl).toHaveCssClass('top');
+      expect(windowEl.textContent.trim()).toBe('Great tip!');
+    });
 
-    it('should set position to bottom when use auto position', fakeAsync(() => {
+    it('should set position to bottom when use auto position', () => {
       const fixture = createTestComponent(
-        `<div popover="Great tip!" placement="auto bottom"></div>`
+        `<div style="padding-bottom: 300px"><div popover="Great tip!" placement="auto bottom"></div></div>`
       );
       const directive = fixture.debugElement.query(
         By.directive(PopoverDirective)
@@ -309,17 +303,15 @@ fdescribe('popover', () => {
       fixture.detectChanges();
       const windowEl = getWindow(fixture.nativeElement);
 
-      fixture.whenStable().then(() => {
-        expect(windowEl).toHaveCssClass('popover');
-        expect(windowEl).toHaveCssClass('popover-auto');
-        expect(windowEl).toHaveCssClass('bottom');
-        expect(windowEl.textContent.trim()).toBe('Great tip!');
-      });
-    }));
+      expect(windowEl).toHaveCssClass('popover');
+      expect(windowEl).toHaveCssClass('popover-auto');
+      expect(windowEl).toHaveCssClass('bottom');
+      expect(windowEl.textContent.trim()).toBe('Great tip!');
+    });
 
-    it('should set position to top when use auto position and fit on screen', fakeAsync(() => {
+    it('should set position to top when use auto position and fit on screen', () => {
       const fixture = createTestComponent(
-        `<div width="1000" height="1000"><div popover="Great tip!" placement="auto top"></div></div>`
+        `<div style="padding: 300px"><div popover="Great tip!" placement="auto top"></div></div>`
       );
       const directive = fixture.debugElement.query(
         By.directive(PopoverDirective)
@@ -329,17 +321,15 @@ fdescribe('popover', () => {
       fixture.detectChanges();
       const windowEl = getWindow(fixture.nativeElement);
 
-      fixture.whenStable().then(() => {
-        expect(windowEl).toHaveCssClass('popover');
-        expect(windowEl).toHaveCssClass('popover-auto');
-        expect(windowEl).toHaveCssClass('top');
-        expect(windowEl.textContent.trim()).toBe('Great tip!');
-      });
-    }));
+      expect(windowEl).toHaveCssClass('popover');
+      expect(windowEl).toHaveCssClass('popover-auto');
+      expect(windowEl).toHaveCssClass('top');
+      expect(windowEl.textContent.trim()).toBe('Great tip!');
+    });
 
-    it('should set position to right when use auto position and fit on screen', fakeAsync(() => {
+    it('should set position to right when use auto position and fit on screen', () => {
       const fixture = createTestComponent(
-        `<div popover="Great tip!" placement="auto right"></div>`
+        `<div style="padding: 300px"><div popover="Great tip!" placement="auto right"></div>`
       );
       const directive = fixture.debugElement.query(
         By.directive(PopoverDirective)
@@ -349,18 +339,15 @@ fdescribe('popover', () => {
       fixture.detectChanges();
       const windowEl = getWindow(fixture.nativeElement);
 
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(windowEl).toHaveCssClass('popover');
-        expect(windowEl).toHaveCssClass('popover-auto');
-        expect(windowEl).toHaveCssClass('right');
-        expect(windowEl.textContent.trim()).toBe('Great tip!');
-      });
-    }));
+      expect(windowEl).toHaveCssClass('popover');
+      expect(windowEl).toHaveCssClass('popover-auto');
+      expect(windowEl).toHaveCssClass('right');
+      expect(windowEl.textContent.trim()).toBe('Great tip!');
+    });
 
-    it('should set position to left when use auto position and fit on screen', fakeAsync(() => {
+    it('should set position to left when use auto position and fit on screen', () => {
       const fixture = createTestComponent(
-        `<div popover="Great tip!" placement="auto left"></div>`
+        `<div style="padding: 300px"><div popover="Great tip!" placement="auto left"></div>`
       );
       const directive = fixture.debugElement.query(
         By.directive(PopoverDirective)
@@ -371,13 +358,11 @@ fdescribe('popover', () => {
       fixture.detectChanges();
       const windowEl = getWindow(fixture.nativeElement);
 
-      fixture.whenStable().then(() => {
-        expect(windowEl).toHaveCssClass('popover');
-        expect(windowEl).toHaveCssClass('popover-auto');
-        expect(windowEl).toHaveCssClass('left');
-        expect(windowEl.textContent.trim()).toBe('Great tip!');
-      });
-    }));
+      expect(windowEl).toHaveCssClass('popover');
+      expect(windowEl).toHaveCssClass('popover-auto');
+      expect(windowEl).toHaveCssClass('left');
+      expect(windowEl.textContent.trim()).toBe('Great tip!');
+    });
   });
 
   describe('container', () => {

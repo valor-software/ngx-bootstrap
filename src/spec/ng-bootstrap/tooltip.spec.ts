@@ -205,9 +205,9 @@ describe('tooltip', () => {
     });
 
     describe('positioning', () => {
-      it('should use requested position', fakeAsync(() => {
+      it('should use requested position', () => {
         const fixture = createTestComponent(
-          `<div tooltip="Great tip!" placement="left"></div>`
+          `<div style="padding:400px"><div tooltip="Great tip!" placement="left"></div>`
         );
         const directive = fixture.debugElement.query(
           By.directive(TooltipDirective)
@@ -217,17 +217,14 @@ describe('tooltip', () => {
         fixture.detectChanges();
         const windowEl = getWindow(fixture.nativeElement);
 
-        fixture.detectChanges();
-        fixture.whenStable().then(() => {
-          expect(windowEl).toHaveCssClass('tooltip');
-          expect(windowEl).toHaveCssClass('tooltip-left');
-          expect(windowEl.textContent.trim()).toBe('Great tip!');
-        });
-      }));
+        expect(windowEl).toHaveCssClass('tooltip');
+        expect(windowEl).toHaveCssClass('tooltip-left');
+        expect(windowEl.textContent.trim()).toBe('Great tip!');
+      });
 
-      it('should properly position tooltips when a component is using the OnPush strategy', fakeAsync(() => {
+      it('should properly position tooltips when a component is using the OnPush strategy', () => {
         const fixture = createOnPushTestComponent(
-          `<div tooltip="Great tip!" placement="left"></div>`
+          `<div style="padding:400px"><div tooltip="Great tip!" placement="left"></div>`
         );
         const directive = fixture.debugElement.query(
           By.directive(TooltipDirective)
@@ -237,17 +234,14 @@ describe('tooltip', () => {
         fixture.detectChanges();
         const windowEl = getWindow(fixture.nativeElement);
 
-        fixture.detectChanges();
-        fixture.whenStable().then(() => {
-          expect(windowEl).toHaveCssClass('tooltip');
-          expect(windowEl).toHaveCssClass('tooltip-left');
-          expect(windowEl.textContent.trim()).toBe('Great tip!');
-        });
-      }));
+        expect(windowEl).toHaveCssClass('tooltip');
+        expect(windowEl).toHaveCssClass('tooltip-left');
+        expect(windowEl.textContent.trim()).toBe('Great tip!');
+      });
 
       it('should use auto position', () => {
         const fixture = createTestComponent(
-          `<div tooltip="Great tip!" placement="auto"></div>`
+          `<div style="padding:400px"><div tooltip="Great tip!" placement="auto"></div></div>`
         );
         const directive = fixture.debugElement.query(
           By.directive(TooltipDirective)
@@ -259,7 +253,7 @@ describe('tooltip', () => {
 
         expect(windowEl).toHaveCssClass('tooltip');
         expect(windowEl).toHaveCssClass('tooltip-auto');
-        expect(windowEl).toHaveCssClass('right');
+        expect(windowEl).toHaveCssClass('top');
         expect(windowEl.textContent.trim()).toBe('Great tip!');
       });
     });
