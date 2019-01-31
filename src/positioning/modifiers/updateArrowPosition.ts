@@ -1,4 +1,4 @@
-import { getClientRect, getOuterSizes, getStyleComputedProperty } from '../utils';
+import { getClientRect, getOuterSizes, getStyleComputedProperty, setStyles } from '../utils';
 import { Offsets } from '../models';
 
 export function updateArrowPosition(
@@ -54,15 +54,13 @@ export function updateArrowPosition(
   // prevent arrowElement from being placed not contiguously to its target
   sideValue = Math.max(Math.min(targetOffsets[len] - arrowElementSize, sideValue), 0);
 
-  const offsetsArrow: any = {
+  const offsetsArrow: { [key: string]: string | number | HTMLElement } = {
     [side]: Math.round(sideValue),
     [altSide]: '' // make sure to unset any eventual altSide value from the DOM node
   };
 
   offsetsArrow.arrowElement = arrowElement;
 
-  arrowElement.style.top = `${offsetsArrow.top}px`;
-  arrowElement.style.left = `${offsetsArrow.left}px`;
 
-  return offsetsArrow;
+  setStyles(arrowElement, offsetsArrow);
 }

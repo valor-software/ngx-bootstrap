@@ -6,7 +6,7 @@ import {
   computeAutoPlacement,
   getClientRect,
   getTargetOffsets,
-  getReferenceOffsets
+  getReferenceOffsets, setStyles
 } from './utils';
 
 import { updateArrowPosition, flip, preventOverflow, shift } from './modifiers';
@@ -28,11 +28,8 @@ export class Positioning {
     position: string,
     appendToBody?: boolean
   ): Offsets {
-
     const hostElPosition = this.offset(hostElement, targetElement, false);
-
     const placement = computeAutoPlacement(position, hostElPosition, targetElement, hostElement, 'viewport', 0);
-
     const targetElPosition: Offsets = getTargetOffsets(targetElement, hostElPosition, placement);
 
     updateArrowPosition(targetElement, targetElPosition, hostElPosition, '.arrow', placement);
@@ -44,7 +41,6 @@ export class Positioning {
       (targetPosition: Offsets) => shift(targetPosition, hostElPosition, placement),
       roundOffset
     ];
-
 
     return chainOfModifiers.reduce((targetPosition, modifier) => {
       return modifier(targetPosition);
@@ -68,8 +64,10 @@ export function positionElements(
     appendToBody
   );
 
-  targetElement.style['will-change'] = 'transform';
-  targetElement.style.top = '0px';
-  targetElement.style.left = '0px';
-  targetElement.style.transform = `translate3d(${pos.left}px, ${pos.top}px, 0px)`;
+  setStyles(targetElement, {
+    'will-change': 'transform',
+    top: '0px',
+    left: '0px',
+    transform: `translate3d(${pos.left}px, ${pos.top}px, 0px)`
+  });
 }

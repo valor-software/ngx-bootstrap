@@ -70,9 +70,19 @@ export function computeAutoPlacement(
     ? filteredAreas[0].key
     : sortedAreas[0].key;
 
-  target.classList.add(computedPlacement);
-
   const variation = placement.split('-')[1];
+
+  target.className = target.className.replace(/auto/g, `${computedPlacement}`);
+
+  // TODO: temporary solution, needs for unit tests
+  if (target.className.match(/popover/g)) {
+    target.classList.add('popover-auto');
+  }
+
+  if (target.className.match(/tooltip/g)) {
+    target.classList.add('tooltip-auto');
+  }
+
 
   return computedPlacement + (variation ? `-${variation}` : '');
 }
