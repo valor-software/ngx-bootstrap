@@ -103,7 +103,7 @@ describe('datepicker:', () => {
     datepickerContainerInstance[`_store`]
       .select(state => state.view)
       .subscribe(view => {
-        expect(view.date.getDay()).not.toEqual((weekSelection.days[0].date.getDay()));
+        expect(view.date.getDate()).not.toEqual((weekSelection.days[0].date.getDate()));
       });
   });
 

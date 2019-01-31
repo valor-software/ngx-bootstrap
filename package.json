@@ -42,6 +42,7 @@
     "cy:open": "cypress open",
     "cy:run:smoke": "cypress run --config integrationFolder=cypress/integration",
     "cy:run:full": "cypress run --config integrationFolder=cypress/full",
+    "cy:run:all": "cypress run --config integrationFolder=cypress",
     "view-stats": "webpack-bundle-analyzer demo/dist/stats.json",
     "build:dynamic": "run-s build build:client-and-server-bundles webpack:server configure-heroku",
     "serve:dynamic": "node demo/dist/server",
