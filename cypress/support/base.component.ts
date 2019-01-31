@@ -117,4 +117,14 @@ export abstract class BaseComponent {
     cy.get(`${baseSelector} .card.card-block`).eq(previewNumber ? previewNumber : 0).invoke('text')
       .should(btnTxt => expect(btnTxt).to.contain(previewText));
   }
+
+  clickCheckbox(baseSelector: string, shouldBeChecked: boolean) {
+    if (shouldBeChecked) {
+      cy.get(`${baseSelector} input[type="checkbox"]`)
+        .check();
+    } else {
+      cy.get(`${baseSelector} input[type="checkbox"]`)
+        .uncheck();
+    }
+  }
 }
