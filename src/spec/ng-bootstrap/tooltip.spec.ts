@@ -76,7 +76,7 @@ describe('tooltip', () => {
 
   describe('basic functionality', () => {
     it('should open and close a tooltip - default settings and content as string', () => {
-      const fixture = createTestComponent(`<div tooltip="Great tip!"></div>`);
+      const fixture = createTestComponent(`<div style="margin: 400px" tooltip="Great tip!"></div>`);
       const directive = fixture.debugElement.query(
         By.directive(TooltipDirective)
       );
@@ -99,7 +99,7 @@ describe('tooltip', () => {
 
     it('should open and close a tooltip - default settings and content from a template', () => {
       const fixture = createTestComponent(
-        `<ng-template #t>Hello, {{name}}!</ng-template><div [tooltip]="t"></div>`
+        `<ng-template #t>Hello, {{name}}!</ng-template><div style="margin: 400px" [tooltip]="t"></div>`
       );
       const directive = fixture.debugElement.query(
         By.directive(TooltipDirective)
