@@ -117,9 +117,18 @@ export class BsModalService {
       .to('body')
       .show({content, isAnimated: this.config.animated, initialState: this.config.initialState, bsModalService: this});
     modalContainerRef.instance.level = this.getModalsCount();
-    bsModalRef.hide = () => {
-      modalContainerRef.instance.hide();
-    };
+    bsModalRef.result = new Promise((resolve, reject) => {
+      // tslint:disable-next-line:no-any
+      bsModalRef.hide = (arg?: any) => {
+        modalContainerRef.instance.hide();
+        resolve(arg);
+      };
+      // tslint:disable-next-line:no-any
+      bsModalRef.dismiss = (arg?: any) => {
+        modalContainerRef.instance.hide();
+        reject(arg);
+      };
+    });
     bsModalRef.content = modalLoader.getInnerComponent() || null;
     bsModalRef.setClass = (newClass: string) => {
       modalContainerRef.instance.config.class = newClass;

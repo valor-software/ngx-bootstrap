@@ -9,9 +9,23 @@ export class BsModalRef {
   content?: any | null;
 
   /**
-   * Hides the modal
+   * Hides the modal and resolves the promise
    */
-  hide: () => void = Function;
+  // tslint:disable-next-line:no-any
+  hide: (result?: any) => void = Function;
+
+  /**
+   * Dismisses the modal and rejects the promise
+   */
+  // tslint:disable-next-line:no-any
+  dismiss: (result?: any) => void = Function;
+
+  /**
+   * A promise which resolves on BsModalRef.hide(arg) and rejects on BsModalRef.dismiss(arg)
+   */
+  // tslint:disable-next-line:no-any
+  result: Promise<any|void>;
+
   /**
    * Sets new class to modal window
    */
