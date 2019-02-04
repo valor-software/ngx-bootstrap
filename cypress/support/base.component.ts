@@ -117,4 +117,23 @@ export abstract class BaseComponent {
     cy.get(`${baseSelector} .card.card-block`).eq(previewNumber ? previewNumber : 0).invoke('text')
       .should(btnTxt => expect(btnTxt).to.contain(previewText));
   }
+
+  isCodePreviewExist(baseSelector: string, previewText: string, exist = true, previewNumber?: number) {
+    if (exist) {
+    cy.get(`${baseSelector} .code-preview`).eq(previewNumber ? previewNumber : 0).invoke('text')
+      .should(btnTxt => expect(btnTxt).to.contain(previewText));
+    } else {
+      cy.get(`${baseSelector} .code-preview`)
+        .should('not.exist');
+    }
+  }
+
+  isComponentSrcContain(demoName: string, expectedTxt: string) {
+    cy.get('examples h3')
+      .contains(demoName)
+      .parent()
+      .find('tab[heading*="component"]')
+      .invoke('text')
+      .should('to.contains', expectedTxt);
+  }
 }
