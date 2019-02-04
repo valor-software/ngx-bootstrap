@@ -3,5 +3,6 @@
   "video": false,
   "projectId": "5mm2dy",
   "responseTimeout": 60000,
-  "ignoreTestFiles": ["**/plugins/**.js", "**/support/**", "**/tsconfig.json"]
+  "ignoreTestFiles": ["**/plugins/**.js", "**/support/**", "**/tsconfig.json"],
+  "eyesTimeout": 1200000
 }

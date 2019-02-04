@@ -14,9 +14,11 @@
   },
   "include": [
     "integration/*.ts",
+    "snapshot/*.ts",
     "full/*.ts",
     "full/**/*.ts",
     "support/*.ts",
-    "../node_modules/cypress"
+    "../node_modules/cypress",
+    "../node_modules/@applitools"
   ]
 }
