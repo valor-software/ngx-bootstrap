@@ -1,6 +1,7 @@
 import { BaseComponent } from './base.component';
 import { glLocale, hiLocale, mnLocale } from 'ngx-bootstrap/chronos';
 import * as globalLocales from 'ngx-bootstrap/locale';
+import { AttrObj } from './interfaces';
 
 
 export class DatepickerPo extends BaseComponent {
@@ -13,7 +14,6 @@ export class DatepickerPo extends BaseComponent {
   datepickerNavView = 'bs-datepicker-navigation-view';
   datepickerContainer = 'bs-datepicker-container';
   daterangepickerContainer = 'bs-daterangepicker-container';
-  datepickerDays = '[bsdatepickerdaydecorator]';
   datepickerBodyDaysView = 'bs-days-calendar-view';
   datepickerBodyMonthView = 'bs-month-calendar-view';
   datepickerBodyYearsView = 'bs-years-calendar-view';
@@ -36,7 +36,7 @@ export class DatepickerPo extends BaseComponent {
     forms: 'demo-datepicker-forms',
     reactiveForms: 'demo-datepicker-reactive-forms',
     manualTrigger: 'demo-datepicker-triggers-manual',
-    placemeent: 'demo-datepicker-placement',
+    placement: 'demo-datepicker-placement',
     configMethod: 'demo-datepicker-config-method',
     visibilityEvents: 'demo-datepicker-visibility-events',
     valueChangeEvent: 'demo-datepicker-value-change-event',
@@ -44,7 +44,8 @@ export class DatepickerPo extends BaseComponent {
     selectFromOtherMonth: 'demo-datepicker-select-dates-from-other-months',
     outsideClick: 'demo-datepicker-outside-click',
     triggerByIsOpen: 'demo-datepicker-trigger-by-isopen',
-    customTriggers: 'demo-datepicker-triggers-custom'
+    customTriggers: 'demo-datepicker-triggers-custom',
+    customTodayClass: 'demo-datepicker-custom-today-class'
   };
 
   clickOnDatepickerInput(baseSelector: string, datepickerIndex = 0) {
@@ -132,15 +133,15 @@ export class DatepickerPo extends BaseComponent {
                                                    expectedMonth?: string,
                                                    expectedYear?: string) {
     const currentMonth: string = expectedMonth ? expectedMonth
-                                               : this.monthNames[new Date().getMonth()];
+      : this.monthNames[new Date().getMonth()];
     const nextMonth: string = expectedMonth ? this.monthNames[this.monthNames.indexOf(expectedMonth) + 1]
-                                            : this.monthNames[new Date().getMonth() + 1];
+      : this.monthNames[new Date().getMonth() + 1];
     const currentYearSrt: string = expectedYear ? expectedYear
-                                                : new Date().getFullYear().toString();
+      : new Date().getFullYear().toString();
     const currentYearNum: number = expectedYear ? Number(expectedYear)
-                                                : new Date().getFullYear();
+      : new Date().getFullYear();
     const nextYearStr: string = expectedYear ? (Number(expectedYear) + 1).toString()
-                                             : (new Date().getFullYear() + 1).toString();
+      : (new Date().getFullYear() + 1).toString();
 
     cy.get(`${baseSelector}>${this.daterangepickerContainer} ${this.datepickerNavView}`)
       .eq(0)
@@ -454,12 +455,12 @@ export class DatepickerPo extends BaseComponent {
       .eq(0)
       .find('th[aria-label*="weekday"]')
       .each((weekday, weekdayIndex) => {
-          Object.values(globalLocales).forEach(globalLocale => {
-            if (globalLocale === expectedLocale) {
-              expect(weekday.text().toLowerCase())
-                .to.contains(globalLocale.weekdaysShort[globalLocale.week.dow + weekdayIndex]);
-            }
-          });
+        Object.values(globalLocales).forEach(globalLocale => {
+          if (globalLocale === expectedLocale) {
+            expect(weekday.text().toLowerCase())
+              .to.contains(globalLocale.weekdaysShort[globalLocale.week.dow + weekdayIndex]);
+          }
+        });
       });
   }
 
@@ -530,6 +531,80 @@ export class DatepickerPo extends BaseComponent {
         .not('[class*="is-other-month"]')
         .contains(max.getDate())
         .should(disabled ? 'have.class' : 'not.to.have.class', 'disabled');
+    }
+  }
+
+  isTodayHaveClass(className: string) {
+    cy.get(`body>${this.datepickerContainer} tbody td`)
+      .not('.week')
+      .find('span')
+      .not('.is-other-month')
+      .contains(new Date().getDate())
+      .should('to.have.class', className);
+  }
+
+  /**
+   * Method checks datepicker placement according to input field (left/right/top/bottom)
+   * Compare input and picker height and width for checking centering elements
+   * For avoid resolution differences in equivalence check, used rounding to 10
+   */
+  isDatepickerPlacementCorrect(baseSelector: string, placement: string) {
+    let index: number;
+    const inputMarginHeight = 15;
+    const inputMarginWidth = 27;
+    cy.get(`body>${this.datepickerContainer}`).as('Datepicker');
+    cy.get(`${baseSelector} input`).as('InputsArray');
+
+    switch (placement) {
+      case 'right':
+        index = 0;
+        cy.get('@Datepicker').then(datepicker => {
+          cy.get('@InputsArray').eq(index).then(input => {
+            expect(input.offset().left).to.lessThan(datepicker.offset().left);
+            expect(input.offset().top).to.greaterThan(datepicker.offset().top);
+            expect(Math.round((input.offset().top + (input.height() + inputMarginHeight) / 2) / 10) * 10)
+              .to.equal(Math.round((datepicker.offset().top + datepicker.height() / 2) / 10) * 10);
+          });
+        });
+        break;
+
+      case 'top':
+        index = 1;
+        cy.get('@Datepicker').then(datepicker => {
+          cy.get('@InputsArray').eq(index).then(input => {
+            expect(input.offset().left).to.greaterThan(datepicker.offset().left);
+            expect(input.offset().top).to.greaterThan(datepicker.offset().top);
+            expect(Math.round((input.offset().left + (input.width() + inputMarginWidth) / 2) / 10) * 10)
+              .to.equal(Math.round((datepicker.offset().left + datepicker.width() / 2) / 10) * 10);
+          });
+        });
+        break;
+
+      case 'bottom':
+        index = 2;
+        cy.get('@Datepicker').then(datepicker => {
+          cy.get('@InputsArray').eq(index).then(input => {
+            expect(input.offset().left).to.greaterThan(datepicker.offset().left);
+            expect(input.offset().top).to.lessThan(datepicker.offset().top);
+            expect(Math.round((input.offset().left + (input.width() + inputMarginWidth) / 2) / 10) * 10)
+              .to.equal(Math.round((datepicker.offset().left + datepicker.width() / 2) / 10) * 10);
+          });
+        });
+        break;
+
+      case 'left':
+        index = 3;
+        cy.get('@Datepicker').then(datepicker => {
+          cy.get('@InputsArray').eq(index).then(input => {
+            expect(input.offset().left).to.greaterThan(datepicker.offset().left);
+            expect(input.offset().top).to.greaterThan(datepicker.offset().top);
+            expect(Math.round((input.offset().top + (input.height() + inputMarginHeight) / 2) / 10) * 10)
+              .to.equal(Math.round((datepicker.offset().top + datepicker.height() / 2) / 10) * 10);
+          });
+        });
+        break;
+      default:
+        index = undefined;
     }
   }
 }
