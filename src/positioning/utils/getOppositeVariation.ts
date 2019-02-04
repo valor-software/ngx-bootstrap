@@ -2,10 +2,10 @@
  * Get the opposite placement variation of the given one
  */
 export function getOppositeVariation(variation: string) {
-  if (variation === 'end') {
-    return 'start';
-  } else if (variation === 'start') {
-    return 'end';
+  if (variation === 'right') {
+    return 'left';
+  } else if (variation === 'left') {
+    return 'right';
   }
 
   return variation;

@@ -10,7 +10,7 @@ export function getTargetOffsets(
   hostOffsets: Offsets,
   position: string
 ): Offsets {
-  const placement = position.split('-')[0];
+  const placement = position.split(' ')[0];
 
   // Get target node sizes
   const targetRect = getOuterSizes(target);

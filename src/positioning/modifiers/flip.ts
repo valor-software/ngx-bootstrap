@@ -22,9 +22,9 @@ export function flip(
     false // positionFixed
   );
 
-  let placement = position.split('-')[0];
+  let placement = position.split(' ')[0];
   let placementOpposite = getOppositePlacement(placement);
-  let variation = position.split('-')[1] || '';
+  let variation = position.split(' ')[1] || '';
 
   let flipOrder: string[] = [];
 
@@ -38,8 +38,9 @@ export function flip(
       return placement;
     }
 
-    placement = position.split('-')[0];
+    placement = position.split(' ')[0];
     placementOpposite = getOppositePlacement(placement);
+
 
     // using floor because the host offsets may contain decimals we are not going to consider here
     const overlapsRef =
@@ -66,10 +67,10 @@ export function flip(
     // flip the variation if required
     const isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
     const flippedVariation =
-      ((isVertical && variation === 'start' && overflowsLeft) ||
-        (isVertical && variation === 'end' && overflowsRight) ||
-        (!isVertical && variation === 'start' && overflowsTop) ||
-        (!isVertical && variation === 'end' && overflowsBottom));
+      ((isVertical && variation === 'left' && overflowsLeft) ||
+        (isVertical && variation === 'right' && overflowsRight) ||
+        (!isVertical && variation === 'left' && overflowsTop) ||
+        (!isVertical && variation === 'right' && overflowsBottom));
 
     if (overlapsRef || overflowsBoundaries || flippedVariation) {
       // this boolean to detect any flip loop
@@ -83,7 +84,7 @@ export function flip(
         variation = getOppositeVariation(variation);
       }
 
-      placement = placement + (variation ? `-${variation}` : '');
+      placement = placement + (variation ? ` ${variation}` : '');
 
       targetOffsets = {
         ...targetOffsets,

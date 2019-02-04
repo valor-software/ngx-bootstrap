@@ -37,8 +37,8 @@ export class Positioning {
     const chainOfModifiers = [
       getClientRect,
       (targetPosition: Offsets) => flip(targetElement, hostElement, targetPosition, hostElPosition, placement),
-      (targetPosition: Offsets) => preventOverflow(targetElement, hostElement, targetPosition),
       (targetPosition: Offsets) => shift(targetPosition, hostElPosition, placement),
+      (targetPosition: Offsets) => preventOverflow(targetElement, hostElement, targetPosition),
       roundOffset
     ];
 

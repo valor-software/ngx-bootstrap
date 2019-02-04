@@ -70,7 +70,7 @@ export function computeAutoPlacement(
     ? filteredAreas[0].key
     : sortedAreas[0].key;
 
-  const variation = placement.split('-')[1];
+  const variation = placement.split(' ')[1];
 
   target.className = target.className.replace(/auto/g, `${computedPlacement}`);
 
