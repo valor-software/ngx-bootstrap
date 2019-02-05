@@ -103,6 +103,10 @@ export class BsDaterangepickerDirective
    */
   @Input() maxDate: Date;
   /**
+   * Disable specific dates
+   */
+  @Input() datesDisabled: Date[];
+  /**
    * Emits when daterangepicker value has been changed
    */
   @Output() bsValueChange: EventEmitter<Date[]> = new EventEmitter();
@@ -148,6 +152,10 @@ export class BsDaterangepickerDirective
 
     if (changes.maxDate) {
       this._datepickerRef.instance.maxDate = this.maxDate;
+    }
+
+    if (changes.datesDisabled) {
+      this._datepickerRef.instance.datesDisabled = this.datesDisabled;
     }
 
     if (changes.isDisabled) {
@@ -205,7 +213,8 @@ export class BsDaterangepickerDirective
         value: this._bsValue,
         isDisabled: this.isDisabled,
         minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
-        maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate
+        maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
+        datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled
       }
     );
   }
