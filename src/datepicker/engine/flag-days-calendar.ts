@@ -8,13 +8,12 @@ import {
   isAfter,
   isBefore,
   isDisabledDay,
-  isDisabledDate,
   isSameDay,
   isSameMonth,
   shiftDate
 } from 'ngx-bootstrap/chronos';
 
-import { isMonthDisabled } from '../utils/bs-calendar-utils';
+import { isMonthDisabled, isDisabledDate } from '../utils/bs-calendar-utils';
 
 export interface FlagDaysCalendarOptions {
   isDisabled: boolean;

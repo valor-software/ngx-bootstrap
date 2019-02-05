@@ -41,15 +41,6 @@ export function isDisabledDay(date: Date, daysDisabled: number[]): boolean {
   return daysDisabled.some((day: number) => day === date.getDay());
 }
 
-export function isDisabledDate(date: Date, datesDisabled: Date[]): boolean {
-  
-  if (datesDisabled === undefined || !datesDisabled || !datesDisabled.length) {
-    return false;
-  }
-
-  return datesDisabled.some((dateDisabled: Date) => isSame(date, dateDisabled, 'date'));
-}
-
 export function isBetween(
   date: Date,
   from: Date,
