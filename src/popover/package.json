@@ -1,6 +1,6 @@
 {
   "name": "ngx-bootstrap/popover",
-  "version": "3.1.4",
+  "version": "3.2.0",
   "description": "Native Angular Bootstrap Components",
   "private": true,
   "ngPackage": {

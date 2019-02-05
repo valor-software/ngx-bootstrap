@@ -18,6 +18,19 @@ env:
     - LOGS_DIR=/tmp/logs
     - CY_KEY=4aa7a1c0-3a4f-444e-b324-6fc305a543a8
 
+#     test cypress smoke
+testSmokeCy: &testSmokeCy
+  script:
+    - ng serve --prod &
+    - $(npm bin)/wait-on http-get://localhost:4200/#
+    - npm run cy:run:smoke -- --record --key $CY_KEY --parallel --group $CI_THREAD_INDEX
+     # after all tests finish running we need
+     # to kill all background jobs (like "npm start &")
+    - kill $(jobs -p) || true
+
+testPostDeploy: &testPostDeploy
+  script: CYPRESS_baseUrl=$BASE_URL npm run cy:run:all -- --record --key $CY_KEY --parallel --group $CI_THREAD_INDEX --ci-build-id PostDeploy-$CI_THREAD_INDEX-$TRAVIS_BUILD_ID
+
 stages:
   - name: Testing
     if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v\d+
@@ -26,7 +39,7 @@ stages:
   - name: publish
     if: tag =~ ^v\d+
   - name: "post deploy testing"
-    if: branch = development AND type = push OR tag =~ ^v\d+
+    if:  branch = development AND type = push OR tag =~ ^v\d+
 
 before_install:
   - sh -e /etc/init.d/xvfb start
@@ -64,7 +77,6 @@ jobs:
       script: npm run lint-src
       name: "Lint"
       install: true
-
 #   test
     - script: npm run test-coverage
       name: "Test with current Angular version"
@@ -73,17 +85,18 @@ jobs:
       name: "Test with latest Angular version"
       env: NGV=latest
 #     env: NGV=next
-
-#     test cypress smoke
     - script:
-        - ng serve --prod &
-        - $(npm bin)/wait-on http-get://$URL
-        - npm run cy:run:smoke
-        # after all tests finish running we need
-        # to kill all background jobs (like "npm start &")
-        - kill $(jobs -p) || true
-      name: "Run cypress smoke testing"
-      env: URL=localhost:4200/#
+      name: "Cypress Smoke Tests 1t thread"
+      env: CI_THREAD_INDEX=3x-electron
+      <<: *testSmokeCy
+    - script:
+      name: "Cypress Smoke Tests 2d thread"
+      env: CI_THREAD_INDEX=3x-electron
+      <<: *testSmokeCy
+    - script:
+      name: "Cypress Smoke Tests 3d thread"
+      env: CI_THREAD_INDEX=3x-electron
+      <<: *testSmokeCy
 #    check prod build
     - script: npm run demo.ng-build
       name: "Check prod build with current Angular version"
@@ -155,24 +168,59 @@ jobs:
 
 #     test cypress full for herokuapp
     - stage: "post deploy testing"
-      name: "Run cypress to check SSR"
+#      name: "Run cypress to check SSR"
 #      env: URL=https://ngx-universal.herokuapp.com/#
-    - script: ./node_modules/.bin/cypress run --config integrationFolder=cypress/integration,baseUrl=https://ngx-universal.herokuapp.com/#/ --record --key $CY_KEY
-      name: "Cypress integration suit run on SSR "
-    - script: ./node_modules/.bin/cypress run --config integrationFolder=cypress/full,baseUrl=https://ngx-universal.herokuapp.com/#/ --record --key $CY_KEY
-      name: "Cypress full suit run on SSR "
+      script:
+      name: "Cypress suit run on SSR 1thread"
+      env:
+        - CI_THREAD_INDEX=3x-electron
+        - BASE_URL=https://ngx-universal.herokuapp.com/#/
+      <<: *testPostDeploy
+    - script:
+      name: "Cypress suit run on SSR 2thread"
+      env:
+        - CI_THREAD_INDEX=3x-electron
+        - BASE_URL=https://ngx-universal.herokuapp.com/#/
+      <<: *testPostDeploy
+    - script:
+      name: "Cypress suit run on SSR 3thread"
+      env:
+        - CI_THREAD_INDEX=3x-electron
+        - BASE_URL=https://ngx-universal.herokuapp.com/#/
+      <<: *testPostDeploy
 #     test cypress full for gh-pages
-    - script: ./node_modules/.bin/cypress run --config integrationFolder=cypress/integration,baseUrl=http://ngx-bootstrap-latest.surge.sh/#/ --record --key $CY_KEY
-      name: "Cypres integration run with @latest angular"
-    - script: ./node_modules/.bin/cypress run --config integrationFolder=cypress/full,baseUrl=http://ngx-bootstrap-latest.surge.sh/#/ --record --key $CY_KEY
-      name: "Cypres full run with @latest angular"
-#      env: URL=https://valor-software.com/ngx-bootstrap/#/
-    - script: ./node_modules/.bin/cypress run --config integrationFolder=cypress/integration,baseUrl=https://valor-software.com/ngx-bootstrap/#/ --record --key $CY_KEY
-      name: "Cypress integration on gh-pages after deploy"
+    - script:
+      name: "Cypress with @latest angular 1thread"
+      env:
+        - CI_THREAD_INDEX=3.1x-electron
+        - BASE_URL=http://ngx-bootstrap-latest.surge.sh/#/
+      <<: *testPostDeploy
+    - script:
+      name: "Cypress with @latest angular 2thread"
+      env:
+        - CI_THREAD_INDEX=3.1x-electron
+        - BASE_URL=http://ngx-bootstrap-latest.surge.sh/#/
+      <<: *testPostDeploy
+    - script:
+      name: "Cypress with @latest angular 3thread"
+      env:
+        - CI_THREAD_INDEX=3.1x-electron
+        - BASE_URL=http://ngx-bootstrap-latest.surge.sh/#/
+      <<: *testPostDeploy
+    - script:
+      name: "Cypress on gh-pages after deploy 1thread"
       if: tag =~ ^v\d+
-    - script: ./node_modules/.bin/cypress run --config integrationFolder=cypress/full,baseUrl=https://valor-software.com/ngx-bootstrap/#/ --record --key $CY_KEY
-      name: "Cypress full on gh-pages after deploy"
+      env:
+        - CI_THREAD_INDEX=3.2x-electron
+        - BASE_URL=https://valor-software.com/ngx-bootstrap/#/
+      <<: *testPostDeploy
+    - script:
+      name: "Cypress on gh-pages after deploy 2thread"
       if: tag =~ ^v\d+
+      env:
+        - CI_THREAD_INDEX=3.2x-electron
+        - BASE_URL=https://valor-software.com/ngx-bootstrap/#/
+      <<: *testPostDeploy
 
 cache:
   apt: true
