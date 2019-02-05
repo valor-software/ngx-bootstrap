@@ -1,7 +1,7 @@
 import { getClientRect, getOuterSizes, getStyleComputedProperty, setStyles } from '../utils';
 import { Offsets } from '../models';
 
-export function updateArrowPosition(
+export function arrow(
   target: HTMLElement,
   offsetsTarget: Offsets,
   hostOffset: Offsets,
@@ -11,11 +11,11 @@ export function updateArrowPosition(
 
   let targetOffsets = offsetsTarget;
   // if arrowElement is a string, suppose it's a CSS selector
-  const arrowElement: HTMLElement = target.querySelector(arrowElementClass);
+  const arrowElement: HTMLElement | null = target.querySelector(arrowElementClass);
 
   // if arrowElement is not found, don't run the modifier
   if (!arrowElement) {
-    return;
+    return offsetsTarget;
   }
 
   const isVertical = ['left', 'right'].indexOf(placement) !== -1;
@@ -61,6 +61,7 @@ export function updateArrowPosition(
 
   offsetsArrow.arrowElement = arrowElement;
 
-
   setStyles(arrowElement, offsetsArrow);
+
+  return offsetsTarget;
 }

@@ -9,7 +9,7 @@ import {
   getReferenceOffsets, setStyles
 } from './utils';
 
-import { updateArrowPosition, flip, preventOverflow, shift } from './modifiers';
+import { arrow, flip, preventOverflow, shift } from './modifiers';
 import { roundOffset } from './utils/roundOffset';
 import { Offsets } from './models';
 
@@ -30,21 +30,19 @@ export class Positioning {
   ): Offsets {
     const hostElPosition = this.offset(hostElement, targetElement, false);
     const placement = computeAutoPlacement(position, hostElPosition, targetElement, hostElement, 'viewport', 0);
-    const targetElPosition: Offsets = getTargetOffsets(targetElement, hostElPosition, placement);
-
-    updateArrowPosition(targetElement, targetElPosition, hostElPosition, '.arrow', placement);
 
     const chainOfModifiers = [
       getClientRect,
       (targetPosition: Offsets) => flip(targetElement, hostElement, targetPosition, hostElPosition, placement),
       (targetPosition: Offsets) => shift(targetPosition, hostElPosition, placement),
       (targetPosition: Offsets) => preventOverflow(targetElement, hostElement, targetPosition),
+      (targetPosition: Offsets) => arrow(targetElement, targetPosition, hostElPosition, '.arrow', placement),
       roundOffset
     ];
 
     return chainOfModifiers.reduce((targetPosition, modifier) => {
       return modifier(targetPosition);
-    }, targetElPosition);
+    }, getTargetOffsets(targetElement, hostElPosition, placement));
   }
 }
 
