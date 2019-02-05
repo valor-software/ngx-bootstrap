@@ -36,13 +36,15 @@ export class Positioning {
       (targetPosition: Offsets) => flip(targetElement, hostElement, targetPosition, hostElPosition, placement),
       (targetPosition: Offsets) => shift(targetPosition, hostElPosition, placement),
       (targetPosition: Offsets) => preventOverflow(targetElement, hostElement, targetPosition),
-      (targetPosition: Offsets) => arrow(targetElement, targetPosition, hostElPosition, '.arrow', placement),
+      (targetPosition: Offsets) => arrow(
+        targetElement, targetPosition, hostElPosition, '.arrow', targetPosition.placement
+      ),
       roundOffset
     ];
 
     return chainOfModifiers.reduce((targetPosition, modifier) => {
       return modifier(targetPosition);
-    }, getTargetOffsets(targetElement, hostElPosition, placement));
+    }, getTargetOffsets(targetElement, hostElPosition, position));
   }
 }
 

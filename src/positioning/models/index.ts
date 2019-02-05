@@ -7,4 +7,5 @@ export interface Offsets {
   width: number;
   marginTop?: number;
   marginLeft?: number;
+  placement?: string;
 }

@@ -1,8 +1,8 @@
 import {
-  getTargetOffsets,
+  computeAutoPlacement,
   getBoundaries,
-  getOppositePlacement,
-  getOppositeVariation
+  getOppositeVariation,
+  getTargetOffsets
 } from '../utils';
 
 import { Offsets } from '../models';
@@ -23,23 +23,22 @@ export function flip(
   );
 
   let placement = position.split(' ')[0];
-  let placementOpposite = getOppositePlacement(placement);
   let variation = position.split(' ')[1] || '';
 
-  let flipOrder: string[] = [];
-
-  flipOrder = [placement, placementOpposite];
+  const autoPosition = computeAutoPlacement('auto', hostOffsets, target, host, 'viewport', 0);
+  const flipOrder = [placement, autoPosition];
 
   let targetOffsets = offsetsTarget;
 
   /* tslint:disable-next-line: cyclomatic-complexity */
   flipOrder.forEach((step, index) => {
     if (placement !== step || flipOrder.length === index + 1) {
-      return placement;
+      targetOffsets.placement = placement;
+
+      return targetOffsets;
     }
 
     placement = position.split(' ')[0];
-    placementOpposite = getOppositePlacement(placement);
 
 
     // using floor because the host offsets may contain decimals we are not going to consider here
@@ -98,6 +97,8 @@ export function flip(
 
     target.className = target.className.replace(/left|right|top|bottom/g, `${placement}`);
   });
+
+  targetOffsets.placement = placement;
 
   return targetOffsets;
 }
