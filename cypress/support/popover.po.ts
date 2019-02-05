@@ -8,6 +8,7 @@ export class PopoverPo extends BaseComponent {
   togglerPopover = 'button';
   containerPopover = 'popover-container';
   body = 'body';
+  dynamicHtmlBtn = 'span.btn.btn-danger';
 
   exampleDemosArr = {
     basic: 'demo-popover-basic',
@@ -70,5 +71,13 @@ export class PopoverPo extends BaseComponent {
 
   isPopoverDismiss(baseSelector: string) {
     cy.get(`${baseSelector}`).should('not.to.have.descendants', this.containerPopover);
+  }
+
+  isPopoverHaveCssItem(baseSelector: string, item: string, cssProperty: string, expectedCssValue: string) {
+    cy.get(`${baseSelector} ${this.containerPopover} ${item}`).should('have.css', cssProperty, expectedCssValue);
+  }
+  
+  isPopoverHaveCss(baseSelector: string, cssProperty: string, expectedCssValue: string) {
+    cy.get(`${baseSelector} ${this.containerPopover}`).should('have.css', cssProperty, expectedCssValue);
   }
 }
