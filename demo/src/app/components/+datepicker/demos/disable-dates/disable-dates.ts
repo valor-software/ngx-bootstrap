@@ -6,10 +6,7 @@ import { Component } from '@angular/core';
 })
 export class DemoDatepickerDatesDisabledComponent {
   disabledDates = [
-    new Date('2019-02-04'),
-    new Date('2019-02-08'),
-    new Date('2019-02-17'),
-    new Date('2019-02-19'),
-    new Date('2019-02-23')
+    new Date('2019-02-05'),
+    new Date('2019-02-09')
   ];
 }
