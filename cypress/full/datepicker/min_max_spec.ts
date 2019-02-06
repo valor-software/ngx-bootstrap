@@ -35,8 +35,8 @@ describe('Datepicker demo test suite: Min-max', () => {
     maxDate.setDate(maxDate.getDate() + 8);
     const dateOutOfIntervalLeft = new Date(minDate.getTime());
     const dateOutOfIntervalRight = new Date(maxDate.getTime());
-    dateOutOfIntervalLeft.setDate((dateOutOfIntervalLeft.getDate() - 5));
-    dateOutOfIntervalRight.setDate((dateOutOfIntervalRight.getDate() + 5));
+    dateOutOfIntervalLeft.setDate((dateOutOfIntervalLeft.getDate() - 3));
+    dateOutOfIntervalRight.setDate((dateOutOfIntervalRight.getDate() + 3));
     datepicker.clickOnDatepickerInput(minMax);
     datepicker.isDatepickerOpened(true);
     if (minDate.getMonth() === dateOutOfIntervalLeft.getMonth()) {

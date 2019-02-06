@@ -356,7 +356,10 @@ export class DatepickerPo extends BaseComponent {
     if (itemText === undefined) {
       cy.get(`${baseSelector}>${this.datepickerContainer} ${bodyView} td`).eq(itemIndex).click();
     } else {
-      cy.get(`${baseSelector}>${this.datepickerContainer} ${bodyView} td span`)
+      cy.get(`${baseSelector}>${this.datepickerContainer} ${bodyView}`)
+        .find(`td`)
+        .not('.week')
+        .find('span')
         .not('[class*="is-other-month"]')
         .contains(itemText).click();
     }
