@@ -65,7 +65,7 @@ export class DatepickerPo extends BaseComponent {
       cy.get(`${baseSelector}>${picker === 'datepicker' ?
         this.datepickerContainer : this.daterangepickerContainer} .selected`)
         .should('be.visible')
-        .and('contain', expectedDay);
+        .and('contain', expectedDay ? expectedDay : '');
     }
   }
 
