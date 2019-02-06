@@ -91,6 +91,10 @@ export abstract class BaseComponent {
     cy.get(`${baseSelector} input`).eq(inputIndex).clear().type(dataToSend);
   }
 
+  clearInput(baseSelector: string, inputIndex = 0) {
+    cy.get(`${baseSelector} input`).eq(inputIndex).clear();
+  }
+
   clickEnterOnInput(baseSelector: string, inputIndex = 0) {
     cy.get(`${baseSelector} input`).eq(inputIndex).type('{enter}');
   }
@@ -124,6 +128,23 @@ export abstract class BaseComponent {
 
   clickOutside(baseSelector: string) {
     cy.get(baseSelector).eq(0).trigger('click', { clientX: 100, clientY: 100 });
+  }
+  
+  isPreviewHidden(baseSelector: string, previewNumber?: number) {
+    if (!previewNumber) {
+      cy.get(`${baseSelector} .card.card-block`).should('not.exist');
+    } else {
+      cy.get(`${baseSelector} .card.card-block`).eq(previewNumber).should('not.exist');
+    }
+  }
+
+  isTemplateSrcContain(demoName: string, expectedTxt: string) {
+    cy.get('examples h3')
+      .contains(demoName)
+      .parent()
+      .find('tab[heading*="template"]')
+      .invoke('text')
+      .should('to.contains', expectedTxt);
   }
 
   isCodePreviewExist(baseSelector: string, previewText: string, exist = true, previewNumber?: number) {
