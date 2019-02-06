@@ -122,6 +122,16 @@ export abstract class BaseComponent {
       .should(btnTxt => expect(btnTxt).to.contain(previewText));
   }
 
+  clickCheckbox(baseSelector: string, shouldBeChecked: boolean) {
+    if (shouldBeChecked) {
+      cy.get(`${baseSelector} input[type="checkbox"]`)
+        .check();
+    } else {
+      cy.get(`${baseSelector} input[type="checkbox"]`)
+        .uncheck();
+    }
+  }
+
   isPreviewHidden(baseSelector: string, previewNumber?: number) {
     if (!previewNumber) {
       cy.get(`${baseSelector} .card.card-block`).should('not.exist');
