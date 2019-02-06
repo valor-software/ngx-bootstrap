@@ -103,9 +103,13 @@ export abstract class BaseComponent {
       });
   }
 
-  isButtonExist(baseSelector: string, buttonName: string, buttonNumber?: number) {
+  isButtonExist(baseSelector: string, buttonName: string, buttonNumber?: number, exist = true) {
+    if (exist === true) {
     cy.get(`${baseSelector} button`).eq(buttonNumber ? buttonNumber : 0).invoke('text')
       .should(btnTxt => expect(btnTxt).to.equal(buttonName));
+  } else {
+      cy.get(`${baseSelector} button`).contains(buttonName).should('not.exist');
+    }
   }
 
   isSelectExist(baseSelector: string, selectText: string, selectNumber = 0) {
