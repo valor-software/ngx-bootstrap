@@ -10,7 +10,7 @@ Main success scenario:
 ----------------------
 1. User open Accordion demo page
 2. User click on Group opening event sub-menu
-3. User able to click on each item of 3
+3. User see 3 accordion items, initially not expanded
 4. After click on item without event listener, item is opened and in the browser console - nothing happens
 5. After click on item with event listener, item is opened and in the browser console - should be message "Accordion has been opened"
 

@@ -107,9 +107,13 @@ export abstract class BaseComponent {
       });
   }
 
-  isButtonExist(baseSelector: string, buttonName: string, buttonNumber?: number) {
+  isButtonExist(baseSelector: string, buttonName: string, buttonNumber?: number, exist = true) {
+    if (exist === true) {
     cy.get(`${baseSelector} button`).eq(buttonNumber ? buttonNumber : 0).invoke('text')
       .should(btnTxt => expect(btnTxt).to.equal(buttonName));
+  } else {
+      cy.get(`${baseSelector} button`).contains(buttonName).should('not.exist');
+    }
   }
 
   isSelectExist(baseSelector: string, selectText: string, selectNumber = 0) {
@@ -130,6 +134,16 @@ export abstract class BaseComponent {
     cy.get(baseSelector).eq(0).trigger('click', { clientX: 100, clientY: 100 });
   }
   
+  clickCheckbox(baseSelector: string, shouldBeChecked: boolean) {
+    if (shouldBeChecked) {
+      cy.get(`${baseSelector} input[type="checkbox"]`)
+        .check();
+    } else {
+      cy.get(`${baseSelector} input[type="checkbox"]`)
+        .uncheck();
+    }
+  }
+
   isPreviewHidden(baseSelector: string, previewNumber?: number) {
     if (!previewNumber) {
       cy.get(`${baseSelector} .card.card-block`).should('not.exist');
