@@ -1,8 +1,5 @@
 import { BaseComponent } from './base.component';
-import { glLocale, hiLocale, mnLocale } from 'ngx-bootstrap/chronos';
 import * as globalLocales from 'ngx-bootstrap/locale';
-import { AttrObj } from './interfaces';
-
 
 export class DatepickerPo extends BaseComponent {
   pageUrl = '/datepicker';
@@ -345,7 +342,7 @@ export class DatepickerPo extends BaseComponent {
     if (itemText === undefined) {
       cy.get(`${baseSelector}>${appropriateContainer} ${bodyView} td`).eq(itemIndex).click();
     } else {
-      cy.get(`${baseSelector}>${this.datepickerContainer} ${bodyView}`)
+      cy.get(`${baseSelector}>${appropriateContainer} ${bodyView}`)
         .find(`td`)
         .not('.week')
         .find('span')
@@ -434,15 +431,15 @@ export class DatepickerPo extends BaseComponent {
     let actualMonthArr: any;
     switch (expectedLocale) {
       case 'hi' :
-        actualMonthArr = hiLocale.months;
+        actualMonthArr = globalLocales.hiLocale.months;
         break;
 
       case 'gl' :
-        actualMonthArr = glLocale.months;
+        actualMonthArr = globalLocales.glLocale.months;
         break;
 
       case 'mn' :
-        actualMonthArr = mnLocale.months;
+        actualMonthArr = globalLocales.mnLocale.months;
         break;
 
       default:
@@ -478,8 +475,10 @@ export class DatepickerPo extends BaseComponent {
     const minOrigin = new Date(minDate.getTime());
     const min = minDate;
     for (min; min <= maxDate && min.getMonth() === minOrigin.getMonth(); min.setDate(min.getDate() + 1)) {
-      cy.get(`body>${this.datepickerContainer} ${this.datepickerBodyDaysView} tbody span`)
-        .not('[class*="is-other-month"]')
+      cy.get(`body>${this.datepickerContainer} ${this.datepickerBodyDaysView} tbody td`)
+        .not('.week')
+        .find('span')
+        .not('.is-other-month')
         .contains(min.getDate())
         .should(disabled ? 'have.class' : 'not.to.have.class', 'disabled');
     }
