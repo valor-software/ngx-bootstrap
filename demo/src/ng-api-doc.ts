@@ -677,6 +677,11 @@ export const ngdoc: any = {
         "description": "<p>Initial value of datepicker</p>\n"
       },
       {
+        "name": "datesDisabled",
+        "type": "Date[]",
+        "description": "<p>Disable specific dates</p>\n"
+      },
+      {
         "name": "isDisabled",
         "type": "boolean",
         "description": "<p>Indicates whether datepicker is enabled or not</p>\n"
@@ -747,6 +752,11 @@ export const ngdoc: any = {
         "defaultValue": "body",
         "type": "string",
         "description": "<p>A selector specifying the element the datepicker should be appended to.\nCurrently only supports &quot;body&quot;.</p>\n"
+      },
+      {
+        "name": "datesDisabled",
+        "type": "Date[]",
+        "description": "<p>Disable specific dates</p>\n"
       },
       {
         "name": "daysDisabled",
@@ -863,6 +873,11 @@ export const ngdoc: any = {
         "description": "<p>Add class to current day</p>\n"
       },
       {
+        "name": "datesDisabled",
+        "type": "Date[]",
+        "description": "<p>Disable specific dates</p>\n"
+      },
+      {
         "name": "maxDate",
         "type": "Date",
         "description": "<p>Default max date for all date/range pickers</p>\n"
@@ -875,7 +890,7 @@ export const ngdoc: any = {
       {
         "name": "minMode",
         "type": "BsDatepickerViewMode",
-        "description": "<p>Defaut mode for all date pickers</p>\n"
+        "description": "<p>Default mode for all date pickers</p>\n"
       },
       {
         "name": "rangeInputFormat",
@@ -885,6 +900,11 @@ export const ngdoc: any = {
       },
       {
         "name": "selectFromOtherMonth",
+        "type": "boolean",
+        "description": "<p>Makes dates from other months active</p>\n"
+      },
+      {
+        "name": "selectWeek",
         "type": "boolean",
         "description": "<p>Makes dates from other months active</p>\n"
       },
@@ -928,6 +948,11 @@ export const ngdoc: any = {
         "defaultValue": "body",
         "type": "string",
         "description": "<p>A selector specifying the element the daterangepicker should be appended\nto. Currently only supports &quot;body&quot;.</p>\n"
+      },
+      {
+        "name": "datesDisabled",
+        "type": "Date[]",
+        "description": "<p>Disable specific dates</p>\n"
       },
       {
         "name": "isDisabled",
@@ -1667,6 +1692,10 @@ export const ngdoc: any = {
         "description": ""
       },
       {
+        "name": "onHoverWeek",
+        "description": ""
+      },
+      {
         "name": "onNavigate",
         "description": ""
       },
@@ -1940,7 +1969,7 @@ export const ngdoc: any = {
     "properties": [
       {
         "name": "dropdownMenu",
-        "type": "Promise<any>",
+        "type": "Promise<BsComponentRef<any>>",
         "description": "<p>Content to be displayed as popover.</p>\n"
       }
     ]
@@ -2954,11 +2983,6 @@ export const ngdoc: any = {
         "description": "<p>if true hours and minutes fields will be disabled </p>\n"
       },
       {
-        "name": "disabled",
-        "type": "boolean",
-        "description": "<p>if true hours and minutes fields will be disabled </p>\n"
-      },
-      {
         "name": "hourStep",
         "type": "number",
         "description": "<p>hours change step </p>\n"
@@ -3039,12 +3063,6 @@ export const ngdoc: any = {
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if true the values of hours and minutes can be changed using the up/down arrow keys on the keyboard </p>\n"
-      },
-      {
-        "name": "disabled",
-        "defaultValue": "false",
-        "type": "boolean",
-        "description": "<p>if true hours and minutes fields will be disabled </p>\n"
       },
       {
         "name": "disabled",
