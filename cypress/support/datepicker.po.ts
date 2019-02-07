@@ -538,42 +538,6 @@ export class DatepickerPo extends BaseComponent {
         .should(disabled ? 'have.class' : 'not.to.have.class', 'disabled');
     }
   }
-
-  private getBodyParams(mode: string) {
-    let bodyView: string;
-    let expectedLength: number;
-    switch (mode) {
-      case 'date':
-        bodyView = this.datepickerBodyDaysView;
-        expectedLength = 48;
-        break;
-      case 'month':
-        bodyView = this.datepickerBodyMonthView;
-        expectedLength = 12;
-        break;
-      case 'year':
-        bodyView = this.datepickerBodyYearsView;
-        expectedLength = 16;
-        break;
-      default:
-        throw new Error('Unknown view mode');
-    }
-
-    return { bodyView, expectedLength };
-  }
-
-  private getAppropriateContainer(picker: string) {
-    let appropriateContainer: string;
-    switch (picker) {
-      case 'datepicker':
-        return appropriateContainer = this.datepickerContainer;
-      case 'daterangepicker':
-        return appropriateContainer = this.daterangepickerContainer;
-      case 'datepickerInline':
-        return appropriateContainer = this.datepickerInlineContainer;
-      default:
-        return appropriateContainer = this.datepickerContainer;
-  }
         
   isTodayHaveClass(className: string) {
     cy.get(`body>${this.datepickerContainer} tbody td`)
@@ -646,6 +610,43 @@ export class DatepickerPo extends BaseComponent {
         break;
       default:
         index = undefined;
+    }
+  }
+
+  private getBodyParams(mode: string) {
+    let bodyView: string;
+    let expectedLength: number;
+    switch (mode) {
+      case 'date':
+        bodyView = this.datepickerBodyDaysView;
+        expectedLength = 48;
+        break;
+      case 'month':
+        bodyView = this.datepickerBodyMonthView;
+        expectedLength = 12;
+        break;
+      case 'year':
+        bodyView = this.datepickerBodyYearsView;
+        expectedLength = 16;
+        break;
+      default:
+        throw new Error('Unknown view mode');
+    }
+
+    return { bodyView, expectedLength };
+  }
+
+  private getAppropriateContainer(picker: string) {
+    let appropriateContainer: string;
+    switch (picker) {
+      case 'datepicker':
+        return appropriateContainer = this.datepickerContainer;
+      case 'daterangepicker':
+        return appropriateContainer = this.daterangepickerContainer;
+      case 'datepickerInline':
+        return appropriateContainer = this.datepickerInlineContainer;
+      default:
+        return appropriateContainer = this.datepickerContainer;
     }
   }
 }
