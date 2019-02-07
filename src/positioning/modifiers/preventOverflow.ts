@@ -1,25 +1,21 @@
 import { getBoundaries } from '../utils';
-import { Offsets } from '../models';
+import { Data } from '../models';
 
-export function preventOverflow(
-  target: HTMLElement,
-  host: HTMLElement,
-  offsetsTarget: Offsets
-) {
+export function preventOverflow(data: Data) {
 
   // NOTE: DOM access here
   // resets the targetOffsets's position so that the document size can be calculated excluding
   // the size of the targetOffsets element itself
   const transformProp = 'transform';
-  const targetStyles = target.style; // assignment to help minification
+  const targetStyles = data.instance.target.style; // assignment to help minification
   const { top, left, [transformProp]: transform } = targetStyles;
   targetStyles.top = '';
   targetStyles.left = '';
   targetStyles[transformProp] = '';
 
   const boundaries = getBoundaries(
-    target,
-    host,
+    data.instance.target,
+    data.instance.host,
     0, // padding
     'scrollParent',
     false // positionFixed
@@ -32,31 +28,30 @@ export function preventOverflow(
   targetStyles[transformProp] = transform;
 
   const order = ['left', 'right', 'top', 'bottom'];
-  let targetOffsets = offsetsTarget;
 
   const check = {
     primary(placement: string) {
-      let value = targetOffsets[placement];
+      let value = data.offsets.target[placement];
       if (
-        targetOffsets[placement] < boundaries[placement] &&
+        data.offsets.target[placement] < boundaries[placement] &&
         !false // options.escapeWithReference
       ) {
-        value = Math.max(targetOffsets[placement], boundaries[placement]);
+        value = Math.max(data.offsets.target[placement], boundaries[placement]);
       }
 
       return { [placement]: value };
     },
     secondary(placement: string) {
       const mainSide = placement === 'right' ? 'left' : 'top';
-      let value = targetOffsets[mainSide];
+      let value = data.offsets.target[mainSide];
       if (
-        targetOffsets[placement] > boundaries[placement] &&
+        data.offsets.target[placement] > boundaries[placement] &&
         !false // escapeWithReference
       ) {
         value = Math.min(
-          targetOffsets[mainSide],
+          data.offsets.target[mainSide],
           boundaries[placement] -
-          (placement === 'right' ? targetOffsets.width : targetOffsets.height)
+          (placement === 'right' ? data.offsets.target.width : data.offsets.target.height)
         );
       }
 
@@ -72,9 +67,9 @@ export function preventOverflow(
       ? 'primary'
       : 'secondary';
 
-    targetOffsets = { ...targetOffsets, ...check[side](placement) };
+    data.offsets.target = { ...data.offsets.target, ...check[side](placement) };
 
   });
 
-  return targetOffsets;
+  return data;
 }

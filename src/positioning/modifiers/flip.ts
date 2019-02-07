@@ -1,61 +1,54 @@
 import {
   computeAutoPlacement,
-  getBoundaries,
+  getBoundaries, getClientRect,
   getOppositeVariation,
   getTargetOffsets
 } from '../utils';
 
-import { Offsets } from '../models';
+import { Data } from '../models';
 
-export function flip(
-  target: HTMLElement,
-  host: HTMLElement,
-  offsetsTarget: Offsets,
-  hostOffsets: Offsets,
-  position: string
-): Offsets {
+export function flip(data: Data): Data {
+  data.offsets.target = getClientRect(data.offsets.target);
+
   const boundaries = getBoundaries(
-    target,
-    host,
+    data.instance.target,
+    data.instance.host,
     0, // padding
     'viewport',
     false // positionFixed
   );
 
-  let placement = position.split(' ')[0];
-  let variation = position.split(' ')[1] || '';
+  let placement = data.placement.split(' ')[0];
+  let variation = data.placement.split(' ')[1] || '';
 
-  const autoPosition = computeAutoPlacement('auto', hostOffsets, target, host, 'viewport', 0);
+  const autoPosition = computeAutoPlacement(
+    'auto', data.offsets.host, data.instance.target, data.instance.host, 'viewport', 0
+  );
   const flipOrder = [placement, autoPosition];
-
-  let targetOffsets = offsetsTarget;
 
   /* tslint:disable-next-line: cyclomatic-complexity */
   flipOrder.forEach((step, index) => {
     if (placement !== step || flipOrder.length === index + 1) {
-      targetOffsets.placement = placement;
-
-      return targetOffsets;
+      return data;
     }
 
-    placement = position.split(' ')[0];
-
+    placement = data.placement.split(' ')[0];
 
     // using floor because the host offsets may contain decimals we are not going to consider here
     const overlapsRef =
       (placement === 'left' &&
-        Math.floor(targetOffsets.right) > Math.floor(hostOffsets.left)) ||
+        Math.floor(data.offsets.target.right) > Math.floor(data.offsets.host.left)) ||
       (placement === 'right' &&
-        Math.floor(targetOffsets.left) < Math.floor(hostOffsets.right)) ||
+        Math.floor(data.offsets.target.left) < Math.floor(data.offsets.host.right)) ||
       (placement === 'top' &&
-        Math.floor(targetOffsets.bottom) > Math.floor(hostOffsets.top)) ||
+        Math.floor(data.offsets.target.bottom) > Math.floor(data.offsets.host.top)) ||
       (placement === 'bottom' &&
-        Math.floor(targetOffsets.top) < Math.floor(hostOffsets.bottom));
+        Math.floor(data.offsets.target.top) < Math.floor(data.offsets.host.bottom));
 
-    const overflowsLeft = Math.floor(targetOffsets.left) < Math.floor(boundaries.left);
-    const overflowsRight = Math.floor(targetOffsets.right) > Math.floor(boundaries.right);
-    const overflowsTop = Math.floor(targetOffsets.top) < Math.floor(boundaries.top);
-    const overflowsBottom = Math.floor(targetOffsets.bottom) > Math.floor(boundaries.bottom);
+    const overflowsLeft = Math.floor(data.offsets.target.left) < Math.floor(boundaries.left);
+    const overflowsRight = Math.floor(data.offsets.target.right) > Math.floor(boundaries.right);
+    const overflowsTop = Math.floor(data.offsets.target.top) < Math.floor(boundaries.top);
+    const overflowsBottom = Math.floor(data.offsets.target.bottom) > Math.floor(boundaries.bottom);
 
     const overflowsBoundaries =
       (placement === 'left' && overflowsLeft) ||
@@ -73,8 +66,6 @@ export function flip(
 
     if (overlapsRef || overflowsBoundaries || flippedVariation) {
       // this boolean to detect any flip loop
-      // data.flipped = true;
-
       if (overlapsRef || overflowsBoundaries) {
         placement = flipOrder[index + 1];
       }
@@ -83,22 +74,18 @@ export function flip(
         variation = getOppositeVariation(variation);
       }
 
-      placement = placement + (variation ? ` ${variation}` : '');
+      data.placement = placement + (variation ? ` ${variation}` : '');
 
-      targetOffsets = {
-        ...targetOffsets,
+      data.offsets.target = {
+        ...data.offsets.target,
         ...getTargetOffsets(
-          target,
-          hostOffsets,
-          placement
+          data.instance.target,
+          data.offsets.host,
+          data.placement
         )
       };
     }
-
-    target.className = target.className.replace(/left|right|top|bottom/g, `${placement}`);
   });
 
-  targetOffsets.placement = placement;
-
-  return targetOffsets;
+  return data;
 }

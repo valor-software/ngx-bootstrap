@@ -27,8 +27,6 @@ export function computeAutoPlacement(
     || placement.indexOf('top') !== -1
     || placement.indexOf('bottom') !== -1)) {
 
-    target.classList.add('auto');
-
     return placement.split(' ')[1] || '';
   }
 
@@ -72,17 +70,7 @@ export function computeAutoPlacement(
 
   const variation = placement.split(' ')[1];
 
-  target.className = target.className.replace(/auto/g, `${computedPlacement}`);
-
-  // TODO: temporary solution, needs for unit tests
-  if (target.className.match(/popover/g)) {
-    target.classList.add('popover-auto');
-  }
-
-  if (target.className.match(/tooltip/g)) {
-    target.classList.add('tooltip-auto');
-  }
-
+  target.className = target.className.replace(/auto/g, computedPlacement);
 
   return computedPlacement + (variation ? `-${variation}` : '');
 }

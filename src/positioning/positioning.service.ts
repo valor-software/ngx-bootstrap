@@ -1,4 +1,4 @@
-import { Injectable, ElementRef } from '@angular/core';
+import { Injectable, ElementRef, RendererFactory2 } from '@angular/core';
 
 import { positionElements } from './ng-positioning';
 import { fromEvent, merge, of, animationFrameScheduler, Subject } from 'rxjs';
@@ -51,7 +51,7 @@ export class PositioningService {
 
   private positionElements = new Map();
 
-  constructor() {
+  constructor(rendererFactory: RendererFactory2) {
     this.events$
       .subscribe(() => {
         this.positionElements
@@ -60,7 +60,8 @@ export class PositioningService {
               _getHtmlElement(positionElement.target),
               _getHtmlElement(positionElement.element),
               positionElement.attachment,
-              positionElement.appendToBody
+              positionElement.appendToBody,
+              rendererFactory.createRenderer(null, null)
             );
           });
       });

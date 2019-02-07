@@ -7,5 +7,20 @@ export interface Offsets {
   width: number;
   marginTop?: number;
   marginLeft?: number;
-  placement?: string;
+}
+
+export interface Data {
+  instance: {
+    target: HTMLElement;
+    host: HTMLElement;
+    arrow: HTMLElement;
+  };
+  offsets: {
+    target: Offsets;
+    host: Offsets;
+    arrow: { [key: string]: string | number | HTMLElement };
+  };
+  positionFixed: boolean;
+  placement: string;
+  placementAuto: boolean;
 }

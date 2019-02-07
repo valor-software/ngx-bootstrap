@@ -1,24 +1,17 @@
-import { getClientRect, getOuterSizes, getStyleComputedProperty, setStyles } from '../utils';
-import { Offsets } from '../models';
+import { getClientRect, getOuterSizes, getStyleComputedProperty } from '../utils';
+import { Data } from '../models';
 
-export function arrow(
-  target: HTMLElement,
-  offsetsTarget: Offsets,
-  hostOffset: Offsets,
-  arrowElementClass: string,
-  placement: string
-) {
-
-  let targetOffsets = offsetsTarget;
+export function arrow(data: Data) {
+  let targetOffsets = data.offsets.target;
   // if arrowElement is a string, suppose it's a CSS selector
-  const arrowElement: HTMLElement | null = target.querySelector(arrowElementClass);
+  const arrowElement: HTMLElement | null = data.instance.target.querySelector('.arrow');
 
   // if arrowElement is not found, don't run the modifier
   if (!arrowElement) {
-    return offsetsTarget;
+    return data;
   }
 
-  const isVertical = ['left', 'right'].indexOf(placement) !== -1;
+  const isVertical = ['left', 'right'].indexOf(data.placement) !== -1;
 
   const len = isVertical ? 'height' : 'width';
   const sideCapitalized = isVertical ? 'Top' : 'Left';
@@ -28,23 +21,23 @@ export function arrow(
   const arrowElementSize = getOuterSizes(arrowElement)[len];
 
   // top/left side
-  if (hostOffset[opSide] - arrowElementSize < targetOffsets[side]) {
+  if (data.offsets.host[opSide] - arrowElementSize < targetOffsets[side]) {
     targetOffsets[side] -=
-      targetOffsets[side] - (hostOffset[opSide] - arrowElementSize);
+      targetOffsets[side] - (data.offsets.host[opSide] - arrowElementSize);
   }
   // bottom/right side
-  if (Number(hostOffset[side]) + Number(arrowElementSize) > targetOffsets[opSide]) {
+  if (Number(data.offsets.host[side]) + Number(arrowElementSize) > targetOffsets[opSide]) {
     targetOffsets[side] +=
-      Number(hostOffset[side]) + Number(arrowElementSize) - Number(targetOffsets[opSide]);
+      Number(data.offsets.host[side]) + Number(arrowElementSize) - Number(targetOffsets[opSide]);
   }
   targetOffsets = getClientRect(targetOffsets);
 
   // compute center of the target
-  const center = Number(hostOffset[side]) + Number(hostOffset[len] / 2 - arrowElementSize / 2);
+  const center = Number(data.offsets.host[side]) + Number(data.offsets.host[len] / 2 - arrowElementSize / 2);
 
   // Compute the sideValue using the updated target offsets
   // take target margin in account because we don't have this info available
-  const css = getStyleComputedProperty(target);
+  const css = getStyleComputedProperty(data.instance.target);
 
   const targetMarginSide = parseFloat(css[`margin${sideCapitalized}`]);
   const targetBorderSide = parseFloat(css[`border${sideCapitalized}Width`]);
@@ -54,14 +47,12 @@ export function arrow(
   // prevent arrowElement from being placed not contiguously to its target
   sideValue = Math.max(Math.min(targetOffsets[len] - arrowElementSize, sideValue), 0);
 
-  const offsetsArrow: { [key: string]: string | number | HTMLElement } = {
+  data.offsets.arrow = {
     [side]: Math.round(sideValue),
     [altSide]: '' // make sure to unset any eventual altSide value from the DOM node
   };
 
-  offsetsArrow.arrowElement = arrowElement;
+  data.instance.arrow = arrowElement;
 
-  setStyles(arrowElement, offsetsArrow);
-
-  return offsetsTarget;
+  return data;
 }

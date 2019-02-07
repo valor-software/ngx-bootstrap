@@ -2,16 +2,13 @@
  * @copyright Valor Software
  * @copyright Federico Zivolo and contributors
  */
-import {
-  computeAutoPlacement,
-  getClientRect,
-  getTargetOffsets,
-  getReferenceOffsets, setStyles
-} from './utils';
+import { Renderer2 } from '@angular/core';
 
-import { arrow, flip, preventOverflow, shift } from './modifiers';
-import { roundOffset } from './utils/roundOffset';
-import { Offsets } from './models';
+import { getReferenceOffsets, setAllStyles } from './utils';
+
+import { arrow, flip, preventOverflow, shift, initData } from './modifiers';
+import { Data, Offsets } from './models';
+
 
 export class Positioning {
   position(hostElement: HTMLElement, targetElement: HTMLElement, round = true): Offsets {
@@ -23,28 +20,17 @@ export class Positioning {
   }
 
   positionElements(
-    hostElement: HTMLElement,   // button or reference
-    targetElement: HTMLElement, // tooltip or popper
+    hostElement: HTMLElement,
+    targetElement: HTMLElement,
     position: string,
     appendToBody?: boolean
-  ): Offsets {
-    const hostElPosition = this.offset(hostElement, targetElement, false);
-    const placement = computeAutoPlacement(position, hostElPosition, targetElement, hostElement, 'viewport', 0);
+  ): Data {
+    const chainOfModifiers = [flip, shift, preventOverflow, arrow];
 
-    const chainOfModifiers = [
-      getClientRect,
-      (targetPosition: Offsets) => flip(targetElement, hostElement, targetPosition, hostElPosition, placement),
-      (targetPosition: Offsets) => shift(targetPosition, hostElPosition, placement),
-      (targetPosition: Offsets) => preventOverflow(targetElement, hostElement, targetPosition),
-      (targetPosition: Offsets) => arrow(
-        targetElement, targetPosition, hostElPosition, '.arrow', targetPosition.placement
-      ),
-      roundOffset
-    ];
-
-    return chainOfModifiers.reduce((targetPosition, modifier) => {
-      return modifier(targetPosition);
-    }, getTargetOffsets(targetElement, hostElPosition, position));
+    return chainOfModifiers.reduce(
+      (modifiedData, modifier) => modifier(modifiedData),
+      initData(targetElement, hostElement, position)
+    );
   }
 }
 
@@ -54,20 +40,16 @@ export function positionElements(
   hostElement: HTMLElement,
   targetElement: HTMLElement,
   placement: string,
-  appendToBody?: boolean
+  appendToBody?: boolean,
+  renderer?: Renderer2
 ): void {
 
-  const pos = positionService.positionElements(
+  const data = positionService.positionElements(
     hostElement,
     targetElement,
     placement,
     appendToBody
   );
 
-  setStyles(targetElement, {
-    'will-change': 'transform',
-    top: '0px',
-    left: '0px',
-    transform: `translate3d(${pos.left}px, ${pos.top}px, 0px)`
-  });
+  setAllStyles(data, renderer);
 }
