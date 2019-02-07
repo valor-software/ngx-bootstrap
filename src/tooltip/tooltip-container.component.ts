@@ -22,6 +22,7 @@ import { isBs3 } from 'ngx-bootstrap/utils';
     `
     :host.tooltip {
       display: block;
+      pointer-events: none;
     }
     :host.bs3.tooltip.top>.arrow {
       margin-left: -2px;
