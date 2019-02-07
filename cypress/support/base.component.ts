@@ -63,6 +63,10 @@ export abstract class BaseComponent {
     cy.get(`${baseSelector} button`).eq(buttonIndex ? buttonIndex : 0).trigger('mouseleave');
   }
 
+  mouseMove(baseSelector: string, elementIndex?: number) {
+    cy.get(baseSelector).eq(elementIndex ? elementIndex : 0).trigger('mouseenter');
+  }
+
   isInputHaveAttrs(baseSelector: string, attributes: AttrObj[], inputIndex = 0) {
     cy.get(`${baseSelector} input`).eq(inputIndex)
       .then(input => {
@@ -126,6 +130,10 @@ export abstract class BaseComponent {
       .should(btnTxt => expect(btnTxt).to.contain(previewText));
   }
 
+  clickOutside(baseSelector: string) {
+    cy.get(baseSelector).eq(0).trigger('click', { clientX: 100, clientY: 100 });
+  }
+  
   clickCheckbox(baseSelector: string, shouldBeChecked: boolean) {
     if (shouldBeChecked) {
       cy.get(`${baseSelector} input[type="checkbox"]`)
