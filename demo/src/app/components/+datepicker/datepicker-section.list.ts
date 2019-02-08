@@ -10,6 +10,7 @@ import { DemoDatePickerConfigObjectComponent } from './demos/config-object/confi
 import { DemoDatePickerCustomFormatComponent } from './demos/custom-format/custom-format';
 import { DemoDatepickerDateInitialStateComponent } from './demos/date-initial-state/date-initial-state';
 import { DemoDatepickerDaysDisabledComponent } from './demos/disable-days/disable-days';
+import { DemoDatepickerDatesDisabledComponent } from './demos/disable-dates/disable-dates';
 import { DemoDatepickerInlineComponent } from './demos/inline-datepicker/inline-datepicker.component';
 import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
@@ -172,6 +173,16 @@ export const demoComponentContent: ContentSection[] = [
           <p>In the following example <code>daysDisabled</code> is set with an array which disabled saturday and sunday.
           Sunday is considered the first day of the week and thus has the value 0</p>`,
         outlet: DemoDatepickerDaysDisabledComponent
+      },
+      {
+        title: 'Dates disabled',
+        anchor: 'dates-disabled',
+        component: require('!!raw-loader?lang=typescript!./demos/disable-dates/disable-dates.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/disable-dates/disable-dates.html'),
+        description: `
+          <p>You can set which dates should be disabled with <code>datesDisabled</code></p>
+          <p>In the following example <code>datesDisabled</code> is set with an array to disable 2019-02-05 and 2019-02-09.</p>`,
+        outlet: DemoDatepickerDatesDisabledComponent
       },
       {
         title: 'Min-mode',
