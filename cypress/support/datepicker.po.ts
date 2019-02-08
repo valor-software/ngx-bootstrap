@@ -509,8 +509,10 @@ export class DatepickerPo extends BaseComponent {
     const minOrigin = new Date(minDate.getTime());
     const min = minDate;
     for (min; min <= maxDate && min.getMonth() === minOrigin.getMonth(); min.setDate(min.getDate() + 1)) {
-      cy.get(`body>${this.daterangepickerContainer} ${this.datepickerBodyDaysView}`).eq(0).find(`tbody span`)
-        .not('[class*="is-other-month"]')
+      cy.get(`body>${this.daterangepickerContainer} ${this.datepickerBodyDaysView}`).eq(0).find(`tbody td`)
+        .not('.week')
+        .find('span')
+        .not('.is-other-month')
         .contains(min.getDate())
         .should(disabled ? 'have.class' : 'not.to.have.class', 'disabled');
     }
@@ -520,8 +522,10 @@ export class DatepickerPo extends BaseComponent {
     const maxOrigin = new Date(maxDate.getTime());
     const max = maxDate;
     for (max; minDate <= max && maxOrigin.getMonth() === max.getMonth(); max.setDate(max.getDate() - 1)) {
-      cy.get(`body>${this.datepickerContainer} ${this.datepickerBodyDaysView} tbody span`)
-        .not('[class*="is-other-month"]')
+      cy.get(`body>${this.datepickerContainer} ${this.datepickerBodyDaysView} tbody td`)
+        .not('.week')
+        .find('span')
+        .not('.is-other-month')
         .contains(max.getDate())
         .should(disabled ? 'have.class' : 'not.to.have.class', 'disabled');
     }
@@ -531,8 +535,10 @@ export class DatepickerPo extends BaseComponent {
     const maxOrigin = new Date(maxDate.getTime());
     const max = maxDate;
     for (max; minDate <= max && maxOrigin.getMonth() === max.getMonth(); max.setDate(max.getDate() - 1)) {
-      cy.get(`body>${this.daterangepickerContainer} ${this.datepickerBodyDaysView}`).eq(1).find(`tbody span`)
-        .not('[class*="is-other-month"]')
+      cy.get(`body>${this.daterangepickerContainer} ${this.datepickerBodyDaysView}`).eq(1).find(`tbody td`)
+        .not('.week')
+        .find('span')
+        .not('.is-other-month')
         .contains(max.getDate())
         .should(disabled ? 'have.class' : 'not.to.have.class', 'disabled');
     }
