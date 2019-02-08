@@ -135,6 +135,7 @@ describe('Component: Tabs', () => {
 
   it('should mark the requested tab as active', () => {
     context.tabs[0].active = true;
+    context.tabset.selectTab(context.tabset.tabs[0]);
     fixture.detectChanges();
     expectActiveTabs(element, [false, true, false, false]);
   });

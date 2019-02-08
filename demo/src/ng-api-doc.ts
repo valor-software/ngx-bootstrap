@@ -2925,6 +2925,11 @@ export const ngdoc: any = {
         "name": "vertical",
         "type": "boolean",
         "description": "<p>if true tabs will be placed vertically </p>\n"
+      },
+      {
+        "name": "dynamic",
+        "type": "boolean",
+        "description": "<p>if true, tab content will be insert into DOM only if tab is selected</p>\n"
       }
     ],
     "outputs": [],

@@ -23,6 +23,7 @@ export class TabDirective implements OnInit, OnDestroy {
   @Input() disabled: boolean;
   /** if true tab can be removable, additional button will appear */
   @Input() removable: boolean;
+
   /** if set, will be added to the tab's class attribute. Multiple classes are supported. */
   @Input()
   get customClass(): string {
