@@ -54,7 +54,8 @@ export class TypeaheadContainerComponent {
   @ViewChildren('liElements')
   private liElements: QueryList<ElementRef>;
 
-  constructor(element: ElementRef, private renderer: Renderer2) {
+  constructor(element: ElementRef,
+              private renderer: Renderer2) {
     this.element = element;
   }
 
@@ -100,8 +101,14 @@ export class TypeaheadContainerComponent {
     return this.parent ? this.parent.typeaheadItemTemplate : undefined;
   }
 
-  selectActiveMatch(): void {
-    this.selectMatch(this._active);
+  selectActiveMatch(isActiveItemChanged?: boolean): void {
+    if (this._active && this.parent.typeaheadSelectFirstItem) {
+      this.selectMatch(this._active);
+    }
+
+    if (!this.parent.typeaheadSelectFirstItem && isActiveItemChanged) {
+      this.selectMatch(this._active);
+    }
   }
 
   prevActiveMatch(): void {

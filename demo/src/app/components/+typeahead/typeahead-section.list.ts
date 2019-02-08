@@ -17,6 +17,7 @@ import { DemoTypeaheadReactiveFormComponent } from './demos/reactive-form/reacti
 import { DemoTypeaheadScrollableComponent } from './demos/scrollable/scrollable';
 import { DemoTypeaheadShowOnBlurComponent } from './demos/show-on-blur/show-on-blur';
 import { DemoTypeaheadSingleWorldComponent } from './demos/single-world/single-world';
+import { DemotypeaheadSelectFirstItemComponent } from './demos/selected-first-item/selected-first-item';
 
 import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section';
 import { ContentSection } from '../../docs/models/content-section.model';
@@ -215,6 +216,16 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/config/config'),
         html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
         outlet: DemoTypeaheadConfigComponent
+      }, {
+        title: 'Selected first item',
+        anchor: 'selected-first-item',
+        description: `
+          <p>Use <code>typeaheadSelectFirstItem</code> property to make first item in 
+          option list is chosen by default.</p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/selected-first-item/selected-first-item.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/selected-first-item/selected-first-item.html'),
+        outlet: DemotypeaheadSelectFirstItemComponent
       }
     ]
   },
