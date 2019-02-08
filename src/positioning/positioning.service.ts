@@ -1,5 +1,8 @@
-import { Injectable, ElementRef } from '@angular/core';
+import { Injectable, ElementRef, RendererFactory2 } from '@angular/core';
+
 import { positionElements } from './ng-positioning';
+import { fromEvent, merge, of, animationFrameScheduler, Subject } from 'rxjs';
+
 
 export interface PositioningOptions {
   /** The DOM element, ElementRef, or a selector string of an element which will be moved */
@@ -34,18 +37,48 @@ export interface PositioningOptions {
   appendToBody?: boolean;
 }
 
+
 @Injectable()
 export class PositioningService {
-  position(options: PositioningOptions): void {
-    const {element, target, attachment, appendToBody} = options;
-    positionElements(
-      _getHtmlElement(target),
-      _getHtmlElement(element),
-      attachment,
-      appendToBody
-    );
+  private update$$ = new Subject<null>();
+
+  private events$: any = merge(
+    fromEvent(window, 'scroll'),
+    fromEvent(window, 'resize'),
+    of(0, animationFrameScheduler),
+    this.update$$
+  );
+
+  private positionElements = new Map();
+
+  constructor(rendererFactory: RendererFactory2) {
+    this.events$
+      .subscribe(() => {
+        this.positionElements
+          .forEach((positionElement: PositioningOptions) => {
+            positionElements(
+              _getHtmlElement(positionElement.target),
+              _getHtmlElement(positionElement.element),
+              positionElement.attachment,
+              positionElement.appendToBody,
+              rendererFactory.createRenderer(null, null)
+            );
+          });
+      });
   }
 
+  position(options: PositioningOptions): void {
+    this.addPositionElement(options);
+    this.update$$.next();
+  }
+
+  addPositionElement(options: PositioningOptions): void {
+    this.positionElements.set(_getHtmlElement(options.element), options);
+  }
+
+  deletePositionElement(elRef: ElementRef): void {
+    this.positionElements.delete(_getHtmlElement(elRef));
+  }
 }
 
 function _getHtmlElement(element: HTMLElement | ElementRef | string): HTMLElement {

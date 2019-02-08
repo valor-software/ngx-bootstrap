@@ -76,7 +76,7 @@ describe('tooltip', () => {
 
   describe('basic functionality', () => {
     it('should open and close a tooltip - default settings and content as string', () => {
-      const fixture = createTestComponent(`<div tooltip="Great tip!"></div>`);
+      const fixture = createTestComponent(`<div style="margin: 400px" tooltip="Great tip!"></div>`);
       const directive = fixture.debugElement.query(
         By.directive(TooltipDirective)
       );
@@ -99,7 +99,7 @@ describe('tooltip', () => {
 
     it('should open and close a tooltip - default settings and content from a template', () => {
       const fixture = createTestComponent(
-        `<ng-template #t>Hello, {{name}}!</ng-template><div [tooltip]="t"></div>`
+        `<ng-template #t>Hello, {{name}}!</ng-template><div style="margin: 400px" [tooltip]="t"></div>`
       );
       const directive = fixture.debugElement.query(
         By.directive(TooltipDirective)
@@ -207,7 +207,7 @@ describe('tooltip', () => {
     describe('positioning', () => {
       it('should use requested position', () => {
         const fixture = createTestComponent(
-          `<div tooltip="Great tip!" placement="left"></div>`
+          `<div style="padding:400px"><div tooltip="Great tip!" placement="left"></div>`
         );
         const directive = fixture.debugElement.query(
           By.directive(TooltipDirective)
@@ -224,7 +224,7 @@ describe('tooltip', () => {
 
       it('should properly position tooltips when a component is using the OnPush strategy', () => {
         const fixture = createOnPushTestComponent(
-          `<div tooltip="Great tip!" placement="left"></div>`
+          `<div style="padding:400px"><div tooltip="Great tip!" placement="left"></div>`
         );
         const directive = fixture.debugElement.query(
           By.directive(TooltipDirective)
@@ -241,7 +241,7 @@ describe('tooltip', () => {
 
       it('should use auto position', () => {
         const fixture = createTestComponent(
-          `<div tooltip="Great tip!" placement="auto"></div>`
+          `<div style="padding:400px"><div tooltip="Great tip!" placement="auto"></div></div>`
         );
         const directive = fixture.debugElement.query(
           By.directive(TooltipDirective)
@@ -253,7 +253,7 @@ describe('tooltip', () => {
 
         expect(windowEl).toHaveCssClass('tooltip');
         expect(windowEl).toHaveCssClass('tooltip-auto');
-        expect(windowEl).toHaveCssClass('right');
+        expect(windowEl).toHaveCssClass('top');
         expect(windowEl.textContent.trim()).toBe('Great tip!');
       });
     });

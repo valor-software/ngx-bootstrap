@@ -26,7 +26,14 @@ import { TypeaheadDirective } from './typeahead.directive';
     '[style.visibility]': `typeaheadScrollable ? 'hidden' : 'visible'`,
     '[class.dropup]': 'dropup',
     style: 'position: absolute;display: block;'
-  }
+  },
+  styles: [
+    `
+    :host.dropdown {
+      z-index: 1000;
+    }
+  `
+  ]
 })
 export class TypeaheadContainerComponent {
   parent: TypeaheadDirective;
