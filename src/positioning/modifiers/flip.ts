@@ -1,6 +1,7 @@
 import {
   computeAutoPlacement,
   getBoundaries, getClientRect,
+  getOppositePlacement,
   getOppositeVariation,
   getTargetOffsets
 } from '../utils';
@@ -21,10 +22,11 @@ export function flip(data: Data): Data {
   let placement = data.placement.split(' ')[0];
   let variation = data.placement.split(' ')[1] || '';
 
-  const autoPosition = computeAutoPlacement(
-    'auto', data.offsets.host, data.instance.target, data.instance.host, 'viewport', 0
-  );
-  const flipOrder = [placement, autoPosition];
+  const adaptivePosition = variation
+    ? getOppositePlacement(placement)
+    : computeAutoPlacement('auto', data.offsets.host, data.instance.target, data.instance.host, 'viewport', 0);
+
+  const flipOrder = [placement, adaptivePosition];
 
   /* tslint:disable-next-line: cyclomatic-complexity */
   flipOrder.forEach((step, index) => {
