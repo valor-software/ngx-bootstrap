@@ -3,10 +3,7 @@
  */
 import { isBrowser } from './isBrowser';
 
-const documentRef: any = document;
-const windowRef: any = window;
-
-const isIE11 = isBrowser && !!(windowRef.MSInputMethodContext && documentRef.documentMode);
+const isIE11 = isBrowser && !!((window as any).MSInputMethodContext && (document as any).documentMode);
 const isIE10 = isBrowser && /MSIE 10/.test(navigator.userAgent);
 
 export function isIE(version?: number) {
