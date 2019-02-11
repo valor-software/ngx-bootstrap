@@ -558,7 +558,7 @@ export class DatepickerPo extends BaseComponent {
    * Compare input and picker height and width for checking centering elements
    * For avoid resolution differences in equivalence check, used rounding to 10
    */
-  isDatepickerPlacementCorrect(baseSelector: string, placement: string) {
+  isDatepickerPlacementCorrect(baseSelector: string, placement: string, indexInput?: number) {
     let index: number;
     const inputMarginHeight = 15;
     const inputMarginWidth = 27;
@@ -567,7 +567,7 @@ export class DatepickerPo extends BaseComponent {
 
     switch (placement) {
       case 'right':
-        index = 0;
+        indexInput ? index = indexInput : index = 0;
         cy.get('@Datepicker').then(datepicker => {
           cy.get('@InputsArray').eq(index).then(input => {
             expect(input.offset().left).to.lessThan(datepicker.offset().left);
@@ -579,7 +579,7 @@ export class DatepickerPo extends BaseComponent {
         break;
 
       case 'top':
-        index = 1;
+        indexInput ? index = indexInput : index = 1;
         cy.get('@Datepicker').then(datepicker => {
           cy.get('@InputsArray').eq(index).then(input => {
             expect(input.offset().left).to.greaterThan(datepicker.offset().left);
@@ -591,7 +591,7 @@ export class DatepickerPo extends BaseComponent {
         break;
 
       case 'bottom':
-        index = 2;
+        indexInput ? index = indexInput : index = 2;
         cy.get('@Datepicker').then(datepicker => {
           cy.get('@InputsArray').eq(index).then(input => {
             expect(input.offset().left).to.greaterThan(datepicker.offset().left);
@@ -603,7 +603,7 @@ export class DatepickerPo extends BaseComponent {
         break;
 
       case 'left':
-        index = 3;
+        indexInput ? index = indexInput : index = 3;
         cy.get('@Datepicker').then(datepicker => {
           cy.get('@InputsArray').eq(index).then(input => {
             expect(input.offset().left).to.greaterThan(datepicker.offset().left);
