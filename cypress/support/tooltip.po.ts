@@ -5,7 +5,6 @@ export class TooltipPo extends BaseComponent {
   pageTitle = 'Tooltip';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/tooltip';
 
-  togglerTooltip = 'button';
   containerTooltip = 'bs-tooltip-container';
   body = 'body';
 
@@ -25,29 +24,11 @@ export class TooltipPo extends BaseComponent {
     delayTooltip: 'demo-tooltip-delay'
   };
 
-  tooltipPlacements = {
-    top: { tooltipClass: 'tooltip in tooltip-top bs-tooltip-top top show', name: 'Tooltip on top' },
-    right: {
-      tooltipClass: 'tooltip in tooltip-right bs-tooltip-right right show',
-      name: 'Tooltip on right'
-    },
-    auto: {
-      tooltipClass: 'tooltip in tooltip-auto bs-tooltip-auto auto show bottom',
-      name: 'Tooltip auto'
-    },
-    left: {
-      tooltipClass: 'tooltip in tooltip-left bs-tooltip-left left show',
-      name: 'Tooltip on left'
-    },
-    bottom: {
-      tooltipClass: 'tooltip in tooltip-bottom bs-tooltip-bottom bottom show',
-      name: 'Tooltip on bottom'
-    }
-  };
-
-  isTooltipPlacementCorrect(baseSelector: string, placement: string, buttonName: string) {
-    cy.get(`${baseSelector} ${this.togglerTooltip}`).contains(buttonName).focus();
-    cy.get(`${baseSelector} ${this.containerTooltip}`).should('be.visible').should('have.attr', 'class', placement);
+  isTooltipPlacementCorrect(baseSelector: string, placement: string) {
+    cy.get(`${baseSelector} ${this.containerTooltip}`).then(tooltip => {
+      expect(tooltip).to.be.visible;
+      expect(tooltip.attr('class')).to.contains(placement);
+    });
   }
 
   focusOnBtn(baseSelector: string, buttonIndex?: number) {

@@ -7,14 +7,19 @@ describe('Tooltip demo page test suite', () => {
 
   describe('Placement tooltip', () => {
     const placementDemo = tooltip.exampleDemosArr.placement;
-    const placement = tooltip.tooltipPlacements;
 
     it('when user hover on Trigger btn in the Placement exmpl - tooltip appears on the setted placement', () => {
-      tooltip.isTooltipPlacementCorrect(placementDemo, placement.top.tooltipClass, placement.top.name);
-      tooltip.isTooltipPlacementCorrect(placementDemo, placement.right.tooltipClass, placement.right.name);
-      tooltip.isTooltipPlacementCorrect(placementDemo, placement.auto.tooltipClass, placement.auto.name);
-      tooltip.isTooltipPlacementCorrect(placementDemo, placement.left.tooltipClass, placement.left.name);
-      tooltip.isTooltipPlacementCorrect(placementDemo, placement.bottom.tooltipClass, placement.bottom.name);
+      cy.viewport(1440, 900);
+      tooltip.focusOnBtn(placementDemo, 0);
+      tooltip.isTooltipPlacementCorrect(placementDemo, 'top');
+      tooltip.focusOnBtn(placementDemo, 1);
+      tooltip.isTooltipPlacementCorrect(placementDemo, 'right');
+      tooltip.focusOnBtn(placementDemo, 2);
+      tooltip.isTooltipPlacementCorrect(placementDemo, 'right');
+      tooltip.focusOnBtn(placementDemo, 3);
+      tooltip.isTooltipPlacementCorrect(placementDemo, 'left');
+      tooltip.focusOnBtn(placementDemo, 4);
+      tooltip.isTooltipPlacementCorrect(placementDemo, 'bottom');
     });
   });
 
