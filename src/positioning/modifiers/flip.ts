@@ -67,7 +67,6 @@ export function flip(data: Data): Data {
         (!isVertical && variation === 'right' && overflowsBottom));
 
     if (overlapsRef || overflowsBoundaries || flippedVariation) {
-      // this boolean to detect any flip loop
       if (overlapsRef || overflowsBoundaries) {
         placement = flipOrder[index + 1];
       }

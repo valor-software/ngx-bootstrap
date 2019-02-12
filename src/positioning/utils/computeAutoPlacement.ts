@@ -21,15 +21,6 @@ export function computeAutoPlacement(
     return placement;
   }
 
-  if (placement.indexOf('auto') !== -1
-    && (placement.indexOf('left') !== -1
-    || placement.indexOf('right') !== -1
-    || placement.indexOf('top') !== -1
-    || placement.indexOf('bottom') !== -1)) {
-
-    return placement.split(' ')[1] || '';
-  }
-
   const boundaries = getBoundaries(target, host, padding, boundariesElement);
 
   const rects: any = {
