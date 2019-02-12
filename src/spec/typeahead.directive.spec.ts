@@ -4,8 +4,7 @@ import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
-import { dispatchMouseEvent } from '@netbasal/spectator';
-import { fireEvent } from '../../scripts/helpers';
+import { dispatchMouseEvent, dispatchTouchEvent, dispatchKeyboardEvent } from '@netbasal/spectator';
 import { of } from 'rxjs';
 import { TypeaheadMatch, TypeaheadDirective, TypeaheadModule } from '../typeahead';
 
@@ -121,7 +120,7 @@ describe('Directive: Typeahead', () => {
   describe('onInput', () => {
     it('should be called show method', fakeAsync(() => {
         inputElement.value = 'a';
-        inputElement.dispatchEvent(new Event('input'));
+        dispatchTouchEvent(inputElement, 'input');
         tick();
 
         expect(fixture.nativeElement.querySelector('.dropdown').classList).toContain('open');
@@ -131,7 +130,7 @@ describe('Directive: Typeahead', () => {
     it('and dropup equal true should be called show method', fakeAsync(() => {
         directive.dropup = true;
         inputElement.value = 'al';
-        inputElement.dispatchEvent(new Event('input'));
+        dispatchTouchEvent(inputElement, 'input');
         tick();
 
         expect(fixture.nativeElement.querySelector('.dropdown').classList).toContain('open');
@@ -140,11 +139,11 @@ describe('Directive: Typeahead', () => {
 
     it('if value was changed to invalid should be called hide method', fakeAsync(() => {
         inputElement.value = 'al';
-        inputElement.dispatchEvent(new Event('input'));
+        dispatchTouchEvent(inputElement, 'input');
         tick();
 
         inputElement.value = ' ';
-        inputElement.dispatchEvent(new Event('input'));
+        dispatchTouchEvent(inputElement, 'input');
         tick();
 
         expect(fixture.debugElement.query(By.css('typeahead-container'))).toBeNull();
@@ -153,7 +152,7 @@ describe('Directive: Typeahead', () => {
 
     it('if value equal 0 should be called hide method', fakeAsync(() => {
         inputElement.value = ' ';
-        inputElement.dispatchEvent(new Event('input'));
+        dispatchTouchEvent(inputElement, 'input');
         tick();
 
         expect(fixture.debugElement.query(By.css('typeahead-container'))).toBeNull();
@@ -163,11 +162,11 @@ describe('Directive: Typeahead', () => {
     it('if click event triggers on outside element should be called onOutsideClick method',
       fakeAsync(() => {
         inputElement.value = 'al';
-        inputElement.dispatchEvent(new Event('input'));
+        dispatchTouchEvent(inputElement, 'input');
         tick();
 
         inputElement.value = ' ';
-        document.dispatchEvent(new Event('click'));
+        dispatchMouseEvent(document, 'click');
         tick();
 
         expect(fixture.debugElement.query(By.css('typeahead-container'))).toBeNull();
@@ -178,14 +177,14 @@ describe('Directive: Typeahead', () => {
   describe('onFocus', () => {
     it('should work if typeaheadMinLength equal 0', fakeAsync(() => {
       directive.typeaheadMinLength = 0;
-      inputElement.dispatchEvent(new Event('click'));
+      dispatchMouseEvent(inputElement, 'click');
       tick();
 
       expect(fixture.nativeElement.querySelector('.dropdown').classList).toContain('open');
     }));
 
     it('should not work if typeaheadMinLength equal 0', fakeAsync(() => {
-      inputElement.dispatchEvent(new Event('click'));
+      dispatchMouseEvent(inputElement, 'click');
       tick();
 
       expect(fixture.debugElement.query(By.css('typeahead-container'))).toBeNull();
@@ -208,7 +207,7 @@ describe('Directive: Typeahead', () => {
     beforeEach(
       fakeAsync(() => {
         inputElement.value = 'Ala';
-        fireEvent(inputElement, 'input');
+        dispatchTouchEvent(inputElement, 'input');
         directive.typeaheadGroupField = 'region';
 
         fixture.detectChanges();
@@ -257,7 +256,7 @@ describe('Directive: Typeahead', () => {
   describe('onBlur', () => {
     it('blur event should send the correct active item', fakeAsync(() => {
       inputElement.value = 'Alab';
-      inputElement.dispatchEvent(new Event('input'));
+      dispatchTouchEvent(inputElement, 'input');
       tick();
 
       spyOn(fixture.componentInstance, 'onBlurEvent').and.callFake(param => {
@@ -274,7 +273,7 @@ describe('Directive: Typeahead', () => {
     beforeEach(
       fakeAsync(() => {
         inputElement.value = 'Ala';
-        fireEvent(inputElement, 'input');
+        dispatchTouchEvent(inputElement, 'input');
         directive.typeaheadHideResultsOnBlur = false;
         fixture.detectChanges();
         tick(100);
@@ -305,7 +304,7 @@ describe('Directive: Typeahead', () => {
     beforeEach(
       fakeAsync(() => {
         inputElement.value = 'Ala';
-        fireEvent(inputElement, 'input');
+        dispatchTouchEvent(inputElement, 'input');
 
         fixture.detectChanges();
         tick(100);
@@ -346,7 +345,7 @@ describe('Directive: Typeahead', () => {
 
     it('should result in 0 matches, when input does not match', fakeAsync(() => {
         inputElement.value = 'foo';
-        fireEvent(inputElement, 'input');
+        dispatchTouchEvent(inputElement, 'input');
         fixture.detectChanges();
         tick(100);
 
@@ -357,7 +356,7 @@ describe('Directive: Typeahead', () => {
     it('should not display null item', fakeAsync(() => {
         component.states.push({id: 3, name: null, region: 'West'});
         inputElement.value = 'Ala';
-        fireEvent(inputElement, 'input');
+        dispatchTouchEvent(inputElement, 'input');
         fixture.detectChanges();
         tick(100);
 
@@ -367,8 +366,7 @@ describe('Directive: Typeahead', () => {
 
     it('should be triggered hide method if esc was clicked', fakeAsync(() => {
       expect(fixture.nativeElement.querySelector('.dropdown').classList).toContain('open');
-      /* tslint:disable:no-object-literal-type-assertion */
-      inputElement.dispatchEvent(new KeyboardEvent('keyup', {keyCode: 27} as {[key: string]: number}));
+      dispatchKeyboardEvent(inputElement, 'keyup', 'ESCAPE');
       tick();
 
       expect(fixture.debugElement.query(By.css('typeahead-container'))).toBeNull();
@@ -376,8 +374,7 @@ describe('Directive: Typeahead', () => {
 
     it('should be triggered hide method if enter was clicked', fakeAsync(() => {
       expect(fixture.nativeElement.querySelector('.dropdown').classList).toContain('open');
-      /* tslint:disable:no-object-literal-type-assertion */
-      inputElement.dispatchEvent(new KeyboardEvent('keyup', {keyCode: 13} as {[key: string]: number}));
+      dispatchKeyboardEvent(inputElement, 'keyup', 'ENTER');
       tick();
 
       expect(fixture.debugElement.query(By.css('typeahead-container'))).toBeNull();
@@ -385,18 +382,16 @@ describe('Directive: Typeahead', () => {
 
     it('should not be triggered prevActiveMatch method if up was clicked', fakeAsync(() => {
       inputElement.value = ' ';
-      inputElement.dispatchEvent(new Event('input'));
+      dispatchTouchEvent(inputElement, 'input');
       tick();
-      /* tslint:disable:no-object-literal-type-assertion */
-      inputElement.dispatchEvent(new KeyboardEvent('keyup', {keyCode: 38} as {[key: string]: number}));
+      dispatchKeyboardEvent(inputElement, 'keyup', 'UP_ARROW');
       tick();
 
       expect(fixture.debugElement.query(By.css('typeahead-container'))).toBeNull();
     }));
 
     it('should be triggered prevActiveMatch method if up was clicked', fakeAsync(() => {
-      /* tslint:disable:no-object-literal-type-assertion */
-      inputElement.dispatchEvent(new KeyboardEvent('keyup', {keyCode: 38} as {[key: string]: number}));
+      dispatchKeyboardEvent(inputElement, 'keyup', 'UP_ARROW');
       tick();
 
       expect(fixture.nativeElement.querySelector('.dropdown').classList).toContain('open');
@@ -404,26 +399,23 @@ describe('Directive: Typeahead', () => {
 
     it('should not be triggered nextActiveMatch method if down was clicked', fakeAsync(() => {
       inputElement.value = ' ';
-      inputElement.dispatchEvent(new Event('input'));
+      dispatchTouchEvent(inputElement, 'input');
       tick();
-      /* tslint:disable:no-object-literal-type-assertion */
-      inputElement.dispatchEvent(new KeyboardEvent('keyup', {keyCode: 40} as {[key: string]: number}));
+      dispatchKeyboardEvent(inputElement, 'keyup', 'DOWN_ARROW');
       tick();
 
       expect(fixture.debugElement.query(By.css('typeahead-container'))).toBeNull();
     }));
 
     it('should be triggered nextActiveMatch method if down was clicked', fakeAsync(() => {
-      /* tslint:disable:no-object-literal-type-assertion */
-      inputElement.dispatchEvent(new KeyboardEvent('keyup', {keyCode: 40} as {[key: string]: number}));
+      dispatchKeyboardEvent(inputElement, 'keyup', 'DOWN_ARROW');
       tick();
 
       expect(fixture.nativeElement.querySelector('.dropdown').classList).toContain('open');
     }));
 
     it('should not close typeahead container if Ctrl was clicked', fakeAsync(() => {
-      /* tslint:disable:no-object-literal-type-assertion */
-      inputElement.dispatchEvent(new KeyboardEvent('keydown', {keyCode: 45} as {[key: string]: number}));
+      dispatchKeyboardEvent(inputElement, 'keydown', 'INSERT');
       tick();
 
       expect(fixture.nativeElement.querySelector('.dropdown').classList).toContain('open');
@@ -434,7 +426,7 @@ describe('Directive: Typeahead', () => {
     beforeEach(
       fakeAsync(() => {
         inputElement.value = 'Ala';
-        fireEvent(inputElement, 'input');
+        dispatchTouchEvent(inputElement, 'input');
         fixture.detectChanges();
         tick(100);
       })
@@ -442,8 +434,7 @@ describe('Directive: Typeahead', () => {
 
     it('should not be triggered show method', fakeAsync(() => {
       expect(fixture.nativeElement.querySelector('.dropdown').classList).toContain('open');
-      /* tslint:disable:no-object-literal-type-assertion */
-      inputElement.dispatchEvent(new KeyboardEvent('keydown', {keyCode: 9} as {[key: string]: number}));
+      dispatchKeyboardEvent(inputElement, 'keydown', 'TAB');
       tick();
 
       expect(fixture.debugElement.query(By.css('typeahead-container'))).toBeNull();
@@ -451,24 +442,21 @@ describe('Directive: Typeahead', () => {
 
     it('should not be triggered hide method', fakeAsync(() => {
       inputElement.value = ' ';
-      inputElement.dispatchEvent(new Event('input'));
+      dispatchTouchEvent(inputElement, 'input');
       tick();
-      /* tslint:disable:no-object-literal-type-assertion */
-      inputElement.dispatchEvent(new KeyboardEvent('keydown', {keyCode: 9} as {[key: string]: number}));
+      dispatchKeyboardEvent(inputElement, 'keydown', 'TAB');
       tick();
       expect(fixture.debugElement.query(By.css('typeahead-container'))).toBeNull();
     }));
 
     it('should close container if Enter was clicked', fakeAsync(() => {
-      /* tslint:disable:no-object-literal-type-assertion */
-      inputElement.dispatchEvent(new KeyboardEvent('keydown', {keyCode: 13} as {[key: string]: number}));
+      dispatchKeyboardEvent(inputElement, 'keydown', 'ENTER');
       tick();
       expect(fixture.debugElement.query(By.css('typeahead-container'))).toBeNull();
     }));
 
     it('should not close typeahead container if Ctrl was clicked', fakeAsync(() => {
-      /* tslint:disable:no-object-literal-type-assertion */
-      inputElement.dispatchEvent(new KeyboardEvent('keydown', {keyCode: 45} as {[key: string]: number}));
+      dispatchKeyboardEvent(inputElement, 'keydown', 'INSERT');
       tick();
 
       expect(fixture.nativeElement.querySelector('.dropdown').classList).toContain('open');
@@ -476,16 +464,15 @@ describe('Directive: Typeahead', () => {
 
     it('should close typeahead container if Tab was clicked', fakeAsync(() => {
       inputElement.value = ' ';
-      inputElement.dispatchEvent(new Event('input'));
+      dispatchTouchEvent(inputElement, 'input');
       tick();
 
       directive.typeaheadSelectFirstItem = false;
       directive.isActiveItemChanged = true;
       inputElement.value = 'Alab';
-      inputElement.dispatchEvent(new Event('input'));
+      dispatchTouchEvent(inputElement, 'input');
       tick();
-      /* tslint:disable:no-object-literal-type-assertion */
-      inputElement.dispatchEvent(new KeyboardEvent('keydown', {keyCode: 9} as {[key: string]: number}));
+      dispatchKeyboardEvent(inputElement, 'keydown', 'TAB');
       tick();
 
       expect(fixture.debugElement.query(By.css('typeahead-container'))).toBeNull();
@@ -496,7 +483,7 @@ describe('Directive: Typeahead', () => {
     beforeEach(
       fakeAsync(() => {
         inputElement.value = 'Ala';
-        fireEvent(inputElement, 'input');
+        dispatchTouchEvent(inputElement, 'input');
         directive.typeaheadHideResultsOnBlur = false;
         fixture.detectChanges();
         tick(100);
@@ -505,7 +492,7 @@ describe('Directive: Typeahead', () => {
 
     it('equal true should be opened',
       fakeAsync(() => {
-        document.dispatchEvent(new Event('click'));
+        dispatchMouseEvent(document, 'click');
         tick();
 
         expect(fixture.nativeElement.querySelector('.dropdown').classList).toContain('open');
@@ -515,7 +502,7 @@ describe('Directive: Typeahead', () => {
     it('equal false should be closed',
       fakeAsync(() => {
         directive.typeaheadHideResultsOnBlur = true;
-        document.dispatchEvent(new Event('click'));
+        dispatchMouseEvent(document, 'click');
         tick();
 
         expect(fixture.debugElement.query(By.css('typeahead-container'))).toBeNull();
