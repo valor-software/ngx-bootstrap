@@ -134,7 +134,6 @@ http_archive(
 git_repository(
     name = "build_bazel_rules_nodejs",
     remote = "https://github.com/DeveloperFromUkraine/rules_nodejs.git",
-#    tag = "v0.16.5"
     commit = ""
 )
 
