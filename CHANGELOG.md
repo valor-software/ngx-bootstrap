@@ -1,3 +1,49 @@
+<a name="3.3.0"></a>
+# [3.3.0](https://github.com/valor-software/ngx-bootstrap/compare/v3.2.0...v3.3.0) (2019-02-12)
+
+
+### Bug Fixes
+
+* **build:** use os specific path separator in npm run build.watch ([#4958](https://github.com/valor-software/ngx-bootstrap/issues/4958)) ([5e4183e](https://github.com/valor-software/ngx-bootstrap/commit/5e4183e))
+* **package:** decrease ts version in latest ng ([#5044](https://github.com/valor-software/ngx-bootstrap/issues/5044)) ([0e77f25](https://github.com/valor-software/ngx-bootstrap/commit/0e77f25))
+* **positioning:** fix on heroku also typeahead ([#5054](https://github.com/valor-software/ngx-bootstrap/issues/5054)) ([8d8836d](https://github.com/valor-software/ngx-bootstrap/commit/8d8836d))
+* **tabs:** adding tab content to DOM just if selected tab ([#1422](https://github.com/valor-software/ngx-bootstrap/issues/1422)) ([#4991](https://github.com/valor-software/ngx-bootstrap/issues/4991)) ([457c32a](https://github.com/valor-software/ngx-bootstrap/commit/457c32a))
+* **tests:** datepicker min-max demo - fix for weeks ([#5052](https://github.com/valor-software/ngx-bootstrap/issues/5052)) ([a2aaa80](https://github.com/valor-software/ngx-bootstrap/commit/a2aaa80))
+* **tests:** js heap out of memory, datepicker fixes ([#5048](https://github.com/valor-software/ngx-bootstrap/issues/5048)) ([235050e](https://github.com/valor-software/ngx-bootstrap/commit/235050e))
+* **tests:** rework tests accotding to new position service ([#5055](https://github.com/valor-software/ngx-bootstrap/issues/5055)) ([8a94917](https://github.com/valor-software/ngx-bootstrap/commit/8a94917))
+
+
+### Features
+
+* **datepicker:** Allow to disable specific dates ([#5046](https://github.com/valor-software/ngx-bootstrap/issues/5046)) ([5633d2d](https://github.com/valor-software/ngx-bootstrap/commit/5633d2d))
+* **positioning:** refactor positioning service ([#5027](https://github.com/valor-software/ngx-bootstrap/issues/5027)) ([66ae92d](https://github.com/valor-software/ngx-bootstrap/commit/66ae92d)), closes [#3303](https://github.com/valor-software/ngx-bootstrap/issues/3303) [#2993](https://github.com/valor-software/ngx-bootstrap/issues/2993) [#4470](https://github.com/valor-software/ngx-bootstrap/issues/4470)
+* **tests:** add full e2e coverage for DatePicker component ([#4951](https://github.com/valor-software/ngx-bootstrap/issues/4951)) ([fe2b29f](https://github.com/valor-software/ngx-bootstrap/commit/fe2b29f))
+* **tests:** added cypress tests parallelization ([#5003](https://github.com/valor-software/ngx-bootstrap/issues/5003)) ([e3396bb](https://github.com/valor-software/ngx-bootstrap/commit/e3396bb))
+* **typeahead:** add Input Property for selected First item in option list ([#4631](https://github.com/valor-software/ngx-bootstrap/issues/4631)) ([cd13a55](https://github.com/valor-software/ngx-bootstrap/commit/cd13a55)), closes [#3965](https://github.com/valor-software/ngx-bootstrap/issues/3965)
+
+
+
+<a name="3.2.0"></a>
+# [3.2.0](https://github.com/valor-software/ngx-bootstrap/compare/v3.1.4...v3.2.0) (2019-01-21)
+
+
+### Bug Fixes
+
+* **common:** prevent deprecated also fixed test (datepicker close on esc) for IE11 (souce tests) ([#4940](https://github.com/valor-software/ngx-bootstrap/issues/4940)) ([d338dbf](https://github.com/valor-software/ngx-bootstrap/commit/d338dbf))
+* **script:** fix latest script ([#5004](https://github.com/valor-software/ngx-bootstrap/issues/5004)) ([5f6a781](https://github.com/valor-software/ngx-bootstrap/commit/5f6a781))
+* **tests:** use prev safari version while latest doesnt work on sauce ([#5011](https://github.com/valor-software/ngx-bootstrap/issues/5011)) ([89f7265](https://github.com/valor-software/ngx-bootstrap/commit/89f7265))
+* **timepicker:** enable_disable timepicker in reactive forms ([#4563](https://github.com/valor-software/ngx-bootstrap/issues/4563)) ([ac55b08](https://github.com/valor-software/ngx-bootstrap/commit/ac55b08)), closes [#4055](https://github.com/valor-software/ngx-bootstrap/issues/4055)
+
+
+### Features
+
+* **css:** update bootstrap css to latest ([#4999](https://github.com/valor-software/ngx-bootstrap/issues/4999)) ([91b78e7](https://github.com/valor-software/ngx-bootstrap/commit/91b78e7))
+* **datepicker:** add catalan lang ([#4969](https://github.com/valor-software/ngx-bootstrap/issues/4969)) ([20fadbd](https://github.com/valor-software/ngx-bootstrap/commit/20fadbd)), closes [#4959](https://github.com/valor-software/ngx-bootstrap/issues/4959)
+* **datepicker:** Add directive for inline datepicker ([#3956](https://github.com/valor-software/ngx-bootstrap/issues/3956)) ([d9a89b4](https://github.com/valor-software/ngx-bootstrap/commit/d9a89b4)), closes [valor-software/ngx-bootstrap#3955](https://github.com/valor-software/ngx-bootstrap/issues/3955) [valor-software/ngx-bootstrap#3958](https://github.com/valor-software/ngx-bootstrap/issues/3958)
+* **tooltip:** add delay to config ([#4928](https://github.com/valor-software/ngx-bootstrap/issues/4928)) ([bcf93d4](https://github.com/valor-software/ngx-bootstrap/commit/bcf93d4)), closes [#4029](https://github.com/valor-software/ngx-bootstrap/issues/4029)
+
+
+
 <a name="3.2.0"></a>
 # [3.2.0](https://github.com/valor-software/ngx-bootstrap/compare/v3.1.4...v3.2.0) (2019-01-21)
 
