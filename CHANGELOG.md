@@ -2,6 +2,11 @@
 # [3.3.0](https://github.com/valor-software/ngx-bootstrap/compare/v3.2.0...v3.3.0) (2019-02-12)
 
 
+Most notable changes are:
+- completely rewritten positioning service, now `auto` positioning is working much better
+- added an option to disable specific in data and range pickers
+
+
 ### Bug Fixes
 
 * **build:** use os specific path separator in npm run build.watch ([#4958](https://github.com/valor-software/ngx-bootstrap/issues/4958)) ([5e4183e](https://github.com/valor-software/ngx-bootstrap/commit/5e4183e))
