@@ -17,7 +17,7 @@ export function initData(targetElement: HTMLElement, hostElement: HTMLElement, p
     : position;
 
   const targetOffset = getTargetOffsets(targetElement, hostElPosition, placement);
-  placement = computeAutoPlacement(placement, hostElPosition, targetElement, hostElement, 'viewport', 0);
+  placement = computeAutoPlacement(placement, hostElPosition, targetElement, hostElement);
 
   return {
     instance: {

@@ -1,7 +1,6 @@
 import {
   computeAutoPlacement,
   getBoundaries, getClientRect,
-  getOppositePlacement,
   getOppositeVariation,
   getTargetOffsets
 } from '../utils';
@@ -22,9 +21,13 @@ export function flip(data: Data): Data {
   let placement = data.placement.split(' ')[0];
   let variation = data.placement.split(' ')[1] || '';
 
+  const offsetsHost = data.offsets.host;
+  const target = data.instance.target;
+  const host = data.instance.host;
+
   const adaptivePosition = variation
-    ? getOppositePlacement(placement)
-    : computeAutoPlacement('auto', data.offsets.host, data.instance.target, data.instance.host, 'viewport', 0);
+    ? computeAutoPlacement('auto', offsetsHost, target, host, ['top', 'bottom'])
+    : computeAutoPlacement('auto', offsetsHost, target, host);
 
   const flipOrder = [placement, adaptivePosition];
 
