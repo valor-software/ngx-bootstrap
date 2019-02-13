@@ -4,6 +4,7 @@
   "description": "Native Angular Bootstrap Components",
   "private": true,
   "scripts": {
+    "bazel-build-npm": "bazel build //src:ngx-bootstrap",
     "lite-server": "lite-server -c scripts/bs-config.js",
     "demo.gen-docs": "node scripts/docs/get-doc.js",
     "demo.fetch": "node scripts/fetch-docs.js",
@@ -100,7 +101,7 @@
     "@angular/router": "6.0.1",
     "@angular/service-worker": "6.0.1",
     "@bazel/bazel": "0.22.0",
-    "@bazel/typescript": "0.22.0",
+    "@bazel/typescript": "0.25.0",
     "@cypress/webpack-preprocessor": "3.0.1",
     "@netbasal/spectator": "2.2.0-rc.2",
     "@nguniversal/express-engine": "6.0.0",

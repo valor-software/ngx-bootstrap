@@ -4,26 +4,47 @@
 workspace(name = "ngx_bootstrap")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository", "new_git_repository")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
-http_archive(
-    name = "io_bazel_rules_go",
-    url = "https://github.com/bazelbuild/rules_go/releases/download/0.16.5/rules_go-0.16.5.tar.gz",
-    sha256 = "7be7dc01f1e0afdba6c8eb2b43d2fa01c743be1b9273ab1eaf6c233df078d705"
-)
+#http_archive(
+#    name = "io_bazel_rules_go",
+#    url = "https://github.com/bazelbuild/rules_go/releases/download/0.16.5/rules_go-0.16.5.tar.gz",
+#    sha256 = "7be7dc01f1e0afdba6c8eb2b43d2fa01c743be1b9273ab1eaf6c233df078d705"
+#)
 
 #http_archive(
 #    name = "build_bazel_rules_nodejs",
-#    sha256 = "039c6fe27b53e2336ca77209c51e7f8aa64b7baf9f4bd7a383a780dc270237b1",
-#    strip_prefix = "rules_nodejs-0.16.5",
-#    url = "https://github.com/bazelbuild/rules_nodejs/archive/0.16.5.zip",
+#    sha256 = "1416d03823fed624b49a0abbd9979f7c63bbedfd37890ddecedd2fe25cccebc6",
+#    strip_prefix = "rules_nodejs-0.13.0",
+#    url = "https://github.com/bazelbuild/rules_nodejs/releases/download/0.18.6/rules_nodejs-0.18.6.tar.gz",
 #)
 
+#### NODEJS
 git_repository(
-    name = "build_bazel_rules_nodejs",
-    remote = "https://github.com/DeveloperFromUkraine/rules_nodejs.git",
-    commit = ""
+  name = "my_test_rules",
+  remote = "git@github.com:DeveloperFromUkraine/rules_nodejs.git",
+  commit = "efdc184540c0b2bd855dff26eb80842c0ce3f35e"
 )
+
+http_archive(
+  name = "io_bazel_skydoc",
+  url = "https://github.com/bazelbuild/skydoc/archive/1cdb612e31448c2f6eb25b8aa67d406152275482.zip",
+  strip_prefix = "skydoc-1cdb612e31448c2f6eb25b8aa67d406152275482",
+  sha256 = "282ab93ea7477ad703b3e8108a274c21344c3b59ee4e5b1e6a89cdbe3ecbe68f",
+)
+
+http_archive(
+        name = "bazel_skylib",
+        url = "https://github.com/bazelbuild/bazel-skylib/archive/0.6.0.zip",
+        strip_prefix = "bazel-skylib-0.6.0",
+        sha256 = "54ee22e5b9f0dd2b42eb8a6c1878dee592cfe8eb33223a7dbbc583a383f6ee1a",
+    )
+
+#git_repository(
+#    name = "build_bazel_rules_nodejs",
+#    remote = "https://github.com/DeveloperFromUkraine/rules_nodejs.git",
+#    commit = ""
+#)
 
 ANGULAR_VERSION = "7.1.3"
 http_archive(
@@ -55,12 +76,8 @@ rules_angular_dependencies()
 
 load("@build_bazel_rules_typescript//:package.bzl", "rules_typescript_dependencies")
 rules_typescript_dependencies()
-# build_bazel_rules_nodejs is loaded transitively through rules_typescript_dependencies.
 
-load("@build_bazel_rules_nodejs//:package.bzl", "rules_nodejs_dependencies")
-rules_nodejs_dependencies()
-
-load("@build_bazel_rules_nodejs//:defs.bzl", "check_bazel_version", "node_repositories", "npm_install")
+load("@my_test_rules//:defs.bzl", "check_bazel_version", "node_repositories", "npm_install")
 # 0.18.0 is needed for .bazelignore
 check_bazel_version("0.22.0")
 
@@ -72,13 +89,13 @@ npm_install(
     package_lock_json="//:package-lock.json",
 )
 
-load("@io_bazel_rules_go//go:def.bzl", "go_rules_dependencies", "go_register_toolchains")
-go_rules_dependencies()
-go_register_toolchains()
+#load("@io_bazel_rules_go//go:def.bzl", "go_rules_dependencies", "go_register_toolchains")
+#go_rules_dependencies()
+#go_register_toolchains()
 
-load("@io_bazel_rules_webtesting//web:repositories.bzl", "browser_repositories", "web_test_repositories")
-web_test_repositories()
-browser_repositories(chromium = True, firefox = True)
+#load("@io_bazel_rules_webtesting//web:repositories.bzl", "browser_repositories", "web_test_repositories")
+#web_test_repositories()
+#browser_repositories(chromium = True, firefox = True)
 
 load("@build_bazel_rules_typescript//:defs.bzl", "ts_setup_workspace", "check_rules_typescript_version")
 ts_setup_workspace()
@@ -90,9 +107,11 @@ sass_repositories()
 load("@angular//:index.bzl", "ng_setup_workspace")
 ng_setup_workspace()
 
+load("@io_bazel_skydoc//skylark:skylark.bzl", "skydoc_repositories")
+skydoc_repositories()
 # Web testing
-load("@io_bazel_rules_webtesting//web:repositories.bzl", "web_test_repositories", "browser_repositories")
-web_test_repositories()
-browser_repositories(
-    chromium = True
-)
+#load("@io_bazel_rules_webtesting//web:repositories.bzl", "web_test_repositories", "browser_repositories")
+#web_test_repositories()
+#browser_repositories(
+#    chromium = True
+#)
