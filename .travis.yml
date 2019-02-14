@@ -100,7 +100,6 @@ jobs:
     - script:
       - ng serve --prod &
       - $(npm bin)/wait-on http-get://localhost:4200/#
-      - npm run cy:run:smoke -- --record --key $CY_KEY --parallel --group $CI_THREAD_INDEX
       - APPLITOOLS_API_KEY=Nls100t102uNgLhLpblVUdA3tP104MQQS9VUYgHQ5tYOUuIxU110 npm run cy:run:snapshot
       - kill $(jobs -p) || true
       name: "Cypress Applitools Snapshot tests"
