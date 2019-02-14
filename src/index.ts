@@ -80,7 +80,8 @@ export {
   BsDropdownContainerComponent,
   BsDropdownDirective,
   BsDropdownMenuDirective,
-  BsDropdownToggleDirective
+  BsDropdownToggleDirective,
+  BsDropdownNestedDirective
 } from './dropdown/index';
 
 export {
