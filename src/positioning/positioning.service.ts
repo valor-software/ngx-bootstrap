@@ -2,6 +2,7 @@ import { Injectable, ElementRef, RendererFactory2 } from '@angular/core';
 
 import { positionElements } from './ng-positioning';
 import { fromEvent, merge, of, animationFrameScheduler, Subject } from 'rxjs';
+import { Options } from './models';
 
 
 export interface PositioningOptions {
@@ -40,6 +41,7 @@ export interface PositioningOptions {
 
 @Injectable()
 export class PositioningService {
+  options: Options;
   private update$$ = new Subject<null>();
 
   private events$: any = merge(
@@ -61,6 +63,7 @@ export class PositioningService {
               _getHtmlElement(positionElement.element),
               positionElement.attachment,
               positionElement.appendToBody,
+              this.options,
               rendererFactory.createRenderer(null, null)
             );
           });
@@ -78,6 +81,10 @@ export class PositioningService {
 
   deletePositionElement(elRef: ElementRef): void {
     this.positionElements.delete(_getHtmlElement(elRef));
+  }
+
+  setOptions(options: Options) {
+    this.options = options;
   }
 }
 

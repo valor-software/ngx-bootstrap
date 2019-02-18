@@ -1,11 +1,13 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { BsDatepickerAbstractComponent } from '../../base/bs-datepicker-container';
 
+import { BsDatepickerAbstractComponent } from '../../base/bs-datepicker-container';
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
 import { DayViewModel } from '../../models';
 import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
 import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
+import { PositioningService } from 'ngx-bootstrap/positioning';
+
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -31,13 +33,22 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     private _config: BsDatepickerConfig,
     private _store: BsDatepickerStore,
     private _actions: BsDatepickerActions,
-    _effects: BsDatepickerEffects
+    _effects: BsDatepickerEffects,
+    private _positionService: PositioningService
   ) {
     super();
     this._effects = _effects;
   }
 
   ngOnInit(): void {
+    this._positionService.setOptions({
+      modifiers: {
+        flip: {
+          enabled: this._config.adaptivePosition
+        }
+      }
+    });
+
     this.isOtherMonthsActive = this._config.selectFromOtherMonth;
     this.containerClass = this._config.containerClass;
     this._effects

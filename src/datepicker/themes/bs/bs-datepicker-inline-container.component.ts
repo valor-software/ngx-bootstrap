@@ -6,6 +6,8 @@ import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
 import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
 
+import { PositioningService } from 'ngx-bootstrap/positioning';
+
 @Component({
   selector: 'bs-datepicker-inline-container',
   providers: [BsDatepickerStore, BsDatepickerEffects],
@@ -21,8 +23,9 @@ export class BsDatepickerInlineContainerComponent extends BsDatepickerContainerC
     _config: BsDatepickerConfig,
     _store: BsDatepickerStore,
     _actions: BsDatepickerActions,
-    _effects: BsDatepickerEffects
+    _effects: BsDatepickerEffects,
+    _positioningService: PositioningService
   ) {
-    super(_config, _store, _actions, _effects);
+    super(_config, _store, _actions, _effects, _positioningService);
   }
 }

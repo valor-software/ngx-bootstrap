@@ -1,14 +1,30 @@
 import {
   computeAutoPlacement,
-  getBoundaries, getClientRect,
+  getBoundaries,
+  getClientRect,
   getOppositeVariation,
-  getTargetOffsets
+  getTargetOffsets,
+  isModifierEnabled
 } from '../utils';
 
 import { Data } from '../models';
 
 export function flip(data: Data): Data {
   data.offsets.target = getClientRect(data.offsets.target);
+
+  if (!isModifierEnabled(data.options, 'flip')) {
+
+    data.offsets.target = {
+      ...data.offsets.target,
+      ...getTargetOffsets(
+        data.instance.target,
+        data.offsets.host,
+        data.placement
+      )
+    };
+
+    return data;
+  }
 
   const boundaries = getBoundaries(
     data.instance.target,
