@@ -34,6 +34,11 @@ export abstract class BaseComponent {
       .should(btnTxt => expect(btnTxt).to.equal(expectedBtnTxt));
   }
 
+  isBtnDisabled(baseSelector: string, disabled: boolean, buttonIndex = 0) {
+    cy.get(`${ baseSelector } button`).eq(buttonIndex ? buttonIndex : 0)
+      .should(disabled ? 'to.be.disabled' : 'not.to.be.disabled');
+  }
+
   isLabelTxtEqual(baseSelector: string, expectedLabelTxt: string, labelIndex?: number) {
     cy.get(`${baseSelector} label`).eq(labelIndex ? labelIndex : 0).invoke('text')
       .should(labelTxt => expect(labelTxt).to.equal(expectedLabelTxt));
