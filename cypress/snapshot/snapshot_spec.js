@@ -1,4 +1,3 @@
-import { CarouselPo } from '../support/carousel.po';
 import { DatepickerPo } from '../support/datepicker.po';
 import { DropdownsPo } from '../support/dropdowns.po';
 import { ModalsPo } from '../support/modals.po';
@@ -7,7 +6,6 @@ import { TypeaheadPo } from '../support/typeahead.po';
 
 describe('Snapshot test', () => {
   const componentsArray = [
-    new CarouselPo(),
     new DatepickerPo(),
     new DropdownsPo(),
     new ModalsPo(),
@@ -29,21 +27,22 @@ describe('Snapshot test', () => {
             showLogs: true,
             testName: `${page.pageUrl} - ${subtitle}`,
             browser: [{
-              name: 'internet explorer',
+              name: 'chrome',
               browserVersion: 'latest',
               width: 360,
               height: 640
             }, {
               name: 'firefox',
               browserVersion: 'latest',
+              width: 360,
+              height: 640
+            },
+              {
+              name: 'firefox',
+              browserVersion: 'latest',
               width: 1366,
               height: 768
-            },
-              {name: 'safari',
-               browserVersion: 'latest',
-               width: 1366,
-               height: 768
-              }]
+            }]
           })
           .eyesCheckWindow({
             sizeMode: 'selector',
