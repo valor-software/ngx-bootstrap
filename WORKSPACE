@@ -15,15 +15,21 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 #http_archive(
 #    name = "build_bazel_rules_nodejs",
 #    sha256 = "1416d03823fed624b49a0abbd9979f7c63bbedfd37890ddecedd2fe25cccebc6",
-#    strip_prefix = "rules_nodejs-0.13.0",
 #    url = "https://github.com/bazelbuild/rules_nodejs/releases/download/0.18.6/rules_nodejs-0.18.6.tar.gz",
+#)
+
+#http_archive(
+#    name = "build_bazel_rules_typescript",
+#    sha256 = "5a31a67550d2a92270599e90a221afe229f6e1863bf2eff22e9750c6ecf45978",
+#    strip_prefix = "rules_typescript-0.22.0",
+#    url = "https://github.com/bazelbuild/rules_typescript/archive/0.22.0.zip",
 #)
 
 #### NODEJS
 git_repository(
   name = "my_test_rules",
   remote = "git@github.com:DeveloperFromUkraine/rules_nodejs.git",
-  commit = "efdc184540c0b2bd855dff26eb80842c0ce3f35e"
+  commit = "vk-test-branch"
 )
 
 http_archive(
@@ -34,11 +40,11 @@ http_archive(
 )
 
 http_archive(
-        name = "bazel_skylib",
-        url = "https://github.com/bazelbuild/bazel-skylib/archive/0.6.0.zip",
-        strip_prefix = "bazel-skylib-0.6.0",
-        sha256 = "54ee22e5b9f0dd2b42eb8a6c1878dee592cfe8eb33223a7dbbc583a383f6ee1a",
-    )
+  name = "bazel_skylib",
+  url = "https://github.com/bazelbuild/bazel-skylib/archive/0.6.0.zip",
+  strip_prefix = "bazel-skylib-0.6.0",
+  sha256 = "54ee22e5b9f0dd2b42eb8a6c1878dee592cfe8eb33223a7dbbc583a383f6ee1a",
+)
 
 #git_repository(
 #    name = "build_bazel_rules_nodejs",
@@ -57,7 +63,7 @@ RXJS_VERSION = "6.3.3"
 http_archive(
     name = "rxjs",
     strip_prefix = "package/src",
-    url = "https://registry.yarnpkg.com/rxjs/-/rxjs-%s.tgz" % RXJS_VERSION,
+    url = "https://registry.npmjs.com/rxjs/-/rxjs-%s.tgz" % RXJS_VERSION,
     sha256 = "72b0b4e517f43358f554c125e40e39f67688cd2738a8998b4a266981ed32f403"
 )
 
@@ -79,7 +85,7 @@ rules_typescript_dependencies()
 
 load("@my_test_rules//:defs.bzl", "check_bazel_version", "node_repositories", "npm_install")
 # 0.18.0 is needed for .bazelignore
-check_bazel_version("0.22.0")
+check_bazel_version("0.21.0")
 
 node_repositories()
 
@@ -87,6 +93,9 @@ npm_install(
     name = "npm",
     package_json = "//:package.json",
     package_lock_json="//:package-lock.json",
+#    yarn_lock= "//:yarn.lock",
+#    prod_only = True,
+#    quiet = True,
 )
 
 #load("@io_bazel_rules_go//go:def.bzl", "go_rules_dependencies", "go_register_toolchains")
