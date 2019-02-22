@@ -49,7 +49,7 @@ install:
   - npm ci
   - npm run build
   - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
-#  - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
+  - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
   - npm i ./dist  > /dev/null
   - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export SAUCE_USERNAME=$SAUCE_USERNAME_PR; export SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; fi
 
@@ -84,7 +84,9 @@ jobs:
     - script: npm run test
       name: "Test with latest Angular version"
       env: NGV=latest
-#     env: NGV=next
+    - script: npm run test
+      name: "Test with next Angular version"
+      env: NGV=next
     - script:
       name: "Cypress Smoke Tests 1t thread"
       env: CI_THREAD_INDEX=3x-electron
@@ -103,7 +105,9 @@ jobs:
     - script: npm run demo.ng-build
       name: "Check prod build with latest Angular version"
       env: NGV=latest
-#      env: NGV=next
+    - script: npm run demo.ng-build
+      name: "Check prod build with next Angular version"
+      env: NGV=next
     - script: npm run test-cross
       name: sauce-tests
       env: SAUCE=true
@@ -129,6 +133,13 @@ jobs:
         provider: surge
         project: ./gh-pages/
         domain: ngx-bootstrap-latest.surge.sh
+        on: development
+    - <<: *surge
+      env: NGV=next
+      deploy:
+        provider: surge
+        project: ./gh-pages/
+        domain: ngx-bootstrap-next.surge.sh
         on: development
 #   deploy to ngx-universal.herokuapp.com/
     - stage: deploy
