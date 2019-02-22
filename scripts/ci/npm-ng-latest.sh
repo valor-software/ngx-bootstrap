@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-npm uninstall @angular/tsc-wrapped
 npm i @angular/animations@latest \
     @angular-devkit/core@latest \
     @angular-devkit/schematics@latest \
@@ -8,7 +7,7 @@ npm i @angular/animations@latest \
     @angular/common@latest \
     @angular/compiler-cli@latest \
     @angular/compiler@latest \
-    @angular/core@8.0.0-beta.4 \
+    @angular/core@latest \
     @angular/forms@latest \
     @angular/http@latest \
     @angular/language-service@latest \
@@ -20,4 +19,4 @@ npm i @angular/animations@latest \
     @schematics/angular@latest \
     typescript@3.2.2 \
     tsickle@0.34.0 \
-    rxjs@6.3
+    rxjs@6.4.0
