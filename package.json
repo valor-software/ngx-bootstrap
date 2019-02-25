@@ -26,7 +26,7 @@
     "build.watch": "node scripts/build-modules --watch",
     "build:schematics": "node scripts/schematics/build",
     "build.modules": "node scripts/build-modules",
-    "ci:test": "node scripts/ci/change-name.js",
+    "change-name": "node scripts/ci/change-name.js",
     "build.sass": "node-sass --recursive src --output dist --source-map true --source-map-contents sass",
     "build.es2015": "node ./scripts/es2015/bundle.es2015.js",
     "start": "ng serve --aot --host 0.0.0.0",

@@ -32,6 +32,7 @@ testPostDeploy: &testPostDeploy
   script: CYPRESS_baseUrl=$BASE_URL npm run cy:run:all -- --record --key $CY_KEY --parallel --group $CI_THREAD_INDEX --ci-build-id PostDeploy-$CI_THREAD_INDEX-$TRAVIS_BUILD_ID
 
 stages:
+  - name: "publishing of testing bundle"
   - name: Testing
     if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v\d+
   - name: deploy
@@ -72,6 +73,21 @@ jobs:
 #          packages:
 #          - g++-4.8
 # run in parallel
+    - stage: "publishing of testing bundle"
+      script:
+      - npm ci
+      - npm run build
+      - npm run change-name
+      before_deploy: "cd dist"
+      deploy:
+        provider: npm
+        email: "valorkin@gmail.com"
+        api_key: $NPM_AUTH_TOKEN_CI
+        tag: %{commit}
+        skip_cleanup: true
+        on:
+          tags: true
+        after_deploy: cd ../ && npm run change-name
     - stage: Testing
 #   lint code
       script: npm run lint-src
