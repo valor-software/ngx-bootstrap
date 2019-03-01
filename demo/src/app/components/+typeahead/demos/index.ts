@@ -1,3 +1,4 @@
+import { DemoTypeaheadAdaptivePositionComponent } from './adaptive-position/adaptive-position';
 import { DemoTypeaheadAsyncComponent } from './async/async';
 import { DemoTypeaheadBasicComponent } from './basic/basic';
 import { DemoTypeaheadConfigComponent } from './config/config';
@@ -15,11 +16,12 @@ import { DemoTypeaheadOnSelectComponent } from './on-select/on-select';
 import { DemoTypeaheadPhraseDelimitersComponent } from './phrase-delimiters/phrase-delimiters';
 import { DemoTypeaheadReactiveFormComponent } from './reactive-form/reactive-form';
 import { DemoTypeaheadScrollableComponent } from './scrollable/scrollable';
+import { DemotypeaheadSelectFirstItemComponent } from './selected-first-item/selected-first-item';
 import { DemoTypeaheadShowOnBlurComponent } from './show-on-blur/show-on-blur';
 import { DemoTypeaheadSingleWorldComponent } from './single-world/single-world';
-import { DemotypeaheadSelectFirstItemComponent } from './selected-first-item/selected-first-item';
 
 export const DEMO_COMPONENTS = [
+  DemoTypeaheadAdaptivePositionComponent,
   DemoTypeaheadAsyncComponent,
   DemoTypeaheadBasicComponent,
   DemoTypeaheadConfigComponent,
@@ -37,7 +39,7 @@ export const DEMO_COMPONENTS = [
   DemoTypeaheadPhraseDelimitersComponent,
   DemoTypeaheadReactiveFormComponent,
   DemoTypeaheadScrollableComponent,
+  DemotypeaheadSelectFirstItemComponent,
   DemoTypeaheadShowOnBlurComponent,
-  DemoTypeaheadSingleWorldComponent,
-  DemotypeaheadSelectFirstItemComponent
+  DemoTypeaheadSingleWorldComponent
 ];

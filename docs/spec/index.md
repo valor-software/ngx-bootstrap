@@ -174,6 +174,8 @@
 
 [Dropdowns. Menu alignment](dropdowns/dropdowns.examples.menu-alignment.use-case.md)
 
+[Dropdowns. Inside click](dropdowns/dropdowns.examples.inside-click.use-case.md)
+
 [Dropdowns. Nested dropdowns](dropdowns/dropdowns.examples.nested-dropdowns.use-case.md)
 
 [Dropdowns. Append to body](dropdowns/dropdowns.examples.append-to-body.use-case.md)

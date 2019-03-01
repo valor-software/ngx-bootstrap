@@ -39,8 +39,7 @@ describe('Datepicker demo test suite: Placement', () => {
     cy.viewport(1440, 900);
     datepicker.clickOnDatepickerInput(placement, 1);
     datepicker.isDatepickerOpened(true);
-// TODO https://github.com/cypress-io/cypress/issues/871
-    datepicker.isDatepickerPlacementCorrect(placement, 'bottom', 1); // TODO should be top
+    datepicker.isDatepickerPlacementCorrect(placement, 'top', 1);
     datepicker.clickOnDatepickerInput(placement, 1);
     datepicker.isDatepickerOpened(false);
   });

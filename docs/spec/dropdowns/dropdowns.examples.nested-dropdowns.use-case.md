@@ -14,7 +14,7 @@ Main success scenario:
 4. When user clicks on this button, then dropdown opened and there are 4 items, one of them is separated
 5. When user move mouse to the first item with caret, then nested dropdown opened and there are 3 items in the sub-menu
 6. When user move mouse to the second item with caret, then nested dropdown opened and there are 3 items in the sub-menu
-7. When user clicks on any item, then dropdown closes //TODO need to change link href from #/dropdowns#nested to #/dropdowns#nested-dropdowns
+7. When user clicks on button again, then dropdown closes
 
 Variations:
 -----------
