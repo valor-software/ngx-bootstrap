@@ -66,6 +66,7 @@ export class PositioningService {
                 _getHtmlElement(positionElement.element),
                 positionElement.attachment,
                 positionElement.appendToBody,
+                this.options,
                 rendererFactory.createRenderer(null, null)
               );
             });
