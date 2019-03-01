@@ -12,10 +12,14 @@ import {
   TemplateRef,
   ViewContainerRef
 } from '@angular/core';
+
 import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipConfig } from './tooltip.config';
+
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { OnChange, warnOnce, parseTriggers } from 'ngx-bootstrap/utils';
+import { PositioningService } from 'ngx-bootstrap/positioning';
+
 import { timer } from 'rxjs';
 
 let id = 0;
@@ -202,10 +206,11 @@ export class TooltipDirective implements OnInit, OnDestroy {
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
   constructor(
     _viewContainerRef: ViewContainerRef,
-    private _renderer: Renderer2,
-    private _elementRef: ElementRef,
     cis: ComponentLoaderFactory,
-    config: TooltipConfig
+    config: TooltipConfig,
+    private _elementRef: ElementRef,
+    private _renderer: Renderer2,
+    private _positionService: PositioningService
   ) {
 
     this._tooltip = cis
@@ -222,6 +227,14 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this._positionService.setOptions({
+      modifiers: {
+        flip: {
+          enabled: true
+        }
+      }
+    });
+
     this._tooltip.listen({
       triggers: this.triggers,
       show: () => this.show()
