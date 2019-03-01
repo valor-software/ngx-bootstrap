@@ -4,6 +4,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { positionElements } from './ng-positioning';
 
 import { fromEvent, merge, of, animationFrameScheduler, Subject } from 'rxjs';
+import { Options } from './models';
 
 
 export interface PositioningOptions {
@@ -42,6 +43,7 @@ export interface PositioningOptions {
 
 @Injectable()
 export class PositioningService {
+  options: Options;
   private update$$ = new Subject<null>();
   private positionElements = new Map();
 
@@ -82,6 +84,10 @@ export class PositioningService {
 
   deletePositionElement(elRef: ElementRef): void {
     this.positionElements.delete(_getHtmlElement(elRef));
+  }
+
+  setOptions(options: Options) {
+    this.options = options;
   }
 }
 

@@ -9,12 +9,12 @@ import { DemoDatepickerConfigMethodComponent } from './demos/config-method/confi
 import { DemoDatePickerConfigObjectComponent } from './demos/config-object/config-object';
 import { DemoDatePickerCustomFormatComponent } from './demos/custom-format/custom-format';
 import { DemoDatepickerDateInitialStateComponent } from './demos/date-initial-state/date-initial-state';
-import { DemoDatepickerDaysDisabledComponent } from './demos/disable-days/disable-days';
 import { DemoDatepickerDatesDisabledComponent } from './demos/disable-dates/disable-dates';
-import { DemoDatepickerInlineComponent } from './demos/inline-datepicker/inline-datepicker.component';
+import { DemoDatepickerDaysDisabledComponent } from './demos/disable-days/disable-days';
 import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
 import { DemoDatepickerHideOnScrollComponent } from './demos/hide-on-scroll/hide-on-scroll';
+import { DemoDatepickerInlineComponent } from './demos/inline-datepicker/inline-datepicker.component';
 import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max.component';
 import { DemoDatepickerMinModeComponent } from './demos/min-mode/min-mode.component';
 import { DemoDatepickerOutsideClickComponent } from './demos/outside-click/outside-click';
@@ -24,8 +24,9 @@ import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/rea
 import {
   DemoDatePickerSelectDatesFromOtherMonthsComponent
 } from './demos/select-dates-from-other-months/select-dates-from-other-months';
-import { DemoDatePickerSelectWeekComponent } from './demos/select-week/select-week';
+import { DemoDatePickerAdaptivePositionComponent } from './demos/adaptive-position/adaptive-position';
 import { DemoDatepickerCustomTodayClassComponent } from './demos/custom-today-class/custom-today-class.component';
+import { DemoDatePickerSelectWeekComponent } from './demos/select-week/select-week';
 import { DemoDatepickerTriggersCustomComponent } from './demos/triggers-custom/triggers-custom';
 import { DemoDatepickerTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
 import { DemoDatepickerValueChangeEventComponent } from './demos/value-change-event/value-change-event';
@@ -79,6 +80,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/inline-datepicker/inline-datepicker.component.html'),
         description: `<p>with initial state set by <code>bsInlineValue</code> property</p>`,
         outlet: DemoDatepickerInlineComponent
+      },
+      {
+        title: 'Adaptive position',
+        anchor: 'adaptive-position',
+        component: require('!!raw-loader?lang=typescript!./demos/adaptive-position/adaptive-position.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/adaptive-position/adaptive-position.html'),
+        description: `<p>You can enable adaptive position via <code>adaptivePosition</code> option in <code>bsConfig</code></p>`,
+        outlet: DemoDatePickerAdaptivePositionComponent
       },
       {
         title: 'Initial state',
