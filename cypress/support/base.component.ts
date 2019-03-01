@@ -72,6 +72,10 @@ export abstract class BaseComponent {
     cy.get(baseSelector).eq(elementIndex ? elementIndex : 0).trigger('mouseenter');
   }
 
+  mouseOver(baseSelector: string, elementIndex?: number) {
+    cy.get(baseSelector).eq(elementIndex ? elementIndex : 0).trigger('mouseover');
+  }
+
   isInputHaveAttrs(baseSelector: string, attributes: AttrObj[], inputIndex = 0) {
     cy.get(`${baseSelector} input`).eq(inputIndex)
       .then(input => {
@@ -102,6 +106,10 @@ export abstract class BaseComponent {
 
   clickEnterOnInput(baseSelector: string, inputIndex = 0) {
     cy.get(`${baseSelector} input`).eq(inputIndex).type('{enter}');
+  }
+
+  pressEsc() {
+    cy.get(`body input`).type('{esc}', { force: true });
   }
 
   isDemoContainsTxt(baseSelector: string, expectedTxt: string, expectedTxtOther?: string) {
