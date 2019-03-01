@@ -13,7 +13,7 @@ Main success scenario:
 3. User see rating with 10 stars and card with "Rate: N, Readonly is: false;  Hovering over: none" text
 4. User see 2 clickable buttons "Clear" and "Toggle Readonly"
 5. First N stars should be selected and 10-N not selected
-6. When user move mouse to any other start from N (Y), then test in card changed with "Hovering over: Y" and percentage block shown with "Y*10%" text
+6. When user move mouse to any other star from N (Y), then text in card changed with "Hovering over: Y" and percentage block shown with "Y*10%" text
 7. When user clicks on any star (different from selected), then card info updated with this new number
 8. When user clicks "Clear", then all stars become unselected and card text is "Rate: 0;  Readonly is: false;  Hovering over: none"
 9. When user clicks on any star, then rating and card text updated again
