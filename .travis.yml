@@ -32,7 +32,7 @@ testPostDeploy: &testPostDeploy
   script: CYPRESS_baseUrl=$BASE_URL npm run cy:run:all -- --record --key $CY_KEY --parallel --group $CI_THREAD_INDEX --ci-build-id PostDeploy-$CI_THREAD_INDEX-$TRAVIS_BUILD_ID
 
 stages:
-  - name: "Before testing publishing"
+  - name: "Publish to ngx-bootstrap-ci"
     if: ( branch = development AND type = push ) OR type = pull_request
   - name: Testing
     if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v\d+
@@ -40,7 +40,7 @@ stages:
     if: branch = development AND type = push OR tag =~ ^v\d+
   - name: publish
     if: tag =~ ^v\d+
-  - name: "post deploy testing"
+  - name: "Post deploy testing"
     if:  branch = development AND type = push OR tag =~ ^v\d+
 
 before_install:
@@ -49,8 +49,8 @@ before_install:
 
 install:
   - npm ci
-  - npm i ngx-bs-ci@$TRAVIS_PULL_REQUEST_SHA
-  - npm run move:ci
+  - npm i ngx-bootstrap-ci@$TRAVIS_PULL_REQUEST_SHA
+  - npm run ci:copy-to-ngx-pkg
   - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
   - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
   - if [[ "$NGV" == "min" ]]; then  ./scripts/ci/npm-ng-min.sh; fi
@@ -76,12 +76,12 @@ jobs:
 #          packages:
 #          - g++-4.8
 # run in parallel
-    - stage: "Before testing publishing"
+    - stage: "Publish to ngx-bootstrap-ci"
       install: true
       script:
       - npm ci
       - npm run build
-      - npm run change-name
+      - npm run ci:update-pkg
       - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
       - cd dist
       - npm publish --tag $TRAVIS_PULL_REQUEST_SHA
@@ -97,19 +97,13 @@ jobs:
     - script: npm run test-coverage
       name: "Test with current Angular version"
       after_success: ./node_modules/.bin/codecov
-    - script:
-      - tsc -p schematics/tsconfig.json
-      - ng test && npm run test:schematics
+    - script: ng test && tsc -p schematics/tsconfig.json && npm run test:schematics
       name: "Test with latest Angular version"
       env: NGV=latest
-    - script:
-      - tsc -p schematics/tsconfig.json
-      - ng test && npm run test:schematics
+    - script: ng test && tsc -p schematics/tsconfig.json && npm run test:schematics
       name: "Test with next Angular version"
       env: NGV=next
-    - script:
-      - tsc -p schematics/tsconfig.json
-      - ng test && npm run test:schematics
+    - script: ng test && tsc -p schematics/tsconfig.json && npm run test:schematics
       name: "Test with min Angular version"
       env: NGV=min
     - script:
@@ -146,7 +140,7 @@ jobs:
       before_script:
         - mkdir -p $LOGS_DIR
       after_script:
-        - cd node_modules/ngx-bs-ci
+        - cd node_modules/ngx-bootstrap-ci
         - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
         - npm unpublish --tag $TRAVIS_PULL_REQUEST_SHA --force
 
