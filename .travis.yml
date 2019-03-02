@@ -32,6 +32,8 @@ testPostDeploy: &testPostDeploy
   script: CYPRESS_baseUrl=$BASE_URL npm run cy:run:all -- --record --key $CY_KEY --parallel --group $CI_THREAD_INDEX --ci-build-id PostDeploy-$CI_THREAD_INDEX-$TRAVIS_BUILD_ID
 
 stages:
+  - name: "Before testing publishing"
+    if: ( branch = development AND type = push ) OR type = pull_request
   - name: Testing
     if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v\d+
   - name: deploy
@@ -47,16 +49,18 @@ before_install:
 
 install:
   - npm ci
-  - npm run build
+  - npm i ngx-bs-ci@$TRAVIS_PULL_REQUEST_SHA
+  - npm run move:ci
   - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
-#  - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
-  - npm i ./dist  > /dev/null
+  - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
+  - if [[ "$NGV" == "min" ]]; then  ./scripts/ci/npm-ng-min.sh; fi
   - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export SAUCE_USERNAME=$SAUCE_USERNAME_PR; export SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; fi
 
 jobs:
   fast_finish: true
   allow_failures:
     - env: NGV=next
+    - env: NGV=min
     - name: sauce-tests
   include:
 # precache npm and apt dependencies
@@ -72,6 +76,18 @@ jobs:
 #          packages:
 #          - g++-4.8
 # run in parallel
+    - stage: "Before testing publishing"
+      install: true
+      script:
+      - npm ci
+      - npm run build
+      - npm run change-name
+      - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
+      - cd dist
+      - npm publish --tag $TRAVIS_PULL_REQUEST_SHA
+      skip_cleanup: true
+      on:
+        all_branches: true
     - stage: Testing
 #   lint code
       script: npm run lint-src
@@ -81,10 +97,21 @@ jobs:
     - script: npm run test-coverage
       name: "Test with current Angular version"
       after_success: ./node_modules/.bin/codecov
-    - script: npm run test
+    - script:
+      - tsc -p schematics/tsconfig.json
+      - ng test && npm run test:schematics
       name: "Test with latest Angular version"
       env: NGV=latest
-#     env: NGV=next
+    - script:
+      - tsc -p schematics/tsconfig.json
+      - ng test && npm run test:schematics
+      name: "Test with next Angular version"
+      env: NGV=next
+    - script:
+      - tsc -p schematics/tsconfig.json
+      - ng test && npm run test:schematics
+      name: "Test with min Angular version"
+      env: NGV=min
     - script:
       name: "Cypress Smoke Tests 1t thread"
       env: CI_THREAD_INDEX=3x-electron
@@ -103,7 +130,12 @@ jobs:
     - script: npm run demo.ng-build
       name: "Check prod build with latest Angular version"
       env: NGV=latest
-#      env: NGV=next
+    - script: npm run demo.ng-build
+      name: "Check prod build with next Angular version"
+      env: NGV=next
+    - script: npm run demo.ng-build
+      name: "Check prod build with min Angular version"
+      env: NGV=min
     - script: npm run test-cross
       name: sauce-tests
       env: SAUCE=true
@@ -113,23 +145,41 @@ jobs:
           access_key: $SAUCE_ACCESS_KEY_PR
       before_script:
         - mkdir -p $LOGS_DIR
+      after_script:
+        - cd node_modules/ngx-bs-ci
+        - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
+        - npm unpublish --tag $TRAVIS_PULL_REQUEST_SHA --force
 
 #   deploy to ngx-bootstrap.surge.sh
     - &surge
       stage: deploy
       script: npm run demo.build
       deploy:
-        provider: surge
-        project: ./gh-pages/
-        domain: ngx-bootstrap.surge.sh
-        on: development
+      provider: surge
+      project: ./gh-pages/
+      domain: ngx-bootstrap.surge.sh
+      on: development
     - <<: *surge
       env: NGV=latest
       deploy:
-        provider: surge
-        project: ./gh-pages/
-        domain: ngx-bootstrap-latest.surge.sh
-        on: development
+      provider: surge
+      project: ./gh-pages/
+      domain: ngx-bootstrap-latest.surge.sh
+      on: development
+    - <<: *surge
+      env: NGV=next
+      deploy:
+      provider: surge
+      project: ./gh-pages/
+      domain: ngx-bootstrap-next.surge.sh
+      on: development
+    - <<: *surge
+      env: NGV=min
+      deploy:
+      provider: surge
+      project: ./gh-pages/
+      domain: ngx-bootstrap-min.surge.sh
+      on: development
 #   deploy to ngx-universal.herokuapp.com/
     - stage: deploy
       script: npm run build:dynamic
