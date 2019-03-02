@@ -14,7 +14,8 @@ export function computeAutoPlacement(
   refRect: Offsets,
   target: HTMLElement,
   host: HTMLElement,
-  boundariesElement: string,
+  allowedPositions: any[] = ['top', 'left', 'bottom', 'right'],
+  boundariesElement = 'viewport',
   padding = 0
 ) {
   if (placement.indexOf('auto') === -1) {
@@ -50,10 +51,15 @@ export function computeAutoPlacement(
     }))
     .sort((a, b) => b.area - a.area);
 
-  const filteredAreas = sortedAreas.filter(
+  let filteredAreas: any[] = sortedAreas.filter(
     ({ width, height }) =>
       width >= target.clientWidth && height >= target.clientHeight
   );
+
+  filteredAreas = allowedPositions
+    .reduce((obj, key) => {
+      return { ...obj, [key]: filteredAreas[key] };
+    }, {});
 
   const computedPlacement: string = filteredAreas.length > 0
     ? filteredAreas[0].key

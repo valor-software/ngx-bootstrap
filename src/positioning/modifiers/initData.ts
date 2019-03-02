@@ -4,9 +4,11 @@ import {
   getTargetOffsets
 } from '../utils';
 
-import { Data } from '../models';
+import { Data, Options } from '../models';
 
-export function initData(targetElement: HTMLElement, hostElement: HTMLElement, position: string): Data {
+export function initData(
+  targetElement: HTMLElement, hostElement: HTMLElement, position: string, options: Options
+): Data {
 
   const hostElPosition = getReferenceOffsets(targetElement, hostElement);
   const placementAuto = !!position.match(/auto/g);
@@ -17,9 +19,10 @@ export function initData(targetElement: HTMLElement, hostElement: HTMLElement, p
     : position;
 
   const targetOffset = getTargetOffsets(targetElement, hostElPosition, placement);
-  placement = computeAutoPlacement(placement, hostElPosition, targetElement, hostElement, 'viewport', 0);
+  placement = computeAutoPlacement(placement, hostElPosition, targetElement, hostElement);
 
   return {
+    options,
     instance: {
       target: targetElement,
       host: hostElement,

@@ -1,15 +1,30 @@
 import {
   computeAutoPlacement,
-  getBoundaries, getClientRect,
-  getOppositePlacement,
+  getBoundaries,
+  getClientRect,
   getOppositeVariation,
-  getTargetOffsets
+  getTargetOffsets,
+  isModifierEnabled
 } from '../utils';
 
 import { Data } from '../models';
 
 export function flip(data: Data): Data {
   data.offsets.target = getClientRect(data.offsets.target);
+
+  if (!isModifierEnabled(data.options, 'flip')) {
+
+    data.offsets.target = {
+      ...data.offsets.target,
+      ...getTargetOffsets(
+        data.instance.target,
+        data.offsets.host,
+        data.placement
+      )
+    };
+
+    return data;
+  }
 
   const boundaries = getBoundaries(
     data.instance.target,
@@ -22,9 +37,13 @@ export function flip(data: Data): Data {
   let placement = data.placement.split(' ')[0];
   let variation = data.placement.split(' ')[1] || '';
 
+  const offsetsHost = data.offsets.host;
+  const target = data.instance.target;
+  const host = data.instance.host;
+
   const adaptivePosition = variation
-    ? getOppositePlacement(placement)
-    : computeAutoPlacement('auto', data.offsets.host, data.instance.target, data.instance.host, 'viewport', 0);
+    ? computeAutoPlacement('auto', offsetsHost, target, host, ['top', 'bottom'])
+    : computeAutoPlacement('auto', offsetsHost, target, host);
 
   const flipOrder = [placement, adaptivePosition];
 
