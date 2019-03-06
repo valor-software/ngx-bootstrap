@@ -7,24 +7,20 @@ describe('Landing Page test suite', () => {
 
   describe('Content', () => {
 
-    it('header displays ngx-bootstrap logo and info buttons', () => {
-      cy.get(landing.logoAtHeader)
-        .should('be.visible');
-      cy.get(landing.infoButtons)
-        .should('be.visible');
+    it('header displays ngx-bootstrap logo and info buttons to the: stackoverflow, gitHub and slack', () => {
+      landing.isElementVisible(landing.headerSelector, landing.logoAtHeader);
+      landing.isElementVisible(landing.headerSelector, landing.infoButtons);
+      landing.isElementVisible(landing.headerSelector, landing.stackOverBtn);
+      landing.isElementVisible(landing.headerSelector, landing.gitHbBtn);
+      landing.isElementVisible(landing.headerSelector, landing.slackNgxBtn);
     });
 
     it('main content displays ngx-bootstrap logo, slogan, description, version and advantages block', () => {
-      cy.get(landing.logoAtContent)
-        .should('be.visible');
-      cy.get(landing.sloganBs)
-        .should('be.visible');
-      cy.get(landing.descriptionBs)
-        .should('be.visible');
-      cy.get(landing.versionBs)
-        .should('be.visible');
-      cy.get(landing.advantagesBs)
-        .should('be.visible');
+      landing.isElementVisible(landing.mainClass, landing.logoAtContent);
+      landing.isElementVisible(landing.mainClass, landing.sloganBs);
+      landing.isElementVisible(landing.mainClass, landing.descriptionBs);
+      landing.isElementVisible(landing.mainClass, landing.versionBs);
+      landing.isElementVisible(landing.mainClass, landing.advantagesBs);
     });
 
     it('footer contains links to ng-team, contributors, MIT license, Creative Commons, original Bootstrap', () => {
@@ -37,7 +33,7 @@ describe('Landing Page test suite', () => {
       ];
 
       footerLinks.forEach(link =>
-        cy.get(`footer [href="${ link }"]`).should('to.be.exist'));
+        landing.isElemHasCorrectUrl('footer', link));
     });
   });
 
@@ -47,22 +43,16 @@ describe('Landing Page test suite', () => {
       const searchedUrl = '/documentation';
 
       landing.clickByText(landing.navBtn, buttonText);
-
-      cy.url()
-        .should('include', searchedUrl);
+      landing.isUrlExist(searchedUrl);
     });
 
     it('Documentation button is enabled and contains link to documentation', () => {
       const buttonText = 'Documentation';
       const searchedUrl = '/documentation';
 
-      cy.get(landing.navBtn).contains(buttonText)
-        .should('be.enabled');
-
+      landing.isNavigateBtnExist(buttonText, 1);
       landing.clickByText(landing.navBtn, buttonText);
-
-      cy.url()
-        .should('include', searchedUrl);
+      landing.isUrlExist(searchedUrl);
     });
 
     it('Info buttons in header are enabled and contains links to slack, github and stackoverflow', () => {
@@ -73,8 +63,45 @@ describe('Landing Page test suite', () => {
       ];
 
       linksArr.forEach(link =>
-        cy.get(`${ landing.infoButtons } [href="${ link }"]`)
-          .should('be.enabled'));
+        landing.isElemHasCorrectUrl(landing.infoButtons, link)
+      );
+    });
+  });
+
+  describe('Documentation page', () => {
+    beforeEach(() => cy.visit(landing.documentationUrl));
+
+    const textToSend = 'drop';
+    const searchResult = 'Dropdowns';
+    const bootstrapVer = '.bootstrap-version';
+    const demosList = '.sidebar-content';
+
+    it('Search on the Documentation page works correctly', () => {
+      landing.clearInputAndSendKeys('.sidebar-search', textToSend);
+      landing.isSearchResultCorrect(searchResult);
+    });
+
+    it('Main-menu in mobile view', () => {
+      cy.viewport(375, 667);
+      landing.clickOnMenuBtn();
+      landing.isMobileMenuActive();
+      landing.isMenuHasDescendants(bootstrapVer, demosList);
+    });
+  });
+
+  describe('Load Bootstrap version', () => {
+    const bootStrapVer3 = '3';
+    const bootStrapVer4 = '4';
+
+    it('the 3rd version is ', () => {
+      landing.loadBootstrapVersion(3);
+      landing.isBootstrapVersion(bootStrapVer3);
+    });
+
+    it('the 4th version is ', () => {
+      landing.loadBootstrapVersion(4);
+      landing.isBootstrapVersion(bootStrapVer4);
     });
   });
 });
+
