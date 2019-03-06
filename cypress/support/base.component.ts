@@ -143,10 +143,14 @@ export abstract class BaseComponent {
       .should(btnTxt => expect(btnTxt).to.contain(previewText));
   }
 
-  clickOutside(baseSelector: string) {
-    cy.get(baseSelector).eq(0).trigger('click', { clientX: 100, clientY: 100 });
+  isButtonDisabled(baseSelector: string, buttonIndex = 0, disabled = true) {
+    cy.get(`${baseSelector} button`).eq(buttonIndex).should(disabled ? 'to.be.disabled' : 'not.to.be.disabled');
   }
-  
+
+  clickOutside(baseSelector: string) {
+    cy.get(baseSelector).eq(0).trigger('click', { clientX: 100, clientY: 100 , force: true});
+  }
+
   clickCheckbox(baseSelector: string, shouldBeChecked: boolean) {
     if (shouldBeChecked) {
       cy.get(`${baseSelector} input[type="checkbox"]`)

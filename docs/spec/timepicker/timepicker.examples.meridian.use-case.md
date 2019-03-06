@@ -13,7 +13,7 @@ Main success scenario:
 3. User see timepicker component and info alert with selected date and time (current by default)
 4. User see current hour and current minute in timepicker inputs and button "AM"("PM") by default (depend on current time)
 5. User see clickable button "12H / 24H" by default
-6. When user clicks on "12H / 24H", then "AM"("PM") button dissapeared and time changed appropriate (according to 24-hours format)
+6. When user clicks on "12H / 24H", then "AM"("PM") button disappeared and time changed appropriate (according to 24-hours format)
 7. When user send other valid number to hours input (00-24), then time changed appropriate
 8. When user send invalid number or string to input and click outside, then the red border appeared in input and danger alert shown "Time is: " info
 9. When user clicks on arrow up, then invalid value changed to the 01 and info alert show appropriate time
