@@ -8,9 +8,9 @@ export class LandingPo extends BaseComponent {
   logoAtHeader = '.logo';
   logoAtContent = '.content-logo';
   headerSelector = '.header';
-  stackOverBtn = 'li:nth-child(1) a';
-  gitHbBtn = 'li:nth-child(2) a';
-  slackNgxBtn = 'li:nth-child(3) a';
+  stackOverBtn = 'a[href*= "stackoverflow"]';
+  gitHbBtn = '.header-list a[href*= "github"]';
+  slackNgxBtn = '.header-list a[href*= "slack"]';
   infoButtons = '.header-list';
   sloganBs = '.slogan';
   descriptionBs = '.descr';
@@ -36,7 +36,7 @@ export class LandingPo extends BaseComponent {
       .should('be.enabled');
   }
 
-  clickOnMenuBtn() {
+  clickOnMobileMenuBtn() {
     cy.get(this.mobileMenuBtn).click();
   }
 
@@ -50,17 +50,17 @@ export class LandingPo extends BaseComponent {
     cy.get('body').should('have.class', this.mobileMenuOpened);
   }
 
-  isMenuHasDescendants(descen1Selector: string, descen2Selector: string) {
+  isMobileMenuHasDescendants(descen1Selector: string, descen2Selector: string) {
     cy.get(this.mobileMenu).should('be.visible')
       .and('have.descendants', descen1Selector)
       .and('have.descendants', descen2Selector);
   }
 
-  loadBootstrapVersion(bsVersion: number) {
+  visitNGXBootstrapWithBsVersion(bsVersion: number) {
     cy.visit(`${this.documentationUrl}?_bsVersion=bs${bsVersion}`);
   }
 
-  isBootstrapVersion(version: string) {
+  isBootstrapVersion(version: number) {
     cy.get('.selected').invoke('text').should('contain', version);
   }
 }

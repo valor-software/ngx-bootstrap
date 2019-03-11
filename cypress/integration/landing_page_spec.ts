@@ -7,15 +7,13 @@ describe('Landing Page test suite', () => {
 
   describe('Content', () => {
 
-    it('header displays ngx-bootstrap logo and info buttons to the: stackoverflow, gitHub and slack', () => {
+    it(`content displays: ngx-bootstrap logo and info buttons to the: stackoverflow, gitHub and slack, slogan,
+     description, version and advantages block`, () => {
       landing.isElementVisible(landing.headerSelector, landing.logoAtHeader);
       landing.isElementVisible(landing.headerSelector, landing.infoButtons);
       landing.isElementVisible(landing.headerSelector, landing.stackOverBtn);
       landing.isElementVisible(landing.headerSelector, landing.gitHbBtn);
       landing.isElementVisible(landing.headerSelector, landing.slackNgxBtn);
-    });
-
-    it('main content displays ngx-bootstrap logo, slogan, description, version and advantages block', () => {
       landing.isElementVisible(landing.mainClass, landing.logoAtContent);
       landing.isElementVisible(landing.mainClass, landing.sloganBs);
       landing.isElementVisible(landing.mainClass, landing.descriptionBs);
@@ -83,24 +81,23 @@ describe('Landing Page test suite', () => {
 
     it('Main-menu in mobile view', () => {
       cy.viewport(375, 667);
-      landing.clickOnMenuBtn();
+      landing.clickOnMobileMenuBtn();
       landing.isMobileMenuActive();
-      landing.isMenuHasDescendants(bootstrapVer, demosList);
+      landing.isMobileMenuHasDescendants(bootstrapVer, demosList);
     });
   });
 
   describe('Load Bootstrap version', () => {
-    const bootStrapVer3 = '3';
-    const bootStrapVer4 = '4';
-
     it('the 3rd version is ', () => {
-      landing.loadBootstrapVersion(3);
-      landing.isBootstrapVersion(bootStrapVer3);
+      const bsVersion = 3;
+      landing.visitNGXBootstrapWithBsVersion(bsVersion);
+      landing.isBootstrapVersion(bsVersion);
     });
 
     it('the 4th version is ', () => {
-      landing.loadBootstrapVersion(4);
-      landing.isBootstrapVersion(bootStrapVer4);
+      const bsVersion = 4;
+      landing.visitNGXBootstrapWithBsVersion(bsVersion);
+      landing.isBootstrapVersion(bsVersion);
     });
   });
 });
