@@ -11,9 +11,9 @@ import {
   Renderer2,
   ViewContainerRef
 } from '@angular/core';
-import { filter } from 'rxjs/operators';
+import { distinctUntilChanged, filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
-import { ComponentLoader, ComponentLoaderFactory, BsComponentRef } from 'ngx-bootstrap/component-loader';
+import { BsComponentRef, ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 
 import { BsDropdownConfig } from './bs-dropdown.config';
 import { BsDropdownContainerComponent } from './bs-dropdown-container.component';
@@ -83,7 +83,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   @Input()
   set isDisabled(value: boolean) {
     this._isDisabled = value;
-    this._state.isDisabledChange.emit(value);
+    this._state.isDisabledChange.next(value);
     if (value) {
       this.hide();
     }
@@ -116,7 +116,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   /**
    * Emits an event when isOpen change
    */
-  @Output() isOpenChange: EventEmitter<boolean>;
+  @Output() isOpenChange = new EventEmitter<boolean>();
 
   /**
    * Emits an event when the popover is shown
@@ -163,11 +163,15 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         this._viewContainerRef,
         this._renderer
       )
-      .provide({provide: BsDropdownState, useValue: this._state});
+      .provide({ provide: BsDropdownState, useValue: this._state });
 
     this.onShown = this._dropdown.onShown;
     this.onHidden = this._dropdown.onHidden;
-    this.isOpenChange = this._state.isOpenChange;
+    this._subscriptions.push(this._state.isOpenChange.subscribe(show => {
+      if (this.isOpenChange.observers.length > 0) {
+        this.isOpenChange.emit(show);
+      }
+    }));
 
   }
 
@@ -190,7 +194,8 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
     // toggle visibility on toggle element click
     this._subscriptions.push(
-      this._state.toggleClick.subscribe((value: boolean) => this.toggle(value))
+      this._state.toggleClick.pipe(distinctUntilChanged())
+        .subscribe((value: boolean) => this.toggle(value))
     );
 
     // hide dropdown if set disabled while opened
@@ -230,7 +235,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       this.addBs4Polyfills();
       this._isInlineOpen = true;
       this.onShown.emit(true);
-      this._state.isOpenChange.emit(true);
+      this._state.isOpenChange.next(true);
 
       return;
     }
@@ -253,7 +258,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
           placement: _placement
         });
 
-      this._state.isOpenChange.emit(true);
+      this._state.isOpenChange.next(true);
     })
     // swallow error
       .catch();
@@ -277,7 +282,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       this._dropdown.hide();
     }
 
-    this._state.isOpenChange.emit(false);
+    this._state.isOpenChange.next(false);
   }
 
   /**

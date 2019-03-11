@@ -3,7 +3,10 @@ import {
   ElementRef,
   HostBinding,
   HostListener,
-  OnDestroy
+  NgZone,
+  OnDestroy,
+  OnInit,
+  Renderer2
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
@@ -17,15 +20,20 @@ import { BsDropdownDirective } from './bs-dropdown.directive';
     '[attr.aria-haspopup]': 'true'
   }
 })
-export class BsDropdownToggleDirective implements OnDestroy {
-  @HostBinding('attr.disabled') isDisabled: boolean = null;
+export class BsDropdownToggleDirective implements OnDestroy, OnInit {
+  @HostBinding('attr.disabled') isDisabled: boolean | null = null;
 
   // @HostBinding('class.active')
   @HostBinding('attr.aria-expanded') isOpen: boolean;
 
   private _subscriptions: Subscription[] = [];
+  private _unlisten: Function;
 
-  constructor(private _state: BsDropdownState, private _element: ElementRef, private dropdown: BsDropdownDirective) {
+  constructor(private _state: BsDropdownState,
+              private _element: ElementRef,
+              private _zone: NgZone,
+              private _renderer: Renderer2,
+              private dropdown: BsDropdownDirective) {
     // sync is open value with state
     this._subscriptions.push(
       this._state.isOpenChange.subscribe(
@@ -45,10 +53,8 @@ export class BsDropdownToggleDirective implements OnDestroy {
     if (this.isDisabled) {
       return;
     }
-    this._state.toggleClick.emit(true);
+    this._state.toggleClick.next(true);
   }
-
-  @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
     if (
       this._state.autoClose &&
@@ -56,18 +62,27 @@ export class BsDropdownToggleDirective implements OnDestroy {
       !this._element.nativeElement.contains(event.target) &&
       !(this._state.insideClick && this.dropdown._contains(event))
     ) {
-      this._state.toggleClick.emit(false);
+      this._state.toggleClick.next(false);
     }
   }
 
   @HostListener('keyup.esc')
   onEsc(): void {
     if (this._state.autoClose) {
-      this._state.toggleClick.emit(false);
+      this._state.toggleClick.next(false);
     }
   }
 
+  ngOnInit() {
+    this._zone.runOutsideAngular(() => {
+      this._unlisten = this._renderer.listen('document', 'click', (event: MouseEvent) => this.onDocumentClick(event));
+    });
+  }
+
   ngOnDestroy(): void {
+    if (this._unlisten) {
+      this._zone.runOutsideAngular(() => this._unlisten());
+    }
     for (const sub of this._subscriptions) {
       sub.unsubscribe();
     }
