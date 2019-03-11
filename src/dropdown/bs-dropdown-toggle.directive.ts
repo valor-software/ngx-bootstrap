@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Directive,
   ElementRef,
   HostBinding,
@@ -29,7 +30,9 @@ export class BsDropdownToggleDirective implements OnDestroy, OnInit {
   private _subscriptions: Subscription[] = [];
   private _unlisten: Function;
 
-  constructor(private _state: BsDropdownState,
+  constructor(private _host: BsDropdownDirective,
+              private _changeDetectionRef: ChangeDetectorRef,
+              private _state: BsDropdownState,
               private _element: ElementRef,
               private _zone: NgZone,
               private _renderer: Renderer2,
@@ -55,6 +58,7 @@ export class BsDropdownToggleDirective implements OnDestroy, OnInit {
     }
     this._state.toggleClick.next(true);
   }
+
   onDocumentClick(event: MouseEvent): void {
     if (
       this._state.autoClose &&
@@ -62,7 +66,12 @@ export class BsDropdownToggleDirective implements OnDestroy, OnInit {
       !this._element.nativeElement.contains(event.target) &&
       !(this._state.insideClick && this.dropdown._contains(event))
     ) {
-      this._state.toggleClick.next(false);
+      if (this._host.isOpen) {
+        this._zone.run(() => {
+          this._state.toggleClick.next(false);
+          this._changeDetectionRef.detectChanges();
+        });
+      }
     }
   }
 
@@ -75,7 +84,7 @@ export class BsDropdownToggleDirective implements OnDestroy, OnInit {
 
   ngOnInit() {
     this._zone.runOutsideAngular(() => {
-      this._unlisten = this._renderer.listen('document', 'click', (event: MouseEvent) => this.onDocumentClick(event));
+      this._unlisten = this._renderer.listen('document', 'click', this.onDocumentClick.bind(this));
     });
   }
 

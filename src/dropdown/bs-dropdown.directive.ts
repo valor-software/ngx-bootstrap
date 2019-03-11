@@ -11,7 +11,7 @@ import {
   Renderer2,
   ViewContainerRef
 } from '@angular/core';
-import { distinctUntilChanged, filter } from 'rxjs/operators';
+import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { BsComponentRef, ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 
@@ -194,7 +194,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
     // toggle visibility on toggle element click
     this._subscriptions.push(
-      this._state.toggleClick.pipe(distinctUntilChanged())
+      this._state.toggleClick
         .subscribe((value: boolean) => this.toggle(value))
     );
 
