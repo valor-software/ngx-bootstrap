@@ -17,6 +17,8 @@ env:
     - BROWSER_PROVIDER_READY_FILE=/tmp/sauce-connect-ready
     - LOGS_DIR=/tmp/logs
     - CY_KEY=4aa7a1c0-3a4f-444e-b324-6fc305a543a8
+    - DATE=`date '+%Y%m%d%2H%2M%2S'`
+    - VERSION=$(cat package.json | grep version | head -1 | awk -F':' '{ print $2 }' | sed 's/[\",]//g')
 
 #     test cypress smoke
 testSmokeCy: &testSmokeCy
@@ -49,7 +51,7 @@ before_install:
 
 install:
   - npm ci
-  - npm i ngx-bootstrap-ci@$TRAVIS_PULL_REQUEST_SHA
+  - npm i ngx-bootstrap-ci@$VERSION-dev.$DATE
   - npm run ci:copy-to-ngx-pkg
   - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
   - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
@@ -84,7 +86,9 @@ jobs:
       - npm run ci:update-pkg
       - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
       - cd dist
-      - npm publish --tag $TRAVIS_PULL_REQUEST_SHA
+      - echo "$VERSION"
+      - sed -i 's|\(.*"version"\):\s"\([0-9]\.[0-9].[0-9]\)",.*|\1:'"\"$VERSION-dev.$DATE\",|" package.json
+      - npm publish --tag dev
       skip_cleanup: true
       on:
         all_branches: true
@@ -142,7 +146,7 @@ jobs:
       after_script:
         - cd node_modules/ngx-bootstrap-ci
         - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
-        - npm unpublish --tag $TRAVIS_PULL_REQUEST_SHA --force
+        - npm unpublish ngx-bootstrap@$VERSION-dev.$DATE --tag dev --force
 
 #   deploy to ngx-bootstrap.surge.sh
     - &surge
