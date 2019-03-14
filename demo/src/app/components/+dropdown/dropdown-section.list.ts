@@ -108,7 +108,7 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/disabled-item/disabled-item.ts'),
         html: require('!!raw-loader?lang=markup!./demos/disabled-item/disabled-item.html'),
         description: `<p>Add a <code>disabled</code> class to <code>&lt;a&gt;</code> for bootstrap 4 to make it as disabled.</p>
-                      <p>Add a <code>disabled</code> class to <code>&lt;li&gt;</code>  for bootstrap 3 to make as it disabled.</p>`,
+                      <p>Add a <code>disabled</code> class to <code>&lt;li&gt;</code>  for bootstrap 3 to make it as disabled.</p>`,
         outlet: DemoDropdownDisabledItemComponent
       },
       {

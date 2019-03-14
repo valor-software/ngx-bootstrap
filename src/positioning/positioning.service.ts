@@ -1,7 +1,10 @@
-import { Injectable, ElementRef, RendererFactory2 } from '@angular/core';
+import { Injectable, ElementRef, RendererFactory2, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 import { positionElements } from './ng-positioning';
+
 import { fromEvent, merge, of, animationFrameScheduler, Subject } from 'rxjs';
+import { Options } from './models';
 
 
 export interface PositioningOptions {
@@ -40,31 +43,35 @@ export interface PositioningOptions {
 
 @Injectable()
 export class PositioningService {
+  options: Options;
   private update$$ = new Subject<null>();
-
-  private events$: any = merge(
-    fromEvent(window, 'scroll'),
-    fromEvent(window, 'resize'),
-    of(0, animationFrameScheduler),
-    this.update$$
-  );
-
   private positionElements = new Map();
 
-  constructor(rendererFactory: RendererFactory2) {
-    this.events$
-      .subscribe(() => {
-        this.positionElements
-          .forEach((positionElement: PositioningOptions) => {
-            positionElements(
-              _getHtmlElement(positionElement.target),
-              _getHtmlElement(positionElement.element),
-              positionElement.attachment,
-              positionElement.appendToBody,
-              rendererFactory.createRenderer(null, null)
-            );
-          });
-      });
+  constructor(
+    rendererFactory: RendererFactory2,
+    @Inject(PLATFORM_ID) platformId: number
+  ) {
+    if (isPlatformBrowser(platformId)) {
+      merge(
+        fromEvent(window, 'scroll'),
+        fromEvent(window, 'resize'),
+        of(0, animationFrameScheduler),
+        this.update$$
+      )
+        .subscribe(() => {
+          this.positionElements
+            .forEach((positionElement: PositioningOptions) => {
+              positionElements(
+                _getHtmlElement(positionElement.target),
+                _getHtmlElement(positionElement.element),
+                positionElement.attachment,
+                positionElement.appendToBody,
+                this.options,
+                rendererFactory.createRenderer(null, null)
+              );
+            });
+        });
+    }
   }
 
   position(options: PositioningOptions): void {
@@ -78,6 +85,10 @@ export class PositioningService {
 
   deletePositionElement(elRef: ElementRef): void {
     this.positionElements.delete(_getHtmlElement(elRef));
+  }
+
+  setOptions(options: Options) {
+    this.options = options;
   }
 }
 
