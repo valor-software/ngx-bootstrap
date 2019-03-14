@@ -20,4 +20,3 @@ npm i @angular/animations@latest \
     typescript@3.2.2 \
     tsickle@0.34.0 \
     rxjs@6.4.0
-
