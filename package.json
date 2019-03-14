@@ -1,6 +1,6 @@
 {
   "name": "ngx-bootstrap-base",
-  "version": "3.3.0",
+  "version":"3.3.0",
   "description": "Native Angular Bootstrap Components",
   "private": true,
   "scripts": {
@@ -26,6 +26,8 @@
     "build.watch": "node scripts/build-modules --watch",
     "build:schematics": "node scripts/schematics/build",
     "build.modules": "node scripts/build-modules",
+    "ci:update-pkg": "node scripts/ci/update-pkg.js",
+    "ci:copy-to-ngx-pkg": "node scripts/ci/copy-to-ngx-pkg.js",
     "build.sass": "node-sass --recursive src --output dist --source-map true --source-map-contents sass",
     "build.es2015": "node ./scripts/es2015/bundle.es2015.js",
     "start": "ng serve --aot --host 0.0.0.0",
