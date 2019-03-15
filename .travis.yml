@@ -58,6 +58,7 @@ jobs:
   allow_failures:
     - env: NGV=next
     - name: sauce-tests
+    - name: "Cypress Applitools Snapshot tests"
   include:
 # precache npm and apt dependencies
 #    - stage: precache
@@ -97,7 +98,7 @@ jobs:
       name: "Cypress Smoke Tests 3d thread"
       env: CI_THREAD_INDEX=3x-electron
       <<: *testSmokeCy
-#    check prod build
+    #    check prod build
     - script: npm run demo.ng-build
       name: "Check prod build with current Angular version"
     - script: npm run demo.ng-build
@@ -221,6 +222,9 @@ jobs:
         - CI_THREAD_INDEX=3.2x-electron
         - BASE_URL=https://valor-software.com/ngx-bootstrap/#/
       <<: *testPostDeploy
+    - script: APPLITOOLS_API_KEY=Nls100t102uNgLhLpblVUdA3tP104MQQS9VUYgHQ5tYOUuIxU110 CYPRESS_baseUrl=https://valor-software.com/ngx-bootstrap/#/ npm run cy:run:snapshot
+      name: "Cypress Applitools Snapshot tests"
+      if: tag =~ ^v\d+
 
 cache:
   apt: true
