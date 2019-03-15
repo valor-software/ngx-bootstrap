@@ -21,6 +21,7 @@ import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { TypeaheadConfig } from './typeahead.config';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
+import { PositioningService } from 'ngx-bootstrap/positioning';
 import { debounceTime, filter, mergeMap, switchMap, toArray } from 'rxjs/operators';
 
 @Directive({selector: '[typeahead]', exportAs: 'bs-typeahead'})
@@ -35,6 +36,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
    * list of options (limited as normal by typeaheadOptionsLimit)
    */
   @Input() typeaheadMinLength: number = void 0;
+  /** sets use adaptive position */
+  @Input() adaptivePosition: boolean;
   /** minimal wait time after last character typed before typeahead kicks-in */
   @Input() typeaheadWaitMs: number;
   /** maximum length of options items list. The default value is 20 */
@@ -142,13 +145,16 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   private _subscriptions: Subscription[] = [];
   private _outsideClickListener: Function;
 
-  constructor(private ngControl: NgControl,
-              private element: ElementRef,
-              viewContainerRef: ViewContainerRef,
-              private renderer: Renderer2,
-              config: TypeaheadConfig,
-              cis: ComponentLoaderFactory,
-              private changeDetection: ChangeDetectorRef) {
+  constructor(
+    cis: ComponentLoaderFactory,
+    config: TypeaheadConfig,
+    private changeDetection: ChangeDetectorRef,
+    private element: ElementRef,
+    private ngControl: NgControl,
+    private positionService: PositioningService,
+    private renderer: Renderer2,
+    viewContainerRef: ViewContainerRef
+  ) {
 
     this._typeahead = cis.createLoader<TypeaheadContainerComponent>(
       element,
@@ -160,7 +166,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     Object.assign(this,
       { typeaheadHideResultsOnBlur: config.hideResultsOnBlur,
                typeaheadSelectFirstItem: config.selectFirstItem,
-               typeaheadMinLength: config.minLength
+               typeaheadMinLength: config.minLength,
+               adaptivePosition: config.adaptivePosition
       });
   }
 
@@ -298,6 +305,14 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   show(): void {
+    this.positionService.setOptions({
+      modifiers: {
+        flip: {
+          enabled: this.adaptivePosition
+        }
+      }
+    });
+
     this._typeahead
       .attach(TypeaheadContainerComponent)
       // todo: add append to body, after updating positioning service
