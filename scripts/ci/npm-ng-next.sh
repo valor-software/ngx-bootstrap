@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 npm i @angular/animations@next \
-    @angular-devkit/core@next \
+    @angular/core@next \
+    @angular-devkit/core@latest \
     @angular-devkit/schematics@next \
     @angular/cli@next \
     @angular/common@next \
     @angular/compiler-cli@next \
     @angular/compiler@next \
-    @angular/core@next \
     @angular/forms@next \
     @angular/http@next \
     @angular/language-service@next \

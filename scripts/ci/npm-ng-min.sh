@@ -12,3 +12,5 @@ npm i --no-save @angular/cli@6.1.5 \
     @angular/platform-browser-dynamic@6.0.1 \
     @angular/router@6.0.1 \
     @angular/service-worker@6.0.1 \
+    typescript@3.1.6 \
+    rxjs@6.1.0
