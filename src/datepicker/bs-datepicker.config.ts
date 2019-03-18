@@ -11,6 +11,8 @@ import {
  */
 @Injectable()
 export class BsDatepickerConfig implements DatepickerRenderOptions {
+  /** sets use adaptive position */
+  adaptivePosition = false;
   value?: Date | Date[];
   isDisabled?: boolean;
   /**

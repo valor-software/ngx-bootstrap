@@ -5,6 +5,7 @@ import {
 import { PopoverConfig } from './popover.config';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { PopoverContainerComponent } from './popover-container.component';
+import { PositioningService } from 'ngx-bootstrap/positioning';
 
 /**
  * A lightweight, extensible directive for fancy popover creation.
@@ -79,11 +80,14 @@ export class PopoverDirective implements OnInit, OnDestroy {
   private _popover: ComponentLoader<PopoverContainerComponent>;
   private _isInited = false;
 
-  constructor(_elementRef: ElementRef,
-              _renderer: Renderer2,
-              _viewContainerRef: ViewContainerRef,
-              _config: PopoverConfig,
-              cis: ComponentLoaderFactory) {
+  constructor(
+    _config: PopoverConfig,
+    _elementRef: ElementRef,
+    _renderer: Renderer2,
+    _viewContainerRef: ViewContainerRef,
+    cis: ComponentLoaderFactory,
+    private _positionService: PositioningService
+  ) {
     this._popover = cis
       .createLoader<PopoverContainerComponent>(
         _elementRef,
@@ -161,6 +165,14 @@ export class PopoverDirective implements OnInit, OnDestroy {
       return;
     }
     this._isInited = true;
+
+    this._positionService.setOptions({
+      modifiers: {
+        flip: {
+          enabled: true
+        }
+      }
+    });
 
     this._popover.listen({
       triggers: this.triggers,

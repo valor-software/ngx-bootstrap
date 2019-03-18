@@ -21,8 +21,8 @@ export abstract class BaseComponent {
     cy.get('add-nav').contains('a', subMenu).click();
   }
 
-  clickByText(parent: string, text: string) {
-    cy.get(parent).contains(text).click();
+  clickByText(baseSelector: string, text: string) {
+    cy.get(baseSelector).contains(text).click();
   }
 
   dblClickByText(parent: string, text: string) {
@@ -32,6 +32,11 @@ export abstract class BaseComponent {
   isBtnTxtEqual(baseSelector: string, expectedBtnTxt: string, buttonIndex?: number) {
     cy.get(`${ baseSelector } button`).eq(buttonIndex ? buttonIndex : 0).invoke('text')
       .should(btnTxt => expect(btnTxt).to.equal(expectedBtnTxt));
+  }
+
+  isBtnDisabled(baseSelector: string, disabled: boolean, buttonIndex = 0) {
+    cy.get(`${ baseSelector } button`).eq(buttonIndex ? buttonIndex : 0)
+      .should(disabled ? 'to.be.disabled' : 'not.to.be.disabled');
   }
 
   isLabelTxtEqual(baseSelector: string, expectedLabelTxt: string, labelIndex?: number) {
@@ -67,6 +72,10 @@ export abstract class BaseComponent {
     cy.get(baseSelector).eq(elementIndex ? elementIndex : 0).trigger('mouseenter');
   }
 
+  mouseOver(baseSelector: string, elementIndex?: number) {
+    cy.get(baseSelector).eq(elementIndex ? elementIndex : 0).trigger('mouseover');
+  }
+
   isInputHaveAttrs(baseSelector: string, attributes: AttrObj[], inputIndex = 0) {
     cy.get(`${baseSelector} input`).eq(inputIndex)
       .then(input => {
@@ -97,6 +106,10 @@ export abstract class BaseComponent {
 
   clickEnterOnInput(baseSelector: string, inputIndex = 0) {
     cy.get(`${baseSelector} input`).eq(inputIndex).type('{enter}');
+  }
+
+  pressEsc() {
+    cy.get(`body input`).type('{esc}', { force: true });
   }
 
   isDemoContainsTxt(baseSelector: string, expectedTxt: string, expectedTxtOther?: string) {
@@ -178,5 +191,14 @@ export abstract class BaseComponent {
       .find('tab[heading*="component"]')
       .invoke('text')
       .should('to.contains', expectedTxt);
+  }
+
+  isElemTextContain(baseSelector: string, itemSel: string, expectedText: string, elementIndex = 0) {
+      cy.get(baseSelector).find(itemSel).eq(elementIndex).invoke('text')
+        .should('contain', expectedText);
+  }
+
+  isElementVisible(baseSelector: string, additionalSelector: string, elementIndex = 0) {
+    cy.get(`${ baseSelector } ${additionalSelector}`).eq(elementIndex).should('be.visible');
   }
 }
