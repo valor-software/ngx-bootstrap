@@ -1,6 +1,5 @@
-import { InjectionToken } from '@angular/core';
-import { ControlValueAccessor } from '@angular/forms/src/directives/control_value_accessor';
-import { Type } from '@angular/core/src/type';
+import { InjectionToken, Type } from '@angular/core';
+import { ControlValueAccessor } from '@angular/forms';
 
 export interface ControlValueAccessorModel {
   provide: InjectionToken<ControlValueAccessor>;

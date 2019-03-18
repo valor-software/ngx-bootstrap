@@ -31,12 +31,12 @@ export function preventOverflow(data: Data) {
 
   const check = {
     primary(placement: string) {
-      let value = data.offsets.target[placement];
+      let value = (data as any).offsets.target[placement];
       if (
-        data.offsets.target[placement] < boundaries[placement] &&
+        (data as any).offsets.target[placement] < boundaries[placement] &&
         !false // options.escapeWithReference
       ) {
-        value = Math.max(data.offsets.target[placement], boundaries[placement]);
+        value = Math.max((data as any).offsets.target[placement], boundaries[placement]);
       }
 
       return { [placement]: value };
@@ -45,7 +45,7 @@ export function preventOverflow(data: Data) {
       const mainSide = placement === 'right' ? 'left' : 'top';
       let value = data.offsets.target[mainSide];
       if (
-        data.offsets.target[placement] > boundaries[placement] &&
+        (data as any).offsets.target[placement] > boundaries[placement] &&
         !false // escapeWithReference
       ) {
         value = Math.min(
@@ -67,7 +67,7 @@ export function preventOverflow(data: Data) {
       ? 'primary'
       : 'secondary';
 
-    data.offsets.target = { ...data.offsets.target, ...check[side](placement) };
+    data.offsets.target = { ...data.offsets.target, ...(check as any)[side](placement) };
 
   });
 
