@@ -42,7 +42,7 @@
     "cy:open": "cypress open",
     "cy:run:smoke": "APPLITOOLS_CONCURRENCY=100 cypress run --config integrationFolder=cypress/integration",
     "cy:run:full": "APPLITOOLS_CONCURRENCY=100 cypress run --config integrationFolder=cypress/full",
-    "cy:run:all": "APPLITOOLS_CONCURRENCY=100 cypress run --config integrationFolder=cypress --spec '**/*_spec.ts",
+    "cy:run:all": "APPLITOOLS_CONCURRENCY=100 cypress run --config integrationFolder=cypress --spec '**/*_spec.ts'",
     "cy:run:snapshot": "APPLITOOLS_SHOW_LOGS=1 APPLITOOLS_CONCURRENCY=100 cypress run --config integrationFolder=cypress/snapshot",
     "view-stats": "webpack-bundle-analyzer demo/dist/stats.json",
     "build:dynamic": "run-s build build:client-and-server-bundles webpack:server configure-heroku",
