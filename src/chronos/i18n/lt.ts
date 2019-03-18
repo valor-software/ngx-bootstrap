@@ -36,7 +36,7 @@ function special(num: number) {
   return num % 10 === 0 || (num > 10 && num < 20);
 }
 function forms(key: string) {
-  return units[key].split('_');
+  return (units as any)[key].split('_');
 }
 function translate(num: number, withoutSuffix: boolean, key: string, isFuture: boolean) {
   let result = num + ' ';
