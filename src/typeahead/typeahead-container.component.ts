@@ -26,7 +26,14 @@ import { TypeaheadDirective } from './typeahead.directive';
     '[style.visibility]': `typeaheadScrollable ? 'hidden' : 'visible'`,
     '[class.dropup]': 'dropup',
     style: 'position: absolute;display: block;'
-  }
+  },
+  styles: [
+    `
+    :host.dropdown {
+      z-index: 1000;
+    }
+  `
+  ]
 })
 export class TypeaheadContainerComponent {
   parent: TypeaheadDirective;
@@ -54,7 +61,8 @@ export class TypeaheadContainerComponent {
   @ViewChildren('liElements')
   private liElements: QueryList<ElementRef>;
 
-  constructor(element: ElementRef, private renderer: Renderer2) {
+  constructor(element: ElementRef,
+              private renderer: Renderer2) {
     this.element = element;
   }
 
@@ -100,8 +108,14 @@ export class TypeaheadContainerComponent {
     return this.parent ? this.parent.typeaheadItemTemplate : undefined;
   }
 
-  selectActiveMatch(): void {
-    this.selectMatch(this._active);
+  selectActiveMatch(isActiveItemChanged?: boolean): void {
+    if (this._active && this.parent.typeaheadSelectFirstItem) {
+      this.selectMatch(this._active);
+    }
+
+    if (!this.parent.typeaheadSelectFirstItem && isActiveItemChanged) {
+      this.selectMatch(this._active);
+    }
   }
 
   prevActiveMatch(): void {

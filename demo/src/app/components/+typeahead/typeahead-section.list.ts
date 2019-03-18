@@ -1,3 +1,4 @@
+import { DemoTypeaheadAdaptivePositionComponent } from './demos/adaptive-position/adaptive-position';
 import { DemoTypeaheadAsyncComponent } from './demos/async/async';
 import { DemoTypeaheadBasicComponent } from './demos/basic/basic';
 import { DemoTypeaheadConfigComponent } from './demos/config/config';
@@ -15,6 +16,7 @@ import { DemoTypeaheadOnSelectComponent } from './demos/on-select/on-select';
 import { DemoTypeaheadPhraseDelimitersComponent } from './demos/phrase-delimiters/phrase-delimiters';
 import { DemoTypeaheadReactiveFormComponent } from './demos/reactive-form/reactive-form';
 import { DemoTypeaheadScrollableComponent } from './demos/scrollable/scrollable';
+import { DemotypeaheadSelectFirstItemComponent } from './demos/selected-first-item/selected-first-item';
 import { DemoTypeaheadShowOnBlurComponent } from './demos/show-on-blur/show-on-blur';
 import { DemoTypeaheadSingleWorldComponent } from './demos/single-world/single-world';
 
@@ -45,6 +47,16 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoTypeaheadBasicComponent
+      },
+      {
+        title: 'Adaptive position',
+        anchor: 'adaptive-position',
+        description: `
+          <p>You can enable adaptive position via <code>adaptivePosition</code> input or config option</p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/adaptive-position/adaptive-position.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/adaptive-position/adaptive-position.html'),
+        outlet: DemoTypeaheadAdaptivePositionComponent
       },
       {
         title: 'Item template',
@@ -215,6 +227,16 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/config/config'),
         html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
         outlet: DemoTypeaheadConfigComponent
+      }, {
+        title: 'Selected first item',
+        anchor: 'selected-first-item',
+        description: `
+          <p>Use <code>typeaheadSelectFirstItem</code> property to make first item in 
+          option list is chosen by default.</p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/selected-first-item/selected-first-item.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/selected-first-item/selected-first-item.html'),
+        outlet: DemotypeaheadSelectFirstItemComponent
       }
     ]
   },

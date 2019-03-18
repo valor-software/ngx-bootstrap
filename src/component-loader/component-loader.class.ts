@@ -107,7 +107,7 @@ export class ComponentLoader<T> {
   }
 
   // todo: add behaviour: to target element, `body`, custom element
-  to(container?: string): ComponentLoader<T> {
+  to(container?: string | ElementRef): ComponentLoader<T> {
     this.container = container || this.container;
 
     return this;
@@ -205,6 +205,8 @@ export class ComponentLoader<T> {
     if (!this._componentRef) {
       return this;
     }
+
+    this._posService.deletePositionElement(this._componentRef.location);
 
     this.onBeforeHide.emit(this._componentRef.instance);
 
@@ -350,6 +352,7 @@ export class ComponentLoader<T> {
     if (!this._zoneSubscription) {
       return;
     }
+
     this._zoneSubscription.unsubscribe();
     this._zoneSubscription = null;
   }

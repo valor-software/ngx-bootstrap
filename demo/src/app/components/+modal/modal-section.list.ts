@@ -126,7 +126,7 @@ export const demoComponentContent: ContentSection[] = [
       },
       {
         title: 'Esc closing option',
-        anchor: 'service-disable-animation',
+        anchor: 'service-disable-esc-closing',
         component: require('!!raw-loader?lang=typescript!./demos/service-options/disable-esc-closing/disable-esc-closing.ts'),
         html: require('!!raw-loader?lang=markup!./demos/service-options/disable-esc-closing/disable-esc-closing.html'),
         description: `<p>There is closing by Esc button option that you can configure.</p>`,

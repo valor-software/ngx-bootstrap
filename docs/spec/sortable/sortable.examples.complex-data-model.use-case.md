@@ -1,5 +1,5 @@
 12.2: Sortable Complex data model example
-============================
+=========================================
 **Primary Actor**: User
 
 **Scope**: Ngx-bootstrap DEMO / BS version 3&4
