@@ -14,8 +14,7 @@ Main success scenario:
 4. User is able to use "&" and "," to delimit words for exact match
 5. When user uses "&" or "," and type "&york new&" or ",york new," than no drop-down with the match would be shown
 6. When user starts to type "york new" without delimiters than a drop-down with the match is shown
-7. Items in the drop-down are clickable
-8. Items in the drop-down are clickable. Click on any item auto-fills the "Model" with a selected State
+7. When user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State
 
 Variations:
 -----------
