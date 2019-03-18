@@ -84,7 +84,7 @@ describe('Datepicker demo test suite: Select week', () => {
     datepicker.clickOnDatepickerWeekItem(3);
     datepicker.isDatepickerOpened(false);
     datepicker.isInputValueContain(selectWeek,
-      `${new Date().getMonth() === 11 ? 1 : new Date().getMonth() + 1}`, 1);
+      `${new Date().getMonth() === 11 ? 1 : new Date().getMonth() + 2}`, 1);
     datepicker.isInputValueContain(selectWeek,
       `${new Date().getMonth() === 11 ? new Date().getFullYear() + 1 : new Date().getFullYear()}`, 1);
   });
