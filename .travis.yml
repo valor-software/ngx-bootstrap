@@ -49,7 +49,7 @@ before_install:
 
 install:
 - npm ci
-- npm i ngx-bootstrap-ci@$TRAVIS_PULL_REQUEST_SHA
+- npm i ngx-bootstrap-ci@$TRAVIS_COMMIT
 - npm run ci:rename-pkg
 - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
 - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
@@ -83,7 +83,7 @@ jobs:
     - npm run ci:update-pkg
     - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
     - cd dist
-    - npm publish --tag $TRAVIS_PULL_REQUEST_SHA
+    - npm publish --tag $TRAVIS_COMMIT
     skip_cleanup: true
     on:
       all_branches: true
@@ -134,7 +134,7 @@ jobs:
     after_script:
     - cd node_modules/ngx-bootstrap-ci
     - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
-    - npm unpublish --tag $TRAVIS_PULL_REQUEST_SHA --force
+    - npm unpublish --tag $TRAVIS_COMMIT --force
 
   #   deploy to ngx-bootstrap.surge.sh
   - &surge
