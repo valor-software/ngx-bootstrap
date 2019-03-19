@@ -3,8 +3,9 @@ import {
   Renderer2, TemplateRef, ViewContainerRef
 } from '@angular/core';
 import { PopoverConfig } from './popover.config';
-import { ComponentLoader, ComponentLoaderFactory } from '../component-loader/index';
+import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { PopoverContainerComponent } from './popover-container.component';
+import { PositioningService } from 'ngx-bootstrap/positioning';
 
 /**
  * A lightweight, extensible directive for fancy popover creation.
@@ -14,10 +15,12 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /**
    * Content to be displayed as popover.
    */
+  /* tslint:disable-next-line: no-any */
   @Input() popover: string | TemplateRef<any>;
   /**
    * Context to be used if popover is a template.
    */
+  /* tslint:disable-next-line: no-any */
   @Input() popoverContext: any;
   /**
    * Title of a popover.
@@ -66,20 +69,25 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /**
    * Emits an event when the popover is shown
    */
+  /* tslint:disable-next-line: no-any */
   @Output() onShown: EventEmitter<any>;
   /**
    * Emits an event when the popover is hidden
    */
+  /* tslint:disable-next-line: no-any */
   @Output() onHidden: EventEmitter<any>;
 
   private _popover: ComponentLoader<PopoverContainerComponent>;
   private _isInited = false;
 
-  constructor(_elementRef: ElementRef,
-              _renderer: Renderer2,
-              _viewContainerRef: ViewContainerRef,
-              _config: PopoverConfig,
-              cis: ComponentLoaderFactory) {
+  constructor(
+    _config: PopoverConfig,
+    _elementRef: ElementRef,
+    _renderer: Renderer2,
+    _viewContainerRef: ViewContainerRef,
+    cis: ComponentLoaderFactory,
+    private _positionService: PositioningService
+  ) {
     this._popover = cis
       .createLoader<PopoverContainerComponent>(
         _elementRef,
@@ -149,7 +157,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
     this.show();
   }
 
-  ngOnInit(): any {
+  ngOnInit(): void {
     // fix: seems there are an issue with `routerLinkActive`
     // which result in duplicated call ngOnInit without call to ngOnDestroy
     // read more: https://github.com/valor-software/ngx-bootstrap/issues/1885
@@ -158,6 +166,14 @@ export class PopoverDirective implements OnInit, OnDestroy {
     }
     this._isInited = true;
 
+    this._positionService.setOptions({
+      modifiers: {
+        flip: {
+          enabled: true
+        }
+      }
+    });
+
     this._popover.listen({
       triggers: this.triggers,
       outsideClick: this.outsideClick,
@@ -165,7 +181,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): any {
+  ngOnDestroy(): void {
     this._popover.dispose();
   }
 }

@@ -42,7 +42,7 @@ export class TabsetComponent implements OnDestroy {
   @HostBinding('class.tab-container') clazz = true;
 
   tabs: TabDirective[] = [];
-  classMap: any = {};
+  classMap: { [key: string]: boolean } = {};
 
   protected isDestroyed: boolean;
   protected _vertical: boolean;
