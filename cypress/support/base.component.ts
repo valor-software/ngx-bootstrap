@@ -211,4 +211,9 @@ export abstract class BaseComponent {
       .should('have.attr', 'href')
       .and('to.equal', expectedUrl);
   }
+
+  isElementExist(baseSelector: string, elementSelector: string, existInDOM: boolean, elementIndex = 0) {
+    cy.get(`${baseSelector} ${elementSelector}`).eq(elementIndex)
+      .should(existInDOM ? 'to.exist' : 'not.to.exist');
+  }
 }
