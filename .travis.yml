@@ -82,6 +82,7 @@ jobs:
     - npm ci
     - npm run build
     - npm run ci:update-pkg
+    - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export NPM_AUTH_TOKEN_CI=$NPM_AUTH_TOKEN_CI_PR; fi
     - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
     - cd dist
     - npm publish --tag $TRAVIS_COMMIT
@@ -135,7 +136,7 @@ jobs:
     after_script:
     - cd node_modules/ngx-bootstrap
     - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
-    - npm unpublish --tag $TRAVIS_COMMIT --force
+    - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then npm unpublish --tag $TRAVIS_COMMIT --force; fi
 
   # deploy to ngx-bootstrap.surge.sh
   - &surge
@@ -236,6 +237,10 @@ jobs:
     env:
     - CI_THREAD_INDEX=3.1x-electron
     - BASE_URL=http://ngx-bootstrap-latest.surge.sh/#/
+    after_script:
+    - cd node_modules/ngx-bootstrap
+    - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
+    - npm unpublish --tag $TRAVIS_COMMIT --force
     <<: *testPostDeploy
   - script:
     name: "Cypress on gh-pages after deploy 1thread"
