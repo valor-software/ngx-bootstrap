@@ -82,6 +82,7 @@ jobs:
     - npm ci
     - npm run build
     - npm run ci:update-pkg
+    - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export NPM_AUTH_TOKEN_CI=$NPM_AUTH_TOKEN_CI_PR; fi
     - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
     - cd dist
     - npm publish --tag $TRAVIS_COMMIT
