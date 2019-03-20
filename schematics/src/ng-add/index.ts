@@ -30,20 +30,23 @@ const datepickerComponentName = 'datepicker';
 
 /* tslint:disable-next-line: no-default-export */
 export default function (options: Schema): Rule {
+  const componentName = options.component
+    ? options.component
+    : (options as any)['--'] && (options as any)['--'][1];
+
   return chain([
     addPackageJsonDependencies(),
     installPackageJsonDependencies(),
-    !options.component || options.component === datepickerComponentName
+    !componentName || componentName === datepickerComponentName
       ? addStyles(options, insertCommonStyles)
       : addStyles(options, insertBootstrapStyles),
-    options.component
-      ? addModuleOfComponent(options.project, options.component)
+    componentName
+      ? addModuleOfComponent(options.project, componentName)
       : noop()
   ]);
 }
 
 function addModuleOfComponent(projectName: string | undefined, componentName: string) {
-
   const bsName = 'ngx-bootstrap';
 
   const components: { [key: string]: { moduleName: string; link: string } } = {
