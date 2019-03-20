@@ -194,8 +194,8 @@ export abstract class BaseComponent {
   }
 
   isElemTextContain(baseSelector: string, itemSel: string, expectedText: string, elementIndex = 0) {
-      cy.get(baseSelector).find(itemSel).eq(elementIndex).invoke('text')
-        .should('contain', expectedText);
+    cy.get(baseSelector).find(itemSel).eq(elementIndex).invoke('text')
+      .should('contain', expectedText);
   }
 
   isElementVisible(baseSelector: string, additionalSelector: string, elementIndex = 0) {
