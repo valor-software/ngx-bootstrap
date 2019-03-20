@@ -17,6 +17,7 @@ env:
     - BROWSER_PROVIDER_READY_FILE=/tmp/sauce-connect-ready
     - LOGS_DIR=/tmp/logs
     - CY_KEY=4aa7a1c0-3a4f-444e-b324-6fc305a543a8
+    - NPM_AUTH_TOKEN_CI_PR=810c9089-b5e8-4348-8c89-61a1c2461d68
 
 #     test cypress smoke
 testSmokeCy: &testSmokeCy
@@ -53,7 +54,7 @@ install:
 - npm run ci:rename-pkg
 - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
 - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
-- if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export SAUCE_USERNAME=$SAUCE_USERNAME_PR; export SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; fi
+- if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export SAUCE_USERNAME=$SAUCE_USERNAME_PR; export SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; export NPM_AUTH_TOKEN_CI=$NPM_AUTH_TOKEN_CI_PR; fi
 
 jobs:
   fast_finish: true
@@ -81,6 +82,7 @@ jobs:
     - npm ci
     - npm run build
     - npm run ci:update-pkg
+    - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export NPM_AUTH_TOKEN_CI=$NPM_AUTH_TOKEN_CI_PR; fi
     - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
     - cd dist
     - npm publish --tag $TRAVIS_COMMIT
@@ -132,11 +134,11 @@ jobs:
     before_script:
     - mkdir -p $LOGS_DIR
     after_script:
-    - cd node_modules/ngx-bootstrap-ci
+    - cd node_modules/ngx-bootstrap
     - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
-    - npm unpublish --tag $TRAVIS_COMMIT --force
+    - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then npm unpublish --tag $TRAVIS_COMMIT --force; fi
 
-  #   deploy to ngx-bootstrap.surge.sh
+  # deploy to ngx-bootstrap.surge.sh
   - &surge
     stage: deploy
     script: npm run demo.build
@@ -159,7 +161,7 @@ jobs:
     project: ./gh-pages/
     domain: ngx-bootstrap-next.surge.sh
     on: development
-  #   deploy to ngx-universal.herokuapp.com/
+  # deploy to ngx-universal.herokuapp.com/
   - stage: deploy
     script: npm run build:dynamic
     before_deploy:
@@ -235,6 +237,10 @@ jobs:
     env:
     - CI_THREAD_INDEX=3.1x-electron
     - BASE_URL=http://ngx-bootstrap-latest.surge.sh/#/
+    after_script:
+    - cd node_modules/ngx-bootstrap
+    - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
+    - npm unpublish --tag $TRAVIS_COMMIT --force
     <<: *testPostDeploy
   - script:
     name: "Cypress on gh-pages after deploy 1thread"
