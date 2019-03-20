@@ -54,7 +54,7 @@ install:
 - npm run ci:rename-pkg
 - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
 - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
-- if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export SAUCE_USERNAME=$SAUCE_USERNAME_PR; export SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; fi
+- if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export SAUCE_USERNAME=$SAUCE_USERNAME_PR; export SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; export NPM_AUTH_TOKEN_CI=$NPM_AUTH_TOKEN_CI_PR; fi
 
 jobs:
   fast_finish: true
@@ -82,7 +82,6 @@ jobs:
     - npm ci
     - npm run build
     - npm run ci:update-pkg
-    - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export NPM_AUTH_TOKEN_CI=$NPM_AUTH_TOKEN_CI_PR; fi
     - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
     - cd dist
     - npm publish --tag $TRAVIS_COMMIT
@@ -134,7 +133,7 @@ jobs:
     before_script:
     - mkdir -p $LOGS_DIR
     after_script:
-    - cd node_modules/ngx-bootstrap-ci
+    - cd node_modules/ngx-bootstrap
     - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
     - npm unpublish --tag $TRAVIS_COMMIT --force
 
