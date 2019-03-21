@@ -4,6 +4,8 @@ export class TimepickerPo extends BaseComponent {
   pageUrl = '/timepicker';
   pageTitle = 'Timepicker';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/timepicker';
+  redAlertSelector = '.alert.alert-danger';
+  greenAlertSelector = '.alert.alert-success';
 
   exampleDemosArr = {
     basic: 'demo-timepicker-basic',
@@ -16,6 +18,7 @@ export class TimepickerPo extends BaseComponent {
     readonly: 'demo-timepicker-readonly',
     customSteps: 'demo-timepicker-custom',
     customValidation: 'demo-timepicker-custom-validation',
+    isValidEvent: 'demo-timepicker-isvalid',
     dynamic: 'demo-timepicker-dynamic',
     mousewheel: 'demo-timepicker-mousewheel',
     arrowKeys: 'demo-timepicker-arrowkeys',
@@ -42,6 +45,12 @@ export class TimepickerPo extends BaseComponent {
 
   isAlertContains(baseSelector: string, expectedText: string) {
     cy.get(`${baseSelector} .alert.alert-info`)
+      .invoke('text')
+      .should('to.contain', expectedText);
+  }
+
+  isAdditionalAlertContains(baseSelector: string, alertSelector: string, expectedText: string, alertIndex = 0) {
+    cy.get(`${baseSelector} ${alertSelector}`).eq(alertIndex)
       .invoke('text')
       .should('to.contain', expectedText);
   }
@@ -92,7 +101,7 @@ export class TimepickerPo extends BaseComponent {
   isInputValueContain(baseSelector: string, expectedTxt: string, inputIndex = 0) {
     if (!Number(expectedTxt)) {
       cy.get(`${baseSelector} input`).eq(inputIndex).should('to.have.value', expectedTxt);
-      } else {
+    } else {
       cy.get(`${baseSelector} input`).eq(inputIndex).then(input => {
         if (Number(input.val()) === Number(expectedTxt)) {
           expect(input.val()).to.contains(expectedTxt);
@@ -123,5 +132,29 @@ export class TimepickerPo extends BaseComponent {
       .eq(inputIndex)
       .should('to.be.visible')
       .then(input => expect(input.val()).to.be.not.empty);
+  }
+
+  pressKeyOnInput(baseSelector: string, keyToPress: string, inputIndex = 0) {
+    cy.get(`${baseSelector} input`).eq(inputIndex)
+      .type(keyToPress);
+  }
+
+  isInputPlaceholderContains(baseSelector: string, placeholder: string, inputIndex = 0) {
+    cy.get(`${baseSelector} .bs-timepicker-field`).eq(inputIndex)
+      .should('have.attr', 'placeholder', placeholder);
+  }
+
+  isBtnShowMeridianExist() {
+    cy.get(`${'demo-timepicker-config button'}`).should('not.to.exist');
+  }
+
+  isArrowVisible(baseSelector: string, elementSelector: string, hidden: boolean, elementIndex = 0) {
+    cy.get(`${baseSelector} ${elementSelector}`).eq(elementIndex)
+      .should(hidden ? 'to.be.visible' : 'not.to.be.visible');
+  }
+
+  isElementExist(baseSelector: string, elementSelector: string, existInDOM: boolean, elementIndex = 0) {
+    cy.get(`${baseSelector} ${elementSelector}`).eq(elementIndex)
+      .should(existInDOM ? 'to.exist' : 'not.to.exist');
   }
 }
