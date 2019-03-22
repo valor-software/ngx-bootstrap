@@ -2,6 +2,12 @@
 # [4.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v3.3.0...v4.0.0) (2019-03-22)
 
 
+Most notable changes are:
+- the library was migrated to Angular 7 which leads to requiring of typescript>=3.1.1
+- the adaptive position was turned off by default for Datepicker and Typeahead components
+- 'select' event was changed to 'selectTab' in Tab component
+
+
 ### Bug Fixes
 
 * **build:** fix window not defined on An Universal ([#5073](https://github.com/valor-software/ngx-bootstrap/issues/5073)) ([682d1f2](https://github.com/valor-software/ngx-bootstrap/commit/682d1f2))
@@ -620,7 +626,7 @@ Most notable changes are:
 
 ### BREAKING CHANGES
 
-* **progressbar:** `progress` directive was removed, use `progressbar` instead 
+* **progressbar:** `progress` directive was removed, use `progressbar` instead
 * **chronos:** `bs-moment` renamed to `chronos`
 * **chronos:** all locales was suffixed with Locale (`en` -> `enLocale`)
 * **datepicker:**  setting locale via `bsConfig` no longer works. Now for changing locale inject BsLocaleService and call its `use` method. For more detailed example check our [demo](https://valor-software.com/ngx-bootstrap/#/datepicker#locales)
