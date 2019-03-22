@@ -17,7 +17,7 @@ export function getOffsetParent(element: any): any {
 
   let sibling: any;
 
-  while (offsetParent === noOffsetParent && element.nextElementSibling) {
+  while (offsetParent === noOffsetParent && element.nextElementSibling && element.nodeName !== 'BODY') {
     sibling = element.nextElementSibling;
     offsetParent = sibling.offsetParent;
   }
