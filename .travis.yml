@@ -34,7 +34,7 @@ testPostDeploy: &testPostDeploy
 
 stages:
 - name: "Publish to ngx-bootstrap-ci"
-  if: ( branch = development AND type = push ) OR type = pull_request
+  if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v\d+
 - name: Testing
   if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v\d+
 - name: deploy
@@ -240,7 +240,7 @@ jobs:
     after_script:
     - cd node_modules/ngx-bootstrap
     - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
-    - npm unpublish --tag $TRAVIS_COMMIT --force
+    - if: branch = development; then npm unpublish --tag $TRAVIS_COMMIT --force; fi
     <<: *testPostDeploy
   - script:
     name: "Cypress on gh-pages after deploy 1thread"
@@ -259,6 +259,10 @@ jobs:
   - script: APPLITOOLS_API_KEY=Nls100t102uNgLhLpblVUdA3tP104MQQS9VUYgHQ5tYOUuIxU110 CYPRESS_baseUrl=https://valor-software.com/ngx-bootstrap/#/ npm run cy:run:snapshot
     name: "Cypress Applitools Snapshot tests"
     if: tag =~ ^v\d+
+    after_script:
+    - cd node_modules/ngx-bootstrap
+    - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
+    - npm unpublish --tag $TRAVIS_COMMIT --force
 
 cache:
   apt: true
