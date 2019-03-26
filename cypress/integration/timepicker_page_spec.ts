@@ -19,11 +19,13 @@ describe('Timepicker demo page test suite', () => {
     });
 
     describe('Hours', () => {
+      beforeEach(() => timepicker.scrollToMenu('Basic'));
+
       it(`when user clicks on arrow up above the hour, then number in the input increased at 1, alert changed`, () => {
         const newDate = new Date();
-        const expectedHour12Format =
-          timepicker.getHoursIn12Format(newDate) === 1 ? '12' : timepicker.getHoursIn12Format(newDate) + 1;
-        const expectedHour24Format = newDate.getHours() === 1 ? '12' : newDate.getHours() + 1;
+        const expectedHour24Format = newDate.getHours() === 23 ? '00' : newDate.getHours() + 1;
+        const newDatePlusHour = new Date(2011, 2, 2, newDate.getHours() + 1);
+        const expectedHour12Format = timepicker.getHoursIn12Format(newDatePlusHour);
         timepicker.clickOnArrow(basic, 'up', 0);
         timepicker.isInputValueContain(basic, `${expectedHour12Format}`, 0);
         timepicker.isAlertContains(basic, `${expectedHour24Format}`);

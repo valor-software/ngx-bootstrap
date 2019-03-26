@@ -1,4 +1,4 @@
-14.8: Timepicker Custom steps example
+14.9: Timepicker Custom steps example
 =====================================
 **Primary Actor**: User
 
@@ -10,8 +10,8 @@ Main success scenario:
 ----------------------
 1. User opens Timepicker demo page
 2. User clicks on Custom steps sub-menu
-3. User see timepicker component with hour, minute, second inputs, clickable button "AM"("PM") and data(according to the current time)
-4. User see 3 dropdowns "Hours step is:", "Minutes step is:", "Seconds step is:" and chosen (1|15|10) values by default
+3. User sees timepicker component with hour, minute, second inputs, clickable button "AM"("PM") and data(according to the current time)
+4. User sees 3 dropdowns "Hours step is:", "Minutes step is:", "Seconds step is:" and chosen (1|15|10) values by default
 
 ##### Timepicker - hours, change step
 5. When user clicks on arrow up above the hours input, then input value increased at 1 and info alert changed appropriate
