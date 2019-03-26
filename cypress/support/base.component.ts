@@ -21,8 +21,8 @@ export abstract class BaseComponent {
     cy.get('add-nav').contains('a', subMenu).click();
   }
 
-  clickByText(parent: string, text: string) {
-    cy.get(parent).contains(text).click();
+  clickByText(baseSelector: string, text: string) {
+    cy.get(baseSelector).contains(text).click();
   }
 
   dblClickByText(parent: string, text: string) {
@@ -122,9 +122,9 @@ export abstract class BaseComponent {
 
   isButtonExist(baseSelector: string, buttonName: string, buttonNumber?: number, exist = true) {
     if (exist === true) {
-    cy.get(`${baseSelector} button`).eq(buttonNumber ? buttonNumber : 0).invoke('text')
-      .should(btnTxt => expect(btnTxt).to.equal(buttonName));
-  } else {
+      cy.get(`${baseSelector} button`).eq(buttonNumber ? buttonNumber : 0).invoke('text')
+        .should(btnTxt => expect(btnTxt).to.equal(buttonName));
+    } else {
       cy.get(`${baseSelector} button`).contains(buttonName).should('not.exist');
     }
   }
@@ -180,8 +180,8 @@ export abstract class BaseComponent {
 
   isCodePreviewExist(baseSelector: string, previewText: string, exist = true, previewNumber?: number) {
     if (exist) {
-    cy.get(`${baseSelector} .code-preview`).eq(previewNumber ? previewNumber : 0).invoke('text')
-      .should(btnTxt => expect(btnTxt).to.contain(previewText));
+      cy.get(`${baseSelector} .code-preview`).eq(previewNumber ? previewNumber : 0).invoke('text')
+        .should(btnTxt => expect(btnTxt).to.contain(previewText));
     } else {
       cy.get(`${baseSelector} .code-preview`)
         .should('not.exist');
@@ -195,5 +195,24 @@ export abstract class BaseComponent {
       .find('tab[heading*="component"]')
       .invoke('text')
       .should('to.contains', expectedTxt);
+  }
+
+  isElemTextContain(baseSelector: string, itemSel: string, expectedText: string, elementIndex = 0) {
+    cy.get(baseSelector).find(itemSel).eq(elementIndex).invoke('text')
+      .should('contain', expectedText);
+  }
+
+  isElementVisible(baseSelector: string, additionalSelector: string, elementIndex = 0) {
+    cy.get(`${ baseSelector } ${additionalSelector}`).eq(elementIndex).should('be.visible');
+  }
+
+  isUrlExist(expectedUrl: string) {
+    cy.url().should('include', expectedUrl);
+  }
+
+  isElemHasCorrectUrl(elementSelector: string, expectedUrl: string) {
+    cy.get(`${elementSelector} [href="${ expectedUrl }"]`)
+      .should('have.attr', 'href')
+      .and('to.equal', expectedUrl);
   }
 }

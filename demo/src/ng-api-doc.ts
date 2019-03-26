@@ -2918,8 +2918,8 @@ export const ngdoc: any = {
         "description": "<p>fired before tab will be removed, $event:Tab equals to instance of removed tab</p>\n"
       },
       {
-        "name": "select",
-        "description": "<p>fired when tab became active, $event:Tab equals to selected instance of Tab component</p>\n"
+        "name": "selectTab",
+        "description": "<p>fired when tab became active, $event:Tab equals to selected instance of Tab component </p>\n"
       }
     ],
     "properties": [],

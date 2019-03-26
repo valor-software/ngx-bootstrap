@@ -9,5 +9,5 @@ export function getStyleComputedProperty(element: HTMLElement, property?: string
   const window = element.ownerDocument.defaultView;
   const css = window.getComputedStyle(element, null);
 
-  return property ? css[property] : css;
+  return property ? css[property as any] : css;
 }

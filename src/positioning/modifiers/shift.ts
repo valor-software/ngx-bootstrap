@@ -18,7 +18,7 @@ export function shift(data: Data): Data {
       }
     };
 
-    data.offsets.target = { ...target, ...shiftOffsets[shiftvariation] };
+    data.offsets.target = { ...target, ...(shiftOffsets as any)[shiftvariation] };
   }
 
   return data;

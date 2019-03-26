@@ -184,7 +184,7 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
 
   getText(key: string): string {
     // tslint:disable-next-line:no-any
-    return (this as any)[`${key}Text`] || this.config[`${key}Text`];
+    return (this as any)[`${key}Text`] || (this as any).config[`${key}Text`];
   }
 
   noPrevious(): boolean {
