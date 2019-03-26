@@ -1,3 +1,4 @@
+import { AnimationBuilder } from '@angular/animations';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -5,17 +6,20 @@ import {
   EventEmitter,
   Input,
   OnInit,
-  Output
+  Output,
+  OnChanges,
+  SimpleChanges,
+  ElementRef
 } from '@angular/core';
 import { AlertConfig } from './alert.config';
-import { OnChange } from 'ngx-bootstrap/utils';
+import { OnChange, fadeIn, fadeOut } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'alert,bs-alert',
   templateUrl: './alert.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AlertComponent implements OnInit {
+export class AlertComponent implements OnInit, OnChanges {
   /** Alert type.
    * Provides one of four bootstrap supported contextual classes:
    * `success`, `info`, `warning` and `danger`
@@ -29,6 +33,7 @@ export class AlertComponent implements OnInit {
   /** Is alert visible */
   @Input() isOpen = true;
 
+  @Input() animated = false;
   /** This event fires immediately after close instance method is called,
    * $event is an instance of Alert component.
    */
@@ -40,12 +45,29 @@ export class AlertComponent implements OnInit {
   classes = '';
   dismissibleChange = new EventEmitter<boolean>();
 
-  constructor(_config: AlertConfig, private changeDetection: ChangeDetectorRef) {
+  constructor(
+    _config: AlertConfig,
+    private changeDetection: ChangeDetectorRef,
+    private builder: AnimationBuilder,
+    private _el: ElementRef
+  ) {
     Object.assign(this, _config);
     this.dismissibleChange.subscribe((dismissible: boolean) => {
       this.classes = this.dismissible ? 'alert-dismissible' : '';
       this.changeDetection.markForCheck();
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    // TODO: This is not correct place to initiate animations. Need to move to right ng method
+    if (changes.isOpen && this.animated) {
+      const metadata = changes.isOpen ? fadeOut : fadeIn;
+
+      const factory = this.builder.build(metadata);
+      const player = factory.create(this._el.nativeElement);
+
+      player.play();
+    }
   }
 
   ngOnInit(): void {
@@ -68,9 +90,19 @@ export class AlertComponent implements OnInit {
       return;
     }
 
+    // const metadata = this.isOpen ? fadeOut : fadeIn;
+    const metadata = fadeOut;
+
+    const factory = this.builder.build(metadata);
+    const player = factory.create(this._el.nativeElement);
+
+    player.play();
+
     this.onClose.emit(this);
     this.isOpen = false;
     this.changeDetection.markForCheck();
     this.onClosed.emit(this);
   }
+
+
 }

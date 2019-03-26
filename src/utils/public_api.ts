@@ -13,4 +13,10 @@ export { setTheme } from './theme-provider';
 export { Trigger } from './trigger.class';
 export { Utils } from './utils.class';
 export { window, document } from './facade/browser';
-export { warnOnce }from './warn-once';
+export { warnOnce } from './warn-once';
+export {
+  fadeIn,
+  fadeOut,
+  slideIn,
+  slideOut
+} from './animations';

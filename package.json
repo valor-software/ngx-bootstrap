@@ -51,7 +51,12 @@
     "serve:dynamic": "node demo/dist/server",
     "build:client-and-server-bundles": "ng build --prod && ng run ngx-bootstrap:server",
     "webpack:server": "webpack --config ./scripts/universal/webpack.server.config.js --progress --colors",
-    "configure-heroku": "node scripts/universal/configure-heroku.js"
+    "configure-heroku": "node scripts/universal/configure-heroku.js",
+    "build.accordion": "rimraf dist/accordion && node scripts/ng-packagr/api ../../src/accordion/package.json",
+    "build.collapse": "rimraf dist/collapse && node scripts/ng-packagr/api ../../src/collapse/package.json",
+    "build.alert": "rimraf dist/alert && node scripts/ng-packagr/api ../../src/alert/package.json",
+    "build.utils": "rimraf dist/utils && node scripts/ng-packagr/api ../../src/utils/package.json"
+
   },
   "husky": {
     "hooks": {

@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -27,6 +28,7 @@ import { ThemeStorage } from './theme/theme-storage';
     RouterModule.forRoot(routes, { useHash: environment.useHash }),
     NgxPageScrollModule,
     BsDropdownModule.forRoot(),
+    BrowserAnimationsModule,
     BrowserModule.withServerTransition({ appId: 'ngx-bootstrap' })
   ],
   providers: [ThemeStorage, StyleManager, { provide: NgApiDoc, useValue: ngdoc }],

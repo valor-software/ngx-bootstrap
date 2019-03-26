@@ -1,3 +1,9 @@
+import {
+  AnimationBuilder
+} from '@angular/animations';
+
+import { fadeIn, fadeOut, slideIn, slideOut } from 'ngx-bootstrap/utils';
+
 // todo: add animations when https://github.com/angular/angular/issues/9947 solved
 import {
   Directive,
@@ -37,18 +43,43 @@ export class CollapseDirective {
   // animation state
   @HostBinding('class.collapsing') isCollapsing = false;
 
+  @Input() animated = false;
+  @Input() animationType: 'fade' | 'slide' = 'fade';
+
   /** A flag indicating visibility of content (shown or hidden) */
   @Input()
   set collapse(value: boolean) {
-    this.isExpanded = value;
-    this.toggle();
+    if (!this.animated) {
+      this.isExpanded = value;
+      this.toggle();
+    } else {
+      if (this.animationType === 'fade') {
+        const metadata = value ? fadeOut : fadeIn;
+
+        const factory = this.builder.build(metadata);
+        const player = factory.create(this._el.nativeElement);
+
+        player.play();
+        player.onDone(() => {
+          this.isExpanded = value;
+          this.toggle();
+        });
+      } else if (this.animationType === 'slide') {
+        const metadata = value ? slideIn : slideOut;
+        const factory = this.builder.build(metadata);
+        const player = factory.create(this._el.nativeElement);
+
+        player.play();
+      }
+
+    }
   }
 
   get collapse(): boolean {
     return this.isExpanded;
   }
 
-  constructor(private _el: ElementRef, private _renderer: Renderer2) {}
+  constructor(private _el: ElementRef, private _renderer: Renderer2, private builder: AnimationBuilder) {}
 
   /** allows to manually toggle content visibility */
   toggle(): void {
@@ -61,9 +92,6 @@ export class CollapseDirective {
 
   /** allows to manually hide content */
   hide(): void {
-    this.isCollapse = false;
-    this.isCollapsing = true;
-
     this.isExpanded = false;
     this.isCollapsed = true;
 
@@ -76,9 +104,6 @@ export class CollapseDirective {
 
   /** allows to manually show collapsed content */
   show(): void {
-    this.isCollapse = false;
-    this.isCollapsing = true;
-
     this.isExpanded = true;
     this.isCollapsed = false;
 
@@ -94,4 +119,5 @@ export class CollapseDirective {
     this._renderer.setStyle(this._el.nativeElement, 'height', 'auto');
     this.expanded.emit(this);
   }
+
 }

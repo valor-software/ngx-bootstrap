@@ -154,6 +154,10 @@ export {
   isBs3,
   Trigger,
   warnOnce,
+  fadeIn,
+  fadeOut,
+  slideIn,
+  slideOut,
   Utils,
   listenToTriggersV2,
   registerOutsideClick
