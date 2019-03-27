@@ -26,6 +26,7 @@ import { DemoTypeaheadSingleWorldComponent } from './demos/single-world/single-w
 import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section';
 
 import { NgApiDocComponent, NgApiDocConfigComponent } from '../../docs/api-docs';
+import { DemoTypeaheadFirstItemActiveComponent } from './demos/first-item-active/first-item-active';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -237,12 +238,22 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/config/config'),
         html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
         outlet: DemoTypeaheadConfigComponent
-      }, {
+      },
+      {
+        title: 'Is first item active',
+        anchor: 'first-item-active',
+        description: `
+          <p>Use input property <code>typeaheadIsFirstItemActive</code> or config property isFirstItemActive to make the first item active/inactive </p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/first-item-active/first-item-active.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/first-item-active/first-item-active.html'),
+        outlet: DemoTypeaheadFirstItemActiveComponent
+      },
+      {
         title: 'Selected first item',
         anchor: 'selected-first-item',
         description: `
-          <p>Use <code>typeaheadSelectFirstItem</code> property to make first item in 
-          option list is chosen by default.</p>
+          <p>Use <code>typeaheadSelectFirstItem</code> property to make the first item in options list unselectable by tab and enter.</p>
         `,
         component: require('!!raw-loader?lang=typescript!./demos/selected-first-item/selected-first-item.ts'),
         html: require('!!raw-loader?lang=markup!./demos/selected-first-item/selected-first-item.html'),
