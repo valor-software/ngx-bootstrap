@@ -7,6 +7,7 @@ import { DemoModalServiceCustomCSSClassComponent } from './demos/service-options
 import { DemoModalServiceDisableEscClosingComponent } from './demos/service-options/disable-esc-closing/disable-esc-closing';
 import { DemoModalServiceDisableBackdropComponent } from './demos/service-options/disable-backdrop/disable-backdrop';
 import { DemoModalServiceConfirmWindowComponent } from './demos/service-confirm-window/service-confirm-window';
+import { DemoModalServiceChangeClassComponent } from './demos/service-options/change-class/change-class';
 
 import { DemoModalStaticComponent } from './demos/static/static';
 import { DemoModalSizesComponent } from './demos/sizes/sizes';
@@ -15,6 +16,7 @@ import { DemoModalNestedComponent } from './demos/nested/nested';
 import { DemoModalEventsComponent } from './demos/events/events';
 import { DemoAutoShownModalComponent } from './demos/auto-shown/auto-shown';
 import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
+import { DemoModalWithPopupsComponent } from './demos/modal-with-popups/modal-with-popups';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -124,11 +126,19 @@ export const demoComponentContent: ContentSection[] = [
       },
       {
         title: 'Esc closing option',
-        anchor: 'service-disable-animation',
+        anchor: 'service-disable-esc-closing',
         component: require('!!raw-loader?lang=typescript!./demos/service-options/disable-esc-closing/disable-esc-closing.ts'),
         html: require('!!raw-loader?lang=markup!./demos/service-options/disable-esc-closing/disable-esc-closing.html'),
         description: `<p>There is closing by Esc button option that you can configure.</p>`,
         outlet: DemoModalServiceDisableEscClosingComponent
+      },
+      {
+        title: 'Modal window with tooltip and popover',
+        anchor: 'modal-with-popups',
+        component: require('!!raw-loader?lang=typescript!./demos/modal-with-popups/modal-with-popups.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/modal-with-popups/modal-with-popups.html'),
+        description: `<p><code>Tooltips</code> and <code>popovers</code> can be placed within modals as needed. When modals are closed, any <code>tooltips</code> and <code>popovers</code> within are also automatically dismissed.</p>`,
+        outlet: DemoModalWithPopupsComponent
       },
       {
         title: 'Backdrop options',
@@ -137,6 +147,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/service-options/disable-backdrop/disable-backdrop.html'),
         description: `<p>There is backdrop options that you can configure.</p>`,
         outlet: DemoModalServiceDisableBackdropComponent
+      },
+      {
+        title: 'Change class',
+        anchor: 'change-class',
+        component: require('!!raw-loader?lang=typescript!./demos/service-options/change-class/change-class.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/service-options/change-class/change-class.html'),
+        description: `<p>Calling setClass method to change modal's window class</p>`,
+        outlet: DemoModalServiceChangeClassComponent
       }
     ]
   },

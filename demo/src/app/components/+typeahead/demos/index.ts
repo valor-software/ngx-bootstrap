@@ -1,41 +1,59 @@
-import { DemoTypeaheadBasicComponent } from './basic/basic';
-import { DemoTypeaheadItemTemplateComponent } from './item-template/item-template';
-import { DemoTypeaheadFieldComponent } from './field/field';
+import { DemoTypeaheadAdaptivePositionComponent } from './adaptive-position/adaptive-position';
 import { DemoTypeaheadAsyncComponent } from './async/async';
-import { DemoTypeaheadReactiveFormComponent } from './reactive-form/reactive-form';
-import { DemoTypeaheadGroupingComponent } from './grouping/grouping';
-import { DemoTypeaheadDropupComponent } from './dropup/dropup';
-import { DemoTypeaheadScrollableComponent } from './scrollable/scrollable';
+import { DemoTypeaheadBasicComponent } from './basic/basic';
+import { DemoTypeaheadConfigComponent } from './config/config';
+import { DemoTypeaheadContainerComponent } from './container/container';
 import { DemoTypeaheadDelayComponent } from './delay/delay';
+import { DemoTypeaheadDropupComponent } from './dropup/dropup';
+import { DemoTypeaheadFieldComponent } from './field/field';
+import { DemoTypeaheadFormComponent } from './form/form';
+import { DemoTypeaheadGroupingComponent } from './grouping/grouping';
+import { DemoTypeaheadItemTemplateComponent } from './item-template/item-template';
 import { DemoTypeaheadLatinizeComponent } from './latinize/latinize';
+import { DemoTypeaheadMinLengthComponent } from './min-length/min-length';
+import { DemoTypeaheadMinLengthComponent } from './min-length/min-length';
 import { DemoTypeaheadNoResultComponent } from './no-result/no-result';
 import { DemoTypeaheadOnBlurComponent } from './on-blur/on-blur';
-import { DemoTypeaheadContainerComponent } from './container/container';
-import { DemoTypeaheadSingleWorldComponent } from './single-world/single-world';
-import { DemoTypeaheadPhraseDelimitersComponent } from './phrase-delimiters/phrase-delimiters';
-import { DemoTypeaheadFormComponent } from './form/form';
 import { DemoTypeaheadOnSelectComponent } from './on-select/on-select';
-import { DemoTypeaheadMinLengthComponent } from './min-length/min-length';
+import { DemoTypeaheadPhraseDelimitersComponent } from './phrase-delimiters/phrase-delimiters';
+import { DemoTypeaheadReactiveFormComponent } from './reactive-form/reactive-form';
+import { DemoTypeaheadScrollableComponent } from './scrollable/scrollable';
+import { DemotypeaheadSelectFirstItemComponent } from './selected-first-item/selected-first-item';
+import { DemoTypeaheadShowOnBlurComponent } from './show-on-blur/show-on-blur';
+import { DemoTypeaheadSingleWorldComponent } from './single-world/single-world';
 
 export const DEMO_COMPONENTS = [
-  DemoTypeaheadBasicComponent,
-  DemoTypeaheadItemTemplateComponent,
-  DemoTypeaheadFieldComponent,
+  DemoTypeaheadAdaptivePositionComponent,
   DemoTypeaheadAsyncComponent,
-  DemoTypeaheadReactiveFormComponent,
-  DemoTypeaheadGroupingComponent,
-  DemoTypeaheadSingleWorldComponent,
-  DemoTypeaheadPhraseDelimitersComponent,
-  DemoTypeaheadDropupComponent,
-  DemoTypeaheadScrollableComponent,
+  DemoTypeaheadBasicComponent,
+  DemoTypeaheadConfigComponent,
+  DemoTypeaheadContainerComponent,
+  DemoTypeaheadContainerComponent,
+  DemoTypeaheadContainerComponent,
   DemoTypeaheadDelayComponent,
+  DemoTypeaheadDropupComponent,
+  DemoTypeaheadFieldComponent,
+  DemoTypeaheadFormComponent,
+  DemoTypeaheadFormComponent,
+  DemoTypeaheadFormComponent,
+  DemoTypeaheadGroupingComponent,
+  DemoTypeaheadItemTemplateComponent,
+  DemoTypeaheadLatinizeComponent,
+  DemoTypeaheadLatinizeComponent,
+  DemoTypeaheadLatinizeComponent,
+  DemoTypeaheadMinLengthComponent,
+  DemoTypeaheadMinLengthComponent,
   DemoTypeaheadNoResultComponent,
   DemoTypeaheadOnBlurComponent,
-  DemoTypeaheadLatinizeComponent,
-  DemoTypeaheadContainerComponent,
-  DemoTypeaheadFormComponent,
   DemoTypeaheadOnSelectComponent,
-  DemoTypeaheadMinLengthComponent,
+  DemoTypeaheadOnSelectComponent,
+  DemoTypeaheadOnSelectComponent,
+  DemoTypeaheadPhraseDelimitersComponent,
+  DemoTypeaheadReactiveFormComponent,
+  DemoTypeaheadScrollableComponent,
+  DemotypeaheadSelectFirstItemComponent,
+  DemoTypeaheadShowOnBlurComponent,
+  DemoTypeaheadSingleWorldComponent
 ];
 
 export const DEMOS = {

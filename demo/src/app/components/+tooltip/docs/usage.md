@@ -1,4 +1,4 @@
-// RECOMMENDED (doesn't work with system.js)
+// RECOMMENDED
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 // or
 import { TooltipModule } from 'ngx-bootstrap';

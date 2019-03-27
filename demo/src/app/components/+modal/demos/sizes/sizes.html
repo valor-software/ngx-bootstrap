@@ -2,11 +2,12 @@
 <p>Small modal window have small width on screens only above 768px(boostrap3) and 576px(bootstrap4)</p>
 <button class="btn btn-primary" (click)="lgModal.show()">Large modal</button>
 
-<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+     role="dialog" aria-labelledby="dialog-sizes-name1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title pull-left">Large modal</h4>
+        <h4 id="dialog-sizes-name1" class="modal-title pull-left">Large modal</h4>
         <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -22,11 +23,11 @@
 <!--Small modal-->
 <button type="button" class="btn btn-primary" (click)="smModal.show()">Small modal</button>
 
-<div bsModal #smModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+<div bsModal #smModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name2">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title pull-left">Small modal</h4>
+        <h4 id="dialog-sizes-name2" class="modal-title pull-left">Small modal</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="smModal.hide()">
           <span aria-hidden="true">&times;</span>
         </button>

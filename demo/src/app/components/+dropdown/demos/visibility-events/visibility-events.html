@@ -7,10 +7,12 @@
          dropdown
          (onShown)="handler('onShown')"
          (onHidden)="handler('onHidden')">
-      <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+      <button id="button-visbility" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+              aria-controls="dropdown-visbility">
         Button dropdown <span class="caret"></span>
       </button>
-      <ul *dropdownMenu class="dropdown-menu" role="menu">
+      <ul id="dropdown-visbility" *dropdownMenu class="dropdown-menu"
+          role="menu" aria-labelledby="button-visbility">
         <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
         <li role="menuitem"><a class="dropdown-item" href="#">Another action</a></li>
         <li role="menuitem"><a class="dropdown-item" href="#">Something else here</a></li>

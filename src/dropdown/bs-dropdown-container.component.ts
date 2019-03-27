@@ -7,7 +7,7 @@ import {
   Renderer2
 } from '@angular/core';
 import { BsDropdownState } from './bs-dropdown.state';
-import { isBs3 } from '../utils/theme-provider';
+import { isBs3 } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'bs-dropdown-container',
@@ -29,17 +29,18 @@ export class BsDropdownContainerComponent implements OnDestroy {
     return this._state.direction;
   }
 
+// tslint:disable-next-line:no-any
   private _subscription: any;
 
   constructor(
     private _state: BsDropdownState,
     private cd: ChangeDetectorRef,
     private _renderer: Renderer2,
-    _element: ElementRef
+    private _element: ElementRef
   ) {
     this._subscription = _state.isOpenChange.subscribe((value: boolean) => {
       this.isOpen = value;
-      const dropdown = _element.nativeElement.querySelector('.dropdown-menu');
+      const dropdown = this._element.nativeElement.querySelector('.dropdown-menu');
       if (dropdown && !isBs3()) {
         this._renderer.addClass(dropdown, 'show');
         if (dropdown.classList.contains('dropdown-menu-right')) {
@@ -58,6 +59,11 @@ export class BsDropdownContainerComponent implements OnDestroy {
       this.cd.markForCheck();
       this.cd.detectChanges();
     });
+  }
+
+  /** @internal */
+  _contains(el: Element): boolean {
+    return this._element.nativeElement.contains(el);
   }
 
   ngOnDestroy(): void {
