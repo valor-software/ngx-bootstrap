@@ -243,7 +243,7 @@ export const demoComponentContent: ContentSection[] = [
         title: 'Is first item active',
         anchor: 'first-item-active',
         description: `
-          <p>Use input property <code>typeaheadIsFirstItemActive</code> or config property isFirstItemActive to make the first item active/inactive </p>
+          <p>Use input property <code>typeaheadIsFirstItemActive</code> or config property <code>isFirstItemActive</code> to make the first item active/inactive </p>
         `,
         component: require('!!raw-loader?lang=typescript!./demos/first-item-active/first-item-active.ts'),
         html: require('!!raw-loader?lang=markup!./demos/first-item-active/first-item-active.html'),

@@ -105,7 +105,8 @@ export class TypeaheadContainerComponent {
       this._active = null;
     }
   }
-// tslint:disable-next-line:no-any
+
+  // tslint:disable-next-line:no-any
   get optionsListTemplate(): TemplateRef<any> {
     return this.parent ? this.parent.optionsListTemplate : undefined;
   }
@@ -119,7 +120,7 @@ export class TypeaheadContainerComponent {
   }
 
   get typeaheadIsFirstItemActive(): boolean {
-    return this.parent.typeaheadIsFirstItemActive;
+    return this.parent ? this.parent.typeaheadIsFirstItemActive : true;
   }
 // tslint:disable-next-line:no-any
   get itemTemplate(): TemplateRef<any> {

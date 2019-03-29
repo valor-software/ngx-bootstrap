@@ -1975,7 +1975,7 @@ export const ngdoc: any = {
     "properties": [
       {
         "name": "dropdownMenu",
-        "type": "Promise<any>",
+        "type": "Promise<BsComponentRef<any>>",
         "description": "<p>Content to be displayed as popover.</p>\n"
       }
     ]
@@ -2570,6 +2570,13 @@ export const ngdoc: any = {
     "methods": [],
     "properties": []
   },
+  "Options": {
+    "fileName": "src/positioning/models/index.ts",
+    "className": "Options",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
   "PositioningOptions": {
     "fileName": "src/positioning/positioning.service.ts",
     "className": "PositioningOptions",
@@ -2919,7 +2926,7 @@ export const ngdoc: any = {
       },
       {
         "name": "selectTab",
-        "description": "<p>fired when tab became active, $event:Tab equals to selected instance of Tab component </p>\n"
+        "description": "<p>fired when tab became active, $event:Tab equals to selected instance of Tab component</p>\n"
       }
     ],
     "properties": [],
@@ -3404,6 +3411,12 @@ export const ngdoc: any = {
         "description": "<p>used to hide results on blur</p>\n"
       },
       {
+        "name": "isFirstItemActive",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>used to active/inactive the first item in typeahead container</p>\n"
+      },
+      {
         "name": "minLength",
         "defaultValue": "1",
         "type": "number",
@@ -3464,6 +3477,12 @@ export const ngdoc: any = {
         "name": "typeaheadHideResultsOnBlur",
         "type": "boolean",
         "description": "<p>used to hide result on blur</p>\n"
+      },
+      {
+        "name": "typeaheadIsFirstItemActive",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>makes active first item in a list</p>\n"
       },
       {
         "name": "typeaheadItemTemplate",

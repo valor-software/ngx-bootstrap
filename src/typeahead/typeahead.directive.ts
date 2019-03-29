@@ -281,32 +281,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
   }
 
-  // @HostListener('keydown', ['$event'])
-  // onKeydown(event: any): void {
-  //   // no container - no problems
-  //   if (!this._container) {
-  //     return;
-  //   }
-  //
-  //   // if an item is active - prevent form submission
-  //   if (this._container.active && event.keyCode === 13 || event.key === 'Enter') {
-  //     event.preventDefault();
-  //
-  //     return;
-  //   }
-  //
-  //   // if an item is active - don't change focus
-  //   if (event.keyCode === 9 || event.key === 'Tab') {
-  //     if (this._container.active) {
-  //       event.preventDefault();
-  //       this._container.selectActiveMatch();
-  //
-  //       return;
-  //     }
-  //     this.hide();
-  //   }
-  // }
-
   @HostListener('keydown', ['$event'])
   onKeydown(event: KeyboardEvent): void {
     // no container - no problems
