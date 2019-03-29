@@ -9,6 +9,7 @@ import {
 import { Subscription } from 'rxjs';
 
 import { BsDropdownState } from './bs-dropdown.state';
+import { BsDropdownDirective } from './bs-dropdown.directive';
 
 @Directive({
   selector: '[bsDropdownToggle],[dropdownToggle]',

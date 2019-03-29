@@ -1,5 +1,5 @@
 import { LandingComponent } from './common/landing/landing.component';
-import { GettingStartedComponent } from './common/getting-started/getting-started.component';
+import { DocumentationComponent } from './common/documentation/documentation.component';
 
 export const routes = [
   {
@@ -8,9 +8,9 @@ export const routes = [
     component: LandingComponent
   },
   {
-    path: 'getting-started',
-    data: ['Getting started'],
-    component: GettingStartedComponent
+    path: 'documentation',
+    data: ['Documentation'],
+    component: DocumentationComponent
   },
   {
     path: 'accordion',

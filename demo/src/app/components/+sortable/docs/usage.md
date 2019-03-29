@@ -1,4 +1,4 @@
-// RECOMMENDED (doesn't work with system.js)
+// RECOMMENDED
 import { SortableModule } from 'ngx-bootstrap/sortable';
 // or
 import { SortableModule } from 'ngx-bootstrap';
