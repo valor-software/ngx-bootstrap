@@ -6,10 +6,9 @@ import {
   OnDestroy,
   Renderer2
 } from '@angular/core';
-import { Subscription } from 'rxjs';
 
+import { Subscription } from 'rxjs';
 import { BsDropdownState } from './bs-dropdown.state';
-import { BsDropdownDirective } from './bs-dropdown.directive';
 
 @Directive({
   selector: '[bsDropdownToggle],[dropdownToggle]',
@@ -20,8 +19,6 @@ import { BsDropdownDirective } from './bs-dropdown.directive';
 })
 export class BsDropdownToggleDirective implements OnDestroy {
   @HostBinding('attr.disabled') isDisabled: boolean = null;
-
-  // @HostBinding('class.active')
   @HostBinding('attr.aria-expanded') isOpen: boolean;
 
   private _subscriptions: Subscription[] = [];
