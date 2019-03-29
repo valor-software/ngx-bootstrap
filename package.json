@@ -79,7 +79,8 @@
   },
   "homepage": "https://github.com/valor-software/ngx-bootstrap#readme",
   "peerDependencies": {
-    "typescript": ">=3.1.1"
+    "@angular/common": ">=7.0.0",
+    "@angular/core": ">=7.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.8.9",
