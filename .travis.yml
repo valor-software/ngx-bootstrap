@@ -79,6 +79,7 @@ jobs:
   - stage: "Publish to ngx-bootstrap-ci"
     install: true
     script:
+    - echo "$NPM_AUTH_TOKEN"
     - npm ci
     - npm run build
     - npm run ci:update-pkg
