@@ -9,11 +9,11 @@ import { etLocale } from '../../i18n/et';
 // localeModule('et');
 describe('locale: et', () => {
   beforeAll(() => {
-    moment.locale('et');
+    moment.locale('et', etLocale);
   });
 
   afterAll(() => {
-    moment.locale('et');
+    moment.locale('en');
   });
 
   it('parse', function () {
@@ -41,27 +41,27 @@ describe('locale: et', () => {
 
   it('format', function () {
     var a = [
-      ['dddd, MMMM Do YYYY, h:mm:ss', 'pühapäev, veebruar 14. 2010, 3:25:50'],
+      ['dddd, MMMM Do YYYY, h:mm:ss', 'pühapäev, veebruar 14º 2010, 3:25:50'],
       ['ddd, h', 'P, 3'],
-      ['M Mo MM MMMM MMM', '2 2. 02 veebruar veebr'],
+      ['M Mo MM MMMM MMM', '2 2º 02 veebruar veebr'],
       ['YYYY YY', '2010 10'],
-      ['D Do DD', '14 14. 14'],
-      ['d do dddd ddd dd', '0 0. pühapäev P P'],
-      ['DDD DDDo DDDD', '45 45. 045'],
-      ['w wo ww', '6 6. 06'],
+      ['D Do DD', '14 14º 14'],
+      ['d do dddd ddd dd', '0 0º pühapäev P P'],
+      ['DDD DDDo DDDD', '45 45º 045'],
+      ['w wo ww', '6 6º 06'],
       ['h hh', '3 03'],
       ['H HH', '15 15'],
       ['m mm', '25 25'],
       ['s ss', '50 50'],
       ['LTS', '15:25:50'],
       ['L', '14.02.2010'],
-      ['LL', '14. veebruar 2010'],
-      ['LLL', '14. veebruar 2010 15:25'],
-      ['LLLL', 'pühapäev, 14. veebruar 2010 15:25'],
+      ['LL', '14º veebruar 2010'],
+      ['LLL', '14º veebruar 2010 15:25'],
+      ['LLLL', 'pühapäev, 14º veebruar 2010 15:25'],
       ['l', '14.2.2010'],
-      ['ll', '14. veebr 2010'],
-      ['lll', '14. veebr 2010 15:25'],
-      ['llll', 'P, 14. veebr 2010 15:25']
+      ['ll', '14º veebr 2010'],
+      ['lll', '14º veebr 2010 15:25'],
+      ['llll', 'P, 14º veebr 2010 15:25']
     ],
       b = moment(new Date(2010, 1, 14, 15, 25, 50, 125)),
       i;
@@ -71,7 +71,7 @@ describe('locale: et', () => {
   });
 
   it('format month', function () {
-    var expected = 'jaanuar jaan_veebruar veebr_märts märts_aprill apr_mai mai_juuni junni_juuli juuli_august aug_september sept_oktoober okt_november nov_detsember dets'.split('_'),
+    var expected = 'jaanuar jaan_veebruar veebr_märts märts_aprill apr_mai mai_juuni juuni_juuli juuli_august aug_september sept_oktoober okt_november nov_detsember dets'.split('_'),
       i;
     for (i = 0; i < expected.length; i++) {
       assertEq(moment([2011, i, 1]).format('MMMM MMM'), expected[i], expected[i]);
@@ -88,39 +88,39 @@ describe('locale: et', () => {
 
   it('from', function () {
     var start = moment([2007, 1, 28]);
-    assertEq(start.from(moment([2007, 1, 28]).add({ s: 44 }), true), 'mõni sekund', '44 seconds = a few seconds');
-    assertEq(start.from(moment([2007, 1, 28]).add({ s: 45 }), true), 'ühe minuti', '45 seconds = a minute');
-    assertEq(start.from(moment([2007, 1, 28]).add({ s: 89 }), true), 'ühe minuti', '89 seconds = a minute');
+    assertEq(start.from(moment([2007, 1, 28]).add({ s: 44 }), true), 'paar sekundit', '44 seconds = a few seconds');
+    assertEq(start.from(moment([2007, 1, 28]).add({ s: 45 }), true), 'üks minut', '45 seconds = a minute');
+    assertEq(start.from(moment([2007, 1, 28]).add({ s: 89 }), true), 'üks minut', '89 seconds = a minute');
     assertEq(start.from(moment([2007, 1, 28]).add({ s: 90 }), true), '2 minutit', '90 seconds = 2 minutes');
     assertEq(start.from(moment([2007, 1, 28]).add({ m: 44 }), true), '44 minutit', '44 minutes = 44 minutes');
-    assertEq(start.from(moment([2007, 1, 28]).add({ m: 45 }), true), 'ühe tunni', '45 minutes = an hour');
-    assertEq(start.from(moment([2007, 1, 28]).add({ m: 89 }), true), 'ühe tunni', '89 minutes = an hour');
+    assertEq(start.from(moment([2007, 1, 28]).add({ m: 45 }), true), 'üks tund', '45 minutes = an hour');
+    assertEq(start.from(moment([2007, 1, 28]).add({ m: 89 }), true), 'üks tund', '89 minutes = an hour');
     assertEq(start.from(moment([2007, 1, 28]).add({ m: 90 }), true), '2 tundi', '90 minutes = 2 hours');
     assertEq(start.from(moment([2007, 1, 28]).add({ h: 5 }), true), '5 tundi', '5 hours = 5 hours');
     assertEq(start.from(moment([2007, 1, 28]).add({ h: 21 }), true), '21 tundi', '21 hours = 21 hours');
-    assertEq(start.from(moment([2007, 1, 28]).add({ h: 22 }), true), 'ühe päeva', '22 hours = a day');
-    assertEq(start.from(moment([2007, 1, 28]).add({ h: 35 }), true), 'ühe päeva', '35 hours = a day');
-    assertEq(start.from(moment([2007, 1, 28]).add({ h: 36 }), true), '2 dager', '36 hours = 2 days');
-    assertEq(start.from(moment([2007, 1, 28]).add({ d: 1 }), true), 'ühe päeva', '1 day = a day');
-    assertEq(start.from(moment([2007, 1, 28]).add({ d: 5 }), true), '5 üks päev', '5 days = 5 days');
-    assertEq(start.from(moment([2007, 1, 28]).add({ d: 25 }), true), '25 üks päev', '25 days = 25 days');
-    assertEq(start.from(moment([2007, 1, 28]).add({ d: 26 }), true), 'kuu aja', '26 days = a month');
-    assertEq(start.from(moment([2007, 1, 28]).add({ d: 30 }), true), 'kuu aja', '30 days = a month');
-    assertEq(start.from(moment([2007, 1, 28]).add({ d: 43 }), true), 'kuu aja', '43 days = a month');
-    assertEq(start.from(moment([2007, 1, 28]).add({ d: 46 }), true), '2 kuu', '46 days = 2 months');
-    assertEq(start.from(moment([2007, 1, 28]).add({ d: 74 }), true), '2 kuu', '75 days = 2 months');
-    assertEq(start.from(moment([2007, 1, 28]).add({ d: 76 }), true), '3 kuu', '76 days = 3 months');
+    assertEq(start.from(moment([2007, 1, 28]).add({ h: 22 }), true), 'üks päev', '22 hours = a day');
+    assertEq(start.from(moment([2007, 1, 28]).add({ h: 35 }), true), 'üks päev', '35 hours = a day');
+    assertEq(start.from(moment([2007, 1, 28]).add({ h: 36 }), true), '2 päeva', '36 hours = 2 days');
+    assertEq(start.from(moment([2007, 1, 28]).add({ d: 1 }), true), 'üks päev', '1 day = a day');
+    assertEq(start.from(moment([2007, 1, 28]).add({ d: 5 }), true), '5 päeva', '5 days = 5 days');
+    assertEq(start.from(moment([2007, 1, 28]).add({ d: 25 }), true), '25 päeva', '25 days = 25 days');
+    assertEq(start.from(moment([2007, 1, 28]).add({ d: 26 }), true), 'üks kuu', '26 days = a month');
+    assertEq(start.from(moment([2007, 1, 28]).add({ d: 30 }), true), 'üks kuu', '30 days = a month');
+    assertEq(start.from(moment([2007, 1, 28]).add({ d: 43 }), true), 'üks kuu', '43 days = a month');
+    assertEq(start.from(moment([2007, 1, 28]).add({ d: 46 }), true), '2 kuud', '46 days = 2 months');
+    assertEq(start.from(moment([2007, 1, 28]).add({ d: 74 }), true), '2 kuud', '75 days = 2 months');
+    assertEq(start.from(moment([2007, 1, 28]).add({ d: 76 }), true), '3 kuud', '76 days = 3 months');
     assertEq(start.from(moment([2007, 1, 28]).add({ M: 1 }), true), 'kuu aja', '1 month = a month');
-    assertEq(start.from(moment([2007, 1, 28]).add({ M: 5 }), true), '5 kuu', '5 months = 5 months');
-    assertEq(start.from(moment([2007, 1, 28]).add({ d: 345 }), true), 'ühe aasta', '345 days = a year');
+    assertEq(start.from(moment([2007, 1, 28]).add({ M: 5 }), true), '5 kuud', '5 months = 5 months');
+    assertEq(start.from(moment([2007, 1, 28]).add({ d: 345 }), true), 'üks aasta', '345 days = a year');
     assertEq(start.from(moment([2007, 1, 28]).add({ d: 548 }), true), '2 aasta', '548 days = 2 years');
-    assertEq(start.from(moment([2007, 1, 28]).add({ y: 1 }), true), 'ühe aasta', '1 year = a year');
-    assertEq(start.from(moment([2007, 1, 28]).add({ y: 5 }), true), '5 aasta', '5 years = 5 years');
+    assertEq(start.from(moment([2007, 1, 28]).add({ y: 1 }), true), 'üks aasta', '1 year = a year');
+    assertEq(start.from(moment([2007, 1, 28]).add({ y: 5 }), true), '5 aastat', '5 years = 5 years');
   });
 
   it('suffix', function () {
-    assertEq(moment(30000).from(0), 'pärast mõne sekundi', 'prefix');
-    assertEq(moment(0).from(30000), 'mõne sekundi tagasi', 'suffix');
+    assertEq(moment(30000).from(0), 'mõne sekundi pärast', 'prefix');
+    assertEq(moment(0).from(30000), 'mõni sekund tagasi', 'suffix');
   });
 
   it('now from now', function () {
@@ -128,8 +128,8 @@ describe('locale: et', () => {
   });
 
   it('fromNow', function () {
-    assertEq(moment().add({ s: 30 }).fromNow(), 'pärast mõne sekundi', 'in a few seconds');
-    assertEq(moment().add({ d: 5 }).fromNow(), 'pärast 5 üks päev', 'in 5 days');
+    assertEq(moment().add({ s: 30 }).fromNow(), 'mõne sekundi pärast', 'in a few seconds');
+    assertEq(moment().add({ d: 5 }).fromNow(), '5 päeva pärast', 'in 5 days');
   });
 
   it('calendar day', function () {
@@ -178,11 +178,11 @@ describe('locale: et', () => {
   });
 
   it('weeks year starting sunday formatted', function () {
-    assertEq(moment([2012, 0, 1]).format('w ww wo'), '52 52 52.', 'Jan  1 2012 should be week 52');
-    assertEq(moment([2012, 0, 2]).format('w ww wo'), '1 01 1.', 'Jan  2 2012 should be week 1');
-    assertEq(moment([2012, 0, 8]).format('w ww wo'), '1 01 1.', 'Jan  8 2012 should be week 1');
-    assertEq(moment([2012, 0, 9]).format('w ww wo'), '2 02 2.', 'Jan  9 2012 should be week 2');
-    assertEq(moment([2012, 0, 15]).format('w ww wo'), '2 02 2.', 'Jan 15 2012 should be week 2');
+    assertEq(moment([2012, 0, 1]).format('w ww wo'), '52 52 52º', 'Jan  1 2012 should be week 52');
+    assertEq(moment([2012, 0, 2]).format('w ww wo'), '1 01 1º', 'Jan  2 2012 should be week 1');
+    assertEq(moment([2012, 0, 8]).format('w ww wo'), '1 01 1º', 'Jan  8 2012 should be week 1');
+    assertEq(moment([2012, 0, 9]).format('w ww wo'), '2 02 2º', 'Jan  9 2012 should be week 2');
+    assertEq(moment([2012, 0, 15]).format('w ww wo'), '2 02 2º', 'Jan 15 2012 should be week 2');
   });
 });
 
