@@ -4,8 +4,6 @@ export class TimepickerPo extends BaseComponent {
   pageUrl = '/timepicker';
   pageTitle = 'Timepicker';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/timepicker';
-  redAlertSelector = '.alert.alert-danger';
-  greenAlertSelector = '.alert.alert-success';
 
   exampleDemosArr = {
     basic: 'demo-timepicker-basic',
@@ -43,14 +41,9 @@ export class TimepickerPo extends BaseComponent {
       .should(readonly ? 'to.have.attr' : 'not.to.have.attr', 'readonly');
   }
 
-  isAlertContains(baseSelector: string, expectedText: string) {
-    cy.get(`${baseSelector} .alert.alert-info`)
-      .invoke('text')
-      .should('to.contain', expectedText);
-  }
-
-  isAdditionalAlertContains(baseSelector: string, alertSelector: string, expectedText: string, alertIndex = 0) {
-    cy.get(`${baseSelector} ${alertSelector}`).eq(alertIndex)
+  isAlertContains(baseSelector: string, expectedText: string, alertIndex = 0, alertType = 'info') {
+    cy.get(`${baseSelector} .alert.alert-${alertType}`)
+      .eq(alertIndex)
       .invoke('text')
       .should('to.contain', expectedText);
   }
@@ -62,8 +55,12 @@ export class TimepickerPo extends BaseComponent {
       .click({ force: true });
   }
 
-  triggerEventOnInput(baseSelector: string, event: string, inputIndex = 0) {
-    cy.get(`${baseSelector} input`).eq(inputIndex).trigger(event);
+  triggerEventOnInput(baseSelector: string, event: string, inputIndex = 0, params?: any) {
+    if (!params) {
+      cy.get(`${baseSelector} input`).eq(inputIndex).trigger(event);
+    } else {
+      cy.get(`${baseSelector} input`).eq(inputIndex).trigger(event, params);
+    }
   }
 
   isInputHaveInvalidStatus(baseSelector: string, invalid: boolean, inputIndex = 0) {
@@ -100,15 +97,15 @@ export class TimepickerPo extends BaseComponent {
 
   isInputValueContain(baseSelector: string, expectedTxt: string, inputIndex = 0) {
     if (!Number(expectedTxt)) {
-      cy.get(`${baseSelector} input`).eq(inputIndex).should('to.have.value', expectedTxt);
+      cy.get(`${baseSelector} input`).eq(inputIndex).invoke('text').should('to.contains', expectedTxt);
     } else {
       cy.get(`${baseSelector} input`).eq(inputIndex).then(input => {
         if (Number(input.val()) === Number(expectedTxt)) {
           expect(input.val()).to.contains(expectedTxt);
         } else if (Number(input.val()) + 1 === Number(expectedTxt)) {
-          expect(Number(input.val()) + 1).to.equal(Number(expectedTxt));
+          expect((Number(input.val()) + 1).toString()).to.contains(expectedTxt.toString());
         } else {
-          expect(Number(input.val()) - 1).to.equal(Number(expectedTxt));
+          expect((Number(input.val()) - 1).toString()).to.contains(expectedTxt.toString());
         }
       });
     }
@@ -135,26 +132,20 @@ export class TimepickerPo extends BaseComponent {
   }
 
   pressKeyOnInput(baseSelector: string, keyToPress: string, inputIndex = 0) {
-    cy.get(`${baseSelector} input`).eq(inputIndex)
-      .type(keyToPress);
+    cy.get(`${baseSelector} input`)
+      .eq(inputIndex)
+      .type(`{${keyToPress}arrow}`);
   }
 
   isInputPlaceholderContains(baseSelector: string, placeholder: string, inputIndex = 0) {
-    cy.get(`${baseSelector} .bs-timepicker-field`).eq(inputIndex)
+    cy.get(`${baseSelector} .bs-timepicker-field`)
+      .eq(inputIndex)
       .should('have.attr', 'placeholder', placeholder);
   }
 
-  isBtnShowMeridianExist() {
-    cy.get(`${'demo-timepicker-config button'}`).should('not.to.exist');
-  }
-
-  isArrowVisible(baseSelector: string, elementSelector: string, hidden: boolean, elementIndex = 0) {
-    cy.get(`${baseSelector} ${elementSelector}`).eq(elementIndex)
+  isArrowVisible(baseSelector: string, arrowType: string, hidden: boolean, elementIndex = 0) {
+    cy.get(`${baseSelector} .bs-chevron-${arrowType}`)
+      .eq(elementIndex)
       .should(hidden ? 'to.be.visible' : 'not.to.be.visible');
-  }
-
-  isElementExist(baseSelector: string, elementSelector: string, existInDOM: boolean, elementIndex = 0) {
-    cy.get(`${baseSelector} ${elementSelector}`).eq(elementIndex)
-      .should(existInDOM ? 'to.exist' : 'not.to.exist');
   }
 }

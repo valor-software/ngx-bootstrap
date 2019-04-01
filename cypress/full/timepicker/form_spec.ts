@@ -1,29 +1,30 @@
 import { TimepickerPo } from '../../support/timepicker.po';
 
 describe('Timepicker demo page test suite: Form', () => {
-  beforeEach(() => timepicker.navigateTo());
   const timepicker = new TimepickerPo();
   const form = timepicker.exampleDemosArr.form;
-  const btnEnable = 'Enable Control';
-  const btnDisable = 'Disable Control';
+
+  beforeEach(() => {
+    timepicker.navigateTo();
+    timepicker.scrollToMenu('Form');
+  });
 
   it(`example contains timepicker component and info alert with selected date and time (current by default)
     see current hour and minute in timepicker inputs, contains buttons "Enable Control" and "Disable Control".
     the timepicker is enabled by default`, () => {
     const newDate = new Date();
-    timepicker.scrollToMenu('Form');
     timepicker.isTimepickerVisible(form);
     timepicker.isAlertContains(form, `Time is: ${newDate.toString().split(':')[0]}`);
     timepicker.isInputValueContain(form, `${timepicker.getHoursIn12Format(newDate)}`, 0);
     timepicker.isInputValueContain(form, `${newDate.getMinutes()}`, 1);
-    timepicker.isButtonExist(form, btnEnable, 1);
-    timepicker.isButtonExist(form, btnDisable, 2);
+    timepicker.isButtonExist(form, 'Enable Control', 1);
+    timepicker.isButtonExist(form, 'Disable Control', 2);
     timepicker.isInputDisabled(form, 0, false);
     timepicker.isInputDisabled(form, 1, false);
   });
 
   it(`when user clicks on "Disable Control" button then the timepicker is disabled`, () => {
-    timepicker.clickByText('button', btnDisable);
+    timepicker.clickByText('button', 'Disable Control');
     timepicker.isArrowDisabled(form, 'up', 0);
     timepicker.isArrowDisabled(form, 'up', 1);
     timepicker.isArrowDisabled(form, 'down', 0);

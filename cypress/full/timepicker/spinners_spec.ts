@@ -1,15 +1,18 @@
 import { TimepickerPo } from '../../support/timepicker.po';
 
 describe('Timepicker demo page test suite: Spinners', () => {
-  beforeEach(() => timepicker.navigateTo());
   const timepicker = new TimepickerPo();
   const spinners = timepicker.exampleDemosArr.spinners;
   const newDate = new Date();
   const btnShowHide = 'Show / Hide spinners';
 
+  beforeEach(() => {
+    timepicker.navigateTo();
+    timepicker.scrollToMenu('Spinners');
+  });
+
   it(`example contains timepicker component, info alert with selected date and time (current by default),
     current hour and current min in timepicker inputs and the button "Show / Hide spinners"`, () => {
-    timepicker.scrollToMenu('Spinners');
     timepicker.isInputValueContain(spinners, `${newDate.getHours()}`, 0);
     timepicker.isInputValueContain(spinners, `${newDate.getMinutes()}`, 1);
     timepicker.isButtonExist(spinners, btnShowHide);
@@ -18,10 +21,10 @@ describe('Timepicker demo page test suite: Spinners', () => {
   it(`when user clicks on "Show / Hide spinners" button, then arrows disappeared. user is able to change
   hours and minutes only through the input`, () => {
     timepicker.clickByText(spinners, btnShowHide);
-    timepicker.isArrowVisible(spinners, '.bs-chevron-up', false, 0);
-    timepicker.isArrowVisible(spinners, '.bs-chevron-down', false, 0);
-    timepicker.isArrowVisible(spinners, '.bs-chevron-up', false, 1);
-    timepicker.isArrowVisible(spinners, '.bs-chevron-down', false, 1);
+    timepicker.isArrowVisible(spinners, 'up', false, 0);
+    timepicker.isArrowVisible(spinners, 'down', false, 0);
+    timepicker.isArrowVisible(spinners, 'up', false, 1);
+    timepicker.isArrowVisible(spinners, 'down', false, 1);
     timepicker.clearInputAndSendKeys(spinners, '14', 0);
     timepicker.isInputValueContain(spinners, '14', 0);
     timepicker.clearInputAndSendKeys(spinners, '05', 1);
