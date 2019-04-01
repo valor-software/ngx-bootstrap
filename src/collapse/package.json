@@ -1,6 +1,6 @@
 {
   "name": "ngx-bootstrap/collapse",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Native Angular Bootstrap Components",
   "private": true,
   "ngPackage": {
