@@ -112,10 +112,6 @@ jobs:
     name: "Cypress Smoke Tests 2d thread"
     env: CI_THREAD_INDEX=3x-electron
     <<: *testSmokeCy
-  - script:
-    name: "Cypress Smoke Tests 3d thread"
-    env: CI_THREAD_INDEX=3x-electron
-    <<: *testSmokeCy
   - script: npm run demo.ng-build
     name: "Check prod build with current Angular version"
   - script: npm run demo.ng-build
