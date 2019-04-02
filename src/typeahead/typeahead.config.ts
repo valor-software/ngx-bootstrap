@@ -9,6 +9,8 @@ export class TypeaheadConfig {
   hideResultsOnBlur = true;
   /** used to choose the first item in typeahead container */
   selectFirstItem = true;
+  /** used to active/inactive the first item in typeahead container */
+  isFirstItemActive = true;
   /** used to choose set minimal no of characters that needs to
    * be entered before typeahead kicks-in
    */

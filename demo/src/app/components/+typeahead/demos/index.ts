@@ -6,10 +6,12 @@ import { DemoTypeaheadContainerComponent } from './container/container';
 import { DemoTypeaheadDelayComponent } from './delay/delay';
 import { DemoTypeaheadDropupComponent } from './dropup/dropup';
 import { DemoTypeaheadFieldComponent } from './field/field';
+import { DemoTypeaheadFirstItemActiveComponent } from './first-item-active/first-item-active';
 import { DemoTypeaheadFormComponent } from './form/form';
 import { DemoTypeaheadGroupingComponent } from './grouping/grouping';
 import { DemoTypeaheadItemTemplateComponent } from './item-template/item-template';
 import { DemoTypeaheadLatinizeComponent } from './latinize/latinize';
+import { DemoTypeaheadMinLengthComponent } from './min-length/min-length';
 import { DemoTypeaheadNoResultComponent } from './no-result/no-result';
 import { DemoTypeaheadOnBlurComponent } from './on-blur/on-blur';
 import { DemoTypeaheadOnSelectComponent } from './on-select/on-select';
@@ -29,10 +31,12 @@ export const DEMO_COMPONENTS = [
   DemoTypeaheadDelayComponent,
   DemoTypeaheadDropupComponent,
   DemoTypeaheadFieldComponent,
+  DemoTypeaheadFirstItemActiveComponent,
   DemoTypeaheadFormComponent,
   DemoTypeaheadGroupingComponent,
   DemoTypeaheadItemTemplateComponent,
   DemoTypeaheadLatinizeComponent,
+  DemoTypeaheadMinLengthComponent,
   DemoTypeaheadNoResultComponent,
   DemoTypeaheadOnBlurComponent,
   DemoTypeaheadOnSelectComponent,
