@@ -94,6 +94,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
    * If value equal false, it will be chosen an active item in the list or nothing
    */
   @Input() typeaheadSelectFirstItem = true;
+  /** makes active first item in a list */
+  @Input() typeaheadIsFirstItemActive = true;
   /** fired when 'busy' state of this component was changed,
    * fired on async mode only, returns boolean
    */
@@ -105,7 +107,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /** fired when option was selected, return object with data of this option */
   @Output() typeaheadOnSelect = new EventEmitter<TypeaheadMatch>();
   /** fired when blur event occurs. returns the active item */
-    // tslint:disable-next-line:no-any
+  // tslint:disable-next-line:no-any
   @Output() typeaheadOnBlur = new EventEmitter<any>();
 
   /**
@@ -164,11 +166,14 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       .provide({ provide: TypeaheadConfig, useValue: config });
 
     Object.assign(this,
-      { typeaheadHideResultsOnBlur: config.hideResultsOnBlur,
-               typeaheadSelectFirstItem: config.selectFirstItem,
-               typeaheadMinLength: config.minLength,
-               adaptivePosition: config.adaptivePosition
-      });
+      {
+        typeaheadHideResultsOnBlur: config.hideResultsOnBlur,
+        typeaheadSelectFirstItem: config.selectFirstItem,
+        typeaheadIsFirstItemActive: config.isFirstItemActive,
+        typeaheadMinLength: config.minLength,
+        adaptivePosition: config.adaptivePosition
+      }
+    );
   }
 
   ngOnInit(): void {
@@ -246,6 +251,14 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       if (event.keyCode === 40 || event.key === 'ArrowDown') {
         this.isActiveItemChanged = true;
         this._container.nextActiveMatch();
+
+        return;
+      }
+
+      // enter
+      /* tslint:disable-next-line: deprecation */
+      if (event.keyCode === 13 || event.key === 'Enter') {
+        this._container.selectActiveMatch();
 
         return;
       }

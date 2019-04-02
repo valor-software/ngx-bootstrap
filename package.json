@@ -1,6 +1,6 @@
 {
   "name": "ngx-bootstrap-base",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Native Angular Bootstrap Components",
   "private": true,
   "scripts": {
@@ -22,14 +22,13 @@
     "disable-lint": "tslint \"**/*.ts\" -c tslint.json --fix --type-check -t prose -e \"node_modules/**\" -e \"dist/**\" -e \"temp/**\" -e \"scripts/docs/**\"",
     "flow.changelog": "conventional-changelog -i CHANGELOG.md -s -p angular",
     "flow.github-release": "conventional-github-releaser -p angular",
-    "build": "run-s build.modules build:schematics build.sass build.es2015",
+    "build": "run-s build.modules build:schematics build.sass",
     "build.watch": "node scripts/build-modules --watch",
     "build:schematics": "node scripts/schematics/build",
     "build.modules": "node scripts/build-modules",
     "ci:update-pkg": "node scripts/ci/update-pkg.js",
     "ci:rename-pkg": "mv node_modules/ngx-bootstrap-ci node_modules/ngx-bootstrap",
     "build.sass": "node-sass --recursive src --output dist --source-map true --source-map-contents sass",
-    "build.es2015": "node ./scripts/es2015/bundle.es2015.js",
     "start": "ng serve --aot --host 0.0.0.0",
     "pretest": "run-s lint build",
     "test": "ng test && npm run test:schematics",
@@ -80,7 +79,8 @@
   },
   "homepage": "https://github.com/valor-software/ngx-bootstrap#readme",
   "peerDependencies": {
-    "typescript": ">=3.1.1"
+    "@angular/common": ">=7.0.0",
+    "@angular/core": ">=7.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.8.9",
