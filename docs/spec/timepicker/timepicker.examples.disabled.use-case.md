@@ -1,4 +1,4 @@
-14.6: Timepicker Disabled example
+14.7: Timepicker Disabled example
 =================================
 **Primary Actor**: User
 
@@ -10,8 +10,8 @@ Main success scenario:
 ----------------------
 1. User opens Timepicker demo page
 2. User clicks on Disabled sub-menu
-3. User see timepicker component and clickable button "AM"("PM") (according to the current time)
-4. User see clickable button "Enable / Disable input"
+3. User sees timepicker component and clickable button "AM"("PM") (according to the current time)
+4. User sees clickable button "Enable / Disable input"
 5. When user clicks on "Enable / Disable input" button, then timepicker inputs and buttons become unclickable and disabled
 6. When user clicks on input or on button "AM"(""PM) - nothing happens
 7. When user clicks on "Enable / Disable input" button again, then timepicker inputs and buttons become clickable

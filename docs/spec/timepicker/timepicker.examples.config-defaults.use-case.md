@@ -1,4 +1,4 @@
-14.15: Timepicker Configuring defaults example
+14.16: Timepicker Configuring defaults example
 ==============================================
 **Primary Actor**: User
 
@@ -10,8 +10,8 @@ Main success scenario:
 ----------------------
 1. User opens Timepicker demo page
 2. User clicks on Configuring defaults sub-menu
-3. User see timepicker component with hour, minute inputs and arrows and placeholders "HH" and "MM"
-4. User see info alert with text "Time is:"
+3. User sees timepicker component with hour, minute inputs and arrows and placeholders "HH" and "MM"
+4. User sees info alert with text "Time is:"
 5. Component src should assign to TimepickerConfig params:  hourStep: A, minuteStep: B, showMeridian, readonlyInput, mousewheel, showMinutes, showSeconds
 6. When showMeridian is true then button "AM"("PM") should be visible and clickable near inputs
 7. When readonlyInput is true then inputs and arrows should be not clickable
