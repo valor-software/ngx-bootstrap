@@ -97,7 +97,9 @@ export class TimepickerPo extends BaseComponent {
 
   isInputValueContain(baseSelector: string, expectedTxt: string, inputIndex = 0) {
     if (!Number(expectedTxt)) {
-      cy.get(`${baseSelector} input`).eq(inputIndex).invoke('text').should('to.contains', expectedTxt);
+      cy.get(`${baseSelector} input`).eq(inputIndex).then(input => {
+        expect(input.val()).to.contains(expectedTxt);
+      });
     } else {
       cy.get(`${baseSelector} input`).eq(inputIndex).then(input => {
         if (Number(input.val()) === Number(expectedTxt)) {
