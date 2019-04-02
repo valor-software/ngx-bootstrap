@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Directive,
   ElementRef,
   HostBinding,
@@ -9,6 +10,7 @@ import {
 
 import { Subscription } from 'rxjs';
 import { BsDropdownState } from './bs-dropdown.state';
+import { BsDropdownDirective } from './bs-dropdown.directive';
 
 @Directive({
   selector: '[bsDropdownToggle],[dropdownToggle]',
@@ -25,7 +27,13 @@ export class BsDropdownToggleDirective implements OnDestroy {
   private _documentClickListener: Function;
   private _escKeyUpListener: Function;
 
-  constructor(private _state: BsDropdownState, private _element: ElementRef, private _renderer: Renderer2) {
+  constructor(
+    private _changeDetectorRef: ChangeDetectorRef,
+    private _dropdown: BsDropdownDirective,
+    private _element: ElementRef,
+    private _renderer: Renderer2,
+    private _state: BsDropdownState
+  ) {
     // sync is open value with state
     this._subscriptions.push(
       this._state.isOpenChange.subscribe(
@@ -35,13 +43,18 @@ export class BsDropdownToggleDirective implements OnDestroy {
           if (value) {
             this._documentClickListener = this._renderer.listen('document', 'click', (event: any) => {
               if (this._state.autoClose && event.button !== 2 &&
-                !this._element.nativeElement.contains(event.target)) {
+                !this._element.nativeElement.contains(event.target) &&
+                !(this._state.insideClick && this._dropdown._contains(event))
+              ) {
                 this._state.toggleClick.emit(false);
+                this._changeDetectorRef.detectChanges();
               }
             });
+
             this._escKeyUpListener = this._renderer.listen(this._element.nativeElement, 'keyup.esc', () => {
               if (this._state.autoClose) {
                 this._state.toggleClick.emit(false);
+                this._changeDetectorRef.detectChanges();
               }
             });
           } else {
@@ -51,6 +64,7 @@ export class BsDropdownToggleDirective implements OnDestroy {
         }
       )
     );
+
     // populate disabled state
     this._subscriptions.push(
       this._state.isDisabledChange.subscribe(
