@@ -33,13 +33,13 @@ describe('Datepicker demo test suite: Min-max', () => {
     const maxDate = new Date();
     minDate.setDate(minDate.getDate() - 2);
     maxDate.setDate(maxDate.getDate() + 8);
-    const dateOutOfIntervalLeft = new Date(minDate.getTime());
-    const dateOutOfIntervalRight = new Date(maxDate.getTime());
-    dateOutOfIntervalLeft.setDate((dateOutOfIntervalLeft.getDate() - 3));
-    dateOutOfIntervalRight.setDate((dateOutOfIntervalRight.getDate() + 3));
+    const dateOutOfIntervalLeft = new Date();
+    const dateOutOfIntervalRight = new Date();
+    dateOutOfIntervalLeft.setDate((minDate.getDate() - 1));
+    dateOutOfIntervalRight.setDate((minDate.getDate() + 1));
     datepicker.clickOnDatepickerInput(minMax);
     datepicker.isDatepickerOpened(true);
-    if (minDate.getMonth() === dateOutOfIntervalLeft.getMonth()) {
+    if (dateOutOfIntervalLeft.getMonth() <= minDate.getMonth()) {
       datepicker.isDayIntervalDisabledInCurrentMonth(dateOutOfIntervalLeft, minDate, true);
     } else {
       datepicker.clickOnNavigation('body', '>');
