@@ -31,20 +31,11 @@ describe('Datepicker demo test suite: Min-max', () => {
   it(`when user clicks on any other date, not from this interval, nothing happens`, () => {
     const minDate = new Date();
     const maxDate = new Date();
-    minDate.setDate(minDate.getDate() - 2);
-    maxDate.setDate(maxDate.getDate() + 8);
-    const dateOutOfIntervalLeft = new Date();
-    const dateOutOfIntervalRight = new Date();
-    dateOutOfIntervalLeft.setDate((minDate.getDate() - 1));
-    dateOutOfIntervalRight.setDate((minDate.getDate() + 1));
+    minDate.setDate(minDate.getDate() - 1);
+    maxDate.setDate(maxDate.getDate() + 7);
     datepicker.clickOnDatepickerInput(minMax);
     datepicker.isDatepickerOpened(true);
-    if (dateOutOfIntervalLeft.getMonth() <= minDate.getMonth()) {
-      datepicker.isDayIntervalDisabledInCurrentMonth(dateOutOfIntervalLeft, minDate, true);
-    } else {
-      datepicker.clickOnNavigation('body', '>');
-      datepicker.isDayIntervalDisabledInNextMonth(maxDate, dateOutOfIntervalRight, true);
-    }
+    datepicker.isDaysDisabledInCurrentMonth(minDate, maxDate, true);
   });
 
   it('when user clicks on date from this interval, it chosen and shown in input in format "mm/dd/yyyy"', () => {
@@ -70,19 +61,11 @@ describe('Datepicker demo test suite: Min-max', () => {
   it(`clicks on any other date in daterangepicker, not from this interval, nothing happens`, () => {
     const minDate = new Date();
     const maxDate = new Date();
-    minDate.setDate(minDate.getDate() - 2);
-    maxDate.setDate(maxDate.getDate() + 8);
-    const dateOutOfIntervalLeft = new Date(minDate.getTime());
-    const dateOutOfIntervalRight = new Date(maxDate.getTime());
-    dateOutOfIntervalLeft.setDate((dateOutOfIntervalLeft.getDate() - 5));
-    dateOutOfIntervalRight.setDate((dateOutOfIntervalRight.getDate() + 5));
+    minDate.setDate(minDate.getDate() - 1);
+    maxDate.setDate(maxDate.getDate() + 7);
     datepicker.clickOnDaterangepickerInput(minMax);
     datepicker.isDaterangepickerOpened(true);
-    if (minDate.getMonth() === dateOutOfIntervalLeft.getMonth()) {
-      datepicker.isDayIntervalDisabledInCurrentMonthDateRange(dateOutOfIntervalLeft, minDate, true);
-    } else {
-      datepicker.isDayIntervalDisabledInNextMonthDateRange(maxDate, dateOutOfIntervalRight, true);
-    }
+    datepicker.isDaysDisabledInCurrentMonth(minDate, maxDate, true, true);
   });
 
   it('when user clicks on the first, second date from this interval, then it shown in input "mm/dd/yyyy"', () => {
