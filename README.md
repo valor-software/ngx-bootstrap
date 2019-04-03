@@ -40,6 +40,12 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 
 ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using markup and css provided by Bootstrap.
 
+## Supporting NGX-Bootstrap
+NGX-Bootstrap is an open source project under MIT License. It's an independent project with ongoing development made possible thanks to the support of our awesome backers.
+If you'd like to join them, please consider: [Become a backer sponsor of NGX-Bootstrap on OpenCollective](https://opencollective.com/ngx-bootstrap)
+Funds donated via OpenCollective are managed transparently and will be used for compensating work and expenses for core team members. Your name/logo will receive proper recognition and exposure by donating on either platform.
+Main our sponsors would be presented under this section! Be the first!
+
 ## Installation instructions
 ##### Method 1
 Install `ngx-bootstrap` from `npm`:
