@@ -1,3 +1,9 @@
+import {
+  AnimationBuilder,
+  AnimationFactory,
+  AnimationPlayer
+} from '@angular/animations';
+
 // todo: add animations when https://github.com/angular/angular/issues/9947 solved
 import {
   Directive,
@@ -8,6 +14,11 @@ import {
   Output,
   Renderer2
 } from '@angular/core';
+
+import {
+  collapseAnimation,
+  expandAnimation
+} from './collapse-animations';
 
 @Directive({
   selector: '[collapse]',
@@ -24,7 +35,6 @@ export class CollapseDirective {
   /* tslint:disable-next-line: no-any */
   @Output() expanded: EventEmitter<any> = new EventEmitter();
 
-  @HostBinding('style.display') display: string;
   // shown
   @HostBinding('class.in')
   @HostBinding('class.show')
@@ -37,6 +47,24 @@ export class CollapseDirective {
   // animation state
   @HostBinding('class.collapsing') isCollapsing = false;
 
+  @Input()
+  set display(value: string) {
+    if (!this.isAnimated) {
+      this._renderer.setStyle(this._el.nativeElement, 'display', value);
+    }
+
+    this._display = value;
+
+    if (value === 'none') {
+      this.hide();
+
+      return;
+    }
+
+    this.show();
+  }
+  /** turn on/off animation */
+  @Input() isAnimated = false;
   /** A flag indicating visibility of content (shown or hidden) */
   @Input()
   set collapse(value: boolean) {
@@ -48,7 +76,19 @@ export class CollapseDirective {
     return this.isExpanded;
   }
 
-  constructor(private _el: ElementRef, private _renderer: Renderer2) {}
+  private _display = 'block';
+  private _factoryCollapseAnimation: AnimationFactory;
+  private _factoryExpandAnimation: AnimationFactory;
+  private _player: AnimationPlayer;
+
+  constructor(
+    private _el: ElementRef,
+    private _renderer: Renderer2,
+    _builder: AnimationBuilder
+  ) {
+    this._factoryCollapseAnimation = _builder.build(collapseAnimation);
+    this._factoryExpandAnimation = _builder.build(expandAnimation);
+  }
 
   /** allows to manually toggle content visibility */
   toggle(): void {
@@ -61,37 +101,50 @@ export class CollapseDirective {
 
   /** allows to manually hide content */
   hide(): void {
-    this.isCollapse = false;
-    this.isCollapsing = true;
+    this.animationRun(this.isAnimated, 'collapse')(() => {
+      this.isExpanded = false;
+      this.isCollapsed = true;
 
-    this.isExpanded = false;
-    this.isCollapsed = true;
+      this.isCollapse = true;
+      this.isCollapsing = false;
 
-    this.isCollapse = true;
-    this.isCollapsing = false;
+      this.collapsed.emit(this);
 
-    this.display = 'none';
-    this.collapsed.emit(this);
+      this._renderer.setStyle(this._el.nativeElement, 'display', 'none');
+    });
   }
-
   /** allows to manually show collapsed content */
   show(): void {
-    this.isCollapse = false;
-    this.isCollapsing = true;
+    this._renderer.setStyle(this._el.nativeElement, 'display', this._display);
 
-    this.isExpanded = true;
-    this.isCollapsed = false;
+    this.animationRun(this.isAnimated, 'expand')(() => {
+      this.isExpanded = true;
+      this.isCollapsed = false;
 
-    this.display = 'block';
-    // this.height = 'auto';
-    this.isCollapse = true;
-    this.isCollapsing = false;
-    this._renderer.setStyle(
-      this._el.nativeElement,
-      'overflow',
-      'visible'
-    );
-    this._renderer.setStyle(this._el.nativeElement, 'height', 'auto');
-    this.expanded.emit(this);
+      this.isCollapse = true;
+      this.isCollapsing = false;
+
+      this.expanded.emit(this);
+    });
+  }
+
+  animationRun(isAnimated: boolean, action: string) {
+    if (!isAnimated) {
+      return (callback: () => void) => callback();
+    }
+
+    const factoryAnimation = (action === 'expand')
+      ? this._factoryExpandAnimation
+      : this._factoryCollapseAnimation;
+
+    if (this._player) {
+      this._player.destroy();
+    }
+
+    this._player = factoryAnimation.create(this._el.nativeElement);
+    this._player.play();
+
+    /* tslint:disable:no-unbound-method */
+    return () => this._player.onDone;
   }
 }
