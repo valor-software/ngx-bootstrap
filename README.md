@@ -14,7 +14,6 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 
 <br/>
 <a href="https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWQ5M2Y4OWM0OGJjNmZiOGYyNjFlZTdlOGI1YjcxYWQ2ODhiOTY4NzhiODgwMTIzNDczODIyNWNmM2RlYWRhNTg"><img src="https://a.slack-edge.com/66f9/img/icons/ios-256.png" width="25" height="25" alt="slack" ></a>
-<object type="image/svg+xml" data="https://opencollective.com/ngx-bootstrap/tiers/backer.svg?avatarHeight=36&width=600"></object>
 </p>
 
 ## Links
@@ -32,11 +31,12 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 
 ## Table of contents
 1. [Getting Started](#getting-started)
-2. [Installation instructions](#installation-instructions)
-3. [Usage & Demo](#usage--demo)
-4. [API](#api)
-5. [Troubleshooting](#troubleshooting)
-6. [Contributing](#contribution)
+2. [Supporting](#supporting-ngx-bootstrap)
+3. [Installation instructions](#installation-instructions)
+4. [Usage & Demo](#usage--demo)
+5. [API](#api)
+6. [Troubleshooting](#troubleshooting)
+7. [Contributing](#contribution)
 
 ## Getting Started
 
