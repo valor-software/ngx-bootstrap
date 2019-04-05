@@ -10,9 +10,11 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 <a href="https://badge.fury.io/js/ngx-bootstrap"><img src="https://badge.fury.io/js/ngx-bootstrap.svg" alt="npm version" ></a>
 <a href="https://npmjs.org/ngx-bootstrap"><img src="https://img.shields.io/npm/dm/ngx-bootstrap.svg" alt="npm downloads" ></a>
 <a href="https://travis-ci.org/valor-software/ngx-bootstrap"><img alt="" src="https://travis-ci.org/valor-software/ngx-bootstrap.svg?branch=development"></a>
+<a target="_blank" href="https://opencollective.com/ngx-bootstrap"><img src="https://opencollective.com/ngx-bootstrap/tiers/backer/badge.svg?label=backer&color=brightgreen" />
 
 <br/>
 <a href="https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWQ5M2Y4OWM0OGJjNmZiOGYyNjFlZTdlOGI1YjcxYWQ2ODhiOTY4NzhiODgwMTIzNDczODIyNWNmM2RlYWRhNTg"><img src="https://a.slack-edge.com/66f9/img/icons/ios-256.png" width="25" height="25" alt="slack" ></a>
+<object type="image/svg+xml" data="https://opencollective.com/ngx-bootstrap/tiers/backer.svg?avatarHeight=36&width=600"></object>
 </p>
 
 ## Links
