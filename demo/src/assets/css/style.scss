@@ -114,6 +114,24 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
 }
+/* supporting */
+.sponsor-icon {
+  margin: -3px 8px 0 0;
+}
+.sponsor-link {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: #555555;
+}
+.sponsor-link:hover {
+  color: #0056b3;
+}
+.content-supporting {
+  max-width: 700px;
+  margin: 0 auto;
+}
 /* entry */
 .entry {
   padding: 75px 0 ;

@@ -10,6 +10,7 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 <a href="https://badge.fury.io/js/ngx-bootstrap"><img src="https://badge.fury.io/js/ngx-bootstrap.svg" alt="npm version" ></a>
 <a href="https://npmjs.org/ngx-bootstrap"><img src="https://img.shields.io/npm/dm/ngx-bootstrap.svg" alt="npm downloads" ></a>
 <a href="https://travis-ci.org/valor-software/ngx-bootstrap"><img alt="" src="https://travis-ci.org/valor-software/ngx-bootstrap.svg?branch=development"></a>
+<a target="_blank" href="https://opencollective.com/ngx-bootstrap"><img src="https://opencollective.com/ngx-bootstrap/tiers/backer/badge.svg?label=backer&color=brightgreen" />
 
 <br/>
 <a href="https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWQ5M2Y4OWM0OGJjNmZiOGYyNjFlZTdlOGI1YjcxYWQ2ODhiOTY4NzhiODgwMTIzNDczODIyNWNmM2RlYWRhNTg"><img src="https://a.slack-edge.com/66f9/img/icons/ios-256.png" width="25" height="25" alt="slack" ></a>
@@ -30,15 +31,25 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 
 ## Table of contents
 1. [Getting Started](#getting-started)
-2. [Installation instructions](#installation-instructions)
-3. [Usage & Demo](#usage--demo)
-4. [API](#api)
-5. [Troubleshooting](#troubleshooting)
-6. [Contributing](#contribution)
+2. [Supporting](#supporting-ngx-bootstrap)
+3. [Installation instructions](#installation-instructions)
+4. [Usage & Demo](#usage--demo)
+5. [API](#api)
+6. [Troubleshooting](#troubleshooting)
+7. [Contributing](#contribution)
 
 ## Getting Started
 
 ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using markup and css provided by Bootstrap.
+
+## Supporting NGX-Bootstrap
+ngx-bootstrap is an Open Source (MIT Licensed) project, it's an independent project with ongoing development made possible thanks to the support of our awesome backers.
+If you also would like to show support or simply give back to Open Source community, please consider becoming a backer sponsor of [ngx-bootstrap on OpenCollective](https://opencollective.com/ngx-bootstrap)
+
+All donated funds are managed transparently on OpenCollective and will be used solely for compensating work and expenses for contributors. Valor Software employees and contractors are not eligible to use these funds.
+
+What's there for you? Proper recognition and exposure of your name/logo/website on our page.
+Our main sponsors will be presented under this section! Be the first!
 
 ## Installation instructions
 ##### Method 1
