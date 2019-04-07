@@ -10,4 +10,3 @@ async function bootstrap() {
   const app = await NestFactory.create(ApplicationModule);
   await app.listen(PORT);
 }
-bootstrap().catch(err => console.error(err));
