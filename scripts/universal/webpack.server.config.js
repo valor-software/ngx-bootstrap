@@ -1,34 +1,25 @@
 const path = require('path');
 const webpack = require('webpack');
+const WebpackConfigFactory = require('@nestjs/ng-universal')
+  .WebpackConfigFactory;
 
-module.exports = {
-  // https://github.com/angular/angular-cli/issues/10635
-  mode: 'development',
-  entry: {  server: './scripts/universal/server.ts', prerender: './scripts/universal/prerender.ts' },
-  resolve: { extensions: ['.ts', '.js'] },
-  target: 'node',
-  // this makes sure we include node_modules and other 3rd party libraries
-  externals: [/(node_modules|main\..*\.js)/],
-  output: {
-    path: path.join(__dirname, '../../demo/dist'),
-    filename: '[name].js'
-  },
-  module: {
-    rules: [
-      { test: /\.ts$/, exclude: /\.ts$/, loader: 'ts-loader' },
-    ]
-  },
-  plugins: [
-    // Temporary Fix for issue: https://github.com/angular/angular/issues/11580
-    // for "WARNING Critical dependency: the request of a dependency is an expression"
-    new webpack.ContextReplacementPlugin(
-      /(.+)?angular(\\|\/)core(.+)?/,
-      path.join(__dirname, 'src'), // location of your src
-      {} // a map of your routes
-    ),
-    new webpack.ContextReplacementPlugin(
-      /(.+)?express(\\|\/)(.+)?/,
-      path.join(__dirname, 'src'),
-    )
+let webpackConfig = WebpackConfigFactory.create(webpack, {
+  server: './scripts/universal/server.ts',
+  prerender: './scripts/universal/prerender.ts'
+});
+
+webpackConfig.output = {
+  path: path.join(__dirname, '../../demo/dist'),
+  filename: '[name].js'
+};
+
+webpackConfig.module = {
+  rules: [
+    {
+      test: /\.ts$/,
+      loader: 'ts-loader'
+    }
   ]
 };
+
+module.exports = webpackConfig;
