@@ -4,8 +4,7 @@
     "outDir": "../temp/out-tsc",
     "module": "es2015",
     "types": [
-      "webpack",
-      "node"
+      "webpack"
     ]
   },
   "exclude": [

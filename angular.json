@@ -120,16 +120,6 @@
             "outputPath": "demo/dist/server",
             "main": "demo/src/main.server.ts",
             "tsConfig": "demo/src/tsconfig.server.json"
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "demo/src/environments/environment.ts",
-                  "with": "demo/src/environments/environment.prod.ts"
-                }
-              ]
-            }
           }
         }
       }
