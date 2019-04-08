@@ -124,10 +124,10 @@ export class AppComponent {
 Main source of API documentation and usage scenarios available here:
 [https://valor-software.com/ngx-bootstrap/](https://valor-software.com/ngx-bootstrap/)
 
-Additionally you can find demos and docs deployed from latest code with <a href="https://ngx-bootstrap.surge.sh/">angular v4</a> and <a
-  href="https://ngx-bootstrap-latest.surge.sh/">angular v5</a>
+Additionally you can find demos and docs deployed from latest code with <a href="https://ngx-bootstrap.surge.sh/">angular@latest</a> and <a
+  href="https://ngx-bootstrap-latest.surge.sh/">angular@next</a>
 
-Server side rendered version of this documentation available <a href="https://ngx-universal.herokuapp.com/">here</a>
+Server side rendered version of this documentation available <a href="https://ngx-universal.herokuapp.com/">here</a> served with Anguar universal and [nest.js](https://nestjs.com/)
 
 ## API
 Check demo page for API [reference](https://valor-software.com/ngx-bootstrap/)
