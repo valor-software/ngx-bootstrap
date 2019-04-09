@@ -21,48 +21,59 @@ describe('Timepicker demo page test suite: Min - Max', () => {
 
   describe(`Hours`, () => {
     it(`when user clicks on arrow up, then input data and info alert changed appropriate`, () => {
-      const newDate = new Date();
-      const newDatePlusHour = new Date(2011, 2, 2, newDate.getHours() + 1);
-      const expectedHour12Format = timepicker.getHoursIn12Format(newDatePlusHour);
-      const expectedHour24Format = newDatePlusHour.getHours();
-      if (timepicker.getHoursIn12Format(newDate) < maxHours - 1) {
+      const minToSet = 35;
+      if (new Date().getHours() <= 12) {
+        const hourToSet = 10;
+        timepicker.setTimeInInputs(minMax, hourToSet, minToSet);
         timepicker.clickOnArrow(minMax, 'up', 0);
-        timepicker.isInputValueContain(minMax, `${expectedHour12Format}`, 0);
-        timepicker.isAlertContains(minMax, `${expectedHour24Format}`);
+        timepicker.isInputValueContain(minMax, `${hourToSet + 1}`, 0);
+        timepicker.isAlertContains(minMax, `${hourToSet + 1}`);
+      } else {
+        const hourToSet = 3;
+        timepicker.setTimeInInputs(minMax, hourToSet, minToSet);
+        timepicker.clickOnArrow(minMax, 'up', 0);
+        timepicker.isInputValueContain(minMax, `${hourToSet + 1}`, 0);
+        timepicker.isAlertContains(minMax, `${timepicker.getHoursIn24Format(hourToSet + 1)}`);
       }
     });
 
     it(`when user clicks on arrow down, then input data and info alert changed appropriate`, () => {
-      const newDate = new Date();
-      const expectedHour12Format =
-        timepicker.getHoursIn12Format(newDate) === 1 ? '12' : timepicker.getHoursIn12Format(newDate) - 1;
-      const expectedHour24Format = newDate.getHours() === 1 ? '12' : newDate.getHours() - 1;
-      if (timepicker.getHoursIn12Format(newDate) >= minHours) {
+      const minToSet = 35;
+      if (new Date().getHours() <= 12) {
+        const hourToSet = 11;
+        timepicker.setTimeInInputs(minMax, hourToSet, minToSet);
         timepicker.clickOnArrow(minMax, 'down', 0);
-        timepicker.isInputValueContain(minMax, `${expectedHour12Format}`, 0);
-        timepicker.isAlertContains(minMax, `${expectedHour24Format}`);
+        timepicker.isInputValueContain(minMax, `${hourToSet - 1}`, 0);
+        timepicker.isAlertContains(minMax, `${hourToSet - 1}`);
+      } else {
+        const hourToSet = 4;
+        timepicker.setTimeInInputs(minMax, hourToSet, minToSet);
+        timepicker.clickOnArrow(minMax, 'down', 0);
+        timepicker.isInputValueContain(minMax, `${hourToSet - 1}`, 0);
+        timepicker.isAlertContains(minMax, `${timepicker.getHoursIn24Format(hourToSet - 1)}`);
       }
     });
 
     it(`when user chose (Max-1) hour, then arrow up become unclickable, max hour, which user can chose - A`, () => {
-      const newDate = new Date();
-      let currentHour24Format = newDate.getHours();
-      while (currentHour24Format < maxHours - 1 + 12 && newDate.getMinutes() !== 0) {
-        timepicker.clickOnArrow(minMax, 'up', 0);
-        currentHour24Format += 1;
-      }
-      timepicker.isAlertContains(minMax, `${currentHour24Format}`);
+      const minToSet = 35;
+      const hourToSet = new Date().getHours() <= 12 ? 16 : 4;
+      timepicker.setTimeInInputs(minMax, hourToSet, minToSet);
+      timepicker.clickOnArrow(minMax, 'up', 0);
+      timepicker.isAlertContains(minMax, `${timepicker.getHoursIn24Format(hourToSet)}`);
       timepicker.isArrowDisabled(minMax, 'up', 0);
     });
 
     it(`when user chose (B) hour, then arrow down become unclickable, min hour, which user can chose - B`, () => {
-      const newDate = new Date();
-      let currentHour24Format = newDate.getHours();
-      while (currentHour24Format >= minHours) {
+      const minToSet = 35;
+      if (new Date().getHours() > 12) {
+        timepicker.setTimeInInputs(minMax, 1, minToSet);
         timepicker.clickOnArrow(minMax, 'down', 0);
-        currentHour24Format = currentHour24Format - 1;
+        timepicker.clickOnArrow(minMax, 'down', 0);
       }
-      timepicker.isInputValueContain(minMax, `0${minHours}`, 0);
+      const hourToSet = 8;
+      timepicker.setTimeInInputs(minMax, hourToSet, minToSet);
+      timepicker.clickOnArrow(minMax, 'down', 0);
+      timepicker.isAlertContains(minMax, `${hourToSet}`);
       timepicker.isArrowDisabled(minMax, 'down', 0);
     });
 
@@ -87,27 +98,21 @@ describe('Timepicker demo page test suite: Min - Max', () => {
 
   describe(`Minutes`, () => {
     it(`when user clicks on arrow up, then input data and info alert changed appropriate (step = 5 minutes)`, () => {
-      const newDate = new Date();
-      const currentMinutes = newDate.getMinutes();
-      const currentHour24Format = newDate.getHours();
-      const expectedMinute = currentMinutes < 55 ? currentMinutes : currentMinutes - 60;
-      if (currentHour24Format < maxHours + 12 && new Date().getMinutes() !== 0) {
-        timepicker.clickOnArrow(minMax, 'up', 1);
-        timepicker.isInputValueContain(minMax, `${expectedMinute + 5}`, 1);
-        timepicker.isAlertContains(minMax, `${expectedMinute + 5}`);
-      }
+      const minToSet = 23;
+      const hourToSet = new Date().getHours() <= 12 ? 11 : 3;
+      timepicker.setTimeInInputs(minMax, hourToSet, minToSet);
+      timepicker.clickOnArrow(minMax, 'up', 1);
+      timepicker.isInputValueContain(minMax, `${minToSet + 5}`, 1);
+      timepicker.isAlertContains(minMax, `${minToSet + 5}`);
     });
 
     it(`when user clicks on arrow down, then input data and alert changed appropriate (step = 5 minutes)`, () => {
-      const newDate = new Date();
-      const currentMinutes = new Date().getMinutes();
-      const currentHour24Format = newDate.getHours();
-      const expectedMinute = currentMinutes <= 5 ? currentMinutes + 60 : currentMinutes;
-      if (currentHour24Format >= minHours && currentHour24Format < maxHours + 12) {
-        timepicker.clickOnArrow(minMax, 'down', 1);
-        timepicker.isInputValueContain(minMax, `${expectedMinute - 5}`, 1);
-        timepicker.isAlertContains(minMax, `${expectedMinute - 5}`);
-      }
+      const minToSet = 48;
+      const hourToSet = new Date().getHours() <= 12 ? 11 : 3;
+      timepicker.setTimeInInputs(minMax, hourToSet, minToSet);
+      timepicker.clickOnArrow(minMax, 'down', 1);
+      timepicker.isInputValueContain(minMax, `${minToSet - 5}`, 1);
+      timepicker.isAlertContains(minMax, `${minToSet - 5}`);
     });
 
     it(`when user send valid minute to the input, from (0-60), then input, alert changed appropriate`, () => {

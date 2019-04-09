@@ -36,17 +36,17 @@ describe('Timepicker demo page test suite: Form', () => {
 
   it(`when user clicks on "Enable Control" then timepicker is active again, buttons become clickable,
     after click on arrow up above the hour, minute input, then hours increased at 1 and minutes increased at 5`, () => {
-    const newDate = new Date();
-    const expectedHour12Format = timepicker.getHoursIn12Format(new Date(2011, 2, 2, newDate.getHours() + 1));
-    const expectedMinute = newDate.getMinutes() < 55 ? newDate.getMinutes() : newDate.getMinutes() - 60;
+    const hourToSet = 9;
+    const minToSet = 47;
+    timepicker.setTimeInInputs(form, hourToSet, minToSet);
     timepicker.clickOnBtn(form, 1);
     timepicker.clickOnBtn(form, 1);
     timepicker.isButtonDisabled(form, 0, false);
     timepicker.isInputDisabled(form, 0, false);
     timepicker.isInputDisabled(form, 1, false);
     timepicker.clickOnArrow(form, 'up', 0);
-    timepicker.isInputValueContain(form, `${expectedHour12Format}`, 0);
+    timepicker.isInputValueContain(form, `${hourToSet + 1}`, 0);
     timepicker.clickOnArrow(form, 'up', 1);
-    timepicker.isInputValueContain(form, `${expectedMinute + 5}`, 1);
+    timepicker.isInputValueContain(form, `${minToSet + 5}`, 1);
   });
 });

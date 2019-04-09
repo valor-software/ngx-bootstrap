@@ -25,34 +25,32 @@ describe('Timepicker demo page test suite: Custom steps', () => {
   describe('Hours', () => {
     it(`when user clicks on arrow up above the hours, then value increased at 1 and info alert changed,
       when user clicks on arrow down, then input value decreased at 1 and info alert changed appropriate`, () => {
-      const newDate = new Date();
-      const hour12Format = timepicker.getHoursIn12Format(newDate);
-      const hour24Format = newDate.getHours();
+      const hourToSet = 4;
+      const minToSet = 25;
+      timepicker.setTimeInInputs(customSteps, hourToSet, minToSet);
       timepicker.clickOnArrow(customSteps, 'up', 0);
-      timepicker.isInputValueContain(customSteps, `${hour12Format === 12 ? 1 : hour12Format + 1}`, 0);
-      timepicker.isAlertContains(customSteps, `${hour24Format === 23 ? 0 : hour24Format + 1}`);
+      timepicker.isInputValueContain(customSteps, `${hourToSet + 1}`, 0);
+      timepicker.isAlertContains(customSteps, `${timepicker.getHoursIn24Format(hourToSet + 1)}`);
       timepicker.clickOnArrow(customSteps, 'down', 0);
-      timepicker.isInputValueContain(customSteps, `${hour12Format}`, 0);
-      timepicker.isAlertContains(customSteps, `${hour24Format}`);
+      timepicker.isInputValueContain(customSteps, `${hourToSet}`, 0);
+      timepicker.isAlertContains(customSteps, `${timepicker.getHoursIn24Format(hourToSet)}`);
     });
 
     it(`when user clicks on dropdown "Hours step is:" and select "N", then this value is selected,
       when user clicks on arrow up above the hours, then value increased at N and info alert changed,
       when user clicks on arrow down, then input value decreased at N and info alert changed appropriate`, () => {
-      const newDate = new Date();
-      const hour12Format = timepicker.getHoursIn12Format(newDate);
-      const hour24Format = newDate.getHours();
       const hourStep = [2, 3];
+      const hourToSet = 4;
+      const minToSet = 25;
       hourStep.forEach(step => {
         timepicker.selectOption(customSteps, step, 0);
+        timepicker.setTimeInInputs(customSteps, hourToSet, minToSet);
         timepicker.clickOnArrow(customSteps, 'up', 0);
-        timepicker.isInputValueContain(customSteps, `${
-          hour12Format >= 13 - step ? (hour12Format + step - 12) : (hour12Format + step)}`, 0);
-        timepicker.isAlertContains(customSteps, `${
-          hour24Format >= 24 - step ? (hour24Format + step - 24) : (hour24Format + step)}`);
+        timepicker.isInputValueContain(customSteps, `${hourToSet + step}`, 0);
+        timepicker.isAlertContains(customSteps, `${timepicker.getHoursIn24Format(hourToSet + step)}`);
         timepicker.clickOnArrow(customSteps, 'down', 0);
-        timepicker.isInputValueContain(customSteps, `${hour12Format}`, 0);
-        timepicker.isAlertContains(customSteps, `${hour24Format}`);
+        timepicker.isInputValueContain(customSteps, `${hourToSet}`, 0);
+        timepicker.isAlertContains(customSteps, `${timepicker.getHoursIn24Format(hourToSet)}`);
       });
     });
   });
@@ -60,32 +58,32 @@ describe('Timepicker demo page test suite: Custom steps', () => {
   describe('Minutes', () => {
     it(`when user clicks on arrow up above the minutes, then value increased at 15 and info alert changed,
       when user clicks on arrow down, then input value decreased at 15 and info alert changed appropriate`, () => {
-      const currentMinutes = new Date().getMinutes();
+      const hourToSet = 3;
+      const minToSet = 28;
+      timepicker.setTimeInInputs(customSteps, hourToSet, minToSet);
       timepicker.clickOnArrow(customSteps, 'up', 1);
-      timepicker.isInputValueContain(customSteps, `${
-        currentMinutes < 45 ? currentMinutes + 15 : currentMinutes - 60 + 15}`, 1);
-      timepicker.isAlertContains(customSteps, `${
-        currentMinutes < 45 ? currentMinutes + 15 : currentMinutes - 60 + 15}`);
+      timepicker.isInputValueContain(customSteps, `${minToSet + 15}`, 1);
+      timepicker.isAlertContains(customSteps, `${minToSet + 15}`);
       timepicker.clickOnArrow(customSteps, 'down', 1);
-      timepicker.isInputValueContain(customSteps, `${currentMinutes}`, 1);
-      timepicker.isAlertContains(customSteps, `${currentMinutes}`);
+      timepicker.isInputValueContain(customSteps, `${minToSet}`, 1);
+      timepicker.isAlertContains(customSteps, `${minToSet}`);
     });
 
     it(`when user clicks on dropdown "Minutes step is:" and select "M", then this value is selected,
       when user clicks on arrow up above the minutes, then value increased at M and info alert changed,
       when user clicks on arrow down, then input value decreased at M and info alert changed appropriate`, () => {
-      const currentMinutes = new Date().getMinutes();
+      const hourToSet = 3;
+      const minToSet = 29;
       const minutesStep = [5, 30];
       minutesStep.forEach(step => {
         timepicker.selectOption(customSteps, step, 1);
+        timepicker.setTimeInInputs(customSteps, hourToSet, minToSet);
         timepicker.clickOnArrow(customSteps, 'up', 1);
-        timepicker.isInputValueContain(customSteps, `${
-          currentMinutes > 60 - step ? (currentMinutes + step - 60) : (currentMinutes + step)}`, 1);
-        timepicker.isAlertContains(customSteps, `${
-          currentMinutes > 60 - step ? (currentMinutes + step - 60) : (currentMinutes + step)}`);
+        timepicker.isInputValueContain(customSteps, `${minToSet + step}`, 1);
+        timepicker.isAlertContains(customSteps, `${minToSet + step}`);
         timepicker.clickOnArrow(customSteps, 'down', 1);
-        timepicker.isInputValueContain(customSteps, `${currentMinutes}`, 1);
-        timepicker.isAlertContains(customSteps, `${currentMinutes}`);
+        timepicker.isInputValueContain(customSteps, `${minToSet}`, 1);
+        timepicker.isAlertContains(customSteps, `${minToSet}`);
       });
     });
   });

@@ -22,32 +22,29 @@ describe('Timepicker demo page test suite', () => {
       beforeEach(() => timepicker.scrollToMenu('Basic'));
 
       it(`when user clicks on arrow up above the hour, then number in the input increased at 1, alert changed`, () => {
-        const newDate = new Date();
-        const expectedHour24Format = newDate.getHours() === 23 ? '00' : newDate.getHours() + 1;
-        const newDatePlusHour = new Date(2011, 2, 2, newDate.getHours() + 1);
-        const expectedHour12Format = timepicker.getHoursIn12Format(newDatePlusHour);
+        const hourToSet = 2;
+        const minToSet = 12;
+        timepicker.setTimeInInputs(basic, hourToSet, minToSet);
         timepicker.clickOnArrow(basic, 'up', 0);
-        timepicker.isInputValueContain(basic, `${expectedHour12Format}`, 0);
-        timepicker.isAlertContains(basic, `${expectedHour24Format}`);
+        timepicker.isInputValueContain(basic, `${hourToSet + 1}`, 0);
+        timepicker.isAlertContains(basic, `${timepicker.getHoursIn24Format(hourToSet + 1)}`);
       });
 
       it(`when user clicks on arrow down under the hour, then number in input decreased at 1, alert changed`, () => {
-        const newDate = new Date();
-        const expectedHour12Format =
-          timepicker.getHoursIn12Format(newDate) === 1 ? '12' : timepicker.getHoursIn12Format(newDate) - 1;
-        const expectedHour24Format = newDate.getHours() === 1 ? '12' : newDate.getHours() - 1;
+        const hourToSet = 4;
+        const minToSet = 18;
+        timepicker.setTimeInInputs(basic, hourToSet, minToSet);
         timepicker.clickOnArrow(basic, 'down', 0);
-        timepicker.isInputValueContain(basic, `${expectedHour12Format}`, 0);
-        timepicker.isAlertContains(basic, `${expectedHour24Format}`);
+        timepicker.isInputValueContain(basic, `${hourToSet - 1}`, 0);
+        timepicker.isAlertContains(basic, `${timepicker.getHoursIn24Format(hourToSet - 1)}`);
       });
 
       it(`when user send valid (1-12) number to input and click outside, then number saved and alert changed`, () => {
-        const expectedHour = '03';
-        const currentHours = new Date().getHours();
-        timepicker.clearInputAndSendKeys(basic, expectedHour, 0);
+        const expectedHour = 3;
+        timepicker.clearInputAndSendKeys(basic, `${expectedHour}`, 0);
         timepicker.triggerEventOnInput(basic, 'change');
-        timepicker.isInputValueContain(basic, expectedHour, 0);
-        timepicker.isAlertContains(basic, currentHours <= 12 ? expectedHour : '15');
+        timepicker.isInputValueContain(basic, `${expectedHour}`, 0);
+        timepicker.isAlertContains(basic, `${timepicker.getHoursIn24Format(expectedHour)}`);
       });
 
       it(`when user send invalid number or string to input and click outside,
@@ -63,27 +60,21 @@ describe('Timepicker demo page test suite', () => {
 
     describe('Minutes', () => {
       it(`when user clicks on arrow up above minute, then number in the input increased at 5, alert changed`, () => {
-        const currentMinutes = new Date().getMinutes();
-        const expectedMinute = currentMinutes < 55 ? currentMinutes : -(currentMinutes - 60);
+        const hourToSet = 4;
+        const minToSet = 18;
+        timepicker.setTimeInInputs(basic, hourToSet, minToSet);
         timepicker.clickOnArrow(basic, 'up', 1);
-        timepicker.isInputValueContain(basic, `${expectedMinute + 5}`, 1);
-        timepicker.isAlertContains(basic, `${expectedMinute + 5}`);
+        timepicker.isInputValueContain(basic, `${minToSet + 5}`, 1);
+        timepicker.isAlertContains(basic, `${minToSet + 5}`);
       });
 
       it(`when user clicks on arrow down under the minute, then number in input decreased at 5, alert changed`, () => {
-        const currentMinutes = new Date().getMinutes();
-        const expectedMinute = currentMinutes <= 5 ? currentMinutes + 60 : currentMinutes;
+        const hourToSet = 4;
+        const minToSet = 38;
+        timepicker.setTimeInInputs(basic, hourToSet, minToSet);
         timepicker.clickOnArrow(basic, 'down', 1);
-        timepicker.isInputValueContain(basic, `${expectedMinute - 5}`, 1);
-        timepicker.isAlertContains(basic, `${expectedMinute - 5}`);
-      });
-
-      it(`when user clicks on arrow down under the minute, then number in input decreased at 5, alert changed`, () => {
-        const currentMinutes = new Date().getMinutes();
-        const expectedMinute = currentMinutes <= 5 ? currentMinutes + 60 : currentMinutes;
-        timepicker.clickOnArrow(basic, 'down', 1);
-        timepicker.isInputValueContain(basic, `${expectedMinute - 5}`, 1);
-        timepicker.isAlertContains(basic, `${expectedMinute - 5}`);
+        timepicker.isInputValueContain(basic, `${minToSet - 5}`, 1);
+        timepicker.isAlertContains(basic, `${minToSet - 5}`);
       });
 
       it(`when user send valid (00-60) number to input and click outside, then number saved and alert changed`, () => {
