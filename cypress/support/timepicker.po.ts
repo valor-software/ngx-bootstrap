@@ -48,6 +48,11 @@ export class TimepickerPo extends BaseComponent {
       .should('to.contain', expectedText);
   }
 
+  setTimeInInputs(baseSelector: string, hourToSet: number | string, minuteToSet: number | string) {
+    this.clearInputAndSendKeys(`${baseSelector} timepicker`, hourToSet.toString(), 0);
+    this.clearInputAndSendKeys(`${baseSelector} timepicker`, minuteToSet.toString(), 1);
+  }
+
   clickOnArrow(baseSelector: string, arrowType: 'up' | 'down', arrowIndex = 0) {
     cy.get(`${baseSelector} timepicker`)
       .find(arrowType === 'up' ? '.bs-chevron-up' : '.bs-chevron-down')
@@ -93,6 +98,14 @@ export class TimepickerPo extends BaseComponent {
     }
 
     return hours;
+  }
+
+  getHoursIn24Format(hours: number): number {
+    if (new Date().getHours() >= 12) {
+      return hours + 12;
+    } else {
+      return hours;
+    }
   }
 
   isInputValueContain(baseSelector: string, expectedTxt: string, inputIndex = 0) {
