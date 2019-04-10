@@ -16,7 +16,7 @@ env:
     - SAUCE_ACCESS_KEY_PR=e0a97bd3-4b74-4408-89bf-cce1b44a8bf1
     - BROWSER_PROVIDER_READY_FILE=/tmp/sauce-connect-ready
     - LOGS_DIR=/tmp/logs
-    - CY_KEY=4aa7a1c0-3a4f-444e-b324-6fc305a543a8
+    - CYPRESS_RECORD_KEY=4aa7a1c0-3a4f-444e-b324-6fc305a543a8
     - NPM_AUTH_TOKEN_CI_PR=810c9089-b5e8-4348-8c89-61a1c2461d68
 
 #     test cypress smoke
@@ -24,13 +24,13 @@ testSmokeCy: &testSmokeCy
   script:
   - ng serve --prod &
   - $(npm bin)/wait-on http-get://localhost:4200/#
-  - npm run cy:run:smoke -- --record --key $CY_KEY --parallel --group $CI_THREAD_INDEX
+  - npm run cy:run:smoke -- --record --parallel --group smoke-tests
     # after all tests finish running we need
   # to kill all background jobs (like "npm start &")
   - kill $(jobs -p) || true
 
 testPostDeploy: &testPostDeploy
-  script: CYPRESS_baseUrl=$BASE_URL npm run cy:run:all -- --record --key $CY_KEY --parallel --group $CI_THREAD_INDEX --ci-build-id PostDeploy-$CI_THREAD_INDEX-$TRAVIS_BUILD_ID
+  script: CYPRESS_baseUrl=$BASE_URL npm run cy:run:all -- --record --parallel --group $GROUP_NAME --ci-build-id PostDeploy-$GROUP_NAME-$TRAVIS_BUILD_ID
 
 stages:
 - name: "Publish to ngx-bootstrap-ci"
@@ -106,11 +106,9 @@ jobs:
     env: NGV=next
   - script:
     name: "Cypress Smoke Tests 1t thread"
-    env: CI_THREAD_INDEX=3x-electron
     <<: *testSmokeCy
   - script:
     name: "Cypress Smoke Tests 2d thread"
-    env: CI_THREAD_INDEX=3x-electron
     <<: *testSmokeCy
   - script: npm run demo.ng-build
     name: "Check prod build with current Angular version"
@@ -200,38 +198,38 @@ jobs:
     script:
     name: "Cypress suit run on SSR 1thread"
     env:
-    - CI_THREAD_INDEX=3x-electron
+    - GROUP_NAME=SSR
     - BASE_URL=https://ngx-universal.herokuapp.com/#/
     <<: *testPostDeploy
   - script:
     name: "Cypress suit run on SSR 2thread"
     env:
-    - CI_THREAD_INDEX=3x-electron
+    - GROUP_NAME=SSR
     - BASE_URL=https://ngx-universal.herokuapp.com/#/
     <<: *testPostDeploy
   - script:
     name: "Cypress suit run on SSR 3thread"
     env:
-    - CI_THREAD_INDEX=3x-electron
+    - GROUP_NAME=SSR
     - BASE_URL=https://ngx-universal.herokuapp.com/#/
     <<: *testPostDeploy
   #     test cypress full for gh-pages
   - script:
     name: "Cypress with @latest angular 1thread"
     env:
-    - CI_THREAD_INDEX=3.1x-electron
+    - GROUP_NAME=ng-latest
     - BASE_URL=http://ngx-bootstrap-latest.surge.sh/#/
     <<: *testPostDeploy
   - script:
     name: "Cypress with @latest angular 2thread"
     env:
-    - CI_THREAD_INDEX=3.1x-electron
+    - GROUP_NAME=ng-latest
     - BASE_URL=http://ngx-bootstrap-latest.surge.sh/#/
     <<: *testPostDeploy
   - script:
     name: "Cypress with @latest angular 3thread"
     env:
-    - CI_THREAD_INDEX=3.1x-electron
+    - GROUP_NAME=ng-latest
     - BASE_URL=http://ngx-bootstrap-latest.surge.sh/#/
     after_script:
     - cd node_modules/ngx-bootstrap
@@ -242,14 +240,14 @@ jobs:
     name: "Cypress on gh-pages after deploy 1thread"
     if: tag =~ ^v\d+
     env:
-    - CI_THREAD_INDEX=3.2x-electron
+    - GROUP_NAME=production
     - BASE_URL=https://valor-software.com/ngx-bootstrap/#/
     <<: *testPostDeploy
   - script:
     name: "Cypress on gh-pages after deploy 2thread"
     if: tag =~ ^v\d+
     env:
-    - CI_THREAD_INDEX=3.2x-electron
+    - GROUP_NAME=production
     - BASE_URL=https://valor-software.com/ngx-bootstrap/#/
     <<: *testPostDeploy
   - script: APPLITOOLS_API_KEY=Nls100t102uNgLhLpblVUdA3tP104MQQS9VUYgHQ5tYOUuIxU110 CYPRESS_baseUrl=https://valor-software.com/ngx-bootstrap/#/ npm run cy:run:snapshot
