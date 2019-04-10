@@ -159,7 +159,7 @@ jobs:
     on: development
   # deploy to ngx-universal.herokuapp.com/
   - stage: deploy
-    script: npm run build:dynamic
+    script: npm run build:ssr
     before_deploy:
     - cd ./demo/dist
     deploy:

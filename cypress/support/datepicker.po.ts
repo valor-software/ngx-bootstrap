@@ -484,6 +484,17 @@ export class DatepickerPo extends BaseComponent {
     }
   }
 
+  isDaysDisabledInCurrentMonth(minDate: Date, maxDate: Date, disabled: boolean, dateRangePicker?: boolean) {
+    if (minDate.getDate() > 0 && minDate.getDate() < 19) {
+      cy.get(`body>${dateRangePicker ? this.daterangepickerContainer : this.datepickerContainer} ${this.datepickerBodyDaysView} tbody td`)
+        .not('.week')
+        .find('span')
+        .not('.is-other-month')
+        .contains(maxDate.getDate() + 1)
+        .should(disabled ? 'have.class' : 'not.to.have.class', 'disabled');
+    }
+  }
+
   isWeekdayDisabled(disabled: boolean, weekdayIndex: number) {
     cy.get(`body>${this.datepickerContainer} ${this.datepickerBodyDaysView} tbody tr`)
       .each(week => {

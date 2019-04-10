@@ -36,12 +36,11 @@ describe('Timepicker demo page test suite: Custom validation with isValid event'
   });
 
   it(`when user clicks on any arrow then date become valid (taken the nearest date from now)`, () => {
-    const newDate = new Date();
     timepicker.clearInputAndSendKeys(customEvent, 'ab');
     timepicker.clearInputAndSendKeys(customEvent, 'cd', 1);
     timepicker.isAlertContains(customEvent, 'Invalid time', 1, 'danger');
     timepicker.pressKeyOnInput(customEvent, 'up', 1);
-    timepicker.isAlertContains(customEvent, `Time is: ${newDate.toString().split(':')[0]}`, 0, 'success');
+    timepicker.isAlertContains(customEvent, `Time is:`, 0, 'success');
     timepicker.isComponentSrcContain('Custom validation with isValid event', 'isValid');
   });
 });

@@ -18,27 +18,27 @@ describe('Timepicker demo page test suite: Meridian', () => {
   });
 
   it(`when user clicks on "12H / 24H", then "AM"("PM") button disappeared and time changed (24-hours format)`, () => {
-    const newDate = new Date();
-    const currentHours = newDate.getHours();
-    const currentMinutes = newDate.getMinutes();
+    const currentHours = new Date().getHours();
+    const hourToSet = 10;
+    const minToSet = 49;
+    timepicker.setTimeInInputs(meridian, hourToSet, minToSet);
     timepicker.clickOnBtn(meridian, 1);
     timepicker.isButtonExist(meridian, `${(currentHours >= 12) ? 'PM' : 'AM'} `, 0, false);
-    timepicker.isAlertContains(meridian, `Time is: ${newDate.toString().split(':')[0]}`);
-    timepicker.isInputValueContain(meridian, `${currentHours}`, 0);
-    timepicker.isInputValueContain(meridian, `${currentMinutes}`, 1);
+    timepicker.isAlertContains(meridian, `${minToSet}`);
+    timepicker.isAlertContains(meridian, `${timepicker.getHoursIn24Format(hourToSet)}`);
+    timepicker.isInputValueContain(meridian, `${timepicker.getHoursIn24Format(hourToSet)}`, 0);
+    timepicker.isInputValueContain(meridian, `${minToSet}`, 1);
   });
 
   it(`when user send other valid number to hours input (00-24), then time changed appropriate`, () => {
-    const currentMinute = new Date().getMinutes();
-    const expectedHour = '18';
+    const hourToSet = 18;
     timepicker.clickOnBtn(meridian, 1);
-    timepicker.clearInputAndSendKeys(meridian, expectedHour, 0);
+    timepicker.clearInputAndSendKeys(meridian, `${hourToSet}`, 0);
     timepicker.triggerEventOnInput(meridian, 'change');
-    timepicker.isInputValueContain(meridian, expectedHour, 0);
+    timepicker.isInputValueContain(meridian, `${hourToSet}`, 0);
     timepicker.isInputHaveInvalidStatus(meridian, false);
-    timepicker.isAlertContains(meridian, `${expectedHour}`);
-    timepicker.isInputValueContain(meridian, `${expectedHour}`, 0);
-    timepicker.isInputValueContain(meridian, `${currentMinute}`, 1);
+    timepicker.isAlertContains(meridian, `${hourToSet}`);
+    timepicker.isInputValueContain(meridian, `${hourToSet}`, 0);
   });
 
   it(`when user send invalid data to both inputs, then the red border appeared, danger alert shown`, () => {

@@ -129,16 +129,15 @@ describe('Modals demo page test suite: Service examples', () => {
       modals.isDemoContainsTxt(eventsDemo, demoOnHiddenFired);
     });
 
-    it(`when user user closes modal by click outside the modal window then should be messages
+    it(`when user closes modal by click outside the modal window then should be messages
     "onHide event has been fired" and "onHidden event has been fired"`, () => {
-      modals.clickByText(eventsDemo, btnText);
-      modals.clickOutside(modals.modalContainer);
-      modals.isModalEnabled(modals.modalContainer, false);
-      modals.isBackdropExist(true);
-      modals.clickOnBackdrop();
-      modals.isDemoContainsTxt(eventsDemo, demoOnHideFired);
-      modals.isDemoContainsTxt(eventsDemo, demoHideDismissed);
-      modals.isDemoContainsTxt(eventsDemo, demoHiddenDismissed);
+        modals.clickByText(eventsDemo, btnText);
+        modals.isModalVisible(modals.modalContainer, true);
+        modals.clickOnBackdrop();
+        modals.clickOutside('modal-container');
+        modals.isDemoContainsTxt(eventsDemo, demoOnHideFired);
+        modals.isDemoContainsTxt(eventsDemo, demoHideDismissed);
+        modals.isDemoContainsTxt(eventsDemo, demoHiddenDismissed);
     });
 
     it(`when user closes modal by pressing ESC button then modal is closed and should be messages

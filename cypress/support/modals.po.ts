@@ -73,6 +73,10 @@ export class ModalsPo extends BaseComponent {
     cy.get(this.modalBackdrop).click({force: true});
   }
 
+  clickOnModal(baseSelector: string) {
+    cy.get(`${baseSelector} .modal`).click();
+  }
+
   checkElementsQuantity(elementsSelector: string, expectedQuantity: number) {
     cy.get(elementsSelector).should('have.length', expectedQuantity);
   }
@@ -103,6 +107,6 @@ export class ModalsPo extends BaseComponent {
   }
 
   pressEscOnModal(baseSelector: string) {
-    cy.get(`${baseSelector} ${'.show'}`).type('{esc}');
+    cy.get(`${baseSelector} ${'.modal'}`).type('{esc}');
   }
 }
