@@ -33,18 +33,18 @@ describe('Timepicker demo page test suite: Spinners', () => {
 
   it(`when user clicks on "Show / Hide spinners" button again, then arrows appeared again. user is able to
   change hours and minutes through the input and through the arrows up and down`, () => {
-    const expectedHour24Format = newDate.getHours() === 1 ? '12' : newDate.getHours() - 1;
-    const currentMinutes = new Date().getMinutes();
-    const expectedMinute = currentMinutes < 55 ? currentMinutes : -(currentMinutes - 60);
+    const hourToSet = 8;
+    const minToSet = 41;
     timepicker.clickByText(spinners, btnShowHide);
     timepicker.isArrowDisabled(spinners, 'up', 0, false);
     timepicker.isArrowDisabled(spinners, 'down', 0, false);
     timepicker.isArrowDisabled(spinners, 'up', 1, false);
     timepicker.isArrowDisabled(spinners, 'down', 1, false);
+    timepicker.setTimeInInputs(spinners, hourToSet, minToSet);
     timepicker.clickOnArrow(spinners, 'down', 0);
-    timepicker.isInputValueContain(spinners, `${expectedHour24Format}`);
+    timepicker.isInputValueContain(spinners, `${hourToSet - 1}`);
     timepicker.clickOnArrow(spinners, 'up', 1);
-    timepicker.isInputValueContain(spinners, `${expectedMinute + 5}`, 1);
+    timepicker.isInputValueContain(spinners, `${minToSet + 5}`, 1);
   });
 });
 
