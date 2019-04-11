@@ -26,8 +26,6 @@
     "build.watch": "node scripts/build-modules --watch",
     "build:schematics": "node scripts/schematics/build",
     "build.modules": "node scripts/build-modules",
-    "build:collapse": "rimraf dist/collapse && node scripts/ng-packagr/api ../../src/collapse/package.json",
-    "build:accordion": "rimraf dist/accordion && node scripts/ng-packagr/api ../../src/accordion/package.json",
     "ci:update-pkg": "node scripts/ci/update-pkg.js",
     "ci:rename-pkg": "mv node_modules/ngx-bootstrap-ci node_modules/ngx-bootstrap",
     "build.sass": "node-sass --recursive src --output dist --source-map true --source-map-contents sass",

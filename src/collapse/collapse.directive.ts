@@ -29,11 +29,13 @@ import {
 })
 export class CollapseDirective {
   /** This event fires as soon as content collapses */
-  /* tslint:disable-next-line: no-any */
-  @Output() collapsed: EventEmitter<any> = new EventEmitter();
+  @Output() collapsed: EventEmitter<CollapseDirective> = new EventEmitter();
+  /** This event fires when collapsing is started */
+  @Output() collapses: EventEmitter<CollapseDirective> = new EventEmitter();
   /** This event fires as soon as content becomes visible */
-  /* tslint:disable-next-line: no-any */
-  @Output() expanded: EventEmitter<any> = new EventEmitter();
+  @Output() expanded: EventEmitter<CollapseDirective> = new EventEmitter();
+  /** This event fires when expansion is started */
+  @Output() expands: EventEmitter<CollapseDirective> = new EventEmitter();
 
   // shown
   @HostBinding('class.in')
@@ -51,6 +53,8 @@ export class CollapseDirective {
   set display(value: string) {
     if (!this.isAnimated) {
       this._renderer.setStyle(this._el.nativeElement, 'display', value);
+
+      return;
     }
 
     this._display = value;
@@ -129,6 +133,12 @@ export class CollapseDirective {
   }
 
   animationRun(isAnimated: boolean, action: string) {
+    if (action === 'expand') {
+      this.expands.emit(this);
+    } else {
+      this.collapses.emit(this);
+    }
+
     if (!isAnimated) {
       return (callback: () => void) => callback();
     }
@@ -143,6 +153,14 @@ export class CollapseDirective {
 
     this._player = factoryAnimation.create(this._el.nativeElement);
     this._player.play();
+
+    this._player.onDone(() => {
+      if (action === 'expand') {
+        this.expanded.emit(this);
+      } else {
+        this.collapsed.emit(this);
+      }
+    });
 
     /* tslint:disable:no-unbound-method */
     return () => this._player.onDone;
