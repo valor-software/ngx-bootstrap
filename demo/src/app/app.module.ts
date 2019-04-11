@@ -17,9 +17,6 @@ import { DocsModule } from './docs';
 import { NgApiDoc } from './docs/api-docs/api-docs.model';
 import { StyleManager } from './theme/style-manager';
 import { ThemeStorage } from './theme/theme-storage';
-import { defineLocale } from 'ngx-bootstrap/chronos';
-import { etLocale } from 'ngx-bootstrap/locale';
-defineLocale('et', etLocale);
 
 @NgModule({
   declarations: [AppComponent, DocumentationComponent, TopMenuComponent, LandingComponent],
