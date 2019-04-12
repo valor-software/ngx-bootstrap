@@ -137,12 +137,8 @@ describe('Modals demo page test suite: Directive examples', () => {
     const btnX = '×';
     const eventOnShowFired = 'event onShow is fired';
     const eventOnShownFired = 'event onShown is fired';
-    const eventOnXHide = 'event onHide is fired';
-    const eventOnXHidden = 'event onHidden is fired';
-    const eventOnBackdropHide = 'event onHide is fired, dismissed by backdrop-click';
-    const eventOnBackdropHidden = 'event onHidden is fired, dismissed by backdrop-click';
-    const eventOnEscHide = 'event onHide is fired, dismissed by esc';
-    const eventOnEcsHidden = 'event onHidden is fired, dismissed by esc';
+    const eventOnHide = 'event onHide is fired';
+    const eventOnHidden = 'event onHidden is fired';
 
     it('example contains the button "Open a modal"', () => {
       modals.isButtonExist(eventsModalsDemo, btnText);
@@ -160,33 +156,30 @@ describe('Modals demo page test suite: Directive examples', () => {
       and "event onHidden is fired"`, () => {
       modals.clickByText(eventsModalsDemo, btnText);
       modals.clickByText(modals.modalBtnX, btnX);
-      modals.isDemoContainsTxt(eventsModalsDemo, eventOnXHide);
-      modals.isDemoContainsTxt(eventsModalsDemo, eventOnXHidden);
+      modals.isDemoContainsTxt(eventsModalsDemo, eventOnHide);
+      modals.isDemoContainsTxt(eventsModalsDemo, eventOnHidden);
     });
 
     it(`when user user closes modal by click outside the modal window then should be messages
       "event onHidden is fired" and "onHidden event has been fired"`, () => {
       modals.clickByText(eventsModalsDemo, btnText);
-      modals.clickOutside(eventsModalsDemo);
-      modals.isModalEnabled(eventsModalsDemo, false);
-      modals.isDemoContainsTxt(eventsModalsDemo, eventOnBackdropHide);
-      modals.isDemoContainsTxt(eventsModalsDemo, eventOnBackdropHidden);
+      modals.isModalVisible(eventsModalsDemo, true);
+      modals.clickOnModal(eventsModalsDemo);
+      modals.isDemoContainsTxt(eventsModalsDemo, eventOnHide);
+      modals.isDemoContainsTxt(eventsModalsDemo, eventOnHidden);
     });
 
-    it(`when user user closes modal by pressing ESC button then modal is closed and should be messages
+    it(`when user closes modal by pressing ESC button then modal is closed and should be messages
       "event onHide is fired, dismissed by esc" and "event onHidden is fired, dismissed by esc"`, () => {
       const modalText = 'Just another modal';
-
       modals.clickByText(eventsModalsDemo, btnText);
       modals.isDirectModalVisible(eventsModalsDemo, true);
       modals.isItemTextContains(eventsModalsDemo, modals.modalBody, modalText);
       modals.isBackdropExist(true);
-      modals.pressEsc();
       modals.pressEscOnModal(eventsModalsDemo);
-      modals.isBackdropExist(false);
       modals.isDemoContainsTxt(eventsModalsDemo, eventOnShowFired);
-      modals.isDemoContainsTxt(eventsModalsDemo, eventOnEscHide);
-      modals.isDemoContainsTxt(eventsModalsDemo, eventOnEcsHidden);
+      modals.isDemoContainsTxt(eventsModalsDemo, eventOnHide);
+      modals.isDemoContainsTxt(eventsModalsDemo, eventOnHidden);
     });
   });
 

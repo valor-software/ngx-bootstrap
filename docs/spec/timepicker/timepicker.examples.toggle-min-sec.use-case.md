@@ -1,4 +1,4 @@
-14.5: Timepicker Toggle minutes/seconds example
+14.6: Timepicker Toggle minutes/seconds example
 ===============================================
 **Primary Actor**: User
 
@@ -10,9 +10,9 @@ Main success scenario:
 ----------------------
 1. User opens Timepicker demo page
 2. User clicks on Toggle minutes/seconds sub-menu
-3. User see timepicker component with hours, minutes and seconds and clickable button "AM"("PM") (according to the current time)
-4. User see info alert with selected date and time and showMinutes: true, showSeconds: true by default
-5. User see 2 clickable buttons "Hide minutes" and "Hide seconds"
+3. User sees timepicker component with hours, minutes and seconds and clickable button "AM"("PM") (according to the current time)
+4. User sees info alert with selected date and time and showMinutes: true, showSeconds: true by default
+5. User sees 2 clickable buttons "Hide minutes" and "Hide seconds"
 6. When user clicks on "Hide minutes" button, then input and arrows with minutes hidden and info alert show "showMinutes: false"
 7. When user clicks on "Hide seconds" button, then input and arrows with seconds hidden and info alert show "showSeconds: false"
 8. When user clicks on "Hide minutes" button again, then input and arrows with minutes shown and info alert show "showMinutes: true"
