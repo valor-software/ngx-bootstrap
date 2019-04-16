@@ -9,6 +9,7 @@ export {
   esDoLocale,
   esLocale,
   esUsLocale,
+  etLocale,
   fiLocale,
   frLocale,
   glLocale,
