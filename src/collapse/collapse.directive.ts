@@ -24,7 +24,8 @@ import {
   selector: '[collapse]',
   exportAs: 'bs-collapse',
   host: {
-    '[class.collapse]': 'true'
+    '[class.collapse]': 'true',
+    '[style.overflow]': '"hidden"'
   }
 })
 export class CollapseDirective {
@@ -85,6 +86,9 @@ export class CollapseDirective {
   private _factoryExpandAnimation: AnimationFactory;
   private _player: AnimationPlayer;
 
+  private _COLLAPSE_ACTION_NAME = 'collapse';
+  private _EXPAND_ACTION_NAME = 'expand';
+
   constructor(
     private _el: ElementRef,
     private _renderer: Renderer2,
@@ -105,16 +109,12 @@ export class CollapseDirective {
 
   /** allows to manually hide content */
   hide(): void {
-    this.animationRun(this.isAnimated, 'collapse')(() => {
-      this.isCollapse = false;
-      this.isCollapsing = true;
+    this.collapses.emit(this);
+    this.isExpanded = false;
+    this.isCollapsed = true;
 
-      this.isExpanded = false;
-      this.isCollapsed = true;
-
+    this.animationRun(this.isAnimated, this._COLLAPSE_ACTION_NAME)(() => {
       this.isCollapse = true;
-      this.isCollapsing = false;
-
       this.collapsed.emit(this);
 
       this._renderer.setStyle(this._el.nativeElement, 'display', 'none');
@@ -123,33 +123,22 @@ export class CollapseDirective {
   /** allows to manually show collapsed content */
   show(): void {
     this._renderer.setStyle(this._el.nativeElement, 'display', this._display);
+    this.expands.emit(this);
+    this.isExpanded = true;
+    this.isCollapsed = false;
 
-    this.animationRun(this.isAnimated, 'expand')(() => {
-      this.isCollapse = false;
-      this.isCollapsing = true;
-
-      this.isExpanded = true;
-      this.isCollapsed = false;
-
+    this.animationRun(this.isAnimated, this._EXPAND_ACTION_NAME)(() => {
       this.isCollapse = true;
-      this.isCollapsing = false;
-
       this.expanded.emit(this);
     });
   }
 
   animationRun(isAnimated: boolean, action: string) {
-    if (action === 'expand') {
-      this.expands.emit(this);
-    } else {
-      this.collapses.emit(this);
-    }
-
     if (!isAnimated) {
       return (callback: () => void) => callback();
     }
 
-    const factoryAnimation = (action === 'expand')
+    const factoryAnimation = (action === this._EXPAND_ACTION_NAME)
       ? this._factoryExpandAnimation
       : this._factoryCollapseAnimation;
 
@@ -160,15 +149,6 @@ export class CollapseDirective {
     this._player = factoryAnimation.create(this._el.nativeElement);
     this._player.play();
 
-    this._player.onDone(() => {
-      if (action === 'expand') {
-        this.expanded.emit(this);
-      } else {
-        this.collapsed.emit(this);
-      }
-    });
-
-    /* tslint:disable:no-unbound-method */
-    return () => this._player.onDone;
+    return (callback: () => void) => this._player.onDone(callback);
   }
 }
