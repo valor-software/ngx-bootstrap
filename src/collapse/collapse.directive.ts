@@ -6,6 +6,7 @@ import {
 
 // todo: add animations when https://github.com/angular/angular/issues/9947 solved
 import {
+  AfterViewChecked,
   Directive,
   ElementRef,
   EventEmitter,
@@ -24,11 +25,10 @@ import {
   selector: '[collapse]',
   exportAs: 'bs-collapse',
   host: {
-    '[class.collapse]': 'true',
-    '[style.overflow]': '"hidden"'
+    '[class.collapse]': 'true'
   }
 })
-export class CollapseDirective {
+export class CollapseDirective implements AfterViewChecked {
   /** This event fires as soon as content collapses */
   @Output() collapsed: EventEmitter<CollapseDirective> = new EventEmitter();
   /** This event fires when collapsing is started */
@@ -85,6 +85,7 @@ export class CollapseDirective {
   private _factoryCollapseAnimation: AnimationFactory;
   private _factoryExpandAnimation: AnimationFactory;
   private _player: AnimationPlayer;
+  private _stylesLoaded = false;
 
   private _COLLAPSE_ACTION_NAME = 'collapse';
   private _EXPAND_ACTION_NAME = 'expand';
@@ -98,6 +99,10 @@ export class CollapseDirective {
     this._factoryExpandAnimation = _builder.build(expandAnimation);
   }
 
+  ngAfterViewChecked() {
+    this._stylesLoaded = true;
+  }
+
   /** allows to manually toggle content visibility */
   toggle(): void {
     if (this.isExpanded) {
@@ -109,34 +114,41 @@ export class CollapseDirective {
 
   /** allows to manually hide content */
   hide(): void {
-    this.collapses.emit(this);
+    this.isCollapsing = true;
     this.isExpanded = false;
     this.isCollapsed = true;
+    this.isCollapsing = false;
+
+    this.collapses.emit(this);
 
     this.animationRun(this.isAnimated, this._COLLAPSE_ACTION_NAME)(() => {
-      this.isCollapse = true;
       this.collapsed.emit(this);
-
       this._renderer.setStyle(this._el.nativeElement, 'display', 'none');
     });
   }
   /** allows to manually show collapsed content */
   show(): void {
     this._renderer.setStyle(this._el.nativeElement, 'display', this._display);
-    this.expands.emit(this);
+
+    this.isCollapsing = true;
     this.isExpanded = true;
     this.isCollapsed = false;
+    this.isCollapsing = false;
+
+    this.expands.emit(this);
 
     this.animationRun(this.isAnimated, this._EXPAND_ACTION_NAME)(() => {
-      this.isCollapse = true;
       this.expanded.emit(this);
     });
   }
 
   animationRun(isAnimated: boolean, action: string) {
-    if (!isAnimated) {
+    if (!isAnimated || !this._stylesLoaded) {
       return (callback: () => void) => callback();
     }
+
+    this._renderer.setStyle(this._el.nativeElement, 'overflow', 'hidden');
+    this._renderer.addClass(this._el.nativeElement, 'collapse');
 
     const factoryAnimation = (action === this._EXPAND_ACTION_NAME)
       ? this._factoryExpandAnimation
