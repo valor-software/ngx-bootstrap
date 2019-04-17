@@ -1,11 +1,15 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+
 import { BsDatepickerAbstractComponent } from '../../base/bs-datepicker-container';
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
 import { DayViewModel } from '../../models';
 import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
 import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
+import { PositioningService } from 'ngx-bootstrap/positioning';
+
 import { Subscription } from 'rxjs';
+
 
 @Component({
   selector: 'bs-daterangepicker-container',
@@ -29,17 +33,27 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   _rangeStack: Date[] = [];
   _subs: Subscription[] = [];
   constructor(
+    _effects: BsDatepickerEffects,
+    private _actions: BsDatepickerActions,
     private _config: BsDatepickerConfig,
     private _store: BsDatepickerStore,
-    private _actions: BsDatepickerActions,
-    _effects: BsDatepickerEffects
+    private _positionService: PositioningService
   ) {
     super();
     this._effects = _effects;
   }
 
   ngOnInit(): void {
+    this._positionService.setOptions({
+      modifiers: {
+        flip: {
+          enabled: this._config.adaptivePosition
+        }
+      }
+    });
+
     this.containerClass = this._config.containerClass;
+    this.isOtherMonthsActive = this._config.selectFromOtherMonth;
     this._effects
       .init(this._store)
       // intial state options
@@ -61,7 +75,9 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   }
 
   daySelectHandler(day: DayViewModel): void {
-    if (day.isOtherMonth || day.isDisabled) {
+    const isDisabled = this.isOtherMonthsActive ? day.isDisabled : (day.isOtherMonth || day.isDisabled);
+
+    if (isDisabled) {
       return;
     }
 

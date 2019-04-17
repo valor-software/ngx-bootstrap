@@ -26,19 +26,27 @@ import { hasNgModuleImport } from '../utils/ng-module-imports';
 
 const bootstrapStylePath =  `./node_modules/bootstrap/dist/css/bootstrap.min.css`;
 const datePickerStylePath =  `./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css`;
+const datepickerComponentName = 'datepicker';
 
 /* tslint:disable-next-line: no-default-export */
 export default function (options: Schema): Rule {
+  const componentName = options.component
+    ? options.component
+    : (options as any)['--'] && (options as any)['--'][1];
+
   return chain([
-    addStyles(options),
     addPackageJsonDependencies(),
     installPackageJsonDependencies(),
-    options.component ? addModuleOfComponent(options.project, options.component) : noop()
+    !componentName || componentName === datepickerComponentName
+      ? addStyles(options, insertCommonStyles)
+      : addStyles(options, insertBootstrapStyles),
+    componentName
+      ? addModuleOfComponent(options.project, componentName)
+      : noop()
   ]);
 }
 
 function addModuleOfComponent(projectName: string | undefined, componentName: string) {
-
   const bsName = 'ngx-bootstrap';
 
   const components: { [key: string]: { moduleName: string; link: string } } = {
@@ -84,12 +92,12 @@ function addModuleOfComponent(projectName: string | undefined, componentName: st
 function addPackageJsonDependencies(): Rule {
   return (host: Tree, context: SchematicContext) => {
     const dependencies: { name: string; version: string }[] = [
-      { name: 'bootstrap', version: '4.1.1' },
-      { name: 'ngx-bootstrap', version: '3.0.1' }
+      { name: 'bootstrap', version: '4.2.1' },
+      { name: 'ngx-bootstrap', version: '^3.1.4' }
     ];
 
     dependencies.forEach(dependency => {
-      addPackageToPackageJson(host, dependency.name, `^${dependency.version}`);
+      addPackageToPackageJson(host, dependency.name, `${dependency.version}`);
       context.logger.log('info', `✅️ Added "${dependency.name}`);
     });
 
@@ -97,7 +105,7 @@ function addPackageJsonDependencies(): Rule {
   };
 }
 
-export function addStyles(options: Schema): (host: Tree) => Tree {
+export function addStyles(options: Schema, insertStyle: Function): (host: Tree) => Tree {
   return function (host: Tree): Tree {
     const workspace = getWorkspace(host);
     const project = getProjectFromWorkspace(workspace, options.project);
@@ -108,9 +116,14 @@ export function addStyles(options: Schema): (host: Tree) => Tree {
   };
 }
 
-function insertStyle(project: WorkspaceProject, host: Tree, workspace: WorkspaceSchema) {
-  addStyleToTarget(project, 'build', host, datePickerStylePath, workspace);
-  addStyleToTarget(project, 'test', host, datePickerStylePath, workspace);
+function insertBootstrapStyles(project: WorkspaceProject, host: Tree, workspace: WorkspaceSchema) {
   addStyleToTarget(project, 'build', host, bootstrapStylePath, workspace);
   addStyleToTarget(project, 'test', host, bootstrapStylePath, workspace);
+}
+
+function insertCommonStyles(project: WorkspaceProject, host: Tree, workspace: WorkspaceSchema) {
+  addStyleToTarget(project, 'build', host, datePickerStylePath, workspace);
+  addStyleToTarget(project, 'test', host, datePickerStylePath, workspace);
+
+  insertBootstrapStyles(project, host, workspace);
 }

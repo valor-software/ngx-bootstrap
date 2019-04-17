@@ -51,12 +51,14 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
 
   @HostListener('keydown', ['$event'])
   onKeydown(event: KeyboardEvent): void {
+    /* tslint:disable-next-line: deprecation */
     if ([37, 38, 39, 40].indexOf(event.which) === -1) {
       return;
     }
 
     event.preventDefault();
     event.stopPropagation();
+    /* tslint:disable-next-line: deprecation */
     const sign = event.which === 38 || event.which === 39 ? 1 : -1;
     this.rate(this.value + sign);
   }

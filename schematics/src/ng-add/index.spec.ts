@@ -35,8 +35,7 @@ describe('ng-add schematic', () => {
     const packageJson = JSON.parse(getFileContent(tree, '/package.json'));
     const dependencies = packageJson.dependencies;
 
-    /* tslint:disable-next-line: no-string-literal */
-    expect(dependencies['bootstrap']).toBeDefined();
+    expect(dependencies.bootstrap).toBeDefined();
     expect(dependencies['ngx-bootstrap']).toBeDefined();
 
     expect(Object.keys(dependencies)).toEqual(Object.keys(dependencies).sort(),
@@ -49,6 +48,6 @@ describe('ng-add schematic', () => {
     const workspace = getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace);
 
-    expectProjectStyleFile(project, './node_modules/bootstrap/dist/css/bootstrap.css');
+    expectProjectStyleFile(project, './node_modules/bootstrap/dist/css/bootstrap.min.css');
   });
 });

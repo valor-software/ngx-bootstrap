@@ -15,11 +15,13 @@ import {
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
 
-import { from, Observable, Subscription } from 'rxjs';
+import { from, Subscription, isObservable } from 'rxjs';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadMatch } from './typeahead-match.class';
+import { TypeaheadConfig } from './typeahead.config';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
+import { PositioningService } from 'ngx-bootstrap/positioning';
 import { debounceTime, filter, mergeMap, switchMap, toArray } from 'rxjs/operators';
 
 @Directive({selector: '[typeahead]', exportAs: 'bs-typeahead'})
@@ -34,9 +36,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
    * list of options (limited as normal by typeaheadOptionsLimit)
    */
   @Input() typeaheadMinLength: number = void 0;
+  /** sets use adaptive position */
+  @Input() adaptivePosition: boolean;
   /** minimal wait time after last character typed before typeahead kicks-in */
   @Input() typeaheadWaitMs: number;
-  /** maximum length of options items list */
+  /** maximum length of options items list. The default value is 20 */
   @Input() typeaheadOptionsLimit: number;
   /** when options source is an array of objects, the name of field
    * that contains the options value, we use array item as option in case
@@ -83,6 +87,15 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @Input() typeaheadScrollable = false;
   /** specifies number of options to show in scroll view  */
   @Input() typeaheadOptionsInScrollableView = 5;
+  /** used to hide result on blur */
+  @Input() typeaheadHideResultsOnBlur: boolean;
+  /** fired when an options list was opened and the user clicked Tab
+   * If a value equal true, it will be chosen first or active item in the list
+   * If value equal false, it will be chosen an active item in the list or nothing
+   */
+  @Input() typeaheadSelectFirstItem = true;
+  /** makes active first item in a list */
+  @Input() typeaheadIsFirstItemActive = true;
   /** fired when 'busy' state of this component was changed,
    * fired on async mode only, returns boolean
    */
@@ -93,8 +106,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @Output() typeaheadNoResults = new EventEmitter<boolean>();
   /** fired when option was selected, return object with data of this option */
   @Output() typeaheadOnSelect = new EventEmitter<TypeaheadMatch>();
-  /** fired when blur event occurres. returns the active item */
-    // tslint:disable-next-line:no-any
+  /** fired when blur event occurs. returns the active item */
+  // tslint:disable-next-line:no-any
   @Output() typeaheadOnBlur = new EventEmitter<any>();
 
   /**
@@ -121,6 +134,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     // @Input() protected typeaheadFocusOnSelect:boolean;
 
   _container: TypeaheadContainerComponent;
+  isActiveItemChanged = false;
   isTypeaheadOptionsListActive = false;
 
   // tslint:disable-next-line:no-any
@@ -133,34 +147,52 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   private _subscriptions: Subscription[] = [];
   private _outsideClickListener: Function;
 
-  constructor(private ngControl: NgControl,
-              private element: ElementRef,
-              viewContainerRef: ViewContainerRef,
-              private renderer: Renderer2,
-              cis: ComponentLoaderFactory,
-              private changeDetection: ChangeDetectorRef) {
+  constructor(
+    cis: ComponentLoaderFactory,
+    config: TypeaheadConfig,
+    private changeDetection: ChangeDetectorRef,
+    private element: ElementRef,
+    private ngControl: NgControl,
+    private positionService: PositioningService,
+    private renderer: Renderer2,
+    viewContainerRef: ViewContainerRef
+  ) {
+
     this._typeahead = cis.createLoader<TypeaheadContainerComponent>(
       element,
       viewContainerRef,
       renderer
+    )
+      .provide({ provide: TypeaheadConfig, useValue: config });
+
+    Object.assign(this,
+      {
+        typeaheadHideResultsOnBlur: config.hideResultsOnBlur,
+        typeaheadSelectFirstItem: config.selectFirstItem,
+        typeaheadIsFirstItemActive: config.isFirstItemActive,
+        typeaheadMinLength: config.minLength,
+        adaptivePosition: config.adaptivePosition
+      }
     );
   }
 
   ngOnInit(): void {
     this.typeaheadOptionsLimit = this.typeaheadOptionsLimit || 20;
+
     this.typeaheadMinLength =
       this.typeaheadMinLength === void 0 ? 1 : this.typeaheadMinLength;
+
     this.typeaheadWaitMs = this.typeaheadWaitMs || 0;
 
     // async should be false in case of array
     if (
       this.typeaheadAsync === undefined &&
-      !(this.typeahead instanceof Observable)
+      !(isObservable(this.typeahead))
     ) {
       this.typeaheadAsync = false;
     }
 
-    if (this.typeahead instanceof Observable) {
+    if (isObservable(this.typeahead)) {
       this.typeaheadAsync = true;
     }
 
@@ -195,31 +227,37 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   @HostListener('keyup', ['$event'])
-  onChange(e: KeyboardEvent): void {
+  onChange(event: KeyboardEvent): void {
     if (this._container) {
       // esc
-      if (e.keyCode === 27) {
+      /* tslint:disable-next-line: deprecation */
+      if (event.keyCode === 27 || event.key === 'Escape') {
         this.hide();
 
         return;
       }
 
       // up
-      if (e.keyCode === 38) {
+      /* tslint:disable-next-line: deprecation */
+      if (event.keyCode === 38 || event.key === 'ArrowUp') {
+        this.isActiveItemChanged = true;
         this._container.prevActiveMatch();
 
         return;
       }
 
       // down
-      if (e.keyCode === 40) {
+      /* tslint:disable-next-line: deprecation */
+      if (event.keyCode === 40 || event.key === 'ArrowDown') {
+        this.isActiveItemChanged = true;
         this._container.nextActiveMatch();
 
         return;
       }
 
-      // enter, tab
-      if (e.keyCode === 13) {
+      // enter
+      /* tslint:disable-next-line: deprecation */
+      if (event.keyCode === 13 || event.key === 'Enter') {
         this._container.selectActiveMatch();
 
         return;
@@ -244,25 +282,26 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   @HostListener('keydown', ['$event'])
-  onKeydown(e: KeyboardEvent): void {
+  onKeydown(event: KeyboardEvent): void {
     // no container - no problems
     if (!this._container) {
       return;
     }
 
-    // if an item is visible - prevent form submission
-    if (e.keyCode === 13) {
-      e.preventDefault();
+    /* tslint:disable-next-line: deprecation */
+    if (event.keyCode === 9 || event.key === 'Tab' || event.keyCode === 13 || event.key === 'Enter') {
+      event.preventDefault();
+      if (this.typeaheadSelectFirstItem) {
+        this._container.selectActiveMatch();
 
-      return;
-    }
+        return;
+      }
 
-    // if an item is visible - don't change focus
-    if (e.keyCode === 9) {
-      e.preventDefault();
-      this._container.selectActiveMatch();
-
-      return;
+      if (!this.typeaheadSelectFirstItem) {
+        this._container.selectActiveMatch(this.isActiveItemChanged);
+        this.isActiveItemChanged = false;
+        this.hide();
+      }
     }
   }
 
@@ -279,6 +318,14 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   show(): void {
+    this.positionService.setOptions({
+      modifiers: {
+        flip: {
+          enabled: this.adaptivePosition
+        }
+      }
+    });
+
     this._typeahead
       .attach(TypeaheadContainerComponent)
       // todo: add append to body, after updating positioning service
@@ -293,6 +340,9 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
     this._outsideClickListener = this.renderer.listen('document', 'click', (e: MouseEvent) => {
       if (this.typeaheadMinLength === 0 && this.element.nativeElement.contains(e.target)) {
+        return undefined;
+      }
+      if (!this.typeaheadHideResultsOnBlur || this.element.nativeElement.contains(e.target)) {
         return undefined;
       }
       this.onOutsideClick();
@@ -429,7 +479,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   protected finalizeAsyncCall(matches: TypeaheadMatch[]): void {
-    this.prepareMatches(matches);
+    this.prepareMatches(matches || []);
 
     this.typeaheadLoading.emit(false);
     this.typeaheadNoResults.emit(!this.hasMatches());

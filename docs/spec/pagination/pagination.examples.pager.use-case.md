@@ -13,9 +13,9 @@
  1. User opens "Pagination" demo page
  2. User clicks on "Pager" sub-menu
  3. User sees two separate blocks:  pagination and pager.
- 4. When user clicks on last page, then next button is enabled, previous button is disabled, 1st page is inactive 
+ 4. When user clicks on last page, then next button is disabled, previous button is enabled, 1st page is inactive
  and last is active
- 5. After click on 2nd page, previous and next button are enabled, 2ng page is active, last page is inactive
+ 5. After click on 2nd page, previous and next button are enabled, 2nd page is active, last page is inactive
  6. After click on 1st page, next button is enabled, previous button is disabled, last page is inactive 
  and last is active
  
