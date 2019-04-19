@@ -12,7 +12,15 @@ export class CollapseDemoEventsComponent {
     this.message = 'collapsed';
   }
 
+  collapses(): void {
+    this.message = 'collapses';
+  }
+
   expanded(): void {
     this.message = 'expanded';
+  }
+
+  expands(): void {
+    this.message = 'expands';
   }
 }

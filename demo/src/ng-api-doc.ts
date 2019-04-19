@@ -33,7 +33,14 @@ export const ngdoc: any = {
         "description": "<p>Emits when the opened state changes</p>\n"
       }
     ],
-    "properties": [],
+    "properties": [
+      {
+        "name": "isAnimated",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>turn on/off animation</p>\n"
+      }
+    ],
     "methods": []
   },
   "AccordionComponent": {
@@ -46,6 +53,12 @@ export const ngdoc: any = {
         "name": "closeOthers",
         "type": "boolean",
         "description": "<p>if <code>true</code> expanding one item will close all others</p>\n"
+      },
+      {
+        "name": "isAnimated",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>turn on/off animation</p>\n"
       }
     ],
     "outputs": [],
@@ -63,6 +76,12 @@ export const ngdoc: any = {
         "defaultValue": "false",
         "type": "Boolean",
         "description": "<p>Whether the other panels should be closed when a panel is opened</p>\n"
+      },
+      {
+        "name": "isAnimated",
+        "defaultValue": "false",
+        "type": "Boolean",
+        "description": "<p>turn on/off animation</p>\n"
       }
     ]
   },
@@ -605,6 +624,17 @@ export const ngdoc: any = {
         "name": "collapse",
         "type": "boolean",
         "description": "<p>A flag indicating visibility of content (shown or hidden)</p>\n"
+      },
+      {
+        "name": "display",
+        "type": "string",
+        "description": ""
+      },
+      {
+        "name": "isAnimated",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>turn on/off animation</p>\n"
       }
     ],
     "outputs": [
@@ -613,8 +643,16 @@ export const ngdoc: any = {
         "description": "<p>This event fires as soon as content collapses</p>\n"
       },
       {
+        "name": "collapses",
+        "description": "<p>This event fires when collapsing is started</p>\n"
+      },
+      {
         "name": "expanded",
         "description": "<p>This event fires as soon as content becomes visible</p>\n"
+      },
+      {
+        "name": "expands",
+        "description": "<p>This event fires when expansion is started</p>\n"
       }
     ],
     "properties": [
