@@ -1,6 +1,7 @@
 export interface NgxModuleData {
   moduleName: string;
   moduleFolder: string;
+  moduleRoute: string;
 }
 
 
@@ -11,9 +12,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ${moduleData.moduleName} } from 'ngx-bootstrap/${moduleData.moduleFolder}';
 
-import { ${className} } from './ngx-bootstrap-demo.component'
+import { ${className === 'DemoModalServiceFromComponent' ? `${className}, ModalContentComponent` : className} } from './ngx-bootstrap-demo.component'
 @NgModule({
-  declarations: [${className}],
+  declarations: [${className === 'DemoModalServiceFromComponent' ? `${className}, ModalContentComponent` : className}],
   imports: [
     ${moduleData.moduleName}.forRoot(),
     CommonModule,
@@ -21,7 +22,7 @@ import { ${className} } from './ngx-bootstrap-demo.component'
     ReactiveFormsModule,
     BrowserModule
   ],
-  entryComponents: [],
+  entryComponents: [${className === 'DemoModalServiceFromComponent' ? 'ModalContentComponent' : ''}],
   bootstrap: [${className}]
 })
 export class AppModule {
