@@ -1,12 +1,14 @@
 import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { BsDatepickerAbstractComponent } from '../../base/bs-datepicker-container';
 
+import { BsDatepickerAbstractComponent } from '../../base/bs-datepicker-container';
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
-import { DayViewModel } from '../../models/index';
+import { DayViewModel } from '../../models';
 import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
 import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
-import { Subscription } from 'rxjs/Subscription';
+import { PositioningService } from 'ngx-bootstrap/positioning';
+
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'bs-datepicker-container',
@@ -31,13 +33,23 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     private _config: BsDatepickerConfig,
     private _store: BsDatepickerStore,
     private _actions: BsDatepickerActions,
-    _effects: BsDatepickerEffects
+    _effects: BsDatepickerEffects,
+    private _positionService: PositioningService
   ) {
     super();
     this._effects = _effects;
   }
 
   ngOnInit(): void {
+    this._positionService.setOptions({
+      modifiers: {
+        flip: {
+          enabled: this._config.adaptivePosition
+        }
+      }
+    });
+
+    this.isOtherMonthsActive = this._config.selectFromOtherMonth;
     this.containerClass = this._config.containerClass;
     this._effects
       .init(this._store)
@@ -53,15 +65,20 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     // on selected date change
     this._subs.push(
       this._store
-        .select(state => state.selectedDate)
-        .subscribe(date => this.valueChange.emit(date))
+        /* tslint:disable-next-line: no-any */
+        .select((state: any) => state.selectedDate)
+        /* tslint:disable-next-line: no-any */
+        .subscribe((date: any) => this.valueChange.emit(date))
     );
   }
 
   daySelectHandler(day: DayViewModel): void {
-    if (day.isOtherMonth || day.isDisabled) {
+    const isDisabled = this.isOtherMonthsActive ? day.isDisabled : (day.isOtherMonth || day.isDisabled);
+
+    if (isDisabled) {
       return;
     }
+
     this._store.dispatch(this._actions.select(day.date));
   }
 

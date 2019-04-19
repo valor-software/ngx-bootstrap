@@ -1,5 +1,4 @@
 // Copyright (c) 2017 Google, Inc.
-
 import { EventEmitter, Injectable } from '@angular/core';
 
 @Injectable()
@@ -11,11 +10,14 @@ export class ThemeStorage {
   storeTheme(theme: 'bs3' | 'bs4') {
     try {
       window.localStorage[ThemeStorage.storageKey] = theme;
-    } catch (e) {}
+    } catch (e) {
+      return null;
+    }
+
     this.onThemeUpdate.emit(theme);
   }
 
-  getStoredTheme(): 'bs3' | 'bs4' {
+  getStoredTheme(): 'bs3' | 'bs4' | null {
     try {
       return window.localStorage[ThemeStorage.storageKey] || null;
     } catch (e) {
@@ -26,6 +28,8 @@ export class ThemeStorage {
   clearStorage() {
     try {
       window.localStorage.removeItem(ThemeStorage.storageKey);
-    } catch (e) {}
+    } catch (e) {
+      return null;
+    }
   }
 }

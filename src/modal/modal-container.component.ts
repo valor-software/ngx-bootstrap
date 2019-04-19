@@ -13,7 +13,7 @@ import {
   TRANSITION_DURATIONS
 } from './modal-options.class';
 import { BsModalService } from './bs-modal.service';
-import { isBs3 } from '../utils/theme-provider';
+import { isBs3 } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'modal-container',
@@ -77,7 +77,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('click', ['$event'])
-  onClick(event: any): void {
+  onClick(event: MouseEvent): void {
     if (
       this.config.ignoreBackdropClick ||
       this.config.backdrop === 'static' ||
@@ -90,8 +90,13 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('window:keydown.esc', ['$event'])
-  onEsc(event: any): void {
-    if (event.keyCode === 27) {
+  onEsc(event: KeyboardEvent): void {
+    if (!this.isShown) {
+      return;
+    }
+
+    // tslint:disable-next-line:deprecation
+    if (event.keyCode === 27 || event.key === 'Escape') {
       event.preventDefault();
     }
 

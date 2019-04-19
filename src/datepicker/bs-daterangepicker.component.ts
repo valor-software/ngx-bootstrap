@@ -1,13 +1,23 @@
 import {
-  ComponentRef, Directive, ElementRef, EventEmitter, Input, OnChanges,
-  OnDestroy, OnInit, Output, Renderer2, SimpleChanges, ViewContainerRef
+  ComponentRef,
+  Directive,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+  SimpleChanges,
+  ViewContainerRef
 } from '@angular/core';
 import { BsDaterangepickerConfig } from './bs-daterangepicker.config';
 import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
-import { Subscription } from 'rxjs/Subscription';
-import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
-import { ComponentLoader } from '../component-loader/component-loader.class';
+import { Subscription } from 'rxjs';
+import { ComponentLoaderFactory, ComponentLoader } from 'ngx-bootstrap/component-loader';
 import { BsDatepickerConfig } from './bs-datepicker.config';
+import { filter } from 'rxjs/operators';
 
 @Directive({
   selector: '[bsDaterangepicker]',
@@ -34,6 +44,8 @@ export class BsDaterangepickerDirective
    */
   @Input() container = 'body';
 
+  @Input() outsideEsc = true;
+
   /**
    * Returns whether or not the daterangepicker is currently being shown
    */
@@ -53,10 +65,12 @@ export class BsDaterangepickerDirective
   /**
    * Emits an event when the daterangepicker is shown
    */
+  /* tslint:disable-next-line: no-any*/
   @Output() onShown: EventEmitter<any>;
   /**
    * Emits an event when the daterangepicker is hidden
    */
+  /* tslint:disable-next-line: no-any*/
   @Output() onHidden: EventEmitter<any>;
 
   _bsValue: Date[];
@@ -89,6 +103,10 @@ export class BsDaterangepickerDirective
    */
   @Input() maxDate: Date;
   /**
+   * Disable specific dates
+   */
+  @Input() datesDisabled: Date[];
+  /**
    * Emits when daterangepicker value has been changed
    */
   @Output() bsValueChange: EventEmitter<Date[]> = new EventEmitter();
@@ -113,9 +131,10 @@ export class BsDaterangepickerDirective
     this.onHidden = this._datepicker.onHidden;
   }
 
-  ngOnInit(): any {
+  ngOnInit(): void {
     this._datepicker.listen({
       outsideClick: this.outsideClick,
+      outsideEsc: this.outsideEsc,
       triggers: this.triggers,
       show: () => this.show()
     });
@@ -133,6 +152,10 @@ export class BsDaterangepickerDirective
 
     if (changes.maxDate) {
       this._datepickerRef.instance.maxDate = this.maxDate;
+    }
+
+    if (changes.datesDisabled) {
+      this._datepickerRef.instance.datesDisabled = this.datesDisabled;
     }
 
     if (changes.isDisabled) {
@@ -168,7 +191,9 @@ export class BsDaterangepickerDirective
     // if date changes from picker (view -> model)
     this._subs.push(
       this._datepickerRef.instance.valueChange
-        .filter((range: Date[]) => range && range[0] && !!range[1])
+        .pipe(
+          filter((range: Date[]) => range && range[0] && !!range[1])
+        )
         .subscribe((value: Date[]) => {
           this.bsValue = value;
           this.hide();
@@ -188,7 +213,8 @@ export class BsDaterangepickerDirective
         value: this._bsValue,
         isDisabled: this.isDisabled,
         minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
-        maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate
+        maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
+        datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled
       }
     );
   }
@@ -218,7 +244,7 @@ export class BsDaterangepickerDirective
     this.show();
   }
 
-  ngOnDestroy(): any {
+  ngOnDestroy(): void {
     this._datepicker.dispose();
   }
 }

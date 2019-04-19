@@ -94,6 +94,10 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'append-to-body',
         component: require('!!raw-loader?lang=typescript!./demos/container/container.ts'),
         html: require('!!raw-loader?lang=markup!./demos/container/container.html'),
+        description: `<p>When you have some styles on a parent element that interfere with a tooltip,
+          you’ll want to specify a <code>container="body"</code> so that the tooltip’s HTML will be
+          appended to body. This will help to avoid rendering problems in more complex components
+          (like our input groups, button groups, etc) or inside elements with <code>overflow: hidden</code></p>`,
         outlet: DemoTooltipContainerComponent
       },
       {
@@ -101,10 +105,6 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'config-defaults',
         component: require('!!raw-loader?lang=typescript!./demos/config/config.ts'),
         html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
-        description: `<p>When you have some styles on a parent element that interfere with a tooltip,
-          you’ll want to specify a <code>container="body"</code> so that the tooltip’s HTML will be
-          appended to body. This will help to avoid rendering problems in more complex components
-          (like our input groups, button groups, etc) or inside elements with <code>overflow: hidden</code></p>`,
         outlet: DemoTooltipConfigComponent
       },
       {
@@ -119,7 +119,8 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'triggers-manual',
         component: require('!!raw-loader?lang=typescript!./demos/triggers-manual/triggers-manual.ts'),
         html: require('!!raw-loader?lang=markup!./demos/triggers-manual/triggers-manual.html'),
-        description: `<p>You can manage tooltip using its <code>show()</code>, <code>hide()</code> and <code>toggle()</code> methods</p>`,
+        description: `<p>You can manage tooltip using its <code>show()</code>, <code>hide()</code> and <code>toggle()</code> methods. 
+          If you want to manage tooltip's state manually, use <code>triggers=""</code></p>`,
         outlet: DemoTooltipTriggersManualComponent
       },
       {

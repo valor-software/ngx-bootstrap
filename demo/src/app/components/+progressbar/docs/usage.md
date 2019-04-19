@@ -1,4 +1,4 @@
-// RECOMMENDED (doesn't work with system.js)
+// RECOMMENDED
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 // or
 import { ProgressbarModule } from 'ngx-bootstrap';
