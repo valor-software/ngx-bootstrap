@@ -137,24 +137,24 @@ jobs:
     stage: deploy
     script: npm run demo.build
     deploy:
-    provider: surge
-    project: ./gh-pages/
-    domain: ngx-bootstrap.surge.sh
-    on: development
+      provider: surge
+      project: ./gh-pages/
+      domain: ngx-bootstrap.surge.sh
+      on: development
   - <<: *surge
     env: NGV=latest
     deploy:
-    provider: surge
-    project: ./gh-pages/
-    domain: ngx-bootstrap-latest.surge.sh
-    on: development
+      provider: surge
+      project: ./gh-pages/
+      domain: ngx-bootstrap-latest.surge.sh
+      on: development
   - <<: *surge
     env: NGV=next
     deploy:
-    provider: surge
-    project: ./gh-pages/
-    domain: ngx-bootstrap-next.surge.sh
-    on: development
+      provider: surge
+      project: ./gh-pages/
+      domain: ngx-bootstrap-next.surge.sh
+      on: development
   # deploy to ngx-universal.herokuapp.com/
   - stage: deploy
     script: npm run build:ssr

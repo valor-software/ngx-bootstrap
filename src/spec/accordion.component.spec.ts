@@ -1,6 +1,7 @@
+import { AccordionConfig, AccordionModule } from '../accordion';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { AccordionConfig, AccordionModule } from '../accordion';
 
 @Component({
   selector: 'accordion-test',
@@ -75,7 +76,10 @@ describe('Component: Accordion', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestAccordionComponent],
-      imports: [AccordionModule.forRoot()]
+      imports: [
+        AccordionModule.forRoot(),
+        BrowserAnimationsModule
+      ]
     });
     TestBed.overrideComponent(TestAccordionComponent, {
       set: { template: html }

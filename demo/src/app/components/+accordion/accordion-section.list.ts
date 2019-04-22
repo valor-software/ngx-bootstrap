@@ -1,12 +1,13 @@
+import { DemoAccordionAnimatedComponent } from './demos/animated/animated';
 import { DemoAccordionBasicComponent } from './demos/basic/basic';
+import { DemoAccordionConfigComponent } from './demos/config/config';
+import { DemoAccordionCustomHTMLComponent } from './demos/custom-html/custom-html';
 import { DemoAccordionDisabledComponent } from './demos/disabled/disabled';
 import { DemoAccordionDynamicComponent } from './demos/dymanic/dynamic';
-import { DemoAccordionOneAtATimeComponent } from './demos/one-at-a-time/one-at-a-time';
-import { DemoAccordionStylingComponent } from './demos/styling/styling';
-import { DemoAccordionConfigComponent } from './demos/config/config';
-import { DemoAccordionOpenEventComponent } from './demos/open-event/open-event';
-import { DemoAccordionCustomHTMLComponent } from './demos/custom-html/custom-html';
 import { DemoAccordionManualToggleComponent } from './demos/manual-toggle/manual-toggle';
+import { DemoAccordionOneAtATimeComponent } from './demos/one-at-a-time/one-at-a-time';
+import { DemoAccordionOpenEventComponent } from './demos/open-event/open-event';
+import { DemoAccordionStylingComponent } from './demos/styling/styling';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -42,6 +43,14 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoAccordionBasicComponent
+      },
+      {
+        title: 'With animation',
+        anchor: 'animated-accordion',
+        description: `<p>Use input property or config property <code>isAnimated</code> to enable/disable animation</p>`,
+        component: require('!!raw-loader?lang=typescript!./demos/animated/animated'),
+        html: require('!!raw-loader?lang=markup!./demos/animated/animated.html'),
+        outlet: DemoAccordionAnimatedComponent
       },
       {
         title: 'Group opening event',
