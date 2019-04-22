@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import sdk from '@stackblitz/sdk';
 
@@ -12,8 +12,7 @@ import { getComponentClassName, getTagName, getTemplateFileName } from './stackb
 
 @Component({
   selector: 'examples',
-  templateUrl: './examples.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: './examples.component.html'
 })
 export class ExamplesComponent {
   examples: ComponentExample[];
