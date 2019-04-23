@@ -8,7 +8,8 @@
   <div *ngFor="let item of examples">
     <h3 *ngIf="item.title" [attr.id]="item.anchor">
       {{ item.title }}
-      <a title="Open this demo in StackBlitz"
+      <a *ngIf="item.title !== 'Accessibility'"
+        title="Open this demo in StackBlitz"
          href="#"
          class="stackblitz-link"
          (click)="openStackBlitzDemo(item.component, item.html)">
