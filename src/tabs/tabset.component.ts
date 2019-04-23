@@ -1,6 +1,15 @@
-import { Component, HostBinding, Input, OnDestroy, Renderer2 } from '@angular/core';
+import {
+  Component,
+  HostBinding,
+  Input,
+  OnDestroy,
+  Renderer2,
+  ViewChild,
+  ViewContainerRef,
+  ComponentFactoryResolver
+ } from '@angular/core';
 
-import { TabDirective } from './tab.directive';
+import { TabComponent } from './tab.component';
 import { TabsetConfig } from './tabset.config';
 // todo: add active event to tab
 // todo: fix? mixing static and dynamic tabs position tabs in order of creation
@@ -40,8 +49,11 @@ export class TabsetComponent implements OnDestroy {
   }
 
   @HostBinding('class.tab-container') clazz = true;
+  @ViewChild('dynamicTabsContainer', { read: ViewContainerRef }) dynamicTabsContainer;
 
-  tabs: TabDirective[] = [];
+
+  tabs: TabComponent[] = [];
+  dynamicTabs: TabComponent[] = [];
   classMap: { [key: string]: boolean } = {};
 
   protected isDestroyed: boolean;
@@ -49,7 +61,11 @@ export class TabsetComponent implements OnDestroy {
   protected _justified: boolean;
   protected _type: string;
 
-  constructor(config: TabsetConfig, private renderer: Renderer2) {
+  constructor(
+    config: TabsetConfig,
+    private renderer: Renderer2,
+    private _componentFactoryResolver: ComponentFactoryResolver
+  ) {
     Object.assign(this, config);
   }
 
@@ -57,13 +73,30 @@ export class TabsetComponent implements OnDestroy {
     this.isDestroyed = true;
   }
 
-  addTab(tab: TabDirective): void {
+  addTab(tab: TabComponent): void {
     this.tabs.push(tab);
     tab.active = this.tabs.length === 1 && typeof tab.active === 'undefined';
   }
 
+  openTab(tabData: any, contextData: any): void {
+    const componentFactory = this._componentFactoryResolver.resolveComponentFactory(TabComponent);
+    const viewContainerRef: ViewContainerRef = this.dynamicTabsContainer;
+    const componentRef = viewContainerRef.createComponent(componentFactory);
+    const componentInstance: TabComponent = componentRef.instance;
+
+    componentInstance.heading = tabData.heading;
+    componentInstance.disabled = tabData.disabled;
+    componentInstance.removable = tabData.removable;
+    componentInstance.headingRef = tabData.headingRef;
+    componentInstance.tabTemplate = tabData.tabTemplate;
+
+    this.dynamicTabs.push(componentInstance);
+
+    this.dynamicTabs[this.dynamicTabs.length - 1].active = true;
+  }
+
   removeTab(
-    tab: TabDirective,
+    tab: TabComponent,
     options = { reselect: true, emit: true }
   ): void {
     const index = this.tabs.indexOf(tab);
@@ -108,18 +141,11 @@ export class TabsetComponent implements OnDestroy {
   }
 
   protected hasAvailableTabs(index: number): boolean {
-    const tabsLength = this.tabs.length;
-    if (!tabsLength) {
+    if (!this.tabs.length) {
       return false;
     }
 
-    for (let i = 0; i < tabsLength; i += 1) {
-      if (!this.tabs[i].disabled && i !== index) {
-        return true;
-      }
-    }
-
-    return false;
+    return this.tabs.find((tab: TabComponent, i: number) => !tab.disabled && i !== index) !== undefined;
   }
 
   protected setClassMap(): void {

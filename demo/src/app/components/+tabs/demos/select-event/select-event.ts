@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TabDirective } from 'ngx-bootstrap/tabs';
+import { TabComponent } from 'src/tabs/tab.component';
 
 @Component({
   selector: 'demo-tabs-select-event',
@@ -7,7 +7,7 @@ import { TabDirective } from 'ngx-bootstrap/tabs';
 })
 export class DemoTabsSelectEventComponent {
   value: string;
-  onSelect(data: TabDirective): void {
+  onSelect(data: TabComponent): void {
     this.value = data.heading;
   }
 }

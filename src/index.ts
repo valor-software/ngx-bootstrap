@@ -109,8 +109,7 @@ export {
 } from './sortable/index';
 
 export {
-  NgTranscludeDirective,
-  TabDirective,
+  TabComponent,
   TabHeadingDirective,
   TabsetComponent,
   TabsetConfig,

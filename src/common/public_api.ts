@@ -107,8 +107,7 @@ export {
 } from 'ngx-bootstrap/sortable';
 
 export {
-  NgTranscludeDirective,
-  TabDirective,
+  TabComponent,
   TabHeadingDirective,
   TabsetComponent,
   TabsetConfig,

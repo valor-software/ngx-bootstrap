@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
+import { TabsetComponent } from 'ngx-bootstrap';
 
 @Component({
   selector: 'demo-tabs-dynamic',
@@ -11,6 +12,9 @@ export class DemoTabsDynamicComponent {
     { title: 'Dynamic Title 2', content: 'Dynamic content 2' },
     { title: 'Dynamic Title 3', content: 'Dynamic content 3', removable: true }
   ];
+
+  @ViewChild(TabsetComponent) tabset: TabsetComponent;
+  @ViewChild('asd') asdTemplate;
 
   addNewTab(): void {
     const newTabIndex = this.tabs.length + 1;
@@ -25,5 +29,13 @@ export class DemoTabsDynamicComponent {
   removeTabHandler(tab: any): void {
     this.tabs.splice(this.tabs.indexOf(tab), 1);
     console.log('Remove Tab handler');
+  }
+
+  addDynamic() {
+    this.tabset.openTab({
+      heading: 'dsfsdsgs',
+      tabTemplate: this.asdTemplate,
+      removable: true
+    }, {});
   }
 }

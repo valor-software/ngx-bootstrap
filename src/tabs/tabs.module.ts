@@ -1,26 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
-import { NgTranscludeDirective } from './ng-transclude.directive';
 import { TabHeadingDirective } from './tab-heading.directive';
-import { TabDirective } from './tab.directive';
+import { TabComponent } from './tab.component';
 import { TabsetComponent } from './tabset.component';
 import { TabsetConfig } from './tabset.config';
 
 @NgModule({
   imports: [CommonModule],
   declarations: [
-    NgTranscludeDirective,
-    TabDirective,
+    TabComponent,
     TabsetComponent,
     TabHeadingDirective
   ],
   exports: [
-    TabDirective,
+    TabComponent,
     TabsetComponent,
-    TabHeadingDirective,
-    NgTranscludeDirective
-  ]
+    TabHeadingDirective
+  ],
+  entryComponents: [TabComponent]
 })
 export class TabsModule {
   static forRoot(): ModuleWithProviders {
