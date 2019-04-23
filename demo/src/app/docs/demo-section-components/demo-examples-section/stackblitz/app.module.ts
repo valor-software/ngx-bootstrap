@@ -11,12 +11,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ${moduleData.moduleName} } from 'ngx-bootstrap/${moduleData.moduleFolder}';
+${className === 'DemoModalWithPopupsComponent' ? `import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { PopoverModule } from 'ngx-bootstrap/popover';` : ''}
+${className === 'DemoDatepickerChangeLocaleComponent' ? `import { defineLocale } from 'ngx-bootstrap/chronos';
+import { deLocale, frLocale, plLocale } from 'ngx-bootstrap/locale';
+ defineLocale('de', deLocale);
+ defineLocale('fr', frLocale);
+ defineLocale('pl', plLocale);` : ''}
 
 import { ${className === 'DemoModalServiceFromComponent' ? `${className}, ModalContentComponent` : className} } from './ngx-bootstrap-demo.component'
 @NgModule({
   declarations: [${className === 'DemoModalServiceFromComponent' ? `${className}, ModalContentComponent` : className}],
   imports: [
     ${moduleData.moduleName}.forRoot(),
+    ${className === 'DemoModalWithPopupsComponent' ? `TooltipModule.forRoot(),
+    PopoverModule.forRoot(),` : ''}
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
