@@ -10,7 +10,13 @@ export class StyleManager {
    * Set the stylesheet with the specified key.
    */
   setStyle(key: string, href: string) {
-    getLinkElementForKey(key).setAttribute('href', href);
+    const linkElement = getLinkElementForKey(key);
+
+    if (!linkElement) {
+      return;
+    }
+
+    linkElement.setAttribute('href', href);
   }
 
   /**
@@ -18,9 +24,12 @@ export class StyleManager {
    */
   removeStyle(key: string) {
     const existingLinkElement = getExistingLinkElementByKey(key);
-    if (existingLinkElement) {
-      document.head.removeChild(existingLinkElement);
+
+    if (!existingLinkElement || !document.head) {
+      return;
     }
+
+    document.head.removeChild(existingLinkElement);
   }
 }
 
@@ -29,6 +38,10 @@ function getLinkElementForKey(key: string) {
 }
 
 function getExistingLinkElementByKey(key: string) {
+  if (!document.head) {
+    return;
+  }
+
   return document.head.querySelector(`link[rel="stylesheet"].${getClassNameForKey(key)}`);
 }
 
@@ -36,6 +49,11 @@ function createLinkElementWithKey(key: string) {
   const linkEl = document.createElement('link');
   linkEl.setAttribute('rel', 'stylesheet');
   linkEl.classList.add(getClassNameForKey(key));
+
+  if (!document.head) {
+    return;
+  }
+
   document.head.appendChild(linkEl);
 
   return linkEl;

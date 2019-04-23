@@ -1,13 +1,13 @@
 import {
   getDay,
-  isFirstDayOfWeek
-} from '../../chronos/utils/date-getters';
-import { shiftDate } from '../../chronos/utils/date-setters';
-import {
+  isFirstDayOfWeek,
   isAfter,
-  isBefore
-} from '../../chronos/utils/date-compare';
-import { endOf, startOf } from '../../chronos/utils/start-end-of';
+  isBefore,
+  shiftDate,
+  endOf,
+  startOf,
+  isSame
+} from 'ngx-bootstrap/chronos';
 
 export function getStartingDayOfCalendar(date: Date,
                                          options: { firstDayOfWeek?: number }): Date {
@@ -43,4 +43,12 @@ export function isYearDisabled(date: Date, min: Date, max: Date): boolean {
   const maxBound = max && isAfter(startOf(date, 'year'), max, 'day');
 
   return minBound || maxBound;
+}
+
+export function isDisabledDate(date: Date, datesDisabled: Date[]): boolean {
+  if (datesDisabled === undefined || !datesDisabled || !datesDisabled.length) {
+    return false;
+  }
+
+  return datesDisabled.some((dateDisabled: Date) => isSame(date, dateDisabled, 'date'));
 }
