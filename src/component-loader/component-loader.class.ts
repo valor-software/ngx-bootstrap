@@ -68,10 +68,14 @@ export class ComponentLoader<T> {
 
   /**
    * A selector specifying the element the popover should be appended to.
-   * Currently only supports "body".
    */
   /* tslint:disable-next-line: no-any*/
   private container: string | ElementRef | any;
+
+  /**
+   * A selector used if container element was not found
+   */
+  private containerDefaultSelector = 'body';
 
   /**
    * Specifies events that should trigger. Supports a space separated list of
@@ -166,10 +170,11 @@ export class ComponentLoader<T> {
         );
       }
 
-      if (this.container === 'body' && typeof document !== 'undefined') {
-        document
-          .querySelector(this.container as string)
-          .appendChild(this._componentRef.location.nativeElement);
+      if (typeof this.container === 'string' && typeof document !== 'undefined') {
+        const selectedElement = document.querySelector(this.container) ||
+                                document.querySelector(this.containerDefaultSelector);
+
+        selectedElement.appendChild(this._componentRef.location.nativeElement);
       }
 
       if (

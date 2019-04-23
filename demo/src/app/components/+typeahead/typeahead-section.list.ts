@@ -164,8 +164,7 @@ export const demoComponentContent: ContentSection[] = [
         title: 'Append to body',
         anchor: 'container',
         description: `
-        <p><code>container</code> is an input property specifying the element the typeahead should be appended to.
-        Currently only supports <code>body</code>.</p>
+        <p><code>container</code> is an input property specifying the element the typeahead should be appended to.</p>
         `,
         component: require('!!raw-loader?lang=typescript!./demos/container/container.ts'),
         html: require('!!raw-loader?lang=markup!./demos/container/container.html'),

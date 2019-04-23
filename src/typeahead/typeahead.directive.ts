@@ -112,7 +112,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
   /**
    * A selector specifying the element the typeahead should be appended to.
-   * Currently only supports "body".
    */
   @Input() container: string;
 

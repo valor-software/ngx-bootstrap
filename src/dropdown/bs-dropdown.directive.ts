@@ -43,7 +43,6 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   @Input() triggers: string;
   /**
    * A selector specifying the element the popover should be appended to.
-   * Currently only supports "body".
    */
   @Input() container: string;
 

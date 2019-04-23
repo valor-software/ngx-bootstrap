@@ -39,8 +39,7 @@ export class BsDaterangepickerDirective
    */
   @Input() outsideClick = true;
   /**
-   * A selector specifying the element the daterangepicker should be appended
-   * to. Currently only supports "body".
+   * A selector specifying the element the daterangepicker should be appended to.
    */
   @Input() container = 'body';
 

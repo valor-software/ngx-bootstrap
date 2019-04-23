@@ -21,7 +21,6 @@ export class PopoverConfig {
   outsideClick = false;
   /**
    * A selector specifying the element the popover should be appended to.
-   * Currently only supports "body".
    */
   container: string;
 }
