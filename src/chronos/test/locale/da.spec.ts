@@ -13,7 +13,7 @@ describe('locale: da', () => {
   });
 
   afterAll(() => {
-    moment.locale(daLocale.abbr);
+    moment.locale('en');
   });
 
   it('parse', function () {
