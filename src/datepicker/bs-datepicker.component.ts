@@ -28,7 +28,6 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   @Input() outsideClick = true;
   /**
    * A selector specifying the element the datepicker should be appended to.
-   * Currently only supports "body".
    */
   @Input() container = 'body';
 
