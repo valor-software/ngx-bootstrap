@@ -6,8 +6,8 @@ npm i @angular/animations@next \
     @angular-devkit/schematics@8.0.0-beta.12 \
     @angular/cli@latest \
     @angular/common@next \
-    @angular/compiler-cli@next \
-    @angular/compiler@next \
+    @angular/compiler-cli@8.0.0-beta.9 \
+    @angular/compiler@8.0.0-beta.9 \
     @angular/forms@next \
     @angular/http@next \
     @angular/language-service@next \
