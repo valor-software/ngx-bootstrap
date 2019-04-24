@@ -114,7 +114,6 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'styling',
         component: require('!!raw-loader?lang=typescript!./demos/styling/styling'),
         html: require('!!raw-loader?lang=markup!./demos/styling/styling.html'),
-        css: require('!!raw-loader?lang=markup!./demos/styling/styling.css'),
         outlet: DemoAccordionStylingComponent
       },
       {

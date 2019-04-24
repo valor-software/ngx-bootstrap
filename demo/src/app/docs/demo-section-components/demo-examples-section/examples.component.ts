@@ -76,12 +76,22 @@ export class ExamplesComponent {
 
     .sortable-wrapper {
       min-height: 150px;
-    }` : ''}`,
+    }` : ''}
+    ${this.moduleData.moduleRoute === '/accordion' ?
+          `.card.customClass,
+.card.customClass .card-header,
+.panel.customClass {
+  background-color: #5bc0de;
+  color: #fff;
+}
+.panel.customClass .panel-body {
+  background-color: #337aa7;
+}` : ''}`,
         '.angular-cli.json': `{"apps": [{"styles": ["styles.css"]}]}`,
         'main.ts': main,
         'polyfills.ts': polyfills,
         'app/app.module.ts': getAppModuleCode(className, this.moduleData),
-        'app/ngx-bootstrap-demo.component.ts': ts
+        'app/ngx-bootstrap-demo.component.ts': this.getTs(ts)
       },
       dependencies: {
         'ngx-bootstrap': 'latest'
@@ -90,7 +100,6 @@ export class ExamplesComponent {
       description: 'stackblitz demo',
       template: 'angular-cli'
     };
-
     project.files[`app/${templateName}`] = this.getHtml(html);
 
     sdk.openProject(project);
@@ -99,6 +108,11 @@ export class ExamplesComponent {
   private getHtml(html: string): string {
     return this.moduleData.moduleRoute === '/carousel' ?
       html.replace(/src="/g, 'src="https://valor-software.com/ngx-bootstrap/') : html;
+  }
+
+  private getTs(ts: string): string {
+    return this.moduleData.moduleRoute === '/carousel' ?
+      ts.replace(/assets/g, 'https://valor-software.com/ngx-bootstrap/assets') : ts;
   }
 }
 
