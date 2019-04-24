@@ -32,6 +32,8 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    */
   @Input() container: string;
 
+  @Input() outsideEsc = true;
+
   /**
    * Returns whether or not the datepicker is currently being shown
    */
@@ -98,6 +100,11 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    * Disable Certain days in the week
    */
   @Input() daysDisabled: number[];
+
+  /**
+   * Disable specific dates
+   */
+  @Input() datesDisabled: Date[];
   /**
    * Emits when datepicker value has been changed
    */
@@ -127,6 +134,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   ngOnInit(): void {
     this._datepicker.listen({
       outsideClick: this.outsideClick,
+      outsideEsc: this.outsideEsc,
       triggers: this.triggers,
       show: () => this.show()
     });
@@ -148,6 +156,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
 
     if (changes.daysDisabled) {
       this._datepickerRef.instance.daysDisabled = this.daysDisabled;
+    }
+
+    if (changes.datesDisabled) {
+      this._datepickerRef.instance.datesDisabled = this.datesDisabled;
     }
 
     if (changes.isDisabled) {
@@ -224,6 +236,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
       minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
       maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
       daysDisabled: this.daysDisabled || this.bsConfig && this.bsConfig.daysDisabled,
+      datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
       minMode: this.minMode || this.bsConfig && this.bsConfig.minMode
     });
   }

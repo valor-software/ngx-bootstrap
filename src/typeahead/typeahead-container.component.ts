@@ -26,7 +26,14 @@ import { TypeaheadDirective } from './typeahead.directive';
     '[style.visibility]': `typeaheadScrollable ? 'hidden' : 'visible'`,
     '[class.dropup]': 'dropup',
     style: 'position: absolute;display: block;'
-  }
+  },
+  styles: [
+    `
+    :host.dropdown {
+      z-index: 1000;
+    }
+  `
+  ]
 })
 export class TypeaheadContainerComponent {
   parent: TypeaheadDirective;
@@ -54,7 +61,10 @@ export class TypeaheadContainerComponent {
   @ViewChildren('liElements')
   private liElements: QueryList<ElementRef>;
 
-  constructor(element: ElementRef, private renderer: Renderer2) {
+  constructor(
+    element: ElementRef,
+    private renderer: Renderer2
+  ) {
     this.element = element;
   }
 
@@ -75,14 +85,28 @@ export class TypeaheadContainerComponent {
       });
     }
 
-    if (this._matches.length > 0) {
+    if (this.typeaheadIsFirstItemActive && this._matches.length > 0) {
       this._active = this._matches[0];
+
       if (this._active.isHeader()) {
         this.nextActiveMatch();
       }
     }
+
+    if (this._active && !this.typeaheadIsFirstItemActive) {
+      const concurrency = this._matches.find(match => match.value === this._active.value);
+
+      if (concurrency) {
+        this.selectActive(concurrency);
+
+        return;
+      }
+
+      this._active = null;
+    }
   }
-// tslint:disable-next-line:no-any
+
+  // tslint:disable-next-line:no-any
   get optionsListTemplate(): TemplateRef<any> {
     return this.parent ? this.parent.optionsListTemplate : undefined;
   }
@@ -91,17 +115,26 @@ export class TypeaheadContainerComponent {
     return this.parent ? this.parent.typeaheadScrollable : false;
   }
 
-
   get typeaheadOptionsInScrollableView(): number {
     return this.parent ? this.parent.typeaheadOptionsInScrollableView : 5;
+  }
+
+  get typeaheadIsFirstItemActive(): boolean {
+    return this.parent ? this.parent.typeaheadIsFirstItemActive : true;
   }
 // tslint:disable-next-line:no-any
   get itemTemplate(): TemplateRef<any> {
     return this.parent ? this.parent.typeaheadItemTemplate : undefined;
   }
 
-  selectActiveMatch(): void {
-    this.selectMatch(this._active);
+  selectActiveMatch(isActiveItemChanged?: boolean): void {
+    if (this._active && this.parent.typeaheadSelectFirstItem) {
+      this.selectMatch(this._active);
+    }
+
+    if (!this.parent.typeaheadSelectFirstItem && isActiveItemChanged) {
+      this.selectMatch(this._active);
+    }
   }
 
   prevActiveMatch(): void {

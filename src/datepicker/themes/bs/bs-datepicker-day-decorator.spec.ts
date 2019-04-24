@@ -1,7 +1,12 @@
-import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DayViewModel } from '../../models';
+import {
+  async,
+  ComponentFixture,
+  TestBed
+} from '@angular/core/testing';
+import { BsDatepickerConfig } from '../../bs-datepicker.config';
 import { BsDatepickerDayDecoratorComponent } from './bs-datepicker-day-decorator.directive';
+import { Component } from '@angular/core';
+import { DayViewModel } from '../../models';
 
 @Component({
   selector: 'test-cmp',
@@ -25,9 +30,11 @@ function setDay(fixture: ComponentFixture<TestComponent>,
 
 describe('datepicker: [bsDatepickerDayDecorator]', () => {
   let fixture: ComponentFixture<TestComponent>;
+
   beforeEach(async(() =>
     TestBed.configureTestingModule({
-      declarations: [TestComponent, BsDatepickerDayDecoratorComponent]
+      declarations: [TestComponent, BsDatepickerDayDecoratorComponent],
+      providers: [BsDatepickerConfig]
     }).compileComponents()
   ));
 
@@ -66,6 +73,7 @@ describe('datepicker: [bsDatepickerDayDecorator]', () => {
       isSelectionEnd: true,
       isSelected: true
     });
+
     const el = getDayElement(fixture);
     expect(el).toHaveCssClass('disabled');
     expect(el).toHaveCssClass('is-highlighted');

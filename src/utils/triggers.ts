@@ -13,6 +13,7 @@ export interface ListenOptions {
   targets?: HTMLElement[];
   triggers?: string;
   outsideClick?: boolean;
+  outsideEsc?: boolean;
   show?: BsEventCallback;
   hide?: BsEventCallback;
   toggle?: BsEventCallback;
@@ -139,6 +140,27 @@ export function registerOutsideClick(renderer: Renderer2,
 
   /* tslint:disable-next-line: no-any */
   return renderer.listen('document', 'click', (event: any) => {
+    if (options.target && options.target.contains(event.target)) {
+      return undefined;
+    }
+    if (
+      options.targets &&
+      options.targets.some(target => target.contains(event.target))
+    ) {
+      return undefined;
+    }
+
+    options.hide();
+  });
+}
+
+export function registerEscClick(renderer: Renderer2,
+                                 options: ListenOptions) {
+  if (!options.outsideEsc) {
+    return Function.prototype;
+  }
+
+  return renderer.listen('document', 'keyup.esc', (event: any) => {
     if (options.target && options.target.contains(event.target)) {
       return undefined;
     }

@@ -2,7 +2,7 @@
   <ol class="carousel-indicators" *ngIf="showIndicators && slides.length > 1">
     <li *ngFor="let slidez of slides; let i = index;" [class.active]="slidez.active === true" (click)="selectSlide(i)"></li>
   </ol>
-  <div class="carousel-inner"><ng-content></ng-content></div>
+  <div class="carousel-inner" [ngStyle]="{'display': multilist ? 'flex' : 'block'}"><ng-content></ng-content></div>
   <a class="left carousel-control carousel-control-prev" [class.disabled]="activeSlide === 0 && noWrap" (click)="previousSlide()" *ngIf="slides.length > 1">
     <span class="icon-prev carousel-control-prev-icon" aria-hidden="true"></span>
     <span *ngIf="isBs4" class="sr-only">Previous</span>
@@ -12,3 +12,5 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
+
+

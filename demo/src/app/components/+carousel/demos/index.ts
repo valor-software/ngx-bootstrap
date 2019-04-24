@@ -8,6 +8,9 @@ import { DemoCarouselIntervalComponent } from './interval/interval';
 import { DemoCarouselDisableIndicatorComponent } from './disable-indicator/disable-indicator';
 import { DemoCarouselDisableLoopingComponent } from './disable-looping/disable-looping';
 import { DemoCarouselSlideChangedEventComponent } from './slide-changed-event/slide-changed-event';
+import { DemoCarouselMultilistComponent } from './multilist/multilist';
+import { DemoCarouselMultilistSingleOffsetComponent } from './multilist-single-offset/multilist-single-offset';
+import { DemoCarouselMultilistFromIndexComponent } from './multilist-from-index/multilist-from-index';
 import { DemoAccessibilityComponent } from './accessibility/accessibility';
 
 export const DEMO_COMPONENTS = [
@@ -22,5 +25,8 @@ export const DEMO_COMPONENTS = [
   DemoCarouselDisableIndicatorComponent,
   DemoCarouselDisableLoopingComponent,
   DemoCarouselSlideChangedEventComponent,
+  DemoCarouselMultilistComponent,
+  DemoCarouselMultilistSingleOffsetComponent,
+  DemoCarouselMultilistFromIndexComponent,
   DemoAccessibilityComponent
 ];

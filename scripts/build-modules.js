@@ -10,6 +10,7 @@ const buildPkgJson = require('ngm-cli/tasks/npm/build-pkg-json.task');
 const src = 'src';
 const dist = 'dist';
 const common = 'common';
+const path = require('path');
 
 let flags = {};
 
@@ -57,7 +58,7 @@ if (flags.watch) {
     ignored: /(^|[\/\\])\../
   })
     .on('change', (event) => {
-      let moduleName = event.replace(/src\/(.*)\/.*/i, '$1');
+      let moduleName = event.replace(new RegExp(`src\\${path.sep}(.*)\\${path.sep}(.*)`,'i'), '$1');
       buildModules([moduleName])
     });
 }

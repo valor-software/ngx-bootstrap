@@ -1,4 +1,4 @@
-14.13: Timepicker Arrow keys example
+14.14: Timepicker Arrow keys example
 ====================================
 **Primary Actor**: User
 
@@ -10,8 +10,8 @@ Main success scenario:
 ----------------------
 1. User opens Timepicker demo page
 2. User clicks on Arrow keys sub-menu
-3. User see timepicker component with hour, minute inputs, clickable button "AM"("PM") and info alert with current date and time
-4. User see clickable button "Enable / Disable keyboard arrow keys"
+3. User sees timepicker component with hour, minute inputs, clickable button "AM"("PM") and info alert with current date and time
+4. User sees clickable button "Enable / Disable keyboard arrow keys"
 5. When user activates hours input and click keyboard arrow up key, then time number increases with appropriate changes in info alert
 6. When user clicks keyboard arrow down key, then time number decreases with approproate changes in info alert
 7. When user activates minutes input and click keyboard arrow up key, then time number increases with appropriate changes in info alert

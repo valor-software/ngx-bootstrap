@@ -1,5 +1,7 @@
 {
   "baseUrl": "http://localhost:4200/#",
   "video": false,
-  "projectId": "5mm2dy"
+  "projectId": "5mm2dy",
+  "responseTimeout": 60000,
+  "ignoreTestFiles": ["**/plugins/**.js", "**/support/**", "**/tsconfig.json"]
 }

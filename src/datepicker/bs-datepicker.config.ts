@@ -11,6 +11,8 @@ import {
  */
 @Injectable()
 export class BsDatepickerConfig implements DatepickerRenderOptions {
+  /** sets use adaptive position */
+  adaptivePosition = false;
   value?: Date | Date[];
   isDisabled?: boolean;
   /**
@@ -23,13 +25,28 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
   maxDate?: Date;
 
   daysDisabled?: number[];
+
+  /**
+   * Disable specific dates
+   */
+  datesDisabled?: Date[];
   /**
    * Makes dates from other months active
    */
   selectFromOtherMonth?: boolean;
 
   /**
-   * Defaut mode for all date pickers
+   * Makes dates from other months active
+   */
+  selectWeek?: boolean;
+
+  /**
+   * Add class to current day
+   */
+  customTodayClass?: string;
+
+  /**
+   * Default mode for all date pickers
    */
   minMode?: BsDatepickerViewMode;
 
