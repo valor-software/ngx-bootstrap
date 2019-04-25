@@ -1,5 +1,6 @@
+import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
@@ -10,31 +11,58 @@ export class TopMenuComponent implements AfterViewInit {
   appUrl: string;
   appHash: string;
   currentVersion: string;
-  previousDocs: string[] = [];
+  isBrowser: boolean;
+
+  previousDocs: {
+    url: string;
+    version: string;
+    unprefixedUrl: string;
+  }[] = [];
+
   isLocalhost = false;
   needPrefix = false;
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+    @Inject(PLATFORM_ID) platformId: number,
+    private http: HttpClient,
+    private router: Router
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
+
 
   ngAfterViewInit(): any {
+    if (!this.isBrowser) {
+      return;
+    }
+
     // todo: remove this sh**
     if (typeof window !== 'undefined') {
       this.isLocalhost = location.hostname === 'localhost';
       this.needPrefix = location.pathname !== '/';
 
       this.appUrl = location.protocol + '//' + location.hostname + (this.isLocalhost ? ':' + location.port + '/' : '/');
-      this.http.get<any>('assets/json/versions.json').subscribe(data => {
-        this.previousDocs = data;
-      });
-      this.http.get<{ version: string }>('assets/json/current-version.json').subscribe(data => {
-        this.currentVersion = data.version;
-      });
+
+      this.http.get<any>('assets/json/versions.json')
+        .subscribe((data: { url: string; version: string; unprefixedUrl: string }[]) => {
+          this.previousDocs.push(data[0]);
+          this.previousDocs = this.previousDocs
+            .concat(data.reverse())
+            .slice(0, -1);
+        });
+
+      this.http.get<{ version: string }>('assets/json/current-version.json')
+        .subscribe((data: { version: string }) => {
+          this.currentVersion = data.version;
+        });
     }
+
     const getUrl = (router: Router) => {
       const indexOfHash = router.routerState.snapshot.url.indexOf('#');
 
       return router.routerState.snapshot.url.slice(0, indexOfHash);
     };
+
     let _prev = getUrl(this.router);
     this.router.events.subscribe((event: any) => {
       const _cur = getUrl(this.router);

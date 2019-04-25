@@ -17,17 +17,61 @@ import { DateFormatterFn, DateFormatterOptions, WeekParsing } from '../types';
 
 // FORMATTING
 
-addFormatToken(null, ['gg', 2, false], null,
-  function (date: Date, opts: DateFormatterOptions): string {
-    // return this.weekYear() % 100;
-    return (getWeekYear(date, opts.locale) % 100).toString();
-  });
+export function initWeekYear() {
+  addFormatToken(null, ['gg', 2, false], null,
+    function (date: Date, opts: DateFormatterOptions): string {
+      // return this.weekYear() % 100;
+      return (getWeekYear(date, opts.locale) % 100).toString();
+    }
+  );
 
-addFormatToken(null, ['GG', 2, false], null,
-  function (date: Date): string {
-    // return this.isoWeekYear() % 100;
-    return (getISOWeekYear(date) % 100).toString();
+  addFormatToken(null, ['GG', 2, false], null,
+    function (date: Date): string {
+      // return this.isoWeekYear() % 100;
+      return (getISOWeekYear(date) % 100).toString();
+    }
+  );
+
+  addWeekYearFormatToken('gggg', _getWeekYearFormatCb);
+  addWeekYearFormatToken('ggggg', _getWeekYearFormatCb);
+  addWeekYearFormatToken('GGGG', _getISOWeekYearFormatCb);
+  addWeekYearFormatToken('GGGGG', _getISOWeekYearFormatCb);
+
+// ALIASES
+
+  addUnitAlias('weekYear', 'gg');
+  addUnitAlias('isoWeekYear', 'GG');
+
+// PRIORITY
+
+  addUnitPriority('weekYear', 1);
+  addUnitPriority('isoWeekYear', 1);
+
+
+// PARSING
+
+  addRegexToken('G', matchSigned);
+  addRegexToken('g', matchSigned);
+  addRegexToken('GG', match1to2, match2);
+  addRegexToken('gg', match1to2, match2);
+  addRegexToken('GGGG', match1to4, match4);
+  addRegexToken('gggg', match1to4, match4);
+  addRegexToken('GGGGG', match1to6, match6);
+  addRegexToken('ggggg', match1to6, match6);
+
+  addWeekParseToken(['gggg', 'ggggg', 'GGGG', 'GGGGG'],
+    function (input, week: WeekParsing, config, token) {
+      week[token.substr(0, 2)] = toInt(input);
+
+      return config;
+    });
+
+  addWeekParseToken(['gg', 'GG'], function (input, week: WeekParsing, config, token) {
+    week[token] = parseTwoDigitYear(input);
+
+    return config;
   });
+}
 
 function addWeekYearFormatToken(token: string, getter: DateFormatterFn): void {
   addFormatToken(null, [token, token.length, false], null, getter);
@@ -40,46 +84,6 @@ function _getWeekYearFormatCb(date: Date, opts: DateFormatterOptions): string {
 function _getISOWeekYearFormatCb(date: Date): string {
   return getISOWeekYear(date).toString();
 }
-
-addWeekYearFormatToken('gggg', _getWeekYearFormatCb);
-addWeekYearFormatToken('ggggg', _getWeekYearFormatCb);
-addWeekYearFormatToken('GGGG', _getISOWeekYearFormatCb);
-addWeekYearFormatToken('GGGGG', _getISOWeekYearFormatCb);
-
-// ALIASES
-
-addUnitAlias('weekYear', 'gg');
-addUnitAlias('isoWeekYear', 'GG');
-
-// PRIORITY
-
-addUnitPriority('weekYear', 1);
-addUnitPriority('isoWeekYear', 1);
-
-
-// PARSING
-
-addRegexToken('G', matchSigned);
-addRegexToken('g', matchSigned);
-addRegexToken('GG', match1to2, match2);
-addRegexToken('gg', match1to2, match2);
-addRegexToken('GGGG', match1to4, match4);
-addRegexToken('gggg', match1to4, match4);
-addRegexToken('GGGGG', match1to6, match6);
-addRegexToken('ggggg', match1to6, match6);
-
-addWeekParseToken(['gggg', 'ggggg', 'GGGG', 'GGGGG'],
-  function (input, week: WeekParsing, config, token) {
-    week[token.substr(0, 2)] = toInt(input);
-
-    return config;
-  });
-
-addWeekParseToken(['gg', 'GG'], function (input, week: WeekParsing, config, token) {
-  week[token] = parseTwoDigitYear(input);
-
-  return config;
-});
 
 // MOMENTS
 

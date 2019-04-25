@@ -9,7 +9,7 @@ export class DemoRatingDynamicComponent {
   rate = 7;
   isReadonly = false;
 
-  overStar: number;
+  overStar: number | undefined;
   percent: number;
 
   hoveringOver(value: number): void {
