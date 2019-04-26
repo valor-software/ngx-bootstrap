@@ -7,7 +7,6 @@ import { Component } from '@angular/core';
 export class DemoCarouselMultilistSingleOffsetComponent {
   itemsPerSlide = 5;
   singleSlideOffset = true;
-  noWrap = true;
 
   slides = [
     {image: 'assets/images/nature/1.jpg'},
