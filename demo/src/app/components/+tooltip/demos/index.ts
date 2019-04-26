@@ -1,31 +1,31 @@
 import { DemoTooltipBasicComponent } from './basic/basic';
-import { DemoTooltipPlacementComponent } from './placement/placement';
-import { DemoTooltipDismissComponent } from './dismiss/dismiss';
-import { DemoTooltipDynamicComponent } from './dynamic/dynamic';
+import { DemoTooltipClassComponent } from './class/class';
 import { DemoTooltipConfigComponent } from './config/config';
 import { DemoTooltipContainerComponent } from './container/container';
+import { DemoTooltipCustomContentComponent } from './custom-content/custom-content';
+import { DemoTooltipDelayComponent } from './delay/delay';
+import { DemoTooltipDismissComponent } from './dismiss/dismiss';
+import { DemoTooltipDynamicComponent } from './dynamic/dynamic';
+import { DemoTooltipDynamicHtmlComponent } from './dynamic-html/dynamic-html';
+import { DemoTooltipPlacementComponent } from './placement/placement';
 import { DemoTooltipStylingGlobalComponent } from './styling-global/styling-global';
 import { DemoTooltipStylingLocalComponent } from './styling-local/styling-local';
 import { DemoTooltipTriggersCustomComponent } from './triggers-custom/triggers-custom';
 import { DemoTooltipTriggersManualComponent } from './triggers-manual/triggers-manual';
-import { DemoTooltipDynamicHtmlComponent } from './dynamic-html/dynamic-html';
-import { DemoTooltipClassComponent } from './class/class';
-import { DemoTooltipDelayComponent } from './delay/delay';
-import { DemoTooltipCustomContentComponent } from './custom-content/custom-content';
 
 export const DEMO_COMPONENTS = [
   DemoTooltipBasicComponent,
-  DemoTooltipPlacementComponent,
-  DemoTooltipDismissComponent,
+  DemoTooltipClassComponent,
+  DemoTooltipConfigComponent,
+  DemoTooltipContainerComponent,
   DemoTooltipCustomContentComponent,
+  DemoTooltipDelayComponent,
+  DemoTooltipDismissComponent,
   DemoTooltipDynamicComponent,
   DemoTooltipDynamicHtmlComponent,
-  DemoTooltipContainerComponent,
-  DemoTooltipConfigComponent,
+  DemoTooltipPlacementComponent,
   DemoTooltipStylingGlobalComponent,
   DemoTooltipStylingLocalComponent,
   DemoTooltipTriggersCustomComponent,
-  DemoTooltipTriggersManualComponent,
-  DemoTooltipClassComponent,
-  DemoTooltipDelayComponent
+  DemoTooltipTriggersManualComponent
 ];

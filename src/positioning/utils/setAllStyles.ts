@@ -60,8 +60,12 @@ export function setAllStyles(data: Data, renderer?: Renderer2): void {
   }
 
   if (renderer) {
-    renderer.setAttribute(target, 'class', target.className.replace(/left|right|top|bottom/g, `${data.placement}`));
+    renderer.setAttribute(
+      target,
+      'class',
+      target.className.replace(/left|right|top|bottom/g, `${data.placement.split(' ')[0]}`)
+    );
   } else {
-    target.className = target.className.replace(/left|right|top|bottom/g, `${data.placement}`);
+    target.className = target.className.replace(/left|right|top|bottom/g, `${data.placement.split(' ')[0]}`);
   }
 }

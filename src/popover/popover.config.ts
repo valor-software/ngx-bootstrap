@@ -8,6 +8,8 @@ import { Injectable } from '@angular/core';
  */
 @Injectable()
 export class PopoverConfig {
+  /** sets disable adaptive position */
+  adaptivePosition = true;
   /**
    * Placement of a popover. Accepts: "top", "bottom", "left", "right", "auto"
    */
