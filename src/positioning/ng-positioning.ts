@@ -26,7 +26,7 @@ export class Positioning {
     appendToBody?: boolean,
     options?: Options
   ): Data {
-    const chainOfModifiers = [flip, shift, preventOverflow, arrow];
+    const chainOfModifiers = position === 'auto' ? [flip, shift, preventOverflow, arrow] : [shift, preventOverflow, arrow];
 
     return chainOfModifiers.reduce(
       (modifiedData, modifier) => modifier(modifiedData),
