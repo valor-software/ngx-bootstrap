@@ -317,7 +317,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       }
 
       this._slidesWithIndexes.forEach((slide: SlideWithIndex) => slide.item.active = true);
-      this.makeSlidesConsistent();
+      this.makeSlidesConsistent(this._slidesWithIndexes);
     } else {
       this.selectRangeByNestedIndex(startIndex);
     }
@@ -399,7 +399,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
         : index + 1;
 
       this._slidesWithIndexes = this.mapSlidesAndIndexes().slice(startIndex, endIndex);
-      this.makeSlidesConsistent();
+      this.makeSlidesConsistent(this._slidesWithIndexes);
 
       this._slidesWithIndexes.forEach((slide: SlideWithIndex) => slide.item.active = true);
     }
@@ -482,6 +482,12 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       this._slides.get(indexToHide).active = false;
       this._slides.get(indexToShow).active = true;
 
+      const slidesToReorder = this.mapSlidesAndIndexes().filter(
+        (slide: SlideWithIndex) => slide.item.active
+      );
+
+      this.makeSlidesConsistent(slidesToReorder);
+
       this.slideRangeChange.emit(this.getVisibleIndexes());
     } else {
       let displayedIndex: number;
@@ -512,11 +518,11 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
         }, ...this._slidesWithIndexes];
       }
 
-
-      this.makeSlidesConsistent();
       this.hideSlides();
 
       this._slidesWithIndexes.forEach(slide => slide.item.active = true);
+
+      this.makeSlidesConsistent(this._slidesWithIndexes);
 
       this.slideRangeChange.emit(
         this._slidesWithIndexes.map((slide: SlideWithIndex) => slide.index)
@@ -524,10 +530,8 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  private makeSlidesConsistent(): void {
-    this._slidesWithIndexes.forEach((slide: SlideWithIndex, index: number) => {
-      slide.item.order = index;
-    });
+  private makeSlidesConsistent = (slides: SlideWithIndex[]): void => {
+    slides.forEach((slide: SlideWithIndex, index: number) => slide.item.order = index);
   }
 
   private moveMultilist(direction: Direction): void {
