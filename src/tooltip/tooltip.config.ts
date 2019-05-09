@@ -7,6 +7,8 @@ export class TooltipConfig {
   placement = 'top';
   /** array of event names which triggers tooltip opening */
   triggers = 'hover focus';
-  /** a selector specifying the element the tooltip should be appended to. Currently only supports "body" */
+  /** a selector specifying the element the tooltip should be appended to. */
   container: string;
+  /** delay before showing the tooltip */
+  delay = 0;
 }

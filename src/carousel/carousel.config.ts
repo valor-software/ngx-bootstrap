@@ -13,4 +13,11 @@ export class CarouselConfig {
 
   /** Show carousel-indicators */
   showIndicators = true;
+
+  /* If value more then 1 — carousel works in multilist mode */
+  itemsPerSlide = 1;
+
+  /* If `true` — carousel shifts by one element. By default carousel shifts by number
+    of visible elements (itemsPerSlide field) */
+  singleSlideOffset = false;
 }

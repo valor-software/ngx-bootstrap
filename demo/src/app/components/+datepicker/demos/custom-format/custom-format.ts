@@ -6,8 +6,6 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './custom-format.html'
 })
 export class DemoDatePickerCustomFormatComponent {
-  minDate = new Date(2017, 5, 10);
-  maxDate = new Date(2018, 9, 15);
 
   myForm = new FormGroup({
     myDateYMD: new FormControl(new Date()),
