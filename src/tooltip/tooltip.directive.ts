@@ -230,6 +230,9 @@ export class TooltipDirective implements OnInit, OnDestroy {
       modifiers: {
         flip: {
           enabled: true
+        },
+        preventOverflow: {
+          enabled: true
         }
       }
     });

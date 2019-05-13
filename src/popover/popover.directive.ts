@@ -12,6 +12,8 @@ import { PositioningService } from 'ngx-bootstrap/positioning';
  */
 @Directive({selector: '[popover]', exportAs: 'bs-popover'})
 export class PopoverDirective implements OnInit, OnDestroy {
+  /** sets disable adaptive position */
+  @Input() adaptivePosition: boolean;
   /**
    * Content to be displayed as popover.
    */
@@ -94,7 +96,9 @@ export class PopoverDirective implements OnInit, OnDestroy {
         _renderer
       )
       .provide({provide: PopoverConfig, useValue: _config});
+
     Object.assign(this, _config);
+
     this.onShown = this._popover.onShown;
     this.onHidden = this._popover.onHidden;
 
@@ -119,6 +123,17 @@ export class PopoverDirective implements OnInit, OnDestroy {
       return;
     }
 
+    this._positionService.setOptions({
+      modifiers: {
+        flip: {
+          enabled: this.adaptivePosition
+        },
+        preventOverflow: {
+          enabled: this.adaptivePosition
+        }
+      }
+    });
+
     this._popover
       .attach(PopoverContainerComponent)
       .to(this.container)
@@ -130,6 +145,12 @@ export class PopoverDirective implements OnInit, OnDestroy {
         title: this.popoverTitle,
         containerClass: this.containerClass
       });
+
+    if (!this.adaptivePosition) {
+      this._positionService.calcPosition();
+      this._positionService.deletePositionElement(this._popover._componentRef.location);
+    }
+
     this.isOpen = true;
   }
 
@@ -164,14 +185,6 @@ export class PopoverDirective implements OnInit, OnDestroy {
       return;
     }
     this._isInited = true;
-
-    this._positionService.setOptions({
-      modifiers: {
-        flip: {
-          enabled: true
-        }
-      }
-    });
 
     this._popover.listen({
       triggers: this.triggers,

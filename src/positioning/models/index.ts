@@ -32,5 +32,8 @@ export interface Options {
     flip?: {
       enabled: boolean;
     };
+    preventOverflow?: {
+      enabled: boolean;
+    };
   };
 }

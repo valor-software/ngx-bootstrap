@@ -76,11 +76,14 @@ export class PositioningService {
 
   position(options: PositioningOptions): void {
     this.addPositionElement(options);
-    this.update$$.next();
   }
 
   addPositionElement(options: PositioningOptions): void {
     this.positionElements.set(_getHtmlElement(options.element), options);
+  }
+
+  calcPosition(): void {
+    this.update$$.next();
   }
 
   deletePositionElement(elRef: ElementRef): void {

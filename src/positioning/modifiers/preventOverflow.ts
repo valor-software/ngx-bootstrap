@@ -1,7 +1,11 @@
-import { getBoundaries } from '../utils';
+import { getBoundaries, isModifierEnabled } from '../utils';
 import { Data } from '../models';
 
 export function preventOverflow(data: Data) {
+
+  if (!isModifierEnabled(data.options, 'preventOverflow')) {
+    return data;
+  }
 
   // NOTE: DOM access here
   // resets the targetOffsets's position so that the document size can be calculated excluding
