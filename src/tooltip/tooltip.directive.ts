@@ -30,8 +30,6 @@ let id = 0;
 })
 export class TooltipDirective implements OnInit, OnDestroy {
   tooltipId = id++;
-  /** sets disable adaptive position */
-  @Input() adaptivePosition: boolean;
   /**
    * Content to be displayed as tooltip.
    */
@@ -231,10 +229,10 @@ export class TooltipDirective implements OnInit, OnDestroy {
     this._positionService.setOptions({
       modifiers: {
         flip: {
-          enabled: this.adaptivePosition
+          enabled: true
         },
         preventOverflow: {
-          enabled: this.adaptivePosition
+          enabled: true
         }
       }
     });
