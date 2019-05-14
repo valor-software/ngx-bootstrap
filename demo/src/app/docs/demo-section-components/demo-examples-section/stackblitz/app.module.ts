@@ -10,6 +10,7 @@ export function getAppModuleCode(className: string, moduleData: NgxModuleData) {
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ${moduleData.moduleName} } from 'ngx-bootstrap/${moduleData.moduleFolder}';
 ${className === 'DemoModalWithPopupsComponent' ? `import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { PopoverModule } from 'ngx-bootstrap/popover';` : ''}
@@ -26,6 +27,7 @@ import { ${className === 'DemoModalServiceFromComponent' ? `${className}, ModalC
     ${moduleData.moduleName}.forRoot(),
     ${className === 'DemoModalWithPopupsComponent' ? `TooltipModule.forRoot(),
     PopoverModule.forRoot(),` : ''}
+    BrowserAnimationsModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
