@@ -2060,7 +2060,7 @@ export const ngdoc: any = {
     "properties": [
       {
         "name": "dropdownMenu",
-        "type": "Promise<any>",
+        "type": "Promise<BsComponentRef<any>>",
         "description": "<p>Content to be displayed as popover.</p>\n"
       }
     ]
@@ -3309,6 +3309,12 @@ export const ngdoc: any = {
     "methods": [],
     "properties": [
       {
+        "name": "adaptivePosition",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>sets disable adaptive position</p>\n"
+      },
+      {
         "name": "container",
         "type": "string",
         "description": "<p>a selector specifying the element the tooltip should be appended to.</p>\n"
@@ -3340,6 +3346,11 @@ export const ngdoc: any = {
     "selector": "[tooltip], [tooltipHtml]",
     "exportAs": "bs-tooltip",
     "inputs": [
+      {
+        "name": "adaptivePosition",
+        "type": "boolean",
+        "description": "<p>sets disable adaptive position</p>\n"
+      },
       {
         "name": "container",
         "type": "string",
