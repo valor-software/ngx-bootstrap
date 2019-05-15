@@ -65,9 +65,8 @@ export function computeAutoPlacement(
     ? filteredAreas[0].key
     : sortedAreas[0].key;
 
-  const variation = placement.split(' ')[1];
-
+  // for tooltip on auto position
   target.className = target.className.replace(/auto/g, computedPlacement);
 
-  return computedPlacement + (variation ? `-${variation}` : '');
+  return computedPlacement;
 }

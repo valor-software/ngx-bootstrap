@@ -11,11 +11,17 @@ export function initData(
 ): Data {
 
   const hostElPosition = getReferenceOffsets(targetElement, hostElement);
+
+  if (!position.match(/^(auto)*\s*(left|right|top|bottom)*$/)) {
+    /* tslint:disable-next-line: no-parameter-reassignment */
+    position = 'auto';
+  }
+
   const placementAuto = !!position.match(/auto/g);
 
   // support old placements 'auto left|right|top|bottom'
-  let placement = !!position.match(/auto\s(left|right|top|bottom)/g)
-    ? position.split(' ')[1] || ''
+  let placement = position.match(/auto\s(left|right|top|bottom)/)
+    ? position.split(' ')[1] || 'auto'
     : position;
 
   const targetOffset = getTargetOffsets(targetElement, hostElPosition, placement);
