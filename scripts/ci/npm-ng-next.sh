@@ -4,7 +4,7 @@ npm i @angular/animations@next \
     @angular/core@next \
     @angular-devkit/core@latest \
     @angular-devkit/schematics@8.0.0-beta.12 \
-    @angular/cli@latest \
+    @angular/cli@next \
     @angular/common@next \
     @angular/compiler-cli@8.0.0-beta.9 \
     @angular/compiler@8.0.0-beta.9 \
