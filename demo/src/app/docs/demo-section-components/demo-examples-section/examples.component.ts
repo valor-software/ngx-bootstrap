@@ -94,7 +94,8 @@ export class ExamplesComponent {
         'app/ngx-bootstrap-demo.component.ts': this.getTs(ts)
       },
       dependencies: {
-        'ngx-bootstrap': 'latest'
+        '@angular/animations': 'latest',
+        'ngx-bootstrap': 'next'
       },
       title: 'stackblitz demo',
       description: 'stackblitz demo',
