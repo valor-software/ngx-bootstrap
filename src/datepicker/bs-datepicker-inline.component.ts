@@ -6,7 +6,8 @@ import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component
 import { BsDatepickerInlineContainerComponent } from './themes/bs/bs-datepicker-inline-container.component';
 import { Subscription } from 'rxjs';
 import { BsDatepickerInlineConfig } from './bs-datepicker-inline.config';
-import { BsDatepickerConfig, BsDatepickerDateCustomClasses } from './bs-datepicker.config';
+import { BsDatepickerConfig } from './bs-datepicker.config';
+import { DatepickerDateCustomClasses } from './models';
 
 @Directive({
   selector: 'bs-datepicker-inline',
@@ -45,7 +46,7 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
   /**
    * Date custom classes
    */
-  @Input() dateCustomClasses: BsDatepickerDateCustomClasses[];
+  @Input() dateCustomClasses: DatepickerDateCustomClasses[];
   /**
    * Emits when datepicker value has been changed
    */

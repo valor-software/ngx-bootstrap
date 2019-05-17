@@ -74,7 +74,7 @@ export function flagDaysCalendar(
         .map(dcc => isSameDay(day.date, dcc.date) ? dcc.classes : [])
         .reduce((previousValue, currentValue) => previousValue.concat(currentValue), [])
         .join(' ')
-        || "";
+        || '';
 
 
       // decide update or not

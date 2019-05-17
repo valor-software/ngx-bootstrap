@@ -5,8 +5,8 @@ import {
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
 import { Subscription } from 'rxjs';
-import { BsDatepickerConfig, BsDatepickerDateCustomClasses } from './bs-datepicker.config';
-import { BsDatepickerViewMode } from './models';
+import { BsDatepickerConfig } from './bs-datepicker.config';
+import { BsDatepickerViewMode, DatepickerDateCustomClasses } from './models';
 
 @Directive({
   selector: '[bsDatepicker]',
@@ -103,7 +103,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   /**
    * Date custom classes
    */
-  @Input() dateCustomClasses: BsDatepickerDateCustomClasses[];
+  @Input() dateCustomClasses: DatepickerDateCustomClasses[];
   /**
    * Emits when datepicker value has been changed
    */

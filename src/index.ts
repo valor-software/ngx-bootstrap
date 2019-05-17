@@ -61,7 +61,7 @@ export {
   DayPickerComponent,
   MonthPickerComponent,
   YearPickerComponent,
-  BsDatepickerDateCustomClasses
+  DatepickerDateCustomClasses
 } from './datepicker/index';
 
 export {

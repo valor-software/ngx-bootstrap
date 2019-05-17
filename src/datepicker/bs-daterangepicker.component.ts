@@ -16,8 +16,9 @@ import { BsDaterangepickerConfig } from './bs-daterangepicker.config';
 import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
 import { Subscription } from 'rxjs';
 import { ComponentLoaderFactory, ComponentLoader } from 'ngx-bootstrap/component-loader';
-import { BsDatepickerConfig, BsDatepickerDateCustomClasses } from './bs-datepicker.config';
+import { BsDatepickerConfig } from './bs-datepicker.config';
 import { filter } from 'rxjs/operators';
+import { DatepickerDateCustomClasses } from './models';
 
 @Directive({
   selector: '[bsDaterangepicker]',
@@ -105,7 +106,7 @@ export class BsDaterangepickerDirective
   /**
    * Date custom classes
    */
-  @Input() dateCustomClasses: BsDatepickerDateCustomClasses[];
+  @Input() dateCustomClasses: DatepickerDateCustomClasses[];
   /**
    * Emits when daterangepicker value has been changed
    */

@@ -678,7 +678,7 @@ export const ngdoc: any = {
       },
       {
         "name": "dateCustomClasses",
-        "type": "BsDatepickerDateCustomClasses[]",
+        "type": "DatepickerDateCustomClasses[]",
         "description": "<p>Date custom classes</p>\n"
       },
       {
@@ -755,7 +755,7 @@ export const ngdoc: any = {
       },
       {
         "name": "dateCustomClasses",
-        "type": "BsDatepickerDateCustomClasses[]",
+        "type": "DatepickerDateCustomClasses[]",
         "description": "<p>Date custom classes</p>\n"
       },
       {
@@ -874,7 +874,7 @@ export const ngdoc: any = {
       },
       {
         "name": "dateCustomClasses",
-        "type": "BsDatepickerDateCustomClasses[]",
+        "type": "DatepickerDateCustomClasses[]",
         "description": "<p>Default date custom classes for all date/range pickers</p>\n"
       },
       {
@@ -951,7 +951,7 @@ export const ngdoc: any = {
       },
       {
         "name": "dateCustomClasses",
-        "type": "BsDatepickerDateCustomClasses[]",
+        "type": "DatepickerDateCustomClasses[]",
         "description": "<p>Date custom classes</p>\n"
       },
       {

@@ -97,7 +97,7 @@ describe('datepicker: [bsDatepickerDayDecorator]', () => {
       isSelectionStart: true,
       isSelectionEnd: true,
       isSelected: true,
-      customClasses: "custom1 custom2"
+      customClasses: 'custom1 custom2'
     });
     const el = getDayElement(fixture);
     expect(el).toHaveCssClass('disabled');

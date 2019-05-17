@@ -6,12 +6,6 @@ import {
 } from './models';
 
 
-export class BsDatepickerDateCustomClasses
-  implements DatepickerDateCustomClasses {
-  date: Date;
-  classes: string[];
-}
-
 /**
  * For date range picker there are `BsDaterangepickerConfig` which inherits all properties,
  * except `displayMonths`, for range picker it default to `2`
@@ -31,7 +25,7 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
   /**
    * Default date custom classes for all date/range pickers
    */
-  dateCustomClasses: BsDatepickerDateCustomClasses[];
+  dateCustomClasses: DatepickerDateCustomClasses[];
 
   daysDisabled?: number[];
   /**

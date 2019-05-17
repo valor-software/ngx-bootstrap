@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
-import { BsDatepickerDateCustomClasses } from 'ngx-bootstrap/datepicker';
+import { DatepickerDateCustomClasses } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'demo-datepicker-date-custom-classes',
   templateUrl: './date-custom-classes.html'
 })
 export class DemoDatepickerDateCustomClassesComponent {
-  dateCustomClasses: BsDatepickerDateCustomClasses[];
+  dateCustomClasses: DatepickerDateCustomClasses[];
 
   constructor() {
-    let now = new Date();
-    let twoDaysAhead = new Date();
+    const now = new Date();
+    const twoDaysAhead = new Date();
     twoDaysAhead.setDate(now.getDate() + 2);
-    let fourDaysAhead = new Date();
+    const fourDaysAhead = new Date();
     fourDaysAhead.setDate(now.getDate() + 4);
 
     this.dateCustomClasses = [
