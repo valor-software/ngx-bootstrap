@@ -1,3 +1,4 @@
+import { DemoTooltipAdaptivePositionComponent } from './adaptive-position/adaptive-position';
 import { DemoTooltipBasicComponent } from './basic/basic';
 import { DemoTooltipClassComponent } from './class/class';
 import { DemoTooltipConfigComponent } from './config/config';
@@ -14,6 +15,7 @@ import { DemoTooltipTriggersCustomComponent } from './triggers-custom/triggers-c
 import { DemoTooltipTriggersManualComponent } from './triggers-manual/triggers-manual';
 
 export const DEMO_COMPONENTS = [
+  DemoTooltipAdaptivePositionComponent,
   DemoTooltipBasicComponent,
   DemoTooltipClassComponent,
   DemoTooltipConfigComponent,

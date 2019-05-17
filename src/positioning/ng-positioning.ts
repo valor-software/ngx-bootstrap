@@ -54,10 +54,9 @@ export function positionElements(
     options
   );
 
-  const target = data.instance.target;
   const offsets = getOffsets(data);
 
-  setStyles(target, {
+  setStyles(targetElement, {
     'will-change': 'transform',
     top: '0px',
     left: '0px',

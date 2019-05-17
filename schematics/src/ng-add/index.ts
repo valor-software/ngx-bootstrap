@@ -27,6 +27,8 @@ import { hasNgModuleImport } from '../utils/ng-module-imports';
 const bootstrapStylePath =  `./node_modules/bootstrap/dist/css/bootstrap.min.css`;
 const datePickerStylePath =  `./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css`;
 const datepickerComponentName = 'datepicker';
+const accordionComponentName = 'accordion';
+const collapseComponentName = 'collapse';
 
 /* tslint:disable-next-line: no-default-export */
 export default function (options: Schema): Rule {
@@ -42,7 +44,8 @@ export default function (options: Schema): Rule {
       : addStyles(options, insertBootstrapStyles),
     componentName
       ? addModuleOfComponent(options.project, componentName)
-      : noop()
+      : noop(),
+    addAnimationModule(options.project, componentName)
   ]);
 }
 
@@ -92,8 +95,8 @@ function addModuleOfComponent(projectName: string | undefined, componentName: st
 function addPackageJsonDependencies(): Rule {
   return (host: Tree, context: SchematicContext) => {
     const dependencies: { name: string; version: string }[] = [
-      { name: 'bootstrap', version: '4.2.1' },
-      { name: 'ngx-bootstrap', version: '^3.1.4' }
+      { name: 'bootstrap', version: '4.1.1' },
+      { name: 'ngx-bootstrap', version: '^4.1.1' }
     ];
 
     dependencies.forEach(dependency => {
@@ -126,4 +129,19 @@ function insertCommonStyles(project: WorkspaceProject, host: Tree, workspace: Wo
   addStyleToTarget(project, 'test', host, datePickerStylePath, workspace);
 
   insertBootstrapStyles(project, host, workspace);
+}
+
+function addAnimationModule(projectName: string | undefined, componentName: string) {
+  return (host: Tree) => {
+    if (!(!componentName || componentName === accordionComponentName || componentName === collapseComponentName)) {
+      return host;
+    }
+
+    const workspace = getWorkspace(host);
+    const project = getProjectFromWorkspace(workspace, projectName);
+
+    addModuleImportToRootModule(host, 'BrowserAnimationsModule', '@angular/platform-browser/animations', project);
+
+    return host;
+  };
 }

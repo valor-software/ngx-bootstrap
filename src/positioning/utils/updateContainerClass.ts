@@ -14,11 +14,11 @@ export function updateContainerClass(data: Data, renderer?: Renderer2): void {
     containerClass = containerClass.replace(/bs-tooltip-auto/g, `bs-tooltip-${data.placement}`);
     containerClass = containerClass.replace(/\sauto/g, ` ${data.placement}`);
 
-    if (containerClass.match(/popover\s/g)) {
+    if (containerClass.indexOf('popover') !== -1 && containerClass.indexOf('popover-auto') === -1) {
       containerClass += ' popover-auto';
     }
 
-    if (containerClass.match(/tooltip\s/g)) {
+    if (containerClass.indexOf('tooltip') !== -1  && containerClass.indexOf('tooltip-auto') === -1) {
       containerClass += ' tooltip-auto';
     }
   }

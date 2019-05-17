@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 /** Default values provider for tooltip */
 @Injectable()
 export class TooltipConfig {
+  /** sets disable adaptive position */
+  adaptivePosition = true;
   /** tooltip placement, supported positions: 'top', 'bottom', 'left', 'right' */
   placement = 'top';
   /** array of event names which triggers tooltip opening */

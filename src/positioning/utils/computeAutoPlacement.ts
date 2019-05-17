@@ -14,7 +14,7 @@ export function computeAutoPlacement(
   refRect: Offsets,
   target: HTMLElement,
   host: HTMLElement,
-  allowedPositions: any[] = ['top', 'left', 'bottom', 'right'],
+  allowedPositions: any[] = ['top', 'bottom', 'right', 'left'],
   boundariesElement = 'viewport',
   padding = 0
 ) {
@@ -52,21 +52,27 @@ export function computeAutoPlacement(
     .sort((a, b) => b.area - a.area);
 
   let filteredAreas: any[] = sortedAreas.filter(
-    ({ width, height }) =>
-      width >= target.clientWidth && height >= target.clientHeight
+    ({ width, height }) => {
+      return width >= target.clientWidth
+        && height >= target.clientHeight;
+    }
   );
 
-  filteredAreas = allowedPositions
-    .reduce((obj, key) => {
-      return { ...obj, [key]: filteredAreas[key] };
-    }, {});
+  filteredAreas = filteredAreas.filter((position: any) => {
+    return allowedPositions
+      .some((allowedPosition: string) => {
+        return allowedPosition === position.key;
+      });
+  });
 
   const computedPlacement: string = filteredAreas.length > 0
     ? filteredAreas[0].key
     : sortedAreas[0].key;
 
-  // for tooltip on auto position
-  target.className = target.className.replace(/auto/g, computedPlacement);
+  const variation = placement.split(' ')[1];
 
-  return computedPlacement;
+  // for tooltip on auto position
+  target.className = target.className.replace(/bs-tooltip-auto/g, `bs-tooltip-${computedPlacement}`);
+
+  return computedPlacement + (variation ? `-${variation}` : '');
 }

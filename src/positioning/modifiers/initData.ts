@@ -12,10 +12,11 @@ export function initData(
 
   const hostElPosition = getReferenceOffsets(targetElement, hostElement);
 
-  if (!position.match(/^(auto)*\s*(left|right|top|bottom)*$/)) {
-    /* tslint:disable-next-line: no-parameter-reassignment */
-    position = 'auto';
-  }
+  if (!position.match(/^(auto)*\s*(left|right|top|bottom)*$/)
+    && !position.match(/^(left|right|top|bottom)*\s*(start|end)*$/)) {
+      /* tslint:disable-next-line: no-parameter-reassignment */
+      position = 'auto';
+    }
 
   const placementAuto = !!position.match(/auto/g);
 
@@ -25,7 +26,7 @@ export function initData(
     : position;
 
   const targetOffset = getTargetOffsets(targetElement, hostElPosition, placement);
-  placement = computeAutoPlacement(placement, hostElPosition, targetElement, hostElement);
+  placement = computeAutoPlacement(placement, hostElPosition, targetElement, hostElement, options.allowedPositions);
 
   return {
     options,

@@ -82,6 +82,14 @@ export class BsDropdownToggleDirective implements OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (this._documentClickListener) {
+      this._documentClickListener();
+    }
+
+    if (this._escKeyUpListener) {
+      this._escKeyUpListener();
+    }
+
     for (const sub of this._subscriptions) {
       sub.unsubscribe();
     }
