@@ -12,9 +12,9 @@ export function shift(data: Data): Data {
     const measurement = isVertical ? 'width' : 'height';
 
     const shiftOffsets = {
-      left: { [side]: host[side] },
-      right: {
-        [side]: host[side] + host[measurement] - host[measurement]
+      start: { [side]: host[side] },
+      end: {
+        [side]: host[side] + host[measurement] - target[measurement]
       }
     };
 

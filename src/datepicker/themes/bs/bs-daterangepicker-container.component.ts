@@ -49,7 +49,8 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
         flip: {
           enabled: this._config.adaptivePosition
         }
-      }
+      },
+      allowedPositions: ['top', 'bottom']
     });
 
     this.containerClass = this._config.containerClass;

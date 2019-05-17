@@ -322,14 +322,15 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         flip: {
           enabled: this.adaptivePosition
         }
-      }
+      },
+      allowedPositions: ['top', 'bottom']
     });
 
     this._typeahead
       .attach(TypeaheadContainerComponent)
       // todo: add append to body, after updating positioning service
       .to(this.container)
-      .position({attachment: `${this.dropup ? 'top' : 'bottom'} left`})
+      .position({attachment: `${this.dropup ? 'top' : 'bottom'} start`})
       .show({
         typeaheadRef: this,
         placement: this.placement,
