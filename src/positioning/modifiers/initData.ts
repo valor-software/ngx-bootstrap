@@ -26,7 +26,14 @@ export function initData(
     : position;
 
   const targetOffset = getTargetOffsets(targetElement, hostElPosition, placement);
-  placement = computeAutoPlacement(placement, hostElPosition, targetElement, hostElement, options.allowedPositions);
+
+  placement = computeAutoPlacement(
+    placement,
+    hostElPosition,
+    targetElement,
+    hostElement,
+    options ? options.allowedPositions : undefined
+  );
 
   return {
     options,
