@@ -844,14 +844,14 @@ export const ngdoc: any = {
         "description": "<p>A selector specifying the element the datepicker should be appended to.</p>\n"
       },
       {
-        "name": "datesDisabled",
-        "type": "Date[]",
-        "description": "<p>Disable specific dates</p>\n"
-      },
-      {
         "name": "dateCustomClasses",
         "type": "DatepickerDateCustomClasses[]",
         "description": "<p>Date custom classes</p>\n"
+      },
+      {
+        "name": "datesDisabled",
+        "type": "Date[]",
+        "description": "<p>Disable specific dates</p>\n"
       },
       {
         "name": "daysDisabled",
@@ -1056,14 +1056,14 @@ export const ngdoc: any = {
         "description": "<p>A selector specifying the element the daterangepicker should be appended to.</p>\n"
       },
       {
-        "name": "datesDisabled",
-        "type": "Date[]",
-        "description": "<p>Disable specific dates</p>\n"
-      },
-      {
         "name": "dateCustomClasses",
         "type": "DatepickerDateCustomClasses[]",
         "description": "<p>Date custom classes</p>\n"
+      },
+      {
+        "name": "datesDisabled",
+        "type": "Date[]",
+        "description": "<p>Disable specific dates</p>\n"
       },
       {
         "name": "isDisabled",
@@ -2087,7 +2087,7 @@ export const ngdoc: any = {
     "properties": [
       {
         "name": "dropdownMenu",
-        "type": "Promise<BsComponentRef<any>>",
+        "type": "Promise<any>",
         "description": "<p>Content to be displayed as popover.</p>\n"
       }
     ]
@@ -3130,7 +3130,7 @@ export const ngdoc: any = {
       {
         "name": "disabled",
         "type": "boolean",
-        "description": "<p>if true hours and minutes fields will be disabled </p>\n"
+        "description": "<p>if true hours and minutes fields will be disabled</p>\n"
       },
       {
         "name": "hourStep",
@@ -3218,7 +3218,7 @@ export const ngdoc: any = {
         "name": "disabled",
         "defaultValue": "false",
         "type": "boolean",
-        "description": "<p>if true hours and minutes fields will be disabled </p>\n"
+        "description": "<p>if true hours and minutes fields will be disabled</p>\n"
       },
       {
         "name": "hourStep",
