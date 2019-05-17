@@ -36,4 +36,5 @@ export interface Options {
       enabled: boolean;
     };
   };
+  allowedPositions?: string[];
 }
