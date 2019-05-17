@@ -8,6 +8,9 @@ import { DemoCarouselIntervalComponent } from './demos/interval/interval';
 import { DemoCarouselDisableIndicatorComponent } from './demos/disable-indicator/disable-indicator';
 import { DemoCarouselDisableLoopingComponent } from './demos/disable-looping/disable-looping';
 import { DemoCarouselSlideChangedEventComponent } from './demos/slide-changed-event/slide-changed-event';
+import { DemoCarouselMultilistComponent } from './demos/multilist/multilist';
+import { DemoCarouselMultilistSingleOffsetComponent } from './demos/multilist-single-offset/multilist-single-offset';
+import { DemoCarouselMultilistFromIndexComponent } from './demos/multilist-from-index/multilist-from-index';
 import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
 
 import { ContentSection } from '../../docs/models/content-section.model';
@@ -104,6 +107,27 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/slide-changed-event/slide-changed-event.ts'),
         html: require('!!raw-loader?lang=markup!./demos/slide-changed-event/slide-changed-event.html'),
         outlet: DemoCarouselSlideChangedEventComponent
+      },
+      {
+        title: 'Multilist',
+        anchor: 'multilist',
+        component: require('!!raw-loader?lang=typescript!./demos/multilist/multilist.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/multilist/multilist.html'),
+        outlet: DemoCarouselMultilistComponent
+      },
+      {
+        title: 'Multilist Single Offset',
+        anchor: 'multilist-single-offset',
+        component: require('!!raw-loader?lang=typescript!./demos/multilist-single-offset/multilist-single-offset.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/multilist-single-offset/multilist-single-offset.html'),
+        outlet: DemoCarouselMultilistSingleOffsetComponent
+      },
+      {
+        title: 'Multilist Start From Index',
+        anchor: 'multilist-from-index',
+        component: require('!!raw-loader?lang=typescript!./demos/multilist-from-index/multilist-from-index.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/multilist-from-index/multilist-from-index.html'),
+        outlet: DemoCarouselMultilistFromIndexComponent
       },
       {
         title: 'Accessibility',

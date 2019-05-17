@@ -1,15 +1,17 @@
+import { DemoTooltipAdaptivePositionComponent } from './demos/adaptive-position/adaptive-position';
 import { DemoTooltipBasicComponent } from './demos/basic/basic';
-import { DemoTooltipPlacementComponent } from './demos/placement/placement';
+import { DemoTooltipClassComponent } from './demos/class/class';
+import { DemoTooltipConfigComponent } from './demos/config/config';
+import { DemoTooltipContainerComponent } from './demos/container/container';
+import { DemoTooltipCustomContentComponent } from './demos/custom-content/custom-content';
+import { DemoTooltipDelayComponent } from './demos/delay/delay';
 import { DemoTooltipDismissComponent } from './demos/dismiss/dismiss';
 import { DemoTooltipDynamicComponent } from './demos/dynamic/dynamic';
 import { DemoTooltipDynamicHtmlComponent } from './demos/dynamic-html/dynamic-html';
-import { DemoTooltipContainerComponent } from './demos/container/container';
-import { DemoTooltipConfigComponent } from './demos/config/config';
+import { DemoTooltipPlacementComponent } from './demos/placement/placement';
+import { DemoTooltipStylingLocalComponent } from './demos/styling-local/styling-local';
 import { DemoTooltipTriggersCustomComponent } from './demos/triggers-custom/triggers-custom';
 import { DemoTooltipTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
-import { DemoTooltipStylingLocalComponent } from './demos/styling-local/styling-local';
-import { DemoTooltipClassComponent } from './demos/class/class';
-import { DemoTooltipStylingGlobalComponent } from './demos/styling-global/styling-global';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -20,8 +22,6 @@ import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
-import { DemoTooltipDelayComponent } from './demos/delay/delay';
-import { DemoTooltipCustomContentComponent } from './demos/custom-content/custom-content';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -53,6 +53,16 @@ export const demoComponentContent: ContentSection[] = [
           <code>bottom</code>, and <code>left</code>. Besides that, <code>auto</code> option may be
           used to detect a position that fits the component on the screen.</p>`,
         outlet: DemoTooltipPlacementComponent
+      },
+      {
+        title: 'Disable adaptive position',
+        anchor: 'adaptive-position',
+        description: `
+          <p>You can disable adaptive position via <code>adaptivePosition</code> input or config option</p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/adaptive-position/adaptive-position.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/adaptive-position/adaptive-position.html'),
+        outlet: DemoTooltipAdaptivePositionComponent
       },
       {
         title: 'Dismiss on next click',
@@ -130,13 +140,6 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader?lang=markup!./demos/styling-local/styling-local.html'),
         outlet: DemoTooltipStylingLocalComponent
       },
-      /*{
-        title: 'Global styling',
-        anchor: 'styling-global',
-        component: require('!!raw-loader?lang=typescript!./demos/styling-global/styling-global.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/styling-global/styling-global.html'),
-        outlet: DemoTooltipStylingGlobalComponent
-      },*/
       {
         title: 'Custom class',
         anchor: 'custom-class',

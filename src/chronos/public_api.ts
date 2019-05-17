@@ -27,7 +27,7 @@ export {
 
 export { LocaleData } from './locale/locale.class';
 
-export { isAfter, isBefore, isDisabledDay } from './utils/date-compare';
+export { isAfter, isBefore, isDisabledDay, isSame } from './utils/date-compare';
 export { isArray, isDateValid, isDate } from './utils/type-checks';
 export { shiftDate, setFullDate } from './utils/date-setters';
 export { endOf, startOf } from './utils/start-end-of';
@@ -43,6 +43,7 @@ export { enGbLocale } from './i18n/en-gb';
 export { esDoLocale } from './i18n/es-do';
 export { esLocale } from './i18n/es';
 export { esUsLocale } from './i18n/es-us';
+export { etLocale } from './i18n/et';
 export { fiLocale } from './i18n/fi';
 export { frLocale } from './i18n/fr';
 export { glLocale } from './i18n/gl';

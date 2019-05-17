@@ -1,20 +1,20 @@
+import { DemoPopoverAdaptivePositionComponent } from './demos/adaptive-position/adaptive-position';
 import { DemoPopoverBasicComponent } from './demos/basic/basic';
-import { DemoPopoverPlacementComponent } from './demos/placement/placement';
+import { DemoPopoverByIsOpenPropComponent } from './demos/trigger-by-isopen-property/trigger-by-isopen-property';
+import { DemoPopoverClassComponent } from './demos/class/class';
+import { DemoPopoverConfigComponent } from './demos/config/config';
+import { DemoPopoverContainerComponent } from './demos/container/container';
+import { DemoPopoverContextComponent } from './demos/popover-context/popover-context';
+import { DemoPopoverCustomContentComponent } from './demos/custom-content/custom-content';
 import { DemoPopoverDismissComponent } from './demos/dismiss/dismiss';
 import { DemoPopoverDynamicComponent } from './demos/dynamic/dynamic';
-import { DemoPopoverCustomContentComponent } from './demos/custom-content/custom-content';
 import { DemoPopoverDynamicHtmlComponent } from './demos/dynamic-html/dynamic-html';
-import { DemoPopoverContainerComponent } from './demos/container/container';
-import { DemoPopoverConfigComponent } from './demos/config/config';
+import { DemoPopoverEventsComponent } from './demos/events/events';
 import { DemoPopoverOutsideClickComponent } from './demos/outside-click/outside-click';
+import { DemoPopoverPlacementComponent } from './demos/placement/placement';
+import { DemoPopoverStylingLocalComponent } from './demos/styling-local/styling-local';
 import { DemoPopoverTriggersCustomComponent } from './demos/triggers-custom/triggers-custom';
 import { DemoPopoverTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
-import { DemoPopoverByIsOpenPropComponent } from './demos/trigger-by-isopen-property/trigger-by-isopen-property';
-import { DemoPopoverStylingLocalComponent } from './demos/styling-local/styling-local';
-import { DemoPopoverClassComponent } from './demos/class/class';
-import { DemoPopoverContextComponent } from './demos/popover-context/popover-context';
-import { DemoPopoverStylingGlobalComponent } from './demos/styling-global/styling-global';
-import { DemoPopoverEventsComponent } from './demos/events/events';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -56,6 +56,16 @@ export const demoComponentContent: ContentSection[] = [
         <code>bottom</code>, and <code>left</code>.
         Besides that, <code>auto</code> option may be used to detect a position that fits the component on screen.</p>`,
         outlet: DemoPopoverPlacementComponent
+      },
+      {
+        title: 'Disable adaptive position',
+        anchor: 'adaptive-position',
+        description: `
+          <p>You can disable adaptive position via <code>adaptivePosition</code> input or config option</p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/adaptive-position/adaptive-position.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/adaptive-position/adaptive-position.html'),
+        outlet: DemoPopoverAdaptivePositionComponent
       },
       {
         title: 'Dismiss on next click',
@@ -167,14 +177,7 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/popover-context/popover-context.ts'),
         html: require('!!raw-loader?lang=markup!./demos/popover-context/popover-context.html'),
         outlet: DemoPopoverContextComponent
-      }/*,
-      {
-        title: 'Global styling',
-        anchor: 'styling-global',
-        component: require('!!raw-loader?lang=typescript!./demos/styling-global/styling-global.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/styling-global/styling-global.html'),
-        outlet: DemoPopoverStylingGlobalComponent
-      }*/
+      }
     ]
   },
   {

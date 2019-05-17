@@ -1,3 +1,7 @@
+import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section';
+import { ContentSection } from '../../docs/models/content-section.model';
+import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section';
+import { DemoTypeaheadAdaptivePositionComponent } from './demos/adaptive-position/adaptive-position';
 import { DemoTypeaheadAsyncComponent } from './demos/async/async';
 import { DemoTypeaheadBasicComponent } from './demos/basic/basic';
 import { DemoTypeaheadConfigComponent } from './demos/config/config';
@@ -9,21 +13,20 @@ import { DemoTypeaheadFormComponent } from './demos/form/form';
 import { DemoTypeaheadGroupingComponent } from './demos/grouping/grouping';
 import { DemoTypeaheadItemTemplateComponent } from './demos/item-template/item-template';
 import { DemoTypeaheadLatinizeComponent } from './demos/latinize/latinize';
+import { DemoTypeaheadMinLengthComponent } from './demos/min-length/min-length';
 import { DemoTypeaheadNoResultComponent } from './demos/no-result/no-result';
 import { DemoTypeaheadOnBlurComponent } from './demos/on-blur/on-blur';
 import { DemoTypeaheadOnSelectComponent } from './demos/on-select/on-select';
 import { DemoTypeaheadPhraseDelimitersComponent } from './demos/phrase-delimiters/phrase-delimiters';
 import { DemoTypeaheadReactiveFormComponent } from './demos/reactive-form/reactive-form';
 import { DemoTypeaheadScrollableComponent } from './demos/scrollable/scrollable';
+import { DemotypeaheadSelectFirstItemComponent } from './demos/selected-first-item/selected-first-item';
 import { DemoTypeaheadShowOnBlurComponent } from './demos/show-on-blur/show-on-blur';
 import { DemoTypeaheadSingleWorldComponent } from './demos/single-world/single-world';
-
-import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section';
-import { ContentSection } from '../../docs/models/content-section.model';
-import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section';
 import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section';
 
 import { NgApiDocComponent, NgApiDocConfigComponent } from '../../docs/api-docs';
+import { DemoTypeaheadFirstItemActiveComponent } from './demos/first-item-active/first-item-active';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -45,6 +48,16 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
         html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
         outlet: DemoTypeaheadBasicComponent
+      },
+      {
+        title: 'Adaptive position',
+        anchor: 'adaptive-position',
+        description: `
+          <p>You can enable adaptive position via <code>adaptivePosition</code> input or config option</p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/adaptive-position/adaptive-position.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/adaptive-position/adaptive-position.html'),
+        outlet: DemoTypeaheadAdaptivePositionComponent
       },
       {
         title: 'Item template',
@@ -151,8 +164,7 @@ export const demoComponentContent: ContentSection[] = [
         title: 'Append to body',
         anchor: 'container',
         description: `
-        <p><code>container</code> is an input property specifying the element the typeahead should be appended to.
-        Currently only supports <code>body</code>.</p>
+        <p><code>container</code> is an input property specifying the element the typeahead should be appended to.</p>
         `,
         component: require('!!raw-loader?lang=typescript!./demos/container/container.ts'),
         html: require('!!raw-loader?lang=markup!./demos/container/container.html'),
@@ -199,6 +211,16 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoTypeaheadOnSelectComponent
       },
       {
+        title: 'Min length',
+        anchor: 'min-length',
+        description: `
+          <p>Minimal number of characters that needs to be entered before typeahead kicks in. When set to 0, typeahead shows on focus with full list of options.</p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/min-length/min-length.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/min-length/min-length.html'),
+        outlet: DemoTypeaheadMinLengthComponent
+      },
+      {
         title: 'Show results on blur',
         anchor: 'show-on-blur',
         description: `
@@ -215,6 +237,26 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader?lang=typescript!./demos/config/config'),
         html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
         outlet: DemoTypeaheadConfigComponent
+      },
+      {
+        title: 'Is first item active',
+        anchor: 'first-item-active',
+        description: `
+          <p>Use input property <code>typeaheadIsFirstItemActive</code> or config property <code>isFirstItemActive</code> to make the first item active/inactive </p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/first-item-active/first-item-active.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/first-item-active/first-item-active.html'),
+        outlet: DemoTypeaheadFirstItemActiveComponent
+      },
+      {
+        title: 'Selected first item',
+        anchor: 'selected-first-item',
+        description: `
+          <p>Use <code>typeaheadSelectFirstItem</code> property to make the first item in options list unselectable by tab and enter.</p>
+        `,
+        component: require('!!raw-loader?lang=typescript!./demos/selected-first-item/selected-first-item.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/selected-first-item/selected-first-item.html'),
+        outlet: DemotypeaheadSelectFirstItemComponent
       }
     ]
   },

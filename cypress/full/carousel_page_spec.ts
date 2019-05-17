@@ -8,30 +8,6 @@ describe('Carousel page test suite', () => {
     carousel.navigateTo();
   });
 
-  describe('Basic', () => {
-    const basic = carousel.exampleDemosArr.basic;
-
-    it('when user click on indicator item - appropriate slide shown', () => {
-      carousel.isClickActivatedCarouselItem(basic, 1);
-      carousel.isClickActivatedCarouselItem(basic, 0);
-      carousel.isClickActivatedCarouselItem(basic, 2);
-    });
-
-    it('when user click on left/right arrow - previous/next slide shown', () => {
-      carousel.clickOnCtrl(basic, 'left');
-      carousel.isCarouselItemActive(basic, 2);
-      carousel.clickOnCtrl(basic, 'right');
-      carousel.isCarouselItemActive(basic, 0);
-    });
-
-    it('when user do nothing more than 5 sec - next slide automatically shown', () => {
-      carousel.scrollToMenu('Basic');
-      carousel.isCarouselItemActive(basic, 0);
-      cy.tick(6000);
-      carousel.isCarouselItemActive(basic, 1);
-    });
-  });
-
   describe('Optional captions', () => {
     const optCaptions = carousel.exampleDemosArr.optionalCaptions;
 

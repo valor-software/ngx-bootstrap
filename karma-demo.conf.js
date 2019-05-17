@@ -1,8 +1,6 @@
 // Karma configuration file, see link for more information
 // https://karma-runner.github.io/0.13/config/configuration-file.html
 
-const customLaunchers = require('./scripts/sauce-browsers').customLaunchers;
-
 module.exports = function (config) {
   const configuration = {
     basePath: '',
@@ -18,14 +16,9 @@ module.exports = function (config) {
       require('karma-coverage-istanbul-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
-    // files: [
-    //   {pattern: './scripts/test.ts', watched: false}
-    // ],
-    // preprocessors: {
-    //   './scripts/test.ts': ['@angular-devkit/build-angular']
-    // },
     coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, 'coverage'), reports: ['html', 'lcovonly'],
+      dir: require('path').join(__dirname, 'coverage'),
+      reports: ['html', 'lcovonly', 'text'],
       fixWebpackSourcePaths: true
     },
     angularCli: {
@@ -91,11 +84,6 @@ module.exports = function (config) {
       },
       customLaunchers: {
         //LATEST
-        /*'SL_CHROME': {
-          base: 'SauceLabs',
-          browserName: 'chrome',
-          version: 'latest'
-        },*/
         'SL_FIREFOX': {
           base: 'SauceLabs',
           browserName: 'firefox',
@@ -117,37 +105,9 @@ module.exports = function (config) {
             browserName: 'safari',
             version: 'latest-1'
           }
-        //LATEST-1
-        /*'SL_CHROME_1': {
-          base: 'SauceLabs',
-          browserName: 'chrome',
-          version: 'latest-1'
-        },
-        'SL_FIREFOX_1': {
-          base: 'SauceLabs',
-          browserName: 'firefox',
-          version: 'latest-1'
-        },
-        'SL_IE_1': {
-          base: 'SauceLabs',
-          browserName: 'internet explorer',
-          version: 'latest-1'
-        },
-        'SL_EDGE_1': {
-          base: 'SauceLabs',
-          browserName: 'MicrosoftEdge',
-          version: 'latest-1'
-        },
-        'SL_SAFARI_1': {
-          base: 'SauceLabs',
-          browserName: 'safari',
-          version: 'latest-1'
-        }*/
       }
     });
-
     configuration.browsers = Object.keys(configuration.customLaunchers);
   }
-
   config.set(configuration);
 };

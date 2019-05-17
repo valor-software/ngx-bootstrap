@@ -1,5 +1,6 @@
+import { AfterViewInit, Component, Inject, PLATFORM_ID } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
@@ -10,6 +11,7 @@ export class TopMenuComponent implements AfterViewInit {
   appUrl: string;
   appHash: string;
   currentVersion: string;
+  isBrowser: boolean;
 
   previousDocs: {
     url: string;
@@ -20,9 +22,20 @@ export class TopMenuComponent implements AfterViewInit {
   isLocalhost = false;
   needPrefix = false;
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+    @Inject(PLATFORM_ID) platformId: number,
+    private http: HttpClient,
+    private router: Router
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
+
 
   ngAfterViewInit(): any {
+    if (!this.isBrowser) {
+      return;
+    }
+
     // todo: remove this sh**
     if (typeof window !== 'undefined') {
       this.isLocalhost = location.hostname === 'localhost';

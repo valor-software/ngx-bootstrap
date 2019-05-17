@@ -1,4 +1,4 @@
-14.14: Timepicker Spinners example
+14.15: Timepicker Spinners example
 ==================================
 **Primary Actor**: User
 
@@ -10,12 +10,12 @@ Main success scenario:
 ----------------------
 1. User opens Timepicker demo page
 2. User clicks on Spinners sub-menu
-3. User see timepicker component with hour, minute inputs and arrows
-4. User see clickable button "Show / Hide spinners"
+3. User sees timepicker component with hour, minute inputs and arrows
+4. User sees clickable button "Show / Hide spinners"
 5. When user clicks on "Show / Hide spinners" button, then arrows disappeared
-6. User able to change hours and minutes only through the input
+6. User is able to change hours and minutes only through the input
 7. When user clicks on "Show / Hide spinners" button again, then arrows appeared again
-8. User able to change hours and minutes through the input and through the arrows up and down
+8. User is able to change hours and minutes through the input and through the arrows up and down
 
 Variations:
 -----------

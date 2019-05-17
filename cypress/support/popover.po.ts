@@ -5,9 +5,9 @@ export class PopoverPo extends BaseComponent {
   pageTitle = 'Popover';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/popover';
 
-  togglerPopover = 'button';
   containerPopover = 'popover-container';
   body = 'body';
+  dynamicHtmlBtn = 'span.btn.btn-danger';
 
   exampleDemosArr = {
     basic: 'demo-popover-basic',
@@ -28,32 +28,11 @@ export class PopoverPo extends BaseComponent {
     popoverContext: 'demo-popover-context'
   };
 
-  popoverPlacements = {
-    top: { popoverClass: 'popover in popover-top bs-popover-top top show', name: 'Popover on top' },
-    right: {
-      popoverClass: 'popover in popover-right bs-popover-right right show',
-      name: 'Popover on right'
-    },
-    auto: {
-      popoverClass: 'popover in popover-auto bs-popover-auto auto show bottom',
-      name: 'Popover auto'
-    },
-    left: {
-      popoverClass: 'popover in popover-left bs-popover-left left show',
-      name: 'Popover on left'
-    },
-    bottom: {
-      popoverClass: 'popover in popover-bottom bs-popover-bottom bottom show',
-      name: 'Popover on bottom'
-    }
-  };
-
-  isPopoverPlacementCorrect(baseSelector: string, placement: string, buttonName: string) {
-    cy.get(`${baseSelector} ${this.togglerPopover}`).contains(buttonName).click();
-
-    cy.get(`${baseSelector} ${this.containerPopover}`).should('be.visible').should('have.attr', 'class', placement);
-
-    cy.get(`${baseSelector} ${this.togglerPopover}`).contains(buttonName).click();
+  isPopoverPlacementCorrect(baseSelector: string, placement: string) {
+    cy.get(`${baseSelector} ${this.containerPopover}`).then(popover => {
+      expect(popover).to.be.visible;
+      expect(popover.attr('class')).to.contains(placement);
+    });
   }
 
   isPopoverAppears(baseSelector: string) {
@@ -70,5 +49,13 @@ export class PopoverPo extends BaseComponent {
 
   isPopoverDismiss(baseSelector: string) {
     cy.get(`${baseSelector}`).should('not.to.have.descendants', this.containerPopover);
+  }
+
+  isPopoverHaveCssItem(baseSelector: string, item: string, cssProperty: string, expectedCssValue: string) {
+    cy.get(`${baseSelector} ${this.containerPopover} ${item}`).should('have.css', cssProperty, expectedCssValue);
+  }
+  
+  isPopoverHaveCss(baseSelector: string, cssProperty: string, expectedCssValue: string) {
+    cy.get(`${baseSelector} ${this.containerPopover}`).should('have.css', cssProperty, expectedCssValue);
   }
 }

@@ -1,37 +1,39 @@
+import { DemoPopoverAdaptivePositionComponent } from './adaptive-position/adaptive-position';
 import { DemoPopoverBasicComponent } from './basic/basic';
-import { DemoPopoverPlacementComponent } from './placement/placement';
+import { DemoPopoverByIsOpenPropComponent } from './trigger-by-isopen-property/trigger-by-isopen-property';
+import { DemoPopoverClassComponent } from './class/class';
+import { DemoPopoverConfigComponent } from './config/config';
+import { DemoPopoverContainerComponent } from './container/container';
+import { DemoPopoverContextComponent } from './popover-context/popover-context';
+import { DemoPopoverCustomContentComponent } from './custom-content/custom-content';
 import { DemoPopoverDismissComponent } from './dismiss/dismiss';
 import { DemoPopoverDynamicComponent } from './dynamic/dynamic';
-import { DemoPopoverCustomContentComponent } from './custom-content/custom-content';
 import { DemoPopoverDynamicHtmlComponent } from './dynamic-html/dynamic-html';
-import { DemoPopoverContainerComponent } from './container/container';
-import { DemoPopoverConfigComponent } from './config/config';
+import { DemoPopoverEventsComponent } from './events/events';
+import { DemoPopoverOutsideClickComponent } from './outside-click/outside-click';
+import { DemoPopoverPlacementComponent } from './placement/placement';
 import { DemoPopoverStylingGlobalComponent } from './styling-global/styling-global';
 import { DemoPopoverStylingLocalComponent } from './styling-local/styling-local';
 import { DemoPopoverTriggersCustomComponent } from './triggers-custom/triggers-custom';
 import { DemoPopoverTriggersManualComponent } from './triggers-manual/triggers-manual';
-import { DemoPopoverByIsOpenPropComponent } from './trigger-by-isopen-property/trigger-by-isopen-property';
-import { DemoPopoverClassComponent } from './class/class';
-import { DemoPopoverOutsideClickComponent } from './outside-click/outside-click';
-import { DemoPopoverEventsComponent } from './events/events';
-import { DemoPopoverContextComponent } from './popover-context/popover-context';
 
 export const DEMO_COMPONENTS = [
+  DemoPopoverAdaptivePositionComponent,
   DemoPopoverBasicComponent,
-  DemoPopoverPlacementComponent,
+  DemoPopoverByIsOpenPropComponent,
+  DemoPopoverClassComponent,
+  DemoPopoverConfigComponent,
+  DemoPopoverContainerComponent,
+  DemoPopoverContextComponent,
+  DemoPopoverCustomContentComponent,
   DemoPopoverDismissComponent,
   DemoPopoverDynamicComponent,
-  DemoPopoverCustomContentComponent,
   DemoPopoverDynamicHtmlComponent,
-  DemoPopoverContainerComponent,
-  DemoPopoverConfigComponent,
+  DemoPopoverEventsComponent,
+  DemoPopoverOutsideClickComponent,
+  DemoPopoverPlacementComponent,
   DemoPopoverStylingGlobalComponent,
   DemoPopoverStylingLocalComponent,
   DemoPopoverTriggersCustomComponent,
-  DemoPopoverTriggersManualComponent,
-  DemoPopoverByIsOpenPropComponent,
-  DemoPopoverClassComponent,
-  DemoPopoverOutsideClickComponent,
-  DemoPopoverEventsComponent,
-  DemoPopoverContextComponent
+  DemoPopoverTriggersManualComponent
 ];
