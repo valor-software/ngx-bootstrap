@@ -14,7 +14,7 @@ export const viLocale: LocaleData = {
   months : 'tháng 1_tháng 2_tháng 3_tháng 4_tháng 5_tháng 6_tháng 7_tháng 8_tháng 9_tháng 10_tháng 11_tháng 12'.split('_'),
   monthsShort : 'Th01_Th02_Th03_Th04_Th05_Th06_Th07_Th08_Th09_Th10_Th11_Th12'.split('_'),
   monthsParseExact: true,
-  weekdays : 'Chủ Nhật_Thứ Hai_Thứ Ba_Thứ Tư_Thứ Năm_Thứ Sáu_Thứ Bảy'.split('_'),
+  weekdays : 'chủ nhật_thứ hai_thứ ba_thứ tư_thứ năm_thứ sáu_thứ bảy'.split('_'),
   weekdaysShort : 'CN_T2_T3_T4_T5_T6_T7'.split('_'),
   weekdaysMin : 'CN_T2_T3_T4_T5_T6_T7'.split('_'),
   weekdaysParseExact : true,
@@ -46,7 +46,7 @@ export const viLocale: LocaleData = {
     nextDay: '[Ngày mai lúc] LT',
     nextWeek: 'dddd [tuần tới lúc] LT',
     lastDay: '[Hôm qua lúc] LT',
-    lastWeek: 'dddd [tuần rồi lúc] LT',
+    lastWeek: 'dddd [tuần trước lúc] LT',
     sameElse: 'L'
   },
   relativeTime : {

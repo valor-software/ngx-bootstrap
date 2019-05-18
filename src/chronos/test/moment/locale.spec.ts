@@ -170,7 +170,7 @@ describe('locale', function () {
 
     assertEq(moment.localeData().months(jan.toDate()), 'January', 'no arguments returns global');
     assertEq(moment.localeData('zh-cn').months(jan.toDate()), '一月', 'a string returns the locale based on key');
-    assertEq(moment.localeData('vi').months(jan.toDate()), 'Tháng 1', 'a string returns the locale based on key');
+    assertEq(moment.localeData('vi').months(jan.toDate()), 'tháng 1', 'a string returns the locale based on key');
     assertEq(moment.localeData(moment().locale('es')).months(jan.toDate()), 'enero', 'if you pass in a moment it uses the moment\'s locale');
   });
 
