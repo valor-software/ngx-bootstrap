@@ -2087,7 +2087,7 @@ export const ngdoc: any = {
     "properties": [
       {
         "name": "dropdownMenu",
-        "type": "Promise<any>",
+        "type": "Promise<BsComponentRef<any>>",
         "description": "<p>Content to be displayed as popover.</p>\n"
       }
     ]

@@ -39,10 +39,12 @@ export class BsDatepickerDayDecoratorComponent implements OnInit {
       this._renderer.addClass(this._elRef.nativeElement, this._config.customTodayClass);
     }
 
-    this.day.customClasses.split(' ')
-      .filter((className: string) => className)
-      .forEach((className: string) => {
-        this._renderer.addClass(this._elRef.nativeElement, className);
-      });
+    if (typeof this.day.customClasses === 'string') {
+      this.day.customClasses.split(' ')
+        .filter((className: string) => className)
+        .forEach((className: string) => {
+          this._renderer.addClass(this._elRef.nativeElement, className);
+        });
+    }
   }
 }
