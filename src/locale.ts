@@ -34,5 +34,6 @@ export {
   svLocale,
   thLocale,
   trLocale,
+  viLocale,
   zhCnLocale
 } from 'ngx-bootstrap/chronos';
