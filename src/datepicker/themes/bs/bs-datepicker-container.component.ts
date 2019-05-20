@@ -46,7 +46,8 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
         flip: {
           enabled: this._config.adaptivePosition
         }
-      }
+      },
+      allowedPositions: ['top', 'bottom']
     });
 
     this.isOtherMonthsActive = this._config.selectFromOtherMonth;
