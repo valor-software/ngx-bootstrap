@@ -14,7 +14,6 @@ import { DayViewModel } from '../../models';
   selector: '[bsDatepickerDayDecorator]',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    '[class]': 'day.customClasses',
     '[class.disabled]': 'day.isDisabled',
     '[class.is-highlighted]': 'day.isHovered',
     '[class.is-other-month]': 'day.isOtherMonth',
@@ -39,5 +38,11 @@ export class BsDatepickerDayDecoratorComponent implements OnInit {
     if (this.day.isToday && this._config && this._config.customTodayClass) {
       this._renderer.addClass(this._elRef.nativeElement, this._config.customTodayClass);
     }
+
+    this.day.customClasses.split(' ')
+      .filter((className: string) => className)
+      .forEach((className: string) => {
+        this._renderer.addClass(this._elRef.nativeElement, className);
+      });
   }
 }

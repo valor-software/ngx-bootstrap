@@ -3,7 +3,8 @@ import { DatepickerDateCustomClasses } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'demo-datepicker-date-custom-classes',
-  templateUrl: './date-custom-classes.html'
+  templateUrl: './date-custom-classes.html',
+  styleUrls: ['.//date-custom-classes.scss']
 })
 export class DemoDatepickerDateCustomClassesComponent {
   dateCustomClasses: DatepickerDateCustomClasses[];
