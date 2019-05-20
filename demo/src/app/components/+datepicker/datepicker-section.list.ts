@@ -333,6 +333,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'date-custom-classes',
         component: require('!!raw-loader?lang=typescript!./demos/date-custom-classes/date-custom-classes.ts'),
         html: require('!!raw-loader?lang=markup!./demos/date-custom-classes/date-custom-classes.html'),
+        style: require('!!raw-loader?lang=markup!./demos/date-custom-classes/date-custom-classes.scss'),
         description: `<p>Style dates with custom classes</p>`,
         outlet: DemoDatepickerDateCustomClassesComponent
       }

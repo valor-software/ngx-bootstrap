@@ -26,7 +26,6 @@
     "build.watch": "node scripts/build-modules --watch",
     "build:schematics": "node scripts/schematics/build",
     "build.modules": "node scripts/build-modules",
-    "build:datepicker": "rimraf dist/datepicker && node scripts/ng-packagr/api ../../src/datepicker/package.json",
     "ci:update-pkg": "node scripts/ci/update-pkg.js",
     "ci:rename-pkg": "mv node_modules/ngx-bootstrap-ci node_modules/ngx-bootstrap",
     "build.sass": "node-sass --recursive src --output dist --source-map true --source-map-contents sass",
