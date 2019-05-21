@@ -1,3 +1,49 @@
+<a name="4.3.0"></a>
+# [4.3.0](https://github.com/valor-software/ngx-bootstrap/compare/v4.2.0...v4.3.0) (2019-05-21)
+
+
+### Bug Fixes
+
+* **carousel:** fix multilist carousel order ([#5193](https://github.com/valor-software/ngx-bootstrap/issues/5193)) ([1f883cb](https://github.com/valor-software/ngx-bootstrap/commit/1f883cb))
+* **dropdown:** fix view destroyed error ([#5205](https://github.com/valor-software/ngx-bootstrap/issues/5205)) ([8cf98c2](https://github.com/valor-software/ngx-bootstrap/commit/8cf98c2))
+* **positioning:** fix errors on invalid position ([#5212](https://github.com/valor-software/ngx-bootstrap/issues/5212)) ([e790196](https://github.com/valor-software/ngx-bootstrap/commit/e790196))
+* **tests:** add fix for select week test ([#5218](https://github.com/valor-software/ngx-bootstrap/issues/5218)) ([984ca74](https://github.com/valor-software/ngx-bootstrap/commit/984ca74))
+
+
+### Features
+
+* **datepicker:** add Vietnam (vi) locale to date picker ([#5221](https://github.com/valor-software/ngx-bootstrap/issues/5221)) ([4c1f2bf](https://github.com/valor-software/ngx-bootstrap/commit/4c1f2bf))
+* **doc:** add animation module to doc and with ng add, also stackblitz ([#5207](https://github.com/valor-software/ngx-bootstrap/issues/5207)) ([bd9c72e](https://github.com/valor-software/ngx-bootstrap/commit/bd9c72e))
+* **popover:** add adaptivePosition option ([#5183](https://github.com/valor-software/ngx-bootstrap/issues/5183)) ([c7f9e8c](https://github.com/valor-software/ngx-bootstrap/commit/c7f9e8c))
+* **tooltip:** add adaptivePosition option ([#5204](https://github.com/valor-software/ngx-bootstrap/issues/5204)) ([8333e23](https://github.com/valor-software/ngx-bootstrap/commit/8333e23))
+
+
+
+<a name="4.2.0"></a>
+# [4.2.0](https://github.com/valor-software/ngx-bootstrap/compare/v4.1.1...v4.2.0) (2019-04-26)
+
+
+### Bug Fixes
+
+* **ci:** fix build next ([#5177](https://github.com/valor-software/ngx-bootstrap/issues/5177)) ([ab0d252](https://github.com/valor-software/ngx-bootstrap/commit/ab0d252))
+* **ci:** fix build on next ([#5169](https://github.com/valor-software/ngx-bootstrap/issues/5169)) ([f5be2db](https://github.com/valor-software/ngx-bootstrap/commit/f5be2db))
+* **ci:** fix check prod build on next ([#5179](https://github.com/valor-software/ngx-bootstrap/issues/5179)) ([112ca44](https://github.com/valor-software/ngx-bootstrap/commit/112ca44))
+* **ci:** fix deploy on surge ([#5171](https://github.com/valor-software/ngx-bootstrap/issues/5171)) ([88e23e5](https://github.com/valor-software/ngx-bootstrap/commit/88e23e5))
+* **docs:** update angular.json config file ([#4512](https://github.com/valor-software/ngx-bootstrap/issues/4512)) ([85faa47](https://github.com/valor-software/ngx-bootstrap/commit/85faa47))
+* **stackblitz:** add carousel correct links, datepicker locales, remove link from accessibility ([#5176](https://github.com/valor-software/ngx-bootstrap/issues/5176)) ([caff954](https://github.com/valor-software/ngx-bootstrap/commit/caff954))
+* **tests:** remove deprecated Init event (closes [#5005](https://github.com/valor-software/ngx-bootstrap/issues/5005)) ([#5182](https://github.com/valor-software/ngx-bootstrap/issues/5182)) ([3f87b84](https://github.com/valor-software/ngx-bootstrap/commit/3f87b84))
+
+
+### Features
+
+* **carousel:** allow to display multiple items per one slide ([#5133](https://github.com/valor-software/ngx-bootstrap/issues/5133)) ([c9f4ec9](https://github.com/valor-software/ngx-bootstrap/commit/c9f4ec9))
+* **common:** add animation for collapse and accordion components ([#5146](https://github.com/valor-software/ngx-bootstrap/issues/5146)) ([191e5b4](https://github.com/valor-software/ngx-bootstrap/commit/191e5b4))
+* **common:** container attribute implementation ([#5174](https://github.com/valor-software/ngx-bootstrap/issues/5174)) ([b061629](https://github.com/valor-software/ngx-bootstrap/commit/b061629))
+* **datepicker:** change Thai 'weekdaysShort' format for look better in datepicker ([#4674](https://github.com/valor-software/ngx-bootstrap/issues/4674)) ([77ccc37](https://github.com/valor-software/ngx-bootstrap/commit/77ccc37))
+* **demo:** add stackblitz examples via SDK ([#4098](https://github.com/valor-software/ngx-bootstrap/issues/4098)) ([ecdc140](https://github.com/valor-software/ngx-bootstrap/commit/ecdc140))
+
+
+
 <a name="4.2.0"></a>
 # [4.2.0](https://github.com/valor-software/ngx-bootstrap/compare/v4.0.1...v4.2.0) (2019-04-26)
 
