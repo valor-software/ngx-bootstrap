@@ -29,6 +29,7 @@ import { DemoDatepickerTriggersCustomComponent } from './triggers-custom/trigger
 import { DemoDatepickerTriggersManualComponent } from './triggers-manual/triggers-manual';
 import { DemoDatepickerValueChangeEventComponent } from './value-change-event/value-change-event';
 import { DemoDatePickerVisibilityEventsComponent } from './visibility-events/visibility-events';
+import { DemoDatepickerDateCustomClassesComponent } from './date-custom-classes/date-custom-classes'
 import { DemoDatePickerAdaptivePositionComponent } from './adaptive-position/adaptive-position';
 
 
@@ -62,5 +63,6 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerTriggersCustomComponent,
   DemoDatepickerTriggersManualComponent,
   DemoDatepickerValueChangeEventComponent,
-  DemoDatePickerVisibilityEventsComponent
+  DemoDatePickerVisibilityEventsComponent,
+  DemoDatepickerDateCustomClassesComponent
 ];

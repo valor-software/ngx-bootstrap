@@ -20,6 +20,7 @@ import { DemoDatepickerMinModeComponent } from './demos/min-mode/min-mode.compon
 import { DemoDatepickerOutsideClickComponent } from './demos/outside-click/outside-click';
 import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
+import { DemoDatepickerDateCustomClassesComponent } from './demos/date-custom-classes/date-custom-classes';
 
 import {
   DemoDatePickerSelectDatesFromOtherMonthsComponent
@@ -326,6 +327,15 @@ export const demoComponentContent: ContentSection[] = [
         description: `<p>Use different triggers ( for example <code>keydown</code>, <code>mouseenter</code> and
           <code>dblclick</code> ) to interact with datepicker</p>`,
         outlet: DemoDatepickerTriggersCustomComponent
+      },
+      {
+        title: 'Date custom classes',
+        anchor: 'date-custom-classes',
+        component: require('!!raw-loader?lang=typescript!./demos/date-custom-classes/date-custom-classes.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/date-custom-classes/date-custom-classes.html'),
+        style: require('!!raw-loader?lang=markup!./demos/date-custom-classes/date-custom-classes.scss'),
+        description: `<p>Style dates with custom classes</p>`,
+        outlet: DemoDatepickerDateCustomClassesComponent
       }
     ]
   },

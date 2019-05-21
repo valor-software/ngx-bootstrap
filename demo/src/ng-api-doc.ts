@@ -762,6 +762,11 @@ export const ngdoc: any = {
         "description": "<p>Initial value of datepicker</p>\n"
       },
       {
+        "name": "dateCustomClasses",
+        "type": "DatepickerDateCustomClasses[]",
+        "description": "<p>Date custom classes</p>\n"
+      },
+      {
         "name": "datesDisabled",
         "type": "Date[]",
         "description": "<p>Disable specific dates</p>\n"
@@ -837,6 +842,11 @@ export const ngdoc: any = {
         "defaultValue": "body",
         "type": "string",
         "description": "<p>A selector specifying the element the datepicker should be appended to.</p>\n"
+      },
+      {
+        "name": "dateCustomClasses",
+        "type": "DatepickerDateCustomClasses[]",
+        "description": "<p>Date custom classes</p>\n"
       },
       {
         "name": "datesDisabled",
@@ -964,6 +974,11 @@ export const ngdoc: any = {
         "description": "<p>Add class to current day</p>\n"
       },
       {
+        "name": "dateCustomClasses",
+        "type": "DatepickerDateCustomClasses[]",
+        "description": "<p>Default date custom classes for all date/range pickers</p>\n"
+      },
+      {
         "name": "datesDisabled",
         "type": "Date[]",
         "description": "<p>Disable specific dates</p>\n"
@@ -1039,6 +1054,11 @@ export const ngdoc: any = {
         "defaultValue": "body",
         "type": "string",
         "description": "<p>A selector specifying the element the daterangepicker should be appended to.</p>\n"
+      },
+      {
+        "name": "dateCustomClasses",
+        "type": "DatepickerDateCustomClasses[]",
+        "description": "<p>Date custom classes</p>\n"
       },
       {
         "name": "datesDisabled",
@@ -1538,6 +1558,13 @@ export const ngdoc: any = {
   "DatepickerRenderOptions": {
     "fileName": "src/datepicker/models/index.ts",
     "className": "DatepickerRenderOptions",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "DatepickerDateCustomClasses": {
+    "fileName": "src/datepicker/models/index.ts",
+    "className": "DatepickerDateCustomClasses",
     "description": "",
     "methods": [],
     "properties": []
