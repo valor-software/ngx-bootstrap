@@ -39,7 +39,7 @@
     "version.changelog": "run-s changelog git-add git-commit-changelog",
     "git-add": "git add -A",
     "git-commit-changelog": "git commit -am \"chore(changelog): update [skip ci] \"",
-    "changelog": "conventional-changelog -i CHANGELOG.md -s -p angular -r 2",
+    "changelog": "conventional-changelog -i CHANGELOG.md -s -p angular -r 0",
     "cy:open": "cypress open",
     "cy:run:smoke": "APPLITOOLS_CONCURRENCY=100 cypress run --config integrationFolder=cypress/integration",
     "cy:run:full": "APPLITOOLS_CONCURRENCY=100 cypress run --config integrationFolder=cypress/full",
