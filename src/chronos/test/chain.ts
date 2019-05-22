@@ -563,6 +563,8 @@ export class Khronos {
   }
 
   format(format?: string): string {
+    console.log(`date:  ${this._date} format: ${format} locale: ${this._locale && this._locale._abbr} isUTC: ${this._isUTC} offset: ${this._offset}`);
+
     return formatDate(this._date, format, this._locale && this._locale._abbr, this._isUTC, this._offset);
   }
 

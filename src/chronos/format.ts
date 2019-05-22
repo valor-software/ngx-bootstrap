@@ -19,9 +19,6 @@ export function formatDate(date: Date, format: string, locale?: string, isUTC?: 
   }
 
   const _format = format || (isUTC ?  'YYYY-MM-DDTHH:mm:ss[Z]' : 'YYYY-MM-DDTHH:mm:ssZ');
-
-
-  console.log('formatDate: ' + _format);
   const output = formatMoment(date, _format, _locale, isUTC, offset);
 
   if (!output) {
@@ -44,8 +41,6 @@ export function formatMoment(date: Date, _format: string, locale: Locale, isUTC?
 }
 
 export function expandFormat(_format: string, locale: Locale): string {
-  console.log('expandFormat: ' + _format);
-
   let format = _format;
   let i = 5;
   const localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g;
