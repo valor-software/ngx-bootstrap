@@ -405,7 +405,7 @@ describe('format', () => {
   });
 
   // chronos test issues
-  fit('quarter ordinal formats', function () {
+  it('quarter ordinal formats', function () {
     assertEq(moment([1985, 1, 4]).format('Qo'), '1st', 'Feb 4 1985 is 1st quarter');
     assertEq(moment([2029, 8, 18]).format('Qo'), '3rd', 'Sep 18 2029 is 3rd quarter');
     assertEq(moment([2013, 3, 24]).format('Qo'), '2nd', 'Apr 24 2013 is 2nd quarter');
