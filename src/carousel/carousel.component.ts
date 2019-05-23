@@ -240,6 +240,10 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
    * @param index: {number} index of slide, which must be shown
    */
   selectSlide(index: number): void {
+    if (this.isPlaying) {
+      this.restartTimer();
+    }
+
     if (!this.multilist) {
       this.activeSlide = index;
     } else {
