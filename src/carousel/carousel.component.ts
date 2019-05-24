@@ -149,6 +149,10 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       this.activeSlide = 0;
       this.play();
     }
+
+    if (this.multilist && this._slides.length > this.itemsPerSlide) {
+      this.play();
+    }
   }
 
   /**
@@ -307,8 +311,8 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
           ...this._slidesWithIndexes,
           ...slidesToAppend
         ]
-        .slice(slidesToAppend.length)
-        .slice(0, this.itemsPerSlide);
+          .slice(slidesToAppend.length)
+          .slice(0, this.itemsPerSlide);
       } else {
         this._slidesWithIndexes = this._slidesWithIndexes.slice(
           startIndex,
@@ -358,8 +362,8 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
           this._currentActiveSlide > 0
             ? this._currentActiveSlide - 1
             : !force && this.noWrap
-            ? this._currentActiveSlide
-            : this._slides.length - 1;
+              ? this._currentActiveSlide
+              : this._slides.length - 1;
         break;
       default:
         throw new Error('Unknown direction');
@@ -477,7 +481,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       indexToShow = direction !== Direction.NEXT
         ? firstVisibleIndex - 1
         : !this.isLast(lastVisibleIndex)
-        ? lastVisibleIndex + 1 : 0;
+          ? lastVisibleIndex + 1 : 0;
 
       this._slides.get(indexToHide).active = false;
       this._slides.get(indexToShow).active = true;
