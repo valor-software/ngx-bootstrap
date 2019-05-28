@@ -25,6 +25,7 @@
     "build": "run-s build.modules build:schematics build.sass",
     "build.watch": "node scripts/build-modules --watch",
     "build:schematics": "node scripts/schematics/build",
+    "build:dropdown": "rimraf dist/dropdown && node scripts/ng-packagr/api ../../src/dropdown/package.json",
     "build.modules": "node scripts/build-modules",
     "ci:update-pkg": "node scripts/ci/update-pkg.js",
     "ci:rename-pkg": "mv node_modules/ngx-bootstrap-ci node_modules/ngx-bootstrap",
