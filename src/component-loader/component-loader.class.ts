@@ -119,6 +119,7 @@ export class ComponentLoader<T> {
 
   position(opts?: PositioningOptions): ComponentLoader<T> {
     this.attachment = opts.attachment || this.attachment;
+    /* tslint:disable-next-line: no-unnecessary-type-assertion */
     this._elementRef = (opts.target as ElementRef) || this._elementRef;
 
     return this;
