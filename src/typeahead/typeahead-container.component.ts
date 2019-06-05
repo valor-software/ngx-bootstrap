@@ -55,7 +55,7 @@ export class TypeaheadContainerComponent {
   protected _active: TypeaheadMatch;
   protected _matches: TypeaheadMatch[] = [];
 
-  @ViewChild('ulElement')
+  @ViewChild('ulElement', { static: false })
   private ulElement: ElementRef;
 
   @ViewChildren('liElements')
