@@ -14,9 +14,11 @@ import { getFileContent } from '@schematics/angular/utility/test/index';
 import { getProjectMainFile } from './project-main-file';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { Rule, SchematicContext, SchematicsException, Tree } from '@angular-devkit/schematics';
-import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
-import { UnitTestTree } from '@angular-devkit/schematics/testing/schematic-test-runner';
-import { WorkspaceProject, WorkspaceSchema } from '@angular-devkit/core/src/workspace';
+import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
+import { WorkspaceProject, WorkspaceSchema } from '@schematics/angular/utility/workspace-models';
+
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 
 export function installPackageJsonDependencies(): Rule {
@@ -116,15 +118,18 @@ export function addPackageToPackageJson(host: Tree, pkg: string, version: string
   return host;
 }
 
-export function createTestApp(runner: SchematicTestRunner, appOptions = {}): UnitTestTree {
-  const workspaceTree = runner.runExternalSchematic('@schematics/angular', 'workspace', {
+export function createTestApp(runner: SchematicTestRunner, appOptions = {}): Observable<UnitTestTree> {
+  return runner.runExternalSchematicAsync('@schematics/angular', 'workspace', {
     name: 'workspace',
-    version: '6.0.0',
+    version: '8.0.1',
     newProjectRoot: 'projects'
-  });
-
-  return runner.runExternalSchematic('@schematics/angular', 'application',
-    {...appOptions, name: 'ngx-bootstrap'}, workspaceTree);
+  })
+    .pipe(
+      switchMap((workspaceTree: any) => {
+        return runner.runExternalSchematicAsync('@schematics/angular', 'application',
+          {...appOptions, name: 'ngx-bootstrap'}, workspaceTree);
+      })
+    );
 }
 
 export function removePackageJsonDependency(tree: Tree, dependencyName: string) {
