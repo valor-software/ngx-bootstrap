@@ -27,7 +27,7 @@ export class TestComponent {
   title: string;
   placement: string;
 
-  @ViewChild(PopoverDirective) popover: PopoverDirective;
+  @ViewChild(PopoverDirective, { static: false }) popover: PopoverDirective;
 
   shown(): void {
     return;

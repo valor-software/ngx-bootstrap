@@ -55,6 +55,7 @@ export class PositioningService {
       merge(
         fromEvent(window, 'scroll'),
         fromEvent(window, 'resize'),
+        /* tslint:disable-next-line: deprecation */
         of(0, animationFrameScheduler),
         this.update$$
       )
