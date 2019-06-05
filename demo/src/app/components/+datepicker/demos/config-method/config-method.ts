@@ -6,7 +6,7 @@ import { BsDaterangepickerDirective, BsDatepickerConfig } from 'ngx-bootstrap/da
   templateUrl: './config-method.html'
 })
 export class DemoDatepickerConfigMethodComponent {
-  @ViewChild('dp') datepicker: BsDaterangepickerDirective;
+  @ViewChild('dp', { static: false }) datepicker: BsDaterangepickerDirective;
 
   bsConfig: Partial<BsDatepickerConfig>;
   minDate = new Date(2018, 5, 13);
