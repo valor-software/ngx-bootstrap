@@ -46,6 +46,9 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   @Input() noPause: boolean;
   /*  If `true` — carousel-indicators are visible  */
   @Input() showIndicators: boolean;
+  /* If `true` - carousel indicators indicate slides chunks
+     works ONLY if singleSlideOffset = FALSE */
+  @Input() indicatorsByChunk = false;
   /* If value more then 1 — carousel works in multilist mode */
   @Input() itemsPerSlide = 1;
   /* If `true` — carousel shifts by one element. By default carousel shifts by number
@@ -118,6 +121,9 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     setTimeout(() => {
+      if (this.singleSlideOffset) {
+        this.indicatorsByChunk = false;
+      }
       if (this.multilist) {
         this._chunkedSlides = chunkByNumber(
           this.mapSlidesAndIndexes(),
@@ -147,6 +153,10 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     if (!this.multilist && this._slides.length === 1) {
       this._currentActiveSlide = undefined;
       this.activeSlide = 0;
+      this.play();
+    }
+
+    if (this.multilist && this._slides.length > this.itemsPerSlide) {
       this.play();
     }
   }
@@ -187,11 +197,18 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     }
   }
 
+  nextSlideFromInterval(force = false): void {
+    this.move(Direction.NEXT, force);
+  }
+
   /**
    * Rolling to next slide
    * @param force: {boolean} if true - will ignore noWrap flag
    */
   nextSlide(force = false): void {
+    if (this.isPlaying) {
+      this.restartTimer();
+    }
     this.move(Direction.NEXT, force);
   }
 
@@ -200,6 +217,9 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
    * @param force: {boolean} if true - will ignore noWrap flag
    */
   previousSlide(force = false): void {
+    if (this.isPlaying) {
+      this.restartTimer();
+    }
     this.move(Direction.PREV, force);
   }
 
@@ -240,10 +260,14 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
    * @param index: {number} index of slide, which must be shown
    */
   selectSlide(index: number): void {
+    if (this.isPlaying) {
+      this.restartTimer();
+    }
+
     if (!this.multilist) {
-      this.activeSlide = index;
+      this.activeSlide = this.indicatorsByChunk ? index * this.itemsPerSlide : index;
     } else {
-      this.selectSlideRange(index);
+      this.selectSlideRange(this.indicatorsByChunk ? index * this.itemsPerSlide : index);
     }
   }
 
@@ -290,6 +314,12 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     return index === 0;
   }
 
+  indicatorsSlides(): SlideComponent[] {
+    return this.slides.filter(
+      (slide: SlideComponent, index: number) => !this.indicatorsByChunk || index % this.itemsPerSlide === 0
+    );
+  }
+
   private selectInitialSlides(): void {
     const startIndex = this.startFromIndex <= this._slides.length
       ? this.startFromIndex
@@ -307,8 +337,8 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
           ...this._slidesWithIndexes,
           ...slidesToAppend
         ]
-        .slice(slidesToAppend.length)
-        .slice(0, this.itemsPerSlide);
+          .slice(slidesToAppend.length)
+          .slice(0, this.itemsPerSlide);
       } else {
         this._slidesWithIndexes = this._slidesWithIndexes.slice(
           startIndex,
@@ -358,8 +388,8 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
           this._currentActiveSlide > 0
             ? this._currentActiveSlide - 1
             : !force && this.noWrap
-            ? this._currentActiveSlide
-            : this._slides.length - 1;
+              ? this._currentActiveSlide
+              : this._slides.length - 1;
         break;
       default:
         throw new Error('Unknown direction');
@@ -477,7 +507,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       indexToShow = direction !== Direction.NEXT
         ? firstVisibleIndex - 1
         : !this.isLast(lastVisibleIndex)
-        ? lastVisibleIndex + 1 : 0;
+          ? lastVisibleIndex + 1 : 0;
 
       this._slides.get(indexToHide).active = false;
       this._slides.get(indexToShow).active = true;
@@ -617,7 +647,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
               nInterval > 0 &&
               this.slides.length
             ) {
-              this.nextSlide();
+              this.nextSlideFromInterval();
             } else {
               this.pause();
             }

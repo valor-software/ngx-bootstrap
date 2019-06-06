@@ -14,6 +14,10 @@ export class CarouselConfig {
   /** Show carousel-indicators */
   showIndicators = true;
 
+  /* If `true` - carousel indicators indicate slides chunks
+     works ONLY if singleSlideOffset = FALSE */
+  indicatorsByChunk = false;
+
   /* If value more then 1 — carousel works in multilist mode */
   itemsPerSlide = 1;
 
