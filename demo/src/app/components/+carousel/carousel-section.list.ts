@@ -11,6 +11,7 @@ import { DemoCarouselSlideChangedEventComponent } from './demos/slide-changed-ev
 import { DemoCarouselMultilistComponent } from './demos/multilist/multilist';
 import { DemoCarouselMultilistSingleOffsetComponent } from './demos/multilist-single-offset/multilist-single-offset';
 import { DemoCarouselMultilistFromIndexComponent } from './demos/multilist-from-index/multilist-from-index';
+import { DemoCarouselMultilistIndicatorsByChunkComponent } from './demos/multilist-indicators-by-chunk/multilist-indicators-by-chunk';
 import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
 
 import { ContentSection } from '../../docs/models/content-section.model';
@@ -128,6 +129,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/multilist-from-index/multilist-from-index.ts'),
         html: require('!!raw-loader!./demos/multilist-from-index/multilist-from-index.html'),
         outlet: DemoCarouselMultilistFromIndexComponent
+      },
+      {
+        title: 'Multilist Indicators By Chunk',
+        anchor: 'multilist-indicators-by-chunk',
+        component: require('!!raw-loader?lang=typescript!./demos/multilist-indicators-by-chunk/multilist-indicators-by-chunk.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/multilist-indicators-by-chunk/multilist-indicators-by-chunk.html'),
+        outlet: DemoCarouselMultilistIndicatorsByChunkComponent
       },
       {
         title: 'Accessibility',

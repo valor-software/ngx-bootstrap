@@ -1,6 +1,6 @@
 <div (mouseenter)="pause()" (mouseleave)="play()" (mouseup)="play()" class="carousel slide">
   <ol class="carousel-indicators" *ngIf="showIndicators && slides.length > 1">
-    <li *ngFor="let slidez of slides; let i = index;" [class.active]="slidez.active === true" (click)="selectSlide(i)"></li>
+    <li *ngFor="let slidez of indicatorsSlides(); let i = index;" [class.active]="slidez.active === true" (click)="selectSlide(i)"></li>
   </ol>
   <div class="carousel-inner" [ngStyle]="{'display': multilist ? 'flex' : 'block'}"><ng-content></ng-content></div>
   <a class="left carousel-control carousel-control-prev" [class.disabled]="activeSlide === 0 && noWrap" (click)="previousSlide()" *ngIf="slides.length > 1">

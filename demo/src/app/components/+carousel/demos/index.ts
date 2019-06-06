@@ -11,6 +11,7 @@ import { DemoCarouselSlideChangedEventComponent } from './slide-changed-event/sl
 import { DemoCarouselMultilistComponent } from './multilist/multilist';
 import { DemoCarouselMultilistSingleOffsetComponent } from './multilist-single-offset/multilist-single-offset';
 import { DemoCarouselMultilistFromIndexComponent } from './multilist-from-index/multilist-from-index';
+import { DemoCarouselMultilistIndicatorsByChunkComponent } from './multilist-indicators-by-chunk/multilist-indicators-by-chunk';
 import { DemoAccessibilityComponent } from './accessibility/accessibility';
 
 export const DEMO_COMPONENTS = [
@@ -28,5 +29,6 @@ export const DEMO_COMPONENTS = [
   DemoCarouselMultilistComponent,
   DemoCarouselMultilistSingleOffsetComponent,
   DemoCarouselMultilistFromIndexComponent,
+  DemoCarouselMultilistIndicatorsByChunkComponent,
   DemoAccessibilityComponent
 ];

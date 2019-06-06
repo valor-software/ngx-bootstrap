@@ -46,6 +46,9 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   @Input() noPause: boolean;
   /*  If `true` — carousel-indicators are visible  */
   @Input() showIndicators: boolean;
+  /* If `true` - carousel indicators indicate slides chunks
+     works ONLY if singleSlideOffset = FALSE */
+  @Input() indicatorsByChunk = false;
   /* If value more then 1 — carousel works in multilist mode */
   @Input() itemsPerSlide = 1;
   /* If `true` — carousel shifts by one element. By default carousel shifts by number
@@ -118,6 +121,9 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     setTimeout(() => {
+      if (this.singleSlideOffset) {
+        this.indicatorsByChunk = false;
+      }
       if (this.multilist) {
         this._chunkedSlides = chunkByNumber(
           this.mapSlidesAndIndexes(),
@@ -259,9 +265,9 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     }
 
     if (!this.multilist) {
-      this.activeSlide = index;
+      this.activeSlide = this.indicatorsByChunk ? index * this.itemsPerSlide : index;
     } else {
-      this.selectSlideRange(index);
+      this.selectSlideRange(this.indicatorsByChunk ? index * this.itemsPerSlide : index);
     }
   }
 
@@ -306,6 +312,12 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
    */
   isFirst(index: number): boolean {
     return index === 0;
+  }
+
+  indicatorsSlides(): SlideComponent[] {
+    return this.slides.filter(
+      (slide: SlideComponent, index: number) => !this.indicatorsByChunk || index % this.itemsPerSlide === 0
+    );
   }
 
   private selectInitialSlides(): void {
