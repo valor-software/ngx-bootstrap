@@ -28,7 +28,7 @@ export const demoComponentContent: ContentSection[] = [
     anchor: 'usage',
     outlet: DemoTopSectionComponent,
     content: {
-      doc: require('!!raw-loader?lang=typescript!./docs/usage.md')
+      doc: require('!!raw-loader!./docs/usage.md')
     }
   },
   {
@@ -40,64 +40,64 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Basic',
         anchor: 'basic',
-        component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
+        component: require('!!raw-loader!./demos/basic/basic.ts'),
+        html: require('!!raw-loader!./demos/basic/basic.html'),
         outlet: DemoPaginationBasicComponent
       },
       {
         title: 'Manual switching page',
         anchor: 'manual-switching',
-        component: require('!!raw-loader?lang=typescript!./demos/manual-switching/manual-switching.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/manual-switching/manual-switching.html'),
+        component: require('!!raw-loader!./demos/manual-switching/manual-switching.ts'),
+        html: require('!!raw-loader!./demos/manual-switching/manual-switching.html'),
         outlet: DemoPaginationManualSwitchingComponent
       },
       {
         title: 'Page changed event',
         anchor: 'page-changed-event',
-        component: require('!!raw-loader?lang=typescript!./demos/page-changed-event/page-changed-event.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/page-changed-event/page-changed-event.html'),
+        component: require('!!raw-loader!./demos/page-changed-event/page-changed-event.ts'),
+        html: require('!!raw-loader!./demos/page-changed-event/page-changed-event.html'),
         outlet: DemoPaginationPageChangedComponent
       },
       {
         title: 'Pages count changed event',
         anchor: 'pages-count-changed',
-        component: require('!!raw-loader?lang=typescript!./demos/pages-count-changed/pages-count-changed.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/pages-count-changed/pages-count-changed.html'),
+        component: require('!!raw-loader!./demos/pages-count-changed/pages-count-changed.ts'),
+        html: require('!!raw-loader!./demos/pages-count-changed/pages-count-changed.html'),
         outlet: DemoPaginationPagesCountChangedComponent
       },
       {
         title: 'Boundary links',
         anchor: 'boundary-links',
-        component: require('!!raw-loader?lang=typescript!./demos/boundary-links/boundary-links.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/boundary-links/boundary-links.html'),
+        component: require('!!raw-loader!./demos/boundary-links/boundary-links.ts'),
+        html: require('!!raw-loader!./demos/boundary-links/boundary-links.html'),
         outlet: DemoPaginationBoundaryLinksComponent
       },
       {
         title: 'Direction links',
         anchor: 'direction-links',
-        component: require('!!raw-loader?lang=typescript!./demos/direction-links/direction-links.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/direction-links/direction-links.html'),
+        component: require('!!raw-loader!./demos/direction-links/direction-links.ts'),
+        html: require('!!raw-loader!./demos/direction-links/direction-links.html'),
         outlet: DemoPaginationDirectionLinksComponent
       },
       {
         title: 'Custom links content',
         anchor: 'custom-links-content',
-        component: require('!!raw-loader?lang=typescript!./demos/custom-links-content/custom-links-content.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/custom-links-content/custom-links-content.html'),
+        component: require('!!raw-loader!./demos/custom-links-content/custom-links-content.ts'),
+        html: require('!!raw-loader!./demos/custom-links-content/custom-links-content.html'),
         outlet: DemoPaginationCustomLinksContentComponent
       },
       {
         title: 'Disabled',
         anchor: 'pagination-disabled',
-        component: require('!!raw-loader?lang=typescript!./demos/disabled/disabled.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/disabled/disabled.html'),
+        component: require('!!raw-loader!./demos/disabled/disabled.ts'),
+        html: require('!!raw-loader!./demos/disabled/disabled.html'),
         outlet: DemoPaginationDisabledComponent
       },
       {
         title: 'Limits',
         anchor: 'pagination-limit',
-        component: require('!!raw-loader?lang=typescript!./demos/limit/limit.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/limit/limit.html'),
+        component: require('!!raw-loader!./demos/limit/limit.ts'),
+        html: require('!!raw-loader!./demos/limit/limit.html'),
         description: `<p>Limit the maximum visible page numbers</p>`,
         outlet: DemoPaginationLimitComponent
       },
@@ -105,31 +105,31 @@ export const demoComponentContent: ContentSection[] = [
 
         title: 'Centering the active page link',
         anchor: 'pagination-rotate',
-        component: require('!!raw-loader?lang=typescript!./demos/rotate/rotate.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/rotate/rotate.html'),
+        component: require('!!raw-loader!./demos/rotate/rotate.ts'),
+        html: require('!!raw-loader!./demos/rotate/rotate.html'),
         description: `<p>Set current page link to center</p>`,
         outlet: DemoPaginationRotateComponent
       },
       {
         title: 'Content switching',
         anchor: 'content-switching',
-        component: require('!!raw-loader?lang=typescript!./demos/content-switching/content-switching.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/content-switching/content-switching.html'),
+        component: require('!!raw-loader!./demos/content-switching/content-switching.ts'),
+        html: require('!!raw-loader!./demos/content-switching/content-switching.html'),
         outlet: DemoPaginationContentSwitchingComponent
       },
       {
         title: 'Pager',
         anchor: 'pagination-pager',
-        component: require('!!raw-loader?lang=typescript!./demos/pager/pager.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/pager/pager.html'),
+        component: require('!!raw-loader!./demos/pager/pager.ts'),
+        html: require('!!raw-loader!./demos/pager/pager.html'),
         outlet: DemoPaginationPagerComponent
       }
       /* TODO: temporary disabled pageBtnClass option
       {
         title: 'Styling',
         anchor: 'pagination-styling',
-        component: require('!!raw-loader?lang=typescript!./demos/styling-global/styling-global.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/styling-global/styling-global.html'),
+        component: require('!!raw-loader!./demos/styling-global/styling-global.ts'),
+        html: require('!!raw-loader!./demos/styling-global/styling-global.html'),
         outlet: DemoPaginationStylingComponent
       }*/
     ]

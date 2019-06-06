@@ -9,7 +9,7 @@
 import { chain, noop, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { getWorkspace } from '@schematics/angular/utility/config';
 import { Schema } from './schema';
-import { WorkspaceProject, WorkspaceSchema } from '@angular-devkit/core/src/workspace';
+import { WorkspaceProject, WorkspaceSchema } from '@schematics/angular/utility/workspace-models';
 
 import {
   addModuleImportToRootModule,
