@@ -191,11 +191,18 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     }
   }
 
+  nextSlideFromInterval(force = false): void {
+    this.move(Direction.NEXT, force);
+  }
+
   /**
    * Rolling to next slide
    * @param force: {boolean} if true - will ignore noWrap flag
    */
   nextSlide(force = false): void {
+    if (this.isPlaying) {
+      this.restartTimer();
+    }
     this.move(Direction.NEXT, force);
   }
 
@@ -204,6 +211,9 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
    * @param force: {boolean} if true - will ignore noWrap flag
    */
   previousSlide(force = false): void {
+    if (this.isPlaying) {
+      this.restartTimer();
+    }
     this.move(Direction.PREV, force);
   }
 
@@ -244,6 +254,10 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
    * @param index: {number} index of slide, which must be shown
    */
   selectSlide(index: number): void {
+    if (this.isPlaying) {
+      this.restartTimer();
+    }
+
     if (!this.multilist) {
       this.activeSlide = index;
     } else {
@@ -621,7 +635,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
               nInterval > 0 &&
               this.slides.length
             ) {
-              this.nextSlide();
+              this.nextSlideFromInterval();
             } else {
               this.pause();
             }

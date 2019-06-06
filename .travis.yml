@@ -17,7 +17,7 @@ env:
     - BROWSER_PROVIDER_READY_FILE=/tmp/sauce-connect-ready
     - LOGS_DIR=/tmp/logs
     - CYPRESS_RECORD_KEY=4aa7a1c0-3a4f-444e-b324-6fc305a543a8
-    - NPM_AUTH_TOKEN_CI_PR=d05d9a8c-02db-413b-a412-aa27ab527213
+    - NPM_AUTH_TOKEN_CI_PR=c687305b-fd76-4d02-9f64-8ecdbc31d9a4
 
 #     test cypress smoke
 testSmokeCy: &testSmokeCy
@@ -50,10 +50,10 @@ before_install:
 
 install:
 - npm ci
-- npm i ngx-bootstrap-ci@$TRAVIS_COMMIT
-- npm run ci:rename-pkg
 - if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
 - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
+- npm i ngx-bootstrap-ci@$TRAVIS_COMMIT
+- npm run ci:rename-pkg
 - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export SAUCE_USERNAME=$SAUCE_USERNAME_PR; export SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; export NPM_AUTH_TOKEN_CI=$NPM_AUTH_TOKEN_CI_PR; fi
 
 jobs:

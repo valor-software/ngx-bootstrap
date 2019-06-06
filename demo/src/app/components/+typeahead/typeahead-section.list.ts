@@ -34,7 +34,7 @@ export const demoComponentContent: ContentSection[] = [
     anchor: 'usage',
     outlet: DemoTopSectionComponent,
     content: {
-      doc: require('!!raw-loader?lang=typescript!./docs/usage.md')
+      doc: require('!!raw-loader!./docs/usage.md')
     }
   },
   {
@@ -45,8 +45,8 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Basic array',
         anchor: 'Basic-array',
-        component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
+        component: require('!!raw-loader!./demos/basic/basic.ts'),
+        html: require('!!raw-loader!./demos/basic/basic.html'),
         outlet: DemoTypeaheadBasicComponent
       },
       {
@@ -55,29 +55,29 @@ export const demoComponentContent: ContentSection[] = [
         description: `
           <p>You can enable adaptive position via <code>adaptivePosition</code> input or config option</p>
         `,
-        component: require('!!raw-loader?lang=typescript!./demos/adaptive-position/adaptive-position.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/adaptive-position/adaptive-position.html'),
+        component: require('!!raw-loader!./demos/adaptive-position/adaptive-position.ts'),
+        html: require('!!raw-loader!./demos/adaptive-position/adaptive-position.html'),
         outlet: DemoTypeaheadAdaptivePositionComponent
       },
       {
         title: 'Item template',
         anchor: 'item-template',
-        component: require('!!raw-loader?lang=typescript!./demos/item-template/item-template.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/item-template/item-template.html'),
+        component: require('!!raw-loader!./demos/item-template/item-template.ts'),
+        html: require('!!raw-loader!./demos/item-template/item-template.html'),
         outlet: DemoTypeaheadItemTemplateComponent
       },
       {
         title: 'Option field',
         anchor: 'option-field',
-        component: require('!!raw-loader?lang=typescript!./demos/field/field.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/field/field.html'),
+        component: require('!!raw-loader!./demos/field/field.ts'),
+        html: require('!!raw-loader!./demos/field/field.html'),
         outlet: DemoTypeaheadFieldComponent
       },
       {
         title: 'Async data',
         anchor: 'async-data',
-        component: require('!!raw-loader?lang=typescript!./demos/async/async.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/async/async.html'),
+        component: require('!!raw-loader!./demos/async/async.ts'),
+        html: require('!!raw-loader!./demos/async/async.html'),
         outlet: DemoTypeaheadAsyncComponent
       },
       {
@@ -87,8 +87,8 @@ export const demoComponentContent: ContentSection[] = [
           <p>Use <code>typeaheadWaitMs</code> to set minimal waiting time after last character typed
           before typeahead kicks-in. In example a search begins with delay in 1 second</p>
         `,
-        component: require('!!raw-loader?lang=typescript!./demos/delay/delay.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/delay/delay.html'),
+        component: require('!!raw-loader!./demos/delay/delay.ts'),
+        html: require('!!raw-loader!./demos/delay/delay.html'),
         outlet: DemoTypeaheadDelayComponent
       },
       {
@@ -98,8 +98,8 @@ export const demoComponentContent: ContentSection[] = [
           <p>Typeahead can be used in template-driven forms. Keep in mind that value of <code>ngModel</code> is
           <code>string</code></p>
         `,
-        component: require('!!raw-loader?lang=typescript!./demos/form/form.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/form/form.html'),
+        component: require('!!raw-loader!./demos/form/form.ts'),
+        html: require('!!raw-loader!./demos/form/form.html'),
         outlet: DemoTypeaheadFormComponent
       },
       {
@@ -108,22 +108,22 @@ export const demoComponentContent: ContentSection[] = [
         description: `
           <p>Typeahead can be used in reactive forms</p>
         `,
-        component: require('!!raw-loader?lang=typescript!./demos/reactive-form/reactive-form.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/reactive-form/reactive-form.html'),
+        component: require('!!raw-loader!./demos/reactive-form/reactive-form.ts'),
+        html: require('!!raw-loader!./demos/reactive-form/reactive-form.html'),
         outlet: DemoTypeaheadReactiveFormComponent
       },
       {
         title: 'Grouping results',
         anchor: 'grouping-results',
-        component: require('!!raw-loader?lang=typescript!./demos/grouping/grouping.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/grouping/grouping.html'),
+        component: require('!!raw-loader!./demos/grouping/grouping.ts'),
+        html: require('!!raw-loader!./demos/grouping/grouping.html'),
         outlet: DemoTypeaheadGroupingComponent
       },
       {
         title: 'Ignore spaces and order',
         anchor: 'single-world',
-        component: require('!!raw-loader?lang=typescript!./demos/single-world/single-world.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/single-world/single-world.html'),
+        component: require('!!raw-loader!./demos/single-world/single-world.ts'),
+        html: require('!!raw-loader!./demos/single-world/single-world.html'),
         description: `
           <p>After setting <code>typeaheadSingleWords</code> input property to <code>true</code>
           order of typed symbols and spaces between them will be ignored. For example, "<i>zona ari</i>"
@@ -134,8 +134,8 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Phrase delimiters',
         anchor: 'phrase-delimiters',
-        component: require('!!raw-loader?lang=typescript!./demos/phrase-delimiters/phrase-delimiters.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/phrase-delimiters/phrase-delimiters.html'),
+        component: require('!!raw-loader!./demos/phrase-delimiters/phrase-delimiters.ts'),
+        html: require('!!raw-loader!./demos/phrase-delimiters/phrase-delimiters.html'),
         description: `
           <p>Set the word delimiter by <code>typeaheadPhraseDelimiters</code> to match exact phrase.
           This is demo with delimeters "<code>&</code>" and "<code>,</code>"</p>
@@ -145,8 +145,8 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dropup',
         anchor: 'dropup',
-        component: require('!!raw-loader?lang=typescript!./demos/dropup/dropup.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/dropup/dropup.html'),
+        component: require('!!raw-loader!./demos/dropup/dropup.ts'),
+        html: require('!!raw-loader!./demos/dropup/dropup.html'),
         outlet: DemoTypeaheadDropupComponent
       },
       {
@@ -156,8 +156,8 @@ export const demoComponentContent: ContentSection[] = [
          <p>Returns an option on which user lost a focus. To reproduce start typing the name of the state, then focus
          on one of the options with mouse or arrow keys and click outside of the typeahead</p>
         `,
-        component: require('!!raw-loader?lang=typescript!./demos/on-blur/on-blur.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/on-blur/on-blur.html'),
+        component: require('!!raw-loader!./demos/on-blur/on-blur.ts'),
+        html: require('!!raw-loader!./demos/on-blur/on-blur.html'),
         outlet: DemoTypeaheadOnBlurComponent
       },
       {
@@ -166,8 +166,8 @@ export const demoComponentContent: ContentSection[] = [
         description: `
         <p><code>container</code> is an input property specifying the element the typeahead should be appended to.</p>
         `,
-        component: require('!!raw-loader?lang=typescript!./demos/container/container.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/container/container.html'),
+        component: require('!!raw-loader!./demos/container/container.ts'),
+        html: require('!!raw-loader!./demos/container/container.html'),
         outlet: DemoTypeaheadContainerComponent
       },
       {
@@ -177,15 +177,15 @@ export const demoComponentContent: ContentSection[] = [
          <p>Used to display the state when no matches were found. To see message
          "No Results Found" enter the value that doesn't match anything from the list</p>
         `,
-        component: require('!!raw-loader?lang=typescript!./demos/no-result/no-result.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/no-result/no-result.html'),
+        component: require('!!raw-loader!./demos/no-result/no-result.ts'),
+        html: require('!!raw-loader!./demos/no-result/no-result.html'),
         outlet: DemoTypeaheadNoResultComponent
       },
       {
         title: 'Scrollable',
         anchor: 'scrollable',
-        component: require('!!raw-loader?lang=typescript!./demos/scrollable/scrollable.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/scrollable/scrollable.html'),
+        component: require('!!raw-loader!./demos/scrollable/scrollable.ts'),
+        html: require('!!raw-loader!./demos/scrollable/scrollable.html'),
         outlet: DemoTypeaheadScrollableComponent
       },
       {
@@ -195,8 +195,8 @@ export const demoComponentContent: ContentSection[] = [
           <p>Use <code>typeaheadLatinize</code> property for matching latin symbols. If it is set
           to <code>true</code> the word <strong>súper</strong> would match <strong>super</strong> and vice versa.</p>
         `,
-        component: require('!!raw-loader?lang=typescript!./demos/latinize/latinize.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/latinize/latinize.html'),
+        component: require('!!raw-loader!./demos/latinize/latinize.ts'),
+        html: require('!!raw-loader!./demos/latinize/latinize.html'),
         outlet: DemoTypeaheadLatinizeComponent
       },
       {
@@ -206,8 +206,8 @@ export const demoComponentContent: ContentSection[] = [
           <p><code>typeaheadOnSelect</code> event is fired when an option was selected.
           Returns an object with this option</p>
         `,
-        component: require('!!raw-loader?lang=typescript!./demos/on-select/on-select.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/on-select/on-select.html'),
+        component: require('!!raw-loader!./demos/on-select/on-select.ts'),
+        html: require('!!raw-loader!./demos/on-select/on-select.html'),
         outlet: DemoTypeaheadOnSelectComponent
       },
       {
@@ -216,8 +216,8 @@ export const demoComponentContent: ContentSection[] = [
         description: `
           <p>Minimal number of characters that needs to be entered before typeahead kicks in. When set to 0, typeahead shows on focus with full list of options.</p>
         `,
-        component: require('!!raw-loader?lang=typescript!./demos/min-length/min-length.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/min-length/min-length.html'),
+        component: require('!!raw-loader!./demos/min-length/min-length.ts'),
+        html: require('!!raw-loader!./demos/min-length/min-length.html'),
         outlet: DemoTypeaheadMinLengthComponent
       },
       {
@@ -227,15 +227,15 @@ export const demoComponentContent: ContentSection[] = [
           <p>Use input property <code>typeaheadHideResultsOnBlur</code> or config property <code>hideResultsOnBlur</code> 
           to prevent hiding typeahead's results until a user doesn't choose an item</p>
         `,
-        component: require('!!raw-loader?lang=typescript!./demos/show-on-blur/show-on-blur.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/show-on-blur/show-on-blur.html'),
+        component: require('!!raw-loader!./demos/show-on-blur/show-on-blur.ts'),
+        html: require('!!raw-loader!./demos/show-on-blur/show-on-blur.html'),
         outlet: DemoTypeaheadShowOnBlurComponent
       },
       {
         title: 'Configuring defaults',
         anchor: 'configuration',
-        component: require('!!raw-loader?lang=typescript!./demos/config/config'),
-        html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
+        component: require('!!raw-loader!./demos/config/config'),
+        html: require('!!raw-loader!./demos/config/config.html'),
         outlet: DemoTypeaheadConfigComponent
       },
       {
@@ -244,8 +244,8 @@ export const demoComponentContent: ContentSection[] = [
         description: `
           <p>Use input property <code>typeaheadIsFirstItemActive</code> or config property <code>isFirstItemActive</code> to make the first item active/inactive </p>
         `,
-        component: require('!!raw-loader?lang=typescript!./demos/first-item-active/first-item-active.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/first-item-active/first-item-active.html'),
+        component: require('!!raw-loader!./demos/first-item-active/first-item-active.ts'),
+        html: require('!!raw-loader!./demos/first-item-active/first-item-active.html'),
         outlet: DemoTypeaheadFirstItemActiveComponent
       },
       {
@@ -254,8 +254,8 @@ export const demoComponentContent: ContentSection[] = [
         description: `
           <p>Use <code>typeaheadSelectFirstItem</code> property to make the first item in options list unselectable by tab and enter.</p>
         `,
-        component: require('!!raw-loader?lang=typescript!./demos/selected-first-item/selected-first-item.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/selected-first-item/selected-first-item.html'),
+        component: require('!!raw-loader!./demos/selected-first-item/selected-first-item.ts'),
+        html: require('!!raw-loader!./demos/selected-first-item/selected-first-item.html'),
         outlet: DemotypeaheadSelectFirstItemComponent
       }
     ]
