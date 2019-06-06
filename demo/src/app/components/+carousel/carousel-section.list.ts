@@ -133,8 +133,8 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Multilist Indicators By Chunk',
         anchor: 'multilist-indicators-by-chunk',
-        component: require('!!raw-loader?lang=typescript!./demos/multilist-indicators-by-chunk/multilist-indicators-by-chunk.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/multilist-indicators-by-chunk/multilist-indicators-by-chunk.html'),
+        component: require('!!raw-loader!./demos/multilist-indicators-by-chunk/multilist-indicators-by-chunk.ts'),
+        html: require('!!raw-loader!./demos/multilist-indicators-by-chunk/multilist-indicators-by-chunk.html'),
         outlet: DemoCarouselMultilistIndicatorsByChunkComponent
       },
       {
