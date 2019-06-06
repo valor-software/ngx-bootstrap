@@ -2,6 +2,7 @@ import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-ap
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section';
 import { DemoTypeaheadAdaptivePositionComponent } from './demos/adaptive-position/adaptive-position';
+import { DemoTypeaheadAnimatedComponent } from './demos/animated/animated';
 import { DemoTypeaheadAsyncComponent } from './demos/async/async';
 import { DemoTypeaheadBasicComponent } from './demos/basic/basic';
 import { DemoTypeaheadConfigComponent } from './demos/config/config';
@@ -48,6 +49,14 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/basic/basic.ts'),
         html: require('!!raw-loader!./demos/basic/basic.html'),
         outlet: DemoTypeaheadBasicComponent
+      },
+      {
+        title: 'With animation',
+        anchor: 'animated',
+        component: require('!!raw-loader!./demos/animated/animated'),
+        html: require('!!raw-loader!./demos/animated/animated.html'),
+        description: `You can enable animation via <code>isAnimated</code> input or config option`,
+        outlet: DemoTypeaheadAnimatedComponent
       },
       {
         title: 'Adaptive position',

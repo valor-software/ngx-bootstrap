@@ -2,6 +2,7 @@ import { DemoTypeaheadAdaptivePositionComponent } from './adaptive-position/adap
 import { DemoTypeaheadAsyncComponent } from './async/async';
 import { DemoTypeaheadBasicComponent } from './basic/basic';
 import { DemoTypeaheadConfigComponent } from './config/config';
+import { DemoTypeaheadAnimatedComponent } from './animated/animated';
 import { DemoTypeaheadContainerComponent } from './container/container';
 import { DemoTypeaheadDelayComponent } from './delay/delay';
 import { DemoTypeaheadDropupComponent } from './dropup/dropup';
@@ -24,6 +25,7 @@ import { DemoTypeaheadSingleWorldComponent } from './single-world/single-world';
 
 export const DEMO_COMPONENTS = [
   DemoTypeaheadAdaptivePositionComponent,
+  DemoTypeaheadAnimatedComponent,
   DemoTypeaheadAsyncComponent,
   DemoTypeaheadBasicComponent,
   DemoTypeaheadConfigComponent,
