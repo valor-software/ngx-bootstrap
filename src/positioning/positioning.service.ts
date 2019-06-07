@@ -3,7 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 
 import { positionElements } from './ng-positioning';
 
-import { fromEvent, merge, of, animationFrameScheduler, Subject } from 'rxjs';
+import { fromEvent, merge, of, animationFrameScheduler, Subject, Observable } from 'rxjs';
 import { Options } from './models';
 
 
@@ -43,25 +43,33 @@ export interface PositioningOptions {
 
 @Injectable()
 export class PositioningService {
-  options: Options;
+  private options: Options;
   private update$$ = new Subject<null>();
   private positionElements = new Map();
+  private triggerEvent$: Observable<number|Event>;
+  private isDisabled = false;
 
   constructor(
     rendererFactory: RendererFactory2,
     @Inject(PLATFORM_ID) platformId: number
   ) {
     if (isPlatformBrowser(platformId)) {
-      merge(
+      this.triggerEvent$ = merge(
         fromEvent(window, 'scroll'),
         fromEvent(window, 'resize'),
         /* tslint:disable-next-line: deprecation */
         of(0, animationFrameScheduler),
         this.update$$
-      )
-        .subscribe(() => {
+      );
+
+      this.triggerEvent$.subscribe(() => {
+          if (this.isDisabled) {
+            return;
+          }
+
           this.positionElements
-            .forEach((positionElement: PositioningOptions) => {
+            /* tslint:disable-next-line: no-any */
+            .forEach((positionElement: any) => {
               positionElements(
                 _getHtmlElement(positionElement.target),
                 _getHtmlElement(positionElement.element),
@@ -77,6 +85,18 @@ export class PositioningService {
 
   position(options: PositioningOptions): void {
     this.addPositionElement(options);
+  }
+
+  get event$(): Observable<number|Event> {
+    return this.triggerEvent$;
+  }
+
+  disable(): void {
+    this.isDisabled = true;
+  }
+
+  enable(): void {
+    this.isDisabled = false;
   }
 
   addPositionElement(options: PositioningOptions): void {
