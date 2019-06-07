@@ -14,6 +14,8 @@ import {
 export class BsDatepickerConfig implements DatepickerRenderOptions {
   /** sets use adaptive position */
   adaptivePosition = false;
+  /** turn on/off animation */
+  isAnimated = false;
   value?: Date | Date[];
   isDisabled?: boolean;
   /**

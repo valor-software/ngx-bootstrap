@@ -1,5 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Component, ViewChild } from '@angular/core';
 
 import { BsDatepickerInlineConfig, BsDatepickerInlineDirective, BsDatepickerModule } from '.';
 import { CalendarCellViewModel } from './models';
@@ -34,7 +35,10 @@ describe('datepicker inline:', () => {
   beforeEach(
     async(() => TestBed.configureTestingModule({
         declarations: [TestComponent],
-        imports: [BsDatepickerModule.forRoot()]
+        imports: [
+          BsDatepickerModule.forRoot(),
+          BrowserAnimationsModule
+        ]
     }).compileComponents()
     ));
   beforeEach(() => {

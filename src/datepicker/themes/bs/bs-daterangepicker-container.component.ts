@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 
 import { BsDatepickerAbstractComponent } from '../../base/bs-datepicker-container';
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
@@ -9,6 +9,8 @@ import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
 import { PositioningService } from 'ngx-bootstrap/positioning';
 
 import { Subscription } from 'rxjs';
+import { datepickerAnimation } from '../../datepicker-animations';
+import { take } from 'rxjs/operators';
 
 
 @Component({
@@ -16,11 +18,13 @@ import { Subscription } from 'rxjs';
   providers: [BsDatepickerStore, BsDatepickerEffects],
   templateUrl: './bs-datepicker-view.html',
   host: {
+    class: 'bottom',
     '(click)': '_stopPropagation($event)',
     style: 'position: absolute; display: block;',
     role: 'dialog',
     'aria-label': 'calendar'
-  }
+  },
+  animations: [datepickerAnimation]
 })
 export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractComponent
   implements OnInit, OnDestroy {
@@ -29,14 +33,17 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   }
 
   valueChange = new EventEmitter<Date[]>();
+  animationState = 'void';
 
   _rangeStack: Date[] = [];
   _subs: Subscription[] = [];
+
   constructor(
     _effects: BsDatepickerEffects,
     private _actions: BsDatepickerActions,
     private _config: BsDatepickerConfig,
     private _store: BsDatepickerStore,
+    private _element: ElementRef,
     private _positionService: PositioningService
   ) {
     super();
@@ -45,14 +52,25 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
 
   ngOnInit(): void {
     this._positionService.setOptions({
-      modifiers: {
-        flip: {
-          enabled: this._config.adaptivePosition
-        }
-      },
+      modifiers: { flip: { enabled: this._config.adaptivePosition } },
       allowedPositions: ['top', 'bottom']
     });
 
+    this._positionService.event$
+      .pipe(
+        take(1)
+      )
+      .subscribe(() => {
+        this._positionService.disable();
+
+        if (this._config.isAnimated) {
+          this.animationState = this.isTopPosition ? 'animated-up' : 'animated-down';
+
+          return;
+        }
+
+        this.animationState = 'unanimated';
+      });
     this.containerClass = this._config.containerClass;
     this.isOtherMonthsActive = this._config.selectFromOtherMonth;
     this._effects
@@ -73,6 +91,14 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
         .select(state => state.selectedRange)
         .subscribe(date => this.valueChange.emit(date))
     );
+  }
+
+  get isTopPosition(): boolean {
+    return this._element.nativeElement.classList.contains('top');
+  }
+
+  positionServiceEnable(): void {
+    this._positionService.enable();
   }
 
   daySelectHandler(day: DayViewModel): void {
