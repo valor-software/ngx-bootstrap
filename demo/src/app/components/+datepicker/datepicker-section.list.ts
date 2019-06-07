@@ -26,6 +26,7 @@ import {
   DemoDatePickerSelectDatesFromOtherMonthsComponent
 } from './demos/select-dates-from-other-months/select-dates-from-other-months';
 import { DemoDatePickerAdaptivePositionComponent } from './demos/adaptive-position/adaptive-position';
+import { DemoDatePickerAnimatedComponent } from './demos/animated/animated';
 import { DemoDatepickerCustomTodayClassComponent } from './demos/custom-today-class/custom-today-class.component';
 import { DemoDatePickerSelectWeekComponent } from './demos/select-week/select-week';
 import { DemoDatepickerTriggersCustomComponent } from './demos/triggers-custom/triggers-custom';
@@ -81,6 +82,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/inline-datepicker/inline-datepicker.component.html'),
         description: `<p>with initial state set by <code>bsInlineValue</code> property</p>`,
         outlet: DemoDatepickerInlineComponent
+      },
+      {
+        title: 'With animation',
+        anchor: 'animated',
+        component: require('!!raw-loader!./demos/animated/animated'),
+        html: require('!!raw-loader!./demos/animated/animated.html'),
+        description: `You can enable animation via <code>isAnimated</code> config option`,
+        outlet: DemoDatePickerAnimatedComponent
       },
       {
         title: 'Adaptive position',
