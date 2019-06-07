@@ -27,8 +27,27 @@ import { hasNgModuleImport } from '../utils/ng-module-imports';
 const bootstrapStylePath =  `./node_modules/bootstrap/dist/css/bootstrap.min.css`;
 const datePickerStylePath =  `./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css`;
 const datepickerComponentName = 'datepicker';
-const accordionComponentName = 'accordion';
-const collapseComponentName = 'collapse';
+const bsName = 'ngx-bootstrap';
+
+const components: { [key: string]: { moduleName: string; link: string; animated?: boolean } } = {
+  accordion:   { moduleName: 'AccordionModule',    link: `${bsName}/accordion`, animated: true },
+  alerts:      { moduleName: 'AlertModule',        link: `${bsName}/alert` },
+  buttons:     { moduleName: 'ButtonsModule',      link: `${bsName}/buttons` },
+  carousel:    { moduleName: 'CarouselModule',     link: `${bsName}/carousel` },
+  collapse:    { moduleName: 'CollapseModule',     link: `${bsName}/collapse`, animated: true },
+  datepicker:  { moduleName: 'BsDatepickerModule', link: `${bsName}/datepicker`, animated: true },
+  dropdowns:   { moduleName: 'BsDropdownModule',   link: `${bsName}/dropdown` },
+  modals:      { moduleName: 'ModalModule',        link: `${bsName}/modal` },
+  pagination:  { moduleName: 'PaginationModule',   link: `${bsName}/pagination` },
+  popover:     { moduleName: 'PopoverModule',      link: `${bsName}/popover` },
+  progressbar: { moduleName: 'ProgressbarModule',  link: `${bsName}/progressbar` },
+  rating:      { moduleName: 'RatingModule',       link: `${bsName}/rating` },
+  sortable:    { moduleName: 'SortableModule',     link: `${bsName}/sortable` },
+  tabs:        { moduleName: 'TabsModule',         link: `${bsName}/tabs` },
+  timepicker:  { moduleName: 'TimepickerModule',   link: `${bsName}/timepicker` },
+  tooltip:     { moduleName: 'TooltipModule',      link: `${bsName}/tooltip` },
+  typeahead:   { moduleName: 'TypeaheadModule',    link: `${bsName}/typeahead`, animated: true }
+};
 
 /* tslint:disable-next-line: no-default-export */
 export default function (options: Schema): Rule {
@@ -50,27 +69,6 @@ export default function (options: Schema): Rule {
 }
 
 function addModuleOfComponent(projectName: string | undefined, componentName: string) {
-  const bsName = 'ngx-bootstrap';
-
-  const components: { [key: string]: { moduleName: string; link: string } } = {
-    accordion:   { moduleName: 'AccordionModule',    link: `${bsName}/accordion` },
-    alerts:      { moduleName: 'AlertModule',        link: `${bsName}/alert` },
-    buttons:     { moduleName: 'ButtonsModule',      link: `${bsName}/buttons` },
-    carousel:    { moduleName: 'CarouselModule',     link: `${bsName}/carousel` },
-    collapse:    { moduleName: 'CollapseModule',     link: `${bsName}/collapse` },
-    datepicker:  { moduleName: 'BsDatepickerModule', link: `${bsName}/datepicker` },
-    dropdowns:   { moduleName: 'BsDropdownModule',   link: `${bsName}/dropdown` },
-    modals:      { moduleName: 'ModalModule',        link: `${bsName}/modal` },
-    pagination:  { moduleName: 'PaginationModule',   link: `${bsName}/pagination` },
-    popover:     { moduleName: 'PopoverModule',      link: `${bsName}/popover` },
-    progressbar: { moduleName: 'ProgressbarModule',  link: `${bsName}/progressbar` },
-    rating:      { moduleName: 'RatingModule',       link: `${bsName}/rating` },
-    sortable:    { moduleName: 'SortableModule',     link: `${bsName}/sortable` },
-    tabs:        { moduleName: 'TabsModule',         link: `${bsName}/tabs` },
-    timepicker:  { moduleName: 'TimepickerModule',   link: `${bsName}/timepicker` },
-    tooltip:     { moduleName: 'TooltipModule',      link: `${bsName}/tooltip` },
-    typeahead:   { moduleName: 'TypeaheadModule',    link: `${bsName}/typeahead` }
-  };
 
   return (host: Tree) => {
     const workspace = getWorkspace(host);
@@ -133,7 +131,7 @@ function insertCommonStyles(project: WorkspaceProject, host: Tree, workspace: Wo
 
 function addAnimationModule(projectName: string | undefined, componentName: string) {
   return (host: Tree) => {
-    if (!(!componentName || componentName === accordionComponentName || componentName === collapseComponentName)) {
+    if (!(!componentName || components[componentName].animated)) {
       return host;
     }
 

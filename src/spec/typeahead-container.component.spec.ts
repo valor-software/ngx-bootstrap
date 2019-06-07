@@ -1,7 +1,11 @@
 /* tslint:disable: max-file-line-count */
-import { TestBed, ComponentFixture, tick, fakeAsync } from '@angular/core/testing';
 import { asNativeElements } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
+import { TestBed, ComponentFixture, tick, fakeAsync } from '@angular/core/testing';
+
+import { PositioningService } from 'ngx-bootstrap/positioning';
+
 import {
   TypeaheadConfig,
   TypeaheadContainerComponent,
@@ -9,6 +13,7 @@ import {
   TypeaheadMatch,
   TypeaheadOptions
 } from '../typeahead';
+
 
 describe('Component: TypeaheadContainer', () => {
   let fixture: ComponentFixture<TypeaheadContainerComponent>;
@@ -19,14 +24,18 @@ describe('Component: TypeaheadContainer', () => {
   beforeEach(fakeAsync(() => {
     testModule = TestBed.configureTestingModule({
       declarations: [TypeaheadContainerComponent],
-      providers: [{
-        provide: TypeaheadOptions,
-        useValue: new TypeaheadOptions({ animation: false, placement: 'bottom-left', typeaheadRef: undefined })
-      },
+      imports: [BrowserAnimationsModule],
+      providers: [
+        {
+          provide: TypeaheadOptions,
+          useValue: new TypeaheadOptions({ animation: false, placement: 'bottom start', typeaheadRef: undefined })
+        },
         {
           provide: TypeaheadConfig,
           useValue: new TypeaheadConfig()
-        }]
+        },
+        PositioningService
+      ]
     });
     fixture = testModule.createComponent(TypeaheadContainerComponent);
 

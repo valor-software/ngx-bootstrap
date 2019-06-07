@@ -1,4 +1,5 @@
 /* tslint:disable:max-file-line-count */
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
@@ -42,7 +43,7 @@ describe('Directive: Typeahead', () => {
   beforeEach(() => {
     fixture = TestBed.configureTestingModule({
       declarations: [ TestTypeaheadComponent],
-      imports: [TypeaheadModule.forRoot(), FormsModule]
+      imports: [TypeaheadModule.forRoot(), BrowserAnimationsModule, FormsModule]
     }).createComponent(TestTypeaheadComponent);
 
     fixture.detectChanges();

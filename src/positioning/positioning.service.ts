@@ -43,7 +43,7 @@ export interface PositioningOptions {
 
 @Injectable()
 export class PositioningService {
-  options: Options;
+  private options: Options;
   private update$$ = new Subject<null>();
   private positionElements = new Map();
   private triggerEvent$: Observable<number|Event>;
@@ -63,23 +63,23 @@ export class PositioningService {
       );
 
       this.triggerEvent$.subscribe(() => {
-        if (this.isDisabled) {
-          return;
-        }
+          if (this.isDisabled) {
+            return;
+          }
 
-        this.positionElements
-        /* tslint:disable-next-line: no-any */
-          .forEach((positionElement: any) => {
-            positionElements(
-              _getHtmlElement(positionElement.target),
-              _getHtmlElement(positionElement.element),
-              positionElement.attachment,
-              positionElement.appendToBody,
-              this.options,
-              rendererFactory.createRenderer(null, null)
-            );
-          });
-      });
+          this.positionElements
+            /* tslint:disable-next-line: no-any */
+            .forEach((positionElement: any) => {
+              positionElements(
+                _getHtmlElement(positionElement.target),
+                _getHtmlElement(positionElement.element),
+                positionElement.attachment,
+                positionElement.appendToBody,
+                this.options,
+                rendererFactory.createRenderer(null, null)
+              );
+            });
+        });
     }
   }
 

@@ -21,7 +21,6 @@ import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { TypeaheadConfig } from './typeahead.config';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
-import { PositioningService } from 'ngx-bootstrap/positioning';
 import { debounceTime, filter, mergeMap, switchMap, toArray } from 'rxjs/operators';
 
 @Directive({selector: '[typeahead]', exportAs: 'bs-typeahead'})
@@ -38,6 +37,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @Input() typeaheadMinLength: number = void 0;
   /** sets use adaptive position */
   @Input() adaptivePosition: boolean;
+  /** turn on/off animation */
+  @Input() isAnimated = false;
   /** minimal wait time after last character typed before typeahead kicks-in */
   @Input() typeaheadWaitMs: number;
   /** maximum length of options items list. The default value is 20 */
@@ -152,7 +153,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     private changeDetection: ChangeDetectorRef,
     private element: ElementRef,
     private ngControl: NgControl,
-    private positionService: PositioningService,
     private renderer: Renderer2,
     viewContainerRef: ViewContainerRef
   ) {
@@ -170,7 +170,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         typeaheadSelectFirstItem: config.selectFirstItem,
         typeaheadIsFirstItemActive: config.isFirstItemActive,
         typeaheadMinLength: config.minLength,
-        adaptivePosition: config.adaptivePosition
+        adaptivePosition: config.adaptivePosition,
+        isAnimated: config.isAnimated
       }
     );
   }
@@ -317,15 +318,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   show(): void {
-    this.positionService.setOptions({
-      modifiers: {
-        flip: {
-          enabled: this.adaptivePosition
-        }
-      },
-      allowedPositions: ['top', 'bottom']
-    });
-
     this._typeahead
       .attach(TypeaheadContainerComponent)
       // todo: add append to body, after updating positioning service
