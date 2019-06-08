@@ -1465,4 +1465,45 @@ describe('Component: TimepickerComponent', () => {
     }));
 
   });
+
+  describe('onTouched', () => {
+    let element: HTMLElement;
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TimepickerComponent);
+      fixture.detectChanges();
+
+      component = fixture.componentInstance;
+      element = fixture.nativeElement;
+      component.showSeconds = true;
+      fixture.detectChanges();
+    });
+
+    it('fires on blur for each input element', () => {
+      const spy = jasmine.createSpy();
+      component.registerOnTouched(spy);
+
+      element.querySelectorAll('input').forEach(input => fireEvent(input, 'blur'));
+
+      expect(spy).toHaveBeenCalledTimes(3);
+    });
+
+    it('fires on up/down button click', () => {
+      const spy = jasmine.createSpy();
+      component.registerOnTouched(spy);
+
+      element.querySelectorAll('a.btn').forEach(input => fireEvent(input, 'click'));
+
+      expect(spy).toHaveBeenCalledTimes(6);
+    });
+
+    it('fires on change using mousewheel for each input', () => {
+      const spy = jasmine.createSpy();
+      component.registerOnTouched(spy);
+
+      element.querySelectorAll('input').forEach(input => input.dispatchEvent(new WheelEvent('wheel', { deltaY: -1 })));
+
+      expect(spy).toHaveBeenCalledTimes(3);
+    });
+  });
 });
