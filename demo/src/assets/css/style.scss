@@ -132,6 +132,17 @@ a:hover {
   max-width: 700px;
   margin: 0 auto;
 }
+.compatibility {
+  table, th, td {
+    text-align: left;
+  }
+  th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  tr:hover {background-color: #dadadd;}
+
+}
 /* entry */
 .entry {
   padding: 75px 0 ;
