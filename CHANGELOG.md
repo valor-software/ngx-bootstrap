@@ -2,6 +2,12 @@
 # [5.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v4.3.0...v5.0.0) (2019-06-10)
 
 
+Most notable changes are:
+- migrated to Angular 8
+- to datepicker and typeahead added animation which disabled by default
+- fixed a case of looping inside position service
+
+
 ### Bug Fixes
 
 * carousel - solved multilist slides no auto play ([#5237](https://github.com/valor-software/ngx-bootstrap/issues/5237)) ([d4fd9ad](https://github.com/valor-software/ngx-bootstrap/commit/d4fd9ad)), closes [#5236](https://github.com/valor-software/ngx-bootstrap/issues/5236)
@@ -17,6 +23,12 @@
 * **carousel:** indicators for group of slides ([#5234](https://github.com/valor-software/ngx-bootstrap/issues/5234)) ([c460a6e](https://github.com/valor-software/ngx-bootstrap/commit/c460a6e)), closes [#5233](https://github.com/valor-software/ngx-bootstrap/issues/5233)
 * **datepicker:** add animation ([#5173](https://github.com/valor-software/ngx-bootstrap/issues/5173)) ([d5bc6f8](https://github.com/valor-software/ngx-bootstrap/commit/d5bc6f8))
 * **typeahead:** add animation ([#5240](https://github.com/valor-software/ngx-bootstrap/issues/5240)) ([8ce5e86](https://github.com/valor-software/ngx-bootstrap/commit/8ce5e86))
+
+
+### BREAKING CHANGES
+
+* **datepicker:** requires BrowserAnimationsModule
+* **typeahead:** requires BrowserAnimationsModule
 
 
 
@@ -111,6 +123,12 @@
 # [4.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v3.3.0...v4.0.0) (2019-03-22)
 
 
+Most notable changes are:
+- the library was migrated to Angular 7 which leads to requiring of typescript>=3.1.1
+- the adaptive position was turned off by default for Datepicker and Typeahead components
+- 'select' event was changed to 'selectTab' in Tab component
+
+
 ### Bug Fixes
 
 * **build:** fix window not defined on An Universal ([#5073](https://github.com/valor-software/ngx-bootstrap/issues/5073)) ([682d1f2](https://github.com/valor-software/ngx-bootstrap/commit/682d1f2))
@@ -134,6 +152,11 @@
 
 <a name="3.3.0"></a>
 # [3.3.0](https://github.com/valor-software/ngx-bootstrap/compare/v3.2.0...v3.3.0) (2019-02-12)
+
+
+Most notable changes are:
+- completely rewritten positioning service, now `auto` positioning is working much better
+- added an option to disable specific in data and range pickers
 
 
 ### Bug Fixes
@@ -512,6 +535,18 @@
 * **datepicker:** added date and range min, max and invalid validation ([#3499](https://github.com/valor-software/ngx-bootstrap/issues/3499)) ([7b43295](https://github.com/valor-software/ngx-bootstrap/commit/7b43295)), closes [#2727](https://github.com/valor-software/ngx-bootstrap/issues/2727) [#3498](https://github.com/valor-software/ngx-bootstrap/issues/3498)
 * **datepicker:** added date range picker config ([#3501](https://github.com/valor-software/ngx-bootstrap/issues/3501)) ([7c53bf9](https://github.com/valor-software/ngx-bootstrap/commit/7c53bf9))
 
+
+### BREAKING CHANGES
+
+* **progressbar:** `progress` directive was removed, use `progressbar` instead
+* **chronos:** `bs-moment` renamed to `chronos`
+* **chronos:** all locales was suffixed with Locale (`en` -> `enLocale`)
+* **datepicker:**  setting locale via `bsConfig` no longer works. Now for changing locale inject BsLocaleService and call its `use` method. For more detailed example check our [demo](https://valor-software.com/ngx-bootstrap/#/datepicker#locales)
+* **datepicker:**  `datepicker` and `daterange` component selectors was removed, now `datepicker` available only as directive
+* **rating:**  removed input properties `stateOn`, `stateOff` and `ratingStates`
+* **rating:**  custom icons now working via `customTemplate`
+* **package** upgraded to support ng v4 and v5 (and v6)
+* **package:** dropped support of ng v2
 
 
 <a name="2.0.0-rc.1"></a>
