@@ -35,8 +35,9 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 3. [Installation instructions](#installation-instructions)
 4. [Usage & Demo](#usage--demo)
 5. [API](#api)
-6. [Troubleshooting](#troubleshooting)
-7. [Contributing](#contribution)
+6. [Compatibility](#compatibility)
+7. [Troubleshooting](#troubleshooting)
+8. [Contributing](#contribution)
 
 ## Getting Started
 
@@ -162,6 +163,20 @@ For local development run:
 
 If you want to run the demo with Angular Universal:
  - `npm run demo.serve-universal`
+
+## Compatibility
+
+The only two dependencies are [Angular](https://angular.io) and [Bootstrap](https://getbootstrap.com) CSS.
+Here is the versions compatibility list:
+
+| ngx-bootstrap |    Angular    |  Bootstrap CSS |
+| ------------- | ------------- | -------------- |
+| 5.x.x         | 7.x.x - 8.x.x | 3.x.x or 4.x.x |
+| 4.x.x         | 6.x.x - 7.x.x | 3.x.x or 4.x.x |
+| 3.x.x         | 6.x.x - 7.x.x | 3.x.x or 4.x.x |
+| 2.x.x         | 2.x.x - 4.x.x | 3.x.x or 4.x.x |
+| 1.x.x         |     2.x.x     | 3.x.x or 4.x.x |
+
 
 ## Troubleshooting
 
