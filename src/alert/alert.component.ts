@@ -7,6 +7,7 @@ import {
   OnInit,
   Output
 } from '@angular/core';
+
 import { AlertConfig } from './alert.config';
 import { OnChange } from 'ngx-bootstrap/utils';
 

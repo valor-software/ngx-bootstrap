@@ -40,7 +40,7 @@ export class ProgressbarComponent {
    */
   @Input()
   /* tslint:disable-next-line:no-any */
-  set value(value: number | any[]) {
+  set value(value: any) {
     this.isStacked = Array.isArray(value);
     this._value = value;
   }
@@ -48,7 +48,7 @@ export class ProgressbarComponent {
   _striped: boolean;
   _animate: boolean;
   /* tslint:disable-next-line:no-any */
-  _value: number | any[];
+  _value: any;
   get isBs3(): boolean {
     return isBs3();
   }

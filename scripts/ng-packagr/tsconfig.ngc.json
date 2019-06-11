@@ -4,7 +4,8 @@
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
     "fullTemplateTypeCheck": false,
-    "enableResourceInlining": true
+    "enableResourceInlining": true,
+    "enableIvy": true
   },
   "buildOnSave": false,
   "compileOnSave": false,

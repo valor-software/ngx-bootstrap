@@ -26,6 +26,9 @@
     "build.watch": "node scripts/build-modules --watch",
     "build:schematics": "node scripts/schematics/build",
     "build.modules": "node scripts/build-modules",
+    "build:accordion": "rimraf dist/accordion && node scripts/ng-packagr/api ../../src/accordion/package.json",
+    "build:progressbar": "rimraf dist/progressbar && node scripts/ng-packagr/api ../../src/progressbar/package.json",
+    "build:datepicker": "rimraf dist/datepicker && node scripts/ng-packagr/api ../../src/datepicker/package.json",
     "ci:update-pkg": "node scripts/ci/update-pkg.js",
     "ci:rename-pkg": "mv node_modules/ngx-bootstrap-ci node_modules/ngx-bootstrap",
     "build.sass": "node-sass --recursive src --output dist --source-map true --source-map-contents sass",
@@ -50,7 +53,8 @@
     "serve:ssr": "node demo/dist/server",
     "build:client-and-server-bundles": "ng build --prod && ng run ngx-bootstrap:server",
     "webpack:server": "webpack --config ./scripts/universal/webpack.server.config.js --progress --colors",
-    "configure-heroku": "node scripts/universal/configure-heroku.js"
+    "configure-heroku": "node scripts/universal/configure-heroku.js",
+    "postinstall": "ivy-ngcc"
   },
   "husky": {
     "hooks": {
@@ -89,9 +93,9 @@
     "@angular/animations": "8.0.0",
     "@angular/cli": "8.0.1",
     "@angular/common": "8.0.0",
-    "@angular/compiler": "8.0.0",
-    "@angular/compiler-cli": "8.0.0",
-    "@angular/core": "8.0.0",
+    "@angular/compiler": "8.1.0-next.1",
+    "@angular/compiler-cli": "8.1.0-next.1",
+    "@angular/core": "8.1.0-next.1",
     "@angular/forms": "8.0.0",
     "@angular/http": "7.2.15",
     "@angular/language-service": "8.0.0",
@@ -162,7 +166,7 @@
     "lodash": "4.17.10",
     "mini-css-extract-plugin": "0.5.0",
     "mocha": "5.1.1",
-    "ng-packagr": "5.1.0",
+    "ng-packagr": "5.3.0",
     "ngm-cli": "1.0.4",
     "ngx-page-scroll": "6.0.1",
     "ngx-page-scroll-core": "6.0.1",

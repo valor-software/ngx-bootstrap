@@ -35,6 +35,7 @@
   "angularCompilerOptions": {
     "genDir": "../temp/factories",
     "strictMetadataEmit": true,
+    "enableIvy": true,
     "skipTemplateCodegen": true,
     "fullTemplateTypeCheck": true
   }

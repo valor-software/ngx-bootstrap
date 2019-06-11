@@ -1,10 +1,11 @@
-import { CommonModule } from '@angular/common';
+// import { BrowserModule } from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { AlertComponent } from './alert.component';
 import { AlertConfig } from './alert.config';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
-  imports: [CommonModule],
+  imports: [BrowserModule],
   declarations: [AlertComponent],
   exports: [AlertComponent],
   entryComponents: [AlertComponent]

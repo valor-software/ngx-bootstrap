@@ -1,6 +1,6 @@
 export interface RatingResults {
   index: number;
-  title: string | number;
+  title: any;
 }
 
 export interface AccessorContent {

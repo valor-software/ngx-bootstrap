@@ -18,5 +18,8 @@
   "exclude": [
     "scripts",
     "cypress"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "enableIvy": true
+  }
 }
