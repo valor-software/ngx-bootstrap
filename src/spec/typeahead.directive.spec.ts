@@ -20,6 +20,7 @@ interface State {
     <input [(ngModel)]="selectedState"
            [typeahead]="states"
            [typeaheadOptionField]="'name'"
+           [adaptivePosition]="false"
            (typeaheadOnBlur)="onBlurEvent($event)">`
 })
 class TestTypeaheadComponent {
@@ -464,15 +465,10 @@ describe('Directive: Typeahead', () => {
     }));
 
     it('should close typeahead container if Tab was clicked', fakeAsync(() => {
-      inputElement.value = ' ';
-      dispatchTouchEvent(inputElement, 'input');
-      tick();
-
-      directive.typeaheadSelectFirstItem = false;
-      directive.isActiveItemChanged = true;
       inputElement.value = 'Alab';
       dispatchTouchEvent(inputElement, 'input');
       tick();
+
       dispatchKeyboardEvent(inputElement, 'keydown', 'TAB');
       tick();
 
