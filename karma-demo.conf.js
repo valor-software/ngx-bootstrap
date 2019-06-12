@@ -66,7 +66,7 @@ module.exports = function (config) {
       logLevel: config.LOG_INFO,
       reporters: ['dots', 'saucelabs'],
       singleRun: true,
-      concurrency: 2,
+      concurrency: 4,
       captureTimeout: 60000,
       sauceLabs: {
         testName: 'ngx-bootstrap',
@@ -103,7 +103,7 @@ module.exports = function (config) {
         'SL_SAFARI': {
             base: 'SauceLabs',
             browserName: 'safari',
-            version: 'latest-1'
+            version: '11'
           }
       }
     });
