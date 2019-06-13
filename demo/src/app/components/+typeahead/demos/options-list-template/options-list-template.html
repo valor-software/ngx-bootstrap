@@ -1,0 +1,49 @@
+<!-- Bootstrap 3 options list template -->
+<ng-template #bs3Template let-context let-itemTemplate="itemTemplate">
+  <ul class="dropdown-menu"
+      #ulElement
+      [style.overflow-y]="context.needScrollbar ? 'scroll': 'auto'"
+      [style.height]="context.needScrollbar ? guiHeight: 'auto'">
+    <ng-template ngFor let-match let-i="index" [ngForOf]="context.matches">
+      <li #liElements *ngIf="match.isHeader()" class="dropdown-header">{{ match }}</li>
+      <li #liElements
+          *ngIf="!match.isHeader()"
+          [class.active]="context.isActive(match)"
+          (mouseenter)="context.selectActive(match)">
+
+        <a href="#" (click)="context.selectMatch(match, $event)" tabindex="-1">
+          <ng-template [ngTemplateOutlet]="itemTemplate"
+                       [ngTemplateOutletContext]="{item:match.item, index:i, match:match, query:context.query}"></ng-template>
+        </a>
+      </li>
+    </ng-template>
+
+    <li class="dropdown-header">
+      <small><b>Powered by searchengine</b></small>
+    </li>
+  </ul>
+</ng-template>
+
+<!-- Bootstrap 4 options list template -->
+<ng-template #bs4Template let-matches="matches" let-context let-itemTemplate="itemTemplate">
+  <ng-template ngFor let-match let-i="index" [ngForOf]="matches">
+    <button #liElements
+            class="dropdown-item"
+            (click)="context.selectMatch(match, $event)"
+            (mouseenter)="context.selectActive(match)"
+            [class.active]="context.isActive(match)">
+      <ng-template [ngTemplateOutlet]="itemTemplate"
+                   [ngTemplateOutletContext]="{item:match.item, index:i, match:match, query:context.query}"></ng-template>
+    </button>
+  </ng-template>
+
+  <small class="d-block text-right px-3 pt-1">
+    <b>Powered by searchengine</b>
+  </small>
+</ng-template>
+
+<pre class="card card-block card-header mb-3">Model: {{selected | json}}</pre>
+<input [(ngModel)]="selected"
+       [typeahead]="states"
+       [optionsListTemplate]="isBs3 ? bs3Template : bs4Template"
+       class="form-control">

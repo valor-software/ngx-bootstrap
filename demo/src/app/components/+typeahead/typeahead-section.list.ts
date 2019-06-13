@@ -18,6 +18,7 @@ import { DemoTypeaheadMinLengthComponent } from './demos/min-length/min-length';
 import { DemoTypeaheadNoResultComponent } from './demos/no-result/no-result';
 import { DemoTypeaheadOnBlurComponent } from './demos/on-blur/on-blur';
 import { DemoTypeaheadOnSelectComponent } from './demos/on-select/on-select';
+import { DemoTypeaheadOptionsListTemplateComponent } from './demos/options-list-template/options-list-template';
 import { DemoTypeaheadPhraseDelimitersComponent } from './demos/phrase-delimiters/phrase-delimiters';
 import { DemoTypeaheadReactiveFormComponent } from './demos/reactive-form/reactive-form';
 import { DemoTypeaheadScrollableComponent } from './demos/scrollable/scrollable';
@@ -74,6 +75,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/item-template/item-template.ts'),
         html: require('!!raw-loader!./demos/item-template/item-template.html'),
         outlet: DemoTypeaheadItemTemplateComponent
+      },
+      {
+        title: 'Options list template',
+        anchor: 'options-list-template',
+        component: require('!!raw-loader!./demos/options-list-template/options-list-template.ts'),
+        html: require('!!raw-loader!./demos/options-list-template/options-list-template.html'),
+        outlet: DemoTypeaheadOptionsListTemplateComponent
       },
       {
         title: 'Option field',
@@ -233,7 +241,7 @@ export const demoComponentContent: ContentSection[] = [
         title: 'Show results on blur',
         anchor: 'show-on-blur',
         description: `
-          <p>Use input property <code>typeaheadHideResultsOnBlur</code> or config property <code>hideResultsOnBlur</code> 
+          <p>Use input property <code>typeaheadHideResultsOnBlur</code> or config property <code>hideResultsOnBlur</code>
           to prevent hiding typeahead's results until a user doesn't choose an item</p>
         `,
         component: require('!!raw-loader!./demos/show-on-blur/show-on-blur.ts'),

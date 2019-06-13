@@ -16,6 +16,7 @@ import { DemoTypeaheadMinLengthComponent } from './min-length/min-length';
 import { DemoTypeaheadNoResultComponent } from './no-result/no-result';
 import { DemoTypeaheadOnBlurComponent } from './on-blur/on-blur';
 import { DemoTypeaheadOnSelectComponent } from './on-select/on-select';
+import { DemoTypeaheadOptionsListTemplateComponent } from './options-list-template/options-list-template';
 import { DemoTypeaheadPhraseDelimitersComponent } from './phrase-delimiters/phrase-delimiters';
 import { DemoTypeaheadReactiveFormComponent } from './reactive-form/reactive-form';
 import { DemoTypeaheadScrollableComponent } from './scrollable/scrollable';
@@ -42,6 +43,7 @@ export const DEMO_COMPONENTS = [
   DemoTypeaheadNoResultComponent,
   DemoTypeaheadOnBlurComponent,
   DemoTypeaheadOnSelectComponent,
+  DemoTypeaheadOptionsListTemplateComponent,
   DemoTypeaheadPhraseDelimitersComponent,
   DemoTypeaheadReactiveFormComponent,
   DemoTypeaheadScrollableComponent,
