@@ -30,7 +30,7 @@ export class ComponentLoader<T> {
   onShown: EventEmitter<any> = new EventEmitter();
   /* tslint:disable-next-line: no-any*/
   onBeforeHide: EventEmitter<any> = new EventEmitter();
-  onHidden: EventEmitter<boolean> = new EventEmitter();
+  onHidden: EventEmitter<any> = new EventEmitter();
 
   instance: T;
   _componentRef: ComponentRef<T>;
@@ -40,6 +40,7 @@ export class ComponentLoader<T> {
   private _componentFactory: ComponentFactory<T>;
   private _zoneSubscription: Subscription;
   private _contentRef: ContentRef;
+  private _bsModalRef: any;
   private _innerComponent: ComponentRef<T>;
 
   private _unregisterListenersFn: Function;
@@ -186,7 +187,7 @@ export class ComponentLoader<T> {
       }
       this._componentRef.changeDetectorRef.markForCheck();
       this._componentRef.changeDetectorRef.detectChanges();
-      this.onShown.emit(this._componentRef.instance);
+      this.onShown.emit(this._bsModalRef || this._componentRef.instance);
     }
 
     this._registerOutsideClick();
@@ -220,7 +221,7 @@ export class ComponentLoader<T> {
     this._componentRef = null;
     this._removeGlobalListener();
 
-    this.onHidden.emit();
+    this.onHidden.emit(this._bsModalRef);
 
     return this;
   }
