@@ -83,11 +83,11 @@
     "@angular/core": ">=7.0.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "0.800.1",
+    "@angular-devkit/build-angular": "0.800.2",
     "@angular-devkit/core": "8.0.1",
     "@angular-devkit/schematics": "8.0.1",
     "@angular/animations": "8.0.0",
-    "@angular/cli": "8.0.1",
+    "@angular/cli": "8.0.2",
     "@angular/common": "8.0.0",
     "@angular/compiler": "8.0.0",
     "@angular/compiler-cli": "8.0.0",
@@ -107,7 +107,7 @@
     "@nestjs/microservices": "6.0.5",
     "@nestjs/ng-universal": "0.5.1",
     "@nestjs/platform-express": "^6.0.1",
-    "@netbasal/spectator": "2.2.0-rc.2",
+    "@netbasal/spectator": "3.9.1",
     "@nguniversal/common": "7.1.1",
     "@nguniversal/express-engine": "7.1.1",
     "@nguniversal/module-map-ngfactory-loader": "7.1.1",

@@ -131,7 +131,7 @@ describe('Directive: Dropdown', () => {
     expect(element.querySelector('[dropdown]').classList).toContain('open');
 
     tick();
-    document.querySelector('a').click();
+    element.click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).not.toContain('open');
   }));
@@ -197,7 +197,7 @@ describe('Directive: Dropdown', () => {
     expect(element.querySelector('[dropdown]').classList).toContain('open');
 
     tick();
-    document.querySelector('a').click();
+    element.click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).toContain('open');
     tick();
@@ -240,7 +240,7 @@ describe('Directive: Dropdown', () => {
     expect(element.querySelector('[dropdown]').classList).toContain('open');
 
     tick();
-    document.querySelector('a').click();
+    element.click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).toContain('open');
 
