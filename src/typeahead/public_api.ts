@@ -11,3 +11,4 @@ export {
 export { TypeaheadContainerComponent } from './typeahead-container.component';
 export { TypeaheadDirective } from './typeahead.directive';
 export { TypeaheadModule } from './typeahead.module';
+export { TypeaheadConfig } from './typeahead.config';

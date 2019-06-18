@@ -6,6 +6,7 @@ import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
 import { Subscription } from 'rxjs';
 import { BsDatepickerConfig } from './bs-datepicker.config';
+import { BsDatepickerViewMode, DatepickerDateCustomClasses } from './models';
 
 @Directive({
   selector: '[bsDatepicker]',
@@ -27,9 +28,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   @Input() outsideClick = true;
   /**
    * A selector specifying the element the datepicker should be appended to.
-   * Currently only supports "body".
    */
   @Input() container = 'body';
+
+  @Input() outsideEsc = true;
 
   /**
    * Returns whether or not the datepicker is currently being shown
@@ -87,6 +89,25 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    * Maximum date which is available for selection
    */
   @Input() maxDate: Date;
+
+  /**
+   * Minimum view mode : day, month, or year
+   */
+  @Input() minMode: BsDatepickerViewMode;
+
+  /**
+   * Disable Certain days in the week
+   */
+  @Input() daysDisabled: number[];
+
+  /**
+   * Disable specific dates
+   */
+  @Input() datesDisabled: Date[];
+  /**
+   * Date custom classes
+   */
+  @Input() dateCustomClasses: DatepickerDateCustomClasses[];
   /**
    * Emits when datepicker value has been changed
    */
@@ -116,6 +137,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   ngOnInit(): void {
     this._datepicker.listen({
       outsideClick: this.outsideClick,
+      outsideEsc: this.outsideEsc,
       triggers: this.triggers,
       show: () => this.show()
     });
@@ -135,8 +157,20 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
       this._datepickerRef.instance.maxDate = this.maxDate;
     }
 
+    if (changes.daysDisabled) {
+      this._datepickerRef.instance.daysDisabled = this.daysDisabled;
+    }
+
+    if (changes.datesDisabled) {
+      this._datepickerRef.instance.datesDisabled = this.datesDisabled;
+    }
+
     if (changes.isDisabled) {
       this._datepickerRef.instance.isDisabled = this.isDisabled;
+    }
+
+    if (changes.dateCustomClasses) {
+      this._datepickerRef.instance.dateCustomClasses = this.dateCustomClasses;
     }
   }
 
@@ -207,7 +241,11 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
       value: this._bsValue,
       isDisabled: this.isDisabled,
       minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
-      maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate
+      maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
+      daysDisabled: this.daysDisabled || this.bsConfig && this.bsConfig.daysDisabled,
+      dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
+      datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
+      minMode: this.minMode || this.bsConfig && this.bsConfig.minMode
     });
   }
 

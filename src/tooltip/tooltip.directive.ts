@@ -3,6 +3,7 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
+  HostBinding,
   Input,
   OnDestroy,
   OnInit,
@@ -11,17 +12,26 @@ import {
   TemplateRef,
   ViewContainerRef
 } from '@angular/core';
+
 import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipConfig } from './tooltip.config';
+
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { OnChange, warnOnce, parseTriggers } from 'ngx-bootstrap/utils';
+import { PositioningService } from 'ngx-bootstrap/positioning';
+
 import { timer } from 'rxjs';
+
+let id = 0;
 
 @Directive({
   selector: '[tooltip], [tooltipHtml]',
   exportAs: 'bs-tooltip'
 })
 export class TooltipDirective implements OnInit, OnDestroy {
+  tooltipId = id++;
+  /** sets disable adaptive position */
+  @Input() adaptivePosition: boolean;
   /**
    * Content to be displayed as tooltip.
    */
@@ -45,7 +55,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
   @Input() triggers: string;
   /**
    * A selector specifying the element the tooltip should be appended to.
-   * Currently only supports "body".
    */
   @Input() container: string;
   /**
@@ -121,7 +130,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   @Input('tooltipEnable')
   set _enable(value: boolean) {
     warnOnce('tooltipEnable was deprecated, please use `isDisabled` instead');
-    this.isDisabled = value;
+    this.isDisabled = !value;
   }
 
   get _enable(): boolean {
@@ -186,6 +195,8 @@ export class TooltipDirective implements OnInit, OnDestroy {
     this.triggers = (value || '').toString();
   }
 
+  @HostBinding('attr.aria-describedby') ariaDescribedby = `tooltip-${this.tooltipId}`;
+
   /** @deprecated */
   @Output()
   tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
@@ -194,13 +205,13 @@ export class TooltipDirective implements OnInit, OnDestroy {
   protected _tooltipCancelShowFn: Function;
 
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
-
   constructor(
     _viewContainerRef: ViewContainerRef,
-    private _renderer: Renderer2,
-    private _elementRef: ElementRef,
     cis: ComponentLoaderFactory,
-    config: TooltipConfig
+    config: TooltipConfig,
+    private _elementRef: ElementRef,
+    private _renderer: Renderer2,
+    private _positionService: PositioningService
   ) {
 
     this._tooltip = cis
@@ -246,6 +257,17 @@ export class TooltipDirective implements OnInit, OnDestroy {
    * the tooltip.
    */
   show(): void {
+    this._positionService.setOptions({
+      modifiers: {
+        flip: {
+          enabled: this.adaptivePosition
+        },
+        preventOverflow: {
+          enabled: this.adaptivePosition
+        }
+      }
+    });
+
     if (
       this.isOpen ||
       this.isDisabled ||
@@ -267,7 +289,8 @@ export class TooltipDirective implements OnInit, OnDestroy {
         .show({
           content: this.tooltip,
           placement: this.placement,
-          containerClass: this.containerClass
+          containerClass: this.containerClass,
+          id: this.ariaDescribedby
         });
     };
     const cancelDelayedTooltipShowing = () => {

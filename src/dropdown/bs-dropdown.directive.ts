@@ -43,7 +43,6 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   @Input() triggers: string;
   /**
    * A selector specifying the element the popover should be appended to.
-   * Currently only supports "body".
    */
   @Input() container: string;
 
@@ -63,6 +62,18 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
   get autoClose(): boolean {
     return this._state.autoClose;
+  }
+
+  /**
+   * This attribute indicates that the dropdown shouldn't close on inside click when autoClose is set to true
+   */
+  @Input()
+  set insideClick(value: boolean) {
+    this._state.insideClick = value;
+  }
+
+  get insideClick(): boolean {
+    return this._state.insideClick;
   }
 
   /**
@@ -120,17 +131,17 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     return !isBs3();
   }
 
-  // todo: move to component loader
-  private _isInlineOpen = false;
+  private _dropdown: ComponentLoader<BsDropdownContainerComponent>;
 
   private get _showInline(): boolean {
     return !this.container;
   }
 
-  private _inlinedMenu: EmbeddedViewRef<BsDropdownMenuDirective>;
+  // todo: move to component loader
+  private _isInlineOpen = false;
 
+  private _inlinedMenu: EmbeddedViewRef<BsDropdownMenuDirective>;
   private _isDisabled: boolean;
-  private _dropdown: ComponentLoader<BsDropdownContainerComponent>;
   private _subscriptions: Subscription[] = [];
   private _isInited = false;
 
@@ -142,6 +153,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
               private _state: BsDropdownState) {
     // set initial dropdown state from config
     this._state.autoClose = this._config.autoClose;
+    this._state.insideClick = this._config.insideClick;
 
     // create dropdown component loader
     this._dropdown = this._cis
@@ -228,7 +240,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         (typeof this.dropup !== 'undefined' && this.dropup);
       this._state.direction = _dropup ? 'up' : 'down';
       const _placement =
-        this.placement || (_dropup ? 'top left' : 'bottom left');
+        this.placement || (_dropup ? 'top start' : 'bottom start');
 
       // show dropdown
       this._dropdown
@@ -278,6 +290,12 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     }
 
     return this.show();
+  }
+
+  /** @internal */
+  _contains(event: any): boolean {
+    return this._elementRef.nativeElement.contains(event.target) ||
+      (this._dropdown.instance && this._dropdown.instance._contains(event.target));
   }
 
   ngOnDestroy(): void {
@@ -339,6 +357,11 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         'transform',
         this.dropup ? 'translateY(-101%)' : 'translateY(0)'
       );
+      this._renderer.setStyle(
+        this._inlinedMenu.rootNodes[0],
+        'bottom',
+        'auto'
+      );
     }
   }
 
@@ -346,6 +369,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
       this._renderer.removeStyle(this._inlinedMenu.rootNodes[0], 'top');
       this._renderer.removeStyle(this._inlinedMenu.rootNodes[0], 'transform');
+      this._renderer.removeStyle(this._inlinedMenu.rootNodes[0], 'bottom');
     }
   }
 }

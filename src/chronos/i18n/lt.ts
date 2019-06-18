@@ -4,8 +4,6 @@
 // tslint:disable:one-variable-per-declaration newline-before-return
 
 import { LocaleData } from '../locale/locale.class';
-import { getMonth } from '../utils/date-getters';
-import { getDayOfWeek } from '../units/day-of-week';
 
 //! moment.js locale configuration
 //! locale : Lithuanian [lt]
@@ -38,7 +36,7 @@ function special(num: number) {
   return num % 10 === 0 || (num > 10 && num < 20);
 }
 function forms(key: string) {
-  return units[key].split('_');
+  return (units as any)[key].split('_');
 }
 function translate(num: number, withoutSuffix: boolean, key: string, isFuture: boolean) {
   let result = num + ' ';

@@ -1,37 +1,50 @@
+// tslint:disable:max-file-line-count max-line-length
 import {
   Component,
   ElementRef,
   HostListener,
   QueryList,
+  Renderer2,
   TemplateRef,
   ViewChild,
-  ViewChildren,
-  Renderer2
+  ViewChildren
 } from '@angular/core';
 
 import { isBs3, Utils } from 'ngx-bootstrap/utils';
+import { PositioningService } from 'ngx-bootstrap/positioning';
+
 import { latinize } from './typeahead-utils';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { TypeaheadDirective } from './typeahead.directive';
+import { typeaheadAnimation } from './typeahead-animations';
+
+import { take } from 'rxjs/operators';
+
 
 @Component({
   selector: 'typeahead-container',
-  // tslint:disable-next-line
   templateUrl: './typeahead-container.component.html',
   host: {
-    class: 'dropdown open',
+    class: 'dropdown open bottom',
     '[class.dropdown-menu]': 'isBs4',
     '[style.overflow-y]' : `isBs4 && needScrollbar ? 'scroll': 'visible'`,
     '[style.height]': `isBs4 && needScrollbar ? guiHeight: 'auto'`,
-    '[style.visibility]': `typeaheadScrollable ? 'hidden' : 'visible'`,
+    '[style.visibility]': `visibility`,
     '[class.dropup]': 'dropup',
     style: 'position: absolute;display: block;'
-  }
+  },
+  styles: [
+    `
+    :host.dropdown {
+      z-index: 1000;
+    }
+  `
+  ],
+  animations: [typeaheadAnimation]
 })
 export class TypeaheadContainerComponent {
   parent: TypeaheadDirective;
   query: string[] | string;
-  element: ElementRef;
   isFocused = false;
   top: string;
   left: string;
@@ -40,6 +53,9 @@ export class TypeaheadContainerComponent {
   dropup: boolean;
   guiHeight: string;
   needScrollbar: boolean;
+  animationState: string;
+  visibility = 'hidden';
+  height = 0;
 
   get isBs4(): boolean {
     return !isBs3();
@@ -48,15 +64,17 @@ export class TypeaheadContainerComponent {
   protected _active: TypeaheadMatch;
   protected _matches: TypeaheadMatch[] = [];
 
-  @ViewChild('ulElement')
+  @ViewChild('ulElement', { static: false })
   private ulElement: ElementRef;
 
   @ViewChildren('liElements')
   private liElements: QueryList<ElementRef>;
 
-  constructor(element: ElementRef, private renderer: Renderer2) {
-    this.element = element;
-  }
+  constructor(
+    private positionService: PositioningService,
+    private renderer: Renderer2,
+    public element: ElementRef
+  ) { }
 
   get active(): TypeaheadMatch {
     return this._active;
@@ -67,51 +85,117 @@ export class TypeaheadContainerComponent {
   }
 
   set matches(value: TypeaheadMatch[]) {
+    this.positionService.setOptions({
+      modifiers: { flip: { enabled: this.adaptivePosition } },
+      allowedPositions: ['top', 'bottom']
+    });
+
+    this.positionService.event$
+      .pipe(
+        take(1)
+      )
+      .subscribe(() => {
+        this.positionService.disable();
+        this.visibility = this.typeaheadScrollable ? 'hidden' : 'visible';
+
+        if (this.isAnimated) {
+          this.animationState = this.isTopPosition ? 'animated-up' : 'animated-down';
+
+          return;
+        }
+
+        this.animationState = 'unanimated';
+      });
+
     this._matches = value;
+
     this.needScrollbar = this.typeaheadScrollable && this.typeaheadOptionsInScrollableView < this.matches.length;
+
     if (this.typeaheadScrollable) {
       setTimeout(() => {
         this.setScrollableMode();
       });
     }
 
-    if (this._matches.length > 0) {
+    if (this.typeaheadIsFirstItemActive && this._matches.length > 0) {
       this._active = this._matches[0];
+
       if (this._active.isHeader()) {
         this.nextActiveMatch();
       }
     }
+
+    if (this._active && !this.typeaheadIsFirstItemActive) {
+      const concurrency = this._matches.find(match => match.value === this._active.value);
+
+      if (concurrency) {
+        this.selectActive(concurrency);
+
+        return;
+      }
+
+      this._active = null;
+    }
   }
-// tslint:disable-next-line:no-any
+
+  get isTopPosition(): boolean {
+    return this.element.nativeElement.classList.contains('top');
+  }
+
+  // tslint:disable-next-line:no-any
   get optionsListTemplate(): TemplateRef<any> {
     return this.parent ? this.parent.optionsListTemplate : undefined;
+  }
+
+  get isAnimated(): boolean {
+    return this.parent ? this.parent.isAnimated : false;
+  }
+
+  get adaptivePosition(): boolean {
+    return this.parent ? this.parent.adaptivePosition : false;
   }
 
   get typeaheadScrollable(): boolean {
     return this.parent ? this.parent.typeaheadScrollable : false;
   }
 
-
   get typeaheadOptionsInScrollableView(): number {
     return this.parent ? this.parent.typeaheadOptionsInScrollableView : 5;
+  }
+
+  get typeaheadIsFirstItemActive(): boolean {
+    return this.parent ? this.parent.typeaheadIsFirstItemActive : true;
   }
 // tslint:disable-next-line:no-any
   get itemTemplate(): TemplateRef<any> {
     return this.parent ? this.parent.typeaheadItemTemplate : undefined;
   }
 
-  selectActiveMatch(): void {
-    this.selectMatch(this._active);
+  selectActiveMatch(isActiveItemChanged?: boolean): void {
+    if (this._active && this.parent.typeaheadSelectFirstItem) {
+      this.selectMatch(this._active);
+    }
+
+    if (!this.parent.typeaheadSelectFirstItem && isActiveItemChanged) {
+      this.selectMatch(this._active);
+    }
+  }
+
+  positionServiceEnable(): void {
+    this.positionService.enable();
   }
 
   prevActiveMatch(): void {
     const index = this.matches.indexOf(this._active);
+
     this._active = this.matches[
       index - 1 < 0 ? this.matches.length - 1 : index - 1
-      ];
+    ];
+
     if (this._active.isHeader()) {
       this.prevActiveMatch();
     }
+
     if (this.typeaheadScrollable) {
       this.scrollPrevious(index);
     }
@@ -119,12 +203,15 @@ export class TypeaheadContainerComponent {
 
   nextActiveMatch(): void {
     const index = this.matches.indexOf(this._active);
+
     this._active = this.matches[
       index + 1 > this.matches.length - 1 ? 0 : index + 1
-      ];
+    ];
+
     if (this._active.isHeader()) {
       this.nextActiveMatch();
     }
+
     if (this.typeaheadScrollable) {
       this.scrollNext(index);
     }

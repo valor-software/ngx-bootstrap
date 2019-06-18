@@ -1,7 +1,7 @@
 /* tslint:disable: max-file-line-count */
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TabsetConfig, TabsModule, TabsetComponent } from 'ngx-bootstrap/tabs';
+import { TabsetConfig, TabsModule, TabsetComponent } from '../tabs';
 
 @Component({
   selector: 'tabs-test',
@@ -16,7 +16,7 @@ class TestTabsetComponent {
     { title: 'tab2', content: 'tab2 content', disabled: true },
     { title: 'tab3', content: 'tab3 content', removable: true }
   ];
-  @ViewChild('tabset') tabset: TabsetComponent;
+  @ViewChild('tabset', { static: false }) tabset: TabsetComponent;
 
   constructor(config: TabsetConfig) {
     Object.assign(this, config);
@@ -44,7 +44,7 @@ const html = `
          [customClass]="tab.customClass"
          [active]="tab.active"
          [removable]="tab.removable"
-         (select)="_select($event)"
+         (selectTab)="_select($event)"
          (deselect)="_deselect($event)"
          (removed)="_removed($event)"
          [heading]="tab.title">{{ tab.content }}</tab>

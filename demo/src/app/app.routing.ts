@@ -1,5 +1,5 @@
 import { LandingComponent } from './common/landing/landing.component';
-import { GettingStartedComponent } from './common/getting-started/getting-started.component';
+import { DocumentationComponent } from './common/documentation/documentation.component';
 
 export const routes = [
   {
@@ -8,53 +8,53 @@ export const routes = [
     component: LandingComponent
   },
   {
-    path: 'getting-started',
-    data: ['Getting started'],
-    component: GettingStartedComponent
+    path: 'documentation',
+    data: ['Documentation'],
+    component: DocumentationComponent
   },
   {
     path: 'accordion',
-    data: ['Accordion'],
+    data: ['Accordion', {moduleName: 'AccordionModule', moduleFolder: 'accordion'}],
     // component: AccordionSectionComponent
     loadChildren:
       './components/+accordion/demo-accordion.module#DemoAccordionModule'
   },
   {
     path: 'alerts',
-    data: ['Alerts'],
+    data: ['Alerts', {moduleName: 'AlertModule', moduleFolder: 'alert'}],
     // component: AlertsSectionComponent,
     loadChildren: './components/+alerts/demo-alert.module#DemoAlertsModule'
   },
   {
     path: 'buttons',
-    data: ['Buttons'],
+    data: ['Buttons', {moduleName: 'ButtonsModule', moduleFolder: 'buttons'}],
     // component: ButtonsSectionComponent
     loadChildren: './components/+buttons/demo-buttons.module#DemoButtonsModule'
   },
   {
     path: 'carousel',
-    data: ['Carousel'],
+    data: ['Carousel', {moduleName: 'CarouselModule', moduleFolder: 'carousel'}],
     // component: CarouselSectionComponent
     loadChildren:
       './components/+carousel/demo-carousel.module#DemoCarouselModule'
   },
   {
     path: 'collapse',
-    data: ['Collapse'],
+    data: ['Collapse', {moduleName: 'CollapseModule', moduleFolder: 'collapse'}],
     // component: CollapseSectionComponent
     loadChildren:
       './components/+collapse/demo-collapse.module#DemoCollapseModule'
   },
   {
     path: 'datepicker',
-    data: ['Datepicker'],
+    data: ['Datepicker', {moduleName: 'BsDatepickerModule', moduleFolder: 'datepicker'}],
     // component: DatepickerSectionComponent
     loadChildren:
       './components/+datepicker/demo-datepicker.module#DemoDatepickerModule'
   },
   {
     path: 'dropdowns',
-    data: ['Dropdowns'],
+    data: ['Dropdowns', {moduleName: 'BsDropdownModule', moduleFolder: 'dropdown'}],
     // component: DropdownSectionComponent
     loadChildren:
       './components/+dropdown/demo-dropdown.module#DemoDropdownModule'
@@ -62,65 +62,65 @@ export const routes = [
 
   {
     path: 'modals',
-    data: ['Modals'],
+    data: ['Modals', {moduleName: 'ModalModule', moduleFolder: 'modal'}],
     // component: ModalSectionComponent
     loadChildren: './components/+modal/demo-modal.module#DemoModalModule'
   },
   {
     path: 'pagination',
-    data: ['Pagination'],
+    data: ['Pagination', {moduleName: 'PaginationModule', moduleFolder: 'pagination'}],
     // component: PaginationSectionComponent
     loadChildren:
       './components/+pagination/demo-pagination.module#DemoPaginationModule'
   },
   {
     path: 'popover',
-    data: ['Popover'],
+    data: ['Popover', {moduleName: 'PopoverModule', moduleFolder: 'popover'}],
     // component: PopoverSectionComponent
     loadChildren: './components/+popover/demo-popover.module#DemoPopoverModule'
   },
   {
     path: 'progressbar',
-    data: ['Progressbar'],
+    data: ['Progressbar', {moduleName: 'ProgressbarModule', moduleFolder: 'progressbar'}],
     // component: ProgressbarSectionComponent
     loadChildren:
       './components/+progressbar/demo-progressbar.module#DemoProgressbarModule'
   },
   {
     path: 'rating',
-    data: ['Rating'],
+    data: ['Rating', {moduleName: 'RatingModule', moduleFolder: 'rating'}],
     // component: RatingSectionComponent,
     loadChildren: './components/+rating/demo-rating.module#DemoRatingModule'
   },
   {
     path: 'sortable',
-    data: ['Sortable'],
+    data: ['Sortable', {moduleName: 'SortableModule', moduleFolder: 'sortable'}],
     // component: SortableSectionComponent,
     loadChildren:
       './components/+sortable/demo-sortable.module#DemoSortableModule'
   },
   {
     path: 'tabs',
-    data: ['Tabs'],
+    data: ['Tabs', {moduleName: 'TabsModule', moduleFolder: 'tabs'}],
     // component: TabsSectionComponent
     loadChildren: './components/+tabs/demo-tabs.module#DemoTabsModule'
   },
   {
     path: 'timepicker',
-    data: ['Timepicker'],
+    data: ['Timepicker', {moduleName: 'TimepickerModule', moduleFolder: 'timepicker'}],
     // component: TimepickerSectionComponent
     loadChildren:
       './components/+timepicker/demo-timepicker.module#DemoTimepickerModule'
   },
   {
     path: 'tooltip',
-    data: ['Tooltip'],
+    data: ['Tooltip', {moduleName: 'TooltipModule', moduleFolder: 'tooltip'}],
     // component: TooltipSectionComponent
     loadChildren: './components/+tooltip/demo-tooltip.module#DemoTooltipModule'
   },
   {
     path: 'typeahead',
-    data: ['Typeahead'],
+    data: ['Typeahead', {moduleName: 'TypeaheadModule', moduleFolder: 'typeahead'}],
     // component: TypeaheadSectionComponent
     loadChildren:
       './components/+typeahead/demo-typeahead.module#DemoTypeaheadModule'

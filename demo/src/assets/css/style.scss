@@ -114,6 +114,35 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
 }
+/* supporting */
+.sponsor-icon {
+  margin: -3px 8px 0 0;
+}
+.sponsor-link {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: #555555;
+}
+.sponsor-link:hover {
+  color: #0056b3;
+}
+.content-supporting {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.compatibility {
+  table, th, td {
+    text-align: left;
+  }
+  th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  tr:hover {background-color: #dadadd;}
+
+}
 /* entry */
 .entry {
   padding: 75px 0 ;
@@ -128,9 +157,9 @@ a:hover {
     margin: 40px 0 20px;
 
     .btn {
-      width: 160px;
+      min-width: 160px;
       margin: 0 13px;
-      padding: 12px 0;
+      padding: 12px 10px;
       cursor: pointer;
       text-transform: uppercase;
       letter-spacing: 2px;

@@ -1,3 +1,5 @@
+@import 'variables';
+
 @mixin theming($name, $color) {
   .theme-#{$name} {
     .bs-datepicker-head {
@@ -16,6 +18,14 @@
 
           &.week span {
             color: $color;
+          }
+
+          &.active-week span:hover {
+            cursor: pointer;
+            background-color: $color;
+            color: $font-color-01;
+            opacity: 0.5;
+            transition: 0s;
           }
         }
       }

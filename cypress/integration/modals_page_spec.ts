@@ -5,69 +5,44 @@ describe('Modals demo page test suite', () => {
 
   beforeEach(() => modals.navigateTo());
 
-  describe('Service examples', () => {
+  describe('Template modal', () => {
 
-    describe('Template modal', () => {
-      const templateModal = modals.exampleDemosArr.serviceTemplate;
-      const buttonText = 'Create template modal';
+    const templateDemo = modals.exampleDemosArr.serviceTemplate;
+    const btnText = 'Create template modal';
+    const btnX = '×';
 
-      it('template service modal can be opened by click on button and closed by backdrop-click', () => {
-        modals.clickByText(templateModal, buttonText);
-        cy.get(modals.modalContent).last()
-          .should('to.be.visible');
-
-        cy.get(modals.backServiceMod).as('modalAndBackdrop').click();
-        cy.get('@modalAndBackdrop')
-          .should('not.to.be.visible');
-      });
+    it('example contains the button "Create template modal"', () => {
+      modals.scrollToMenu(' Template ');
+      modals.isButtonExist(templateDemo, btnText);
     });
 
-    describe('Component modal', () => {
-      const componentModal = modals.exampleDemosArr.serviceComponent;
-      const buttonText = 'Create modal with component';
-      const modalCloseBtn = 'Close';
-
-      it('component service modal can be opened by click on button and closed by clicking Close button', () => {
-        modals.clickByText(componentModal, buttonText);
-        cy.get(modals.modalContent)
-          .should('to.be.visible');
-
-        modals.clickByText(modals.modalContent, modalCloseBtn);
-        cy.get(modals.backServiceMod)
-          .should('not.to.be.visible');
-      });
-    });
-  });
-
-  describe('Directive examples', () => {
-    describe('Static modal', () => {
-      const staticModal = modals.exampleDemosArr.directiveStatic;
-      const buttonText = 'Static modal';
-
-      it('directive static modal can be closed by clicking Close button', () => {
-        modals.clickByText(staticModal, buttonText);
-        cy.get(`${ staticModal } ${ modals.modalContent }`).as('staticMod')
-          .should('to.be.visible');
-
-        cy.get(`${ staticModal } ${ modals.modalHeader } ${ modals.btnCloseInHeader }`).click();
-        cy.get(`${ staticModal } ${ modals.backDirectiveMod }`)
-          .should('not.to.be.visible');
-      });
+    it(`when user clicks on the button "Create modal with component" then modal is opened and
+      backdrop is enabled`, () => {
+      modals.clickByText(templateDemo, btnText);
+      modals.isModalVisible(modals.modalContainer, true);
+      modals.isBackdropExist(true);
     });
 
-    describe('Child modal', () => {
-      const childModals = modals.exampleDemosArr.directiveChild;
-      const buttonText = 'Open child modal';
+    it('when user clicks on the cross button then the modal is closed', () => {
+      modals.clickByText(templateDemo, btnText);
+      modals.clickByText(modals.modalBtnX, btnX);
+      modals.isModalVisible(modals.modalContainer, true);
+      modals.isModalEnabled(modals.modalContainer, false);
+      modals.isBackdropExist(false);
+    });
 
-      it('directive child modal can be closed by backdrop click', () => {
-        modals.clickByText(childModals, buttonText);
-        cy.get(`${ childModals } ${ modals.modalContent }`)
-          .should('to.be.visible');
+    it('when user clicks on backdrop then the modal is closed', () => {
+      modals.clickByText(templateDemo, btnText);
+      modals.clickOnBackdrop();
+      modals.isModalVisible(modals.modalContainer, true);
+      modals.isModalEnabled(modals.modalContainer, false);
+    });
 
-        cy.get(`${ childModals } ${ modals.backDirectiveMod }`).as('childModBack').click();
-        cy.get('@childModBack')
-          .should('not.to.be.visible');
-      });
+    it('when user press on ESC btn then the modal is closed', () => {
+      modals.clickByText(templateDemo, btnText);
+      modals.pressEsc();
+      modals.isModalEnabled(modals.modalContainer, false);
+      modals.isBackdropExist(false);
     });
   });
 });

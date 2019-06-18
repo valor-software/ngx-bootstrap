@@ -19,7 +19,7 @@ export const demoComponentContent: ContentSection[] = [
     anchor: 'usage',
     outlet: DemoTopSectionComponent,
     content: {
-      doc: require('!!raw-loader?lang=typescript!./docs/usage.md')
+      doc: require('!!raw-loader!./docs/usage.md')
     }
   },
   {
@@ -30,29 +30,29 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Static',
         anchor: 'bs3-static',
-        component: require('!!raw-loader?lang=typescript!./demos/static/static'),
-        html: require('!!raw-loader?lang=markup!./demos/static/static.html'),
+        component: require('!!raw-loader!./demos/static/static'),
+        html: require('!!raw-loader!./demos/static/static.html'),
         outlet: DemoProgressbarStaticComponent
       },
       {
         title: 'Dynamic',
         anchor: 'bs3-dynamic',
-        component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic'),
-        html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
+        component: require('!!raw-loader!./demos/dynamic/dynamic'),
+        html: require('!!raw-loader!./demos/dynamic/dynamic.html'),
         outlet: DemoProgressbarDynamicComponent
       },
       {
         title: 'Stacked',
         anchor: 'bs3-stacked',
-        component: require('!!raw-loader?lang=typescript!./demos/stacked/stacked'),
-        html: require('!!raw-loader?lang=markup!./demos/stacked/stacked.html'),
+        component: require('!!raw-loader!./demos/stacked/stacked'),
+        html: require('!!raw-loader!./demos/stacked/stacked.html'),
         outlet: DemoProgressbarStackedComponent
       },
       {
         title: 'Configuring defaults',
         anchor: 'bs3-config',
-        component: require('!!raw-loader?lang=typescript!./demos/config/config'),
-        html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
+        component: require('!!raw-loader!./demos/config/config'),
+        html: require('!!raw-loader!./demos/config/config.html'),
         outlet: DemoProgressbarConfigComponent
       }
     ]

@@ -1,10 +1,11 @@
 // revision 6c0b585aa4a7c13c44631915d13488e6967162f4
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TestBed } from '@angular/core/testing';
 import { createGenericTestComponent } from './test/common';
 
 import { Component } from '@angular/core';
 
-import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { CollapseModule } from '../../collapse';
 
 @Component({ selector: 'test-cmp', template: '' })
 class TestComponent {
@@ -24,7 +25,10 @@ describe('bs-collapse', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
-      imports: [CollapseModule]
+      imports: [
+        CollapseModule,
+        BrowserAnimationsModule
+      ]
     });
     TestBed.overrideComponent(TestComponent, { set: { template: html } });
   });
