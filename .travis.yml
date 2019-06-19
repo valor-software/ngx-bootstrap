@@ -2,6 +2,9 @@ sudo: false
 language: node_js
 node_js: "10"
 
+services:
+  - xvfb
+
 notifications:
   email: false
 
@@ -17,7 +20,7 @@ env:
     - BROWSER_PROVIDER_READY_FILE=/tmp/sauce-connect-ready
     - LOGS_DIR=/tmp/logs
     - CYPRESS_RECORD_KEY=4aa7a1c0-3a4f-444e-b324-6fc305a543a8
-    - NPM_AUTH_TOKEN_CI_PR=c687305b-fd76-4d02-9f64-8ecdbc31d9a4
+    - NPM_AUTH_TOKEN_CI_PR=$(./scripts/ci/npm-ci-key.sh)
 
 #     test cypress smoke
 testSmokeCy: &testSmokeCy
@@ -45,8 +48,9 @@ stages:
   if:  branch = development AND type = push OR tag =~ ^v\d+
 
 before_install:
-- sh -e /etc/init.d/xvfb start
 - rm -rf node_modules/ngx-bootstrap
+- sudo apt-get install libgconf-2-4
+- npm install tslint
 
 install:
 - npm ci

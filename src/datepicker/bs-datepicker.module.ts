@@ -29,19 +29,6 @@ import { BsTimepickerViewComponent } from './themes/bs/bs-timepicker-view.compon
 import { BsYearsCalendarViewComponent } from './themes/bs/bs-years-calendar-view.component';
 import { BsDatepickerInlineContainerComponent } from './themes/bs/bs-datepicker-inline-container.component';
 
-const _exports = [
-  BsDatepickerContainerComponent,
-  BsDaterangepickerContainerComponent,
-  BsDatepickerInlineContainerComponent,
-
-  BsDatepickerDirective,
-  BsDatepickerInputDirective,
-
-  BsDaterangepickerInputDirective,
-  BsDaterangepickerDirective,
-
-  BsDatepickerInlineDirective
-];
 
 @NgModule({
   imports: [CommonModule],
@@ -50,22 +37,35 @@ const _exports = [
     BsCurrentDateViewComponent,
     BsDatepickerNavigationViewComponent,
     BsTimepickerViewComponent,
-
     BsCalendarLayoutComponent,
     BsDaysCalendarViewComponent,
     BsMonthCalendarViewComponent,
     BsYearsCalendarViewComponent,
-
     BsCustomDatesViewComponent,
-
-    ..._exports
+    BsDatepickerContainerComponent,
+    BsDaterangepickerContainerComponent,
+    BsDatepickerInlineContainerComponent,
+    BsDatepickerDirective,
+    BsDatepickerInputDirective,
+    BsDaterangepickerInputDirective,
+    BsDaterangepickerDirective,
+    BsDatepickerInlineDirective
   ],
   entryComponents: [
     BsDatepickerContainerComponent,
     BsDaterangepickerContainerComponent,
     BsDatepickerInlineContainerComponent
   ],
-  exports: _exports
+  exports: [
+    BsDatepickerContainerComponent,
+    BsDaterangepickerContainerComponent,
+    BsDatepickerInlineContainerComponent,
+    BsDatepickerDirective,
+    BsDatepickerInputDirective,
+    BsDaterangepickerInputDirective,
+    BsDaterangepickerDirective,
+    BsDatepickerInlineDirective
+  ]
 })
 export class BsDatepickerModule {
   static forRoot(): ModuleWithProviders {
