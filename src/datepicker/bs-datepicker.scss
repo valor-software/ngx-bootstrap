@@ -156,10 +156,6 @@
         // todo: check first :not(.disabled) usage
         &:not(.disabled):not(.week) span:not(.disabled):not(.is-other-month) {
           cursor: pointer;
-
-          &.disabled {
-            cursor: default;
-          }
         }
 
         &.is-highlighted:not(.disabled):not(.selected) span,
@@ -245,12 +241,6 @@
         &[class*="select-"] span {
           border-radius: 50%;
           color: $font-color-01;
-        }
-
-        &.week {
-          span {
-            cursor: default;
-          }
         }
       }
 
