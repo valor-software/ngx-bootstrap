@@ -1,12 +1,11 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { demoComponentContent } from './carousel-section.list';
 import { ContentSection } from '../../docs/models/content-section.model';
 
 @Component({
   selector: 'carousel-section',
-  templateUrl: './carousel-section.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: './carousel-section.component.html'
 })
 export class CarouselSectionComponent {
   name = 'Carousel';

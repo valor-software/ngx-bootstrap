@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { AbstractControl, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'demo-timepicker-custom-validation',
@@ -8,12 +8,15 @@ import { FormControl } from '@angular/forms';
 export class DemoTimepickerCustomValidationComponent {
   myTime: Date;
 
-  ctrl = new FormControl('', (control: FormControl) => {
+  ctrl = new FormControl('', (control: AbstractControl) => {
     const value = control.value;
+
     if (!value) {
       return null;
     }
+
     const hours = value.getHours();
+
     if (hours < 11 || hours > 12) {
       return { outOfRange: true };
     }

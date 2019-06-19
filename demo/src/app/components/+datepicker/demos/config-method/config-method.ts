@@ -1,21 +1,22 @@
 import { Component, ViewChild } from '@angular/core';
-import { BsDaterangepickerDirective } from 'ngx-bootstrap/datepicker';
+import { BsDaterangepickerDirective, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'demo-datepicker-config-method',
   templateUrl: './config-method.html'
 })
 export class DemoDatepickerConfigMethodComponent {
-  @ViewChild('dp') datepicker: BsDaterangepickerDirective;
-  bsConfig: object;
+  @ViewChild('dp', { static: false }) datepicker: BsDaterangepickerDirective;
+
+  bsConfig: Partial<BsDatepickerConfig>;
   minDate = new Date(2018, 5, 13);
+
   setOptions(): void {
-    this.bsConfig = Object.assign({}, {minDate: this.minDate});
+    this.bsConfig = Object.assign({}, { minDate: this.minDate });
     this.datepicker.setConfig();
+
     setTimeout(() => {
       this.datepicker.toggle();
     });
   }
 }
-
-

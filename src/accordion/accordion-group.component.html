@@ -1,6 +1,8 @@
 <div class="panel card" [ngClass]="panelClass">
   <div class="panel-heading card-header" role="tab"
-       (click)="toggleOpen($event)" [ngClass]="isDisabled ? 'panel-disabled' : 'panel-enabled'">
+       (click)="toggleOpen()" 
+       [ngClass]="isDisabled ? 'panel-disabled' : 'panel-enabled'">
+    
     <div class="panel-title">
       <div role="button" class="accordion-toggle"
            [attr.aria-expanded]="isOpen">
@@ -11,7 +13,7 @@
       </div>
     </div>
   </div>
-  <div class="panel-collapse collapse" role="tabpanel" [collapse]="!isOpen">
+  <div class="panel-collapse collapse" role="tabpanel" [collapse]="!isOpen" [isAnimated]="isAnimated">
     <div class="panel-body card-block card-body">
       <ng-content></ng-content>
     </div>

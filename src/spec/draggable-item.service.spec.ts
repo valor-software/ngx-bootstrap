@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { fakeAsync, inject, TestBed } from '@angular/core/testing';
-import { DraggableItem, DraggableItemService, SortableItem } from '../sortable/index';
+import { DraggableItem, DraggableItemService, SortableItem } from '../sortable';
 
 @Component({
   template: `<h1>Test</h1>`
@@ -39,6 +39,7 @@ describe('Service: DraggableItem', () => {
 
   it('should fire onCapture if item was captured by another zone', () => {
     // arrange
+    /* tslint:disable-next-line: no-any */
     const spy = spyOn<any>(transfer.onCaptureItem(), 'next');
 
     // act
@@ -50,6 +51,7 @@ describe('Service: DraggableItem', () => {
 
   it('should NOT fire onCapture if item was captured by the same zone', () => {
     // arrange
+    /* tslint:disable-next-line: no-any */
     const spy = spyOn<any>(transfer.onCaptureItem(), 'next');
 
     // act
