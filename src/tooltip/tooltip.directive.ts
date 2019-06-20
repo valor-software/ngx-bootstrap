@@ -307,10 +307,13 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
       if (this.triggers) {
         const triggers = parseTriggers(this.triggers);
-        this._tooltipCancelShowFn = this._renderer.listen(this._elementRef.nativeElement, triggers[0].close, () => {
-          _timer.unsubscribe();
-          cancelDelayedTooltipShowing();
-        });
+
+        for (let i=0; i<triggers.length; i++) {
+          this._tooltipCancelShowFn = this._renderer.listen(this._elementRef.nativeElement, triggers[0].close, () => {
+            _timer.unsubscribe();
+            cancelDelayedTooltipShowing();
+          });
+        }
       }
     } else {
       showTooltip();
