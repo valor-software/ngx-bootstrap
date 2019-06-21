@@ -6,7 +6,8 @@ import { TabsetConfig } from './tabset.config';
 // todo: fix? mixing static and dynamic tabs position tabs in order of creation
 @Component({
   selector: 'tabset',
-  templateUrl: './tabset.component.html'
+  templateUrl: './tabset.component.html',
+  styleUrls: ['./tabs.scss']
 })
 export class TabsetComponent implements OnDestroy {
   /** if true tabs will be placed vertically */
