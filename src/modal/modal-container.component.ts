@@ -23,7 +23,7 @@ import { ModalDialogOnAction } from './models';
       <div *ngIf="config.complete" class="modal-content">
         <div class="modal-header">
           <h5 id="dialog-sizes-name1" class="modal-title pull-left">{{config.header}}</h5>
-          <button type="button" class="close pull-right" (click)="hide()" aria-label="Close">
+          <button *ngIf="config.showCloseButton" type="button" class="close pull-right" (click)="hide()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
