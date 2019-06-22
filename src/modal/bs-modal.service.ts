@@ -17,6 +17,7 @@ import {
   TRANSITION_DURATIONS
 } from './modal-options.class';
 import { BsModalRef } from './bs-modal-ref.service';
+import { IModalDialogButton } from './models';
 
 @Injectable()
 export class BsModalService {
@@ -123,6 +124,9 @@ export class BsModalService {
     bsModalRef.content = modalLoader.getInnerComponent() || null;
     bsModalRef.setClass = (newClass: string) => {
       modalContainerRef.instance.config.class = newClass;
+    };
+    bsModalRef.setButtons = (buttons: IModalDialogButton[]) => {
+      modalContainerRef.instance.config.actionButtons = buttons;
     };
 
     return bsModalRef;

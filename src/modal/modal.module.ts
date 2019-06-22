@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { ModalBackdropComponent } from './modal-backdrop.component';
@@ -8,6 +9,7 @@ import { ModalContainerComponent } from './modal-container.component';
 import { BsModalService } from './bs-modal.service';
 
 @NgModule({
+  imports: [CommonModule],
   declarations: [
     ModalBackdropComponent,
     ModalDirective,

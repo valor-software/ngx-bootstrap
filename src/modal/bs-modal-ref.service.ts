@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 
+import { IModalDialogButton } from './models';
+
 @Injectable()
 export class BsModalRef {
   /**
@@ -16,4 +18,8 @@ export class BsModalRef {
    * Sets new class to modal window
    */
   setClass: (newClass: string) => void = Function;
+  /**
+     * Sets buttons to footer of modal window
+     */
+  setButtons: (buttons: IModalDialogButton[]) => void;
 }

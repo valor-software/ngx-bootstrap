@@ -14,15 +14,32 @@ import {
 } from './modal-options.class';
 import { BsModalService } from './bs-modal.service';
 import { isBs3 } from 'ngx-bootstrap/utils';
+import { ModalDialogOnAction } from './models';
 
 @Component({
   selector: 'modal-container',
   template: `
-    <div [class]="'modal-dialog' + (config.class ? ' ' + config.class : '')" role="document">
-      <div class="modal-content">
+  <div [class]="'modal-dialog' + (config.class ? ' ' + config.class : '')" role="document">
+      <div *ngIf="config.complete" class="modal-content">
+        <div class="modal-header">
+          <h5 id="dialog-sizes-name1" class="modal-title pull-left">{{config.header}}</h5>
+          <button type="button" class="close pull-right" (click)="hide()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ng-content></ng-content>
+        </div>
+        <div *ngIf="config.actionButtons" class="modal-footer">
+          <button *ngFor="let button of config.actionButtons" (click)="doAction(button.click)"
+            [class]="button.cssClass">{{button.text}}
+          </button>
+        </div>
+      </div>
+      <div *ngIf="!config.complete" class="modal-content">
         <ng-content></ng-content>
       </div>
-    </div>
+  </div>
   `,
   host: {
     class: 'modal',
@@ -137,4 +154,16 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       this.isModalHiding = false;
     }, this.isAnimated ? TRANSITION_DURATIONS.MODAL : 0);
   }
+
+  /**
+     * Run action defined on action button
+     * @param action
+     */
+  doAction(action?: ModalDialogOnAction) {
+    if (!action)
+      return;
+    let response = action();
+  }
+
 }
+

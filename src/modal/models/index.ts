@@ -23,3 +23,16 @@ export interface DismissReasons {
   BACKRDOP: string;
   ESC: string;
 }
+
+export interface IModalDialogButton {
+    text: string;
+    cssClass?: string;
+    /**
+     * Specifies a value that indicates whether the Button is `disabled` or not.
+     * @default false.
+     */
+    disabled?: boolean;
+    click?: ModalDialogOnAction;
+}
+
+export type ModalDialogOnAction = () => void;
