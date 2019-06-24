@@ -264,6 +264,11 @@ export const ngdoc: any = {
         "description": ""
       },
       {
+        "name": "pauseOnFocus",
+        "type": "boolean",
+        "description": ""
+      },
+      {
         "name": "showIndicators",
         "type": "boolean",
         "description": ""
@@ -341,6 +346,41 @@ export const ngdoc: any = {
             "type": "boolean"
           }
         ],
+        "returnType": "void"
+      },
+      {
+        "name": "keydownPress",
+        "description": "<p>Swith slides by enter, space and arrows keys</p>\n",
+        "args": [
+          {
+            "name": "event",
+            "type": "KeyboardEvent"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "onMouseLeave",
+        "description": "<p>Play on mouse leave</p>\n",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "onMouseUp",
+        "description": "<p>Play on mouse up</p>\n",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "pauseFocusIn",
+        "description": "<p>When slides on focus autoplay is stopped(optional)</p>\n",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "pauseFocusOut",
+        "description": "<p>When slides out of focus autoplay is started</p>\n",
+        "args": [],
         "returnType": "void"
       },
       {
@@ -441,10 +481,22 @@ export const ngdoc: any = {
     "methods": [],
     "properties": [
       {
+        "name": "indicatorsByChunk",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>If <code>true</code> - carousel indicators indicate slides chunks\nworks ONLY if singleSlideOffset = FALSE</p>\n"
+      },
+      {
         "name": "interval",
         "defaultValue": "5000",
         "type": "number",
         "description": "<p>Default interval of auto changing of slides</p>\n"
+      },
+      {
+        "name": "itemsPerSlide",
+        "defaultValue": "1",
+        "type": "number",
+        "description": "<p>If value more then 1 — carousel works in multilist mode</p>\n"
       },
       {
         "name": "noPause",
@@ -459,10 +511,22 @@ export const ngdoc: any = {
         "description": "<p>Is slides can wrap from the last to the first slide</p>\n"
       },
       {
+        "name": "pauseOnFocus",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>Slides can be paused on focus</p>\n"
+      },
+      {
         "name": "showIndicators",
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>Show carousel-indicators</p>\n"
+      },
+      {
+        "name": "singleSlideOffset",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>If <code>true</code> — carousel shifts by one element. By default carousel shifts by number\nof visible elements (itemsPerSlide field)</p>\n"
       }
     ]
   },
