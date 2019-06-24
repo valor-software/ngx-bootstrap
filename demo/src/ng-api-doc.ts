@@ -237,6 +237,12 @@ export const ngdoc: any = {
         "description": "<p>Index of currently displayed slide(started for 0)</p>\n"
       },
       {
+        "name": "indicatorsByChunk",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": ""
+      },
+      {
         "name": "interval",
         "type": "number",
         "description": "<p>Delay of item cycling in milliseconds. If false, carousel won&#39;t cycle\nautomatically.</p>\n"
@@ -984,6 +990,12 @@ export const ngdoc: any = {
         "description": "<p>Disable specific dates</p>\n"
       },
       {
+        "name": "isAnimated",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>turn on/off animation</p>\n"
+      },
+      {
         "name": "maxDate",
         "type": "Date",
         "description": "<p>Default max date for all date/range pickers</p>\n"
@@ -1157,7 +1169,14 @@ export const ngdoc: any = {
     "className": "BsDaterangepickerConfig",
     "description": "",
     "methods": [],
-    "properties": []
+    "properties": [
+      {
+        "name": "isAnimated",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>turn on/off animation</p>\n"
+      }
+    ]
   },
   "BsLocaleService": {
     "fileName": "src/datepicker/bs-locale.service.ts",
@@ -3545,6 +3564,12 @@ export const ngdoc: any = {
         "description": "<p>used to hide results on blur</p>\n"
       },
       {
+        "name": "isAnimated",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>turn on/off animation</p>\n"
+      },
+      {
         "name": "isFirstItemActive",
         "defaultValue": "true",
         "type": "boolean",
@@ -3586,6 +3611,12 @@ export const ngdoc: any = {
         "defaultValue": "false",
         "type": "boolean",
         "description": "<p>This attribute indicates that the dropdown should be opened upwards</p>\n"
+      },
+      {
+        "name": "isAnimated",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>turn on/off animation</p>\n"
       },
       {
         "name": "optionsListTemplate",
