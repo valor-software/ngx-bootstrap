@@ -7,9 +7,10 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class DemoDatePickerCustomFormatComponent {
 
-  myForm = new FormGroup({
-    myDateYMD: new FormControl(new Date()),
-    myDateFull: new FormControl(new Date()),
-    myDateMDY: new FormControl(new Date())
+  form = new FormGroup({
+    dateYMD: new FormControl(new Date()),
+    dateFull: new FormControl(new Date()),
+    dateMDY: new FormControl(new Date()),
+    dateRange: new FormControl([new Date(), new Date()])
   });
 }
