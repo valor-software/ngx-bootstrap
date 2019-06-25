@@ -16,7 +16,8 @@ import { AccordionComponent } from './accordion.component';
   host: {
     class: 'panel',
     style: 'display: block'
-  }
+  },
+  styleUrls: ['./accordion.scss']
 })
 export class AccordionPanelComponent implements OnInit, OnDestroy {
   /** turn on/off animation */
