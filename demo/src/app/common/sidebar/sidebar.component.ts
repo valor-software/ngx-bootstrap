@@ -1,5 +1,5 @@
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { Component, Inject, OnDestroy, Renderer } from '@angular/core';
+import { Component, Inject, OnDestroy, Renderer2 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 import { isBs3, setTheme } from 'ngx-bootstrap/utils';
@@ -31,7 +31,7 @@ export class SidebarComponent implements OnDestroy {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private renderer: Renderer,
+    private renderer: Renderer2,
     private router: Router,
     private themeStorage: ThemeStorage,
     public styleManager: StyleManager,
@@ -56,10 +56,16 @@ export class SidebarComponent implements OnDestroy {
   toggle(isShown?: boolean): void {
     this.isShown = typeof isShown === 'undefined' ? !this.isShown : isShown;
     if (this.document && this.document.body) {
-      this.renderer.setElementClass(this.document.body, 'isOpenMenu', this.isShown);
+
+      if (this.isShown) {
+        this.renderer.addClass(this.document.body, 'isOpenMenu');
+      } else {
+        this.renderer.removeClass(this.document.body, 'isOpenMenu');
+      }
+
       if (this.isShown === false && this.document.documentElement) {
-        this.renderer.setElementProperty(this.document.documentElement, 'scrollTop', 0);
-        this.renderer.setElementProperty(this.document.body, 'scrollTop', 0);
+        this.renderer.setAttribute(this.document.documentElement, 'scrollTop', '0');
+        this.renderer.setAttribute(this.document.body, 'scrollTop', '0');
       }
     }
   }
