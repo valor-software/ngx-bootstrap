@@ -1,3 +1,28 @@
+<a name="5.1.0"></a>
+# [5.1.0](https://github.com/valor-software/ngx-bootstrap/compare/v5.0.0...v5.1.0) (2019-06-24)
+
+
+Most notable changes are:
+- ngx-bootstrap currently fully supports the Ivy engine
+
+
+### Bug Fixes
+
+* **accordion|tabs:** fix cursor style when disabled element ([#4664](https://github.com/valor-software/ngx-bootstrap/issues/4664)) ([42cc778](https://github.com/valor-software/ngx-bootstrap/commit/42cc778))
+* **common:** fix cy logo link in getstarted page ([#5259](https://github.com/valor-software/ngx-bootstrap/issues/5259)) ([f2deb1b](https://github.com/valor-software/ngx-bootstrap/commit/f2deb1b))
+* **tests:** fix for saucelab unit tests ([#5263](https://github.com/valor-software/ngx-bootstrap/issues/5263)) ([669d7e1](https://github.com/valor-software/ngx-bootstrap/commit/669d7e1))
+
+
+### Features
+
+* **carousel:** add an opportunity to use a keyboard for navigation ([#5270](https://github.com/valor-software/ngx-bootstrap/issues/5270)) ([f5ffefa](https://github.com/valor-software/ngx-bootstrap/commit/f5ffefa))
+* **common:** add compatibility table ([#5260](https://github.com/valor-software/ngx-bootstrap/issues/5260)) ([b99f10c](https://github.com/valor-software/ngx-bootstrap/commit/b99f10c))
+* **datepicker:** add ivy support (also fix ci) ([#5268](https://github.com/valor-software/ngx-bootstrap/issues/5268)) ([27639ea](https://github.com/valor-software/ngx-bootstrap/commit/27639ea))
+* **doc:** include docs for DateRangepicker custom format ([#5199](https://github.com/valor-software/ngx-bootstrap/issues/5199)) ([b845340](https://github.com/valor-software/ngx-bootstrap/commit/b845340))
+* **tabs:** update of keyboard control ([#5284](https://github.com/valor-software/ngx-bootstrap/issues/5284)) ([161f419](https://github.com/valor-software/ngx-bootstrap/commit/161f419))
+
+
+
 <a name="5.0.0"></a>
 # [5.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v4.3.0...v5.0.0) (2019-06-10)
 
@@ -1993,6 +2018,3 @@ sample:  `<ul dropdownMenu>` should become `<ul *dropdownMenu>`
 * **build:** works good with typescript@1.6 ([31c513b](https://github.com/valor-software/ngx-bootstrap/commit/31c513b))
 * **ng 2.0.37:** ts errors fixed ([1e19f55](https://github.com/valor-software/ngx-bootstrap/commit/1e19f55))
 * **typeahead:** ts style fixes ([3eab1e4](https://github.com/valor-software/ngx-bootstrap/commit/3eab1e4))
-
-
-
