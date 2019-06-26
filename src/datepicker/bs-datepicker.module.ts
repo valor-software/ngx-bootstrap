@@ -28,6 +28,9 @@ import { BsMonthCalendarViewComponent } from './themes/bs/bs-months-calendar-vie
 import { BsTimepickerViewComponent } from './themes/bs/bs-timepicker-view.component';
 import { BsYearsCalendarViewComponent } from './themes/bs/bs-years-calendar-view.component';
 import { BsDatepickerInlineContainerComponent } from './themes/bs/bs-datepicker-inline-container.component';
+import { BsDaterangepickerInlineContainerComponent } from './themes/bs/bs-daterangepicker-inline-container.component';
+import { BsDaterangepickerInlineDirective } from './bs-daterangepicker-inline.component';
+import { BsDaterangepickerInlineConfig } from './bs-daterangepicker-inline.config';
 
 
 @NgModule({
@@ -45,26 +48,31 @@ import { BsDatepickerInlineContainerComponent } from './themes/bs/bs-datepicker-
     BsDatepickerContainerComponent,
     BsDaterangepickerContainerComponent,
     BsDatepickerInlineContainerComponent,
+    BsDaterangepickerInlineContainerComponent,
     BsDatepickerDirective,
     BsDatepickerInputDirective,
     BsDaterangepickerInputDirective,
     BsDaterangepickerDirective,
-    BsDatepickerInlineDirective
+    BsDatepickerInlineDirective,
+    BsDaterangepickerInlineDirective
   ],
   entryComponents: [
     BsDatepickerContainerComponent,
     BsDaterangepickerContainerComponent,
-    BsDatepickerInlineContainerComponent
+    BsDatepickerInlineContainerComponent,
+    BsDaterangepickerInlineContainerComponent
   ],
   exports: [
     BsDatepickerContainerComponent,
     BsDaterangepickerContainerComponent,
     BsDatepickerInlineContainerComponent,
+    BsDaterangepickerInlineContainerComponent,
     BsDatepickerDirective,
     BsDatepickerInputDirective,
     BsDaterangepickerInputDirective,
     BsDaterangepickerDirective,
-    BsDatepickerInlineDirective
+    BsDatepickerInlineDirective,
+    BsDaterangepickerInlineDirective
   ]
 })
 export class BsDatepickerModule {
@@ -79,6 +87,7 @@ export class BsDatepickerModule {
         BsDatepickerConfig,
         BsDaterangepickerConfig,
         BsDatepickerInlineConfig,
+        BsDaterangepickerInlineConfig,
         BsDatepickerEffects,
         BsLocaleService
       ]
