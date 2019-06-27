@@ -12,7 +12,7 @@ import { datepickerAnimation } from '../../datepicker-animations';
 @Component({
     selector: 'bs-daterangepicker-inline-container',
     providers: [BsDatepickerStore, BsDatepickerEffects],
-    templateUrl: './bs-daterangepicker-view.html',
+    templateUrl: './bs-datepicker-view.html',
     host: {
         '(click)': '_stopPropagation($event)',
         style: 'display: inline-block;'
