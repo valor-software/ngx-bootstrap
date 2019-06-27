@@ -58,6 +58,7 @@ install:
 - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
 - npm i ngx-bootstrap-ci@$TRAVIS_COMMIT
 - npm run ci:rename-pkg
+- if [[ "$NGV" == "ivy" ]]; then  scripts/ivy/compiler-cli-fix.sh; fi
 - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export SAUCE_USERNAME=$SAUCE_USERNAME_PR; export SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; export NPM_AUTH_TOKEN_CI=$NPM_AUTH_TOKEN_CI_PR; fi
 
 jobs:
@@ -102,6 +103,9 @@ jobs:
   - script: npm run test-coverage
     name: "Test with current Angular version"
     after_success: ./node_modules/.bin/codecov
+  - script: ng test --configuration ivy && tsc -p schematics/tsconfig.json && npm run test:schematics
+    name: "Test with current Angular version Ivy:enabled"
+    env: NGV=ivy
   - script: ng test && tsc -p schematics/tsconfig.json && npm run test:schematics
     name: "Test with latest Angular version"
     env: NGV=latest
@@ -116,6 +120,9 @@ jobs:
     <<: *testSmokeCy
   - script: npm run demo.ng-build
     name: "Check prod build with current Angular version"
+  - script: npm run demo.ng-build:ivy
+    name: "Check prod build with current version Ivy:enabled"
+    env: NGV=ivy
   - script: npm run demo.ng-build
     name: "Check prod build with latest Angular version"
     env: NGV=latest
@@ -144,6 +151,15 @@ jobs:
       provider: surge
       project: ./gh-pages/
       domain: ngx-bootstrap.surge.sh
+      on: development
+  - <<: *surge
+    env: NGV=ivy
+    script: npm run demo.ng-build:ivy
+    before_deploy:
+    - cd ./demo/dist/browser
+    deploy:
+      provider: surge
+      domain: ngx-bootstrap-ivy.surge.sh
       on: development
   - <<: *surge
     env: NGV=latest
