@@ -20,18 +20,6 @@ class TestComponent {
 
 type TestFixture = ComponentFixture<TestComponent>;
 
-function getDatepickerInlineDirective(fixture: TestFixture): BsDaterangepickerInlineDirective {
-    const datepicker: BsDaterangepickerInlineDirective = fixture.componentInstance.daterangepicker;
-
-    return datepicker;
-}
-
-
-// function getDatepickerInlineContainer(datepicker: BsDaterangepickerInlineDirective):
-//     BsDaterangepickerInlineDirective | null {
-//     return datepicker[`_datepickerRef`] ? datepicker[`_datepickerRef`].instance : null;
-// }
-
 describe('daterangepicker inline:', () => {
     let fixture: TestFixture;
     beforeEach(
@@ -47,19 +35,4 @@ describe('daterangepicker inline:', () => {
         fixture = TestBed.createComponent(TestComponent);
         fixture.detectChanges();
     });
-
-    // it('should select correct year when a month other than selected year is chosen', () => {
-    //     const datepicker = getDatepickerInlineDirective(fixture);
-    //     const datepickerContainerInstance = getDatepickerInlineContainer(datepicker);
-    //     const yearSelection: CalendarCellViewModel = { date: new Date(2017, 1, 1), label: 'label' };
-    //     const monthSelection: CalendarCellViewModel = { date: new Date(2018, 1, 1), label: 'label' };
-    //     datepickerContainerInstance.yearSelectHandler(yearSelection);
-    //     datepickerContainerInstance.monthSelectHandler(monthSelection);
-    //     fixture.detectChanges();
-    //     datepickerContainerInstance[`_store`]
-    //         .select(state => state.view)
-    //         .subscribe(view => {
-    //             expect(view.date.getFullYear()).toEqual(monthSelection.date.getFullYear());
-    //         });
-    // });
 });
