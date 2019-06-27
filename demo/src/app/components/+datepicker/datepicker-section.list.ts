@@ -15,6 +15,7 @@ import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.compo
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
 import { DemoDatepickerHideOnScrollComponent } from './demos/hide-on-scroll/hide-on-scroll';
 import { DemoDatepickerInlineComponent } from './demos/inline-datepicker/inline-datepicker.component';
+import { DemoDaterangepickerInlineComponent } from './demos/inline-daterangepicker/inline-daterangepicker.component';
 import { DemoDatepickerMinMaxComponent } from './demos/min-max/min-max.component';
 import { DemoDatepickerMinModeComponent } from './demos/min-mode/min-mode.component';
 import { DemoDatepickerOutsideClickComponent } from './demos/outside-click/outside-click';
@@ -40,6 +41,7 @@ import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
+
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -82,6 +84,13 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/inline-datepicker/inline-datepicker.component.html'),
         description: `<p>with initial state set by <code>bsInlineValue</code> property</p>`,
         outlet: DemoDatepickerInlineComponent
+      },
+      {
+        title: 'Inline Daterangepicker',
+        anchor: 'inline-daterangepicker',
+        component: require('!!raw-loader!./demos/inline-daterangepicker/inline-daterangepicker.component.ts'),
+        html: require('!!raw-loader!./demos/inline-daterangepicker/inline-daterangepicker.component.html'),
+        outlet: DemoDaterangepickerInlineComponent
       },
       {
         title: 'With animation',
