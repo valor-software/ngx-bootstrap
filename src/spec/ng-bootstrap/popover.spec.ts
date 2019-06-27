@@ -499,7 +499,7 @@ describe('popover', () => {
       expect(getWindow(fixture.nativeElement)).toBeNull();
     });
 
-    xit('should non-default toggle triggers', () => {
+    it('should non-default toggle triggers', () => {
       const fixture = createTestComponent(
         `<div popover="Great tip!" triggers="mouseover:click"></div>`
       );
@@ -517,7 +517,7 @@ describe('popover', () => {
       expect(getWindow(fixture.nativeElement)).toBeNull();
     });
 
-    xit('should support multiple triggers', () => {
+    it('should support multiple triggers', () => {
       const fixture = createTestComponent(
         `<div popover="Great tip!" triggers="mouseover:mouseout click"></div>`
       );

@@ -64,8 +64,8 @@ export class SidebarComponent implements OnDestroy {
       }
 
       if (this.isShown === false && this.document.documentElement) {
-        this.renderer.setAttribute(this.document.documentElement, 'scrollTop', '0');
-        this.renderer.setAttribute(this.document.body, 'scrollTop', '0');
+        this.renderer.setProperty(this.document.documentElement, 'scrollTop', '0');
+        this.renderer.setProperty(this.document.body, 'scrollTop', '0');
       }
     }
   }
