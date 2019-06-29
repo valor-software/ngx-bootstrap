@@ -3,13 +3,14 @@
   <div
     class="bs-datepicker-container"
     [@datepickerAnimation]="animationState"
-    (@datepickerAnimation.done)="positionServiceEnable()">
+    (@datepickerAnimation.done)="positionServiceEnable()"
+  >
     <!--calendars-->
     <div class="bs-calendar-container" [ngSwitch]="viewMode | async" role="application">
       <!--days calendar-->
       <div *ngSwitchCase="'day'" class="bs-media-container">
         <bs-days-calendar-view
-          *ngFor="let calendar of (daysCalendar | async)"
+          *ngFor="let calendar of daysCalendar | async"
           [class.bs-datepicker-multiple]="(daysCalendar | async)?.length > 1"
           [calendar]="calendar"
           [options]="options | async"
@@ -24,7 +25,7 @@
       <!--months calendar-->
       <div *ngSwitchCase="'month'" class="bs-media-container">
         <bs-month-calendar-view
-          *ngFor="let calendar of (monthsCalendar | async)"
+          *ngFor="let calendar of monthsCalendar | async"
           [class.bs-datepicker-multiple]="(daysCalendar | async)?.length > 1"
           [calendar]="calendar"
           (onNavigate)="navigateTo($event)"
@@ -37,24 +38,22 @@
       <!--years calendar-->
       <div *ngSwitchCase="'year'" class="bs-media-container">
         <bs-years-calendar-view
-        *ngFor="let calendar of (yearsCalendar | async)"
-        [class.bs-datepicker-multiple]="(daysCalendar | async )?.length > 1"
-        [calendar]="calendar"
-        (onNavigate)="navigateTo($event)"
-        (onViewMode)="setViewMode($event)"
-        (onHover)="yearHoverHandler($event)"
-        (onSelect)="yearSelectHandler($event)"
-      ></bs-years-calendar-view>
+          *ngFor="let calendar of yearsCalendar | async"
+          [class.bs-datepicker-multiple]="(daysCalendar | async)?.length > 1"
+          [calendar]="calendar"
+          (onNavigate)="navigateTo($event)"
+          (onViewMode)="setViewMode($event)"
+          (onHover)="yearHoverHandler($event)"
+          (onSelect)="yearSelectHandler($event)"
+        ></bs-years-calendar-view>
+      </div>
     </div>
 
-  </div>
-
-  <!--applycancel buttons-->
+    <!--applycancel buttons-->
     <div class="bs-datepicker-buttons" *ngIf="false">
-      <button class="btn btn-success">Apply</button>
-      <button class="btn btn-default">Cancel</button>
+      <button class="btn btn-success" type="button">Apply</button>
+      <button class="btn btn-default" type="button">Cancel</button>
     </div>
-
   </div>
 
   <!--custom dates or date ranges picker-->
