@@ -35,6 +35,10 @@ export class ModalOptions {
    */
   initialState?: Object;
   /**
+   * Shows header
+   */
+  showHeader?: boolean;
+  /**
    * Shows close button in header
    */
   showCloseButton?: boolean;
@@ -59,6 +63,7 @@ export const modalConfigDefaults: ModalOptions = {
   keyboard: true,
   focus: true,
   show: false,
+  showHeader: true,
   showCloseButton: true,
   ignoreBackdropClick: false,
   class: '',

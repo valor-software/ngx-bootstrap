@@ -116,7 +116,8 @@ export class BsModalService {
       .provide({ provide: BsModalRef, useValue: bsModalRef })
       .attach(ModalContainerComponent)
       .to('body')
-      .show({content, isAnimated: this.config.animated, initialState: this.config.initialState, bsModalService: this});
+      .show({ content, isAnimated: this.config.animated, initialState: this.config.initialState, bsModalService: this });
+
     modalContainerRef.instance.level = this.getModalsCount();
     bsModalRef.hide = () => {
       modalContainerRef.instance.hide();
@@ -127,6 +128,9 @@ export class BsModalService {
     };
     bsModalRef.setButtons = (buttons: IModalDialogButton[]) => {
       modalContainerRef.instance.config.actionButtons = buttons;
+    };
+    bsModalRef.setHeader = (title: string) => {
+      modalContainerRef.instance.config.header = title;
     };
 
     return bsModalRef;
@@ -197,7 +201,7 @@ export class BsModalService {
     const loader = this.clf.createLoader<ModalContainerComponent>(
       null,
       null,
-      null
+      this._renderer
     );
     this.copyEvent(loader.onBeforeShow, this.onShow);
     this.copyEvent(loader.onShown, this.onShown);

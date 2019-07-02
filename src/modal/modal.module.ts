@@ -5,6 +5,7 @@ import { ModalBackdropComponent } from './modal-backdrop.component';
 import { ModalDirective } from './modal.directive';
 import { PositioningService } from 'ngx-bootstrap/positioning';
 import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
+
 import { ModalContainerComponent } from './modal-container.component';
 import { BsModalService } from './bs-modal.service';
 

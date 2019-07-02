@@ -6,6 +6,7 @@ import {
   OnInit,
   Renderer2
 } from '@angular/core';
+import { ModalOptions } from './modal-options.class';
 import {
   CLASS_NAME,
   DISMISS_REASONS,
@@ -21,8 +22,8 @@ import { ModalDialogOnAction } from './models';
   template: `
   <div [class]="'modal-dialog' + (config.class ? ' ' + config.class : '')" role="document">
       <div *ngIf="config.complete" class="modal-content">
-        <div class="modal-header">
-          <h5 id="dialog-sizes-name1" class="modal-title pull-left">{{config.header}}</h5>
+        <div *ngIf="config.showHeader" class="modal-header">
+          <h5 class="modal-title pull-left">{{config.header}}</h5>
           <button *ngIf="config.showCloseButton" type="button" class="close pull-right" (click)="hide()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -32,7 +33,7 @@ import { ModalDialogOnAction } from './models';
         </div>
         <div *ngIf="config.actionButtons" class="modal-footer">
           <button *ngFor="let button of config.actionButtons" (click)="doAction(button.click)"
-            [class]="button.cssClass">{{button.text}}
+            [class]="button.class ? button.class : ''">{{button.text}}
           </button>
         </div>
       </div>

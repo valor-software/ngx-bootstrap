@@ -22,4 +22,8 @@ export class BsModalRef {
      * Sets buttons to footer of modal window
      */
   setButtons: (buttons: IModalDialogButton[]) => void;
+  /**
+     * Sets header title of modal window
+     */
+  setHeader: (title: string) => void;
 }
