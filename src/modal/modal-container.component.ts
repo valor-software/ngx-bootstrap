@@ -6,7 +6,6 @@ import {
   OnInit,
   Renderer2
 } from '@angular/core';
-import { ModalOptions } from './modal-options.class';
 import {
   CLASS_NAME,
   DISMISS_REASONS,
