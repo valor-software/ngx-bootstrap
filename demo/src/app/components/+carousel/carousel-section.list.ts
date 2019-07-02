@@ -2,7 +2,7 @@ import { DemoCarouseBasicComponent } from './demos/basic/basic';
 import { DemoCarouselCaptionsComponent } from './demos/captions/captions';
 import { DemoCarouselConfigComponent } from './demos/config/config';
 import { DemoCarouselDynamicComponent } from './demos/dynamic/dynamic';
-import { DemoCarouselNoPauseComponent } from './demos/no-pause/no-pause';
+import { DemoCarouselPauseOnHoverComponent } from './demos/pause-on-hover/pause-on-hover';
 import { DemoCarouselCustomContentComponent } from './demos/custom-content/custom-content';
 import { DemoCarouselIntervalComponent } from './demos/interval/interval';
 import { DemoCarouselDisableIndicatorComponent } from './demos/disable-indicator/disable-indicator';
@@ -20,6 +20,7 @@ import { ExamplesComponent } from '../../docs/demo-section-components/demo-examp
 import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
 
 import { NgApiDocComponent, NgApiDocConfigComponent } from '../../docs/api-docs';
+import { DemoCarouselPauseOnFocusComponent } from './demos/pause-on-focus/pause-on-focus';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -69,10 +70,20 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Pause on hover',
         anchor: 'pause-on-hover',
-        description: `<p>Click button to pause on hover.</p>`,
-        component: require('!!raw-loader!./demos/no-pause/no-pause.ts'),
-        html: require('!!raw-loader!./demos/no-pause/no-pause.html'),
-        outlet: DemoCarouselNoPauseComponent
+        description: `<p>If <code>noPause</code> is set to <code>false</code>
+          , carousel autoplay will be stopped when carousel receives hover.</p>`,
+        component: require('!!raw-loader!./demos/pause-on-hover/pause-on-hover.ts'),
+        html: require('!!raw-loader!./demos/pause-on-hover/pause-on-hover.html'),
+        outlet: DemoCarouselPauseOnHoverComponent
+      },
+      {
+        title: 'Pause on focus',
+        anchor: 'pause-on-focus',
+        description: `<p>If <code>pauseOnFocus</code> is set to <code>true</code>
+          , carousel autoplay will be stopped when carousel receives focus.</p>`,
+        component: require('!!raw-loader!./demos/pause-on-focus/pause-on-focus.ts'),
+        html: require('!!raw-loader!./demos/pause-on-focus/pause-on-focus.html'),
+        outlet: DemoCarouselPauseOnFocusComponent
       },
       {
         title: 'Custom content',

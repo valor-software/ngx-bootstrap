@@ -46,6 +46,8 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   @Input() noPause: boolean;
   /*  If `true` — carousel-indicators are visible  */
   @Input() showIndicators: boolean;
+  /*  If `true` - autoplay will be stopped on focus */
+  @Input() pauseOnFocus: boolean;
   /* If `true` - carousel indicators indicate slides chunks
      works ONLY if singleSlideOffset = FALSE */
   @Input() indicatorsByChunk = false;
@@ -253,6 +255,73 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     } else {
       this.moveMultilist(direction);
     }
+  }
+
+  /**
+   * Swith slides by enter, space and arrows keys
+   * @internal
+   */
+  keydownPress(event: KeyboardEvent) {
+    // tslint:disable-next-line:deprecation
+    if (event.keyCode === 13 || event.key === 'Enter' || event.keyCode === 32 || event.key === 'Space') {
+      this.nextSlide();
+      event.preventDefault();
+
+      return;
+    }
+
+    // tslint:disable-next-line:deprecation
+    if (event.keyCode === 37 || event.key === 'LeftArrow') {
+      this.previousSlide();
+
+      return;
+    }
+
+    // tslint:disable-next-line:deprecation
+    if (event.keyCode === 39 || event.key === 'RightArrow') {
+      this.nextSlide();
+
+      return;
+    }
+  }
+
+  /**
+   * Play on mouse leave
+   * @internal
+   */
+  onMouseLeave(): void {
+    if (!this.pauseOnFocus) {
+      this.play();
+    }
+  }
+
+  /**
+   * Play on mouse up
+   * @internal
+   */
+  onMouseUp(): void {
+    if (!this.pauseOnFocus) {
+      this.play();
+    }
+  }
+
+  /**
+   * When slides on focus autoplay is stopped(optional)
+   * @internal
+   */
+  pauseFocusIn(): void {
+    if (this.pauseOnFocus) {
+      this.isPlaying = false;
+      this.resetTimer();
+    }
+  }
+
+  /**
+   * When slides out of focus autoplay is started
+   * @internal
+   */
+  pauseFocusOut(): void {
+    this.play();
   }
 
   /**

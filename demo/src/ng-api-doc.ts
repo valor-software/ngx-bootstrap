@@ -237,6 +237,12 @@ export const ngdoc: any = {
         "description": "<p>Index of currently displayed slide(started for 0)</p>\n"
       },
       {
+        "name": "indicatorsByChunk",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": ""
+      },
+      {
         "name": "interval",
         "type": "number",
         "description": "<p>Delay of item cycling in milliseconds. If false, carousel won&#39;t cycle\nautomatically.</p>\n"
@@ -254,6 +260,11 @@ export const ngdoc: any = {
       },
       {
         "name": "noWrap",
+        "type": "boolean",
+        "description": ""
+      },
+      {
+        "name": "pauseOnFocus",
         "type": "boolean",
         "description": ""
       },
@@ -335,6 +346,41 @@ export const ngdoc: any = {
             "type": "boolean"
           }
         ],
+        "returnType": "void"
+      },
+      {
+        "name": "keydownPress",
+        "description": "<p>Swith slides by enter, space and arrows keys</p>\n",
+        "args": [
+          {
+            "name": "event",
+            "type": "KeyboardEvent"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "onMouseLeave",
+        "description": "<p>Play on mouse leave</p>\n",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "onMouseUp",
+        "description": "<p>Play on mouse up</p>\n",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "pauseFocusIn",
+        "description": "<p>When slides on focus autoplay is stopped(optional)</p>\n",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "pauseFocusOut",
+        "description": "<p>When slides out of focus autoplay is started</p>\n",
+        "args": [],
         "returnType": "void"
       },
       {
@@ -435,10 +481,22 @@ export const ngdoc: any = {
     "methods": [],
     "properties": [
       {
+        "name": "indicatorsByChunk",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>If <code>true</code> - carousel indicators indicate slides chunks\nworks ONLY if singleSlideOffset = FALSE</p>\n"
+      },
+      {
         "name": "interval",
         "defaultValue": "5000",
         "type": "number",
         "description": "<p>Default interval of auto changing of slides</p>\n"
+      },
+      {
+        "name": "itemsPerSlide",
+        "defaultValue": "1",
+        "type": "number",
+        "description": "<p>If value more then 1 — carousel works in multilist mode</p>\n"
       },
       {
         "name": "noPause",
@@ -453,10 +511,22 @@ export const ngdoc: any = {
         "description": "<p>Is slides can wrap from the last to the first slide</p>\n"
       },
       {
+        "name": "pauseOnFocus",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>Slides can be paused on focus</p>\n"
+      },
+      {
         "name": "showIndicators",
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>Show carousel-indicators</p>\n"
+      },
+      {
+        "name": "singleSlideOffset",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>If <code>true</code> — carousel shifts by one element. By default carousel shifts by number\nof visible elements (itemsPerSlide field)</p>\n"
       }
     ]
   },
@@ -984,6 +1054,12 @@ export const ngdoc: any = {
         "description": "<p>Disable specific dates</p>\n"
       },
       {
+        "name": "isAnimated",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>turn on/off animation</p>\n"
+      },
+      {
         "name": "maxDate",
         "type": "Date",
         "description": "<p>Default max date for all date/range pickers</p>\n"
@@ -1157,7 +1233,14 @@ export const ngdoc: any = {
     "className": "BsDaterangepickerConfig",
     "description": "",
     "methods": [],
-    "properties": []
+    "properties": [
+      {
+        "name": "isAnimated",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>turn on/off animation</p>\n"
+      }
+    ]
   },
   "BsLocaleService": {
     "fileName": "src/datepicker/bs-locale.service.ts",
@@ -3545,6 +3628,12 @@ export const ngdoc: any = {
         "description": "<p>used to hide results on blur</p>\n"
       },
       {
+        "name": "isAnimated",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>turn on/off animation</p>\n"
+      },
+      {
         "name": "isFirstItemActive",
         "defaultValue": "true",
         "type": "boolean",
@@ -3586,6 +3675,12 @@ export const ngdoc: any = {
         "defaultValue": "false",
         "type": "boolean",
         "description": "<p>This attribute indicates that the dropdown should be opened upwards</p>\n"
+      },
+      {
+        "name": "isAnimated",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>turn on/off animation</p>\n"
       },
       {
         "name": "optionsListTemplate",

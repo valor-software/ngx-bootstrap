@@ -2,20 +2,22 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class CarouselConfig {
-  /** Default interval of auto changing of slides */
+  /* Default interval of auto changing of slides */
   interval = 5000;
 
-  /** Is loop of auto changing of slides can be paused */
+  /* Is loop of auto changing of slides can be paused */
   noPause = false;
 
-  /** Is slides can wrap from the last to the first slide */
+  /* Is slides can wrap from the last to the first slide */
   noWrap = false;
 
-  /** Show carousel-indicators */
+  /* Show carousel-indicators */
   showIndicators = true;
 
-  /* If `true` - carousel indicators indicate slides chunks
-     works ONLY if singleSlideOffset = FALSE */
+  /* Slides can be paused on focus */
+  pauseOnFocus = false;
+
+  /* If `true` - carousel indicators indicate slides chunks works ONLY if singleSlideOffset = FALSE */
   indicatorsByChunk = false;
 
   /* If value more then 1 — carousel works in multilist mode */

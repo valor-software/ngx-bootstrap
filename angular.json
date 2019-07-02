@@ -15,6 +15,7 @@
             "index": "demo/src/index.html",
             "main": "demo/src/main.ts",
             "tsConfig": "demo/src/tsconfig.json",
+            "aot": true,
             "polyfills": "demo/src/polyfills.ts",
             "assets": [
               "demo/src/assets"
@@ -31,6 +32,25 @@
               "preserveSymlinks": true,
               "optimization": true,
               "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": true,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "demo/src/environments/environment.ts",
+                  "with": "demo/src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "ivy": {
+              "preserveSymlinks": true,
+              "optimization": true,
+              "outputHashing": "all",
+              "tsConfig": "demo/src/tsconfig-ivy.json",
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": true,
@@ -76,6 +96,9 @@
             },
             "server": {
               "browserTarget": "ngx-bootstrap:build:server"
+            },
+            "ivy": {
+              "browserTarget": "ngx-bootstrap:build:ivy"
             }
           }
         },
@@ -103,6 +126,11 @@
             "assets": [
               "demo/src/assets"
             ]
+          },
+          "configurations": {
+            "ivy": {
+              "tsConfig": "src/tsconfig-ivy.spec.json"
+            }
           }
         },
         "lint": {
