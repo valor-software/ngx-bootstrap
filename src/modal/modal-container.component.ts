@@ -23,7 +23,8 @@ import { ModalDialogOnAction } from './models';
       <div *ngIf="config.complete" class="modal-content">
         <div *ngIf="config.showHeader" class="modal-header">
           <h5 class="modal-title pull-left">{{config.header}}</h5>
-          <button *ngIf="config.showCloseButton" type="button" class="close pull-right" (click)="hide()" aria-label="Close">
+          <button *ngIf="config.showCloseButton" type="button" class="close pull-right" 
+              (click)="hide()" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -57,8 +58,8 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   private isModalHiding = false;
 
   constructor(options: ModalOptions,
-              protected _element: ElementRef,
-              private _renderer: Renderer2) {
+    protected _element: ElementRef,
+    private _renderer: Renderer2) {
     this.config = Object.assign({}, options);
   }
 
@@ -156,13 +157,14 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
 
   /**
-     * Run action defined on action button
-     * @param action
-     */
+   * Run action defined on action button
+   * @param action
+   */
   doAction(action?: ModalDialogOnAction) {
-    if (!action)
+    if (!action) {
       return;
-    let response = action();
+    }
+    action();
   }
 
 }

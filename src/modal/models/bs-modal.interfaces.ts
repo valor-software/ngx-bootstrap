@@ -1,6 +1,4 @@
-import { Observable } from "rxjs";
-
-export interface IModalDialogButton {
+export interface ModalDialogButton {
     text: string;
     class?: string;
     /**
@@ -11,4 +9,4 @@ export interface IModalDialogButton {
     click?: ModalDialogOnAction;
 }
 
-export type ModalDialogOnAction = () => Promise<any> | Observable<any> | boolean | void;
+export type ModalDialogOnAction = () => void;

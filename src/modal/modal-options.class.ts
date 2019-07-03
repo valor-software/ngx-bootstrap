@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ClassName, DismissReasons, Selector, TransitionDurations, IModalDialogButton } from './models';
+import { ClassName, DismissReasons, Selector, TransitionDurations, ModalDialogButton } from './models';
 
 @Injectable()
 export class ModalOptions {
@@ -47,9 +47,9 @@ export class ModalOptions {
    */
   header?: string;
   /**
-     * Buttons to show in footer
-     */
-  actionButtons?: IModalDialogButton[];
+   * Buttons to show in footer
+   */
+  actionButtons?: ModalDialogButton[];
   /**
    * If true, then it will automatically generate the header and footer
    * and you can pass action buttons and title dynamically.
