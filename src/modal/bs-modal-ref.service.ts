@@ -17,13 +17,13 @@ export class BsModalRef {
   /**
    * Sets new class to modal window
    */
-  setClass: (newClass: string) => void = Function;
+  setClass(newClass: string): void { };
   /**
      * Sets buttons to footer of modal window
      */
-  setButtons: (buttons: IModalDialogButton[]) => void;
+  setButtons(buttons: IModalDialogButton[]): void { };
   /**
      * Sets header title of modal window
      */
-  setHeader: (title: string) => void;
+  setHeader(title: string): void { };
 }
