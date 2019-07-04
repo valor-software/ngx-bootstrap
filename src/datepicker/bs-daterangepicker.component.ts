@@ -115,6 +115,11 @@ export class BsDaterangepickerDirective
    */
   @Output() bsValueChange: EventEmitter<Date[]> = new EventEmitter();
 
+  /**
+   * Disables the selection of years
+   */
+  @Input() disableYearSelection: boolean;
+
   protected _subs: Subscription[] = [];
 
   private _datepicker: ComponentLoader<BsDaterangepickerContainerComponent>;
@@ -220,6 +225,7 @@ export class BsDaterangepickerDirective
       {
         value: this._bsValue,
         isDisabled: this.isDisabled,
+        disableYearSelection: this.disableYearSelection,
         minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
         maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
         dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,

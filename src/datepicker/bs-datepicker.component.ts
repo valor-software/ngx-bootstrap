@@ -112,6 +112,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    * Emits when datepicker value has been changed
    */
   @Output() bsValueChange: EventEmitter<Date> = new EventEmitter();
+  /**
+   * Disables the selection of years
+   */
+  @Input() disableYearSelection: boolean;
 
   protected _subs: Subscription[] = [];
 
@@ -240,6 +244,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
     this._config = Object.assign({}, this._config, this.bsConfig, {
       value: this._bsValue,
       isDisabled: this.isDisabled,
+      disableYearSelection: this.disableYearSelection,
       minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
       maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
       daysDisabled: this.daysDisabled || this.bsConfig && this.bsConfig.daysDisabled,

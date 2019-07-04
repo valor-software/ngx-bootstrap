@@ -84,4 +84,7 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
   monthLabel = 'MMMM';
   yearLabel = 'YYYY';
   weekNumbers = 'w';
+
+
+  disableYearSelection = false;
 }
