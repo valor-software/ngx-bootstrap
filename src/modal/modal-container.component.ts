@@ -61,8 +61,8 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   private isModalHiding = false;
 
   constructor(options: ModalOptions,
-    protected _element: ElementRef,
-    private _renderer: Renderer2) {
+              protected _element: ElementRef,
+              private _renderer: Renderer2) {
     this.config = Object.assign({}, options);
   }
 
