@@ -2201,9 +2201,21 @@ export const ngdoc: any = {
       },
       {
         "name": "setClass",
-        "defaultValue": "Function",
+        "defaultValue": "(title: string) => Function",
         "type": "(newClass: string) => void",
         "description": "<p>Sets new class to modal window</p>\n"
+      },
+      {
+        "name": "setHeader",
+        "defaultValue": "(title: string) => Function",
+        "type": "(title: string) => void",
+        "description": "<p>Sets new header title into modal window when ModalOptions complete is set true</p>\n"
+      },
+      {
+        "name": "setButtons",
+        "defaultValue": "(buttons: ModalDialogButton[]) => Function",
+        "type": "(buttons: ModalDialogButton[]) => void",
+        "description": "<p>Sets action buttons in footer of modal window when ModalOptions complete is set true</p>\n"
       }
     ]
   },
@@ -2296,6 +2308,31 @@ export const ngdoc: any = {
         "name": "show",
         "type": "boolean",
         "description": "<p>Shows the modal when initialized.</p>\n"
+      },
+      {
+        "name": "complete",
+        "type": "boolean",
+        "description": "<p>Auto generates the header, body and footer for the modal when true.</p>\n"
+      },
+      {
+        "name": "showHeader",
+        "type": "boolean",
+        "description": "<p>If complete is true, then we can show/hide header in the modal.</p>\n"
+      },
+      {
+        "name": "showCloseButton",
+        "type": "boolean",
+        "description": "<p>If complete and showHeader are true, then we can show/hide close button in the modal.</p>\n"
+      },
+      {
+        "name": "header",
+        "type": "string",
+        "description": "<p>If complete and showHeader are true, then we can set header title in the modal.</p>\n"
+      },
+      {
+        "name": "actionButtons",
+        "type": "ModalDialogButton[]",
+        "description": "<p>If complete is true, then we can set footer buttons in the modal.</p>\n"
       }
     ]
   },

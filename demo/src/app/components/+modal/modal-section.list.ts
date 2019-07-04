@@ -8,6 +8,7 @@ import { DemoModalServiceDisableEscClosingComponent } from './demos/service-opti
 import { DemoModalServiceDisableBackdropComponent } from './demos/service-options/disable-backdrop/disable-backdrop';
 import { DemoModalServiceConfirmWindowComponent } from './demos/service-confirm-window/service-confirm-window';
 import { DemoModalServiceChangeClassComponent } from './demos/service-options/change-class/change-class';
+import { DemoAutoGenerateModalServiceFromComponent } from './demos/auto-generate/auto-generate';
 
 import { DemoModalStaticComponent } from './demos/static/static';
 import { DemoModalSizesComponent } from './demos/sizes/sizes';
@@ -155,6 +156,18 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/service-options/change-class/change-class.html'),
         description: `<p>Calling setClass method to change modal's window class</p>`,
         outlet: DemoModalServiceChangeClassComponent
+      },
+      {
+        title: 'Auto generate modal components',
+        anchor: 'auto-generate',
+        component: require('!!raw-loader!./demos/auto-generate/auto-generate.ts'),
+        html: require('!!raw-loader!./demos/auto-generate/auto-generate.html'),
+        description: `<p>Displaying a component with in a modal is just easy as passing a boolean. Just pass your component
+          in <code>.show()</code> method as in example and setting <code>complete: true</code> in <code>ModalOptions</code>,
+          and don't forget to include your component to <code>entryComponents</code> of your <code>NgModule</code><br> If you passed a component
+          to <code>.show()</code> you can get access to opened modal by injecting <code>BsModalRef</code>. Also you can pass data 
+          in your modal by adding <code>initialState</code> field in config. See example for more info</p>`,
+        outlet: DemoAutoGenerateModalServiceFromComponent
       }
     ]
   },

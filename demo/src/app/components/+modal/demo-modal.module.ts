@@ -9,6 +9,7 @@ import { ModalSectionComponent } from './modal-section.component';
 import { DEMO_COMPONENTS } from './demos';
 import { routes } from './demo-modal.routes';
 import { ModalContentComponent } from './demos/service-component/service-component';
+import { ModalListContentComponent } from './demos/auto-generate/auto-generate';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
@@ -16,6 +17,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
   declarations: [
     ModalSectionComponent,
     ModalContentComponent,
+    ModalListContentComponent,
     ...DEMO_COMPONENTS
   ],
   imports: [
@@ -28,6 +30,6 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
     RouterModule.forChild(routes)
   ],
   exports: [ModalSectionComponent],
-  entryComponents: [ModalContentComponent, ...DEMO_COMPONENTS]
+  entryComponents: [ModalContentComponent, ModalListContentComponent, ...DEMO_COMPONENTS]
 })
-export class DemoModalModule {}
+export class DemoModalModule { }
