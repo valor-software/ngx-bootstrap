@@ -17,16 +17,13 @@ export class BsModalRef {
    /**
     * Sets new class to modal window
     */
-   // tslint:disable-next-line:no-any
    setClass: (newClass: string) => void = (newClass: string) => Function;
    /**
     * Sets buttons to footer of modal window
     */
-   // tslint:disable-next-line:no-any
    setButtons: (buttons: ModalDialogButton[]) => void = (buttons: ModalDialogButton[]) => Function;
    /**
     * Sets header title of modal window
     */
-   // tslint:disable-next-line:no-any
    setHeader: (title: string) => void = (title: string) => Function;
 }
