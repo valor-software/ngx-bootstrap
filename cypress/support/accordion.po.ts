@@ -40,7 +40,7 @@ export class AccordionPo extends BaseComponent {
 
   isItemContentVisible(baseSelector: string, itemIndex: number, visible: boolean) {
     cy.get(`${baseSelector} .panel-body`)
-      .eq(itemIndex)
+      .eq(itemIndex, {timeout: 10000})
       .should(visible ? 'be.visible' : 'not.be.visible');
   }
 

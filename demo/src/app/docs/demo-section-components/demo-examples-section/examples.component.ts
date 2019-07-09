@@ -95,6 +95,7 @@ export class ExamplesComponent {
       },
       dependencies: {
         '@angular/animations': 'latest',
+        'web-animations-js': 'latest',
         'ngx-bootstrap': 'next'
       },
       title: 'stackblitz demo',
