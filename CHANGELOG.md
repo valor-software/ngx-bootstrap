@@ -1,3 +1,20 @@
+<a name="5.1.1"></a>
+## [5.1.1](https://github.com/valor-software/ngx-bootstrap/compare/v5.1.0...v5.1.1) (2019-07-10)
+
+
+### Bug Fixes
+
+* **collapse:** fix collapse animation (child height) ([#5316](https://github.com/valor-software/ngx-bootstrap/issues/5316)) ([f550605](https://github.com/valor-software/ngx-bootstrap/commit/f550605))
+* **stackblitz:** add scss style for datepicker custom class demo example ([#5300](https://github.com/valor-software/ngx-bootstrap/issues/5300)) ([2d75dc5](https://github.com/valor-software/ngx-bootstrap/commit/2d75dc5))
+* **tests:** add hard fix for cy test with animation ([#5318](https://github.com/valor-software/ngx-bootstrap/issues/5318)) ([8397f82](https://github.com/valor-software/ngx-bootstrap/commit/8397f82))
+
+
+### Features
+
+* **doc:** enable ivy ([#5285](https://github.com/valor-software/ngx-bootstrap/issues/5285)) ([c102ff0](https://github.com/valor-software/ngx-bootstrap/commit/c102ff0))
+
+
+
 <a name="5.1.0"></a>
 # [5.1.0](https://github.com/valor-software/ngx-bootstrap/compare/v5.0.0...v5.1.0) (2019-06-24)
 
