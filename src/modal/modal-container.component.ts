@@ -38,6 +38,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   isAnimated: boolean;
   bsModalService: BsModalService;
   private isModalHiding = false;
+  private clickStartedInside = true;
 
   constructor(options: ModalOptions,
               protected _element: ElementRef,
@@ -76,12 +77,18 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     }
   }
 
-  @HostListener('click', ['$event'])
-  onClick(event: MouseEvent): void {
+  @HostListener('mousedown', ['$event'])
+  onClickStarted(event: MouseEvent): void {
+    this.clickStartedInside = event.target !== this._element.nativeElement;
+  }
+
+  @HostListener('mouseup', ['$event'])
+  onClickStop(event: MouseEvent): void {
+    const clickedInside = this.clickStartedInside || event.target !== this._element.nativeElement;
     if (
       this.config.ignoreBackdropClick ||
       this.config.backdrop === 'static' ||
-      event.target !== this._element.nativeElement
+      clickedInside
     ) {
       return;
     }
