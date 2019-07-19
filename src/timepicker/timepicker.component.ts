@@ -33,7 +33,8 @@ import {
   isHourInputValid,
   isMinuteInputValid,
   isSecondInputValid,
-  isInputLimitValid
+  isInputLimitValid,
+  setTime
 } from './timepicker.utils';
 
 import { Subscription } from 'rxjs';
@@ -170,7 +171,6 @@ export class TimepickerComponent
       .subscribe((value: Date) => {
         // update UI values if date changed
         this._renderTime(value);
-        this.onChange(value);
 
         this._store.dispatch(
           this._timepickerActions.updateControls(getControlsValue(this))
@@ -210,9 +210,23 @@ export class TimepickerComponent
     );
   }
 
+  /**
+   * onChange should be called when a change occured due to the user directly
+   * interacting with the element
+   */
+  notifyOnChange(): void {
+    this.onChange(setTime(null, {
+        hour: this.hours,
+        minute: this.minutes,
+        seconds: this.seconds,
+        isPM: this.isPM()
+    }));
+  }
+
   changeHours(step: number, source: TimeChangeSource = ''): void {
     this.resetValidation();
     this._store.dispatch(this._timepickerActions.changeHours({ step, source }));
+    this.notifyOnChange();
   }
 
   changeMinutes(step: number, source: TimeChangeSource = ''): void {
@@ -220,6 +234,7 @@ export class TimepickerComponent
     this._store.dispatch(
       this._timepickerActions.changeMinutes({ step, source })
     );
+    this.notifyOnChange();
   }
 
   changeSeconds(step: number, source: TimeChangeSource = ''): void {
@@ -227,6 +242,7 @@ export class TimepickerComponent
     this._store.dispatch(
       this._timepickerActions.changeSeconds({ step, source })
     );
+    this.notifyOnChange();
   }
 
   updateHours(hours: string): void {
@@ -244,6 +260,8 @@ export class TimepickerComponent
     }
 
     this._updateTime();
+
+    this.notifyOnChange();
   }
 
   updateMinutes(minutes: string) {
@@ -261,6 +279,8 @@ export class TimepickerComponent
     }
 
     this._updateTime();
+
+    this.notifyOnChange();
   }
 
   updateSeconds(seconds: string) {
@@ -278,6 +298,8 @@ export class TimepickerComponent
     }
 
     this._updateTime();
+
+    this.notifyOnChange();
   }
 
   isValidLimit(): boolean {
@@ -321,6 +343,8 @@ export class TimepickerComponent
         source: ''
       })
     );
+
+    this.notifyOnChange();
   }
 
   /**
