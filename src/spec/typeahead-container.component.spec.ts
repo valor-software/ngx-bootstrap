@@ -1,7 +1,12 @@
 /* tslint:disable: max-file-line-count */
-import { TestBed, ComponentFixture, tick, fakeAsync } from '@angular/core/testing';
 import { asNativeElements } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
+import { TestBed, ComponentFixture, tick, fakeAsync } from '@angular/core/testing';
+import { Subject } from 'rxjs';
+
+import { PositioningService } from 'ngx-bootstrap/positioning';
+
 import {
   TypeaheadConfig,
   TypeaheadContainerComponent,
@@ -9,6 +14,20 @@ import {
   TypeaheadMatch,
   TypeaheadOptions
 } from '../typeahead';
+
+export class PositionServiceMock {
+  setOptions() {
+    return;
+  }
+
+  enable() {
+    return;
+  }
+
+  get event$() {
+  return new Subject<any>();
+  }
+}
 
 describe('Component: TypeaheadContainer', () => {
   let fixture: ComponentFixture<TypeaheadContainerComponent>;
@@ -19,14 +38,19 @@ describe('Component: TypeaheadContainer', () => {
   beforeEach(fakeAsync(() => {
     testModule = TestBed.configureTestingModule({
       declarations: [TypeaheadContainerComponent],
-      providers: [{
-        provide: TypeaheadOptions,
-        useValue: new TypeaheadOptions({ animation: false, placement: 'bottom-left', typeaheadRef: undefined })
-      },
+      imports: [BrowserAnimationsModule],
+      providers: [
+        {
+          provide: TypeaheadOptions,
+          useValue: new TypeaheadOptions({ animation: false, placement: 'bottom start', typeaheadRef: undefined })
+        },
         {
           provide: TypeaheadConfig,
           useValue: new TypeaheadConfig()
-        }]
+        },
+        { provide: PositioningService,
+          useClass: PositionServiceMock}
+      ]
     });
     fixture = testModule.createComponent(TypeaheadContainerComponent);
 
@@ -176,13 +200,6 @@ describe('Component: TypeaheadContainer', () => {
       it('should set the "active" class on first match', () => {
         expect(matches[0].classList.contains('active')).toBeTruthy();
         expect(matches[1].classList.contains('active')).toBeFalsy();
-      });
-
-      it('should rewrite matches', () => {
-        component.matches = ([new TypeaheadMatch({ id: 1, name: 'fox' }, 'fox')]);
-        fixture.detectChanges();
-
-        expect(component.matches.length).toBe(1);
       });
     });
 

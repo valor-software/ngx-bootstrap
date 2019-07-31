@@ -16,7 +16,7 @@ export const demoComponentContent: ContentSection[] = [
     anchor: 'usage',
     outlet: DemoTopSectionComponent,
     content: {
-      doc: require('!!raw-loader?lang=typescript!./docs/usage.md')
+      doc: require('!!raw-loader!./docs/usage.md')
     }
   },
   {
@@ -27,22 +27,22 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Basic rating',
         anchor: 'rating-basic',
-        component: require('!!raw-loader?lang=typescript!./demos/basic/basic'),
-        html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
+        component: require('!!raw-loader!./demos/basic/basic'),
+        html: require('!!raw-loader!./demos/basic/basic.html'),
         outlet: DemoRatingBasicComponent
       },
       {
         title: 'Dynamic rating',
         anchor: 'rating-dynamic',
-        component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic'),
-        html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
+        component: require('!!raw-loader!./demos/dynamic/dynamic'),
+        html: require('!!raw-loader!./demos/dynamic/dynamic.html'),
         outlet: DemoRatingDynamicComponent
       },
       {
         title: 'Custom icons',
         anchor: 'rating-custom',
-        component: require('!!raw-loader?lang=typescript!./demos/custom/custom'),
-        html: require('!!raw-loader?lang=markup!./demos/custom/custom.html'),
+        component: require('!!raw-loader!./demos/custom/custom'),
+        html: require('!!raw-loader!./demos/custom/custom.html'),
         outlet: DemoRatingCustomComponent
       },
       {
@@ -50,8 +50,8 @@ export const demoComponentContent: ContentSection[] = [
         description: `Key navigation example. Focus on rating and use arrow keys to set its value,
           then press <code>Enter</code> to select the value, after this, the rating state will be changed to readonly.`,
         anchor: 'select-on-enter',
-        component: require('!!raw-loader?lang=typescript!./demos/select-on-enter/select-on-enter'),
-        html: require('!!raw-loader?lang=markup!./demos/select-on-enter/select-on-enter.html'),
+        component: require('!!raw-loader!./demos/select-on-enter/select-on-enter'),
+        html: require('!!raw-loader!./demos/select-on-enter/select-on-enter.html'),
         outlet: DemoRatingSelectOnEnterComponent
       }
     ]

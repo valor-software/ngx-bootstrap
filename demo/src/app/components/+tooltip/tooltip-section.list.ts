@@ -29,7 +29,7 @@ export const demoComponentContent: ContentSection[] = [
     anchor: 'usage',
     outlet: DemoTopSectionComponent,
     content: {
-      doc: require('!!raw-loader?lang=typescript!./docs/usage.md')
+      doc: require('!!raw-loader!./docs/usage.md')
     }
   },
   {
@@ -40,15 +40,15 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Basic',
         anchor: 'basic',
-        component: require('!!raw-loader?lang=typescript!./demos/basic/basic.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
+        component: require('!!raw-loader!./demos/basic/basic.ts'),
+        html: require('!!raw-loader!./demos/basic/basic.html'),
         outlet: DemoTooltipBasicComponent
       },
       {
         title: 'Placement',
         anchor: 'placement',
-        component: require('!!raw-loader?lang=typescript!./demos/placement/placement.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/placement/placement.html'),
+        component: require('!!raw-loader!./demos/placement/placement.ts'),
+        html: require('!!raw-loader!./demos/placement/placement.html'),
         description: `<p>Four positioning options are available: <code>top</code>, <code>right</code>,
           <code>bottom</code>, and <code>left</code>. Besides that, <code>auto</code> option may be
           used to detect a position that fits the component on the screen.</p>`,
@@ -60,15 +60,15 @@ export const demoComponentContent: ContentSection[] = [
         description: `
           <p>You can disable adaptive position via <code>adaptivePosition</code> input or config option</p>
         `,
-        component: require('!!raw-loader?lang=typescript!./demos/adaptive-position/adaptive-position.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/adaptive-position/adaptive-position.html'),
+        component: require('!!raw-loader!./demos/adaptive-position/adaptive-position.ts'),
+        html: require('!!raw-loader!./demos/adaptive-position/adaptive-position.html'),
         outlet: DemoTooltipAdaptivePositionComponent
       },
       {
         title: 'Dismiss on next click',
         anchor: 'dismiss',
-        component: require('!!raw-loader?lang=typescript!./demos/dismiss/dismiss.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/dismiss/dismiss.html'),
+        component: require('!!raw-loader!./demos/dismiss/dismiss.ts'),
+        html: require('!!raw-loader!./demos/dismiss/dismiss.html'),
         description: `<p>Use the <code>focus</code> trigger to dismiss tooltips on the next click
           that the user makes.</p>`,
         outlet: DemoTooltipDismissComponent
@@ -76,16 +76,16 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dynamic Content',
         anchor: 'dynamic-content',
-        component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
+        component: require('!!raw-loader!./demos/dynamic/dynamic.ts'),
+        html: require('!!raw-loader!./demos/dynamic/dynamic.html'),
         description: `<p>Pass a string as tooltip content</p>`,
         outlet: DemoTooltipDynamicComponent
       },
       {
         title: 'Custom content template',
         anchor: 'custom-content-template',
-        component: require('!!raw-loader?lang=typescript!./demos/custom-content/custom-content.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/custom-content/custom-content.html'),
+        component: require('!!raw-loader!./demos/custom-content/custom-content.ts'),
+        html: require('!!raw-loader!./demos/custom-content/custom-content.html'),
         description: `<p>Create <code>&lt;ng-template #myId></code> with any html allowed by Angular,
         and provide template ref <code>[tooltip]="myId"</code> as tooltip content</p>`,
         outlet: DemoTooltipCustomContentComponent
@@ -93,8 +93,8 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dynamic Html',
         anchor: 'dynamic-html',
-        component: require('!!raw-loader?lang=typescript!./demos/dynamic-html/dynamic-html.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/dynamic-html/dynamic-html.html'),
+        component: require('!!raw-loader!./demos/dynamic-html/dynamic-html.ts'),
+        html: require('!!raw-loader!./demos/dynamic-html/dynamic-html.html'),
         description: `<p>By using <code>[innerHtml]</code> inside <code>ng-template</code> you
           can display any dynamic html</p>`,
         outlet: DemoTooltipDynamicHtmlComponent
@@ -102,8 +102,8 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Append to body',
         anchor: 'append-to-body',
-        component: require('!!raw-loader?lang=typescript!./demos/container/container.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/container/container.html'),
+        component: require('!!raw-loader!./demos/container/container.ts'),
+        html: require('!!raw-loader!./demos/container/container.html'),
         description: `<p>When you have some styles on a parent element that interfere with a tooltip,
           you’ll want to specify a <code>container="body"</code> so that the tooltip’s HTML will be
           appended to body. This will help to avoid rendering problems in more complex components
@@ -113,22 +113,22 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Configuring defaults',
         anchor: 'config-defaults',
-        component: require('!!raw-loader?lang=typescript!./demos/config/config.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
+        component: require('!!raw-loader!./demos/config/config.ts'),
+        html: require('!!raw-loader!./demos/config/config.html'),
         outlet: DemoTooltipConfigComponent
       },
       {
         title: 'Custom triggers',
         anchor: 'triggers-custom',
-        component: require('!!raw-loader?lang=typescript!./demos/triggers-custom/triggers-custom.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/triggers-custom/triggers-custom.html'),
+        component: require('!!raw-loader!./demos/triggers-custom/triggers-custom.ts'),
+        html: require('!!raw-loader!./demos/triggers-custom/triggers-custom.html'),
         outlet: DemoTooltipTriggersCustomComponent
       },
       {
         title: 'Manual triggering',
         anchor: 'triggers-manual',
-        component: require('!!raw-loader?lang=typescript!./demos/triggers-manual/triggers-manual.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/triggers-manual/triggers-manual.html'),
+        component: require('!!raw-loader!./demos/triggers-manual/triggers-manual.ts'),
+        html: require('!!raw-loader!./demos/triggers-manual/triggers-manual.html'),
         description: `<p>You can manage tooltip using its <code>show()</code>, <code>hide()</code> and <code>toggle()</code> methods. 
           If you want to manage tooltip's state manually, use <code>triggers=""</code></p>`,
         outlet: DemoTooltipTriggersManualComponent
@@ -136,22 +136,22 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Component level styling',
         anchor: 'styling-local',
-        component: require('!!raw-loader?lang=typescript!./demos/styling-local/styling-local.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/styling-local/styling-local.html'),
+        component: require('!!raw-loader!./demos/styling-local/styling-local.ts'),
+        html: require('!!raw-loader!./demos/styling-local/styling-local.html'),
         outlet: DemoTooltipStylingLocalComponent
       },
       {
         title: 'Custom class',
         anchor: 'custom-class',
-        component: require('!!raw-loader?lang=typescript!./demos/class/class.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/class/class.html'),
+        component: require('!!raw-loader!./demos/class/class.ts'),
+        html: require('!!raw-loader!./demos/class/class.html'),
         outlet: DemoTooltipClassComponent
       },
       {
         title: 'Tooltip with delay',
         anchor: 'tooltip-delay',
-        component: require('!!raw-loader?lang=typescript!./demos/delay/delay.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/delay/delay.html'),
+        component: require('!!raw-loader!./demos/delay/delay.ts'),
+        html: require('!!raw-loader!./demos/delay/delay.html'),
         description: `<p>Hold on cursor above button for 0,5 second or more to see delayed tooltip</p>`,
         outlet: DemoTooltipDelayComponent
       }
