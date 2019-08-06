@@ -41,7 +41,7 @@ export function toNumber(value: string | number): number {
   return parseInt(value, dex);
 }
 
-export function isNumber(value: any): value is number {
+export function isNumber(value: string | number): value is number {
   return !isNaN(toNumber(value));
 }
 
@@ -172,7 +172,7 @@ export function isSecondInputValid(seconds: string): boolean {
 }
 
 export function isInputLimitValid(diff: Time, max: Date, min: Date): boolean {
-  const newDate = changeTime(new Date(), diff);
+  const newDate = setTime(new Date(), diff);
 
   if (max && newDate > max) {
     return false;

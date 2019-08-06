@@ -1,5 +1,4 @@
-import { TimeUnit } from '../../chronos/types';
-import { shiftDate } from '../../chronos/utils/date-setters';
+import { TimeUnit, shiftDate } from 'ngx-bootstrap/chronos';
 
 export type CreateMatrixCb<T> = (date: Date) => T;
 

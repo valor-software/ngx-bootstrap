@@ -15,17 +15,20 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
+
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { TimepickerActions } from './reducer/timepicker.actions';
 import { TimepickerStore } from './reducer/timepicker.store';
 import { getControlsValue } from './timepicker-controls.util';
 import { TimepickerConfig } from './timepicker.config';
+
 import {
   TimeChangeSource,
   TimepickerComponentState,
   TimepickerControls
 } from './timepicker.models';
+
 import {
   isValidDate,
   padNumber,
@@ -36,11 +39,14 @@ import {
   isSecondInputValid,
   isInputLimitValid
 } from './timepicker.utils';
+
 import { Subscription } from 'rxjs';
 
-export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
+import { ControlValueAccessorModel } from './models';
+
+export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: ControlValueAccessorModel = {
   provide: NG_VALUE_ACCESSOR,
-  // tslint:disable-next-line
+  /* tslint:disable-next-line: no-use-before-declare */
   useExisting: forwardRef(() => TimepickerComponent),
   multi: true
 };
@@ -79,14 +85,10 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: any = {
   encapsulation: ViewEncapsulation.None
 })
 export class TimepickerComponent
-  implements ControlValueAccessor,
-    TimepickerComponentState,
-    TimepickerControls,
-    OnChanges,
-    OnDestroy {
-  @ViewChild('hoursRef') hoursRef: ElementRef;
-  @ViewChild('minutesRef') minutesRef: ElementRef;
-  @ViewChild('secondsRef') secondsRef: ElementRef;
+  implements ControlValueAccessor, TimepickerComponentState, TimepickerControls, OnChanges, OnDestroy {
+  @ViewChild('hoursRef', { static: false }) hoursRef: ElementRef;
+  @ViewChild('minutesRef', { static: false }) minutesRef: ElementRef;
+  @ViewChild('secondsRef', { static: false }) secondsRef: ElementRef;
 
   /** hours change step */
   @Input() hourStep: number;
@@ -100,7 +102,7 @@ export class TimepickerComponent
   @Input() disabled: boolean;
   /** if true scroll inside hours and minutes inputs will change time */
   @Input() mousewheel: boolean;
-  /** if true up/down arrowkeys inside hours and minutes inputs will change time */
+  /** if true the values of hours and minutes can be changed using the up/down arrow keys on the keyboard */
   @Input() arrowkeys: boolean;
   /** if true spinner arrows above and below the inputs will be shown */
   @Input() showSpinners: boolean;
@@ -152,17 +154,19 @@ export class TimepickerComponent
   canToggleMeridian: boolean;
 
   // control value accessor methods
-  onChange: any = Function.prototype;
-  onTouched: any = Function.prototype;
+  // tslint:disable-next-line:no-any
+  onChange = Function.prototype;
+  // tslint:disable-next-line:no-any
+  onTouched = Function.prototype;
 
   timepickerSub: Subscription;
 
   constructor(
-    _cd: ChangeDetectorRef,
     _config: TimepickerConfig,
-    private renderer: Renderer2,
+    private _cd: ChangeDetectorRef,
     private _store: TimepickerStore,
-    private _timepickerActions: TimepickerActions
+    private _timepickerActions: TimepickerActions,
+    private renderer: Renderer2
   ) {
     Object.assign(this, _config);
 
@@ -183,7 +187,7 @@ export class TimepickerComponent
       .subscribe((controlsState: TimepickerControls) => {
         this.isValid.emit(isInputValid(this.hours, this.minutes, this.seconds));
         Object.assign(this, controlsState);
-        _cd.markForCheck();
+        this._cd.markForCheck();
       });
   }
 
@@ -197,12 +201,12 @@ export class TimepickerComponent
     return this.showMeridian && this.meridian === this.meridians[1];
   }
 
-  prevDef($event: any) {
+  prevDef($event: Event) {
     $event.preventDefault();
   }
 
-  wheelSign($event: any): number {
-    return Math.sign($event.deltaY as number) * -1;
+  wheelSign($event: WheelEventInit): number {
+    return Math.sign($event.deltaY) * -1;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -327,7 +331,7 @@ export class TimepickerComponent
   /**
    * Write a new value to the element.
    */
-  writeValue(obj: any): void {
+  writeValue(obj: string | null | undefined | Date): void {
     if (isValidDate(obj)) {
       this._store.dispatch(this._timepickerActions.writeValue(parseTime(obj)));
     } else if (obj == null) {
@@ -338,6 +342,7 @@ export class TimepickerComponent
   /**
    * Set the function to be called when the control receives a change event.
    */
+  // tslint:disable-next-line:no-any
   registerOnChange(fn: (_: any) => {}): void {
     this.onChange = fn;
   }
@@ -357,6 +362,7 @@ export class TimepickerComponent
    */
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+    this._cd.markForCheck();
   }
 
   ngOnDestroy(): void {

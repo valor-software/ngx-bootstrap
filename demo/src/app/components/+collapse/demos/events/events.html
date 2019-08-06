@@ -9,7 +9,13 @@
   </div>
 </div>
 <hr>
-<div id="collapseEvent" class="card card-block card-header"
-     (collapsed)="collapsed()" (expanded)="expanded()" [collapse]="isCollapsed">
-  <div class="well well-lg">Some content</div>
+<div id="collapseEvent"
+     [isAnimated]="true"
+     [collapse]="isCollapsed"
+     (collapses)="collapses()"
+     (expands)="expands()"
+     (collapsed)="collapsed()"
+     (expanded)="expanded()">
+
+  <div class="well well-lg card card-block card-header">Some content</div>
 </div>

@@ -9,14 +9,17 @@ import {
   CalendarCellViewModel,
   CellHoverEvent,
   DatepickerRenderOptions,
+  DatepickerDateCustomClasses,
   DaysCalendarViewModel,
   DayViewModel,
   MonthsCalendarViewModel,
+  WeekViewModel,
   YearsCalendarViewModel
-} from '../models/index';
+} from '../models';
 
 export abstract class BsDatepickerAbstractComponent {
   containerClass: string;
+  isOtherMonthsActive: boolean;
 
   _effects: BsDatepickerEffects;
   _customRangesFish: BsCustomDates[] = [];
@@ -28,9 +31,19 @@ export abstract class BsDatepickerAbstractComponent {
   set maxDate(value: Date) {
     this._effects.setMaxDate(value);
   }
+  set daysDisabled(value: number[]) {
+    this._effects.setDaysDisabled(value);
+  }
+  set datesDisabled(value: Date[]) {
+    this._effects.setDatesDisabled(value);
+  }
 
   set isDisabled(value: boolean) {
     this._effects.setDisabled(value);
+  }
+
+  set dateCustomClasses(value: DatepickerDateCustomClasses[]) {
+    this._effects.setDateCustomClasses(value);
   }
 
   viewMode: Observable<BsDatepickerViewMode>;
@@ -45,6 +58,8 @@ export abstract class BsDatepickerAbstractComponent {
 
   dayHoverHandler(event: CellHoverEvent): void {}
 
+  weekHoverHandler(event: WeekViewModel): void {}
+
   monthHoverHandler(event: CellHoverEvent): void {}
 
   yearHoverHandler(event: CellHoverEvent): void {}
@@ -55,6 +70,7 @@ export abstract class BsDatepickerAbstractComponent {
 
   yearSelectHandler(event: CalendarCellViewModel): void {}
 
+  /* tslint:disable-next-line: no-any */
   _stopPropagation(event: any): void {
     event.stopPropagation();
   }

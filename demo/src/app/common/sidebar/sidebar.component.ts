@@ -1,10 +1,12 @@
-import { Component, Inject, OnDestroy, Renderer } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Component, Inject, OnDestroy, Renderer2 } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+
 import { isBs3, setTheme } from 'ngx-bootstrap/utils';
 import { routes } from '../../app.routing';
 import { StyleManager } from '../../theme/style-manager';
 import { ThemeStorage } from '../../theme/theme-storage';
-import { DOCUMENT } from '@angular/common';
+
 import { Subscription } from 'rxjs';
 
 const _bs3Css = 'assets/css/bootstrap-3.3.7/css/bootstrap.min.css';
@@ -28,13 +30,15 @@ export class SidebarComponent implements OnDestroy {
   scrollSubscription: Subscription;
 
   constructor(
-    public styleManager: StyleManager,
+    private activatedRoute: ActivatedRoute,
+    private renderer: Renderer2,
     private router: Router,
     private themeStorage: ThemeStorage,
-    private renderer: Renderer,
+    public styleManager: StyleManager,
     @Inject(DOCUMENT) private document: any
   ) {
-    const currentTheme = this.themeStorage.getStoredTheme();
+    const themeFromUrl = this.activatedRoute.snapshot.queryParams._bsVersion;
+    const currentTheme = themeFromUrl || this.themeStorage.getStoredTheme();
     if (currentTheme) {
       this.installTheme(currentTheme);
     }
@@ -52,10 +56,16 @@ export class SidebarComponent implements OnDestroy {
   toggle(isShown?: boolean): void {
     this.isShown = typeof isShown === 'undefined' ? !this.isShown : isShown;
     if (this.document && this.document.body) {
-      this.renderer.setElementClass(this.document.body, 'isOpenMenu', this.isShown);
+
+      if (this.isShown) {
+        this.renderer.addClass(this.document.body, 'isOpenMenu');
+      } else {
+        this.renderer.removeClass(this.document.body, 'isOpenMenu');
+      }
+
       if (this.isShown === false && this.document.documentElement) {
-        this.renderer.setElementProperty(this.document.documentElement, 'scrollTop', 0);
-        this.renderer.setElementProperty(this.document.body, 'scrollTop', 0);
+        this.renderer.setProperty(this.document.documentElement, 'scrollTop', '0');
+        this.renderer.setProperty(this.document.body, 'scrollTop', '0');
       }
     }
   }
