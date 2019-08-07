@@ -59,7 +59,7 @@ export function parseHours(
     return NaN;
   }
 
-  return hour === hoursPerDayHalf && !isPM ? 0 : hour;
+  return hour;
 }
 
 export function parseMinutes(value: string | number): number {
