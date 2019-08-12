@@ -32,6 +32,8 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'bs3-static',
         component: require('!!raw-loader!./demos/static/static'),
         html: require('!!raw-loader!./demos/static/static.html'),
+        style: require('!!raw-loader!../../../../../cypress/full/progressbar_page_spec.ts'),
+        test: require('!!raw-loader!../../../../../cypress/full/progressbar_page_spec.ts'),
         outlet: DemoProgressbarStaticComponent
       },
       {

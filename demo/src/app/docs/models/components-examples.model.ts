@@ -5,6 +5,7 @@ export interface ComponentExample {
   component?: string;
   html?: string;
   style?: string;
+  test?: string;
   css?: string;
   outlet?: any; // ToDo: Component<T>
 }

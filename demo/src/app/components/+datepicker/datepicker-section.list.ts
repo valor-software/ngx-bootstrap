@@ -60,6 +60,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'basic',
         component: require('!!raw-loader!./demos/basic/basic.ts'),
         html: require('!!raw-loader!./demos/basic/basic.html'),
+        style: require('!!raw-loader!../../../../../cypress/integration/datepicker_page_spec.ts'),
         description: `
           <p>Note: If you installed ngx-bootstrap not via ng add command, you will need to perform a several actions</p>
           <p>Notable change is additional css for it <code> "/datepicker/bs-datepicker.css"</code> <br></p>
@@ -104,6 +105,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'date-initial-state',
         component: require('!!raw-loader!./demos/date-initial-state/date-initial-state.ts'),
         html: require('!!raw-loader!./demos/date-initial-state/date-initial-state.html'),
+        style: require('!!raw-loader!../../../../../cypress/full/datepicker/initial_state_spec.ts'),
         outlet: DemoDatepickerDateInitialStateComponent
       },
       {
