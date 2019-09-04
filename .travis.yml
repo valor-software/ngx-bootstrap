@@ -58,7 +58,6 @@ install:
 - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
 - npm i ngx-bootstrap-ci@$TRAVIS_COMMIT
 - npm run ci:rename-pkg
-- if [[ "$NGV" == "ivy" ]]; then  scripts/ivy/compiler-cli-fix.sh; fi
 - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export SAUCE_USERNAME=$SAUCE_USERNAME_PR; export SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; export NPM_AUTH_TOKEN_CI=$NPM_AUTH_TOKEN_CI_PR; fi
 
 jobs:
