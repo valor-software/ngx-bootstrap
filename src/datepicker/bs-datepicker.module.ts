@@ -32,29 +32,25 @@ import { BsDaterangepickerInlineContainerComponent } from './themes/bs/bs-datera
 import { BsDaterangepickerInlineDirective } from './bs-daterangepicker-inline.component';
 import { BsDaterangepickerInlineConfig } from './bs-daterangepicker-inline.config';
 
+const _exports = [
+  BsDatepickerContainerComponent,
+  BsDaterangepickerContainerComponent,
+  BsDatepickerInlineContainerComponent,
+  BsDaterangepickerInlineContainerComponent,
+
+  BsDatepickerDirective,
+  BsDatepickerInputDirective,
+
+  BsDaterangepickerInputDirective,
+  BsDaterangepickerDirective,
+
+  BsDatepickerInlineDirective
+];
 
 @NgModule({
   imports: [CommonModule],
   declarations: [
-    BsDatepickerDayDecoratorComponent,
-    BsCurrentDateViewComponent,
-    BsDatepickerNavigationViewComponent,
-    BsTimepickerViewComponent,
-    BsCalendarLayoutComponent,
-    BsDaysCalendarViewComponent,
-    BsMonthCalendarViewComponent,
-    BsYearsCalendarViewComponent,
-    BsCustomDatesViewComponent,
-    BsDatepickerContainerComponent,
-    BsDaterangepickerContainerComponent,
-    BsDatepickerInlineContainerComponent,
-    BsDaterangepickerInlineContainerComponent,
-    BsDatepickerDirective,
-    BsDatepickerInputDirective,
-    BsDaterangepickerInputDirective,
-    BsDaterangepickerDirective,
-    BsDatepickerInlineDirective,
-    BsDaterangepickerInlineDirective
+    ..._exports
   ],
   entryComponents: [
     BsDatepickerContainerComponent,
@@ -62,18 +58,7 @@ import { BsDaterangepickerInlineConfig } from './bs-daterangepicker-inline.confi
     BsDatepickerInlineContainerComponent,
     BsDaterangepickerInlineContainerComponent
   ],
-  exports: [
-    BsDatepickerContainerComponent,
-    BsDaterangepickerContainerComponent,
-    BsDatepickerInlineContainerComponent,
-    BsDaterangepickerInlineContainerComponent,
-    BsDatepickerDirective,
-    BsDatepickerInputDirective,
-    BsDaterangepickerInputDirective,
-    BsDaterangepickerDirective,
-    BsDatepickerInlineDirective,
-    BsDaterangepickerInlineDirective
-  ]
+  exports: _exports
 })
 export class BsDatepickerModule {
   static forRoot(): ModuleWithProviders {
