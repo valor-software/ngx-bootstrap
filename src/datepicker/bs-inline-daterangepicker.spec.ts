@@ -1,15 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-import {
-    BsDaterangepickerInlineDirective, BsDaterangepickerInlineConfig, BsDatepickerModule
-} from '.';
+import { BsDaterangepickerInlineDirective, BsDaterangepickerInlineConfig, BsDatepickerModule } from '.';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CalendarCellViewModel } from './models';
 
 
 @Component({
     selector: 'test-cmp',
-    template: `<bs-daterangepicker-inline [bsConfig]="bsConfig"></bs-daterangepicker-inline>>`
+    template: `<bs-daterangepicker-inline [bsConfig]="bsConfig"></bs-daterangepicker-inline>`
 })
 class TestComponent {
     @ViewChild(BsDaterangepickerInlineDirective, { static: false }) daterangepicker: BsDaterangepickerInlineDirective;
