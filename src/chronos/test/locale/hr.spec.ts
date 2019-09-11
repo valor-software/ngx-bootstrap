@@ -19,7 +19,9 @@ describe('locale: hr', () => {
   // localeModule('hr');
 
   it('parse', function () {
-    var _tests = 'Siječanj Sij_Veljača Velj_Ožujak Ožu_Travanj Tra_Svibanj Svi_Lipanj Lip_Srpanj Srp_Kolovoz Kol_Rujan Ruj_Listopad Lis_Studeni Stu_Prosinac Pro'.split('_'),
+    var _tests = 'Siječanj Sij_Veljača Velj_Ožujak Ožu_Travanj Tra_Svibanj Svi_Lipanj Lip_Srpanj Srp_Kolovoz Kol_Rujan Ruj_Listopad Lis_Studeni Stu_Prosinac Pro'.split(
+        '_'
+      ),
       i;
 
     function equalTest(input, mmm, i) {
@@ -42,30 +44,30 @@ describe('locale: hr', () => {
 
   it('format', function () {
     var a = [
-      ['dddd, MMMM Do YYYY, h:mm:ss a', 'Nedjelja, Veljača 14. 2010, 3:25:50 pm'],
-      ['ddd, hA', 'Ned, 3PM'],
-      ['M Mo MM MMMM MMM', '2 2. 02 Veljača Velj'],
-      ['YYYY YY', '2010 10'],
-      ['D Do DD', '14 14. 14'],
-      ['d do dddd ddd dd', '0 0. Nedjelja Ned Ne'],
-      ['DDD DDDo DDDD', '45 45. 045'],
-      ['w wo ww', '6 6. 06'],
-      ['h hh', '3 03'],
-      ['H HH', '15 15'],
-      ['m mm', '25 25'],
-      ['s ss', '50 50'],
-      ['a A', 'pm PM'],
-      ['[the] DDDo [day of the year]', 'the 45th day of the year'],
-      ['LTS', '15:25:50'],
-      ['L', '14/02/2010'],
-      ['LL', '14 Veljača 2010'],
-      ['LLL', '14 Veljača 2010 15:25'],
-      ['LLLL', 'Nedjelja, 14 Veljača 2010 15:25'],
-      ['l', '14/2/2010'],
-      ['ll', '14 Velj 2010'],
-      ['lll', '14 Velj 2010 15:25'],
-      ['llll', 'Sun, 14 Velj 2010 15:25']
-    ],
+        ['dddd, MMMM Do YYYY, h:mm:ss a', 'Nedjelja, Veljača 14. 2010, 3:25:50 pm'],
+        ['ddd, hA', 'Ned, 3PM'],
+        ['M Mo MM MMMM MMM', '2 2. 02 Veljača Velj'],
+        ['YYYY YY', '2010 10'],
+        ['D Do DD', '14 14. 14'],
+        ['d do dddd ddd dd', '0 0. Nedjelja Ned Ne'],
+        ['DDD DDDo DDDD', '45 45. 045'],
+        ['w wo ww', '6 6. 06'],
+        ['h hh', '3 03'],
+        ['H HH', '15 15'],
+        ['m mm', '25 25'],
+        ['s ss', '50 50'],
+        ['a A', 'pm PM'],
+        ['[the] DDDo [day of the year]', 'the 45. day of the year'],
+        ['LTS', '15:25:50'],
+        ['L', '14/02/2010'],
+        ['LL', '14 Veljača 2010'],
+        ['LLL', '14 Veljača 2010 15:25'],
+        ['LLLL', 'Nedjelja, 14 Veljača 2010 15:25'],
+        ['l', '14/2/2010'],
+        ['ll', '14 Velj 2010'],
+        ['lll', '14 Velj 2010 15:25'],
+        ['llll', 'Ned, 14 Velj 2010 15:25']
+      ],
       b = moment(new Date(2010, 1, 14, 15, 25, 50, 125)),
       i;
     for (i = 0; i < a.length; i++) {
@@ -111,7 +113,9 @@ describe('locale: hr', () => {
   });
 
   it('format month', function () {
-    var expected = 'Siječanj Sij_Veljača Velj_Ožujak Ožu_Travanj Tra_Svibanj Svi_Lipanj Lip_Srpanj Srp_Kolovoz Kol_Rujan Ruj_Listopad Lis_Studeni Stu_Prosinac Pro'.split('_'),
+    var expected = 'Siječanj Sij_Veljača Velj_Ožujak Ožu_Travanj Tra_Svibanj Svi_Lipanj Lip_Srpanj Srp_Kolovoz Kol_Rujan Ruj_Listopad Lis_Studeni Stu_Prosinac Pro'.split(
+        '_'
+      ),
       i;
     for (i = 0; i < expected.length; i++) {
       assertEq(moment([2011, i, 1]).format('MMMM MMM'), expected[i], expected[i]);
@@ -119,7 +123,9 @@ describe('locale: hr', () => {
   });
 
   it('format week', function () {
-    var expected = 'Nedjelja Ned Ne_Ponedjeljak Pon Po_Utorak Uto Ut_Srijeda Sri Sr_Četvrtak Čet Če_Petak Pet Pe_Subota Sub Su'.split('_'),
+    var expected = 'Nedjelja Ned Ne_Ponedjeljak Pon Po_Utorak Uto Ut_Srijeda Sri Sr_Četvrtak Čet Če_Petak Pet Pe_Subota Sub Su'.split(
+        '_'
+      ),
       i;
     for (i = 0; i < expected.length; i++) {
       assertEq(moment([2011, 0, 2 + i]).format('dddd ddd dd'), expected[i], expected[i]);
@@ -128,7 +134,11 @@ describe('locale: hr', () => {
 
   it('from', function () {
     var start = moment([2007, 1, 28]);
-    assertEq(start.from(moment([2007, 1, 28]).add({ s: 44 }), true), 'nekoliko sekundi', '44 sekundi = nekoliko sekundi');
+    assertEq(
+      start.from(moment([2007, 1, 28]).add({ s: 44 }), true),
+      'nekoliko sekundi',
+      '44 sekundi = nekoliko sekundi'
+    );
     assertEq(start.from(moment([2007, 1, 28]).add({ s: 45 }), true), 'minuta', '45 sekundi = minuta');
     assertEq(start.from(moment([2007, 1, 28]).add({ s: 89 }), true), 'minuta', '89 sekundi = minuta');
     assertEq(start.from(moment([2007, 1, 28]).add({ s: 90 }), true), '2 minuta', '90 sekundi = 2 minuta');
@@ -168,30 +178,83 @@ describe('locale: hr', () => {
   });
 
   it('fromNow', function () {
-    assertEq(moment().add({ s: 30 }).fromNow(), 'za nekoliko sekundi', 'za nekoliko sekundi');
-    assertEq(moment().add({ d: 5 }).fromNow(), 'za 5 dana', 'za 5 dana');
+    assertEq(
+      moment()
+        .add({ s: 30 })
+        .fromNow(),
+      'za nekoliko sekundi',
+      'za nekoliko sekundi'
+    );
+    assertEq(
+      moment()
+        .add({ d: 5 })
+        .fromNow(),
+      'za 5 dana',
+      'za 5 dana'
+    );
   });
 
   it('calendar day', function () {
-    var a = moment().hours(12).minutes(0).seconds(0);
+    var a = moment()
+      .hours(12)
+      .minutes(0)
+      .seconds(0);
 
     assertEq(moment(a).calendar(), 'Danas u 12:00', 'today at the same time');
-    assertEq(moment(a).add({ m: 25 }).calendar(), 'Danas u 12:25', 'Now plus 25 min');
-    assertEq(moment(a).add({ h: 1 }).calendar(), 'Danas u 13:00', 'Now plus 1 hour');
-    assertEq(moment(a).add({ d: 1 }).calendar(), 'Sutra u 12:00', 'tomorrow at the same time');
-    assertEq(moment(a).subtract({ h: 1 }).calendar(), 'Danas u 11:00', 'Now minus 1 hour');
-    assertEq(moment(a).subtract({ d: 1 }).calendar(), 'Jučer u 12:00', 'yesterday at the same time');
+    assertEq(
+      moment(a)
+        .add({ m: 25 })
+        .calendar(),
+      'Danas u 12:25',
+      'Now plus 25 min'
+    );
+    assertEq(
+      moment(a)
+        .add({ h: 1 })
+        .calendar(),
+      'Danas u 13:00',
+      'Now plus 1 hour'
+    );
+    assertEq(
+      moment(a)
+        .add({ d: 1 })
+        .calendar(),
+      'Sutra u 12:00',
+      'tomorrow at the same time'
+    );
+    assertEq(
+      moment(a)
+        .subtract({ h: 1 })
+        .calendar(),
+      'Danas u 11:00',
+      'Now minus 1 hour'
+    );
+    assertEq(
+      moment(a)
+        .subtract({ d: 1 })
+        .calendar(),
+      'Jučer u 12:00',
+      'yesterday at the same time'
+    );
   });
 
   it('calendar next week', function () {
     var i, m;
     for (i = 2; i < 7; i++) {
       m = moment().add({ d: i });
-      assertEq(m.calendar(), m.format('dddd [at] LT'), 'Today + ' + i + ' days current time');
-      m.hours(0).minutes(0).seconds(0).milliseconds(0);
-      assertEq(m.calendar(), m.format('dddd [at] LT'), 'Today + ' + i + ' days beginning of day');
-      m.hours(23).minutes(59).seconds(59).milliseconds(999);
-      assertEq(m.calendar(), m.format('dddd [at] LT'), 'Today + ' + i + ' days end of day');
+      assertEq(m.calendar(), m.format('dddd [u] LT'), 'Today + ' + i + ' days current time');
+      m
+        .hours(0)
+        .minutes(0)
+        .seconds(0)
+        .milliseconds(0);
+      assertEq(m.calendar(), m.format('dddd [u] LT'), 'Today + ' + i + ' days beginning of day');
+      m
+        .hours(23)
+        .minutes(59)
+        .seconds(59)
+        .milliseconds(999);
+      assertEq(m.calendar(), m.format('dddd [u] LT'), 'Today + ' + i + ' days end of day');
     }
   });
 
@@ -200,11 +263,19 @@ describe('locale: hr', () => {
 
     for (i = 2; i < 7; i++) {
       m = moment().subtract({ d: i });
-      assertEq(m.calendar(), m.format('[Last] dddd [at] LT'), 'Today - ' + i + ' days current time');
-      m.hours(0).minutes(0).seconds(0).milliseconds(0);
-      assertEq(m.calendar(), m.format('[Last] dddd [at] LT'), 'Today - ' + i + ' days beginning of day');
-      m.hours(23).minutes(59).seconds(59).milliseconds(999);
-      assertEq(m.calendar(), m.format('[Last] dddd [at] LT'), 'Today - ' + i + ' days end of day');
+      assertEq(m.calendar(), m.format('[Zadnji] dddd [u] LT'), 'Today - ' + i + ' days current time');
+      m
+        .hours(0)
+        .minutes(0)
+        .seconds(0)
+        .milliseconds(0);
+      assertEq(m.calendar(), m.format('[Zadnji] dddd [u] LT'), 'Today - ' + i + ' days beginning of day');
+      m
+        .hours(23)
+        .minutes(59)
+        .seconds(59)
+        .milliseconds(999);
+      assertEq(m.calendar(), m.format('[Zadnji] dddd [u] LT'), 'Today - ' + i + ' days end of day');
     }
   });
 
