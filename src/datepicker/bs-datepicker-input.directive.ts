@@ -18,13 +18,14 @@ import {
 } from '@angular/forms';
 
 import {
-  parseDate,
   formatDate,
   getLocale,
   isAfter,
   isBefore,
   isDate,
-  isDateValid
+  isDateValid,
+  parseDate,
+  utcAsLocal
 } from 'ngx-bootstrap/chronos';
 
 import { BsDatepickerDirective } from './bs-datepicker.component';
@@ -92,7 +93,7 @@ export class BsDatepickerInputDirective
 
   onChange(event: Event) {
     /* tslint:disable-next-line: no-any*/
-    this.writeValue((event.target as any).value);
+    this.writeValue((event.target as any).value, false);
     this._onChange(this._value);
     this._onTouched();
   }
@@ -125,7 +126,7 @@ export class BsDatepickerInputDirective
     this._validatorChange = fn;
   }
 
-  writeValue(value: Date | string) {
+  writeValue(value: Date | string, isUtc = true) {
     if (!value) {
       this._value = null;
     } else {
@@ -136,7 +137,12 @@ export class BsDatepickerInputDirective
           `Locale "${_localeKey}" is not defined, please add it with "defineLocale(...)"`
         );
       }
+
       this._value = parseDate(value, this._picker._config.dateInputFormat, this._localeService.currentLocale);
+
+      if (isUtc) {
+        this._value = utcAsLocal(this._value);
+      }
     }
 
     this._picker.bsValue = this._value;

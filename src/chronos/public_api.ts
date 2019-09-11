@@ -14,6 +14,7 @@ getMonth
 } from './utils/date-getters';
 
 export { parseDate } from './create/local';
+export { utcAsLocal } from './create/local';
 export { formatDate } from './format';
 
 
