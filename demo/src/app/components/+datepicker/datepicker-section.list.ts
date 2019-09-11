@@ -77,7 +77,7 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDatepickerBasicComponent
       },
       {
-        title: 'Inline Datepicker / Daterangepicker',
+        title: 'Inline',
         anchor: 'inline-datepicker',
         component: require('!!raw-loader!./demos/inline-datepicker/inline-datepicker.component.ts'),
         html: require('!!raw-loader!./demos/inline-datepicker/inline-datepicker.component.html'),
