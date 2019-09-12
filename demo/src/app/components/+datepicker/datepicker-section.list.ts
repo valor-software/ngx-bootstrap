@@ -41,6 +41,7 @@ import {
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
 
+
 export const demoComponentContent: ContentSection[] = [
   {
     name: 'Usage',
@@ -76,7 +77,7 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDatepickerBasicComponent
       },
       {
-        title: 'Inline Datepicker',
+        title: 'Inline',
         anchor: 'inline-datepicker',
         component: require('!!raw-loader!./demos/inline-datepicker/inline-datepicker.component.ts'),
         html: require('!!raw-loader!./demos/inline-datepicker/inline-datepicker.component.html'),
