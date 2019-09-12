@@ -7,7 +7,7 @@ describe('Datepicker demo test suite: Inline Datepicker', () => {
 
   beforeEach(() => {
     datepicker.navigateTo();
-    datepicker.scrollToMenu('Inline Datepicker');
+    datepicker.scrollToMenu('Inline');
   });
 
   it(`example contains Datepicker with selected date (Today)`, () => {

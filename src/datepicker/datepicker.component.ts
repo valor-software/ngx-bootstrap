@@ -122,7 +122,7 @@ export class DatePickerComponent implements ControlValueAccessor {
     undefined
   );
 
-  @ViewChild(DatePickerInnerComponent, { static: false })
+  @ViewChild(DatePickerInnerComponent, { static: true })
   _datePicker: DatePickerInnerComponent;
 
   /* tslint:disable-next-line: no-any*/
