@@ -15,6 +15,7 @@ export {
   glLocale,
   heLocale,
   hiLocale,
+  hrLocale,
   huLocale,
   idLocale,
   itLocale,

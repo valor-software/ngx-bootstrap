@@ -51,6 +51,7 @@ export { glLocale } from './i18n/gl';
 export { heLocale } from './i18n/he';
 export { hiLocale } from './i18n/hi';
 export { huLocale } from './i18n/hu';
+export { hrLocale } from './i18n/hr';
 export { idLocale } from './i18n/id';
 export { itLocale } from './i18n/it';
 export { jaLocale } from './i18n/ja';
