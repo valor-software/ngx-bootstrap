@@ -1,3 +1,22 @@
+<a name="5.2.0"></a>
+# [5.2.0](https://github.com/valor-software/ngx-bootstrap/compare/v5.1.2...v5.2.0) (2019-09-13)
+
+
+### Bug Fixes
+
+* **datepicker:** fix issue with monthpicker for Feb ([#5371](https://github.com/valor-software/ngx-bootstrap/issues/5371)) ([#5376](https://github.com/valor-software/ngx-bootstrap/issues/5376)) ([91bda67](https://github.com/valor-software/ngx-bootstrap/commit/91bda67))
+* **datepicker:** fix timezone issue ([#5364](https://github.com/valor-software/ngx-bootstrap/issues/5364)) ([137042c](https://github.com/valor-software/ngx-bootstrap/commit/137042c))
+* **datepicker:** make datepicker view child static ([#5374](https://github.com/valor-software/ngx-bootstrap/issues/5374)) ([fe7e489](https://github.com/valor-software/ngx-bootstrap/commit/fe7e489)), closes [#5373](https://github.com/valor-software/ngx-bootstrap/issues/5373)
+* **positioning:** resolve perfomance issue ([#5385](https://github.com/valor-software/ngx-bootstrap/issues/5385)) ([988f5cf](https://github.com/valor-software/ngx-bootstrap/commit/988f5cf))
+* **tooltip:** multiple events for tooltips ([#5382](https://github.com/valor-software/ngx-bootstrap/issues/5382)) ([3286382](https://github.com/valor-software/ngx-bootstrap/commit/3286382))
+
+
+### Features
+
+* **datepicker:** add daterangepicker inline ([#5307](https://github.com/valor-software/ngx-bootstrap/issues/5307)) ([6cc64c0](https://github.com/valor-software/ngx-bootstrap/commit/6cc64c0))
+
+
+
 <a name="5.1.2"></a>
 ## [5.1.2](https://github.com/valor-software/ngx-bootstrap/compare/v5.1.1...v5.1.2) (2019-08-07)
 
