@@ -15,6 +15,7 @@ export {
   glLocale,
   heLocale,
   hiLocale,
+  hrLocale,
   huLocale,
   idLocale,
   itLocale,
@@ -34,5 +35,6 @@ export {
   svLocale,
   thLocale,
   trLocale,
+  viLocale,
   zhCnLocale
 } from 'ngx-bootstrap/chronos';

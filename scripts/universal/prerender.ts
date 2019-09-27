@@ -23,7 +23,7 @@ applyDomino(global, indexPath);
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const {
   AppServerModuleNgFactory,
-  LAZY_MODULE_MAP,
+  LAZY_MODULE_MAP
 } = require('../../demo/dist/server/main');
 
 let previousRender = Promise.resolve();
@@ -43,8 +43,8 @@ ROUTES.forEach(route => {
       renderModuleFactory(AppServerModuleNgFactory, {
         document: readFileSync(indexPath, 'utf8'),
         url: route,
-        extraProviders: [provideModuleMap(LAZY_MODULE_MAP)],
-      }),
+        extraProviders: [provideModuleMap(LAZY_MODULE_MAP)]
+      })
     )
     .then(html => writeFileSync(join(fullPath, 'index.html'), html));
 });

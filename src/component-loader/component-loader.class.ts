@@ -119,6 +119,7 @@ export class ComponentLoader<T> {
 
   position(opts?: PositioningOptions): ComponentLoader<T> {
     this.attachment = opts.attachment || this.attachment;
+    /* tslint:disable-next-line: no-unnecessary-type-assertion */
     this._elementRef = (opts.target as ElementRef) || this._elementRef;
 
     return this;
@@ -157,6 +158,7 @@ export class ComponentLoader<T> {
       });
 
       this._componentRef = this._componentFactory.create(injector, this._contentRef.nodes);
+
       this._applicationRef.attachView(this._componentRef.hostView);
       // this._componentRef = this._viewContainerRef
       //   .createComponent(this._componentFactory, 0, injector, this._contentRef.nodes);
@@ -340,16 +342,21 @@ export class ComponentLoader<T> {
       return;
     }
 
-    this._zoneSubscription = this._ngZone.onStable.subscribe(() => {
-      if (!this._componentRef) {
-        return;
-      }
+    this.onShown.subscribe(() => {
       this._posService.position({
         element: this._componentRef.location,
         target: this._elementRef,
         attachment: this.attachment,
         appendToBody: this.container === 'body'
       });
+    });
+
+    this._zoneSubscription = this._ngZone.onStable.subscribe(() => {
+      if (!this._componentRef) {
+        return;
+      }
+
+      this._posService.calcPosition();
     });
   }
 

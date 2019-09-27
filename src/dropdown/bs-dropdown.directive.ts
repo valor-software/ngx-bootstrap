@@ -240,7 +240,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         (typeof this.dropup !== 'undefined' && this.dropup);
       this._state.direction = _dropup ? 'up' : 'down';
       const _placement =
-        this.placement || (_dropup ? 'top left' : 'bottom left');
+        this.placement || (_dropup ? 'top start' : 'bottom start');
 
       // show dropdown
       this._dropdown

@@ -1,7 +1,8 @@
 import {
   DaysCalendarViewModel,
   DayViewModel,
-  WeekViewModel
+  WeekViewModel,
+  DatepickerDateCustomClasses
 } from '../models';
 
 import {
@@ -26,6 +27,7 @@ export interface FlagDaysCalendarOptions {
   selectedRange: Date[];
   displayMonths: number;
   monthIndex: number;
+  dateCustomClasses: DatepickerDateCustomClasses[];
 }
 
 export function flagDaysCalendar(
@@ -70,6 +72,13 @@ export function flagDaysCalendar(
       const currentDate = new Date();
       const isToday = !isOtherMonth && isSameDay(day.date, currentDate);
 
+      const customClasses = options.dateCustomClasses && options.dateCustomClasses
+        .map(dcc => isSameDay(day.date, dcc.date) ? dcc.classes : [])
+        .reduce((previousValue, currentValue) => previousValue.concat(currentValue), [])
+        .join(' ')
+        || '';
+
+
       // decide update or not
       const newDay = Object.assign({}, day, {
         isOtherMonth,
@@ -79,7 +88,8 @@ export function flagDaysCalendar(
         isSelectionEnd,
         isInRange,
         isDisabled,
-        isToday
+        isToday,
+        customClasses
       });
 
       if (
@@ -89,7 +99,8 @@ export function flagDaysCalendar(
         day.isSelectionStart !== newDay.isSelectionStart ||
         day.isSelectionEnd !== newDay.isSelectionEnd ||
         day.isDisabled !== newDay.isDisabled ||
-        day.isInRange !== newDay.isInRange
+        day.isInRange !== newDay.isInRange ||
+        day.customClasses !== newDay.customClasses
       ) {
         week.days[dayIndex] = newDay;
       }

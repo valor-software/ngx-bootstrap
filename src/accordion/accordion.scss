@@ -1,0 +1,15 @@
+:host {
+ .card-header {
+   &.panel-enabled {
+     cursor: pointer;
+   }
+   &.panel-disabled {
+     .btn {
+       &.btn-link {
+         cursor: default;
+         text-decoration: none;
+       }
+     }
+   }
+ }
+}

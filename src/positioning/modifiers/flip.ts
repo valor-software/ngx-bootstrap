@@ -41,10 +41,7 @@ export function flip(data: Data): Data {
   const target = data.instance.target;
   const host = data.instance.host;
 
-  const adaptivePosition = variation
-    ? computeAutoPlacement('auto', offsetsHost, target, host, ['top', 'bottom'])
-    : computeAutoPlacement('auto', offsetsHost, target, host);
-
+  const adaptivePosition = computeAutoPlacement('auto', offsetsHost, target, host, data.options.allowedPositions);
   const flipOrder = [placement, adaptivePosition];
 
   /* tslint:disable-next-line: cyclomatic-complexity */

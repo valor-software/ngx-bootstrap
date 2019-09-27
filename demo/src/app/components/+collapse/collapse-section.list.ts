@@ -17,7 +17,7 @@ export const demoComponentContent: ContentSection[] = [
     anchor: 'usage',
     outlet: DemoTopSectionComponent,
     content: {
-      doc: require('!!raw-loader?lang=typescript!./docs/usage.md')
+      doc: require('!!raw-loader!./docs/usage.md')
     }
   },
   {
@@ -28,23 +28,23 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Basic',
         anchor: 'basic',
-        component: require('!!raw-loader?lang=typescript!./demos/basic/basic'),
-        html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
+        component: require('!!raw-loader!./demos/basic/basic'),
+        html: require('!!raw-loader!./demos/basic/basic.html'),
         outlet: CollapseDemoComponent
       },
       {
         title: 'With animation',
         anchor: 'animated',
-        component: require('!!raw-loader?lang=typescript!./demos/animated/animated'),
-        html: require('!!raw-loader?lang=markup!./demos/animated/animated.html'),
+        component: require('!!raw-loader!./demos/animated/animated'),
+        html: require('!!raw-loader!./demos/animated/animated.html'),
         description: `You can enable animation via <code>isAnimated</code> input option`,
         outlet: CollapseDemoAnimatedComponent
       },
       {
         title: 'Events',
         anchor: 'events',
-        component: require('!!raw-loader?lang=typescript!./demos/events/events'),
-        html: require('!!raw-loader?lang=markup!./demos/events/events.html'),
+        component: require('!!raw-loader!./demos/events/events'),
+        html: require('!!raw-loader!./demos/events/events.html'),
         description: `Collapse directive exposes 4 events: <code>collapses</code>, that fires when a collapse was triggered (aniamtion start),
                         <code>collapsed</code>, that fires when a content was hidden (aniamtion finished), 
                         <code>expands</code>, that fires when a expansion was triggered (animation start)
@@ -54,15 +54,15 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Manual toggle',
         anchor: 'manual-toggle',
-        component: require('!!raw-loader?lang=typescript!./demos/toggle-manual/toggle-manual'),
-        html: require('!!raw-loader?lang=markup!./demos/toggle-manual/toggle-manual.html'),
+        component: require('!!raw-loader!./demos/toggle-manual/toggle-manual'),
+        html: require('!!raw-loader!./demos/toggle-manual/toggle-manual.html'),
         outlet: ToggleManualDemoComponent
       },
       {
         title: 'Inline display',
         anchor: 'inline-display',
-        component: require('!!raw-loader?lang=typescript!./demos/inline-display/inline-display'),
-        html: require('!!raw-loader?lang=markup!./demos/inline-display/inline-display.html'),
+        component: require('!!raw-loader!./demos/inline-display/inline-display'),
+        html: require('!!raw-loader!./demos/inline-display/inline-display.html'),
         outlet: InlineDisplayDemoComponent
       },
       {
