@@ -1,9 +1,9 @@
-<a href="http://valor-software.com/ngx-bootstrap/#/">
-    <h1 align="center">ngx-bootstrap</h1>
-</a>
+<p align="center">
+  (<a href="http://valor-software.com/ngx-bootstrap/">ngx-bootstrap</a>)
+</p>
 
 <p align="center">
-Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a> or <a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> Components with <a href="https://angular.io/">Angular</a>
+Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a> or <a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> Components with <a href="https://angular.io/"</a>
 </p>
 
 <p align="center">
@@ -53,7 +53,9 @@ What's there for you? Proper recognition and exposure of your name/logo/website 
 Our main sponsors will be presented under this section! Be the first!
 
 ## Installation instructions
+
 ##### Method 1
+
 Install `ngx-bootstrap` from `npm`:
 ```bash
 npm install ngx-bootstrap --save
@@ -91,6 +93,7 @@ You will need bootstrap styles:
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 ```
 ##### Method 2
+
 Use the Angular CLI ng add command for updating your Angular project
 ```bash
 ng add ngx-bootstrap
@@ -182,14 +185,14 @@ Here is the versions compatibility list:
 
 So if you are in trouble, here's where you can look for help.
 
-The best place to ask questions is on [StackOverflow (under the `ngx-bootstrap` tag)](https://stackoverflow.com/questions/tagged/ngx-bootstrap)
-You can also join [our Slack channel](https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWQ5M2Y4OWM0OGJjNmZiOGYyNjFlZTdlOGI1YjcxYWQ2ODhiOTY4NzhiODgwMTIzNDczODIyNWNmM2RlYWRhNTg) and link your stackoverflow question there. But try to avoid asking generic help questions directly on Slack since they can easily get lost in the chat. You can also [search among the existing GitHub issues](https://github.com/valor-software/ngx-bootstrap/issues?utf8=%E2%9C%93&q=is%3Aissue).
+The best place to ask questions is on [StackOverflow (under the `ngx-bootstrap` tag](https://stackoverflow.com/questions/tagged/ngx-bootstrap).
+You can also join [our Slack channel](https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWQ5M2Y4OWM0OGJjNmZiOGYyNjFlZTdlOGI1YjcxYWQ2ODhiOTY4NzhiODgwMTIzNDczODIyNWNmM2RlYWRhNTg) and link your stackoverflow question there. But, try to avoid asking generic help questions directly on Slack since they can easily get lost in the chat. You can also [search among the existing GitHub issues](https://github.com/valor-software/ngx-bootstrap/issues?utf8=%E2%9C%93&q=is%3Aissue).
 
-If, **and only if**, none of the above helped, please open a [new issue](https://github.com/valor-software/ngx-bootstrap/issues/new).
+If, **and only if**, none of the above methods help you, please open a [new issue](https://github.com/valor-software/ngx-bootstrap/issues/new).
 
 ## Contribution
 
-Are very welcome! And remember, contribution is not only PRs and code, but any help with docs or helping other developers to solve issues are very appreciated! Thanks in advance!
+All are very welcome! And remember, contribution is not only PRs and code, but any help with docs or helping other developers to solve issues are very appreciated! Thanks in advance!
 
 Please read our [contribution guidelines](https://github.com/valor-software/ngx-bootstrap/blob/development/CONTRIBUTING.md).
 
