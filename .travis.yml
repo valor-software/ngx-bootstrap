@@ -58,7 +58,6 @@ install:
 - if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
 - npm i ngx-bootstrap-ci@$TRAVIS_COMMIT
 - npm run ci:rename-pkg
-- if [[ "$NGV" == "ivy" ]]; then  scripts/ivy/compiler-cli-fix.sh; fi
 - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export SAUCE_USERNAME=$SAUCE_USERNAME_PR; export SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; export NPM_AUTH_TOKEN_CI=$NPM_AUTH_TOKEN_CI_PR; fi
 
 jobs:
@@ -143,10 +142,10 @@ jobs:
     - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
     - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then npm unpublish --tag $TRAVIS_COMMIT --force; fi
 
-  # deploy to ngx-bootstrap.surge.sh
   - &surge
     stage: deploy
-    script: npm run demo.build
+    script:
+    - if [[ "$NGV" == "ivy" ]]; then npm run demo.build:ivy; else npm run demo.build; fi
     deploy:
       provider: surge
       project: ./gh-pages/
@@ -154,11 +153,9 @@ jobs:
       on: development
   - <<: *surge
     env: NGV=ivy
-    script: npm run demo.ng-build:ivy
-    before_deploy:
-    - cd ./demo/dist/browser
     deploy:
       provider: surge
+      project: ./gh-pages/
       domain: ngx-bootstrap-ivy.surge.sh
       on: development
   - <<: *surge
