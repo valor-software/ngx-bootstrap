@@ -32,6 +32,7 @@ export const hrLocale: LocaleData = {
     lastWeek: '[Zadnji] dddd [u] LT',
     sameElse: 'L'
   },
+  invalidDate: 'Neispravan datum',
   relativeTime: {
     future: 'za %s',
     past: '%s prije',
