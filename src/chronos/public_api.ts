@@ -70,5 +70,6 @@ export { slLocale } from './i18n/sl';
 export { svLocale } from './i18n/sv';
 export { thLocale } from './i18n/th';
 export { trLocale } from './i18n/tr';
+export { ukLocale } from './i18n/uk';
 export { viLocale } from './i18n/vi';
 export { zhCnLocale } from './i18n/zh-cn';
