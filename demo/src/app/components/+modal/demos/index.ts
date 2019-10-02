@@ -8,10 +8,16 @@ import { DemoModalEventsComponent } from './events/events';
 import { DemoModalServiceStaticComponent } from './service-template/service-template';
 import { DemoModalServiceFromComponent } from './service-component/service-component';
 import { DemoModalServiceNestedComponent } from './service-nested/service-nested';
-import { DemoModalServiceOptionsComponent } from './service-options/service-options';
+import { DemoModalServiceDisableAnimationComponent } from './service-options/disable-animation/disable-animation';
+import { DemoModalServiceCustomCSSClassComponent } from './service-options/custom-css-class/custom-css-class';
+import { DemoModalServiceDisableEscClosingComponent } from './service-options/disable-esc-closing/disable-esc-closing';
+import { DemoModalServiceDisableBackdropComponent } from './service-options/disable-backdrop/disable-backdrop';
 import { DemoModalServiceEventsComponent } from './service-events/service-events';
 import { DemoModalServiceConfirmWindowComponent } from './service-confirm-window/service-confirm-window';
 import { DemoModalScrollingLongContentComponent } from './scrolling-long-content/scrolling-long-content';
+import { DemoAccessibilityComponent } from './accessibility/accessibility';
+import { DemoModalWithPopupsComponent } from './modal-with-popups/modal-with-popups';
+import { DemoModalServiceChangeClassComponent } from './service-options/change-class/change-class';
 
 export const DEMO_COMPONENTS = [
   DemoModalSizesComponent,
@@ -22,9 +28,15 @@ export const DEMO_COMPONENTS = [
   DemoModalServiceStaticComponent,
   DemoModalServiceFromComponent,
   DemoModalServiceNestedComponent,
-  DemoModalServiceOptionsComponent,
+  DemoModalServiceCustomCSSClassComponent,
+  DemoModalServiceDisableAnimationComponent,
+  DemoModalServiceDisableEscClosingComponent,
+  DemoModalServiceDisableBackdropComponent,
   DemoModalEventsComponent,
   DemoModalServiceEventsComponent,
   DemoModalServiceConfirmWindowComponent,
-  DemoModalScrollingLongContentComponent
+  DemoModalScrollingLongContentComponent,
+  DemoAccessibilityComponent,
+  DemoModalServiceChangeClassComponent,
+  DemoModalWithPopupsComponent
 ];

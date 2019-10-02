@@ -1,4 +1,4 @@
-import { Time } from './timepicker.models';
+import { Time, TimepickerComponentState } from './timepicker.models';
 
 const dex = 10;
 const hoursPerDay = 24;
@@ -22,6 +22,18 @@ export function isValidDate(value?: string | Date): boolean {
   return true;
 }
 
+export function isValidLimit(controls: TimepickerComponentState, newDate: Date): boolean {
+  if (controls.min && newDate < controls.min) {
+    return false;
+  }
+
+  if (controls.max && newDate > controls.max) {
+    return false;
+  }
+
+  return true;
+}
+
 export function toNumber(value: string | number): number {
   if (typeof value === 'number') {
     return value;
@@ -30,7 +42,7 @@ export function toNumber(value: string | number): number {
   return parseInt(value, dex);
 }
 
-export function isNumber(value: any): value is number {
+export function isNumber(value: string | number): value is number {
   return !isNaN(toNumber(value));
 }
 
@@ -112,11 +124,10 @@ export function setTime(value: Date, opts: Time): Date {
   const minute = parseMinutes(opts.minute);
   const seconds = parseSeconds(opts.seconds) || 0;
 
-  if (opts.isPM) {
+  if (opts.isPM && hour !== 12) {
     hour += hoursPerDayHalf;
   }
 
-  // fixme: unreachable code, value is mandatory
   if (!value) {
     if (!isNaN(hour) && !isNaN(minute)) {
       return createDate(new Date(), hour, minute, seconds);
@@ -138,17 +149,14 @@ export function createDate(
   minutes: number,
   seconds: number
 ): Date {
-  // fixme: unreachable code, value is mandatory
-  const _value = value || new Date();
-
   return new Date(
-    _value.getFullYear(),
-    _value.getMonth(),
-    _value.getDate(),
+    value.getFullYear(),
+    value.getMonth(),
+    value.getDate(),
     hours,
     minutes,
     seconds,
-    _value.getMilliseconds()
+    value.getMilliseconds()
   );
 }
 
@@ -161,13 +169,39 @@ export function padNumber(value: number): string {
   return `0${_value}`;
 }
 
+export function isHourInputValid(hours: string, isPM: boolean): boolean {
+  return !isNaN(parseHours(hours, isPM));
+}
+
+export function isMinuteInputValid(minutes: string): boolean {
+  return !isNaN(parseMinutes(minutes));
+}
+
+export function isSecondInputValid(seconds: string): boolean {
+  return !isNaN(parseSeconds(seconds));
+}
+
+export function isInputLimitValid(diff: Time, max: Date, min: Date): boolean {
+  const newDate = setTime(new Date(), diff);
+
+  if (max && newDate > max) {
+    return false;
+  }
+
+  if (min && newDate < min) {
+    return false;
+  }
+
+  return true;
+}
+
 export function isInputValid(
   hours: string,
   minutes = '0',
   seconds = '0',
   isPM: boolean
 ): boolean {
-  return !(isNaN(parseHours(hours, isPM))
-    || isNaN(parseMinutes(minutes))
-    || isNaN(parseSeconds(seconds)));
+  return isHourInputValid(hours, isPM)
+    && isMinuteInputValid(minutes)
+    && isSecondInputValid(seconds);
 }

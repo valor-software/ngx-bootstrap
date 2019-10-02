@@ -2,6 +2,7 @@
   "extends": "tslint-config-valorsoft",
   "rulesDirectory": "./node_modules/codelyzer",
   "rules": {
+    "import-blacklist": [true, "rxjs/Rx", "lodash"],
     "member-access": [true, "no-public"],
     "no-void-expression": ["ignore-arrow-function-shorthand"],
     "space-before-function-paren": [true, {"anonymous": "always", "named": "never", "asyncArrow": "always"}],
@@ -16,6 +17,13 @@
     "no-magic-numbers": false,
     "no-any": false,
     "prefer-object-spread": false,
-    "prefer-for-of": false
+    "prefer-for-of": false,
+    "angular-whitespace": false,
+    "use-view-encapsulation": false,
+    "typeof-compare": false,
+    "templates-use-public": false,
+    "no-access-missing-member": false,
+    "invoke-injectable": false,
+    "template-to-ng-template": false
   }
 }

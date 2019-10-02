@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
+import { Observable, of } from 'rxjs';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
+import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'demo-typeahead-async',
@@ -16,11 +16,7 @@ export class DemoTypeaheadAsyncComponent {
   statesComplex: any[] = [
     { id: 1, name: 'Alabama', region: 'South' },
     { id: 2, name: 'Alaska', region: 'West' },
-    {
-      id: 3,
-      name: 'Arizona',
-      region: 'West'
-    },
+    { id: 3, name: 'Arizona', region: 'West' },
     { id: 4, name: 'Arkansas', region: 'South' },
     { id: 5, name: 'California', region: 'West' },
     { id: 6, name: 'Colorado', region: 'West' },
@@ -74,13 +70,16 @@ export class DemoTypeaheadAsyncComponent {
     this.dataSource = Observable.create((observer: any) => {
       // Runs on every search
       observer.next(this.asyncSelected);
-    }).mergeMap((token: string) => this.getStatesAsObservable(token));
+    })
+      .pipe(
+        mergeMap((token: string) => this.getStatesAsObservable(token))
+      );
   }
 
   getStatesAsObservable(token: string): Observable<any> {
-    let query = new RegExp(token, 'ig');
+    const query = new RegExp(token, 'i');
 
-    return Observable.of(
+    return of(
       this.statesComplex.filter((state: any) => {
         return query.test(state.name);
       })
@@ -89,10 +88,6 @@ export class DemoTypeaheadAsyncComponent {
 
   changeTypeaheadLoading(e: boolean): void {
     this.typeaheadLoading = e;
-  }
-
-  changeTypeaheadNoResults(e: boolean): void {
-    this.typeaheadNoResults = e;
   }
 
   typeaheadOnSelect(e: TypeaheadMatch): void {

@@ -12,15 +12,19 @@ export class AddNavComponent {
 
   constructor(@Inject(DOCUMENT) private document: Document) { }
 
-  goToSection(event): void {
-    const item: HTMLElement = event.target;
+  goToSection(event: Event): void {
+    const item: HTMLElement = event.target as HTMLElement;
 
     if (item.dataset.anchor) {
       const anchor: string = item.dataset.anchor;
-      const target: HTMLElement = this.document.getElementById(anchor);
-      const header: HTMLElement = this.document.getElementById('header');
-      const headerIndent: number = header.offsetHeight + 6;
-      this.document.body.scrollTop = target.offsetTop - headerIndent;
+      const target: HTMLElement | null = this.document.getElementById(anchor);
+      const header: HTMLElement | null = this.document.getElementById('header');
+
+      if (target && header) {
+        const targetPosY: number = target.offsetTop - header.offsetHeight - 6;
+
+        window.scrollTo(0, targetPosY);
+      }
     }
   }
 }

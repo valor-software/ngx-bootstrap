@@ -5,11 +5,14 @@ import { RouterModule } from '@angular/router';
 
 import { defineLocale, LocaleData } from 'ngx-bootstrap/chronos';
 import { BsDatepickerModule, DatepickerModule } from 'ngx-bootstrap/datepicker';
+
 import {
-  arLocale, csLocale, daLocale, deLocale, enGbLocale, esDoLocale, esLocale, esUsLocale, frLocale, heLocale, hiLocale,
-  huLocale, idLocale, itLocale, jaLocale, koLocale, nlBeLocale, nlLocale, plLocale, ptBrLocale, ruLocale, svLocale,
-  thLocale, trLocale, zhCnLocale
+  arLocale, bgLocale, caLocale, csLocale, daLocale, deLocale, enGbLocale, esDoLocale, esLocale, esUsLocale, etLocale, frLocale, heLocale,
+  hiLocale, hrLocale, fiLocale, glLocale, huLocale, idLocale, itLocale, jaLocale, koLocale, ltLocale, mnLocale, nbLocale,
+  nlBeLocale, nlLocale, plLocale, ptBrLocale, ruLocale, roLocale, skLocale, slLocale, svLocale, thLocale, trLocale, viLocale,
+  zhCnLocale, ukLocale
 } from 'ngx-bootstrap/locale';
+
 import { TabsModule } from 'ngx-bootstrap/tabs';
 
 import { DocsModule } from '../../docs';
@@ -18,11 +21,19 @@ import { routes } from './demo-datepicker.routes';
 import { DEMO_COMPONENTS } from './demos';
 
 const locales = [
-  arLocale, csLocale, daLocale, deLocale, enGbLocale, esLocale, esDoLocale, esUsLocale,
-  frLocale, hiLocale, heLocale, huLocale, idLocale, itLocale, jaLocale, koLocale, nlLocale,
-  nlBeLocale, plLocale, ptBrLocale, svLocale, ruLocale, zhCnLocale, trLocale, thLocale
+  arLocale, bgLocale, caLocale, csLocale, daLocale, deLocale, enGbLocale, esDoLocale, esLocale, esUsLocale, etLocale, frLocale,
+  heLocale, hiLocale, hrLocale, fiLocale, glLocale, huLocale, idLocale, itLocale, jaLocale, koLocale, ltLocale, mnLocale,
+  nbLocale, nlBeLocale, nlLocale, plLocale, ptBrLocale, ruLocale, roLocale, skLocale, slLocale, svLocale, thLocale,
+  trLocale, ukLocale, viLocale, zhCnLocale
 ];
-locales.forEach((locale: LocaleData) => defineLocale(locale.abbr, locale));
+
+locales.forEach((locale: LocaleData) => {
+  if (!locale.abbr) {
+    return;
+  }
+
+  defineLocale(locale.abbr, locale);
+});
 
 @NgModule({
   declarations: [
@@ -42,5 +53,4 @@ locales.forEach((locale: LocaleData) => defineLocale(locale.abbr, locale));
   exports: [DatepickerSectionComponent],
   entryComponents: [...DEMO_COMPONENTS]
 })
-export class DemoDatepickerModule {
-}
+export class DemoDatepickerModule {}

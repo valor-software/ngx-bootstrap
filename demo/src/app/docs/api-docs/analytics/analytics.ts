@@ -5,8 +5,8 @@
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { filter } from 'rxjs/operators';
 
-import 'rxjs/add/operator/filter';
 
 declare const ga: any;
 
@@ -17,14 +17,14 @@ declare const ga: any;
  */
 @Injectable()
 export class Analytics {
-  private _enabled: boolean;
-  private _location: Location;
-  private _router: Router;
+  private enabled: boolean;
+  private location: Location;
+  private router: Router;
 
-  constructor(_location: Location, _router: Router) {
-    this._location = _location;
-    this._router = _router;
-    this._enabled = (typeof window != 'undefined') && window.location.href.indexOf('bootstrap') >= 0;
+  constructor(location: Location, router: Router) {
+    this.location = location;
+    this.router = router;
+    this.enabled = typeof window != 'undefined' && window.location.href.indexOf('bootstrap') >= 0;
   }
 
   /**
@@ -32,23 +32,25 @@ export class Analytics {
    * page view after each ended navigation event.
    */
   trackPageViews(): void {
-    if (!this._enabled) {
+    if (!this.enabled) {
       return;
     }
-    this._router.events
-      .filter((event: any) => event instanceof NavigationEnd)
+    this.router.events
+      .pipe(
+        filter((event: any) => event instanceof NavigationEnd)
+      )
       .subscribe(() => {
-        if (typeof ga !== 'undefined') {
-          ga('send', { hitType: 'pageview', page: this._location.path() });
-        }
-      });
+      if (typeof ga !== 'undefined') {
+        ga('send', { hitType: 'pageview', page: this.location.path() });
+      }
+    });
   }
 
   /**
    * Sends an event.
    */
   trackEvent(action: string, category: string): void {
-    if (!this._enabled) {
+    if (!this.enabled) {
       return;
     }
     if (typeof ga !== 'undefined') {

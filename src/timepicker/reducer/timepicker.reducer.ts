@@ -1,4 +1,4 @@
-import { Action } from '../../mini-ngrx/index';
+import { Action } from 'ngx-bootstrap/mini-ngrx';
 import {
   canChangeHours,
   canChangeMinutes,
@@ -11,7 +11,7 @@ import {
   TimepickerComponentState,
   TimepickerControls
 } from '../timepicker.models';
-import { changeTime, setTime } from '../timepicker.utils';
+import { changeTime, setTime, isValidLimit } from '../timepicker.utils';
 import { TimepickerActions } from './timepicker.actions';
 
 export class TimepickerState {
@@ -30,10 +30,13 @@ export const initialState: TimepickerState = {
 
     canDecrementHours: true,
     canDecrementMinutes: true,
-    canDecrementSeconds: true
+    canDecrementSeconds: true,
+
+    canToggleMeridian: true
   }
 };
 
+// tslint:disable-next-line:cyclomatic-complexity
 export function timepickerReducer(state = initialState, action: Action) {
   switch (action.type) {
     case TimepickerActions.WRITE_VALUE: {
@@ -50,6 +53,10 @@ export function timepickerReducer(state = initialState, action: Action) {
 
       const _newTime = changeTime(state.value, { hour: action.payload.step });
 
+      if ((state.config.max || state.config.min) && !isValidLimit(state.config, _newTime)) {
+          return state;
+      }
+
       return Object.assign({}, state, { value: _newTime });
     }
 
@@ -62,6 +69,10 @@ export function timepickerReducer(state = initialState, action: Action) {
       }
 
       const _newTime = changeTime(state.value, { minute: action.payload.step });
+
+      if ((state.config.max || state.config.min) && !isValidLimit(state.config, _newTime)) {
+        return state;
+      }
 
       return Object.assign({}, state, { value: _newTime });
     }
@@ -77,6 +88,10 @@ export function timepickerReducer(state = initialState, action: Action) {
       const _newTime = changeTime(state.value, {
         seconds: action.payload.step
       });
+
+      if ((state.config.max || state.config.min) && !isValidLimit(state.config, _newTime)) {
+        return state;
+      }
 
       return Object.assign({}, state, { value: _newTime });
     }
@@ -100,7 +115,7 @@ export function timepickerReducer(state = initialState, action: Action) {
       };
 
       if (state.config.showMeridian !== _newState.config.showMeridian) {
-        if(state.value){
+        if (state.value) {
           _newState.value = new Date(state.value);
         }
       }

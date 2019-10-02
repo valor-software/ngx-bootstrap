@@ -1,22 +1,12 @@
+import { DOCUMENT } from '@angular/common';
 import { AfterContentInit, Component, Inject } from '@angular/core';
-import {
-  ActivatedRoute,
-  NavigationEnd,
-  Router,
-  UrlSerializer
-} from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, UrlSerializer } from '@angular/router';
+import { PageScrollService } from 'ngx-page-scroll-core';
 import { isBs3 } from 'ngx-bootstrap/utils';
 
-import {
-  PageScrollConfig,
-  PageScrollInstance,
-  PageScrollService
-} from 'ng2-page-scroll';
-import { DOCUMENT } from '@angular/common';
 import { Analytics } from './docs/api-docs/analytics/analytics';
+import { filter } from 'rxjs/operators';
 
-PageScrollConfig.defaultDuration = 11;
-PageScrollConfig.defaultScrollOffset = 70;
 
 @Component({
   selector: 'bs-demo',
@@ -32,18 +22,15 @@ export class AppComponent implements AfterContentInit {
     private router: Router,
     private pageScrollService: PageScrollService,
     private urlSerializer: UrlSerializer,
-    private _analytics: Analytics,
+    private analytics: Analytics,
     @Inject(DOCUMENT) private document: any
   ) {}
 
   // almost same logic exists in top-menu component
   ngAfterContentInit(): any {
-    this._analytics.trackPageViews();
+    this.analytics.trackPageViews();
     const getUrl = (router: Router) =>
-      router.routerState.snapshot.url.slice(
-        0,
-        router.routerState.snapshot.url.indexOf('#')
-      );
+      router.routerState.snapshot.url.slice(0, router.routerState.snapshot.url.indexOf('#'));
     let _prev = getUrl(this.router);
     const justDoIt = (event: any): void => {
       const _cur = getUrl(this.router);
@@ -55,17 +42,14 @@ export class AppComponent implements AfterContentInit {
 
       const hash = this.route.snapshot.fragment;
       if (hash) {
-        const pageScrollInstance: PageScrollInstance = PageScrollInstance.simpleDirectionInstance(
-          this.document,
-          `#${hash}`,
-          true
-        );
-        this.pageScrollService.start(pageScrollInstance);
+        this.pageScrollService.scroll({ document: this.document, scrollTarget: `#${hash}` });
       }
     };
 
     this.router.events
-      .filter(event => event instanceof NavigationEnd)
+      .pipe(
+        filter(event => event instanceof NavigationEnd)
+      )
       .subscribe((event: any) => setTimeout(() => justDoIt(event), 50));
   }
 }

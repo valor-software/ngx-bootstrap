@@ -1,18 +1,25 @@
 // tslint:disable:max-file-line-count
 import {
-  Directive, ElementRef, EmbeddedViewRef, EventEmitter, Input, OnDestroy,
-  OnInit, Output, Renderer2, ViewContainerRef
+  Directive,
+  ElementRef,
+  EmbeddedViewRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+  ViewContainerRef
 } from '@angular/core';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/operator/filter';
-import { ComponentLoader, ComponentLoaderFactory } from '../component-loader/index';
+import { filter } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { ComponentLoader, ComponentLoaderFactory, BsComponentRef } from 'ngx-bootstrap/component-loader';
 
 import { BsDropdownConfig } from './bs-dropdown.config';
 import { BsDropdownContainerComponent } from './bs-dropdown-container.component';
 import { BsDropdownState } from './bs-dropdown.state';
-import { BsComponentRef } from '../component-loader/bs-component-ref.class';
-import { BsDropdownMenuDirective } from './';
-import { isBs3 } from '../utils/theme-provider';
+import { BsDropdownMenuDirective } from './index';
+import { isBs3 } from 'ngx-bootstrap/utils';
 
 @Directive({
   selector: '[bsDropdown],[dropdown]',
@@ -36,7 +43,6 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   @Input() triggers: string;
   /**
    * A selector specifying the element the popover should be appended to.
-   * Currently only supports "body".
    */
   @Input() container: string;
 
@@ -56,6 +62,18 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
   get autoClose(): boolean {
     return this._state.autoClose;
+  }
+
+  /**
+   * This attribute indicates that the dropdown shouldn't close on inside click when autoClose is set to true
+   */
+  @Input()
+  set insideClick(value: boolean) {
+    this._state.insideClick = value;
+  }
+
+  get insideClick(): boolean {
+    return this._state.insideClick;
   }
 
   /**
@@ -97,33 +115,33 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   /**
    * Emits an event when isOpen change
    */
-  @Output() isOpenChange: EventEmitter<any>;
+  @Output() isOpenChange: EventEmitter<boolean>;
 
   /**
    * Emits an event when the popover is shown
    */
-  @Output() onShown: EventEmitter<any>;
+  @Output() onShown: EventEmitter<boolean>;
 
   /**
    * Emits an event when the popover is hidden
    */
-  @Output() onHidden: EventEmitter<any>;
+  @Output() onHidden: EventEmitter<boolean>;
 
   get isBs4(): boolean {
     return !isBs3();
   }
 
-  // todo: move to component loader
-  private _isInlineOpen = false;
+  private _dropdown: ComponentLoader<BsDropdownContainerComponent>;
 
   private get _showInline(): boolean {
     return !this.container;
   }
 
-  private _inlinedMenu: EmbeddedViewRef<BsDropdownMenuDirective>;
+  // todo: move to component loader
+  private _isInlineOpen = false;
 
+  private _inlinedMenu: EmbeddedViewRef<BsDropdownMenuDirective>;
   private _isDisabled: boolean;
-  private _dropdown: ComponentLoader<BsDropdownContainerComponent>;
   private _subscriptions: Subscription[] = [];
   private _isInited = false;
 
@@ -135,6 +153,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
               private _state: BsDropdownState) {
     // set initial dropdown state from config
     this._state.autoClose = this._config.autoClose;
+    this._state.insideClick = this._config.insideClick;
 
     // create dropdown component loader
     this._dropdown = this._cis
@@ -176,7 +195,9 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     // hide dropdown if set disabled while opened
     this._subscriptions.push(
       this._state.isDisabledChange
-        .filter((value: boolean) => value)
+        .pipe(
+          filter((value: boolean) => value)
+        )
         .subscribe((value: boolean) => this.hide())
     );
   }
@@ -219,7 +240,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         (typeof this.dropup !== 'undefined' && this.dropup);
       this._state.direction = _dropup ? 'up' : 'down';
       const _placement =
-        this.placement || (_dropup ? 'top left' : 'bottom left');
+        this.placement || (_dropup ? 'top start' : 'bottom start');
 
       // show dropdown
       this._dropdown
@@ -248,6 +269,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
     if (this._showInline) {
       this.removeShowClass();
+      this.removeDropupStyles();
       this._isInlineOpen = false;
       this.onHidden.emit(true);
     } else {
@@ -259,7 +281,8 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
   /**
    * Toggles an element’s popover. This is considered a “manual” triggering of
-   * the popover.
+   * the popover. With parameter <code>true</code> allows toggling, with parameter <code>false</code>
+   * only hides opened dropdown. Parameter usage will be removed in ngx-bootstrap v3
    */
   toggle(value?: boolean): void {
     if (this.isOpen || !value) {
@@ -267,6 +290,12 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     }
 
     return this.show();
+  }
+
+  /** @internal */
+  _contains(event: any): boolean {
+    return this._elementRef.nativeElement.contains(event.target) ||
+      (this._dropdown.instance && this._dropdown.instance._contains(event.target));
   }
 
   ngOnDestroy(): void {
@@ -281,7 +310,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     if (!isBs3()) {
       this.addShowClass();
       this.checkRightAlignment();
-      this.checkDropup();
+      this.addDropupStyles();
     }
   }
 
@@ -315,7 +344,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     }
   }
 
-  private checkDropup(): void {
+  private addDropupStyles(): void {
     if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
       // a little hack to not break support of bootstrap 4 beta
       this._renderer.setStyle(
@@ -328,6 +357,19 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         'transform',
         this.dropup ? 'translateY(-101%)' : 'translateY(0)'
       );
+      this._renderer.setStyle(
+        this._inlinedMenu.rootNodes[0],
+        'bottom',
+        'auto'
+      );
+    }
+  }
+
+  private removeDropupStyles(): void {
+    if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
+      this._renderer.removeStyle(this._inlinedMenu.rootNodes[0], 'top');
+      this._renderer.removeStyle(this._inlinedMenu.rootNodes[0], 'transform');
+      this._renderer.removeStyle(this._inlinedMenu.rootNodes[0], 'bottom');
     }
   }
 }

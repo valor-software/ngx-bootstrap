@@ -34,7 +34,7 @@ export function isArray<T>(input?: any): input is T[] {
   );
 }
 
-export function hasOwnProp<T>(a: T /*object*/, b: string): b is keyof T {
+export function hasOwnProp<T>(a: T /*object*/, b: string): b is Extract<keyof T, string> {
   return Object.prototype.hasOwnProperty.call(a, b);
 }
 

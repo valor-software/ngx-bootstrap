@@ -3,10 +3,16 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'demo-modal-events',
-  templateUrl: './events.html'
+  templateUrl: './events.html',
+  styles: [`
+    .card {
+      margin-bottom: 0.75rem;
+      padding: 8px;
+    }
+  `]
 })
 export class DemoModalEventsComponent {
-  @ViewChild(ModalDirective) modal: ModalDirective;
+  @ViewChild(ModalDirective, { static: false }) modal: ModalDirective;
   messages: string[];
 
   showModal() {

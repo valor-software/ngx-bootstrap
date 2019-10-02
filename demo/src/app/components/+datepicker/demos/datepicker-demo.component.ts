@@ -5,12 +5,12 @@ import { Component } from '@angular/core';
   templateUrl: './datepicker-demo.component.html'
 })
 export class DatepickerDemoComponent {
-  dt: Date = new Date();
-  minDate: Date = void 0;
+  dt: Date | undefined = new Date();
+  minDate: Date | undefined = void 0;
   events: any[];
   tomorrow: Date;
   afterTomorrow: Date;
-  dateDisabled: { date: Date; mode: string }[];
+  dateDisabled: { date: Date; mode: string }[] | undefined;
   formats: string[] = [
     'DD-MM-YYYY',
     'YYYY/MM/DD',
@@ -22,7 +22,7 @@ export class DatepickerDemoComponent {
     formatYear: 'YY',
     startingDay: 1
   };
-  private opened: boolean = false;
+  private opened = false;
 
   constructor() {
     (this.tomorrow = new Date()).setDate(this.tomorrow.getDate() + 1);
@@ -54,10 +54,10 @@ export class DatepickerDemoComponent {
   // todo: implement custom class cases
   getDayClass(date: any, mode: string): string {
     if (mode === 'day') {
-      let dayToCheck = new Date(date).setHours(0, 0, 0, 0);
+      const dayToCheck = new Date(date).setHours(0, 0, 0, 0);
 
-      for (let event of this.events) {
-        let currentDay = new Date(event.date).setHours(0, 0, 0, 0);
+      for (const event of this.events) {
+        const currentDay = new Date(event.date).setHours(0, 0, 0, 0);
 
         if (dayToCheck === currentDay) {
           return event.status;
@@ -82,6 +82,10 @@ export class DatepickerDemoComponent {
   }
 
   toggleMin(): void {
+    if (!this.minDate) {
+      return;
+    }
+
     this.dt = new Date(this.minDate.valueOf());
   }
 }

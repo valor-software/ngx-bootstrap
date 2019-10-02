@@ -1,13 +1,22 @@
-// tslint:disable:no-use-before-declare
 import {
-  ChangeDetectorRef, Directive, ElementRef, forwardRef, HostBinding, HostListener, Input, OnInit,
-  Optional, Renderer2
+  ChangeDetectorRef,
+  Directive,
+  ElementRef,
+  forwardRef,
+  HostBinding,
+  HostListener,
+  Input,
+  OnInit,
+  Optional,
+  Provider,
+  Renderer2
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ButtonRadioGroupDirective } from './button-radio-group.directive';
 
-export const RADIO_CONTROL_VALUE_ACCESSOR: any = {
+export const RADIO_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
+  /* tslint:disable-next-line: no-use-before-declare */
   useExisting: forwardRef(() => ButtonRadioDirective),
   multi: true
 };
@@ -21,21 +30,19 @@ export const RADIO_CONTROL_VALUE_ACCESSOR: any = {
   providers: [RADIO_CONTROL_VALUE_ACCESSOR]
 })
 export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
-  onChange: any = Function.prototype;
-  onTouched: any = Function.prototype;
-  private _value: any;
-  private _disabled: boolean;
+  onChange = Function.prototype;
+  onTouched = Function.prototype;
 
   /** Radio button value, will be set to `ngModel` */
-  @Input() btnRadio: any;
+  @Input() btnRadio: string;
   /** If `true` — radio button can be unchecked */
   @Input() uncheckable: boolean;
   /** Current value of radio component or group */
-  @Input() get value(): any {
+  @Input() get value() {
     return this.group ? this.group.value : this._value;
   }
 
-  set value(value: any) {
+  set value(value: null | string) {
     if (this.group) {
       this.group.value = value;
 
@@ -54,9 +61,13 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
   }
 
   @HostBinding('class.active')
+  @HostBinding('attr.aria-pressed')
   get isActive(): boolean {
     return this.btnRadio === this.value;
   }
+
+  private _value:  null | string;
+  private _disabled: boolean;
 
   constructor(
     private el: ElementRef,
@@ -83,7 +94,7 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
     this.onTouched();
   }
 
-  _onChange(value: any): void {
+  _onChange(value: string): void {
     if (this.group) {
       this.group.onTouched();
       this.group.onChange(value);
@@ -96,16 +107,16 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
 
   // ControlValueAccessor
   // model -> view
-  writeValue(value: any): void {
+  writeValue(value: string): void {
     this.value = value;
     this.cdr.markForCheck();
   }
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: () => {}): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => {}): void {
     this.onTouched = fn;
   }
 

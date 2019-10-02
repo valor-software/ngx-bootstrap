@@ -2,12 +2,13 @@ import {
   BsDatepickerViewMode,
   DatepickerFormatOptions,
   DatepickerRenderOptions,
+  DatepickerDateCustomClasses,
   DaysCalendarModel,
   DaysCalendarViewModel,
   MonthsCalendarViewModel,
   MonthViewOptions,
   YearsCalendarViewModel
-} from '../models/index';
+} from '../models';
 import { defaultMonthOptions } from './_defaults';
 import { BsDatepickerConfig } from '../bs-datepicker.config';
 
@@ -30,6 +31,10 @@ export class BsDatepickerState
   // bounds
   minDate?: Date;
   maxDate?: Date;
+  daysDisabled?: number[];
+  datesDisabled?: Date[];
+  minMode?: BsDatepickerViewMode;
+  dateCustomClasses?: DatepickerDateCustomClasses[];
 
   hoveredDate?: Date;
   hoveredMonth?: Date;
@@ -39,6 +44,7 @@ export class BsDatepickerState
   monthsModel?: DaysCalendarModel[];
   formattedMonths?: DaysCalendarViewModel[];
   flaggedMonths?: DaysCalendarViewModel[];
+  selectFromOtherMonth?: boolean;
 
   // months calendar
   monthsCalendar?: MonthsCalendarViewModel[];

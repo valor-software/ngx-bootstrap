@@ -1,54 +1,51 @@
-import { DemoTypeaheadStaticComponent } from './static/static';
-import { DemoTypeaheadItemTemplateComponent } from './item-template/item-template';
-import { DemoTypeaheadFieldComponent } from './field/field';
+import { DemoTypeaheadAdaptivePositionComponent } from './adaptive-position/adaptive-position';
 import { DemoTypeaheadAsyncComponent } from './async/async';
-import { DemoTypeaheadFormsComponent } from './in-form/in-form';
-import { DemoTypeaheadGroupingComponent } from './grouping/grouping';
+import { DemoTypeaheadBasicComponent } from './basic/basic';
+import { DemoTypeaheadConfigComponent } from './config/config';
+import { DemoTypeaheadAnimatedComponent } from './animated/animated';
+import { DemoTypeaheadContainerComponent } from './container/container';
+import { DemoTypeaheadDelayComponent } from './delay/delay';
 import { DemoTypeaheadDropupComponent } from './dropup/dropup';
+import { DemoTypeaheadFieldComponent } from './field/field';
+import { DemoTypeaheadFirstItemActiveComponent } from './first-item-active/first-item-active';
+import { DemoTypeaheadFormComponent } from './form/form';
+import { DemoTypeaheadGroupingComponent } from './grouping/grouping';
+import { DemoTypeaheadItemTemplateComponent } from './item-template/item-template';
+import { DemoTypeaheadLatinizeComponent } from './latinize/latinize';
+import { DemoTypeaheadMinLengthComponent } from './min-length/min-length';
+import { DemoTypeaheadNoResultComponent } from './no-result/no-result';
+import { DemoTypeaheadOnBlurComponent } from './on-blur/on-blur';
+import { DemoTypeaheadOnSelectComponent } from './on-select/on-select';
+import { DemoTypeaheadPhraseDelimitersComponent } from './phrase-delimiters/phrase-delimiters';
+import { DemoTypeaheadReactiveFormComponent } from './reactive-form/reactive-form';
 import { DemoTypeaheadScrollableComponent } from './scrollable/scrollable';
+import { DemotypeaheadSelectFirstItemComponent } from './selected-first-item/selected-first-item';
+import { DemoTypeaheadShowOnBlurComponent } from './show-on-blur/show-on-blur';
+import { DemoTypeaheadSingleWorldComponent } from './single-world/single-world';
 
 export const DEMO_COMPONENTS = [
-  DemoTypeaheadStaticComponent,
-  DemoTypeaheadItemTemplateComponent,
-  DemoTypeaheadFieldComponent,
+  DemoTypeaheadAdaptivePositionComponent,
+  DemoTypeaheadAnimatedComponent,
   DemoTypeaheadAsyncComponent,
-  DemoTypeaheadFormsComponent,
-  DemoTypeaheadGroupingComponent,
+  DemoTypeaheadBasicComponent,
+  DemoTypeaheadConfigComponent,
+  DemoTypeaheadContainerComponent,
+  DemoTypeaheadDelayComponent,
   DemoTypeaheadDropupComponent,
-  DemoTypeaheadScrollableComponent
+  DemoTypeaheadFieldComponent,
+  DemoTypeaheadFirstItemActiveComponent,
+  DemoTypeaheadFormComponent,
+  DemoTypeaheadGroupingComponent,
+  DemoTypeaheadItemTemplateComponent,
+  DemoTypeaheadLatinizeComponent,
+  DemoTypeaheadMinLengthComponent,
+  DemoTypeaheadNoResultComponent,
+  DemoTypeaheadOnBlurComponent,
+  DemoTypeaheadOnSelectComponent,
+  DemoTypeaheadPhraseDelimitersComponent,
+  DemoTypeaheadReactiveFormComponent,
+  DemoTypeaheadScrollableComponent,
+  DemotypeaheadSelectFirstItemComponent,
+  DemoTypeaheadShowOnBlurComponent,
+  DemoTypeaheadSingleWorldComponent
 ];
-
-export const DEMOS = {
-  static: {
-    component: require('!!raw-loader?lang=typescript!./static/static.ts'),
-    html: require('!!raw-loader?lang=markup!./static/static.html')
-  },
-  itemTemplate: {
-    component: require('!!raw-loader?lang=typescript!./item-template/item-template.ts'),
-    html: require('!!raw-loader?lang=markup!./item-template/item-template.html')
-  },
-  field: {
-    component: require('!!raw-loader?lang=typescript!./field/field.ts'),
-    html: require('!!raw-loader?lang=markup!./field/field.html')
-  },
-  async: {
-    component: require('!!raw-loader?lang=typescript!./async/async.ts'),
-    html: require('!!raw-loader?lang=markup!./async/async.html')
-  },
-  inForm: {
-    component: require('!!raw-loader?lang=typescript!./in-form/in-form.ts'),
-    html: require('!!raw-loader?lang=markup!./in-form/in-form.html')
-  },
-  grouping: {
-    component: require('!!raw-loader?lang=typescript!./grouping/grouping.ts'),
-    html: require('!!raw-loader?lang=markup!./grouping/grouping.html')
-  },
-  dropup: {
-    component: require('!!raw-loader?lang=typescript!./dropup/dropup.ts'),
-    html: require('!!raw-loader?lang=markup!./dropup/dropup.html')
-  },
-  scrollable: {
-    component: require('!!raw-loader?lang=typescript!./scrollable/scrollable.ts'),
-    html: require('!!raw-loader?lang=markup!./scrollable/scrollable.html')
-  }
-};

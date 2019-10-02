@@ -1,19 +1,27 @@
 import { DemoTabsBasicComponent } from './basic/basic';
 import { DemoTabsDynamicComponent } from './dynamic/dynamic';
-import { DemoTabsStylingComponent } from './styling/styling';
+import { DemoTabsCustomClassComponent } from './custom-class/custom-class';
 import { DemoTabsPillsComponent } from './pills/pills';
 import { DemoTabsVerticalPillsComponent } from './vertical-pills/vertical-pills';
 import { DemoTabsJustifiedComponent } from './justified/justified';
 import { DemoTabsConfigComponent } from './config/config';
-import { DemoTabsManualComponent } from './manual/manual';
+import { DemoTabsManualSelectionComponent } from './manual-selection/manual-selection';
+import { DemoTabsDisabledComponent } from './disabled/disabled';
+import { DemoTabsCustomComponent } from './custom-template/custom-template';
+import { DemoTabsSelectEventComponent } from './select-event/select-event';
+import { DemoAccessibilityComponent } from './accessibility/accessibility';
 
 export const DEMO_COMPONENTS = [
   DemoTabsBasicComponent,
-  DemoTabsManualComponent,
+  DemoTabsManualSelectionComponent,
+  DemoTabsDisabledComponent,
   DemoTabsDynamicComponent,
-  DemoTabsStylingComponent,
+  DemoTabsCustomClassComponent,
   DemoTabsPillsComponent,
   DemoTabsVerticalPillsComponent,
   DemoTabsJustifiedComponent,
-  DemoTabsConfigComponent
+  DemoTabsConfigComponent,
+  DemoTabsCustomComponent,
+  DemoTabsSelectEventComponent,
+  DemoAccessibilityComponent
 ];

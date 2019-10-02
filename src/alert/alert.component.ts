@@ -1,9 +1,14 @@
 import {
-  ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
   Output
 } from '@angular/core';
 import { AlertConfig } from './alert.config';
-import { OnChange } from '../utils/decorators';
+import { OnChange } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'alert,bs-alert',
@@ -33,7 +38,7 @@ export class AlertComponent implements OnInit {
 
 
   classes = '';
-  dismissibleChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  dismissibleChange = new EventEmitter<boolean>();
 
   constructor(_config: AlertConfig, private changeDetection: ChangeDetectorRef) {
     Object.assign(this, _config);

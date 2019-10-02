@@ -1,5 +1,5 @@
-@import './utils/scss/variables';
-@import './utils/scss/mixins';
+@import 'utils/scss/variables';
+@import 'utils/scss/mixins';
 
 /* .bs-datepicker */
 .bs-datepicker {
@@ -10,7 +10,6 @@
   box-shadow: 0 0 10px 0 $main-box-shadow;
   position: relative;
   z-index: 1;
-
 
   &:after {
     clear: both;
@@ -154,7 +153,8 @@
           -ms-user-select: none;
         }
 
-        &:not(.disabled) span {
+        // todo: check first :not(.disabled) usage
+        &:not(.disabled):not(.week) span:not(.disabled):not(.is-other-month) {
           cursor: pointer;
         }
 
@@ -162,6 +162,13 @@
         span.is-highlighted:not(.disabled):not(.selected) {
           background-color: $highlighted;
           transition: 0s;
+        }
+
+        &.is-active-other-month:not(.disabled):not(.selected) span,
+        span.is-active-other-month:not(.disabled):not(.selected) {
+          background-color: $highlighted;
+          transition: 0s;
+          cursor: pointer;
         }
 
         span.disabled,
@@ -172,6 +179,11 @@
         span.selected,
         &.selected span {
           color: $font-color-01;
+        }
+
+        span.is-other-month,
+        &.is-other-month span {
+          color: rgba(0, 0, 0, 0.25);
         }
 
         &.active {
@@ -355,7 +367,6 @@
 
   /* .bs-datepicker-multiple */
   &-multiple {
-    display: inline-block;
     border-radius: 4px 0 0 4px;
 
     & + & {
@@ -396,6 +407,13 @@
     padding: 15px;
   }
 
+  .bs-media-container {
+    display: flex;
+    @media(max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
   /*.bs-datepicker-custom-range */
   &-custom-range {
     padding: 15px;
@@ -422,11 +440,6 @@
         background-color: $btn-bg2-hover;
       }
     }
-  }
-
-  /* .is-other-month */
-  .is-other-month {
-    color: rgba(0, 0, 0, 0.25);
   }
 
   /* .bs-datepicker-buttons */
@@ -511,14 +524,6 @@ bs-daterangepicker-container {
 
 /* screen size < 1024px */
 @media (max-width: 768px) {
-  bs-datepicker-container,
-  bs-daterangepicker-container {
-    position: fixed !important;
-    left: 50% !important;
-    top: 50% !important;
-    transform: translate(-50%, -50%);
-  }
-
   .bs-datepicker {
     &-multiple {
       display: flex;

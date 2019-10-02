@@ -1,22 +1,23 @@
+import { TimeChangeEvent, TimepickerComponentState, TimepickerControls } from '../../timepicker/timepicker.models';
 import {
+  canChangeValue,
   canChangeHours,
   canChangeMinutes,
   canChangeSeconds,
-  canChangeValue,
   getControlsValue,
   timepickerControls
 } from '../../timepicker/timepicker-controls.util';
-import { TimeChangeEvent, TimepickerComponentState, TimepickerControls } from '../../timepicker/timepicker.models';
 
 function testTime(hours?: number, minutes?: number, seconds?: number) {
   const time = new Date();
   time.setHours(hours || 0);
   time.setMinutes(minutes || 0);
   time.setSeconds(seconds || 0);
+
   return time;
 }
 
-describe('Runtime coverage. Util: Timepicker-controls', () => {
+describe('Util: Timepicker-controls', () => {
   let state: TimepickerComponentState;
   let controls: TimepickerControls;
   let event: TimeChangeEvent;
@@ -29,6 +30,7 @@ describe('Runtime coverage. Util: Timepicker-controls', () => {
       minuteStep: 5,
       secondsStep: 10,
       readonlyInput: false,
+      disabled: false,
       mousewheel: true,
       arrowkeys: true,
       showSpinners: true,
@@ -38,12 +40,13 @@ describe('Runtime coverage. Util: Timepicker-controls', () => {
     };
 
     controls = {
-      canIncrementHours: false,
-      canIncrementMinutes: false,
-      canIncrementSeconds: false,
-      canDecrementHours: false,
-      canDecrementMinutes: false,
-      canDecrementSeconds: false
+      canIncrementHours: true,
+      canIncrementMinutes: true,
+      canIncrementSeconds: true,
+      canDecrementHours: true,
+      canDecrementMinutes: true,
+      canDecrementSeconds: true,
+      canToggleMeridian: true
     };
 
     event = {
@@ -52,123 +55,192 @@ describe('Runtime coverage. Util: Timepicker-controls', () => {
     };
   });
 
-  it('should can change value read only', () => {
-    canChangeValue(state, event);
-
+  it('canChangeValue method should return false if readonlyInput is true', () => {
     state.readonlyInput = true;
-    canChangeValue(state, event);
+
+    const result = canChangeValue(state, event);
+
+    expect(result).toEqual(false);
   });
 
-  it('should can change value event', () => {
-    canChangeValue(state);
-    canChangeValue(state, event);
+  it('canChangeValue method should return false if disabled is true', () => {
+    state.disabled = true;
+
+    const result = canChangeValue(state, event);
+
+    expect(result).toEqual(false);
   });
 
-  it('should can change value event source and wheel', () => {
+  it('canChangeValue method should return false if source is wheel and no mousewheel', () => {
     event.source = 'wheel';
     state.mousewheel = false;
 
-    canChangeValue(state, event);
+    const result = canChangeValue(state, event);
+
+    expect(result).toEqual(false);
   });
 
-  it('should can change value event source and key', () => {
+  it('canChangeValue method should return false if source is key and no arrowkeys', () => {
     event.source = 'key';
     state.arrowkeys = false;
 
-    canChangeValue(state, event);
+    const result = canChangeValue(state, event);
+
+    expect(result).toEqual(false);
   });
 
-  it('should change Hours', () => {
-    canChangeHours(event, controls);
+  it('canChangeValue method should return true if readonlyInput is false and event is empty', () => {
+    const result = canChangeValue(state, event);
+
+    expect(result).toEqual(true);
   });
 
-  it('should change Hours no step', () => {
+  it('canChangeValue method should return true if readonlyInput is false and no event', () => {
+    const result = canChangeValue(state);
+
+    expect(result).toEqual(true);
+  });
+
+  it('canChangeHours method should validate ability to change Hours and return true', () => {
+    const result = canChangeHours(event, controls);
+
+    expect(result).toEqual(true);
+  });
+
+  it('canChangeHours method should validate and return false if no step', () => {
     event.step = null;
-    canChangeHours(event, controls);
+
+    const result = canChangeHours(event, controls);
+
+    expect(result).toEqual(false);
   });
 
-  it('should change Hours step is -1', () => {
-    event.step = -1;
-    canChangeHours(event, controls);
+  it('canChangeHours method should validate and return false if canIncrementHours is false', () => {
+    controls.canIncrementHours = false;
+
+    const result = canChangeHours(event, controls);
+
+    expect(result).toEqual(false);
   });
 
-  it('should change Hours can increment', () => {
-    controls.canIncrementHours = true;
-    canChangeHours(event, controls);
+  it('canChangeHours method should validate and return false if step < 0 and canDecrementHours is false', () => {
+    controls.canDecrementHours = false;
+    event.step = -2;
+
+    const result = canChangeHours(event, controls);
+
+    expect(result).toEqual(false);
   });
 
-  it('should change Minutes', () => {
-    canChangeMinutes(event, controls);
+  it('canChangeMinutes method should validate ability to change Minutes and return true', () => {
+    const result = canChangeMinutes(event, controls);
+
+    expect(result).toEqual(true);
   });
 
-  it('should change Minutes no step', () => {
+  it('canChangeMinutes method should validate and return false if no step', () => {
     event.step = null;
-    canChangeMinutes(event, controls);
+
+    const result = canChangeMinutes(event, controls);
+
+    expect(result).toEqual(false);
   });
 
-  it('should change Minutes step is -1', () => {
-    event.step = -1;
-    canChangeMinutes(event, controls);
+  it('canChangeMinutes method should validate and return false if canIncrementMinutes is false', () => {
+    controls.canIncrementMinutes = false;
+
+    const result = canChangeMinutes(event, controls);
+
+    expect(result).toEqual(false);
   });
 
-  it('should change Minutes can increment', () => {
-    controls.canIncrementMinutes = true;
-    canChangeMinutes(event, controls);
+  it('canChangeMinutes method should validate and return false if step < 0 and canDecrementMinutes is false', () => {
+    controls.canDecrementMinutes = false;
+    event.step = -2;
+
+    const result = canChangeMinutes(event, controls);
+
+    expect(result).toEqual(false);
   });
 
-  it('should change Seconds', () => {
-    canChangeSeconds(event, controls);
+  it('canChangeSeconds method should validate ability to change Seconds and return true', () => {
+    const result = canChangeSeconds(event, controls);
+
+    expect(result).toEqual(true);
   });
 
-  it('should change Seconds no step', () => {
+  it('canChangeSeconds method should validate and return false if no step', () => {
     event.step = null;
-    canChangeSeconds(event, controls);
+
+    const result = canChangeSeconds(event, controls);
+
+    expect(result).toEqual(false);
   });
 
-  it('should change Seconds step is -1', () => {
-    event.step = -1;
-    canChangeSeconds(event, controls);
+  it('canChangeSeconds method should validate and return false if canIncrementSeconds is false', () => {
+    controls.canIncrementSeconds = false;
+
+    const result = canChangeSeconds(event, controls);
+
+    expect(result).toEqual(false);
   });
 
-  it('should change Seconds can increment', () => {
-    controls.canIncrementSeconds = true;
-    canChangeSeconds(event, controls);
+  it('canChangeSeconds method should validate and return false if step < 0 and canDecrementSeconds is false', () => {
+    controls.canDecrementSeconds = false;
+    event.step = -2;
+
+    const result = canChangeSeconds(event, controls);
+
+    expect(result).toEqual(false);
   });
 
-  it('should get controls value', () => {
-    getControlsValue(state);
+  it('getControlsValue method should return TimepickerComponentState', () => {
+    const result = getControlsValue(state);
+
+    expect(result).toEqual(state);
   });
 
-  it('should set data in timepicker controls', () => {
-    timepickerControls(new Date(), state);
+  it('timepickerControls method should return default data if no value', () => {
+    const result = timepickerControls(null, state);
+
+    expect(result).toEqual(controls);
   });
 
-  it('should set data in timepicker controls without date', () => {
-    // unreachable code
+  it('timepickerControls method should change canIncrementHours to true', () => {
+    state.max = testTime(14);
+
+    const result = timepickerControls(testTime(11), state);
+
+    expect(result.canIncrementHours).toEqual(true);
+    expect(result.canToggleMeridian).toEqual(false);
   });
 
-  it('should set data in timepicker controls without showSeconds', () => {
+  it('timepickerControls method should change canIncrementHours to false', () => {
+    state.max = testTime(14);
     state.showSeconds = true;
-    timepickerControls(new Date(), state);
+
+    const result = timepickerControls(testTime(17), state);
+
+    expect(result.canIncrementHours).toEqual(false);
+    expect(result.canIncrementMinutes).toEqual(false);
   });
 
-  it('should set data in timepicker controls with max', () => {
-    state.max = new Date();
-    timepickerControls(new Date(), state);
+  it('timepickerControls method should change canDecrementHours to true', () => {
+    state.min = testTime(10);
+
+    const result = timepickerControls(testTime(13), state);
+
+    expect(result.canDecrementHours).toEqual(true);
+    expect(result.canToggleMeridian).toEqual(false);
   });
 
-  it('should set data in timepicker controls with max greater to control time', () => {
-    state.max = testTime(1);
-    timepickerControls(testTime(), state);
-  });
+  it('timepickerControls method should change canIncrementHours to false', () => {
+    state.min = testTime(10);
+    state.showSeconds = true;
 
-  it('should set data in timepicker controls with min', () => {
-    state.min = new Date();
-    timepickerControls(new Date(), state);
-  });
+    const result = timepickerControls(testTime(9), state);
 
-  it('should set data in timepicker controls with min greater to control time', () => {
-    state.min = testTime(1);
-    timepickerControls(testTime(), state);
+    expect(result.canDecrementHours).toEqual(false);
+    expect(result.canDecrementMinutes).toEqual(false);
   });
 });

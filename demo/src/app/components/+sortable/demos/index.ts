@@ -1,9 +1,11 @@
 import { ComplexDatamodelDemoComponent } from './complex-datamodel/complex-datamodel.component';
-import { SimpleItemsDemoComponent } from './simple-items/simple-items.component';
+import { DemoBasicComponent } from './basic/basic.component';
 import { CustomItemTemplateDemoComponent } from './custom-item-template/custom-item-template';
+import { DemoAccessibilityComponent } from './accessibility/accessibility';
 
 export const DEMO_COMPONENTS = [
-  SimpleItemsDemoComponent,
+  DemoBasicComponent,
   ComplexDatamodelDemoComponent,
-  CustomItemTemplateDemoComponent
+  CustomItemTemplateDemoComponent,
+  DemoAccessibilityComponent
 ];
