@@ -1,10 +1,8 @@
 <!-- days calendar view mode -->
 <div class="bs-datepicker" [ngClass]="containerClass" *ngIf="viewMode | async">
-  <div
-    class="bs-datepicker-container"
+  <div class="bs-datepicker-container"
     [@datepickerAnimation]="animationState"
-    (@datepickerAnimation.done)="positionServiceEnable()"
-  >
+    (@datepickerAnimation.done)="positionServiceEnable()">
     <!--calendars-->
     <div class="bs-calendar-container" [ngSwitch]="viewMode | async" role="application">
       <!--days calendar-->
@@ -18,8 +16,8 @@
           (onViewMode)="setViewMode($event)"
           (onHover)="dayHoverHandler($event)"
           (onHoverWeek)="weekHoverHandler($event)"
-          (onSelect)="daySelectHandler($event)"
-        ></bs-days-calendar-view>
+          (onSelect)="daySelectHandler($event)">
+        </bs-days-calendar-view>
       </div>
 
       <!--months calendar-->
@@ -31,8 +29,8 @@
           (onNavigate)="navigateTo($event)"
           (onViewMode)="setViewMode($event)"
           (onHover)="monthHoverHandler($event)"
-          (onSelect)="monthSelectHandler($event)"
-        ></bs-month-calendar-view>
+          (onSelect)="monthSelectHandler($event)">
+        </bs-month-calendar-view>
       </div>
 
       <!--years calendar-->
@@ -44,8 +42,8 @@
           (onNavigate)="navigateTo($event)"
           (onViewMode)="setViewMode($event)"
           (onHover)="yearHoverHandler($event)"
-          (onSelect)="yearSelectHandler($event)"
-        ></bs-years-calendar-view>
+          (onSelect)="yearSelectHandler($event)">
+        </bs-years-calendar-view>
       </div>
     </div>
 
