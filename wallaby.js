@@ -19,14 +19,14 @@ module.exports = function conifg() {
   return {
     files: [
       {pattern: 'spec-bundle.js', load: false},
-      {pattern: 'components/**/*.ts', load: false},
+      {pattern: 'components/**/*.js', load: false},
       {pattern: 'components/**/*.css', load: false},
       {pattern: 'components/**/*.html', load: false},
-      '!components/**/*.spec.ts'
+      '!components/**/*.spec.js'
     ],
 
     tests: [
-      {pattern: 'components/**/*.spec.ts', load: false}
+      {pattern: 'components/**/*.spec.js', load: false}
     ],
 
     testFramework: 'jasmine',
