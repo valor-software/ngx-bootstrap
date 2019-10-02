@@ -4,6 +4,8 @@ module.exports = {
   mode: 'modules',
   out: 'doc',
   theme: 'default',
+  exclude: 'test',
+  excludeNotExported: 'true',
   ignoreCompilerErrors: 'true',
   experimentalDecorators: 'true',
   emitDecoratorMetadata: 'true',
