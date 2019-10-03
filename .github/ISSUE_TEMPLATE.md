@@ -1,6 +1,6 @@
 Before opening an issue, please search for duplicates (opened and closed)
 https://github.com/valor-software/ngx-bootstrap/issues
-There's no need to open an issue here if you want to ask general question, use [StackOverflow](https://stackoverflow.com/questions/tagged/ngx-bootstrap) or [Slack](https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWQ5M2Y4OWM0OGJjNmZiOGYyNjFlZTdlOGI1YjcxYWQ2ODhiOTY4NzhiODgwMTIzNDczODIyNWNmM2RlYWRhNTg) instead
+There's no need to open an issue here if you want to ask general question, use [StackOverflow](https://stackoverflow.com/questions/tagged/ngx-bootstrap) or [Slack](https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWVjZGU2MjI4MTVhMGVlMTc2OWRiMzA0NzBhNDU5YzQ0MDM3MWI5NzJjZTUzNzIxZmNjYmFlMjU2MzE0YmY0NWY) instead
 
 ### Bug description or feature request:
 
