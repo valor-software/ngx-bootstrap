@@ -76,6 +76,7 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: ControlValueAccessorModel = {
 
     .bs-timepicker-field {
       width: 50px;
+      padding: .375rem .55rem;
     }
   `],
   encapsulation: ViewEncapsulation.None
