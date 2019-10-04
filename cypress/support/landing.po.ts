@@ -23,7 +23,7 @@ export class LandingPo extends BaseComponent {
 
   stackoverflowUrl = 'https://stackoverflow.com/questions/tagged/ngx-bootstrap';
   githubUrl = 'https://github.com/valor-software/ngx-bootstrap';
-  slackUrl = 'https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWQ5M2Y4OWM0OGJjNmZiOGYyNjFlZTdlOGI1YjcxYWQ2ODhiOTY4NzhiODgwMTIzNDczODIyNWNmM2RlYWRhNTg';
+  slackUrl = 'https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWVjZGU2MjI4MTVhMGVlMTc2OWRiMzA0NzBhNDU5YzQ0MDM3MWI5NzJjZTUzNzIxZmNjYmFlMjU2MzE0YmY0NWY';
 
   teamUrl = 'https://github.com/valor-software';
   contributorsUrl = 'https://github.com/valor-software/ngx-bootstrap/graphs/contributors';
