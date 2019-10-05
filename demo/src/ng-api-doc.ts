@@ -1049,6 +1049,79 @@ export const ngdoc: any = {
       }
     ]
   },
+  "BsDaterangepickerInlineDirective": {
+    "fileName": "src/datepicker/bs-daterangepicker-inline.component.ts",
+    "className": "BsDaterangepickerInlineDirective",
+    "description": "",
+    "selector": "bs-daterangepicker-inline",
+    "exportAs": "bsDaterangepickerInline",
+    "inputs": [
+      {
+        "name": "bsConfig",
+        "type": "Partial<BsDaterangepickerInlineConfig>",
+        "description": "<p>Config object for datepicker</p>\n"
+      },
+      {
+        "name": "bsValue",
+        "type": "Date[]",
+        "description": "<p>Initial value of datepicker</p>\n"
+      },
+      {
+        "name": "dateCustomClasses",
+        "type": "DatepickerDateCustomClasses[]",
+        "description": "<p>Date custom classes</p>\n"
+      },
+      {
+        "name": "datesDisabled",
+        "type": "Date[]",
+        "description": "<p>Disable specific dates</p>\n"
+      },
+      {
+        "name": "isDisabled",
+        "type": "boolean",
+        "description": "<p>Indicates whether datepicker is enabled or not</p>\n"
+      },
+      {
+        "name": "maxDate",
+        "type": "Date",
+        "description": "<p>Maximum date which is available for selection</p>\n"
+      },
+      {
+        "name": "minDate",
+        "type": "Date",
+        "description": "<p>Minimum date which is available for selection</p>\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "bsValueChange",
+        "description": "<p>Emits when daterangepicker value has been changed</p>\n"
+      }
+    ],
+    "properties": [],
+    "methods": [
+      {
+        "name": "setConfig",
+        "description": "<p>Set config for datepicker</p>\n",
+        "args": [],
+        "returnType": "void"
+      }
+    ]
+  },
+  "BsDaterangepickerInlineConfig": {
+    "fileName": "src/datepicker/bs-daterangepicker-inline.config.ts",
+    "className": "BsDaterangepickerInlineConfig",
+    "description": "",
+    "methods": [],
+    "properties": [
+      {
+        "name": "isAnimated",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>turn on/off animation</p>\n"
+      }
+    ]
+  },
   "BsDaterangepickerInputDirective": {
     "fileName": "src/datepicker/bs-daterangepicker-input.directive.ts",
     "className": "BsDaterangepickerInputDirective",
@@ -1816,6 +1889,16 @@ export const ngdoc: any = {
     "className": "BsDaterangepickerContainerComponent",
     "description": "",
     "selector": "bs-daterangepicker-container",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BsDaterangepickerInlineContainerComponent": {
+    "fileName": "src/datepicker/themes/bs/bs-daterangepicker-inline-container.component.ts",
+    "className": "BsDaterangepickerInlineContainerComponent",
+    "description": "",
+    "selector": "bs-daterangepicker-inline-container",
     "inputs": [],
     "outputs": [],
     "properties": [],
