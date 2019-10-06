@@ -1,4 +1,4 @@
-<a href="http://valor-software.com/ngx-bootstrap/#/">
+<a href="https://valor-software.com/ngx-bootstrap/#/">
     <h1 align="center">ngx-bootstrap</h1>
 </a>
 
@@ -18,7 +18,7 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 
 ## Links
 
-- [Documentation](http://valor-software.com/ngx-bootstrap/)
+- [Documentation](https://valor-software.com/ngx-bootstrap/)
 - [Release Notes](https://github.com/valor-software/ngx-bootstrap/blob/development/CHANGELOG.md)
 - [Slack Community](https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWVjZGU2MjI4MTVhMGVlMTc2OWRiMzA0NzBhNDU5YzQ0MDM3MWI5NzJjZTUzNzIxZmNjYmFlMjU2MzE0YmY0NWY)
 
