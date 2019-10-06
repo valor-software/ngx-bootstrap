@@ -19,6 +19,21 @@ yarn.lock
 /libpeerconnection.log
 npm-debug.log
 
+# compiled output
+/dist
+/tmp
+/out-tsc
+
+# dependencies
+/node_modules
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
 # ignore build and dist for now
 .tmp
 /dist
