@@ -107,7 +107,7 @@ Add component to your page:
 </button>
 ```
 ### Setting up the bootstrap version manually
-Sometimes, your project might contain some library that could interfere with the Bootstrap framework, or you might have a customized version of Bootstrap. The consequence is that the process of determining Bootstrap version might fail, which can break the UI. In such a case, we can still set the Bootstrap version manually in the boostraping component (i.e. `AppComonent`):
+Sometimes, your project might contain some library that could interfere with the Bootstrap framework, or you might have a customized version of Bootstrap. The consequence is that the process of determining Bootstrap version might fail, which can break the UI. In such a case, we can still set the Bootstrap version manually in the boostraping component (i.e. `AppComponent`):
 ```
 import { setTheme } from 'ngx-bootstrap/utils';
 
