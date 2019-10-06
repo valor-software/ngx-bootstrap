@@ -14,7 +14,9 @@ import { cloneDate } from '../create/clone';
 
 const aspNetRegex = /^(\-|\+)?(?:(\d*)[. ])?(\d+)\:(\d+)(?:\:(\d+)(\.\d*)?)?$/;
 
-// from http://docs.closure-library.googlecode.com/git/closure_goog_date_date.js.source.html
+// from http://docs.closure-library.googlecode.com/git/closure_goog_date_date.js.source.html (dead link, see web archive link below)
+// http://web.archive.org/web/20140317082423/http://docs.closure-library.googlecode.com/git/closure_goog_date_date.js.source.html
+// https://github.com/google/closure-library/blob/master/closure/goog/date/date.js (latest source)
 // somewhat more in line with 4.4.3.2 2004 spec, but allows decimal anywhere
 // and further modified to allow for strings containing both week and day
 // tslint:disable-next-line
