@@ -45,7 +45,7 @@ ngx-bootstrap contains all core (and not only) Bootstrap components powered by A
 
 ## Supporting NGX-Bootstrap
 ngx-bootstrap is an Open Source (MIT Licensed) project, it's an independent project with ongoing development made possible thanks to the support of our awesome backers.
-If you also would like to show support or simply give back to Open Source community, please consider becoming a backer sponsor of [ngx-bootstrap on OpenCollective](https://opencollective.com/ngx-bootstrap)
+If you also would like to show support or simply give back to Open Source community, please consider becoming a backer sponsor of [ngx-bootstrap on OpenCollective](https://opencollective.com/ngx-bootstrap).
 
 All donated funds are managed transparently on OpenCollective and will be used solely for compensating work and expenses for contributors. Valor Software employees and contractors are not eligible to use these funds.
 
@@ -91,11 +91,11 @@ You will need bootstrap styles:
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 ```
 ##### Method 2
-Use the Angular CLI ng add command for updating your Angular project
+Use the Angular CLI ng add command for updating your Angular project.
 ```bash
 ng add ngx-bootstrap
 ```
-OR use `ng add` to add needed component (for example tooltip)
+Or use `ng add` to add needed component (for example tooltip).
 ```bash
 ng add ngx-bootstrap --component tooltip
 ```
@@ -123,15 +123,15 @@ export class AppComponent {
 ## Usage & Demo
 
 Main source of API documentation and usage scenarios available here:
-[https://valor-software.com/ngx-bootstrap/](https://valor-software.com/ngx-bootstrap/)
+[https://valor-software.com/ngx-bootstrap/](https://valor-software.com/ngx-bootstrap/).
 
 Additionally you can find demos and docs deployed from latest code with <a href="https://ngx-bootstrap.surge.sh/">angular@latest</a> and <a
-  href="https://ngx-bootstrap-latest.surge.sh/">angular@next</a>
+  href="https://ngx-bootstrap-latest.surge.sh/">angular@next</a>.
 
-Server side rendered version of this documentation available <a href="https://ngx-universal.herokuapp.com/">here</a> served with Anguar universal and [nest.js](https://nestjs.com/)
+Server side rendered version of this documentation available <a href="https://ngx-universal.herokuapp.com/">here</a> served with Anguar universal and [nest.js](https://nestjs.com/).
 
 ## API
-Check demo page for API [reference](https://valor-software.com/ngx-bootstrap/)
+Check demo page for API [reference](https://valor-software.com/ngx-bootstrap/)!
 
 ### How to use it with:
  - `Bootstrap and angular-cli` please refer to [using-with-bootstrap-and-angular-cli](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/bootstrap.md)
@@ -195,7 +195,7 @@ Please read our [contribution guidelines](https://github.com/valor-software/ngx-
 
 ### If you need more modules check [here](https://github.com/valor-software/ng2-plans)
 
-Please read central `ngx` modules [readme](https://github.com/valor-software/ng2-plans) for details, plans and approach
+Please read central `ngx` modules [readme](https://github.com/valor-software/ng2-plans) for details, plans and approach.
 
 ### Credits
 Crossbrowser testing sponsored by [Saucelabs](https://saucelabs.com/)
@@ -206,4 +206,4 @@ End-to-end testing sponsored by [Cypress](https://www.cypress.io/)
 
 ### License
 
-MIT
+[MIT](https://github.com/valor-software/ngx-bootstrap/blob/development/LICENSE)
