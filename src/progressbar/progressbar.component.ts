@@ -1,5 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { ProgressbarConfig } from './progressbar.config';
+import { ProgressbarType } from './progressbar-type.interface';
 import { isBs3 } from 'ngx-bootstrap/utils';
 import { BarComponent } from './bar.component';
 
@@ -34,7 +35,7 @@ export class ProgressbarComponent {
   }
 
   /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
-  @Input() type: string;
+  @Input() type: ProgressbarType;
   /** current value of progress bar. Could be a number or array of objects
    * like {"value":15,"type":"info","label":"15 %"}
    */
