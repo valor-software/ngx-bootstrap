@@ -187,7 +187,7 @@ You can also join [our Slack channel](https://join.slack.com/t/ngx-home/shared_i
 
 If, **and only if**, none of the above helped, please open a [new issue](https://github.com/valor-software/ngx-bootstrap/issues/new).
 
-## Contribution
+## Contributionn to Open-Source
 
 Are very welcome! And remember, contribution is not only PRs and code, but any help with docs or helping other developers to solve issues are very appreciated! Thanks in advance!
 
