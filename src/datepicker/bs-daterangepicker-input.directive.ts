@@ -7,6 +7,7 @@ import {
   Provider,
   Renderer2
 } from '@angular/core';
+
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -15,7 +16,18 @@ import {
   ValidationErrors,
   Validator
 } from '@angular/forms';
-import { parseDate, formatDate, getLocale, isAfter, isBefore, isArray, isDateValid } from 'ngx-bootstrap/chronos';
+
+import {
+  parseDate,
+  formatDate,
+  getLocale,
+  isAfter,
+  isBefore,
+  isArray,
+  isDateValid,
+  utcAsLocal
+} from 'ngx-bootstrap/chronos';
+
 import { BsDaterangepickerDirective } from './bs-daterangepicker.component';
 import { BsLocaleService } from './bs-locale.service';
 
@@ -94,7 +106,7 @@ export class BsDaterangepickerInputDirective
 
   onChange(event: Event) {
     /* tslint:disable-next-line: no-any*/
-    this.writeValue((event.target as any).value);
+    this.writeValue((event.target as any).value, false);
     this._onChange(this._value);
     this._onTouched();
   }
@@ -130,7 +142,7 @@ export class BsDaterangepickerInputDirective
     this._validatorChange = fn;
   }
 
-  writeValue(value: Date[] | string) {
+  writeValue(value: Date[] | string, isUtc = true) {
     if (!value) {
       this._value = null;
     } else {
@@ -153,8 +165,16 @@ export class BsDaterangepickerInputDirective
 
 
       this._value = (_input as string[])
-        .map((_val: string): Date =>
-          parseDate(_val, this._picker._config.dateInputFormat, this._localeService.currentLocale))
+        .map((_val: string): Date => {
+            if (isUtc) {
+              return utcAsLocal(
+                parseDate(_val, this._picker._config.dateInputFormat, this._localeService.currentLocale)
+              );
+            }
+
+            return parseDate(_val, this._picker._config.dateInputFormat, this._localeService.currentLocale);
+          }
+        )
         .map((date: Date) => (isNaN(date.valueOf()) ? null : date));
     }
 

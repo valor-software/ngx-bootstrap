@@ -1,3 +1,38 @@
+<a name="5.2.0"></a>
+# [5.2.0](https://github.com/valor-software/ngx-bootstrap/compare/v5.1.2...v5.2.0) (2019-09-13)
+
+
+### Bug Fixes
+
+* **datepicker:** fix issue with monthpicker for Feb ([#5371](https://github.com/valor-software/ngx-bootstrap/issues/5371)) ([#5376](https://github.com/valor-software/ngx-bootstrap/issues/5376)) ([91bda67](https://github.com/valor-software/ngx-bootstrap/commit/91bda67))
+* **datepicker:** fix timezone issue ([#5364](https://github.com/valor-software/ngx-bootstrap/issues/5364)) ([137042c](https://github.com/valor-software/ngx-bootstrap/commit/137042c))
+* **datepicker:** make datepicker view child static ([#5374](https://github.com/valor-software/ngx-bootstrap/issues/5374)) ([fe7e489](https://github.com/valor-software/ngx-bootstrap/commit/fe7e489)), closes [#5373](https://github.com/valor-software/ngx-bootstrap/issues/5373)
+* **positioning:** resolve perfomance issue ([#5385](https://github.com/valor-software/ngx-bootstrap/issues/5385)) ([988f5cf](https://github.com/valor-software/ngx-bootstrap/commit/988f5cf))
+* **tooltip:** multiple events for tooltips ([#5382](https://github.com/valor-software/ngx-bootstrap/issues/5382)) ([3286382](https://github.com/valor-software/ngx-bootstrap/commit/3286382))
+
+
+### Features
+
+* **datepicker:** add daterangepicker inline ([#5307](https://github.com/valor-software/ngx-bootstrap/issues/5307)) ([6cc64c0](https://github.com/valor-software/ngx-bootstrap/commit/6cc64c0))
+
+
+
+<a name="5.1.2"></a>
+## [5.1.2](https://github.com/valor-software/ngx-bootstrap/compare/v5.1.1...v5.1.2) (2019-08-07)
+
+
+### Bug Fixes
+
+* **cypress:** fix page load time error ([#5353](https://github.com/valor-software/ngx-bootstrap/issues/5353)) ([b0a86eb](https://github.com/valor-software/ngx-bootstrap/commit/b0a86eb))
+* **timepicker:** fix 12hour in 12/24 format ([#5248](https://github.com/valor-software/ngx-bootstrap/issues/5248)) ([b411130](https://github.com/valor-software/ngx-bootstrap/commit/b411130)), closes [#5125](https://github.com/valor-software/ngx-bootstrap/issues/5125)
+
+
+### Features
+
+* **build:** update to latest angular ([#5350](https://github.com/valor-software/ngx-bootstrap/issues/5350)) ([bc2e73b](https://github.com/valor-software/ngx-bootstrap/commit/bc2e73b))
+* **ci:** update to latest cypress ([#5355](https://github.com/valor-software/ngx-bootstrap/issues/5355)) ([b92e513](https://github.com/valor-software/ngx-bootstrap/commit/b92e513))
+
+
 <a name="5.1.1"></a>
 ## [5.1.1](https://github.com/valor-software/ngx-bootstrap/compare/v5.1.0...v5.1.1) (2019-07-10)
 
@@ -2035,3 +2070,5 @@ sample:  `<ul dropdownMenu>` should become `<ul *dropdownMenu>`
 * **build:** works good with typescript@1.6 ([31c513b](https://github.com/valor-software/ngx-bootstrap/commit/31c513b))
 * **ng 2.0.37:** ts errors fixed ([1e19f55](https://github.com/valor-software/ngx-bootstrap/commit/1e19f55))
 * **typeahead:** ts style fixes ([3eab1e4](https://github.com/valor-software/ngx-bootstrap/commit/3eab1e4))
+
+

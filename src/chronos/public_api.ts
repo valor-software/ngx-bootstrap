@@ -14,6 +14,7 @@ getMonth
 } from './utils/date-getters';
 
 export { parseDate } from './create/local';
+export { utcAsLocal } from './create/local';
 export { formatDate } from './format';
 
 
@@ -50,6 +51,7 @@ export { glLocale } from './i18n/gl';
 export { heLocale } from './i18n/he';
 export { hiLocale } from './i18n/hi';
 export { huLocale } from './i18n/hu';
+export { hrLocale } from './i18n/hr';
 export { idLocale } from './i18n/id';
 export { itLocale } from './i18n/it';
 export { jaLocale } from './i18n/ja';
@@ -68,5 +70,6 @@ export { slLocale } from './i18n/sl';
 export { svLocale } from './i18n/sv';
 export { thLocale } from './i18n/th';
 export { trLocale } from './i18n/tr';
+export { ukLocale } from './i18n/uk';
 export { viLocale } from './i18n/vi';
 export { zhCnLocale } from './i18n/zh-cn';
