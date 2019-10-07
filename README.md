@@ -39,7 +39,7 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 7. [Troubleshooting](#troubleshooting)
 8. [Contributing](#contribution)
 
-## Getting Started
+## Getting Started Guide
 
 ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using markup and css provided by Bootstrap.
 
