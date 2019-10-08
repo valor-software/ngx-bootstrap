@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 
 import { ProgressbarComponent } from './progressbar.component';
+import { ProgressbarType } from './progressbar-type.interface';
 import { isBs3 } from 'ngx-bootstrap/utils';
 
 // todo: number pipe
@@ -32,7 +33,7 @@ export class BarComponent implements OnInit, OnDestroy {
   max: number;
 
   /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
-  @Input() type: string;
+  @Input() type: ProgressbarType;
 
   /** current value of progress bar */
   @Input()
