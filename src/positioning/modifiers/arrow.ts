@@ -22,7 +22,7 @@ export function arrow(data: Data) {
 
   // top/left side
   if (data.offsets.host[opSide] - arrowElementSize < (targetOffsets as any)[side]) {
-    (targetOffsets as any)[side] -=
+    (targetOffsets as any)[side]-=
       (targetOffsets as any)[side] - (data.offsets.host[opSide] - arrowElementSize);
   }
   // bottom/right side
