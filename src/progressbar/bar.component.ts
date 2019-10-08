@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 
 import { ProgressbarComponent } from './progressbar.component';
+import { ProgressbarType } from './progressbar-type.interface';
 import { isBs3 } from 'ngx-bootstrap/utils';
 
 // todo: number pipe
