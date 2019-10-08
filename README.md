@@ -50,7 +50,7 @@ If you also would like to show support or simply give back to Open Source commun
 All donated funds are managed transparently on OpenCollective and will be used solely for compensating work and expenses for contributors. Valor Software employees and contractors are not eligible to use these funds.
 
 What's there for you? Proper recognition and exposure of your name/logo/website on our page.
-Our main sponsors will be presented under this section! Be the first!
+Our main sponsors will be presented in this section! Be the first!
 
 ## Installation instructions
 ##### Method 1
@@ -107,7 +107,7 @@ Add component to your page:
 </button>
 ```
 ### Setting up the bootstrap version manually
-Sometimes, your project might contain some library that could interfear with the bootstrap framework, or you might have a customized version of bootstrap. The consequence is that the process of determining bootstrap version might be failed, which can break the UI. In that case, we can still set the bootstrap version manually in the boostraping component (i.e. `AppComonent`):
+Sometimes, your project might contain some library that could interfere with the bootstrap framework, or you might have a customized version of bootstrap. The consequence is that the process of determining bootstrap version might be failed, which can break the UI. In that case, we can still set the bootstrap version manually in the boostraping component (i.e. `AppComonent`):
 ```
 import { setTheme } from 'ngx-bootstrap/utils';
 
@@ -189,7 +189,7 @@ If, **and only if**, none of the above helped, please open a [new issue](https:/
 
 ## Contribution
 
-Are very welcome! And remember, contribution is not only PRs and code, but any help with docs or helping other developers to solve issues are very appreciated! Thanks in advance!
+You are very welcome! And remember, a contribution is not only PRs and code but any help with docs or helping other developers to solve issues is very appreciated! Thanks in advance!
 
 Please read our [contribution guidelines](https://github.com/valor-software/ngx-bootstrap/blob/development/CONTRIBUTING.md).
 
