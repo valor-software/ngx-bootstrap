@@ -8,12 +8,12 @@
 
 Main success scenario:
 ----------------------
-1. User open Carousel demo page
-2. User click on Basic sub-menu
-3. User see carousel component with 3 slides and 2 arrows: left, right
-4. When user click on left arrow - previous slide shown
-5. When user click on right arrow - next slide shown
-6. When user do nothing more than 5 sec - next slide automatically shown
+1. User opens Carousel demo page
+2. User clicks on Basic sub-menu
+3. User sees carousel component with 3 slides and 2 arrows: left, right
+4. When user clicks on left arrow - previous slide is shown
+5. When user clicks on right arrow - next slide is shown
+6. When user doed nothing more than 5 sec - next slide automatically is shown
 
 Variations:
 -----------
