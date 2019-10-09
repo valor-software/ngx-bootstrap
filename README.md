@@ -41,7 +41,7 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 
 ## Getting Started
 
-ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using markup and css provided by Bootstrap.
+ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using mark-up and css provided by Bootstrap.
 
 ## Supporting NGX-Bootstrap
 ngx-bootstrap is an Open Source (MIT Licensed) project, it's an independent project with ongoing development made possible thanks to the support of our awesome backers.
@@ -107,7 +107,7 @@ Add component to your page:
 </button>
 ```
 ### Setting up the bootstrap version manually
-Sometimes, your project might contain some library that could interfear with the bootstrap framework, or you might have a customized version of bootstrap. The consequence is that the process of determining bootstrap version might be failed, which can break the UI. In that case, we can still set the bootstrap version manually in the boostraping component (i.e. `AppComonent`):
+Sometimes, your project might contain some library that could interfere with the bootstrap framework, or you might have a customized version of bootstrap. The consequence is that the process of determining bootstrap version might be failed, which can break the UI. In that case, we can still set the bootstrap version manually in the bootstrapping component (i.e. `AppComonent`):
 ```
 import { setTheme } from 'ngx-bootstrap/utils';
 
@@ -128,7 +128,7 @@ Main source of API documentation and usage scenarios available here:
 Additionally you can find demos and docs deployed from latest code with <a href="https://ngx-bootstrap.surge.sh/">angular@latest</a> and <a
   href="https://ngx-bootstrap-latest.surge.sh/">angular@next</a>
 
-Server side rendered version of this documentation available <a href="https://ngx-universal.herokuapp.com/">here</a> served with Anguar universal and [nest.js](https://nestjs.com/)
+Server side rendered version of this documentation available <a href="https://ngx-universal.herokuapp.com/">here</a> served with Angular universal and [nest.js](https://nestjs.com/)
 
 ## API
 Check demo page for API [reference](https://valor-software.com/ngx-bootstrap/)
