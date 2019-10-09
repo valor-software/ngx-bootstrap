@@ -78,7 +78,7 @@ Add component to your page:
 </button>
 ```
 
-You will need bootstrap styles:
+You will need Bootstrap styles:
 - `Bootstrap 3`
 ```
 <!-- index.html -->
@@ -120,7 +120,7 @@ export class AppComponent {
 }
 ```
 
-## Usage & Demo
+## Usage And Demo
 
 Main source of API documentation and usage scenarios available here:
 [https://valor-software.com/ngx-bootstrap/](https://valor-software.com/ngx-bootstrap/)
@@ -134,8 +134,8 @@ Server side rendered version of this documentation available <a href="https://ng
 Check demo page for API [reference](https://valor-software.com/ngx-bootstrap/)
 
 ### How to use it with:
- - `Bootstrap and angular-cli` please refer to [using-with-bootstrap-and-angular-cli](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/bootstrap.md)
- - `angular-seed` please refer to [getting-started-with-angular-seed](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/angular-seed.md)
+ - `Bootstrap and Angular-cli` please refer to [using-with-bootstrap-and-angular-cli](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/bootstrap.md)
+ - `Angular-seed` please refer to [getting-started-with-angular-seed](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/angular-seed.md)
  - `system.js` (and [angular2 quickstart](https://angular.io/docs/ts/latest/quickstart.html)) please checkout [sample repository](https://github.com/valor-software/angular2-quickstart)
  - `plnkr` sample available [here](https://plnkr.co/edit/0NipkZrnckZZROAcnjzB?p=preview)
  - `AoT using ngc and rollup` please refer to [ngx-bootstrap-with-aot](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/aot.md)
@@ -164,7 +164,7 @@ For local development run:
 If you want to run the demo with Angular Universal:
  - `npm run demo.serve-universal`
 
-## Compatibility
+## Compatibility Matrix
 
 The only two dependencies are [Angular](https://angular.io) and [Bootstrap](https://getbootstrap.com) CSS.
 Here is the versions compatibility list:
@@ -201,7 +201,7 @@ Please read central `ngx` modules [readme](https://github.com/valor-software/ng2
 Crossbrowser testing sponsored by [Saucelabs](https://saucelabs.com/)
 [<img src="https://saucelabs.com/content/images/circle-logo@2x.png" alt="Saucelabs" width="31" height="31">](https://saucelabs.com/)
 
-End-to-end testing sponsored by [Cypress](https://www.cypress.io/)
+End-to-End testing sponsored by [Cypress](https://www.cypress.io/)
 [<img src="https://raw.githubusercontent.com/cypress-io/cypress-icons/master/src/favicon/favicon.ico" alt="Cypress" width="31" height="31">](https://www.cypress.io/)
 
 ### License
