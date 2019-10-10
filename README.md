@@ -161,4 +161,4 @@ Crossbrowser testing sponsored by [Browser Stack](https://www.browserstack.com)
 
 ### License
 
-MIT
+[MIT](https://github.com/valor-software/ngx-bootstrap/blob/development/LICENSE)
