@@ -204,6 +204,19 @@ Crossbrowser testing sponsored by [Saucelabs](https://saucelabs.com/)
 End-to-end testing sponsored by [Cypress](https://www.cypress.io/)
 [<img src="https://raw.githubusercontent.com/cypress-io/cypress-icons/master/src/favicon/favicon.ico" alt="Cypress" width="31" height="31">](https://www.cypress.io/)
 
+### Code Contributors
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="https://github.com/madlabsinc/ngx-bootstrap/graphs/contributors"><img src="https://opencollective.com/ngx-bootstrap/contributors.svg?width=890&button=false" /></a>
+
+### Financial Contributors
+Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/ngx-bootstrap/contribute)]
+
+#### Individuals
+<a href="https://opencollective.com/ngx-bootstrap"><img src="https://opencollective.com/ngx-bootstrap/individuals.svg?width=890"></a>
+
+#### Organizations
+Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/ngx-bootstrap/contribute)]
+
 ### License
 
 MIT
