@@ -17,9 +17,9 @@
  5. When user clicks on 5th page, then active page - 5 and it centered, maximum count of pages - 5
  6. After click on "Next" button, then active page - 6 and it centered, maximum count of pages - 5
  7. After click on "Previous" button, then active page - 5 and it centered , maximum count of pages should 5
- 8. When user clicks on "Toggle centering current page link", then "last" and "first" buttons are appeared, should marked like "..."
+ 8. When user clicks on "Toggle centering current page link", then "last" and "first" buttons are appeared, and should be marked like "..."
  9. When user clicks on 5th page, then active page - 5 and it located by right side, maximum count of pages - 5
- 10.After click on "Next" button, then active page - 6 and it located by left side, maximum count page - 5
+ 10. After click on "Next" button, then active page - 6 and it located by left side, maximum count page - 5
  11. After click on "Previous" button, then active page - 5 and it located by left side, maximum count of pages - 5
  12. After click on "Last" button, next 5 pages are appeared, maximum count of pages - 5
  13. After click on "Previous" button, Previous 5 pages are appeared, maximum count of pages - 5
