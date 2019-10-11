@@ -5,4 +5,6 @@ import { BsDatepickerConfig } from './bs-datepicker.config';
 export class BsDaterangepickerConfig extends BsDatepickerConfig {
   // DatepickerRenderOptions
   displayMonths = 2;
+  /** turn on/off animation */
+  isAnimated = false;
 }
