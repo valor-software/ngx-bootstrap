@@ -8,7 +8,6 @@ import { DemoDropdownDisabledItemComponent } from './demos/disabled-item/disable
 import { DemoDropdownAlignmentComponent } from './demos/alignment/menu-alignment';
 import { DemoNestedDropdownsComponent } from './demos/nested-dropdowns/nested-dropdowns';
 import { DemoDropdownContainerComponent } from './demos/container/container';
-import { DemoDropdownKeyboardComponent } from './demos/keyboard/keyboard';
 import { DemoDropdownDropupComponent } from './demos/dropup/dropup';
 import { DemoDropdownMenuDividersComponent } from './demos/menu-dividers/menu-dividers';
 import { DemoDropdownConfigComponent } from './demos/config/config';
@@ -28,6 +27,8 @@ import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
+
+import { DemoDropdownAnimatedComponent } from './demos/animated/animated';
 
 
 export const demoComponentContent: ContentSection[] = [
@@ -55,6 +56,14 @@ export const demoComponentContent: ContentSection[] = [
         description: `<p>Any <code>&lt;button&gt;</code> can became a dropdown toggle with few markup changes.
           Here’s how dropdown works with single button</p>`,
         outlet: DemoDropdownBasicComponent
+      },
+      {
+        title: 'With animation',
+        anchor: 'animated',
+        component: require('!!raw-loader!./demos/animated/animated'),
+        html: require('!!raw-loader!./demos/animated/animated.html'),
+        description: `You can enable animation via <code>isAnimated</code> input or config option`,
+        outlet: DemoDropdownAnimatedComponent
       },
       {
         title: 'Trigger by tag <a>',
