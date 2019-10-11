@@ -1,9 +1,9 @@
 <p align="center">
-  (<a href="http://valor-software.com/ngx-bootstrap/">ngx-bootstrap</a>)
+  <a href="http://valor-software.com/ngx-bootstrap/">ngx-bootstrap</a>
 </p>
 
 <p align="center">
-Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a> or <a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> Components with <a href="https://angular.io/"</a>
+Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a> or <a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> Components with <a href="https://angular.io/">Angular</a>
 </p>
 
 <p align="center">
