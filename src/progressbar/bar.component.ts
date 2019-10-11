@@ -4,11 +4,12 @@ import {
   HostBinding,
   Input,
   OnDestroy,
-  OnInit
+  OnInit,
+  ElementRef,
+  Renderer2
 } from '@angular/core';
 
 import { ProgressbarComponent } from './progressbar.component';
-import { ProgressbarType } from './progressbar-type.interface';
 import { isBs3 } from 'ngx-bootstrap/utils';
 
 // todo: number pipe
@@ -19,7 +20,6 @@ import { isBs3 } from 'ngx-bootstrap/utils';
   host: {
     role: 'progressbar',
     'aria-valuemin': '0',
-    '[class]': '"progress-bar " + (type ? "progress-bar-" + type + " bg-" + type : "")',
     '[class.progress-bar-animated]': '!isBs3 && animate',
     '[class.progress-bar-striped]': 'striped',
     '[class.active]': 'isBs3 && animate',
@@ -33,7 +33,15 @@ export class BarComponent implements OnInit, OnDestroy {
   max: number;
 
   /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
-  @Input() type: ProgressbarType;
+  @Input()
+  get type(): string {
+    return this._type;
+  }
+
+  set type(v: string) {
+    this._type = v;
+    this.applyTypeClasses();
+  }
 
   /** current value of progress bar */
   @Input()
@@ -56,6 +64,8 @@ export class BarComponent implements OnInit, OnDestroy {
     return this.percent;
   }
 
+  @HostBinding('class.progress-bar') addClass = true;
+
   get isBs3(): boolean {
     return isBs3();
   }
@@ -66,8 +76,14 @@ export class BarComponent implements OnInit, OnDestroy {
   progress: ProgressbarComponent;
 
   protected _value: number;
+  protected _type: string;
+  private _prevType: string;
 
-  constructor(@Host() progress: ProgressbarComponent) {
+  constructor(
+    private el: ElementRef,
+    @Host() progress: ProgressbarComponent,
+    private renderer: Renderer2
+  ) {
     this.progress = progress;
   }
 
@@ -89,6 +105,24 @@ export class BarComponent implements OnInit, OnDestroy {
 
     if (totalPercentage > 100) {
       this.percent -= totalPercentage - 100;
+    }
+  }
+
+  private applyTypeClasses(): void {
+    if (this._prevType) {
+      const barTypeClass = `progress-bar-${this._prevType}`;
+      const bgClass = `bg-${this._prevType}`;
+      this.renderer.removeClass(this.el.nativeElement, barTypeClass);
+      this.renderer.removeClass(this.el.nativeElement, bgClass);
+      this._prevType = null;
+    }
+
+    if (this._type) {
+      const barTypeClass = `progress-bar-${this._type}`;
+      const bgClass = `bg-${this._type}`;
+      this.renderer.addClass(this.el.nativeElement, barTypeClass);
+      this.renderer.addClass(this.el.nativeElement, bgClass);
+      this._prevType = this._type;
     }
   }
 }

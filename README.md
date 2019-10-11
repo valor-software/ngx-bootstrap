@@ -41,7 +41,7 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 
 ## Getting Started
 
-ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using markup and css provided by Bootstrap.
+ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using markup and CSS provided by Bootstrap.
 
 ## Supporting NGX-Bootstrap
 ngx-bootstrap is an Open Source (MIT Licensed) project, it's an independent project with ongoing development made possible thanks to the support of our awesome backers.
@@ -95,7 +95,7 @@ Use the Angular CLI ng add command for updating your Angular project
 ```bash
 ng add ngx-bootstrap
 ```
-OR use `ng add` to add needed component (for example tooltip)
+Or use `ng add` to add needed component (for example tooltip)
 ```bash
 ng add ngx-bootstrap --component tooltip
 ```
@@ -107,7 +107,7 @@ Add component to your page:
 </button>
 ```
 ### Setting up the bootstrap version manually
-Sometimes, your project might contain some library that could interfear with the bootstrap framework, or you might have a customized version of bootstrap. The consequence is that the process of determining bootstrap version might be failed, which can break the UI. In that case, we can still set the bootstrap version manually in the boostraping component (i.e. `AppComonent`):
+Sometimes, your project might contain some library that could interfere with the bootstrap framework, or you might have a customized version of bootstrap. The consequence is that the process of determining bootstrap version might be failed, which can break the UI. In that case, we can still set the bootstrap version manually in the bootstrapping component (i.e. `AppComponent`):
 ```
 import { setTheme } from 'ngx-bootstrap/utils';
 
@@ -128,7 +128,7 @@ Main source of API documentation and usage scenarios available here:
 Additionally you can find demos and docs deployed from latest code with <a href="https://ngx-bootstrap.surge.sh/">angular@latest</a> and <a
   href="https://ngx-bootstrap-latest.surge.sh/">angular@next</a>
 
-Server side rendered version of this documentation available <a href="https://ngx-universal.herokuapp.com/">here</a> served with Anguar universal and [nest.js](https://nestjs.com/)
+Server side rendered version of this documentation available <a href="https://ngx-universal.herokuapp.com/">here</a> served with Angular universal and [nest.js](https://nestjs.com/)
 
 ## API
 Check demo page for API [reference](https://valor-software.com/ngx-bootstrap/)
@@ -189,11 +189,11 @@ If, **and only if**, none of the above helped, please open a [new issue](https:/
 
 ## Contribution
 
-Are very welcome! And remember, contribution is not only PRs and code, but any help with docs or helping other developers to solve issues are very appreciated! Thanks in advance!
+All contributions very welcome! And remember, contribution is not only PRs and code, but any help with docs or helping other developers to solve issues are very appreciated! Thanks in advance!
 
 Please read our [contribution guidelines](https://github.com/valor-software/ngx-bootstrap/blob/development/CONTRIBUTING.md).
 
-### If you need more modules check [here](https://github.com/valor-software/ng2-plans)
+### If you need more modules, check [here](https://github.com/valor-software/ng2-plans)
 
 Please read central `ngx` modules [readme](https://github.com/valor-software/ng2-plans) for details, plans and approach
 
@@ -206,4 +206,4 @@ End-to-end testing sponsored by [Cypress](https://www.cypress.io/)
 
 ### License
 
-MIT
+[MIT](https://github.com/valor-software/ngx-bootstrap/blob/development/LICENSE)
