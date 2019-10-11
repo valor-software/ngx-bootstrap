@@ -1,0 +1,49 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+		<title>3D Transformation</title> 
+		<style> 
+			.normal_div { 
+				width: 300px; 
+				height: 150px; 
+				color: white; 
+				font-size:25px; 
+				background-color: lightpink; 
+				border: 1px solid black; 
+				margin-bottom:20px; 
+			} 
+			
+			#rotateX { 
+				width: 300px; 
+				height: 150px; 
+				color: white; 
+				font-size:25px; 
+				background-color: lightpink; 
+				border: 1px solid grey; 
+				-webkit-transform: rotateX(180deg); /* Safari */ 
+				transform: rotateX(180deg); /* Standard syntax */ 
+				
+			} 
+			.gfg { 
+				font-size:42px; 
+				font-weight:bold; 
+				color:#090; 
+			} 
+			.geeks { 
+				font-size:24px; 
+				font-weight:bold; 
+				margin:20px 0; 
+			} 
+		</style> 
+	</head> 
+	<body> 
+		<center> 
+			<div class = "gfg">hello there</div> 
+			<div class = "geeks">rotateX() Method</div> 
+			<div class = "normal_div"> Div Contents... </div> 
+			<div id="rotateX">Have a glance at my rotation...</div> 
+		</center> 
+	</body> 
+</html>		
+
+this page is designed by yash
