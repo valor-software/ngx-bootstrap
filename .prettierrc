@@ -2,7 +2,7 @@
   "printWidth": 120,
   "tabWidth": 2,
   "useTabs": false,
-  "semi": true,
+  "semi": false, #semi should be true only in override option.
   "singleQuote": true,
   "trailingComma": "none",
   "bracketSpacing": true,
