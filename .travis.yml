@@ -1,12 +1,14 @@
 sudo: false
 language: node_js
-node_js: "9"
+node_js: "12.9.1"
 
 notifications:
   email: false
 
 git:
   depth: 3
+  clone: false
+  quiet: true
   submodules: false
 
 env:
