@@ -39,7 +39,7 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 7. [Troubleshooting](#troubleshooting)
 8. [Contributing](#contribution)
 
-## Getting Started
+## How to Get Started
 
 ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using markup and CSS provided by Bootstrap.
 
@@ -52,7 +52,8 @@ All donated funds are managed transparently on OpenCollective and will be used s
 What's there for you? Proper recognition and exposure of your name/logo/website on our page.
 Our main sponsors will be presented under this section! Be the first!
 
-## Installation instructions
+## Installation instruction
+
 ##### Method 1
 Install `ngx-bootstrap` from `npm`:
 ```bash
@@ -106,6 +107,7 @@ Add component to your page:
   Simple demo
 </button>
 ```
+
 ### Setting up the bootstrap version manually
 Sometimes, your project might contain some library that could interfere with the bootstrap framework, or you might have a customized version of bootstrap. The consequence is that the process of determining bootstrap version might be failed, which can break the UI. In that case, we can still set the bootstrap version manually in the bootstrapping component (i.e. `AppComponent`):
 ```
@@ -120,8 +122,7 @@ export class AppComponent {
 }
 ```
 
-## Usage & Demo
-
+## How to Use & Demo
 Main source of API documentation and usage scenarios available here:
 [https://valor-software.com/ngx-bootstrap/](https://valor-software.com/ngx-bootstrap/)
 
