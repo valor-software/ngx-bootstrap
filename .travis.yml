@@ -1,6 +1,6 @@
 sudo: false
 language: node_js
-node_js: "10"
+node_js: "12.9.1"
 
 services:
   - xvfb
@@ -10,6 +10,8 @@ notifications:
 
 git:
   depth: 3
+  quiet: true
+  clone: false
   submodules: false
 
 env:
@@ -281,5 +283,3 @@ cache:
   npm: true
   directories:
   - node_modules
-  - ~/.npm
-  - ~/.cache
