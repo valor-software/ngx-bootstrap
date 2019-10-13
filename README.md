@@ -199,7 +199,7 @@ Please read central `ngx` modules [readme](https://github.com/valor-software/ng2
 
 ### Credits
 Crossbrowser testing sponsored by [Saucelabs](https://saucelabs.com/)
-[<img src="https://saucelabs.com/content/images/circle-logo@2x.png" alt="Saucelabs" width="31" height="31">](https://saucelabs.com/)
+[<img src="https://avatars2.githubusercontent.com/u/88837?s=200&v=4" alt="Saucelabs" width="31" height="31">](https://saucelabs.com/)
 
 End-to-end testing sponsored by [Cypress](https://www.cypress.io/)
 [<img src="https://raw.githubusercontent.com/cypress-io/cypress-icons/master/src/favicon/favicon.ico" alt="Cypress" width="31" height="31">](https://www.cypress.io/)
