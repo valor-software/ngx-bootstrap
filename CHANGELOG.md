@@ -105,7 +105,7 @@ Most notable changes are:
 
 Most notable changes are:
 - migrated to Angular 8
-- to datepicker and typeahead added animation which disabled by default
+- to date picker and typeahead added animation which disabled by default
 - fixed a case of looping inside position service
 
 
@@ -227,7 +227,7 @@ Most notable changes are:
 Most notable changes are:
 - the library was migrated to Angular 7 which leads to requiring of typescript>=3.1.1
 - the adaptive position was turned off by default for Datepicker and Typeahead components
-- 'select' event was changed to 'selectTab' in Tab component
+- 'select' event was changed to 'selectTab' in the Tab component
 
 
 ### Bug Fixes
