@@ -1,5 +1,4 @@
 # ngx-bootstrap in Angular with AoT compilation using `ngc` and `rollup`
-
 The compilation process described on the [official Angular2 website](https://angular.io/docs/ts/latest/cookbook/aot-compiler.html)
 
 Note that you also have to include bootstrap CSS from the official Bootrstrap site or Bootstrap CDN in your index.html HEAD section.
