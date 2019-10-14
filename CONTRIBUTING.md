@@ -243,7 +243,7 @@ This `CONTRIBUTING.md` is adapted from the Angular's `CONTRIBUTING.md`, availabl
 [coc]: https://github.com/valor-software/ngx-bootstrap/blob/development/CODE_OF_CONDUCT.md
 [commit-message-format]: https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#
 [github]: https://github.com/valor-software/ngx-bootstrap
-[slack]: https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWQ5M2Y4OWM0OGJjNmZiOGYyNjFlZTdlOGI1YjcxYWQ2ODhiOTY4NzhiODgwMTIzNDczODIyNWNmM2RlYWRhNTg
+[slack]: https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWVjZGU2MjI4MTVhMGVlMTc2OWRiMzA0NzBhNDU5YzQ0MDM3MWI5NzJjZTUzNzIxZmNjYmFlMjU2MzE0YmY0NWY
 [js-style-guide]: https://google.github.io/styleguide/jsguide.html
 [plunker]: http://plnkr.co/edit
 [stackoverflow]: http://stackoverflow.com/questions/tagged/ngx-bootstrap
