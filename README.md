@@ -41,7 +41,7 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 
 ## Getting Started
 
-ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using markup and css provided by Bootstrap.
+ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using markup and CSS provided by Bootstrap.
 
 ## Supporting NGX-Bootstrap
 ngx-bootstrap is an Open Source (MIT Licensed) project, it's an independent project with ongoing development made possible thanks to the support of our awesome backers.
@@ -95,7 +95,7 @@ Use the Angular CLI ng add command for updating your Angular project
 ```bash
 ng add ngx-bootstrap
 ```
-OR use `ng add` to add needed component (for example tooltip)
+Or use `ng add` to add needed component (for example tooltip)
 ```bash
 ng add ngx-bootstrap --component tooltip
 ```
@@ -107,7 +107,9 @@ Add component to your page:
 </button>
 ```
 ### Setting up the bootstrap version manually
+
 Sometimes, your project might contain some library that could interfere with the bootstrap framework, or you might have a customized version of bootstrap. The consequence is that the process of determining bootstrap version might fail, which can break the UI. In that case, we can still set the bootstrap version manually in the boostraping component (i.e. AppComonent):
+
 ```
 import { setTheme } from 'ngx-bootstrap/utils';
 
@@ -193,7 +195,7 @@ Contribution from everyone is welcome! And remember, its not limited to adding n
 
 Please read our [contribution guidelines](https://github.com/valor-software/ngx-bootstrap/blob/development/CONTRIBUTING.md).
 
-### If you need more modules check [here](https://github.com/valor-software/ng2-plans)
+### If you need more modules, check [here](https://github.com/valor-software/ng2-plans)
 
 Please read central `ngx` modules [readme](https://github.com/valor-software/ng2-plans) for details, plans and approach
 
@@ -206,4 +208,4 @@ End-to-end testing sponsored by [Cypress](https://www.cypress.io/)
 
 ### License
 
-MIT
+[MIT](https://github.com/valor-software/ngx-bootstrap/blob/development/LICENSE)
