@@ -198,7 +198,7 @@ Please read our [contribution guidelines](https://github.com/valor-software/ngx-
 Please read central `ngx` modules [readme](https://github.com/valor-software/ng2-plans) for details, plans and approach
 
 ### Credits
-Crossbrowser testing sponsored by [Saucelabs](https://saucelabs.com/)
+Crossbrowser testing by [Saucelabs](https://saucelabs.com/)
 [<img src="https://saucelabs.com/content/images/circle-logo@2x.png" alt="Saucelabs" width="31" height="31">](https://saucelabs.com/)
 
 End-to-end testing sponsored by [Cypress](https://www.cypress.io/)
