@@ -44,15 +44,15 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using markup and CSS provided by Bootstrap.
 
 ## Supporting NGX-Bootstrap
-ngx-bootstrap is an Open Source (MIT Licensed) project, it's an independent project with ongoing development made possible thanks to the support of our awesome backers.
-If you also would like to show support or simply give back to Open Source community, please consider becoming a backer sponsor of [ngx-bootstrap on OpenCollective](https://opencollective.com/ngx-bootstrap)
+ngx-bootstrap is an Open-Source project, it's an independent project with ongoing development made possible thanks to the support of our awesome backers.
+If you also would like to show support or simply give back to Open-Source community, please consider becoming a backer sponsor of [ngx-bootstrap on OpenCollective](https://opencollective.com/ngx-bootstrap)
 
 All donated funds are managed transparently on OpenCollective and will be used solely for compensating work and expenses for contributors. Valor Software employees and contractors are not eligible to use these funds.
 
 What's there for you? Proper recognition and exposure of your name/logo/website on our page.
 Our main sponsors will be presented under this section! Be the first!
 
-## Installation instructions
+## Installation Instructions
 ##### Method 1
 Install `ngx-bootstrap` from `npm`:
 ```bash
@@ -204,6 +204,6 @@ Crossbrowser testing sponsored by [Saucelabs](https://saucelabs.com/)
 End-to-end testing sponsored by [Cypress](https://www.cypress.io/)
 [<img src="https://raw.githubusercontent.com/cypress-io/cypress-icons/master/src/favicon/favicon.ico" alt="Cypress" width="31" height="31">](https://www.cypress.io/)
 
-### License
+## License
 
-[MIT](https://github.com/valor-software/ngx-bootstrap/blob/development/LICENSE)
+The ngx-bootstrap repository is available under the [MIT License](https://github.com/valor-software/ngx-bootstrap/blob/development/LICENSE).
