@@ -3,7 +3,7 @@
 </a>
 
 <p align="center">
-Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a> or <a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> Components with <a href="https://angular.io/">Angular</a>
+Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a> or <a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> components with <a href="https://angular.io/">Angular</a>
 </p>
 
 <p align="center">
@@ -32,7 +32,7 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 ## Table of contents
 1. [Getting Started](#getting-started)
 2. [Supporting](#supporting-ngx-bootstrap)
-3. [Installation instructions](#installation-instructions)
+3. [Installation instructions](#installation instructions)
 4. [Usage & Demo](#usage--demo)
 5. [API](#api)
 6. [Compatibility](#compatibility)
@@ -44,10 +44,10 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using markup and CSS provided by Bootstrap.
 
 ## Supporting NGX-Bootstrap
-ngx-bootstrap is an Open Source (MIT Licensed) project, it's an independent project with ongoing development made possible thanks to the support of our awesome backers.
+ngx-bootstrap is an Open Source (MIT Licensed) project, it's an independent project with ongoing development made possible,thanks to the support of our awesome backers.
 If you also would like to show support or simply give back to Open Source community, please consider becoming a backer sponsor of [ngx-bootstrap on OpenCollective](https://opencollective.com/ngx-bootstrap)
 
-All donated funds are managed transparently on OpenCollective and will be used solely for compensating work and expenses for contributors. Valor Software employees and contractors are not eligible to use these funds.
+All donated funds are managed transparently on OpenCollective and will be solely used for compensating work and expenses for contributors. Valor Software employees and contractors are not eligible to use these funds.
 
 What's there for you? Proper recognition and exposure of your name/logo/website on our page.
 Our main sponsors will be presented under this section! Be the first!
@@ -78,7 +78,7 @@ Add component to your page:
 </button>
 ```
 
-You will need bootstrap styles:
+You will need Bootstrap styles:
 - `Bootstrap 3`
 ```
 <!-- index.html -->
