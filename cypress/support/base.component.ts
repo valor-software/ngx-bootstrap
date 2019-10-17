@@ -31,7 +31,7 @@ export abstract class BaseComponent {
 
   isBtnTxtEqual(baseSelector: string, expectedBtnTxt: string, buttonIndex?: number) {
     cy.get(`${ baseSelector } button`).eq(buttonIndex ? buttonIndex : 0).invoke('text')
-      .should(btnTxt => expect(btnTxt).to.equal(expectedBtnTxt));
+      .should(btnTxt => expect(btnTxt.trim()).to.equal(expectedBtnTxt));
   }
 
   isBtnDisabled(baseSelector: string, disabled: boolean, buttonIndex = 0) {
@@ -123,7 +123,7 @@ export abstract class BaseComponent {
   isButtonExist(baseSelector: string, buttonName: string, buttonNumber?: number, exist = true) {
     if (exist === true) {
       cy.get(`${baseSelector} button`).eq(buttonNumber ? buttonNumber : 0).invoke('text')
-        .should(btnTxt => expect(btnTxt).to.equal(buttonName));
+        .should(btnTxt => expect(btnTxt.trim()).to.equal(buttonName));
     } else {
       cy.get(`${baseSelector} button`).contains(buttonName).should('not.exist');
     }
