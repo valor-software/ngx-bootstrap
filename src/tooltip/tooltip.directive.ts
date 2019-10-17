@@ -220,7 +220,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
         _viewContainerRef,
         this._renderer
       )
-      .provide({provide: TooltipConfig, useValue: config});
+      .provide({ provide: TooltipConfig, useValue: config });
 
     Object.assign(this, config);
     this.onShown = this._tooltip.onShown;
@@ -285,7 +285,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
       this._tooltip
         .attach(TooltipContainerComponent)
         .to(this.container)
-        .position({attachment: this.placement})
+        .position({ attachment: this.placement })
         .show({
           content: this.tooltip,
           placement: this.placement,
@@ -345,5 +345,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._tooltip.dispose();
+    this.tooltipChange.unsubscribe();
   }
 }
