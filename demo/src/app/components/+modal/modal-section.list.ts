@@ -29,6 +29,7 @@ import {
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
 import { DemoModalScrollingLongContentComponent } from './demos/scrolling-long-content/scrolling-long-content';
+import { DemoModalServiceWithInterceptorComponent } from './demos/service-interceptor/service-interceptor';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -155,6 +156,15 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/service-options/change-class/change-class.html'),
         description: `<p>Calling setClass method to change modal's window class</p>`,
         outlet: DemoModalServiceChangeClassComponent
+      },
+      {
+        title: 'Close interceptors',
+        anchor: 'service-with-interceptor',
+        component: require('!!raw-loader!./demos/service-interceptor/service-interceptor.ts'),
+        html: require('!!raw-loader!./demos/service-interceptor/service-interceptor.html'),
+        description: `<p>When opening a modal with a component, you can provide a list of interceptors which will be triggered
+          whenever the modal try to close, allowing you to block the disappearance of a modal.</p>`,
+        outlet: DemoModalServiceWithInterceptorComponent
       }
     ]
   },

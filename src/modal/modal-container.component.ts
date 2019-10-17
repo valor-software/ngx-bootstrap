@@ -14,6 +14,7 @@ import {
 } from './modal-options.class';
 import { BsModalService } from './bs-modal.service';
 import { isBs3 } from 'ngx-bootstrap/utils';
+import { iterateOverInterceptors } from './modal.helpers';
 
 @Component({
   selector: 'modal-container',
@@ -86,7 +87,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       return;
     }
     this.bsModalService.setDismissReason(DISMISS_REASONS.BACKRDOP);
-    this.hide();
+    this.tryHiding();
   }
 
   @HostListener('window:keydown.esc', ['$event'])
@@ -105,7 +106,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       this.level === this.bsModalService.getModalsCount()
     ) {
       this.bsModalService.setDismissReason(DISMISS_REASONS.ESC);
-      this.hide();
+      this.tryHiding();
     }
   }
 
@@ -115,10 +116,23 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     }
   }
 
-  hide(): void {
+  tryHiding(): void {
     if (this.isModalHiding || !this.isShown) {
       return;
     }
+
+    if (this.config.closeInterceptors && this.config.closeInterceptors.length) {
+      iterateOverInterceptors(this.config.closeInterceptors).then(
+        () => this.hide(),
+        () => undefined);
+
+      return;
+    }
+
+    this.hide();
+  }
+
+  hide(): void {
     this.isModalHiding = true;
     this._renderer.removeClass(
       this._element.nativeElement,

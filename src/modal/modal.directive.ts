@@ -14,6 +14,8 @@ import {
   CLASS_NAME, DISMISS_REASONS, modalConfigDefaults, ModalOptions
 } from './modal-options.class';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
+import { CloseInterceptorFn } from './models';
+import { iterateOverInterceptors } from './modal.helpers';
 
 const TRANSITION_DURATION = 300;
 const BACKDROP_TRANSITION_DURATION = 150;
@@ -33,6 +35,8 @@ export class ModalDirective implements OnDestroy, OnInit {
   get config(): ModalOptions {
     return this._config;
   }
+
+  @Input() closeInterceptors: CloseInterceptorFn[];
 
   /** This event fires immediately when the `show` instance method is called. */
   @Output()
@@ -100,7 +104,7 @@ export class ModalDirective implements OnDestroy, OnInit {
       return;
     }
     this.dismissReason = DISMISS_REASONS.BACKRDOP;
-    this.hide(event);
+    this.tryHiding(event);
   }
 
   // todo: consider preventing default and stopping propagation
@@ -116,7 +120,7 @@ export class ModalDirective implements OnDestroy, OnInit {
 
     if (this.config.keyboard) {
       this.dismissReason = DISMISS_REASONS.ESC;
-      this.hide();
+      this.tryHiding();
     }
   }
 
@@ -173,18 +177,30 @@ export class ModalDirective implements OnDestroy, OnInit {
     });
   }
 
-  /** Allows to manually close modal */
-  hide(event?: Event): void {
+  /** Check if we can close the modal */
+  tryHiding(event?: Event): void {
+    if (!this._isShown) {
+      return;
+    }
+
     if (event) {
       event.preventDefault();
     }
 
-    this.onHide.emit(this);
+    if (this.config.closeInterceptors && this.config.closeInterceptors.length) {
+      iterateOverInterceptors(this.config.closeInterceptors).then(
+        () => this.hide(),
+        () => undefined);
 
-    // todo: add an option to prevent hiding
-    if (!this._isShown) {
       return;
     }
+
+    this.hide();
+  }
+
+  /** Allows to manually close modal */
+  hide(): void {
+    this.onHide.emit(this);
 
     window.clearTimeout(this.timerHideModal);
     window.clearTimeout(this.timerRmBackDrop);

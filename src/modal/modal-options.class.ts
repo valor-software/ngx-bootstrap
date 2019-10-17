@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ClassName, DismissReasons, Selector, TransitionDurations } from './models';
+import { ClassName, CloseInterceptorFn, DismissReasons, Selector, TransitionDurations } from './models';
 
 @Injectable()
 export class ModalOptions {
@@ -34,6 +34,10 @@ export class ModalOptions {
    * Modal data
    */
   initialState?: Object;
+  /**
+   * Modal data
+   */
+  closeInterceptors?: CloseInterceptorFn[];
 }
 
 
@@ -45,7 +49,8 @@ export const modalConfigDefaults: ModalOptions = {
   ignoreBackdropClick: false,
   class: '',
   animated: true,
-  initialState: {}
+  initialState: {},
+  closeInterceptors: []
 };
 
 export const CLASS_NAME: ClassName = {

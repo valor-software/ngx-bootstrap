@@ -6,3 +6,4 @@ export { ModalOptions } from './modal-options.class';
 export { ModalDirective } from './modal.directive';
 export { ModalModule } from './modal.module';
 export { BsModalService } from './bs-modal.service';
+export { CloseInterceptorFn } from './models';
