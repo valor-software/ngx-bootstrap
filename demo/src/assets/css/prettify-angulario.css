@@ -42,7 +42,7 @@
   margin-bottom: 5px;
   line-height: normal;
   list-style-type: decimal;
-  font-size: 12px;
+  font-size: 13px;
   white-space: pre;
 }
 
@@ -166,7 +166,7 @@ h1 .prettyprint,h2 .prettyprint,h3 .prettyprint,h4 .prettyprint {
   color: #253238;
   overflow: hidden;
   position: relative;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   line-height: 24px;
   margin: 0;
@@ -177,7 +177,7 @@ h1 .prettyprint,h2 .prettyprint,h3 .prettyprint,h4 .prettyprint {
 
 h1 .prettyprint code,h2 .prettyprint code,h3 .prettyprint code,h4 .prettyprint code {
   background: none;
-  font-size: 15px;
+  font-size: 16px;
   padding: 0
 }
 
