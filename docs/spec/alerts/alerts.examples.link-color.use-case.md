@@ -14,4 +14,4 @@ Main success scenario:
 
 Variations:
 -----------
-2*. User scroll to Link color sub-menu
+2. User scroll to Link color sub-menu
