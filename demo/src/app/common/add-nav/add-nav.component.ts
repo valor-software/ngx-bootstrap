@@ -1,5 +1,5 @@
-import { Component, Inject, Input } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, Inject, Input, PLATFORM_ID } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 
@@ -10,7 +10,7 @@ import { ContentSection } from '../../docs/models/content-section.model';
 export class AddNavComponent {
   @Input() componentContent: ContentSection[];
 
-  constructor(@Inject(DOCUMENT) private document: Document) { }
+  constructor(@Inject(DOCUMENT) private document: Document, @Inject(PLATFORM_ID) platformId: number) { }
 
   goToSection(event: Event): void {
     const item: HTMLElement = event.target as HTMLElement;
@@ -22,8 +22,9 @@ export class AddNavComponent {
 
       if (target && header) {
         const targetPosY: number = target.offsetTop - header.offsetHeight - 6;
-
-        window.scrollTo(0, targetPosY);
+        if(isPlatformBrowser(platformId)){
+            window.scrollTo(0, targetPosY);
+        }
       }
     }
   }
