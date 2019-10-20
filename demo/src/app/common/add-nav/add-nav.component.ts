@@ -22,7 +22,7 @@ export class AddNavComponent {
 
       if (target && header) {
         const targetPosY: number = target.offsetTop - header.offsetHeight - 6;
-        if(isPlatformBrowser(platformId)){
+        if(isPlatformBrowser(this.platformId)){
             window.scrollTo(0, targetPosY);
         }
       }
