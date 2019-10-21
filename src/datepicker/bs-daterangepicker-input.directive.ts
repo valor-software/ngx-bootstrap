@@ -3,7 +3,9 @@ import {
   Directive,
   ElementRef,
   forwardRef,
-  Host, OnDestroy, OnInit,
+  Host,
+  OnDestroy,
+  OnInit,
   Provider,
   Renderer2
 } from '@angular/core';
