@@ -48,6 +48,7 @@ stages:
   if:  branch = development AND type = push OR tag =~ ^v\d+
 
 before_install:
+- export NG_CLI_ANALYTICS=ci
 - rm -rf node_modules/ngx-bootstrap
 - sudo apt-get install libgconf-2-4
 - npm install tslint
