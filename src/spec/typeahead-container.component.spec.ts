@@ -475,6 +475,7 @@ describe('Component: TypeaheadContainer', () => {
         component.nextActiveMatch();
         expect(component.isActive(component.matches[1])).toBeTruthy();
       });
+
       it('should select the next item match and scroll', fakeAsync(() => {
         component.nextActiveMatch();
         component.nextActiveMatch();
@@ -484,6 +485,7 @@ describe('Component: TypeaheadContainer', () => {
         expect(component.isActive(component.matches[3])).toBeTruthy();
         expect(containingElementScrollable[0].scrollTop).toBe(0);
       }));
+
       it('should select the last item match and scroll', () => {
         for (let i = 0; i < 8; i++) {
           component.nextActiveMatch();
