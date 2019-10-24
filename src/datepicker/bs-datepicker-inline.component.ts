@@ -111,14 +111,17 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
 
     if (changes.minDate) {
       this._datepickerRef.instance.minDate = this.minDate;
+      this._datepickerRef.instance.value = this._bsValue;
     }
 
     if (changes.maxDate) {
       this._datepickerRef.instance.maxDate = this.maxDate;
+      this._datepickerRef.instance.value = this._bsValue;
     }
 
     if (changes.datesDisabled) {
       this._datepickerRef.instance.datesDisabled = this.datesDisabled;
+      this._datepickerRef.instance.value = this._bsValue;
     }
 
     if (changes.isDisabled) {
