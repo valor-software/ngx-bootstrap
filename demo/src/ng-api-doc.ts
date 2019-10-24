@@ -3225,6 +3225,21 @@ export const ngdoc: any = {
         "name": "showSpinners",
         "type": "boolean",
         "description": "<p>if true spinner arrows above and below the inputs will be shown</p>\n"
+      },
+      {
+        "name": "hoursPlaceholder",
+        "type": "string",
+        "description": "<p>placeholder for hours field</p>\n"
+      },
+      {
+        "name": "minutesPlacesholder",
+        "type": "string",
+        "description": "<p>placeholder for minutes field</p>\n"
+      },
+      {
+        "name": "secondsPlaceholder",
+        "type": "string",
+        "description": "<p>placeholder for seconds field</p>\n"
       }
     ],
     "outputs": [
@@ -3322,6 +3337,24 @@ export const ngdoc: any = {
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if true spinner arrows above and below the inputs will be shown</p>\n"
+      },
+      {
+        "name": "hoursPlaceholder",
+        "defaultValue": "HH",
+        "type": "string",
+        "description": "<p>placeholder for hours field</p>\n"
+      },
+      {
+        "name": "minutesPlacesholder",
+        "defaultValue": "MM",
+        "type": "string",
+        "description": "<p>placeholder for minutes field</p>\n"
+      },
+      {
+        "name": "secondsPlaceholder",
+        "defaultValue": "SS",
+        "type": "string",
+        "description": "<p>placeholder for seconds field</p>\n"
       }
     ]
   },
