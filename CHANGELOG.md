@@ -1,3 +1,27 @@
+<a name="5.3.0"></a>
+# [5.3.0](https://github.com/valor-software/ngx-bootstrap/compare/v5.2.0...v5.3.0) (2019-10-11)
+
+
+### Bug Fixes
+
+* **accordion, datepicker:** prevent accidental form submissions ([#5314](https://github.com/valor-software/ngx-bootstrap/issues/5314)) ([2ed2473](https://github.com/valor-software/ngx-bootstrap/commit/2ed2473))
+* **datepicker:** need to update inline datepicker on input change ([#5436](https://github.com/valor-software/ngx-bootstrap/issues/5436)) ([534221d](https://github.com/valor-software/ngx-bootstrap/commit/534221d))
+* **docs:** fix various typos ([#5467](https://github.com/valor-software/ngx-bootstrap/issues/5467)) ([2676683](https://github.com/valor-software/ngx-bootstrap/commit/2676683))
+* **docs:** update join slack link ([#5421](https://github.com/valor-software/ngx-bootstrap/issues/5421)) ([b0a448b](https://github.com/valor-software/ngx-bootstrap/commit/b0a448b))
+* **progressbar:** fix type class name binding override ([#5441](https://github.com/valor-software/ngx-bootstrap/issues/5441)) ([a544f44](https://github.com/valor-software/ngx-bootstrap/commit/a544f44))
+* **timepicker:** fix placeholder full length ([#5392](https://github.com/valor-software/ngx-bootstrap/issues/5392)) ([bb5452b](https://github.com/valor-software/ngx-bootstrap/commit/bb5452b))
+* **travis:** fix next stage ([#5419](https://github.com/valor-software/ngx-bootstrap/issues/5419)) ([6af8416](https://github.com/valor-software/ngx-bootstrap/commit/6af8416))
+
+
+### Features
+
+* **chronos:** add uk locale resolve [#5351](https://github.com/valor-software/ngx-bootstrap/issues/5351) ([#5396](https://github.com/valor-software/ngx-bootstrap/issues/5396)) ([f2187ea](https://github.com/valor-software/ngx-bootstrap/commit/f2187ea))
+* **datepicker:** add invalidDate key to croatian locale ([#5393](https://github.com/valor-software/ngx-bootstrap/issues/5393)) ([b6c2036](https://github.com/valor-software/ngx-bootstrap/commit/b6c2036))
+* **dropdown:** add animation to the component ([#5475](https://github.com/valor-software/ngx-bootstrap/issues/5475)) ([d70f08b](https://github.com/valor-software/ngx-bootstrap/commit/d70f08b))
+* **progressbar:** create type interface ([#5440](https://github.com/valor-software/ngx-bootstrap/issues/5440)) ([6696623](https://github.com/valor-software/ngx-bootstrap/commit/6696623))
+
+
+
 <a name="5.2.0"></a>
 # [5.2.0](https://github.com/valor-software/ngx-bootstrap/compare/v5.1.2...v5.2.0) (2019-09-13)
 
@@ -2070,5 +2094,6 @@ sample:  `<ul dropdownMenu>` should become `<ul *dropdownMenu>`
 * **build:** works good with typescript@1.6 ([31c513b](https://github.com/valor-software/ngx-bootstrap/commit/31c513b))
 * **ng 2.0.37:** ts errors fixed ([1e19f55](https://github.com/valor-software/ngx-bootstrap/commit/1e19f55))
 * **typeahead:** ts style fixes ([3eab1e4](https://github.com/valor-software/ngx-bootstrap/commit/3eab1e4))
+
 
 

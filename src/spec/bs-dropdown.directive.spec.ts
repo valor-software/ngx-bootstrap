@@ -5,6 +5,7 @@ import { async, fakeAsync, TestBed, tick, ComponentFixture } from '@angular/core
 import { BsDropdownConfig, BsDropdownDirective, BsDropdownModule } from '../dropdown';
 import { window } from '../utils/facade/browser';
 import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'dropdown-test',
@@ -50,7 +51,10 @@ describe('Directive: Dropdown', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TestDropdownComponent],
-      imports: [BsDropdownModule.forRoot()]
+      imports: [
+        BsDropdownModule.forRoot(),
+        BrowserAnimationsModule
+      ]
     });
     TestBed.overrideComponent(TestDropdownComponent, {
       set: {template: defaultHtml}
