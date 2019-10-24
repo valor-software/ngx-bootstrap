@@ -13,6 +13,7 @@ import {
   TemplateRef,
   ViewContainerRef
 } from '@angular/core';
+
 import { NgControl } from '@angular/forms';
 
 import { from, Subscription, isObservable } from 'rxjs';
@@ -320,7 +321,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   show(): void {
     this._typeahead
       .attach(TypeaheadContainerComponent)
-      // todo: add append to body, after updating positioning service
       .to(this.container)
       .position({attachment: `${this.dropup ? 'top' : 'bottom'} start`})
       .show({
@@ -343,11 +343,13 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this._container = this._typeahead.instance;
     this._container.parent = this;
     // This improves the speed as it won't have to be done for each list item
+
     const normalizedQuery = (this.typeaheadLatinize
       ? latinize(this.ngControl.control.value)
       : this.ngControl.control.value)
       .toString()
       .toLowerCase();
+
     this._container.query = this.typeaheadSingleWords
       ? tokenize(
         normalizedQuery,
@@ -355,6 +357,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         this.typeaheadPhraseDelimiters
       )
       : normalizedQuery;
+
     this._container.matches = this._matches;
     this.element.nativeElement.focus();
   }
@@ -487,8 +490,10 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       const _controlValue = (this.typeaheadLatinize
         ? latinize(this.ngControl.control.value)
         : this.ngControl.control.value) || '';
+
       // This improves the speed as it won't have to be done for each list item
       const normalizedQuery = _controlValue.toString().toLowerCase();
+
       this._container.query = this.typeaheadSingleWords
         ? tokenize(
           normalizedQuery,

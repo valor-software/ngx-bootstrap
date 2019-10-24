@@ -17,7 +17,6 @@
       <li #liElements
           *ngIf="!match.isHeader()"
           [@typeaheadAnimation]="animationState"
-          (@typeaheadAnimation.done)="positionServiceEnable()"
           [class.active]="isActive(match)"
           (mouseenter)="selectActive(match)">
 
@@ -37,7 +36,6 @@
     <ng-template [ngIf]="!match.isHeader()">
       <button #liElements
               [@typeaheadAnimation]="animationState"
-              (@typeaheadAnimation.done)="positionServiceEnable()"
               class="dropdown-item"
               (click)="selectMatch(match, $event)"
               (mouseenter)="selectActive(match)"
