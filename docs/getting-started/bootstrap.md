@@ -17,7 +17,7 @@ ng serve
 
 ## Adding ngx-bootstrap and Bootstrap
 
- - install `ngx-bootstrap` and `Bootstrap`
+ - Install `ngx-bootstrap` and `Bootstrap`
 
  ```bash
  npm install ngx-bootstrap bootstrap --save
@@ -28,7 +28,7 @@ ng serve
 
 Now that the project is set up it must be configured to include the Bootstrap CSS. You have two options:
 
- - add styles to angular.json:
+ - Add styles to angular.json:
    - Open the file angular.json from the root of your project.
    - Under the property apps the first item in that array is the default application.
    - There is a property styles which allows external global styles to be applied to your application.
@@ -45,13 +45,13 @@ Now that the project is set up it must be configured to include the Bootstrap CS
 
    Note: When you make changes to angular.json you will need to re-start ng serve to pick up configuration changes.
 
- - add styles to index.html:
+ - Add styles to index.html:
    - for Bootstrap 3:
    ```
    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
    ```
 
-   - or for Bootstrap 4:
+   - for Bootstrap 4:
    ```
    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
    ```
@@ -71,7 +71,7 @@ cd my-app
 If the project has already been created then
 
 - rename `src/styles.css` to `src/styles.scss`
-- in `angular.json` make the following changes
+- make the following changes in `angular.json`
 ```
 "styles": [
   "styles.css" <-- rename this from .css to .scss
@@ -107,7 +107,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 })
 ```
 
-- open `src/app/app.component.html` and add
+- Open `src/app/app.component.html` and add
 ```
 <div class="btn-group" dropdown>
   <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
@@ -124,4 +124,4 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 </div>
 ```
 
-run the app in demo mode and ensure the dropdown button functions correctly.
+Run the app in demo mode and ensure the dropdown button functions correctly.
