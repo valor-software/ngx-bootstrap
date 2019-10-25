@@ -1,4 +1,4 @@
-﻿/* tslint:disable:max-file-line-count */
+/* tslint:disable: max-file-line-count */
 import {
   Component,
   EventEmitter,
@@ -11,24 +11,6 @@ import {
 
 import { DateFormatter } from './date-formatter';
 
-// const MIN_DATE:Date = void 0;
-// const MAX_DATE:Date = void 0;
-// const DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-/*
- const KEYS = {
- 13: 'enter',
- 32: 'space',
- 33: 'pageup',
- 34: 'pagedown',
- 35: 'end',
- 36: 'home',
- 37: 'left',
- 38: 'up',
- 39: 'right',
- 40: 'down'
- };
- */
 
 @Component({
   selector: 'datepicker-inner',
@@ -69,8 +51,11 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   @Output() update: EventEmitter<Date> = new EventEmitter<Date>(false);
   @Output() activeDateChange: EventEmitter<Date> = new EventEmitter<Date>(undefined);
 
+  /* tslint:disable-next-line: no-any*/
   stepDay: any = {};
+  /* tslint:disable-next-line: no-any*/
   stepMonth: any = {};
+  /* tslint:disable-next-line: no-any*/
   stepYear: any = {};
 
   uniqueId: string;
@@ -119,6 +104,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   }
 
   // Check if activeDate has been update and then emit the activeDateChange with the new date
+  /* tslint:disable-next-line: no-any */
   checkIfActiveDateGotUpdated(activeDate: any): void {
     if (activeDate && !activeDate.firstChange) {
       const previousValue = activeDate.previousValue;
@@ -198,6 +184,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     return this.dateFormatter.format(date, format, this.locale);
   }
 
+  /* tslint:disable-next-line: no-any*/
   isActive(dateObject: any): boolean {
     if (this.compare(dateObject.date, this.activeDate) === 0) {
       this.activeDateId = dateObject.uid;
@@ -208,7 +195,9 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     return false;
   }
 
+  /* tslint:disable-next-line: no-any*/
   createDateObject(date: Date, format: string): any {
+    /* tslint:disable-next-line: no-any*/
     const dateObject: any = {};
     dateObject.date = new Date(
       date.getFullYear(),
@@ -225,7 +214,9 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     return dateObject;
   }
 
+  /* tslint:disable-next-line: no-any*/
   split(arr: any[], size: number): any[] {
+    /* tslint:disable-next-line: no-any*/
     const arrays: any[] = [];
     while (arr.length > 0) {
       arrays.push(arr.splice(0, size));
@@ -286,6 +277,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   }
 
   move(direction: number): void {
+    /* tslint:disable-next-line: no-any*/
     let expectedStep: any;
     if (this.datepickerMode === 'day') {
       expectedStep = this.stepDay;
@@ -336,6 +328,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
       date: Date;
       mode: string;
       clazz: string;
+    /* tslint:disable-next-line: no-any */
     } = this.customClass.find((customClass: any) => {
       return (
         customClass.date.valueOf() === date.valueOf() &&

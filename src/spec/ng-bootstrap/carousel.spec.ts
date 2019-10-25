@@ -7,7 +7,7 @@ import { discardPeriodicTasks, fakeAsync, inject, TestBed, tick } from '@angular
 
 import { By } from '@angular/platform-browser';
 
-import { CarouselComponent, CarouselConfig, CarouselModule } from '../../carousel/index';
+import { CarouselComponent, CarouselConfig, CarouselModule } from '../../carousel';
 import { createGenericTestComponent } from './test/common';
 
 @Component({selector: 'test-cmp', template: ''})
@@ -70,6 +70,7 @@ describe('ngb-carousel', () => {
     </carousel>
     `;
       const fixture = createTestComponent(html);
+      tick();
 
       const slideElms = fixture.nativeElement.querySelectorAll(
         '.carousel-item'
@@ -91,13 +92,14 @@ describe('ngb-carousel', () => {
     'should mark the first slide as active by default',
     fakeAsync(() => {
       const html = `
-      <carousel>
-      <slide>slide1</slide>
-      <slide>slide2</slide>
-    </carousel>
-    `;
+        <carousel>
+          <slide>slide1</slide>
+          <slide>slide2</slide>
+        </carousel>
+      `;
 
       const fixture = createTestComponent(html);
+      tick();
       expectActiveSlides(fixture.nativeElement, [true, false]);
 
       discardPeriodicTasks();
@@ -115,6 +117,7 @@ describe('ngb-carousel', () => {
      `;
 
       const fixture = createTestComponent(html);
+      tick();
 
       fixture.componentInstance.activeSlideIndex = 1;
       fixture.detectChanges();
@@ -135,6 +138,7 @@ describe('ngb-carousel', () => {
     `;
 
       const fixture = createTestComponent(html);
+      tick();
       expectActiveSlides(fixture.nativeElement, [true, false]);
 
       discardPeriodicTasks();
@@ -152,6 +156,7 @@ describe('ngb-carousel', () => {
     `;
 
       const fixture = createTestComponent(html);
+      tick();
       const indicatorElms = fixture.nativeElement.querySelectorAll(
         'ol.carousel-indicators > li'
       );
@@ -177,6 +182,7 @@ describe('ngb-carousel', () => {
     `;
 
       const fixture = createTestComponent(html);
+      tick();
 
       const prevControlElm = fixture.nativeElement.querySelector(
         '.carousel-control-prev'
@@ -320,6 +326,7 @@ describe('ngb-carousel', () => {
     `;
 
       const fixture = createTestComponent(html);
+      tick();
       const prevControlElm = fixture.nativeElement.querySelector(
         '.carousel-control-prev'
       );
@@ -356,6 +363,7 @@ describe('ngb-carousel', () => {
     `;
 
       const fixture = createTestComponent(html);
+      tick();
 
       const prevControlElm = fixture.nativeElement.querySelector(
         '.carousel-control-prev'
@@ -503,7 +511,6 @@ describe('ngb-carousel', () => {
       expect(carousel.interval).toBe(config.interval);
       expect(carousel.noWrap).toBe(config.noWrap);
       expect(carousel.showIndicators).toBe(config.showIndicators);
-      // expect(carousel.keyboard).toBe(config.keyboard);
     });
   });
 });

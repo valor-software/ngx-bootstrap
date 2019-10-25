@@ -1,4 +1,4 @@
-import { Action } from '../../mini-ngrx/index';
+import { Action } from 'ngx-bootstrap/mini-ngrx';
 import {
   canChangeHours,
   canChangeMinutes,
@@ -36,6 +36,7 @@ export const initialState: TimepickerState = {
   }
 };
 
+// tslint:disable-next-line:cyclomatic-complexity
 export function timepickerReducer(state = initialState, action: Action) {
   switch (action.type) {
     case TimepickerActions.WRITE_VALUE: {

@@ -1,7 +1,7 @@
 import {
   Component, HostBinding, Inject, Input, OnDestroy, OnInit, Output, EventEmitter
 } from '@angular/core';
-import { isBs3 } from '../utils/theme-provider';
+import { isBs3 } from 'ngx-bootstrap/utils';
 import { AccordionComponent } from './accordion.component';
 
 /**
@@ -16,9 +16,12 @@ import { AccordionComponent } from './accordion.component';
   host: {
     class: 'panel',
     style: 'display: block'
-  }
+  },
+  styleUrls: ['./accordion.scss']
 })
 export class AccordionPanelComponent implements OnInit, OnDestroy {
+  /** turn on/off animation */
+  isAnimated = false;
   /** Clickable text in accordion's group header, check `accordion heading` below for using html in header */
   @Input() heading: string;
   /** Provides an ability to use Bootstrap's contextual panel classes
@@ -48,7 +51,11 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
       this._isOpen = value;
       Promise.resolve(null).then(() => {
         this.isOpenChange.emit(value);
-      });
+      })
+        .catch((error: Error) => {
+          /* tslint:disable: no-console */
+          console.log(error);
+        });
     }
   }
 
@@ -63,16 +70,16 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
     this.accordion = accordion;
   }
 
-  ngOnInit(): any {
+  ngOnInit(): void {
     this.panelClass = this.panelClass || 'panel-default';
     this.accordion.addGroup(this);
   }
 
-  ngOnDestroy(): any {
+  ngOnDestroy(): void {
     this.accordion.removeGroup(this);
   }
 
-  toggleOpen(event: Event): any {
+  toggleOpen(): void {
     if (!this.isDisabled) {
       this.isOpen = !this.isOpen;
     }

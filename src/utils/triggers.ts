@@ -4,15 +4,27 @@
  */
 import { Renderer2 } from '@angular/core';
 import { Trigger } from './trigger.class';
-import {
-  BsEventCallback, ListenOptions
-} from '../component-loader/listen-options.model';
+
+/* tslint:disable-next-line: no-any */
+export type BsEventCallback = (event?: any) => boolean | void;
+
+export interface ListenOptions {
+  target?: HTMLElement;
+  targets?: HTMLElement[];
+  triggers?: string;
+  outsideClick?: boolean;
+  outsideEsc?: boolean;
+  show?: BsEventCallback;
+  hide?: BsEventCallback;
+  toggle?: BsEventCallback;
+}
 
 const DEFAULT_ALIASES = {
   hover: ['mouseover', 'mouseout'],
   focus: ['focusin', 'focusout']
 };
 
+/* tslint:disable-next-line: no-any */
 export function parseTriggers(triggers: string, aliases: any = DEFAULT_ALIASES): Trigger[] {
   const trimmedTriggers = (triggers || '').trim();
 
@@ -45,12 +57,14 @@ export function parseTriggers(triggers: string, aliases: any = DEFAULT_ALIASES):
 }
 
 export function listenToTriggers(renderer: Renderer2,
+                                 /* tslint:disable-next-line: no-any */
                                  target: any,
                                  triggers: string,
                                  showFn: BsEventCallback,
                                  hideFn: BsEventCallback,
                                  toggleFn: BsEventCallback): Function {
   const parsedTriggers = parseTriggers(triggers);
+  /* tslint:disable-next-line: no-any */
   const listeners: any[] = [];
 
   if (parsedTriggers.length === 1 && parsedTriggers[0].isManual()) {
@@ -85,6 +99,7 @@ export function listenToTriggersV2(renderer: Renderer2,
   }
 
   // all listeners
+  /* tslint:disable-next-line: no-any */
   const listeners: any[] = [];
 
   // lazy listeners registration
@@ -123,15 +138,37 @@ export function registerOutsideClick(renderer: Renderer2,
     return Function.prototype;
   }
 
+  /* tslint:disable-next-line: no-any */
   return renderer.listen('document', 'click', (event: any) => {
     if (options.target && options.target.contains(event.target)) {
-      return;
+      return undefined;
     }
     if (
       options.targets &&
       options.targets.some(target => target.contains(event.target))
     ) {
-      return;
+      return undefined;
+    }
+
+    options.hide();
+  });
+}
+
+export function registerEscClick(renderer: Renderer2,
+                                 options: ListenOptions) {
+  if (!options.outsideEsc) {
+    return Function.prototype;
+  }
+
+  return renderer.listen('document', 'keyup.esc', (event: any) => {
+    if (options.target && options.target.contains(event.target)) {
+      return undefined;
+    }
+    if (
+      options.targets &&
+      options.targets.some(target => target.contains(event.target))
+    ) {
+      return undefined;
     }
 
     options.hide();
