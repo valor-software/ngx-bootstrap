@@ -10,6 +10,7 @@ export interface FlagMonthCalendarOptions {
   minDate: Date;
   maxDate: Date;
   hoveredMonth: Date;
+  selectedDate: Date;
   displayMonths: number;
   monthIndex: number;
 }
@@ -25,13 +26,16 @@ export function flagMonthsCalendar(
         const isDisabled =
           options.isDisabled ||
           isMonthDisabled(month.date, options.minDate, options.maxDate);
+        const isSelected = isSameMonth(month.date, options.selectedDate);
         const newMonth = Object.assign(/*{},*/ month, {
           isHovered,
-          isDisabled
+          isDisabled,
+          isSelected
         });
         if (
           month.isHovered !== newMonth.isHovered ||
-          month.isDisabled !== newMonth.isDisabled
+          month.isDisabled !== newMonth.isDisabled ||
+          month.isSelected !== newMonth.isSelected
         ) {
           monthCalendar.months[rowIndex][monthIndex] = newMonth;
         }
