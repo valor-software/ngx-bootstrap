@@ -13,13 +13,11 @@ const hostname = 'ngx-bootstrap';
 let prevVersion;
 const newVersion = require('../package.json').version;
 
-if (!fs.existsSync(ghPagesDir)) {
+if (!fs.existsSync(ghPagesDir))
   throw new Error('gh-pages dir wasn\'t found. Run `npm run docs.fetch`');
-}
 
-if (!fs.existsSync(demoDistDir)) {
+if (!fs.existsSync(demoDistDir))
   throw new Error('demo/dist dir wasn\'t found. Run `npm run demo.build`');
-}
 
 try {
   prevVersion = require(path.join('../', ghPagesDir, currentVersionFilePath)).version;
@@ -37,18 +35,17 @@ fs.readdir('gh-pages')
   .then(filterFileToMove)
   // for local development, if version not changed, clean gh-pages folder
   .then(files => {
-    if (isVersionChanged) {
+    if (isVersionChanged)
       return files;
-    }
+  
     console.log('Version hasn\'t changed. Current gh-pages version will be replaced with the one from demo/dist');
     return Promise.all(files.map(file => fs.remove(path.join(ghPagesDir, file))))
       .then(() => files)
   })
   // move old files to corresponding folder, skip for local dev
   .then(files => {
-    if (!isVersionChanged) {
+    if (!isVersionChanged)
       return files;
-    }
 
     fs.ensureDirSync(path.join(oldVersionDir, prevVersion));
 
@@ -63,9 +60,9 @@ fs.readdir('gh-pages')
   .then(() => fs.copy(demoDistDir, ghPagesDir))
   // generate new version json files
   .then(() => {
-    if (isVersionChanged) {
+    if (isVersionChanged) 
       return generateJson();
-    }
+    
   })
   .catch(console.error.bind(console));
 
@@ -91,9 +88,8 @@ function generateJson() {
 
       return Promise
         .all(versions.map((ver) => {
-          if (ver.version === 'Current') {
+          if (ver.version === 'Current') 
             return Promise.resolve();
-          }
 
           const _path = path.join(oldVersionDir, ver.version, versionsFilePath);
           fs.ensureFileSync(_path);
