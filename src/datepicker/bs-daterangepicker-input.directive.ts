@@ -106,7 +106,7 @@ export class BsDaterangepickerInputDirective
 
   onChange(event: Event) {
     /* tslint:disable-next-line: no-any*/
-    this.writeValue((event.target as any).value, false);
+    this.writeValue((event.target as any).value, this._picker._config.useUtc);
     this._onChange(this._value);
     this._onTouched();
   }

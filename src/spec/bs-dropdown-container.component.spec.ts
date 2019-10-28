@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BsDropdownContainerComponent, BsDropdownModule, BsDropdownState } from '../dropdown';
 import { Subject } from 'rxjs';
 import { window } from '../utils';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('BsDropdownContainerComponent tests', () => {
   let fixture: ComponentFixture<BsDropdownContainerComponent>;
@@ -16,7 +17,10 @@ describe('BsDropdownContainerComponent tests', () => {
       isOpenChange: stateSubject.asObservable()
     };
     TestBed.configureTestingModule({
-      imports: [BsDropdownModule.forRoot()],
+      imports: [
+        BsDropdownModule.forRoot(),
+        BrowserAnimationsModule
+      ],
       providers: [{ provide: BsDropdownState, useValue: fakeService }]
     });
   });
