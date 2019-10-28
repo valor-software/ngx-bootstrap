@@ -106,7 +106,7 @@ export class BsDaterangepickerInputDirective
 
   onChange(event: Event) {
     /* tslint:disable-next-line: no-any*/
-    this.writeValue((event.target as any).value, this._picker._config.useUtc);
+    this.writeValue((event.target as any).value);
     this._onChange(this._value);
     this._onTouched();
   }
@@ -142,7 +142,7 @@ export class BsDaterangepickerInputDirective
     this._validatorChange = fn;
   }
 
-  writeValue(value: Date[] | string, isUtc = true) {
+  writeValue(value: Date[] | string) {
     if (!value) {
       this._value = null;
     } else {
@@ -166,7 +166,7 @@ export class BsDaterangepickerInputDirective
 
       this._value = (_input as string[])
         .map((_val: string): Date => {
-            if (isUtc) {
+            if (this._picker._config.useUtc) {
               return utcAsLocal(
                 parseDate(_val, this._picker._config.dateInputFormat, this._localeService.currentLocale)
               );
