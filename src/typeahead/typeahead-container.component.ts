@@ -16,9 +16,9 @@ import { PositioningService } from 'ngx-bootstrap/positioning';
 import { latinize } from './typeahead-utils';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { TypeaheadDirective } from './typeahead.directive';
-import { typeaheadAnimation } from './typeahead-animations';
+import { TYPEAHEAD_ANIMATION_TIMING, typeaheadAnimation } from './typeahead-animations';
 
-import { take } from 'rxjs/operators';
+import { delay, take, tap } from 'rxjs/operators';
 
 
 @Component({
@@ -27,7 +27,6 @@ import { take } from 'rxjs/operators';
   host: {
     class: 'dropdown open bottom',
     '[class.dropdown-menu]': 'isBs4',
-    '[style.overflow-y]' : `isBs4 && needScrollbar ? 'scroll': 'visible'`,
     '[style.height]': `isBs4 && needScrollbar ? guiHeight: 'auto'`,
     '[style.visibility]': `visibility`,
     '[class.dropup]': 'dropup',
@@ -37,6 +36,11 @@ import { take } from 'rxjs/operators';
     `
     :host.dropdown {
       z-index: 1000;
+    }
+
+    :host.dropdown-menu, .dropdown-menu {
+      overflow-y: auto;
+      height: 100px;
     }
   `
   ],
@@ -92,19 +96,24 @@ export class TypeaheadContainerComponent {
 
     this.positionService.event$
       .pipe(
-        take(1)
+        take(1),
+        tap(() => {
+          this.positionService.disable();
+          this.visibility = this.typeaheadScrollable ? 'hidden' : 'visible';
+
+          if (this.isAnimated) {
+            this.animationState = this.isTopPosition ? 'animated-up' : 'animated-down';
+
+            return;
+          }
+
+          this.positionService.enable();
+          this.animationState = 'unanimated';
+        }),
+        delay(parseInt(TYPEAHEAD_ANIMATION_TIMING, 10))
       )
       .subscribe(() => {
-        this.positionService.disable();
-        this.visibility = this.typeaheadScrollable ? 'hidden' : 'visible';
-
-        if (this.isAnimated) {
-          this.animationState = this.isTopPosition ? 'animated-up' : 'animated-down';
-
-          return;
-        }
-
-        this.animationState = 'unanimated';
+        this.positionService.enable();
       });
 
     this._matches = value;
@@ -179,10 +188,6 @@ export class TypeaheadContainerComponent {
     if (!this.parent.typeaheadSelectFirstItem && isActiveItemChanged) {
       this.selectMatch(this._active);
     }
-  }
-
-  positionServiceEnable(): void {
-    this.positionService.enable();
   }
 
   prevActiveMatch(): void {
