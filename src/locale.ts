@@ -22,6 +22,7 @@ export {
   jaLocale,
   koLocale,
   ltLocale,
+  lvLocale,
   mnLocale,
   nbLocale,
   nlBeLocale,
