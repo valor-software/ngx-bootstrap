@@ -1250,5 +1250,206 @@ describe('Component: TimepickerComponent', () => {
       });
 
     }));
+
+    // Case for #3139
+    it('should preserve day when minutes cross up from 23:59 to 00:04', fakeAsync(() => { // minuteStep default value is 5
+      const hourA = 23;
+      const hourAstr = '23';
+      const minutesA = 59;
+      const minutesAstr = '59';
+      
+      let componentDateTime: Date;
+      component.registerOnChange((newDateTime: Date) => {
+        componentDateTime = newDateTime;
+        return newDateTime;
+      });
+      expect(componentDateTime).toBeUndefined();
+      const testedTime = testTime(hourA, minutesA);
+      component.writeValue(testedTime);
+
+      fixture.detectChanges();
+
+      expect(componentDateTime.getHours()).toBe(hourA);
+      expect(inputHours.value).toBe(hourAstr);
+      expect(componentDateTime.getMinutes()).toBe(minutesA);
+      expect(inputMinutes.value).toBe(minutesAstr);
+
+      // Record date part before changing hour
+      const expectedDate = _getDateOnly(componentDateTime);
+
+      fireEvent(buttonChanges[1], 'click'); // Minutes increment button
+      const hourB = 0;
+      const hourBstr = '00';
+      const minutesB = 4;
+      const minutesBstr = '04';
+
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(componentDateTime.getHours()).toBe(hourB);
+        expect(inputHours.value).toBe(hourBstr);
+        expect(componentDateTime.getMinutes()).toBe(minutesB);
+        expect(inputMinutes.value).toBe(minutesBstr);
+
+        const actualDate = _getDateOnly(componentDateTime);
+        expect(actualDate.toString()).toBe(expectedDate.toString());
+        expect(actualDate.valueOf()).toBe(expectedDate.valueOf());
+      });
+
+    }));
+
+    // Case for #3139
+    it('should preserve day when minutes cross down from 00:01 to 23:56', fakeAsync(() => {
+      const hourA = 0;
+      const hourAstr = '00';
+      const minutesA = 1;
+      const minutesAstr = '01';
+      
+      let componentDateTime: Date;
+      component.registerOnChange((newDateTime: Date) => {
+        componentDateTime = newDateTime;
+        return newDateTime;
+      });
+      expect(componentDateTime).toBeUndefined();
+      const testedTime = testTime(hourA, minutesA);
+      component.writeValue(testedTime);
+
+      fixture.detectChanges();
+
+      expect(componentDateTime.getHours()).toBe(hourA);
+      expect(inputHours.value).toBe(hourAstr);
+      expect(componentDateTime.getMinutes()).toBe(minutesA);
+      expect(inputMinutes.value).toBe(minutesAstr);
+
+      // Record date part before changing hour
+      const expectedDate = _getDateOnly(componentDateTime);
+
+      fireEvent(buttonChanges[4], 'click'); // Minutes decrement button
+      const hourB = 23;
+      const hourBstr = '23';
+      const minutesB = 56;
+      const minutesBstr = '56';
+
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(componentDateTime.getHours()).toBe(hourB);
+        expect(inputHours.value).toBe(hourBstr);
+        expect(componentDateTime.getMinutes()).toBe(minutesB);
+        expect(inputMinutes.value).toBe(minutesBstr);
+
+        const actualDate = _getDateOnly(componentDateTime);
+        expect(actualDate.toString()).toBe(expectedDate.toString());
+        expect(actualDate.valueOf()).toBe(expectedDate.valueOf());
+      });
+
+    }));
+
+    // Case for #3139
+    it('should preserve day when seconds cross up from 23:59:59 to 00:00:09', fakeAsync(() => { // secondsStep default value is 10
+      const hourA = 23;
+      const hourAstr = '23';
+      const minutesA = 59;
+      const minutesAstr = '59';
+      const secondsA = 59;
+      const secondsAstr = '59';
+      
+      let componentDateTime: Date;
+      component.registerOnChange((newDateTime: Date) => {
+        componentDateTime = newDateTime;
+        return newDateTime;
+      });
+      expect(componentDateTime).toBeUndefined();
+      const testedTime = testTime(hourA, minutesA, secondsA);
+      component.writeValue(testedTime);
+
+      fixture.detectChanges();
+
+      expect(componentDateTime.getHours()).toBe(hourA);
+      expect(inputHours.value).toBe(hourAstr);
+      expect(componentDateTime.getMinutes()).toBe(minutesA);
+      expect(inputMinutes.value).toBe(minutesAstr);
+      expect(componentDateTime.getSeconds()).toBe(secondsA);
+      expect(inputSeconds.value).toBe(secondsAstr);
+
+      // Record date part before changing hour
+      const expectedDate = _getDateOnly(componentDateTime);
+
+      fireEvent(buttonChanges[2], 'click'); // Seconds increment button
+      const hourB = 0;
+      const hourBstr = '00';
+      const minutesB = 0;
+      const minutesBstr = '00';
+      const secondsB = 9;
+      const secondsBstr = '09';
+
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(componentDateTime.getHours()).toBe(hourB);
+        expect(inputHours.value).toBe(hourBstr);
+        expect(componentDateTime.getMinutes()).toBe(minutesB);
+        expect(inputMinutes.value).toBe(minutesBstr);
+        expect(componentDateTime.getSeconds()).toBe(secondsB);
+        expect(inputSeconds.value).toBe(secondsBstr);
+
+        const actualDate = _getDateOnly(componentDateTime);
+        expect(actualDate.toString()).toBe(expectedDate.toString());
+        expect(actualDate.valueOf()).toBe(expectedDate.valueOf());
+      });
+
+    }));
+
+    // Case for #3139
+    it('should preserve day when seconds cross down from 00:00:01 to 23:59:51', fakeAsync(() => {
+      const hourA = 0;
+      const hourAstr = '00';
+      const minutesA = 0;
+      const minutesAstr = '00';
+      const secondsA = 1;
+      const secondsAstr = '01';
+      
+      let componentDateTime: Date;
+      component.registerOnChange((newDateTime: Date) => {
+        componentDateTime = newDateTime;
+        return newDateTime;
+      });
+      expect(componentDateTime).toBeUndefined();
+      const testedTime = testTime(hourA, minutesA, secondsA);
+      component.writeValue(testedTime);
+
+      fixture.detectChanges();
+
+      expect(componentDateTime.getHours()).toBe(hourA);
+      expect(inputHours.value).toBe(hourAstr);
+      expect(componentDateTime.getMinutes()).toBe(minutesA);
+      expect(inputMinutes.value).toBe(minutesAstr);
+      expect(componentDateTime.getSeconds()).toBe(secondsA);
+      expect(inputSeconds.value).toBe(secondsAstr);
+
+      // Record date part before changing hour
+      const expectedDate = _getDateOnly(componentDateTime);
+
+      fireEvent(buttonChanges[5], 'click'); // Seconds decrement button
+      const hourB = 23;
+      const hourBstr = '23';
+      const minutesB = 59;
+      const minutesBstr = '59';
+      const secondsB = 51;
+      const secondsBstr = '51';
+
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(componentDateTime.getHours()).toBe(hourB);
+        expect(inputHours.value).toBe(hourBstr);
+        expect(componentDateTime.getMinutes()).toBe(minutesB);
+        expect(inputMinutes.value).toBe(minutesBstr);
+        expect(componentDateTime.getSeconds()).toBe(secondsB);
+        expect(inputSeconds.value).toBe(secondsBstr);
+
+        const actualDate = _getDateOnly(componentDateTime);
+        expect(actualDate.toString()).toBe(expectedDate.toString());
+        expect(actualDate.valueOf()).toBe(expectedDate.valueOf());
+      });
+
+    }));
+
   });
 });
