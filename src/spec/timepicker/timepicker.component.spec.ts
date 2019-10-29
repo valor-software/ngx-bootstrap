@@ -13,12 +13,12 @@ import {
 
 /* tslint:disable-next-line: no-any */
 function getInputElements(fixture: any) {
-  return fixture.nativeElement.querySelectorAll('input') as HTMLInputElement;
+  return fixture.nativeElement.querySelectorAll('input') as HTMLInputElement[];
 }
 
 /* tslint:disable-next-line: no-any */
 function getElements(fixture: any, selector: string) {
-  return fixture.nativeElement.querySelectorAll(selector) as HTMLElement;
+  return fixture.nativeElement.querySelectorAll(selector) as HTMLElement[];
 }
 
 /* tslint:disable-next-line: no-any */
@@ -50,7 +50,7 @@ describe('Component: TimepickerComponent', () => {
   let buttonMeridian: HTMLElement;
   /* tslint:disable-next-line: no-any */
   let buttonDebugMeridian: any;
-  let buttonChanges: HTMLElement;
+  let buttonChanges: HTMLElement[];
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -69,7 +69,7 @@ describe('Component: TimepickerComponent', () => {
       inputMinutes = getInputElements(fixture)[1];
       inputSeconds = getInputElements(fixture)[2];
       buttonChanges = getElements(fixture, 'a.btn');
-      buttonMeridian = getElements(fixture, 'button');
+      buttonMeridian = getElements(fixture, 'button')[0];
     });
 
     it('hours and minutes fields should be visible', () => {
