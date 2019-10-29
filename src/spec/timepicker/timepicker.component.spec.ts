@@ -1149,4 +1149,106 @@ describe('Component: TimepickerComponent', () => {
     });
 
   });
+
+  describe('date part', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TimepickerComponent);
+      component = fixture.componentInstance;
+      component.showSeconds = true;
+      component.showMeridian = false;
+
+      fixture.detectChanges();
+
+      const inputs = getInputElements(fixture);
+      inputHours = inputs[0];
+      inputMinutes = inputs[1];
+      inputSeconds = inputs[2];
+      buttonChanges = getElements(fixture, 'a.btn');
+    });
+
+    /**
+     * Extract only the date part, i.e. floor to previous midnight
+     * (in system local timezone)
+     * @param date with potential hours, minutes, seconds and milliseconds
+     */
+    function _getDateOnly(date: Date): Date {
+      const result = new Date(date);
+      result.setHours(0, 0, 0, 0);
+      return result;
+    }
+
+    it('should preserve day when hour crosses up from 23 to 00', fakeAsync(() => {
+      const hourA = 23;
+      const hourAstr = '23';
+      
+      let componentDateTime: Date;
+      component.registerOnChange((newDateTime: Date) => {
+        componentDateTime = newDateTime;
+        return newDateTime;
+      });
+      expect(componentDateTime).toBeUndefined();
+      const testedTime = testTime(hourA);
+      component.writeValue(testedTime);
+
+      fixture.detectChanges();
+
+      expect(componentDateTime.getHours()).toBe(hourA);
+      expect(inputHours.value).toBe(hourAstr);
+
+      // Record date part before changing hour
+      const expectedDate = _getDateOnly(componentDateTime);
+
+      fireEvent(buttonChanges[0], 'click'); // Hour increment button
+      const hourB = 0;
+      const hourBstr = '00';
+
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(componentDateTime.getHours()).toBe(hourB);
+        expect(inputHours.value).toBe(hourBstr);
+
+        const actualDate = _getDateOnly(componentDateTime);
+        expect(actualDate.toString()).toBe(expectedDate.toString()); // Compare string output for easier debugging
+        expect(actualDate.valueOf()).toBe(expectedDate.valueOf()); // Still compare epoch value for millisecond precision
+      });
+
+    }));
+
+    it('should preserve day when hour crosses down from 00 to 23', fakeAsync(() => {
+      const hourA = 0;
+      const hourAstr = '00';
+      
+      let componentDateTime: Date;
+      component.registerOnChange((newDateTime: Date) => {
+        componentDateTime = newDateTime;
+        return newDateTime;
+      });
+      expect(componentDateTime).toBeUndefined();
+      const testedTime = testTime(hourA);
+      component.writeValue(testedTime);
+
+      fixture.detectChanges();
+
+      expect(componentDateTime.getHours()).toBe(hourA);
+      expect(inputHours.value).toBe(hourAstr);
+
+      // Record date part before changing hour
+      const expectedDate = _getDateOnly(componentDateTime);
+
+      fireEvent(buttonChanges[3], 'click'); // Hour decrement button
+      const hourB = 23;
+      const hourBstr = '23';
+
+      fixture.detectChanges();
+      fixture.whenStable().then(() => {
+        expect(componentDateTime.getHours()).toBe(hourB);
+        expect(inputHours.value).toBe(hourBstr);
+
+        const actualDate = _getDateOnly(componentDateTime);
+        expect(actualDate.toString()).toBe(expectedDate.toString());
+        expect(actualDate.valueOf()).toBe(expectedDate.valueOf());
+      });
+
+    }));
+  });
 });
