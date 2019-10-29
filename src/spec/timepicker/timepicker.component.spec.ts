@@ -1174,16 +1174,18 @@ describe('Component: TimepickerComponent', () => {
     function _getDateOnly(date: Date): Date {
       const result = new Date(date);
       result.setHours(0, 0, 0, 0);
+
       return result;
     }
 
     it('should preserve day when hour crosses up from 23 to 00', fakeAsync(() => {
       const hourA = 23;
       const hourAstr = '23';
-      
+
       let componentDateTime: Date;
       component.registerOnChange((newDateTime: Date) => {
         componentDateTime = newDateTime;
+
         return newDateTime;
       });
       expect(componentDateTime).toBeUndefined();
@@ -1208,8 +1210,12 @@ describe('Component: TimepickerComponent', () => {
         expect(inputHours.value).toBe(hourBstr);
 
         const actualDate = _getDateOnly(componentDateTime);
-        expect(actualDate.toString()).toBe(expectedDate.toString()); // Compare string output for easier debugging
-        expect(actualDate.valueOf()).toBe(expectedDate.valueOf()); // Still compare epoch value for millisecond precision
+
+        // Compare string output for easier debugging
+        expect(actualDate.toString()).toBe(expectedDate.toString());
+
+        // Still compare epoch value for millisecond precision
+        expect(actualDate.valueOf()).toBe(expectedDate.valueOf());
       });
 
     }));
@@ -1217,10 +1223,11 @@ describe('Component: TimepickerComponent', () => {
     it('should preserve day when hour crosses down from 00 to 23', fakeAsync(() => {
       const hourA = 0;
       const hourAstr = '00';
-      
+
       let componentDateTime: Date;
       component.registerOnChange((newDateTime: Date) => {
         componentDateTime = newDateTime;
+
         return newDateTime;
       });
       expect(componentDateTime).toBeUndefined();
@@ -1252,15 +1259,17 @@ describe('Component: TimepickerComponent', () => {
     }));
 
     // Case for #3139
-    it('should preserve day when minutes cross up from 23:59 to 00:04', fakeAsync(() => { // minuteStep default value is 5
+    // minuteStep default value is 5
+    it('should preserve day when minutes cross up from 23:59 to 00:04', fakeAsync(() => {
       const hourA = 23;
       const hourAstr = '23';
       const minutesA = 59;
       const minutesAstr = '59';
-      
+
       let componentDateTime: Date;
       component.registerOnChange((newDateTime: Date) => {
         componentDateTime = newDateTime;
+
         return newDateTime;
       });
       expect(componentDateTime).toBeUndefined();
@@ -1303,10 +1312,11 @@ describe('Component: TimepickerComponent', () => {
       const hourAstr = '00';
       const minutesA = 1;
       const minutesAstr = '01';
-      
+
       let componentDateTime: Date;
       component.registerOnChange((newDateTime: Date) => {
         componentDateTime = newDateTime;
+
         return newDateTime;
       });
       expect(componentDateTime).toBeUndefined();
@@ -1344,17 +1354,19 @@ describe('Component: TimepickerComponent', () => {
     }));
 
     // Case for #3139
-    it('should preserve day when seconds cross up from 23:59:59 to 00:00:09', fakeAsync(() => { // secondsStep default value is 10
+    // secondsStep default value is 10
+    it('should preserve day when seconds cross up from 23:59:59 to 00:00:09', fakeAsync(() => {
       const hourA = 23;
       const hourAstr = '23';
       const minutesA = 59;
       const minutesAstr = '59';
       const secondsA = 59;
       const secondsAstr = '59';
-      
+
       let componentDateTime: Date;
       component.registerOnChange((newDateTime: Date) => {
         componentDateTime = newDateTime;
+
         return newDateTime;
       });
       expect(componentDateTime).toBeUndefined();
@@ -1405,10 +1417,11 @@ describe('Component: TimepickerComponent', () => {
       const minutesAstr = '00';
       const secondsA = 1;
       const secondsAstr = '01';
-      
+
       let componentDateTime: Date;
       component.registerOnChange((newDateTime: Date) => {
         componentDateTime = newDateTime;
+
         return newDateTime;
       });
       expect(componentDateTime).toBeUndefined();
