@@ -40,6 +40,15 @@ export class TabsetComponent implements OnDestroy {
     this.setClassMap();
   }
 
+  /** navigation context class: 'tabs' or 'pills' */
+  @Input()
+  get isKeysAllowed(): boolean {
+    return this._isKeysAllowed;
+  }
+  set isKeysAllowed(value: boolean) {
+    this._isKeysAllowed = value;
+  }
+
   @HostBinding('class.tab-container') clazz = true;
 
   tabs: TabDirective[] = [];
@@ -49,6 +58,7 @@ export class TabsetComponent implements OnDestroy {
   protected _vertical: boolean;
   protected _justified: boolean;
   protected _type: string;
+  protected _isKeysAllowed: boolean;
 
   constructor(
     config: TabsetConfig,
