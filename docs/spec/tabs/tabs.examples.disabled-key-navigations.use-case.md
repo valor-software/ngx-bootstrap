@@ -11,5 +11,4 @@ Main success scenario:
 1. User opens Tabs demo page
 2. User clicks on Disabled key navigations sub-menu
 3. User see tabs component with 2 tabs.
-4. User clicks to the second tab.
-5. When user press 'delete' key, the tab will not be deleted because the key navigation is disabled.
+4. When user press 'delete' key, the tab will not be deleted because the key navigation is disabled.
