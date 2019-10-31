@@ -40,7 +40,7 @@ export class TabsetComponent implements OnDestroy {
     this.setClassMap();
   }
 
-  /** navigation context class: 'tabs' or 'pills' */
+  /** provides possibility to set keyNavigations enable or disable, by default is enable */
   @Input()
   get isKeysAllowed(): boolean {
     return this._isKeysAllowed;
