@@ -345,5 +345,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._tooltip.dispose();
+    this.tooltipChange.unsubscribe();
   }
 }
