@@ -15,13 +15,14 @@ import { routes } from './app.routing';
 import { DocumentationComponent } from './common/documentation/documentation.component';
 import { LandingComponent } from './common/landing/landing.component';
 import { TopMenuComponent } from './common/top-menu/top-menu.component';
+import { DiscoverComponent } from './common/discover/discover.component';
 import { DocsModule } from './docs';
 import { NgApiDoc } from './docs/api-docs/api-docs.model';
 import { StyleManager } from './theme/style-manager';
 import { ThemeStorage } from './theme/theme-storage';
 
 @NgModule({
-  declarations: [AppComponent, DocumentationComponent, TopMenuComponent, LandingComponent],
+  declarations: [AppComponent, DocumentationComponent, TopMenuComponent, LandingComponent, DiscoverComponent],
   imports: [
     BrowserAnimationsModule,
     DocsModule,
