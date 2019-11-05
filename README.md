@@ -13,14 +13,14 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 <a target="_blank" href="https://opencollective.com/ngx-bootstrap"><img src="https://opencollective.com/ngx-bootstrap/tiers/backer/badge.svg?label=backer&color=brightgreen" />
 
 <br/>
-<a href="https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWQ5M2Y4OWM0OGJjNmZiOGYyNjFlZTdlOGI1YjcxYWQ2ODhiOTY4NzhiODgwMTIzNDczODIyNWNmM2RlYWRhNTg"><img src="https://a.slack-edge.com/66f9/img/icons/ios-256.png" width="25" height="25" alt="slack" ></a>
+<a href="https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWVjZGU2MjI4MTVhMGVlMTc2OWRiMzA0NzBhNDU5YzQ0MDM3MWI5NzJjZTUzNzIxZmNjYmFlMjU2MzE0YmY0NWY"><img src="https://thehomeofthefuture.files.wordpress.com/2018/12/Joinslack.png" width="20%" alt="slack" ></a>
 </p>
 
 ## Links
 
 - [Documentation](http://valor-software.com/ngx-bootstrap/)
 - [Release Notes](https://github.com/valor-software/ngx-bootstrap/blob/development/CHANGELOG.md)
-- [Slack Community](https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWQ5M2Y4OWM0OGJjNmZiOGYyNjFlZTdlOGI1YjcxYWQ2ODhiOTY4NzhiODgwMTIzNDczODIyNWNmM2RlYWRhNTg)
+- [Slack Community](https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWVjZGU2MjI4MTVhMGVlMTc2OWRiMzA0NzBhNDU5YzQ0MDM3MWI5NzJjZTUzNzIxZmNjYmFlMjU2MzE0YmY0NWY)
 
 <!-- [![codecov](https://codecov.io/gh/valor-software/ngx-bootstrap/branch/development/graph/badge.svg)](https://codecov.io/gh/valor-software/ngx-bootstrap) -->
 
@@ -41,7 +41,7 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 
 ## Getting Started
 
-ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using markup and css provided by Bootstrap.
+ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using markup and CSS provided by Bootstrap.
 
 ## Supporting NGX-Bootstrap
 ngx-bootstrap is an Open Source (MIT Licensed) project, it's an independent project with ongoing development made possible thanks to the support of our awesome backers.
@@ -95,7 +95,7 @@ Use the Angular CLI ng add command for updating your Angular project
 ```bash
 ng add ngx-bootstrap
 ```
-OR use `ng add` to add needed component (for example tooltip)
+Or use `ng add` to add needed component (for example tooltip)
 ```bash
 ng add ngx-bootstrap --component tooltip
 ```
@@ -107,7 +107,7 @@ Add component to your page:
 </button>
 ```
 ### Setting up the bootstrap version manually
-Sometimes, your project might contain some library that could interfear with the bootstrap framework, or you might have a customized version of bootstrap. The consequence is that the process of determining bootstrap version might be failed, which can break the UI. In that case, we can still set the bootstrap version manually in the boostraping component (i.e. `AppComonent`):
+Sometimes, your project might contain some library that could interfere with the bootstrap framework, or you might have a customized version of bootstrap. The consequence is that the process of determining bootstrap version might be failed, which can break the UI. In that case, we can still set the bootstrap version manually in the bootstrapping component (i.e. `AppComponent`):
 ```
 import { setTheme } from 'ngx-bootstrap/utils';
 
@@ -128,7 +128,7 @@ Main source of API documentation and usage scenarios available here:
 Additionally you can find demos and docs deployed from latest code with <a href="https://ngx-bootstrap.surge.sh/">angular@latest</a> and <a
   href="https://ngx-bootstrap-latest.surge.sh/">angular@next</a>
 
-Server side rendered version of this documentation available <a href="https://ngx-universal.herokuapp.com/">here</a> served with Anguar universal and [nest.js](https://nestjs.com/)
+Server side rendered version of this documentation available <a href="https://ngx-universal.herokuapp.com/">here</a> served with Angular universal and [nest.js](https://nestjs.com/)
 
 ## API
 Check demo page for API [reference](https://valor-software.com/ngx-bootstrap/)
@@ -183,27 +183,27 @@ Here is the versions compatibility list:
 So if you are in trouble, here's where you can look for help.
 
 The best place to ask questions is on [StackOverflow (under the `ngx-bootstrap` tag)](https://stackoverflow.com/questions/tagged/ngx-bootstrap)
-You can also join [our Slack channel](https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWQ5M2Y4OWM0OGJjNmZiOGYyNjFlZTdlOGI1YjcxYWQ2ODhiOTY4NzhiODgwMTIzNDczODIyNWNmM2RlYWRhNTg) and link your stackoverflow question there. But try to avoid asking generic help questions directly on Slack since they can easily get lost in the chat. You can also [search among the existing GitHub issues](https://github.com/valor-software/ngx-bootstrap/issues?utf8=%E2%9C%93&q=is%3Aissue).
+You can also join [our Slack channel](https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWVjZGU2MjI4MTVhMGVlMTc2OWRiMzA0NzBhNDU5YzQ0MDM3MWI5NzJjZTUzNzIxZmNjYmFlMjU2MzE0YmY0NWY) and link your stackoverflow question there. But try to avoid asking generic help questions directly on Slack since they can easily get lost in the chat. You can also [search among the existing GitHub issues](https://github.com/valor-software/ngx-bootstrap/issues?utf8=%E2%9C%93&q=is%3Aissue).
 
 If, **and only if**, none of the above helped, please open a [new issue](https://github.com/valor-software/ngx-bootstrap/issues/new).
 
 ## Contribution
 
-Are very welcome! And remember, contribution is not only PRs and code, but any help with docs or helping other developers to solve issues are very appreciated! Thanks in advance!
+All contributions very welcome! And remember, contribution is not only PRs and code, but any help with docs or helping other developers to solve issues are very appreciated! Thanks in advance!
 
 Please read our [contribution guidelines](https://github.com/valor-software/ngx-bootstrap/blob/development/CONTRIBUTING.md).
 
-### If you need more modules check [here](https://github.com/valor-software/ng2-plans)
+### If you need more modules, check [here](https://github.com/valor-software/ng2-plans)
 
 Please read central `ngx` modules [readme](https://github.com/valor-software/ng2-plans) for details, plans and approach
 
 ### Credits
 Crossbrowser testing sponsored by [Saucelabs](https://saucelabs.com/)
-[<img src="https://saucelabs.com/content/images/circle-logo@2x.png" alt="Saucelabs" width="31" height="31">](https://saucelabs.com/)
+[<img src="https://avatars2.githubusercontent.com/u/88837?s=200&v=4" alt="Saucelabs" width="31" height="31">](https://saucelabs.com/)
 
 End-to-end testing sponsored by [Cypress](https://www.cypress.io/)
 [<img src="https://raw.githubusercontent.com/cypress-io/cypress-icons/master/src/favicon/favicon.ico" alt="Cypress" width="31" height="31">](https://www.cypress.io/)
 
 ### License
 
-MIT
+[MIT](https://github.com/valor-software/ngx-bootstrap/blob/development/LICENSE)
