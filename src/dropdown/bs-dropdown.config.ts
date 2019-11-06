@@ -7,4 +7,6 @@ export class BsDropdownConfig {
   autoClose = true;
   /** default dropdown auto closing behavior */
   insideClick = false;
+  /** turn on/off animation */
+  isAnimated = false;
 }

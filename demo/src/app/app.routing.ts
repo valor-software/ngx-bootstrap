@@ -1,5 +1,6 @@
 import { LandingComponent } from './common/landing/landing.component';
 import { DocumentationComponent } from './common/documentation/documentation.component';
+import { DiscoverComponent } from './common/discover/discover.component';
 
 export const routes = [
   {
@@ -11,6 +12,11 @@ export const routes = [
     path: 'documentation',
     data: ['Documentation'],
     component: DocumentationComponent
+  },
+  {
+    path: 'discover',
+    data: ['Discover'],
+    component: DiscoverComponent
   },
   {
     path: 'accordion',
