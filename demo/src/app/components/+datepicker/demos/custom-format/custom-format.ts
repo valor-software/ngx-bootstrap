@@ -17,6 +17,4 @@ export class DemoDatePickerCustomFormatComponent {
       new Date(this.currentDate.setDate(this.currentDate.getDate() + 7))
     ])
   });
-
-
 }
