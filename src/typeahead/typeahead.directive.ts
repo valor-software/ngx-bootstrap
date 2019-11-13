@@ -24,7 +24,13 @@ import { TypeaheadConfig } from './typeahead.config';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
 import { debounceTime, filter, mergeMap, switchMap, toArray } from 'rxjs/operators';
 
-@Directive({selector: '[typeahead]', exportAs: 'bs-typeahead'})
+@Directive({
+  selector: '[typeahead]',
+  exportAs: 'bs-typeahead',
+  host: {
+    '[attr.aria-activedescendant]': 'activeDescendant'
+  }
+})
 export class TypeaheadDirective implements OnInit, OnDestroy {
   /** options source, can be Array of strings, objects or
    * an Observable for external matching process
@@ -134,6 +140,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /**  if false don't focus the input element the typeahead directive is associated with on selection */
     // @Input() protected typeaheadFocusOnSelect:boolean;
 
+  activeDescendant: string;
   _container: TypeaheadContainerComponent;
   isActiveItemChanged = false;
   isTypeaheadOptionsListActive = false;
@@ -360,6 +367,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
     this._container.matches = this._matches;
     this.element.nativeElement.focus();
+
+    this._container.activeChangeEvent.subscribe((activeId: string) => this.activeDescendant = activeId);
   }
 
   hide(): void {

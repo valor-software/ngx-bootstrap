@@ -7,7 +7,9 @@ import {
   Renderer2,
   TemplateRef,
   ViewChild,
-  ViewChildren
+  ViewChildren,
+  Output,
+  EventEmitter
 } from '@angular/core';
 
 import { isBs3, Utils } from 'ngx-bootstrap/utils';
@@ -48,6 +50,10 @@ let nextWindowId = 0;
   animations: [typeaheadAnimation]
 })
 export class TypeaheadContainerComponent {
+
+  // tslint:disable-next-line: no-output-rename
+  @Output('activeChange') activeChangeEvent = new EventEmitter();
+
   parent: TypeaheadDirective;
   query: string[] | string;
   isFocused = false;
@@ -87,6 +93,11 @@ export class TypeaheadContainerComponent {
 
   get active(): TypeaheadMatch {
     return this._active;
+  }
+
+  set active(active: TypeaheadMatch) {
+    this._active = active;
+    this.activeChanged();
   }
 
   get matches(): TypeaheadMatch[] {
@@ -132,7 +143,7 @@ export class TypeaheadContainerComponent {
     }
 
     if (this.typeaheadIsFirstItemActive && this._matches.length > 0) {
-      this._active = this._matches[0];
+      this.active = this._matches[0];
 
       if (this._active.isHeader()) {
         this.nextActiveMatch();
@@ -148,7 +159,7 @@ export class TypeaheadContainerComponent {
         return;
       }
 
-      this._active = null;
+      this.active = null;
     }
   }
 
@@ -195,10 +206,16 @@ export class TypeaheadContainerComponent {
     }
   }
 
+  activeChanged(): void {
+    const index = this.matches.indexOf(this._active);
+    this.activeChangeEvent.emit(`${this.popupId}-${index}`);
+  }
+
   prevActiveMatch(): void {
+
     const index = this.matches.indexOf(this._active);
 
-    this._active = this.matches[
+    this.active = this.matches[
       index - 1 < 0 ? this.matches.length - 1 : index - 1
     ];
 
@@ -212,11 +229,13 @@ export class TypeaheadContainerComponent {
   }
 
   nextActiveMatch(): void {
+
     const index = this.matches.indexOf(this._active);
 
-    this._active = this.matches[
+    this.active = this.matches[
       index + 1 > this.matches.length - 1 ? 0 : index + 1
     ];
+
 
     if (this._active.isHeader()) {
       this.nextActiveMatch();
@@ -229,7 +248,7 @@ export class TypeaheadContainerComponent {
 
   selectActive(value: TypeaheadMatch): void {
     this.isFocused = true;
-    this._active = value;
+    this.active = value;
   }
 
   highlight(match: TypeaheadMatch, query: string[] | string): string {
@@ -276,7 +295,7 @@ export class TypeaheadContainerComponent {
   }
 
   isActive(value: TypeaheadMatch): boolean {
-    return this._active === value;
+    return this.active === value;
   }
 
   selectMatch(value: TypeaheadMatch, e: Event = void 0): boolean {
