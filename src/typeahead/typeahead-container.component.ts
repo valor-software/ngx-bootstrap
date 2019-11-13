@@ -20,6 +20,7 @@ import { TYPEAHEAD_ANIMATION_TIMING, typeaheadAnimation } from './typeahead-anim
 
 import { delay, take, tap } from 'rxjs/operators';
 
+let nextWindowId = 0;
 
 @Component({
   selector: 'typeahead-container',
@@ -60,6 +61,7 @@ export class TypeaheadContainerComponent {
   animationState: string;
   visibility = 'hidden';
   height = 0;
+  popupId = `ngb-typeahead-${nextWindowId++}`;
 
   get isBs4(): boolean {
     return !isBs3();
@@ -74,11 +76,14 @@ export class TypeaheadContainerComponent {
   @ViewChildren('liElements')
   private liElements: QueryList<ElementRef>;
 
+
   constructor(
     private positionService: PositioningService,
     private renderer: Renderer2,
     public element: ElementRef
-  ) { }
+  ) {
+    this.element.nativeElement.id = this.popupId;
+   }
 
   get active(): TypeaheadMatch {
     return this._active;
