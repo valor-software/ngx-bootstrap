@@ -30,7 +30,8 @@ import { debounceTime, filter, mergeMap, switchMap, toArray } from 'rxjs/operato
   host: {
     '[attr.aria-activedescendant]': 'activeDescendant',
     '[attr.aria-aria-owns]': 'isOpen ? this._container.popupId : null',
-    '[attr.aria-aria-expanded]': 'isOpen'
+    '[attr.aria-aria-expanded]': 'isOpen',
+    '[attr.aria-autocomplete]': 'list'
   }
 })
 export class TypeaheadDirective implements OnInit, OnDestroy {
