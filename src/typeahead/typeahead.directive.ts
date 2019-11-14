@@ -28,7 +28,9 @@ import { debounceTime, filter, mergeMap, switchMap, toArray } from 'rxjs/operato
   selector: '[typeahead]',
   exportAs: 'bs-typeahead',
   host: {
-    '[attr.aria-activedescendant]': 'activeDescendant'
+    '[attr.aria-activedescendant]': 'activeDescendant',
+    '[attr.aria-aria-owns]': 'isOpen ? this._container.popupId : null',
+    '[attr.aria-aria-expanded]': 'isOpen'
   }
 })
 export class TypeaheadDirective implements OnInit, OnDestroy {
@@ -141,6 +143,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     // @Input() protected typeaheadFocusOnSelect:boolean;
 
   activeDescendant: string;
+  popupId: string;
+  isOpen = false;
   _container: TypeaheadContainerComponent;
   isActiveItemChanged = false;
   isTypeaheadOptionsListActive = false;
@@ -368,7 +372,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this._container.matches = this._matches;
     this.element.nativeElement.focus();
 
-    this._container.activeChangeEvent.subscribe((activeId: string) => this.activeDescendant = activeId);
+    this._container.activeChangeEvent.subscribe((activeId: string) => {
+      this.activeDescendant = activeId;
+      this.changeDetection.markForCheck();
+    });
+    this.isOpen = true;
   }
 
   hide(): void {
@@ -376,6 +384,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       this._typeahead.hide();
       this._outsideClickListener();
       this._container = null;
+      this.isOpen = false;
+      this.changeDetection.markForCheck();
     }
   }
 
