@@ -17,6 +17,7 @@
       <li #liElements *ngIf="match.isHeader()" class="dropdown-header">{{ match }}</li>
       <li #liElements
           *ngIf="!match.isHeader()"
+          [id]="popupId + '-' + i"
           role="option"
           [@typeaheadAnimation]="animationState"
           [class.active]="isActive(match)"
@@ -37,6 +38,7 @@
     <h6 *ngIf="match.isHeader()" class="dropdown-header">{{ match }}</h6>
     <ng-template [ngIf]="!match.isHeader()">
       <button #liElements
+              [id]="popupId + '-' + i"
               role="option"
               [@typeaheadAnimation]="animationState"
               class="dropdown-item"
