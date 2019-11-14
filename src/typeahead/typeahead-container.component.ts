@@ -33,7 +33,8 @@ let nextWindowId = 0;
     '[style.height]': `isBs4 && needScrollbar ? guiHeight: 'auto'`,
     '[style.visibility]': `visibility`,
     '[class.dropup]': 'dropup',
-    style: 'position: absolute;display: block;'
+    style: 'position: absolute;display: block;',
+    '[attr.role]': `isBs4 ? 'listbox' : null `
   },
   styles: [
     `
