@@ -1,3 +1,18 @@
+<a name="5.3.2"></a>
+## [5.3.2](https://github.com/valor-software/ngx-bootstrap/compare/v5.3.1...v5.3.2) (2019-10-28)
+
+
+### Bug Fixes
+
+* **datepicker:** fix utc option issue ([#5534](https://github.com/valor-software/ngx-bootstrap/issues/5534)) ([04e6aad](https://github.com/valor-software/ngx-bootstrap/commit/04e6aad))
+
+
+### Features
+
+* **datepicker:** add Latvian locale (#hacktoberfest) ([#5432](https://github.com/valor-software/ngx-bootstrap/issues/5432)) ([9df0788](https://github.com/valor-software/ngx-bootstrap/commit/9df0788))
+
+
+
 <a name="5.3.1"></a>
 ## [5.3.1](https://github.com/valor-software/ngx-bootstrap/compare/v5.3.0...v5.3.1) (2019-10-25)
 
@@ -2122,6 +2137,4 @@ sample:  `<ul dropdownMenu>` should become `<ul *dropdownMenu>`
 * **build:** works good with typescript@1.6 ([31c513b](https://github.com/valor-software/ngx-bootstrap/commit/31c513b))
 * **ng 2.0.37:** ts errors fixed ([1e19f55](https://github.com/valor-software/ngx-bootstrap/commit/1e19f55))
 * **typeahead:** ts style fixes ([3eab1e4](https://github.com/valor-software/ngx-bootstrap/commit/3eab1e4))
-
-
 

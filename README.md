@@ -1,6 +1,8 @@
 <a href="http://valor-software.com/ngx-bootstrap/#/">
     <h1 align="center">ngx-bootstrap</h1>
 </a>
+Server side rendered version of this documentation available
+<a href="https://ngx-universal.herokuapp.com/">here</a> served with Angular universal and <a href="https://nestjs.com">nest.js</a>
 
 <p align="center">
 Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a> or <a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> Components with <a href="https://angular.io/">Angular</a>
@@ -10,10 +12,11 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 <a href="https://badge.fury.io/js/ngx-bootstrap"><img src="https://badge.fury.io/js/ngx-bootstrap.svg" alt="npm version" ></a>
 <a href="https://npmjs.org/ngx-bootstrap"><img src="https://img.shields.io/npm/dm/ngx-bootstrap.svg" alt="npm downloads" ></a>
 <a href="https://travis-ci.org/valor-software/ngx-bootstrap"><img alt="" src="https://travis-ci.org/valor-software/ngx-bootstrap.svg?branch=development"></a>
-<a target="_blank" href="https://opencollective.com/ngx-bootstrap"><img src="https://opencollective.com/ngx-bootstrap/tiers/backer/badge.svg?label=backer&color=brightgreen" />
+<a target="_blank" href="https://opencollective.com/ngx-bootstrap"><img src="https://opencollective.com/ngx-bootstrap/tiers/backer/badge.svg?label=backer&color=brightgreen" /></a>
 
 <br/>
-<a href="https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWVjZGU2MjI4MTVhMGVlMTc2OWRiMzA0NzBhNDU5YzQ0MDM3MWI5NzJjZTUzNzIxZmNjYmFlMjU2MzE0YmY0NWY"><img src="https://thehomeofthefuture.files.wordpress.com/2018/12/Joinslack.png" width="20%" alt="slack" ></a>
+<a  href="https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWVjZGU2MjI4MTVhMGVlMTc2OWRiMzA0NzBhNDU5YzQ0MDM3MWI5NzJjZTUzNzIxZmNjYmFlMjU2MzE0YmY0NWY"><img src="https://thehomeofthefuture.files.wordpress.com/2018/12/Joinslack.png" width="20%" alt="slack" ></a>
+
 </p>
 
 ## Links
@@ -45,7 +48,7 @@ ngx-bootstrap contains all core (and not only) Bootstrap components powered by A
 
 ## Supporting NGX-Bootstrap
 ngx-bootstrap is an Open Source (MIT Licensed) project, it's an independent project with ongoing development made possible thanks to the support of our awesome backers.
-If you also would like to show support or simply give back to Open Source community, please consider becoming a backer sponsor of [ngx-bootstrap on OpenCollective](https://opencollective.com/ngx-bootstrap)
+If you also would like to show support or simply give back to Open Source community, please consider becoming a backer sponsor of [ngx-bootstrap on OpenCollective](https://opencollective.com/ngx-bootstrap).
 
 All donated funds are managed transparently on OpenCollective and will be used solely for compensating work and expenses for contributors. Valor Software employees and contractors are not eligible to use these funds.
 
@@ -91,11 +94,12 @@ You will need bootstrap styles:
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 ```
 ##### Method 2
-Use the Angular CLI ng add command for updating your Angular project
+Use the Angular CLI ng add command for updating your Angular project.
 ```bash
 ng add ngx-bootstrap
 ```
-Or use `ng add` to add needed component (for example tooltip)
+
+Or use `ng add` to add needed component (for example tooltip).
 ```bash
 ng add ngx-bootstrap --component tooltip
 ```
@@ -123,15 +127,15 @@ export class AppComponent {
 ## Usage & Demo
 
 Main source of API documentation and usage scenarios available here:
-[https://valor-software.com/ngx-bootstrap/](https://valor-software.com/ngx-bootstrap/)
+[https://valor-software.com/ngx-bootstrap/](https://valor-software.com/ngx-bootstrap/).
 
 Additionally you can find demos and docs deployed from latest code with <a href="https://ngx-bootstrap.surge.sh/">angular@latest</a> and <a
-  href="https://ngx-bootstrap-latest.surge.sh/">angular@next</a>
+  href="https://ngx-bootstrap-latest.surge.sh/">angular@next</a>.
 
-Server side rendered version of this documentation available <a href="https://ngx-universal.herokuapp.com/">here</a> served with Angular universal and [nest.js](https://nestjs.com/)
+Server side rendered version of this documentation available <a href="https://ngx-universal.herokuapp.com/">here</a> served with Angular universal and [nest.js](https://nestjs.com/).
 
 ## API
-Check demo page for API [reference](https://valor-software.com/ngx-bootstrap/)
+Check demo page for API [reference](https://valor-software.com/ngx-bootstrap/).
 
 ### How to use it with:
  - `Bootstrap and angular-cli` please refer to [using-with-bootstrap-and-angular-cli](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/bootstrap.md)
@@ -195,7 +199,7 @@ Please read our [contribution guidelines](https://github.com/valor-software/ngx-
 
 ### If you need more modules, check [here](https://github.com/valor-software/ng2-plans)
 
-Please read central `ngx` modules [readme](https://github.com/valor-software/ng2-plans) for details, plans and approach
+Please read central `ngx` modules [readme](https://github.com/valor-software/ng2-plans) for details, plans and approach.
 
 ### Credits
 Crossbrowser testing sponsored by [Saucelabs](https://saucelabs.com/)
