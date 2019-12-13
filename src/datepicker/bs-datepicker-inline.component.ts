@@ -146,7 +146,7 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
       datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled
     });
 
-    if(this._datepickerRef != undefined){
+    if (this._datepickerRef !== undefined) {
       this._datepicker.hide();
       this._datepicker.show();
     }
