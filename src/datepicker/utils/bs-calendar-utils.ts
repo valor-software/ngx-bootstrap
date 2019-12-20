@@ -59,3 +59,7 @@ export function getYearsCalendarInitialDate(state: BsDatepickerState, calendarIn
 
   return model && model.years && model.years[0] && model.years[0][0] && model.years[0][0].date;
 }
+
+export function isValidDate(date: Date) {
+  return date instanceof Date && !isNaN(date.getDate());
+}
