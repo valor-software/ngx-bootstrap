@@ -155,10 +155,10 @@ describe('Datepicker demo page test suite', () => {
       datepicker.isDatepickerNavigationFullyActiveAndCorrect('date', 'body', datepicker.monthNames[4], '2015');
     });
 
-    it('when user clears input and add there date in bad format, click "Enter" - "Invalid date" shown', () => {
-      datepicker.clearInputAndSendKeys(basic, '20,10,2015', 0);
+    it('when user clears input and add there date in bad values, click "Enter" - Invalid Date is not shown shown', () => {
+      datepicker.clearInputAndSendKeys(basic, 'some value', 0);
       datepicker.clickEnterOnInput(basic);
-      datepicker.isInputValueEqual(basic, 'Invalid date', 0);
+      datepicker.isInputValueEqual(basic, 'some value', 0);
       datepicker.clickOnDatepickerInput(basic);
       datepicker.isSelectedDateExist('datepicker', false);
     });
