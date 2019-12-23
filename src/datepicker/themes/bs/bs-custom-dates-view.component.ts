@@ -16,7 +16,7 @@ export interface BsCustomDates {
         [class.active]="range.value === selectedRange">
         {{ range.label }}
       </button>
-      <button *ngIf="isCustomRangeShown"
+      <button
         type="button"
         class="btn"
         (click)="selectFromRanges(customRange)"
@@ -28,12 +28,11 @@ export interface BsCustomDates {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BsCustomDatesViewComponent {
-  @Input() isCustomRangeShown = true;
   @Input() ranges: BsCustomDates[];
   @Input() selectedRange: Date[];
   @Output() onSelect = new EventEmitter<BsCustomDates>();
 
-  customRange: Date = null;
+  customRange: any = null;
 
   selectFromRanges(range: BsCustomDates) {
     this.onSelect.emit(range);
