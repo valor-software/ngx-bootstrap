@@ -19,6 +19,7 @@ import { ComponentLoaderFactory, ComponentLoader } from 'ngx-bootstrap/component
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { filter } from 'rxjs/operators';
 import { DatepickerDateCustomClasses } from './models';
+import { BsCustomDates } from './themes/bs/bs-custom-dates-view.component';
 
 @Directive({
   selector: '[bsDaterangepicker]',
@@ -110,6 +111,12 @@ export class BsDaterangepickerDirective
    * Disable specific dates
    */
   @Input() datesDisabled: Date[];
+
+  /**
+   * Predefined ranges
+   */
+  @Input() ranges: BsCustomDates[];
+
   /**
    * Emits when daterangepicker value has been changed
    */
@@ -223,7 +230,8 @@ export class BsDaterangepickerDirective
         minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
         maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
         dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
-        datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled
+        datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
+        ranges: this.ranges
       }
     );
   }

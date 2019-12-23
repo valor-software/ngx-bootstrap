@@ -439,6 +439,9 @@
       &:hover {
         background-color: $btn-bg2-hover;
       }
+      &.active {
+        background-color: $btn-bg2-active;
+      }
     }
   }
 
