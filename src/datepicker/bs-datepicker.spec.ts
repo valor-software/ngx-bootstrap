@@ -107,26 +107,7 @@ describe('datepicker:', () => {
     datepickerContainerInstance[`_store`]
       .select(state => state.view)
       .subscribe(view => {
-        expect(view.date.getDate()).not.toEqual(weekSelection.days[0].date.getDate());
-      });
-  });
-
-  it('should not return Invalid Date when random value is entered', () => {
-    const datepicker = showDatepicker(fixture);
-    datepicker.bsValue = new Date('asdsa');
-    const datepickerContainerInstance = getDatepickerContainer(datepicker);
-    datepickerContainerInstance.setViewMode('day');
-
-    fixture.detectChanges();
-
-    const dateSelection: CalendarCellViewModel = { date: new Date(2017, 1, 1), label: 'label' };
-    datepickerContainerInstance.daySelectHandler(dateSelection);
-
-    fixture.detectChanges();
-    datepickerContainerInstance[`_store`]
-      .select(state => state.view)
-      .subscribe(view => {
-        expect(view.date.getFullYear()).toEqual(dateSelection.date.getFullYear());
+        expect(view.date.getDate()).not.toEqual((weekSelection.days[0].date.getDate()));
       });
   });
 

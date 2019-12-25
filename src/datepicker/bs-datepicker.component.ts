@@ -71,10 +71,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
       return;
     }
     this._bsValue = value;
-
-    if (isValidDate(this._bsValue)) {
-      this.bsValueChange.emit(value);
-    }
+    this.bsValueChange.emit(value);
   }
 
   /**
