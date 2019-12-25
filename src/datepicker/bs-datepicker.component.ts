@@ -7,7 +7,6 @@ import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-contai
 import { Subscription } from 'rxjs';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsDatepickerViewMode, DatepickerDateCustomClasses } from './models';
-import { isValidDate } from './utils/bs-calendar-utils';
 
 @Directive({
   selector: '[bsDatepicker]',
