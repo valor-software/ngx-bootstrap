@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import * as moment from 'moment';
 
 @Component({
   selector: 'demo-datepicker-quick-select-ranges',
@@ -8,10 +7,10 @@ import * as moment from 'moment';
 export class DemoDatePickerQuickSelectRangesComponent {
 
   ranges: any = [{
-    value: [new Date(moment().subtract(7, 'days').format('MM-DD-YYYY')), new Date(moment().format('MM-DD-YYYY'))],
+    value: [new Date('12-18-2019'), new Date('12-25-2019')],
     label: 'Last 7 Days'
   }, {
-    value: [new Date(moment().format('MM-DD-YYYY')), new Date(moment().add(7, 'days').format('MM-DD-YYYY'))],
+    value: [new Date('12-25-2019'), new Date('01-01-2020')],
     label: 'Next 7 Days'
   }];
 
