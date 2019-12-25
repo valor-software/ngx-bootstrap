@@ -32,7 +32,7 @@ import { DemoDatepickerTriggersCustomComponent } from './triggers-custom/trigger
 import { DemoDatepickerTriggersManualComponent } from './triggers-manual/triggers-manual';
 import { DemoDatepickerValueChangeEventComponent } from './value-change-event/value-change-event';
 import { DemoDatePickerVisibilityEventsComponent } from './visibility-events/visibility-events';
-
+import { DemoDatePickerQuickSelectRangesComponent } from './quick-select-ranges/quick-select-ranges';
 
 export const DEMO_COMPONENTS = [
   DatepickerDemoComponent,
@@ -66,5 +66,6 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerTriggersCustomComponent,
   DemoDatepickerTriggersManualComponent,
   DemoDatepickerValueChangeEventComponent,
-  DemoDatePickerVisibilityEventsComponent
+  DemoDatePickerVisibilityEventsComponent,
+  DemoDatePickerQuickSelectRangesComponent
 ];

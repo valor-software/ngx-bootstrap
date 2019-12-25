@@ -40,6 +40,7 @@ import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
+import { DemoDatePickerQuickSelectRangesComponent } from './demos/quick-select-ranges/quick-select-ranges';
 
 
 export const demoComponentContent: ContentSection[] = [
@@ -346,6 +347,14 @@ export const demoComponentContent: ContentSection[] = [
         style: require('!!raw-loader!./demos/date-custom-classes/date-custom-classes.scss'),
         description: `<p>Style dates with custom classes</p>`,
         outlet: DemoDatepickerDateCustomClassesComponent
+      },
+      {
+        title: 'Quick select ranges',
+        anchor: 'quick-select-ranges',
+        component: require('!!raw-loader!./demos/quick-select-ranges/quick-select-ranges.ts'),
+        html: require('!!raw-loader!./demos/quick-select-ranges/quick-select-ranges.html'),
+        description: `<p>Quick select ranges can be added to Daterangepicker using <code>ranges</code></p>`,
+        outlet: DemoDatePickerQuickSelectRangesComponent
       }
     ]
   },
