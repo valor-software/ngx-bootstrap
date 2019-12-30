@@ -6,6 +6,8 @@ import { PopoverConfig } from './popover.config';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { PopoverContainerComponent } from './popover-container.component';
 import { PositioningService } from 'ngx-bootstrap/positioning';
+import { timer } from 'rxjs';
+import { parseTriggers, Trigger } from '../utils';
 
 /**
  * A lightweight, extensible directive for fancy popover creation.
@@ -68,6 +70,11 @@ export class PopoverDirective implements OnInit, OnDestroy {
   }
 
   /**
+   * Delay before showing the tooltip
+   */
+  @Input() delay: number;
+
+  /**
    * Emits an event when the popover is shown
    */
   /* tslint:disable-next-line: no-any */
@@ -80,11 +87,14 @@ export class PopoverDirective implements OnInit, OnDestroy {
 
   private _popover: ComponentLoader<PopoverContainerComponent>;
   private _isInited = false;
+  protected _popoverCancelShowFn: Function;
+
+  protected _delayTimeoutId: number | any;
 
   constructor(
     _config: PopoverConfig,
-    _elementRef: ElementRef,
-    _renderer: Renderer2,
+    private _elementRef: ElementRef,
+    private _renderer: Renderer2,
     _viewContainerRef: ViewContainerRef,
     cis: ComponentLoaderFactory,
     private _positionService: PositioningService
@@ -119,7 +129,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
    * the popover.
    */
   show(): void {
-    if (this._popover.isShown || !this.popover) {
+    if (this._popover.isShown || !this.popover || this._delayTimeoutId) {
       return;
     }
 
@@ -134,24 +144,59 @@ export class PopoverDirective implements OnInit, OnDestroy {
       }
     });
 
-    this._popover
-      .attach(PopoverContainerComponent)
-      .to(this.container)
-      .position({attachment: this.placement})
-      .show({
-        content: this.popover,
-        context: this.popoverContext,
-        placement: this.placement,
-        title: this.popoverTitle,
-        containerClass: this.containerClass
+    const showPopover = () => {
+      if (this._delayTimeoutId) {
+        this._delayTimeoutId = undefined;
+      }
+
+      this._popover
+        .attach(PopoverContainerComponent)
+        .to(this.container)
+        .position({attachment: this.placement})
+        .show({
+          content: this.popover,
+          context: this.popoverContext,
+          placement: this.placement,
+          title: this.popoverTitle,
+          containerClass: this.containerClass
+        });
+
+      if (!this.adaptivePosition) {
+        this._positionService.calcPosition();
+        this._positionService.deletePositionElement(this._popover._componentRef.location);
+      }
+
+      this.isOpen = true;
+    };
+
+    const cancelDelayedTooltipShowing = () => {
+      if (this._popoverCancelShowFn) {
+        this._popoverCancelShowFn();
+      }
+    };
+
+    if (this.delay) {
+      const _timer = timer(this.delay).subscribe(() => {
+        showPopover();
+        cancelDelayedTooltipShowing();
       });
 
-    if (!this.adaptivePosition) {
-      this._positionService.calcPosition();
-      this._positionService.deletePositionElement(this._popover._componentRef.location);
+      if (this.triggers) {
+        parseTriggers(this.triggers)
+          .forEach((trigger: Trigger) => {
+            this._popoverCancelShowFn = this._renderer.listen(
+              this._elementRef.nativeElement,
+              trigger.close,
+              () => {
+                _timer.unsubscribe();
+                cancelDelayedTooltipShowing();
+              }
+            );
+          });
+      }
+    } else {
+      showPopover();
     }
-
-    this.isOpen = true;
   }
 
   /**
@@ -159,6 +204,11 @@ export class PopoverDirective implements OnInit, OnDestroy {
    * the popover.
    */
   hide(): void {
+    if (this._delayTimeoutId) {
+      clearTimeout(this._delayTimeoutId);
+      this._delayTimeoutId = undefined;
+    }
+
     if (this.isOpen) {
       this._popover.hide();
       this.isOpen = false;
