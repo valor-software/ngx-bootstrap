@@ -85,11 +85,12 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /* tslint:disable-next-line: no-any */
   @Output() onHidden: EventEmitter<any>;
 
-  private _popover: ComponentLoader<PopoverContainerComponent>;
-  private _isInited = false;
   protected _popoverCancelShowFn: Function;
 
   protected _delayTimeoutId: number | any;
+
+  private _popover: ComponentLoader<PopoverContainerComponent>;
+  private _isInited = false;
 
   constructor(
     _config: PopoverConfig,
