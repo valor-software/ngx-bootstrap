@@ -6,6 +6,7 @@ import { DemoPopoverConfigComponent } from './demos/config/config';
 import { DemoPopoverContainerComponent } from './demos/container/container';
 import { DemoPopoverContextComponent } from './demos/popover-context/popover-context';
 import { DemoPopoverCustomContentComponent } from './demos/custom-content/custom-content';
+import { DemoPopoverDelayComponent } from './demos/delay/delay';
 import { DemoPopoverDismissComponent } from './demos/dismiss/dismiss';
 import { DemoPopoverDynamicComponent } from './demos/dynamic/dynamic';
 import { DemoPopoverDynamicHtmlComponent } from './demos/dynamic-html/dynamic-html';
@@ -177,6 +178,14 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/popover-context/popover-context.ts'),
         html: require('!!raw-loader!./demos/popover-context/popover-context.html'),
         outlet: DemoPopoverContextComponent
+      },
+      {
+        title: 'Popover with delay',
+        anchor: 'popover-delay',
+        component: require('!!raw-loader!./demos/delay/delay.ts'),
+        html: require('!!raw-loader!./demos/delay/delay.html'),
+        description: `<p>Hold on cursor above button for 0,5 second or more to see delayed popover</p>`,
+        outlet: DemoPopoverDelayComponent
       }
     ]
   },

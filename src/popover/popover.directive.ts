@@ -7,7 +7,7 @@ import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component
 import { PopoverContainerComponent } from './popover-container.component';
 import { PositioningService } from 'ngx-bootstrap/positioning';
 import { timer } from 'rxjs';
-import { parseTriggers, Trigger } from '../utils';
+import { parseTriggers, Trigger } from 'ngx-bootstrap/utils';
 
 /**
  * A lightweight, extensible directive for fancy popover creation.
