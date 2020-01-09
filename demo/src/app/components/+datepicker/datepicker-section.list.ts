@@ -41,6 +41,7 @@ import {
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
 import { DemoDatePickerQuickSelectRangesComponent } from './demos/quick-select-ranges/quick-select-ranges';
+import { DemoDateRangePickerShowPreviousMonth } from './demos/daterangepicker-show-previous-month/show-previous-month';
 
 
 export const demoComponentContent: ContentSection[] = [
@@ -355,6 +356,15 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/quick-select-ranges/quick-select-ranges.html'),
         description: `<p>Quick select ranges can be added to Daterangepicker using <code>ranges</code></p>`,
         outlet: DemoDatePickerQuickSelectRangesComponent
+      },
+      {
+        title: 'Previous month in Daterangepicker',
+        anchor: 'daterangepicker-previous-month',
+        component: require('!!raw-loader!./demos/daterangepicker-show-previous-month/show-previous-month.ts'),
+        html: require('!!raw-loader!./demos/daterangepicker-show-previous-month/show-previous-month.html'),
+        description: `<p>Pick previous & current month instead of current & next month.When daterange selected and related to current month,
+        daterangepicker will works by default, with current & next month</p>`,
+        outlet: DemoDateRangePickerShowPreviousMonth
       }
     ]
   },
