@@ -82,9 +82,6 @@ export class TypeaheadContainerComponent implements OnDestroy {
   ) {
     this.positionServiceSubscription = this.positionService.event$.subscribe(
       () => {
-        const visibility = this.typeaheadScrollable ? 'hidden' : 'visible';
-        this.renderer.setStyle(this.element.nativeElement, 'visibility', visibility);
-
         if (this.isAnimated) {
           this.animationState = this.isTopPosition ? 'animated-up' : 'animated-down';
           this.changeDetectorRef.detectChanges();
