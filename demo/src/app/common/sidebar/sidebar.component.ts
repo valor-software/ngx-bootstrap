@@ -1,22 +1,22 @@
-import { Component, Inject, OnDestroy, Renderer } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Component, Inject, OnDestroy, Renderer2 } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+
 import { isBs3, setTheme } from 'ngx-bootstrap/utils';
 import { routes } from '../../app.routing';
 import { StyleManager } from '../../theme/style-manager';
 import { ThemeStorage } from '../../theme/theme-storage';
-import { DOCUMENT } from '@angular/platform-browser';
-import { Subscription } from 'rxjs/Subscription';
 
-const _bs3Css =
-  'assets/css/bootstrap-3.3.7/css/bootstrap.min.css';
-const _bs4Css =
-  'assets/css/bootstrap-4.0.0/css/bootstrap.min.css';
+import { Subscription } from 'rxjs';
+
+const _bs3Css = 'assets/css/bootstrap-3.3.7/css/bootstrap.min.css';
+const _bs4Css = 'assets/css/bootstrap-4.0.0/css/bootstrap.min.css';
 
 @Component({
   selector: 'sidebar',
   templateUrl: './sidebar.component.html'
 })
-export class SidebarComponent implements OnDestroy{
+export class SidebarComponent implements OnDestroy {
   isShown = false;
 
   get isBs3(): boolean {
@@ -30,13 +30,15 @@ export class SidebarComponent implements OnDestroy{
   scrollSubscription: Subscription;
 
   constructor(
-    public styleManager: StyleManager,
+    private activatedRoute: ActivatedRoute,
+    private renderer: Renderer2,
     private router: Router,
-    private _themeStorage: ThemeStorage,
-    private renderer: Renderer,
+    private themeStorage: ThemeStorage,
+    public styleManager: StyleManager,
     @Inject(DOCUMENT) private document: any
   ) {
-    const currentTheme = this._themeStorage.getStoredTheme();
+    const themeFromUrl = this.activatedRoute.snapshot.queryParams._bsVersion;
+    const currentTheme = themeFromUrl || this.themeStorage.getStoredTheme();
     if (currentTheme) {
       this.installTheme(currentTheme);
     }
@@ -54,14 +56,16 @@ export class SidebarComponent implements OnDestroy{
   toggle(isShown?: boolean): void {
     this.isShown = typeof isShown === 'undefined' ? !this.isShown : isShown;
     if (this.document && this.document.body) {
-      this.renderer.setElementClass(
-        this.document.body,
-        'isOpenMenu',
-        this.isShown
-      );
+
+      if (this.isShown) {
+        this.renderer.addClass(this.document.body, 'isOpenMenu');
+      } else {
+        this.renderer.removeClass(this.document.body, 'isOpenMenu');
+      }
+
       if (this.isShown === false && this.document.documentElement) {
-        this.renderer.setElementProperty(this.document.documentElement, 'scrollTop', 0);
-        this.renderer.setElementProperty(this.document.body, 'scrollTop', 0);
+        this.renderer.setProperty(this.document.documentElement, 'scrollTop', '0');
+        this.renderer.setProperty(this.document.body, 'scrollTop', '0');
       }
     }
   }
@@ -72,7 +76,7 @@ export class SidebarComponent implements OnDestroy{
     this.styleManager.setStyle('theme', this.isBs3 ? _bs3Css : _bs4Css);
 
     if (this.currentTheme) {
-      this._themeStorage.storeTheme(this.currentTheme);
+      this.themeStorage.storeTheme(this.currentTheme);
     }
   }
 

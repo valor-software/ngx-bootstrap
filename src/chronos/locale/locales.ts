@@ -4,6 +4,22 @@ import { baseConfig } from './locale.defaults';
 import { hasOwnProp, isArray, isObject, isString, isUndefined, toInt } from '../utils/type-checks';
 import { compareArrays } from '../utils/compare-arrays';
 
+import { initWeek } from '../units/week';
+import { initWeekYear } from '../units/week-year';
+import { initYear } from '../units/year';
+import { initTimezone } from '../units/timezone';
+import { initTimestamp } from '../units/timestamp';
+import { initSecond } from '../units/second';
+import { initQuarter } from '../units/quarter';
+import { initOffset } from '../units/offset';
+import { initMinute } from '../units/minute';
+import { initMillisecond } from '../units/millisecond';
+import { initMonth } from '../units/month';
+import { initHour } from '../units/hour';
+import { initDayOfYear } from '../units/day-of-year';
+import { initDayOfWeek } from '../units/day-of-week';
+import { initDayOfMonth } from '../units/day-of-month';
+
 const locales: { [key: string]: Locale } = {};
 const localeFamilies: { [key: string]: {name: string; config: LocaleData}[] } = {};
 let globalLocale: Locale;
@@ -51,25 +67,25 @@ export function mergeConfigs(parentConfig: LocaleData,
     if (!hasOwnProp(childConfig, childProp)) {
       continue;
     }
+
     if (isObject(parentConfig[childProp]) && isObject(childConfig[childProp])) {
-      res[childProp] = {};
+      res[childProp as any] = {};
       Object.assign(res[childProp], parentConfig[childProp]);
       Object.assign(res[childProp], childConfig[childProp]);
     } else if (childConfig[childProp] != null) {
-      res[childProp] = childConfig[childProp];
+      res[childProp as any] = childConfig[childProp];
     } else {
-      delete res[childProp];
+      delete res[childProp as any];
     }
   }
-  let parentProp;
-  for (parentProp in parentConfig) {
+  for (const parentProp in parentConfig) {
     if (
       hasOwnProp(parentConfig, parentProp) &&
       !hasOwnProp(childConfig, parentProp) &&
       isObject(parentConfig[parentProp as keyof LocaleData])
     ) {
       // make sure changes to properties don't modify parent config
-      res[parentProp as keyof LocaleData] = Object.assign({}, res[parentProp as keyof LocaleData]);
+      res[parentProp as any] = Object.assign({}, res[parentProp as keyof LocaleData]);
     }
   }
 
@@ -198,6 +214,8 @@ export function updateLocale(name: string, config?: LocaleData): Locale {
 
 // returns locale data
 export function getLocale(key?: string | string[]): Locale {
+  setDefaultLocale();
+
   if (!key) {
     return globalLocale;
   }
@@ -211,16 +229,38 @@ export function listLocales(): string[] {
   return Object.keys(locales);
 }
 
-// define default locale
-getSetGlobalLocale('en', {
-  dayOfMonthOrdinalParse: /\d{1,2}(th|st|nd|rd)/,
-  ordinal(num: number): string {
-    const b = num % 10;
-    const output =
-      toInt((num % 100) / 10) === 1
-        ? 'th'
-        : b === 1 ? 'st' : b === 2 ? 'nd' : b === 3 ? 'rd' : 'th';
+function setDefaultLocale(): void {
+  if (locales[`en`]) {
 
-    return num + output;
+    return undefined;
   }
-});
+
+  getSetGlobalLocale('en', {
+    dayOfMonthOrdinalParse: /\d{1,2}(th|st|nd|rd)/,
+    ordinal(num: number): string {
+      const b = num % 10;
+      const output =
+        toInt((num % 100) / 10) === 1
+          ? 'th'
+          : b === 1 ? 'st' : b === 2 ? 'nd' : b === 3 ? 'rd' : 'th';
+
+      return num + output;
+    }
+  });
+
+  initWeek();
+  initWeekYear();
+  initYear();
+  initTimezone();
+  initTimestamp();
+  initSecond();
+  initQuarter();
+  initOffset();
+  initMonth();
+  initMinute();
+  initMillisecond();
+  initHour();
+  initDayOfYear();
+  initDayOfWeek();
+  initDayOfMonth();
+}

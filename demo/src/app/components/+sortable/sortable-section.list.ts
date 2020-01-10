@@ -8,6 +8,7 @@ import { ExamplesComponent } from '../../docs/demo-section-components/demo-examp
 import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
 
 import { NgApiDocComponent } from '../../docs/api-docs';
+import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -15,7 +16,7 @@ export const demoComponentContent: ContentSection[] = [
     anchor: 'usage',
     outlet: DemoTopSectionComponent,
     content: {
-      doc: require('!!raw-loader?lang=typescript!./docs/usage.md')
+      doc: require('!!raw-loader!./docs/usage.md')
     }
   },
   {
@@ -26,23 +27,28 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Basic',
         anchor: 'basic',
-        component: require('!!raw-loader?lang=typescript!./demos/basic/basic.component.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/basic/basic.component.html'),
+        component: require('!!raw-loader!./demos/basic/basic.component.ts'),
+        html: require('!!raw-loader!./demos/basic/basic.component.html'),
         outlet: DemoBasicComponent
       },
       {
         title: 'Complex data model',
         anchor: 'complexDatamodel',
-        component: require('!!raw-loader?lang=typescript!./demos/complex-datamodel/complex-datamodel.component.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/complex-datamodel/complex-datamodel.component.html'),
+        component: require('!!raw-loader!./demos/complex-datamodel/complex-datamodel.component.ts'),
+        html: require('!!raw-loader!./demos/complex-datamodel/complex-datamodel.component.html'),
         outlet: ComplexDatamodelDemoComponent
       },
       {
         title: 'Custom item template',
         anchor: 'itemTemplate',
-        component: require('!!raw-loader?lang=typescript!./demos/custom-item-template/custom-item-template.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/custom-item-template/custom-item-template.html'),
+        component: require('!!raw-loader!./demos/custom-item-template/custom-item-template.ts'),
+        html: require('!!raw-loader!./demos/custom-item-template/custom-item-template.html'),
         outlet: CustomItemTemplateDemoComponent
+      },
+      {
+        title: 'Accessibility',
+        anchor: 'accessibility',
+        outlet: DemoAccessibilityComponent
       }
     ]
   },
