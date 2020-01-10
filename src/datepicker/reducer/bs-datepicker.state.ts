@@ -45,6 +45,7 @@ export class BsDatepickerState
   formattedMonths?: DaysCalendarViewModel[];
   flaggedMonths?: DaysCalendarViewModel[];
   selectFromOtherMonth?: boolean;
+  showPreviousMonth?: boolean; // dateRangePicker only;
 
   // months calendar
   monthsCalendar?: MonthsCalendarViewModel[];
