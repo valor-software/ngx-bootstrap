@@ -68,6 +68,7 @@ export class TypeaheadContainerComponent {
   animationState: string;
   visibility = 'hidden';
   height = 0;
+  // Id Popup
   popupId = `ngb-typeahead-${nextWindowId++}`;
 
   get isBs4(): boolean {
