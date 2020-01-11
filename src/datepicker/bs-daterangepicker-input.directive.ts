@@ -113,10 +113,14 @@ export class BsDaterangepickerInputDirective
 
   validate(c: AbstractControl): ValidationErrors | null {
     const _value: [Date, Date] = c.value;
+    const errors: object[] = [];
 
     if (_value === null || _value === undefined || !isArray(_value)) {
       return null;
     }
+
+    // @ts-ignore
+    _value.sort((a, b) => a - b);
 
     const _isFirstDateValid = isDateValid(_value[0]);
     const _isSecondDateValid = isDateValid(_value[1]);
@@ -130,11 +134,18 @@ export class BsDaterangepickerInputDirective
     }
 
     if (this._picker && this._picker.minDate && isBefore(_value[0], this._picker.minDate, 'date')) {
-      return { bsDate: { minDate: this._picker.minDate } };
+      _value[0] = this._picker.minDate;
+      errors.push({ bsDate: { minDate: this._picker.minDate } });
     }
 
     if (this._picker && this._picker.maxDate && isAfter(_value[1], this._picker.maxDate, 'date')) {
-      return { bsDate: { maxDate: this._picker.maxDate } };
+      _value[1] = this._picker.maxDate;
+      errors.push({ bsDate: { maxDate: this._picker.maxDate } });
+    }
+    if (errors.length > 0) {
+      this.writeValue(_value);
+
+      return errors;
     }
   }
 
