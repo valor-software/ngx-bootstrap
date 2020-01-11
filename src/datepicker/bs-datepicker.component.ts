@@ -66,7 +66,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    */
   @Input()
   set bsValue(value: Date) {
-    if (this._bsValue === value) {
+    if (this._bsValue && this._bsValue.getTime() === value.getTime()) {
       return;
     }
     this._bsValue = value;
