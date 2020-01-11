@@ -1,3 +1,23 @@
+<a name="5.4.0"></a>
+# [5.4.0](https://github.com/valor-software/ngx-bootstrap/compare/v5.3.2...v5.4.0) (2020-01-09)
+
+
+### Bug Fixes
+
+* **doc:** added punctuation, hyperlink and fixed typo. ([#5444](https://github.com/valor-software/ngx-bootstrap/issues/5444)) ([fbb4208](https://github.com/valor-software/ngx-bootstrap/commit/fbb4208))
+* **doc:** update carousel.examples.basic.use-case.md ([#5462](https://github.com/valor-software/ngx-bootstrap/issues/5462)) ([c86d0f5](https://github.com/valor-software/ngx-bootstrap/commit/c86d0f5))
+* **doc:** update pagination.examples.centering-active-page-link.md ([#5463](https://github.com/valor-software/ngx-bootstrap/issues/5463)) ([4669207](https://github.com/valor-software/ngx-bootstrap/commit/4669207))
+* **tooltip:** tooltipChange unsubscribe on destroy ([#5431](https://github.com/valor-software/ngx-bootstrap/issues/5431)) ([6adf5f0](https://github.com/valor-software/ngx-bootstrap/commit/6adf5f0))
+* **typeahead:** fix issue on scroll ([#5590](https://github.com/valor-software/ngx-bootstrap/issues/5590)) ([0dade71](https://github.com/valor-software/ngx-bootstrap/commit/0dade71))
+* **typeahead:** fix performance issue ([#5589](https://github.com/valor-software/ngx-bootstrap/issues/5589)) ([e1d2f75](https://github.com/valor-software/ngx-bootstrap/commit/e1d2f75))
+
+
+### Features
+
+* **daterangepicker:** add ability to show prev and current month instead of current and next one ([#5513](https://github.com/valor-software/ngx-bootstrap/issues/5513)) ([cb6b29e](https://github.com/valor-software/ngx-bootstrap/commit/cb6b29e))
+
+
+
 <a name="5.3.2"></a>
 ## [5.3.2](https://github.com/valor-software/ngx-bootstrap/compare/v5.3.1...v5.3.2) (2019-10-28)
 
@@ -2137,4 +2157,5 @@ sample:  `<ul dropdownMenu>` should become `<ul *dropdownMenu>`
 * **build:** works good with typescript@1.6 ([31c513b](https://github.com/valor-software/ngx-bootstrap/commit/31c513b))
 * **ng 2.0.37:** ts errors fixed ([1e19f55](https://github.com/valor-software/ngx-bootstrap/commit/1e19f55))
 * **typeahead:** ts style fixes ([3eab1e4](https://github.com/valor-software/ngx-bootstrap/commit/3eab1e4))
+
 
