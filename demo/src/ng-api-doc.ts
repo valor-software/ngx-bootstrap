@@ -1026,6 +1026,11 @@ export const ngdoc: any = {
         "description": "<p>Default mode for all date pickers</p>\n"
       },
       {
+        "name": "showPreviousMonth",
+        "type": "boolean",
+        "description": "<p>Shows previous and current month, instead of current and next (daterangepicker only</p>\n"
+      },
+      {
         "name": "rangeInputFormat",
         "defaultValue": "L",
         "type": "string",
