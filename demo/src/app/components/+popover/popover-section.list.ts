@@ -53,7 +53,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'placement',
         component: require('!!raw-loader!./demos/placement/placement.ts'),
         html: require('!!raw-loader!./demos/placement/placement.html'),
-        description: `<p>Four positioning options are available: <code>top</code>, <code>right</code>, 
+        description: `<p>Four positioning options are available: <code>top</code>, <code>right</code>,
         <code>bottom</code>, and <code>left</code>.
         Besides that, <code>auto</code> option may be used to detect a position that fits the component on screen.</p>`,
         outlet: DemoPopoverPlacementComponent
@@ -184,7 +184,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'popover-delay',
         component: require('!!raw-loader!./demos/delay/delay.ts'),
         html: require('!!raw-loader!./demos/delay/delay.html'),
-        description: `<p>Hold on cursor above button for 0,5 second or more to see delayed popover</p>`,
+        description: `<p>Click on the button to see popover delayed for 0,5 second </p>`,
         outlet: DemoPopoverDelayComponent
       }
     ]
