@@ -10,6 +10,9 @@ import { DemoTypeaheadContainerComponent } from './demos/container/container';
 import { DemoTypeaheadDelayComponent } from './demos/delay/delay';
 import { DemoTypeaheadDropupComponent } from './demos/dropup/dropup';
 import { DemoTypeaheadFieldComponent } from './demos/field/field';
+import { DemoTypeaheadAsyncComponent } from './demos/async/async';
+import { DemoTypeaheadCancelOnBlurComponent } from './demos/cancel-on-blur/cancel-on-blur';
+import { DemoTypeaheadReactiveFormComponent } from './demos/reactive-form/reactive-form';
 import { DemoTypeaheadFormComponent } from './demos/form/form';
 import { DemoTypeaheadGroupingComponent } from './demos/grouping/grouping';
 import { DemoTypeaheadItemTemplateComponent } from './demos/item-template/item-template';
@@ -88,6 +91,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/async/async.ts'),
         html: require('!!raw-loader!./demos/async/async.html'),
         outlet: DemoTypeaheadAsyncComponent
+      },
+      {
+        title: 'Cancel on blur',
+        anchor: 'cancel-on-blur',
+        component: require('!!raw-loader?lang=typescript!./demos/cancel-on-blur/cancel-on-blur.ts'),
+        html: require('!!raw-loader?lang=markup!./demos/cancel-on-blur/cancel-on-blur.html'),
+        outlet: DemoTypeaheadCancelOnBlurComponent
       },
       {
         title: 'With delay',

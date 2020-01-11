@@ -7,6 +7,9 @@ import { DemoTypeaheadContainerComponent } from './container/container';
 import { DemoTypeaheadDelayComponent } from './delay/delay';
 import { DemoTypeaheadDropupComponent } from './dropup/dropup';
 import { DemoTypeaheadFieldComponent } from './field/field';
+import { DemoTypeaheadAsyncComponent } from './async/async';
+import { DemoTypeaheadCancelOnBlurComponent } from './cancel-on-blur/cancel-on-blur';
+import { DemoTypeaheadReactiveFormComponent } from './reactive-form/reactive-form';
 import { DemoTypeaheadFirstItemActiveComponent } from './first-item-active/first-item-active';
 import { DemoTypeaheadFormComponent } from './form/form';
 import { DemoTypeaheadGroupingComponent } from './grouping/grouping';
@@ -33,6 +36,9 @@ export const DEMO_COMPONENTS = [
   DemoTypeaheadDelayComponent,
   DemoTypeaheadDropupComponent,
   DemoTypeaheadFieldComponent,
+  DemoTypeaheadAsyncComponent,
+  DemoTypeaheadCancelOnBlurComponent,
+  DemoTypeaheadReactiveFormComponent,
   DemoTypeaheadFirstItemActiveComponent,
   DemoTypeaheadFormComponent,
   DemoTypeaheadGroupingComponent,
