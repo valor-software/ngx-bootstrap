@@ -13,14 +13,14 @@ export interface BsCustomDates {
         type="button"
         class="btn"
         (click)="selectFromRanges(range)"
-        [class.active]="range.value === selectedRange">
+        [class.selected]="range.value === selectedRange">
         {{ range.label }}
       </button>
       <button
         type="button"
         class="btn"
         (click)="selectFromRanges(customRange)"
-        [class.active]="!checkRange()">
+        [class.selected]="!checkRange()">
         Custom Range
       </button>
     </div>

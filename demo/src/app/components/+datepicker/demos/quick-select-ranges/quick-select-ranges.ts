@@ -5,12 +5,11 @@ import { Component } from '@angular/core';
   templateUrl: './quick-select-ranges.html'
 })
 export class DemoDatePickerQuickSelectRangesComponent {
-
   ranges: any = [{
-    value: [new Date('12-18-2019'), new Date('12-25-2019')],
+    value: [new Date(), new Date(new Date().setDate(new Date().getDate() - 7))],
     label: 'Last 7 Days'
   }, {
-    value: [new Date('12-25-2019'), new Date('01-01-2020')],
+    value: [new Date(), new Date(new Date().setDate(new Date().getDate() + 7))],
     label: 'Next 7 Days'
   }];
 
