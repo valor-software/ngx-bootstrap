@@ -40,6 +40,8 @@ import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
+import { DemoDateRangePickerShowPreviousMonth } from './demos/daterangepicker-show-previous-month/show-previous-month';
+
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -76,7 +78,7 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDatepickerBasicComponent
       },
       {
-        title: 'Inline Datepicker',
+        title: 'Inline',
         anchor: 'inline-datepicker',
         component: require('!!raw-loader!./demos/inline-datepicker/inline-datepicker.component.ts'),
         html: require('!!raw-loader!./demos/inline-datepicker/inline-datepicker.component.html'),
@@ -345,6 +347,15 @@ export const demoComponentContent: ContentSection[] = [
         style: require('!!raw-loader!./demos/date-custom-classes/date-custom-classes.scss'),
         description: `<p>Style dates with custom classes</p>`,
         outlet: DemoDatepickerDateCustomClassesComponent
+      },
+      {
+        title: 'Previous month in Daterangepicker',
+        anchor: 'daterangepicker-previous-month',
+        component: require('!!raw-loader!./demos/daterangepicker-show-previous-month/show-previous-month.ts'),
+        html: require('!!raw-loader!./demos/daterangepicker-show-previous-month/show-previous-month.html'),
+        description: `<p>Pick previous & current month instead of current & next month.When daterange selected and related to current month,
+        daterangepicker will works by default, with current & next month</p>`,
+        outlet: DemoDateRangePickerShowPreviousMonth
       }
     ]
   },

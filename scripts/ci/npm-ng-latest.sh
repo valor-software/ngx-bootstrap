@@ -17,6 +17,6 @@ npm i @angular/animations@latest \
     @angular/router@latest \
     @angular/service-worker@latest \
     @schematics/angular@latest \
-    typescript@3.4.5 \
+    typescript@3.5.3 \
     tsickle@0.35.0 \
-    rxjs@6.4.0
+    rxjs@6.5.2

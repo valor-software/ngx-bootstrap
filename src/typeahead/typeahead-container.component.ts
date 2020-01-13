@@ -1,8 +1,10 @@
 // tslint:disable:max-file-line-count max-line-length
 import {
+  ChangeDetectorRef,
   Component,
   ElementRef,
   HostListener,
+  OnDestroy,
   QueryList,
   Renderer2,
   TemplateRef,
@@ -17,9 +19,7 @@ import { latinize } from './typeahead-utils';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { TypeaheadDirective } from './typeahead.directive';
 import { typeaheadAnimation } from './typeahead-animations';
-
-import { take } from 'rxjs/operators';
-
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'typeahead-container',
@@ -27,9 +27,8 @@ import { take } from 'rxjs/operators';
   host: {
     class: 'dropdown open bottom',
     '[class.dropdown-menu]': 'isBs4',
-    '[style.overflow-y]' : `isBs4 && needScrollbar ? 'scroll': 'visible'`,
     '[style.height]': `isBs4 && needScrollbar ? guiHeight: 'auto'`,
-    '[style.visibility]': `visibility`,
+    '[style.visibility]': 'hidden',
     '[class.dropup]': 'dropup',
     style: 'position: absolute;display: block;'
   },
@@ -38,11 +37,16 @@ import { take } from 'rxjs/operators';
     :host.dropdown {
       z-index: 1000;
     }
+
+    :host.dropdown-menu, .dropdown-menu {
+      overflow-y: auto;
+      height: 100px;
+    }
   `
   ],
   animations: [typeaheadAnimation]
 })
-export class TypeaheadContainerComponent {
+export class TypeaheadContainerComponent implements OnDestroy {
   parent: TypeaheadDirective;
   query: string[] | string;
   isFocused = false;
@@ -54,7 +58,7 @@ export class TypeaheadContainerComponent {
   guiHeight: string;
   needScrollbar: boolean;
   animationState: string;
-  visibility = 'hidden';
+  positionServiceSubscription: Subscription;
   height = 0;
 
   get isBs4(): boolean {
@@ -73,8 +77,23 @@ export class TypeaheadContainerComponent {
   constructor(
     private positionService: PositioningService,
     private renderer: Renderer2,
-    public element: ElementRef
-  ) { }
+    public element: ElementRef,
+    private changeDetectorRef: ChangeDetectorRef
+  ) {
+    this.positionServiceSubscription = this.positionService.event$.subscribe(
+      () => {
+        if (this.isAnimated) {
+          this.animationState = this.isTopPosition ? 'animated-up' : 'animated-down';
+          this.changeDetectorRef.detectChanges();
+
+          return;
+        }
+
+        this.animationState = 'unanimated';
+        this.changeDetectorRef.detectChanges();
+      }
+    );
+  }
 
   get active(): TypeaheadMatch {
     return this._active;
@@ -89,23 +108,6 @@ export class TypeaheadContainerComponent {
       modifiers: { flip: { enabled: this.adaptivePosition } },
       allowedPositions: ['top', 'bottom']
     });
-
-    this.positionService.event$
-      .pipe(
-        take(1)
-      )
-      .subscribe(() => {
-        this.positionService.disable();
-        this.visibility = this.typeaheadScrollable ? 'hidden' : 'visible';
-
-        if (this.isAnimated) {
-          this.animationState = this.isTopPosition ? 'animated-up' : 'animated-down';
-
-          return;
-        }
-
-        this.animationState = 'unanimated';
-      });
 
     this._matches = value;
 
@@ -179,10 +181,6 @@ export class TypeaheadContainerComponent {
     if (!this.parent.typeaheadSelectFirstItem && isActiveItemChanged) {
       this.selectMatch(this._active);
     }
-  }
-
-  positionServiceEnable(): void {
-    this.positionService.enable();
   }
 
   prevActiveMatch(): void {
@@ -284,6 +282,7 @@ export class TypeaheadContainerComponent {
     if (!this.ulElement) {
       this.ulElement = this.element;
     }
+
     if (this.liElements.first) {
       const ulStyles = Utils.getStyles(this.ulElement.nativeElement);
       const liStyles = Utils.getStyles(this.liElements.first.nativeElement);
@@ -296,6 +295,7 @@ export class TypeaheadContainerComponent {
       const height = this.typeaheadOptionsInScrollableView * optionHeight;
       this.guiHeight = `${height + ulPaddingTop + ulPaddingBottom}px`;
     }
+
     this.renderer.setStyle(this.element.nativeElement, 'visibility', 'visible');
   }
 
@@ -328,6 +328,10 @@ export class TypeaheadContainerComponent {
           Number(liElement.nativeElement.offsetHeight);
       }
     }
+  }
+
+  ngOnDestroy(): void {
+    this.positionServiceSubscription.unsubscribe();
   }
 
 

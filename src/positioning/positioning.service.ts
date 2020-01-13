@@ -1,4 +1,4 @@
-import { Injectable, ElementRef, RendererFactory2, Inject, PLATFORM_ID } from '@angular/core';
+import { Injectable, ElementRef, RendererFactory2, Inject, PLATFORM_ID, NgZone } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 import { positionElements } from './ng-positioning';
@@ -50,25 +50,28 @@ export class PositioningService {
   private isDisabled = false;
 
   constructor(
+    ngZone: NgZone,
     rendererFactory: RendererFactory2,
     @Inject(PLATFORM_ID) platformId: number
   ) {
-    if (isPlatformBrowser(platformId)) {
-      this.triggerEvent$ = merge(
-        fromEvent(window, 'scroll'),
-        fromEvent(window, 'resize'),
-        /* tslint:disable-next-line: deprecation */
-        of(0, animationFrameScheduler),
-        this.update$$
-      );
 
-      this.triggerEvent$.subscribe(() => {
+    if (isPlatformBrowser(platformId)) {
+      ngZone.runOutsideAngular(() => {
+        this.triggerEvent$ = merge(
+          fromEvent(window, 'scroll', { passive: true }),
+          fromEvent(window, 'resize', { passive: true }),
+          /* tslint:disable-next-line: deprecation */
+          of(0, animationFrameScheduler),
+          this.update$$
+        );
+
+        this.triggerEvent$.subscribe(() => {
           if (this.isDisabled) {
             return;
           }
 
           this.positionElements
-            /* tslint:disable-next-line: no-any */
+          /* tslint:disable-next-line: no-any */
             .forEach((positionElement: any) => {
               positionElements(
                 _getHtmlElement(positionElement.target),
@@ -80,6 +83,7 @@ export class PositioningService {
               );
             });
         });
+      });
     }
   }
 

@@ -479,56 +479,7 @@ export const ngdoc: any = {
     "className": "CarouselConfig",
     "description": "",
     "methods": [],
-    "properties": [
-      {
-        "name": "indicatorsByChunk",
-        "defaultValue": "false",
-        "type": "boolean",
-        "description": "<p>If <code>true</code> - carousel indicators indicate slides chunks\nworks ONLY if singleSlideOffset = FALSE</p>\n"
-      },
-      {
-        "name": "interval",
-        "defaultValue": "5000",
-        "type": "number",
-        "description": "<p>Default interval of auto changing of slides</p>\n"
-      },
-      {
-        "name": "itemsPerSlide",
-        "defaultValue": "1",
-        "type": "number",
-        "description": "<p>If value more then 1 — carousel works in multilist mode</p>\n"
-      },
-      {
-        "name": "noPause",
-        "defaultValue": "false",
-        "type": "boolean",
-        "description": "<p>Is loop of auto changing of slides can be paused</p>\n"
-      },
-      {
-        "name": "noWrap",
-        "defaultValue": "false",
-        "type": "boolean",
-        "description": "<p>Is slides can wrap from the last to the first slide</p>\n"
-      },
-      {
-        "name": "pauseOnFocus",
-        "defaultValue": "false",
-        "type": "boolean",
-        "description": "<p>Slides can be paused on focus</p>\n"
-      },
-      {
-        "name": "showIndicators",
-        "defaultValue": "true",
-        "type": "boolean",
-        "description": "<p>Show carousel-indicators</p>\n"
-      },
-      {
-        "name": "singleSlideOffset",
-        "defaultValue": "false",
-        "type": "boolean",
-        "description": "<p>If <code>true</code> — carousel shifts by one element. By default carousel shifts by number\nof visible elements (itemsPerSlide field)</p>\n"
-      }
-    ]
+    "properties": []
   },
   "SlideWithIndex": {
     "fileName": "src/carousel/models/index.ts",
@@ -1075,6 +1026,11 @@ export const ngdoc: any = {
         "description": "<p>Default mode for all date pickers</p>\n"
       },
       {
+        "name": "showPreviousMonth",
+        "type": "boolean",
+        "description": "<p>Shows previous and current month, instead of current and next (daterangepicker only</p>\n"
+      },
+      {
         "name": "rangeInputFormat",
         "defaultValue": "L",
         "type": "string",
@@ -1493,7 +1449,7 @@ export const ngdoc: any = {
       {
         "name": "shortcutPropagation",
         "type": "boolean",
-        "description": "<p>if true shortcut`s event propagation will be disabled *</p>\n"
+        "description": "<p>if true shortcut`s event propagation will be disabled</p>\n"
       },
       {
         "name": "showWeeks",
@@ -3274,6 +3230,21 @@ export const ngdoc: any = {
         "name": "showSpinners",
         "type": "boolean",
         "description": "<p>if true spinner arrows above and below the inputs will be shown</p>\n"
+      },
+      {
+        "name": "hoursPlaceholder",
+        "type": "string",
+        "description": "<p>placeholder for hours field</p>\n"
+      },
+      {
+        "name": "minutesPlacesholder",
+        "type": "string",
+        "description": "<p>placeholder for minutes field</p>\n"
+      },
+      {
+        "name": "secondsPlaceholder",
+        "type": "string",
+        "description": "<p>placeholder for seconds field</p>\n"
       }
     ],
     "outputs": [
@@ -3371,6 +3342,24 @@ export const ngdoc: any = {
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if true spinner arrows above and below the inputs will be shown</p>\n"
+      },
+      {
+        "name": "hoursPlaceholder",
+        "defaultValue": "HH",
+        "type": "string",
+        "description": "<p>placeholder for hours field</p>\n"
+      },
+      {
+        "name": "minutesPlacesholder",
+        "defaultValue": "MM",
+        "type": "string",
+        "description": "<p>placeholder for minutes field</p>\n"
+      },
+      {
+        "name": "secondsPlaceholder",
+        "defaultValue": "SS",
+        "type": "string",
+        "description": "<p>placeholder for seconds field</p>\n"
       }
     ]
   },
