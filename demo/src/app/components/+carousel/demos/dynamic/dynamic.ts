@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './dynamic.html'
 })
 export class DemoCarouselDynamicComponent {
-  slides = [];
-  activeSlideIndex = 2;
+   activeSlideIndex = 2;
+   slides: { image: string }[] = [];
 
   constructor() {
     for (let i = 0; i < 4; i++) {

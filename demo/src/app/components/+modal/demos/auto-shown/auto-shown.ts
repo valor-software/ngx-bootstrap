@@ -6,8 +6,8 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
   templateUrl: './auto-shown.html'
 })
 export class DemoAutoShownModalComponent {
-  @ViewChild('autoShownModal') autoShownModal: ModalDirective;
-  isModalShown: boolean = false;
+  @ViewChild('autoShownModal', { static: false }) autoShownModal: ModalDirective;
+  isModalShown = false;
 
   showModal(): void {
     this.isModalShown = true;

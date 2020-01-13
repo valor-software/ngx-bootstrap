@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProgressbarComponent, ProgressbarModule } from 'ngx-bootstrap/progressbar';
+import { ProgressbarComponent, ProgressbarModule } from '../progressbar';
 
 @Component({
   selector: 'progressbar-test',
@@ -11,7 +11,7 @@ class TestProgressbarComponent extends ProgressbarComponent {}
 
 describe('Component: Progress Bar', () => {
   let fixture: ComponentFixture<TestProgressbarComponent>;
-  let element: any;
+  let element: HTMLElement;
   let component: ProgressbarComponent;
 
   it('check animate setter when _animate is equal to setter\'s argument', () => {
@@ -22,7 +22,7 @@ describe('Component: Progress Bar', () => {
     fixture = TestBed.createComponent(TestProgressbarComponent);
     component = fixture.componentInstance;
     component._animate = false;
-    component.bars = [{}];
+    component.bars = [];
 
     component.animate = true;
 
@@ -37,7 +37,7 @@ describe('Component: Progress Bar', () => {
     fixture = TestBed.createComponent(TestProgressbarComponent);
     component = fixture.componentInstance;
     component._striped = false;
-    component.bars = [{}];
+    component.bars = [];
 
     component.striped = true;
 
@@ -88,7 +88,7 @@ describe('Component: Progress Bar', () => {
     fixture = TestBed.createComponent(TestProgressbarComponent);
     element = fixture.nativeElement;
     fixture.detectChanges();
-    const barElement = element.querySelector('bar');
+    const barElement: HTMLElement = element.querySelector('bar');
     expect(barElement.style.width).toEqual('60%');
   });
 
@@ -117,7 +117,7 @@ describe('Component: Progress Bar', () => {
     const context = fixture.debugElement.componentInstance;
     element = fixture.nativeElement;
     fixture.detectChanges();
-    const barElement = element.querySelector('bar');
+    const barElement: HTMLElement = element.querySelector('bar');
 
     context.maxValue = componentData.initial.max;
     context.typeValue = componentData.initial.type;
@@ -132,5 +132,50 @@ describe('Component: Progress Bar', () => {
     fixture.detectChanges();
     expect(barElement.classList).toContain('progress-bar-danger');
     expect(barElement.style.width).toEqual('50%');
+  });
+
+  it('check type binding does not override other class names', () => {
+    const tpl = `<progressbar [type]="typeValue" [animate]="true" [striped]="true"></progressbar>`;
+    TestBed.configureTestingModule({
+      declarations: [TestProgressbarComponent],
+      imports: [ProgressbarModule.forRoot()]
+    });
+    TestBed.overrideComponent(TestProgressbarComponent, {
+      set: { template: tpl }
+    });
+    fixture = TestBed.createComponent(TestProgressbarComponent);
+    const context = fixture.debugElement.componentInstance;
+    element = fixture.nativeElement;
+    fixture.detectChanges();
+    const barElement: HTMLElement = element.querySelector('bar');
+    expect(barElement.classList).toContain('progress-bar');
+    expect(barElement.classList).toContain('progress-bar-striped');
+    expect(barElement.classList).toContain('active');
+
+    context.typeValue = 'success';
+    fixture.detectChanges();
+    expect(barElement.classList).toContain('progress-bar');
+    expect(barElement.classList).toContain('progress-bar-striped');
+    expect(barElement.classList).toContain('active');
+    expect(barElement.classList).toContain('progress-bar-success');
+    expect(barElement.classList).toContain('bg-success');
+
+    context.typeValue = 'info';
+    fixture.detectChanges();
+    expect(barElement.classList).toContain('progress-bar');
+    expect(barElement.classList).toContain('progress-bar-striped');
+    expect(barElement.classList).toContain('active');
+    expect(barElement.classList).toContain('progress-bar-info');
+    expect(barElement.classList).toContain('bg-info');
+    expect(barElement.classList).not.toContain('progress-bar-success');
+    expect(barElement.classList).not.toContain('bg-success');
+
+    context.typeValue = null;
+    fixture.detectChanges();
+    expect(barElement.classList).toContain('progress-bar');
+    expect(barElement.classList).toContain('progress-bar-striped');
+    expect(barElement.classList).toContain('active');
+    expect(barElement.classList).not.toContain('progress-bar-info');
+    expect(barElement.classList).not.toContain('bg-info');
   });
 });

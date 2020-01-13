@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AlertComponent, AlertConfig, AlertModule  } from 'ngx-bootstrap/alert';
+import { AlertComponent, AlertConfig, AlertModule  } from '../alert';
 
 @Component({selector: 'alert-test', template: ''})
 class TestAlertComponent extends AlertComponent {
@@ -12,6 +12,7 @@ class TestAlertComponent extends AlertComponent {
 
 describe('Component: Alert', () => {
   let fixture: ComponentFixture<TestAlertComponent>;
+  /* tslint:disable-next-line: no-any */
   let context: any;
   const overTemplate = `
     <div class="alert" role="alert" [ngClass]="classes" *ngIf="!closed">

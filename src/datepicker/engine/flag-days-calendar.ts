@@ -1,27 +1,41 @@
 import {
   DaysCalendarViewModel,
   DayViewModel,
-  WeekViewModel
+  WeekViewModel,
+  DatepickerDateCustomClasses
 } from '../models';
-import { isSameDay, isSameMonth, isAfter, isBefore, shiftDate } from 'ngx-bootstrap/chronos';
-import { isMonthDisabled } from '../utils/bs-calendar-utils';
+
+import {
+  isAfter,
+  isBefore,
+  isDisabledDay,
+  isSameDay,
+  isSameMonth,
+  shiftDate
+} from 'ngx-bootstrap/chronos';
+
+import { isMonthDisabled, isDisabledDate } from '../utils/bs-calendar-utils';
 
 export interface FlagDaysCalendarOptions {
   isDisabled: boolean;
   minDate: Date;
   maxDate: Date;
+  daysDisabled: number[];
+  datesDisabled: Date[];
   hoveredDate: Date;
   selectedDate: Date;
   selectedRange: Date[];
   displayMonths: number;
   monthIndex: number;
+  dateCustomClasses: DatepickerDateCustomClasses[];
 }
 
 export function flagDaysCalendar(
   formattedMonth: DaysCalendarViewModel,
   options: FlagDaysCalendarOptions
 ): DaysCalendarViewModel {
-  formattedMonth.weeks.forEach((week: WeekViewModel, weekIndex: number) => {
+  formattedMonth.weeks.forEach((week: WeekViewModel) => {
+    /* tslint:disable-next-line: cyclomatic-complexity */
     week.days.forEach((day: DayViewModel, dayIndex: number) => {
       // datepicker
       const isOtherMonth = !isSameMonth(day.date, formattedMonth.month);
@@ -51,7 +65,19 @@ export function flagDaysCalendar(
       const isDisabled =
         options.isDisabled ||
         isBefore(day.date, options.minDate, 'day') ||
-        isAfter(day.date, options.maxDate, 'day');
+        isAfter(day.date, options.maxDate, 'day') ||
+        isDisabledDay(day.date, options.daysDisabled) ||
+        isDisabledDate(day.date, options.datesDisabled);
+
+      const currentDate = new Date();
+      const isToday = !isOtherMonth && isSameDay(day.date, currentDate);
+
+      const customClasses = options.dateCustomClasses && options.dateCustomClasses
+        .map(dcc => isSameDay(day.date, dcc.date) ? dcc.classes : [])
+        .reduce((previousValue, currentValue) => previousValue.concat(currentValue), [])
+        .join(' ')
+        || '';
+
 
       // decide update or not
       const newDay = Object.assign({}, day, {
@@ -61,7 +87,9 @@ export function flagDaysCalendar(
         isSelectionStart,
         isSelectionEnd,
         isInRange,
-        isDisabled
+        isDisabled,
+        isToday,
+        customClasses
       });
 
       if (
@@ -71,7 +99,8 @@ export function flagDaysCalendar(
         day.isSelectionStart !== newDay.isSelectionStart ||
         day.isSelectionEnd !== newDay.isSelectionEnd ||
         day.isDisabled !== newDay.isDisabled ||
-        day.isInRange !== newDay.isInRange
+        day.isInRange !== newDay.isInRange ||
+        day.customClasses !== newDay.customClasses
       ) {
         week.days[dayIndex] = newDay;
       }

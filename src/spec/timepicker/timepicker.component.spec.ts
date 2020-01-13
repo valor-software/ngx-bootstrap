@@ -1,4 +1,4 @@
-// tslint:disable:no-floating-promises
+// tslint:disable:no-floating-promises max-file-line-count
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -9,16 +9,19 @@ import {
   TimepickerComponent,
   TimepickerConfig,
   TimepickerModule
-} from 'ngx-bootstrap/timepicker';
+} from '../../timepicker';
 
+/* tslint:disable-next-line: no-any */
 function getInputElements(fixture: any) {
   return fixture.nativeElement.querySelectorAll('input') as HTMLInputElement;
 }
 
+/* tslint:disable-next-line: no-any */
 function getElements(fixture: any, selector: string) {
   return fixture.nativeElement.querySelectorAll(selector) as HTMLElement;
 }
 
+/* tslint:disable-next-line: no-any */
 function getDebugElements(fixture: any, selector: string) {
   return fixture.debugElement.queryAll(By.css(selector));
 }
@@ -38,10 +41,14 @@ describe('Component: TimepickerComponent', () => {
   let inputHours: HTMLInputElement;
   let inputMinutes: HTMLInputElement;
   let inputSeconds: HTMLInputElement;
+  /* tslint:disable-next-line: no-any */
   let inputDebugHours: any;
+  /* tslint:disable-next-line: no-any */
   let inputDebugMinutes: any;
+  /* tslint:disable-next-line: no-any */
   let inputDebugSeconds: any;
   let buttonMeridian: HTMLElement;
+  /* tslint:disable-next-line: no-any */
   let buttonDebugMeridian: any;
   let buttonChanges: HTMLElement;
 
@@ -85,6 +92,18 @@ describe('Component: TimepickerComponent', () => {
 
     it('should visible meridian button', () => {
       expect(buttonMeridian).toBeTruthy();
+    });
+
+    it('hours placeholder should be \'HH\' ', () => {
+      expect(component.hoursPlaceholder).toEqual('HH');
+    });
+
+    it('minutes placeholder should be \'MM\' ', () => {
+      expect(component.minutesPlaceholder).toEqual('MM');
+    });
+
+    it('seconds placeholder should be \'SS\' ', () => {
+      expect(component.secondsPlaceholder).toEqual('SS');
     });
   });
 
@@ -534,7 +553,7 @@ describe('Component: TimepickerComponent', () => {
       fixture.detectChanges();
       fixture.whenStable().then(() => {
         const buttonsHidden = fixture.nativeElement.querySelector('a.btn');
-        expect(buttonsHidden.parentElement.parentElement.hasAttribute('hidden')).toEqual(true)
+        expect(buttonsHidden.parentElement.parentElement.hasAttribute('hidden')).toEqual(true);
       });
     }));
   });
@@ -561,7 +580,7 @@ describe('Component: TimepickerComponent', () => {
       component.writeValue(testTime(6, 30, 30));
       fixture.detectChanges();
 
-      const wheelEvent = {deltaY: -1, preventDefault: () => {}};
+      const wheelEvent = { deltaY: -1, preventDefault: () => undefined };
 
       inputDebugHours.triggerEventHandler('wheel', wheelEvent);
       fixture.detectChanges();
@@ -974,6 +993,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateHours('99');
 
       expect(methodSpy).toHaveBeenCalledWith(null);
+      /* tslint:disable-next-line:no-unbound-method */
       expect(component.isValid.emit).toHaveBeenCalledWith(false);
       expect(component.invalidHours).toEqual(true);
     });
@@ -986,6 +1006,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateHours('19');
 
       expect(methodSpy).toHaveBeenCalledWith(null);
+      /* tslint:disable-next-line:no-unbound-method */
       expect(component.isValid.emit).toHaveBeenCalledWith(false);
       expect(component.invalidHours).toEqual(true);
     });
@@ -998,6 +1019,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateHours('17');
 
       expect(component.invalidHours).toEqual(false);
+      /* tslint:disable-next-line:no-unbound-method */
       expect(component._updateTime).toHaveBeenCalled();
     });
 
@@ -1009,6 +1031,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateMinutes('99');
 
       expect(methodSpy).toHaveBeenCalledWith(null);
+      /* tslint:disable-next-line:no-unbound-method */
       expect(component.isValid.emit).toHaveBeenCalledWith(false);
     });
 
@@ -1020,6 +1043,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateMinutes('30');
 
       expect(methodSpy).toHaveBeenCalledWith(null);
+      /* tslint:disable-next-line:no-unbound-method */
       expect(component.isValid.emit).toHaveBeenCalledWith(false);
     });
 
@@ -1030,6 +1054,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateMinutes('30');
 
       expect(component.invalidMinutes).toEqual(false);
+      /* tslint:disable-next-line:no-unbound-method */
       expect(component._updateTime).toHaveBeenCalled();
     });
 
@@ -1042,6 +1067,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateSeconds('99');
 
       expect(methodSpy).toHaveBeenCalledWith(null);
+      /* tslint:disable-next-line:no-unbound-method */
       expect(component.isValid.emit).toHaveBeenCalledWith(false);
     });
 
@@ -1053,6 +1079,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateSeconds('50');
 
       expect(methodSpy).toHaveBeenCalledWith(null);
+      /* tslint:disable-next-line:no-unbound-method */
       expect(component.isValid.emit).toHaveBeenCalledWith(false);
     });
 
@@ -1063,6 +1090,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateSeconds('30');
 
       expect(component.invalidSeconds).toEqual(false);
+      /* tslint:disable-next-line:no-unbound-method */
       expect(component._updateTime).toHaveBeenCalled();
     });
 
@@ -1090,5 +1118,35 @@ describe('Component: TimepickerComponent', () => {
         expect(inputSeconds.value).toBeLessThan(60);
       });
     }));
+  });
+
+  describe('custom placeholders', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TimepickerComponent);
+      component = fixture.componentInstance;
+      component.showSeconds = true;
+      component.hoursPlaceholder = 'hh';
+      component.minutesPlaceholder = 'mm';
+      component.secondsPlaceholder = 'ss';
+
+      fixture.detectChanges();
+
+      inputHours = getInputElements(fixture)[0];
+      inputMinutes = getInputElements(fixture)[1];
+      inputSeconds = getInputElements(fixture)[2];
+    });
+
+    it('should use \'hh\' for hours placeholder', () => {
+      expect(inputHours.getAttribute('placeholder')).toEqual('hh');
+    });
+
+    it('should use \'mm\' for minutes placeholder', () => {
+      expect(inputMinutes.getAttribute('placeholder')).toEqual('mm');
+    });
+
+    it('should use \'ss\' for seconds placeholder', () => {
+      expect(inputSeconds.getAttribute('placeholder')).toEqual('ss');
+    });
+
   });
 });

@@ -6,12 +6,16 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
+import * as ts from 'typescript';
+import { addImportToModule } from '@schematics/angular/utility/ast-utils';
+import { Change, InsertChange } from '@schematics/angular/utility/change';
+import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 import { getFileContent } from '@schematics/angular/utility/test/index';
+import { getProjectMainFile } from './project-main-file';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
-import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
+import { Rule, SchematicContext, SchematicsException, Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
-import { UnitTestTree } from '@angular-devkit/schematics/testing/schematic-test-runner';
-import { WorkspaceProject, WorkspaceSchema } from '@angular-devkit/core/src/workspace';
+import { WorkspaceProject, WorkspaceSchema } from '@schematics/angular/utility/workspace-models';
 
 
 export function installPackageJsonDependencies(): Rule {
@@ -111,19 +115,55 @@ export function addPackageToPackageJson(host: Tree, pkg: string, version: string
   return host;
 }
 
-export function createTestApp(runner: SchematicTestRunner, appOptions = {}): UnitTestTree {
+export function createTestApp(runner: SchematicTestRunner, appOptions = {}): any {
   const workspaceTree = runner.runExternalSchematic('@schematics/angular', 'workspace', {
     name: 'workspace',
-    version: '6.0.0',
+    version: '8.2.0',
     newProjectRoot: 'projects'
   });
 
-  return runner.runExternalSchematic('@schematics/angular', 'application',
-    {...appOptions, name: 'ngx-bootstrap'}, workspaceTree);
+  return runner.runExternalSchematicAsync('@schematics/angular', 'application',
+    { name: 'ngx-bootstrap', ...appOptions }, workspaceTree);
 }
 
 export function removePackageJsonDependency(tree: Tree, dependencyName: string) {
   const packageContent = JSON.parse(getFileContent(tree, '/package.json'));
   delete packageContent.dependencies[dependencyName];
   tree.overwrite('/package.json', JSON.stringify(packageContent, null, 2));
+}
+
+
+export function addModuleImportToRootModule(host: Tree, moduleName: string, src: string, project: WorkspaceProject) {
+  const modulePath = getAppModulePath(host, getProjectMainFile(project));
+  addModuleImportToModule(host, modulePath, moduleName, src);
+}
+
+export function addModuleImportToModule(host: Tree, modulePath: string, moduleName: string, src: string) {
+
+  const moduleSource = getSourceFile(host, modulePath);
+
+  if (!moduleSource) {
+    throw new SchematicsException(`Module not found: ${modulePath}`);
+  }
+
+  const changes: Change[] = addImportToModule(moduleSource, modulePath, moduleName, src);
+  const recorder = host.beginUpdate(modulePath);
+
+  changes.forEach((change: Change) => {
+    if (change instanceof InsertChange) {
+      recorder.insertLeft(change.pos, change.toAdd);
+    }
+  });
+
+  host.commitUpdate(recorder);
+}
+
+export function getSourceFile(host: Tree, path: string) {
+  const buffer = host.read(path);
+  if (!buffer) {
+    throw new SchematicsException(`Could not find file for path: ${path}`);
+  }
+  const content = buffer.toString();
+
+  return ts.createSourceFile(path, content, ts.ScriptTarget.Latest, true);
 }
