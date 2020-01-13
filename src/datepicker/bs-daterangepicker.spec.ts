@@ -174,7 +174,7 @@ describe('daterangepicker:', () => {
 
         fixture.detectChanges();
         // only one active element should be present
-        const activeRangeButton = document.querySelectorAll('.bs-datepicker-predefined-btns button.active');
+        const activeRangeButton = document.querySelectorAll('.bs-datepicker-predefined-btns button.selected');
 
         expect(activeRangeButton).toBeTruthy();
         expect(activeRangeButton.length).toEqual(1);
@@ -207,7 +207,7 @@ describe('daterangepicker:', () => {
 
         fixture.detectChanges();
         // only one active element should be present
-        const activeRangeButton = document.querySelectorAll('.bs-datepicker-predefined-btns button.active');
+        const activeRangeButton = document.querySelectorAll('.bs-datepicker-predefined-btns button.selected');
 
         expect(activeRangeButton).toBeTruthy();
         expect(activeRangeButton.length).toEqual(1);
