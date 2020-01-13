@@ -18,12 +18,13 @@
       <li [routerLinkActive]="['active']"
           [routerLinkActiveOptions]="{exact: true}">
         <a routerLink="/{{routes[1].path}}">{{routes[1].data}}</a>
+        <a routerLink="/{{routes[2].path}}">{{routes[2].data}}</a>
       </li>
     </ul>
 
     <h4 class="sidebar-title">Components</h4>
     <ul class="sidebar-list">
-      <li *ngFor="let route of routes | slice:2 | SearchFilter:search.text"
+      <li *ngFor="let route of routes | slice:3 | SearchFilter:search.text"
           [routerLinkActive]="['active']"
           [routerLinkActiveOptions]="{exact: true}">
         <a routerLink="/{{route.path}}">{{route.data[0]}}</a>

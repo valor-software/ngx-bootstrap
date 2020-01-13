@@ -2,11 +2,14 @@ import {
   ComponentRef, Directive, ElementRef, EventEmitter, Input, OnChanges,
   OnDestroy, OnInit, Output, Renderer2, SimpleChanges, ViewContainerRef
 } from '@angular/core';
+
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
-import { BsDatepickerInlineContainerComponent } from './themes/bs/bs-datepicker-inline-container.component';
+
 import { Subscription } from 'rxjs';
-import { BsDatepickerInlineConfig } from './bs-datepicker-inline.config';
+
 import { BsDatepickerConfig } from './bs-datepicker.config';
+import { BsDatepickerInlineConfig } from './bs-datepicker-inline.config';
+import { BsDatepickerInlineContainerComponent } from './themes/bs/bs-datepicker-inline-container.component';
 import { DatepickerDateCustomClasses } from './models';
 
 @Directive({
@@ -61,11 +64,13 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
   private _datepicker: ComponentLoader<BsDatepickerInlineContainerComponent>;
   private _datepickerRef: ComponentRef<BsDatepickerInlineContainerComponent>;
 
-  constructor(public _config: BsDatepickerInlineConfig,
-              private _elementRef: ElementRef,
-              _renderer: Renderer2,
-              _viewContainerRef: ViewContainerRef,
-              cis: ComponentLoaderFactory) {
+  constructor(
+    public _config: BsDatepickerInlineConfig,
+    private _elementRef: ElementRef,
+    _renderer: Renderer2,
+    _viewContainerRef: ViewContainerRef,
+    cis: ComponentLoaderFactory
+  ) {
     // todo: assign only subset of fields
     Object.assign(this, this._config);
     this._datepicker = cis.createLoader<BsDatepickerInlineContainerComponent>(
@@ -106,14 +111,17 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
 
     if (changes.minDate) {
       this._datepickerRef.instance.minDate = this.minDate;
+      this._datepickerRef.instance.value = this._bsValue;
     }
 
     if (changes.maxDate) {
       this._datepickerRef.instance.maxDate = this.maxDate;
+      this._datepickerRef.instance.value = this._bsValue;
     }
 
     if (changes.datesDisabled) {
       this._datepickerRef.instance.datesDisabled = this.datesDisabled;
+      this._datepickerRef.instance.value = this._bsValue;
     }
 
     if (changes.isDisabled) {

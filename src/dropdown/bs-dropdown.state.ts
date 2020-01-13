@@ -6,6 +6,7 @@ export class BsDropdownState {
   direction: 'down' | 'up' = 'down';
   autoClose: boolean;
   insideClick: boolean;
+  isAnimated: boolean;
   isOpenChange = new EventEmitter<boolean>();
   isDisabledChange = new EventEmitter<boolean>();
   toggleClick = new EventEmitter<boolean>();

@@ -6,4 +6,11 @@ import { Component } from '@angular/core';
 })
 export class DemoDatepickerInlineComponent {
   bsInlineValue = new Date();
+  bsInlineRangeValue: Date[];
+  maxDate = new Date();
+
+  constructor() {
+    this.maxDate.setDate(this.maxDate.getDate() + 7);
+    this.bsInlineRangeValue = [this.bsInlineValue, this.maxDate];
+  }
 }
