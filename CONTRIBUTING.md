@@ -50,18 +50,18 @@ and help you to craft the change so that it is successfully accepted into the pr
 
 Before you submit an issue, please search the issue tracker, maybe an issue for your problem already exists and the discussion might inform you of workarounds readily available.
 
-We want to fix all the issues as soon as possible, but before fixing a bug we need to reproduce and confirm it. In order to reproduce bugs we will systematically ask you to provide a minimal reproduction scenario using [plunker]. Having a live, reproducible scenario gives us wealth of important information without going back & forth to you with additional questions like:
+We want to fix all the issues as soon as possible, but before fixing a bug we need to reproduce and confirm it. To reproduce bugs we will systematically ask you to provide a minimal reproduction scenario using [plunker]. Having a live, reproducible scenario gives us a wealth of important information without going back & forth to you with additional questions like:
 
-- version of Angular used
+- the version of Angular used
 - version on ngx-bootstrap used
 - build system: angular cli, system.js, starter seed used
 - and most importantly - a use-case that fails
 
 A minimal reproduce scenario using [plunker] allows us to quickly confirm a bug (or point out coding problem) as well as confirm that we are fixing the right problem. If plunker is not a suitable way to demonstrate the problem (for example for issues related to our npm packaging), please create a standalone git repository demonstrating the problem.
 
-We will be insisting on a minimal reproduce scenario in order to save maintainers time and ultimately be able to fix more bugs. Interestingly, from our experience users often find coding problems themselves while preparing a minimal plunk. We understand that sometimes it might be hard to extract essentials bits of code from a larger code-base but we really need to isolate the problem before we can fix it.
+We will be insisting on a minimal reproduce scenario to save maintainers time and ultimately be able to fix more bugs. Interestingly, from our experience users often find coding problems themselves while preparing a minimal plunk. We understand that sometimes it might be hard to extract essentials bits of code from a larger code-base but we really need to isolate the problem before we can fix it.
 
-Unfortunately we are not able to investigate / fix bugs without a minimal reproduction, so if we don't hear back from you we are going to close an issue that don't have enough info to be reproduced.
+Unfortunately we are not able to investigate / fix bugs without a minimal reproduction, so if we don't hear back from you we are going to close an issue that doesn't have enough info to be reproduced.
 
 You can file new issues by filling out our [new issue form](https://github.com/valor-software/ngx-bootstrap/issues/new).
 
@@ -88,7 +88,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
      ```shell
      git commit -a
      ```
-  Note: the optional commit `-a` command line option will automatically "add" and "rm" edited files.
+  Note: the optional commit `-a` command-line option will automatically "add" and "rm" edited files.
 
 * Push your branch to GitHub:
 
@@ -163,7 +163,7 @@ The **header** is mandatory and the **scope** of the header is optional.
 Any line of the commit message cannot be longer 100 characters! This allows the message to be easier
 to read on GitHub as well as in various git tools.
 
-Footer should contain a [closing reference to an issue](https://help.github.com/articles/closing-issues-via-commit-messages/) if any.
+The footer should contain a [closing reference to an issue](https://help.github.com/articles/closing-issues-via-commit-messages/) if any.
 
 Samples: (even more [samples](https://github.com/valor-software/ngx-bootstrap/commits/development))
 
@@ -177,7 +177,7 @@ The version in our package.json gets copied to the one we publish, and users nee
 ```
 
 ### Revert
-If the commit reverts a previous commit, it should begin with `revert: `, followed by the header of the reverted commit. In the body it should say: `This reverts commit <hash>.`, where the hash is the SHA of the commit being reverted.
+If the commit reverts a previous commit, it should begin with `revert: `, followed by the header of the reverted commit. In the body, it should say: `This reverts commit <hash>.`, where the hash is the SHA of the commit being reverted.
 
 ### Type
 Must be one of the following:
@@ -219,18 +219,18 @@ The following is the list of supported scopes:
 The subject contains succinct description of the change:
 
 * use the imperative, present tense: "change" not "changed" nor "changes"
-* don't capitalize first letter
+* don't capitalize the first letter
 * no dot (.) at the end
 
 ### Body
 Just as in the **subject**, use the imperative, present tense: "change" not "changed" nor "changes".
-The body should include the motivation for the change and contrast this with previous behavior.
+The body should include the motivation for the change and contrast this with previous behaviour.
 
 ### Footer
 The footer should contain any information about **Breaking Changes** and is also the place to
 reference GitHub issues that this commit **Closes**.
 
-**Breaking Changes** should start with the word `BREAKING CHANGE:` with a space or two newlines. The rest of the commit message is then used for this.
+**Breaking Changes** should start with the word `BREAKING CHANGE:` with space or two newlines. The rest of the commit message is then used for this.
 
 A detailed explanation can be found in this [document][commit-message-format].
 
@@ -243,7 +243,7 @@ This `CONTRIBUTING.md` is adapted from the Angular's `CONTRIBUTING.md`, availabl
 [coc]: https://github.com/valor-software/ngx-bootstrap/blob/development/CODE_OF_CONDUCT.md
 [commit-message-format]: https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#
 [github]: https://github.com/valor-software/ngx-bootstrap
-[slack]: https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWQ5M2Y4OWM0OGJjNmZiOGYyNjFlZTdlOGI1YjcxYWQ2ODhiOTY4NzhiODgwMTIzNDczODIyNWNmM2RlYWRhNTg
+[slack]: https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWVjZGU2MjI4MTVhMGVlMTc2OWRiMzA0NzBhNDU5YzQ0MDM3MWI5NzJjZTUzNzIxZmNjYmFlMjU2MzE0YmY0NWY
 [js-style-guide]: https://google.github.io/styleguide/jsguide.html
 [plunker]: http://plnkr.co/edit
 [stackoverflow]: http://stackoverflow.com/questions/tagged/ngx-bootstrap

@@ -1,4 +1,5 @@
 /* tslint:disable:max-file-line-count */
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
@@ -19,6 +20,7 @@ interface State {
     <input [(ngModel)]="selectedState"
            [typeahead]="states"
            [typeaheadOptionField]="'name'"
+           [adaptivePosition]="false"
            (typeaheadOnBlur)="onBlurEvent($event)">`
 })
 class TestTypeaheadComponent {
@@ -42,7 +44,7 @@ describe('Directive: Typeahead', () => {
   beforeEach(() => {
     fixture = TestBed.configureTestingModule({
       declarations: [ TestTypeaheadComponent],
-      imports: [TypeaheadModule.forRoot(), FormsModule]
+      imports: [TypeaheadModule.forRoot(), BrowserAnimationsModule, FormsModule]
     }).createComponent(TestTypeaheadComponent);
 
     fixture.detectChanges();
@@ -463,15 +465,10 @@ describe('Directive: Typeahead', () => {
     }));
 
     it('should close typeahead container if Tab was clicked', fakeAsync(() => {
-      inputElement.value = ' ';
-      dispatchTouchEvent(inputElement, 'input');
-      tick();
-
-      directive.typeaheadSelectFirstItem = false;
-      directive.isActiveItemChanged = true;
       inputElement.value = 'Alab';
       dispatchTouchEvent(inputElement, 'input');
       tick();
+
       dispatchKeyboardEvent(inputElement, 'keydown', 'TAB');
       tick();
 

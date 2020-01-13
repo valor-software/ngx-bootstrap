@@ -10,7 +10,7 @@
     <input placeholder="Datepicker" type="text" class="form-control" bsDatepicker #dp="bsDatepicker">
   </div>
   <div class="col-xs-12 col-12 col-sm-4 col-md-12 col-lg-4 form-group">
-    <button class="btn btn-success" (click)="dp.show()" [attr.aria-expanded]="dp.isOpen">Date Picker</button>
+    <button class="btn btn-success" (click)="dp.show()" [attr.aria-expanded]="dp.isOpen" type="button">Date Picker</button>
   </div>
 </div>
 <br>
@@ -27,6 +27,6 @@
     <input placeholder="Daterangepicker" type="text" class="form-control" bsDaterangepicker #dpr="bsDaterangepicker">
   </div>
   <div class="col-xs-12 col-12 col-sm-4 col-md-12 col-lg-4 form-group">
-    <button class="btn btn-success" (click)="dpr.show()" [attr.aria-expanded]="dpr.isOpen">Date Range Picker</button>
+    <button class="btn btn-success" (click)="dpr.show()" [attr.aria-expanded]="dpr.isOpen" type="button">Date Range Picker</button>
   </div>
 </div>

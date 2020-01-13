@@ -7,6 +7,7 @@ import {
   Provider,
   Renderer2
 } from '@angular/core';
+
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -15,7 +16,18 @@ import {
   ValidationErrors,
   Validator
 } from '@angular/forms';
-import { parseDate, formatDate, getLocale, isAfter, isBefore, isArray, isDateValid } from 'ngx-bootstrap/chronos';
+
+import {
+  parseDate,
+  formatDate,
+  getLocale,
+  isAfter,
+  isBefore,
+  isArray,
+  isDateValid,
+  utcAsLocal
+} from 'ngx-bootstrap/chronos';
+
 import { BsDaterangepickerDirective } from './bs-daterangepicker.component';
 import { BsLocaleService } from './bs-locale.service';
 
@@ -101,10 +113,14 @@ export class BsDaterangepickerInputDirective
 
   validate(c: AbstractControl): ValidationErrors | null {
     const _value: [Date, Date] = c.value;
+    const errors: object[] = [];
 
     if (_value === null || _value === undefined || !isArray(_value)) {
       return null;
     }
+
+    // @ts-ignore
+    _value.sort((a, b) => a - b);
 
     const _isFirstDateValid = isDateValid(_value[0]);
     const _isSecondDateValid = isDateValid(_value[1]);
@@ -118,11 +134,18 @@ export class BsDaterangepickerInputDirective
     }
 
     if (this._picker && this._picker.minDate && isBefore(_value[0], this._picker.minDate, 'date')) {
-      return { bsDate: { minDate: this._picker.minDate } };
+      _value[0] = this._picker.minDate;
+      errors.push({ bsDate: { minDate: this._picker.minDate } });
     }
 
     if (this._picker && this._picker.maxDate && isAfter(_value[1], this._picker.maxDate, 'date')) {
-      return { bsDate: { maxDate: this._picker.maxDate } };
+      _value[1] = this._picker.maxDate;
+      errors.push({ bsDate: { maxDate: this._picker.maxDate } });
+    }
+    if (errors.length > 0) {
+      this.writeValue(_value);
+
+      return errors;
     }
   }
 
@@ -153,8 +176,16 @@ export class BsDaterangepickerInputDirective
 
 
       this._value = (_input as string[])
-        .map((_val: string): Date =>
-          parseDate(_val, this._picker._config.dateInputFormat, this._localeService.currentLocale))
+        .map((_val: string): Date => {
+            if (this._picker._config.useUtc) {
+              return utcAsLocal(
+                parseDate(_val, this._picker._config.dateInputFormat, this._localeService.currentLocale)
+              );
+            }
+
+            return parseDate(_val, this._picker._config.dateInputFormat, this._localeService.currentLocale);
+          }
+        )
         .map((date: Date) => (isNaN(date.valueOf()) ? null : date));
     }
 

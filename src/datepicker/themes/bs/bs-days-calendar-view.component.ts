@@ -4,6 +4,7 @@ import {
   Input,
   Output
 } from '@angular/core';
+
 import {
   BsDatepickerViewMode,
   BsNavigationDirection,
@@ -13,6 +14,7 @@ import {
   DaysCalendarViewModel,
   DayViewModel, WeekViewModel
 } from '../../models';
+
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
 
 @Component({

@@ -4,7 +4,7 @@
  */
 import { Renderer2 } from '@angular/core';
 
-import { getReferenceOffsets, setAllStyles } from './utils';
+import { getOffsets, getReferenceOffsets, updateContainerClass, setStyles } from './utils';
 
 import { arrow, flip, preventOverflow, shift, initData } from './modifiers';
 import { Data, Offsets, Options } from './models';
@@ -54,5 +54,18 @@ export function positionElements(
     options
   );
 
-  setAllStyles(data, renderer);
+  const offsets = getOffsets(data);
+
+  setStyles(targetElement, {
+    'will-change': 'transform',
+    top: '0px',
+    left: '0px',
+    transform: `translate3d(${offsets.left}px, ${offsets.top}px, 0px)`
+  }, renderer);
+
+  if (data.instance.arrow) {
+    setStyles(data.instance.arrow, data.offsets.arrow, renderer);
+  }
+
+  updateContainerClass(data, renderer);
 }

@@ -16,9 +16,12 @@ import { AccordionComponent } from './accordion.component';
   host: {
     class: 'panel',
     style: 'display: block'
-  }
+  },
+  styleUrls: ['./accordion.scss']
 })
 export class AccordionPanelComponent implements OnInit, OnDestroy {
+  /** turn on/off animation */
+  isAnimated = false;
   /** Clickable text in accordion's group header, check `accordion heading` below for using html in header */
   @Input() heading: string;
   /** Provides an ability to use Bootstrap's contextual panel classes

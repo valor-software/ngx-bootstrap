@@ -17,7 +17,7 @@
 
     <p align="center">
       <span class="d-flex justify-content-center align-items-center">
-        <a class="mr-1" href="https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWQ5M2Y4OWM0OGJjNmZiOGYyNjFlZTdlOGI1YjcxYWQ2ODhiOTY4NzhiODgwMTIzNDczODIyNWNmM2RlYWRhNTg">
+        <a class="mr-1" href="https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWVjZGU2MjI4MTVhMGVlMTc2OWRiMzA0NzBhNDU5YzQ0MDM3MWI5NzJjZTUzNzIxZmNjYmFlMjU2MzE0YmY0NWY">
           <img src="https://a.slack-edge.com/66f9/img/icons/ios-256.png" width="25" height="25" alt="slack" >
         </a>
         <span style="display: inline-block;width: 120px;height: 20px;">
@@ -52,7 +52,7 @@
       <ul>
         <!--<li><a href="http://valor-software.com/ngx-bootstrap/">Documentation</a></li>-->
         <li><a href="https://github.com/valor-software/ngx-bootstrap/blob/development/CHANGELOG.md">Release Notes</a></li>
-        <li><a href="https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWQ5M2Y4OWM0OGJjNmZiOGYyNjFlZTdlOGI1YjcxYWQ2ODhiOTY4NzhiODgwMTIzNDczODIyNWNmM2RlYWRhNTg">Slack Community</a></li>
+        <li><a href="https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWVjZGU2MjI4MTVhMGVlMTc2OWRiMzA0NzBhNDU5YzQ0MDM3MWI5NzJjZTUzNzIxZmNjYmFlMjU2MzE0YmY0NWY">Slack Community</a></li>
       </ul>
 
       <h2>Table of contents</h2>
@@ -61,6 +61,7 @@
         <li><a routerLink="." fragment="installation-instructions">Installation instructions</a></li>
         <li><a routerLink="." fragment="usage--demo">Usage & Demo</a></li>
         <li><a routerLink="." fragment="api">API</a></li>
+        <li><a routerLink="." fragment="compatibility">Compatibility</a></li>
         <li><a routerLink="." fragment="troubleshooting">Troubleshooting</a></li>
         <li><a routerLink="." fragment="contribution">Contributing</a></li>
         <li><a routerLink="." fragment="accessibility">Accessibility</a></li>
@@ -116,7 +117,7 @@
 
       <h3>Setting up the bootstrap version manually</h3>
 
-      <p>Sometimes, your project might contain some library that could interfear with the bootstrap framework, or you might have a customized version of bootstrap. The consequence is that the process of determining bootstrap version might be failed, which can break the UI. In that case, we can still set the bootstrap version manually in the boostraping component (i.e. <code>AppComonent</code>):</p>
+      <p>Sometimes, your project might contain some library that could interfere with the bootstrap framework, or you might have a customized version of bootstrap. The consequence is that the process of determining bootstrap version might be failed, which can break the UI. In that case, we can still set the bootstrap version manually in the bootstrapping component (i.e. <code>AppComponent</code>):</p>
 
       <pre class="prettyprint lang-js prettyprinted">
 <span class="kwd">import</span><span class="pln"> </span><span class="pun">{{'{'}}</span><span class="pln"> setTheme </span><span class="pun">{{'}'}}</span><span class="pln"> from </span><span class="str">'ngx-bootstrap/utils'</span><span class="pun">;</span>
@@ -152,13 +153,56 @@
 
       <p>Check demo page for API <a href="https://valor-software.com/ngx-bootstrap/">reference</a></p>
 
+      <h2 id="compatibility">Compatibility</h2>
+
+      <p>The only two dependencies are <a href="https://angular.io" target="_blank">Angular</a> and  <a href="https://getbootstrap.com" target="_blank">Bootstrap</a> CSS.</p>
+      <p>Here is the versions compatibility list:</p>
+
+      <table class="compatibility">
+        <thead>
+        <tr>
+          <th>ngx-bootstrap</th>
+          <th>Angular</th>
+          <th>Bootstrap CSS</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th>5.x.x</th>
+          <th>7.x.x - 8.x.x</th>
+          <th>3.x.x or 4.x.x</th>
+        </tr>
+
+        <tr>
+          <th>4.x.x</th>
+          <th>6.x.x - 7.x.x</th>
+          <th>3.x.x or 4.x.x</th>
+        </tr>
+        <tr>
+          <th>3.x.x</th>
+          <th>6.x.x - 7.x.x</th>
+          <th>3.x.x or 4.x.x</th>
+        </tr>
+        <tr>
+          <th>2.x.x</th>
+          <th>2.x.x - 4.x.x</th>
+          <th>3.x.x or 4.x.x</th>
+        </tr>
+        <tr>
+          <th>1.x.x</th>
+          <th>2.x.x</th>
+          <th>3.x.x or 4.x.x</th>
+        </tr>
+        </tbody>
+      </table>
+
       <h2 id="troubleshooting">Troubleshooting</h2>
 
       <p>So you are in trouble, where to get help:</p>
 
       <ul>
         <li>you can search and ask for help at <a href="https://stackoverflow.com/questions/tagged/ngx-bootstrap">StackOverflow</a></li>
-        <li>you can join <a href="https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWQ5M2Y4OWM0OGJjNmZiOGYyNjFlZTdlOGI1YjcxYWQ2ODhiOTY4NzhiODgwMTIzNDczODIyNWNmM2RlYWRhNTg">slack</a> and ask a question</li>
+        <li>you can join <a href="https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWVjZGU2MjI4MTVhMGVlMTc2OWRiMzA0NzBhNDU5YzQ0MDM3MWI5NzJjZTUzNzIxZmNjYmFlMjU2MzE0YmY0NWY">slack</a> and ask a question</li>
         <li>if none of this helped please <a href="https://github.com/valor-software/ngx-bootstrap/issues?utf8=%E2%9C%93&q=is%3Aissue">search</a> and only then open new issue</li>
       </ul>
 
@@ -186,7 +230,7 @@
       <p>End-to-end testing sponsored by
         <a href="https://www.cypress.io/" class="pr-1">Cypress</a>
         <a href="https://www.cypress.io/">
-          <img src="https://www.cypress.io/img/favicon.ico" alt="Cypress" width="31" height="31">
+          <img src="https://raw.githubusercontent.com/cypress-io/cypress-icons/master/src/favicon/favicon.ico" alt="Cypress" width="31" height="31">
         </a>
       </p>
 

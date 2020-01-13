@@ -13,6 +13,7 @@ import {
   TemplateRef,
   ViewContainerRef
 } from '@angular/core';
+
 import { NgControl } from '@angular/forms';
 
 import { from, Subscription, isObservable } from 'rxjs';
@@ -21,7 +22,6 @@ import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { TypeaheadConfig } from './typeahead.config';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
-import { PositioningService } from 'ngx-bootstrap/positioning';
 import { debounceTime, filter, mergeMap, switchMap, toArray } from 'rxjs/operators';
 
 @Directive({selector: '[typeahead]', exportAs: 'bs-typeahead'})
@@ -38,6 +38,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @Input() typeaheadMinLength: number = void 0;
   /** sets use adaptive position */
   @Input() adaptivePosition: boolean;
+  /** turn on/off animation */
+  @Input() isAnimated = false;
   /** minimal wait time after last character typed before typeahead kicks-in */
   @Input() typeaheadWaitMs: number;
   /** maximum length of options items list. The default value is 20 */
@@ -112,7 +114,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
   /**
    * A selector specifying the element the typeahead should be appended to.
-   * Currently only supports "body".
    */
   @Input() container: string;
 
@@ -153,7 +154,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     private changeDetection: ChangeDetectorRef,
     private element: ElementRef,
     private ngControl: NgControl,
-    private positionService: PositioningService,
     private renderer: Renderer2,
     viewContainerRef: ViewContainerRef
   ) {
@@ -171,7 +171,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         typeaheadSelectFirstItem: config.selectFirstItem,
         typeaheadIsFirstItemActive: config.isFirstItemActive,
         typeaheadMinLength: config.minLength,
-        adaptivePosition: config.adaptivePosition
+        adaptivePosition: config.adaptivePosition,
+        isAnimated: config.isAnimated
       }
     );
   }
@@ -318,19 +319,10 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   show(): void {
-    this.positionService.setOptions({
-      modifiers: {
-        flip: {
-          enabled: this.adaptivePosition
-        }
-      }
-    });
-
     this._typeahead
       .attach(TypeaheadContainerComponent)
-      // todo: add append to body, after updating positioning service
       .to(this.container)
-      .position({attachment: `${this.dropup ? 'top' : 'bottom'} left`})
+      .position({attachment: `${this.dropup ? 'top' : 'bottom'} start`})
       .show({
         typeaheadRef: this,
         placement: this.placement,
@@ -351,11 +343,13 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this._container = this._typeahead.instance;
     this._container.parent = this;
     // This improves the speed as it won't have to be done for each list item
+
     const normalizedQuery = (this.typeaheadLatinize
       ? latinize(this.ngControl.control.value)
       : this.ngControl.control.value)
       .toString()
       .toLowerCase();
+
     this._container.query = this.typeaheadSingleWords
       ? tokenize(
         normalizedQuery,
@@ -363,6 +357,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         this.typeaheadPhraseDelimiters
       )
       : normalizedQuery;
+
     this._container.matches = this._matches;
     this.element.nativeElement.focus();
   }
@@ -495,8 +490,10 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       const _controlValue = (this.typeaheadLatinize
         ? latinize(this.ngControl.control.value)
         : this.ngControl.control.value) || '';
+
       // This improves the speed as it won't have to be done for each list item
       const normalizedQuery = _controlValue.toString().toLowerCase();
+
       this._container.query = this.typeaheadSingleWords
         ? tokenize(
           normalizedQuery,

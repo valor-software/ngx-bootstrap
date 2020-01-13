@@ -32,7 +32,8 @@ describe('flag-days-calendar:', () => {
         selectedDate: new Date('2019-02-05'),
         selectedRange: [],
         displayMonths: 1,
-        monthIndex: 1
+        monthIndex: 1,
+        dateCustomClasses: []
       });
 
       expect(result.weeks[0].days.find(day => day.label === '2019-02-07').isDisabled).toBe(true);

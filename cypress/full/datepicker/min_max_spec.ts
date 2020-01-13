@@ -19,10 +19,12 @@ describe('Datepicker demo test suite: Min-max', () => {
     const maxDate = new Date();
     minDate.setDate(minDate.getDate() - 1);
     maxDate.setDate(maxDate.getDate() + 7);
+    const minDateMonth = minDate.getMonth();
+    const maxDateMonth = maxDate.getMonth();
     datepicker.clickOnDatepickerInput(minMax);
     datepicker.isDatepickerOpened(true);
     datepicker.isDayIntervalDisabledInCurrentMonth(minDate, maxDate, false);
-    if (minDate.getMonth() !== maxDate.getMonth()) {
+    if (minDateMonth !== maxDateMonth) {
       datepicker.clickOnNavigation('body', '>');
       datepicker.isDayIntervalDisabledInNextMonth(minDate, maxDate, false);
     }
