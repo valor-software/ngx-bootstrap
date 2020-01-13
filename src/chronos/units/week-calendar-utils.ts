@@ -50,24 +50,20 @@ export function dayOfYearFromWeeks(
   };
 }
 
-export function weekOfYear(
-  date: Date,
-  dow: number,
-  doy: number
-): { week: number; year: number } {
-  const weekOffset = firstWeekOffset(getFullYear(date), dow, doy);
-  const week = Math.floor((getDayOfYear(date) - weekOffset - 1) / 7) + 1;
+export function weekOfYear(date: Date, dow: number, doy: number, isUTC?: boolean): { week: number; year: number } {
+  const weekOffset = firstWeekOffset(getFullYear(date, isUTC), dow, doy);
+  const week = Math.floor((getDayOfYear(date, isUTC) - weekOffset - 1) / 7) + 1;
   let resWeek: number;
   let resYear: number;
 
   if (week < 1) {
-    resYear = getFullYear(date) - 1;
+    resYear = getFullYear(date, isUTC) - 1;
     resWeek = week + weeksInYear(resYear, dow, doy);
-  } else if (week > weeksInYear(getFullYear(date), dow, doy)) {
-    resWeek = week - weeksInYear(getFullYear(date), dow, doy);
-    resYear = getFullYear(date) + 1;
+  } else if (week > weeksInYear(getFullYear(date, isUTC), dow, doy)) {
+    resWeek = week - weeksInYear(getFullYear(date, isUTC), dow, doy);
+    resYear = getFullYear(date, isUTC) + 1;
   } else {
-    resYear = getFullYear(date);
+    resYear = getFullYear(date, isUTC);
     resWeek = week;
   }
 

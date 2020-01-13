@@ -2,13 +2,17 @@
   <!-- begin entry block -->
   <section class="entry container-fluid text-center">
     <div class="content-logo">
-      <img src="assets/images/logos/content-logo.svg" alt="">
+      <img src="assets/images/logos/content-logo.svg" alt="ngx-bootstrap">
     </div>
     <h1 class="slogan">Develop better. Faster.</h1>
     <p class="descr">Bootstrap components, powered by Angular</p>
+    <div class="content-logo">
+      <img src="https://uploads-ssl.webflow.com/5c7fcabb4e3feec5add934f2/5c814861b78f13c6bfaa8487_ic-star.svg" alt="" class="sponsor-icon">
+      <a routerLink="." fragment="supporting" class="sponsor-link">Become a Partner!</a>
+    </div>
     <div class="btn-block">
-      <a class="btn btn-primary" routerLink="/getting-started">Get started</a>
-      <a class="btn btn-outline-secondary" href="https://github.com/valor-software/ngx-bootstrap">Github</a>
+      <a class="btn btn-primary text-white" (click)="scrollToSection()">Get started</a>
+      <a class="btn btn-outline-secondary" routerLink="/documentation">Documentation</a>
     </div>
     <p class="version">{{currentVersion}}</p>
   </section>
@@ -63,6 +67,20 @@
     </div>
   </section>
   <!-- end advantages block -->
+
+  <!-- begin support block -->
+  <section class="entry container-fluid text-center">
+    <h2 id="supporting">Supporting NGX-Bootstrap</h2>
+    <p class="content-supporting">ngx-bootstrap is an Open Source (MIT Licensed) independent project with ongoing development made possible thanks to the support of our awesome backers.
+      If you also would like to show support or simply give back to Open Source community, please consider becoming a partner. <br>
+      Valor Software employees and contractors are not eligible to use these funds.</p>
+    <div class="btn-block">
+      <a class="btn btn-primary text-white" target="_blank" href="https://opencollective.com/ngx-bootstrap" >Become a backer sponsor</a>
+      <a class="btn btn-outline-secondary" target="_blank" href="https://github.com/valor-software/ngx-bootstrap/blob/development/CONTRIBUTING.md" >Become a contributor</a>
+    </div>
+  </section>
+  <!-- end support block -->
+
 
 </div>
 <div class="landing-footer">

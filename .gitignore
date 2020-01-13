@@ -3,7 +3,6 @@
 /node_modules
 /bower_components
 yarn.lock
-package-lock.json
 
 # IDEs and editors
 /.idea
@@ -43,3 +42,7 @@ src/**/*.js
 src/**/*.map
 scripts/**/*.js
 scripts/**/*.map
+
+schematics/src/**/*.js
+schematics/src/**/*.js.map
+schematics/src/**/*.d.ts

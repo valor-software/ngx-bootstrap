@@ -1,8 +1,7 @@
+import { AccordionConfig, AccordionModule } from '../accordion';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { AccordionConfig } from '../accordion/accordion.config';
-
-import { AccordionModule } from '../accordion/accordion.module';
 
 @Component({
   selector: 'accordion-test',
@@ -10,10 +9,11 @@ import { AccordionModule } from '../accordion/accordion.module';
 })
 class TestAccordionComponent {
   oneAtATime = true;
+  /* tslint:disable-next-line: no-any */
   panels: any[] = [
-    {isOpen: false, isDisabled: false},
-    {isOpen: false, isDisabled: false},
-    {isOpen: false, isDisabled: false}
+    { isOpen: false, isDisabled: false },
+    { isOpen: false, isDisabled: false },
+    { isOpen: false, isDisabled: false }
   ];
 
   constructor(config: AccordionConfig) {
@@ -63,21 +63,26 @@ function expectOpenPanels(nativeEl: HTMLElement,
 }
 
 function hasTitle(element: HTMLElement, str: string): boolean {
-  return element.textContent === str;
+  return element.textContent.trim() === str;
 }
 
 describe('Component: Accordion', () => {
   let fixture: ComponentFixture<TestAccordionComponent>;
+  /* tslint:disable-next-line: no-any */
   let context: any;
+  /* tslint:disable-next-line: no-any */
   let element: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestAccordionComponent],
-      imports: [AccordionModule.forRoot()]
+      imports: [
+        AccordionModule.forRoot(),
+        BrowserAnimationsModule
+      ]
     });
     TestBed.overrideComponent(TestAccordionComponent, {
-      set: {template: html}
+      set: { template: html }
     });
     fixture = TestBed.createComponent(TestAccordionComponent);
     context = fixture.componentInstance;
@@ -125,11 +130,13 @@ describe('Component: Accordion', () => {
 
   it('should have the appropriate heading', () => {
     const titles = Array.from(
-      element.querySelectorAll('.panel-heading .accordion-toggle span')
+      element.querySelectorAll('.panel-heading .accordion-toggle button')
     );
-    titles.forEach((title: HTMLElement, idx: number) =>
-      expect(hasTitle(title, `Panel ${idx + 1}`)).toBe(true)
-    );
+    titles.forEach((title: HTMLElement, idx: number) => {
+      const expectedTitle = `Panel ${idx + 1}`;
+      expect(hasTitle(title, expectedTitle))
+        .toBeTruthy(`Expected "${expectedTitle}" to be "${title.textContent}"`);
+    });
   });
 
   it('should only open one at a time', () => {

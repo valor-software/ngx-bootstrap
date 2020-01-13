@@ -1,10 +1,12 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { BsComponentRef } from '../component-loader/bs-component-ref.class';
+import { BsComponentRef } from 'ngx-bootstrap/component-loader';
 
 @Injectable()
 export class BsDropdownState {
   direction: 'down' | 'up' = 'down';
   autoClose: boolean;
+  insideClick: boolean;
+  isAnimated: boolean;
   isOpenChange = new EventEmitter<boolean>();
   isDisabledChange = new EventEmitter<boolean>();
   toggleClick = new EventEmitter<boolean>();
@@ -12,6 +14,7 @@ export class BsDropdownState {
   /**
    * Content to be displayed as popover.
    */
+  // tslint:disable:no-any
   dropdownMenu: Promise<BsComponentRef<any>>;
   resolveDropdownMenu: (componentRef: BsComponentRef<any>) => void;
 

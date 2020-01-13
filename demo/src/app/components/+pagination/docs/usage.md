@@ -1,4 +1,4 @@
-// RECOMMENDED (doesn't work with system.js)
+// RECOMMENDED
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 // or
 import { PaginationModule } from 'ngx-bootstrap';

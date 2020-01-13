@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { Ng2PageScrollModule } from 'ng2-page-scroll';
+import { NgxPageScrollModule } from 'ngx-page-scroll';
 /* common */
 import { AppFooterComponent } from '../common/app-footer/app-footer.component';
 import { AddNavComponent } from '../common/add-nav/add-nav.component';
@@ -55,7 +55,7 @@ export { DocsSectionComponent } from './docs-section/docs-section.component';
     ExamplesComponentModule,
     ApiSectionsComponentModule,
     DemoTopSectionComponentModule,
-    Ng2PageScrollModule,
+    NgxPageScrollModule,
     RouterModule
   ],
   exports: [
@@ -67,7 +67,7 @@ export { DocsSectionComponent } from './docs-section/docs-section.component';
     NgApiDocModule,
     ExamplesComponentModule,
     ApiSectionsComponentModule,
-    Ng2PageScrollModule,
+    NgxPageScrollModule,
     RouterModule,
     DocsSectionComponent
   ],

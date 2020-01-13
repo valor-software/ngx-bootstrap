@@ -1,15 +1,14 @@
 'use strict';
 
 const ts = require('typescript');
-const fs = require('fs');
 const marked = require('marked');
 
 const renderer = new marked.Renderer();
 renderer.link = (href, title, text) => (`<a href=\"${href}\" target="_blank" title=\"${title}\">${text}</a>`);
 marked.setOptions({gfm: true});
 
-const getDescription = (symbol) => marked(
-  ts.displayPartsToString(symbol.getDocumentationComment()),
+const getDescription = (symbol, typeChecker) => marked(
+  ts.displayPartsToString(symbol.getDocumentationComment(typeChecker)),
   {renderer}
 );
 
@@ -23,12 +22,12 @@ const ANGULAR_LIFECYCLE_METHODS = [
   'ngAfterViewInit', 'ngAfterViewChecked', 'writeValue', 'registerOnChange', 'registerOnTouched', 'setDisabledState'
 ];
 
-function isInternalMember(member) {
+function isInternalMember(member, typeChecker) {
   // todo: could be an issue, as for now lets skip members without a symbol
   if (!member.symbol) {
     return true;
   }
-  const jsDoc = ts.displayPartsToString(member.symbol.getDocumentationComment());
+  const jsDoc = ts.displayPartsToString(member.symbol.getDocumentationComment(typeChecker));
   return jsDoc.trim().length === 0 || jsDoc.indexOf('@internal') > -1;
 }
 
@@ -36,8 +35,8 @@ function isAngularLifecycleHook(methodName) {
   return ANGULAR_LIFECYCLE_METHODS.indexOf(methodName) >= 0;
 }
 
-function isPrivateOrInternal(member) {
-  return ((member.flags & ts.NodeFlags.Private) !== 0) || isInternalMember(member);
+function isPrivateOrInternal(member, typeChecker) {
+  return ((member.flags & ts.NodeFlags.Private) !== 0) || isInternalMember(member, typeChecker);
 }
 
 class APIDocVisitor {
@@ -66,7 +65,7 @@ class APIDocVisitor {
 
   visitInterfaceDeclaration(fileName, interfaceDeclaration) {
     const symbol = this.program.getTypeChecker().getSymbolAtLocation(interfaceDeclaration.name);
-    const description = getDescription(symbol);
+    const description = getDescription(symbol, this.typeChecker);
     const className = interfaceDeclaration.name.text;
     const members = this.visitMembers(interfaceDeclaration.members);
 
@@ -81,7 +80,7 @@ class APIDocVisitor {
 
   visitClassDeclaration(fileName, classDeclaration) {
     const symbol = this.program.getTypeChecker().getSymbolAtLocation(classDeclaration.name);
-    const description = getDescription(symbol);
+    const description = getDescription(symbol, this.typeChecker);
     const className = classDeclaration.name.text;
     let directiveInfo, members;
 
@@ -165,7 +164,7 @@ class APIDocVisitor {
       } else if (outDecorator) {
         outputs.push(this.visitOutput(members[i], outDecorator));
 
-      } else if (!isPrivateOrInternal(members[i])) {
+      } else if (!isPrivateOrInternal(members[i], this.typeChecker)) {
         if ((members[i].kind === ts.SyntaxKind.MethodDeclaration ||
           members[i].kind === ts.SyntaxKind.MethodSignature) &&
           !isAngularLifecycleHook(members[i].name.text)) {
@@ -188,7 +187,7 @@ class APIDocVisitor {
   visitMethodDeclaration(method) {
     return {
       name: method.name.text,
-      description: getDescription(method.symbol),
+      description: getDescription(method.symbol, this.typeChecker),
       args: method.parameters ? method.parameters.map((prop) => this.visitArgument(prop)) : [],
       returnType: this.visitType(method.type)
     }
@@ -204,7 +203,7 @@ class APIDocVisitor {
       name: inArgs.length ? inArgs[0].text : property.name.text,
       defaultValue: property.initializer ? this.stringifyDefaultValue(property.initializer) : undefined,
       type: this.visitType(property),
-      description: getDescription(property.symbol)
+      description: getDescription(property.symbol, this.typeChecker)
     };
   }
 
@@ -222,7 +221,7 @@ class APIDocVisitor {
     const outArgs = outDecorator.expression.arguments;
     return {
       name: outArgs.length ? outArgs[0].text : property.name.text,
-      description: getDescription(property.symbol)
+      description: getDescription(property.symbol, this.typeChecker)
     };
   }
 
@@ -231,7 +230,7 @@ class APIDocVisitor {
       name: property.name.text,
       defaultValue: property.initializer ? this.stringifyDefaultValue(property.initializer) : undefined,
       type: this.visitType(property),
-      description: getDescription(property.symbol)
+      description: getDescription(property.symbol, this.typeChecker)
     };
   }
 
