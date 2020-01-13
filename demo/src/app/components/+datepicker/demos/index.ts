@@ -10,6 +10,7 @@ import { DemoDatepickerCustomTodayClassComponent } from './custom-today-class/cu
 import { DemoDatepickerDateInitialStateComponent } from './date-initial-state/date-initial-state';
 import { DemoDatepickerDaysDisabledComponent } from './disable-days/disable-days';
 import { DemoDatepickerDatesDisabledComponent } from './disable-dates/disable-dates';
+import { DemoDatepickerYearsDisabledComponent } from './disable-years/disable-years';
 import { DemoDatepickerDisabledComponent } from './disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './forms/forms.component';
 import { DemoDatepickerHideOnScrollComponent } from './hide-on-scroll/hide-on-scroll';
@@ -51,6 +52,7 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerDateInitialStateComponent,
   DemoDatepickerDatesDisabledComponent,
   DemoDatepickerDaysDisabledComponent,
+  DemoDatepickerYearsDisabledComponent,
   DemoDatepickerDisabledComponent,
   DemoDatepickerFormsComponent,
   DemoDatepickerHideOnScrollComponent,

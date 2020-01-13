@@ -11,6 +11,7 @@ import { DemoDatePickerCustomFormatComponent } from './demos/custom-format/custo
 import { DemoDatepickerDateInitialStateComponent } from './demos/date-initial-state/date-initial-state';
 import { DemoDatepickerDatesDisabledComponent } from './demos/disable-dates/disable-dates';
 import { DemoDatepickerDaysDisabledComponent } from './demos/disable-days/disable-days';
+import { DemoDatepickerYearsDisabledComponent } from './demos/disable-years/disable-years';
 import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
 import { DemoDatepickerHideOnScrollComponent } from './demos/hide-on-scroll/hide-on-scroll';
@@ -21,7 +22,6 @@ import { DemoDatepickerOutsideClickComponent } from './demos/outside-click/outsi
 import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
 import { DemoDatepickerDateCustomClassesComponent } from './demos/date-custom-classes/date-custom-classes';
-
 import {
   DemoDatePickerSelectDatesFromOtherMonthsComponent
 } from './demos/select-dates-from-other-months/select-dates-from-other-months';
@@ -194,6 +194,15 @@ export const demoComponentContent: ContentSection[] = [
           <p>In the following example <code>daysDisabled</code> is set with an array which disabled saturday and sunday.
           Sunday is considered the first day of the week and thus has the value 0</p>`,
         outlet: DemoDatepickerDaysDisabledComponent
+      },
+      {
+        title: 'Years disabled',
+        anchor: 'disable-years',
+        component: require('!!raw-loader!./demos/disable-years/disable-years.ts'),
+        html: require('!!raw-loader!./demos/disable-years/disable-years.html'),
+        description: `
+          <p>You can disable years selection with <code>disableYears</code>`,
+        outlet: DemoDatepickerYearsDisabledComponent
       },
       {
         title: 'Dates disabled',

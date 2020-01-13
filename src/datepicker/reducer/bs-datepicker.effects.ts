@@ -32,7 +32,7 @@ export class BsDatepickerEffects {
   monthsCalendar: Observable<MonthsCalendarViewModel[]>;
   yearsCalendar: Observable<YearsCalendarViewModel[]>;
   options: Observable<DatepickerRenderOptions>;
-  disableYearSelection: boolean;
+  disableYears: boolean;
 
   private _store: BsDatepickerStore;
   private _subs: Subscription[] = [];
@@ -94,7 +94,7 @@ export class BsDatepickerEffects {
 
   /* Set rendering options */
   setOptions(_config: BsDatepickerConfig): BsDatepickerEffects {
-    this.disableYearSelection = _config.disableYearSelection;
+    this.disableYears = _config.disableYears;
     const _options = Object.assign({locale: this._localeService.currentLocale}, _config);
     this._store.dispatch(this._actions.setOptions(_options));
 
@@ -137,7 +137,7 @@ export class BsDatepickerEffects {
   /** event handlers */
   setEventHandlers(container: BsDatepickerAbstractComponent): BsDatepickerEffects {
     container.setViewMode = (event: BsDatepickerViewMode): void => {
-      if (event !== 'year' || !this.disableYearSelection) {
+      if (event !== 'year' || !this.disableYears) {
          this._store.dispatch(this._actions.changeViewMode(event));
       }
     };
