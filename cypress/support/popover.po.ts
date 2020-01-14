@@ -25,7 +25,8 @@ export class PopoverPo extends BaseComponent {
     triggerIsOpen: 'demo-popover-trigger-by-isopen',
     componentLevelStyling: 'demo-popover-styling-local',
     customClass: 'demo-popover-class',
-    popoverContext: 'demo-popover-context'
+    popoverContext: 'demo-popover-context',
+    delayPopover: 'demo-popover-delay'
   };
 
   isPopoverPlacementCorrect(baseSelector: string, placement: string) {

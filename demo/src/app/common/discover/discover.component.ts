@@ -18,7 +18,7 @@ export class DiscoverComponent {
       link: 'https://www.lumeer.io/'
     },
     {
-      logo: 'https://user-images.githubusercontent.com/663563/57700709-ceca2800-765a-11e9-9484-a7a9bb1e6485.png',
+      logo: 'https://user-images.githubusercontent.com/663563/70622944-3eb68600-1c1d-11ea-82d3-7ccbd75befe8.png',
       name: 'Sustainablebuildings',
       description: 'SaaS product that give users insight in their power, gas consumption and other data',
       link: 'https://sustainablebuildings.nl'
@@ -46,6 +46,12 @@ export class DiscoverComponent {
       name: 'DeveloperHub',
       description: 'DeveloperHub.io - Hosted Documentation Portals for Product And API Docs',
       link: 'https://developerhub.io'
+    },
+    {
+      logo: 'https://i.ytimg.com/vi/Em6PAkViyU4/maxresdefault.jpg',
+      name: 'Trovimap',
+      description: 'Trovimap - Houses / Apartments / Locals for sale or rent',
+      link: 'https://trovimap.com/'
     }
   ];
 }
