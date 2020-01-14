@@ -27,7 +27,7 @@ import {
               (mouseleave)="hoverMonth(month, false)"
               [class.disabled]="month.isDisabled"
               [class.is-highlighted]="month.isHovered">
-            <span>{{ month.label }}</span>
+            <span [class.selected]="month.isSelected">{{ month.label }}</span>
           </td>
         </tr>
         </tbody>

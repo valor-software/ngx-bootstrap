@@ -4,4 +4,4 @@
   </div>
 </div>
 
-<button type="button" class="btn btn-info" (click)="rotate = !rotate">Toggle centering current page link</button>
+<button type="button" class="btn btn-info" [style.background-color]="rotate ? 'blue' : 'red'" (click)="toggleBtn()">Current page link center is {{status}}</button>

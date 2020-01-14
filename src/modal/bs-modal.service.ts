@@ -148,8 +148,7 @@ export class BsModalService {
     this.backdropRef = null;
   }
 
-  /** AFTER PR MERGE MODAL.COMPONENT WILL BE USING THIS CODE */
-  /** Scroll bar tricks */
+  /** Checks if the body is overflowing and sets scrollbar width */
   /** @internal */
   checkScrollbar(): void {
     this.isBodyOverflowing = document.body.clientWidth < window.innerWidth;

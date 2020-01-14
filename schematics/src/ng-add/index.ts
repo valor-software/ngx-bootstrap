@@ -36,7 +36,7 @@ const components: { [key: string]: { moduleName: string; link: string; animated?
   carousel:    { moduleName: 'CarouselModule',     link: `${bsName}/carousel` },
   collapse:    { moduleName: 'CollapseModule',     link: `${bsName}/collapse`, animated: true },
   datepicker:  { moduleName: 'BsDatepickerModule', link: `${bsName}/datepicker`, animated: true },
-  dropdowns:   { moduleName: 'BsDropdownModule',   link: `${bsName}/dropdown` },
+  dropdowns:   { moduleName: 'BsDropdownModule',   link: `${bsName}/dropdown` , animated: true },
   modals:      { moduleName: 'ModalModule',        link: `${bsName}/modal` },
   pagination:  { moduleName: 'PaginationModule',   link: `${bsName}/pagination` },
   popover:     { moduleName: 'PopoverModule',      link: `${bsName}/popover` },
