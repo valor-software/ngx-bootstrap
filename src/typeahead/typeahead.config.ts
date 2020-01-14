@@ -9,6 +9,8 @@ export class TypeaheadConfig {
   isAnimated = false;
   /** used to hide results on blur */
   hideResultsOnBlur = true;
+  /** if true, typeahead will cancel async request on blur */
+  typeaheadCancelOnBlur = false;
   /** used to choose the first item in typeahead container */
   selectFirstItem = true;
   /** used to active/inactive the first item in typeahead container */

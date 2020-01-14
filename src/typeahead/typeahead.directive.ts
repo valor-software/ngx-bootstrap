@@ -119,8 +119,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
   /** This attribute indicates that the dropdown should be opened upwards */
   @Input() dropup = false;
-  /** if true, typeahead will cancel async request on blur */
-  @Input() typeaheadCancelOnBlur = false;
 
   // not yet implemented
   /** if false restrict model values to the ones selected from the popup only will be provided */
@@ -140,6 +138,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   isActiveItemChanged = false;
   isTypeaheadOptionsListActive = false;
   isFocused = false;
+  typeaheadCancelOnBlur = false;
 
   // tslint:disable-next-line:no-any
   protected keyUpEventEmitter: EventEmitter<any> = new EventEmitter();
@@ -171,6 +170,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     Object.assign(this,
       {
         typeaheadHideResultsOnBlur: config.hideResultsOnBlur,
+        typeaheadCancelOnBlur: config.typeaheadCancelOnBlur,
         typeaheadSelectFirstItem: config.selectFirstItem,
         typeaheadIsFirstItemActive: config.isFirstItemActive,
         typeaheadMinLength: config.minLength,
@@ -491,7 +491,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
 
     if (!this.isFocused && this.typeaheadCancelOnBlur) {
-
       return;
     }
 

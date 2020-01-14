@@ -3,7 +3,6 @@ import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section';
 import { DemoTypeaheadAdaptivePositionComponent } from './demos/adaptive-position/adaptive-position';
 import { DemoTypeaheadAnimatedComponent } from './demos/animated/animated';
-import { DemoTypeaheadAsyncComponent } from './demos/async/async';
 import { DemoTypeaheadBasicComponent } from './demos/basic/basic';
 import { DemoTypeaheadConfigComponent } from './demos/config/config';
 import { DemoTypeaheadContainerComponent } from './demos/container/container';
@@ -22,7 +21,6 @@ import { DemoTypeaheadNoResultComponent } from './demos/no-result/no-result';
 import { DemoTypeaheadOnBlurComponent } from './demos/on-blur/on-blur';
 import { DemoTypeaheadOnSelectComponent } from './demos/on-select/on-select';
 import { DemoTypeaheadPhraseDelimitersComponent } from './demos/phrase-delimiters/phrase-delimiters';
-import { DemoTypeaheadReactiveFormComponent } from './demos/reactive-form/reactive-form';
 import { DemoTypeaheadScrollableComponent } from './demos/scrollable/scrollable';
 import { DemotypeaheadSelectFirstItemComponent } from './demos/selected-first-item/selected-first-item';
 import { DemoTypeaheadShowOnBlurComponent } from './demos/show-on-blur/show-on-blur';
@@ -95,8 +93,9 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Cancel on blur',
         anchor: 'cancel-on-blur',
-        component: require('!!raw-loader?lang=typescript!./demos/cancel-on-blur/cancel-on-blur.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/cancel-on-blur/cancel-on-blur.html'),
+        description: `<p>Set config property <code>typeaheadCancelOnBlur</code> to <code>true</code> if you want to cancel async request on blur event</p>`,
+        component: require('!!raw-loader!./demos/cancel-on-blur/cancel-on-blur.ts'),
+        html: require('!!raw-loader!./demos/cancel-on-blur/cancel-on-blur.html'),
         outlet: DemoTypeaheadCancelOnBlurComponent
       },
       {
@@ -243,7 +242,7 @@ export const demoComponentContent: ContentSection[] = [
         title: 'Show results on blur',
         anchor: 'show-on-blur',
         description: `
-          <p>Use input property <code>typeaheadHideResultsOnBlur</code> or config property <code>hideResultsOnBlur</code> 
+          <p>Use input property <code>typeaheadHideResultsOnBlur</code> or config property <code>hideResultsOnBlur</code>
           to prevent hiding typeahead's results until a user doesn't choose an item</p>
         `,
         component: require('!!raw-loader!./demos/show-on-blur/show-on-blur.ts'),

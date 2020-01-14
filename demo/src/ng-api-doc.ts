@@ -3628,6 +3628,12 @@ export const ngdoc: any = {
         "description": "<p>used to hide results on blur</p>\n"
       },
       {
+        "name": "typeaheadCancelOnBlur",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>if true, typeahead will cancel async request on blur</p>\n"
+      },
+      {
         "name": "isAnimated",
         "defaultValue": "false",
         "type": "boolean",
@@ -3780,12 +3786,6 @@ export const ngdoc: any = {
         "type": "string",
         "description": "<p>should be used only in case typeaheadSingleWords attribute is true.\nSets the word delimiter to break words. Defaults to space.</p>\n"
       },
-      {
-        "name": "typeaheadCancelOnBlur",
-        "defaultValue": "false",
-        "type": "boolean",
-        "description": "<p>if true, typeahead will cancel async request on blur</p>\n"
-      }
     ],
     "outputs": [
       {

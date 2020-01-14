@@ -1,12 +1,17 @@
 import { Component } from '@angular/core';
-
 import { Observable, of } from 'rxjs';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { mergeMap, delay } from 'rxjs/operators';
+import { TypeaheadConfig } from 'ngx-bootstrap/typeahead';
+
+export function getTypeaheadConfig(): TypeaheadConfig {
+  return Object.assign(new TypeaheadConfig(), { typeaheadCancelOnBlur: true });
+}
 
 @Component({
   selector: 'demo-typeahead-cancel-on-blur',
-  templateUrl: './cancel-on-blur.html'
+  templateUrl: './cancel-on-blur.html',
+  providers: [{ provide: TypeaheadConfig, useFactory: getTypeaheadConfig }]
 })
 export class DemoTypeaheadCancelOnBlurComponent {
   asyncSelected: string;
