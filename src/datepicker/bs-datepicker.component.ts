@@ -6,7 +6,7 @@ import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
 import { Subscription } from 'rxjs';
 import { BsDatepickerConfig } from './bs-datepicker.config';
-import { BsDatepickerViewMode } from './models';
+import { BsDatepickerViewMode, DatepickerDateCustomClasses } from './models';
 
 @Directive({
   selector: '[bsDatepicker]',
@@ -66,7 +66,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    */
   @Input()
   set bsValue(value: Date) {
-    if (this._bsValue === value) {
+    if (this._bsValue && this._bsValue.getTime() === value.getTime()) {
       return;
     }
     this._bsValue = value;
@@ -104,6 +104,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    * Disable specific dates
    */
   @Input() datesDisabled: Date[];
+  /**
+   * Date custom classes
+   */
+  @Input() dateCustomClasses: DatepickerDateCustomClasses[];
   /**
    * Emits when datepicker value has been changed
    */
@@ -163,6 +167,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
 
     if (changes.isDisabled) {
       this._datepickerRef.instance.isDisabled = this.isDisabled;
+    }
+
+    if (changes.dateCustomClasses) {
+      this._datepickerRef.instance.dateCustomClasses = this.dateCustomClasses;
     }
   }
 
@@ -235,6 +243,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
       minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
       maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
       daysDisabled: this.daysDisabled || this.bsConfig && this.bsConfig.daysDisabled,
+      dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
       datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
       minMode: this.minMode || this.bsConfig && this.bsConfig.minMode
     });

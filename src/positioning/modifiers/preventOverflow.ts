@@ -71,7 +71,10 @@ export function preventOverflow(data: Data) {
       ? 'primary'
       : 'secondary';
 
-    data.offsets.target = { ...data.offsets.target, ...(check as any)[side](placement) };
+    data.offsets.target = {
+      ...data.offsets.target,
+      ...(check as any)[side](placement)
+    };
 
   });
 

@@ -19,5 +19,5 @@ export { getWindowSizes } from './getWindowSizes';
 export { isFixed } from './isFixed';
 export { isModifierEnabled } from './isModifierEnabled';
 export { isNumeric } from './isNumeric';
-export { setAllStyles } from './setAllStyles';
+export { updateContainerClass } from './updateContainerClass';
 export { setStyles } from './setStyles';

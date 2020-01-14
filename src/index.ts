@@ -53,6 +53,7 @@ export {
   BsDatepickerModule,
   BsDaterangepickerConfig,
   BsDaterangepickerDirective,
+  BsDaterangepickerInlineConfig,
   BsLocaleService,
   DateFormatter,
   DatePickerComponent,
@@ -60,7 +61,8 @@ export {
   DatepickerModule,
   DayPickerComponent,
   MonthPickerComponent,
-  YearPickerComponent
+  YearPickerComponent,
+  DatepickerDateCustomClasses
 } from './datepicker/index';
 
 export {

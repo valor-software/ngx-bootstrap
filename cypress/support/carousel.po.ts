@@ -16,7 +16,7 @@ export class CarouselPo extends BaseComponent {
     optionalCaptions: 'demo-carousel-captions',
     configuringDefaults: 'demo-carousel-config',
     dynamicSlides: 'demo-carousel-dynamic',
-    pauseOnHover: 'demo-carousel-no-pause',
+    pauseOnHover: 'demo-carousel-pause-on-hover',
     customContent: 'demo-carousel-custom-content',
     disableLooping: 'demo-carousel-disable-looping',
     disableIndicator: 'demo-carousel-disable-indicator',
@@ -71,6 +71,10 @@ export class CarouselPo extends BaseComponent {
 
   hoverSlide(baseSelector: string, slideIndex: number) {
     cy.get(`${baseSelector} ${this.carouselClass} div`).eq(slideIndex).trigger('mouseenter');
+  }
+
+  mouseLeave(baseSelector: string) {
+    cy.get(`${baseSelector} ${this.carouselClass}`).trigger('mouseleave');
   }
 
   isCarouselIndicatorDisabled(baseSelector: string, disabled: boolean) {

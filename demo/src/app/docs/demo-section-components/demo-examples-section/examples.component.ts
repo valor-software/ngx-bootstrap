@@ -8,7 +8,7 @@ import { main } from './stackblitz/main';
 import { polyfills } from './stackblitz/polyfills';
 import { getAppModuleCode, NgxModuleData } from './stackblitz/app.module';
 import { getIndexHtmlCode } from './stackblitz/html';
-import { getComponentClassName, getTagName, getTemplateFileName } from './stackblitz/helpers';
+import { getComponentClassName, getTagName, getTemplateFileName, getCSSCodeDatepickerCustomClass } from './stackblitz/helpers';
 
 @Component({
   selector: 'examples',
@@ -95,12 +95,16 @@ export class ExamplesComponent {
       },
       dependencies: {
         '@angular/animations': 'latest',
+        'web-animations-js': 'latest',
         'ngx-bootstrap': 'next'
       },
       title: 'stackblitz demo',
       description: 'stackblitz demo',
       template: 'angular-cli'
     };
+    if (className === 'DemoDatepickerDateCustomClassesComponent') {
+      project.files['app/date-custom-classes.scss'] = getCSSCodeDatepickerCustomClass();
+    }
     project.files[`app/${templateName}`] = this.getHtml(html);
 
     sdk.openProject(project);

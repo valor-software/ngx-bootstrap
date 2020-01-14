@@ -4,7 +4,6 @@ import {
   AnimationPlayer
 } from '@angular/animations';
 
-// todo: add animations when https://github.com/angular/angular/issues/9947 solved
 import {
   AfterViewChecked,
   Directive,
@@ -73,8 +72,10 @@ export class CollapseDirective implements AfterViewChecked {
   /** A flag indicating visibility of content (shown or hidden) */
   @Input()
   set collapse(value: boolean) {
-    this.isExpanded = value;
-    this.toggle();
+    if (!this._player || this._isAnimationDone) {
+      this.isExpanded = value;
+      this.toggle();
+    }
   }
 
   get collapse(): boolean {
@@ -84,6 +85,7 @@ export class CollapseDirective implements AfterViewChecked {
   private _display = 'block';
   private _factoryCollapseAnimation: AnimationFactory;
   private _factoryExpandAnimation: AnimationFactory;
+  private _isAnimationDone: boolean;
   private _player: AnimationPlayer;
   private _stylesLoaded = false;
 
@@ -99,8 +101,15 @@ export class CollapseDirective implements AfterViewChecked {
     this._factoryExpandAnimation = _builder.build(expandAnimation);
   }
 
-  ngAfterViewChecked() {
+  ngAfterViewChecked(): void {
     this._stylesLoaded = true;
+
+    if (!this._player || !this._isAnimationDone) {
+      return;
+    }
+
+    this._player.reset();
+    this._renderer.setStyle(this._el.nativeElement, 'height', '*');
   }
 
   /** allows to manually toggle content visibility */
@@ -121,7 +130,10 @@ export class CollapseDirective implements AfterViewChecked {
 
     this.collapses.emit(this);
 
+    this._isAnimationDone = false;
+
     this.animationRun(this.isAnimated, this._COLLAPSE_ACTION_NAME)(() => {
+      this._isAnimationDone = true;
       this.collapsed.emit(this);
       this._renderer.setStyle(this._el.nativeElement, 'display', 'none');
     });
@@ -137,7 +149,10 @@ export class CollapseDirective implements AfterViewChecked {
 
     this.expands.emit(this);
 
+    this._isAnimationDone = false;
+
     this.animationRun(this.isAnimated, this._EXPAND_ACTION_NAME)(() => {
+      this._isAnimationDone = true;
       this.expanded.emit(this);
     });
   }

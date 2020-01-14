@@ -18,3 +18,17 @@ export function getTemplateFileName(code: string): string | null {
 
   return matches.length ? matches[0].substring(matches[0].indexOf('/') + 1, matches[0].lastIndexOf('\'')) : null;
 }
+
+export function getCSSCodeDatepickerCustomClass() {
+  return `::ng-deep .theme-green {
+  .bs-datepicker-body {
+    table {
+      td {
+        span.selected {
+          background-color: #5cb85c !important;
+        }
+      }
+    }
+  }
+}`;
+}

@@ -1,15 +1,15 @@
-<form [formGroup]="myForm">
+<form [formGroup]="form">
   <div class="row">
     <div class="col-xs-12 col-md-5 col-lg-4 form-group">
       <input
         class="form-control"
-        #dpYMD="bsDatepicker"
+        #datepickerYMD="bsDatepicker"
         bsDatepicker
-        formControlName="myDateYMD"
+        formControlName="dateYMD"
         [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }">
     </div>
     <div class="col-xs-12 col-12 col-md-3 form-group">
-      <button class="btn btn-success" (click)="dpYMD.toggle()" [attr.aria-expanded]="dpYMD.isOpen">Date Picker</button>
+      <button class="btn btn-success" (click)="datepickerYMD.toggle()" [attr.aria-expanded]="datepickerYMD.isOpen" type="button">Date Picker</button>
     </div>
   </div>
   <br>
@@ -18,13 +18,13 @@
     <div class="col-xs-12 col-md-5 col-lg-4 form-group">
       <input
         class="form-control"
-        #dpMDY="bsDatepicker"
+        #datepickerMDY="bsDatepicker"
         bsDatepicker
-        formControlName="myDateMDY"
+        formControlName="dateMDY"
         [bsConfig]="{ dateInputFormat: 'MM/DD/YYYY' }">
     </div>
     <div class="col-xs-12 col-12 col-md-3 form-group">
-      <button class="btn btn-success" (click)="dpMDY.toggle()" [attr.aria-expanded]="dpMDY.isOpen">Date Picker</button>
+      <button class="btn btn-success" (click)="datepickerMDY.toggle()" [attr.aria-expanded]="datepickerMDY.isOpen" type="button">Date Picker</button>
     </div>
   </div>
   <br>
@@ -33,13 +33,27 @@
     <div class="col-xs-12 col-md-5 col-lg-4 form-group">
       <input
         class="form-control"
-        #dpFull="bsDatepicker"
+        #datepickerFull="bsDatepicker"
         bsDatepicker
-        formControlName="myDateFull"
+        formControlName="dateFull"
         [bsConfig]="{ dateInputFormat: 'MMMM Do YYYY, h:mm:ss a' }">
     </div>
     <div class="col-xs-12 col-12 col-md-3 form-group">
-      <button class="btn btn-success" (click)="dpFull.toggle()" [attr.aria-expanded]="dpFull.isOpen">Date Picker</button>
+      <button class="btn btn-success" (click)="datepickerFull.toggle()" [attr.aria-expanded]="datepickerFull.isOpen" type="button">Date Picker</button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12 col-md-5 col-lg-4 form-group">
+      <input type="text"
+        class="form-control"
+        formControlName="dateRange"
+        #daterangepicker="bsDaterangepicker"
+        bsDaterangepicker
+        [bsConfig]="{ rangeInputFormat : 'MMMM Do YYYY, h:mm:ss a', dateInputFormat: 'MMMM Do YYYY, h:mm:ss a', showWeekNumbers: false }">
+    </div>
+    <div class="col-xs-12 col-12 col-md-3 form-group">
+      <button class="btn btn-success" (click)="daterangepicker.toggle()" [attr.aria-expanded]="daterangepicker.isOpen" type="button">Date Range Picker</button>
     </div>
   </div>
 </form>
