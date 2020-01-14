@@ -69,7 +69,6 @@ export class TypeaheadContainerComponent implements OnDestroy {
   animationState: string;
   positionServiceSubscription: Subscription;
   height = 0;
-  // Id Popup
   popupId = `ngb-typeahead-${nextWindowId++}`;
 
   get isBs4(): boolean {
@@ -84,7 +83,6 @@ export class TypeaheadContainerComponent implements OnDestroy {
 
   @ViewChildren('liElements')
   private liElements: QueryList<ElementRef>;
-
 
   constructor(
     private positionService: PositioningService,
@@ -224,7 +222,6 @@ export class TypeaheadContainerComponent implements OnDestroy {
   }
 
   nextActiveMatch(): void {
-
     const index = this.matches.indexOf(this._active);
 
     this.active = this.matches[

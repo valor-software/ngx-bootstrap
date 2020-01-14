@@ -50,7 +50,7 @@
         formControlName="dateRange"
         #daterangepicker="bsDaterangepicker"
         bsDaterangepicker
-        [bsConfig]="{ rangeInputFormat: 'MMMM Do YYYY, h:mm:ss a' }">
+        [bsConfig]="{ rangeInputFormat : 'MMMM Do YYYY, h:mm:ss a', dateInputFormat: 'MMMM Do YYYY, h:mm:ss a', showWeekNumbers: false }">
     </div>
     <div class="col-xs-12 col-12 col-md-3 form-group">
       <button class="btn btn-success" (click)="daterangepicker.toggle()" [attr.aria-expanded]="daterangepicker.isOpen" type="button">Date Range Picker</button>
