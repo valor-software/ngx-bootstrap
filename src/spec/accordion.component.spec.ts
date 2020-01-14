@@ -1,8 +1,7 @@
+import { AccordionConfig, AccordionModule } from '../accordion';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { AccordionConfig } from '../accordion/accordion.config';
-
-import { AccordionModule } from '../accordion/accordion.module';
 
 @Component({
   selector: 'accordion-test',
@@ -10,6 +9,7 @@ import { AccordionModule } from '../accordion/accordion.module';
 })
 class TestAccordionComponent {
   oneAtATime = true;
+  /* tslint:disable-next-line: no-any */
   panels: any[] = [
     { isOpen: false, isDisabled: false },
     { isOpen: false, isDisabled: false },
@@ -68,13 +68,18 @@ function hasTitle(element: HTMLElement, str: string): boolean {
 
 describe('Component: Accordion', () => {
   let fixture: ComponentFixture<TestAccordionComponent>;
+  /* tslint:disable-next-line: no-any */
   let context: any;
+  /* tslint:disable-next-line: no-any */
   let element: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestAccordionComponent],
-      imports: [AccordionModule.forRoot()]
+      imports: [
+        AccordionModule.forRoot(),
+        BrowserAnimationsModule
+      ]
     });
     TestBed.overrideComponent(TestAccordionComponent, {
       set: { template: html }
@@ -125,7 +130,7 @@ describe('Component: Accordion', () => {
 
   it('should have the appropriate heading', () => {
     const titles = Array.from(
-      element.querySelectorAll('.panel-heading .accordion-toggle div')
+      element.querySelectorAll('.panel-heading .accordion-toggle button')
     );
     titles.forEach((title: HTMLElement, idx: number) => {
       const expectedTitle = `Panel ${idx + 1}`;

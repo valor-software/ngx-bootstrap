@@ -15,9 +15,9 @@ ng serve
 
 -   Install `ngx-bootstrap` and `bootstrap`
 
-    ```bash
+ ```bash
       npm install ngx-bootstrap bootstrap --save
-    ```
+ ```
 
 -   Open `src/app/app.module.ts` and add:
 
@@ -32,11 +32,11 @@ import { AlertModule } from 'ngx-bootstrap';
 })
 ```
 
--   Open `.angular-cli.json` and insert a new entry into the styles array:
+-   Open `angular.json` and insert a new entry into the styles array:
 
 ```json
       "styles": [
-         "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+         "./node_modules/bootstrap/dist/css/bootstrap.min.css",
         "styles.css",
       ],
 ```

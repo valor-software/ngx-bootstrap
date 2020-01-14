@@ -17,6 +17,13 @@
     "no-magic-numbers": false,
     "no-any": false,
     "prefer-object-spread": false,
-    "prefer-for-of": false
+    "prefer-for-of": false,
+    "angular-whitespace": false,
+    "use-view-encapsulation": false,
+    "typeof-compare": false,
+    "templates-use-public": false,
+    "no-access-missing-member": false,
+    "invoke-injectable": false,
+    "template-to-ng-template": false
   }
 }

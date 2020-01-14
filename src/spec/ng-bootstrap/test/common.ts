@@ -71,6 +71,7 @@ export function isBrowser(
   ua: string = window.navigator.userAgent
 ): boolean {
   const browsersStr = Array.isArray(browsers)
+    /* tslint:disable-next-line: no-any */
     ? (browsers).map((x: any) => x.toString())
     : [browsers.toString()];
   const browser = getBrowser(ua);
