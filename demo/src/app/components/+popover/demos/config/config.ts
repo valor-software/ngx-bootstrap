@@ -7,7 +7,8 @@ export function getPopoverConfig(): PopoverConfig {
   return Object.assign(new PopoverConfig(), {
     placement: 'right',
     container: 'body',
-    triggers: 'focus'
+    triggers: 'focus',
+    delay: 500
   });
 }
 

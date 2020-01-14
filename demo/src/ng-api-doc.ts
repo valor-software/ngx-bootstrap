@@ -1026,6 +1026,11 @@ export const ngdoc: any = {
         "description": "<p>Default mode for all date pickers</p>\n"
       },
       {
+        "name": "showPreviousMonth",
+        "type": "boolean",
+        "description": "<p>Shows previous and current month, instead of current and next (daterangepicker only</p>\n"
+      },
+      {
         "name": "rangeInputFormat",
         "defaultValue": "L",
         "type": "string",
@@ -2702,6 +2707,12 @@ export const ngdoc: any = {
         "defaultValue": "click",
         "type": "string",
         "description": "<p>Specifies events that should trigger. Supports a space separated list of\nevent names.</p>\n"
+      },
+      {
+        "name": "delay",
+        "defaultValue": "0",
+        "type": "number",
+        "description": "<p>delay before showing the popover</p>\n"
       }
     ]
   },
@@ -2726,6 +2737,11 @@ export const ngdoc: any = {
         "name": "containerClass",
         "type": "string",
         "description": "<p>Css class for popover container</p>\n"
+      },
+      {
+        "name": "delay",
+        "type": "number",
+        "description": "<p>Delay before showing the popover</p>\n"
       },
       {
         "name": "isOpen",
@@ -3308,6 +3324,21 @@ export const ngdoc: any = {
         "name": "showSpinners",
         "type": "boolean",
         "description": "<p>if true spinner arrows above and below the inputs will be shown</p>\n"
+      },
+      {
+        "name": "hoursPlaceholder",
+        "type": "string",
+        "description": "<p>placeholder for hours field</p>\n"
+      },
+      {
+        "name": "minutesPlacesholder",
+        "type": "string",
+        "description": "<p>placeholder for minutes field</p>\n"
+      },
+      {
+        "name": "secondsPlaceholder",
+        "type": "string",
+        "description": "<p>placeholder for seconds field</p>\n"
       }
     ],
     "outputs": [
@@ -3405,6 +3436,24 @@ export const ngdoc: any = {
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if true spinner arrows above and below the inputs will be shown</p>\n"
+      },
+      {
+        "name": "hoursPlaceholder",
+        "defaultValue": "HH",
+        "type": "string",
+        "description": "<p>placeholder for hours field</p>\n"
+      },
+      {
+        "name": "minutesPlacesholder",
+        "defaultValue": "MM",
+        "type": "string",
+        "description": "<p>placeholder for minutes field</p>\n"
+      },
+      {
+        "name": "secondsPlaceholder",
+        "defaultValue": "SS",
+        "type": "string",
+        "description": "<p>placeholder for seconds field</p>\n"
       }
     ]
   },
