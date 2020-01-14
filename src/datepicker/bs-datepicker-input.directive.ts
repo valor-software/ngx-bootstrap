@@ -107,7 +107,7 @@ export class BsDatepickerInputDirective
 
   onChange(event: Event) {
     /* tslint:disable-next-line: no-any*/
-    this.writeValue((event.target as any).value, false);
+    this.writeValue((event.target as any).value);
     this._onChange(this._value);
     this._onTouched();
   }
@@ -127,10 +127,14 @@ export class BsDatepickerInputDirective
       }
 
       if (this._picker && this._picker.minDate && isBefore(_value, this._picker.minDate, 'date')) {
+        this.writeValue(this._picker.minDate);
+
         return { bsDate: { minDate: this._picker.minDate } };
       }
 
       if (this._picker && this._picker.maxDate && isAfter(_value, this._picker.maxDate, 'date')) {
+        this.writeValue(this._picker.maxDate);
+
         return { bsDate: { maxDate: this._picker.maxDate } };
       }
     }
@@ -140,7 +144,7 @@ export class BsDatepickerInputDirective
     this._validatorChange = fn;
   }
 
-  writeValue(value: Date | string, isUtc = true) {
+  writeValue(value: Date | string) {
     if (!value) {
       this._value = null;
     } else {
@@ -154,7 +158,7 @@ export class BsDatepickerInputDirective
 
       this._value = parseDate(value, this._picker._config.dateInputFormat, this._localeService.currentLocale);
 
-      if (isUtc) {
+      if (this._picker._config.useUtc) {
         this._value = utcAsLocal(this._value);
       }
     }

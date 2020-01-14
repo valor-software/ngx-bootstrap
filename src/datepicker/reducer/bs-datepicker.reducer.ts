@@ -166,6 +166,10 @@ function calculateReducer(state: BsDatepickerState): BsDatepickerState {
   let viewDate = state.view.date;
 
   if (state.view.mode === 'day') {
+    if (state.showPreviousMonth && state.selectedRange.length === 0) {
+      viewDate = shiftDate(viewDate, { month: -1 });
+    }
+
     state.monthViewOptions.firstDayOfWeek = getLocale(state.locale).firstDayOfWeek();
     const monthsModel = new Array(displayMonths);
     for (let monthIndex = 0; monthIndex < displayMonths; monthIndex++) {
