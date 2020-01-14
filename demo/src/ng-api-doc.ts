@@ -1026,6 +1026,11 @@ export const ngdoc: any = {
         "description": "<p>Default mode for all date pickers</p>\n"
       },
       {
+        "name": "showPreviousMonth",
+        "type": "boolean",
+        "description": "<p>Shows previous and current month, instead of current and next (daterangepicker only</p>\n"
+      },
+      {
         "name": "rangeInputFormat",
         "defaultValue": "L",
         "type": "string",
@@ -2702,6 +2707,12 @@ export const ngdoc: any = {
         "defaultValue": "click",
         "type": "string",
         "description": "<p>Specifies events that should trigger. Supports a space separated list of\nevent names.</p>\n"
+      },
+      {
+        "name": "delay",
+        "defaultValue": "0",
+        "type": "number",
+        "description": "<p>delay before showing the popover</p>\n"
       }
     ]
   },
@@ -2726,6 +2737,11 @@ export const ngdoc: any = {
         "name": "containerClass",
         "type": "string",
         "description": "<p>Css class for popover container</p>\n"
+      },
+      {
+        "name": "delay",
+        "type": "number",
+        "description": "<p>Delay before showing the popover</p>\n"
       },
       {
         "name": "isOpen",
