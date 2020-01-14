@@ -72,7 +72,7 @@ describe('locale: ro', () => {
   });
 
   it('format ordinal', function () {
-    assertEq(moment([2011, 0, 1]).format('DDDo'), '1', '1st');
+    assertEq(moment([2011, 0, 1]).format('DDDo'), '1ul', '1ul');
     assertEq(moment([2011, 0, 2]).format('DDDo'), '2', '2nd');
     assertEq(moment([2011, 0, 3]).format('DDDo'), '3', '3rd');
     assertEq(moment([2011, 0, 4]).format('DDDo'), '4', '4th');

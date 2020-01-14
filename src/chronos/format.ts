@@ -51,7 +51,7 @@ export function expandFormat(_format: string, locale: Locale): string {
   };
 
   localFormattingTokens.lastIndex = 0;
-  while (i >= 0 && localFormattingTokens.test(format)) {
+  while (i >= 0 && format.match(localFormattingTokens)) {
     format = format.replace(localFormattingTokens, replaceLongDateFormatTokens);
     localFormattingTokens.lastIndex = 0;
     i -= 1;
