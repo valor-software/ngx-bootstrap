@@ -120,7 +120,7 @@ export function setTime(value: Date, opts: Time): Date {
   const minute = parseMinutes(opts.minute);
   const seconds = parseSeconds(opts.seconds) || 0;
 
-  if (opts.isPM) {
+  if (opts.isPM && hour !== 12) {
     hour += hoursPerDayHalf;
   }
 
@@ -178,7 +178,7 @@ export function isSecondInputValid(seconds: string): boolean {
 }
 
 export function isInputLimitValid(diff: Time, max: Date, min: Date): boolean {
-  const newDate = changeTime(new Date(), diff);
+  const newDate = setTime(new Date(), diff);
 
   if (max && newDate > max) {
     return false;

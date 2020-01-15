@@ -10,8 +10,8 @@ Main success scenario:
 ----------------------
 1. User opens Timepicker demo page
 2. User clicks on Basic sub-menu
-3. User see timepicker component and info alert with selected date and time (current by default)
-4. User see current hour and current minute in timepicker inputs and button "AM/PM" (depend on the current time) by default
+3. User sees timepicker component and info alert with selected date and time (current by default)
+4. User sees current hour and current minute in timepicker inputs and button "AM/PM" (depend on the current time) by default
 
 ##### Timepicker - hours
 5. When user clicks on arrow up above the hour input, then number in the input increased at 1 and info alert changed appropriate

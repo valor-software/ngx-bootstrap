@@ -76,6 +76,7 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: ControlValueAccessorModel = {
 
     .bs-timepicker-field {
       width: 50px;
+      padding: .375rem .55rem;
     }
   `],
   encapsulation: ViewEncapsulation.None
@@ -114,6 +115,12 @@ export class TimepickerComponent
   @Input() min: Date;
   /** maximum time user can select */
   @Input() max: Date;
+  /** placeholder for hours field in timepicker */
+  @Input() hoursPlaceholder: string;
+  /** placeholder for minutes field in timepicker */
+  @Input() minutesPlaceholder: string;
+  /** placeholder for seconds field in timepicker */
+  @Input() secondsPlaceholder: string;
 
   /** emits true if value is a valid date */
   @Output() isValid = new EventEmitter<boolean>();
@@ -159,7 +166,7 @@ export class TimepickerComponent
 
   constructor(
     _config: TimepickerConfig,
-    _cd: ChangeDetectorRef,
+    private _cd: ChangeDetectorRef,
     private _store: TimepickerStore,
     private _timepickerActions: TimepickerActions
   ) {
@@ -357,6 +364,7 @@ export class TimepickerComponent
    */
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+    this._cd.markForCheck();
   }
 
   ngOnDestroy(): void {

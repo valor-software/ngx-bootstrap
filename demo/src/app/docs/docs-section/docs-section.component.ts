@@ -1,9 +1,8 @@
 import { ContentSection } from '../models/content-section.model';
-import { ChangeDetectionStrategy, Component, Injector, Input, ReflectiveInjector } from '@angular/core';
+import { Component, Injector, Input, ReflectiveInjector } from '@angular/core';
 
 @Component({
   selector: 'docs-section',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <ng-container *ngFor="let section of content">
       <ng-container *ngComponentOutlet="section.outlet; injector: sectionInjections(section)">
