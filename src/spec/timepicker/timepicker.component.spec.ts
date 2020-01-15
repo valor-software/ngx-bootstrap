@@ -93,6 +93,18 @@ describe('Component: TimepickerComponent', () => {
     it('should visible meridian button', () => {
       expect(buttonMeridian).toBeTruthy();
     });
+
+    it('hours placeholder should be \'HH\' ', () => {
+      expect(component.hoursPlaceholder).toEqual('HH');
+    });
+
+    it('minutes placeholder should be \'MM\' ', () => {
+      expect(component.minutesPlaceholder).toEqual('MM');
+    });
+
+    it('seconds placeholder should be \'SS\' ', () => {
+      expect(component.secondsPlaceholder).toEqual('SS');
+    });
   });
 
   describe('validate input fields with default state', () => {
@@ -1106,5 +1118,35 @@ describe('Component: TimepickerComponent', () => {
         expect(inputSeconds.value).toBeLessThan(60);
       });
     }));
+  });
+
+  describe('custom placeholders', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TimepickerComponent);
+      component = fixture.componentInstance;
+      component.showSeconds = true;
+      component.hoursPlaceholder = 'hh';
+      component.minutesPlaceholder = 'mm';
+      component.secondsPlaceholder = 'ss';
+
+      fixture.detectChanges();
+
+      inputHours = getInputElements(fixture)[0];
+      inputMinutes = getInputElements(fixture)[1];
+      inputSeconds = getInputElements(fixture)[2];
+    });
+
+    it('should use \'hh\' for hours placeholder', () => {
+      expect(inputHours.getAttribute('placeholder')).toEqual('hh');
+    });
+
+    it('should use \'mm\' for minutes placeholder', () => {
+      expect(inputMinutes.getAttribute('placeholder')).toEqual('mm');
+    });
+
+    it('should use \'ss\' for seconds placeholder', () => {
+      expect(inputSeconds.getAttribute('placeholder')).toEqual('ss');
+    });
+
   });
 });
