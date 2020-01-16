@@ -77,6 +77,7 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: ControlValueAccessorModel = {
 
     .bs-timepicker-field {
       width: 50px;
+      padding: .375rem .55rem;
     }
   `],
   encapsulation: ViewEncapsulation.None
@@ -115,6 +116,12 @@ export class TimepickerComponent
   @Input() min: Date;
   /** maximum time user can select */
   @Input() max: Date;
+  /** placeholder for hours field in timepicker */
+  @Input() hoursPlaceholder: string;
+  /** placeholder for minutes field in timepicker */
+  @Input() minutesPlaceholder: string;
+  /** placeholder for seconds field in timepicker */
+  @Input() secondsPlaceholder: string;
 
   /** emits true if value is a valid date */
   @Output() isValid = new EventEmitter<boolean>();

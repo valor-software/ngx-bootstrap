@@ -9,8 +9,8 @@ export interface BsCustomDates {
   selector: 'bs-custom-date-view',
   template: `
     <div class="bs-datepicker-predefined-btns">
-      <button *ngFor="let range of ranges">{{ range.label }}</button>
-      <button *ngIf="isCustomRangeShown">Custom Range</button>
+      <button *ngFor="let range of ranges" type="button">{{ range.label }}</button>
+      <button *ngIf="isCustomRangeShown" type="button">Custom Range</button>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush

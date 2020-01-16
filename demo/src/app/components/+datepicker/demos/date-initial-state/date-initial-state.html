@@ -8,7 +8,7 @@
            [bsValue]="bsValue">
   </div>
   <div class="col-xs-12 col-12 col-md-3 form-group">
-    <button class="btn btn-success" (click)="dp.toggle()" [attr.aria-expanded]="dp.isOpen">Date Picker</button>
+    <button class="btn btn-success" (click)="dp.toggle()" [attr.aria-expanded]="dp.isOpen" type="button">Date Picker</button>
   </div>
 </div>
 
@@ -18,6 +18,6 @@
     <input class="form-control" #drp="bsDaterangepicker" bsDaterangepicker [(ngModel)]="bsRangeValue">
   </div>
   <div class="col-xs-12 col-12 col-md-3 form-group">
-    <button class="btn btn-success" (click)="drp.toggle()" [attr.aria-expanded]="drp.isOpen">Date Range Picker</button>
+    <button class="btn btn-success" (click)="drp.toggle()" [attr.aria-expanded]="drp.isOpen" type="button">Date Range Picker</button>
   </div>
 </div>

@@ -38,7 +38,7 @@ export class ProgressbarPo extends BaseComponent {
   isBarTypeHaveClass(baseSelector: string, barIndex = 0, expectedClass?: string) {
     this.getBar(baseSelector, barIndex).then($bar => {
       if (!expectedClass) {
-        expect($bar.attr('class').split('bg-')[1]).to.match(/^(success|info|danger|warning)$/);
+        expect($bar.attr('class').split('bg-')[1]).to.match(/^(success|info|danger|warning) progress-bar$/);
       } else {
         expect($bar.attr('class').split('bg-')[1]).to.contain(expectedClass);
       }

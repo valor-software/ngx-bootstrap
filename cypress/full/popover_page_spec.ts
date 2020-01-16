@@ -360,4 +360,24 @@ describe('Popover demo page test suite', () => {
       popover.isPopoverDismiss(popoverContext);
     });
   });
+
+  describe('Popover with delay', () => {
+    const delayPopover = popover.exampleDemosArr.delayPopover;
+    it('when user clicks on "Popover with 0.5sec delay", then popover-container appear', () => {
+      cy.viewport(1440, 900);
+      popover.clickOnDemoMenu('Popover with delay');
+      popover.clickOnBtn(delayPopover);
+      popover.isPopoverAppears(delayPopover);
+      popover.isPopoverVisible(delayPopover);
+    });
+
+    it('when user clicks on "Popover with 0.5sec delay" again, then popover-container disappeared', () => {
+      cy.viewport(1440, 900);
+      popover.clickOnDemoMenu('Popover with delay');
+      popover.clickOnBtn(delayPopover);
+      popover.isPopoverAppears(delayPopover);
+      popover.clickOnBtn(delayPopover);
+      popover.isPopoverDismiss(delayPopover);
+    });
+  });
 });
