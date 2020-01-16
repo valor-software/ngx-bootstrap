@@ -26,7 +26,7 @@ export class PopoverPo extends BaseComponent {
     componentLevelStyling: 'demo-popover-styling-local',
     customClass: 'demo-popover-class',
     popoverContext: 'demo-popover-context',
-    delayPopover: 'demo-popover-delay'
+    delayPopover: 'demo-popover-delay',
   };
 
   isPopoverPlacementCorrect(baseSelector: string, placement: string) {
@@ -55,7 +55,7 @@ export class PopoverPo extends BaseComponent {
   isPopoverHaveCssItem(baseSelector: string, item: string, cssProperty: string, expectedCssValue: string) {
     cy.get(`${baseSelector} ${this.containerPopover} ${item}`).should('have.css', cssProperty, expectedCssValue);
   }
-  
+
   isPopoverHaveCss(baseSelector: string, cssProperty: string, expectedCssValue: string) {
     cy.get(`${baseSelector} ${this.containerPopover}`).should('have.css', cssProperty, expectedCssValue);
   }

@@ -21,7 +21,8 @@ export class TooltipPo extends BaseComponent {
     manualTriggeringTooltip: 'demo-tooltip-triggers-manual',
     componentLevelStyling: 'demo-tooltip-styling-local',
     customClass: 'demo-tooltip-class',
-    delayTooltip: 'demo-tooltip-delay'
+    delayTooltip: 'demo-tooltip-delay',
+    hideTooltipAfterDelay: 'demo-tooltip-hide-after-delay'
   };
 
   isTooltipPlacementCorrect(baseSelector: string, placement: string) {

@@ -233,7 +233,7 @@ export const demoComponentContent: ContentSection[] = [
         title: 'Show results on blur',
         anchor: 'show-on-blur',
         description: `
-          <p>Use input property <code>typeaheadHideResultsOnBlur</code> or config property <code>hideResultsOnBlur</code> 
+          <p>Use input property <code>typeaheadHideResultsOnBlur</code> or config property <code>hideResultsOnBlur</code>
           to prevent hiding typeahead's results until a user doesn't choose an item</p>
         `,
         component: require('!!raw-loader!./demos/show-on-blur/show-on-blur.ts'),

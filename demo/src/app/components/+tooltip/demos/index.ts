@@ -4,6 +4,7 @@ import { DemoTooltipClassComponent } from './class/class';
 import { DemoTooltipConfigComponent } from './config/config';
 import { DemoTooltipContainerComponent } from './container/container';
 import { DemoTooltipCustomContentComponent } from './custom-content/custom-content';
+import { DemoTooltipHideAfterDelayComponent, } from './hide-after-delay/hide-after-delay';
 import { DemoTooltipDelayComponent } from './delay/delay';
 import { DemoTooltipDismissComponent } from './dismiss/dismiss';
 import { DemoTooltipDynamicComponent } from './dynamic/dynamic';
@@ -22,6 +23,7 @@ export const DEMO_COMPONENTS = [
   DemoTooltipContainerComponent,
   DemoTooltipCustomContentComponent,
   DemoTooltipDelayComponent,
+  DemoTooltipHideAfterDelayComponent,
   DemoTooltipDismissComponent,
   DemoTooltipDynamicComponent,
   DemoTooltipDynamicHtmlComponent,

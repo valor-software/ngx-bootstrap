@@ -3436,6 +3436,12 @@ export const ngdoc: any = {
         "description": "<p>delay before showing the tooltip</p>\n"
       },
       {
+        "name": "hideAfterDelay",
+        "defaultValue": "0",
+        "type": "number",
+        "description": "<p>Delay before hiding the tooltip</p>\n"
+      },
+      {
         "name": "placement",
         "defaultValue": "top",
         "type": "string",
@@ -3475,6 +3481,11 @@ export const ngdoc: any = {
         "name": "delay",
         "type": "number",
         "description": "<p>Delay before showing the tooltip</p>\n"
+      },
+      {
+        "name": "hideAfterDelay",
+        "type": "number",
+        "description": "<p>Delay before hiding the tooltip</p>\n"
       },
       {
         "name": "isDisabled",

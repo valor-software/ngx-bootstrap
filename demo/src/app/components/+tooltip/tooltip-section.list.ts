@@ -5,6 +5,7 @@ import { DemoTooltipConfigComponent } from './demos/config/config';
 import { DemoTooltipContainerComponent } from './demos/container/container';
 import { DemoTooltipCustomContentComponent } from './demos/custom-content/custom-content';
 import { DemoTooltipDelayComponent } from './demos/delay/delay';
+import { DemoTooltipHideAfterDelayComponent } from './demos/hide-after-delay/hide-after-delay';
 import { DemoTooltipDismissComponent } from './demos/dismiss/dismiss';
 import { DemoTooltipDynamicComponent } from './demos/dynamic/dynamic';
 import { DemoTooltipDynamicHtmlComponent } from './demos/dynamic-html/dynamic-html';
@@ -129,7 +130,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'triggers-manual',
         component: require('!!raw-loader!./demos/triggers-manual/triggers-manual.ts'),
         html: require('!!raw-loader!./demos/triggers-manual/triggers-manual.html'),
-        description: `<p>You can manage tooltip using its <code>show()</code>, <code>hide()</code> and <code>toggle()</code> methods. 
+        description: `<p>You can manage tooltip using its <code>show()</code>, <code>hide()</code> and <code>toggle()</code> methods.
           If you want to manage tooltip's state manually, use <code>triggers=""</code></p>`,
         outlet: DemoTooltipTriggersManualComponent
       },
@@ -154,6 +155,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/delay/delay.html'),
         description: `<p>Hold on cursor above button for 0,5 second or more to see delayed tooltip</p>`,
         outlet: DemoTooltipDelayComponent
+      },
+      {
+        title: 'Hide tooltip after delay',
+        anchor: 'tooltip-hide-after-delay',
+        component: require('!!raw-loader!./demos/hide-after-delay/hide-after-delay.ts'),
+        html: require('!!raw-loader!./demos/hide-after-delay/hide-after-delay.html'),
+        description: `<p>Open tooltip and it will disappear after 3 seconds</p>`,
+        outlet: DemoTooltipHideAfterDelayComponent
       }
     ]
   },

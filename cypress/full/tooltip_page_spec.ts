@@ -250,4 +250,24 @@ describe('Tooltip demo page test suite', () => {
       tooltip.isTooltipDismiss(delayTooltip);
     });
   });
+
+  describe('Hide tooltip after delay', () => {
+    const hideAfterDelay = tooltip.exampleDemosArr.hideTooltipAfterDelay;
+    it('when user hover on "Tooltip will disappear after 3 seconds", then tooltip-container disappears', () => {
+      cy.viewport(1440, 900);
+      tooltip.clickOnDemoMenu('Hide tooltip after delay');
+      tooltip.focusOnBtn(hideAfterDelay);
+      tooltip.isTooltipAppears(hideAfterDelay);
+      tooltip.isTooltipDismiss(hideAfterDelay);
+    });
+
+    it('when user move mouse out of the "Tooltip will disappear after 3 seconds", then tooltip-container disappeared', () => {
+      cy.viewport(1440, 900);
+      tooltip.clickOnDemoMenu('Hide tooltip after delay');
+      tooltip.focusOnBtn(hideAfterDelay);
+      tooltip.isTooltipAppears(hideAfterDelay);
+      tooltip.focusToAnotherPlacement('Hide tooltip after delay');
+      tooltip.isTooltipDismiss(hideAfterDelay);
+    });
+  });
 });
