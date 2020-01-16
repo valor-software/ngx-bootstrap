@@ -13,3 +13,5 @@ import { CollapseModule } from 'ngx-bootstrap';
   ]
 })
 export class AppModule(){}
+
+Also should be added web-animations-js polyfill for IE browser (Edge)

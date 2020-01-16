@@ -17,7 +17,12 @@
       <div class="input-group">
         <input type="text" class="form-control" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig">
         <div class="input-group-btn">
-          <button class="btn btn-success" (click)="dp.show()" [attr.aria-expanded]="dp.isOpen">Open</button>
+          <button class="btn btn-success"
+                  (click)="dp.show()"
+                  [attr.aria-expanded]="dp.isOpen"
+                  type="button">
+            Open
+          </button>
         </div>
       </div>
     </div>

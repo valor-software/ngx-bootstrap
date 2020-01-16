@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 
 import { BsDatepickerAbstractComponent } from '../../base/bs-datepicker-container';
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
@@ -19,7 +19,6 @@ import { take } from 'rxjs/operators';
   host: {
     class: 'bottom',
     '(click)': '_stopPropagation($event)',
-    style: 'position: absolute; display: block;',
     role: 'dialog',
     'aria-label': 'calendar'
   },
@@ -37,6 +36,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
 
   _subs: Subscription[] = [];
   constructor(
+    _renderer: Renderer2,
     private _config: BsDatepickerConfig,
     private _store: BsDatepickerStore,
     private _element: ElementRef,
@@ -46,6 +46,9 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
   ) {
     super();
     this._effects = _effects;
+
+    _renderer.setStyle(_element.nativeElement, 'display', 'block');
+    _renderer.setStyle(_element.nativeElement, 'position', 'absolute');
   }
 
   ngOnInit(): void {

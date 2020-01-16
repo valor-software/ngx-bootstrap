@@ -322,7 +322,7 @@ describe('Pagination demo page test suite', () => {
       pagination.isActivePositionEqual(centeringPageLink, '1');
       pagination.isPagerDisabled(centeringPageLink, 'Previous', true);
       pagination.isPagerDisabled(centeringPageLink, 'Next', false);
-      pagination.isButtonExist(centeringPageLink, 'Toggle centering current page link');
+      pagination.isButtonExist(centeringPageLink, 'Current page link center is ON');
     });
 
     it('when user clicks on 5th, then active page - 5 and it centered, maximum count of pages - 5', () => {
@@ -358,7 +358,7 @@ describe('Pagination demo page test suite', () => {
     it('when user clicks on 6, "Toggle centering" and "Next", then "last/first" - appeared, like "..."', () => {
       pagination.clickOnPage(centeringPageLink, '5');
       pagination.clickOnPage(centeringPageLink, '6');
-      pagination.clickOnPaginationBtn(centeringPageLink, 'Toggle centering current page link');
+      pagination.clickOnPaginationBtn(centeringPageLink, 'Current page link center is ON');
       pagination.clickOnPager(centeringPageLink, 'Next');
       pagination.isPaginationLengthEqual(centeringPageLink, 7);
       pagination.isActivePositionEqual(centeringPageLink, '7');

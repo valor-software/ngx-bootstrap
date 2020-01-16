@@ -10,6 +10,7 @@ import { By } from '@angular/platform-browser';
 
 import { TooltipConfig, TooltipContainerComponent, TooltipDirective, TooltipModule } from '../../tooltip';
 import { createGenericTestComponent } from './test/common';
+import { dispatchMouseEvent } from '@netbasal/spectator';
 
 @Component({
   selector: 'test-onpush-cmpt',
@@ -82,7 +83,7 @@ describe('tooltip', () => {
       );
       const defaultConfig = new TooltipConfig();
 
-      directive.triggerEventHandler('mouseover', {});
+      dispatchMouseEvent(directive.nativeElement, 'mouseover');
       fixture.detectChanges();
       const windowEl = getWindow(fixture.nativeElement);
 
@@ -92,7 +93,7 @@ describe('tooltip', () => {
       expect(windowEl.getAttribute('role')).toBe('tooltip');
       expect(windowEl.parentNode).toBe(fixture.nativeElement);
 
-      directive.triggerEventHandler('mouseout', {});
+      dispatchMouseEvent(directive.nativeElement, 'mouseout');
       fixture.detectChanges();
       expect(getWindow(fixture.nativeElement)).toBeNull();
     });
@@ -105,8 +106,9 @@ describe('tooltip', () => {
         By.directive(TooltipDirective)
       );
 
-      directive.triggerEventHandler('mouseover', {});
+      dispatchMouseEvent(directive.nativeElement, 'mouseover');
       fixture.detectChanges();
+
       const windowEl = getWindow(fixture.nativeElement);
 
       expect(windowEl).toHaveCssClass('tooltip');
@@ -115,7 +117,7 @@ describe('tooltip', () => {
       expect(windowEl.getAttribute('role')).toBe('tooltip');
       expect(windowEl.parentNode).toBe(fixture.nativeElement);
 
-      directive.triggerEventHandler('mouseout', {});
+      dispatchMouseEvent(directive.nativeElement, 'mouseout');
       fixture.detectChanges();
       expect(getWindow(fixture.nativeElement)).toBeNull();
     });
@@ -128,7 +130,7 @@ describe('tooltip', () => {
         By.directive(TooltipDirective)
       );
 
-      directive.triggerEventHandler('mouseover', {});
+      dispatchMouseEvent(directive.nativeElement, 'mouseover');
       fixture.detectChanges();
       const windowEl = getWindow(fixture.nativeElement);
 
@@ -141,7 +143,7 @@ describe('tooltip', () => {
         By.directive(TooltipDirective)
       );
 
-      directive.triggerEventHandler('mouseover', {});
+      dispatchMouseEvent(directive.nativeElement, 'mouseover');
       fixture.detectChanges();
       expect(getWindow(fixture.nativeElement)).not.toBeNull();
 
@@ -156,15 +158,15 @@ describe('tooltip', () => {
         By.directive(TooltipDirective)
       );
 
-      directive.triggerEventHandler('mouseover', {});
+      dispatchMouseEvent(directive.nativeElement, 'mouseover');
       fixture.detectChanges();
       expect(getWindow(fixture.nativeElement)).not.toBeNull();
 
-      directive.triggerEventHandler('mouseout', {});
+      dispatchMouseEvent(directive.nativeElement, 'mouseout');
       fixture.detectChanges();
       expect(getWindow(fixture.nativeElement)).toBeNull();
 
-      directive.triggerEventHandler('mouseover', {});
+      dispatchMouseEvent(directive.nativeElement, 'mouseover');
       fixture.detectChanges();
       expect(getWindow(fixture.nativeElement)).not.toBeNull();
     });
@@ -177,7 +179,7 @@ describe('tooltip', () => {
         By.directive(TooltipDirective)
       );
 
-      directive.triggerEventHandler('mouseover', {});
+      dispatchMouseEvent(directive.nativeElement, 'mouseover');
       fixture.detectChanges();
       expect(getWindow(fixture.nativeElement)).not.toBeNull();
 
@@ -195,7 +197,7 @@ describe('tooltip', () => {
         By.directive(TooltipDirective)
       );
 
-      directive.triggerEventHandler('mouseover', {});
+      dispatchMouseEvent(directive.nativeElement, 'mouseover');
       fixture.detectChanges();
       expect(getWindow(fixture.nativeElement)).not.toBeNull();
 
@@ -213,7 +215,7 @@ describe('tooltip', () => {
           By.directive(TooltipDirective)
         );
 
-        directive.triggerEventHandler('mouseover', {});
+        dispatchMouseEvent(directive.nativeElement, 'mouseover');
         fixture.detectChanges();
         const windowEl = getWindow(fixture.nativeElement);
 
@@ -230,7 +232,7 @@ describe('tooltip', () => {
           By.directive(TooltipDirective)
         );
 
-        directive.triggerEventHandler('mouseover', {});
+        dispatchMouseEvent(directive.nativeElement, 'mouseover');
         fixture.detectChanges();
         const windowEl = getWindow(fixture.nativeElement);
 
@@ -247,7 +249,7 @@ describe('tooltip', () => {
           By.directive(TooltipDirective)
         );
 
-        directive.triggerEventHandler('mouseover', {});
+        dispatchMouseEvent(directive.nativeElement, 'mouseover');
         fixture.detectChanges();
         const windowEl = getWindow(fixture.nativeElement);
 
@@ -267,11 +269,11 @@ describe('tooltip', () => {
           By.directive(TooltipDirective)
         );
 
-        directive.triggerEventHandler('click', {});
+        dispatchMouseEvent(directive.nativeElement, 'click');
         fixture.detectChanges();
         expect(getWindow(fixture.nativeElement)).not.toBeNull();
 
-        directive.triggerEventHandler('click', {});
+        dispatchMouseEvent(directive.nativeElement, 'click');
         fixture.detectChanges();
         expect(getWindow(fixture.nativeElement)).toBeNull();
       });
@@ -284,11 +286,11 @@ describe('tooltip', () => {
           By.directive(TooltipDirective)
         );
 
-        directive.triggerEventHandler('mouseover', {});
+        dispatchMouseEvent(directive.nativeElement, 'mouseover');
         fixture.detectChanges();
         expect(getWindow(fixture.nativeElement)).not.toBeNull();
 
-        directive.triggerEventHandler('click', {});
+        dispatchMouseEvent(directive.nativeElement, 'click');
         fixture.detectChanges();
         expect(getWindow(fixture.nativeElement)).toBeNull();
       });
@@ -301,11 +303,11 @@ describe('tooltip', () => {
           By.directive(TooltipDirective)
         );
 
-        directive.triggerEventHandler('mouseover', {});
+        dispatchMouseEvent(directive.nativeElement, 'mouseover');
         fixture.detectChanges();
         expect(getWindow(fixture.nativeElement)).not.toBeNull();
 
-        directive.triggerEventHandler('click', {});
+        dispatchMouseEvent(directive.nativeElement, 'click');
         fixture.detectChanges();
         expect(getWindow(fixture.nativeElement)).toBeNull();
       });
@@ -318,7 +320,7 @@ describe('tooltip', () => {
           By.directive(TooltipDirective)
         );
 
-        directive.triggerEventHandler('mouseover', {});
+        dispatchMouseEvent(directive.nativeElement, 'mouseover');
         fixture.detectChanges();
         expect(getWindow(fixture.nativeElement)).toBeNull();
       });
@@ -402,7 +404,7 @@ describe('tooltip', () => {
         By.directive(TooltipDirective)
       );
 
-      directive.triggerEventHandler('mouseover', {});
+      dispatchMouseEvent(directive.nativeElement, 'mouseover');
       fixture.detectChanges();
       expect(getWindow(fixture.nativeElement)).toBeNull();
       expect(getWindow(document.querySelector(selector))).not.toBeNull();
@@ -417,7 +419,7 @@ describe('tooltip', () => {
         By.directive(TooltipDirective)
       );
 
-      directive.triggerEventHandler('mouseover', {});
+      dispatchMouseEvent(directive.nativeElement, 'mouseover');
       fixture.detectChanges();
 
       expect(getWindow(document.querySelector(selector))).not.toBeNull();
@@ -439,12 +441,12 @@ describe('tooltip', () => {
       const shownSpy = spyOn(fixture.componentInstance, 'shown');
       const hiddenSpy = spyOn(fixture.componentInstance, 'hidden');
 
-      directive.triggerEventHandler('click', {});
+      dispatchMouseEvent(directive.nativeElement, 'click');
       fixture.detectChanges();
       expect(getWindow(fixture.nativeElement)).not.toBeNull();
       expect(shownSpy).toHaveBeenCalled();
 
-      directive.triggerEventHandler('click', {});
+      dispatchMouseEvent(directive.nativeElement, 'click');
       fixture.detectChanges();
       expect(getWindow(fixture.nativeElement)).toBeNull();
       expect(hiddenSpy).toHaveBeenCalled();

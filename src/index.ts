@@ -53,6 +53,7 @@ export {
   BsDatepickerModule,
   BsDaterangepickerConfig,
   BsDaterangepickerDirective,
+  BsDaterangepickerInlineConfig,
   BsLocaleService,
   DateFormatter,
   DatePickerComponent,

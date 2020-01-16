@@ -18,9 +18,9 @@ describe('Datepicker demo test suite: Custom date format', () => {
                      "YYYY-MM-DD", "MM/DD/YYYY", "MMMM Do YYYY,h:mm:ss a"`, () => {
     const dayToChose = currentDay < 10 ? `0${currentDay}` : currentDay;
     const monthToChose = currentMonthNum + 1 < 10 ? `0${currentMonthNum + 1}` : currentMonthNum + 1;
-    datepicker.isInputHaveAttrs(customFormat, [{ attr: 'formcontrolname', value: 'myDateYMD' }], 0);
-    datepicker.isInputHaveAttrs(customFormat, [{ attr: 'formcontrolname', value: 'myDateMDY' }], 1);
-    datepicker.isInputHaveAttrs(customFormat, [{ attr: 'formcontrolname', value: 'myDateFull' }], 2);
+    datepicker.isInputHaveAttrs(customFormat, [{ attr: 'formcontrolname', value: 'dateYMD' }], 0);
+    datepicker.isInputHaveAttrs(customFormat, [{ attr: 'formcontrolname', value: 'dateMDY' }], 1);
+    datepicker.isInputHaveAttrs(customFormat, [{ attr: 'formcontrolname', value: 'dateFull' }], 2);
     datepicker.isButtonExist(customFormat, 'Date Picker', 0);
     datepicker.isButtonExist(customFormat, 'Date Picker', 1);
     datepicker.isButtonExist(customFormat, 'Date Picker', 2);
