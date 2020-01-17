@@ -25,6 +25,8 @@ export class PopoverConfig {
    * A selector specifying the element the popover should be appended to.
    */
   container: string;
-  /** delay before showing the tooltip */
+  /** delay before showing the popover */
   delay = 0;
+  /** delay before hiding the popover */
+  hideAfterDelay = 0;
 }

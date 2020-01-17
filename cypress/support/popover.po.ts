@@ -27,6 +27,7 @@ export class PopoverPo extends BaseComponent {
     customClass: 'demo-popover-class',
     popoverContext: 'demo-popover-context',
     delayPopover: 'demo-popover-delay',
+    hidePopoverAfterDelay: 'demo-popover-hide-after-delay'
   };
 
   isPopoverPlacementCorrect(baseSelector: string, placement: string) {

@@ -380,4 +380,24 @@ describe('Popover demo page test suite', () => {
       popover.isPopoverDismiss(delayPopover);
     });
   });
+
+  describe('Hide popover after delay', () => {
+    const hideAfterDelay = popover.exampleDemosArr.hidePopoverAfterDelay;
+    it('when user clicks on "Popover will disappear after 3 seconds", then popover-container disappears', () => {
+      cy.viewport(1440, 900);
+      popover.clickOnDemoMenu('Hide popover after delay');
+      popover.clickOnBtn(hideAfterDelay);
+      popover.isPopoverAppears(hideAfterDelay);
+      popover.isPopoverDismiss(hideAfterDelay);
+    });
+
+    it('when user clicks on "Popover will disappear after 3 seconds" again, then popover-container disappeared', () => {
+      cy.viewport(1440, 900);
+      popover.clickOnDemoMenu('Hide popover after delay');
+      popover.clickOnBtn(hideAfterDelay);
+      popover.isPopoverAppears(hideAfterDelay);
+      popover.clickOnBtn(hideAfterDelay);
+      popover.isPopoverDismiss(hideAfterDelay);
+    });
+  });
 });

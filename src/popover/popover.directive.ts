@@ -70,9 +70,14 @@ export class PopoverDirective implements OnInit, OnDestroy {
   }
 
   /**
-   * Delay before showing the tooltip
+   * Delay before showing the popover
    */
   @Input() delay: number;
+
+  /**
+   * Delay before hiding the popover
+   */
+  @Input() hideAfterDelay: number;
 
   /**
    * Emits an event when the popover is shown
@@ -197,6 +202,12 @@ export class PopoverDirective implements OnInit, OnDestroy {
       }
     } else {
       showPopover();
+    }
+
+    if (this.hideAfterDelay) {
+      timer(this.hideAfterDelay).subscribe(() => {
+        this.hide();
+      });
     }
   }
 

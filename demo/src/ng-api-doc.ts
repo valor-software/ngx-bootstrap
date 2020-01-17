@@ -2630,6 +2630,12 @@ export const ngdoc: any = {
         "defaultValue": "0",
         "type": "number",
         "description": "<p>delay before showing the popover</p>\n"
+      },
+      {
+        "name": "hideAfterDelay",
+        "defaultValue": "0",
+        "type": "number",
+        "description": "<p>delay before hiding the popover</p>\n"
       }
     ]
   },
@@ -2659,6 +2665,11 @@ export const ngdoc: any = {
         "name": "delay",
         "type": "number",
         "description": "<p>Delay before showing the popover</p>\n"
+      },
+      {
+        "name": "hideAfterDelay",
+        "type": "number",
+        "description": "<p>Delay before hiding the popover</p>\n"
       },
       {
         "name": "isOpen",

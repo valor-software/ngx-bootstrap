@@ -8,7 +8,8 @@ export function getPopoverConfig(): PopoverConfig {
     placement: 'right',
     container: 'body',
     triggers: 'focus',
-    delay: 500
+    delay: 500,
+    hideAfterDelay: 3000
   });
 }
 

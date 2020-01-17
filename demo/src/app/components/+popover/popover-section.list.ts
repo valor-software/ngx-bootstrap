@@ -7,6 +7,7 @@ import { DemoPopoverContainerComponent } from './demos/container/container';
 import { DemoPopoverContextComponent } from './demos/popover-context/popover-context';
 import { DemoPopoverCustomContentComponent } from './demos/custom-content/custom-content';
 import { DemoPopoverDelayComponent } from './demos/delay/delay';
+import { DemoPopoverHideAfterDelayComponent } from './demos/hide-after-delay/hide-after-delay';
 import { DemoPopoverDismissComponent } from './demos/dismiss/dismiss';
 import { DemoPopoverDynamicComponent } from './demos/dynamic/dynamic';
 import { DemoPopoverDynamicHtmlComponent } from './demos/dynamic-html/dynamic-html';
@@ -186,6 +187,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/delay/delay.html'),
         description: `<p>Click on the button to see popover delayed for 0,5 second </p>`,
         outlet: DemoPopoverDelayComponent
+      },
+      {
+        title: 'Hide popover after delay',
+        anchor: 'popover-hide-after-delay',
+        component: require('!!raw-loader!./demos/hide-after-delay/hide-after-delay.ts'),
+        html: require('!!raw-loader!./demos/hide-after-delay/hide-after-delay.html'),
+        description: `<p>Open popover and it will disappear after 3 seconds</p>`,
+        outlet: DemoPopoverHideAfterDelayComponent
       }
     ]
   },

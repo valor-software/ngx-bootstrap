@@ -327,7 +327,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
     }
 
     if (this.hideAfterDelay) {
-      showTooltip();
       timer(this.hideAfterDelay).subscribe(() => {
         this.hide();
       });
