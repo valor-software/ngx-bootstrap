@@ -1,4 +1,4 @@
-// tslint:disable:max-file-line-count
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -30,7 +30,10 @@ describe('Directive: Collapse', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestCollapseComponent],
-      imports: [CollapseModule]
+      imports: [
+        CollapseModule,
+        BrowserAnimationsModule
+      ]
     });
     fixture = TestBed.createComponent(TestCollapseComponent);
     fixture.detectChanges();

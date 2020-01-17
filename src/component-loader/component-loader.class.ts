@@ -68,10 +68,14 @@ export class ComponentLoader<T> {
 
   /**
    * A selector specifying the element the popover should be appended to.
-   * Currently only supports "body".
    */
   /* tslint:disable-next-line: no-any*/
   private container: string | ElementRef | any;
+
+  /**
+   * A selector used if container element was not found
+   */
+  private containerDefaultSelector = 'body';
 
   /**
    * Specifies events that should trigger. Supports a space separated list of
@@ -107,7 +111,7 @@ export class ComponentLoader<T> {
   }
 
   // todo: add behaviour: to target element, `body`, custom element
-  to(container?: string): ComponentLoader<T> {
+  to(container?: string | ElementRef): ComponentLoader<T> {
     this.container = container || this.container;
 
     return this;
@@ -115,6 +119,7 @@ export class ComponentLoader<T> {
 
   position(opts?: PositioningOptions): ComponentLoader<T> {
     this.attachment = opts.attachment || this.attachment;
+    /* tslint:disable-next-line: no-unnecessary-type-assertion */
     this._elementRef = (opts.target as ElementRef) || this._elementRef;
 
     return this;
@@ -153,6 +158,7 @@ export class ComponentLoader<T> {
       });
 
       this._componentRef = this._componentFactory.create(injector, this._contentRef.nodes);
+
       this._applicationRef.attachView(this._componentRef.hostView);
       // this._componentRef = this._viewContainerRef
       //   .createComponent(this._componentFactory, 0, injector, this._contentRef.nodes);
@@ -166,10 +172,11 @@ export class ComponentLoader<T> {
         );
       }
 
-      if (this.container === 'body' && typeof document !== 'undefined') {
-        document
-          .querySelector(this.container as string)
-          .appendChild(this._componentRef.location.nativeElement);
+      if (typeof this.container === 'string' && typeof document !== 'undefined') {
+        const selectedElement = document.querySelector(this.container) ||
+                                document.querySelector(this.containerDefaultSelector);
+
+        selectedElement.appendChild(this._componentRef.location.nativeElement);
       }
 
       if (
@@ -205,6 +212,8 @@ export class ComponentLoader<T> {
     if (!this._componentRef) {
       return this;
     }
+
+    this._posService.deletePositionElement(this._componentRef.location);
 
     this.onBeforeHide.emit(this._componentRef.instance);
 
@@ -333,10 +342,7 @@ export class ComponentLoader<T> {
       return;
     }
 
-    this._zoneSubscription = this._ngZone.onStable.subscribe(() => {
-      if (!this._componentRef) {
-        return;
-      }
+    this.onShown.subscribe(() => {
       this._posService.position({
         element: this._componentRef.location,
         target: this._elementRef,
@@ -344,12 +350,21 @@ export class ComponentLoader<T> {
         appendToBody: this.container === 'body'
       });
     });
+
+    this._zoneSubscription = this._ngZone.onStable.subscribe(() => {
+      if (!this._componentRef) {
+        return;
+      }
+
+      this._posService.calcPosition();
+    });
   }
 
   private _unsubscribePositioning(): void {
     if (!this._zoneSubscription) {
       return;
     }
+
     this._zoneSubscription.unsubscribe();
     this._zoneSubscription = null;
   }

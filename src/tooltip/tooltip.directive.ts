@@ -12,10 +12,14 @@ import {
   TemplateRef,
   ViewContainerRef
 } from '@angular/core';
+
 import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipConfig } from './tooltip.config';
+
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
-import { OnChange, warnOnce, parseTriggers } from 'ngx-bootstrap/utils';
+import { OnChange, warnOnce, parseTriggers, Trigger } from 'ngx-bootstrap/utils';
+import { PositioningService } from 'ngx-bootstrap/positioning';
+
 import { timer } from 'rxjs';
 
 let id = 0;
@@ -26,6 +30,8 @@ let id = 0;
 })
 export class TooltipDirective implements OnInit, OnDestroy {
   tooltipId = id++;
+  /** sets disable adaptive position */
+  @Input() adaptivePosition: boolean;
   /**
    * Content to be displayed as tooltip.
    */
@@ -49,7 +55,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
   @Input() triggers: string;
   /**
    * A selector specifying the element the tooltip should be appended to.
-   * Currently only supports "body".
    */
   @Input() container: string;
   /**
@@ -202,10 +207,11 @@ export class TooltipDirective implements OnInit, OnDestroy {
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
   constructor(
     _viewContainerRef: ViewContainerRef,
-    private _renderer: Renderer2,
-    private _elementRef: ElementRef,
     cis: ComponentLoaderFactory,
-    config: TooltipConfig
+    config: TooltipConfig,
+    private _elementRef: ElementRef,
+    private _renderer: Renderer2,
+    private _positionService: PositioningService
   ) {
 
     this._tooltip = cis
@@ -251,6 +257,17 @@ export class TooltipDirective implements OnInit, OnDestroy {
    * the tooltip.
    */
   show(): void {
+    this._positionService.setOptions({
+      modifiers: {
+        flip: {
+          enabled: this.adaptivePosition
+        },
+        preventOverflow: {
+          enabled: this.adaptivePosition
+        }
+      }
+    });
+
     if (
       this.isOpen ||
       this.isDisabled ||
@@ -289,11 +306,17 @@ export class TooltipDirective implements OnInit, OnDestroy {
       });
 
       if (this.triggers) {
-        const triggers = parseTriggers(this.triggers);
-        this._tooltipCancelShowFn = this._renderer.listen(this._elementRef.nativeElement, triggers[0].close, () => {
-          _timer.unsubscribe();
-          cancelDelayedTooltipShowing();
-        });
+        parseTriggers(this.triggers)
+          .forEach((trigger: Trigger) => {
+            this._tooltipCancelShowFn = this._renderer.listen(
+              this._elementRef.nativeElement,
+              trigger.close,
+              () => {
+                _timer.unsubscribe();
+                cancelDelayedTooltipShowing();
+              }
+            );
+          });
       }
     } else {
       showTooltip();
@@ -322,5 +345,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._tooltip.dispose();
+    this.tooltipChange.unsubscribe();
   }
 }

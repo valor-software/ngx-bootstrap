@@ -13,8 +13,8 @@ Main success scenario:
 3. User see Datepicker input and clickable button "Set min date"
 4. When user clicks on Datepicker input, bs-datepicker-container opens
 5. User able to click on any date, even any date from May 2018
-6. When user clicks on 15 may 2018 - then this date appear in the input
-7. When user clicks on "Set min date" button, then bs-datepicker-container opens and user should see June 2018 calendar
+6. When user clicks on 8 may 2018 - then this date appear in the input
+7. When user clicks on "Set min date" button, then bs-datepicker-container opens
 8. When user try to click on any date before 13 of June 2018, nothing happens
 9. When user try to click on any date after 13 of June 2018 - then this date chosen and appear in the input
 

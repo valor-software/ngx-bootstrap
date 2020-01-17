@@ -12,7 +12,7 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
   `]
 })
 export class DemoModalEventsComponent {
-  @ViewChild(ModalDirective) modal: ModalDirective;
+  @ViewChild(ModalDirective, { static: false }) modal: ModalDirective;
   messages: string[];
 
   showModal() {

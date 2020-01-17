@@ -10,17 +10,27 @@ import { BsDaterangepickerInputDirective } from './bs-daterangepicker-input.dire
 import { BsDaterangepickerDirective } from './bs-daterangepicker.component';
 import { BsDaterangepickerConfig } from './bs-daterangepicker.config';
 
+import { BsDatepickerInlineDirective } from './bs-datepicker-inline.component';
+import { BsDatepickerInlineConfig } from './bs-datepicker-inline.config';
+
 import { BsLocaleService } from './bs-locale.service';
 import { BsDatepickerActions } from './reducer/bs-datepicker.actions';
 import { BsDatepickerEffects } from './reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from './reducer/bs-datepicker.store';
+import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
+import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
+
+import { BsDatepickerInlineContainerComponent } from './themes/bs/bs-datepicker-inline-container.component';
+import { BsDaterangepickerInlineContainerComponent } from './themes/bs/bs-daterangepicker-inline-container.component';
+
+import { BsDaterangepickerInlineDirective } from './bs-daterangepicker-inline.component';
+import { BsDaterangepickerInlineConfig } from './bs-daterangepicker-inline.config';
+
 import { BsCalendarLayoutComponent } from './themes/bs/bs-calendar-layout.component';
 import { BsCurrentDateViewComponent } from './themes/bs/bs-current-date-view.component';
 import { BsCustomDatesViewComponent } from './themes/bs/bs-custom-dates-view.component';
-import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
 import { BsDatepickerDayDecoratorComponent } from './themes/bs/bs-datepicker-day-decorator.directive';
 import { BsDatepickerNavigationViewComponent } from './themes/bs/bs-datepicker-navigation-view.component';
-import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
 import { BsDaysCalendarViewComponent } from './themes/bs/bs-days-calendar-view.component';
 import { BsMonthCalendarViewComponent } from './themes/bs/bs-months-calendar-view.component';
 import { BsTimepickerViewComponent } from './themes/bs/bs-timepicker-view.component';
@@ -28,35 +38,37 @@ import { BsYearsCalendarViewComponent } from './themes/bs/bs-years-calendar-view
 
 const _exports = [
   BsDatepickerContainerComponent,
-  BsDaterangepickerContainerComponent,
-
   BsDatepickerDirective,
+  BsDatepickerInlineContainerComponent,
+  BsDatepickerInlineDirective,
   BsDatepickerInputDirective,
-
-  BsDaterangepickerInputDirective,
-  BsDaterangepickerDirective
+  BsDaterangepickerContainerComponent,
+  BsDaterangepickerDirective,
+  BsDaterangepickerInlineContainerComponent,
+  BsDaterangepickerInlineDirective,
+  BsDaterangepickerInputDirective
 ];
 
 @NgModule({
   imports: [CommonModule],
   declarations: [
-    BsDatepickerDayDecoratorComponent,
-    BsCurrentDateViewComponent,
-    BsDatepickerNavigationViewComponent,
-    BsTimepickerViewComponent,
-
     BsCalendarLayoutComponent,
+    BsCurrentDateViewComponent,
+    BsCustomDatesViewComponent,
+    BsDatepickerDayDecoratorComponent,
+    BsDatepickerNavigationViewComponent,
     BsDaysCalendarViewComponent,
     BsMonthCalendarViewComponent,
+    BsTimepickerViewComponent,
     BsYearsCalendarViewComponent,
-
-    BsCustomDatesViewComponent,
 
     ..._exports
   ],
   entryComponents: [
     BsDatepickerContainerComponent,
-    BsDaterangepickerContainerComponent
+    BsDaterangepickerContainerComponent,
+    BsDatepickerInlineContainerComponent,
+    BsDaterangepickerInlineContainerComponent
   ],
   exports: _exports
 })
@@ -71,6 +83,8 @@ export class BsDatepickerModule {
         BsDatepickerActions,
         BsDatepickerConfig,
         BsDaterangepickerConfig,
+        BsDatepickerInlineConfig,
+        BsDaterangepickerInlineConfig,
         BsDatepickerEffects,
         BsLocaleService
       ]

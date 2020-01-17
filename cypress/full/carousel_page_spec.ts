@@ -8,30 +8,6 @@ describe('Carousel page test suite', () => {
     carousel.navigateTo();
   });
 
-  describe('Basic', () => {
-    const basic = carousel.exampleDemosArr.basic;
-
-    it('when user click on indicator item - appropriate slide shown', () => {
-      carousel.isClickActivatedCarouselItem(basic, 1);
-      carousel.isClickActivatedCarouselItem(basic, 0);
-      carousel.isClickActivatedCarouselItem(basic, 2);
-    });
-
-    it('when user click on left/right arrow - previous/next slide shown', () => {
-      carousel.clickOnCtrl(basic, 'left');
-      carousel.isCarouselItemActive(basic, 2);
-      carousel.clickOnCtrl(basic, 'right');
-      carousel.isCarouselItemActive(basic, 0);
-    });
-
-    it('when user do nothing more than 5 sec - next slide automatically shown', () => {
-      carousel.scrollToMenu('Basic');
-      carousel.isCarouselItemActive(basic, 0);
-      cy.tick(6000);
-      carousel.isCarouselItemActive(basic, 1);
-    });
-  });
-
   describe('Optional captions', () => {
     const optCaptions = carousel.exampleDemosArr.optionalCaptions;
 
@@ -142,29 +118,30 @@ describe('Carousel page test suite', () => {
   describe('Pause on hover ', () => {
     const pauseOnHoverSlides = carousel.exampleDemosArr.pauseOnHover;
 
-    it('example contains carousel component with slides, arrows and "Toggle pause on hover" button', () => {
+    it('example contains carousel component with slides, arrows', () => {
       carousel.scrollToMenu('Pause on hover');
       carousel.isCarouselHaveIndicatorsItemsCtrls(pauseOnHoverSlides);
       carousel.isEachSlideHave(pauseOnHoverSlides, ['.item', '.carousel-caption', 'h3']);
-      carousel.isBtnTxtEqual(pauseOnHoverSlides, 'Toggle pause on hover ');
     });
 
-    it('when user click on "Toggle pause on hover" and hover slide - then after 5 sec slide stay opened', () => {
+    it('when user hover slide - then after 5 sec slide stay opened', () => {
       carousel.scrollToMenu('Pause on hover');
-      carousel.clickOnBtn(pauseOnHoverSlides);
       carousel.hoverSlide(pauseOnHoverSlides, 1);
       carousel.isCarouselItemActive(pauseOnHoverSlides, 0);
       cy.tick(6000);
       carousel.isCarouselItemActive(pauseOnHoverSlides, 0);
     });
 
-    it('when user click on "Toggle pause on hover" again, hover slide - then after 5 sec slide changed', () => {
+    it('when user hover slide then move mouse out - then after 5 sec slide changed', () => {
       carousel.scrollToMenu('Pause on hover');
-      carousel.dblClickOnBtn(pauseOnHoverSlides);
       carousel.hoverSlide(pauseOnHoverSlides, 1);
       carousel.isCarouselItemActive(pauseOnHoverSlides, 0);
+      cy.tick(6000);
+      carousel.isCarouselItemActive(pauseOnHoverSlides, 0);
+      carousel.mouseLeave(pauseOnHoverSlides);
       cy.tick(6000);
       carousel.isCarouselItemActive(pauseOnHoverSlides, 1);
+
     });
   });
 

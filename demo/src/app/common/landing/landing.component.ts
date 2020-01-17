@@ -44,6 +44,6 @@ export class LandingComponent implements AfterViewInit {
   }
 
   scrollToSection() {
-    this.router.navigate(['.', 'getting-started' ], {fragment: 'getting-started'});
+    this.router.navigate(['.', 'documentation' ], {fragment: 'getting-started'});
   }
 }
