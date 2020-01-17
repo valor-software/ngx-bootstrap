@@ -25,7 +25,7 @@ export const demoComponentContent: ContentSection[] = [
     anchor: 'usage',
     outlet: DemoTopSectionComponent,
     content: {
-      doc: require('!!raw-loader?lang=typescript!./docs/usage.md')
+      doc: require('!!raw-loader!./docs/usage.md')
     }
   },
   {
@@ -40,8 +40,8 @@ export const demoComponentContent: ContentSection[] = [
           button. For proper styling, use one of the four <strong>required</strong>
           contextual classes (e.g., <code>.alert-success</code>). For inline
           dismissal, use the <code>dismissible</code> property.</p>`,
-        component: require('!!raw-loader?lang=typescript!./demos/basic/basic'),
-        html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
+        component: require('!!raw-loader!./demos/basic/basic'),
+        html: require('!!raw-loader!./demos/basic/basic.html'),
         outlet: DemoAlertBasicComponent
       },
       {
@@ -49,8 +49,8 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'link-color',
         description: `<p>Use the <code>.alert-link</code> utility class to quickly provide matching
           colored links within any alert.</p>`,
-        component: require('!!raw-loader?lang=typescript!./demos/link/link.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/link/link.html'),
+        component: require('!!raw-loader!./demos/link/link.ts'),
+        html: require('!!raw-loader!./demos/link/link.html'),
         outlet: DemoAlertLinkComponent
       },
       {
@@ -58,8 +58,8 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'additional-content',
         description: `<p>Alerts can also contain additional HTML elements like headings and
           paragraphs.</p>`,
-        component: require('!!raw-loader?lang=typescript!./demos/content/content.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/content/content.html'),
+        component: require('!!raw-loader!./demos/content/content.ts'),
+        html: require('!!raw-loader!./demos/content/content.html'),
         outlet: DemoAlertContentComponent
       },
       {
@@ -67,8 +67,8 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'dismissing',
         description: `<p>Alerts have <code>dismiss</code> option. Enabling it will show close button
           to the right of the alert.</p>`,
-        component: require('!!raw-loader?lang=typescript!./demos/dismiss/dismiss.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/dismiss/dismiss.html'),
+        component: require('!!raw-loader!./demos/dismiss/dismiss.ts'),
+        html: require('!!raw-loader!./demos/dismiss/dismiss.html'),
         outlet: DemoAlertDismissComponent
       },
       {
@@ -76,16 +76,16 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'dynamic-html',
         description: `<p>Sometimes you will need to show dynamically generated html in alerts, here
           is how you can make it. And don't forget to sanitize your html.</p>`,
-        component: require('!!raw-loader?lang=typescript!./demos/dynamic-html/dynamic-html.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/dynamic-html/dynamic-html.html'),
+        component: require('!!raw-loader!./demos/dynamic-html/dynamic-html.ts'),
+        html: require('!!raw-loader!./demos/dynamic-html/dynamic-html.html'),
         outlet: DemoAlertDynamicHtmlComponent
       },
       {
         title: 'Dynamic content',
         anchor: 'dynamic-content',
         description: `<p>Alerts fully support bindings.</p>`,
-        component: require('!!raw-loader?lang=typescript!./demos/dynamic-content/dynamic-content.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/dynamic-content/dynamic-content.html'),
+        component: require('!!raw-loader!./demos/dynamic-content/dynamic-content.ts'),
+        html: require('!!raw-loader!./demos/dynamic-content/dynamic-content.html'),
         outlet: DemoAlertDynamicContentComponent
       },
       {
@@ -93,32 +93,32 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'dismiss-on-timeout',
         description: `<p>You can simply set timeout in milliseconds to <code>dismissOnTimeout</code>
           property to create self closable alerts.</p>`,
-        component: require('!!raw-loader?lang=typescript!./demos/dismiss-on-timeout/dismiss-on-timeout.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/dismiss-on-timeout/dismiss-on-timeout.html'),
+        component: require('!!raw-loader!./demos/dismiss-on-timeout/dismiss-on-timeout.ts'),
+        html: require('!!raw-loader!./demos/dismiss-on-timeout/dismiss-on-timeout.html'),
         outlet: DemoAlertTimeoutComponent
       },
       {
         title: 'Global styling',
         anchor: 'global-styling',
         description: `<p>You can add additional types of alerts globally.</p>`,
-        component: require('!!raw-loader?lang=typescript!./demos/styling-global/styling-global.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/styling-global/styling-global.html'),
+        component: require('!!raw-loader!./demos/styling-global/styling-global.ts'),
+        html: require('!!raw-loader!./demos/styling-global/styling-global.html'),
         outlet: DemoAlertStylingGlobalComponent
       },
       {
         title: 'Component level styling',
         anchor: 'local-styling',
         description: `<p>You can add additional types of alerts directly to containing component</p>`,
-        component: require('!!raw-loader?lang=typescript!./demos/styling-local/styling-local.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/styling-local/styling-local.html'),
+        component: require('!!raw-loader!./demos/styling-local/styling-local.ts'),
+        html: require('!!raw-loader!./demos/styling-local/styling-local.html'),
         outlet: DemoAlertStylingLocalComponent
       },
       {
         title: 'Configuring defaults',
         anchor: 'configuration',
         description: `<p>It is possible to override default alert config partially or completely.</p>`,
-        component: require('!!raw-loader?lang=typescript!./demos/config/config.ts'),
-        html: require('!!raw-loader?lang=markup!./demos/config/config.html'),
+        component: require('!!raw-loader!./demos/config/config.ts'),
+        html: require('!!raw-loader!./demos/config/config.html'),
         outlet: DemoAlertConfigComponent
       }
     ]

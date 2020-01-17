@@ -6,39 +6,99 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
+import { chain, noop, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { getWorkspace } from '@schematics/angular/utility/config';
 import { Schema } from './schema';
-import { WorkspaceProject, WorkspaceSchema } from '@angular-devkit/core/src/workspace';
+import { WorkspaceProject, WorkspaceSchema } from '@schematics/angular/utility/workspace-models';
 
 import {
+  addModuleImportToRootModule,
   addPackageToPackageJson,
   addStyleToTarget,
   getProjectFromWorkspace,
   installPackageJsonDependencies
 } from '../utils';
 
-const bootstrapStylePath =  `./node_modules/bootstrap/dist/css/bootstrap.css`;
+import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
+import { getProjectMainFile } from '../utils/project-main-file';
+import { hasNgModuleImport } from '../utils/ng-module-imports';
+
+
+const bootstrapStylePath =  `./node_modules/bootstrap/dist/css/bootstrap.min.css`;
 const datePickerStylePath =  `./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css`;
+const datepickerComponentName = 'datepicker';
+const bsName = 'ngx-bootstrap';
+
+const components: { [key: string]: { moduleName: string; link: string; animated?: boolean } } = {
+  accordion:   { moduleName: 'AccordionModule',    link: `${bsName}/accordion`, animated: true },
+  alerts:      { moduleName: 'AlertModule',        link: `${bsName}/alert` },
+  buttons:     { moduleName: 'ButtonsModule',      link: `${bsName}/buttons` },
+  carousel:    { moduleName: 'CarouselModule',     link: `${bsName}/carousel` },
+  collapse:    { moduleName: 'CollapseModule',     link: `${bsName}/collapse`, animated: true },
+  datepicker:  { moduleName: 'BsDatepickerModule', link: `${bsName}/datepicker`, animated: true },
+  dropdowns:   { moduleName: 'BsDropdownModule',   link: `${bsName}/dropdown` , animated: true },
+  modals:      { moduleName: 'ModalModule',        link: `${bsName}/modal` },
+  pagination:  { moduleName: 'PaginationModule',   link: `${bsName}/pagination` },
+  popover:     { moduleName: 'PopoverModule',      link: `${bsName}/popover` },
+  progressbar: { moduleName: 'ProgressbarModule',  link: `${bsName}/progressbar` },
+  rating:      { moduleName: 'RatingModule',       link: `${bsName}/rating` },
+  sortable:    { moduleName: 'SortableModule',     link: `${bsName}/sortable` },
+  tabs:        { moduleName: 'TabsModule',         link: `${bsName}/tabs` },
+  timepicker:  { moduleName: 'TimepickerModule',   link: `${bsName}/timepicker` },
+  tooltip:     { moduleName: 'TooltipModule',      link: `${bsName}/tooltip` },
+  typeahead:   { moduleName: 'TypeaheadModule',    link: `${bsName}/typeahead`, animated: true }
+};
 
 /* tslint:disable-next-line: no-default-export */
 export default function (options: Schema): Rule {
+  const componentName = options.component
+    ? options.component
+    : (options as any)['--'] && (options as any)['--'][1];
+
   return chain([
-    addStyles(options),
     addPackageJsonDependencies(),
-    installPackageJsonDependencies()
+    installPackageJsonDependencies(),
+    !componentName || componentName === datepickerComponentName
+      ? addStyles(options, insertCommonStyles)
+      : addStyles(options, insertBootstrapStyles),
+    componentName
+      ? addModuleOfComponent(options.project, componentName)
+      : noop(),
+    addAnimationModule(options.project, componentName)
   ]);
+}
+
+function addModuleOfComponent(projectName: string | undefined, componentName: string) {
+
+  return (host: Tree) => {
+    const workspace = getWorkspace(host);
+    const project = getProjectFromWorkspace(workspace, projectName);
+    const appModulePath = getAppModulePath(host, getProjectMainFile(project));
+
+    if (componentName && components[componentName]) {
+      if (hasNgModuleImport(host, appModulePath, components[componentName].moduleName)) {
+        /* tslint:disable-next-line: no-console */
+        return console.warn(`Could not set up ${components[componentName].moduleName} because it already imported.`);
+      }
+
+      addModuleImportToRootModule(
+        host, `${components[componentName].moduleName}.forRoot()`, components[componentName].link, project
+      );
+    }
+
+    return host;
+  };
 }
 
 function addPackageJsonDependencies(): Rule {
   return (host: Tree, context: SchematicContext) => {
     const dependencies: { name: string; version: string }[] = [
       { name: 'bootstrap', version: '4.1.1' },
-      { name: 'ngx-bootstrap', version: '3.0.1' }
+      { name: 'ngx-bootstrap', version: '^4.1.1' }
     ];
 
     dependencies.forEach(dependency => {
-      addPackageToPackageJson(host, dependency.name, `^${dependency.version}`);
+      addPackageToPackageJson(host, dependency.name, `${dependency.version}`);
       context.logger.log('info', `✅️ Added "${dependency.name}`);
     });
 
@@ -46,8 +106,7 @@ function addPackageJsonDependencies(): Rule {
   };
 }
 
-/* tslint:disable-next-line: no-any */
-export function addStyles(options: Schema): (host: Tree) => Tree {
+export function addStyles(options: Schema, insertStyle: Function): (host: Tree) => Tree {
   return function (host: Tree): Tree {
     const workspace = getWorkspace(host);
     const project = getProjectFromWorkspace(workspace, options.project);
@@ -58,9 +117,29 @@ export function addStyles(options: Schema): (host: Tree) => Tree {
   };
 }
 
-function insertStyle(project: WorkspaceProject, host: Tree, workspace: WorkspaceSchema) {
-  addStyleToTarget(project, 'build', host, datePickerStylePath, workspace);
-  addStyleToTarget(project, 'test', host, datePickerStylePath, workspace);
+function insertBootstrapStyles(project: WorkspaceProject, host: Tree, workspace: WorkspaceSchema) {
   addStyleToTarget(project, 'build', host, bootstrapStylePath, workspace);
   addStyleToTarget(project, 'test', host, bootstrapStylePath, workspace);
+}
+
+function insertCommonStyles(project: WorkspaceProject, host: Tree, workspace: WorkspaceSchema) {
+  addStyleToTarget(project, 'build', host, datePickerStylePath, workspace);
+  addStyleToTarget(project, 'test', host, datePickerStylePath, workspace);
+
+  insertBootstrapStyles(project, host, workspace);
+}
+
+function addAnimationModule(projectName: string | undefined, componentName: string) {
+  return (host: Tree) => {
+    if (!(!componentName || components[componentName].animated)) {
+      return host;
+    }
+
+    const workspace = getWorkspace(host);
+    const project = getProjectFromWorkspace(workspace, projectName);
+
+    addModuleImportToRootModule(host, 'BrowserAnimationsModule', '@angular/platform-browser/animations', project);
+
+    return host;
+  };
 }
