@@ -4,10 +4,10 @@
  */
 import { Renderer2 } from '@angular/core';
 
-import { getReferenceOffsets, setAllStyles } from './utils';
+import { getOffsets, getReferenceOffsets, updateContainerClass, setStyles } from './utils';
 
 import { arrow, flip, preventOverflow, shift, initData } from './modifiers';
-import { Data, Offsets } from './models';
+import { Data, Offsets, Options } from './models';
 
 
 export class Positioning {
@@ -23,13 +23,14 @@ export class Positioning {
     hostElement: HTMLElement,
     targetElement: HTMLElement,
     position: string,
-    appendToBody?: boolean
+    appendToBody?: boolean,
+    options?: Options
   ): Data {
     const chainOfModifiers = [flip, shift, preventOverflow, arrow];
 
     return chainOfModifiers.reduce(
       (modifiedData, modifier) => modifier(modifiedData),
-      initData(targetElement, hostElement, position)
+      initData(targetElement, hostElement, position, options)
     );
   }
 }
@@ -41,6 +42,7 @@ export function positionElements(
   targetElement: HTMLElement,
   placement: string,
   appendToBody?: boolean,
+  options?: Options,
   renderer?: Renderer2
 ): void {
 
@@ -48,8 +50,22 @@ export function positionElements(
     hostElement,
     targetElement,
     placement,
-    appendToBody
+    appendToBody,
+    options
   );
 
-  setAllStyles(data, renderer);
+  const offsets = getOffsets(data);
+
+  setStyles(targetElement, {
+    'will-change': 'transform',
+    top: '0px',
+    left: '0px',
+    transform: `translate3d(${offsets.left}px, ${offsets.top}px, 0px)`
+  }, renderer);
+
+  if (data.instance.arrow) {
+    setStyles(data.instance.arrow, data.offsets.arrow, renderer);
+  }
+
+  updateContainerClass(data, renderer);
 }

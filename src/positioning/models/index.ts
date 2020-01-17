@@ -10,6 +10,7 @@ export interface Offsets {
 }
 
 export interface Data {
+  options: Options;
   instance: {
     target: HTMLElement;
     host: HTMLElement;
@@ -23,4 +24,17 @@ export interface Data {
   positionFixed: boolean;
   placement: string;
   placementAuto: boolean;
+}
+
+export interface Options {
+  placement?: string;
+  modifiers: {
+    flip?: {
+      enabled: boolean;
+    };
+    preventOverflow?: {
+      enabled: boolean;
+    };
+  };
+  allowedPositions?: string[];
 }

@@ -1,0 +1,13 @@
+:host {
+  .nav-tabs {
+    .nav-item {
+      &.disabled {
+        a {
+          &.disabled {
+            cursor: default;
+          }
+        }
+      }
+    }
+  }
+}

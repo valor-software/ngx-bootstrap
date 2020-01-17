@@ -16,7 +16,7 @@ Main success scenario:
 4. And after that click on "Open modal with custom css class" button, modal popup is opened with animations effects
 5. When user closes modal popup by click on the cross, modal popup is closed
 6. When user clicks on "Disable animation" button, title of button change to "Enable animation"
-7. And after that click on "Open modal with custom css class" button, modal popup is opened without animations effects
+7. And after that click on "Open modal" button, modal popup is opened without animations effects
 
 Variations:
 ----------

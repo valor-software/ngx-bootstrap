@@ -13,6 +13,7 @@ import {
   TemplateRef,
   ViewContainerRef
 } from '@angular/core';
+
 import { NgControl } from '@angular/forms';
 
 import { from, Subscription, isObservable } from 'rxjs';
@@ -35,6 +36,10 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
    * list of options (limited as normal by typeaheadOptionsLimit)
    */
   @Input() typeaheadMinLength: number = void 0;
+  /** sets use adaptive position */
+  @Input() adaptivePosition: boolean;
+  /** turn on/off animation */
+  @Input() isAnimated = false;
   /** minimal wait time after last character typed before typeahead kicks-in */
   @Input() typeaheadWaitMs: number;
   /** maximum length of options items list. The default value is 20 */
@@ -91,6 +96,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
    * If value equal false, it will be chosen an active item in the list or nothing
    */
   @Input() typeaheadSelectFirstItem = true;
+  /** makes active first item in a list */
+  @Input() typeaheadIsFirstItemActive = true;
   /** fired when 'busy' state of this component was changed,
    * fired on async mode only, returns boolean
    */
@@ -102,12 +109,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /** fired when option was selected, return object with data of this option */
   @Output() typeaheadOnSelect = new EventEmitter<TypeaheadMatch>();
   /** fired when blur event occurs. returns the active item */
-    // tslint:disable-next-line:no-any
+  // tslint:disable-next-line:no-any
   @Output() typeaheadOnBlur = new EventEmitter<any>();
 
   /**
    * A selector specifying the element the typeahead should be appended to.
-   * Currently only supports "body".
    */
   @Input() container: string;
 
@@ -142,13 +148,15 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   private _subscriptions: Subscription[] = [];
   private _outsideClickListener: Function;
 
-  constructor(private ngControl: NgControl,
-              private element: ElementRef,
-              viewContainerRef: ViewContainerRef,
-              private renderer: Renderer2,
-              config: TypeaheadConfig,
-              cis: ComponentLoaderFactory,
-              private changeDetection: ChangeDetectorRef) {
+  constructor(
+    cis: ComponentLoaderFactory,
+    config: TypeaheadConfig,
+    private changeDetection: ChangeDetectorRef,
+    private element: ElementRef,
+    private ngControl: NgControl,
+    private renderer: Renderer2,
+    viewContainerRef: ViewContainerRef
+  ) {
 
     this._typeahead = cis.createLoader<TypeaheadContainerComponent>(
       element,
@@ -158,10 +166,15 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       .provide({ provide: TypeaheadConfig, useValue: config });
 
     Object.assign(this,
-      { typeaheadHideResultsOnBlur: config.hideResultsOnBlur,
-               typeaheadSelectFirstItem: config.selectFirstItem,
-               typeaheadMinLength: config.minLength
-      });
+      {
+        typeaheadHideResultsOnBlur: config.hideResultsOnBlur,
+        typeaheadSelectFirstItem: config.selectFirstItem,
+        typeaheadIsFirstItemActive: config.isFirstItemActive,
+        typeaheadMinLength: config.minLength,
+        adaptivePosition: config.adaptivePosition,
+        isAnimated: config.isAnimated
+      }
+    );
   }
 
   ngOnInit(): void {
@@ -242,6 +255,14 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
         return;
       }
+
+      // enter
+      /* tslint:disable-next-line: deprecation */
+      if (event.keyCode === 13 || event.key === 'Enter') {
+        this._container.selectActiveMatch();
+
+        return;
+      }
     }
   }
 
@@ -300,9 +321,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   show(): void {
     this._typeahead
       .attach(TypeaheadContainerComponent)
-      // todo: add append to body, after updating positioning service
       .to(this.container)
-      .position({attachment: `${this.dropup ? 'top' : 'bottom'} left`})
+      .position({attachment: `${this.dropup ? 'top' : 'bottom'} start`})
       .show({
         typeaheadRef: this,
         placement: this.placement,
@@ -323,11 +343,13 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this._container = this._typeahead.instance;
     this._container.parent = this;
     // This improves the speed as it won't have to be done for each list item
+
     const normalizedQuery = (this.typeaheadLatinize
       ? latinize(this.ngControl.control.value)
       : this.ngControl.control.value)
       .toString()
       .toLowerCase();
+
     this._container.query = this.typeaheadSingleWords
       ? tokenize(
         normalizedQuery,
@@ -335,6 +357,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         this.typeaheadPhraseDelimiters
       )
       : normalizedQuery;
+
     this._container.matches = this._matches;
     this.element.nativeElement.focus();
   }
@@ -467,8 +490,10 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       const _controlValue = (this.typeaheadLatinize
         ? latinize(this.ngControl.control.value)
         : this.ngControl.control.value) || '';
+
       // This improves the speed as it won't have to be done for each list item
       const normalizedQuery = _controlValue.toString().toLowerCase();
+
       this._container.query = this.typeaheadSingleWords
         ? tokenize(
           normalizedQuery,

@@ -18,7 +18,6 @@ import { DraggableItemService } from './draggable-item.service';
 <div
     [ngClass]="wrapperClass"
     [ngStyle]="wrapperStyle"
-    [ngStyle]="wrapperStyle"
     (dragover)="cancelEvent($event)"
     (dragenter)="cancelEvent($event)"
     (drop)="resetActiveItem($event)"

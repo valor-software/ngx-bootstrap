@@ -442,12 +442,22 @@ export class DatepickerPo extends BaseComponent {
         actualMonthArr = globalLocales.mnLocale.months;
         break;
 
+      case 'ka' :
+        actualMonthArr = globalLocales.kaLocale.months;
+        break;
+
       default:
         actualMonthArr = undefined;
     }
+
+    if (actualMonthArr) {
+      actualMonthArr = Array.isArray(actualMonthArr) ? actualMonthArr : actualMonthArr.standalone;
+    }
+
     cy.get(`${baseSelector}>${
       pickerType === 'datepicker' ? this.datepickerContainer : this.daterangepickerContainer} tbody td`)
-      .eq(0).each((month, monthIndex) => {
+      .eq(0)
+      .each((month, monthIndex) => {
       expect(month.text().toLowerCase()).to.contains(
         actualMonthArr ? actualMonthArr[monthIndex].toLowerCase() :
           new Date(2017, monthIndex)
@@ -480,6 +490,17 @@ export class DatepickerPo extends BaseComponent {
         .find('span')
         .not('.is-other-month')
         .contains(min.getDate())
+        .should(disabled ? 'have.class' : 'not.to.have.class', 'disabled');
+    }
+  }
+
+  isDaysDisabledInCurrentMonth(minDate: Date, maxDate: Date, disabled: boolean, dateRangePicker?: boolean) {
+    if (minDate.getDate() > 0 && minDate.getDate() < 19) {
+      cy.get(`body>${dateRangePicker ? this.daterangepickerContainer : this.datepickerContainer} ${this.datepickerBodyDaysView} tbody td`)
+        .not('.week')
+        .find('span')
+        .not('.is-other-month')
+        .contains(maxDate.getDate() + 1)
         .should(disabled ? 'have.class' : 'not.to.have.class', 'disabled');
     }
   }
@@ -543,7 +564,7 @@ export class DatepickerPo extends BaseComponent {
         .should(disabled ? 'have.class' : 'not.to.have.class', 'disabled');
     }
   }
-        
+
   isTodayHaveClass(className: string) {
     cy.get(`body>${this.datepickerContainer} tbody td`)
       .not('.week')

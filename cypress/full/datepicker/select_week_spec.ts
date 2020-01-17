@@ -32,7 +32,7 @@ describe('Datepicker demo test suite: Select week', () => {
     datepicker.clickOnDatepickerInput(selectWeek, 0);
     datepicker.clickOnDatepickerWeekItem(2);
     datepicker.isDatepickerOpened(false);
-    datepicker.isInputValueContain(selectWeek, `${new Date().getMonth()}`, 0);
+    datepicker.isInputValueContain(selectWeek, `${new Date().getMonth() + 1}`, 0);
     datepicker.isInputValueContain(selectWeek, `${new Date().getFullYear()}`, 0);
     datepicker.clickOnDatepickerInput(selectWeek, 0);
     datepicker.isDatepickerOpened(true);
@@ -58,7 +58,7 @@ describe('Datepicker demo test suite: Select week', () => {
     datepicker.clickOnDatepickerWeekItem(3);
     datepicker.isDatepickerOpened(false);
     datepicker.isInputValueContain(selectWeek,
-      `${new Date().getMonth() === 0 ? 12 : new Date().getMonth() - 1}`, 1);
+      `${new Date().getMonth() === 0 ? 12 : new Date().getMonth()}`, 1);
     datepicker.isInputValueContain(selectWeek,
       `${new Date().getMonth() === 0 ? new Date().getFullYear() - 1 : new Date().getFullYear()}`, 1);
   });
@@ -70,7 +70,7 @@ describe('Datepicker demo test suite: Select week', () => {
     datepicker.clickOnDatepickerWeekItem(3);
     datepicker.isDatepickerOpened(false);
     datepicker.isInputValueContain(selectWeek,
-      `${new Date().getMonth() === 0 ? 12 : new Date().getMonth() - 1}`, 1);
+      `${new Date().getMonth() === 0 ? 12 : new Date().getMonth()}`, 1);
     datepicker.isInputValueContain(selectWeek,
       `${new Date().getMonth() === 0 ? new Date().getFullYear() - 1 : new Date().getFullYear()}`, 1);
     datepicker.clickOnDatepickerInput(selectWeek, 1);
@@ -84,7 +84,7 @@ describe('Datepicker demo test suite: Select week', () => {
     datepicker.clickOnDatepickerWeekItem(3);
     datepicker.isDatepickerOpened(false);
     datepicker.isInputValueContain(selectWeek,
-      `${new Date().getMonth() === 11 ? 1 : new Date().getMonth() + 1}`, 1);
+      `${new Date().getMonth() === 11 ? 1 : new Date().getMonth() + 2}`, 1);
     datepicker.isInputValueContain(selectWeek,
       `${new Date().getMonth() === 11 ? new Date().getFullYear() + 1 : new Date().getFullYear()}`, 1);
   });
@@ -103,7 +103,7 @@ describe('Datepicker demo test suite: Select week', () => {
     datepicker.isDatepickerOpened(true);
     datepicker.clickOnDatepickerWeekItem(3);
     datepicker.isDatepickerOpened(false);
-    datepicker.isInputValueContain(selectWeek, `${new Date().getMonth()}`, 2);
+    datepicker.isInputValueContain(selectWeek, `${new Date().getMonth() + 1}`, 2);
     datepicker.isInputValueContain(selectWeek, `${new Date().getFullYear()}`, 2);
     datepicker.clickOnDatepickerInput(selectWeek, 2);
     datepicker.isDatepickerOpened(true);

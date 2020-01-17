@@ -1,7 +1,10 @@
-import { Injectable, ElementRef, RendererFactory2 } from '@angular/core';
+import { Injectable, ElementRef, RendererFactory2, Inject, PLATFORM_ID, NgZone } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 import { positionElements } from './ng-positioning';
-import { fromEvent, merge, of, animationFrameScheduler, Subject } from 'rxjs';
+
+import { fromEvent, merge, of, animationFrameScheduler, Subject, Observable } from 'rxjs';
+import { Options } from './models';
 
 
 export interface PositioningOptions {
@@ -40,44 +43,80 @@ export interface PositioningOptions {
 
 @Injectable()
 export class PositioningService {
+  private options: Options;
   private update$$ = new Subject<null>();
-
-  private events$: any = merge(
-    fromEvent(window, 'scroll'),
-    fromEvent(window, 'resize'),
-    of(0, animationFrameScheduler),
-    this.update$$
-  );
-
   private positionElements = new Map();
+  private triggerEvent$: Observable<number|Event>;
+  private isDisabled = false;
 
-  constructor(rendererFactory: RendererFactory2) {
-    this.events$
-      .subscribe(() => {
-        this.positionElements
-          .forEach((positionElement: PositioningOptions) => {
-            positionElements(
-              _getHtmlElement(positionElement.target),
-              _getHtmlElement(positionElement.element),
-              positionElement.attachment,
-              positionElement.appendToBody,
-              rendererFactory.createRenderer(null, null)
-            );
-          });
+  constructor(
+    ngZone: NgZone,
+    rendererFactory: RendererFactory2,
+    @Inject(PLATFORM_ID) platformId: number
+  ) {
+
+    if (isPlatformBrowser(platformId)) {
+      ngZone.runOutsideAngular(() => {
+        this.triggerEvent$ = merge(
+          fromEvent(window, 'scroll', { passive: true }),
+          fromEvent(window, 'resize', { passive: true }),
+          /* tslint:disable-next-line: deprecation */
+          of(0, animationFrameScheduler),
+          this.update$$
+        );
+
+        this.triggerEvent$.subscribe(() => {
+          if (this.isDisabled) {
+            return;
+          }
+
+          this.positionElements
+          /* tslint:disable-next-line: no-any */
+            .forEach((positionElement: any) => {
+              positionElements(
+                _getHtmlElement(positionElement.target),
+                _getHtmlElement(positionElement.element),
+                positionElement.attachment,
+                positionElement.appendToBody,
+                this.options,
+                rendererFactory.createRenderer(null, null)
+              );
+            });
+        });
       });
+    }
   }
 
   position(options: PositioningOptions): void {
     this.addPositionElement(options);
-    this.update$$.next();
+  }
+
+  get event$(): Observable<number|Event> {
+    return this.triggerEvent$;
+  }
+
+  disable(): void {
+    this.isDisabled = true;
+  }
+
+  enable(): void {
+    this.isDisabled = false;
   }
 
   addPositionElement(options: PositioningOptions): void {
     this.positionElements.set(_getHtmlElement(options.element), options);
   }
 
+  calcPosition(): void {
+    this.update$$.next();
+  }
+
   deletePositionElement(elRef: ElementRef): void {
     this.positionElements.delete(_getHtmlElement(elRef));
+  }
+
+  setOptions(options: Options) {
+    this.options = options;
   }
 }
 
