@@ -14,6 +14,8 @@ import {
 export class BsDatepickerConfig implements DatepickerRenderOptions {
   /** sets use adaptive position */
   adaptivePosition = false;
+  /** sets use UTC date time format */
+  useUtc = false;
   /** turn on/off animation */
   isAnimated = false;
   value?: Date | Date[];
@@ -43,9 +45,14 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
   selectFromOtherMonth?: boolean;
 
   /**
-   * Makes dates from other months active
+   * Allows select first date of the week by click on week number
    */
   selectWeek?: boolean;
+
+  /**
+   * Shows previous and current month, instead of current and next (dateRangePicker only)
+   */
+  showPreviousMonth?: boolean;
 
   /**
    * Add class to current day

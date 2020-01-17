@@ -20,6 +20,8 @@ import { BsDropdownContainerComponent } from './bs-dropdown-container.component'
 import { BsDropdownState } from './bs-dropdown.state';
 import { BsDropdownMenuDirective } from './index';
 import { isBs3 } from 'ngx-bootstrap/utils';
+import { AnimationBuilder, AnimationFactory } from '@angular/animations';
+import { dropdownAnimation } from './dropdown-animations';
 
 @Directive({
   selector: '[bsDropdown],[dropdown]',
@@ -62,6 +64,18 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
   get autoClose(): boolean {
     return this._state.autoClose;
+  }
+
+  /**
+   * Indicates that dropdown will be animated
+   */
+  @Input()
+  set isAnimated(value: boolean) {
+    this._state.isAnimated = value;
+  }
+
+  get isAnimated(): boolean {
+    return this._state.isAnimated;
   }
 
   /**
@@ -144,16 +158,23 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   private _isDisabled: boolean;
   private _subscriptions: Subscription[] = [];
   private _isInited = false;
+  private _factoryDropDownAnimation: AnimationFactory;
 
-  constructor(private _elementRef: ElementRef,
-              private _renderer: Renderer2,
-              private _viewContainerRef: ViewContainerRef,
-              private _cis: ComponentLoaderFactory,
-              private _config: BsDropdownConfig,
-              private _state: BsDropdownState) {
+  constructor(
+    private _elementRef: ElementRef,
+    private _renderer: Renderer2,
+    private _viewContainerRef: ViewContainerRef,
+    private _cis: ComponentLoaderFactory,
+    private _state: BsDropdownState,
+    private _config: BsDropdownConfig,
+    _builder: AnimationBuilder
+  ) {
     // set initial dropdown state from config
     this._state.autoClose = this._config.autoClose;
     this._state.insideClick = this._config.insideClick;
+    this._state.isAnimated = this._config.isAnimated;
+
+    this._factoryDropDownAnimation = _builder.build(dropdownAnimation);
 
     // create dropdown component loader
     this._dropdown = this._cis
@@ -220,16 +241,23 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
               dropdownMenu.templateRef
             );
             this._inlinedMenu = this._dropdown._inlineViewRef;
+
             this.addBs4Polyfills();
+            this._renderer.addClass(this._inlinedMenu.rootNodes[0].parentNode, 'open');
+
+            this.playAnimation();
           }
         )
         // swallow errors
           .catch();
       }
       this.addBs4Polyfills();
+
       this._isInlineOpen = true;
       this.onShown.emit(true);
       this._state.isOpenChange.emit(true);
+
+      this.playAnimation();
 
       return;
     }
@@ -239,8 +267,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         this.dropup ||
         (typeof this.dropup !== 'undefined' && this.dropup);
       this._state.direction = _dropup ? 'up' : 'down';
-      const _placement =
-        this.placement || (_dropup ? 'top start' : 'bottom start');
+      const _placement = this.placement || (_dropup ? 'top start' : 'bottom start');
 
       // show dropdown
       this._dropdown
@@ -311,6 +338,13 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       this.addShowClass();
       this.checkRightAlignment();
       this.addDropupStyles();
+    }
+  }
+
+  private playAnimation(): void {
+    if (this._state.isAnimated && this._inlinedMenu) {
+      this._factoryDropDownAnimation.create(this._inlinedMenu.rootNodes[0])
+        .play();
     }
   }
 
