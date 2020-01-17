@@ -1,5 +1,6 @@
-import { Component, ViewChild, Renderer2 } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Component, ViewChild, Renderer2 } from '@angular/core';
 
 import { BsDatepickerConfig, BsDatepickerDirective, BsDatepickerModule } from '.';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
@@ -12,7 +13,7 @@ import { registerEscClick } from '../utils';
   template: `<input type="text" bsDatepicker [bsConfig]="bsConfig">`
 })
 class TestComponent {
-  @ViewChild(BsDatepickerDirective) datepicker: BsDatepickerDirective;
+  @ViewChild(BsDatepickerDirective, { static: false }) datepicker: BsDatepickerDirective;
   bsConfig: Partial<BsDatepickerConfig> = {
     displayMonths: 2,
     selectWeek: true
@@ -52,7 +53,10 @@ describe('datepicker:', () => {
   beforeEach(
     async(() => TestBed.configureTestingModule({
         declarations: [TestComponent],
-        imports: [BsDatepickerModule.forRoot()]
+        imports: [
+          BsDatepickerModule.forRoot(),
+          BrowserAnimationsModule
+        ]
     }).compileComponents()
     ));
   beforeEach(() => {
@@ -103,7 +107,7 @@ describe('datepicker:', () => {
     datepickerContainerInstance[`_store`]
       .select(state => state.view)
       .subscribe(view => {
-        expect(view.date.getDay()).not.toEqual((weekSelection.days[0].date.getDay()));
+        expect(view.date.getDate()).not.toEqual((weekSelection.days[0].date.getDate()));
       });
   });
 

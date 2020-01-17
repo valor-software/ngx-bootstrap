@@ -15,7 +15,7 @@ export const thLocale: LocaleData = {
   monthsShort: 'ม.ค._ก.พ._มี.ค._เม.ย._พ.ค._มิ.ย._ก.ค._ส.ค._ก.ย._ต.ค._พ.ย._ธ.ค.'.split('_'),
   monthsParseExact: true,
   weekdays: 'อาทิตย์_จันทร์_อังคาร_พุธ_พฤหัสบดี_ศุกร์_เสาร์'.split('_'),
-  weekdaysShort: 'อาทิตย์_จันทร์_อังคาร_พุธ_พฤหัส_ศุกร์_เสาร์'.split('_'), // yes, three characters difference
+  weekdaysShort: 'อา._จ._อ._พ._พฤ._ศ._ส.'.split('_'), // yes, three characters difference
   weekdaysMin: 'อา._จ._อ._พ._พฤ._ศ._ส.'.split('_'),
   weekdaysParseExact: true,
   longDateFormat: {

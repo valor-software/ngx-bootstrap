@@ -6,7 +6,7 @@ import { TabsetComponent } from 'ngx-bootstrap';
   templateUrl: './disabled.html'
 })
 export class DemoTabsDisabledComponent {
-  @ViewChild('staticTabs') staticTabs: TabsetComponent;
+  @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 
   disableEnable() {
     this.staticTabs.tabs[2].disabled = !this.staticTabs.tabs[2].disabled;

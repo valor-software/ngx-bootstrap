@@ -3,7 +3,7 @@
     <a href="https://github.com/valor-software/ngx-bootstrap/tree/development/{{ apiDocs.fileName }}"
        target="_blank" rel="noopener">{{ apiDocs.className }}</a>
   </h3>
-  <p [innerHtml]="apiDocs.description"></p>
+  <p [innerHTML]="apiDocs.description"></p>
 
   <div class="table-responsive">
     <table class="table table-bordered">
@@ -36,7 +36,7 @@
                   <span *ngIf="hasConfigProperty(input)">&mdash; initialized from {{ configServiceName }} service</span>
                 </div>
               </ng-template>
-              <div [innerHtml]="input.description"></div>
+              <div [innerHTML]="input.description"></div>
             </td>
           </tr>
           </tbody>
@@ -53,7 +53,7 @@
           <tbody>
           <tr *ngFor="let output of apiDocs.outputs">
             <td class="col-xs-3"><code>{{ output.name }}</code></td>
-            <td class="col-xs-9"><div [innerHtml]="output.description"></div></td>
+            <td class="col-xs-9"><div [innerHTML]="output.description"></div></td>
           </tr>
           </tbody>
         </table>
@@ -72,7 +72,7 @@
             <td class="col-xs-9">
               <div><i>Signature: </i><code>{{ methodSignature(method) }}</code></div>
               <div><i>Return type: </i><code>{{ method.returnType }}</code></div>
-              <div [innerHtml]="method.description"></div>
+              <div [innerHTML]="method.description"></div>
             </td>
           </tr>
           </tbody>

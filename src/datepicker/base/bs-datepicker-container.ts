@@ -9,6 +9,7 @@ import {
   CalendarCellViewModel,
   CellHoverEvent,
   DatepickerRenderOptions,
+  DatepickerDateCustomClasses,
   DaysCalendarViewModel,
   DayViewModel,
   MonthsCalendarViewModel,
@@ -33,9 +34,16 @@ export abstract class BsDatepickerAbstractComponent {
   set daysDisabled(value: number[]) {
     this._effects.setDaysDisabled(value);
   }
+  set datesDisabled(value: Date[]) {
+    this._effects.setDatesDisabled(value);
+  }
 
   set isDisabled(value: boolean) {
     this._effects.setDisabled(value);
+  }
+
+  set dateCustomClasses(value: DatepickerDateCustomClasses[]) {
+    this._effects.setDateCustomClasses(value);
   }
 
   viewMode: Observable<BsDatepickerViewMode>;

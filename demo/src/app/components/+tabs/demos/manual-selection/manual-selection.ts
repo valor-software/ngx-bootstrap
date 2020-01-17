@@ -6,7 +6,7 @@ import { TabsetComponent } from 'ngx-bootstrap';
   templateUrl: './manual-selection.html'
 })
 export class DemoTabsManualSelectionComponent {
-  @ViewChild('staticTabs') staticTabs: TabsetComponent;
+  @ViewChild('staticTabs', { static: false }) staticTabs: TabsetComponent;
 
   selectTab(tabId: number) {
     this.staticTabs.tabs[tabId].active = true;
