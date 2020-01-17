@@ -690,18 +690,6 @@ describe('Directive: Buttons', () => {
           expect(radioGroup.children[i].getAttribute('role')).toEqual('radio');
         }
       });
-
-      it(
-        'should not have a tabindex if group is disabled',
-        fakeAsync(() => {
-          context.disableGroups();
-          fixture.detectChanges();
-          tick();
-          fixture.detectChanges();
-          expect(radioGroup.hasAttribute('tabindex')).toBeFalsy();
-        })
-      );
-
       it('should have no radio selected by default', () => {
         fixture.detectChanges();
         expect(radioGroup.children[0].classList).not.toContain('active');
