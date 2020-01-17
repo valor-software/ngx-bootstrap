@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 export class TypeaheadConfig {
   /** sets use adaptive position */
   adaptivePosition = false;
+  /** turn on/off animation */
+  isAnimated = false;
   /** used to hide results on blur */
   hideResultsOnBlur = true;
   /** used to choose the first item in typeahead container */

@@ -5,6 +5,7 @@ import { async, fakeAsync, TestBed, tick, ComponentFixture } from '@angular/core
 import { BsDropdownConfig, BsDropdownDirective, BsDropdownModule } from '../dropdown';
 import { window } from '../utils/facade/browser';
 import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @Component({
   selector: 'dropdown-test',
@@ -50,7 +51,10 @@ describe('Directive: Dropdown', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [TestDropdownComponent],
-      imports: [BsDropdownModule.forRoot()]
+      imports: [
+        BsDropdownModule.forRoot(),
+        BrowserAnimationsModule
+      ]
     });
     TestBed.overrideComponent(TestDropdownComponent, {
       set: {template: defaultHtml}
@@ -119,15 +123,19 @@ describe('Directive: Dropdown', () => {
     element.querySelector('button').click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).toContain('open');
+
     tick();
     element.querySelector('li').click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+
+    tick();
     element.querySelector('button').click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).toContain('open');
+
     tick();
-    element.querySelector('a').click();
+    element.click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).not.toContain('open');
   }));
@@ -155,6 +163,7 @@ describe('Directive: Dropdown', () => {
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).toContain('open');
     expect(context.isOpen).toBe(true);
+
     tick();
     element.querySelector('li').click();
     fixture.detectChanges();
@@ -190,13 +199,18 @@ describe('Directive: Dropdown', () => {
     element.querySelector('button').click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).toContain('open');
+
     tick();
-    element.querySelector('a').click();
+    element.click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).toContain('open');
+    tick();
+
     element.querySelector('h1').click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).toContain('open');
+
+    tick();
     element.querySelector('button').click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).not.toContain('open');
@@ -208,6 +222,7 @@ describe('Directive: Dropdown', () => {
     element.querySelector('button').click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).toContain('open');
+
     tick();
     element.querySelector('li').click();
     fixture.detectChanges();
@@ -227,13 +242,18 @@ describe('Directive: Dropdown', () => {
     element.querySelector('button').click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).toContain('open');
+
     tick();
-    element.querySelector('a').click();
+    element.click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).toContain('open');
+
+    tick();
     element.querySelector('h1').click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).toContain('open');
+
+    tick();
     element.querySelector('button').click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).not.toContain('open');
@@ -245,13 +265,18 @@ describe('Directive: Dropdown', () => {
     element.querySelector('button').click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).toContain('open');
+
     tick();
-    element.querySelector('a').click();
-    fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
     element.querySelector('li').click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).toContain('open');
+
+    tick();
+    element.querySelector('ul').click();
+    fixture.detectChanges();
+    expect(element.querySelector('[dropdown]').classList).toContain('open');
+
+    tick();
     element.querySelector('h1').click();
     fixture.detectChanges();
     expect(element.querySelector('[dropdown]').classList).not.toContain('open');

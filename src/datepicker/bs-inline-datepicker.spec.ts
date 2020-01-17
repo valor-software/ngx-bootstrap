@@ -1,16 +1,20 @@
-import { Component, ViewChild } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Component, ViewChild } from '@angular/core';
 
 import { BsDatepickerInlineConfig, BsDatepickerInlineDirective, BsDatepickerModule } from '.';
 import { CalendarCellViewModel } from './models';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
+import { initialYearShift } from './engine/format-years-calendar';
+import { take } from 'rxjs/operators';
+import { getYearsCalendarInitialDate } from './utils/bs-calendar-utils';
 
 @Component({
   selector: 'test-cmp',
   template: `<bs-datepicker-inline [bsConfig]="bsConfig"></bs-datepicker-inline>>`
 })
 class TestComponent {
-  @ViewChild(BsDatepickerInlineDirective) datepicker: BsDatepickerInlineDirective;
+  @ViewChild(BsDatepickerInlineDirective, { static: false }) datepicker: BsDatepickerInlineDirective;
   bsConfig: Partial<BsDatepickerInlineConfig> = {
     customTodayClass: 'custom-today-class'
   };
@@ -34,7 +38,10 @@ describe('datepicker inline:', () => {
   beforeEach(
     async(() => TestBed.configureTestingModule({
         declarations: [TestComponent],
-        imports: [BsDatepickerModule.forRoot()]
+        imports: [
+          BsDatepickerModule.forRoot(),
+          BrowserAnimationsModule
+        ]
     }).compileComponents()
     ));
   beforeEach(() => {
@@ -51,9 +58,16 @@ describe('datepicker inline:', () => {
     datepickerContainerInstance.monthSelectHandler(monthSelection);
     fixture.detectChanges();
     datepickerContainerInstance[`_store`]
-      .select(state => state.view)
-      .subscribe(view => {
-        expect(view.date.getFullYear()).toEqual(monthSelection.date.getFullYear());
+      .select(state => state)
+      .pipe(take(1))
+      .subscribe(state => {
+        const selectedYear = state.view.date.getFullYear();
+        expect(selectedYear).toEqual(monthSelection.date.getFullYear());
+
+        const firstDate = getYearsCalendarInitialDate(state);
+        if (firstDate) {
+          expect(firstDate.getFullYear()).toEqual(Number(selectedYear) + initialYearShift);
+        }
       });
   });
 });

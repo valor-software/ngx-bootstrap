@@ -32,5 +32,9 @@ export interface Options {
     flip?: {
       enabled: boolean;
     };
+    preventOverflow?: {
+      enabled: boolean;
+    };
   };
+  allowedPositions?: string[];
 }

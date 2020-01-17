@@ -18,7 +18,9 @@ import {
     <button class="previous"
             [disabled]="calendar.disableLeftArrow"
             [style.visibility]="calendar.hideLeftArrow ? 'hidden' : 'visible'"
-            (click)="navTo(true)"><span>&lsaquo;</span>
+            type="button"
+            (click)="navTo(true)">
+      <span>&lsaquo;</span>
     </button>
 
     <ng-container *ngIf="calendar.monthTitle">
@@ -26,6 +28,7 @@ import {
                   with preserveWhitespaces: false in Angular -->
 
       <button class="current"
+            type="button"
             (click)="view('month')"
       ><span>{{ calendar.monthTitle }}</span>
       </button>
@@ -34,8 +37,9 @@ import {
     &#8203;  <!-- zero-width space needed for correct alignement
                   with preserveWhitespaces: false in Angular -->
 
-    <button class="current" (click)="view('year')"
-    ><span>{{ calendar.yearTitle }}</span></button>
+    <button class="current" (click)="view('year')" type="button">
+      <span>{{ calendar.yearTitle }}</span>
+    </button>
 
     &#8203;  <!-- zero-width space needed for correct alignement
                   with preserveWhitespaces: false in Angular -->
@@ -43,6 +47,7 @@ import {
     <button class="next"
             [disabled]="calendar.disableRightArrow"
             [style.visibility]="calendar.hideRightArrow ? 'hidden' : 'visible'"
+            type="button"
             (click)="navTo(false)"><span>&rsaquo;</span>
     </button>
   `

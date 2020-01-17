@@ -17,7 +17,7 @@ import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipConfig } from './tooltip.config';
 
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
-import { OnChange, warnOnce, parseTriggers } from 'ngx-bootstrap/utils';
+import { OnChange, warnOnce, parseTriggers, Trigger } from 'ngx-bootstrap/utils';
 import { PositioningService } from 'ngx-bootstrap/positioning';
 
 import { timer } from 'rxjs';
@@ -30,6 +30,8 @@ let id = 0;
 })
 export class TooltipDirective implements OnInit, OnDestroy {
   tooltipId = id++;
+  /** sets disable adaptive position */
+  @Input() adaptivePosition: boolean;
   /**
    * Content to be displayed as tooltip.
    */
@@ -53,7 +55,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
   @Input() triggers: string;
   /**
    * A selector specifying the element the tooltip should be appended to.
-   * Currently only supports "body".
    */
   @Input() container: string;
   /**
@@ -227,14 +228,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this._positionService.setOptions({
-      modifiers: {
-        flip: {
-          enabled: true
-        }
-      }
-    });
-
     this._tooltip.listen({
       triggers: this.triggers,
       show: () => this.show()
@@ -264,6 +257,17 @@ export class TooltipDirective implements OnInit, OnDestroy {
    * the tooltip.
    */
   show(): void {
+    this._positionService.setOptions({
+      modifiers: {
+        flip: {
+          enabled: this.adaptivePosition
+        },
+        preventOverflow: {
+          enabled: this.adaptivePosition
+        }
+      }
+    });
+
     if (
       this.isOpen ||
       this.isDisabled ||
@@ -302,11 +306,17 @@ export class TooltipDirective implements OnInit, OnDestroy {
       });
 
       if (this.triggers) {
-        const triggers = parseTriggers(this.triggers);
-        this._tooltipCancelShowFn = this._renderer.listen(this._elementRef.nativeElement, triggers[0].close, () => {
-          _timer.unsubscribe();
-          cancelDelayedTooltipShowing();
-        });
+        parseTriggers(this.triggers)
+          .forEach((trigger: Trigger) => {
+            this._tooltipCancelShowFn = this._renderer.listen(
+              this._elementRef.nativeElement,
+              trigger.close,
+              () => {
+                _timer.unsubscribe();
+                cancelDelayedTooltipShowing();
+              }
+            );
+          });
       }
     } else {
       showTooltip();
@@ -335,5 +345,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._tooltip.dispose();
+    this.tooltipChange.unsubscribe();
   }
 }

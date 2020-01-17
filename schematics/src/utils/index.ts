@@ -15,8 +15,7 @@ import { getProjectMainFile } from './project-main-file';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { Rule, SchematicContext, SchematicsException, Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
-import { UnitTestTree } from '@angular-devkit/schematics/testing/schematic-test-runner';
-import { WorkspaceProject, WorkspaceSchema } from '@angular-devkit/core/src/workspace';
+import { WorkspaceProject, WorkspaceSchema } from '@schematics/angular/utility/workspace-models';
 
 
 export function installPackageJsonDependencies(): Rule {
@@ -116,15 +115,15 @@ export function addPackageToPackageJson(host: Tree, pkg: string, version: string
   return host;
 }
 
-export function createTestApp(runner: SchematicTestRunner, appOptions = {}): UnitTestTree {
+export function createTestApp(runner: SchematicTestRunner, appOptions = {}): any {
   const workspaceTree = runner.runExternalSchematic('@schematics/angular', 'workspace', {
     name: 'workspace',
-    version: '6.0.0',
+    version: '8.2.0',
     newProjectRoot: 'projects'
   });
 
-  return runner.runExternalSchematic('@schematics/angular', 'application',
-    {...appOptions, name: 'ngx-bootstrap'}, workspaceTree);
+  return runner.runExternalSchematicAsync('@schematics/angular', 'application',
+    { name: 'ngx-bootstrap', ...appOptions }, workspaceTree);
 }
 
 export function removePackageJsonDependency(tree: Tree, dependencyName: string) {
