@@ -96,10 +96,7 @@ export function changeTime(value: Date, diff: Time): Date {
   let seconds = value.getSeconds();
 
   if (diff.hour) {
-    hour = (hour + toNumber(diff.hour)) % hoursPerDay;
-    if (hour < 0) {
-      hour += hoursPerDay;
-    }
+    hour = hour + toNumber(diff.hour);
   }
 
   if (diff.minute) {
@@ -139,7 +136,7 @@ export function createDate(
   minutes: number,
   seconds: number
 ): Date {
-  return new Date(
+  const newValue = new Date(
     value.getFullYear(),
     value.getMonth(),
     value.getDate(),
@@ -148,6 +145,12 @@ export function createDate(
     seconds,
     value.getMilliseconds()
   );
+  // #3139 ensure date part remains unchanged
+  newValue.setFullYear(value.getFullYear());
+  newValue.setMonth(value.getMonth());
+  newValue.setDate(value.getDate());
+
+  return newValue;
 }
 
 export function padNumber(value: number): string {
