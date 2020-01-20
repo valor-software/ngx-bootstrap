@@ -6,6 +6,7 @@ import { DemoPopoverConfigComponent } from './demos/config/config';
 import { DemoPopoverContainerComponent } from './demos/container/container';
 import { DemoPopoverContextComponent } from './demos/popover-context/popover-context';
 import { DemoPopoverCustomContentComponent } from './demos/custom-content/custom-content';
+import { DemoPopoverDelayComponent } from './demos/delay/delay';
 import { DemoPopoverDismissComponent } from './demos/dismiss/dismiss';
 import { DemoPopoverDynamicComponent } from './demos/dynamic/dynamic';
 import { DemoPopoverDynamicHtmlComponent } from './demos/dynamic-html/dynamic-html';
@@ -52,7 +53,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'placement',
         component: require('!!raw-loader!./demos/placement/placement.ts'),
         html: require('!!raw-loader!./demos/placement/placement.html'),
-        description: `<p>Four positioning options are available: <code>top</code>, <code>right</code>, 
+        description: `<p>Four positioning options are available: <code>top</code>, <code>right</code>,
         <code>bottom</code>, and <code>left</code>.
         Besides that, <code>auto</code> option may be used to detect a position that fits the component on screen.</p>`,
         outlet: DemoPopoverPlacementComponent
@@ -177,6 +178,14 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/popover-context/popover-context.ts'),
         html: require('!!raw-loader!./demos/popover-context/popover-context.html'),
         outlet: DemoPopoverContextComponent
+      },
+      {
+        title: 'Popover with delay',
+        anchor: 'popover-delay',
+        component: require('!!raw-loader!./demos/delay/delay.ts'),
+        html: require('!!raw-loader!./demos/delay/delay.html'),
+        description: `<p>Click on the button to see popover delayed for 0,5 second </p>`,
+        outlet: DemoPopoverDelayComponent
       }
     ]
   },

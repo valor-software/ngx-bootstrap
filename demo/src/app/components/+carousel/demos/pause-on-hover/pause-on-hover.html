@@ -1,4 +1,4 @@
-<carousel [noPause]="noPause">
+<carousel [noPause]="false">
   <slide>
     <img src="assets/images/nature/4.jpg" alt="First slide" style="display: block; width: 100%;">
     <div class="carousel-caption d-none d-md-block">
@@ -21,9 +21,3 @@
     </div>
   </slide>
 </carousel>
-<br/>
-<div>
-  <button type="button" class="btn btn-info"
-          (click)="noPause = !noPause">Toggle pause on hover
-  </button>
-</div>

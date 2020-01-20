@@ -2,6 +2,7 @@ import { DemoTimepickerBasicComponent } from './demos/basic/basic';
 import { DemoTimepickerMeridianComponent } from './demos/meridian/meridian';
 import { DemoTimepickerCustomMeridianComponent } from './demos/custom-meridian/custom-meridian';
 import { DemoTimepickerMinMaxComponent } from './demos/min-max/min-max';
+import { DemoTimepickerPlaceholderComponent } from './demos/placeholder/placeholder';
 import { DemoTimepickerToggleMinutesSecondsComponent } from './demos/toggle-minutes-seconds/toggle-minutes-seconds';
 import { DemoTimepickerDisabledComponent } from './demos/disabled/disabled';
 import { DemoTimepickerCustomComponent } from './demos/custom/custom';
@@ -146,6 +147,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/spinners/spinners'),
         html: require('!!raw-loader!./demos/spinners/spinners.html'),
         outlet: DemoTimepickerSpinnersComponent
+      },
+      {
+        title: 'Placeholder',
+        anchor: 'placeholder',
+        component: require('!!raw-loader!./demos/placeholder/placeholder'),
+        html: require('!!raw-loader!./demos/placeholder/placeholder.html'),
+        outlet: DemoTimepickerPlaceholderComponent
       },
       {
         title: 'Configuring defaults',

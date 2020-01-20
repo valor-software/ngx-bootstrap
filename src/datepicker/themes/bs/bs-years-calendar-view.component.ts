@@ -28,7 +28,7 @@ import {
               (mouseleave)="hoverYear(year, false)"
               [class.disabled]="year.isDisabled"
               [class.is-highlighted]="year.isHovered">
-            <span>{{ year.label }}</span>
+            <span [class.selected]="year.isSelected">{{ year.label }}</span>
           </td>
         </tr>
         </tbody>
