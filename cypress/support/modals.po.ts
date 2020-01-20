@@ -77,6 +77,10 @@ export class ModalsPo extends BaseComponent {
     cy.get(`${baseSelector} .modal`).click();
   }
 
+  clickOnModalCorner(position: string) {
+    cy.get(this.modalContainer).click(position);
+  }
+
   checkElementsQuantity(elementsSelector: string, expectedQuantity: number) {
     cy.get(elementsSelector).should('have.length', expectedQuantity);
   }
