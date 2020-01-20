@@ -20,6 +20,7 @@ export {
   idLocale,
   itLocale,
   jaLocale,
+  kaLocale,
   koLocale,
   ltLocale,
   lvLocale,

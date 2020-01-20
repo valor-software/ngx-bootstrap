@@ -1,6 +1,6 @@
 <ul class="pager">
   <li [class.disabled]="noPrevious()" [class.previous]="align"
-      [ngClass]="{'pull-right': align, 'float-right': align}"
+      [ngClass]="{'pull-left': align, 'float-left': align}"
       class="{{ pageBtnClass }}">
     <a href (click)="selectPage(page - 1, $event)">{{ getText('previous') }}</a>
   </li>
