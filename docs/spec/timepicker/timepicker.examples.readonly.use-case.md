@@ -1,4 +1,4 @@
-14.7: Timepicker Readonly example
+14.8: Timepicker Readonly example
 =================================
 **Primary Actor**: User
 
@@ -10,8 +10,8 @@ Main success scenario:
 ----------------------
 1. User opens Timepicker demo page
 2. User clicks on Readonly sub-menu
-3. User see timepicker component with inputs and data(according to the current time)
-4. User see clickable button "Editable / Readonly input"
+3. User sees timepicker component with inputs and data(according to the current time)
+4. User sees clickable button "Editable / Readonly input"
 5. When user clicks on "Editable / Readonly input" button, then timepicker inputs and buttons become unclickable and readonly
 6. When user clicks on any input or arrow - nothing happens
 7. When user clicks on "Editable / Readonly input" button again, then timepicker inputs become clickable

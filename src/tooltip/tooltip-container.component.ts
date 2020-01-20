@@ -14,6 +14,7 @@ import { isBs3 } from 'ngx-bootstrap/utils';
     '[class]':
       '"tooltip in tooltip-" + placement + " " + "bs-tooltip-" + placement + " " + placement + " " + containerClass',
     '[class.show]': '!isBs3',
+    '[class.bs3]': 'isBs3',
     '[attr.id]': 'this.id',
     role: 'tooltip'
   },
@@ -23,13 +24,17 @@ import { isBs3 } from 'ngx-bootstrap/utils';
       display: block;
       pointer-events: none;
     }
-    :host.bs-tooltip-top .arrow, :host.bs-tooltip-bottom .arrow {
-      left: 50%;
-      transform: translateX(-50%);
+    :host.bs3.tooltip.top>.arrow {
+      margin-left: -2px;
     }
-    :host.bs-tooltip-left .arrow, :host.bs-tooltip-right .arrow {
-      top: 50%;
-      transform: translateY(-50%);
+    :host.bs3.tooltip.bottom {
+      margin-top: 0px;
+    }
+    :host.bs3.bs-tooltip-left, :host.bs3.bs-tooltip-right{
+      margin: 0px;
+    }
+    :host.bs3.bs-tooltip-right .arrow, :host.bs3.bs-tooltip-left .arrow {
+      margin: .3rem 0;
     }
   `
   ],

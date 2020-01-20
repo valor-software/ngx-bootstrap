@@ -18,7 +18,8 @@ describe('Datepicker demo test suite: Days disabled', () => {
                    when user clicks on any Saturday or Sunday, nothing happens, they are disabled`, () => {
     datepicker.clickOnDatepickerInput(daysDisabled, 0);
     datepicker.isDatepickerOpened(true);
-    datepicker.isSaturdaySundayDisabled(true);
+    datepicker.isWeekdayDisabled(true, 0);
+    datepicker.isWeekdayDisabled(true, 6);
     datepicker.clickOnWeekDay(false);
     datepicker.isDatepickerOpened(true);
     datepicker.isInputValueEqual(daysDisabled, '', 0);

@@ -16,7 +16,7 @@ Main success scenario:
 6. When user click on 2d item, it opened and 1st is closed
 7. When user click on 3d item, it opened and 2d is closed
 8. When user uncheck the check-box "Open only one at a time"
-9. Then after click on each item, it stay opened.
+9. Then after click on each item, it stays opened.
 
 Variations:
 -----------

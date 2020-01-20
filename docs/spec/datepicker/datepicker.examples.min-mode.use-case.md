@@ -1,4 +1,4 @@
-5.7: Datepicker Min-mode example
+5.20: Datepicker Min-mode example
 ===============================
 **Primary Actor**: User
 

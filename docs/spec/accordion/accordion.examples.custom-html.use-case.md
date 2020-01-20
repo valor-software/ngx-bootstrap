@@ -10,7 +10,7 @@ Main success scenario:
 ----------------------
 1. User open Accordion demo page
 2. User click on Custom HTML sub-menu
-3. User able to click on each item of 2
+3. User see 2 accordion items, initially not expanded
 4. First item have additional span block with "Some HTML here" text
 5. After click on the first item, it is opened
 6. Second item don't have any additional html with closed state
