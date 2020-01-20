@@ -9,6 +9,7 @@ import { DemoDatePickerCustomFormatComponent } from './custom-format/custom-form
 import { DemoDatepickerCustomTodayClassComponent } from './custom-today-class/custom-today-class.component';
 import { DemoDatepickerDateInitialStateComponent } from './date-initial-state/date-initial-state';
 import { DemoDatepickerDaysDisabledComponent } from './disable-days/disable-days';
+import { DemoDatepickerDatesDisabledComponent } from './disable-dates/disable-dates';
 import { DemoDatepickerDisabledComponent } from './disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './forms/forms.component';
 import { DemoDatepickerHideOnScrollComponent } from './hide-on-scroll/hide-on-scroll';
@@ -23,15 +24,21 @@ import {
   DemoDatePickerSelectDatesFromOtherMonthsComponent
 } from './select-dates-from-other-months/select-dates-from-other-months';
 
+import { DemoDatePickerAdaptivePositionComponent } from './adaptive-position/adaptive-position';
+import { DemoDatePickerAnimatedComponent } from './animated/animated';
+import { DemoDatepickerDateCustomClassesComponent } from './date-custom-classes/date-custom-classes'
 import { DemoDatePickerSelectWeekComponent } from './select-week/select-week';
 import { DemoDatepickerTriggersCustomComponent } from './triggers-custom/triggers-custom';
 import { DemoDatepickerTriggersManualComponent } from './triggers-manual/triggers-manual';
 import { DemoDatepickerValueChangeEventComponent } from './value-change-event/value-change-event';
 import { DemoDatePickerVisibilityEventsComponent } from './visibility-events/visibility-events';
+import { DemoDateRangePickerShowPreviousMonth } from './daterangepicker-show-previous-month/show-previous-month';
 
 
 export const DEMO_COMPONENTS = [
   DatepickerDemoComponent,
+  DemoDatePickerAdaptivePositionComponent,
+  DemoDatePickerAnimatedComponent,
   DemoDatepickerBasicComponent,
   DemoDatepickerByIsOpenPropComponent,
   DemoDatepickerChangeLocaleComponent,
@@ -40,7 +47,9 @@ export const DEMO_COMPONENTS = [
   DemoDatePickerConfigObjectComponent,
   DemoDatePickerCustomFormatComponent,
   DemoDatepickerCustomTodayClassComponent,
+  DemoDatepickerDateCustomClassesComponent,
   DemoDatepickerDateInitialStateComponent,
+  DemoDatepickerDatesDisabledComponent,
   DemoDatepickerDaysDisabledComponent,
   DemoDatepickerDisabledComponent,
   DemoDatepickerFormsComponent,
@@ -58,5 +67,6 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerTriggersCustomComponent,
   DemoDatepickerTriggersManualComponent,
   DemoDatepickerValueChangeEventComponent,
+  DemoDateRangePickerShowPreviousMonth,
   DemoDatePickerVisibilityEventsComponent
 ];

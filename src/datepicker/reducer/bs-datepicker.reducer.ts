@@ -18,9 +18,10 @@ import {
 import { canSwitchMode } from '../engine/view-mode';
 import { formatMonthsCalendar } from '../engine/format-months-calendar';
 import { flagMonthsCalendar } from '../engine/flag-months-calendar';
-import { formatYearsCalendar, yearsPerCalendar } from '../engine/format-years-calendar';
+import { formatYearsCalendar, initialYearShift, yearsPerCalendar } from '../engine/format-years-calendar';
 import { flagYearsCalendar } from '../engine/flag-years-calendar';
 import { BsViewNavigationEvent, DatepickerFormatOptions, BsDatepickerViewMode } from '../models';
+import { getYearsCalendarInitialDate } from '../utils/bs-calendar-utils';
 
 
 /* tslint:disable-next-line: cyclomatic-complexity */
@@ -40,15 +41,7 @@ export function bsDatepickerReducer(state = initialDatepickerState,
     }
 
     case BsDatepickerActions.NAVIGATE_OFFSET: {
-      const date = shiftDate(startOf(state.view.date, 'month'), action.payload);
-      const newState = {
-        view: {
-          mode: state.view.mode,
-          date
-        }
-      };
-
-      return Object.assign({}, state, newState);
+      return navigateOffsetReducer(state, action);
     }
 
     case BsDatepickerActions.NAVIGATE_TO: {
@@ -155,6 +148,11 @@ export function bsDatepickerReducer(state = initialDatepickerState,
         isDisabled: action.payload
       });
     }
+    case BsDatepickerActions.SET_DATE_CUSTOM_CLASSES: {
+      return Object.assign({}, state, {
+        dateCustomClasses: action.payload
+      });
+    }
 
     default:
       return state;
@@ -168,6 +166,10 @@ function calculateReducer(state: BsDatepickerState): BsDatepickerState {
   let viewDate = state.view.date;
 
   if (state.view.mode === 'day') {
+    if (state.showPreviousMonth && state.selectedRange.length === 0) {
+      viewDate = shiftDate(viewDate, { month: -1 });
+    }
+
     state.monthViewOptions.firstDayOfWeek = getLocale(state.locale).firstDayOfWeek();
     const monthsModel = new Array(displayMonths);
     for (let monthIndex = 0; monthIndex < displayMonths; monthIndex++) {
@@ -211,7 +213,8 @@ function calculateReducer(state: BsDatepickerState): BsDatepickerState {
       // todo: for unlinked calendars it will be harder
       yearsCalendarModel[calendarIndex] = formatYearsCalendar(
         viewDate,
-        getFormatOptions(state)
+        getFormatOptions(state),
+        state.minMode === 'year' ? getYearsCalendarInitialDate(state, calendarIndex) : undefined
       );
       viewDate = shiftDate(viewDate, { year: yearsPerCalendar });
     }
@@ -287,10 +290,12 @@ function flagReducer(state: BsDatepickerState,
           minDate: state.minDate,
           maxDate: state.maxDate,
           daysDisabled: state.daysDisabled,
+          datesDisabled: state.datesDisabled,
           hoveredDate: state.hoveredDate,
           selectedDate: state.selectedDate,
           selectedRange: state.selectedRange,
           displayMonths: state.displayMonths,
+          dateCustomClasses: state.dateCustomClasses,
           monthIndex
         })
     );
@@ -306,6 +311,7 @@ function flagReducer(state: BsDatepickerState,
           minDate: state.minDate,
           maxDate: state.maxDate,
           hoveredMonth: state.hoveredMonth,
+          selectedDate: state.selectedDate,
           displayMonths: state.displayMonths,
           monthIndex
         })
@@ -322,6 +328,7 @@ function flagReducer(state: BsDatepickerState,
           minDate: state.minDate,
           maxDate: state.maxDate,
           hoveredYear: state.hoveredYear,
+          selectedDate: state.selectedDate,
           displayMonths: state.displayMonths,
           yearIndex
         })
@@ -331,6 +338,28 @@ function flagReducer(state: BsDatepickerState,
   }
 
   return state;
+}
+
+function navigateOffsetReducer(state: BsDatepickerState, action: Action): BsDatepickerState {
+  const newState = {
+    view: {
+      mode: state.view.mode,
+      date: shiftViewDate(state, action)
+    }
+  };
+
+  return Object.assign({}, state, newState);
+}
+
+function shiftViewDate(state: BsDatepickerState, action: Action): Date {
+  if (state.view.mode === 'year' && state.minMode === 'year') {
+    const initialDate = getYearsCalendarInitialDate(state, 0);
+    const middleDate = shiftDate(initialDate, { year: -initialYearShift });
+
+    return shiftDate(middleDate, action.payload);
+  }
+
+  return shiftDate(startOf(state.view.date, 'month'), action.payload);
 }
 
 function getFormatOptions(state: BsDatepickerState): DatepickerFormatOptions {

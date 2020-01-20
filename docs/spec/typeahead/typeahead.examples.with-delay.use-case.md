@@ -12,10 +12,8 @@ Main success scenario:
 2. User clicks on With delay sub-menu
 3. User sees typeahead input and typeahead card with "Model:" text
 4. When user starts to type a name of a State from "states" array Drop-down update delay depends on key "typeaheadWaitMs", time delay = 1 sec, by default
-5. If there are no matches the drop-down is hidden. The "Model" is filled with inputted data
-6. If there are any matches then a drop-down with a list of States matches is shown
-7. Items in the drop-down are clickable
-8. When user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State
+5. If there are any matches then a drop-down with a list of States matches is shown
+6. When user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State
 
 Variations:
 -----------

@@ -10,8 +10,9 @@ Main success scenario:
 ----------------------
 1. User open Accordion demo page
 2. User click on Basic sub-menu
-3. User able to click on each item of 4
+3. User see 4 accordion items, initially not expanded
 4. After click on each item, user see any content inside
+5. After double click on items, they are closed
 
 Extensions:
 -----------
