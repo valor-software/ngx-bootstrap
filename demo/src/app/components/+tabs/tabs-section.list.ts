@@ -118,8 +118,8 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Dynamic content rendering',
         anchor: 'dynamic-content-rendering',
-        component: require('!!raw-loader?lang=typescript!./demos/dynamic-content-rendering/dynamic-content-rendering'),
-        html: require('!!raw-loader?lang=markup!./demos/dynamic-content-rendering/dynamic-content-rendering.html'),
+        component: require('!!raw-loader!./demos/dynamic-content-rendering/dynamic-content-rendering'),
+        html: require('!!raw-loader!./demos/dynamic-content-rendering/dynamic-content-rendering.html'),
         outlet: DynamicContentRenderingComponent
       },
       {
