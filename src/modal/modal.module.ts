@@ -25,4 +25,10 @@ export class ModalModule {
       providers: [BsModalService, ComponentLoaderFactory, PositioningService]
     };
   }
+  static forChild(): ModuleWithProviders {
+    return {
+      ngModule: ModalModule,
+      providers: [BsModalService, ComponentLoaderFactory, PositioningService]
+    };
+  }
 }
