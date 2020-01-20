@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { dispatchMouseEvent, dispatchTouchEvent, dispatchKeyboardEvent } from '@netbasal/spectator';
 import { of } from 'rxjs';
 import { TypeaheadMatch, TypeaheadDirective, TypeaheadModule } from '../typeahead';
+import { fireEvent } from '../../scripts/helpers';
 
 interface State {
   id: number;
