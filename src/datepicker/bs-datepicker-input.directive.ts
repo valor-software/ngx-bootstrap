@@ -30,6 +30,7 @@ import {
 
 import { BsDatepickerDirective } from './bs-datepicker.component';
 import { BsLocaleService } from './bs-locale.service';
+import { BsDatepickerConfig } from './bs-datepicker.config';
 
 const BS_DATEPICKER_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
@@ -68,8 +69,8 @@ export class BsDatepickerInputDirective
               private _elRef: ElementRef,
               private changeDetection: ChangeDetectorRef) {
     // update input value on datepicker value update
-    this._picker.bsValueChange.subscribe((value: Date) => {
-
+    this._picker.config$.subscribe((config: BsDatepickerConfig) => {
+      const value = config.value as Date;
       let preValue = value;
       if (value) {
         const _localeKey = this._localeService.currentLocale;
@@ -82,7 +83,7 @@ export class BsDatepickerInputDirective
         preValue = _locale.preinput(value);
       }
 
-      this._setInputValue(preValue);
+      this._setInputValue(preValue, config.dateInputFormat);
       if (this._value !== preValue) {
         this._value = preValue;
         this._onChange(preValue);
@@ -97,9 +98,10 @@ export class BsDatepickerInputDirective
     });
   }
 
-  _setInputValue(value: Date): void {
+  _setInputValue(value: Date, dateInputFormat?: string): void {
+    const _dateInputFormat = dateInputFormat || this._picker._config.dateInputFormat;
     const initialDate = !value ? ''
-      : formatDate(value, this._picker._config.dateInputFormat, this._localeService.currentLocale);
+      : formatDate(value, _dateInputFormat, this._localeService.currentLocale);
 
     this._renderer.setProperty(this._elRef.nativeElement, 'value', initialDate);
   }

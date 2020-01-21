@@ -12,7 +12,7 @@ import { registerEscClick } from '../utils';
 
 @Component({
   selector: 'test-cmp',
-  template: `<input type="text" bsDatepicker [bsConfig]="bsConfig">`
+  template: `<input *ngIf="show" type="text" bsDatepicker [(bsValue)]="date" [bsConfig]="bsConfig">`
 })
 class TestComponent {
   @ViewChild(BsDatepickerDirective, { static: false }) datepicker: BsDatepickerDirective;
@@ -20,6 +20,8 @@ class TestComponent {
     displayMonths: 2,
     selectWeek: true
   };
+  show = true;
+  date = new Date();
 }
 
 type TestFixture = ComponentFixture<TestComponent>;
@@ -127,5 +129,28 @@ describe('datepicker:', () => {
     dispatchKeyboardEvent(document, 'keyup', 'Escape');
 
     expect(spy).toHaveBeenCalled();
+  }));
+
+  it('should keep config in sync', async(() => {
+    const datepicker = showDatepicker(fixture);
+    const datepickerContainerInstance = getDatepickerContainer(datepicker);
+    fixture.componentRef.instance.bsConfig = { dateInputFormat: 'DD/MM/YYYY' };
+    const date = new Date(2019, 1, 24);
+    const expectedResponse = '24/02/2019';
+
+    showDatepicker(fixture);
+    datepickerContainerInstance.valueChange.emit(date);
+    let input: HTMLInputElement = fixture.nativeElement.querySelector('input');
+    expect(input.value).toEqual(expectedResponse);
+
+    fixture.componentRef.instance.show = false;
+    fixture.detectChanges();
+    input = fixture.nativeElement.querySelector('input');
+    expect(input).toBeNull();
+
+    fixture.componentRef.instance.show = true;
+    fixture.detectChanges();
+    input = fixture.nativeElement.querySelector('input');
+    expect(input.value).toEqual(expectedResponse);
   }));
 });
