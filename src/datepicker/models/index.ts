@@ -18,6 +18,7 @@ export interface CalendarCellViewModel {
   label: string;
   isDisabled?: boolean;
   isHovered?: boolean;
+  isSelected?: boolean;
 }
 
 /** *************** */
@@ -28,8 +29,8 @@ export interface DayViewModel extends CalendarCellViewModel {
   isInRange?: boolean;
   isSelectionStart?: boolean;
   isSelectionEnd?: boolean;
-  isSelected?: boolean;
   isToday?: boolean;
+  customClasses?: string;
   // day index
   monthIndex?: number;
   weekIndex?: number;
@@ -38,6 +39,7 @@ export interface DayViewModel extends CalendarCellViewModel {
 
 export interface WeekViewModel {
   days: DayViewModel[];
+  isHovered?: boolean;
 }
 
 // todo: split navigation settings
@@ -98,6 +100,11 @@ export interface DatepickerFormatOptions {
 export interface DatepickerRenderOptions {
   showWeekNumbers?: boolean;
   displayMonths?: number;
+}
+
+export interface DatepickerDateCustomClasses {
+  date: Date;
+  classes: string[];
 }
 
 /** *************** */

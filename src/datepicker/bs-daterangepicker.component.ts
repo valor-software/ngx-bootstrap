@@ -18,6 +18,7 @@ import { Subscription } from 'rxjs';
 import { ComponentLoaderFactory, ComponentLoader } from 'ngx-bootstrap/component-loader';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { filter } from 'rxjs/operators';
+import { DatepickerDateCustomClasses } from './models';
 
 @Directive({
   selector: '[bsDaterangepicker]',
@@ -39,8 +40,7 @@ export class BsDaterangepickerDirective
    */
   @Input() outsideClick = true;
   /**
-   * A selector specifying the element the daterangepicker should be appended
-   * to. Currently only supports "body".
+   * A selector specifying the element the daterangepicker should be appended to.
    */
   @Input() container = 'body';
 
@@ -103,6 +103,14 @@ export class BsDaterangepickerDirective
    */
   @Input() maxDate: Date;
   /**
+   * Date custom classes
+   */
+  @Input() dateCustomClasses: DatepickerDateCustomClasses[];
+  /**
+   * Disable specific dates
+   */
+  @Input() datesDisabled: Date[];
+  /**
    * Emits when daterangepicker value has been changed
    */
   @Output() bsValueChange: EventEmitter<Date[]> = new EventEmitter();
@@ -150,8 +158,16 @@ export class BsDaterangepickerDirective
       this._datepickerRef.instance.maxDate = this.maxDate;
     }
 
+    if (changes.datesDisabled) {
+      this._datepickerRef.instance.datesDisabled = this.datesDisabled;
+    }
+
     if (changes.isDisabled) {
       this._datepickerRef.instance.isDisabled = this.isDisabled;
+    }
+
+    if (changes.dateCustomClasses) {
+      this._datepickerRef.instance.dateCustomClasses = this.dateCustomClasses;
     }
   }
 
@@ -205,7 +221,9 @@ export class BsDaterangepickerDirective
         value: this._bsValue,
         isDisabled: this.isDisabled,
         minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
-        maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate
+        maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
+        dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
+        datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled
       }
     );
   }

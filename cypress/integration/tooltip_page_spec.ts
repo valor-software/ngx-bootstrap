@@ -8,10 +8,16 @@ describe('Tooltip demo page test suite', () => {
   describe('Basic tooltip', () => {
     const basic = tooltip.exampleDemosArr.basic;
 
-    it('basic tooltip appears after hovering on trigger button', () => {
-      cy.get(basic).as('basicDemo').find(tooltip.togglerTooltip).focus();
-      cy.get('@basicDemo')
-        .should('to.have.descendants', tooltip.containerTooltip);
+    it('when user on hover on "Simple demo" button, then tooltip-container shown', () => {
+      tooltip.focusOnBtn(basic);
+      tooltip.isTooltipAppears(basic);
+      tooltip.isTooltipVisible(basic);
+    });
+
+    it('when user moves the mouse cursor away of tooltip-button, then tooltip-container disappeared', () => {
+      tooltip.focusOnBtn(basic);
+      tooltip.focusToAnotherPlacement('Basic');
+      tooltip.isTooltipDismiss(basic);
     });
   });
 });

@@ -14,6 +14,8 @@ import { AccordionConfig } from './accordion.config';
   }
 })
 export class AccordionComponent {
+  /** turn on/off animation */
+  @Input() isAnimated = false;
   /** if `true` expanding one item will close all others */
   @Input() closeOthers: boolean;
 
@@ -36,6 +38,7 @@ export class AccordionComponent {
   }
 
   addGroup(group: AccordionPanelComponent): void {
+    group.isAnimated = this.isAnimated;
     this.groups.push(group);
   }
 

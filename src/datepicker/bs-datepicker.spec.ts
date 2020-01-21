@@ -1,9 +1,11 @@
-import { Component, ViewChild, Renderer2 } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Component, ViewChild, Renderer2 } from '@angular/core';
 
 import { BsDatepickerConfig, BsDatepickerDirective, BsDatepickerModule } from '.';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
-import { CalendarCellViewModel } from './models';
+import { CalendarCellViewModel, WeekViewModel } from './models';
+import { dispatchKeyboardEvent } from '@netbasal/spectator';
 import { registerEscClick } from '../utils';
 
 @Component({
@@ -11,9 +13,10 @@ import { registerEscClick } from '../utils';
   template: `<input type="text" bsDatepicker [bsConfig]="bsConfig">`
 })
 class TestComponent {
-  @ViewChild(BsDatepickerDirective) datepicker: BsDatepickerDirective;
+  @ViewChild(BsDatepickerDirective, { static: false }) datepicker: BsDatepickerDirective;
   bsConfig: Partial<BsDatepickerConfig> = {
-    displayMonths: 2
+    displayMonths: 2,
+    selectWeek: true
   };
 }
 
@@ -50,7 +53,10 @@ describe('datepicker:', () => {
   beforeEach(
     async(() => TestBed.configureTestingModule({
         declarations: [TestComponent],
-        imports: [BsDatepickerModule.forRoot()]
+        imports: [
+          BsDatepickerModule.forRoot(),
+          BrowserAnimationsModule
+        ]
     }).compileComponents()
     ));
   beforeEach(() => {
@@ -83,6 +89,28 @@ describe('datepicker:', () => {
       });
   });
 
+  it('should select a week, when selectWeek flag is true', () => {
+    const datepicker = showDatepicker(fixture);
+    const datepickerContainerInstance = getDatepickerContainer(datepicker);
+    datepickerContainerInstance.setViewMode('day');
+    const weekSelection: WeekViewModel = { days: [
+      { date: new Date(2019, 1 , 6), label: 'label' },
+        { date: new Date(2019, 1, 7), label: 'label' },
+        { date: new Date(2019, 1, 8), label: 'label' },
+        { date: new Date(2019, 1, 9), label: 'label' },
+        { date: new Date(2019, 1, 10), label: 'label' },
+        { date: new Date(2019, 1, 11), label: 'label' },
+        { date: new Date(2019, 1, 12), label: 'label' }
+      ], isHovered: true};
+    datepickerContainerInstance.weekHoverHandler(weekSelection);
+    fixture.detectChanges();
+    datepickerContainerInstance[`_store`]
+      .select(state => state.view)
+      .subscribe(view => {
+        expect(view.date.getDate()).not.toEqual((weekSelection.days[0].date.getDate()));
+      });
+  });
+
   it('should hide on esc', async(() => {
     const datepicker = showDatepicker(fixture);
     const spy = spyOn(datepicker, 'hide');
@@ -94,11 +122,7 @@ describe('datepicker:', () => {
       hide: () => datepicker.hide()
     });
 
-    const event = new KeyboardEvent('keyup', {
-      key: 'Escape'
-    });
-
-    document.dispatchEvent(event);
+    dispatchKeyboardEvent(document, 'keyup', 'Escape');
 
     expect(spy).toHaveBeenCalled();
   }));

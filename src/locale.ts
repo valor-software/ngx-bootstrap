@@ -1,34 +1,43 @@
-export { arLocale } from './chronos/i18n/ar';
-export { bgLocale } from './chronos/i18n/bg';
-export { csLocale } from './chronos/i18n/cs';
-export { daLocale } from './chronos/i18n/da';
-export { deLocale } from './chronos/i18n/de';
-export { enGbLocale } from './chronos/i18n/en-gb';
-export { esLocale } from './chronos/i18n/es';
-export { esDoLocale } from './chronos/i18n/es-do';
-export { esUsLocale } from './chronos/i18n/es-us';
-export { fiLocale } from './chronos/i18n/fi';
-export { frLocale } from './chronos/i18n/fr';
-export { glLocale } from './chronos/i18n/gl';
-export { heLocale } from './chronos/i18n/he';
-export { hiLocale } from './chronos/i18n/hi';
-export { huLocale } from './chronos/i18n/hu';
-export { idLocale } from './chronos/i18n/id';
-export { itLocale } from './chronos/i18n/it';
-export { jaLocale } from './chronos/i18n/ja';
-export { koLocale } from './chronos/i18n/ko';
-export { ltLocale } from './chronos/i18n/lt';
-export { mnLocale } from './chronos/i18n/mn';
-export { nbLocale } from './chronos/i18n/nb';
-export { nlLocale } from './chronos/i18n/nl';
-export { nlBeLocale } from './chronos/i18n/nl-be';
-export { plLocale } from './chronos/i18n/pl';
-export { ptBrLocale } from './chronos/i18n/pt-br';
-export { ruLocale } from './chronos/i18n/ru';
-export { roLocale }  from './chronos/i18n/ro';
-export { skLocale } from './chronos/i18n/sk';
-export { slLocale } from './chronos/i18n/sl';
-export { svLocale } from './chronos/i18n/sv';
-export { thLocale } from './chronos/i18n/th';
-export { trLocale } from './chronos/i18n/tr';
-export { zhCnLocale } from './chronos/i18n/zh-cn';
+export {
+  arLocale,
+  bgLocale,
+  caLocale,
+  csLocale,
+  daLocale,
+  deLocale,
+  enGbLocale,
+  esDoLocale,
+  esLocale,
+  esUsLocale,
+  etLocale,
+  fiLocale,
+  frLocale,
+  glLocale,
+  heLocale,
+  hiLocale,
+  hrLocale,
+  huLocale,
+  idLocale,
+  itLocale,
+  jaLocale,
+  kaLocale,
+  koLocale,
+  ltLocale,
+  lvLocale,
+  mnLocale,
+  nbLocale,
+  nlBeLocale,
+  nlLocale,
+  plLocale,
+  ptBrLocale,
+  roLocale,
+  ruLocale,
+  skLocale,
+  slLocale,
+  svLocale,
+  thLocale,
+  trLocale,
+  ukLocale,
+  viLocale,
+  zhCnLocale
+} from 'ngx-bootstrap/chronos';

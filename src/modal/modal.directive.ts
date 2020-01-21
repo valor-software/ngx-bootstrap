@@ -78,6 +78,7 @@ export class ModalDirective implements OnDestroy, OnInit {
   private _backdrop: ComponentLoader<ModalBackdropComponent>;
 
   private isNested = false;
+  private clickStartedInContent = false;
 
   constructor(private _element: ElementRef,
               _viewContainerRef: ViewContainerRef,
@@ -90,13 +91,21 @@ export class ModalDirective implements OnDestroy, OnInit {
     );
   }
 
-  @HostListener('click', ['$event'])
-  onClick(event: MouseEvent): void {
+  @HostListener('mousedown', ['$event'])
+  onClickStarted(event: MouseEvent): void {
+    this.clickStartedInContent = event.target !== this._element.nativeElement;
+  }
+
+  @HostListener('mouseup', ['$event'])
+  onClickStop(event: MouseEvent): void {
+    const clickedInBackdrop = event.target === this._element.nativeElement && !this.clickStartedInContent;
     if (
       this.config.ignoreBackdropClick ||
       this.config.backdrop === 'static' ||
-      event.target !== this._element.nativeElement
+      !clickedInBackdrop
     ) {
+      this.clickStartedInContent = false;
+
       return;
     }
     this.dismissReason = DISMISS_REASONS.BACKRDOP;
