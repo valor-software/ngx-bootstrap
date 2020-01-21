@@ -145,6 +145,11 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
       dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
       datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled
     });
+
+    if (this._datepickerRef !== undefined) {
+      this._datepicker.hide();
+      this._datepicker.show();
+    }
   }
 
   ngOnDestroy(): any {
