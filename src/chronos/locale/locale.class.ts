@@ -89,6 +89,10 @@ export interface LocaleData {
 
   preparse?(str: string): string;
 
+  preinput?(input: Date): Date;
+
+  postvalue?(value: Date): Date;
+
   postformat?(str: string | number): string;
 
   meridiem?(hour: number, minute?: number, isLower?: boolean): string;
@@ -196,6 +200,14 @@ export class Locale {
 
   preparse(str: string) {
     return str;
+  }
+
+  preinput(input: Date) {
+    return input;
+  }
+
+  postvalue(value: Date) {
+    return value;
   }
 
   postformat(str: string) {

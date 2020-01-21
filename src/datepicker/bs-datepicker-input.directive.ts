@@ -69,10 +69,23 @@ export class BsDatepickerInputDirective
               private changeDetection: ChangeDetectorRef) {
     // update input value on datepicker value update
     this._picker.bsValueChange.subscribe((value: Date) => {
-      this._setInputValue(value);
-      if (this._value !== value) {
-        this._value = value;
-        this._onChange(value);
+
+      let preValue = value;
+      if (value) {
+        const _localeKey = this._localeService.currentLocale;
+        const _locale = getLocale(_localeKey);
+        if (!_locale) {
+          throw new Error(
+            `Locale "${_localeKey}" is not defined, please add it with "defineLocale(...)"`
+          );
+        }
+        preValue = _locale.preinput(value);
+      }
+
+      this._setInputValue(preValue);
+      if (this._value !== preValue) {
+        this._value = preValue;
+        this._onChange(preValue);
         this._onTouched();
       }
       this.changeDetection.markForCheck();
