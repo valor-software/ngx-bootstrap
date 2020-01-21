@@ -524,7 +524,7 @@ describe('Directive: Typeahead', () => {
         fireEvent(inputElement, 'focus');
         fixture.detectChanges();
         tick(100);
-        expect(directive.matches.length).toBe(2);
+        expect(directive.matches.length).toBe(component.states.length);
       })
     );
 
