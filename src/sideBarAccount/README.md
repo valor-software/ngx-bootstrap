@@ -1,28 +1,7 @@
 # SideBarAccount
-I have added a screenshot of created sidebar component. 
-check screenshot.png for viewing component.
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.5.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+What is sideBarAccount?
+Lets take an example, after you login your linkedin account. You see your dashboard and a panel where your profile image, name, mobile number, email are displayed. So sidebarAccount is a bootstrap panel where your such details will be displayed. And after using it developer will not have to waste his/her time writng code for it. This. will save valuable time of developer.
+for look of this panel=>see "screenshot.png" file in the current directory.
+The developer can use routing in angular to change routes on click of different options in panel.
+IMPORTANT = >for changing routes change in below list by replacing '#' with the route of the component you want to be displayed. 
+For this the developer should have a little idea of Routing in angular. 
