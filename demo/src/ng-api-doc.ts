@@ -1044,7 +1044,12 @@ export const ngdoc: any = {
       {
         "name": "selectWeek",
         "type": "boolean",
-        "description": "<p>Makes dates from other months active</p>\n"
+        "description": "<p>Makes weeks selectable, and mark first available date of the week as selected</p>\n"
+      },
+      {
+        "name": "selectWeekDateRange",
+        "type": "boolean",
+        "description": "<p>Makes weeks selectable, and creates a daterange with first and last available dates of the week (dateRangePicker only)</p>\n"
       },
       {
         "name": "showWeekNumbers",
