@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 })
 export class DemoDatePickerQuickSelectRangesComponent {
   ranges: any = [{
-    value: [new Date(), new Date(new Date().setDate(new Date().getDate() - 7))],
+    value: [new Date(new Date().setDate(new Date().getDate() - 7)), new Date()],
     label: 'Last 7 Days'
   }, {
     value: [new Date(), new Date(new Date().setDate(new Date().getDate() + 7))],
