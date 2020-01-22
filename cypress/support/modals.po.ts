@@ -78,6 +78,10 @@ export class ModalsPo extends BaseComponent {
     cy.get(`${baseSelector} .modal`).click();
   }
 
+  clickOnModalCorner(position: string) {
+    cy.get(this.modalContainer).click(position);
+  }
+
   startClickOnModalReleaseOnBackdrop(baseSelector: string) {
     cy.get(`${baseSelector} .modal-content`)
       .trigger('mousedown')
