@@ -6,7 +6,7 @@ export class ModalOptions {
   /**
    *  Allow user to ID for the modal. Otherwise, a unique number will be given
    */
-  id? : number;
+  id?: number;
   /**
    *  Includes a modal-backdrop element. Alternatively,
    *  specify static for a backdrop which doesn't close the modal on click.

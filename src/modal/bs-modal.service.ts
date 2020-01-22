@@ -115,7 +115,13 @@ export class BsModalService {
       .provide({ provide: BsModalRef, useValue: bsModalRef })
       .attach(ModalContainerComponent)
       .to('body')
-      .show({ content, isAnimated: this.config.animated, initialState: this.config.initialState, bsModalService: this, id: this.config.id });
+      .show({
+        content,
+        isAnimated: this.config.animated,
+        initialState: this.config.initialState,
+        bsModalService: this,
+        id: this.config.id
+      });
     modalContainerRef.instance.level = this.getModalsCount();
     bsModalRef.hide = () => {
       const duration = this.config.animated ? TRANSITION_DURATIONS.MODAL : 0;
@@ -133,7 +139,7 @@ export class BsModalService {
 
   _hideModal(id?: number): void {
     if (id != null) {
-      let indexToRemove = this.loaders.findIndex((loader) => loader.instance.config.id == id);
+      const indexToRemove = this.loaders.findIndex(loader => loader.instance.config.id === id);
       const modalLoader = this.loaders[indexToRemove];
       if (modalLoader) {
         modalLoader.hide(id);
@@ -172,7 +178,7 @@ export class BsModalService {
     if (!document) {
       return;
     }
-    
+
     this.originalBodyPadding = parseInt(
       window
         .getComputedStyle(document.body)
@@ -184,10 +190,6 @@ export class BsModalService {
       document.body.style.paddingRight = `${this.originalBodyPadding +
         this.scrollbarWidth}px`;
     }
-  }
-
-  private getModalIdObject(): { id: number } {
-    return { id: this.config.id };
   }
 
   private resetScrollbar(): void {
@@ -220,7 +222,7 @@ export class BsModalService {
 
   private removeLoaders(id?: number): void {
     if (id != null) {
-      let indexToRemove = this.loaders.findIndex((loader) => loader.instance.config.id == id);
+      const indexToRemove = this.loaders.findIndex(loader => loader.instance.config.id === id);
       if (indexToRemove >= 0) {
         this.loaders.splice(indexToRemove, 1);
         this.loaders.forEach(

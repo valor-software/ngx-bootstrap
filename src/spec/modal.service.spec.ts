@@ -1,18 +1,22 @@
-import { Component, NgModule } from "@angular/core";
-import { TestBed, inject, ComponentFixture } from "@angular/core/testing";
+import { Component, NgModule } from '@angular/core';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 
-import { BsModalService, ModalModule } from "../modal";
+import { BsModalService, ModalModule } from '../modal';
 
+/* tslint:disable-next-line: max-classes-per-file */
 @Component({ template: '<div>Dummy Component</div>' })
 class DummyComponent {
+/* tslint:disable-next-line: no-empty */
     constructor(modalService: BsModalService) { }
 }
 
+/* tslint:disable-next-line: max-classes-per-file */
 @Component({
     template: '<div>Test Component</div>'
 })
 class TestModalComponent { }
 
+/* tslint:disable-next-line: max-classes-per-file */
 @NgModule({
     declarations: [TestModalComponent],
     entryComponents: [TestModalComponent]
@@ -20,49 +24,50 @@ class TestModalComponent { }
 export class TestModule { }
 
 describe('Modal service', () => {
-    let fixture: ComponentFixture<DummyComponent>;
-    let modalService: BsModalService
-    let context: any;
-    let element: any;
+  let fixture: ComponentFixture<DummyComponent>;
+  let modalService: BsModalService;
 
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            declarations: [DummyComponent],
-            providers: [BsModalService,],
-            imports: [ModalModule.forRoot(), TestModule]
-        });
-        fixture = TestBed.createComponent(DummyComponent);
-        modalService = fixture.debugElement.injector.get(BsModalService);
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [DummyComponent],
+      providers: [BsModalService],
+      imports: [ModalModule.forRoot(), TestModule]
+    });
+    fixture = TestBed.createComponent(DummyComponent);
+    modalService = fixture.debugElement.injector.get(BsModalService);
 
-        fixture.detectChanges();
+    fixture.detectChanges();
+  });
+
+  it('should return random id on spin up a new modal', () => {
+    modalService.onShown.subscribe((data: any) => {
+      /* tslint:disable-next-line: no-floating-promises */
+      expect(data.id).toBeTruthy();
     });
 
-    it('should return random id on spin up a new modal', () => {
-        modalService.onShown.subscribe((data: any) => {
-            expect(data.id).toBeTruthy();
-        });
+    modalService.show(TestModalComponent);
+  });
 
-        modalService.show(TestModalComponent);
+  it('should return id in config when specified', () => {
+    const id = 20;
+
+    modalService.onShown.subscribe((data: any) => {
+      /* tslint:disable-next-line: no-floating-promises */
+      expect(data.id).toBe(id);
     });
 
-    it('should return id in config when specified', () => {
-        let id = 20;
+    modalService.show(TestModalComponent, { id });
+  });
 
-        modalService.onShown.subscribe((data: any) => {
-            expect(data.id).toBe(id);
-        });
+  it('should return id when hide modal', () => {
+    const id = 20;
 
-        modalService.show(TestModalComponent, { id: id });
+    modalService.onHidden.subscribe((data: any) => {
+      /* tslint:disable-next-line: no-floating-promises */
+      expect(data.id).toBe(id);
     });
 
-    it('should return id when hide modal', () => {
-        let id = 20;
-
-        modalService.onHidden.subscribe((data: any) => {
-            expect(data.id).toBe(id);
-        })
-
-        let bsRef = modalService.show(TestModalComponent, { id: id });
-        bsRef.hide();
-    })
+    const bsRef = modalService.show(TestModalComponent, { id });
+    bsRef.hide();
+  });
 });

@@ -225,7 +225,7 @@ export class ComponentLoader<T> {
     if (this._contentRef.componentRef) {
       this._contentRef.componentRef.destroy();
     }
-    
+
     if (this._viewContainerRef && this._contentRef.viewRef) {
       this._viewContainerRef.remove(
         this._viewContainerRef.indexOf(this._contentRef.viewRef)
@@ -239,7 +239,7 @@ export class ComponentLoader<T> {
     this._componentRef = null;
     this._removeGlobalListener();
 
-    this.onHidden.emit(id ? { id: id } : null);
+    this.onHidden.emit(id ? { id } : null);
 
     return this;
   }
