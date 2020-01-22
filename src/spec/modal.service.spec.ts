@@ -39,32 +39,35 @@ describe('Modal service', () => {
     fixture.detectChanges();
   });
 
-  it('should return random id on spin up a new modal', () => {
+  it('should return random id on spin up a new modal', done => {
     modalService.onShown.subscribe((data: any) => {
       /* tslint:disable-next-line: no-floating-promises */
       expect(data.id).toBeTruthy();
+      done();
     });
 
     modalService.show(TestModalComponent);
   });
 
-  it('should return id in config when specified', () => {
+  it('should return id in config when specified', done => {
     const id = 20;
 
     modalService.onShown.subscribe((data: any) => {
       /* tslint:disable-next-line: no-floating-promises */
       expect(data.id).toBe(id);
+      done();
     });
 
     modalService.show(TestModalComponent, { id });
   });
 
-  it('should return id when hide modal', () => {
+  it('should return id when hide modal', done => {
     const id = 20;
 
     modalService.onHidden.subscribe((data: any) => {
       /* tslint:disable-next-line: no-floating-promises */
       expect(data.id).toBe(id);
+      done();
     });
 
     const bsRef = modalService.show(TestModalComponent, { id });
