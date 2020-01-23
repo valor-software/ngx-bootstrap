@@ -55,10 +55,10 @@
   </div>
 
   <!--custom dates or date ranges picker-->
-  <div class="bs-datepicker-custom-range" *ngIf="_customRangesFish?.length > 0">
+  <div class="bs-datepicker-custom-range" *ngIf="customRanges?.length > 0">
     <bs-custom-date-view 
       [selectedRange]="chosenRange" 
-      [ranges]="_customRangesFish"
+      [ranges]="customRanges"
       (onSelect)="setRangeOnCalendar($event)">
     </bs-custom-date-view>
   </div>

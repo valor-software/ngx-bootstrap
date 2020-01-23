@@ -50,7 +50,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     super();
     this._effects = _effects;
 
-    this._customRangesFish = this._config.ranges;
+    this.customRanges = this._config.ranges;
 
     _renderer.setStyle(_element.nativeElement, 'display', 'block');
     _renderer.setStyle(_element.nativeElement, 'position', 'absolute');

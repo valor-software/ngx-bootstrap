@@ -1,10 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import {
-    BsDaterangepickerDirective,
-    BsDaterangepickerConfig,
-    BsDatepickerModule,
-    BsDaterangepickerContainerComponent
-} from '.';
+import { BsDaterangepickerDirective } from './bs-daterangepicker.component';
+import { BsDatepickerModule } from './bs-datepicker.module';
+import { BsDaterangepickerConfig } from './bs-daterangepicker.config';
+import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
@@ -91,7 +89,7 @@ describe('daterangepicker:', () => {
                 value: [new Date('12-16-2019'), new Date('12-22-2019')]
             }
         ];
-        datepicker.ranges = ranges;
+        datepicker.bsConfig.ranges = ranges;
         const datepickerContainerInstance = getDaterangepickerContainer(datepicker);
         datepickerContainerInstance.setRangeOnCalendar(ranges[0]);
 
@@ -117,7 +115,7 @@ describe('daterangepicker:', () => {
             }
         ];
         const daterangepickerInput = fixture.debugElement.query(By.css('input[bsDaterangepicker]'));
-        fixture.componentInstance.daterangepicker.ranges = ranges;
+        fixture.componentInstance.daterangepicker.bsConfig.ranges = ranges;
         daterangepickerInput.nativeElement.click();
 
         fixture.detectChanges();
@@ -140,7 +138,7 @@ describe('daterangepicker:', () => {
                 value: [new Date('12-16-2019'), new Date('12-22-2019')]
             }
         ];
-        datepicker.ranges = ranges;
+        datepicker.bsConfig.ranges = ranges;
         const datepickerContainerInstance = getDaterangepickerContainer(datepicker);
         datepickerContainerInstance.setRangeOnCalendar(ranges[0]);
 
@@ -166,7 +164,7 @@ describe('daterangepicker:', () => {
             }
         ];
         const daterangepickerInput = fixture.debugElement.query(By.css('input[bsDaterangepicker]'));
-        fixture.componentInstance.daterangepicker.ranges = ranges;
+        fixture.componentInstance.daterangepicker.bsConfig.ranges = ranges;
         const datepickerContainerInstance = getDaterangepickerContainer(datepicker);
         datepickerContainerInstance.setRangeOnCalendar(ranges[0]);
 
@@ -200,7 +198,7 @@ describe('daterangepicker:', () => {
         };
 
         const daterangepickerInput = fixture.debugElement.query(By.css('input[bsDaterangepicker]'));
-        fixture.componentInstance.daterangepicker.ranges = ranges;
+        fixture.componentInstance.daterangepicker.bsConfig.ranges = ranges;
         const datepickerContainerInstance = getDaterangepickerContainer(datepicker);
         datepickerContainerInstance.setRangeOnCalendar(selectedRange);
         daterangepickerInput.nativeElement.click();
