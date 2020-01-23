@@ -36,6 +36,7 @@ export class ModalDirective implements OnDestroy, OnInit {
     return this._config;
   }
 
+  /** allows to provide callbacks to intercept the closure of the modal */
   @Input() closeInterceptors: CloseInterceptorFn[];
 
   /** This event fires immediately when the `show` instance method is called. */
@@ -104,7 +105,7 @@ export class ModalDirective implements OnDestroy, OnInit {
       return;
     }
     this.dismissReason = DISMISS_REASONS.BACKRDOP;
-    this.tryHiding(event);
+    this.hide(event);
   }
 
   // todo: consider preventing default and stopping propagation
@@ -120,7 +121,7 @@ export class ModalDirective implements OnDestroy, OnInit {
 
     if (this.config.keyboard) {
       this.dismissReason = DISMISS_REASONS.ESC;
-      this.tryHiding();
+      this.hide();
     }
   }
 
@@ -178,7 +179,7 @@ export class ModalDirective implements OnDestroy, OnInit {
   }
 
   /** Check if we can close the modal */
-  tryHiding(event?: Event): void {
+  hide(event?: Event): void {
     if (!this._isShown) {
       return;
     }
@@ -189,17 +190,22 @@ export class ModalDirective implements OnDestroy, OnInit {
 
     if (this.config.closeInterceptors && this.config.closeInterceptors.length) {
       iterateOverInterceptors(this.config.closeInterceptors).then(
-        () => this.hide(),
+        () => this._hide(),
         () => undefined);
 
       return;
     }
 
-    this.hide();
+    this._hide();
   }
 
-  /** Allows to manually close modal */
-  hide(): void {
+  /** Private methods @internal */
+
+  /**
+   *  Manually close modal
+   *  @internal
+   */
+  protected _hide(): void {
     this.onHide.emit(this);
 
     window.clearTimeout(this.timerHideModal);
@@ -222,7 +228,6 @@ export class ModalDirective implements OnDestroy, OnInit {
     }
   }
 
-  /** Private methods @internal */
   protected getConfig(config?: ModalOptions): ModalOptions {
     return Object.assign({}, modalConfigDefaults, config);
   }

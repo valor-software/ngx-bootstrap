@@ -87,7 +87,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       return;
     }
     this.bsModalService.setDismissReason(DISMISS_REASONS.BACKRDOP);
-    this.tryHiding();
+    this.hide();
   }
 
   @HostListener('window:keydown.esc', ['$event'])
@@ -106,33 +106,33 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       this.level === this.bsModalService.getModalsCount()
     ) {
       this.bsModalService.setDismissReason(DISMISS_REASONS.ESC);
-      this.tryHiding();
+      this.hide();
     }
   }
 
   ngOnDestroy(): void {
     if (this.isShown) {
-      this.hide();
+      this._hide();
     }
   }
 
-  tryHiding(): void {
+  hide(): void {
     if (this.isModalHiding || !this.isShown) {
       return;
     }
 
     if (this.config.closeInterceptors && this.config.closeInterceptors.length) {
       iterateOverInterceptors(this.config.closeInterceptors).then(
-        () => this.hide(),
+        () => this._hide(),
         () => undefined);
 
       return;
     }
 
-    this.hide();
+    this._hide();
   }
 
-  hide(): void {
+  private _hide(): void {
     this.isModalHiding = true;
     this._renderer.removeClass(
       this._element.nativeElement,
