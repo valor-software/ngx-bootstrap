@@ -22,7 +22,7 @@ import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { TypeaheadConfig } from './typeahead.config';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
-import { debounceTime, filter, mergeMap, switchMap, toArray } from 'rxjs/operators';
+import { debounceTime, filter, map, mergeMap, switchMap, toArray } from 'rxjs/operators';
 
 @Directive({selector: '[typeahead]', exportAs: 'bs-typeahead'})
 export class TypeaheadDirective implements OnInit, OnDestroy {
@@ -53,7 +53,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
    * contains the group value, matches are grouped by this field when set.
    */
   @Input() typeaheadGroupField: string;
-  /** should be used only in case of typeahead attribute is array.
+  /** should be used only in case of typeahead attribute is Observable of array.
    * If true - loading of options will be async, otherwise - sync.
    * true make sense if options array is large.
    */
@@ -389,7 +389,18 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       this.keyUpEventEmitter
         .pipe(
           debounceTime(this.typeaheadWaitMs),
-          switchMap(() => this.typeahead)
+          switchMap((value: string) => {
+            return this.typeahead
+              .pipe(
+                // tslint:disable-next-line:no-any
+                map((typeahead: any[]) => {
+                  const normalizedQuery = this.normalizeQuery(value);
+
+                  return typeahead.filter((option: any) =>
+                    option && this.testMatch(this.normalizeOption(option), normalizedQuery));
+                })
+              );
+          })
         )
         .subscribe((matches: TypeaheadMatch[]) => {
           this.finalizeAsyncCall(matches);
@@ -408,11 +419,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
             return from(this.typeahead)
               .pipe(
                 filter((option: TypeaheadMatch) => {
-
-                  return (
-                    option &&
-                    this.testMatch(this.normalizeOption(option), normalizedQuery)
-                  );
+                  return option && this.testMatch(this.normalizeOption(option), normalizedQuery);
                 }),
                 toArray()
               );
