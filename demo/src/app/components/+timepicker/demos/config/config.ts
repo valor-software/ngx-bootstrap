@@ -11,7 +11,10 @@ export function getTimepickerConfig(): TimepickerConfig {
     readonlyInput: false,
     mousewheel: true,
     showMinutes: true,
-    showSeconds: false
+    showSeconds: false,
+    labelHours: 'Hours',
+    labelMinutes: 'Minutes',
+    labelSeconds: 'Seconds'
   });
 }
 
