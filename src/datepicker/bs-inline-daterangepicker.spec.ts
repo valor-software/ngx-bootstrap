@@ -1,8 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { BsDaterangepickerInlineDirective, BsDaterangepickerInlineConfig, BsDatepickerModule } from '.';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { BsDatepickerModule } from './bs-datepicker.module';
+import { BsDaterangepickerInlineDirective } from './bs-daterangepicker-inline.component';
+import { BsDaterangepickerInlineConfig } from './bs-daterangepicker-inline.config';
 
 @Component({
     selector: 'test-cmp',
