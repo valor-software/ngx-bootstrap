@@ -100,7 +100,11 @@ export {
   ProgressbarModule
 } from './progressbar/index';
 
-export { RatingComponent, RatingModule } from './rating/index';
+export {
+  RatingComponent,
+  RatingModule,
+  RatingConfig
+} from './rating/index';
 
 export {
   DraggableItem,
