@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
-import { RatingComponent, RatingModule } from '../rating';
+import { RatingComponent, RatingConfig, RatingModule } from '../rating';
 
 @Component({
   selector: 'rating-test',
@@ -13,6 +13,10 @@ class TestRatingComponent {
   rate = 0;
   isReadonly = false;
   titles: string[] = ['one', 'two', 'three', 'four', 'five'];
+
+  constructor(config: RatingConfig) {
+    Object.assign(this, config);
+  }
 }
 
 describe('Component: Rating. Init:', () => {
@@ -24,7 +28,8 @@ describe('Component: Rating. Init:', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RatingComponent]
+      declarations: [RatingComponent],
+      providers: [RatingConfig]
     });
     fixture = TestBed.createComponent(RatingComponent);
     context = fixture.debugElement.componentInstance;
@@ -46,6 +51,11 @@ describe('Component: Rating. Init:', () => {
     expect(icons[0].classList).not.toContain('active');
     expect(icons[4].classList).not.toContain('active');
     expect(icons[4].getAttribute('title')).toEqual('5');
+
+    const container = element.querySelector('[role="slider"]');
+    const ariaAttribute = container.getAttribute('aria-label');
+
+    expect(ariaAttribute).toEqual('rating');
   });
 
   it('checking of working with changed values', () => {
