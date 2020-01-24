@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { AccessorContent, RatingResults } from './models';
+import { RatingConfig } from './rating.config';
 
 export const RATING_CONTROL_VALUE_ACCESSOR: AccessorContent = {
   provide: NG_VALUE_ACCESSOR,
@@ -42,12 +43,16 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   onChange: any = Function.prototype;
   // tslint:disable-next-line:no-any
   onTouched: any = Function.prototype;
-
+  /** aria label for rating */
+  ariaLabel: string;
   range: RatingResults[];
   value: number;
   protected preValue: number;
 
-  constructor(private changeDetection: ChangeDetectorRef) {}
+  constructor(private changeDetection: ChangeDetectorRef,
+              config: RatingConfig) {
+    Object.assign(this, config);
+  }
 
   @HostListener('keydown', ['$event'])
   onKeydown(event: KeyboardEvent): void {
