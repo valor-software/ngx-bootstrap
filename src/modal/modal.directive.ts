@@ -80,7 +80,8 @@ export class ModalDirective implements OnDestroy, OnInit {
   private isNested = false;
   private clickStartedInContent = false;
 
-  constructor(private _element: ElementRef,
+  constructor(
+    private _element: ElementRef,
     _viewContainerRef: ViewContainerRef,
     private _renderer: Renderer2,
     clf: ComponentLoaderFactory,
