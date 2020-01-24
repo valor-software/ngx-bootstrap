@@ -104,7 +104,11 @@ export {
   ProgressbarModule
 } from 'ngx-bootstrap/progressbar';
 
-export { RatingComponent, RatingModule } from 'ngx-bootstrap/rating';
+export {
+  RatingComponent,
+  RatingModule,
+  RatingConfig
+} from 'ngx-bootstrap/rating';
 
 export {
   DraggableItem,
