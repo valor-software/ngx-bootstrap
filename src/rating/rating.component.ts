@@ -101,7 +101,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   }
 
   reset(): void {
-    this.value = this.preValue;
+    this.value = Math.round(this.preValue);
     this.changeDetection.markForCheck();
     this.onLeave.emit(this.value);
   }
