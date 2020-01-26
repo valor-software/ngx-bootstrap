@@ -17,6 +17,7 @@ import {
   TRANSITION_DURATIONS
 } from './modal-options.class';
 import { BsModalRef } from './bs-modal-ref.service';
+import { ModalDialogButton } from './models';
 
 @Injectable()
 export class BsModalService {
@@ -115,7 +116,11 @@ export class BsModalService {
       .provide({ provide: BsModalRef, useValue: bsModalRef })
       .attach(ModalContainerComponent)
       .to('body')
-      .show({content, isAnimated: this.config.animated, initialState: this.config.initialState, bsModalService: this});
+      .show({
+        content, isAnimated: this.config.animated,
+        initialState: this.config.initialState, bsModalService: this
+      });
+
     modalContainerRef.instance.level = this.getModalsCount();
     bsModalRef.hide = () => {
       const duration = this.config.animated ? TRANSITION_DURATIONS.MODAL : 0;
@@ -124,6 +129,12 @@ export class BsModalService {
     bsModalRef.content = modalLoader.getInnerComponent() || null;
     bsModalRef.setClass = (newClass: string) => {
       modalContainerRef.instance.config.class = newClass;
+    };
+    bsModalRef.setButtons = (buttons: ModalDialogButton[]) => {
+      modalContainerRef.instance.config.actionButtons = buttons;
+    };
+    bsModalRef.setHeader = (title: string) => {
+      modalContainerRef.instance.config.header = title;
     };
 
     return bsModalRef;
@@ -193,7 +204,7 @@ export class BsModalService {
     const loader = this.clf.createLoader<ModalContainerComponent>(
       null,
       null,
-      null
+      this._renderer
     );
     this.copyEvent(loader.onBeforeShow, this.onShow);
     this.copyEvent(loader.onShown, this.onShown);

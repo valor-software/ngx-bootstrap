@@ -1,3 +1,5 @@
+export * from './bs-modal.interfaces';
+
 export interface ClassName {
   SCROLLBAR_MEASURER: string;
   BACKDROP: string;

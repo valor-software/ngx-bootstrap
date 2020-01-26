@@ -408,5 +408,31 @@ describe('Modals demo page test suite: Service examples', () => {
       modals.isModalHasChildClass(modalClassLG);
     });
   });
+
+  describe('Auto generate modals', () => {
+    beforeEach(() => modals.scrollToMenu('Component'));
+
+    const componentDemo = modals.exampleDemosArr.autoGenerate;
+    const btnText = 'Create modal with component';
+    const modalBtnClose = 'Cancel';
+
+    it('example contains the button "Create modalComponent with component"', () => {
+      modals.isButtonExist(componentDemo, btnText);
+    });
+
+    it(`when user clicks on the button "Create template modalComponent" then modal is opened
+      "Close" button is present`, () => {
+      modals.clickByText(componentDemo, btnText);
+      modals.isModalVisible(modals.modalContainer, true);
+      modals.isButtonExist(modals.modalFooter, modalBtnClose);
+    });
+
+    it('when user closes modal by clicking on "Close" button', () => {
+      modals.clickByText(componentDemo, btnText);
+      modals.clickByText(modals.modalFooter, modalBtnClose);
+      modals.isModalEnabled(modals.modalContainer, false);
+    });
+  });
+
 });
 

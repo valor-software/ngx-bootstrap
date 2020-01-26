@@ -26,6 +26,7 @@ export class ModalsPo extends BaseComponent {
   exampleDemosArr = {
     serviceTemplate: 'demo-modal-service-static',
     serviceComponent: 'demo-modal-service-component',
+    autoGenerate: 'demo-modal-auto-generate',
     serviceNested: 'demo-modal-service-nested',
     serviceScroll: 'demo-modal-scrolling-long-content',
     serviceEvents: 'demo-modal-service-events',
@@ -67,11 +68,11 @@ export class ModalsPo extends BaseComponent {
 
   isBackdropExist(existInDOM: boolean) {
     cy.get(this.modalBackdrop)
-    .should(existInDOM ? 'to.exist' : 'not.to.exist');
+      .should(existInDOM ? 'to.exist' : 'not.to.exist');
   }
 
   clickOnBackdrop() {
-    cy.get(this.modalBackdrop).click({force: true});
+    cy.get(this.modalBackdrop).click({ force: true });
   }
 
   clickOnModal(baseSelector: string) {

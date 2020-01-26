@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ClassName, DismissReasons, Selector, TransitionDurations } from './models';
+import { ClassName, DismissReasons, Selector, TransitionDurations, ModalDialogButton } from './models';
 
 @Injectable()
 export class ModalOptions {
@@ -34,6 +34,27 @@ export class ModalOptions {
    * Modal data
    */
   initialState?: Object;
+  /**
+   * Shows header
+   */
+  showHeader?: boolean;
+  /**
+   * Shows close button in header
+   */
+  showCloseButton?: boolean;
+  /**
+   * Header Title in modal
+   */
+  header?: string;
+  /**
+   * Buttons to show in footer
+   */
+  actionButtons?: ModalDialogButton[];
+  /**
+   * If true, then it will automatically generate the header and footer
+   * and you can pass action buttons and title dynamically.
+   */
+  complete?: boolean;
 }
 
 
@@ -42,10 +63,13 @@ export const modalConfigDefaults: ModalOptions = {
   keyboard: true,
   focus: true,
   show: false,
+  showHeader: true,
+  showCloseButton: true,
   ignoreBackdropClick: false,
   class: '',
   animated: true,
-  initialState: {}
+  initialState: {},
+  complete: false
 };
 
 export const CLASS_NAME: ClassName = {
