@@ -6,6 +6,7 @@ export class ModalsPo extends BaseComponent {
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/modal';
 
   modalContainer = 'modal-container';
+  modalContainerVisible = 'modal-container.show';
   modalContent = '.modal-content';
   modalDialog = '.modal-dialog';
   modalBody = '.modal-body';
@@ -75,6 +76,18 @@ export class ModalsPo extends BaseComponent {
 
   clickOnModal(baseSelector: string) {
     cy.get(`${baseSelector} .modal`).click();
+  }
+
+  clickOnModalCorner(position: string) {
+    cy.get(this.modalContainer).click(position);
+  }
+
+  startClickOnModalReleaseOnBackdrop(baseSelector: string) {
+    cy.get(`${baseSelector} .modal-content`)
+      .trigger('mousedown')
+      .wait(100)
+      .get(this.modalContainer)
+      .trigger('mouseup');
   }
 
   checkElementsQuantity(elementsSelector: string, expectedQuantity: number) {
