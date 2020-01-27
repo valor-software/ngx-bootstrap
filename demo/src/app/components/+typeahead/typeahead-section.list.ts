@@ -4,13 +4,13 @@ import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo
 import { DemoTypeaheadAdaptivePositionComponent } from './demos/adaptive-position/adaptive-position';
 import { DemoTypeaheadAnimatedComponent } from './demos/animated/animated';
 import { DemoTypeaheadBasicComponent } from './demos/basic/basic';
+import { DemoTypeaheadCancelRequestOnFocusLostComponent } from './demos/cancel-on-focus-lost/cancel-on-focus-lost';
 import { DemoTypeaheadConfigComponent } from './demos/config/config';
 import { DemoTypeaheadContainerComponent } from './demos/container/container';
 import { DemoTypeaheadDelayComponent } from './demos/delay/delay';
 import { DemoTypeaheadDropupComponent } from './demos/dropup/dropup';
 import { DemoTypeaheadFieldComponent } from './demos/field/field';
 import { DemoTypeaheadAsyncComponent } from './demos/async/async';
-import { DemoTypeaheadCancelOnBlurComponent } from './demos/cancel-on-blur/cancel-on-blur';
 import { DemoTypeaheadReactiveFormComponent } from './demos/reactive-form/reactive-form';
 import { DemoTypeaheadFormComponent } from './demos/form/form';
 import { DemoTypeaheadGroupingComponent } from './demos/grouping/grouping';
@@ -91,12 +91,12 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoTypeaheadAsyncComponent
       },
       {
-        title: 'Cancel on blur',
-        anchor: 'cancel-on-blur',
-        description: `<p>Set config property <code>typeaheadCancelOnBlur</code> to <code>true</code> if you want to cancel async request on blur event</p>`,
-        component: require('!!raw-loader!./demos/cancel-on-blur/cancel-on-blur.ts'),
-        html: require('!!raw-loader!./demos/cancel-on-blur/cancel-on-blur.html'),
-        outlet: DemoTypeaheadCancelOnBlurComponent
+        title: 'Cancel on focus lost',
+        anchor: 'cancel-on-focus-lost',
+        description: `<p>Set config property <code>cancelRequestOnFocusLost</code> to <code>true</code> if you want to cancel async request on focus lost event</p>`,
+        component: require('!!raw-loader!./demos/cancel-on-focus-lost/cancel-on-focus-lost.ts'),
+        html: require('!!raw-loader!./demos/cancel-on-focus-lost/cancel-on-focus-lost.html'),
+        outlet: DemoTypeaheadCancelRequestOnFocusLostComponent
       },
       {
         title: 'With delay',

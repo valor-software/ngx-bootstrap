@@ -5,15 +5,15 @@ import { mergeMap, delay } from 'rxjs/operators';
 import { TypeaheadConfig } from 'ngx-bootstrap/typeahead';
 
 export function getTypeaheadConfig(): TypeaheadConfig {
-  return Object.assign(new TypeaheadConfig(), { typeaheadCancelOnBlur: true });
+  return Object.assign(new TypeaheadConfig(), { cancelRequestOnFocusLost: true });
 }
 
 @Component({
-  selector: 'demo-typeahead-cancel-on-blur',
-  templateUrl: './cancel-on-blur.html',
+  selector: 'demo-typeahead-cancel-on-focus-lost',
+  templateUrl: './cancel-on-focus-lost.html',
   providers: [{ provide: TypeaheadConfig, useFactory: getTypeaheadConfig }]
 })
-export class DemoTypeaheadCancelOnBlurComponent {
+export class DemoTypeaheadCancelRequestOnFocusLostComponent {
   asyncSelected: string;
   typeaheadLoading: boolean;
   typeaheadNoResults: boolean;

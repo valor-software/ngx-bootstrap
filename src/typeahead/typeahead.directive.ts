@@ -138,7 +138,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   isActiveItemChanged = false;
   isTypeaheadOptionsListActive = false;
   isFocused = false;
-  typeaheadCancelOnBlur = false;
+  cancelRequestOnFocusLost = false;
 
   // tslint:disable-next-line:no-any
   protected keyUpEventEmitter: EventEmitter<any> = new EventEmitter();
@@ -170,7 +170,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     Object.assign(this,
       {
         typeaheadHideResultsOnBlur: config.hideResultsOnBlur,
-        typeaheadCancelOnBlur: config.typeaheadCancelOnBlur,
+        typeaheadCancelRequestOnFocusLost: config.cancelRequestOnFocusLost,
         typeaheadSelectFirstItem: config.selectFirstItem,
         typeaheadIsFirstItemActive: config.isFirstItemActive,
         typeaheadMinLength: config.minLength,
@@ -497,7 +497,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       return;
     }
 
-    if (!this.isFocused && this.typeaheadCancelOnBlur) {
+    if (!this.isFocused && this.cancelRequestOnFocusLost) {
       return;
     }
 

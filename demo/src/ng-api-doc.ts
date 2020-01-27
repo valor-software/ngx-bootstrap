@@ -3758,10 +3758,10 @@ export const ngdoc: any = {
         "description": "<p>used to hide results on blur</p>\n"
       },
       {
-        "name": "typeaheadCancelOnBlur",
+        "name": "cancelRequestOnFocusLost",
         "defaultValue": "false",
         "type": "boolean",
-        "description": "<p>if true, typeahead will cancel async request on blur</p>\n"
+        "description": "<p>if true, typeahead will cancel async request after focus was lost</p>\n"
       },
       {
         "name": "isAnimated",
