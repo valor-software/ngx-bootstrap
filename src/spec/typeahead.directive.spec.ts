@@ -5,8 +5,9 @@ import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
-import { dispatchMouseEvent, dispatchTouchEvent, dispatchKeyboardEvent } from '@netbasal/spectator';
 import { of } from 'rxjs';
+import { dispatchMouseEvent, dispatchTouchEvent, dispatchKeyboardEvent } from '@netbasal/spectator';
+
 import { TypeaheadMatch, TypeaheadDirective, TypeaheadModule } from '../typeahead';
 
 interface State {
@@ -102,9 +103,8 @@ describe('Directive: Typeahead', () => {
       expect(directive.typeaheadSelectFirstItem).toBeTruthy();
     });
 
-    it('should typeaheadAsync to false, if typeahead is an observable', () => {
+    it('should typeaheadAsync to true, if typeahead is an observable', () => {
       directive.typeahead = of(component.states);
-
       directive.ngOnInit();
 
       expect(directive.typeaheadAsync).toBeTruthy();
@@ -342,6 +342,16 @@ describe('Directive: Typeahead', () => {
             'Alaska'
           )
         );
+      })
+    );
+
+    it('should result in 2 item matches, when "Ala" is entered in async mode', fakeAsync(() => {
+        inputElement.value = 'Ala';
+        dispatchTouchEvent(inputElement, 'input');
+        fixture.detectChanges();
+        tick(100);
+
+        expect(directive.matches.length).toBe(2);
       })
     );
 
