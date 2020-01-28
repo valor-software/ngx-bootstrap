@@ -1026,11 +1026,6 @@ export const ngdoc: any = {
         "description": "<p>Default mode for all date pickers</p>\n"
       },
       {
-        "name": "showPreviousMonth",
-        "type": "boolean",
-        "description": "<p>Shows previous and current month, instead of current and next (daterangepicker only</p>\n"
-      },
-      {
         "name": "rangeInputFormat",
         "defaultValue": "L",
         "type": "string",
@@ -1044,18 +1039,29 @@ export const ngdoc: any = {
       {
         "name": "selectWeek",
         "type": "boolean",
-        "description": "<p>Makes weeks selectable, and mark first available date of the week as selected</p>\n"
+        "description": "<p>Allows select first date of the week by click on week number</p>\n"
       },
       {
         "name": "selectWeekDateRange",
         "type": "boolean",
-        "description": "<p>Makes weeks selectable, and creates a daterange with first and last available dates of the week (dateRangePicker only)</p>\n"
+        "description": "<p>Allows select daterange as first and last day of week by click on week number (dateRangePicker only)</p>\n"
+      },
+      {
+        "name": "showPreviousMonth",
+        "type": "boolean",
+        "description": "<p>Shows previous and current month, instead of current and next (dateRangePicker only)</p>\n"
       },
       {
         "name": "showWeekNumbers",
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>Allows to hide week numbers in datepicker</p>\n"
+      },
+      {
+        "name": "useUtc",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>sets use UTC date time format</p>\n"
       }
     ]
   },
@@ -1267,14 +1273,7 @@ export const ngdoc: any = {
     "className": "BsDaterangepickerConfig",
     "description": "",
     "methods": [],
-    "properties": [
-      {
-        "name": "isAnimated",
-        "defaultValue": "false",
-        "type": "boolean",
-        "description": "<p>turn on/off animation</p>\n"
-      }
-    ]
+    "properties": []
   },
   "BsLocaleService": {
     "fileName": "src/datepicker/bs-locale.service.ts",
@@ -2098,6 +2097,12 @@ export const ngdoc: any = {
         "defaultValue": "false",
         "type": "boolean",
         "description": "<p>default dropdown auto closing behavior</p>\n"
+      },
+      {
+        "name": "isAnimated",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>turn on/off animation</p>\n"
       }
     ]
   },
@@ -2127,6 +2132,11 @@ export const ngdoc: any = {
         "name": "insideClick",
         "type": "boolean",
         "description": "<p>This attribute indicates that the dropdown shouldn&#39;t close on inside click when autoClose is set to true</p>\n"
+      },
+      {
+        "name": "isAnimated",
+        "type": "boolean",
+        "description": "<p>Indicates that dropdown will be animated</p>\n"
       },
       {
         "name": "isDisabled",
@@ -2173,6 +2183,11 @@ export const ngdoc: any = {
         "name": "insideClick",
         "type": "boolean",
         "description": "<p>This attribute indicates that the dropdown shouldn&#39;t close on inside click when autoClose is set to true</p>\n"
+      },
+      {
+        "name": "isAnimated",
+        "type": "boolean",
+        "description": "<p>Indicates that dropdown will be animated</p>\n"
       },
       {
         "name": "isDisabled",
@@ -2273,7 +2288,7 @@ export const ngdoc: any = {
       },
       {
         "name": "checkScrollbar",
-        "description": "<p>AFTER PR MERGE MODAL.COMPONENT WILL BE USING THIS CODE\nScroll bar tricks</p>\n",
+        "description": "<p>Checks if the body is overflowing and sets scrollbar width</p>\n",
         "args": [],
         "returnType": "void"
       }
@@ -2702,6 +2717,12 @@ export const ngdoc: any = {
         "description": "<p>A selector specifying the element the popover should be appended to.</p>\n"
       },
       {
+        "name": "delay",
+        "defaultValue": "0",
+        "type": "number",
+        "description": "<p>delay before showing the tooltip</p>\n"
+      },
+      {
         "name": "placement",
         "defaultValue": "top",
         "type": "string",
@@ -2712,12 +2733,6 @@ export const ngdoc: any = {
         "defaultValue": "click",
         "type": "string",
         "description": "<p>Specifies events that should trigger. Supports a space separated list of\nevent names.</p>\n"
-      },
-      {
-        "name": "delay",
-        "defaultValue": "0",
-        "type": "number",
-        "description": "<p>delay before showing the popover</p>\n"
       }
     ]
   },
@@ -2746,7 +2761,7 @@ export const ngdoc: any = {
       {
         "name": "delay",
         "type": "number",
-        "description": "<p>Delay before showing the popover</p>\n"
+        "description": "<p>Delay before showing the tooltip</p>\n"
       },
       {
         "name": "isOpen",
@@ -2932,7 +2947,7 @@ export const ngdoc: any = {
       },
       {
         "name": "type",
-        "type": "string",
+        "type": "ProgressbarType",
         "description": "<p>provide one of the four supported contextual classes: <code>success</code>, <code>info</code>, <code>warning</code>, <code>danger</code></p>\n"
       },
       {
@@ -3017,8 +3032,28 @@ export const ngdoc: any = {
         "description": "<p>fired when icon selected, $event:number equals to previous rating value</p>\n"
       }
     ],
-    "properties": [],
+    "properties": [
+      {
+        "name": "ariaLabel",
+        "type": "string",
+        "description": "<p>aria label for rating</p>\n"
+      }
+    ],
     "methods": []
+  },
+  "RatingConfig": {
+    "fileName": "src/rating/rating.config.ts",
+    "className": "RatingConfig",
+    "description": "<p>Default values provider for rating</p>\n",
+    "methods": [],
+    "properties": [
+      {
+        "name": "ariaLabel",
+        "defaultValue": "rating",
+        "type": "string",
+        "description": "<p>aria label for rating</p>\n"
+      }
+    ]
   },
   "DraggableItemService": {
     "fileName": "src/sortable/draggable-item.service.ts",
@@ -3216,7 +3251,13 @@ export const ngdoc: any = {
       }
     ],
     "outputs": [],
-    "properties": [],
+    "properties": [
+      {
+        "name": "ariaLabel",
+        "type": "string",
+        "description": "<p>aria label for tab list</p>\n"
+      }
+    ],
     "methods": []
   },
   "TabsetConfig": {
@@ -3225,6 +3266,12 @@ export const ngdoc: any = {
     "description": "",
     "methods": [],
     "properties": [
+      {
+        "name": "ariaLabel",
+        "defaultValue": "Tabs",
+        "type": "string",
+        "description": "<p>aria label for tab list</p>\n"
+      },
       {
         "name": "type",
         "defaultValue": "tabs",
@@ -3271,6 +3318,11 @@ export const ngdoc: any = {
         "description": "<p>if true hours and minutes fields will be disabled</p>\n"
       },
       {
+        "name": "hoursPlaceholder",
+        "type": "string",
+        "description": "<p>placeholder for hours field in timepicker</p>\n"
+      },
+      {
         "name": "hourStep",
         "type": "number",
         "description": "<p>hours change step</p>\n"
@@ -3291,6 +3343,11 @@ export const ngdoc: any = {
         "description": "<p>minimum time user can select</p>\n"
       },
       {
+        "name": "minutesPlaceholder",
+        "type": "string",
+        "description": "<p>placeholder for minutes field in timepicker</p>\n"
+      },
+      {
         "name": "minuteStep",
         "type": "number",
         "description": "<p>hours change step</p>\n"
@@ -3304,6 +3361,11 @@ export const ngdoc: any = {
         "name": "readonlyInput",
         "type": "boolean",
         "description": "<p>if true hours and minutes fields will be readonly</p>\n"
+      },
+      {
+        "name": "secondsPlaceholder",
+        "type": "string",
+        "description": "<p>placeholder for seconds field in timepicker</p>\n"
       },
       {
         "name": "secondsStep",
@@ -3329,21 +3391,6 @@ export const ngdoc: any = {
         "name": "showSpinners",
         "type": "boolean",
         "description": "<p>if true spinner arrows above and below the inputs will be shown</p>\n"
-      },
-      {
-        "name": "hoursPlaceholder",
-        "type": "string",
-        "description": "<p>placeholder for hours field</p>\n"
-      },
-      {
-        "name": "minutesPlacesholder",
-        "type": "string",
-        "description": "<p>placeholder for minutes field</p>\n"
-      },
-      {
-        "name": "secondsPlaceholder",
-        "type": "string",
-        "description": "<p>placeholder for seconds field</p>\n"
       }
     ],
     "outputs": [
@@ -3362,6 +3409,24 @@ export const ngdoc: any = {
     "methods": [],
     "properties": [
       {
+        "name": "ariaLabelHours",
+        "defaultValue": "hours",
+        "type": "string",
+        "description": "<p>hours aria label</p>\n"
+      },
+      {
+        "name": "ariaLabelMinutes",
+        "defaultValue": "minutes",
+        "type": "string",
+        "description": "<p>minutes aria label</p>\n"
+      },
+      {
+        "name": "ariaLabelSeconds",
+        "defaultValue": "seconds",
+        "type": "string",
+        "description": "<p>seconds aria label</p>\n"
+      },
+      {
         "name": "arrowkeys",
         "defaultValue": "true",
         "type": "boolean",
@@ -3372,6 +3437,12 @@ export const ngdoc: any = {
         "defaultValue": "false",
         "type": "boolean",
         "description": "<p>if true hours and minutes fields will be disabled</p>\n"
+      },
+      {
+        "name": "hoursPlaceholder",
+        "defaultValue": "HH",
+        "type": "string",
+        "description": "<p>placeholder for hours field in timepicker</p>\n"
       },
       {
         "name": "hourStep",
@@ -3395,6 +3466,12 @@ export const ngdoc: any = {
         "description": "<p>minimum time user can select</p>\n"
       },
       {
+        "name": "minutesPlaceholder",
+        "defaultValue": "MM",
+        "type": "string",
+        "description": "<p>placeholder for minutes field in timepicker</p>\n"
+      },
+      {
         "name": "minuteStep",
         "defaultValue": "5",
         "type": "number",
@@ -3411,6 +3488,12 @@ export const ngdoc: any = {
         "defaultValue": "false",
         "type": "boolean",
         "description": "<p>if true hours and minutes fields will be readonly</p>\n"
+      },
+      {
+        "name": "secondsPlaceholder",
+        "defaultValue": "SS",
+        "type": "string",
+        "description": "<p>placeholder for seconds field in timepicker</p>\n"
       },
       {
         "name": "secondsStep",
@@ -3441,24 +3524,6 @@ export const ngdoc: any = {
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if true spinner arrows above and below the inputs will be shown</p>\n"
-      },
-      {
-        "name": "hoursPlaceholder",
-        "defaultValue": "HH",
-        "type": "string",
-        "description": "<p>placeholder for hours field</p>\n"
-      },
-      {
-        "name": "minutesPlacesholder",
-        "defaultValue": "MM",
-        "type": "string",
-        "description": "<p>placeholder for minutes field</p>\n"
-      },
-      {
-        "name": "secondsPlaceholder",
-        "defaultValue": "SS",
-        "type": "string",
-        "description": "<p>placeholder for seconds field</p>\n"
       }
     ]
   },
@@ -3783,7 +3848,7 @@ export const ngdoc: any = {
       {
         "name": "typeaheadAsync",
         "type": "boolean",
-        "description": "<p>should be used only in case of typeahead attribute is array.\nIf true - loading of options will be async, otherwise - sync.\ntrue make sense if options array is large.</p>\n"
+        "description": "<p>should be used only in case of typeahead attribute is Observable of array.\nIf true - loading of options will be async, otherwise - sync.\ntrue make sense if options array is large.</p>\n"
       },
       {
         "name": "typeaheadGroupField",

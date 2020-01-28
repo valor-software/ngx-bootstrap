@@ -98,16 +98,13 @@ export class BsDaysCalendarViewComponent  {
       return;
     }
 
-    if (this._config.selectWeek) {
-      if (week.days
-        && week.days[0]
+    if (this._config.selectWeek && week.days[0]
         && !week.days[0].isDisabled
         && this._config.selectFromOtherMonth) {
 
         this.onSelect.emit(week.days[0]);
 
         return;
-      }
     }
 
     const selectedDay = week.days.find((day: DayViewModel) => {
