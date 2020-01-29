@@ -261,7 +261,7 @@ describe('Tooltip demo page test suite', () => {
       tooltip.isTooltipDismiss(hideAfterDelay);
     });
 
-    it('when user move mouse out of the "Tooltip will disappear after 3 seconds", then tooltip-container disappeared', () => {
+    it('when user moves mouse out of the "Tooltip will disappear after 3 seconds", then tooltip-container disappeared', () => {
       cy.viewport(1440, 900);
       tooltip.clickOnDemoMenu('Hide tooltip after delay');
       tooltip.focusOnBtn(hideAfterDelay);

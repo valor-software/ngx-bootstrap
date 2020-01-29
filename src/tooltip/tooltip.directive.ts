@@ -87,11 +87,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
   @Input() delay: number;
 
   /**
-   * Delay before hiding the tooltip
-   */
-  @Input() hideAfterDelay: number;
-
-  /**
    * Emits an event when the tooltip is shown
    */
   /* tslint:disable-next-line:no-any */
@@ -209,7 +204,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
   private _ariaDescribedby: string;
-
+  private hideAfterDelay: number;
   constructor(
     _viewContainerRef: ViewContainerRef,
     cis: ComponentLoaderFactory,

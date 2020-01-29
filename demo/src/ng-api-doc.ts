@@ -2762,12 +2762,7 @@ export const ngdoc: any = {
       {
         "name": "delay",
         "type": "number",
-        "description": "<p>Delay before showing the tooltip</p>\n"
-      },
-      {
-        "name": "hideAfterDelay",
-        "type": "number",
-        "description": "<p>Delay before hiding the popover</p>\n"
+        "description": "<p>Delay before showing the popover</p>\n"
       },
       {
         "name": "isOpen",
@@ -3415,6 +3410,24 @@ export const ngdoc: any = {
     "methods": [],
     "properties": [
       {
+        "name": "ariaLabelHours",
+        "defaultValue": "hours",
+        "type": "string",
+        "description": "<p>hours aria label</p>\n"
+      },
+      {
+        "name": "ariaLabelMinutes",
+        "defaultValue": "minutes",
+        "type": "string",
+        "description": "<p>minutes aria label</p>\n"
+      },
+      {
+        "name": "ariaLabelSeconds",
+        "defaultValue": "seconds",
+        "type": "string",
+        "description": "<p>seconds aria label</p>\n"
+      },
+      {
         "name": "arrowkeys",
         "defaultValue": "true",
         "type": "boolean",
@@ -3580,7 +3593,7 @@ export const ngdoc: any = {
         "name": "hideAfterDelay",
         "defaultValue": "0",
         "type": "number",
-        "description": "<p>Delay before hiding the tooltip</p>\n"
+        "description": "<p>delay before hiding the tooltip</p>\n"
       },
       {
         "name": "placement",
@@ -3622,11 +3635,6 @@ export const ngdoc: any = {
         "name": "delay",
         "type": "number",
         "description": "<p>Delay before showing the tooltip</p>\n"
-      },
-      {
-        "name": "hideAfterDelay",
-        "type": "number",
-        "description": "<p>Delay before hiding the tooltip</p>\n"
       },
       {
         "name": "isDisabled",

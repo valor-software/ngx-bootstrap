@@ -387,17 +387,18 @@ describe('Popover demo page test suite', () => {
       cy.viewport(1440, 900);
       popover.clickOnDemoMenu('Hide popover after delay');
       popover.clickOnBtn(hideAfterDelay);
-      popover.isPopoverAppears(hideAfterDelay);
-      popover.isPopoverDismiss(hideAfterDelay);
+      popover.isPopoverAppears(popover.body);
+      popover.isPopoverDismiss(popover.body);
+
     });
 
     it('when user clicks on "Popover will disappear after 3 seconds" again, then popover-container disappeared', () => {
       cy.viewport(1440, 900);
       popover.clickOnDemoMenu('Hide popover after delay');
       popover.clickOnBtn(hideAfterDelay);
-      popover.isPopoverAppears(hideAfterDelay);
+      popover.isPopoverAppears(popover.body);
       popover.clickOnBtn(hideAfterDelay);
-      popover.isPopoverDismiss(hideAfterDelay);
+      popover.isPopoverDismiss(popover.body);
     });
   });
 });

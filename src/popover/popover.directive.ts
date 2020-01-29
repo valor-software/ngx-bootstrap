@@ -75,11 +75,6 @@ export class PopoverDirective implements OnInit, OnDestroy {
   @Input() delay: number;
 
   /**
-   * Delay before hiding the popover
-   */
-  @Input() hideAfterDelay: number;
-
-  /**
    * Emits an event when the popover is shown
    */
   /* tslint:disable-next-line: no-any */
@@ -93,6 +88,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
   protected _popoverCancelShowFn: Function;
 
   protected _delayTimeoutId: number | any;
+  private hideAfterDelay: number;
 
   private _popover: ComponentLoader<PopoverContainerComponent>;
   private _isInited = false;
