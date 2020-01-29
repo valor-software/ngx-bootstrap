@@ -2,13 +2,14 @@ import { DemoRatingBasicComponent } from './demos/basic/basic';
 import { DemoRatingCustomComponent } from './demos/custom/custom';
 import { DemoRatingDynamicComponent } from './demos/dynamic/dynamic';
 import { DemoRatingSelectOnEnterComponent } from './demos/select-on-enter/select-on-enter';
+import { DemoRatingConfigComponent } from './demos/config/config';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
 import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
 import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
 
-import { NgApiDocComponent } from '../../docs/api-docs';
+import { NgApiDocComponent, NgApiDocConfigComponent } from '../../docs/api-docs';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -53,6 +54,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/select-on-enter/select-on-enter'),
         html: require('!!raw-loader!./demos/select-on-enter/select-on-enter.html'),
         outlet: DemoRatingSelectOnEnterComponent
+      },
+      {
+        title: 'Configuring defaults',
+        anchor: 'demo-rating-config',
+        component: require('!!raw-loader!./demos/config/config'),
+        html: require('!!raw-loader!./demos/config/config.html'),
+        outlet: DemoRatingConfigComponent
       }
     ]
   },
@@ -65,6 +73,11 @@ export const demoComponentContent: ContentSection[] = [
         title: 'RatingComponent',
         anchor: 'rating-component',
         outlet: NgApiDocComponent
+      },
+      {
+        title: 'RatingConfig',
+        anchor: 'rating-config',
+        outlet: NgApiDocConfigComponent
       }
     ]
   }
