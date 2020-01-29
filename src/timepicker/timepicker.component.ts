@@ -145,6 +145,11 @@ export class TimepickerComponent
   invalidMinutes = false;
   invalidSeconds = false;
 
+  // aria-label variables
+  labelHours: string;
+  labelMinutes: string;
+  labelSeconds: string;
+
   // time picker controls state
   canIncrementHours: boolean;
   canIncrementMinutes: boolean;

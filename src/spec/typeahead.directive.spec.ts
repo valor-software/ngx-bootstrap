@@ -346,8 +346,6 @@ describe('Directive: Typeahead', () => {
     );
 
     it('should result in 2 item matches, when "Ala" is entered in async mode', fakeAsync(() => {
-        directive.typeahead = of(component.states);
-        directive.ngOnInit();
         inputElement.value = 'Ala';
         dispatchTouchEvent(inputElement, 'input');
         fixture.detectChanges();
