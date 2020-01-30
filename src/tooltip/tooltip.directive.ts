@@ -3,7 +3,6 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  HostBinding,
   Input,
   OnDestroy,
   OnInit,
@@ -195,16 +194,17 @@ export class TooltipDirective implements OnInit, OnDestroy {
     this.triggers = (value || '').toString();
   }
 
-  @HostBinding('attr.aria-describedby') ariaDescribedby = `tooltip-${this.tooltipId}`;
-
   /** @deprecated */
   @Output()
   tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   /* tslint:disable-next-line:no-any */
   protected _delayTimeoutId: number | any;
   protected _tooltipCancelShowFn: Function;
 
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
+  private _ariaDescribedby: string;
+
   constructor(
     _viewContainerRef: ViewContainerRef,
     cis: ComponentLoaderFactory,
@@ -238,6 +238,24 @@ export class TooltipDirective implements OnInit, OnDestroy {
         this._tooltip.hide();
       }
     });
+
+    this.onShown.subscribe(() => {
+      this.setAriaDescribedBy();
+    });
+
+    this.onHidden.subscribe(() => {
+      this.setAriaDescribedBy();
+    });
+  }
+
+  setAriaDescribedBy(): void {
+    this._ariaDescribedby = this.isOpen ? `tooltip-${this.tooltipId}` : null;
+
+    if (this._ariaDescribedby) {
+      this._renderer.setAttribute(this._elementRef.nativeElement, 'aria-describedby', this._ariaDescribedby);
+    } else {
+      this._renderer.removeAttribute(this._elementRef.nativeElement, 'aria-describedby');
+    }
   }
 
   /**
@@ -290,7 +308,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
           content: this.tooltip,
           placement: this.placement,
           containerClass: this.containerClass,
-          id: this.ariaDescribedby
+          id: `tooltip-${this.tooltipId}`
         });
     };
     const cancelDelayedTooltipShowing = () => {
@@ -346,5 +364,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this._tooltip.dispose();
     this.tooltipChange.unsubscribe();
+    this.onShown.unsubscribe();
+    this.onHidden.unsubscribe();
   }
 }

@@ -28,7 +28,7 @@ import { Subscription } from 'rxjs';
     class: 'dropdown open bottom',
     '[class.dropdown-menu]': 'isBs4',
     '[style.height]': `isBs4 && needScrollbar ? guiHeight: 'auto'`,
-    '[style.visibility]': 'hidden',
+    '[style.visibility]': `'inherit'`,
     '[class.dropup]': 'dropup',
     style: 'position: absolute;display: block;'
   },
