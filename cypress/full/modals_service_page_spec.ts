@@ -133,8 +133,8 @@ describe('Modals demo page test suite: Service examples', () => {
     "onHide event has been fired" and "onHidden event has been fired"`, () => {
         modals.clickByText(eventsDemo, btnText);
         modals.isModalVisible(modals.modalContainer, true);
-        modals.clickOnBackdrop();
-        modals.clickOutside('modal-container');
+        modals.clickOnModalCorner('topLeft');
+        modals.clickOutside(modals.modalContainer);
         modals.isDemoContainsTxt(eventsDemo, demoOnHideFired);
         modals.isDemoContainsTxt(eventsDemo, demoHideDismissed);
         modals.isDemoContainsTxt(eventsDemo, demoHiddenDismissed);
