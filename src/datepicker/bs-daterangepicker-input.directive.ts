@@ -122,6 +122,7 @@ export class BsDaterangepickerInputDirective
     /* tslint:disable-next-line: no-any*/
     this.writeValue((event.target as any).value);
     this._onChange(this._value);
+    this._renderer.selectRootElement(this._elRef.nativeElement).focus();
     this._onTouched();
   }
 
@@ -232,5 +233,6 @@ export class BsDaterangepickerInputDirective
   hide() {
     this._picker.hide();
     this._renderer.selectRootElement(this._elRef.nativeElement).blur();
+    this._renderer.selectRootElement(this._elRef.nativeElement).focus();
   }
 }
