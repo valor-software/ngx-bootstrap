@@ -109,6 +109,12 @@ export class BsModalService {
   // tslint:disable-next-line:no-any
   _showModal(content: any): BsModalRef {
     const modalLoader = this.loaders[this.loaders.length - 1];
+    if (this.config && this.config.providers) {
+      for (const provider of this.config.providers) {
+        modalLoader.provide(provider);
+      }
+    }
+
     const bsModalRef = new BsModalRef();
     const modalContainerRef = modalLoader
       .provide({ provide: ModalOptions, useValue: this.config })
