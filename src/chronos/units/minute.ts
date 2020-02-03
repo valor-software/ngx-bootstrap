@@ -7,23 +7,28 @@ import { addUnitPriority } from './priorities';
 import { addUnitAlias } from './aliases';
 import { DateFormatterOptions } from '../types';
 
+
+export function initMinute() {
 // FORMATTING
 
-addFormatToken('m', ['mm', 2, false], null,
-  function (date: Date, opts: DateFormatterOptions): string {
-    return getMinutes(date, opts.isUTC).toString(10);
-  });
+  addFormatToken('m', ['mm', 2, false], null,
+    function(date: Date, opts: DateFormatterOptions): string {
+      return getMinutes(date, opts.isUTC)
+        .toString(10);
+    }
+  );
 
 // ALIASES
 
-addUnitAlias('minute', 'm');
+  addUnitAlias('minute', 'm');
 
 // PRIORITY
 
-addUnitPriority('minute', 14);
+  addUnitPriority('minute', 14);
 
 // PARSING
 
-addRegexToken('m', match1to2);
-addRegexToken('mm', match1to2, match2);
-addParseToken(['m', 'mm'], MINUTE);
+  addRegexToken('m', match1to2);
+  addRegexToken('mm', match1to2, match2);
+  addParseToken(['m', 'mm'], MINUTE);
+}

@@ -228,6 +228,9 @@ describe('locale: pl', () => {
         case 3:
           return '[W środę o] LT';
 
+        case 5:
+          return '[W piątek o] LT';
+
         case 6:
           return '[W sobotę o] LT';
 
@@ -257,6 +260,10 @@ describe('locale: pl', () => {
           return '[W zeszłą niedzielę o] LT';
         case 3:
           return '[W zeszłą środę o] LT';
+        case 4:
+          return '[W zeszłą czwartek o] LT';
+        case 5:
+          return '[W zeszłą piątek o] LT';
         case 6:
           return '[W zeszłą sobotę o] LT';
         default:

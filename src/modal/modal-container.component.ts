@@ -13,7 +13,7 @@ import {
   TRANSITION_DURATIONS
 } from './modal-options.class';
 import { BsModalService } from './bs-modal.service';
-import { isBs3 } from '../utils/theme-provider';
+import { isBs3 } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'modal-container',
@@ -38,6 +38,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   isAnimated: boolean;
   bsModalService: BsModalService;
   private isModalHiding = false;
+  private clickStartedInContent = false;
 
   constructor(options: ModalOptions,
               protected _element: ElementRef,
@@ -76,13 +77,21 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     }
   }
 
-  @HostListener('click', ['$event'])
-  onClick(event: any): void {
+  @HostListener('mousedown', ['$event'])
+  onClickStarted(event: MouseEvent): void {
+    this.clickStartedInContent = event.target !== this._element.nativeElement;
+  }
+
+  @HostListener('mouseup', ['$event'])
+  onClickStop(event: MouseEvent): void {
+    const clickedInBackdrop = event.target === this._element.nativeElement && !this.clickStartedInContent;
     if (
       this.config.ignoreBackdropClick ||
       this.config.backdrop === 'static' ||
-      event.target !== this._element.nativeElement
+      !clickedInBackdrop
     ) {
+      this.clickStartedInContent = false;
+
       return;
     }
     this.bsModalService.setDismissReason(DISMISS_REASONS.BACKRDOP);
@@ -90,12 +99,13 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('window:keydown.esc', ['$event'])
-  onEsc(event: any): void {
+  onEsc(event: KeyboardEvent): void {
     if (!this.isShown) {
       return;
     }
 
-    if (event.keyCode === 27) {
+    // tslint:disable-next-line:deprecation
+    if (event.keyCode === 27 || event.key === 'Escape') {
       event.preventDefault();
     }
 

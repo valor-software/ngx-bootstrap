@@ -5,27 +5,10 @@
     "module": "es2015",
     "types": [
       "webpack"
-    ],
-
-//    "declaration": false,
-//    "emitDecoratorMetadata": true,
-//    "experimentalDecorators": true,
-//    "noEmitHelpers" :true,
-//    "lib": ["es6", "dom"],
-//    "mapRoot": "./",
-//
-//    "moduleResolution": "node",
-//    "sourceMap": true,
-//    "target": "es5",
-//    "typeRoots": [
-//      "../node_modules/@types"
-//    ]
+    ]
   },
   "exclude": [
     "src/test.ts",
     "**/*.spec.ts"
-  ],
-  "angularCompilerOptions": {
-    "preserveWhitespaces": true
-  }
+  ]
 }

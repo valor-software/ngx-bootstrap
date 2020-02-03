@@ -56,7 +56,7 @@ export class NgApiDocComponent {
    * Returns the default value of the given directive input by first looking for it in the matching config service
    * property. If there is no matching config property, it reads it from the input.
    */
-  defaultInputValue(input: InputDesc): string {
+  defaultInputValue(input: InputDesc): string | undefined {
     const configProperty = this.configProperties[input.name];
 
     return configProperty ? configProperty.defaultValue : input.defaultValue;

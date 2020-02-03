@@ -1,28 +1,47 @@
-import { ChangeDetectorRef, Directive, ElementRef, forwardRef, Host, Renderer2 } from '@angular/core';
 import {
-  AbstractControl, ControlValueAccessor, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors,
+  ChangeDetectorRef,
+  Directive,
+  ElementRef,
+  forwardRef,
+  Host,
+  Provider,
+  Renderer2
+} from '@angular/core';
+
+import {
+  AbstractControl,
+  ControlValueAccessor,
+  NG_VALIDATORS,
+  NG_VALUE_ACCESSOR,
+  ValidationErrors,
   Validator
 } from '@angular/forms';
-import { parseDate } from '../chronos/create/local';
-import { formatDate } from '../chronos/format';
-import { getLocale } from '../chronos/locale/locales';
-import { isAfter, isBefore } from '../chronos/utils/date-compare';
-import { isArray, isDateValid } from '../chronos/utils/type-checks';
-import { BsDatepickerConfig } from './bs-datepicker.config';
+
+import {
+  parseDate,
+  formatDate,
+  getLocale,
+  isAfter,
+  isBefore,
+  isArray,
+  isDateValid,
+  utcAsLocal
+} from 'ngx-bootstrap/chronos';
+
 import { BsDaterangepickerDirective } from './bs-daterangepicker.component';
 import { BsLocaleService } from './bs-locale.service';
 import { distinctUntilChanged } from 'rxjs/operators';
 
-const BS_DATERANGEPICKER_VALUE_ACCESSOR = {
+const BS_DATERANGEPICKER_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-  // tslint:disable-next-line
+  /* tslint:disable-next-line: no-use-before-declare */
   useExisting: forwardRef(() => BsDaterangepickerInputDirective),
   multi: true
 };
 
-
-const BS_DATERANGEPICKER_VALIDATOR = {
+const BS_DATERANGEPICKER_VALIDATOR: Provider = {
   provide: NG_VALIDATORS,
+  /* tslint:disable-next-line: no-use-before-declare */
   useExisting: forwardRef(() => BsDaterangepickerInputDirective),
   multi: true
 };
@@ -41,6 +60,7 @@ export class BsDaterangepickerInputDirective
   implements ControlValueAccessor, Validator {
   private _onChange = Function.prototype;
   private _onTouched = Function.prototype;
+  /* tslint:disable-next-line: no-unused-variable */
   private _validatorChange = Function.prototype;
   private _value: Date[];
 
@@ -51,10 +71,24 @@ export class BsDaterangepickerInputDirective
               private changeDetection: ChangeDetectorRef) {
     // update input value on datepicker value update
     this._picker.bsValueChange.subscribe((value: Date[]) => {
-      this._setInputValue(value);
-      if (this._value !== value) {
-        this._value = value;
-        this._onChange(value);
+
+      let preValue = value;
+
+      if (value) {
+        const _localeKey = this._localeService.currentLocale;
+        const _locale = getLocale(_localeKey);
+        if (!_locale) {
+          throw new Error(
+            `Locale "${_localeKey}" is not defined, please add it with "defineLocale(...)"`
+          );
+        }
+        preValue = value.map(v => _locale.preinput(v));
+      }
+
+      this._setInputValue(preValue);
+      if (this._value !== preValue) {
+        this._value = preValue;
+        this._onChange(preValue);
         this._onTouched();
       }
       this.changeDetection.markForCheck();
@@ -74,12 +108,12 @@ export class BsDaterangepickerInputDirective
   _setInputValue(date: Date[]): void {
     let range = '';
     if (date) {
-      const start = !date[0] ? ''
+      const start: string = !date[0] ? ''
         : formatDate(date[0],
           this._picker._config.rangeInputFormat,
           this._localeService.currentLocale
         );
-      const end = !date[1] ? ''
+      const end: string = !date[1] ? ''
         : formatDate(
           date[1],
           this._picker._config.rangeInputFormat,
@@ -90,32 +124,48 @@ export class BsDaterangepickerInputDirective
     this._renderer.setProperty(this._elRef.nativeElement, 'value', range);
   }
 
-  onChange(event: any) {
-    this.writeValue(event.target.value);
+  onChange(event: Event) {
+    /* tslint:disable-next-line: no-any*/
+    this.writeValue((event.target as any).value);
     this._onChange(this._value);
     this._onTouched();
   }
 
   validate(c: AbstractControl): ValidationErrors | null {
     const _value: [Date, Date] = c.value;
+    const errors: object[] = [];
 
     if (_value === null || _value === undefined || !isArray(_value)) {
       return null;
     }
 
+    // @ts-ignore
+    _value.sort((a, b) => a - b);
 
-    const _isDateValid = isDateValid(_value[0]) && isDateValid(_value[0]);
+    const _isFirstDateValid = isDateValid(_value[0]);
+    const _isSecondDateValid = isDateValid(_value[1]);
 
-    if (!_isDateValid) {
-      return { bsDate: { invalid: _value } };
+    if (!_isFirstDateValid) {
+      return { bsDate: { invalid: _value[0] } };
+    }
+
+    if (!_isSecondDateValid) {
+      return { bsDate: { invalid: _value[1] } };
     }
 
     if (this._picker && this._picker.minDate && isBefore(_value[0], this._picker.minDate, 'date')) {
-      return { bsDate: { minDate: this._picker.minDate } };
+      _value[0] = this._picker.minDate;
+      errors.push({ bsDate: { minDate: this._picker.minDate } });
     }
 
     if (this._picker && this._picker.maxDate && isAfter(_value[1], this._picker.maxDate, 'date')) {
-      return { bsDate: { maxDate: this._picker.maxDate } };
+      _value[1] = this._picker.maxDate;
+      errors.push({ bsDate: { maxDate: this._picker.maxDate } });
+    }
+    if (errors.length > 0) {
+      this.writeValue(_value);
+
+      return errors;
     }
   }
 
@@ -144,10 +194,17 @@ export class BsDaterangepickerInputDirective
         _input = value;
       }
 
-
       this._value = (_input as string[])
-        .map((_val: string): Date =>
-          parseDate(_val, this._picker._config.rangeInputFormat, this._localeService.currentLocale))
+        .map((_val: string): Date => {
+            if (this._picker._config.useUtc) {
+              return utcAsLocal(
+                parseDate(_val, this._picker._config.rangeInputFormat, this._localeService.currentLocale)
+              );
+            }
+
+            return parseDate(_val, this._picker._config.rangeInputFormat, this._localeService.currentLocale);
+          }
+        )
         .map((date: Date) => (isNaN(date.valueOf()) ? null : date));
     }
 
@@ -164,11 +221,13 @@ export class BsDaterangepickerInputDirective
     this._renderer.removeAttribute(this._elRef.nativeElement, 'disabled');
   }
 
-  registerOnChange(fn: (value: any) => any): void {
+  /* tslint:disable-next-line: no-any*/
+  registerOnChange(fn: () => void): void {
     this._onChange = fn;
   }
 
-  registerOnTouched(fn: () => any): void {
+  /* tslint:disable-next-line: no-any*/
+  registerOnTouched(fn: () => void): void {
     this._onTouched = fn;
   }
 
@@ -178,5 +237,6 @@ export class BsDaterangepickerInputDirective
 
   hide() {
     this._picker.hide();
+    this._renderer.selectRootElement(this._elRef.nativeElement).blur();
   }
 }

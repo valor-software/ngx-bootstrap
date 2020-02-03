@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
-import { RatingComponent } from '../rating/rating.component';
-import { RatingModule } from '../rating/rating.module';
+import { RatingComponent, RatingConfig, RatingModule } from '../rating';
 
 @Component({
   selector: 'rating-test',
@@ -14,16 +13,23 @@ class TestRatingComponent {
   rate = 0;
   isReadonly = false;
   titles: string[] = ['one', 'two', 'three', 'four', 'five'];
+
+  constructor(config: RatingConfig) {
+    Object.assign(this, config);
+  }
 }
 
 describe('Component: Rating. Init:', () => {
   let fixture: ComponentFixture<RatingComponent>;
+  /* tslint:disable-next-line: no-any no-unused-variable */
   let context: any;
+  /* tslint:disable-next-line: no-any */
   let element: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RatingComponent]
+      declarations: [RatingComponent],
+      providers: [RatingConfig]
     });
     fixture = TestBed.createComponent(RatingComponent);
     context = fixture.debugElement.componentInstance;
@@ -44,7 +50,12 @@ describe('Component: Rating. Init:', () => {
 
     expect(icons[0].classList).not.toContain('active');
     expect(icons[4].classList).not.toContain('active');
-    expect(icons[4].getAttribute('title')).toEqual('five');
+    expect(icons[4].getAttribute('title')).toEqual('5');
+
+    const container = element.querySelector('[role="slider"]');
+    const ariaAttribute = container.getAttribute('aria-label');
+
+    expect(ariaAttribute).toEqual('rating');
   });
 
   it('checking of working with changed values', () => {
@@ -70,7 +81,9 @@ describe('Component: Rating. Init:', () => {
 
 describe('Component: Rating. Custom template:', () => {
   let fixture: ComponentFixture<TestRatingComponent>;
+  /* tslint:disable-next-line: no-any no-unused-variable */
   let context: any;
+  /* tslint:disable-next-line: no-any */
   let element: any;
 
   beforeEach(
@@ -106,7 +119,9 @@ describe('Component: Rating. Clicks:', () => {
         [titles]="titles"></rating>
     `;
   let fixture: ComponentFixture<TestRatingComponent>;
+  /* tslint:disable-next-line: no-any */
   let context: any;
+  /* tslint:disable-next-line: no-any */
   let element: any;
 
   beforeEach(

@@ -2,11 +2,12 @@ import {
   ComponentRef,
   Injectable,
   TemplateRef,
-  EventEmitter, Renderer2, RendererFactory2
+  EventEmitter,
+  Renderer2,
+  RendererFactory2
 } from '@angular/core';
 
-import { ComponentLoader } from '../component-loader/component-loader.class';
-import { ComponentLoaderFactory } from '../component-loader/component-loader.factory';
+import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { ModalBackdropComponent } from './modal-backdrop.component';
 import { ModalContainerComponent } from './modal-container.component';
 import {
@@ -22,9 +23,13 @@ export class BsModalService {
   // constructor props
   config: ModalOptions = modalConfigDefaults;
 
+  // tslint:disable-next-line:no-any
   onShow: EventEmitter<any> = new EventEmitter();
+  // tslint:disable-next-line:no-any
   onShown: EventEmitter<any> = new EventEmitter();
+  // tslint:disable-next-line:no-any
   onHide: EventEmitter<any> = new EventEmitter();
+  // tslint:disable-next-line:no-any
   onHidden: EventEmitter<any> = new EventEmitter();
 
   protected isBodyOverflowing = false;
@@ -51,6 +56,7 @@ export class BsModalService {
   }
 
   /** Shows a modal */
+  // tslint:disable-next-line:no-any
   show(content: string | TemplateRef<any> | any, config?: ModalOptions): BsModalRef {
     this.modalsCount++;
     this._createLoaders();
@@ -100,9 +106,15 @@ export class BsModalService {
     const duration = this.config.animated ? TRANSITION_DURATIONS.BACKDROP : 0;
     setTimeout(() => this.removeBackdrop(), duration);
   }
-
+  // tslint:disable-next-line:no-any
   _showModal(content: any): BsModalRef {
     const modalLoader = this.loaders[this.loaders.length - 1];
+    if (this.config && this.config.providers) {
+      for (const provider of this.config.providers) {
+        modalLoader.provide(provider);
+      }
+    }
+
     const bsModalRef = new BsModalRef();
     const modalContainerRef = modalLoader
       .provide({ provide: ModalOptions, useValue: this.config })
@@ -112,9 +124,13 @@ export class BsModalService {
       .show({content, isAnimated: this.config.animated, initialState: this.config.initialState, bsModalService: this});
     modalContainerRef.instance.level = this.getModalsCount();
     bsModalRef.hide = () => {
-      modalContainerRef.instance.hide();
+      const duration = this.config.animated ? TRANSITION_DURATIONS.MODAL : 0;
+      setTimeout(() => modalContainerRef.instance.hide(), duration);
     };
     bsModalRef.content = modalLoader.getInnerComponent() || null;
+    bsModalRef.setClass = (newClass: string) => {
+      modalContainerRef.instance.config.class = newClass;
+    };
 
     return bsModalRef;
   }
@@ -139,8 +155,7 @@ export class BsModalService {
     this.backdropRef = null;
   }
 
-  /** AFTER PR MERGE MODAL.COMPONENT WILL BE USING THIS CODE */
-  /** Scroll bar tricks */
+  /** Checks if the body is overflowing and sets scrollbar width */
   /** @internal */
   checkScrollbar(): void {
     this.isBodyOverflowing = document.body.clientWidth < window.innerWidth;
@@ -202,6 +217,7 @@ export class BsModalService {
     );
   }
 
+  // tslint:disable-next-line:no-any
   private copyEvent(from: EventEmitter<any>, to: EventEmitter<any>) {
     from.subscribe(() => {
       to.emit(this.lastDismissReason);

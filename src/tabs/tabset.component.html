@@ -1,7 +1,12 @@
-<ul class="nav" [ngClass]="classMap" (click)="$event.preventDefault()">
-  <li *ngFor="let tabz of tabs" [ngClass]="['nav-item', tabz.customClass || '']"
-      [class.active]="tabz.active" [class.disabled]="tabz.disabled">
-    <a href="javascript:void(0);" class="nav-link"
+<ul class="nav" [ngClass]="classMap"
+    (click)="$event.preventDefault()"
+    [attr.aria-label]="ariaLabel"
+    role="tablist">
+  <li *ngFor="let tabz of tabs; let i = index" [ngClass]="['nav-item', tabz.customClass || '']"
+      [class.active]="tabz.active" [class.disabled]="tabz.disabled" (keydown)="keyNavActions($event, i)">
+    <a href="javascript:void(0);" class="nav-link" role="tab"
+       [attr.aria-controls]="tabz.id ? tabz.id : ''"
+       [attr.aria-selected]="!!tabz.active"
        [attr.id]="tabz.id ? tabz.id + '-link' : ''"
        [class.active]="tabz.active" [class.disabled]="tabz.disabled"
        (click)="tabz.active = true">

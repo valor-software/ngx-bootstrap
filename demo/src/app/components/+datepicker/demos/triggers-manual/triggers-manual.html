@@ -3,8 +3,23 @@
     <input type="text" class="form-control" #dp="bsDatepicker" bsDatepicker [outsideClick]="false">
   </div>
   <div class="col-xs-12 col-12 col-sm-8 form-group">
-    <input class="btn btn-success" type="button" (click)="dp.show()" value="Open">
-    <input class="btn btn-success" type="button" (click)="dp.hide()" value="Close">
-    <input class="btn btn-success" type="button" (click)="dp.toggle()" [attr.aria-expanded]="dp.isOpen" value="Toggle">
+    <button class="btn btn-success"
+            (click)="dp.show()"
+            type="button">
+      Open
+    </button>
+
+    <button class="btn btn-success"
+            (click)="dp.hide()"
+            type="button">
+      Close
+    </button>
+
+    <button class="btn btn-success"
+            (click)="dp.toggle()"
+            [attr.aria-expanded]="dp.isOpen"
+            type="button">
+      Toggle
+    </button>
   </div>
 </div>
