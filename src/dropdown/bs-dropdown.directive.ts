@@ -330,8 +330,13 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   @HostListener('keydown.arrowUp', ['$event'])
   navigationClick(event: any): void {
     const ref = this._elementRef.nativeElement.querySelector('.dropdown-menu');
+
+    if (!ref) {
+      return;
+    }
+
+    const firstActive = this._elementRef.nativeElement.ownerDocument.activeElement;
     const allRef = ref.querySelectorAll('.dropdown-item');
-    const firtsActive = this._elementRef.nativeElement.ownerDocument.activeElement;
     switch (event.keyCode) {
       case 38:
         if (this._state.counts > 0) {
@@ -340,7 +345,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         break;
       case 40:
         if (this._state.counts + 1 < allRef.length) {
-          if (firtsActive.classList !== allRef[this._state.counts].classList) {
+          if (firstActive.classList !== allRef[this._state.counts].classList) {
             allRef[this._state.counts].focus();
           } else {
             allRef[++this._state.counts].focus();
