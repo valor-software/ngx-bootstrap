@@ -41,6 +41,7 @@ import {
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
 import { DemoDateRangePickerShowPreviousMonth } from './demos/daterangepicker-show-previous-month/show-previous-month';
+import { DemoDatePickerSelectWeekRangeComponent } from './demos/select-week-range/select-week-range';
 
 
 export const demoComponentContent: ContentSection[] = [
@@ -312,6 +313,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/select-week/select-week.html'),
         description: `<p>You can enable ability to select a week number (first day of the week will be selected) via <code>selectWeek</code> option in <code>bsConfig</code></p>`,
         outlet: DemoDatePickerSelectWeekComponent
+      },
+      {
+        title: 'Select week range',
+        anchor: 'select-week-range',
+        component: require('!!raw-loader!./demos/select-week-range/select-week-range.ts'),
+        html: require('!!raw-loader!./demos/select-week-range/select-week-range.html'),
+        description: `<p>You can enable ability to select a week number (range with first weekday - last weekday will be selected) via <code>selectWeekRange</code> option in <code>bsConfig</code></p>`,
+        outlet: DemoDatePickerSelectWeekRangeComponent
       },
       {
         title: 'Outside click',

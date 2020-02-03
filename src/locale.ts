@@ -36,6 +36,7 @@ export {
   slLocale,
   svLocale,
   thLocale,
+  thBeLocale,
   trLocale,
   ukLocale,
   viLocale,

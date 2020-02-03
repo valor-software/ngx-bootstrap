@@ -17,7 +17,7 @@ import { AnimationBuilder, AnimationFactory } from '@angular/animations';
   selector: 'bs-dropdown-container',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    style: 'display:block;position: absolute;'
+    style: 'display:block;position: absolute;z-index: 1040'
   },
   template: `
     <div [class.dropup]="direction === 'up'"
