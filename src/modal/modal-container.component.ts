@@ -18,7 +18,9 @@ import { isBs3 } from 'ngx-bootstrap/utils';
 @Component({
   selector: 'modal-container',
   template: `
-    <div [class]="'modal-dialog' + (config.class ? ' ' + config.class : '')" role="document">
+    <div [class]="'modal-dialog' + (config.class ? ' ' + config.class : '')"
+         role="document"
+         focusTrap>
       <div class="modal-content">
         <ng-content></ng-content>
       </div>

@@ -18,6 +18,7 @@ import { TabsModule } from './tabs/tabs.module';
 import { TimepickerModule } from './timepicker/timepicker.module';
 import { TooltipModule } from './tooltip/tooltip.module';
 import { TypeaheadModule } from './typeahead/typeahead.module';
+import { FocusTrapModule } from './focus-trap/focus-trap.module';
 
 export { listLocales } from './chronos/locale/locales';
 export { setTheme } from './utils/theme-provider';
@@ -192,6 +193,12 @@ export {
   MiniState,
   MiniStore
 } from './mini-ngrx/index';
+
+export {
+  FocusTrapDirective,
+  FocusTrap,
+  FocusTrapModule
+} from './focus-trap/index';
 
 export {
   defineLocale,
