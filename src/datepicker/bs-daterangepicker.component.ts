@@ -240,8 +240,9 @@ export class BsDaterangepickerDirective
       sub.unsubscribe();
     }
 
-    this._renderer.selectRootElement(this._elementRef.nativeElement).focus();
-  }
+    if (this._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elementRef.nativeElement).focus();
+    }    }
 
   /**
    * Toggles an element’s datepicker. This is considered a “manual” triggering

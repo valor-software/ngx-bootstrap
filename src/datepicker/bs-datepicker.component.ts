@@ -220,7 +220,9 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
       sub.unsubscribe();
     }
 
-    this._renderer.selectRootElement(this._elementRef.nativeElement).focus();
+    if (this._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elementRef.nativeElement).focus();
+    }
   }
 
   /**
