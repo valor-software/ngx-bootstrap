@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-xs-12 col-12 col-sm-6 col-md-5 form-group">
+    <input
+      class="form-control"
+      placeholder="Daterangepicker with select week"
+      bsDaterangepicker
+      [bsConfig]="{ selectWeekDateRange: true}">
+  </div>
+</div>
+
+<p>Also works with <code>selectFromOtherMonth</code> option, which allows to select weeks which started on previous
+  month</p>
+
+<div class="row">
+  <div class="col-xs-12 col-12 col-sm-6 col-md-5 form-group">
+    <input
+      class="form-control"
+      placeholder="Daterangepicker"
+      bsDaterangepicker
+      [bsConfig]="{ selectWeekDateRange: true, selectFromOtherMonth: true }">
+  </div>
+</div>
+
+
+<p>If first day of the week is disabled, the next one will be selected.</p>
+
+<div class="row">
+  <div class="col-xs-12 col-12 col-sm-6 col-md-5 form-group">
+    <input
+      class="form-control"
+      placeholder="First day of each week in January is disabled"
+      bsDaterangepicker [datesDisabled]="disabledFirstWeekDays"
+      [bsConfig]="{ selectWeekDateRange: true }">
+  </div>
+</div>
+
+
+<p>If all days in week are disabled, you can't select this week</p>
+
+<div class="row">
+  <div class="col-xs-12 col-12 col-sm-6 col-md-5 form-group">
+    <input
+      class="form-control"
+      placeholder="All days disabled (1st week of February)"
+      bsDaterangepicker [datesDisabled]="disabledWeekDays"
+      [bsConfig]="{ selectWeekDateRange: true }">
+  </div>
+</div>

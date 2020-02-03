@@ -111,6 +111,9 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   }
 
   daySelectHandler(day: DayViewModel): void {
+    if (!day) {
+      return;
+    }
     const isDisabled = this.isOtherMonthsActive ? day.isDisabled : (day.isOtherMonth || day.isDisabled);
 
     if (isDisabled) {
