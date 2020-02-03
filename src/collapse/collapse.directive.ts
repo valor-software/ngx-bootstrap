@@ -136,6 +136,7 @@ export class CollapseDirective implements AfterViewChecked {
       this._isAnimationDone = true;
       this.collapsed.emit(this);
       this._renderer.setStyle(this._el.nativeElement, 'display', 'none');
+      this._renderer.removeStyle(this._el.nativeElement, 'overflow');
     });
   }
   /** allows to manually show collapsed content */
