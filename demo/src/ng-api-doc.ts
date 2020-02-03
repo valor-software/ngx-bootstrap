@@ -1042,6 +1042,11 @@ export const ngdoc: any = {
         "description": "<p>Allows select first date of the week by click on week number</p>\n"
       },
       {
+        "name": "selectWeekDateRange",
+        "type": "boolean",
+        "description": "<p>Allows select daterange as first and last day of week by click on week number (dateRangePicker only)</p>\n"
+      },
+      {
         "name": "showPreviousMonth",
         "type": "boolean",
         "description": "<p>Shows previous and current month, instead of current and next (dateRangePicker only)</p>\n"
@@ -3403,6 +3408,24 @@ export const ngdoc: any = {
     "description": "<p>Provides default configuration values for timepicker</p>\n",
     "methods": [],
     "properties": [
+      {
+        "name": "ariaLabelHours",
+        "defaultValue": "hours",
+        "type": "string",
+        "description": "<p>hours aria label</p>\n"
+      },
+      {
+        "name": "ariaLabelMinutes",
+        "defaultValue": "minutes",
+        "type": "string",
+        "description": "<p>minutes aria label</p>\n"
+      },
+      {
+        "name": "ariaLabelSeconds",
+        "defaultValue": "seconds",
+        "type": "string",
+        "description": "<p>seconds aria label</p>\n"
+      },
       {
         "name": "arrowkeys",
         "defaultValue": "true",
