@@ -23,6 +23,7 @@ import { DemoTypeaheadScrollableComponent } from './scrollable/scrollable';
 import { DemotypeaheadSelectFirstItemComponent } from './selected-first-item/selected-first-item';
 import { DemoTypeaheadShowOnBlurComponent } from './show-on-blur/show-on-blur';
 import { DemoTypeaheadSingleWorldComponent } from './single-world/single-world';
+import { DemoTypeaheadAsyncHttpRequestComponent } from './async-http-request/async-http-request';
 import { DemoTypeaheadOrderingComponent } from './ordering/ordering';
 
 export const DEMO_COMPONENTS = [
@@ -53,5 +54,6 @@ export const DEMO_COMPONENTS = [
   DemotypeaheadSelectFirstItemComponent,
   DemoTypeaheadShowOnBlurComponent,
   DemoTypeaheadSingleWorldComponent,
+  DemoTypeaheadAsyncHttpRequestComponent,
   DemoTypeaheadOrderingComponent
 ];
