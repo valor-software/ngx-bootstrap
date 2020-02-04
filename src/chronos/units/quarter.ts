@@ -10,29 +10,34 @@ import { addUnitAlias } from './aliases';
 import { DateParsingConfig } from '../create/parsing.types';
 import { setMonth } from '../utils/date-setters';
 
+
+export function initQuarter() {
 // FORMATTING
 
-addFormatToken('Q', null, 'Qo',
-  function (date: Date, opts: DateFormatterOptions): string {
-    return getQuarter(date, opts.isUTC).toString(10);
-  });
+  addFormatToken('Q', null, 'Qo',
+    function(date: Date, opts: DateFormatterOptions): string {
+      return getQuarter(date, opts.isUTC)
+        .toString(10);
+    }
+  );
 
 // ALIASES
 
-addUnitAlias('quarter', 'Q');
+  addUnitAlias('quarter', 'Q');
 
 // PRIORITY
 
-addUnitPriority('quarter', 7);
+  addUnitPriority('quarter', 7);
 
 // PARSING
 
-addRegexToken('Q', match1);
-addParseToken('Q', function (input: string, array: DateArray, config: DateParsingConfig): DateParsingConfig {
-  array[MONTH] = (toInt(input) - 1) * 3;
+  addRegexToken('Q', match1);
+  addParseToken('Q', function(input: string, array: DateArray, config: DateParsingConfig): DateParsingConfig {
+    array[MONTH] = (toInt(input) - 1) * 3;
 
-  return config;
-});
+    return config;
+  });
+}
 
 // MOMENTS
 

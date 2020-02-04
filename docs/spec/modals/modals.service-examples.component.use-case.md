@@ -13,7 +13,7 @@ Main success scenario:
 1. User opens Modals demo page
 2. User clicks on Component sub-menu
 3. When user clicks on "Create template modal" button, modal popup is opened like a component, backdrop is enabled, "Close" button should be present
-5. When user closes modal popup by click on the cross, modal popup is closed and backdrop is inactive
+4. When user closes modal popup by click on the cross, modal popup is closed and backdrop is inactive
 
 Variations:
 ----------

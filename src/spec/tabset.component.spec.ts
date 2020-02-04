@@ -1,6 +1,7 @@
+/* tslint:disable: max-file-line-count */
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TabsetConfig, TabsModule, TabsetComponent } from 'ngx-bootstrap/tabs';
+import { TabsetConfig, TabsModule, TabsetComponent } from '../tabs';
 
 @Component({
   selector: 'tabs-test',
@@ -9,12 +10,13 @@ import { TabsetConfig, TabsModule, TabsetComponent } from 'ngx-bootstrap/tabs';
 class TestTabsetComponent {
   isVertical: Boolean = false;
   isJustified: Boolean = false;
+  /* tslint:disable-next-line: no-any */
   tabs: any[] = [
     { title: 'tab1', content: 'tab1 content', customClass: 'testCustomClass' },
     { title: 'tab2', content: 'tab2 content', disabled: true },
     { title: 'tab3', content: 'tab3 content', removable: true }
   ];
-  @ViewChild('tabset') tabset: TabsetComponent;
+  @ViewChild('tabset', { static: false }) tabset: TabsetComponent;
 
   constructor(config: TabsetConfig) {
     Object.assign(this, config);
@@ -42,7 +44,7 @@ const html = `
          [customClass]="tab.customClass"
          [active]="tab.active"
          [removable]="tab.removable"
-         (select)="_select($event)"
+         (selectTab)="_select($event)"
          (deselect)="_deselect($event)"
          (removed)="_removed($event)"
          [heading]="tab.title">{{ tab.content }}</tab>
@@ -79,8 +81,11 @@ function expectActiveTabs(nativeEl: HTMLElement, active: boolean[]): void {
 }
 
 describe('Component: Tabs', () => {
+  /* tslint:disable-next-line: no-any */
   let fixture: ComponentFixture<any>;
+  /* tslint:disable-next-line: no-any */
   let context: any;
+  /* tslint:disable-next-line: no-any */
   let element: any;
 
   // beforeEach(async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {

@@ -31,6 +31,18 @@ export class TimepickerConfig {
   min: Date;
   /** maximum time user can select */
   max: Date;
+  /** placeholder for hours field in timepicker */
+  hoursPlaceholder = 'HH';
+  /** placeholder for minutes field in timepicker */
+  minutesPlaceholder = 'MM';
+  /** placeholder for seconds field in timepicker */
+  secondsPlaceholder = 'SS';
+  /** hours aria label */
+  ariaLabelHours = 'hours';
+  /** minutes aria label */
+  ariaLabelMinutes = 'minutes';
+  /** seconds aria label */
+  ariaLabelSeconds = 'seconds';
   /** offset to shift the display format of the shown time  */
   offset: number;
   /** decide how the offset should be applied: Client applies given offset to the timezone the user is in,

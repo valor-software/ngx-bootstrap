@@ -2,13 +2,14 @@ import { DemoRatingBasicComponent } from './demos/basic/basic';
 import { DemoRatingCustomComponent } from './demos/custom/custom';
 import { DemoRatingDynamicComponent } from './demos/dynamic/dynamic';
 import { DemoRatingSelectOnEnterComponent } from './demos/select-on-enter/select-on-enter';
+import { DemoRatingConfigComponent } from './demos/config/config';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
 import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
 import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
 
-import { NgApiDocComponent } from '../../docs/api-docs';
+import { NgApiDocComponent, NgApiDocConfigComponent } from '../../docs/api-docs';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -16,7 +17,7 @@ export const demoComponentContent: ContentSection[] = [
     anchor: 'usage',
     outlet: DemoTopSectionComponent,
     content: {
-      doc: require('!!raw-loader?lang=typescript!./docs/usage.md')
+      doc: require('!!raw-loader!./docs/usage.md')
     }
   },
   {
@@ -27,22 +28,22 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Basic rating',
         anchor: 'rating-basic',
-        component: require('!!raw-loader?lang=typescript!./demos/basic/basic'),
-        html: require('!!raw-loader?lang=markup!./demos/basic/basic.html'),
+        component: require('!!raw-loader!./demos/basic/basic'),
+        html: require('!!raw-loader!./demos/basic/basic.html'),
         outlet: DemoRatingBasicComponent
       },
       {
         title: 'Dynamic rating',
         anchor: 'rating-dynamic',
-        component: require('!!raw-loader?lang=typescript!./demos/dynamic/dynamic'),
-        html: require('!!raw-loader?lang=markup!./demos/dynamic/dynamic.html'),
+        component: require('!!raw-loader!./demos/dynamic/dynamic'),
+        html: require('!!raw-loader!./demos/dynamic/dynamic.html'),
         outlet: DemoRatingDynamicComponent
       },
       {
         title: 'Custom icons',
         anchor: 'rating-custom',
-        component: require('!!raw-loader?lang=typescript!./demos/custom/custom'),
-        html: require('!!raw-loader?lang=markup!./demos/custom/custom.html'),
+        component: require('!!raw-loader!./demos/custom/custom'),
+        html: require('!!raw-loader!./demos/custom/custom.html'),
         outlet: DemoRatingCustomComponent
       },
       {
@@ -50,9 +51,16 @@ export const demoComponentContent: ContentSection[] = [
         description: `Key navigation example. Focus on rating and use arrow keys to set its value,
           then press <code>Enter</code> to select the value, after this, the rating state will be changed to readonly.`,
         anchor: 'select-on-enter',
-        component: require('!!raw-loader?lang=typescript!./demos/select-on-enter/select-on-enter'),
-        html: require('!!raw-loader?lang=markup!./demos/select-on-enter/select-on-enter.html'),
+        component: require('!!raw-loader!./demos/select-on-enter/select-on-enter'),
+        html: require('!!raw-loader!./demos/select-on-enter/select-on-enter.html'),
         outlet: DemoRatingSelectOnEnterComponent
+      },
+      {
+        title: 'Configuring defaults',
+        anchor: 'demo-rating-config',
+        component: require('!!raw-loader!./demos/config/config'),
+        html: require('!!raw-loader!./demos/config/config.html'),
+        outlet: DemoRatingConfigComponent
       }
     ]
   },
@@ -65,6 +73,11 @@ export const demoComponentContent: ContentSection[] = [
         title: 'RatingComponent',
         anchor: 'rating-component',
         outlet: NgApiDocComponent
+      },
+      {
+        title: 'RatingConfig',
+        anchor: 'rating-config',
+        outlet: NgApiDocConfigComponent
       }
     ]
   }

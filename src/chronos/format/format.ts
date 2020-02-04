@@ -19,6 +19,7 @@ export function addFormatToken(token: string,
                                padded: [string, number, boolean],
                                ordinal: string,
                                callback: DateFormatterFn): void {
+
   if (token) {
     formatTokenFunctions[token] = callback;
   }
@@ -36,7 +37,9 @@ export function addFormatToken(token: string,
   }
 }
 
-export function makeFormatFunction(format: string): (date: Date, locale: Locale, isUTC?: boolean, offset?: number) => string {
+export function makeFormatFunction(format: string):
+  (date: Date, locale: Locale, isUTC?: boolean, offset?: number) => string {
+
   const array: string[] = format.match(formattingTokens);
   const length = array.length;
 
@@ -49,10 +52,13 @@ export function makeFormatFunction(format: string): (date: Date, locale: Locale,
   }
 
   return function (date: Date, locale: Locale, isUTC: boolean, offset = 0): string {
+
+    const postValue = locale.postvalue(date);
+
     let output = '';
     for (let j = 0; j < length; j++) {
       output += isFunction(formatArr[j])
-        ? (formatArr[j] as DateFormatterFn).call(null, date, {format, locale, isUTC, offset})
+        ? (formatArr[j] as DateFormatterFn).call(null, postValue, {format, locale, isUTC, offset})
         : formatArr[j];
     }
 

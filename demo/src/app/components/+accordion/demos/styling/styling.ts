@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'demo-accordion-styling',
-  templateUrl: './styling.html',
-  styleUrls: ['./styling.css']
+  templateUrl: './styling.html'
 })
 export class DemoAccordionStylingComponent {
-  customClass: string = 'customClass';
-  isFirstOpen: boolean = true;
+  customClass = 'customClass';
+  isFirstOpen = true;
 }

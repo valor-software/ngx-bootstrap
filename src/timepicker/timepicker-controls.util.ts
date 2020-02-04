@@ -204,9 +204,6 @@ function canIncrementHoursWithOffset(offset: number, target: TimepickerOffsetTar
     : (max.getUTCHours() + getOffsetHours(offset)) > (newTime.getUTCHours());
   }
 
-  console.debug('UTIL: ', max.getHours(), getOffsetHours(offset),  newTime.getHours());
-  console.debug('UTIL: ', max.getHours() + getOffsetHours(offset) > (newTime.getHours()));
-
   return offset < 0
   ? (max.getHours() - getOffsetHours(offset)) > (newTime.getHours())
   : (max.getHours() + getOffsetHours(offset)) > (newTime.getHours());

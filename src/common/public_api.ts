@@ -1,4 +1,4 @@
-/* tslint:disable: max-classes-per-file */
+/* tslint:disable */
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
@@ -33,6 +33,7 @@ export { AlertComponent, AlertConfig, AlertModule } from 'ngx-bootstrap/alert';
 export {
   ButtonCheckboxDirective,
   ButtonRadioDirective,
+  ButtonRadioGroupDirective,
   ButtonsModule
 } from 'ngx-bootstrap/buttons';
 
@@ -46,19 +47,26 @@ export {
 export { CollapseDirective, CollapseModule } from 'ngx-bootstrap/collapse';
 
 export {
+  BsDatepickerConfig,
+  BsDatepickerContainerComponent,
+  BsDatepickerDirective,
+  BsDatepickerInlineContainerComponent,
+  BsDatepickerInlineDirective,
+  BsDatepickerInputDirective,
+  BsDatepickerModule,
+  BsDaterangepickerConfig,
+  BsDaterangepickerContainerComponent,
+  BsDaterangepickerDirective,
+  BsDaterangepickerInputDirective,
+  BsLocaleService,
   DateFormatter,
   DatePickerComponent,
   DatepickerConfig,
+  DatePickerInnerComponent,
   DatepickerModule,
   DayPickerComponent,
   MonthPickerComponent,
-  YearPickerComponent,
-  BsDatepickerModule,
-  BsDatepickerConfig,
-  BsDaterangepickerConfig,
-  BsLocaleService,
-  BsDaterangepickerDirective,
-  BsDatepickerDirective
+  YearPickerComponent
 } from 'ngx-bootstrap/datepicker';
 
 export {
@@ -96,7 +104,11 @@ export {
   ProgressbarModule
 } from 'ngx-bootstrap/progressbar';
 
-export { RatingComponent, RatingModule } from 'ngx-bootstrap/rating';
+export {
+  RatingComponent,
+  RatingModule,
+  RatingConfig
+} from 'ngx-bootstrap/rating';
 
 export {
   DraggableItem,
@@ -162,7 +174,7 @@ export {
   ComponentLoaderFactory,
   ContentRef,
   BsComponentRef
-} from 'ngx-bootstrap/loader';
+} from 'ngx-bootstrap/component-loader';
 
 export {
   Positioning,
