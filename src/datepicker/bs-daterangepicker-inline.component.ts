@@ -53,7 +53,7 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
     @Input() dateCustomClasses: DatepickerDateCustomClasses[];
     /**
      * Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays
-    */
+     */
     @Input() daysDisabled?: number[];
     /**
      * Disable specific dates
@@ -130,9 +130,9 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
           this._datepickerRef.instance.datesDisabled = this.datesDisabled;
         }
 
-      if (changes.daysDisabled) {
-        this._datepickerRef.instance.daysDisabled = this.daysDisabled;
-      }
+        if (changes.daysDisabled) {
+          this._datepickerRef.instance.daysDisabled = this.daysDisabled;
+        }
 
         if (changes.isDisabled) {
           this._datepickerRef.instance.isDisabled = this.isDisabled;
