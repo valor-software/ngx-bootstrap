@@ -40,13 +40,8 @@ export class TabsetComponent implements OnDestroy {
     this.setClassMap();
   }
 
-  /** provides possibility to set keyNavigations enable or disable, by default is enable */
-  @Input()
   get isKeysAllowed(): boolean {
     return this._isKeysAllowed;
-  }
-  set isKeysAllowed(value: boolean) {
-    this._isKeysAllowed = value;
   }
 
   @HostBinding('class.tab-container') clazz = true;
@@ -104,6 +99,9 @@ export class TabsetComponent implements OnDestroy {
 
   /* tslint:disable-next-line: cyclomatic-complexity */
   keyNavActions(event: KeyboardEvent, index: number) {
+    if (!this.isKeysAllowed) {
+      return;
+    }
     const list: HTMLElement[] = Array.from(this.elementRef.nativeElement.querySelectorAll('.nav-link'));
     // const activeElList = list.filter((el: HTMLElement) => !el.classList.contains('disabled'));
 
