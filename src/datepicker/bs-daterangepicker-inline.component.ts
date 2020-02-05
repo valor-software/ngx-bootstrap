@@ -56,8 +56,8 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
      */
     @Input() datesDisabled: Date[];
     /**
-    * Disable specific dates
-    */
+     * Disable specific dates
+     */
     @Input() datesEnabled: Date[];
     /**
      * Emits when daterangepicker value has been changed
