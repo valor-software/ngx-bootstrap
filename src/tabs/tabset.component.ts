@@ -49,6 +49,9 @@ export class TabsetComponent implements OnDestroy {
   tabs: TabDirective[] = [];
   classMap: { [key: string]: boolean } = {};
 
+  /** aria label for tab list */
+  ariaLabel: string;
+
   protected isDestroyed: boolean;
   protected _vertical: boolean;
   protected _justified: boolean;

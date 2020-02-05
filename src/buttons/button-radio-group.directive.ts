@@ -1,5 +1,14 @@
-import { ChangeDetectorRef, Directive, forwardRef, Provider } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  ContentChildren,
+  Directive,
+  forwardRef,
+  Provider,
+  QueryList
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+import { ButtonRadioDirective } from './button-radio.directive';
 
 export const RADIO_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
@@ -19,6 +28,8 @@ export const RADIO_CONTROL_VALUE_ACCESSOR: Provider = {
 export class ButtonRadioGroupDirective implements ControlValueAccessor {
   onChange = Function.prototype;
   onTouched = Function.prototype;
+
+  @ContentChildren(forwardRef(() => ButtonRadioDirective)) radioButtons: QueryList<ButtonRadioDirective>;
 
   get value() {
     return this._value;
@@ -42,5 +53,13 @@ export class ButtonRadioGroupDirective implements ControlValueAccessor {
 
   registerOnTouched(fn: () => {}): void {
     this.onTouched = fn;
+  }
+
+  setDisabledState(disabled: boolean): void {
+    if (this.radioButtons) {
+      this.radioButtons.forEach(buttons => {
+        buttons.setDisabledState(disabled);
+      });
+    }
   }
 }
