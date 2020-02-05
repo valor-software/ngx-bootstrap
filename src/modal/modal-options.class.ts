@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, StaticProvider } from '@angular/core';
 import { ClassName, DismissReasons, Selector, TransitionDurations } from './models';
 
 @Injectable()
@@ -34,6 +34,10 @@ export class ModalOptions {
    * Modal data
    */
   initialState?: Object;
+  /**
+   * Modal providers
+   */
+  providers?: StaticProvider[];
 }
 
 

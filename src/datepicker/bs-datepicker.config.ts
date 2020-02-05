@@ -50,6 +50,11 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
   selectWeek?: boolean;
 
   /**
+   * Allows select daterange as first and last day of week by click on week number (dateRangePicker only)
+   */
+  selectWeekDateRange?: boolean;
+
+  /**
    * Shows previous and current month, instead of current and next (dateRangePicker only)
    */
   showPreviousMonth?: boolean;
