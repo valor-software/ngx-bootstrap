@@ -75,14 +75,14 @@ describe('Typeahead demo page test suite', () => {
       typeahead.isElementVisible(asyncData, typeahead.cardHeader);
       typeahead.isPreviewExist(asyncData, formTemplate);
       typeahead.isElementVisible(asyncData, typeahead.inputSelector);
-      typeahead.isInputHaveAttrs(asyncData, [{ attr: 'placeholder', value: 'Locations loaded with timeout' }]);
+      typeahead.isInputHaveAttrs(asyncData, [{ attr: 'placeholder', value: 'Locations loaded via observable' }]);
     });
 
-    it('when user starts to type a name of a State a drop-down with matches is shown, only 7 matches are shown',
+    it('when user starts to type a name of a State a drop-down with matches is shown, only 20 matches are shown',
       () => {
         typeahead.clearInputAndSendKeys(asyncData, 'a');
         typeahead.isElementVisible(asyncData, typeahead.activeDropdown);
-        typeahead.isDropdownHasNItems(typeahead.dropdownBtn, 7);
+        typeahead.isDropdownHasNItems(typeahead.dropdownBtn, 20);
       });
 
     it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State',
@@ -436,7 +436,7 @@ describe('Typeahead demo page test suite', () => {
       typeahead.isElementVisible(scrollable, typeahead.inputSelector);
     });
 
-    it.only(`when there are any matches then a drop-down with a list of States matches is shown. user is able to scroll
+    it(`when there are any matches then a drop-down with a list of States matches is shown. user is able to scroll
       down/up to see the matches list`, () => {
       typeahead.clearInputAndSendKeys(scrollable, textToInput);
       typeahead.isElementVisible(scrollable, typeahead.activeDropdown);
