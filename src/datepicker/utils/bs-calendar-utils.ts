@@ -54,6 +54,14 @@ export function isDisabledDate(date: Date, datesDisabled: Date[]): boolean {
   return datesDisabled.some((dateDisabled: Date) => isSame(date, dateDisabled, 'date'));
 }
 
+export function isEnabledDate(date: Date, datesEnabled: Date[]): boolean {
+  if (datesEnabled === undefined || !datesEnabled || !datesEnabled.length) {
+    return false;
+  }
+
+  return !datesEnabled.some((datesEnabled: Date) => isSame(date, datesEnabled, 'date'));
+}
+
 export function getYearsCalendarInitialDate(state: BsDatepickerState, calendarIndex = 0): Date {
   const model = state && state.yearsCalendarModel && state.yearsCalendarModel[calendarIndex];
 

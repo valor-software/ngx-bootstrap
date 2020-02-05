@@ -79,6 +79,12 @@ export class BsDatepickerEffects {
     return this;
   }
 
+  setDatesEnabled(value: Date[]) {
+    this._store.dispatch(this._actions.datesEnabled(value));
+
+    return this;
+  }
+
   setDisabled(value: boolean): BsDatepickerEffects {
     this._store.dispatch(this._actions.isDisabled(value));
 
