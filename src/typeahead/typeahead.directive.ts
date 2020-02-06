@@ -13,16 +13,17 @@ import {
   TemplateRef,
   ViewContainerRef
 } from '@angular/core';
-
 import { NgControl } from '@angular/forms';
 
 import { from, Subscription, isObservable } from 'rxjs';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
+import { debounceTime, filter, mergeMap, switchMap, toArray } from 'rxjs/operators';
+
 import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { TypeaheadConfig } from './typeahead.config';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
-import { debounceTime, filter, mergeMap, switchMap, toArray } from 'rxjs/operators';
+import { TypeaheadOrder } from './typeahead-order.class';
 
 @Directive({selector: '[typeahead]', exportAs: 'bs-typeahead'})
 export class TypeaheadDirective implements OnInit, OnDestroy {
@@ -53,6 +54,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
    * contains the group value, matches are grouped by this field when set.
    */
   @Input() typeaheadGroupField: string;
+  /** Used to specify a custom order of matches. When options source is an array of objects
+   * a field for sorting has to be set up. In case of options source is an array of string,
+   * a field for sorting is absent. The ordering direction could be changed to ascending or descending.
+   */
+  @Input() typeaheadOrderBy: TypeaheadOrder;
   /** should be used only in case of typeahead attribute is Observable of array.
    * If true - loading of options will be async, otherwise - sync.
    * true make sense if options array is large.
@@ -396,7 +402,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
           debounceTime(this.typeaheadWaitMs),
           switchMap(() => this.typeahead)
         )
-        .subscribe((matches: TypeaheadMatch[]) => {
+        .subscribe((matches: any[]) => {
           this.finalizeAsyncCall(matches);
         })
     );
@@ -412,14 +418,14 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
             return from(this.typeahead)
               .pipe(
-                filter((option: TypeaheadMatch) => {
+                filter((option: any) => {
                   return option && this.testMatch(this.normalizeOption(option), normalizedQuery);
                 }),
                 toArray()
               );
           })
         )
-        .subscribe((matches: TypeaheadMatch[]) => {
+        .subscribe((matches: any[]) => {
           this.finalizeAsyncCall(matches);
         })
     );
@@ -474,7 +480,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     return match.indexOf(test) >= 0;
   }
 
-  protected finalizeAsyncCall(matches: TypeaheadMatch[]): void {
+  protected finalizeAsyncCall(matches: any[]): void {
     this.prepareMatches(matches || []);
 
     this.typeaheadLoading.emit(false);
@@ -512,14 +518,15 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
   }
 
-  protected prepareMatches(options: TypeaheadMatch[]): void {
-    const limited: TypeaheadMatch[] = options.slice(0, this.typeaheadOptionsLimit);
+  protected prepareMatches(options: any[]): void {
+    const limited = options.slice(0, this.typeaheadOptionsLimit);
+    const sorted = !this.typeaheadOrderBy ? limited : this.orderMatches(limited);
 
     if (this.typeaheadGroupField) {
       let matches: TypeaheadMatch[] = [];
 
       // extract all group names
-      const groups = limited
+      const groups = sorted
         .map((option: TypeaheadMatch) =>
           getValueFromObject(option, this.typeaheadGroupField)
         )
@@ -531,7 +538,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
         // add each item of group to array of matches
         matches = matches.concat(
-          limited
+          sorted
             .filter(
               // tslint:disable-next-line:no-any
               (option: any) =>
@@ -550,7 +557,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
       this._matches = matches;
     } else {
-      this._matches = limited.map(
+      this._matches = sorted.map(
         // tslint:disable-next-line:no-any
         (option: any) =>
           new TypeaheadMatch(
@@ -559,6 +566,57 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
           )
       );
     }
+  }
+
+  protected orderMatches<T>(options: T[]): T[] {
+    if (!options.length) {
+      return options;
+    }
+
+    if (this.typeaheadOrderBy !== null
+      && this.typeaheadOrderBy !== undefined
+      && typeof this.typeaheadOrderBy === 'object'
+      && Object.keys(this.typeaheadOrderBy).length === 0) {
+      // tslint:disable-next-line:no-console
+      console.error('Field and direction properties for typeaheadOrderBy have to be set according to documentation!');
+
+      return options;
+    }
+
+    const { field, direction } = this.typeaheadOrderBy;
+
+    if (!direction || !(direction === 'asc' || direction === 'desc')) {
+      // tslint:disable-next-line:no-console
+      console.error('typeaheadOrderBy direction has to equal "asc" or "desc". Please follow the documentation.');
+
+      return options;
+    }
+
+    if (typeof options[0] === 'string') {
+      return direction === 'asc' ? options.sort() : options.sort().reverse();
+    }
+
+    if (!field || typeof field !== 'string') {
+      // tslint:disable-next-line:no-console
+      console.error('typeaheadOrderBy field has to set according to the documentation.');
+
+      return options;
+    }
+
+    return options.sort((a: T, b: T) => {
+      const stringA = getValueFromObject(a, field);
+      const stringB = getValueFromObject(b, field);
+
+      if (stringA < stringB) {
+        return direction === 'asc' ? -1 : 1;
+      }
+
+      if (stringA > stringB) {
+        return direction === 'asc' ? 1 : -1;
+      }
+
+      return 0;
+    });
   }
 
   protected hasMatches(): boolean {
