@@ -19,7 +19,7 @@ import {
             [disabled]="calendar.disableLeftArrow"
             [style.visibility]="calendar.hideLeftArrow ? 'hidden' : 'visible'"
             type="button"
-            (click)="navTo(true)">
+            (click)="navTo($event, true)">
       <span>&lsaquo;</span>
     </button>
 
@@ -48,7 +48,7 @@ import {
             [disabled]="calendar.disableRightArrow"
             [style.visibility]="calendar.hideRightArrow ? 'hidden' : 'visible'"
             type="button"
-            (click)="navTo(false)"><span>&rsaquo;</span>
+            (click)="navTo($event, false)"><span>&rsaquo;</span>
     </button>
   `
 })
@@ -58,10 +58,11 @@ export class BsDatepickerNavigationViewComponent {
   @Output() onNavigate = new EventEmitter<BsNavigationDirection>();
   @Output() onViewMode = new EventEmitter<BsDatepickerViewMode>();
 
-  navTo(down: boolean): void {
+  navTo(event: any, down: boolean): void {
     this.onNavigate.emit(
       down ? BsNavigationDirection.DOWN : BsNavigationDirection.UP
     );
+    event.stopPropagation();
   }
 
   view(viewMode: BsDatepickerViewMode): void {

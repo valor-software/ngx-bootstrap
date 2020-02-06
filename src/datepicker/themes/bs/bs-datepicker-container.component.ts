@@ -18,7 +18,6 @@ import { take } from 'rxjs/operators';
   templateUrl: './bs-datepicker-view.html',
   host: {
     class: 'bottom',
-    '(click)': '_stopPropagation($event)',
     role: 'dialog',
     'aria-label': 'calendar'
   },
