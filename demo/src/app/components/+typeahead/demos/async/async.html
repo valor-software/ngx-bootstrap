@@ -4,5 +4,6 @@
        [typeahead]="dataSource"
        [typeaheadAsync]="true"
        typeaheadOptionField="name"
+       (typeaheadLoading)="changeTypeaheadLoading($event)"
        placeholder="Locations loaded via observable"
        class="form-control">

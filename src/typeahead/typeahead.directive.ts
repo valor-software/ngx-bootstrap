@@ -22,7 +22,7 @@ import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { TypeaheadConfig } from './typeahead.config';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
-import { debounceTime, filter, map, mergeMap, switchMap, toArray } from 'rxjs/operators';
+import { debounceTime, filter, mergeMap, switchMap, toArray } from 'rxjs/operators';
 
 @Directive({selector: '[typeahead]', exportAs: 'bs-typeahead'})
 export class TypeaheadDirective implements OnInit, OnDestroy {
@@ -394,18 +394,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       this.keyUpEventEmitter
         .pipe(
           debounceTime(this.typeaheadWaitMs),
-          switchMap((value: string) => {
-            return this.typeahead
-              .pipe(
-                // tslint:disable-next-line:no-any
-                map((typeahead: any[]) => {
-                  const normalizedQuery = this.normalizeQuery(value);
-
-                  return typeahead.filter((option: any) =>
-                    option && this.testMatch(this.normalizeOption(option), normalizedQuery));
-                })
-              );
-          })
+          switchMap(() => this.typeahead)
         )
         .subscribe((matches: TypeaheadMatch[]) => {
           this.finalizeAsyncCall(matches);
