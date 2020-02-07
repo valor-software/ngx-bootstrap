@@ -275,9 +275,9 @@ describe('popover', () => {
       expect(windowEl.textContent.trim()).toBe('Great tip!');
     });
 
-    it('should set position to right when use auto position and fit on screen', () => {
+    it('should set position to top when use auto position and fit on screen', () => {
       const fixture = createTestComponent(
-        `<div style="padding: 400px"><div popover="Great tip!" placement="auto"></div></div>`
+        `<div style="padding: 400px"><div popover="Great tip!" placement="auto right"></div></div>`
       );
       const directive = fixture.debugElement.query(
         By.directive(PopoverDirective)
@@ -289,7 +289,7 @@ describe('popover', () => {
 
       expect(windowEl).toHaveCssClass('popover');
       expect(windowEl).toHaveCssClass('popover-auto');
-      expect(windowEl).toHaveCssClass('top');
+      expect(windowEl).toHaveCssClass('right');
       expect(windowEl.textContent.trim()).toBe('Great tip!');
     });
 
