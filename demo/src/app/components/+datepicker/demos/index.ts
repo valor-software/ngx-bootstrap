@@ -26,7 +26,7 @@ import {
 
 import { DemoDatePickerAdaptivePositionComponent } from './adaptive-position/adaptive-position';
 import { DemoDatePickerAnimatedComponent } from './animated/animated';
-import { DemoDatepickerDateCustomClassesComponent } from './date-custom-classes/date-custom-classes'
+import { DemoDatepickerDateCustomClassesComponent } from './date-custom-classes/date-custom-classes';
 import { DemoDatePickerSelectWeekComponent } from './select-week/select-week';
 import { DemoDatePickerSelectWeekRangeComponent } from './select-week-range/select-week-range';
 import { DemoDatepickerTriggersCustomComponent } from './triggers-custom/triggers-custom';
