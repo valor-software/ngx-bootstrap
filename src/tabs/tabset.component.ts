@@ -44,6 +44,11 @@ export class TabsetComponent implements OnDestroy {
     return this._isKeysAllowed;
   }
 
+  set isKeysAllowed(value: boolean) {
+    this._isKeysAllowed = value;
+  }
+
+
   @HostBinding('class.tab-container') clazz = true;
 
   tabs: TabDirective[] = [];
