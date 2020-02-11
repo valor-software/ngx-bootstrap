@@ -21,6 +21,7 @@ import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-ap
 
 import { NgApiDocComponent, NgApiDocConfigComponent } from '../../docs/api-docs';
 import { DemoCarouselPauseOnFocusComponent } from './demos/pause-on-focus/pause-on-focus';
+import { DemoCarouseAnimatedComponent } from './demos/animated/animated';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -147,6 +148,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/multilist-indicators-by-chunk/multilist-indicators-by-chunk.ts'),
         html: require('!!raw-loader!./demos/multilist-indicators-by-chunk/multilist-indicators-by-chunk.html'),
         outlet: DemoCarouselMultilistIndicatorsByChunkComponent
+      },
+      {
+        title: 'With animation',
+        anchor: 'animated',
+        component: require('!!raw-loader!./demos/animated/animated.ts'),
+        html: require('!!raw-loader!./demos/animated/animated.html'),
+        outlet: DemoCarouseAnimatedComponent
       },
       {
         title: 'Accessibility',
