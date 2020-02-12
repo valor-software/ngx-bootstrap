@@ -56,6 +56,8 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   /* If `true` — carousel shifts by one element. By default carousel shifts by number
      of visible elements (itemsPerSlide field) */
   @Input() singleSlideOffset = false;
+  /** Turn on/off animation. Animation doesn't work for multilist carousel */
+  @Input() isAnimated = false;
 
   /** Will be emitted when active slide has been changed. Part of two-way-bindable [(activeSlide)] property */
   @Output()
@@ -150,6 +152,10 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
 
     if (this.multilist && this._slides.length <= this.itemsPerSlide) {
       slide.active = true;
+    }
+
+    if (!this.multilist && this.isAnimated) {
+      slide.isAnimated = true;
     }
 
     if (!this.multilist && this._slides.length === 1) {
