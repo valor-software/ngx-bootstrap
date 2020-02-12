@@ -248,6 +248,12 @@ export const ngdoc: any = {
         "description": "<p>Delay of item cycling in milliseconds. If false, carousel won&#39;t cycle\nautomatically.</p>\n"
       },
       {
+        "name": "isAnimated",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>Turn on/off animation. Animation doesn&#39;t work for multilist carousel</p>\n"
+      },
+      {
         "name": "itemsPerSlide",
         "defaultValue": "1",
         "type": "number",
