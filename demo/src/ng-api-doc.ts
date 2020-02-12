@@ -2352,6 +2352,11 @@ export const ngdoc: any = {
         "description": "<p>Closes the modal when escape key is pressed.</p>\n"
       },
       {
+        "name": "providers",
+        "type": "StaticProvider[]",
+        "description": "<p>Modal providers</p>\n"
+      },
+      {
         "name": "show",
         "type": "boolean",
         "description": "<p>Shows the modal when initialized.</p>\n"
@@ -3775,16 +3780,16 @@ export const ngdoc: any = {
         "description": "<p>sets use adaptive position</p>\n"
       },
       {
+        "name": "cancelRequestOnFocusLost",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>if true, typeahead will cancel async request on blur</p>\n"
+      },
+      {
         "name": "hideResultsOnBlur",
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>used to hide results on blur</p>\n"
-      },
-      {
-        "name": "cancelRequestOnFocusLost",
-        "defaultValue": "false",
-        "type": "boolean",
-        "description": "<p>if true, typeahead will cancel async request after focus was lost</p>\n"
       },
       {
         "name": "isAnimated",
@@ -3926,7 +3931,7 @@ export const ngdoc: any = {
         "name": "typeaheadSingleWords",
         "defaultValue": "true",
         "type": "boolean",
-        "description": "<p>can be use to search words by inserting a single white space between each characters\nfor example &#39;C a l i f o r n i a&#39; will match &#39;California&#39;.</p>\n"
+        "description": "<p>Can be use to search words by inserting a single white space between each characters\nfor example &#39;C a l i f o r n i a&#39; will match &#39;California&#39;.</p>\n"
       },
       {
         "name": "typeaheadWaitMs",
@@ -3938,7 +3943,7 @@ export const ngdoc: any = {
         "defaultValue": " ",
         "type": "string",
         "description": "<p>should be used only in case typeaheadSingleWords attribute is true.\nSets the word delimiter to break words. Defaults to space.</p>\n"
-      },
+      }
     ],
     "outputs": [
       {
