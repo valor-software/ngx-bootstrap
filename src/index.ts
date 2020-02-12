@@ -141,7 +141,8 @@ export {
   TypeaheadContainerComponent,
   TypeaheadDirective,
   TypeaheadMatch,
-  TypeaheadModule
+  TypeaheadModule,
+  TypeaheadOrder
 } from './typeahead/index';
 
 export {
