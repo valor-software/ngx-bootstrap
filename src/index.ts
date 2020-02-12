@@ -90,7 +90,10 @@ export {
   PaginationComponent,
   PaginationConfig,
   PaginationModule,
-  PageChangedEvent
+  PageChangedEvent,
+  PaginationLinkContext,
+  PaginationNumberLinkContext,
+  PagesModel
 } from './pagination/index';
 
 export {

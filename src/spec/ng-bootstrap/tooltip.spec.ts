@@ -3,13 +3,13 @@
  * @copyright Angular ng-bootstrap team
  */
 
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
-import { fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewChild } from '@angular/core';
+import { ComponentFixtureAutoDetect, fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
 
 import { By } from '@angular/platform-browser';
 
 import { TooltipConfig, TooltipContainerComponent, TooltipDirective, TooltipModule } from '../../tooltip';
-import { createGenericTestComponent } from './test/common';
+import { createComponent } from './test/common';
 import { dispatchMouseEvent } from '@netbasal/spectator';
 
 @Component({
@@ -17,7 +17,9 @@ import { dispatchMouseEvent } from '@netbasal/spectator';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: ``
 })
-export class TestOnPushComponent {}
+export class TestOnPushComponent {
+  constructor(public cdRef: ChangeDetectorRef) {}
+}
 
 @Component({selector: 'test-cmpt', template: ``})
 export class TestComponent {
@@ -36,10 +38,10 @@ export class TestComponent {
 }
 
 const createTestComponent = (html: string) =>
-  createGenericTestComponent(html, TestComponent);
+  createComponent(html, TestComponent);
 
 const createOnPushTestComponent = (html: string) =>
-  createGenericTestComponent(html, TestOnPushComponent);
+  createComponent(html, TestOnPushComponent, 'OnPush');
 
 describe('tooltip-container', () => {
   beforeEach(() => {
@@ -67,7 +69,8 @@ describe('tooltip', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestComponent, TestOnPushComponent],
-      imports: [TooltipModule.forRoot()]
+      imports: [TooltipModule.forRoot()],
+      providers: [{provide: ComponentFixtureAutoDetect, useValue: true}]
     });
   });
 
@@ -228,13 +231,18 @@ describe('tooltip', () => {
         const fixture = createOnPushTestComponent(
           `<div style="padding:400px"><div tooltip="Great tip!" placement="left"></div>`
         );
+        const context = fixture.componentInstance;
+        context.cdRef.markForCheck();
+
         const directive = fixture.debugElement.query(
           By.directive(TooltipDirective)
         );
 
         dispatchMouseEvent(directive.nativeElement, 'mouseover');
+
         fixture.detectChanges();
         const windowEl = getWindow(fixture.nativeElement);
+        context.cdRef.markForCheck();
 
         expect(windowEl).toHaveCssClass('tooltip');
         expect(windowEl).toHaveCssClass('tooltip-left');
