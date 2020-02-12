@@ -1,23 +1,24 @@
 import { Component } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
+import { mergeMap, delay } from 'rxjs/operators';
+import { TypeaheadConfig } from 'ngx-bootstrap/typeahead';
 
-import { Observable, of, Subscriber } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
-
-interface DataSourceType {
-  id: number;
-  name: string;
-  region: string;
+export function getTypeaheadConfig(): TypeaheadConfig {
+  return Object.assign(new TypeaheadConfig(), { cancelRequestOnFocusLost: true });
 }
 
 @Component({
-  selector: 'demo-typeahead-async',
-  templateUrl: './async.html'
+  selector: 'demo-typeahead-cancel-on-focus-lost',
+  templateUrl: './cancel-on-focus-lost.html',
+  providers: [{ provide: TypeaheadConfig, useFactory: getTypeaheadConfig }]
 })
-export class DemoTypeaheadAsyncComponent {
+export class DemoTypeaheadCancelRequestOnFocusLostComponent {
   asyncSelected: string;
-  dataSource: Observable<DataSourceType[]>;
   typeaheadLoading: boolean;
-  statesComplex: DataSourceType[] = [
+  typeaheadNoResults: boolean;
+  dataSource: Observable<any>;
+  statesComplex: any[] = [
     { id: 1, name: 'Alabama', region: 'South' },
     { id: 2, name: 'Alaska', region: 'West' },
     { id: 3, name: 'Arizona', region: 'West' },
@@ -71,16 +72,17 @@ export class DemoTypeaheadAsyncComponent {
   ];
 
   constructor() {
-    this.dataSource = new Observable((observer: Subscriber<string>) => {
+    this.dataSource = Observable.create((observer: any) => {
       // Runs on every search
       observer.next(this.asyncSelected);
     })
       .pipe(
-        mergeMap((token: string) => this.getStatesAsObservable(token))
+        mergeMap((token: string) => this.getStatesAsObservable(token)),
+        delay(1000)
       );
   }
 
-  getStatesAsObservable(token: string): Observable<DataSourceType[]> {
+  getStatesAsObservable(token: string): Observable<any> {
     const query = new RegExp(token, 'i');
 
     return of(
@@ -92,5 +94,9 @@ export class DemoTypeaheadAsyncComponent {
 
   changeTypeaheadLoading(e: boolean): void {
     this.typeaheadLoading = e;
+  }
+
+  typeaheadOnSelect(e: TypeaheadMatch): void {
+    console.log('Selected value: ', e.value);
   }
 }

@@ -17,7 +17,23 @@ import { CarouselComponent } from './carousel.component';
   `,
   host: {
     '[attr.aria-hidden]': '!active'
-  }
+  },
+  styles: [`
+    :host.carousel-animation {
+       transition: opacity 0.6s ease, visibility 0.6s ease;
+       float: left;
+    }
+    :host.carousel-animation.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    :host.carousel-animation:not(.active) {
+      display: block;
+      position: absolute;
+      opacity: 0;
+      visibility: hidden;
+    }
+  `]
 })
 export class SlideComponent implements OnInit, OnDestroy {
   /** Is current slide active */
@@ -27,6 +43,7 @@ export class SlideComponent implements OnInit, OnDestroy {
 
   @HostBinding('style.width') itemWidth = '100%';
   @HostBinding('style.order') order = 0;
+  @HostBinding('class.carousel-animation') isAnimated: boolean;
 
   /** Wraps element by appropriate CSS classes */
   @HostBinding('class.item')

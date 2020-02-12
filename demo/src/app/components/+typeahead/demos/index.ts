@@ -7,6 +7,8 @@ import { DemoTypeaheadContainerComponent } from './container/container';
 import { DemoTypeaheadDelayComponent } from './delay/delay';
 import { DemoTypeaheadDropupComponent } from './dropup/dropup';
 import { DemoTypeaheadFieldComponent } from './field/field';
+import { DemoTypeaheadCancelRequestOnFocusLostComponent } from './cancel-on-focus-lost/cancel-on-focus-lost';
+import { DemoTypeaheadReactiveFormComponent } from './reactive-form/reactive-form';
 import { DemoTypeaheadFirstItemActiveComponent } from './first-item-active/first-item-active';
 import { DemoTypeaheadFormComponent } from './form/form';
 import { DemoTypeaheadGroupingComponent } from './grouping/grouping';
@@ -17,11 +19,11 @@ import { DemoTypeaheadNoResultComponent } from './no-result/no-result';
 import { DemoTypeaheadOnBlurComponent } from './on-blur/on-blur';
 import { DemoTypeaheadOnSelectComponent } from './on-select/on-select';
 import { DemoTypeaheadPhraseDelimitersComponent } from './phrase-delimiters/phrase-delimiters';
-import { DemoTypeaheadReactiveFormComponent } from './reactive-form/reactive-form';
 import { DemoTypeaheadScrollableComponent } from './scrollable/scrollable';
 import { DemotypeaheadSelectFirstItemComponent } from './selected-first-item/selected-first-item';
 import { DemoTypeaheadShowOnBlurComponent } from './show-on-blur/show-on-blur';
 import { DemoTypeaheadSingleWorldComponent } from './single-world/single-world';
+import { DemoTypeaheadOrderingComponent } from './ordering/ordering';
 
 export const DEMO_COMPONENTS = [
   DemoTypeaheadAdaptivePositionComponent,
@@ -33,6 +35,9 @@ export const DEMO_COMPONENTS = [
   DemoTypeaheadDelayComponent,
   DemoTypeaheadDropupComponent,
   DemoTypeaheadFieldComponent,
+  DemoTypeaheadAsyncComponent,
+  DemoTypeaheadCancelRequestOnFocusLostComponent,
+  DemoTypeaheadReactiveFormComponent,
   DemoTypeaheadFirstItemActiveComponent,
   DemoTypeaheadFormComponent,
   DemoTypeaheadGroupingComponent,
@@ -47,5 +52,6 @@ export const DEMO_COMPONENTS = [
   DemoTypeaheadScrollableComponent,
   DemotypeaheadSelectFirstItemComponent,
   DemoTypeaheadShowOnBlurComponent,
-  DemoTypeaheadSingleWorldComponent
+  DemoTypeaheadSingleWorldComponent,
+  DemoTypeaheadOrderingComponent
 ];

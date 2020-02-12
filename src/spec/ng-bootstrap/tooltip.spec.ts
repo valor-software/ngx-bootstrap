@@ -243,7 +243,7 @@ describe('tooltip', () => {
 
       it('should use auto position', () => {
         const fixture = createTestComponent(
-          `<div style="padding:400px"><div tooltip="Great tip!" placement="auto"></div></div>`
+          `<div style="padding:400px"><div tooltip="Great tip!" placement="auto top"></div></div>`
         );
         const directive = fixture.debugElement.query(
           By.directive(TooltipDirective)

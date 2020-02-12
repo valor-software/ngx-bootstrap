@@ -18,6 +18,7 @@ import {
 
 import { DemoAccessibilityComponent } from './accessibility/accessibility';
 import { DemoCarouselPauseOnFocusComponent } from './pause-on-focus/pause-on-focus';
+import { DemoCarouseAnimatedComponent } from './animated/animated';
 
 export const DEMO_COMPONENTS = [
   DemoAccessibilityComponent,
@@ -36,5 +37,6 @@ export const DEMO_COMPONENTS = [
   DemoCarouselMultilistSingleOffsetComponent,
   DemoCarouselPauseOnFocusComponent,
   DemoCarouselPauseOnHoverComponent,
-  DemoCarouselSlideChangedEventComponent
+  DemoCarouselSlideChangedEventComponent,
+  DemoCarouseAnimatedComponent
 ];
