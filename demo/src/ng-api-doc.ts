@@ -3869,7 +3869,7 @@ export const ngdoc: any = {
       },
       {
         "name": "typeahead",
-        "type": "any",
+        "type": "Typeahead",
         "description": "<p>options source, can be Array of strings, objects or\nan Observable for external matching process</p>\n"
       },
       {
