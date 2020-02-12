@@ -51,6 +51,7 @@ const BS_DATERANGEPICKER_VALIDATOR: Provider = {
   host: {
     '(change)': 'onChange($event)',
     '(keyup.esc)': 'hide()',
+    '(keydown)': 'onKeydownEvent($event)',
     '(blur)': 'onBlur()'
   },
   providers: [BS_DATERANGEPICKER_VALUE_ACCESSOR, BS_DATERANGEPICKER_VALIDATOR]
@@ -97,6 +98,12 @@ export class BsDaterangepickerInputDirective
     this._localeService.localeChange.subscribe(() => {
       this._setInputValue(this._value);
     });
+  }
+
+  onKeydownEvent(event) {
+    if (event.keyCode === 13 || event.code === 'Enter') {
+      this.hide();
+    }
   }
 
   _setInputValue(date: Date[]): void {

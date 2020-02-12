@@ -248,6 +248,12 @@ export const ngdoc: any = {
         "description": "<p>Delay of item cycling in milliseconds. If false, carousel won&#39;t cycle\nautomatically.</p>\n"
       },
       {
+        "name": "isAnimated",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>Turn on/off animation. Animation doesn&#39;t work for multilist carousel</p>\n"
+      },
+      {
         "name": "itemsPerSlide",
         "defaultValue": "1",
         "type": "number",
@@ -1046,6 +1052,11 @@ export const ngdoc: any = {
         "name": "selectWeek",
         "type": "boolean",
         "description": "<p>Allows select first date of the week by click on week number</p>\n"
+      },
+      {
+        "name": "selectWeekDateRange",
+        "type": "boolean",
+        "description": "<p>Allows select daterange as first and last day of week by click on week number (dateRangePicker only)</p>\n"
       },
       {
         "name": "showPreviousMonth",
@@ -2328,6 +2339,16 @@ export const ngdoc: any = {
         "description": "<p>Toggle animation</p>\n"
       },
       {
+        "name": "ariaDescribedby",
+        "type": "string",
+        "description": "<p>aria-describedby attribute value to set on the modal window</p>\n"
+      },
+      {
+        "name": "ariaLabelledBy",
+        "type": "string",
+        "description": "<p>aria-labelledby attribute value to set on the modal window</p>\n"
+      },
+      {
         "name": "backdrop",
         "type": "boolean | \"static\"",
         "description": "<p>Includes a modal-backdrop element. Alternatively,\nspecify static for a backdrop which doesn&#39;t close the modal on click.</p>\n"
@@ -2351,6 +2372,11 @@ export const ngdoc: any = {
         "name": "keyboard",
         "type": "boolean",
         "description": "<p>Closes the modal when escape key is pressed.</p>\n"
+      },
+      {
+        "name": "providers",
+        "type": "StaticProvider[]",
+        "description": "<p>Modal providers</p>\n"
       },
       {
         "name": "show",
@@ -3410,6 +3436,24 @@ export const ngdoc: any = {
     "methods": [],
     "properties": [
       {
+        "name": "ariaLabelHours",
+        "defaultValue": "hours",
+        "type": "string",
+        "description": "<p>hours aria label</p>\n"
+      },
+      {
+        "name": "ariaLabelMinutes",
+        "defaultValue": "minutes",
+        "type": "string",
+        "description": "<p>minutes aria label</p>\n"
+      },
+      {
+        "name": "ariaLabelSeconds",
+        "defaultValue": "seconds",
+        "type": "string",
+        "description": "<p>seconds aria label</p>\n"
+      },
+      {
         "name": "arrowkeys",
         "defaultValue": "true",
         "type": "boolean",
@@ -3758,6 +3802,12 @@ export const ngdoc: any = {
         "description": "<p>sets use adaptive position</p>\n"
       },
       {
+        "name": "cancelRequestOnFocusLost",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>if true, typeahead will cancel async request on blur</p>\n"
+      },
+      {
         "name": "hideResultsOnBlur",
         "defaultValue": "true",
         "type": "boolean",
@@ -3825,7 +3875,7 @@ export const ngdoc: any = {
       },
       {
         "name": "typeahead",
-        "type": "any",
+        "type": "Typeahead",
         "description": "<p>options source, can be Array of strings, objects or\nan Observable for external matching process</p>\n"
       },
       {
@@ -3880,6 +3930,11 @@ export const ngdoc: any = {
         "name": "typeaheadOptionsLimit",
         "type": "number",
         "description": "<p>maximum length of options items list. The default value is 20</p>\n"
+      },
+      {
+        "name": "typeaheadOrderBy",
+        "type": "TypeaheadOrder",
+        "description": "<p>Used to specify a custom order of matches. When options source is an array of objects\na field for sorting has to be set up. In case of options source is an array of string,\na field for sorting is absent. The ordering direction could be changed to ascending or descending.</p>\n"
       },
       {
         "name": "typeaheadPhraseDelimiters",
