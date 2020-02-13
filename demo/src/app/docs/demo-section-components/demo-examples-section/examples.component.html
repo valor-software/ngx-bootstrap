@@ -12,13 +12,13 @@
         title="Open this demo in StackBlitz"
          href="#"
          class="stackblitz-link"
-         (click)="openStackBlitzDemo(item.component, item.html)">
+         (click)="openStackBlitzDemo(item.component.default, item.html.default)">
         <img src="assets/images/stackblitz.png" alt="" width="20">
       </a >
       <a class="anchor-link" routerLink="." [fragment]="item.anchor">#</a>
     </h3>
     <p *ngIf="item.description" [innerHTML]="item.description"></p>
-    <ng-sample-box [ts]="item.component" [html]="item.html" [style]="item.style">
+    <ng-sample-box [ts]="item.component.default" [html]="item.html.default" [style]="item.style">
       <ng-container *ngComponentOutlet="item.outlet"></ng-container>
     </ng-sample-box>
   </div>
