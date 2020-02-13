@@ -2,7 +2,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // RECOMMENDED
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
-// or
+// NOT RECOMMENDED (Angular 9 doesn't support this form of import)
 import { TypeaheadModule } from 'ngx-bootstrap';
 
 @NgModule({
