@@ -3248,11 +3248,6 @@ export const ngdoc: any = {
         "name": "vertical",
         "type": "boolean",
         "description": "<p>if true tabs will be placed vertically</p>\n"
-      },
-      {
-        "name": "isKeysAllowed",
-        "type": "boolean",
-        "description": "<p>provides possibility to set keyNavigations enable or disable, by default is enable</p>\n"
       }
     ],
     "outputs": [],
