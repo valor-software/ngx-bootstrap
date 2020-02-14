@@ -40,6 +40,12 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    */
   datesDisabled?: Date[];
   /**
+   * Show one months for special cases (only for dateRangePicker)
+   * 1. maxDate is equal to today's date
+   * 2. minDate's month is equal to maxDate's month
+   */
+  displayOneMonthRange?: boolean;
+  /**
    * Makes dates from other months active
    */
   selectFromOtherMonth?: boolean;

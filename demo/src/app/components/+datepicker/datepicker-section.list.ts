@@ -42,6 +42,7 @@ import {
 } from '../../docs/api-docs';
 import { DemoDateRangePickerShowPreviousMonth } from './demos/daterangepicker-show-previous-month/show-previous-month';
 import { DemoDatePickerSelectWeekRangeComponent } from './demos/select-week-range/select-week-range';
+import { DemoDateRangePickerDisplayOneMonth } from './demos/daterangepicker-display-one-month/display-one-month';
 
 
 export const demoComponentContent: ContentSection[] = [
@@ -205,6 +206,15 @@ export const demoComponentContent: ContentSection[] = [
           <p>You can set which dates should be disabled with <code>datesDisabled</code></p>
           <p>In the following example <code>datesDisabled</code> is set with an array to disable 2019-02-05 and 2019-02-09.</p>`,
         outlet: DemoDatepickerDatesDisabledComponent
+      },
+      {
+        title: 'Display one month',
+        anchor: 'display-one-month',
+        component: require('!!raw-loader!./demos/daterangepicker-display-one-month/display-one-month.ts'),
+        html: require('!!raw-loader!./demos/daterangepicker-display-one-month/display-one-month.html'),
+        description: `<p>You can configure, how many months  you want to show for daterangepicker via <code>displayMonths</code> in <code>BsDaterangepickerConfig.</code></p>
+        <p>With <code>displayOneMonthRange</code> you can show only one month for two cases</p>`,
+        outlet: DemoDateRangePickerDisplayOneMonth
       },
       {
         title: 'Min-mode',
