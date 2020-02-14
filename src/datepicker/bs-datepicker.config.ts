@@ -69,6 +69,11 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    */
   minMode?: BsDatepickerViewMode;
 
+  /**
+   * If true, returns focus to the datepicker / daterangepicker input after date selection
+   */
+  returnFocusToInput = false;
+
   /** CSS class which will be applied to datepicker container,
    * usually used to set color theme
    */
