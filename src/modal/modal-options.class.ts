@@ -38,6 +38,14 @@ export class ModalOptions {
    * Modal providers
    */
   providers?: StaticProvider[];
+  /**
+   * aria-labelledby attribute value to set on the modal window
+   */
+  ariaLabelledBy?: string;
+  /**
+   * aria-describedby attribute value to set on the modal window
+   */
+  ariaDescribedby?: string;
 }
 
 
