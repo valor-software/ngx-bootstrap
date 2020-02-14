@@ -1,6 +1,6 @@
 // RECOMMENDED
 import { SortableModule } from 'ngx-bootstrap/sortable';
-// or
+// NOT RECOMMENDED (Angular 9 doesn't support this kind of import)
 import { SortableModule } from 'ngx-bootstrap';
 
 @NgModule({
