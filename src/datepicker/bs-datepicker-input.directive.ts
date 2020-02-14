@@ -115,6 +115,9 @@ export class BsDatepickerInputDirective
     /* tslint:disable-next-line: no-any*/
     this.writeValue((event.target as any).value);
     this._onChange(this._value);
+    if (this._picker._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
+    }
     this._onTouched();
   }
 
@@ -197,5 +200,8 @@ export class BsDatepickerInputDirective
   hide() {
     this._picker.hide();
     this._renderer.selectRootElement(this._elRef.nativeElement).blur();
+    if (this._picker._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
+    }
   }
 }

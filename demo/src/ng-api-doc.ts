@@ -1038,6 +1038,12 @@ export const ngdoc: any = {
         "description": "<p>Date format for date range input field</p>\n"
       },
       {
+        "name": "returnFocusToInput",
+        "type": "boolean",
+        "defaultValue": "false",
+        "description": "<p>If true, returns focus to the datepicker / daterangepicker input after date selection</p>\n"
+      },
+      {
         "name": "selectFromOtherMonth",
         "type": "boolean",
         "description": "<p>Makes dates from other months active</p>\n"
