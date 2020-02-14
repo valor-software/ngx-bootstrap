@@ -146,7 +146,7 @@ jobs:
   - &surge
     stage: deploy
     script:
-    - if [[ "$NGV" == "ivy" ]]; then npm run demo.build:ivy; else npm run demo.build; fi
+    - if [[ "$NGV" == "ivy" || "$NGV" == "latest" ]]; then npm run demo.build:ivy; else npm run demo.build; fi
     deploy:
       provider: surge
       project: ./gh-pages/

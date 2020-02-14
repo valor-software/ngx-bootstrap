@@ -19,9 +19,9 @@ import { DemoAccessibilityComponent } from './demos/accessibility/accessibility'
 import { DemoModalWithPopupsComponent } from './demos/modal-with-popups/modal-with-popups';
 
 import { ContentSection } from '../../docs/models/content-section.model';
-import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
-import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
-import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
+import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section';
+import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section';
+import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section';
 
 import {
   NgApiDocComponent,
@@ -224,6 +224,22 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Accessibility',
         anchor: 'accessibility',
+        component: require('!!raw-loader!./demos/accessibility/accessibility.ts'),
+        html: require('!!raw-loader!./demos/accessibility/accessibility.html'),
+        description: `
+        <p>
+          Be sure to add <code class="highlighter-rouge">id=""</code> attribute to your title and description
+          in the template to make your modal works according to accessibility. The <code class="highlighter-rouge">aria-labelledby</code>
+          attribute establishes relationships between the modal and its title (only if the title has id attribute). The element
+          containing the modal's description is referenced by <code class="highlighter-rouge">aria-describedby</code> attribute.
+          The dialog does not need <code class="highlighter-rouge">aria-describedby</code> since there is no static
+          text that describes it.
+        </p>
+        <p>
+        Use modal options to set <code class="highlighter-rouge">aria-labelledby</code> and
+        <code class="highlighter-rouge">aria-describedby</code> attributes.
+        </p>
+        `,
         outlet: DemoAccessibilityComponent
       }
     ]

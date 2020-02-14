@@ -3,13 +3,15 @@ import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section';
 import { DemoTypeaheadAdaptivePositionComponent } from './demos/adaptive-position/adaptive-position';
 import { DemoTypeaheadAnimatedComponent } from './demos/animated/animated';
-import { DemoTypeaheadAsyncComponent } from './demos/async/async';
 import { DemoTypeaheadBasicComponent } from './demos/basic/basic';
+import { DemoTypeaheadCancelRequestOnFocusLostComponent } from './demos/cancel-on-focus-lost/cancel-on-focus-lost';
 import { DemoTypeaheadConfigComponent } from './demos/config/config';
 import { DemoTypeaheadContainerComponent } from './demos/container/container';
 import { DemoTypeaheadDelayComponent } from './demos/delay/delay';
 import { DemoTypeaheadDropupComponent } from './demos/dropup/dropup';
 import { DemoTypeaheadFieldComponent } from './demos/field/field';
+import { DemoTypeaheadAsyncComponent } from './demos/async/async';
+import { DemoTypeaheadReactiveFormComponent } from './demos/reactive-form/reactive-form';
 import { DemoTypeaheadFormComponent } from './demos/form/form';
 import { DemoTypeaheadGroupingComponent } from './demos/grouping/grouping';
 import { DemoTypeaheadItemTemplateComponent } from './demos/item-template/item-template';
@@ -19,7 +21,6 @@ import { DemoTypeaheadNoResultComponent } from './demos/no-result/no-result';
 import { DemoTypeaheadOnBlurComponent } from './demos/on-blur/on-blur';
 import { DemoTypeaheadOnSelectComponent } from './demos/on-select/on-select';
 import { DemoTypeaheadPhraseDelimitersComponent } from './demos/phrase-delimiters/phrase-delimiters';
-import { DemoTypeaheadReactiveFormComponent } from './demos/reactive-form/reactive-form';
 import { DemoTypeaheadScrollableComponent } from './demos/scrollable/scrollable';
 import { DemotypeaheadSelectFirstItemComponent } from './demos/selected-first-item/selected-first-item';
 import { DemoTypeaheadShowOnBlurComponent } from './demos/show-on-blur/show-on-blur';
@@ -28,6 +29,7 @@ import { ExamplesComponent } from '../../docs/demo-section-components/demo-examp
 
 import { NgApiDocComponent, NgApiDocConfigComponent } from '../../docs/api-docs';
 import { DemoTypeaheadFirstItemActiveComponent } from './demos/first-item-active/first-item-active';
+import { DemoTypeaheadOrderingComponent } from './demos/ordering/ordering';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -88,6 +90,14 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/async/async.ts'),
         html: require('!!raw-loader!./demos/async/async.html'),
         outlet: DemoTypeaheadAsyncComponent
+      },
+      {
+        title: 'Cancel on focus lost',
+        anchor: 'cancel-on-focus-lost',
+        description: `<p>Set config property <code>cancelRequestOnFocusLost</code> to <code>true</code> if you want to cancel async request on focus lost event</p>`,
+        component: require('!!raw-loader!./demos/cancel-on-focus-lost/cancel-on-focus-lost.ts'),
+        html: require('!!raw-loader!./demos/cancel-on-focus-lost/cancel-on-focus-lost.html'),
+        outlet: DemoTypeaheadCancelRequestOnFocusLostComponent
       },
       {
         title: 'With delay',
@@ -233,7 +243,7 @@ export const demoComponentContent: ContentSection[] = [
         title: 'Show results on blur',
         anchor: 'show-on-blur',
         description: `
-          <p>Use input property <code>typeaheadHideResultsOnBlur</code> or config property <code>hideResultsOnBlur</code> 
+          <p>Use input property <code>typeaheadHideResultsOnBlur</code> or config property <code>hideResultsOnBlur</code>
           to prevent hiding typeahead's results until a user doesn't choose an item</p>
         `,
         component: require('!!raw-loader!./demos/show-on-blur/show-on-blur.ts'),
@@ -266,6 +276,16 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/selected-first-item/selected-first-item.ts'),
         html: require('!!raw-loader!./demos/selected-first-item/selected-first-item.html'),
         outlet: DemotypeaheadSelectFirstItemComponent
+      },
+      {
+        title: 'Order results',
+        anchor: 'typeahead-ordering',
+        description: `
+          <p>Use <code>typeaheadOrderBy</code> property to order your result by a certain field and in certain direction</p>
+        `,
+        component: require('!!raw-loader!./demos/ordering/ordering.ts'),
+        html: require('!!raw-loader!./demos/ordering/ordering.html'),
+        outlet: DemoTypeaheadOrderingComponent
       }
     ]
   },
