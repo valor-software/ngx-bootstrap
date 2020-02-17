@@ -20,6 +20,7 @@ import { DemoDatepickerMinModeComponent } from './demos/min-mode/min-mode.compon
 import { DemoDatepickerOutsideClickComponent } from './demos/outside-click/outside-click';
 import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
+import { DemoDatePickerReturnFocusToInputComponent } from './demos/return-focus-to-input/return-focus-to-input.component';
 import { DemoDatepickerDateCustomClassesComponent } from './demos/date-custom-classes/date-custom-classes';
 
 import {
@@ -248,6 +249,14 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/reactive-forms/reactive-forms.component.ts'),
         html: require('!!raw-loader!./demos/reactive-forms/reactive-forms.component.html'),
         outlet: DemoDatepickerReactiveFormsComponent
+      },
+      {
+        title: 'Return focus to input',
+        anchor: 'return-focus-to-input',
+        component: require('!!raw-loader!./demos/return-focus-to-input/return-focus-to-input.component.ts'),
+        html: require('!!raw-loader!./demos/return-focus-to-input/return-focus-to-input.component.html'),
+        description: `<p>Allows to return focus to input of datepicker or daterangepicker after the date or daterange selection</p>`,
+        outlet: DemoDatePickerReturnFocusToInputComponent
       },
       {
         title: 'Manual triggering',
