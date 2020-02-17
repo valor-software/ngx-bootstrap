@@ -8,7 +8,7 @@ describe('Progressbar demo page test suite', () => {
   describe('Static', () => {
     const staticBars = progressbar.exampleDemosArr.static;
 
-    it('User see 3 progressbars, 1 value matches config, 2 - "warning", 3 - "danger", animation', () => {
+    xit('User see 3 progressbars, 1 value matches config, 2 - "warning", 3 - "danger", animation', () => {
       progressbar.scrollToMenu('Static');
       progressbar.isProgressbarHaveAttrs(staticBars, [{ attr: 'max', value: '100' }], 0);
       progressbar.isProgressbarHaveAttrs(staticBars, [{ attr: 'type', value: 'warning' },

@@ -20,6 +20,7 @@ import { DemoDatepickerMinModeComponent } from './demos/min-mode/min-mode.compon
 import { DemoDatepickerOutsideClickComponent } from './demos/outside-click/outside-click';
 import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
+import { DemoDatePickerReturnFocusToInputComponent } from './demos/return-focus-to-input/return-focus-to-input.component';
 import { DemoDatepickerDateCustomClassesComponent } from './demos/date-custom-classes/date-custom-classes';
 
 import {
@@ -41,6 +42,7 @@ import {
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
 import { DemoDateRangePickerShowPreviousMonth } from './demos/daterangepicker-show-previous-month/show-previous-month';
+import { DemoDatePickerSelectWeekRangeComponent } from './demos/select-week-range/select-week-range';
 
 
 export const demoComponentContent: ContentSection[] = [
@@ -249,6 +251,14 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDatepickerReactiveFormsComponent
       },
       {
+        title: 'Return focus to input',
+        anchor: 'return-focus-to-input',
+        component: require('!!raw-loader!./demos/return-focus-to-input/return-focus-to-input.component.ts'),
+        html: require('!!raw-loader!./demos/return-focus-to-input/return-focus-to-input.component.html'),
+        description: `<p>Allows to return focus to input of datepicker or daterangepicker after the date or daterange selection</p>`,
+        outlet: DemoDatePickerReturnFocusToInputComponent
+      },
+      {
         title: 'Manual triggering',
         anchor: 'triggers-manual',
         component: require('!!raw-loader!./demos/triggers-manual/triggers-manual.ts'),
@@ -312,6 +322,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/select-week/select-week.html'),
         description: `<p>You can enable ability to select a week number (first day of the week will be selected) via <code>selectWeek</code> option in <code>bsConfig</code></p>`,
         outlet: DemoDatePickerSelectWeekComponent
+      },
+      {
+        title: 'Select week range',
+        anchor: 'select-week-range',
+        component: require('!!raw-loader!./demos/select-week-range/select-week-range.ts'),
+        html: require('!!raw-loader!./demos/select-week-range/select-week-range.html'),
+        description: `<p>You can enable ability to select a week number (range with first weekday - last weekday will be selected) via <code>selectWeekRange</code> option in <code>bsConfig</code></p>`,
+        outlet: DemoDatePickerSelectWeekRangeComponent
       },
       {
         title: 'Outside click',
