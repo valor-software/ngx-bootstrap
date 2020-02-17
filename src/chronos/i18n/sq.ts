@@ -48,16 +48,8 @@ export const sqLocale: LocaleData = {
     y : 'një vit',
     yy : '%d vite'
   },
-  dayOfMonthOrdinalParse: /\d{1,2}(st|nd|rd|th)/,
-  ordinal(_num: number): string {
-    const num = Number(_num);
-    const b = num % 10,
-      output = (~~(num % 100 / 10) === 1) ? 'i' :
-        (b === 1) ? 'i' :
-          (b === 2) ? 'i' :
-            (b === 3) ? 'i' : 'i';
-    return num + output;
-  },
+  dayOfMonthOrdinalParse: /\d{1,2}\./, // need clarification
+  ordinal : '%d.', // need clarification
   week : {
     dow : 1, // Monday is the first day of the week.
     doy : 4  // The week that contains Jan 4th is the first week of the year.
