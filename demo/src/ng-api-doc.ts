@@ -1039,8 +1039,8 @@ export const ngdoc: any = {
       },
       {
         "name": "returnFocusToInput",
-        "type": "boolean",
         "defaultValue": "false",
+        "type": "boolean",
         "description": "<p>If true, returns focus to the datepicker / daterangepicker input after date selection</p>\n"
       },
       {
