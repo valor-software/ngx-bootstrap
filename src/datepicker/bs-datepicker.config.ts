@@ -32,9 +32,10 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Default date custom classes for all date/range pickers
    */
   dateCustomClasses: DatepickerDateCustomClasses[];
-
+  /**
+   * Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays
+   */
   daysDisabled?: number[];
-
   /**
    * Disable specific dates
    */
