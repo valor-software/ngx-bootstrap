@@ -5,7 +5,7 @@
   "projects": {
     "ngx-bootstrap": {
       "root": "",
-      "sourceRoot": "demo/src",
+      "sourceRoot": "/",
       "projectType": "application",
       "architect": {
         "build": {
