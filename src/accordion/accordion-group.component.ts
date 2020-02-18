@@ -37,7 +37,7 @@ const closedAnimationKey = 'closed';
       transition('closed => open', [
         animate(COLLAPSE_ANIMATION_TIMING)
       ])
-    ]),
+    ])
   ]
 })
 export class AccordionPanelComponent implements OnInit, OnDestroy {
