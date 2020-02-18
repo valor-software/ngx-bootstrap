@@ -338,7 +338,8 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'TypeaheadTemplateMethods',
         anchor: 'typeahead-template method',
-        outlet: NgApiDocConfigComponent
+        outlet: NgApiDocConfigComponent,
+        showMethods: true
       }
     ]
   }

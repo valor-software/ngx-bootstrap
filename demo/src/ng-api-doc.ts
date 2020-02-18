@@ -3842,7 +3842,7 @@ export const ngdoc: any = {
     "methods": [
       {
         "name": "selectMatch",
-        "description": "<p>Function to select an option</p>\n",
+        "description": "<p>Function to select an option by click event</p>\n",
         "args": [
           {
             "name": "value",
@@ -3857,7 +3857,7 @@ export const ngdoc: any = {
       },
       {
         "name": "selectActive",
-        "description": "<p>Function to select an active option</p>\n",
+        "description": "<p>Function to select an option by mouseenter event</p>\n",
         "args": [
           {
             "name": "value",

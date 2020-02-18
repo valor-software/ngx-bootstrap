@@ -36,9 +36,9 @@ export interface TypeaheadOptionItemContext {
  * Methods for `optionsListTemplate` context
  */
 export interface TypeaheadTemplateMethods {
-  /** Function to select an option */
+  /** Function to select an option by click event */
   selectMatch(value: TypeaheadMatch, e?: Event): void;
-  /** Function to select an active option */
+  /** Function to select an option by mouseenter event */
   selectActive(value: TypeaheadMatch): void;
   /** Function to check if an option is active */
   isActive(value: TypeaheadMatch): boolean;
