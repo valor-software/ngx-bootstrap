@@ -275,10 +275,14 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @HostListener('focus')
   onFocus(): void {
     this.isFocused = true;
-    if (this.typeaheadMinLength === 0) {
-      this.typeaheadLoading.emit(true);
-      this.keyUpEventEmitter.emit(this.element.nativeElement.value || '');
-    }
+    // add setTimeout to fix issue #5251
+    // to get and emit updated value if it's changed on focus
+    setTimeout(() => {
+      if (this.typeaheadMinLength === 0) {
+        this.typeaheadLoading.emit(true);
+        this.keyUpEventEmitter.emit(this.element.nativeElement.value || '');
+      }
+    }, 0);
   }
 
   @HostListener('blur')

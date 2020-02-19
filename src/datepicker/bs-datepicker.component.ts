@@ -119,8 +119,8 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   private _datepickerRef: ComponentRef<BsDatepickerContainerComponent>;
 
   constructor(public _config: BsDatepickerConfig,
-              _elementRef: ElementRef,
-              _renderer: Renderer2,
+              private  _elementRef: ElementRef,
+              private  _renderer: Renderer2,
               _viewContainerRef: ViewContainerRef,
               cis: ComponentLoaderFactory) {
     // todo: assign only subset of fields
@@ -218,6 +218,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
     }
     for (const sub of this._subs) {
       sub.unsubscribe();
+    }
+
+    if (this._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elementRef.nativeElement).focus();
     }
   }
 
