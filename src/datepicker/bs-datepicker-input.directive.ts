@@ -50,6 +50,7 @@ const BS_DATEPICKER_VALIDATOR: Provider = {
   host: {
     '(change)': 'onChange($event)',
     '(keyup.esc)': 'hide()',
+    '(keydown)': 'onKeydownEvent($event)',
     '(blur)': 'onBlur()'
   },
   providers: [BS_DATEPICKER_VALUE_ACCESSOR, BS_DATEPICKER_VALIDATOR]
@@ -97,6 +98,12 @@ export class BsDatepickerInputDirective
     });
   }
 
+  onKeydownEvent(event) {
+    if (event.keyCode === 13 || event.code === 'Enter') {
+      this.hide();
+    }
+  }
+
   _setInputValue(value: Date): void {
     const initialDate = !value ? ''
       : formatDate(value, this._picker._config.dateInputFormat, this._localeService.currentLocale);
@@ -108,6 +115,9 @@ export class BsDatepickerInputDirective
     /* tslint:disable-next-line: no-any*/
     this.writeValue((event.target as any).value);
     this._onChange(this._value);
+    if (this._picker._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
+    }
     this._onTouched();
   }
 
@@ -190,5 +200,8 @@ export class BsDatepickerInputDirective
   hide() {
     this._picker.hide();
     this._renderer.selectRootElement(this._elRef.nativeElement).blur();
+    if (this._picker._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
+    }
   }
 }

@@ -32,9 +32,10 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Default date custom classes for all date/range pickers
    */
   dateCustomClasses: DatepickerDateCustomClasses[];
-
+  /**
+   * Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays
+   */
   daysDisabled?: number[];
-
   /**
    * Disable specific dates
    */
@@ -50,6 +51,11 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
   selectWeek?: boolean;
 
   /**
+   * Allows select daterange as first and last day of week by click on week number (dateRangePicker only)
+   */
+  selectWeekDateRange?: boolean;
+
+  /**
    * Shows previous and current month, instead of current and next (dateRangePicker only)
    */
   showPreviousMonth?: boolean;
@@ -63,6 +69,11 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Default mode for all date pickers
    */
   minMode?: BsDatepickerViewMode;
+
+  /**
+   * If true, returns focus to the datepicker / daterangepicker input after date selection
+   */
+  returnFocusToInput = false;
 
   /** CSS class which will be applied to datepicker container,
    * usually used to set color theme
