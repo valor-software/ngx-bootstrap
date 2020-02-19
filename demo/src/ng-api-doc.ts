@@ -537,7 +537,7 @@ export const ngdoc: any = {
     "properties": [
       {
         "name": "_a",
-        "type": "number[]",
+        "type": "DateArray",
         "description": "<p>DateArray [year, month, date, .....]</p>\n"
       },
       {
@@ -613,7 +613,7 @@ export const ngdoc: any = {
       {
         "name": "_w",
         "type": "WeekParsing",
-        "description": "<p>date specific info\nweek</p>\n"
+        "description": "<p>week</p>\n"
       }
     ]
   },
@@ -799,6 +799,11 @@ export const ngdoc: any = {
         "description": "<p>Disable specific dates</p>\n"
       },
       {
+        "name": "daysDisabled",
+        "type": "number[]",
+        "description": "<p>Disable certain days in the week</p>\n"
+      },
+      {
         "name": "isDisabled",
         "type": "boolean",
         "description": "<p>Indicates whether datepicker is enabled or not</p>\n"
@@ -883,7 +888,7 @@ export const ngdoc: any = {
       {
         "name": "daysDisabled",
         "type": "number[]",
-        "description": "<p>Disable Certain days in the week</p>\n"
+        "description": "<p>Disable certain days in the week</p>\n"
       },
       {
         "name": "isDisabled",
@@ -1011,6 +1016,11 @@ export const ngdoc: any = {
         "description": "<p>Disable specific dates</p>\n"
       },
       {
+        "name": "daysDisabled",
+        "type": "number[]",
+        "description": "<p>Disable certain days in the week</p>\n"
+      },
+      {
         "name": "isAnimated",
         "defaultValue": "false",
         "type": "boolean",
@@ -1036,6 +1046,12 @@ export const ngdoc: any = {
         "defaultValue": "L",
         "type": "string",
         "description": "<p>Date format for date range input field</p>\n"
+      },
+      {
+        "name": "returnFocusToInput",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>If true, returns focus to the datepicker / daterangepicker input after date selection</p>\n"
       },
       {
         "name": "selectFromOtherMonth",
@@ -1097,6 +1113,11 @@ export const ngdoc: any = {
         "name": "datesDisabled",
         "type": "Date[]",
         "description": "<p>Disable specific dates</p>\n"
+      },
+      {
+        "name": "daysDisabled",
+        "type": "number[]",
+        "description": "<p>Disable certain days in the week</p>\n"
       },
       {
         "name": "isDisabled",
@@ -1186,6 +1207,11 @@ export const ngdoc: any = {
         "name": "datesDisabled",
         "type": "Date[]",
         "description": "<p>Disable specific dates</p>\n"
+      },
+      {
+        "name": "daysDisabled",
+        "type": "number[]",
+        "description": "<p>Disable certain days in the week</p>\n"
       },
       {
         "name": "isDisabled",
@@ -1659,7 +1685,7 @@ export const ngdoc: any = {
   "DaysCalendarModel": {
     "fileName": "src/datepicker/models/index.ts",
     "className": "DaysCalendarModel",
-    "description": "<hr>\n<hr>\n",
+    "description": "<hr>\n",
     "methods": [],
     "properties": []
   },
@@ -2291,12 +2317,6 @@ export const ngdoc: any = {
           }
         ],
         "returnType": "BsModalRef"
-      },
-      {
-        "name": "checkScrollbar",
-        "description": "<p>Checks if the body is overflowing and sets scrollbar width</p>\n",
-        "args": [],
-        "returnType": "void"
       }
     ],
     "properties": []
@@ -2455,12 +2475,6 @@ export const ngdoc: any = {
       {
         "name": "focusOtherModal",
         "description": "<p>Events tricks</p>\n",
-        "args": [],
-        "returnType": "void"
-      },
-      {
-        "name": "checkScrollbar",
-        "description": "<p>Scroll bar tricks</p>\n",
         "args": [],
         "returnType": "void"
       }
@@ -3988,7 +4002,7 @@ export const ngdoc: any = {
       {
         "name": "_container",
         "type": "TypeaheadContainerComponent",
-        "description": "<p>if false restrict model values to the ones selected from the popup only will be provided\nif false the first match automatically will not be focused as you type\nformat the ng-model result after selection\nif true automatically select an item when there is one option that exactly matches the user input\nif true select the currently highlighted match on blur\nif false don&#39;t focus the input element the typeahead directive is associated with on selection</p>\n"
+        "description": "<p>if false don&#39;t focus the input element the typeahead directive is associated with on selection</p>\n"
       }
     ],
     "methods": []
