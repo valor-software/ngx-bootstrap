@@ -53,7 +53,7 @@ module.exports = function(projectConfig) {
     };
 
     if (process.env.TRAVIS) {
-      configuration.browsers = ['Chrome_travis_ci'];
+      baseConfiguration.browsers = ['Chrome_travis_ci'];
     }
 
     if (process.env.SAUCE) {
@@ -62,8 +62,8 @@ module.exports = function(projectConfig) {
         process.exit(1);
       }
 
-      configuration.plugins.push(require('karma-sauce-launcher'));
-      Object.assign(configuration, {
+      baseConfiguration.plugins.push(require('karma-sauce-launcher'));
+      Object.assign(baseConfiguration, {
         logLevel: config.LOG_INFO,
         reporters: ['dots', 'saucelabs'],
         singleRun: true,
