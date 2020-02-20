@@ -134,6 +134,9 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
 
     if (this._rangeStack.length === 0) {
       this._rangeStack = [day.date];
+
+      this.setMaxDateRangeOnCalendar(day.date);
+
     }
 
     this._store.dispatch(this._actions.selectRange(this._rangeStack));
@@ -153,6 +156,12 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   setRangeOnCalendar(dates: BsCustomDates): void {
     this._rangeStack = (dates === null) ? [] : (dates.value instanceof Date ? [dates.value] : dates.value);
     this._store.dispatch(this._actions.selectRange(this._rangeStack));
+  }
+
+  setMaxDateRangeOnCalendar(currentSelection: Date){
+    let maxDateRange = new Date(currentSelection);
+    maxDateRange.setDate(currentSelection.getDate() + this._config.maxDateRange);
+    this._effects.setMaxDate(maxDateRange);
   }
 
 }
