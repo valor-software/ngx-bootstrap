@@ -154,7 +154,8 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
         maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
         daysDisabled: this.daysDisabled || this.bsConfig && this.bsConfig.daysDisabled,
         dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
-        datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled
+        datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
+        ranges: this.bsConfig && this.bsConfig.ranges
       });
     }
 
