@@ -20,6 +20,7 @@ import { DemoDatepickerMinModeComponent } from './demos/min-mode/min-mode.compon
 import { DemoDatepickerOutsideClickComponent } from './demos/outside-click/outside-click';
 import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
+import { DemoDatePickerReturnFocusToInputComponent } from './demos/return-focus-to-input/return-focus-to-input.component';
 import { DemoDatepickerDateCustomClassesComponent } from './demos/date-custom-classes/date-custom-classes';
 
 import {
@@ -40,6 +41,7 @@ import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
+import { DemoDatePickerQuickSelectRangesComponent } from './demos/quick-select-ranges/quick-select-ranges';
 import { DemoDateRangePickerShowPreviousMonth } from './demos/daterangepicker-show-previous-month/show-previous-month';
 import { DemoDatePickerSelectWeekRangeComponent } from './demos/select-week-range/select-week-range';
 
@@ -192,7 +194,7 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/disable-days/disable-days.html'),
         description: `
           <p>You can set which days of the week should be disabled with <code>daysDisabled</code>
-          <p>In the following example <code>daysDisabled</code> is set with an array which disabled saturday and sunday.
+          <p>In the following example <code>daysDisabled</code> is set with an array which disabled Saturday and Sunday.
           Sunday is considered the first day of the week and thus has the value 0</p>`,
         outlet: DemoDatepickerDaysDisabledComponent
       },
@@ -248,6 +250,14 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/reactive-forms/reactive-forms.component.ts'),
         html: require('!!raw-loader!./demos/reactive-forms/reactive-forms.component.html'),
         outlet: DemoDatepickerReactiveFormsComponent
+      },
+      {
+        title: 'Return focus to input',
+        anchor: 'return-focus-to-input',
+        component: require('!!raw-loader!./demos/return-focus-to-input/return-focus-to-input.component.ts'),
+        html: require('!!raw-loader!./demos/return-focus-to-input/return-focus-to-input.component.html'),
+        description: `<p>Allows to return focus to input of datepicker or daterangepicker after the date or daterange selection</p>`,
+        outlet: DemoDatePickerReturnFocusToInputComponent
       },
       {
         title: 'Manual triggering',
@@ -356,6 +366,14 @@ export const demoComponentContent: ContentSection[] = [
         style: require('!!raw-loader!./demos/date-custom-classes/date-custom-classes.scss'),
         description: `<p>Style dates with custom classes</p>`,
         outlet: DemoDatepickerDateCustomClassesComponent
+      },
+      {
+        title: 'Quick select ranges',
+        anchor: 'quick-select-ranges',
+        component: require('!!raw-loader!./demos/quick-select-ranges/quick-select-ranges.ts'),
+        html: require('!!raw-loader!./demos/quick-select-ranges/quick-select-ranges.html'),
+        description: `<p>Quick select ranges can be added to Daterangepicker using <code>ranges</code></p>`,
+        outlet: DemoDatePickerQuickSelectRangesComponent
       },
       {
         title: 'Previous month in Daterangepicker',

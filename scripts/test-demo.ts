@@ -25,7 +25,5 @@ const context = require.context('../demo/src', true, /\.spec\.ts/);
 // And load the modules.
 context.keys().map(context);
 
-const context2 = require.context('../src', true, /\.spec\.ts/);
-context2.keys().map(context2);
 // Finally, start Karma to run the tests.
 // __karma__.start();

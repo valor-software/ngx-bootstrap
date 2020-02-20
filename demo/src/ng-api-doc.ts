@@ -537,7 +537,7 @@ export const ngdoc: any = {
     "properties": [
       {
         "name": "_a",
-        "type": "number[]",
+        "type": "DateArray",
         "description": "<p>DateArray [year, month, date, .....]</p>\n"
       },
       {
@@ -613,7 +613,7 @@ export const ngdoc: any = {
       {
         "name": "_w",
         "type": "WeekParsing",
-        "description": "<p>date specific info\nweek</p>\n"
+        "description": "<p>week</p>\n"
       }
     ]
   },
@@ -799,6 +799,11 @@ export const ngdoc: any = {
         "description": "<p>Disable specific dates</p>\n"
       },
       {
+        "name": "daysDisabled",
+        "type": "number[]",
+        "description": "<p>Disable certain days in the week</p>\n"
+      },
+      {
         "name": "isDisabled",
         "type": "boolean",
         "description": "<p>Indicates whether datepicker is enabled or not</p>\n"
@@ -883,7 +888,7 @@ export const ngdoc: any = {
       {
         "name": "daysDisabled",
         "type": "number[]",
-        "description": "<p>Disable Certain days in the week</p>\n"
+        "description": "<p>Disable certain days in the week</p>\n"
       },
       {
         "name": "isDisabled",
@@ -1011,6 +1016,11 @@ export const ngdoc: any = {
         "description": "<p>Disable specific dates</p>\n"
       },
       {
+        "name": "daysDisabled",
+        "type": "number[]",
+        "description": "<p>Disable certain days in the week</p>\n"
+      },
+      {
         "name": "isAnimated",
         "defaultValue": "false",
         "type": "boolean",
@@ -1036,6 +1046,12 @@ export const ngdoc: any = {
         "defaultValue": "L",
         "type": "string",
         "description": "<p>Date format for date range input field</p>\n"
+      },
+      {
+        "name": "returnFocusToInput",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>If true, returns focus to the datepicker / daterangepicker input after date selection</p>\n"
       },
       {
         "name": "selectFromOtherMonth",
@@ -1097,6 +1113,11 @@ export const ngdoc: any = {
         "name": "datesDisabled",
         "type": "Date[]",
         "description": "<p>Disable specific dates</p>\n"
+      },
+      {
+        "name": "daysDisabled",
+        "type": "number[]",
+        "description": "<p>Disable certain days in the week</p>\n"
       },
       {
         "name": "isDisabled",
@@ -1186,6 +1207,11 @@ export const ngdoc: any = {
         "name": "datesDisabled",
         "type": "Date[]",
         "description": "<p>Disable specific dates</p>\n"
+      },
+      {
+        "name": "daysDisabled",
+        "type": "number[]",
+        "description": "<p>Disable certain days in the week</p>\n"
       },
       {
         "name": "isDisabled",
@@ -1659,7 +1685,7 @@ export const ngdoc: any = {
   "DaysCalendarModel": {
     "fileName": "src/datepicker/models/index.ts",
     "className": "DaysCalendarModel",
-    "description": "<hr>\n<hr>\n",
+    "description": "<hr>\n",
     "methods": [],
     "properties": []
   },
@@ -2291,12 +2317,6 @@ export const ngdoc: any = {
           }
         ],
         "returnType": "BsModalRef"
-      },
-      {
-        "name": "checkScrollbar",
-        "description": "<p>Checks if the body is overflowing and sets scrollbar width</p>\n",
-        "args": [],
-        "returnType": "void"
       }
     ],
     "properties": []
@@ -2455,12 +2475,6 @@ export const ngdoc: any = {
       {
         "name": "focusOtherModal",
         "description": "<p>Events tricks</p>\n",
-        "args": [],
-        "returnType": "void"
-      },
-      {
-        "name": "checkScrollbar",
-        "description": "<p>Scroll bar tricks</p>\n",
         "args": [],
         "returnType": "void"
       }
@@ -3773,6 +3787,107 @@ export const ngdoc: any = {
       }
     ]
   },
+  "TypeaheadOptionListContext": {
+    "fileName": "src/typeahead/models/index.ts",
+    "className": "TypeaheadOptionListContext",
+    "description": "<p>A context for the <code>optionsListTemplate</code>\ninput template in case you want to override default one</p>\n",
+    "methods": [],
+    "properties": [
+      {
+        "name": "$implicit",
+        "type": "TypeaheadTemplateMethods",
+        "description": "<p>Typeahead template methods</p>\n"
+      },
+      {
+        "name": "itemTemplate",
+        "type": "TemplateRef<TypeaheadOptionItemContext>",
+        "description": "<p>Item template</p>\n"
+      },
+      {
+        "name": "matches",
+        "type": "TypeaheadMatch[]",
+        "description": "<p>All matches</p>\n"
+      },
+      {
+        "name": "query",
+        "type": "string | string[]",
+        "description": "<p>Search query</p>\n"
+      }
+    ]
+  },
+  "TypeaheadOptionItemContext": {
+    "fileName": "src/typeahead/models/index.ts",
+    "className": "TypeaheadOptionItemContext",
+    "description": "<p>A context for the <code>typeaheadItemTemplate</code>\ninput template in case you want to override default one</p>\n",
+    "methods": [],
+    "properties": [
+      {
+        "name": "index",
+        "type": "number",
+        "description": "<p>Item index</p>\n"
+      },
+      {
+        "name": "item",
+        "type": "any",
+        "description": "<p>Item</p>\n"
+      },
+      {
+        "name": "match",
+        "type": "TypeaheadMatch",
+        "description": "<p>Typeahead match</p>\n"
+      },
+      {
+        "name": "query",
+        "type": "string | string[]",
+        "description": "<p>Search query</p>\n"
+      }
+    ]
+  },
+  "TypeaheadTemplateMethods": {
+    "fileName": "src/typeahead/models/index.ts",
+    "className": "TypeaheadTemplateMethods",
+    "description": "<p>Methods for <code>optionsListTemplate</code> context</p>\n",
+    "methods": [
+      {
+        "name": "selectMatch",
+        "description": "<p>Function to select an option by click event</p>\n",
+        "args": [
+          {
+            "name": "value",
+            "type": "TypeaheadMatch"
+          },
+          {
+            "name": "e",
+            "type": "Event"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "selectActive",
+        "description": "<p>Function to select an option by mouseenter event</p>\n",
+        "args": [
+          {
+            "name": "value",
+            "type": "TypeaheadMatch"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "isActive",
+        "description": "<p>Function to check if an option is active</p>\n",
+        "args": [
+          {
+            "name": "value",
+            "type": "TypeaheadMatch"
+          }
+        ],
+        "returnType": "boolean"
+      }
+    ],
+    "properties": []
+  },
   "TypeaheadContainerComponent": {
     "fileName": "src/typeahead/typeahead-container.component.ts",
     "className": "TypeaheadContainerComponent",
@@ -3864,7 +3979,7 @@ export const ngdoc: any = {
       },
       {
         "name": "optionsListTemplate",
-        "type": "TemplateRef<any>",
+        "type": "TemplateRef<TypeaheadOptionListContext>",
         "description": "<p>used to specify a custom options list template.\nTemplate variables: matches, itemTemplate, query</p>\n"
       },
       {
@@ -3895,7 +4010,7 @@ export const ngdoc: any = {
       },
       {
         "name": "typeaheadItemTemplate",
-        "type": "TemplateRef<any>",
+        "type": "TemplateRef<TypeaheadOptionItemContext>",
         "description": "<p>used to specify a custom item template.\nTemplate variables exposed are called item and index;</p>\n"
       },
       {
@@ -3988,7 +4103,7 @@ export const ngdoc: any = {
       {
         "name": "_container",
         "type": "TypeaheadContainerComponent",
-        "description": "<p>if false restrict model values to the ones selected from the popup only will be provided\nif false the first match automatically will not be focused as you type\nformat the ng-model result after selection\nif true automatically select an item when there is one option that exactly matches the user input\nif true select the currently highlighted match on blur\nif false don&#39;t focus the input element the typeahead directive is associated with on selection</p>\n"
+        "description": "<p>if false don&#39;t focus the input element the typeahead directive is associated with on selection</p>\n"
       }
     ],
     "methods": []

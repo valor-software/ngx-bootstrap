@@ -142,7 +142,10 @@ export {
   TypeaheadDirective,
   TypeaheadMatch,
   TypeaheadModule,
-  TypeaheadOrder
+  TypeaheadOrder,
+  TypeaheadOptionItemContext,
+  TypeaheadOptionListContext,
+  TypeaheadTemplateMethods
 } from './typeahead/index';
 
 export {

@@ -107,9 +107,14 @@ export class BsDaterangepickerDirective
    */
   @Input() dateCustomClasses: DatepickerDateCustomClasses[];
   /**
+   * Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays
+   */
+  @Input() daysDisabled?: number[];
+  /**
    * Disable specific dates
    */
   @Input() datesDisabled: Date[];
+
   /**
    * Emits when daterangepicker value has been changed
    */
@@ -121,8 +126,8 @@ export class BsDaterangepickerDirective
   private _datepickerRef: ComponentRef<BsDaterangepickerContainerComponent>;
 
   constructor(public _config: BsDaterangepickerConfig,
-              _elementRef: ElementRef,
-              _renderer: Renderer2,
+              private  _elementRef: ElementRef,
+              private  _renderer: Renderer2,
               _viewContainerRef: ViewContainerRef,
               cis: ComponentLoaderFactory) {
     this._datepicker = cis.createLoader<BsDaterangepickerContainerComponent>(
@@ -160,6 +165,10 @@ export class BsDaterangepickerDirective
 
     if (changes.datesDisabled) {
       this._datepickerRef.instance.datesDisabled = this.datesDisabled;
+    }
+
+    if (changes.daysDisabled) {
+      this._datepickerRef.instance.daysDisabled = this.daysDisabled;
     }
 
     if (changes.isDisabled) {
@@ -222,8 +231,10 @@ export class BsDaterangepickerDirective
         isDisabled: this.isDisabled,
         minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
         maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
+        daysDisabled: this.daysDisabled || this.bsConfig && this.bsConfig.daysDisabled,
         dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
-        datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled
+        datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
+        ranges: this.bsConfig && this.bsConfig.ranges
       }
     );
   }
@@ -239,7 +250,10 @@ export class BsDaterangepickerDirective
     for (const sub of this._subs) {
       sub.unsubscribe();
     }
-  }
+
+    if (this._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elementRef.nativeElement).focus();
+    }    }
 
   /**
    * Toggles an element’s datepicker. This is considered a “manual” triggering

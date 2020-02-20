@@ -26,10 +26,11 @@
 
 <div class="row">
   <div class="col-xs-12 col-12 col-sm-6 col-md-5 form-group">
+    <p>Two first days of the each week are disabled</p>
     <input
       class="form-control"
-      placeholder="First day of each week in January is disabled"
-      bsDaterangepicker [datesDisabled]="disabledFirstWeekDays"
+      placeholder="Two days disabled"
+      bsDaterangepicker [daysDisabled]="[0,1]"
       [bsConfig]="{ selectWeekDateRange: true }">
   </div>
 </div>
@@ -41,8 +42,8 @@
   <div class="col-xs-12 col-12 col-sm-6 col-md-5 form-group">
     <input
       class="form-control"
-      placeholder="All days disabled (1st week of February)"
-      bsDaterangepicker [datesDisabled]="disabledWeekDays"
+      placeholder="All days disabled"
+      bsDaterangepicker [daysDisabled]="[0,1,2,3,4,5,6]"
       [bsConfig]="{ selectWeekDateRange: true }">
   </div>
 </div>

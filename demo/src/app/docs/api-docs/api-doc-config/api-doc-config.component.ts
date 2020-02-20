@@ -26,6 +26,7 @@ export class NgApiDocConfigComponent {
   apiDocs: ClassDesc;
   directiveName: string;
   headerAnchor: string;
+  isShowMethods = false;
 
   private analytics: Analytics;
   private docs: NgApiDoc;
@@ -36,6 +37,7 @@ export class NgApiDocConfigComponent {
 
     this.headerAnchor = content.anchor;
     this.apiDocs = this.docs[content.title];
+    this.isShowMethods = content.showMethods || this.isShowMethods;
     this.directiveName = content.title.slice(0, -CONFIG_SUFFIX_LENGTH);
   }
 
