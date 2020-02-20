@@ -22,7 +22,7 @@ export abstract class BsDatepickerAbstractComponent {
   isOtherMonthsActive: boolean;
 
   _effects: BsDatepickerEffects;
-  _customRangesFish: BsCustomDates[] = [];
+  customRanges: BsCustomDates[] = [];
 
   set minDate(value: Date) {
     this._effects.setMinDate(value);

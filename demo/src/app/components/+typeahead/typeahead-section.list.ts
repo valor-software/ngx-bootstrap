@@ -29,6 +29,8 @@ import { ExamplesComponent } from '../../docs/demo-section-components/demo-examp
 
 import { NgApiDocComponent, NgApiDocConfigComponent } from '../../docs/api-docs';
 import { DemoTypeaheadFirstItemActiveComponent } from './demos/first-item-active/first-item-active';
+import { DemoTypeaheadAsyncHttpRequestComponent } from './demos/async-http-request/async-http-request';
+import { DemoTypeaheadOrderingComponent } from './demos/ordering/ordering';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -89,6 +91,18 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/async/async.ts'),
         html: require('!!raw-loader!./demos/async/async.html'),
         outlet: DemoTypeaheadAsyncComponent
+      },
+      {
+        title: 'Async using http request',
+        anchor: 'async-http-request',
+        description: `
+          <p>Use http request to search for data. If you need to handle http error, do this inside <code>tap</code> operator.
+          Enter search value several times (10-15), and after a few success responses API should return an error
+          (GitHub limit for requests)</p>
+        `,
+        component: require('!!raw-loader!./demos/async-http-request/async-http-request.ts'),
+        html: require('!!raw-loader!./demos/async-http-request/async-http-request.html'),
+        outlet: DemoTypeaheadAsyncHttpRequestComponent
       },
       {
         title: 'Cancel on focus lost',
@@ -275,6 +289,16 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/selected-first-item/selected-first-item.ts'),
         html: require('!!raw-loader!./demos/selected-first-item/selected-first-item.html'),
         outlet: DemotypeaheadSelectFirstItemComponent
+      },
+      {
+        title: 'Order results',
+        anchor: 'typeahead-ordering',
+        description: `
+          <p>Use <code>typeaheadOrderBy</code> property to order your result by a certain field and in certain direction</p>
+        `,
+        component: require('!!raw-loader!./demos/ordering/ordering.ts'),
+        html: require('!!raw-loader!./demos/ordering/ordering.html'),
+        outlet: DemoTypeaheadOrderingComponent
       }
     ]
   },
