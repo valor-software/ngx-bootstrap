@@ -205,7 +205,7 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/disable-dates/disable-dates.html'),
         description: `
           <p>You can set which dates should be disabled with <code>datesDisabled</code></p>
-          <p>In the following example <code>datesDisabled</code> is set with an array to disable 2019-02-05 and 2019-02-09.</p>`,
+          <p>In the following example <code>datesDisabled</code> is set with an array to disable 2020-02-05 and 2020-02-09.</p>`,
         outlet: DemoDatepickerDatesDisabledComponent
       },
       {

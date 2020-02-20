@@ -83,12 +83,6 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
   ngOnInit(): void {
     this.setConfig();
 
-    this._datepickerRef = this._datepicker
-      .provide({provide: BsDatepickerConfig, useValue: this._config})
-      .attach(BsDatepickerInlineContainerComponent)
-      .to(this._elementRef)
-      .show();
-
     // if date changes from external source (model -> view)
     this._subs.push(
       this.bsValueChange.subscribe((value: Date) => {
@@ -111,25 +105,27 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
 
     if (changes.minDate) {
       this._datepickerRef.instance.minDate = this.minDate;
-      this._datepickerRef.instance.value = this._bsValue;
+      this.setConfig();
     }
 
     if (changes.maxDate) {
       this._datepickerRef.instance.maxDate = this.maxDate;
-      this._datepickerRef.instance.value = this._bsValue;
+      this.setConfig();
     }
 
     if (changes.datesDisabled) {
       this._datepickerRef.instance.datesDisabled = this.datesDisabled;
-      this._datepickerRef.instance.value = this._bsValue;
+      this.setConfig();
     }
 
     if (changes.isDisabled) {
       this._datepickerRef.instance.isDisabled = this.isDisabled;
+      this.setConfig();
     }
 
     if (changes.dateCustomClasses) {
       this._datepickerRef.instance.dateCustomClasses = this.dateCustomClasses;
+      this.setConfig();
     }
   }
 
@@ -137,6 +133,10 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
    * Set config for datepicker
    */
   setConfig(): void {
+    if (this._datepicker) {
+      this._datepicker.hide();
+    }
+
     this._config = Object.assign({}, this._config, this.bsConfig, {
       value: this._bsValue,
       isDisabled: this.isDisabled,
@@ -146,10 +146,12 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
       datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled
     });
 
-    if (this._datepickerRef !== undefined) {
-      this._datepicker.hide();
-      this._datepicker.show();
-    }
+
+    this._datepickerRef = this._datepicker
+      .provide({provide: BsDatepickerConfig, useValue: this._config})
+      .attach(BsDatepickerInlineContainerComponent)
+      .to(this._elementRef)
+      .show();
   }
 
   ngOnDestroy(): any {
