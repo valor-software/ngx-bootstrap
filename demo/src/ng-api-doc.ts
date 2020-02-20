@@ -3787,6 +3787,107 @@ export const ngdoc: any = {
       }
     ]
   },
+  "TypeaheadOptionListContext": {
+    "fileName": "src/typeahead/models/index.ts",
+    "className": "TypeaheadOptionListContext",
+    "description": "<p>A context for the <code>optionsListTemplate</code>\ninput template in case you want to override default one</p>\n",
+    "methods": [],
+    "properties": [
+      {
+        "name": "$implicit",
+        "type": "TypeaheadTemplateMethods",
+        "description": "<p>Typeahead template methods</p>\n"
+      },
+      {
+        "name": "itemTemplate",
+        "type": "TemplateRef<TypeaheadOptionItemContext>",
+        "description": "<p>Item template</p>\n"
+      },
+      {
+        "name": "matches",
+        "type": "TypeaheadMatch[]",
+        "description": "<p>All matches</p>\n"
+      },
+      {
+        "name": "query",
+        "type": "string | string[]",
+        "description": "<p>Search query</p>\n"
+      }
+    ]
+  },
+  "TypeaheadOptionItemContext": {
+    "fileName": "src/typeahead/models/index.ts",
+    "className": "TypeaheadOptionItemContext",
+    "description": "<p>A context for the <code>typeaheadItemTemplate</code>\ninput template in case you want to override default one</p>\n",
+    "methods": [],
+    "properties": [
+      {
+        "name": "index",
+        "type": "number",
+        "description": "<p>Item index</p>\n"
+      },
+      {
+        "name": "item",
+        "type": "any",
+        "description": "<p>Item</p>\n"
+      },
+      {
+        "name": "match",
+        "type": "TypeaheadMatch",
+        "description": "<p>Typeahead match</p>\n"
+      },
+      {
+        "name": "query",
+        "type": "string | string[]",
+        "description": "<p>Search query</p>\n"
+      }
+    ]
+  },
+  "TypeaheadTemplateMethods": {
+    "fileName": "src/typeahead/models/index.ts",
+    "className": "TypeaheadTemplateMethods",
+    "description": "<p>Methods for <code>optionsListTemplate</code> context</p>\n",
+    "methods": [
+      {
+        "name": "selectMatch",
+        "description": "<p>Function to select an option by click event</p>\n",
+        "args": [
+          {
+            "name": "value",
+            "type": "TypeaheadMatch"
+          },
+          {
+            "name": "e",
+            "type": "Event"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "selectActive",
+        "description": "<p>Function to select an option by mouseenter event</p>\n",
+        "args": [
+          {
+            "name": "value",
+            "type": "TypeaheadMatch"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "isActive",
+        "description": "<p>Function to check if an option is active</p>\n",
+        "args": [
+          {
+            "name": "value",
+            "type": "TypeaheadMatch"
+          }
+        ],
+        "returnType": "boolean"
+      }
+    ],
+    "properties": []
+  },
   "TypeaheadContainerComponent": {
     "fileName": "src/typeahead/typeahead-container.component.ts",
     "className": "TypeaheadContainerComponent",
@@ -3878,7 +3979,7 @@ export const ngdoc: any = {
       },
       {
         "name": "optionsListTemplate",
-        "type": "TemplateRef<any>",
+        "type": "TemplateRef<TypeaheadOptionListContext>",
         "description": "<p>used to specify a custom options list template.\nTemplate variables: matches, itemTemplate, query</p>\n"
       },
       {
@@ -3909,7 +4010,7 @@ export const ngdoc: any = {
       },
       {
         "name": "typeaheadItemTemplate",
-        "type": "TemplateRef<any>",
+        "type": "TemplateRef<TypeaheadOptionItemContext>",
         "description": "<p>used to specify a custom item template.\nTemplate variables exposed are called item and index;</p>\n"
       },
       {
