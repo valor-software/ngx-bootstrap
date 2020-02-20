@@ -42,7 +42,7 @@
     "test": "ng test && npm run test:schematics",
     "test:ivy": "ng test --configuration ivy && npm run test:schematics",
     "test:schematics": "jasmine schematics/src/**/*.spec.js",
-    "test-cross": "SAUCE=true ng test",
+    "test-cross": "SAUCE=true && ng test",
     "test-coverage": "ng test --code-coverage",
     "version": "node scripts/version && npm run version.changelog",
     "version.changelog": "run-s changelog git-add git-commit-changelog",

@@ -111,7 +111,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "scripts/test.ts",
+            "main": "scripts/test-demo.ts",
             "karmaConfig": "karma-demo.conf.js",
             "polyfills": "demo/src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
@@ -126,6 +126,53 @@
             "assets": [
               "demo/src/assets"
             ]
+          },
+          "configurations": {
+            "ivy": {
+              "tsConfig": "src/tsconfig-ivy.spec.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "../tslint.json"
+            ],
+            "exclude": []
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "demo/dist/server",
+            "main": "demo/src/main.server.ts",
+            "tsConfig": "demo/src/tsconfig.server.json"
+          }
+        }
+      }
+    },
+    "ngx-bootstrap-source": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "library",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "scripts/test-source.ts",
+            "karmaConfig": "karma-source.conf.js",
+            "polyfills": "demo/src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
+            "codeCoverageExclude": ["dist/**/*"],
+            "sourceMap": false,
+            "scripts": [],
+            "styles": [
+              "src/datepicker/bs-datepicker.scss",
+              "demo/src/assets/css/style.scss",
+              "demo/src/assets/css/prettify-angulario.css"
+            ],
+            "assets": []
           },
           "configurations": {
             "ivy": {
