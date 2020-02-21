@@ -158,7 +158,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     this._store.dispatch(this._actions.selectRange(this._rangeStack));
   }
 
-  setMaxDateRangeOnCalendar(currentSelection: Date) {
+  setMaxDateRangeOnCalendar(currentSelection: Date): void {
     const maxDateRange = new Date(currentSelection);
     maxDateRange.setDate(currentSelection.getDate() + this._config.maxDateRange);
     this._effects.setMaxDate(maxDateRange);
