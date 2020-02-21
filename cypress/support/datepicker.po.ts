@@ -446,6 +446,10 @@ export class DatepickerPo extends BaseComponent {
         actualMonthArr = globalLocales.kaLocale.months;
         break;
 
+      case 'sq' :
+        actualMonthArr = globalLocales.sqLocale.months;
+        break;
+
       default:
         actualMonthArr = undefined;
     }
