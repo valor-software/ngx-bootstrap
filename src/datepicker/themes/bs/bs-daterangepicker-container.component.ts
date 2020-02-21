@@ -128,12 +128,8 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     if (this._rangeStack.length === 1) {
       this._rangeStack =
         day.date >= this._rangeStack[0]
-          ? [this._rangeStack[0], day.date]
-          : [day.date];
-
-      // to reset and make all dates selectable once user selects the end date.
-      // this is especially for inline daterangepicker
-      this._effects.setMaxDate(null);
+          ? (this._effects.setMaxDate(null), [this._rangeStack[0], day.date])
+          : (this.setMaxDateRangeOnCalendar(day.date), [day.date]);
     }
 
     if (this._rangeStack.length === 0) {
