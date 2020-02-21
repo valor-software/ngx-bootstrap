@@ -39,6 +39,7 @@ import { DemoDateRangePickerShowPreviousMonth } from './daterangepicker-show-pre
 import { DemoDateRangePickerDisplayOneMonth } from './daterangepicker-display-one-month/display-one-month';
 import { DemoDatepickerTodayButtonComponent } from './today-button/today-button';
 
+import { DemoDateRangePickerMaxDateRangeComponent } from './max-date-range/max-date-range';
 
 export const DEMO_COMPONENTS = [
   DatepickerDemoComponent,
@@ -78,5 +79,7 @@ export const DEMO_COMPONENTS = [
   DemoDateRangePickerDisplayOneMonth,
   DemoDatePickerVisibilityEventsComponent,
   DemoDatePickerQuickSelectRangesComponent,
-  DemoDatepickerTodayButtonComponent
+  DemoDatepickerTodayButtonComponent,
+  DemoDateRangePickerShowPreviousMonth,
+  DemoDateRangePickerMaxDateRangeComponent
 ];
