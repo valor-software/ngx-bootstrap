@@ -15,6 +15,7 @@ import { DemoTypeaheadReactiveFormComponent } from './demos/reactive-form/reacti
 import { DemoTypeaheadFormComponent } from './demos/form/form';
 import { DemoTypeaheadGroupingComponent } from './demos/grouping/grouping';
 import { DemoTypeaheadItemTemplateComponent } from './demos/item-template/item-template';
+import { DemoTypeaheadListTemplateComponent } from './demos/list-template/list-template';
 import { DemoTypeaheadLatinizeComponent } from './demos/latinize/latinize';
 import { DemoTypeaheadMinLengthComponent } from './demos/min-length/min-length';
 import { DemoTypeaheadNoResultComponent } from './demos/no-result/no-result';
@@ -29,6 +30,7 @@ import { ExamplesComponent } from '../../docs/demo-section-components/demo-examp
 
 import { NgApiDocComponent, NgApiDocConfigComponent } from '../../docs/api-docs';
 import { DemoTypeaheadFirstItemActiveComponent } from './demos/first-item-active/first-item-active';
+import { DemoTypeaheadAsyncHttpRequestComponent } from './demos/async-http-request/async-http-request';
 import { DemoTypeaheadOrderingComponent } from './demos/ordering/ordering';
 
 export const demoComponentContent: ContentSection[] = [
@@ -78,6 +80,13 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoTypeaheadItemTemplateComponent
       },
       {
+        title: 'List template',
+        anchor: 'list-template',
+        component: require('!!raw-loader!./demos/list-template/list-template.ts'),
+        html: require('!!raw-loader!./demos/list-template/list-template.html'),
+        outlet: DemoTypeaheadListTemplateComponent
+      },
+      {
         title: 'Option field',
         anchor: 'option-field',
         component: require('!!raw-loader!./demos/field/field.ts'),
@@ -90,6 +99,18 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/async/async.ts'),
         html: require('!!raw-loader!./demos/async/async.html'),
         outlet: DemoTypeaheadAsyncComponent
+      },
+      {
+        title: 'Async using http request',
+        anchor: 'async-http-request',
+        description: `
+          <p>Use http request to search for data. If you need to handle http error, do this inside <code>tap</code> operator.
+          Enter search value several times (10-15), and after a few success responses API should return an error
+          (GitHub limit for requests)</p>
+        `,
+        component: require('!!raw-loader!./demos/async-http-request/async-http-request.ts'),
+        html: require('!!raw-loader!./demos/async-http-request/async-http-request.html'),
+        outlet: DemoTypeaheadAsyncHttpRequestComponent
       },
       {
         title: 'Cancel on focus lost',
@@ -303,7 +324,24 @@ export const demoComponentContent: ContentSection[] = [
         title: 'TypeaheadConfig',
         anchor: 'bs-typeahead-config',
         outlet: NgApiDocConfigComponent
+      },
+      {
+        title: 'TypeaheadOptionListContext',
+        anchor: 'typeahead-option-list-context',
+        outlet: NgApiDocConfigComponent
+      },
+      {
+        title: 'TypeaheadOptionItemContext',
+        anchor: 'typeahead-option-item-context',
+        outlet: NgApiDocConfigComponent
+      },
+      {
+        title: 'TypeaheadTemplateMethods',
+        anchor: 'typeahead-template method',
+        outlet: NgApiDocConfigComponent,
+        showMethods: true
       }
     ]
   }
+// tslint:disable-next-line:max-file-line-count
 ];

@@ -105,6 +105,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    */
   @Input() datesDisabled: Date[];
   /**
+   * Enable specific dates
+   */
+  @Input() datesEnabled: Date[];
+  /**
    * Date custom classes
    */
   @Input() dateCustomClasses: DatepickerDateCustomClasses[];
@@ -119,8 +123,8 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   private _datepickerRef: ComponentRef<BsDatepickerContainerComponent>;
 
   constructor(public _config: BsDatepickerConfig,
-              _elementRef: ElementRef,
-              _renderer: Renderer2,
+              private  _elementRef: ElementRef,
+              private  _renderer: Renderer2,
               _viewContainerRef: ViewContainerRef,
               cis: ComponentLoaderFactory) {
     // todo: assign only subset of fields
@@ -163,6 +167,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
 
     if (changes.datesDisabled) {
       this._datepickerRef.instance.datesDisabled = this.datesDisabled;
+    }
+
+    if (changes.datesEnabled) {
+      this._datepickerRef.instance.datesEnabled = this.datesEnabled;
     }
 
     if (changes.isDisabled) {
@@ -219,6 +227,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
     for (const sub of this._subs) {
       sub.unsubscribe();
     }
+
+    if (this._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elementRef.nativeElement).focus();
+    }
   }
 
   /**
@@ -245,6 +257,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
       daysDisabled: this.daysDisabled || this.bsConfig && this.bsConfig.daysDisabled,
       dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
       datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
+      datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled,
       minMode: this.minMode || this.bsConfig && this.bsConfig.minMode
     });
   }

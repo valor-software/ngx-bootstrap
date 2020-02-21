@@ -26,7 +26,7 @@ async function buildAll() {
   await execa.shell(`json -I -f ${dist}/package.json -e 'this.schematics="./schematics/collection.json"'`);
   cpy(['*.md', 'LICENSE'], dist);
 
-   await execa.shell(`npm run link`);
+//   await execa.shell(`npm run link`);
 
   const requiredModules = ['collapse', 'chronos', 'utils', 'positioning', 'component-loader', 'dropdown', 'locale',
     'alert', 'buttons', 'carousel', 'mini-ngrx', 'modal', 'pagination', 'popover', 'progressbar', 'rating',
@@ -35,15 +35,18 @@ async function buildAll() {
   await buildModules(requiredModules);
 
   await execa.shell(`rsync -avr  --include='*/' --include='*.scss' --exclude='*' ${src}/datepicker ${dist}`);
-
 }
 
 const cli = meow(`
 	Options
 	  --watch Rebuild on source change
+	  --latest required for Latest Env
 `, {
   flags: {
     watch: {
+      type: 'boolean'
+    },
+    latest: {
       type: 'boolean'
     }
   }
@@ -66,7 +69,11 @@ async function buildModules(modules) {
   for (let module of modules) {
     console.log('Building', module, 'module');
     await execa.shell(`rimraf ${dist}/${module} && node scripts/ng-packagr/api ../../src/${module}/package.json`);
-    // await execa.shell(`npm run dist-to-modules`);
+    if (flags.latest) {
+      await execa.shell(`npm run dist-to-modules.deploy`);
+    } else {
+      await execa.shell(`npm run dist-to-modules`);
+    }
     console.log(`Build of ${module} module completed`);
   }
 }

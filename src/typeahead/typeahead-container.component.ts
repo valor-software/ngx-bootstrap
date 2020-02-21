@@ -14,12 +14,13 @@ import {
 
 import { isBs3, Utils } from 'ngx-bootstrap/utils';
 import { PositioningService } from 'ngx-bootstrap/positioning';
+import { Subscription } from 'rxjs';
 
 import { latinize } from './typeahead-utils';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { TypeaheadDirective } from './typeahead.directive';
 import { typeaheadAnimation } from './typeahead-animations';
-import { Subscription } from 'rxjs';
+import { TypeaheadOptionItemContext, TypeaheadOptionListContext, TypeaheadTemplateMethods } from './models';
 
 @Component({
   selector: 'typeahead-container',
@@ -63,6 +64,17 @@ export class TypeaheadContainerComponent implements OnDestroy {
 
   get isBs4(): boolean {
     return !isBs3();
+  }
+
+  get typeaheadTemplateMethods(): TypeaheadTemplateMethods {
+    /* tslint:disable:no-this-assignment */
+    const _that = this;
+
+    return {
+      selectMatch: this.selectMatch.bind(_that),
+      selectActive: this.selectActive.bind(_that),
+      isActive: this.isActive.bind(_that)
+    };
   }
 
   protected _active: TypeaheadMatch;
@@ -145,7 +157,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
   }
 
   // tslint:disable-next-line:no-any
-  get optionsListTemplate(): TemplateRef<any> {
+  get optionsListTemplate(): TemplateRef<TypeaheadOptionListContext> {
     return this.parent ? this.parent.optionsListTemplate : undefined;
   }
 
@@ -168,8 +180,8 @@ export class TypeaheadContainerComponent implements OnDestroy {
   get typeaheadIsFirstItemActive(): boolean {
     return this.parent ? this.parent.typeaheadIsFirstItemActive : true;
   }
-// tslint:disable-next-line:no-any
-  get itemTemplate(): TemplateRef<any> {
+  // tslint:disable-next-line:no-any
+  get itemTemplate(): TemplateRef<TypeaheadOptionItemContext> {
     return this.parent ? this.parent.typeaheadItemTemplate : undefined;
   }
 
