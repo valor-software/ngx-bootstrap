@@ -10,6 +10,7 @@ import { DemoDatePickerConfigObjectComponent } from './demos/config-object/confi
 import { DemoDatePickerCustomFormatComponent } from './demos/custom-format/custom-format';
 import { DemoDatepickerDateInitialStateComponent } from './demos/date-initial-state/date-initial-state';
 import { DemoDatepickerDatesDisabledComponent } from './demos/disable-dates/disable-dates';
+import { DemoDatepickerDatesEnabledComponent } from './demos/enable-dates/enable-dates';
 import { DemoDatepickerDaysDisabledComponent } from './demos/disable-days/disable-days';
 import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
@@ -205,8 +206,20 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/disable-dates/disable-dates.html'),
         description: `
           <p>You can set which dates should be disabled with <code>datesDisabled</code></p>
-          <p>In the following example <code>datesDisabled</code> is set with an array to disable 2019-02-05 and 2019-02-09.</p>`,
+          <p>In the following example <code>datesDisabled</code> is set with an array to disable 2019-02-05 and 2019-02-09.</p>
+          <p>NOTE: DO NOT USE this functionality with <code>datesEnabled</code> at the same time</p>`,
         outlet: DemoDatepickerDatesDisabledComponent
+      },
+      {
+        title: 'Dates enabled',
+        anchor: 'dates-enabled',
+        component: require('!!raw-loader!./demos/enable-dates/enable-dates.ts'),
+        html: require('!!raw-loader!./demos/enable-dates/enable-dates.html'),
+        description: `
+          <p>You can set which dates should be enable with <code>datesEnabled</code></p>
+          <p>In the following example <code>datesEnabled</code> is set with an array to enable 2020-02-06, 2020-02-08 and 2020-02-11. All other dates are disabled</p>
+          <p>NOTE: DO NOT USE this functionality with <code>datesDisabled</code> at the same time</p>`,
+        outlet: DemoDatepickerDatesEnabledComponent
       },
       {
         title: 'Min-mode',
