@@ -537,7 +537,7 @@ export const ngdoc: any = {
     "properties": [
       {
         "name": "_a",
-        "type": "DateArray",
+        "type": "number[]",
         "description": "<p>DateArray [year, month, date, .....]</p>\n"
       },
       {
@@ -613,7 +613,7 @@ export const ngdoc: any = {
       {
         "name": "_w",
         "type": "WeekParsing",
-        "description": "<p>week</p>\n"
+        "description": "<p>date specific info\nweek</p>\n"
       }
     ]
   },
@@ -799,11 +799,6 @@ export const ngdoc: any = {
         "description": "<p>Disable specific dates</p>\n"
       },
       {
-        "name": "daysDisabled",
-        "type": "number[]",
-        "description": "<p>Disable certain days in the week</p>\n"
-      },
-      {
         "name": "isDisabled",
         "type": "boolean",
         "description": "<p>Indicates whether datepicker is enabled or not</p>\n"
@@ -888,7 +883,7 @@ export const ngdoc: any = {
       {
         "name": "daysDisabled",
         "type": "number[]",
-        "description": "<p>Disable certain days in the week</p>\n"
+        "description": "<p>Disable Certain days in the week</p>\n"
       },
       {
         "name": "isDisabled",
@@ -1018,7 +1013,7 @@ export const ngdoc: any = {
       {
         "name": "daysDisabled",
         "type": "number[]",
-        "description": "<p>Disable certain days in the week</p>\n"
+        "description": "<p>Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays</p>\n"
       },
       {
         "name": "isAnimated",
@@ -1046,6 +1041,11 @@ export const ngdoc: any = {
         "defaultValue": "L",
         "type": "string",
         "description": "<p>Date format for date range input field</p>\n"
+      },
+      {
+        "name": "ranges",
+        "type": "BsCustomDates[]",
+        "description": "<p>Predefined ranges</p>\n"
       },
       {
         "name": "returnFocusToInput",
@@ -1117,7 +1117,7 @@ export const ngdoc: any = {
       {
         "name": "daysDisabled",
         "type": "number[]",
-        "description": "<p>Disable certain days in the week</p>\n"
+        "description": "<p>Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays</p>\n"
       },
       {
         "name": "isDisabled",
@@ -1211,7 +1211,7 @@ export const ngdoc: any = {
       {
         "name": "daysDisabled",
         "type": "number[]",
-        "description": "<p>Disable certain days in the week</p>\n"
+        "description": "<p>Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays</p>\n"
       },
       {
         "name": "isDisabled",
@@ -1685,7 +1685,7 @@ export const ngdoc: any = {
   "DaysCalendarModel": {
     "fileName": "src/datepicker/models/index.ts",
     "className": "DaysCalendarModel",
-    "description": "<hr>\n",
+    "description": "<hr>\n<hr>\n",
     "methods": [],
     "properties": []
   },
@@ -1850,17 +1850,22 @@ export const ngdoc: any = {
     "selector": "bs-custom-date-view",
     "inputs": [
       {
-        "name": "isCustomRangeShown",
-        "type": "true",
-        "description": ""
-      },
-      {
         "name": "ranges",
         "type": "BsCustomDates[]",
         "description": ""
+      },
+      {
+        "name": "selectedRange",
+        "type": "Date[]",
+        "description": ""
       }
     ],
-    "outputs": [],
+    "outputs": [
+      {
+        "name": "onSelect",
+        "description": ""
+      }
+    ],
     "properties": [],
     "methods": []
   },
@@ -2317,6 +2322,12 @@ export const ngdoc: any = {
           }
         ],
         "returnType": "BsModalRef"
+      },
+      {
+        "name": "checkScrollbar",
+        "description": "<p>Checks if the body is overflowing and sets scrollbar width</p>\n",
+        "args": [],
+        "returnType": "void"
       }
     ],
     "properties": []
@@ -2477,6 +2488,12 @@ export const ngdoc: any = {
         "description": "<p>Events tricks</p>\n",
         "args": [],
         "returnType": "void"
+      },
+      {
+        "name": "checkScrollbar",
+        "description": "<p>Scroll bar tricks</p>\n",
+        "args": [],
+        "returnType": "void"
       }
     ]
   },
@@ -2518,9 +2535,25 @@ export const ngdoc: any = {
   "PagesModel": {
     "fileName": "src/pagination/models/index.ts",
     "className": "PagesModel",
-    "description": "",
+    "description": "<p>Contain information about the page</p>\n",
     "methods": [],
-    "properties": []
+    "properties": [
+      {
+        "name": "active",
+        "type": "boolean",
+        "description": "<p>If <code>true</code>, then this is the current page</p>\n"
+      },
+      {
+        "name": "number",
+        "type": "number",
+        "description": "<p>Page number</p>\n"
+      },
+      {
+        "name": "text",
+        "type": "string",
+        "description": "<p>Text, which is displayed in the link</p>\n"
+      }
+    ]
   },
   "PagerModel": {
     "fileName": "src/pagination/models/index.ts",
@@ -2528,6 +2561,37 @@ export const ngdoc: any = {
     "description": "",
     "methods": [],
     "properties": []
+  },
+  "PaginationLinkContext": {
+    "fileName": "src/pagination/models/index.ts",
+    "className": "PaginationLinkContext",
+    "description": "<p>A context for the</p>\n<ul>\n<li><code>customPageTemplate</code></li>\n<li><code>customNextTemplate</code></li>\n<li><code>customPreviousTemplate</code></li>\n<li><code>customFirstTemplate</code></li>\n<li><code>customLastTemplate</code>\ninputs for link templates in case you want to override one</li>\n</ul>\n",
+    "methods": [],
+    "properties": [
+      {
+        "name": "currentPage",
+        "type": "number",
+        "description": "<p>The currently selected page number</p>\n"
+      },
+      {
+        "name": "disabled",
+        "type": "boolean",
+        "description": "<p>If <code>true</code>, the current link is disabled</p>\n"
+      }
+    ]
+  },
+  "PaginationNumberLinkContext": {
+    "fileName": "src/pagination/models/index.ts",
+    "className": "PaginationNumberLinkContext",
+    "description": "<p>A context for the <code>pageTemplate</code> inputs for link template</p>\n",
+    "methods": [],
+    "properties": [
+      {
+        "name": "$implicit",
+        "type": "PagesModel",
+        "description": "<p>Contain the page information</p>\n"
+      }
+    ]
   },
   "PagerComponent": {
     "fileName": "src/pagination/pager.component.ts",
@@ -2636,6 +2700,31 @@ export const ngdoc: any = {
         "name": "boundaryLinks",
         "type": "boolean",
         "description": "<p>if false first and last buttons will be hidden</p>\n"
+      },
+      {
+        "name": "customFirstTemplate",
+        "type": "TemplateRef<PaginationLinkContext>",
+        "description": "<p>custom template for first link</p>\n"
+      },
+      {
+        "name": "customLastTemplate",
+        "type": "TemplateRef<PaginationLinkContext>",
+        "description": "<p>custom template for last link</p>\n"
+      },
+      {
+        "name": "customNextTemplate",
+        "type": "TemplateRef<PaginationLinkContext>",
+        "description": "<p>custom template for next link</p>\n"
+      },
+      {
+        "name": "customPageTemplate",
+        "type": "TemplateRef<PaginationNumberLinkContext>",
+        "description": "<p>custom template for page link</p>\n"
+      },
+      {
+        "name": "customPreviousTemplate",
+        "type": "TemplateRef<PaginationLinkContext>",
+        "description": "<p>custom template for previous link</p>\n"
       },
       {
         "name": "directionLinks",
@@ -3787,6 +3876,107 @@ export const ngdoc: any = {
       }
     ]
   },
+  "TypeaheadOptionListContext": {
+    "fileName": "src/typeahead/models/index.ts",
+    "className": "TypeaheadOptionListContext",
+    "description": "<p>A context for the <code>optionsListTemplate</code>\ninput template in case you want to override default one</p>\n",
+    "methods": [],
+    "properties": [
+      {
+        "name": "$implicit",
+        "type": "TypeaheadTemplateMethods",
+        "description": "<p>Typeahead template methods</p>\n"
+      },
+      {
+        "name": "itemTemplate",
+        "type": "TemplateRef<TypeaheadOptionItemContext>",
+        "description": "<p>Item template</p>\n"
+      },
+      {
+        "name": "matches",
+        "type": "TypeaheadMatch[]",
+        "description": "<p>All matches</p>\n"
+      },
+      {
+        "name": "query",
+        "type": "string | string[]",
+        "description": "<p>Search query</p>\n"
+      }
+    ]
+  },
+  "TypeaheadOptionItemContext": {
+    "fileName": "src/typeahead/models/index.ts",
+    "className": "TypeaheadOptionItemContext",
+    "description": "<p>A context for the <code>typeaheadItemTemplate</code>\ninput template in case you want to override default one</p>\n",
+    "methods": [],
+    "properties": [
+      {
+        "name": "index",
+        "type": "number",
+        "description": "<p>Item index</p>\n"
+      },
+      {
+        "name": "item",
+        "type": "any",
+        "description": "<p>Item</p>\n"
+      },
+      {
+        "name": "match",
+        "type": "TypeaheadMatch",
+        "description": "<p>Typeahead match</p>\n"
+      },
+      {
+        "name": "query",
+        "type": "string | string[]",
+        "description": "<p>Search query</p>\n"
+      }
+    ]
+  },
+  "TypeaheadTemplateMethods": {
+    "fileName": "src/typeahead/models/index.ts",
+    "className": "TypeaheadTemplateMethods",
+    "description": "<p>Methods for <code>optionsListTemplate</code> context</p>\n",
+    "methods": [
+      {
+        "name": "selectMatch",
+        "description": "<p>Function to select an option by click event</p>\n",
+        "args": [
+          {
+            "name": "value",
+            "type": "TypeaheadMatch"
+          },
+          {
+            "name": "e",
+            "type": "Event"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "selectActive",
+        "description": "<p>Function to select an option by mouseenter event</p>\n",
+        "args": [
+          {
+            "name": "value",
+            "type": "TypeaheadMatch"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "isActive",
+        "description": "<p>Function to check if an option is active</p>\n",
+        "args": [
+          {
+            "name": "value",
+            "type": "TypeaheadMatch"
+          }
+        ],
+        "returnType": "boolean"
+      }
+    ],
+    "properties": []
+  },
   "TypeaheadContainerComponent": {
     "fileName": "src/typeahead/typeahead-container.component.ts",
     "className": "TypeaheadContainerComponent",
@@ -3878,7 +4068,7 @@ export const ngdoc: any = {
       },
       {
         "name": "optionsListTemplate",
-        "type": "TemplateRef<any>",
+        "type": "TemplateRef<TypeaheadOptionListContext>",
         "description": "<p>used to specify a custom options list template.\nTemplate variables: matches, itemTemplate, query</p>\n"
       },
       {
@@ -3909,7 +4099,7 @@ export const ngdoc: any = {
       },
       {
         "name": "typeaheadItemTemplate",
-        "type": "TemplateRef<any>",
+        "type": "TemplateRef<TypeaheadOptionItemContext>",
         "description": "<p>used to specify a custom item template.\nTemplate variables exposed are called item and index;</p>\n"
       },
       {
@@ -4002,7 +4192,7 @@ export const ngdoc: any = {
       {
         "name": "_container",
         "type": "TypeaheadContainerComponent",
-        "description": "<p>if false don&#39;t focus the input element the typeahead directive is associated with on selection</p>\n"
+        "description": "<p>if false restrict model values to the ones selected from the popup only will be provided\nif false the first match automatically will not be focused as you type\nformat the ng-model result after selection\nif true automatically select an item when there is one option that exactly matches the user input\nif true select the currently highlighted match on blur\nif false don&#39;t focus the input element the typeahead directive is associated with on selection</p>\n"
       }
     ],
     "methods": []
