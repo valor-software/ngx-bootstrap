@@ -3,9 +3,9 @@
 
 module.exports = require('./karma.base.conf')({
   coverageIstanbulReporter: {
-    dir: require('path').join(__dirname, 'coverage/demo'),
+    dir: require('path').join(__dirname, 'coverage/source'),
     reports: ['html', 'lcovonly', 'text'],
     fixWebpackSourcePaths: true
   },
-  port: 9876,
+  port: 9875,
 });
