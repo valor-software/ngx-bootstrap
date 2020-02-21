@@ -38,6 +38,10 @@ export abstract class BsDatepickerAbstractComponent {
     this._effects.setDatesDisabled(value);
   }
 
+  set datesEnabled(value: Date[]) {
+    this._effects.setDatesEnabled(value);
+  }
+
   set isDisabled(value: boolean) {
     this._effects.setDisabled(value);
   }
