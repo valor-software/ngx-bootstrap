@@ -130,6 +130,10 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
         day.date >= this._rangeStack[0]
           ? [this._rangeStack[0], day.date]
           : [day.date];
+
+      // to reset and make all dates selectable once user selects the end date.
+      // this is especially for inline daterangepicker
+      this._effects.setMaxDate(null);
     }
 
     if (this._rangeStack.length === 0) {
@@ -158,8 +162,8 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     this._store.dispatch(this._actions.selectRange(this._rangeStack));
   }
 
-  setMaxDateRangeOnCalendar(currentSelection: Date){
-    let maxDateRange = new Date(currentSelection);
+  setMaxDateRangeOnCalendar(currentSelection: Date) {
+    const maxDateRange = new Date(currentSelection);
     maxDateRange.setDate(currentSelection.getDate() + this._config.maxDateRange);
     this._effects.setMaxDate(maxDateRange);
   }
