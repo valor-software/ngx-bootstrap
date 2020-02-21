@@ -21,6 +21,7 @@ import {
 } from '../../docs/api-docs';
 import { DemoPaginationDisabledComponent } from './demos/disabled/disabled';
 import { DemoPaginationRotateComponent } from './demos/rotate/rotate';
+import { DemoPaginationCustomTemplateComponent } from './demos/custom-template/custom-template';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -123,6 +124,29 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/pager/pager.ts'),
         html: require('!!raw-loader!./demos/pager/pager.html'),
         outlet: DemoPaginationPagerComponent
+      },
+      {
+        title: 'Custom Template',
+        anchor: 'custom-template',
+        description: `
+          <p>
+            It is possible to customize what exactly is displayed in each pagination link. To overwrite default
+            templates use these inputs:
+            <ul>
+              <li><code>customPageTemplate</code></li>
+              <li><code>customNextTemplate</code></li>
+              <li><code>customPreviousTemplate</code></li>
+              <li><code>customFirstTemplate</code></li>
+              <li><code>customLastTemplate</code></li>
+            </ul>
+            Each template has a context object. The object <code>PaginationLinkContext</code> is available for all
+            templates and for page numbers there is a <code>PaginationNumberLinkContext</code> that
+            contains the page number.
+          </p>
+        `,
+        component: require('!!raw-loader!./demos/custom-template/custom-template.ts'),
+        html: require('!!raw-loader!./demos/custom-template/custom-template.html'),
+        outlet: DemoPaginationCustomTemplateComponent
       }
       /* TODO: temporary disabled pageBtnClass option
       {
@@ -152,6 +176,21 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'PaginationConfig',
         anchor: 'pagination-config',
+        outlet: NgApiDocConfigComponent
+      },
+      {
+        title: 'PaginationLinkContext',
+        anchor: 'pagination-link-context',
+        outlet: NgApiDocConfigComponent
+      },
+      {
+        title: 'PaginationNumberLinkContext',
+        anchor: 'pagination-number-link-context',
+        outlet: NgApiDocConfigComponent
+      },
+      {
+        title: 'PagesModel',
+        anchor: 'pagination-models',
         outlet: NgApiDocConfigComponent
       }
     ]
