@@ -53,6 +53,10 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
   /**
    * Disable specific dates
    */
+  @Input() datesEnabled: Date[];
+  /**
+   * Enable specific dates
+   */
   @Input() datesDisabled: Date[];
   /**
    * Emits when datepicker value has been changed
@@ -118,6 +122,11 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
       this.setConfig();
     }
 
+    if (changes.datesEnabled) {
+      this._datepickerRef.instance.datesEnabled = this.datesEnabled;
+      this._datepickerRef.instance.value = this._bsValue;
+    }
+
     if (changes.isDisabled) {
       this._datepickerRef.instance.isDisabled = this.isDisabled;
       this.setConfig();
@@ -143,7 +152,8 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
       minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
       maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
       dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
-      datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled
+      datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
+      datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled
     });
 
 

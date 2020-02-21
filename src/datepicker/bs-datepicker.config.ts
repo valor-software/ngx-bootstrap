@@ -42,6 +42,10 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    */
   datesDisabled?: Date[];
   /**
+   * Enable specific dates
+   */
+  datesEnabled?: Date[];
+  /**
    * Makes dates from other months active
    */
   selectFromOtherMonth?: boolean;
