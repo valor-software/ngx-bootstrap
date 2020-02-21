@@ -19,7 +19,7 @@ import { DemoDatepickerMinModeComponent } from './min-mode/min-mode.component';
 import { DemoDatepickerOutsideClickComponent } from './outside-click/outside-click';
 import { DemoDatepickerPlacementComponent } from './placement/placement';
 import { DemoDatepickerReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
-
+import { DemoDatePickerReturnFocusToInputComponent } from './return-focus-to-input/return-focus-to-input.component'
 import {
   DemoDatePickerSelectDatesFromOtherMonthsComponent
 } from './select-dates-from-other-months/select-dates-from-other-months';
@@ -33,6 +33,7 @@ import { DemoDatepickerTriggersCustomComponent } from './triggers-custom/trigger
 import { DemoDatepickerTriggersManualComponent } from './triggers-manual/triggers-manual';
 import { DemoDatepickerValueChangeEventComponent } from './value-change-event/value-change-event';
 import { DemoDatePickerVisibilityEventsComponent } from './visibility-events/visibility-events';
+import { DemoDatePickerQuickSelectRangesComponent } from './quick-select-ranges/quick-select-ranges';
 import { DemoDateRangePickerShowPreviousMonth } from './daterangepicker-show-previous-month/show-previous-month';
 
 
@@ -62,13 +63,14 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerPlacementComponent,
   DemoDatepickerPlacementComponent,
   DemoDatepickerReactiveFormsComponent,
-  DemoDatepickerReactiveFormsComponent,
+  DemoDatePickerReturnFocusToInputComponent,
   DemoDatePickerSelectDatesFromOtherMonthsComponent,
   DemoDatePickerSelectWeekComponent,
   DemoDatePickerSelectWeekRangeComponent,
   DemoDatepickerTriggersCustomComponent,
   DemoDatepickerTriggersManualComponent,
   DemoDatepickerValueChangeEventComponent,
-  DemoDateRangePickerShowPreviousMonth,
-  DemoDatePickerVisibilityEventsComponent
+  DemoDatePickerVisibilityEventsComponent,
+  DemoDatePickerQuickSelectRangesComponent,
+  DemoDateRangePickerShowPreviousMonth
 ];

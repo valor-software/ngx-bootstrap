@@ -11,6 +11,7 @@ import { DemoPaginationCustomLinksContentComponent } from './custom-links-conten
 import { DemoPaginationDisabledComponent } from './disabled/disabled';
 import { DemoPaginationRotateComponent } from './rotate/rotate';
 import { DemoPaginationContentSwitchingComponent } from './content-switching/content-switching';
+import { DemoPaginationCustomTemplateComponent } from './custom-template/custom-template';
 
 export const DEMO_COMPONENTS = [
   DemoPaginationBasicComponent,
@@ -25,5 +26,6 @@ export const DEMO_COMPONENTS = [
   DemoPaginationCustomLinksContentComponent,
   DemoPaginationDisabledComponent,
   DemoPaginationRotateComponent,
-  DemoPaginationContentSwitchingComponent
+  DemoPaginationContentSwitchingComponent,
+  DemoPaginationCustomTemplateComponent
 ];
