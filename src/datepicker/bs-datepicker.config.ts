@@ -4,6 +4,7 @@ import {
   BsDatepickerViewMode,
   DatepickerDateCustomClasses
 } from './models';
+import { BsCustomDates } from './themes/bs/bs-custom-dates-view.component';
 
 
 /**
@@ -40,6 +41,10 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Disable specific dates
    */
   datesDisabled?: Date[];
+  /**
+   * Enable specific dates
+   */
+  datesEnabled?: Date[];
   /**
    * Makes dates from other months active
    */
@@ -94,6 +99,11 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Date format for date range input field
    */
   rangeInputFormat = 'L';
+
+  /**
+   * Predefined ranges
+   */
+  ranges?: BsCustomDates[];
 
   // DatepickerFormatOptions
   monthTitle = 'MMMM';

@@ -15,6 +15,7 @@ import { DemoTypeaheadReactiveFormComponent } from './demos/reactive-form/reacti
 import { DemoTypeaheadFormComponent } from './demos/form/form';
 import { DemoTypeaheadGroupingComponent } from './demos/grouping/grouping';
 import { DemoTypeaheadItemTemplateComponent } from './demos/item-template/item-template';
+import { DemoTypeaheadListTemplateComponent } from './demos/list-template/list-template';
 import { DemoTypeaheadLatinizeComponent } from './demos/latinize/latinize';
 import { DemoTypeaheadMinLengthComponent } from './demos/min-length/min-length';
 import { DemoTypeaheadNoResultComponent } from './demos/no-result/no-result';
@@ -77,6 +78,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/item-template/item-template.ts'),
         html: require('!!raw-loader!./demos/item-template/item-template.html'),
         outlet: DemoTypeaheadItemTemplateComponent
+      },
+      {
+        title: 'List template',
+        anchor: 'list-template',
+        component: require('!!raw-loader!./demos/list-template/list-template.ts'),
+        html: require('!!raw-loader!./demos/list-template/list-template.html'),
+        outlet: DemoTypeaheadListTemplateComponent
       },
       {
         title: 'Option field',
@@ -316,7 +324,24 @@ export const demoComponentContent: ContentSection[] = [
         title: 'TypeaheadConfig',
         anchor: 'bs-typeahead-config',
         outlet: NgApiDocConfigComponent
+      },
+      {
+        title: 'TypeaheadOptionListContext',
+        anchor: 'typeahead-option-list-context',
+        outlet: NgApiDocConfigComponent
+      },
+      {
+        title: 'TypeaheadOptionItemContext',
+        anchor: 'typeahead-option-item-context',
+        outlet: NgApiDocConfigComponent
+      },
+      {
+        title: 'TypeaheadTemplateMethods',
+        anchor: 'typeahead-template method',
+        outlet: NgApiDocConfigComponent,
+        showMethods: true
       }
     ]
   }
+// tslint:disable-next-line:max-file-line-count
 ];
