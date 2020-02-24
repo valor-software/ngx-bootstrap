@@ -3,6 +3,7 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
+  AfterViewInit,
   OnDestroy,
   Renderer2
 } from '@angular/core';
@@ -27,7 +28,7 @@ import { AnimationBuilder, AnimationFactory } from '@angular/animations';
     </div>
   `
 })
-export class BsDropdownContainerComponent implements OnDestroy {
+export class BsDropdownContainerComponent implements AfterViewInit, OnDestroy {
   isOpen = false;
 
   private _factoryDropDownAnimation: AnimationFactory;
@@ -72,11 +73,6 @@ export class BsDropdownContainerComponent implements OnDestroy {
         }
       }
 
-      if (dropdown && this._state.isAnimated) {
-        this._factoryDropDownAnimation.create(dropdown)
-          .play();
-      }
-
       this.cd.markForCheck();
       this.cd.detectChanges();
     });
@@ -85,6 +81,14 @@ export class BsDropdownContainerComponent implements OnDestroy {
   /** @internal */
   _contains(el: Element): boolean {
     return this._element.nativeElement.contains(el);
+  }
+
+  ngAfterViewInit(): void {
+    const dropdown = this._element.nativeElement.querySelector('.dropdown-menu');
+    if (dropdown && this._state.isAnimated) {
+      this._factoryDropDownAnimation.create(dropdown)
+        .play();
+    }
   }
 
   ngOnDestroy(): void {
