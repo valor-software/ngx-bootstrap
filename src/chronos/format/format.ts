@@ -62,6 +62,11 @@ export function makeFormatFunction(format: string):
         : formatArr[j];
     }
 
+    if (date.getDate().toString() !== postValue.getDate().toString() && output === '1'  && locale._abbr === 'th-be') {
+        // fix for Thai Buddish locale leap year #5679
+       output = '29';
+    }
+
     return output;
   };
 }

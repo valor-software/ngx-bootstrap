@@ -8,6 +8,9 @@
 // author : Watcharapol Sanitwong : https://github.com/tumit
 
 import { LocaleData } from '../locale/locale.class';
+import { setFullYear } from '../utils/date-setters';
+import { getFullYear, getMonth } from '..';
+import { getDate } from '../utils/date-getters';
 
 export const thBeLocale: LocaleData = {
   abbr: 'th-be',
@@ -72,5 +75,5 @@ export const thBeLocale: LocaleData = {
     let preinputDate = new Date(value);
     preinputDate.setFullYear(value.getFullYear()+543);
     return preinputDate;
-  }
+   }
 };
