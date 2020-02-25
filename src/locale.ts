@@ -21,6 +21,7 @@ export {
   itLocale,
   jaLocale,
   kaLocale,
+  kkLocale,
   koLocale,
   ltLocale,
   lvLocale,
