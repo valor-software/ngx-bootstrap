@@ -24,6 +24,7 @@ import { TypeaheadMatch } from './typeahead-match.class';
 import { TypeaheadConfig } from './typeahead.config';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
 import { TypeaheadOrder } from './typeahead-order.class';
+import { TypeaheadOptionItemContext, TypeaheadOptionListContext } from './models';
 
 type TypeaheadOption = string | {[key in string | number]: any};
 type Typeahead = TypeaheadOption[] | Observable<TypeaheadOption[]>;
@@ -86,13 +87,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /** used to specify a custom item template.
    * Template variables exposed are called item and index;
    */
-    // tslint:disable-next-line:no-any
-  @Input() typeaheadItemTemplate: TemplateRef<any>;
+  @Input() typeaheadItemTemplate: TemplateRef<TypeaheadOptionItemContext>;
   /** used to specify a custom options list template.
    * Template variables: matches, itemTemplate, query
    */
-    // tslint:disable-next-line:no-any
-  @Input() optionsListTemplate: TemplateRef<any>;
+  @Input() optionsListTemplate: TemplateRef<TypeaheadOptionListContext>;
   /** specifies if typeahead is scrollable  */
   @Input() typeaheadScrollable = false;
   /** specifies number of options to show in scroll view  */
@@ -275,10 +274,14 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @HostListener('focus')
   onFocus(): void {
     this.isFocused = true;
-    if (this.typeaheadMinLength === 0) {
-      this.typeaheadLoading.emit(true);
-      this.keyUpEventEmitter.emit(this.element.nativeElement.value || '');
-    }
+    // add setTimeout to fix issue #5251
+    // to get and emit updated value if it's changed on focus
+    setTimeout(() => {
+      if (this.typeaheadMinLength === 0) {
+        this.typeaheadLoading.emit(true);
+        this.keyUpEventEmitter.emit(this.element.nativeElement.value || '');
+      }
+    }, 0);
   }
 
   @HostListener('blur')

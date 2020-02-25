@@ -24,7 +24,8 @@
   },
   "include": [
     "../scripts/typings.d.ts",
-    "../scripts/test.ts",
+    "../scripts/test-demo.ts",
+    "../scripts/test-source.ts",
     "../demo/src/**/*.ts",
     "../demo/src/**/*.d.ts",
     "**/*.ts",

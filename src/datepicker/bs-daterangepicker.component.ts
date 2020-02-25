@@ -107,9 +107,18 @@ export class BsDaterangepickerDirective
    */
   @Input() dateCustomClasses: DatepickerDateCustomClasses[];
   /**
+   * Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays
+   */
+  @Input() daysDisabled?: number[];
+  /**
    * Disable specific dates
    */
   @Input() datesDisabled: Date[];
+
+  /**
+   * Enable specific dates
+   */
+  @Input() datesEnabled: Date[];
   /**
    * Emits when daterangepicker value has been changed
    */
@@ -160,6 +169,14 @@ export class BsDaterangepickerDirective
 
     if (changes.datesDisabled) {
       this._datepickerRef.instance.datesDisabled = this.datesDisabled;
+    }
+
+    if (changes.datesEnabled) {
+      this._datepickerRef.instance.datesEnabled = this.datesEnabled;
+    }
+
+    if (changes.daysDisabled) {
+      this._datepickerRef.instance.daysDisabled = this.daysDisabled;
     }
 
     if (changes.isDisabled) {
@@ -222,8 +239,11 @@ export class BsDaterangepickerDirective
         isDisabled: this.isDisabled,
         minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
         maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
+        daysDisabled: this.daysDisabled || this.bsConfig && this.bsConfig.daysDisabled,
         dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
-        datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled
+        datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
+        datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled,
+        ranges: this.bsConfig && this.bsConfig.ranges
       }
     );
   }

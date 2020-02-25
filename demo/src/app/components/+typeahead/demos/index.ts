@@ -6,6 +6,7 @@ import { DemoTypeaheadAnimatedComponent } from './animated/animated';
 import { DemoTypeaheadContainerComponent } from './container/container';
 import { DemoTypeaheadDelayComponent } from './delay/delay';
 import { DemoTypeaheadDropupComponent } from './dropup/dropup';
+import { DemoTypeaheadListTemplateComponent } from './list-template/list-template';
 import { DemoTypeaheadFieldComponent } from './field/field';
 import { DemoTypeaheadCancelRequestOnFocusLostComponent } from './cancel-on-focus-lost/cancel-on-focus-lost';
 import { DemoTypeaheadReactiveFormComponent } from './reactive-form/reactive-form';
@@ -23,6 +24,7 @@ import { DemoTypeaheadScrollableComponent } from './scrollable/scrollable';
 import { DemotypeaheadSelectFirstItemComponent } from './selected-first-item/selected-first-item';
 import { DemoTypeaheadShowOnBlurComponent } from './show-on-blur/show-on-blur';
 import { DemoTypeaheadSingleWorldComponent } from './single-world/single-world';
+import { DemoTypeaheadAsyncHttpRequestComponent } from './async-http-request/async-http-request';
 import { DemoTypeaheadOrderingComponent } from './ordering/ordering';
 
 export const DEMO_COMPONENTS = [
@@ -34,6 +36,7 @@ export const DEMO_COMPONENTS = [
   DemoTypeaheadContainerComponent,
   DemoTypeaheadDelayComponent,
   DemoTypeaheadDropupComponent,
+  DemoTypeaheadListTemplateComponent,
   DemoTypeaheadFieldComponent,
   DemoTypeaheadAsyncComponent,
   DemoTypeaheadCancelRequestOnFocusLostComponent,
@@ -53,5 +56,6 @@ export const DEMO_COMPONENTS = [
   DemotypeaheadSelectFirstItemComponent,
   DemoTypeaheadShowOnBlurComponent,
   DemoTypeaheadSingleWorldComponent,
+  DemoTypeaheadAsyncHttpRequestComponent,
   DemoTypeaheadOrderingComponent
 ];
