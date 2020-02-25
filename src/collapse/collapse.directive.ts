@@ -154,6 +154,7 @@ export class CollapseDirective implements AfterViewChecked {
     this.animationRun(this.isAnimated, this._EXPAND_ACTION_NAME)(() => {
       this._isAnimationDone = true;
       this.expanded.emit(this);
+      this._renderer.removeStyle(this._el.nativeElement, 'overflow');
     });
   }
 

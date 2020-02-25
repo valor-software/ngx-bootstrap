@@ -6,6 +6,15 @@
       background-color: $color;
     }
 
+
+      .bs-datepicker-predefined-btns {
+        button {
+          &.selected {
+            background-color: $color ;
+          }
+      }
+    }
+
     .bs-datepicker-body {
       table {
         td {
