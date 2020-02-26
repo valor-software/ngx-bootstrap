@@ -6,6 +6,7 @@ import {
   shiftDate,
   endOf,
   startOf,
+  isArray,
   isSame
 } from 'ngx-bootstrap/chronos';
 import { BsDatepickerState } from '../reducer/bs-datepicker.state';
@@ -47,11 +48,19 @@ export function isYearDisabled(date: Date, min: Date, max: Date): boolean {
 }
 
 export function isDisabledDate(date: Date, datesDisabled: Date[]): boolean {
-  if (datesDisabled === undefined || !datesDisabled || !datesDisabled.length) {
+  if (!datesDisabled  || !isArray(datesDisabled) || !datesDisabled.length) {
     return false;
   }
 
   return datesDisabled.some((dateDisabled: Date) => isSame(date, dateDisabled, 'date'));
+}
+
+export function isEnabledDate(date: Date, datesEnabled: Date[]): boolean {
+  if (!datesEnabled || !isArray(datesEnabled) || !datesEnabled.length) {
+    return false;
+  }
+
+  return !datesEnabled.some((enabledDate: Date) => isSame(date, enabledDate, 'date'));
 }
 
 export function getYearsCalendarInitialDate(state: BsDatepickerState, calendarIndex = 0): Date {

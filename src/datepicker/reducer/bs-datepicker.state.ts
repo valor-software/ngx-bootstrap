@@ -33,6 +33,7 @@ export class BsDatepickerState
   maxDate?: Date;
   daysDisabled?: number[];
   datesDisabled?: Date[];
+  datesEnabled?: Date[];
   minMode?: BsDatepickerViewMode;
   dateCustomClasses?: DatepickerDateCustomClasses[];
 
