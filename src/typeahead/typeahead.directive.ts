@@ -290,6 +290,13 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     if (this._container && !this._container.isFocused) {
       this.typeaheadOnBlur.emit(this._container.active);
     }
+
+    if (!this.container && this._matches.length === 0) {
+    this.typeaheadOnBlur.emit(new TypeaheadMatch(
+      this.element.nativeElement.value,
+      this.element.nativeElement.value,
+      false));
+    }
   }
 
   @HostListener('keydown', ['$event'])
@@ -297,6 +304,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     // no container - no problems
     if (!this._container) {
       return;
+    }
+
+    /* tslint:disable-next-line: deprecation */
+    if (event.keyCode === 9 || event.key === 'Tab') {
+      this.onBlur();
     }
 
     /* tslint:disable-next-line: deprecation */
