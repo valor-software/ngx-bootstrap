@@ -2,7 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component, ViewChild, Renderer2 } from '@angular/core';
 
-import { BsDatepickerConfig, BsDatepickerDirective, BsDatepickerModule } from '.';
+import { BsDatepickerModule } from './bs-datepicker.module';
+import { BsDatepickerDirective } from './bs-datepicker.component';
+import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
 import { CalendarCellViewModel, WeekViewModel } from './models';
 import { dispatchKeyboardEvent } from '@netbasal/spectator';

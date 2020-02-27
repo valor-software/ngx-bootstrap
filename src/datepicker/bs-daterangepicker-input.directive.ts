@@ -51,6 +51,7 @@ const BS_DATERANGEPICKER_VALIDATOR: Provider = {
   host: {
     '(change)': 'onChange($event)',
     '(keyup.esc)': 'hide()',
+    '(keydown)': 'onKeydownEvent($event)',
     '(blur)': 'onBlur()'
   },
   providers: [BS_DATERANGEPICKER_VALUE_ACCESSOR, BS_DATERANGEPICKER_VALIDATOR]
@@ -70,10 +71,24 @@ export class BsDaterangepickerInputDirective
               private changeDetection: ChangeDetectorRef) {
     // update input value on datepicker value update
     this._picker.bsValueChange.subscribe((value: Date[]) => {
-      this._setInputValue(value);
-      if (this._value !== value) {
-        this._value = value;
-        this._onChange(value);
+
+      let preValue = value;
+
+      if (value) {
+        const _localeKey = this._localeService.currentLocale;
+        const _locale = getLocale(_localeKey);
+        if (!_locale) {
+          throw new Error(
+            `Locale "${_localeKey}" is not defined, please add it with "defineLocale(...)"`
+          );
+        }
+        preValue = value.map(v => _locale.preinput(v));
+      }
+
+      this._setInputValue(preValue);
+      if (this._value !== preValue) {
+        this._value = preValue;
+        this._onChange(preValue);
         this._onTouched();
       }
       this.changeDetection.markForCheck();
@@ -83,6 +98,12 @@ export class BsDaterangepickerInputDirective
     this._localeService.localeChange.subscribe(() => {
       this._setInputValue(this._value);
     });
+  }
+
+  onKeydownEvent(event) {
+    if (event.keyCode === 13 || event.code === 'Enter') {
+      this.hide();
+    }
   }
 
   _setInputValue(date: Date[]): void {
@@ -108,6 +129,9 @@ export class BsDaterangepickerInputDirective
     /* tslint:disable-next-line: no-any*/
     this.writeValue((event.target as any).value);
     this._onChange(this._value);
+    if (this._picker._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
+    }
     this._onTouched();
   }
 
@@ -174,7 +198,6 @@ export class BsDaterangepickerInputDirective
         _input = value;
       }
 
-
       this._value = (_input as string[])
         .map((_val: string): Date => {
             if (this._picker._config.useUtc) {
@@ -219,5 +242,9 @@ export class BsDaterangepickerInputDirective
   hide() {
     this._picker.hide();
     this._renderer.selectRootElement(this._elRef.nativeElement).blur();
+
+    if (this._picker._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
+    }
   }
 }
