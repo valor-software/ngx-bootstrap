@@ -22,7 +22,7 @@ export abstract class BsDatepickerAbstractComponent {
   isOtherMonthsActive: boolean;
 
   _effects: BsDatepickerEffects;
-  _customRangesFish: BsCustomDates[] = [];
+  customRanges: BsCustomDates[] = [];
 
   set minDate(value: Date) {
     this._effects.setMinDate(value);
@@ -36,6 +36,10 @@ export abstract class BsDatepickerAbstractComponent {
   }
   set datesDisabled(value: Date[]) {
     this._effects.setDatesDisabled(value);
+  }
+
+  set datesEnabled(value: Date[]) {
+    this._effects.setDatesEnabled(value);
   }
 
   set isDisabled(value: boolean) {

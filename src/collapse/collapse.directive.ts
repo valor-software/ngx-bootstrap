@@ -36,12 +36,12 @@ export class CollapseDirective implements AfterViewChecked {
   @Output() expanded: EventEmitter<CollapseDirective> = new EventEmitter();
   /** This event fires when expansion is started */
   @Output() expands: EventEmitter<CollapseDirective> = new EventEmitter();
-
   // shown
   @HostBinding('class.in')
   @HostBinding('class.show')
   @HostBinding('attr.aria-expanded')
   isExpanded = true;
+  collapseNewValue = true;
   // hidden
   @HostBinding('attr.aria-hidden') isCollapsed = false;
   // stale state
@@ -72,6 +72,7 @@ export class CollapseDirective implements AfterViewChecked {
   /** A flag indicating visibility of content (shown or hidden) */
   @Input()
   set collapse(value: boolean) {
+    this.collapseNewValue = value;
     if (!this._player || this._isAnimationDone) {
       this.isExpanded = value;
       this.toggle();
@@ -134,9 +135,13 @@ export class CollapseDirective implements AfterViewChecked {
 
     this.animationRun(this.isAnimated, this._COLLAPSE_ACTION_NAME)(() => {
       this._isAnimationDone = true;
+      if (this.collapseNewValue !== this.isCollapsed && this.isAnimated) {
+        this.show();
+
+        return;
+      }
       this.collapsed.emit(this);
       this._renderer.setStyle(this._el.nativeElement, 'display', 'none');
-      this._renderer.removeStyle(this._el.nativeElement, 'overflow');
     });
   }
   /** allows to manually show collapsed content */
@@ -151,10 +156,15 @@ export class CollapseDirective implements AfterViewChecked {
     this.expands.emit(this);
 
     this._isAnimationDone = false;
-
     this.animationRun(this.isAnimated, this._EXPAND_ACTION_NAME)(() => {
       this._isAnimationDone = true;
+      if (this.collapseNewValue !== this.isCollapsed && this.isAnimated) {
+        this.hide();
+
+        return;
+      }
       this.expanded.emit(this);
+      this._renderer.removeStyle(this._el.nativeElement, 'overflow');
     });
   }
 
