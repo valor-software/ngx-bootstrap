@@ -82,7 +82,22 @@ export class BsDaterangepickerInputDirective
             `Locale "${_localeKey}" is not defined, please add it with "defineLocale(...)"`
           );
         }
-        preValue = value.map(v => _locale.preinput(v));
+        preValue = value.map(v => {
+          const preInputValue = _locale.preinput(v);
+
+          if (!v) {
+            return preInputValue;
+          }
+          // fix for Thai Buddish locale leap year #5679
+          if (v.getDate().toString() !== preInputValue.getDate().toString()
+            && v.getMonth().toString() === '1' && _localeKey === 'th-be') {
+            preInputValue.setFullYear(v.getFullYear());
+            preInputValue.setDate(v.getDate());
+            preInputValue.setMonth(v.getMonth());
+          }
+
+          return preInputValue;
+        });
       }
 
       this._setInputValue(preValue);

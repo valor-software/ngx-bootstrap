@@ -74,7 +74,7 @@ export class BsDaysCalendarViewComponent  {
 
   isWeekHovered: boolean;
 
-  constructor(private _config: BsDatepickerConfig) {}
+  constructor(private _config: BsDatepickerConfig) { }
 
   navigateTo(event: BsNavigationDirection): void {
     const step = BsNavigationDirection.DOWN === event ? -1 : 1;

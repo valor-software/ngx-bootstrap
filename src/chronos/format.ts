@@ -20,7 +20,13 @@ export function formatDate(date: Date, format: string, locale?: string, isUTC?: 
 
   const _format = format || (isUTC ?  'YYYY-MM-DDTHH:mm:ss[Z]' : 'YYYY-MM-DDTHH:mm:ssZ');
 
-  const output = formatMoment(date, _format, _locale, isUTC, offset);
+  let output = formatMoment(date, _format, _locale, isUTC, offset);
+  if (date.getDate().toString() === '29' && date.getMonth().toString() === '1'  && locale === 'th-be') {
+    // fix for Thai Buddish locale leap year #5679
+    output = output.length < 3
+      ? output = date.getDate().toString()
+      : date.getDate().toString() + '/' + '0' + (date.getMonth() + 1) + '/' + date.getFullYear();
+  }
 
   if (!output) {
     return output;

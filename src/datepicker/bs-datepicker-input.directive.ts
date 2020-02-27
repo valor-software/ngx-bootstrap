@@ -81,6 +81,14 @@ export class BsDatepickerInputDirective
           );
         }
         preValue = _locale.preinput(value);
+
+        if (value.getDate().toString() !== preValue.getDate().toString()
+          && value.getMonth().toString() === '1'  && _localeKey === 'th-be') {
+          // fix for Thai Buddish locale leap year #5679
+          preValue.setFullYear(value.getFullYear());
+          preValue.setDate(value.getDate());
+          preValue.setMonth(value.getMonth());
+        }
       }
 
       this._setInputValue(preValue);
