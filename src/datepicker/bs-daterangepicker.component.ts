@@ -1,4 +1,5 @@
 import {
+  AfterViewInit,
   ComponentRef,
   Directive,
   ElementRef,
@@ -14,10 +15,10 @@ import {
 } from '@angular/core';
 import { BsDaterangepickerConfig } from './bs-daterangepicker.config';
 import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
-import { Subscription } from 'rxjs';
+import { Subscription, Subject, BehaviorSubject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 import { ComponentLoaderFactory, ComponentLoader } from 'ngx-bootstrap/component-loader';
 import { BsDatepickerConfig } from './bs-datepicker.config';
-import { filter } from 'rxjs/operators';
 import { DatepickerDateCustomClasses } from './models';
 
 @Directive({
@@ -25,7 +26,7 @@ import { DatepickerDateCustomClasses } from './models';
   exportAs: 'bsDaterangepicker'
 })
 export class BsDaterangepickerDirective
-  implements OnInit, OnDestroy, OnChanges {
+  implements OnInit, OnDestroy, OnChanges, AfterViewInit {
   /**
    * Placement of a daterangepicker. Accepts: "top", "bottom", "left", "right"
    */
@@ -55,11 +56,7 @@ export class BsDaterangepickerDirective
   }
 
   set isOpen(value: boolean) {
-    if (value) {
-      this.show();
-    } else {
-      this.hide();
-    }
+    this.isOpen$.next(value);
   }
 
   /**
@@ -74,6 +71,9 @@ export class BsDaterangepickerDirective
   @Output() onHidden: EventEmitter<any>;
 
   _bsValue: Date[];
+  isOpen$: BehaviorSubject<boolean>;
+  isDestroy$: Subject<void>;
+
   /**
    * Initial value of daterangepicker
    */
@@ -142,9 +142,11 @@ export class BsDaterangepickerDirective
     Object.assign(this, _config);
     this.onShown = this._datepicker.onShown;
     this.onHidden = this._datepicker.onHidden;
+    this.isOpen$ = new BehaviorSubject(this.isOpen);
   }
 
   ngOnInit(): void {
+    this.isDestroy$ = new Subject();
     this._datepicker.listen({
       outsideClick: this.outsideClick,
       outsideEsc: this.outsideEsc,
@@ -188,6 +190,14 @@ export class BsDaterangepickerDirective
     }
   }
 
+  ngAfterViewInit(): void {
+    this.isOpen$.pipe(
+      filter(isOpen => isOpen !== this.isOpen),
+      takeUntil(this.isDestroy$)
+    )
+      .subscribe(() => this.toggle());
+  }
+
   /**
    * Opens an element’s datepicker. This is considered a “manual” triggering of
    * the datepicker.
@@ -200,11 +210,11 @@ export class BsDaterangepickerDirective
     this.setConfig();
 
     this._datepickerRef = this._datepicker
-      .provide({provide: BsDatepickerConfig, useValue: this._config})
+      .provide({ provide: BsDatepickerConfig, useValue: this._config })
       .attach(BsDaterangepickerContainerComponent)
       .to(this.container)
-      .position({attachment: this.placement})
-      .show({placement: this.placement});
+      .position({ attachment: this.placement })
+      .show({ placement: this.placement });
 
     // if date changes from external source (model -> view)
     this._subs.push(
@@ -262,7 +272,8 @@ export class BsDaterangepickerDirective
 
     if (this._config.returnFocusToInput) {
       this._renderer.selectRootElement(this._elementRef.nativeElement).focus();
-    }    }
+    }
+  }
 
   /**
    * Toggles an element’s datepicker. This is considered a “manual” triggering
@@ -278,5 +289,10 @@ export class BsDaterangepickerDirective
 
   ngOnDestroy(): void {
     this._datepicker.dispose();
+    this.isOpen$.next(false);
+    if (this.isDestroy$) {
+      this.isDestroy$.next();
+      this.isDestroy$.complete();
+    }
   }
 }
