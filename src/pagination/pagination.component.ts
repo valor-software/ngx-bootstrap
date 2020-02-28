@@ -7,13 +7,12 @@ import {
   Input,
   OnInit,
   Output,
-  Provider
+  Provider, TemplateRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { PaginationConfig } from './pagination.config';
-
-import { ConfigModel, PagesModel } from './models';
+import { ConfigModel, PagesModel, PaginationLinkContext, PaginationNumberLinkContext } from './models';
 
 export interface PageChangedEvent {
   itemsPerPage: number;
@@ -56,9 +55,18 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   // css
   /** add class to <code><li\></code> */
   @Input() pageBtnClass: string;
-
   /** if true pagination component will be disabled */
   @Input() disabled: boolean;
+  /** custom template for page link */
+  @Input() customPageTemplate: TemplateRef<PaginationNumberLinkContext>;
+  /** custom template for next link */
+  @Input() customNextTemplate: TemplateRef<PaginationLinkContext>;
+  /** custom template for previous link */
+  @Input() customPreviousTemplate: TemplateRef<PaginationLinkContext>;
+  /** custom template for first link */
+  @Input() customFirstTemplate: TemplateRef<PaginationLinkContext>;
+  /** custom template for last link */
+  @Input() customLastTemplate: TemplateRef<PaginationLinkContext>;
 
   /** fired when total pages count changes, $event:number equals to total pages count */
   @Output() numPages: EventEmitter<number> = new EventEmitter<number>();
@@ -294,4 +302,5 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
 
     return Math.max(totalPages || 0, 1);
   }
+// tslint:disable-next-line:max-file-line-count
 }
