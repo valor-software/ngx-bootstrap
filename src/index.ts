@@ -62,7 +62,8 @@ export {
   DayPickerComponent,
   MonthPickerComponent,
   YearPickerComponent,
-  DatepickerDateCustomClasses
+  DatepickerDateCustomClasses,
+  DatepickerDateTooltipText
 } from './datepicker/index';
 
 export {

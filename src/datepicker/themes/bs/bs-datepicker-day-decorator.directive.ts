@@ -46,5 +46,9 @@ export class BsDatepickerDayDecoratorComponent implements OnInit {
           this._renderer.addClass(this._elRef.nativeElement, className);
         });
     }
+
+    if (typeof this.day.tooltipText === 'string' && this.day.tooltipText.length > 0) {
+      this._renderer.setAttribute(this._elRef.nativeElement, 'tooltip', this.day.tooltipText);
+    }
   }
 }
