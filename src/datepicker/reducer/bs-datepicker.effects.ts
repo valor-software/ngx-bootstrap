@@ -1,3 +1,4 @@
+/* tslint:disable:max-file-line-count */
 import { Injectable } from '@angular/core';
 
 import { Observable, Subscription } from 'rxjs';
