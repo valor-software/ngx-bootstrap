@@ -57,11 +57,6 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   }
 
   ngOnInit(): void {
-    this._positionService.setOptions({
-      modifiers: { flip: { enabled: this._config.adaptivePosition } },
-      allowedPositions: ['top', 'bottom']
-    });
-
     this._positionService.event$
       .pipe(
         take(1)

@@ -135,7 +135,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
       return;
     }
 
-    this._positionService.setOptions({
+    const posOpts = {
       modifiers: {
         flip: {
           enabled: this.adaptivePosition
@@ -144,7 +144,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
           enabled: this.adaptivePosition
         }
       }
-    });
+    };
 
     const showPopover = () => {
       if (this._delayTimeoutId) {
@@ -154,7 +154,10 @@ export class PopoverDirective implements OnInit, OnDestroy {
       this._popover
         .attach(PopoverContainerComponent)
         .to(this.container)
-        .position({attachment: this.placement})
+        .position({
+          attachment: this.placement,
+          options: posOpts
+        })
         .show({
           content: this.popover,
           context: this.popoverContext,

@@ -17,7 +17,6 @@ import { TooltipConfig } from './tooltip.config';
 
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { OnChange, warnOnce, parseTriggers, Trigger } from 'ngx-bootstrap/utils';
-import { PositioningService } from 'ngx-bootstrap/positioning';
 
 import { timer, Subscription } from 'rxjs';
 
@@ -210,8 +209,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
     cis: ComponentLoaderFactory,
     config: TooltipConfig,
     private _elementRef: ElementRef,
-    private _renderer: Renderer2,
-    private _positionService: PositioningService
+    private _renderer: Renderer2
   ) {
 
     this._tooltip = cis
@@ -275,7 +273,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
    * the tooltip.
    */
   show(): void {
-    this._positionService.setOptions({
+    const posOpts = {
       modifiers: {
         flip: {
           enabled: this.adaptivePosition
@@ -284,7 +282,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
           enabled: this.adaptivePosition
         }
       }
-    });
+    };
 
     if (
       this.isOpen ||
@@ -303,7 +301,10 @@ export class TooltipDirective implements OnInit, OnDestroy {
       this._tooltip
         .attach(TooltipContainerComponent)
         .to(this.container)
-        .position({attachment: this.placement})
+        .position({
+          attachment: this.placement,
+          options: posOpts
+        })
         .show({
           content: this.tooltip,
           placement: this.placement,

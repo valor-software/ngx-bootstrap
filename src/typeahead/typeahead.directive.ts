@@ -344,7 +344,13 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this._typeahead
       .attach(TypeaheadContainerComponent)
       .to(this.container)
-      .position({attachment: `${this.dropup ? 'top' : 'bottom'} start`})
+      .position({
+        attachment: `${this.dropup ? 'top' : 'bottom'} start`,
+        options: {
+          modifiers: { flip: { enabled: this.adaptivePosition } },
+          allowedPositions: ['top', 'bottom']
+        }
+      })
       .show({
         typeaheadRef: this,
         placement: this.placement,

@@ -86,6 +86,8 @@ export class ComponentLoader<T> {
   private _listenOpts: ListenOptions = {};
   private _globalListener = Function.prototype;
 
+  private _posOpts: PositioningOptions['options'];
+
   /**
    * Do not use this directly, it should be instanced via
    * `ComponentLoadFactory.attach`
@@ -117,10 +119,11 @@ export class ComponentLoader<T> {
     return this;
   }
 
-  position(opts?: PositioningOptions): ComponentLoader<T> {
+  position(opts: PositioningOptions): ComponentLoader<T> {
     this.attachment = opts.attachment || this.attachment;
     /* tslint:disable-next-line: no-unnecessary-type-assertion */
     this._elementRef = (opts.target as ElementRef) || this._elementRef;
+    this._posOpts = opts.options;
 
     return this;
   }
@@ -347,7 +350,8 @@ export class ComponentLoader<T> {
         element: this._componentRef.location,
         target: this._elementRef,
         attachment: this.attachment,
-        appendToBody: this.container === 'body'
+        appendToBody: this.container === 'body',
+        options: this._posOpts
       });
     });
 

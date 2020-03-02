@@ -206,7 +206,13 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       .provide({provide: BsDatepickerConfig, useValue: this._config})
       .attach(BsDatepickerContainerComponent)
       .to(this.container)
-      .position({attachment: this.placement})
+      .position({
+        attachment: this.placement,
+        options: {
+          modifiers: { flip: { enabled: this._config.adaptivePosition } },
+          allowedPositions: ['top', 'bottom']
+        }
+      })
       .show({placement: this.placement});
 
     // if date changes from external source (model -> view)

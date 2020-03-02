@@ -38,12 +38,14 @@ export interface PositioningOptions {
 
   /** If true component will be attached to body */
   appendToBody?: boolean;
+
+  /** Additional positioning options */
+  options?: Options;
 }
 
 
 @Injectable()
 export class PositioningService {
-  private options: Options;
   private update$$ = new Subject<null>();
   private positionElements = new Map();
   private triggerEvent$: Observable<number|Event>;
@@ -78,7 +80,7 @@ export class PositioningService {
                 _getHtmlElement(positionElement.element),
                 positionElement.attachment,
                 positionElement.appendToBody,
-                this.options,
+                positionElement.options,
                 rendererFactory.createRenderer(null, null)
               );
             });
@@ -113,10 +115,6 @@ export class PositioningService {
 
   deletePositionElement(elRef: ElementRef): void {
     this.positionElements.delete(_getHtmlElement(elRef));
-  }
-
-  setOptions(options: Options) {
-    this.options = options;
   }
 }
 

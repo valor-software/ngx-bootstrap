@@ -1,3 +1,4 @@
+// tslint:disable:max-file-line-count
 import {
   AfterViewInit,
   ComponentRef,
@@ -213,7 +214,13 @@ export class BsDaterangepickerDirective
       .provide({ provide: BsDatepickerConfig, useValue: this._config })
       .attach(BsDaterangepickerContainerComponent)
       .to(this.container)
-      .position({ attachment: this.placement })
+      .position({
+        attachment: this.placement,
+        options: {
+          modifiers: { flip: { enabled: this._config.adaptivePosition } },
+          allowedPositions: ['top', 'bottom']
+        }
+      })
       .show({ placement: this.placement });
 
     // if date changes from external source (model -> view)

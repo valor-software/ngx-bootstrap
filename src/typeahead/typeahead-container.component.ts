@@ -87,12 +87,12 @@ export class TypeaheadContainerComponent implements OnDestroy {
   private liElements: QueryList<ElementRef>;
 
   constructor(
-    private positionService: PositioningService,
+    positionService: PositioningService,
     private renderer: Renderer2,
     public element: ElementRef,
     private changeDetectorRef: ChangeDetectorRef
   ) {
-    this.positionServiceSubscription = this.positionService.event$.subscribe(
+    this.positionServiceSubscription = positionService.event$.subscribe(
       () => {
         if (this.isAnimated) {
           this.animationState = this.isTopPosition ? 'animated-up' : 'animated-down';
@@ -116,11 +116,6 @@ export class TypeaheadContainerComponent implements OnDestroy {
   }
 
   set matches(value: TypeaheadMatch[]) {
-    this.positionService.setOptions({
-      modifiers: { flip: { enabled: this.adaptivePosition } },
-      allowedPositions: ['top', 'bottom']
-    });
-
     this._matches = value;
 
     this.needScrollbar = this.typeaheadScrollable && this.typeaheadOptionsInScrollableView < this.matches.length;
@@ -163,10 +158,6 @@ export class TypeaheadContainerComponent implements OnDestroy {
 
   get isAnimated(): boolean {
     return this.parent ? this.parent.isAnimated : false;
-  }
-
-  get adaptivePosition(): boolean {
-    return this.parent ? this.parent.adaptivePosition : false;
   }
 
   get typeaheadScrollable(): boolean {
