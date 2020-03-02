@@ -33,7 +33,8 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /**
    * Placement of a popover. Accepts: "top", "bottom", "left", "right"
    */
-  @Input() placement: 'top' | 'bottom' | 'left' | 'right' | 'auto';
+  @Input() placement: 'top' | 'bottom' | 'left' | 'right' | 'auto' | 'top left' | 'top right' |
+    'right top' | 'right bottom' | 'bottom right' | 'bottom left' | 'left bottom' | 'left top';
   /**
    * Close popover on outside click
    */

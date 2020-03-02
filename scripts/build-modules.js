@@ -40,7 +40,7 @@ async function buildAll() {
 const cli = meow(`
 	Options
 	  --watch Rebuild on source change
-	  --latest required for Latest Env
+	  --latest required for Latest & Next Env
 `, {
   flags: {
     watch: {

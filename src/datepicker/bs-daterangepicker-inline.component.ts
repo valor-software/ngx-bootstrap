@@ -92,12 +92,6 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
     ngOnInit(): void {
         this.setConfig();
 
-        this._datepickerRef = this._datepicker
-          .provide({ provide: BsDatepickerConfig, useValue: this._config })
-          .attach(BsDaterangepickerInlineContainerComponent)
-          .to(this._elementRef)
-          .show();
-
         // if date changes from external source (model -> view)
         this._subs.push(
           this.bsValueChange.subscribe((value: Date[]) => {
@@ -124,10 +118,12 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
 
         if (changes.minDate) {
           this._datepickerRef.instance.minDate = this.minDate;
+          this.setConfig();
         }
 
         if (changes.maxDate) {
           this._datepickerRef.instance.maxDate = this.maxDate;
+          this.setConfig();
         }
 
         if (changes.datesEnabled) {
@@ -136,18 +132,22 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
 
         if (changes.datesDisabled) {
           this._datepickerRef.instance.datesDisabled = this.datesDisabled;
+          this.setConfig();
         }
 
         if (changes.daysDisabled) {
           this._datepickerRef.instance.daysDisabled = this.daysDisabled;
+          this.setConfig();
         }
 
         if (changes.isDisabled) {
           this._datepickerRef.instance.isDisabled = this.isDisabled;
+          this.setConfig();
         }
 
         if (changes.dateCustomClasses) {
           this._datepickerRef.instance.dateCustomClasses = this.dateCustomClasses;
+          this.setConfig();
         }
     }
 
@@ -155,6 +155,10 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
      * Set config for datepicker
      */
     setConfig(): void {
+      if (this._datepicker) {
+        this._datepicker.hide();
+      }
+
       this._config = Object.assign({}, this._config, this.bsConfig, {
         value: this._bsValue,
         isDisabled: this.isDisabled,
@@ -166,6 +170,13 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
         datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled,
         ranges: this.bsConfig && this.bsConfig.ranges
       });
+
+
+      this._datepickerRef = this._datepicker
+        .provide({provide: BsDatepickerConfig, useValue: this._config})
+        .attach(BsDaterangepickerInlineContainerComponent)
+        .to(this._elementRef)
+        .show();
     }
 
     ngOnDestroy(): any {
