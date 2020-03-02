@@ -114,7 +114,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
   /**
    * Date tooltip text
    */
-  @Input() dateTooltipText: DatepickerDateTooltipText[];
+  @Input() dateTooltipTexts: DatepickerDateTooltipText[];
   /**
    * Emits when datepicker value has been changed
    */
@@ -186,8 +186,8 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       this._datepickerRef.instance.dateCustomClasses = this.dateCustomClasses;
     }
 
-    if (changes.dateTooltipText) {
-      this._datepickerRef.instance.dateTooltipText = this.dateTooltipText;
+    if (changes.dateTooltipTexts) {
+      this._datepickerRef.instance.dateTooltipTexts = this.dateTooltipTexts;
     }
   }
 
@@ -273,7 +273,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
       daysDisabled: this.daysDisabled || this.bsConfig && this.bsConfig.daysDisabled,
       dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
-      dateTooltipText: this.dateTooltipText || this.bsConfig && this.bsConfig.dateTooltipText,
+      dateTooltipTexts: this.dateTooltipTexts || this.bsConfig && this.bsConfig.dateTooltipTexts,
       datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
       datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled,
       minMode: this.minMode || this.bsConfig && this.bsConfig.minMode

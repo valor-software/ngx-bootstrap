@@ -145,7 +145,7 @@ export class BsDatepickerActions {
     };
   }
 
-  setDateTooltipText(value: DatepickerDateTooltipText[]): Action {
+  setDateTooltipTexts(value: DatepickerDateTooltipText[]): Action {
     return {
       type: BsDatepickerActions.SET_DATE_TOOLTIP_TEXTS,
       payload: value

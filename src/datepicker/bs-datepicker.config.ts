@@ -37,7 +37,7 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
   /**
    * Default tooltip text for all date/range pickers
    */
-  dateTooltipText: DatepickerDateTooltipText[];
+  dateTooltipTexts?: DatepickerDateTooltipText[];
   /**
    * Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays
    */

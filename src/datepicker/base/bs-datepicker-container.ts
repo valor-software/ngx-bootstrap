@@ -51,8 +51,8 @@ export abstract class BsDatepickerAbstractComponent {
     this._effects.setDateCustomClasses(value);
   }
 
-  set dateTooltipText(value: DatepickerDateTooltipText[]) {
-    this._effects.setDateTooltipText(value);
+  set dateTooltipTexts(value: DatepickerDateTooltipText[]) {
+    this._effects.setDateTooltipTexts(value);
   }
 
   viewMode: Observable<BsDatepickerViewMode>;

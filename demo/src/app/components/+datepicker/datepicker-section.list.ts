@@ -45,6 +45,7 @@ import {
 import { DemoDatePickerQuickSelectRangesComponent } from './demos/quick-select-ranges/quick-select-ranges';
 import { DemoDateRangePickerShowPreviousMonth } from './demos/daterangepicker-show-previous-month/show-previous-month';
 import { DemoDatePickerSelectWeekRangeComponent } from './demos/select-week-range/select-week-range';
+import { DemoDatePickerTooltipToSelectedDates } from './demos/tooltip-to-selected-dates/tooltip-to-selected-dates';
 
 
 export const demoComponentContent: ContentSection[] = [
@@ -296,6 +297,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/config-method/config-method.html'),
         description: `<p>You can manage datepicker's options by using its <code>setConfig()</code> method</p>`,
         outlet: DemoDatepickerConfigMethodComponent
+      },
+      {
+        title: 'Tooltip for selected dates',
+        anchor: 'tooltip-for-selected-dates',
+        component: require('!!raw-loader!./demos/tooltip-to-selected-dates/tooltip-to-selected-dates.ts'),
+        html: require('!!raw-loader!./demos/tooltip-to-selected-dates/tooltip-to-selected-dates.html'),
+        description: ``,
+        outlet: DemoDatePickerTooltipToSelectedDates
       },
       {
         title: 'Visibility Events',

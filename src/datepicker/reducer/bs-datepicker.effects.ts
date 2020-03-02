@@ -99,8 +99,8 @@ export class BsDatepickerEffects {
     return this;
   }
 
-  setDateTooltipText(value: DatepickerDateTooltipText[]): BsDatepickerEffects {
-    this._store.dispatch(this._actions.setDateTooltipText(value));
+  setDateTooltipTexts(value: DatepickerDateTooltipText[]): BsDatepickerEffects {
+    this._store.dispatch(this._actions.setDateTooltipTexts(value));
 
     return this;
   }

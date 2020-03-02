@@ -53,7 +53,7 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
   /**
    * Date tooltip text
    */
-  @Input() dateTooltipText: DatepickerDateTooltipText[];
+  @Input() dateTooltipTexts: DatepickerDateTooltipText[];
   /**
    * Disable specific dates
    */
@@ -141,8 +141,8 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
       this.setConfig();
     }
 
-    if (changes.dateTooltipText) {
-      this._datepickerRef.instance.dateTooltipText = this.dateTooltipText;
+    if (changes.dateTooltipTexts) {
+      this._datepickerRef.instance.dateTooltipTexts = this.dateTooltipTexts;
       this.setConfig();
     }
   }
@@ -161,7 +161,7 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
       minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
       maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
       dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
-      dateTooltipText: this.dateTooltipText || this.bsConfig && this.bsConfig.dateTooltipText,
+      dateTooltipTexts: this.dateTooltipTexts || this.bsConfig && this.bsConfig.dateTooltipTexts,
       datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
       datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled
     });
