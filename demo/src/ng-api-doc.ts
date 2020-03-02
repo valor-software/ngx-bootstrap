@@ -1033,7 +1033,7 @@ export const ngdoc: any = {
       {
         "name": "displayOneMonthRange",
         "type": "boolean",
-        "description": "<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD\n    Show one months for special cases (only for dateRangePicker)</p>\n<pre><code>1. maxDate is equal to today&#39;s date\n2. minDate&#39;s month is equal to maxDate&#39;s month\n</code></pre>"
+        "description": "<p>Show one months for special cases (only for dateRangePicker)</p>\n<ol>\n<li>maxDate is equal to today&#39;s date</li>\n<li>minDate&#39;s month is equal to maxDate&#39;s month</li>\n</ol>\n"
       },
       {
         "name": "isAnimated",
@@ -1072,6 +1072,11 @@ export const ngdoc: any = {
         "defaultValue": "false",
         "type": "boolean",
         "description": "<p>If true, returns focus to the datepicker / daterangepicker input after date selection</p>\n"
+      },
+      {
+        "name": "selectFromOtherMonth",
+        "type": "boolean",
+        "description": "<p>Makes dates from other months active</p>\n"
       },
       {
         "name": "selectWeek",
