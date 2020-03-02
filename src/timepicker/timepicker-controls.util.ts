@@ -120,7 +120,7 @@ export function timepickerControls(
   state: TimepickerComponentState
 ): TimepickerControls {
   const hoursPerDayHalf = 12;
-  const { min, max, hourStep, minuteStep, secondsStep, showSeconds } = state;
+  const { min, max, showSeconds } = state;
   const res: TimepickerControls = {
     canIncrementHours: true,
     canIncrementMinutes: true,
@@ -151,7 +151,7 @@ export function timepickerControls(
         ? max > value
         : max >= value;
 
-        res.invalidMinutes = max < value;
+      res.invalidMinutes = max < value;
     }
 
     if (!res.canIncrementMinutes) {
