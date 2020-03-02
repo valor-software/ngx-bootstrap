@@ -19,7 +19,7 @@ import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component
 import { OnChange, warnOnce, parseTriggers, Trigger } from 'ngx-bootstrap/utils';
 import { PositioningService } from 'ngx-bootstrap/positioning';
 
-import { timer } from 'rxjs';
+import { timer, Subscription } from 'rxjs';
 
 let id = 0;
 
@@ -203,8 +203,8 @@ export class TooltipDirective implements OnInit, OnDestroy {
   protected _tooltipCancelShowFn: Function;
 
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
+  private _delaySubscription: Subscription;
   private _ariaDescribedby: string;
-
   constructor(
     _viewContainerRef: ViewContainerRef,
     cis: ComponentLoaderFactory,
@@ -318,7 +318,11 @@ export class TooltipDirective implements OnInit, OnDestroy {
     };
 
     if (this.delay) {
-      const _timer = timer(this.delay).subscribe(() => {
+      if (this._delaySubscription) {
+        this._delaySubscription.unsubscribe();
+      }
+
+      this._delaySubscription = timer(this.delay).subscribe(() => {
         showTooltip();
         cancelDelayedTooltipShowing();
       });
@@ -330,7 +334,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
               this._elementRef.nativeElement,
               trigger.close,
               () => {
-                _timer.unsubscribe();
+                this._delaySubscription.unsubscribe();
                 cancelDelayedTooltipShowing();
               }
             );
@@ -364,6 +368,9 @@ export class TooltipDirective implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this._tooltip.dispose();
     this.tooltipChange.unsubscribe();
+    if (this._delaySubscription) {
+      this._delaySubscription.unsubscribe();
+    }
     this.onShown.unsubscribe();
     this.onHidden.unsubscribe();
   }
