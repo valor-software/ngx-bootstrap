@@ -32,7 +32,11 @@ export const initialState: TimepickerState = {
     canDecrementMinutes: true,
     canDecrementSeconds: true,
 
-    canToggleMeridian: true
+    canToggleMeridian: true,
+
+    invalidHours: false,
+    invalidMinutes: false,
+    invalidSeconds: false
   }
 };
 
@@ -53,11 +57,12 @@ export function timepickerReducer(state = initialState, action: Action) {
 
       const _newTime = changeTime(state.value, { hour: action.payload.step });
 
+      const controlsState = { ...state.controls };
       if ((state.config.max || state.config.min) && !isValidLimit(state.config, _newTime)) {
-          return state;
+          controlsState.invalidHours = true;
       }
 
-      return Object.assign({}, state, { value: _newTime });
+      return Object.assign({}, state, { value: _newTime, state: controlsState });
     }
 
     case TimepickerActions.CHANGE_MINUTES: {
@@ -70,11 +75,12 @@ export function timepickerReducer(state = initialState, action: Action) {
 
       const _newTime = changeTime(state.value, { minute: action.payload.step });
 
+      const controlsState = { ...state.controls };
       if ((state.config.max || state.config.min) && !isValidLimit(state.config, _newTime)) {
-        return state;
+        controlsState.invalidMinutes = true;
       }
 
-      return Object.assign({}, state, { value: _newTime });
+      return Object.assign({}, state, { value: _newTime, state: controlsState });
     }
 
     case TimepickerActions.CHANGE_SECONDS: {
@@ -89,11 +95,12 @@ export function timepickerReducer(state = initialState, action: Action) {
         seconds: action.payload.step
       });
 
+      const controlsState = { ...state.controls };
       if ((state.config.max || state.config.min) && !isValidLimit(state.config, _newTime)) {
-        return state;
+        controlsState.invalidSeconds = true;
       }
 
-      return Object.assign({}, state, { value: _newTime });
+      return Object.assign({}, state, { value: _newTime, state: controlsState });
     }
 
     case TimepickerActions.SET_TIME_UNIT: {

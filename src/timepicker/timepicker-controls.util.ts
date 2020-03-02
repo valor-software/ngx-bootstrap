@@ -130,7 +130,11 @@ export function timepickerControls(
     canDecrementMinutes: true,
     canDecrementSeconds: true,
 
-    canToggleMeridian: true
+    canToggleMeridian: true,
+
+    invalidHours: false,
+    invalidMinutes: false,
+    invalidSeconds: false
   };
 
   if (!value) {
@@ -139,19 +143,20 @@ export function timepickerControls(
 
   // compare dates
   if (max) {
-    const _newHour = changeTime(value, { hour: hourStep });
-    res.canIncrementHours = max > _newHour;
+    res.canIncrementHours = max > value;
+    res.invalidHours = max < value;
 
     if (!res.canIncrementHours) {
-      const _newMinutes = changeTime(value, { minute: minuteStep });
       res.canIncrementMinutes = showSeconds
-        ? max > _newMinutes
-        : max >= _newMinutes;
+        ? max > value
+        : max >= value;
+
+        res.invalidMinutes = max < value;
     }
 
     if (!res.canIncrementMinutes) {
-      const _newSeconds = changeTime(value, { seconds: secondsStep });
-      res.canIncrementSeconds = max >= _newSeconds;
+      res.canIncrementSeconds = max >= value;
+      res.invalidSeconds = max < value;
     }
 
     if (value.getHours() < hoursPerDayHalf) {
@@ -160,19 +165,20 @@ export function timepickerControls(
   }
 
   if (min) {
-    const _newHour = changeTime(value, { hour: -hourStep });
-    res.canDecrementHours = min < _newHour;
+    res.canDecrementHours = min < value;
+    res.invalidHours = min > value;
 
     if (!res.canDecrementHours) {
-      const _newMinutes = changeTime(value, { minute: -minuteStep });
       res.canDecrementMinutes = showSeconds
-        ? min < _newMinutes
-        : min <= _newMinutes;
+        ? min < value
+        : min <= value;
+
+      res.invalidMinutes = min > value;
     }
 
     if (!res.canDecrementMinutes) {
-      const _newSeconds = changeTime(value, { seconds: -secondsStep });
-      res.canDecrementSeconds = min <= _newSeconds;
+      res.canDecrementSeconds = min <= value;
+      res.invalidSeconds = min > value;
     }
 
     if (value.getHours() >= hoursPerDayHalf) {
