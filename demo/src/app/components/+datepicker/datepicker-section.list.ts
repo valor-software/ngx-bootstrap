@@ -212,7 +212,7 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDatepickerDatesDisabledComponent
       },
       {
-         title: 'Dates enabled',
+        title: 'Dates enabled',
         anchor: 'dates-enabled',
         component: require('!!raw-loader!./demos/enable-dates/enable-dates.ts'),
         html: require('!!raw-loader!./demos/enable-dates/enable-dates.html'),
