@@ -110,7 +110,7 @@ export class DatepickerPo extends BaseComponent {
   }
 
   isQuickSelectLastDaysApplied(datepicker: string, countOfBtn: number, baseSelector = 'body') {
-    const todayDate = Cypress.moment().format('l');
+    const todayDate = Cypress.moment().format('L');
     const previousDate = Cypress.moment().subtract(7, 'days').calendar();
     const nextDate = Cypress.moment().add(7, 'days').calendar();
 
@@ -488,6 +488,10 @@ export class DatepickerPo extends BaseComponent {
 
       case 'sq' :
         actualMonthArr = globalLocales.sqLocale.months;
+        break;
+
+      case 'kk' :
+        actualMonthArr = globalLocales.kkLocale.months;
         break;
 
       default:

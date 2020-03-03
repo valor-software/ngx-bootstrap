@@ -20,6 +20,7 @@ export { idLocale } from 'ngx-bootstrap/chronos';
 export { itLocale } from 'ngx-bootstrap/chronos';
 export { jaLocale } from 'ngx-bootstrap/chronos';
 export { kaLocale } from 'ngx-bootstrap/chronos';
+export { kkLocale } from 'ngx-bootstrap/chronos';
 export { koLocale } from 'ngx-bootstrap/chronos';
 export { ltLocale } from 'ngx-bootstrap/chronos';
 export { lvLocale } from 'ngx-bootstrap/chronos';
