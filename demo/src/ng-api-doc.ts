@@ -796,6 +796,11 @@ export const ngdoc: any = {
       {
         "name": "datesDisabled",
         "type": "Date[]",
+        "description": "<p>Enable specific dates</p>\n"
+      },
+      {
+        "name": "datesEnabled",
+        "type": "Date[]",
         "description": "<p>Disable specific dates</p>\n"
       },
       {
@@ -879,6 +884,11 @@ export const ngdoc: any = {
         "name": "datesDisabled",
         "type": "Date[]",
         "description": "<p>Disable specific dates</p>\n"
+      },
+      {
+        "name": "datesEnabled",
+        "type": "Date[]",
+        "description": "<p>Enable specific dates</p>\n"
       },
       {
         "name": "daysDisabled",
@@ -1011,9 +1021,19 @@ export const ngdoc: any = {
         "description": "<p>Disable specific dates</p>\n"
       },
       {
+        "name": "datesEnabled",
+        "type": "Date[]",
+        "description": "<p>Enable specific dates</p>\n"
+      },
+      {
         "name": "daysDisabled",
         "type": "number[]",
         "description": "<p>Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays</p>\n"
+      },
+      {
+        "name": "displayOneMonthRange",
+        "type": "boolean",
+        "description": "<p>Show one months for special cases (only for dateRangePicker)</p>\n<ol>\n<li>maxDate is equal to today&#39;s date</li>\n<li>minDate&#39;s month is equal to maxDate&#39;s month</li>\n</ol>\n"
       },
       {
         "name": "isAnimated",
@@ -1115,6 +1135,11 @@ export const ngdoc: any = {
         "description": "<p>Disable specific dates</p>\n"
       },
       {
+        "name": "datesEnabled",
+        "type": "Date[]",
+        "description": "<p>Disable specific dates</p>\n"
+      },
+      {
         "name": "daysDisabled",
         "type": "number[]",
         "description": "<p>Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays</p>\n"
@@ -1207,6 +1232,11 @@ export const ngdoc: any = {
         "name": "datesDisabled",
         "type": "Date[]",
         "description": "<p>Disable specific dates</p>\n"
+      },
+      {
+        "name": "datesEnabled",
+        "type": "Date[]",
+        "description": "<p>Enable specific dates</p>\n"
       },
       {
         "name": "daysDisabled",
@@ -2900,7 +2930,7 @@ export const ngdoc: any = {
       },
       {
         "name": "placement",
-        "type": "\"top\" | \"bottom\" | \"left\" | \"right\" | \"auto\"",
+        "type": "\"top\" | \"bottom\" | \"left\" | \"right\" | \"auto\" | \"top left\" | \"top right\" | \"right top\" | \"right bottom\" | \"bottom right\" | \"bottom left\" | \"left bottom\" | \"left top\"",
         "description": "<p>Placement of a popover. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;</p>\n"
       },
       {
