@@ -102,7 +102,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
     public element: ElementRef,
     private changeDetectorRef: ChangeDetectorRef
   ) {
-    this.element.nativeElement.id = this.popupId;
+    this.renderer.setAttribute(this.element.nativeElement, 'id', this.popupId);
     this.positionServiceSubscription = this.positionService.event$.subscribe(
       () => {
         if (this.isAnimated) {
