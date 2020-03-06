@@ -150,7 +150,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     // @Input() protected typeaheadFocusOnSelect:boolean;
 
   activeDescendant: string;
-  popupId: string;
   isOpen = false;
   _container: TypeaheadContainerComponent;
   isActiveItemChanged = false;
