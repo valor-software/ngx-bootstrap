@@ -159,7 +159,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   // tslint:disable-next-line:no-any
   protected keyUpEventEmitter: EventEmitter<string> = new EventEmitter();
   protected _matches: TypeaheadMatch[];
-  protected placement = 'bottom-left';
+  protected placement = 'bottom left';
 
   private _typeahead: ComponentLoader<TypeaheadContainerComponent>;
   private _subscriptions: Subscription[] = [];
@@ -355,7 +355,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this._typeahead
       .attach(TypeaheadContainerComponent)
       .to(this.container)
-      .position({attachment: `${this.dropup ? 'top' : 'bottom'} start`})
+      .position({attachment: `${this.dropup ? 'top' : 'bottom'} left`})
       .show({
         typeaheadRef: this,
         placement: this.placement,
