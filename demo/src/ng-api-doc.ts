@@ -1031,6 +1031,11 @@ export const ngdoc: any = {
         "description": "<p>Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays</p>\n"
       },
       {
+        "name": "displayOneMonthRange",
+        "type": "boolean",
+        "description": "<p>Show one months for special cases (only for dateRangePicker)</p>\n<ol>\n<li>maxDate is equal to today&#39;s date</li>\n<li>minDate&#39;s month is equal to maxDate&#39;s month</li>\n</ol>\n"
+      },
+      {
         "name": "isAnimated",
         "defaultValue": "false",
         "type": "boolean",
