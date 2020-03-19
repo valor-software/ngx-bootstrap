@@ -7,11 +7,15 @@ import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component
 import { PopoverContainerComponent } from './popover-container.component';
 import { PositioningService } from 'ngx-bootstrap/positioning';
 
+let id = 0;
+
 /**
  * A lightweight, extensible directive for fancy popover creation.
  */
 @Directive({selector: '[popover]', exportAs: 'bs-popover'})
 export class PopoverDirective implements OnInit, OnDestroy {
+  /** unique id popover - use for aria-describedby */
+  popoverId = id++;
   /** sets disable adaptive position */
   @Input() adaptivePosition: boolean;
   /**
@@ -80,20 +84,21 @@ export class PopoverDirective implements OnInit, OnDestroy {
 
   private _popover: ComponentLoader<PopoverContainerComponent>;
   private _isInited = false;
+  private _ariaDescribedby: string;
 
   constructor(
     _config: PopoverConfig,
-    _elementRef: ElementRef,
-    _renderer: Renderer2,
+    private _elementRef: ElementRef,
+    private _renderer: Renderer2,
     _viewContainerRef: ViewContainerRef,
     cis: ComponentLoaderFactory,
     private _positionService: PositioningService
   ) {
     this._popover = cis
       .createLoader<PopoverContainerComponent>(
-        _elementRef,
+        this._elementRef,
         _viewContainerRef,
-        _renderer
+        this._renderer
       )
       .provide({provide: PopoverConfig, useValue: _config});
 
@@ -104,13 +109,27 @@ export class PopoverDirective implements OnInit, OnDestroy {
 
     // fix: no focus on button on Mac OS #1795
     if (typeof window !== 'undefined') {
-      _elementRef.nativeElement.addEventListener('click', function () {
+      this._elementRef.nativeElement.addEventListener('click', function () {
         try {
-          _elementRef.nativeElement.focus();
+          this._elementRef.nativeElement.focus();
         } catch (err) {
           return;
         }
       });
+    }
+  }
+
+  /**
+   * Set attribute aria-describedBy for element directive and
+   * set id for the popover
+   */
+  setAriaDescribedBy(): void {
+    this._ariaDescribedby = this.isOpen ? `ngx-popover-${this.popoverId}` : null;
+    if (this._ariaDescribedby) {
+      this._popover.instance.popoverId = this._ariaDescribedby;
+      this._renderer.setAttribute(this._elementRef.nativeElement, 'aria-describedby', this._ariaDescribedby);
+    } else {
+      this._renderer.removeAttribute(this._elementRef.nativeElement, 'aria-describedby');
     }
   }
 
@@ -151,6 +170,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
       this._positionService.deletePositionElement(this._popover._componentRef.location);
     }
 
+    this.setAriaDescribedBy();
     this.isOpen = true;
   }
 
@@ -161,6 +181,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
   hide(): void {
     if (this.isOpen) {
       this._popover.hide();
+      this.setAriaDescribedBy();
       this.isOpen = false;
     }
   }
@@ -189,7 +210,8 @@ export class PopoverDirective implements OnInit, OnDestroy {
     this._popover.listen({
       triggers: this.triggers,
       outsideClick: this.outsideClick,
-      show: () => this.show()
+      show: () => this.show(),
+      hide: () => this.hide()
     });
   }
 
