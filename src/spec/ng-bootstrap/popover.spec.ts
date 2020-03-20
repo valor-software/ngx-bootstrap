@@ -252,7 +252,7 @@ describe('popover', () => {
 
       const windowEl = getWindow(fixture.nativeElement);
 
-      let popoverId = windowEl.getAttribute('id');
+      const popoverId = windowEl.getAttribute('id');
 
       expect(popoverId.indexOf('ngx-popover-')).toEqual(0);
       expect(fixture.nativeElement.querySelector('#div-container').getAttribute('aria-describedby')).toEqual(popoverId);
