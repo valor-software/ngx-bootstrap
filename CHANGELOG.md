@@ -1,3 +1,109 @@
+<a name="5.6.0"></a>
+# [5.6.0](https://github.com/valor-software/ngx-bootstrap/compare/v5.5.0...v5.6.0) (2020-03-19)
+
+
+### Bug Fixes
+
+* **accordion, collapse:** fix according animation with collapse ([#5688](https://github.com/valor-software/ngx-bootstrap/issues/5688)) ([23800f5](https://github.com/valor-software/ngx-bootstrap/commit/23800f5))
+* **build:** fix latest deploy job ([#5652](https://github.com/valor-software/ngx-bootstrap/issues/5652)) ([1f1e145](https://github.com/valor-software/ngx-bootstrap/commit/1f1e145))
+* **buttons:** fix disabled state for radio button ([#5610](https://github.com/valor-software/ngx-bootstrap/issues/5610)) ([d626faf](https://github.com/valor-software/ngx-bootstrap/commit/d626faf)), closes [#5140](https://github.com/valor-software/ngx-bootstrap/issues/5140)
+* **chore ci:** change sourceRoot to deepen ng cli run scope, add ampe… ([#5674](https://github.com/valor-software/ngx-bootstrap/issues/5674)) ([198cdf1](https://github.com/valor-software/ngx-bootstrap/commit/198cdf1))
+* **ci:** update next stage build dependencies & scripts ([#5696](https://github.com/valor-software/ngx-bootstrap/issues/5696)) ([db2a21d](https://github.com/valor-software/ngx-bootstrap/commit/db2a21d))
+* **ci:** update TS version in scripts (fix jobs with latest/next envs) ([#5712](https://github.com/valor-software/ngx-bootstrap/issues/5712)) ([5b568b9](https://github.com/valor-software/ngx-bootstrap/commit/5b568b9))
+* **collapse:** "Collapse" component breaks "Dropdown component [#5625](https://github.com/valor-software/ngx-bootstrap/issues/5625) ([#5626](https://github.com/valor-software/ngx-bootstrap/issues/5626)) ([0b4721d](https://github.com/valor-software/ngx-bootstrap/commit/0b4721d))
+* **collapse:** remove overflow hidden on show ([#5649](https://github.com/valor-software/ngx-bootstrap/issues/5649)) ([3e9046f](https://github.com/valor-software/ngx-bootstrap/commit/3e9046f)), closes [#5625](https://github.com/valor-software/ngx-bootstrap/issues/5625) [#5369](https://github.com/valor-software/ngx-bootstrap/issues/5369)
+* **collapse-demo:** add default value for message ([#5659](https://github.com/valor-software/ngx-bootstrap/issues/5659)) ([df45dce](https://github.com/valor-software/ngx-bootstrap/commit/df45dce))
+* **common:** fix ci latest ([#5650](https://github.com/valor-software/ngx-bootstrap/issues/5650)) ([7fc365e](https://github.com/valor-software/ngx-bootstrap/commit/7fc365e))
+* **common:** remove common module for fixing latest ng ver build ([#5658](https://github.com/valor-software/ngx-bootstrap/issues/5658)) ([cb3abf0](https://github.com/valor-software/ngx-bootstrap/commit/cb3abf0))
+* **datepicker:** change isOpen setter flow ([#5035](https://github.com/valor-software/ngx-bootstrap/issues/5035)) ([#5082](https://github.com/valor-software/ngx-bootstrap/issues/5082)) ([09354e6](https://github.com/valor-software/ngx-bootstrap/commit/09354e6))
+* **datepicker:** datepicker not closed on Enter click in IE11 ([#5641](https://github.com/valor-software/ngx-bootstrap/issues/5641)) ([2b2f5de](https://github.com/valor-software/ngx-bootstrap/commit/2b2f5de))
+* **datepicker:** fix updating prop values for inline date/daterange pickers ([#5681](https://github.com/valor-software/ngx-bootstrap/issues/5681)) ([54f67ff](https://github.com/valor-software/ngx-bootstrap/commit/54f67ff))
+* **datepicker:** Thai Buddish calendar on Datepicker show wrong on leap year  [#5679](https://github.com/valor-software/ngx-bootstrap/issues/5679) ([#5715](https://github.com/valor-software/ngx-bootstrap/issues/5715)) ([4bd2510](https://github.com/valor-software/ngx-bootstrap/commit/4bd2510))
+* **dropdown:** add z-index for dropdown to not be overrided by modal ([#5627](https://github.com/valor-software/ngx-bootstrap/issues/5627)) ([220dc4a](https://github.com/valor-software/ngx-bootstrap/commit/220dc4a))
+* **local build:** fix issue with crashing demo build after changing in source code of components ([#5670](https://github.com/valor-software/ngx-bootstrap/issues/5670)) ([269698a](https://github.com/valor-software/ngx-bootstrap/commit/269698a))
+* **scripts:** add bunch of scripts related to only latest env, to avoid issues with build on travis and local rebuild ([#5671](https://github.com/valor-software/ngx-bootstrap/issues/5671)) ([772f5f9](https://github.com/valor-software/ngx-bootstrap/commit/772f5f9))
+* **tests:** fix broken datepicker e2e, exclude progressbar e2e, to avoid travis fail on latest ([#5664](https://github.com/valor-software/ngx-bootstrap/issues/5664)) ([1b16704](https://github.com/valor-software/ngx-bootstrap/commit/1b16704))
+* **tests:** fix broken typeahead saucelab test ([#5621](https://github.com/valor-software/ngx-bootstrap/issues/5621)) ([c45c3ae](https://github.com/valor-software/ngx-bootstrap/commit/c45c3ae))
+* **tests:** fix e2e tests for the Typeahead demo ([#5644](https://github.com/valor-software/ngx-bootstrap/issues/5644)) ([690f836](https://github.com/valor-software/ngx-bootstrap/commit/690f836))
+* **tooltip:** fix tooltip appearing after it has been destroyed ([#5217](https://github.com/valor-software/ngx-bootstrap/issues/5217)) ([#5548](https://github.com/valor-software/ngx-bootstrap/issues/5548)) ([db437f3](https://github.com/valor-software/ngx-bootstrap/commit/db437f3))
+* **travis:** fix typo in conditions ([#5673](https://github.com/valor-software/ngx-bootstrap/issues/5673)) ([a5f1d2d](https://github.com/valor-software/ngx-bootstrap/commit/a5f1d2d))
+* **typeahead:** add typing for typeahead source data ([#5647](https://github.com/valor-software/ngx-bootstrap/issues/5647)) ([26aff71](https://github.com/valor-software/ngx-bootstrap/commit/26aff71))
+* **typeahead:** fix focus after leaving control ([#4622](https://github.com/valor-software/ngx-bootstrap/issues/4622)) ([#5593](https://github.com/valor-software/ngx-bootstrap/issues/5593)) ([1e43eba](https://github.com/valor-software/ngx-bootstrap/commit/1e43eba))
+* **typeahead:** fix updating model ([#5640](https://github.com/valor-software/ngx-bootstrap/issues/5640)) ([f2f8f45](https://github.com/valor-software/ngx-bootstrap/commit/f2f8f45)), closes [#5251](https://github.com/valor-software/ngx-bootstrap/issues/5251)
+* **typeahead:** revert filter functionality ([#5651](https://github.com/valor-software/ngx-bootstrap/issues/5651)) ([ff361a4](https://github.com/valor-software/ngx-bootstrap/commit/ff361a4)), closes [#5624](https://github.com/valor-software/ngx-bootstrap/issues/5624)
+
+
+### Features
+
+* **carousel:** add animation to carousel ([#5655](https://github.com/valor-software/ngx-bootstrap/issues/5655)) ([2c36e33](https://github.com/valor-software/ngx-bootstrap/commit/2c36e33)), closes [#281](https://github.com/valor-software/ngx-bootstrap/issues/281)
+* **datepicker:** add ability to show one month for daterangepicker depend on max/min date value ([#5667](https://github.com/valor-software/ngx-bootstrap/issues/5667)) ([b405057](https://github.com/valor-software/ngx-bootstrap/commit/b405057))
+* **datepicker:** add enabledDates functionality ([#5645](https://github.com/valor-software/ngx-bootstrap/issues/5645)) ([e2cdbb3](https://github.com/valor-software/ngx-bootstrap/commit/e2cdbb3))
+* **datepicker:** add quick select mode to date range picker ([#5262](https://github.com/valor-software/ngx-bootstrap/issues/5262)) ([#5580](https://github.com/valor-software/ngx-bootstrap/issues/5580)) ([4ba64f0](https://github.com/valor-software/ngx-bootstrap/commit/4ba64f0))
+* **datepicker:** return back focus after selecting date from datepicker  ([#5633](https://github.com/valor-software/ngx-bootstrap/issues/5633)) ([7680cce](https://github.com/valor-software/ngx-bootstrap/commit/7680cce))
+* **daterangepicker:** add ability to select week as a daterange ([#5611](https://github.com/valor-software/ngx-bootstrap/issues/5611)) ([e65bf65](https://github.com/valor-software/ngx-bootstrap/commit/e65bf65))
+* **daterangepicker:** add daysDisabled support for daterangepicker ([#5639](https://github.com/valor-software/ngx-bootstrap/issues/5639)) ([c519dad](https://github.com/valor-software/ngx-bootstrap/commit/c519dad))
+* **locale:** add Kazakh locale ([#5685](https://github.com/valor-software/ngx-bootstrap/issues/5685)) ([ccb64f0](https://github.com/valor-software/ngx-bootstrap/commit/ccb64f0))
+* **modal:** ability to add services to modal injector ([#5276](https://github.com/valor-software/ngx-bootstrap/issues/5276)) ([a3fc36d](https://github.com/valor-software/ngx-bootstrap/commit/a3fc36d)), closes [#5275](https://github.com/valor-software/ngx-bootstrap/issues/5275)
+* **modal:** add aria attributes to modal ([#5657](https://github.com/valor-software/ngx-bootstrap/issues/5657)) ([7591386](https://github.com/valor-software/ngx-bootstrap/commit/7591386)), closes [#5557](https://github.com/valor-software/ngx-bootstrap/issues/5557)
+* **pagination:** add custom template functionality ([#5661](https://github.com/valor-software/ngx-bootstrap/issues/5661)) ([39a0a56](https://github.com/valor-software/ngx-bootstrap/commit/39a0a56)), closes [#2044](https://github.com/valor-software/ngx-bootstrap/issues/2044)
+* **popover:** Added "corner" pacements: "top right", "right bottom" etc. ([#5694](https://github.com/valor-software/ngx-bootstrap/issues/5694)) ([d785e71](https://github.com/valor-software/ngx-bootstrap/commit/d785e71)), closes [#5586](https://github.com/valor-software/ngx-bootstrap/issues/5586)
+* **typeahead:** add demo and property for adding optionsListTemplate  ([#4751](https://github.com/valor-software/ngx-bootstrap/issues/4751)) ([cec29c4](https://github.com/valor-software/ngx-bootstrap/commit/cec29c4))
+* **typeahead:** add more on blur logic ([#5629](https://github.com/valor-software/ngx-bootstrap/issues/5629)) ([c4f5236](https://github.com/valor-software/ngx-bootstrap/commit/c4f5236))
+* **typeahead:** add sort functionality to typeahead ([#5646](https://github.com/valor-software/ngx-bootstrap/issues/5646)) ([d80bdfd](https://github.com/valor-software/ngx-bootstrap/commit/d80bdfd)), closes [#4808](https://github.com/valor-software/ngx-bootstrap/issues/4808)
+* **typeahead:** improved accessibility [#582](https://github.com/valor-software/ngx-bootstrap/issues/582) ([#5547](https://github.com/valor-software/ngx-bootstrap/issues/5547)) ([00b39c4](https://github.com/valor-software/ngx-bootstrap/commit/00b39c4))
+
+
+
+<a name="5.5.0"></a>
+# [5.5.0](https://github.com/valor-software/ngx-bootstrap/compare/v5.4.0...v5.5.0) (2020-01-27)
+
+
+### Bug Fixes
+
+* **datepicker:** add check to prevent broken e2e ([#5598](https://github.com/valor-software/ngx-bootstrap/issues/5598)) ([fe4d636](https://github.com/valor-software/ngx-bootstrap/commit/fe4d636))
+* **datepicker:** fix manual input accepts invalid date ([#5532](https://github.com/valor-software/ngx-bootstrap/issues/5532)) ([3078f07](https://github.com/valor-software/ngx-bootstrap/commit/3078f07)), closes [#4477](https://github.com/valor-software/ngx-bootstrap/issues/4477)
+* **datepicker:** Maintain selected date when same date selected  ([#5209](https://github.com/valor-software/ngx-bootstrap/issues/5209)) ([#5496](https://github.com/valor-software/ngx-bootstrap/issues/5496)) ([b674b4b](https://github.com/valor-software/ngx-bootstrap/commit/b674b4b))
+* **modal:** added import strategy for lazy modules ([#5085](https://github.com/valor-software/ngx-bootstrap/issues/5085)) ([4c92bd1](https://github.com/valor-software/ngx-bootstrap/commit/4c92bd1))
+* **modal:** change the mouse event to dismiss a modal on backdrop click ([#5326](https://github.com/valor-software/ngx-bootstrap/issues/5326)) ([74f752f](https://github.com/valor-software/ngx-bootstrap/commit/74f752f)), closes [#5264](https://github.com/valor-software/ngx-bootstrap/issues/5264)
+* **modal-service:** Fix modal service not dismissing during animation ([#4550](https://github.com/valor-software/ngx-bootstrap/issues/4550)) ([8969937](https://github.com/valor-software/ngx-bootstrap/commit/8969937)), closes [#3711](https://github.com/valor-software/ngx-bootstrap/issues/3711)
+* **rating:** fix round up for decimal values ([#5076](https://github.com/valor-software/ngx-bootstrap/issues/5076)) ([#5608](https://github.com/valor-software/ngx-bootstrap/issues/5608)) ([bf0f78e](https://github.com/valor-software/ngx-bootstrap/commit/bf0f78e))
+* **timepicker:** preserve date part when time crosses midnight ([#5535](https://github.com/valor-software/ngx-bootstrap/issues/5535)) ([5846bf2](https://github.com/valor-software/ngx-bootstrap/commit/5846bf2)), closes [#3139](https://github.com/valor-software/ngx-bootstrap/issues/3139)
+* **tooltip:** fix aria attribute state ([#5614](https://github.com/valor-software/ngx-bootstrap/issues/5614)) ([009aeaa](https://github.com/valor-software/ngx-bootstrap/commit/009aeaa)), closes [#5089](https://github.com/valor-software/ngx-bootstrap/issues/5089)
+* **typeahead:** fix broken typeahead property ([#5616](https://github.com/valor-software/ngx-bootstrap/issues/5616)) ([70ed44a](https://github.com/valor-software/ngx-bootstrap/commit/70ed44a))
+
+
+### Features
+
+* **datepicker:** Implement Thai Buddish calendar in Datepicker [#3893](https://github.com/valor-software/ngx-bootstrap/issues/3893) ([#5470](https://github.com/valor-software/ngx-bootstrap/issues/5470)) ([43d0da5](https://github.com/valor-software/ngx-bootstrap/commit/43d0da5))
+* **discover:** add / update content on discover page ([#5592](https://github.com/valor-software/ngx-bootstrap/issues/5592)) ([716b586](https://github.com/valor-software/ngx-bootstrap/commit/716b586))
+* **popover:** add delay option ([#5389](https://github.com/valor-software/ngx-bootstrap/issues/5389)) ([#5582](https://github.com/valor-software/ngx-bootstrap/issues/5582)) ([00037ef](https://github.com/valor-software/ngx-bootstrap/commit/00037ef))
+* **rating:** add aria-label attribute ([#5607](https://github.com/valor-software/ngx-bootstrap/issues/5607)) ([5d505ea](https://github.com/valor-software/ngx-bootstrap/commit/5d505ea)), closes [#5579](https://github.com/valor-software/ngx-bootstrap/issues/5579)
+* **tabs:** add aria attributes ([#5605](https://github.com/valor-software/ngx-bootstrap/issues/5605)) ([ef614c0](https://github.com/valor-software/ngx-bootstrap/commit/ef614c0)), closes [#4120](https://github.com/valor-software/ngx-bootstrap/issues/4120)
+* **timepicker:** add aria-label to input ([#5604](https://github.com/valor-software/ngx-bootstrap/issues/5604)) ([bbb2817](https://github.com/valor-software/ngx-bootstrap/commit/bbb2817)), closes [#4149](https://github.com/valor-software/ngx-bootstrap/issues/4149)
+* **typeahead:** incoming data are not filtered after typeahead kicks-in [#3725](https://github.com/valor-software/ngx-bootstrap/issues/3725) ([#3728](https://github.com/valor-software/ngx-bootstrap/issues/3728)) ([8378105](https://github.com/valor-software/ngx-bootstrap/commit/8378105))
+
+
+
+<a name="5.4.0"></a>
+# [5.4.0](https://github.com/valor-software/ngx-bootstrap/compare/v5.3.2...v5.4.0) (2020-01-09)
+
+
+### Bug Fixes
+
+* **doc:** added punctuation, hyperlink and fixed typo. ([#5444](https://github.com/valor-software/ngx-bootstrap/issues/5444)) ([fbb4208](https://github.com/valor-software/ngx-bootstrap/commit/fbb4208))
+* **doc:** update carousel.examples.basic.use-case.md ([#5462](https://github.com/valor-software/ngx-bootstrap/issues/5462)) ([c86d0f5](https://github.com/valor-software/ngx-bootstrap/commit/c86d0f5))
+* **doc:** update pagination.examples.centering-active-page-link.md ([#5463](https://github.com/valor-software/ngx-bootstrap/issues/5463)) ([4669207](https://github.com/valor-software/ngx-bootstrap/commit/4669207))
+* **tooltip:** tooltipChange unsubscribe on destroy ([#5431](https://github.com/valor-software/ngx-bootstrap/issues/5431)) ([6adf5f0](https://github.com/valor-software/ngx-bootstrap/commit/6adf5f0))
+* **typeahead:** fix issue on scroll ([#5590](https://github.com/valor-software/ngx-bootstrap/issues/5590)) ([0dade71](https://github.com/valor-software/ngx-bootstrap/commit/0dade71))
+* **typeahead:** fix performance issue ([#5589](https://github.com/valor-software/ngx-bootstrap/issues/5589)) ([e1d2f75](https://github.com/valor-software/ngx-bootstrap/commit/e1d2f75))
+
+
+### Features
+
+* **daterangepicker:** add ability to show prev and current month instead of current and next one ([#5513](https://github.com/valor-software/ngx-bootstrap/issues/5513)) ([cb6b29e](https://github.com/valor-software/ngx-bootstrap/commit/cb6b29e))
+
+
+
 <a name="5.3.2"></a>
 ## [5.3.2](https://github.com/valor-software/ngx-bootstrap/compare/v5.3.1...v5.3.2) (2019-10-28)
 
@@ -97,7 +203,9 @@
 ### Features
 
 * **build:** update to latest angular ([#5350](https://github.com/valor-software/ngx-bootstrap/issues/5350)) ([bc2e73b](https://github.com/valor-software/ngx-bootstrap/commit/bc2e73b))
-* **ci:** update to latest cypress ([#5355](https://github.com/valor-software/ngx-bootstrap/issues/5355)) ([b92e513](https://github.com/valor-software/ngx-bootstrap/commit/b92e513))
+* **build:** update to latest angular(8.1.2) ([#5337](https://github.com/valor-software/ngx-bootstrap/issues/5337)) ([c8a03c9](https://github.com/valor-software/ngx-bootstrap/commit/c8a03c9))
+* **ci:** update cypress to latest ([#5355](https://github.com/valor-software/ngx-bootstrap/issues/5355)) ([b92e513](https://github.com/valor-software/ngx-bootstrap/commit/b92e513))
+
 
 
 <a name="5.1.1"></a>
@@ -121,10 +229,6 @@
 # [5.1.0](https://github.com/valor-software/ngx-bootstrap/compare/v5.0.0...v5.1.0) (2019-06-24)
 
 
-Most notable changes are:
-- ngx-bootstrap currently fully supports the Ivy engine
-
-
 ### Bug Fixes
 
 * **accordion|tabs:** fix cursor style when disabled element ([#4664](https://github.com/valor-software/ngx-bootstrap/issues/4664)) ([42cc778](https://github.com/valor-software/ngx-bootstrap/commit/42cc778))
@@ -138,6 +242,7 @@ Most notable changes are:
 * **common:** add compatibility table ([#5260](https://github.com/valor-software/ngx-bootstrap/issues/5260)) ([b99f10c](https://github.com/valor-software/ngx-bootstrap/commit/b99f10c))
 * **datepicker:** add ivy support (also fix ci) ([#5268](https://github.com/valor-software/ngx-bootstrap/issues/5268)) ([27639ea](https://github.com/valor-software/ngx-bootstrap/commit/27639ea))
 * **doc:** include docs for DateRangepicker custom format ([#5199](https://github.com/valor-software/ngx-bootstrap/issues/5199)) ([b845340](https://github.com/valor-software/ngx-bootstrap/commit/b845340))
+* **doc:** update changelog ([#5258](https://github.com/valor-software/ngx-bootstrap/issues/5258)) ([8078824](https://github.com/valor-software/ngx-bootstrap/commit/8078824))
 * **tabs:** update of keyboard control ([#5284](https://github.com/valor-software/ngx-bootstrap/issues/5284)) ([161f419](https://github.com/valor-software/ngx-bootstrap/commit/161f419))
 
 
@@ -146,19 +251,13 @@ Most notable changes are:
 # [5.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v4.3.0...v5.0.0) (2019-06-10)
 
 
-Most notable changes are:
-- migrated to Angular 8
-- to datepicker and typeahead added animation which disabled by default
-- fixed a case of looping inside position service
-
-
 ### Bug Fixes
 
-* carousel - solved multilist slides no auto play ([#5237](https://github.com/valor-software/ngx-bootstrap/issues/5237)) ([d4fd9ad](https://github.com/valor-software/ngx-bootstrap/commit/d4fd9ad)), closes [#5236](https://github.com/valor-software/ngx-bootstrap/issues/5236)
 * **doc:** fix carousel doc ([#5250](https://github.com/valor-software/ngx-bootstrap/issues/5250)) ([f4aebbe](https://github.com/valor-software/ngx-bootstrap/commit/f4aebbe))
 * **doc:** fix link to Cypress.io favicon in README ([#5241](https://github.com/valor-software/ngx-bootstrap/issues/5241)) ([47a6995](https://github.com/valor-software/ngx-bootstrap/commit/47a6995))
 * **doc:** fix two typos ([#5244](https://github.com/valor-software/ngx-bootstrap/issues/5244)) ([8098924](https://github.com/valor-software/ngx-bootstrap/commit/8098924))
 * **positioning:** fix a case of looping ([#5253](https://github.com/valor-software/ngx-bootstrap/issues/5253)) ([e693810](https://github.com/valor-software/ngx-bootstrap/commit/e693810))
+* carousel - solved multilist slides no auto play ([#5237](https://github.com/valor-software/ngx-bootstrap/issues/5237)) ([d4fd9ad](https://github.com/valor-software/ngx-bootstrap/commit/d4fd9ad)), closes [#5236](https://github.com/valor-software/ngx-bootstrap/issues/5236)
 
 
 ### Features
@@ -169,72 +268,31 @@ Most notable changes are:
 * **typeahead:** add animation ([#5240](https://github.com/valor-software/ngx-bootstrap/issues/5240)) ([8ce5e86](https://github.com/valor-software/ngx-bootstrap/commit/8ce5e86))
 
 
-### BREAKING CHANGES
-
-* **datepicker:** requires BrowserAnimationsModule
-* **typeahead:** requires BrowserAnimationsModule
-
-
 
 <a name="4.3.0"></a>
-# [4.3.0](https://github.com/valor-software/ngx-bootstrap/compare/v4.2.0...v4.3.0) (2019-05-21)
-
-
-### Bug Fixes
-
-* **carousel:** fix multilist carousel order ([#5193](https://github.com/valor-software/ngx-bootstrap/issues/5193)) ([1f883cb](https://github.com/valor-software/ngx-bootstrap/commit/1f883cb))
-* **dropdown:** fix view destroyed error ([#5205](https://github.com/valor-software/ngx-bootstrap/issues/5205)) ([8cf98c2](https://github.com/valor-software/ngx-bootstrap/commit/8cf98c2))
-* **positioning:** fix errors on invalid position ([#5212](https://github.com/valor-software/ngx-bootstrap/issues/5212)) ([e790196](https://github.com/valor-software/ngx-bootstrap/commit/e790196))
-* **tests:** add fix for select week test ([#5218](https://github.com/valor-software/ngx-bootstrap/issues/5218)) ([984ca74](https://github.com/valor-software/ngx-bootstrap/commit/984ca74))
-
-
-### Features
-
-* **datepicker:** add Vietnam (vi) locale to date picker ([#5221](https://github.com/valor-software/ngx-bootstrap/issues/5221)) ([4c1f2bf](https://github.com/valor-software/ngx-bootstrap/commit/4c1f2bf))
-* **doc:** add animation module to doc and with ng add, also stackblitz ([#5207](https://github.com/valor-software/ngx-bootstrap/issues/5207)) ([bd9c72e](https://github.com/valor-software/ngx-bootstrap/commit/bd9c72e))
-* **popover:** add adaptivePosition option ([#5183](https://github.com/valor-software/ngx-bootstrap/issues/5183)) ([c7f9e8c](https://github.com/valor-software/ngx-bootstrap/commit/c7f9e8c))
-* **tooltip:** add adaptivePosition option ([#5204](https://github.com/valor-software/ngx-bootstrap/issues/5204)) ([8333e23](https://github.com/valor-software/ngx-bootstrap/commit/8333e23))
-
-
-
-<a name="4.2.0"></a>
-# [4.2.0](https://github.com/valor-software/ngx-bootstrap/compare/v4.1.1...v4.2.0) (2019-04-26)
-
-
-### Bug Fixes
-
-* **ci:** fix build next ([#5177](https://github.com/valor-software/ngx-bootstrap/issues/5177)) ([ab0d252](https://github.com/valor-software/ngx-bootstrap/commit/ab0d252))
-* **ci:** fix build on next ([#5169](https://github.com/valor-software/ngx-bootstrap/issues/5169)) ([f5be2db](https://github.com/valor-software/ngx-bootstrap/commit/f5be2db))
-* **ci:** fix check prod build on next ([#5179](https://github.com/valor-software/ngx-bootstrap/issues/5179)) ([112ca44](https://github.com/valor-software/ngx-bootstrap/commit/112ca44))
-* **ci:** fix deploy on surge ([#5171](https://github.com/valor-software/ngx-bootstrap/issues/5171)) ([88e23e5](https://github.com/valor-software/ngx-bootstrap/commit/88e23e5))
-* **docs:** update angular.json config file ([#4512](https://github.com/valor-software/ngx-bootstrap/issues/4512)) ([85faa47](https://github.com/valor-software/ngx-bootstrap/commit/85faa47))
-* **stackblitz:** add carousel correct links, datepicker locales, remove link from accessibility ([#5176](https://github.com/valor-software/ngx-bootstrap/issues/5176)) ([caff954](https://github.com/valor-software/ngx-bootstrap/commit/caff954))
-* **tests:** remove deprecated Init event (closes [#5005](https://github.com/valor-software/ngx-bootstrap/issues/5005)) ([#5182](https://github.com/valor-software/ngx-bootstrap/issues/5182)) ([3f87b84](https://github.com/valor-software/ngx-bootstrap/commit/3f87b84))
-
-
-### Features
-
-* **carousel:** allow to display multiple items per one slide ([#5133](https://github.com/valor-software/ngx-bootstrap/issues/5133)) ([c9f4ec9](https://github.com/valor-software/ngx-bootstrap/commit/c9f4ec9))
-* **common:** add animation for collapse and accordion components ([#5146](https://github.com/valor-software/ngx-bootstrap/issues/5146)) ([191e5b4](https://github.com/valor-software/ngx-bootstrap/commit/191e5b4))
-* **common:** container attribute implementation ([#5174](https://github.com/valor-software/ngx-bootstrap/issues/5174)) ([b061629](https://github.com/valor-software/ngx-bootstrap/commit/b061629))
-* **datepicker:** change Thai 'weekdaysShort' format for look better in datepicker ([#4674](https://github.com/valor-software/ngx-bootstrap/issues/4674)) ([77ccc37](https://github.com/valor-software/ngx-bootstrap/commit/77ccc37))
-* **demo:** add stackblitz examples via SDK ([#4098](https://github.com/valor-software/ngx-bootstrap/issues/4098)) ([ecdc140](https://github.com/valor-software/ngx-bootstrap/commit/ecdc140))
-
-
-
-<a name="4.1.1"></a>
-## [4.1.1](https://github.com/valor-software/ngx-bootstrap/compare/v4.0.1...v4.1.1) (2019-04-10)
+# [4.3.0](https://github.com/valor-software/ngx-bootstrap/compare/v4.0.1...v4.3.0) (2019-05-21)
 
 
 ### Bug Fixes
 
 * **build:** fix heroku ([c76d6d8](https://github.com/valor-software/ngx-bootstrap/commit/c76d6d8))
 * **build:** fix heroku eror 503 ([4ebf2ad](https://github.com/valor-software/ngx-bootstrap/commit/4ebf2ad))
+* **carousel:** fix multilist carousel order ([#5193](https://github.com/valor-software/ngx-bootstrap/issues/5193)) ([1f883cb](https://github.com/valor-software/ngx-bootstrap/commit/1f883cb))
+* **ci:** fix build next ([#5177](https://github.com/valor-software/ngx-bootstrap/issues/5177)) ([ab0d252](https://github.com/valor-software/ngx-bootstrap/commit/ab0d252))
+* **ci:** fix build on next ([#5169](https://github.com/valor-software/ngx-bootstrap/issues/5169)) ([f5be2db](https://github.com/valor-software/ngx-bootstrap/commit/f5be2db))
+* **ci:** fix check prod build on next ([#5179](https://github.com/valor-software/ngx-bootstrap/issues/5179)) ([112ca44](https://github.com/valor-software/ngx-bootstrap/commit/112ca44))
+* **ci:** fix deploy on surge ([#5171](https://github.com/valor-software/ngx-bootstrap/issues/5171)) ([88e23e5](https://github.com/valor-software/ngx-bootstrap/commit/88e23e5))
+* **docs:** update angular.json config file ([#4512](https://github.com/valor-software/ngx-bootstrap/issues/4512)) ([85faa47](https://github.com/valor-software/ngx-bootstrap/commit/85faa47))
+* **dropdown:** fix view destroyed error ([#5205](https://github.com/valor-software/ngx-bootstrap/issues/5205)) ([8cf98c2](https://github.com/valor-software/ngx-bootstrap/commit/8cf98c2))
+* **positioning:** fix errors on invalid position ([#5212](https://github.com/valor-software/ngx-bootstrap/issues/5212)) ([e790196](https://github.com/valor-software/ngx-bootstrap/commit/e790196))
+* **stackblitz:** add carousel correct links, datepicker locales, remove link from accessibility ([#5176](https://github.com/valor-software/ngx-bootstrap/issues/5176)) ([caff954](https://github.com/valor-software/ngx-bootstrap/commit/caff954))
+* **tests:** add fix for select week test ([#5218](https://github.com/valor-software/ngx-bootstrap/issues/5218)) ([984ca74](https://github.com/valor-software/ngx-bootstrap/commit/984ca74))
 * **tests:** add fixes for timepicker tests stability ([#5157](https://github.com/valor-software/ngx-bootstrap/issues/5157)) ([7563505](https://github.com/valor-software/ngx-bootstrap/commit/7563505))
 * **tests:** enhancements to group and key params for cypress ([#5161](https://github.com/valor-software/ngx-bootstrap/issues/5161)) ([0006146](https://github.com/valor-software/ngx-bootstrap/commit/0006146))
 * **tests:** fix cypress datepicker tests in development ([#5142](https://github.com/valor-software/ngx-bootstrap/issues/5142)) ([fa25dd5](https://github.com/valor-software/ngx-bootstrap/commit/fa25dd5))
 * **tests:** modal e2e tests fix, cypress update ([#5145](https://github.com/valor-software/ngx-bootstrap/issues/5145)) ([b66b1bb](https://github.com/valor-software/ngx-bootstrap/commit/b66b1bb))
 * **tests:** remove 3d cypress thread, unnecessary ([#5139](https://github.com/valor-software/ngx-bootstrap/issues/5139)) ([45cde70](https://github.com/valor-software/ngx-bootstrap/commit/45cde70))
+* **tests:** remove deprecated Init event (closes [#5005](https://github.com/valor-software/ngx-bootstrap/issues/5005)) ([#5182](https://github.com/valor-software/ngx-bootstrap/issues/5182)) ([3f87b84](https://github.com/valor-software/ngx-bootstrap/commit/3f87b84))
 * **tests:** stabilize spinners timepicker test ([#5160](https://github.com/valor-software/ngx-bootstrap/issues/5160)) ([d03c66d](https://github.com/valor-software/ngx-bootstrap/commit/d03c66d))
 
 
@@ -242,6 +300,15 @@ Most notable changes are:
 
 * **build:** express to nestjs in ssr ([#5152](https://github.com/valor-software/ngx-bootstrap/issues/5152)) ([2b7a2fd](https://github.com/valor-software/ngx-bootstrap/commit/2b7a2fd))
 * **build:** update nestjs-universal config ([#5156](https://github.com/valor-software/ngx-bootstrap/issues/5156)) ([47b7537](https://github.com/valor-software/ngx-bootstrap/commit/47b7537))
+* **carousel:** allow to display multiple items per one slide ([#5133](https://github.com/valor-software/ngx-bootstrap/issues/5133)) ([c9f4ec9](https://github.com/valor-software/ngx-bootstrap/commit/c9f4ec9))
+* **common:** add animation for collapse and accordion components ([#5146](https://github.com/valor-software/ngx-bootstrap/issues/5146)) ([191e5b4](https://github.com/valor-software/ngx-bootstrap/commit/191e5b4))
+* **common:** container attribute implementation ([#5174](https://github.com/valor-software/ngx-bootstrap/issues/5174)) ([b061629](https://github.com/valor-software/ngx-bootstrap/commit/b061629))
+* **datepicker:** add Vietnam (vi) locale to date picker ([#5221](https://github.com/valor-software/ngx-bootstrap/issues/5221)) ([4c1f2bf](https://github.com/valor-software/ngx-bootstrap/commit/4c1f2bf))
+* **datepicker:** change Thai 'weekdaysShort' format for look better in datepicker ([#4674](https://github.com/valor-software/ngx-bootstrap/issues/4674)) ([77ccc37](https://github.com/valor-software/ngx-bootstrap/commit/77ccc37))
+* **demo:** add stackblitz examples via SDK ([#4098](https://github.com/valor-software/ngx-bootstrap/issues/4098)) ([ecdc140](https://github.com/valor-software/ngx-bootstrap/commit/ecdc140))
+* **doc:** add animation module to doc and with ng add, also stackblitz ([#5207](https://github.com/valor-software/ngx-bootstrap/issues/5207)) ([bd9c72e](https://github.com/valor-software/ngx-bootstrap/commit/bd9c72e))
+* **popover:** add adaptivePosition option ([#5183](https://github.com/valor-software/ngx-bootstrap/issues/5183)) ([c7f9e8c](https://github.com/valor-software/ngx-bootstrap/commit/c7f9e8c))
+* **tooltip:** add adaptivePosition option ([#5204](https://github.com/valor-software/ngx-bootstrap/issues/5204)) ([8333e23](https://github.com/valor-software/ngx-bootstrap/commit/8333e23))
 
 
 ### Performance Improvements
@@ -251,36 +318,21 @@ Most notable changes are:
 
 
 <a name="4.0.1"></a>
-## [4.0.1](https://github.com/valor-software/ngx-bootstrap/compare/v4.0.0...v4.0.1) (2019-03-29)
+## [4.0.1](https://github.com/valor-software/ngx-bootstrap/compare/v3.3.0...v4.0.1) (2019-03-29)
 
 
 ### Bug Fixes
 
 * **build:** fix fail on target=es6 ([#5123](https://github.com/valor-software/ngx-bootstrap/issues/5123)) ([5a3afe3](https://github.com/valor-software/ngx-bootstrap/commit/5a3afe3))
-* **common:** fix peer dependencies ([#5131](https://github.com/valor-software/ngx-bootstrap/issues/5131)) ([343b60e](https://github.com/valor-software/ngx-bootstrap/commit/343b60e))
-* **tarvis:** fix Travis on release ([#5122](https://github.com/valor-software/ngx-bootstrap/issues/5122)) ([f9a1094](https://github.com/valor-software/ngx-bootstrap/commit/f9a1094))
-* **tests:** remove applitools logs ([#5124](https://github.com/valor-software/ngx-bootstrap/issues/5124)) ([c2d1c39](https://github.com/valor-software/ngx-bootstrap/commit/c2d1c39))
-
-
-
-<a name="4.0.0"></a>
-# [4.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v3.3.0...v4.0.0) (2019-03-22)
-
-
-Most notable changes are:
-- the library was migrated to Angular 7 which leads to requiring of typescript>=3.1.1
-- the adaptive position was turned off by default for Datepicker and Typeahead components
-- 'select' event was changed to 'selectTab' in Tab component
-
-
-### Bug Fixes
-
 * **build:** fix window not defined on An Universal ([#5073](https://github.com/valor-software/ngx-bootstrap/issues/5073)) ([682d1f2](https://github.com/valor-software/ngx-bootstrap/commit/682d1f2))
+* **common:** fix peer dependencies ([#5131](https://github.com/valor-software/ngx-bootstrap/issues/5131)) ([343b60e](https://github.com/valor-software/ngx-bootstrap/commit/343b60e))
 * **modal:** fix anchor for esc closing option demo ([#5081](https://github.com/valor-software/ngx-bootstrap/issues/5081)) ([8a4e381](https://github.com/valor-software/ngx-bootstrap/commit/8a4e381))
 * **positioning:** fix frozen page ([#5119](https://github.com/valor-software/ngx-bootstrap/issues/5119)) ([67bb329](https://github.com/valor-software/ngx-bootstrap/commit/67bb329))
 * **tabs:** fix an invoke of select event outside of tabs ([#3755](https://github.com/valor-software/ngx-bootstrap/issues/3755)) ([#5002](https://github.com/valor-software/ngx-bootstrap/issues/5002)) ([de2300c](https://github.com/valor-software/ngx-bootstrap/commit/de2300c))
+* **tarvis:** fix Travis on release ([#5122](https://github.com/valor-software/ngx-bootstrap/issues/5122)) ([f9a1094](https://github.com/valor-software/ngx-bootstrap/commit/f9a1094))
 * **tests:** fix cy all command ([#5108](https://github.com/valor-software/ngx-bootstrap/issues/5108)) ([ea66fa4](https://github.com/valor-software/ngx-bootstrap/commit/ea66fa4))
 * **tests:** fix sauce tests ([#5057](https://github.com/valor-software/ngx-bootstrap/issues/5057)) ([0bc4a69](https://github.com/valor-software/ngx-bootstrap/commit/0bc4a69))
+* **tests:** remove applitools logs ([#5124](https://github.com/valor-software/ngx-bootstrap/issues/5124)) ([c2d1c39](https://github.com/valor-software/ngx-bootstrap/commit/c2d1c39))
 * **tests:** select week datepicker fix ([#5109](https://github.com/valor-software/ngx-bootstrap/issues/5109)) ([f20c531](https://github.com/valor-software/ngx-bootstrap/commit/f20c531))
 * **timepicker:** min-max demo fix, closes([#5053](https://github.com/valor-software/ngx-bootstrap/issues/5053)) ([8a4456b](https://github.com/valor-software/ngx-bootstrap/commit/8a4456b))
 * **travis:** fix travis 'ngx-bootstrap-ci unpublish' ([#5116](https://github.com/valor-software/ngx-bootstrap/issues/5116)) ([85b5d87](https://github.com/valor-software/ngx-bootstrap/commit/85b5d87))
@@ -296,11 +348,6 @@ Most notable changes are:
 
 <a name="3.3.0"></a>
 # [3.3.0](https://github.com/valor-software/ngx-bootstrap/compare/v3.2.0...v3.3.0) (2019-02-12)
-
-
-Most notable changes are:
-- completely rewritten positioning service, now `auto` positioning is working much better
-- added an option to disable specific in data and range pickers
 
 
 ### Bug Fixes
@@ -679,18 +726,6 @@ Most notable changes are:
 * **datepicker:** added date and range min, max and invalid validation ([#3499](https://github.com/valor-software/ngx-bootstrap/issues/3499)) ([7b43295](https://github.com/valor-software/ngx-bootstrap/commit/7b43295)), closes [#2727](https://github.com/valor-software/ngx-bootstrap/issues/2727) [#3498](https://github.com/valor-software/ngx-bootstrap/issues/3498)
 * **datepicker:** added date range picker config ([#3501](https://github.com/valor-software/ngx-bootstrap/issues/3501)) ([7c53bf9](https://github.com/valor-software/ngx-bootstrap/commit/7c53bf9))
 
-
-### BREAKING CHANGES
-
-* **progressbar:** `progress` directive was removed, use `progressbar` instead
-* **chronos:** `bs-moment` renamed to `chronos`
-* **chronos:** all locales was suffixed with Locale (`en` -> `enLocale`)
-* **datepicker:**  setting locale via `bsConfig` no longer works. Now for changing locale inject BsLocaleService and call its `use` method. For more detailed example check our [demo](https://valor-software.com/ngx-bootstrap/#/datepicker#locales)
-* **datepicker:**  `datepicker` and `daterange` component selectors was removed, now `datepicker` available only as directive
-* **rating:**  removed input properties `stateOn`, `stateOff` and `ratingStates`
-* **rating:**  custom icons now working via `customTemplate`
-* **package** upgraded to support ng v4 and v5 (and v6)
-* **package:** dropped support of ng v2
 
 
 <a name="2.0.0-rc.1"></a>
@@ -2105,18 +2140,18 @@ sample:  `<ul dropdownMenu>` should become `<ul *dropdownMenu>`
 * **datepicker:** setting default value for SHOW_WEEKS ([f0079ad](https://github.com/valor-software/ngx-bootstrap/commit/f0079ad))
 * **datepicker:** upgrade to beta 1, issue [#38](https://github.com/valor-software/ngx-bootstrap/issues/38) ([b1a5507](https://github.com/valor-software/ngx-bootstrap/commit/b1a5507))
 * **daypicker:** text center align in bootstrap 4 ([dfd502f](https://github.com/valor-software/ngx-bootstrap/commit/dfd502f))
+* "outsideClick" still closed the dropdown on any click ([6348f72](https://github.com/valor-software/ngx-bootstrap/commit/6348f72)), closes [#124](https://github.com/valor-software/ngx-bootstrap/issues/124)
 * **export:** all the correct directives are now properly exported ([b00a30b](https://github.com/valor-software/ngx-bootstrap/commit/b00a30b))
 * **pager:** multiple times defined event numPages, fixes [#111](https://github.com/valor-software/ngx-bootstrap/issues/111), closes [#112](https://github.com/valor-software/ngx-bootstrap/issues/112) ([780eebd](https://github.com/valor-software/ngx-bootstrap/commit/780eebd))
 * **pagination:** multiple triggering of pageChanged event, fix [#76](https://github.com/valor-software/ngx-bootstrap/issues/76), fix [#138](https://github.com/valor-software/ngx-bootstrap/issues/138), closes [#146](https://github.com/valor-software/ngx-bootstrap/issues/146) ([91c4ec4](https://github.com/valor-software/ngx-bootstrap/commit/91c4ec4))
-* "outsideClick" still closed the dropdown on any click ([6348f72](https://github.com/valor-software/ngx-bootstrap/commit/6348f72)), closes [#124](https://github.com/valor-software/ngx-bootstrap/issues/124)
 
 
 ### Features
 
-* allow two-way binding on `isOpen` ([674fcb7](https://github.com/valor-software/ngx-bootstrap/commit/674fcb7))
 * **build:** update to use ng2 beta7 & use ts typings, fixes [#212](https://github.com/valor-software/ngx-bootstrap/issues/212) ([31e6300](https://github.com/valor-software/ngx-bootstrap/commit/31e6300))
-* **datepicker:** datepicker fixed for 0-beta.2, closes [#120](https://github.com/valor-software/ngx-bootstrap/issues/120), fixes [#38](https://github.com/valor-software/ngx-bootstrap/issues/38) ([a3d9e1c](https://github.com/valor-software/ngx-bootstrap/commit/a3d9e1c))
 * **dropdown:** implement "nonInput" auto-close mode ([94d9909](https://github.com/valor-software/ngx-bootstrap/commit/94d9909)), closes [/github.com/twbs/bootstrap/blob/a1bf344c4f041ad88acaf5b2b3777c733d3afe40/js/src/dropdown.js#L174-L176](https://github.com//github.com/twbs/bootstrap/blob/a1bf344c4f041ad88acaf5b2b3777c733d3afe40/js/src/dropdown.js/issues/L174-L176)
+* allow two-way binding on `isOpen` ([674fcb7](https://github.com/valor-software/ngx-bootstrap/commit/674fcb7))
+* **datepicker:** datepicker fixed for 0-beta.2, closes [#120](https://github.com/valor-software/ngx-bootstrap/issues/120), fixes [#38](https://github.com/valor-software/ngx-bootstrap/issues/38) ([a3d9e1c](https://github.com/valor-software/ngx-bootstrap/commit/a3d9e1c))
 * **tabs:** removable tabs ([c465610](https://github.com/valor-software/ngx-bootstrap/commit/c465610))
 
 
@@ -2137,4 +2172,6 @@ sample:  `<ul dropdownMenu>` should become `<ul *dropdownMenu>`
 * **build:** works good with typescript@1.6 ([31c513b](https://github.com/valor-software/ngx-bootstrap/commit/31c513b))
 * **ng 2.0.37:** ts errors fixed ([1e19f55](https://github.com/valor-software/ngx-bootstrap/commit/1e19f55))
 * **typeahead:** ts style fixes ([3eab1e4](https://github.com/valor-software/ngx-bootstrap/commit/3eab1e4))
+
+
 

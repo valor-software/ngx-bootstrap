@@ -6,6 +6,8 @@ import { PopoverConfig } from './popover.config';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { PopoverContainerComponent } from './popover-container.component';
 import { PositioningService } from 'ngx-bootstrap/positioning';
+import { timer } from 'rxjs';
+import { parseTriggers, Trigger } from 'ngx-bootstrap/utils';
 
 let id = 0;
 
@@ -35,7 +37,8 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /**
    * Placement of a popover. Accepts: "top", "bottom", "left", "right"
    */
-  @Input() placement: 'top' | 'bottom' | 'left' | 'right' | 'auto';
+  @Input() placement: 'top' | 'bottom' | 'left' | 'right' | 'auto' | 'top left' | 'top right' |
+    'right top' | 'right bottom' | 'bottom right' | 'bottom left' | 'left bottom' | 'left top';
   /**
    * Close popover on outside click
    */
@@ -72,6 +75,11 @@ export class PopoverDirective implements OnInit, OnDestroy {
   }
 
   /**
+   * Delay before showing the tooltip
+   */
+  @Input() delay: number;
+
+  /**
    * Emits an event when the popover is shown
    */
   /* tslint:disable-next-line: no-any */
@@ -81,6 +89,10 @@ export class PopoverDirective implements OnInit, OnDestroy {
    */
   /* tslint:disable-next-line: no-any */
   @Output() onHidden: EventEmitter<any>;
+
+  protected _popoverCancelShowFn: Function;
+
+  protected _delayTimeoutId: number | any;
 
   private _popover: ComponentLoader<PopoverContainerComponent>;
   private _isInited = false;
@@ -138,7 +150,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
    * the popover.
    */
   show(): void {
-    if (this._popover.isShown || !this.popover) {
+    if (this._popover.isShown || !this.popover || this._delayTimeoutId) {
       return;
     }
 
@@ -153,23 +165,59 @@ export class PopoverDirective implements OnInit, OnDestroy {
       }
     });
 
-    this._popover
-      .attach(PopoverContainerComponent)
-      .to(this.container)
-      .position({attachment: this.placement})
-      .show({
-        content: this.popover,
-        context: this.popoverContext,
-        placement: this.placement,
-        title: this.popoverTitle,
-        containerClass: this.containerClass
+    const showPopover = () => {
+      if (this._delayTimeoutId) {
+        this._delayTimeoutId = undefined;
+      }
+
+      this._popover
+        .attach(PopoverContainerComponent)
+        .to(this.container)
+        .position({attachment: this.placement})
+        .show({
+          content: this.popover,
+          context: this.popoverContext,
+          placement: this.placement,
+          title: this.popoverTitle,
+          containerClass: this.containerClass
+        });
+
+      if (!this.adaptivePosition) {
+        this._positionService.calcPosition();
+        this._positionService.deletePositionElement(this._popover._componentRef.location);
+      }
+
+      this.isOpen = true;
+    };
+
+    const cancelDelayedTooltipShowing = () => {
+      if (this._popoverCancelShowFn) {
+        this._popoverCancelShowFn();
+      }
+    };
+
+    if (this.delay) {
+      const _timer = timer(this.delay).subscribe(() => {
+        showPopover();
+        cancelDelayedTooltipShowing();
       });
 
-    if (!this.adaptivePosition) {
-      this._positionService.calcPosition();
-      this._positionService.deletePositionElement(this._popover._componentRef.location);
+      if (this.triggers) {
+        parseTriggers(this.triggers)
+          .forEach((trigger: Trigger) => {
+            this._popoverCancelShowFn = this._renderer.listen(
+              this._elementRef.nativeElement,
+              trigger.close,
+              () => {
+                _timer.unsubscribe();
+                cancelDelayedTooltipShowing();
+              }
+            );
+          });
+      }
+    } else {
+      showPopover();
     }
-
     this.setAriaDescribedBy();
     this.isOpen = true;
   }
@@ -178,7 +226,12 @@ export class PopoverDirective implements OnInit, OnDestroy {
    * Closes an element’s popover. This is considered a “manual” triggering of
    * the popover.
    */
-  hide(): void {
+  hide(): void [
+    if (this._delayTimeoutId) {
+      clearTimeout(this._delayTimeoutId);
+      this._delayTimeoutId = undefined;
+    }
+
     if (this.isOpen) {
       this._popover.hide();
       this.setAriaDescribedBy();

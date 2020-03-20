@@ -1,8 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component, ViewChild, OnInit } from '@angular/core';
-
-import { DatepickerModule, DatePickerComponent } from '.';
+import { DatePickerComponent } from './datepicker.component';
+import { DatepickerModule } from './datepicker.module';
 
 @Component({
   selector: 'test-cmp',

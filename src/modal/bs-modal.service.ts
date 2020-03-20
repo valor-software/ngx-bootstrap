@@ -109,6 +109,12 @@ export class BsModalService {
   // tslint:disable-next-line:no-any
   _showModal(content: any): BsModalRef {
     const modalLoader = this.loaders[this.loaders.length - 1];
+    if (this.config && this.config.providers) {
+      for (const provider of this.config.providers) {
+        modalLoader.provide(provider);
+      }
+    }
+
     const bsModalRef = new BsModalRef();
     const modalContainerRef = modalLoader
       .provide({ provide: ModalOptions, useValue: this.config })
@@ -118,7 +124,8 @@ export class BsModalService {
       .show({content, isAnimated: this.config.animated, initialState: this.config.initialState, bsModalService: this});
     modalContainerRef.instance.level = this.getModalsCount();
     bsModalRef.hide = () => {
-      modalContainerRef.instance.hide();
+      const duration = this.config.animated ? TRANSITION_DURATIONS.MODAL : 0;
+      setTimeout(() => modalContainerRef.instance.hide(), duration);
     };
     bsModalRef.content = modalLoader.getInnerComponent() || null;
     bsModalRef.setClass = (newClass: string) => {
@@ -148,8 +155,7 @@ export class BsModalService {
     this.backdropRef = null;
   }
 
-  /** AFTER PR MERGE MODAL.COMPONENT WILL BE USING THIS CODE */
-  /** Scroll bar tricks */
+  /** Checks if the body is overflowing and sets scrollbar width */
   /** @internal */
   checkScrollbar(): void {
     this.isBodyOverflowing = document.body.clientWidth < window.innerWidth;

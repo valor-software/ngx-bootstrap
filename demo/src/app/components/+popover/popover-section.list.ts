@@ -6,6 +6,7 @@ import { DemoPopoverConfigComponent } from './demos/config/config';
 import { DemoPopoverContainerComponent } from './demos/container/container';
 import { DemoPopoverContextComponent } from './demos/popover-context/popover-context';
 import { DemoPopoverCustomContentComponent } from './demos/custom-content/custom-content';
+import { DemoPopoverDelayComponent } from './demos/delay/delay';
 import { DemoPopoverDismissComponent } from './demos/dismiss/dismiss';
 import { DemoPopoverDynamicComponent } from './demos/dynamic/dynamic';
 import { DemoPopoverDynamicHtmlComponent } from './demos/dynamic-html/dynamic-html';
@@ -15,6 +16,7 @@ import { DemoPopoverPlacementComponent } from './demos/placement/placement';
 import { DemoPopoverStylingLocalComponent } from './demos/styling-local/styling-local';
 import { DemoPopoverTriggersCustomComponent } from './demos/triggers-custom/triggers-custom';
 import { DemoPopoverTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
+import { DemoPopoverCornerPlacementComponent } from './demos/corner-placement/corner-placement';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -52,10 +54,22 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'placement',
         component: require('!!raw-loader!./demos/placement/placement.ts'),
         html: require('!!raw-loader!./demos/placement/placement.html'),
-        description: `<p>Four positioning options are available: <code>top</code>, <code>right</code>, 
+        description: `<p>Four base positioning options are available: <code>top</code>, <code>right</code>,
         <code>bottom</code>, and <code>left</code>.
         Besides that, <code>auto</code> option may be used to detect a position that fits the component on screen.</p>`,
         outlet: DemoPopoverPlacementComponent
+      },
+      {
+        title: 'Corner placement',
+        anchor: 'corner-placement',
+        description: `
+          <p>Placement property of a popover can contain "corner placement" specifier following the base positioning.
+          Thus, in addition to the four base positioning options, namely <code>top</code>, <code>right</code>,
+          <code>bottom</code>, and <code>left</code>, eight more positioning options are available: <code>top left</code>, <code>top right</code>,
+          <code>right top</code>, <code>right bottom</code>, <code>bottom right</code>, <code>bottom left</code>, <code>left bottom</code>, and <code>left top</code>.`,
+        component: require('!!raw-loader!./demos/corner-placement/corner-placement.ts'),
+        html: require('!!raw-loader!./demos/corner-placement/corner-placement.html'),
+        outlet: DemoPopoverCornerPlacementComponent
       },
       {
         title: 'Disable adaptive position',
@@ -177,6 +191,14 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/popover-context/popover-context.ts'),
         html: require('!!raw-loader!./demos/popover-context/popover-context.html'),
         outlet: DemoPopoverContextComponent
+      },
+      {
+        title: 'Popover with delay',
+        anchor: 'popover-delay',
+        component: require('!!raw-loader!./demos/delay/delay.ts'),
+        html: require('!!raw-loader!./demos/delay/delay.html'),
+        description: `<p>Click on the button to see popover delayed for 0,5 second </p>`,
+        outlet: DemoPopoverDelayComponent
       }
     ]
   },

@@ -33,6 +33,7 @@ export class BsDatepickerState
   maxDate?: Date;
   daysDisabled?: number[];
   datesDisabled?: Date[];
+  datesEnabled?: Date[];
   minMode?: BsDatepickerViewMode;
   dateCustomClasses?: DatepickerDateCustomClasses[];
 
@@ -45,6 +46,8 @@ export class BsDatepickerState
   formattedMonths?: DaysCalendarViewModel[];
   flaggedMonths?: DaysCalendarViewModel[];
   selectFromOtherMonth?: boolean;
+  showPreviousMonth?: boolean; // dateRangePicker only;
+  displayOneMonthRange?: boolean; // dateRangePicker only;
 
   // months calendar
   monthsCalendar?: MonthsCalendarViewModel[];

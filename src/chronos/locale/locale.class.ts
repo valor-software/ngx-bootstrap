@@ -2,7 +2,7 @@
 
 import { weekOfYear } from '../units/week-calendar-utils';
 import { hasOwnProp, isArray, isFunction } from '../utils/type-checks';
-import { getDay, getMonth } from '../utils/date-getters';
+import { getDay, getMonth, getFullYear } from '../utils/date-getters';
 import { matchWord, regexEscape } from '../parse/regex';
 import { setDayOfWeek } from '../units/day-of-week';
 
@@ -94,6 +94,8 @@ export interface LocaleData {
   meridiem?(hour: number, minute?: number, isLower?: boolean): string;
 
   isPM?(input: string): boolean;
+
+  getFullYear?(date: Date, isUTC: boolean): number;
 }
 
 export class Locale {
@@ -196,6 +198,11 @@ export class Locale {
 
   preparse(str: string) {
     return str;
+  }
+
+
+  getFullYear(date: Date, isUTC = false): number {
+    return getFullYear(date, isUTC);
   }
 
   postformat(str: string) {

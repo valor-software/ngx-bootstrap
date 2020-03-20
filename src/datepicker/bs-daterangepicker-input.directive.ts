@@ -51,6 +51,7 @@ const BS_DATERANGEPICKER_VALIDATOR: Provider = {
   host: {
     '(change)': 'onChange($event)',
     '(keyup.esc)': 'hide()',
+    '(keydown)': 'onKeydownEvent($event)',
     '(blur)': 'onBlur()'
   },
   providers: [BS_DATERANGEPICKER_VALUE_ACCESSOR, BS_DATERANGEPICKER_VALIDATOR]
@@ -85,6 +86,12 @@ export class BsDaterangepickerInputDirective
     });
   }
 
+  onKeydownEvent(event) {
+    if (event.keyCode === 13 || event.code === 'Enter') {
+      this.hide();
+    }
+  }
+
   _setInputValue(date: Date[]): void {
     let range = '';
     if (date) {
@@ -108,15 +115,22 @@ export class BsDaterangepickerInputDirective
     /* tslint:disable-next-line: no-any*/
     this.writeValue((event.target as any).value);
     this._onChange(this._value);
+    if (this._picker._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
+    }
     this._onTouched();
   }
 
   validate(c: AbstractControl): ValidationErrors | null {
     const _value: [Date, Date] = c.value;
+    const errors: object[] = [];
 
     if (_value === null || _value === undefined || !isArray(_value)) {
       return null;
     }
+
+    // @ts-ignore
+    _value.sort((a, b) => a - b);
 
     const _isFirstDateValid = isDateValid(_value[0]);
     const _isSecondDateValid = isDateValid(_value[1]);
@@ -130,11 +144,18 @@ export class BsDaterangepickerInputDirective
     }
 
     if (this._picker && this._picker.minDate && isBefore(_value[0], this._picker.minDate, 'date')) {
-      return { bsDate: { minDate: this._picker.minDate } };
+      _value[0] = this._picker.minDate;
+      errors.push({ bsDate: { minDate: this._picker.minDate } });
     }
 
     if (this._picker && this._picker.maxDate && isAfter(_value[1], this._picker.maxDate, 'date')) {
-      return { bsDate: { maxDate: this._picker.maxDate } };
+      _value[1] = this._picker.maxDate;
+      errors.push({ bsDate: { maxDate: this._picker.maxDate } });
+    }
+    if (errors.length > 0) {
+      this.writeValue(_value);
+
+      return errors;
     }
   }
 
@@ -162,7 +183,6 @@ export class BsDaterangepickerInputDirective
       if (Array.isArray(value)) {
         _input = value;
       }
-
 
       this._value = (_input as string[])
         .map((_val: string): Date => {
@@ -208,5 +228,9 @@ export class BsDaterangepickerInputDirective
   hide() {
     this._picker.hide();
     this._renderer.selectRootElement(this._elRef.nativeElement).blur();
+
+    if (this._picker._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
+    }
   }
 }
