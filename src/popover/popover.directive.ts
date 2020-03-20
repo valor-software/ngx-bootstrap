@@ -226,7 +226,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
    * Closes an element’s popover. This is considered a “manual” triggering of
    * the popover.
    */
-  hide(): void [
+  hide(): void {
     if (this._delayTimeoutId) {
       clearTimeout(this._delayTimeoutId);
       this._delayTimeoutId = undefined;
