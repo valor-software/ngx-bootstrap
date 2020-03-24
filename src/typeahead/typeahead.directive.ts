@@ -151,6 +151,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
   activeDescendant: string;
   isOpen = false;
+  list = 'list';
   _container: TypeaheadContainerComponent;
   isActiveItemChanged = false;
   isFocused = false;
