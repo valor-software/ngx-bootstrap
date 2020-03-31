@@ -1,3 +1,15 @@
+<a name="5.6.1"></a>
+## [5.6.1](https://github.com/valor-software/ngx-bootstrap/compare/v5.6.0...v5.6.1) (2020-03-31)
+
+
+### Bug Fixes
+
+* **ci:** update typescript ver in latest script, to fix build ([8b420a5](https://github.com/valor-software/ngx-bootstrap/commit/8b420a5))
+* **datepicker:**  remove spread operator from datepicker module ([6047bce](https://github.com/valor-software/ngx-bootstrap/commit/6047bce))
+* **typeahead:** add variable which was missed in MR [#5547](https://github.com/valor-software/ngx-bootstrap/issues/5547) ([09f1270](https://github.com/valor-software/ngx-bootstrap/commit/09f1270))
+
+
+
 <a name="5.6.0"></a>
 # [5.6.0](https://github.com/valor-software/ngx-bootstrap/compare/v5.5.0...v5.6.0) (2020-03-19)
 
