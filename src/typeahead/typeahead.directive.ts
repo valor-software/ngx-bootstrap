@@ -29,7 +29,16 @@ import { TypeaheadOptionItemContext, TypeaheadOptionListContext } from './models
 type TypeaheadOption = string | {[key in string | number]: any};
 type Typeahead = TypeaheadOption[] | Observable<TypeaheadOption[]>;
 
-@Directive({selector: '[typeahead]', exportAs: 'bs-typeahead'})
+@Directive({
+  selector: '[typeahead]',
+  exportAs: 'bs-typeahead',
+  host: {
+    '[attr.aria-activedescendant]': 'activeDescendant',
+    '[attr.aria-aria-owns]': 'isOpen ? this._container.popupId : null',
+    '[attr.aria-aria-expanded]': 'isOpen',
+    '[attr.aria-autocomplete]': 'list'
+  }
+})
 export class TypeaheadDirective implements OnInit, OnDestroy {
   /** options source, can be Array of strings, objects or
    * an Observable for external matching process
@@ -140,6 +149,9 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /**  if false don't focus the input element the typeahead directive is associated with on selection */
     // @Input() protected typeaheadFocusOnSelect:boolean;
 
+  activeDescendant: string;
+  isOpen = false;
+  list = 'list';
   _container: TypeaheadContainerComponent;
   isActiveItemChanged = false;
   isFocused = false;
@@ -148,7 +160,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   // tslint:disable-next-line:no-any
   protected keyUpEventEmitter: EventEmitter<string> = new EventEmitter();
   protected _matches: TypeaheadMatch[];
-  protected placement = 'bottom-left';
+  protected placement = 'bottom left';
 
   private _typeahead: ComponentLoader<TypeaheadContainerComponent>;
   private _subscriptions: Subscription[] = [];
@@ -344,7 +356,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this._typeahead
       .attach(TypeaheadContainerComponent)
       .to(this.container)
-      .position({attachment: `${this.dropup ? 'top' : 'bottom'} start`})
+      .position({attachment: `${this.dropup ? 'top' : 'bottom'} left`})
       .show({
         typeaheadRef: this,
         placement: this.placement,
@@ -382,6 +394,12 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
     this._container.matches = this._matches;
     this.element.nativeElement.focus();
+
+    this._container.activeChangeEvent.subscribe((activeId: string) => {
+      this.activeDescendant = activeId;
+      this.changeDetection.markForCheck();
+    });
+    this.isOpen = true;
   }
 
   hide(): void {
@@ -389,6 +407,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       this._typeahead.hide();
       this._outsideClickListener();
       this._container = null;
+      this.isOpen = false;
+      this.changeDetection.markForCheck();
     }
   }
 
