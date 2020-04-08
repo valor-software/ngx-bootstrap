@@ -61,16 +61,8 @@ export const thBeLocale: LocaleData = {
     y: '1 ปี',
     yy: '%d ปี'
   },
-  preinput(input: Date): Date {
-    // just year-543 of input before next step
-    let preinputDate = new Date(input);
-    preinputDate.setFullYear(input.getFullYear()-543);
-    return preinputDate;
-  },
-  postvalue(value: Date): Date {
-    // just year+543 of value before display on ui
-    let preinputDate = new Date(value);
-    preinputDate.setFullYear(value.getFullYear()+543);
-    return preinputDate;
+
+  getFullYear(date: Date, isUTC = false): number {
+    return 543 + (isUTC ? date.getUTCFullYear() : date.getFullYear());
   }
 };
