@@ -1,3 +1,14 @@
+<a name="5.6.2"></a>
+## [5.6.2](https://github.com/valor-software/ngx-bootstrap/compare/v5.6.1...v5.6.2) (2020-04-10)
+
+
+### Bug Fixes
+
+* **datepicker:** fix production build issue  [#5730](https://github.com/valor-software/ngx-bootstrap/issues/5730) ([b14d3e7](https://github.com/valor-software/ngx-bootstrap/commit/b14d3e7))
+* **dropdown:** add small delay for animation, to avoid issue with ngFor ([4744514](https://github.com/valor-software/ngx-bootstrap/commit/4744514))
+
+
+
 <a name="5.6.1"></a>
 ## [5.6.1](https://github.com/valor-software/ngx-bootstrap/compare/v5.6.0...v5.6.1) (2020-03-31)
 
