@@ -343,8 +343,10 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
   private playAnimation(): void {
     if (this._state.isAnimated && this._inlinedMenu) {
-      this._factoryDropDownAnimation.create(this._inlinedMenu.rootNodes[0])
-        .play();
+      setTimeout(() => {
+        this._factoryDropDownAnimation.create(this._inlinedMenu.rootNodes[0])
+          .play();
+      });
     }
   }
 
