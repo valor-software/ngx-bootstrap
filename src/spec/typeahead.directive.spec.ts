@@ -185,6 +185,19 @@ describe('Directive: Typeahead', () => {
         expect(fixture.debugElement.query(By.css('typeahead-container'))).toBeNull();
       })
     );
+
+    it('should not throw an error on blur', fakeAsync(() => {
+      expect(directive._container).toBeFalsy();
+      expect(directive.matches).toEqual([]);
+
+      dispatchMouseEvent(inputElement, 'click');
+      tick();
+      fixture.detectChanges();
+
+      fixture.whenStable().then(() => {
+        expect(() => directive.onBlur()).not.toThrowError();
+      });
+    }));
   });
 
   describe('onFocus', () => {
