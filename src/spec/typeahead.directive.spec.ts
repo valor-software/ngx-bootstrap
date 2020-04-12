@@ -1,4 +1,4 @@
-/* tslint:disable:max-file-line-count */
+/* tslint:disable:no-floating-promises max-file-line-count */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { Component, DebugElement } from '@angular/core';
