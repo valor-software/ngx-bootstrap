@@ -23,6 +23,7 @@ export abstract class BsDatepickerAbstractComponent {
 
   _effects: BsDatepickerEffects;
   customRanges: BsCustomDates[] = [];
+  chosenRange: Date[] = [];
 
   set minDate(value: Date) {
     this._effects.setMinDate(value);
@@ -74,7 +75,9 @@ export abstract class BsDatepickerAbstractComponent {
 
   yearSelectHandler(event: CalendarCellViewModel): void {}
 
-  /* tslint:disable-next-line: no-any */
+  setRangeOnCalendar(dates: BsCustomDates): void {}
+
+    /* tslint:disable-next-line: no-any */
   _stopPropagation(event: any): void {
     event.stopPropagation();
   }
