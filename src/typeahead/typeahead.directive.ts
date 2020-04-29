@@ -186,7 +186,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     Object.assign(this,
       {
         typeaheadHideResultsOnBlur: config.hideResultsOnBlur,
-        typeaheadCancelRequestOnFocusLost: config.cancelRequestOnFocusLost,
+        cancelRequestOnFocusLost: config.cancelRequestOnFocusLost,
         typeaheadSelectFirstItem: config.selectFirstItem,
         typeaheadIsFirstItemActive: config.isFirstItemActive,
         typeaheadMinLength: config.minLength,
