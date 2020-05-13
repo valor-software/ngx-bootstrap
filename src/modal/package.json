@@ -1,6 +1,6 @@
 {
   "name": "ngx-bootstrap/modal",
-  "version": "5.5.0",
+  "version": "5.6.2",
   "description": "Native Angular Bootstrap Components",
   "private": true,
   "ngPackage": {
