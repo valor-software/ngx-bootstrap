@@ -131,6 +131,7 @@ describe('datepicker:', () => {
   }));
 
   it('should show the today button when showTodayButton config is true', () => {
+    showDatepicker(fixture);
     const buttonText: string[] = [];
     queryAll('button').forEach(button => {
       buttonText.push(button.textContent);
