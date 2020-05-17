@@ -52,6 +52,13 @@
       <button class="btn btn-success" type="button">Apply</button>
       <button class="btn btn-default" type="button">Cancel</button>
     </div>
+
+    <div class="bs-datepicker-buttons">
+      <div class="btn-today-wrapper" *ngIf="showTodayBtn">
+        <button class="btn btn-success" (click)="setToday()">Today</button>
+      </div>
+    </div>
+
   </div>
 
   <!--custom dates or date ranges picker-->
