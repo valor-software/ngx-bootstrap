@@ -1094,6 +1094,12 @@ export const ngdoc: any = {
         "description": "<p>Shows previous and current month, instead of current and next (dateRangePicker only)</p>\n"
       },
       {
+        "name": "showTodayButton",
+        "type": "boolean",
+        "defaultValue": "false",
+        "description": "<p>Displays a 'Today' button that will automatically select today's date.</p>\n"
+      },
+      {
         "name": "showWeekNumbers",
         "defaultValue": "true",
         "type": "boolean",
