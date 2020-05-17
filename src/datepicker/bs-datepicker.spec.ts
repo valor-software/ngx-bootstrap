@@ -7,7 +7,7 @@ import { BsDatepickerDirective } from './bs-datepicker.component';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
 import { CalendarCellViewModel, WeekViewModel } from './models';
-import { dispatchKeyboardEvent, queryAll, query } from '@netbasal/spectator';
+import { dispatchKeyboardEvent, queryAll } from '@netbasal/spectator';
 import { registerEscClick } from '../utils';
 
 @Component({
@@ -131,8 +131,6 @@ describe('datepicker:', () => {
   }));
 
   it('should show the today button when showTodayButton config is true', () => {
-    const datepicker = showDatepicker(fixture);
-
     const buttonText: string[] = [];
     queryAll('button').forEach(button => {
       buttonText.push(button.textContent);
