@@ -17,13 +17,13 @@ import { BsModalService } from './bs-modal.service';
   entryComponents: [ModalBackdropComponent, ModalContainerComponent]
 })
 export class ModalModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<ModalModule> {
     return {
       ngModule: ModalModule,
       providers: [BsModalService, ComponentLoaderFactory, PositioningService]
     };
   }
-  static forChild(): ModuleWithProviders {
+  static forChild(): ModuleWithProviders<ModalModule> {
     return {
       ngModule: ModalModule,
       providers: [BsModalService, ComponentLoaderFactory, PositioningService]
