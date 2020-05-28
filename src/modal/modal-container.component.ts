@@ -100,7 +100,6 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     this.hide();
   }
   
-  
   @HostListener('window:popstate')
   onPopState(): void {
     this.hide();
