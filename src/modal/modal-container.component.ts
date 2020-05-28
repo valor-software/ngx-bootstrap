@@ -99,7 +99,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     this.bsModalService.setDismissReason(DISMISS_REASONS.BACKRDOP);
     this.hide();
   }
-  
+
   @HostListener('window:popstate')
   onPopState(): void {
     this.hide();
