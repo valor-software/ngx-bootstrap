@@ -4,6 +4,7 @@ import {
   BsDatepickerViewMode,
   DatepickerDateCustomClasses
 } from './models';
+import { BsCustomDates } from './themes/bs/bs-custom-dates-view.component';
 
 
 /**
@@ -32,13 +33,24 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Default date custom classes for all date/range pickers
    */
   dateCustomClasses: DatepickerDateCustomClasses[];
-
+  /**
+   * Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays
+   */
   daysDisabled?: number[];
-
   /**
    * Disable specific dates
    */
   datesDisabled?: Date[];
+  /**
+   * Show one months for special cases (only for dateRangePicker)
+   * 1. maxDate is equal to today's date
+   * 2. minDate's month is equal to maxDate's month
+   */
+  displayOneMonthRange?: boolean;
+  /**
+   * Enable specific dates
+   */
+  datesEnabled?: Date[];
   /**
    * Makes dates from other months active
    */
@@ -69,6 +81,11 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    */
   minMode?: BsDatepickerViewMode;
 
+  /**
+   * If true, returns focus to the datepicker / daterangepicker input after date selection
+   */
+  returnFocusToInput = false;
+
   /** CSS class which will be applied to datepicker container,
    * usually used to set color theme
    */
@@ -88,6 +105,11 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Date format for date range input field
    */
   rangeInputFormat = 'L';
+
+  /**
+   * Predefined ranges
+   */
+  ranges?: BsCustomDates[];
 
   // DatepickerFormatOptions
   monthTitle = 'MMMM';

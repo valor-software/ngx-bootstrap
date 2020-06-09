@@ -11,7 +11,7 @@ import { PositioningService } from 'ngx-bootstrap/positioning';
 import { Subscription } from 'rxjs';
 import { datepickerAnimation } from '../../datepicker-animations';
 import { take } from 'rxjs/operators';
-
+import { BsCustomDates } from './bs-custom-dates-view.component';
 
 @Component({
   selector: 'bs-daterangepicker-container',
@@ -35,6 +35,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   animationState = 'void';
 
   _rangeStack: Date[] = [];
+  chosenRange: Date[] = [];
   _subs: Subscription[] = [];
 
   constructor(
@@ -48,6 +49,8 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   ) {
     super();
     this._effects = _effects;
+
+    this.customRanges = this._config.ranges;
 
     _renderer.setStyle(_element.nativeElement, 'display', 'block');
     _renderer.setStyle(_element.nativeElement, 'position', 'absolute');
@@ -92,7 +95,10 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     this._subs.push(
       this._store
         .select(state => state.selectedRange)
-        .subscribe(date => this.valueChange.emit(date))
+        .subscribe(date => {
+          this.valueChange.emit(date);
+          this.chosenRange = date;
+        })
     );
   }
 
@@ -143,4 +149,10 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     }
     this._effects.destroy();
   }
+
+  setRangeOnCalendar(dates: BsCustomDates): void {
+    this._rangeStack = (dates === null) ? [] : (dates.value instanceof Date ? [dates.value] : dates.value);
+    this._store.dispatch(this._actions.selectRange(this._rangeStack));
+  }
+
 }

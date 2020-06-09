@@ -1,6 +1,6 @@
 // RECOMMENDED
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
-// or
+// NOT RECOMMENDED (Angular 9 doesn't support this kind of import)
 import { ProgressbarModule } from 'ngx-bootstrap';
 
 @NgModule({

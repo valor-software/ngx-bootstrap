@@ -9,7 +9,7 @@ import {
   ViewChild,
   ChangeDetectionStrategy,
   Injectable,
-  OnDestroy
+  OnDestroy, ChangeDetectorRef
 } from '@angular/core';
 
 import {
@@ -18,7 +18,7 @@ import {
   PopoverDirective,
   PopoverConfig
 } from '../../popover';
-import { createGenericTestComponent } from './test/common';
+import { createComponent } from './test/common';
 import { dispatchMouseEvent } from '@netbasal/spectator';
 
 @Component({selector: 'test-cmpt', template: ``})
@@ -44,7 +44,9 @@ export class TestComponent {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: ``
 })
-export class TestOnPushComponent {}
+export class TestOnPushComponent {
+  constructor(public cdRef: ChangeDetectorRef) {}
+}
 
 @Injectable()
 class SpyService {
@@ -63,10 +65,10 @@ export class DestroyableCmpt implements OnDestroy {
 }
 
 const createTestComponent = (html: string) =>
-  createGenericTestComponent(html, TestComponent);
+  createComponent(html, TestComponent);
 
 const createOnPushTestComponent = (html: string) =>
-  createGenericTestComponent(html, TestOnPushComponent);
+  createComponent(html, TestOnPushComponent, 'OnPush');
 
 describe('popover-container', () => {
   beforeEach(() => {
@@ -262,6 +264,9 @@ describe('popover', () => {
         `<div style="padding: 400px"><div popover="Great tip!" placement="left"></div></div>`
       );
 
+      const context = fixture.componentInstance;
+      context.cdRef.markForCheck();
+
       const directive = fixture.debugElement.query(
         By.directive(PopoverDirective)
       );
@@ -269,6 +274,7 @@ describe('popover', () => {
       dispatchMouseEvent(directive.nativeElement, 'click');
       fixture.detectChanges();
       const windowEl = getWindow(fixture.nativeElement);
+      context.cdRef.markForCheck();
 
       expect(windowEl).toHaveCssClass('popover');
       expect(windowEl).toHaveCssClass('popover-left');
