@@ -62,6 +62,12 @@ export const thBeLocale: LocaleData = {
     yy: '%d ปี'
   },
 
+  preparse(str: string): string {
+    const ddMM = str.substr(0, str.length - 4);
+    const yyyy = parseInt(str.substr(str.length - 4), 10) - 543;
+    return ddMM + yyyy;
+  },
+
   getFullYear(date: Date, isUTC = false): number {
     return 543 + (isUTC ? date.getUTCFullYear() : date.getFullYear());
   }
