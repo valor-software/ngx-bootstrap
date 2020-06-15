@@ -1,5 +1,6 @@
 import { BaseComponent } from './base.component';
 import * as globalLocales from 'ngx-bootstrap/locale';
+import { getDate } from '../../src/chronos/utils/date-getters';
 
 export class DatepickerPo extends BaseComponent {
   pageUrl = '/datepicker';
@@ -15,6 +16,7 @@ export class DatepickerPo extends BaseComponent {
   datepickerBodyDaysView = 'bs-days-calendar-view';
   datepickerBodyMonthView = 'bs-month-calendar-view';
   datepickerBodyYearsView = 'bs-years-calendar-view';
+  daterangepickerQuickSelectContainer = 'bs-custom-date-view';
   monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December', 'January'];
   locales = [];
@@ -45,7 +47,8 @@ export class DatepickerPo extends BaseComponent {
     customTriggers: 'demo-datepicker-triggers-custom',
     selectWeek: 'demo-datepicker-select-week',
     inlineDatepicker: 'bs-datepicker-inline',
-    customTodayClass: 'demo-datepicker-custom-today-class'
+    customTodayClass: 'demo-datepicker-custom-today-class',
+    quickSelectRange: 'demo-datepicker-quick-select-ranges'
   };
 
   clickOnDatepickerInput(baseSelector: string, datepickerIndex = 0) {
@@ -85,6 +88,43 @@ export class DatepickerPo extends BaseComponent {
     cy.get(`${baseSelector}>${this.daterangepickerContainer} ${this.datepickerNavView}`).eq(1).find('button').eq(1)
       .should('be.visible')
       .and('to.have.text', expectedValueRight);
+  }
+
+  isQuickSelectRangesDisplayed(baseSelector = 'body'){
+    cy.get(this.daterangepickerQuickSelectContainer)
+      .find('button')
+      .as('DateRangePicker');
+    cy.get('@DateRangePicker').eq(0)
+      .should('be.visible')
+      .and('to.have.text', ' Last 7 Days ');
+    cy.get('@DateRangePicker').eq(1)
+      .should('be.visible')
+      .and('to.have.text', ' Next 7 Days ');
+    cy.get('@DateRangePicker').eq(2)
+      .should('be.visible')
+      .and('to.have.text', ' Custom Range ');
+  }
+
+  clickOnQuickRangeBtn(countOfBtn: number) {
+    cy.get(this.daterangepickerQuickSelectContainer).find('button').eq(countOfBtn).click();
+  }
+
+  isQuickSelectLastDaysApplied(datepicker: string, countOfBtn: number, baseSelector = 'body') {
+    const todayDate = Cypress.moment().format('L');
+    const previousDate = Cypress.moment().subtract(7, 'days').calendar();
+    const nextDate = Cypress.moment().add(7, 'days').calendar();
+
+    this.clickOnQuickRangeBtn(countOfBtn);
+    cy.get(`${baseSelector} ${datepicker} ${this.daterangepickerInput}`)
+      .should('contain.value', todayDate)
+      .should('contain.value', countOfBtn === 0 ? previousDate : nextDate);
+  }
+
+  isQuickSelectRangeButtonHighlighted(rangeNumber: number, baseSelector = 'body') {
+    cy.get(`${baseSelector}>${this.daterangepickerContainer} ${this.daterangepickerQuickSelectContainer}`)
+      .find('button').as('DateRangePicker');
+    cy.get('@DateRangePicker').eq(rangeNumber)
+      .should('have.class', 'selected');
   }
 
   isDatepickerNavigationFullyActiveAndCorrect(mode = 'date',
@@ -444,6 +484,14 @@ export class DatepickerPo extends BaseComponent {
 
       case 'ka' :
         actualMonthArr = globalLocales.kaLocale.months;
+        break;
+
+      case 'sq' :
+        actualMonthArr = globalLocales.sqLocale.months;
+        break;
+
+      case 'kk' :
+        actualMonthArr = globalLocales.kkLocale.months;
         break;
 
       default:

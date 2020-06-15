@@ -90,7 +90,10 @@ export {
   PaginationComponent,
   PaginationConfig,
   PaginationModule,
-  PageChangedEvent
+  PageChangedEvent,
+  PaginationLinkContext,
+  PaginationNumberLinkContext,
+  PagesModel
 } from './pagination/index';
 
 export {
@@ -141,7 +144,11 @@ export {
   TypeaheadContainerComponent,
   TypeaheadDirective,
   TypeaheadMatch,
-  TypeaheadModule
+  TypeaheadModule,
+  TypeaheadOrder,
+  TypeaheadOptionItemContext,
+  TypeaheadOptionListContext,
+  TypeaheadTemplateMethods
 } from './typeahead/index';
 
 export {
