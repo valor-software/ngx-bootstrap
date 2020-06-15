@@ -1095,9 +1095,9 @@ export const ngdoc: any = {
       },
       {
         "name": "showTodayButton",
-        "type": "boolean",
         "defaultValue": "false",
-        "description": "<p>Displays a 'Today' button that will automatically select today's date.</p>\n"
+        "type": "boolean",
+        "description": "<p>Shows &#39;today&#39; button</p>\n"
       },
       {
         "name": "showWeekNumbers",
@@ -4019,7 +4019,12 @@ export const ngdoc: any = {
     "description": "",
     "selector": "typeahead-container",
     "inputs": [],
-    "outputs": [],
+    "outputs": [
+      {
+        "name": "activeChange",
+        "description": ""
+      }
+    ],
     "properties": [],
     "methods": []
   },
@@ -4226,8 +4231,8 @@ export const ngdoc: any = {
     ],
     "properties": [
       {
-        "name": "_container",
-        "type": "TypeaheadContainerComponent",
+        "name": "activeDescendant",
+        "type": "string",
         "description": "<p>if false restrict model values to the ones selected from the popup only will be provided\nif false the first match automatically will not be focused as you type\nformat the ng-model result after selection\nif true automatically select an item when there is one option that exactly matches the user input\nif true select the currently highlighted match on blur\nif false don&#39;t focus the input element the typeahead directive is associated with on selection</p>\n"
       }
     ],
