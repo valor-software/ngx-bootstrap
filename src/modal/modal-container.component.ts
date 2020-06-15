@@ -100,6 +100,11 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     this.hide();
   }
 
+  @HostListener('window:popstate')
+  onPopState(): void {
+    this.hide();
+  }
+
   @HostListener('window:keydown.esc', ['$event'])
   onEsc(event: KeyboardEvent): void {
     if (!this.isShown) {
