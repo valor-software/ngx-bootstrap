@@ -122,6 +122,7 @@ export function createTestApp(runner: SchematicTestRunner, appOptions = {}): any
     newProjectRoot: 'projects'
   });
 
+
   return runner.runExternalSchematicAsync('@schematics/angular', 'application',
     { name: 'ngx-bootstrap', ...appOptions }, workspaceTree);
 }
