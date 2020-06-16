@@ -7,7 +7,7 @@ import { CollapseDirective } from './collapse.directive';
   exports: [CollapseDirective]
 })
 export class CollapseModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<CollapseModule> {
     return { ngModule: CollapseModule, providers: [] };
   }
 }
