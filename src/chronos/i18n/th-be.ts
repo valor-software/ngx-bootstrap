@@ -62,15 +62,19 @@ export const thBeLocale: LocaleData = {
     yy: '%d ปี'
   },
 
-  preparse(str: string, format?: string | string[]): string {
+  preparse(str: string, format?: string): string {
 
-    if ('yy' === format) {
-      return String((parseInt(str, 10) + 2500)- 543);
+    const _format = thBeLocale.longDateFormat[format]
+      ? thBeLocale.longDateFormat[format]
+      : format;
+
+    // endsWith('YYYY')
+    if (_format.indexOf('YYYY', _format.length - 'YYYY'.length) !== -1 ) {
+      const ddMM = str.substr(0, str.length - 4);
+      const yyyy = parseInt(str.substr(str.length - 4), 10) - 543;
+      return ddMM + yyyy;
     }
 
-    if ('yyyy' === format) {
-      return String(parseInt(str, 10) - 543);
-    }
     return str;
   },
 
