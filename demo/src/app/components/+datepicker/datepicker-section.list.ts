@@ -46,6 +46,7 @@ import { DemoDatePickerQuickSelectRangesComponent } from './demos/quick-select-r
 import { DemoDateRangePickerShowPreviousMonth } from './demos/daterangepicker-show-previous-month/show-previous-month';
 import { DemoDatePickerSelectWeekRangeComponent } from './demos/select-week-range/select-week-range';
 import { DemoDateRangePickerDisplayOneMonth } from './demos/daterangepicker-display-one-month/display-one-month';
+import { DemoDatepickerTodayButtonComponent } from './demos/today-button/today-button';
 
 
 export const demoComponentContent: ContentSection[] = [
@@ -406,6 +407,14 @@ export const demoComponentContent: ContentSection[] = [
         description: `<p>Pick previous & current month instead of current & next month.When daterange selected and related to current month,
         daterangepicker will works by default, with current & next month</p>`,
         outlet: DemoDateRangePickerShowPreviousMonth
+      },
+      {
+        title: 'Show Today Button',
+        anchor: 'datepicker-show-today-button',
+        component: require('!!raw-loader!./demos/today-button/today-button.ts'),
+        html: require('!!raw-loader!./demos/today-button/today-button.html'),
+        description: `<p>Display an optional 'Today' button that will automatically select today's date.</p>`,
+        outlet: DemoDatepickerTodayButtonComponent
       }
     ]
   },
