@@ -456,7 +456,18 @@
     .btn-today-wrapper {
       display: flex;
       flex-flow: row wrap;
+    }
+
+    .today-right {
+      flex-grow: 0;
+    }
+
+    .today-left {
       flex-grow: 1;
+    }
+
+    .today-center {
+      flex-grow: 0.5;
     }
   }
 }

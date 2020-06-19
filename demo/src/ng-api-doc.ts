@@ -1100,6 +1100,12 @@ export const ngdoc: any = {
         "description": "<p>Shows &#39;today&#39; button</p>\n"
       },
       {
+        "name": "todayPosition",
+        "defaultValue": "center",
+        "type": "string",
+        "description": "<p>Positioning for &#39;today&#39; button</p>\n"
+      },
+      {
         "name": "showWeekNumbers",
         "defaultValue": "true",
         "type": "boolean",

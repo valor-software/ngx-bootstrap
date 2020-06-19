@@ -21,6 +21,7 @@ export abstract class BsDatepickerAbstractComponent {
   containerClass: string;
   isOtherMonthsActive: boolean;
   showTodayBtn: boolean;
+  todayPos: string;
 
   _effects: BsDatepickerEffects;
   customRanges: BsCustomDates[] = [];

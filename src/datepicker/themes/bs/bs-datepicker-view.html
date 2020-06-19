@@ -54,7 +54,11 @@
     </div>
 
     <div class="bs-datepicker-buttons">
-      <div class="btn-today-wrapper" *ngIf="showTodayBtn">
+      <div class="btn-today-wrapper"
+           [class.today-left]="todayPos === 'left'"
+           [class.today-right]="todayPos === 'right'"
+           [class.today-center]="todayPos === 'center'"
+           *ngIf="showTodayBtn">
         <button class="btn btn-success" (click)="setToday()">Today</button>
       </div>
     </div>
@@ -63,8 +67,8 @@
 
   <!--custom dates or date ranges picker-->
   <div class="bs-datepicker-custom-range" *ngIf="customRanges?.length > 0">
-    <bs-custom-date-view 
-      [selectedRange]="chosenRange" 
+    <bs-custom-date-view
+      [selectedRange]="chosenRange"
       [ranges]="customRanges"
       (onSelect)="setRangeOnCalendar($event)">
     </bs-custom-date-view>

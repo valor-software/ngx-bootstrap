@@ -410,8 +410,8 @@ export const demoComponentContent: ContentSection[] = [
       },
       {
         title: 'Show Today Button',
-        anchor: 'daterangepicker-today-button',
-        component: require('!!raw-loader!./demos/daterangepicker-show-previous-month/show-previous-month.ts'),
+        anchor: 'datepicker-show-today-button',
+        component: require('!!raw-loader!./demos/today-button/today-button.ts'),
         html: require('!!raw-loader!./demos/today-button/today-button.html'),
         description: `<p>Display an optional 'Today' button that will automatically select today's date.</p>`,
         outlet: DemoDatepickerTodayButtonComponent
