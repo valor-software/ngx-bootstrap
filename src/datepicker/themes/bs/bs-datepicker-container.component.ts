@@ -75,6 +75,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
 
     this.isOtherMonthsActive = this._config.selectFromOtherMonth;
     this.containerClass = this._config.containerClass;
+    this.showClearBtn = this._config.showClearButton;
     this._effects
       .init(this._store)
       // intial state options
@@ -116,6 +117,10 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     }
 
     this._store.dispatch(this._actions.select(day.date));
+  }
+
+  clearDate():void{
+    this._store.dispatch(this._actions.select(undefined));
   }
 
   ngOnDestroy(): void {

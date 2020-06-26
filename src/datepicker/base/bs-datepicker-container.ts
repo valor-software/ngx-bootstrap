@@ -20,6 +20,7 @@ import {
 export abstract class BsDatepickerAbstractComponent {
   containerClass: string;
   isOtherMonthsActive: boolean;
+  showClearBtn:boolean;
 
   _effects: BsDatepickerEffects;
   customRanges: BsCustomDates[] = [];
@@ -66,6 +67,8 @@ export abstract class BsDatepickerAbstractComponent {
   weekHoverHandler(event: WeekViewModel): void {}
 
   monthHoverHandler(event: CellHoverEvent): void {}
+
+  clearDate():void{}
 
   yearHoverHandler(event: CellHoverEvent): void {}
 

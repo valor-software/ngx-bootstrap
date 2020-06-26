@@ -54,10 +54,17 @@
     </div>
   </div>
 
+  <div class="bs-datepicker-buttons">
+    <div class="btn-clear-wrapper"
+         *ngIf="showClearBtn">
+      <button class="btn btn-success" (click)="clearDate()">Clear</button>
+    </div>
+  </div>
+
   <!--custom dates or date ranges picker-->
   <div class="bs-datepicker-custom-range" *ngIf="customRanges?.length > 0">
-    <bs-custom-date-view 
-      [selectedRange]="chosenRange" 
+    <bs-custom-date-view
+      [selectedRange]="chosenRange"
       [ranges]="customRanges"
       (onSelect)="setRangeOnCalendar($event)">
     </bs-custom-date-view>

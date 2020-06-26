@@ -56,6 +56,11 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    */
   selectFromOtherMonth?: boolean;
 
+     /**
+   * Shows clear button
+   */
+  showClearButton = false;
+
   /**
    * Allows select first date of the week by click on week number
    */
