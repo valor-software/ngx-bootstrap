@@ -12,7 +12,7 @@ import { TimepickerStore } from './reducer/timepicker.store';
   exports: [TimepickerComponent]
 })
 export class TimepickerModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<TimepickerModule> {
     return {
       ngModule: TimepickerModule,
       providers: [TimepickerConfig, TimepickerActions, TimepickerStore]

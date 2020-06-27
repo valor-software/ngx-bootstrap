@@ -10,7 +10,7 @@ import { DraggableItemService } from './draggable-item.service';
   exports: [SortableComponent]
 })
 export class SortableModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<SortableModule> {
     return { ngModule: SortableModule, providers: [DraggableItemService] };
   }
 }
