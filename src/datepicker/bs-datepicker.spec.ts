@@ -178,9 +178,7 @@ describe('datepicker:', () => {
       }).unsubscribe();
 
     fixture.detectChanges();
-
     datepickerContainerInstance.clearDate();
-
     fixture.whenStable().then(re=>{
       datepickerContainerInstance[`_store`]
       .select(state => state.view)
