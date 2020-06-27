@@ -61,6 +61,11 @@
            *ngIf="showTodayBtn">
         <button class="btn btn-success" (click)="setToday()">Today</button>
       </div>
+
+      <div class="btn-clear-wrapper"
+      *ngIf="showClearBtn">
+   <button class="btn btn-success" (click)="clearDate()">Clear</button>
+ </div>
     </div>
 
   </div>

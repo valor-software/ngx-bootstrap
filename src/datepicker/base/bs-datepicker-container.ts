@@ -22,6 +22,7 @@ export abstract class BsDatepickerAbstractComponent {
   isOtherMonthsActive: boolean;
   showTodayBtn: boolean;
   todayPos: string;
+  showClearBtn:boolean;
 
   _effects: BsDatepickerEffects;
   customRanges: BsCustomDates[] = [];
@@ -80,6 +81,8 @@ export abstract class BsDatepickerAbstractComponent {
   setRangeOnCalendar(dates: BsCustomDates): void {}
 
   setToday(): void {}
+
+  clearDate():void{}
 
     /* tslint:disable-next-line: no-any */
   _stopPropagation(event: any): void {

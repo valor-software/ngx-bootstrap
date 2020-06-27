@@ -77,6 +77,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     this.containerClass = this._config.containerClass;
     this.showTodayBtn = this._config.showTodayButton;
     this.todayPos = this._config.todayPosition;
+    this.showClearBtn = this._config.showClearButton;
     this._effects
       .init(this._store)
       // intial state options
@@ -122,6 +123,10 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
 
   setToday(): void {
     this._store.dispatch(this._actions.select(new Date()));
+  }
+
+  clearDate():void{
+    this._store.dispatch(this._actions.select(undefined));
   }
 
   ngOnDestroy(): void {
