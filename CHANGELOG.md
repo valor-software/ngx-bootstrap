@@ -1,3 +1,24 @@
+<a name="5.7.0"></a>
+# [5.7.0](https://github.com/valor-software/ngx-bootstrap/compare/v5.6.2...v5.7.0) (2020-06-30)
+
+
+### Bug Fixes
+
+* **common:** fix next ver issue with moduleWithProviders ([#5812](https://github.com/valor-software/ngx-bootstrap/issues/5812)) ([e2ef559](https://github.com/valor-software/ngx-bootstrap/commit/e2ef559))
+* **datepicker:** double tap ios issue ([#5821](https://github.com/valor-software/ngx-bootstrap/issues/5821)) ([955cb93](https://github.com/valor-software/ngx-bootstrap/commit/955cb93))
+* **datepicker:** issue [#5790](https://github.com/valor-software/ngx-bootstrap/issues/5790) and [#5793](https://github.com/valor-software/ngx-bootstrap/issues/5793) ([#5817](https://github.com/valor-software/ngx-bootstrap/issues/5817)) ([1dc5308](https://github.com/valor-software/ngx-bootstrap/commit/1dc5308))
+* **modal:** Close modal on back button click ([735c197](https://github.com/valor-software/ngx-bootstrap/commit/735c197))
+* **typeahead:** fix error on blur after init ([ceeed10](https://github.com/valor-software/ngx-bootstrap/commit/ceeed10)), closes [#5736](https://github.com/valor-software/ngx-bootstrap/issues/5736)
+* **typeahead:** fix typo to cancel request on focus lost ([#5593](https://github.com/valor-software/ngx-bootstrap/issues/5593)), ([#4622](https://github.com/valor-software/ngx-bootstrap/issues/4622)), ([#1884](https://github.com/valor-software/ngx-bootstrap/issues/1884)) ([29a44e0](https://github.com/valor-software/ngx-bootstrap/commit/29a44e0))
+
+
+### Features
+
+* **datepicker:** Add optional "today" button ([#5786](https://github.com/valor-software/ngx-bootstrap/issues/5786)) ([41e7a0b](https://github.com/valor-software/ngx-bootstrap/commit/41e7a0b))
+* **modal:** add ability to inject default modal options ([#4222](https://github.com/valor-software/ngx-bootstrap/issues/4222)) ([2c1b2bd](https://github.com/valor-software/ngx-bootstrap/commit/2c1b2bd))
+
+
+
 <a name="5.6.2"></a>
 ## [5.6.2](https://github.com/valor-software/ngx-bootstrap/compare/v5.6.1...v5.6.2) (2020-04-10)
 
