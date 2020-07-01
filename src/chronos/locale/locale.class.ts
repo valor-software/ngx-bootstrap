@@ -87,7 +87,7 @@ export interface LocaleData {
 
   meridiemHour?(hour: number, meridiem: string): number;
 
-  preparse?(str: string): string;
+  preparse?(str: string, format?: string | string[]): string;
 
   postformat?(str: string | number): string;
 
@@ -196,7 +196,7 @@ export class Locale {
     return this._ordinal.replace('%d', num.toString(10));
   }
 
-  preparse(str: string) {
+  preparse(str: string, format?: string | string[]) {
     return str;
   }
 

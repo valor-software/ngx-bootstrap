@@ -79,7 +79,7 @@ import { BsYearsCalendarViewComponent } from './themes/bs/bs-years-calendar-view
   ]
 })
 export class BsDatepickerModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<BsDatepickerModule> {
     return {
       ngModule: BsDatepickerModule,
       providers: [
