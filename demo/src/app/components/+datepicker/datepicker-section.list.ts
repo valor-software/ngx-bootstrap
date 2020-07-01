@@ -45,9 +45,9 @@ import {
 import { DemoDatePickerQuickSelectRangesComponent } from './demos/quick-select-ranges/quick-select-ranges';
 import { DemoDateRangePickerShowPreviousMonth } from './demos/daterangepicker-show-previous-month/show-previous-month';
 import { DemoDatePickerSelectWeekRangeComponent } from './demos/select-week-range/select-week-range';
+import { DemoDateRangePickerMaxDateRangeComponent } from './demos/max-date-range/max-date-range';
 import { DemoDateRangePickerDisplayOneMonth } from './demos/daterangepicker-display-one-month/display-one-month';
 import { DemoDatepickerTodayButtonComponent } from './demos/today-button/today-button';
-import { DemoDateRangePickerMaxDateRangeComponent } from './demos/max-date-range/max-date-range';
 
 
 export const demoComponentContent: ContentSection[] = [
