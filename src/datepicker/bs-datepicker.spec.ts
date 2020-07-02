@@ -153,7 +153,9 @@ describe('datepicker:', () => {
     datepickerContainerInstance[`_store`]
       .select(state => state.view)
       .subscribe(view => {
-        expect(view.date.getDay()).not.toEqual((new Date().getDay()), 'should start out not equal to today');
+        expect(`${(view.date.getDate())}-${(view.date.getMonth())}-${(view.date.getFullYear())}`)
+          .not.toEqual(`${(new Date().getDate())}-${(new Date().getMonth())}-${(new Date().getFullYear())}`,
+          'should start out not equal to today');
       }).unsubscribe();
 
     datepickerContainerInstance.setToday();
@@ -162,7 +164,9 @@ describe('datepicker:', () => {
     datepickerContainerInstance[`_store`]
       .select(state => state.view)
       .subscribe(view => {
-        expect(view.date.getDay()).toEqual((new Date().getDay()), 'should update to equal today');
+        expect(`${(view.date.getDate())}-${(view.date.getMonth())}-${(view.date.getFullYear())}`)
+          .toEqual(`${(new Date().getDate())}-${(new Date().getMonth())}-${(new Date().getFullYear())}`,
+          'should update to equal today');
       }).unsubscribe();
   });
 });
