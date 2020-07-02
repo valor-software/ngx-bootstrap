@@ -118,4 +118,13 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
   monthLabel = 'MMMM';
   yearLabel = 'YYYY';
   weekNumbers = 'w';
+
+  /**
+   * Shows 'today' button
+   */
+  showTodayButton = false;
+  /**
+   * Positioning of 'today' button
+   */
+  todayPosition = 'center';
 }
