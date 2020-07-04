@@ -103,9 +103,6 @@ jobs:
   - script: npm run test-coverage
     name: "Test with current Angular version"
     after_success: ./node_modules/.bin/codecov
-  - script: ng test --configuration ivy && tsc -p schematics/tsconfig.json && npm run test:schematics
-    name: "Test with current Angular version Ivy:enabled"
-    env: NGV=ivy
   - script: ng test && tsc -p schematics/tsconfig.json && npm run test:schematics
     name: "Test with latest Angular version"
     env: NGV=latest
@@ -120,9 +117,6 @@ jobs:
     <<: *testSmokeCy
   - script: npm run demo.ng-build
     name: "Check prod build with current Angular version"
-  - script: npm run demo.ng-build:ivy
-    name: "Check prod build with current version Ivy:enabled"
-    env: NGV=ivy
   - script: npm run demo.ng-build
     name: "Check prod build with latest Angular version"
     env: NGV=latest
@@ -146,20 +140,12 @@ jobs:
   - &surge
     stage: deploy
     script:
-    - if [[ "$NGV" == "ivy" ]]; then npm run demo.build:ivy; fi
     - if [[ "$NGV" == "latest"  ||  "$NGV" == "next"  ]]; then npm run demo.build:latest; fi
-    - if [[ "$NGV" != "latest"  &&  "$NGV" != "ivy" &&  "$NGV" != "next" ]]; then npm run demo.build; fi
+    - if [[ "$NGV" != "latest"  &&  "$NGV" != "next" ]]; then npm run demo.build; fi
     deploy:
       provider: surge
       project: ./gh-pages/
       domain: ngx-bootstrap.surge.sh
-      on: development
-  - <<: *surge
-    env: NGV=ivy
-    deploy:
-      provider: surge
-      project: ./gh-pages/
-      domain: ngx-bootstrap-ivy.surge.sh
       on: development
   - <<: *surge
     env: NGV=latest
