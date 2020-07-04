@@ -175,7 +175,8 @@ Here is the versions compatibility list:
 
 | ngx-bootstrap |    Angular    |  Bootstrap CSS |
 | ------------- | ------------- | -------------- |
-| 5.x.x         | 7.x.x - 8.x.x | 3.x.x or 4.x.x |
+| 5.6.x         | 7.x.x - 9.x.x | 3.x.x or 4.x.x |
+| 5.0.0 - 5.6.0 | 7.x.x - 8.x.x | 3.x.x or 4.x.x |
 | 4.x.x         | 6.x.x - 7.x.x | 3.x.x or 4.x.x |
 | 3.x.x         | 6.x.x - 7.x.x | 3.x.x or 4.x.x |
 | 2.x.x         | 2.x.x - 4.x.x | 3.x.x or 4.x.x |
