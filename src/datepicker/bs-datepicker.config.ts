@@ -124,7 +124,7 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    */
   showTodayButton = false;
 
-      /**
+  /**
    * Shows clear button
    */
   showClearButton = false;
@@ -133,4 +133,9 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Positioning of 'today' button
    */
   todayPosition = 'center';
+
+  /**
+   * Positioning of 'clear' button
+   */
+  clearPosition = 'right';
 }

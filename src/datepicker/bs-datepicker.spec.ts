@@ -167,7 +167,7 @@ describe('datepicker:', () => {
   });
 
 
-  it('should clear date', () => {
+  fit('should clear date', () => {
     const datepicker = showDatepicker(fixture);
     const datepickerContainerInstance = getDatepickerContainer(datepicker);
 
@@ -179,12 +179,10 @@ describe('datepicker:', () => {
 
     fixture.detectChanges();
     datepickerContainerInstance.clearDate();
-    fixture.whenStable().then(re=>{
       datepickerContainerInstance[`_store`]
       .select(state => state.view)
       .subscribe(view => {
         expect(view.date).toBe(undefined);
       }).unsubscribe();
     });
-});
 });

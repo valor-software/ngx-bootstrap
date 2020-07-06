@@ -47,7 +47,7 @@ import { DemoDateRangePickerShowPreviousMonth } from './demos/daterangepicker-sh
 import { DemoDatePickerSelectWeekRangeComponent } from './demos/select-week-range/select-week-range';
 import { DemoDateRangePickerDisplayOneMonth } from './demos/daterangepicker-display-one-month/display-one-month';
 import { DemoDatepickerTodayButtonComponent } from './demos/today-button/today-button';
-
+import { DemoDatepickerClearButtonComponent } from './demos/clear-button/clear-button';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -415,6 +415,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/today-button/today-button.html'),
         description: `<p>Display an optional 'Today' button that will automatically select today's date.</p>`,
         outlet: DemoDatepickerTodayButtonComponent
+      },
+      {
+        title: 'Show Clear Button',
+        anchor: 'datepicker-show-clear-button',
+        component: require('!!raw-loader!./demos/clear-button/clear-button.ts'),
+        html: require('!!raw-loader!./demos/clear-button/clear-button.html'),
+        description: `<p>Display an optional 'Clear' button that will automatically clear date.</p>`,
+        outlet: DemoDatepickerClearButtonComponent
       }
     ]
   },
