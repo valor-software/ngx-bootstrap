@@ -167,7 +167,7 @@ describe('datepicker:', () => {
   });
 
 
-  fit('should clear date', () => {
+  it('should clear date', () => {
     const datepicker = showDatepicker(fixture);
     const datepickerContainerInstance = getDatepickerContainer(datepicker);
 
