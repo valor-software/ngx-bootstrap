@@ -179,7 +179,7 @@ describe('datepicker:', () => {
 
     fixture.detectChanges();
     datepickerContainerInstance.clearDate();
-      datepickerContainerInstance[`_store`]
+    datepickerContainerInstance[`_store`]
       .select(state => state.view)
       .subscribe(view => {
         expect(view.date).toBe(undefined);
