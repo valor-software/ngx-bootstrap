@@ -51,7 +51,7 @@
     "cy:run:all": "APPLITOOLS_CONCURRENCY=100 cypress run --config integrationFolder=cypress --spec '**/*_spec.ts'",
     "cy:run:snapshot": "APPLITOOLS_CONCURRENCY=100 cypress run --config integrationFolder=cypress/snapshot",
     "view-stats": "webpack-bundle-analyzer demo/dist/stats.json",
-    "build:ssr": "run-s build.latest build:client-and-server-bundles webpack:server configure-heroku",
+    "build:ssr": "run-s build build:client-and-server-bundles webpack:server configure-heroku",
     "serve:ssr": "node demo/dist/server",
     "build:client-and-server-bundles": "ng build --prod && ng run ngx-bootstrap:server",
     "webpack:server": "webpack --config ./scripts/universal/webpack.server.config.js --progress --colors",
