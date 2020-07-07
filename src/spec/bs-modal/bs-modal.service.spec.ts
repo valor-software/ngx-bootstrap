@@ -52,7 +52,7 @@ describe('Service: BsModal', () => {
     mockComponentLoader.show.and.callFake(mockShow);
     mockComponentLoaderFactory.createLoader.and.callFake(mockCreateLoader);
 
-    bsModalService = TestBed.get(BsModalService);
+    bsModalService = TestBed.inject(BsModalService);
 
     function mockCreateLoader() {
       if (createdBackdrop) {
