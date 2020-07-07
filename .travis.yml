@@ -67,6 +67,9 @@ jobs:
   - env: NGV=next
   - name: sauce-tests
   - name: "Cypress Applitools Snapshot tests"
+  - name: "Cypress suit run on SSR 1thread"
+  - name: "Cypress suit run on SSR 2thread"
+  - name: "Cypress suit run on SSR 3thread"
   include:
   # precache npm and apt dependencies
   #    - stage: precache
