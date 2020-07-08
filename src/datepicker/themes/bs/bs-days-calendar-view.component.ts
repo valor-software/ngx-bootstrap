@@ -77,11 +77,10 @@ export class BsDaysCalendarViewComponent  {
   @Output() onHoverWeek = new EventEmitter<WeekViewModel>();
 
   isWeekHovered: boolean;
-  isiOS: RegExpMatchArray;
+  isiOS: boolean;
 
   constructor(private _config: BsDatepickerConfig) {
-    const device = navigator.userAgent.toLowerCase();
-    this.isiOS = device.match(/(iphone|ipod|ipad|apple)/);
+    this.isiOS = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
   }
 
   navigateTo(event: BsNavigationDirection): void {
