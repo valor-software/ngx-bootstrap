@@ -3443,6 +3443,12 @@ export const ngdoc: any = {
         "defaultValue": "tabs",
         "type": "string",
         "description": "<p>provides default navigation context class: &#39;tabs&#39; or &#39;pills&#39;</p>\n"
+      },
+      {
+        "name": "isKeysAllowed",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>provides possibility to set keyNavigations enable or disable, by default is enable</p>\n"
       }
     ]
   },
