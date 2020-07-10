@@ -4,7 +4,7 @@ import { TabsetConfig } from 'ngx-bootstrap/tabs';
 // such override allows to keep some initial values
 
 export function getTabsetConfig(): TabsetConfig {
-  return Object.assign(new TabsetConfig(), { type: 'pills' });
+  return Object.assign(new TabsetConfig(), { type: 'pills', isKeysAllowed: true });
 }
 
 @Component({
