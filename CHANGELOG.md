@@ -1,3 +1,22 @@
+<a name="6.0.0"></a>
+# [6.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v5.7.0...v6.0.0) (2020-07-10)
+
+
+### Bug Fixes
+
+* **ci:** make all SSR-related jobs as optional ([#5850](https://github.com/valor-software/ngx-bootstrap/issues/5850)) ([655215d](https://github.com/valor-software/ngx-bootstrap/commit/655215d))
+* **ci:** potential fix for SSR cypress failures ([#5847](https://github.com/valor-software/ngx-bootstrap/issues/5847)) ([f975df2](https://github.com/valor-software/ngx-bootstrap/commit/f975df2))
+* **ci:** remove ivy-related configs & checks, because, ivy is enabled by default ([44146fd](https://github.com/valor-software/ngx-bootstrap/commit/44146fd))
+* **datepicker:** fix wrong condition for iOS double tap ([335437e](https://github.com/valor-software/ngx-bootstrap/commit/335437e))
+* **tests:** fix failed e2e tab tests because of removal ([cce5dc9](https://github.com/valor-software/ngx-bootstrap/commit/cce5dc9))
+
+
+### Features
+
+* **common:** update dependencies to support angular 10 ([#5833](https://github.com/valor-software/ngx-bootstrap/issues/5833)) ([7f5c340](https://github.com/valor-software/ngx-bootstrap/commit/7f5c340))
+
+
+
 <a name="5.7.0"></a>
 # [5.7.0](https://github.com/valor-software/ngx-bootstrap/compare/v5.6.2...v5.7.0) (2020-06-30)
 
@@ -26,7 +45,14 @@
 ### Bug Fixes
 
 * **datepicker:** fix production build issue  [#5730](https://github.com/valor-software/ngx-bootstrap/issues/5730) ([b14d3e7](https://github.com/valor-software/ngx-bootstrap/commit/b14d3e7))
+* **demo:** fix random undefined errors for examples ([628e850](https://github.com/valor-software/ngx-bootstrap/commit/628e850))
+* **docs:** add info about version support ([fece3c8](https://github.com/valor-software/ngx-bootstrap/commit/fece3c8))
 * **dropdown:** add small delay for animation, to avoid issue with ngFor ([4744514](https://github.com/valor-software/ngx-bootstrap/commit/4744514))
+
+
+### Features
+
+* **ci:** update to 9.1.0 ([764786c](https://github.com/valor-software/ngx-bootstrap/commit/764786c))
 
 
 
@@ -79,6 +105,7 @@
 
 ### Features
 
+* **build:** update to Angular 9.0.0 (WIP) ([88db469](https://github.com/valor-software/ngx-bootstrap/commit/88db469))
 * **carousel:** add animation to carousel ([#5655](https://github.com/valor-software/ngx-bootstrap/issues/5655)) ([2c36e33](https://github.com/valor-software/ngx-bootstrap/commit/2c36e33)), closes [#281](https://github.com/valor-software/ngx-bootstrap/issues/281)
 * **datepicker:** add ability to show one month for daterangepicker depend on max/min date value ([#5667](https://github.com/valor-software/ngx-bootstrap/issues/5667)) ([b405057](https://github.com/valor-software/ngx-bootstrap/commit/b405057))
 * **datepicker:** add enabledDates functionality ([#5645](https://github.com/valor-software/ngx-bootstrap/issues/5645)) ([e2cdbb3](https://github.com/valor-software/ngx-bootstrap/commit/e2cdbb3))

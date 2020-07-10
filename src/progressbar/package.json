@@ -1,6 +1,6 @@
 {
   "name": "ngx-bootstrap/progressbar",
-  "version": "5.7.0",
+  "version": "6.0.0",
   "description": "Native Angular Bootstrap Components",
   "private": true,
   "ngPackage": {
