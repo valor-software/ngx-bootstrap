@@ -36,8 +36,9 @@ import { DemoDatepickerValueChangeEventComponent } from './value-change-event/va
 import { DemoDatePickerVisibilityEventsComponent } from './visibility-events/visibility-events';
 import { DemoDatePickerQuickSelectRangesComponent } from './quick-select-ranges/quick-select-ranges';
 import { DemoDateRangePickerShowPreviousMonth } from './daterangepicker-show-previous-month/show-previous-month';
+import { DemoDateRangePickerMaxDateRangeComponent } from './max-date-range/max-date-range';
 import { DemoDateRangePickerDisplayOneMonth } from './daterangepicker-display-one-month/display-one-month';
-
+import { DemoDatepickerTodayButtonComponent } from './today-button/today-button';
 
 export const DEMO_COMPONENTS = [
   DatepickerDemoComponent,
@@ -76,5 +77,8 @@ export const DEMO_COMPONENTS = [
   DemoDateRangePickerShowPreviousMonth,
   DemoDateRangePickerDisplayOneMonth,
   DemoDatePickerVisibilityEventsComponent,
+  DemoDatepickerTodayButtonComponent,
+  DemoDateRangePickerShowPreviousMonth,
+  DemoDateRangePickerMaxDateRangeComponent,
   DemoDatePickerQuickSelectRangesComponent
 ];
