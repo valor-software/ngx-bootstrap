@@ -2,7 +2,7 @@ import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Renderer2 } fro
 
 import { BsDatepickerAbstractComponent } from '../../base/bs-datepicker-container';
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
-import { DayViewModel } from '../../models';
+import { CalendarCellViewModel, DayViewModel } from '../../models';
 import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
 import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
@@ -11,6 +11,7 @@ import { PositioningService } from 'ngx-bootstrap/positioning';
 import { Subscription } from 'rxjs';
 import { datepickerAnimation } from '../../datepicker-animations';
 import { take } from 'rxjs/operators';
+import { getFullYear, getMonth } from 'ngx-bootstrap/chronos';
 
 @Component({
   selector: 'bs-datepicker-container',
@@ -118,6 +119,38 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     }
 
     this._store.dispatch(this._actions.select(day.date));
+  }
+
+  monthSelectHandler(day: CalendarCellViewModel): void {
+    if (!day || day.isDisabled) {
+      return;
+    }
+
+
+    this._store.dispatch(
+      this._actions.navigateTo({
+        unit: {
+          month: getMonth(day.date),
+          year: getFullYear(day.date)
+        },
+        viewMode: 'day'
+      })
+    );
+  }
+
+  yearSelectHandler(day: CalendarCellViewModel): void {
+    if (!day || day.isDisabled) {
+      return;
+    }
+
+    this._store.dispatch(
+      this._actions.navigateTo({
+        unit: {
+          year: getFullYear(day.date)
+        },
+        viewMode: 'month'
+      })
+    );
   }
 
   setToday(): void {

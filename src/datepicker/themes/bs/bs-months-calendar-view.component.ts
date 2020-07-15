@@ -44,6 +44,12 @@ export class BsMonthCalendarViewComponent {
   @Output() onSelect = new EventEmitter<CalendarCellViewModel>();
   @Output() onHover = new EventEmitter<CellHoverEvent>();
 
+  isiOS: boolean;
+
+  constructor() {
+    this.isiOS = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  }
+
   navigateTo(event: BsNavigationDirection): void {
     const step = BsNavigationDirection.DOWN === event ? -1 : 1;
     this.onNavigate.emit({ step: { year: step } });

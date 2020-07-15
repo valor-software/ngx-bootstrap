@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
-import { getFullYear, getMonth } from 'ngx-bootstrap/chronos';
-
 import { BsDatepickerAbstractComponent } from '../base/bs-datepicker-container';
 import { BsDatepickerActions } from './bs-datepicker.actions';
 import { BsDatepickerConfig } from '../bs-datepicker.config';
@@ -14,7 +12,6 @@ import { BsLocaleService } from '../bs-locale.service';
 import {
   BsDatepickerViewMode,
   BsNavigationEvent,
-  CalendarCellViewModel,
   CellHoverEvent,
   DatepickerRenderOptions,
   DatepickerDateCustomClasses,
@@ -164,35 +161,6 @@ export class BsDatepickerEffects {
 
     container.yearHoverHandler = (event: CellHoverEvent): void => {
       event.cell.isHovered = event.isHovered;
-    };
-
-    container.monthSelectHandler = (event: CalendarCellViewModel): void => {
-      if (event.isDisabled) {
-        return;
-      }
-      this._store.dispatch(
-        this._actions.navigateTo({
-          unit: {
-            month: getMonth(event.date),
-            year: getFullYear(event.date)
-          },
-          viewMode: 'day'
-        })
-      );
-    };
-
-    container.yearSelectHandler = (event: CalendarCellViewModel): void => {
-      if (event.isDisabled) {
-        return;
-      }
-      this._store.dispatch(
-        this._actions.navigateTo({
-          unit: {
-            year: getFullYear(event.date)
-          },
-          viewMode: 'month'
-        })
-      );
     };
 
     return this;
