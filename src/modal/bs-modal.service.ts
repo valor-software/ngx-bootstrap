@@ -137,10 +137,7 @@ export class BsModalService {
         bsModalService: this
       });
     modalContainerRef.instance.level = this.getModalsCount();
-    bsModalRef.hide = () => {
-      const duration = this.config.animated ? TRANSITION_DURATIONS.MODAL : 0;
-      setTimeout(() => modalContainerRef.instance.hide(), duration);
-    };
+    bsModalRef.hide = () => modalContainerRef.instance.hide();
     bsModalRef.content = modalLoader.getInnerComponent() || null;
     bsModalRef.setClass = (newClass: string) => {
       modalContainerRef.instance.config.class = newClass;
