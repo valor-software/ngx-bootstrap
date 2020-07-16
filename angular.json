@@ -46,25 +46,6 @@
                 }
               ]
             },
-            "ivy": {
-              "preserveSymlinks": true,
-              "optimization": true,
-              "outputHashing": "all",
-              "tsConfig": "demo/src/tsconfig-ivy.json",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": true,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": true,
-              "buildOptimizer": true,
-              "fileReplacements": [
-                {
-                  "replace": "demo/src/environments/environment.ts",
-                  "with": "demo/src/environments/environment.prod.ts"
-                }
-              ]
-            },
             "server": {
               "preserveSymlinks": true,
               "optimization": true,
@@ -96,9 +77,6 @@
             },
             "server": {
               "browserTarget": "ngx-bootstrap:build:server"
-            },
-            "ivy": {
-              "browserTarget": "ngx-bootstrap:build:ivy"
             }
           }
         },
@@ -126,11 +104,6 @@
             "assets": [
               "demo/src/assets"
             ]
-          },
-          "configurations": {
-            "ivy": {
-              "tsConfig": "src/tsconfig-ivy.spec.json"
-            }
           }
         },
         "lint": {
@@ -173,11 +146,6 @@
               "demo/src/assets/css/prettify-angulario.css"
             ],
             "assets": []
-          },
-          "configurations": {
-            "ivy": {
-              "tsConfig": "src/tsconfig-ivy.spec.json"
-            }
           }
         },
         "lint": {
