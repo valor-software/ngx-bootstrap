@@ -1,5 +1,10 @@
 import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+
+import { take } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+
 import { getFullYear, getMonth } from 'ngx-bootstrap/chronos';
+import { PositioningService } from 'ngx-bootstrap/positioning';
 
 import { BsDatepickerAbstractComponent } from '../../base/bs-datepicker-container';
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
@@ -7,11 +12,7 @@ import { CalendarCellViewModel, DayViewModel } from '../../models';
 import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
 import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
-import { PositioningService } from 'ngx-bootstrap/positioning';
-
-import { Subscription } from 'rxjs';
 import { datepickerAnimation } from '../../datepicker-animations';
-import { take } from 'rxjs/operators';
 import { BsCustomDates } from './bs-custom-dates-view.component';
 
 @Component({
@@ -128,19 +129,48 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
       return;
     }
 
+    day.isSelected = true;
+
     if (this._config.minMode !== 'month') {
-        if (day.isDisabled) {
-          return;
-        }
-        this._store.dispatch(
-          this._actions.navigateTo({
-            unit: {
-              month: getMonth(day.date),
-              year: getFullYear(day.date)
-            },
-            viewMode: 'day'
-          })
-        );
+      if (day.isDisabled) {
+        return;
+      }
+      this._store.dispatch(
+        this._actions.navigateTo({
+          unit: {
+            month: getMonth(day.date),
+            year: getFullYear(day.date)
+          },
+          viewMode: 'day'
+        })
+      );
+
+      return;
+    }
+    this.rangesProcessing(day);
+  }
+
+  yearSelectHandler(day: CalendarCellViewModel): void {
+    if (!day) {
+      return;
+    }
+
+    day.isSelected = true;
+
+    if (this._config.minMode !== 'year') {
+      if (day.isDisabled) {
+        return;
+      }
+      this._store.dispatch(
+        this._actions.navigateTo({
+          unit: {
+            year: getFullYear(day.date)
+          },
+          viewMode: 'month'
+        })
+      );
+
+      return;
     }
     this.rangesProcessing(day);
   }
@@ -172,28 +202,6 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
       this._rangeStack = [];
     }
   }
-
-  yearSelectHandler(day: CalendarCellViewModel): void {
-    if (!day) {
-      return;
-    }
-
-    if (this._config.minMode !== 'year') {
-      if (day.isDisabled) {
-        return;
-      }
-      this._store.dispatch(
-        this._actions.navigateTo({
-          unit: {
-            year: getFullYear(day.date)
-          },
-          viewMode: 'month'
-        })
-      );
-    }
-    this.rangesProcessing(day);
-  }
-
 
   ngOnDestroy(): void {
     for (const sub of this._subs) {

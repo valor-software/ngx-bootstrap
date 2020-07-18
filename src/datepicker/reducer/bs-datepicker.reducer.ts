@@ -317,6 +317,7 @@ function flagReducer(state: BsDatepickerState,
           maxDate: state.maxDate,
           hoveredMonth: state.hoveredMonth,
           selectedDate: state.selectedDate,
+          selectedRange: state.selectedRange,
           displayMonths,
           monthIndex
         })
@@ -334,6 +335,7 @@ function flagReducer(state: BsDatepickerState,
           maxDate: state.maxDate,
           hoveredYear: state.hoveredYear,
           selectedDate: state.selectedDate,
+          selectedRange: state.selectedRange,
           displayMonths,
           yearIndex
         })
