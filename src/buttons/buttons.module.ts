@@ -9,7 +9,7 @@ import { ButtonRadioGroupDirective } from './button-radio-group.directive';
   exports: [ButtonCheckboxDirective, ButtonRadioDirective, ButtonRadioGroupDirective]
 })
 export class ButtonsModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<ButtonsModule> {
     return { ngModule: ButtonsModule, providers: [] };
   }
 }

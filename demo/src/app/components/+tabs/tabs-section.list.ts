@@ -10,6 +10,7 @@ import { DemoTabsDisabledComponent } from './demos/disabled/disabled';
 import { DemoTabsCustomComponent } from './demos/custom-template/custom-template';
 import { DemoTabsSelectEventComponent } from './demos/select-event/select-event';
 import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
+import { DemoDisabledKeyNavigationsComponent } from './demos/disabled-key-navigations/disabled-key-navigations';
 
 import { ContentSection } from '../../docs/models/content-section.model';
 import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
@@ -118,6 +119,13 @@ export const demoComponentContent: ContentSection[] = [
         title: 'Accessibility',
         anchor: 'accessibility',
         outlet: DemoAccessibilityComponent
+      },
+      {
+        title: 'Disable key navigations',
+        anchor: 'disable-key-navigations',
+        component: require('!!raw-loader!./demos/disabled-key-navigations/disabled-key-navigations'),
+        html: require('!!raw-loader!./demos/disabled-key-navigations/disabled-key-navigations.html'),
+        outlet: DemoDisabledKeyNavigationsComponent
       }
     ]
   },

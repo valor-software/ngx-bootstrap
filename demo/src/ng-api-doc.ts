@@ -1094,6 +1094,18 @@ export const ngdoc: any = {
         "description": "<p>Shows previous and current month, instead of current and next (dateRangePicker only)</p>\n"
       },
       {
+        "name": "showTodayButton",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>Shows &#39;today&#39; button</p>\n"
+      },
+      {
+        "name": "todayPosition",
+        "defaultValue": "center",
+        "type": "string",
+        "description": "<p>Positioning for &#39;today&#39; button</p>\n"
+      },
+      {
         "name": "showWeekNumbers",
         "defaultValue": "true",
         "type": "boolean",
@@ -3431,6 +3443,12 @@ export const ngdoc: any = {
         "defaultValue": "tabs",
         "type": "string",
         "description": "<p>provides default navigation context class: &#39;tabs&#39; or &#39;pills&#39;</p>\n"
+      },
+      {
+        "name": "isKeysAllowed",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>provides possibility to set keyNavigations enable or disable, by default is enable</p>\n"
       }
     ]
   },
