@@ -10,7 +10,7 @@ import { RatingConfig } from './rating.config';
   exports: [RatingComponent]
 })
 export class RatingModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<RatingModule> {
     return {
       ngModule: RatingModule,
       providers: [RatingConfig]

@@ -14,7 +14,7 @@ import { PopoverContainerComponent } from './popover-container.component';
   entryComponents: [PopoverContainerComponent]
 })
 export class PopoverModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<PopoverModule> {
     return {
       ngModule: PopoverModule,
       providers: [PopoverConfig, ComponentLoaderFactory, PositioningService]

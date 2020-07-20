@@ -4,7 +4,9 @@ import {
   TemplateRef,
   EventEmitter,
   Renderer2,
-  RendererFactory2
+  RendererFactory2,
+  Inject,
+  Optional
 } from '@angular/core';
 
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
@@ -14,14 +16,15 @@ import {
   CLASS_NAME,
   modalConfigDefaults,
   ModalOptions,
-  TRANSITION_DURATIONS
+  TRANSITION_DURATIONS,
+  MODAL_CONFIG_DEFAULT_OVERRIDE
 } from './modal-options.class';
 import { BsModalRef } from './bs-modal-ref.service';
 
 @Injectable()
 export class BsModalService {
   // constructor props
-  config: ModalOptions = modalConfigDefaults;
+  config: ModalOptions;
 
   // tslint:disable-next-line:no-any
   onShow: EventEmitter<any> = new EventEmitter();
@@ -46,13 +49,19 @@ export class BsModalService {
 
   private _renderer: Renderer2;
 
-  constructor(rendererFactory: RendererFactory2, private clf: ComponentLoaderFactory) {
+  constructor(
+    rendererFactory: RendererFactory2,
+    private clf: ComponentLoaderFactory,
+    @Optional() @Inject(MODAL_CONFIG_DEFAULT_OVERRIDE) modalDefaultOption: ModalOptions) {
     this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(
       null,
       null,
       null
     );
     this._renderer = rendererFactory.createRenderer(null, null);
+    this.config = modalDefaultOption ?
+      (Object.assign({}, modalConfigDefaults, modalDefaultOption)) :
+      modalConfigDefaults;
   }
 
   /** Shows a modal */
@@ -60,7 +69,7 @@ export class BsModalService {
   show(content: string | TemplateRef<any> | any, config?: ModalOptions): BsModalRef {
     this.modalsCount++;
     this._createLoaders();
-    this.config = Object.assign({}, modalConfigDefaults, config);
+    this.config = Object.assign({}, this.config, config);
     this._showBackdrop();
     this.lastDismissReason = null;
 
@@ -121,7 +130,12 @@ export class BsModalService {
       .provide({ provide: BsModalRef, useValue: bsModalRef })
       .attach(ModalContainerComponent)
       .to('body')
-      .show({content, isAnimated: this.config.animated, initialState: this.config.initialState, bsModalService: this});
+      .show({
+        content,
+        isAnimated: this.config.animated,
+        initialState: this.config.initialState,
+        bsModalService: this
+      });
     modalContainerRef.instance.level = this.getModalsCount();
     bsModalRef.hide = () => {
       const duration = this.config.animated ? TRANSITION_DURATIONS.MODAL : 0;
