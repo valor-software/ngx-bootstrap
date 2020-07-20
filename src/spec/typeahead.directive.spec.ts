@@ -1,4 +1,4 @@
-/* tslint:disable:max-file-line-count */
+/* tslint:disable:no-floating-promises max-file-line-count */
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { Component, DebugElement } from '@angular/core';
@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 import { dispatchMouseEvent, dispatchTouchEvent, dispatchKeyboardEvent } from '@netbasal/spectator';
 
-import { TypeaheadMatch, TypeaheadDirective, TypeaheadModule } from '../typeahead';
+import { TypeaheadMatch, TypeaheadDirective, TypeaheadModule, TypeaheadOrder } from '../typeahead';
 
 interface State {
   id: number;
@@ -31,6 +31,15 @@ class TestTypeaheadComponent {
     {id: 2, name: 'Alaska', region: 'West'},
     {id: 3, name: 'Arizona', region: 'West'},
     {id: 4, name: 'Arkansas', region: 'South'}
+  ];
+  statesString: string[] = [
+    'Alabama',
+    'Alaska',
+    'Arizona',
+    'Arkansas',
+    'California',
+    'Colorado',
+    'Connecticut'
   ];
 
   onBlurEvent(activeItem) { return undefined; }
@@ -76,6 +85,10 @@ describe('Directive: Typeahead', () => {
       expect(directive.typeaheadMinLength).toBe(1);
     });
 
+    it('should set a default value for typeaheadOrderBy', () => {
+      expect(directive.typeaheadOrderBy).toBeUndefined();
+    });
+
     it('should get a value for typeaheadMinLength if user added it', () => {
       directive.typeaheadMinLength = 4;
 
@@ -117,9 +130,7 @@ describe('Directive: Typeahead', () => {
 
       expect(typeaheadContainer).toBeNull();
     });
-  });
 
-  describe('onInput', () => {
     it('should be called show method', fakeAsync(() => {
         inputElement.value = 'a';
         dispatchTouchEvent(inputElement, 'input');
@@ -174,6 +185,19 @@ describe('Directive: Typeahead', () => {
         expect(fixture.debugElement.query(By.css('typeahead-container'))).toBeNull();
       })
     );
+
+    it('should not throw an error on blur', fakeAsync(() => {
+      expect(directive._container).toBeFalsy();
+      expect(directive.matches).toEqual([]);
+
+      dispatchMouseEvent(inputElement, 'click');
+      tick();
+      fixture.detectChanges();
+
+      fixture.whenStable().then(() => {
+        expect(() => directive.onBlur()).not.toThrowError();
+      });
+    }));
   });
 
   describe('onFocus', () => {
@@ -205,7 +229,7 @@ describe('Directive: Typeahead', () => {
     });
   });
 
-  describe('onChange grouped', () => {
+  describe('if typeaheadGroupField is not null', () => {
     beforeEach(
       fakeAsync(() => {
         inputElement.value = 'Ala';
@@ -269,37 +293,6 @@ describe('Directive: Typeahead', () => {
       fixture.detectChanges();
     }));
 
-  });
-
-  describe('if typeaheadHideResultsOnBlur', () => {
-    beforeEach(
-      fakeAsync(() => {
-        inputElement.value = 'Ala';
-        dispatchTouchEvent(inputElement, 'input');
-        directive.typeaheadHideResultsOnBlur = false;
-        fixture.detectChanges();
-        tick(100);
-      })
-    );
-
-    it('equal true should be opened',
-      fakeAsync(() => {
-        dispatchMouseEvent(document, 'click');
-        tick();
-
-        expect(fixture.nativeElement.querySelector('.dropdown').classList).toContain('open');
-      })
-    );
-
-    it('equal false should be closed',
-      fakeAsync(() => {
-        directive.typeaheadHideResultsOnBlur = true;
-        dispatchMouseEvent(document, 'click');
-        tick();
-
-        expect(fixture.debugElement.query(By.css('typeahead-container'))).toBeNull();
-      })
-    );
   });
 
   describe('onChange', () => {
@@ -486,7 +479,7 @@ describe('Directive: Typeahead', () => {
     }));
   });
 
-  describe('if typeaheadHideResultsOnBlur', () => {
+  describe('if typeaheadHideResultsOnBlur is not null', () => {
     beforeEach(
       fakeAsync(() => {
         inputElement.value = 'Ala';
@@ -515,5 +508,191 @@ describe('Directive: Typeahead', () => {
         expect(fixture.debugElement.query(By.css('typeahead-container'))).toBeNull();
       })
     );
+  });
+
+  describe('if typeaheadOrderBy is not null', () => {
+    describe('and source of options is an array of string should result in 2 items, when "Ala" is entered',
+      () => {
+      beforeEach(
+        fakeAsync(() => {
+          directive.typeahead = component.statesString;
+          directive.typeaheadOptionField = null;
+          inputElement.value = 'Ala';
+          fixture.detectChanges();
+          tick(100);
+        })
+      );
+
+      it('and order direction "asc". 1st - Alabama, 2sd - Alaska',
+        fakeAsync(() => {
+          directive.typeaheadOrderBy = {direction: 'asc'};
+          dispatchTouchEvent(inputElement, 'input');
+          fixture.detectChanges();
+          tick(100);
+
+          expect(directive.matches.length).toBe(2);
+          expect(directive.matches[0].item).toBe('Alabama');
+          expect(directive.matches[1].item).toBe('Alaska');
+        })
+      );
+
+      it(
+        'and order direction "desc". 1st - Alaska, 2sd - Alabama',
+        fakeAsync(() => {
+          directive.typeaheadOrderBy = {direction: 'desc'};
+          dispatchTouchEvent(inputElement, 'input');
+          fixture.detectChanges();
+          tick(100);
+
+          expect(directive.matches.length).toBe(2);
+          expect(directive.matches[0].item).toBe('Alaska');
+          expect(directive.matches[1].item).toBe('Alabama');
+        })
+      );
+
+      it('and typeaheadOrderBy is empty object, shouldn\'t break the app',
+        fakeAsync(() => {
+          // tslint:disable-next-line:no-object-literal-type-assertion
+          directive.typeaheadOrderBy = {} as TypeaheadOrder;
+          dispatchTouchEvent(inputElement, 'input');
+          fixture.detectChanges();
+          tick(100);
+
+          expect(directive.matches.length).toBe(2);
+        })
+      );
+
+      it('and order direction is not equal "asc" or "desc", shouldn\'t break the app',
+        fakeAsync(() => {
+          // tslint:disable-next-line
+          directive.typeaheadOrderBy = {direction: 'test' as 'asc'};
+          dispatchTouchEvent(inputElement, 'input');
+          fixture.detectChanges();
+          tick(100);
+
+          expect(directive.matches.length).toBe(2);
+        })
+      );
+
+        it('and order field is setup, it shouldn\'t affect the result',
+          fakeAsync(() => {
+            // tslint:disable-next-line
+            directive.typeaheadOrderBy = {direction: 'asc', field: 'name'};
+            dispatchTouchEvent(inputElement, 'input');
+            fixture.detectChanges();
+            tick(100);
+
+            expect(directive.matches.length).toBe(2);
+          })
+        );
+    });
+
+    describe('and source of options is an array of objects', () => {
+      describe('should result in 2 items, when "Ala" is entered', () => {
+        beforeEach(
+          fakeAsync(() => {
+            inputElement.value = 'Ala';
+            fixture.detectChanges();
+            tick(100);
+          })
+        );
+
+        it('and order direction "asc", order field - "name". 1st - Alabama, 2sd - Alaska',
+          fakeAsync(() => {
+            directive.typeaheadOrderBy = {direction: 'asc', field: 'name'};
+            dispatchTouchEvent(inputElement, 'input');
+            fixture.detectChanges();
+            tick(100);
+
+            expect(directive.matches.length).toBe(2);
+            expect(directive.matches[0].item.name).toBe('Alabama');
+            expect(directive.matches[1].item.name).toBe('Alaska');
+          })
+        );
+
+        it('and order direction "desc", order field - "name". 1st - Alaska, 2sd - Alabama',
+          fakeAsync(() => {
+            directive.typeaheadOrderBy = {direction: 'desc', field: 'name'};
+            dispatchTouchEvent(inputElement, 'input');
+            fixture.detectChanges();
+            tick(100);
+
+            expect(directive.matches.length).toBe(2);
+            expect(directive.matches[0].item.name).toBe('Alaska');
+            expect(directive.matches[1].item.name).toBe('Alabama');
+          })
+        );
+
+        it(
+          // tslint:disable-next-line:max-line-length
+          'and order direction "desc", order field is null. 1st - Alabama, 2sd - Alaska. Lack of the field doesn\'t affect the result',
+          fakeAsync(() => {
+            directive.typeaheadOrderBy = {direction: 'desc', field: null};
+            dispatchTouchEvent(inputElement, 'input');
+            fixture.detectChanges();
+            tick(100);
+
+            expect(directive.matches.length).toBe(2);
+            expect(directive.matches[0].item.name).toBe('Alabama');
+            expect(directive.matches[1].item.name).toBe('Alaska');
+          })
+        );
+
+        it(
+          // tslint:disable-next-line:max-line-length
+          'and order direction "desc", order field is "test". 1st - Alabama, 2sd - Alaska. The wrong field doesn\'t affect the result',
+          fakeAsync(() => {
+            directive.typeaheadOrderBy = {direction: 'desc', field: 'test'};
+            dispatchTouchEvent(inputElement, 'input');
+            fixture.detectChanges();
+            tick(100);
+
+            expect(directive.matches.length).toBe(2);
+            expect(directive.matches[0].item.name).toBe('Alabama');
+            expect(directive.matches[1].item.name).toBe('Alaska');
+          })
+        );
+      });
+
+      describe('should result in 4 items, when "a" is entered', () => {
+        beforeEach(
+          fakeAsync(() => {
+            inputElement.value = 'a';
+            fixture.detectChanges();
+            tick(100);
+          })
+        );
+
+        it('and order direction "asc", order field - "region". Result = Alabama-Arkansas-Alaska-Arizona',
+          fakeAsync(() => {
+            directive.typeaheadOrderBy = {direction: 'asc', field: 'region'};
+            dispatchTouchEvent(inputElement, 'input');
+            fixture.detectChanges();
+            tick(100);
+
+            expect(directive.matches.length).toBe(4);
+            expect(directive.matches[0].item.name).toBe('Alabama');
+            expect(directive.matches[1].item.name).toBe('Arkansas');
+            expect(directive.matches[2].item.name).toBe('Alaska');
+            expect(directive.matches[3].item.name).toBe('Arizona');
+          })
+        );
+
+        it('and order direction "desc", order field - "id". Result = Arkansas-Arizona-Alaska-Alabama',
+          fakeAsync(() => {
+            directive.typeaheadOrderBy = {direction: 'desc', field: 'id'};
+            dispatchTouchEvent(inputElement, 'input');
+            fixture.detectChanges();
+            tick(100);
+
+            expect(directive.matches.length).toBe(4);
+            expect(directive.matches[0].item.name).toBe('Arkansas');
+            expect(directive.matches[1].item.name).toBe('Arizona');
+            expect(directive.matches[2].item.name).toBe('Alaska');
+            expect(directive.matches[3].item.name).toBe('Alabama');
+          })
+        );
+      });
+    });
   });
 });

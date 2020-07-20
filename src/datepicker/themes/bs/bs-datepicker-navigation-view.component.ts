@@ -23,15 +23,16 @@ import {
       <span>&lsaquo;</span>
     </button>
 
-    &#8203;  <!-- zero-width space needed for correct alignement
+    <ng-container *ngIf="calendar.monthTitle">
+      &#8203;  <!-- zero-width space needed for correct alignement
                   with preserveWhitespaces: false in Angular -->
 
-    <button class="current"
-            *ngIf="calendar.monthTitle"
+      <button class="current"
             type="button"
-            (click)="view('month')">
-      <span>{{ calendar.monthTitle }}</span>
-    </button>
+            (click)="view('month')"
+      ><span>{{ calendar.monthTitle }}</span>
+      </button>
+    </ng-container>
 
     &#8203;  <!-- zero-width space needed for correct alignement
                   with preserveWhitespaces: false in Angular -->
