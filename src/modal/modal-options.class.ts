@@ -1,4 +1,4 @@
-import { Injectable, StaticProvider } from '@angular/core';
+import { Injectable, StaticProvider, InjectionToken } from '@angular/core';
 import { ClassName, DismissReasons, Selector, TransitionDurations } from './models';
 
 @Injectable()
@@ -48,7 +48,6 @@ export class ModalOptions {
   ariaDescribedby?: string;
 }
 
-
 export const modalConfigDefaults: ModalOptions = {
   backdrop: true,
   keyboard: true,
@@ -59,6 +58,9 @@ export const modalConfigDefaults: ModalOptions = {
   animated: true,
   initialState: {}
 };
+
+export const MODAL_CONFIG_DEFAULT_OVERRIDE: InjectionToken<ModalOptions> =
+  new InjectionToken<ModalOptions>('override-default-config');
 
 export const CLASS_NAME: ClassName = {
   SCROLLBAR_MEASURER: 'modal-scrollbar-measure',

@@ -26,7 +26,7 @@ import { BsDropdownState } from './bs-dropdown.state';
 })
 export class BsDropdownModule {
   // tslint:disable-next-line:no-any
-  static forRoot(config?: any): ModuleWithProviders {
+  static forRoot(config?: any): ModuleWithProviders<BsDropdownModule> {
     return {
       ngModule: BsDropdownModule,
       providers: [
