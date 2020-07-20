@@ -45,6 +45,7 @@ import {
 import { DemoDatePickerQuickSelectRangesComponent } from './demos/quick-select-ranges/quick-select-ranges';
 import { DemoDateRangePickerShowPreviousMonth } from './demos/daterangepicker-show-previous-month/show-previous-month';
 import { DemoDatePickerSelectWeekRangeComponent } from './demos/select-week-range/select-week-range';
+import { DemoDateRangePickerMaxDateRangeComponent } from './demos/max-date-range/max-date-range';
 import { DemoDateRangePickerDisplayOneMonth } from './demos/daterangepicker-display-one-month/display-one-month';
 import { DemoDatepickerTodayButtonComponent } from './demos/today-button/today-button';
 import { DemoDatepickerClearButtonComponent } from './demos/clear-button/clear-button';
@@ -414,7 +415,7 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/today-button/today-button.ts'),
         html: require('!!raw-loader!./demos/today-button/today-button.html'),
         description: `<p>Display an optional 'Today' button that will automatically select today's date.</p>`,
-        outlet: DemoDatepickerTodayButtonComponent
+        outlet: DemoDatepickerTodayButtonComponent,
       },
       {
         title: 'Show Clear Button',
@@ -423,6 +424,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/clear-button/clear-button.html'),
         description: `<p>Display an optional 'Clear' button that will automatically clear date.</p>`,
         outlet: DemoDatepickerClearButtonComponent
+      },
+      {
+        title: 'Max Date Range in Daterangepicker',
+        anchor: 'daterangepicker-max-date-range',
+        component: require('!!raw-loader!./demos/max-date-range/max-date-range.ts'),
+        html: require('!!raw-loader!./demos/max-date-range/max-date-range.html'),
+        description: `<p>Max date range after first date selection can be added to Daterangepicker using <code>maxDateRange</code></p>`,
+        outlet: DemoDateRangePickerMaxDateRangeComponent
       }
     ]
   },

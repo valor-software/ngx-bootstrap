@@ -111,6 +111,11 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    */
   ranges?: BsCustomDates[];
 
+  /**
+   * Max Date Range in days
+   */
+  maxDateRange?: number;
+
   // DatepickerFormatOptions
   monthTitle = 'MMMM';
   yearTitle = 'YYYY';
