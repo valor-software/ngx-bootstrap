@@ -5,13 +5,10 @@ import { PositioningService } from 'ngx-bootstrap/positioning';
 
 import { BsDatepickerInputDirective } from './bs-datepicker-input.directive';
 import { BsDatepickerDirective } from './bs-datepicker.component';
-import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsDaterangepickerInputDirective } from './bs-daterangepicker-input.directive';
 import { BsDaterangepickerDirective } from './bs-daterangepicker.component';
-import { BsDaterangepickerConfig } from './bs-daterangepicker.config';
 
 import { BsDatepickerInlineDirective } from './bs-datepicker-inline.component';
-import { BsDatepickerInlineConfig } from './bs-datepicker-inline.config';
 
 import { BsLocaleService } from './bs-locale.service';
 import { BsDatepickerActions } from './reducer/bs-datepicker.actions';
@@ -24,7 +21,6 @@ import { BsDatepickerInlineContainerComponent } from './themes/bs/bs-datepicker-
 import { BsDaterangepickerInlineContainerComponent } from './themes/bs/bs-daterangepicker-inline-container.component';
 
 import { BsDaterangepickerInlineDirective } from './bs-daterangepicker-inline.component';
-import { BsDaterangepickerInlineConfig } from './bs-daterangepicker-inline.config';
 
 import { BsCalendarLayoutComponent } from './themes/bs/bs-calendar-layout.component';
 import { BsCurrentDateViewComponent } from './themes/bs/bs-current-date-view.component';
@@ -87,10 +83,6 @@ export class BsDatepickerModule {
         PositioningService,
         BsDatepickerStore,
         BsDatepickerActions,
-        BsDatepickerConfig,
-        BsDaterangepickerConfig,
-        BsDatepickerInlineConfig,
-        BsDaterangepickerInlineConfig,
         BsDatepickerEffects,
         BsLocaleService
       ]

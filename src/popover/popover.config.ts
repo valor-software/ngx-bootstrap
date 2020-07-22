@@ -6,7 +6,9 @@ import { Injectable } from '@angular/core';
  * the values of its properties in order to provide default values for all the
  * popovers used in the application.
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class PopoverConfig {
   /** sets disable adaptive position */
   adaptivePosition = true;

@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { RatingComponent } from './rating.component';
-import { RatingConfig } from './rating.config';
 
 @NgModule({
   imports: [CommonModule],
@@ -13,7 +12,7 @@ export class RatingModule {
   static forRoot(): ModuleWithProviders<RatingModule> {
     return {
       ngModule: RatingModule,
-      providers: [RatingConfig]
+      providers: []
     };
   }
 }
