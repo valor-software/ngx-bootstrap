@@ -19,12 +19,14 @@ describe('Service: BsModal', () => {
       'hide',
       'provide',
       'show',
+      'instance',
       'to'
     ]);
     componentLoader.attach.and.returnValue(componentLoader);
     componentLoader.hide.and.returnValue(componentLoader);
     componentLoader.provide.and.returnValue(componentLoader);
     componentLoader.to.and.returnValue(componentLoader);
+    componentLoader.instance.and.returnValue(componentLoader);
 
     componentLoader.onBeforeShow = EMPTY;
     componentLoader.onShown = EMPTY;
@@ -82,13 +84,12 @@ describe('Service: BsModal', () => {
         ]
       };
       const mockModalInstance = jasmine.createSpyObj('modalInstance', [
-        'hide',
+        'hide'
       ]);
       mockModalComponentRef = {
         instance: mockModalInstance
       };
 
-      mockModalInstance.level = '';
       bsModalService.show(content, options);
 
       expect(mockComponentLoader.provide).toHaveBeenCalledWith(provider);
