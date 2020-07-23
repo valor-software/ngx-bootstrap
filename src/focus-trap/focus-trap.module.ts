@@ -13,7 +13,7 @@ import { NgxPlatform } from './platform';
   exports: [FocusTrapDirective]
 })
 export class FocusTrapModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<FocusTrapModule> {
     return {
       ngModule: FocusTrapModule,
       providers: [
