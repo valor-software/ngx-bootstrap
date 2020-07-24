@@ -296,6 +296,41 @@ describe('Typeahead demo page test suite', () => {
       });
   });
 
+  describe('Multiple Search', () => {
+    beforeEach(() => typeahead.scrollToMenu('Multiple search'));
+
+    const multipleSearch = typeahead.exampleDemosArr.multipleSearch;
+    const formTemplate = 'Model: ';
+    const stateForCheck = 'New York';
+    const textToInput = 'New Mexico,New York';
+    const textWithDelimiters = 'New Mexico,';
+
+    it('example contains typeahead input and typeahead card with "Model:"', () => {
+      typeahead.isElementVisible(multipleSearch, typeahead.inputSelector);
+      typeahead.isPreviewExist(multipleSearch, formTemplate);
+    });
+
+    it('When user uses "," and types "New Mexico," then drop-down with 20 states should be shown',
+      () => {
+        typeahead.clearInputAndSendKeys(multipleSearch, textWithDelimiters);
+        typeahead.isElementVisible(multipleSearch, typeahead.activeDropdown);
+        typeahead.isDropdownHasNItems(typeahead.dropdownBtn, 20);
+      });
+
+    it('when user starts to type "New Mexico,New York" then a drop-down with the second match is shown', () => {
+      typeahead.clearInputAndSendKeys(multipleSearch, textToInput);
+      typeahead.isElementVisible(multipleSearch, typeahead.activeDropdown);
+    });
+
+    it('when user clicks on any item in typeahead drop-down, then typeahead container appends with a selected State',
+      () => {
+        typeahead.clearInputAndSendKeys(multipleSearch, textToInput);
+        typeahead.clickByText(typeahead.activeDropdown, stateForCheck);
+        typeahead.isPreviewExist(multipleSearch, stateForCheck);
+        typeahead.isInputValueEqual(multipleSearch, textToInput);
+      });
+  });
+
   describe('Dropup', () => {
     beforeEach(() => typeahead.scrollToMenu('Dropup'));
 

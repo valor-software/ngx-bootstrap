@@ -111,6 +111,11 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    */
   ranges?: BsCustomDates[];
 
+  /**
+   * Max Date Range in days
+   */
+  maxDateRange?: number;
+
   // DatepickerFormatOptions
   monthTitle = 'MMMM';
   yearTitle = 'YYYY';
@@ -118,4 +123,13 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
   monthLabel = 'MMMM';
   yearLabel = 'YYYY';
   weekNumbers = 'w';
+
+  /**
+   * Shows 'today' button
+   */
+  showTodayButton = false;
+  /**
+   * Positioning of 'today' button
+   */
+  todayPosition = 'center';
 }
