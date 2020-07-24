@@ -4,6 +4,7 @@
  * @copyright Angular ng-bootstrap team
  */
 import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { ChangeDetectionStrategy } from '@angular/core';
 
 export function createGenericTestComponent<T>(
   html: string,
@@ -11,6 +12,28 @@ export function createGenericTestComponent<T>(
 ): ComponentFixture<T> {
   TestBed.overrideComponent(type, { set: { template: html } });
   const fixture = TestBed.createComponent(type);
+  fixture.detectChanges();
+
+  return fixture;
+}
+
+export function createComponent<T>(htmlTemplate: string,
+                                   component: { new (...args: any[]): T },
+                                   dtc?: string): ComponentFixture<T> {
+  if (dtc === 'OnPush') {
+    TestBed.overrideComponent(component, {
+      set: {
+        template: htmlTemplate,
+        changeDetection: ChangeDetectionStrategy.OnPush
+      }
+    });
+  } else {
+    TestBed.overrideComponent(component, {
+      set: {template: htmlTemplate}
+    });
+  }
+
+  const fixture = TestBed.createComponent(component);
   fixture.detectChanges();
 
   return fixture;
