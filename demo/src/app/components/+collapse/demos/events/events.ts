@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 })
 export class CollapseDemoEventsComponent {
   isCollapsed = false;
-  message: string;
+  message: string = 'expanded';
 
   collapsed(): void {
     this.message = 'collapsed';

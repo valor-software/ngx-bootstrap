@@ -53,6 +53,10 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
   /**
    * Disable specific dates
    */
+  @Input() datesEnabled: Date[];
+  /**
+   * Enable specific dates
+   */
   @Input() datesDisabled: Date[];
   /**
    * Emits when datepicker value has been changed
@@ -83,12 +87,6 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
   ngOnInit(): void {
     this.setConfig();
 
-    this._datepickerRef = this._datepicker
-      .provide({provide: BsDatepickerConfig, useValue: this._config})
-      .attach(BsDatepickerInlineContainerComponent)
-      .to(this._elementRef)
-      .show();
-
     // if date changes from external source (model -> view)
     this._subs.push(
       this.bsValueChange.subscribe((value: Date) => {
@@ -111,25 +109,32 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
 
     if (changes.minDate) {
       this._datepickerRef.instance.minDate = this.minDate;
-      this._datepickerRef.instance.value = this._bsValue;
+      this.setConfig();
     }
 
     if (changes.maxDate) {
       this._datepickerRef.instance.maxDate = this.maxDate;
-      this._datepickerRef.instance.value = this._bsValue;
+      this.setConfig();
     }
 
     if (changes.datesDisabled) {
       this._datepickerRef.instance.datesDisabled = this.datesDisabled;
+      this.setConfig();
+    }
+
+    if (changes.datesEnabled) {
+      this._datepickerRef.instance.datesEnabled = this.datesEnabled;
       this._datepickerRef.instance.value = this._bsValue;
     }
 
     if (changes.isDisabled) {
       this._datepickerRef.instance.isDisabled = this.isDisabled;
+      this.setConfig();
     }
 
     if (changes.dateCustomClasses) {
       this._datepickerRef.instance.dateCustomClasses = this.dateCustomClasses;
+      this.setConfig();
     }
   }
 
@@ -137,19 +142,26 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
    * Set config for datepicker
    */
   setConfig(): void {
+    if (this._datepicker) {
+      this._datepicker.hide();
+    }
+
     this._config = Object.assign({}, this._config, this.bsConfig, {
       value: this._bsValue,
       isDisabled: this.isDisabled,
       minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
       maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
       dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
-      datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled
+      datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
+      datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled
     });
 
-    if (this._datepickerRef !== undefined) {
-      this._datepicker.hide();
-      this._datepicker.show();
-    }
+
+    this._datepickerRef = this._datepicker
+      .provide({provide: BsDatepickerConfig, useValue: this._config})
+      .attach(BsDatepickerInlineContainerComponent)
+      .to(this._elementRef)
+      .show();
   }
 
   ngOnDestroy(): any {

@@ -51,6 +51,7 @@ const BS_DATEPICKER_VALIDATOR: Provider = {
   host: {
     '(change)': 'onChange($event)',
     '(keyup.esc)': 'hide()',
+    '(keydown)': 'onKeydownEvent($event)',
     '(blur)': 'onBlur()'
   },
   providers: [BS_DATEPICKER_VALUE_ACCESSOR, BS_DATEPICKER_VALIDATOR]
@@ -70,23 +71,10 @@ export class BsDatepickerInputDirective
               private changeDetection: ChangeDetectorRef) {
     // update input value on datepicker value update
     this._picker.bsValueChange.subscribe((value: Date) => {
-
-      let preValue = value;
-      if (value) {
-        const _localeKey = this._localeService.currentLocale;
-        const _locale = getLocale(_localeKey);
-        if (!_locale) {
-          throw new Error(
-            `Locale "${_localeKey}" is not defined, please add it with "defineLocale(...)"`
-          );
-        }
-        preValue = _locale.preinput(value);
-      }
-
-      this._setInputValue(preValue);
-      if (this._value !== preValue) {
-        this._value = preValue;
-        this._onChange(preValue);
+      this._setInputValue(value);
+      if (this._value !== value) {
+        this._value = value;
+        this._onChange(value);
         this._onTouched();
       }
       this.changeDetection.markForCheck();
@@ -103,6 +91,12 @@ export class BsDatepickerInputDirective
     });
   }
 
+  onKeydownEvent(event) {
+    if (event.keyCode === 13 || event.code === 'Enter') {
+      this.hide();
+    }
+  }
+
   _setInputValue(value: Date): void {
     const initialDate = !value ? ''
       : formatDate(value, this._picker._config.dateInputFormat, this._localeService.currentLocale);
@@ -114,6 +108,9 @@ export class BsDatepickerInputDirective
     /* tslint:disable-next-line: no-any*/
     this.writeValue((event.target as any).value);
     this._onChange(this._value);
+    if (this._picker._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
+    }
     this._onTouched();
   }
 
@@ -196,5 +193,8 @@ export class BsDatepickerInputDirective
   hide() {
     this._picker.hide();
     this._renderer.selectRootElement(this._elRef.nativeElement).blur();
+    if (this._picker._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
+    }
   }
 }

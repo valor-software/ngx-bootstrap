@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subscriber } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
 
 interface DataSourceType {
   id: number;
@@ -15,6 +16,7 @@ interface DataSourceType {
 export class DemoTypeaheadAsyncComponent {
   asyncSelected: string;
   dataSource: Observable<DataSourceType[]>;
+  typeaheadLoading: boolean;
   statesComplex: DataSourceType[] = [
     { id: 1, name: 'Alabama', region: 'South' },
     { id: 2, name: 'Alaska', region: 'West' },
@@ -69,6 +71,26 @@ export class DemoTypeaheadAsyncComponent {
   ];
 
   constructor() {
-    this.dataSource = of(this.statesComplex);
+    this.dataSource = new Observable((observer: Subscriber<string>) => {
+      // Runs on every search
+      observer.next(this.asyncSelected);
+    })
+      .pipe(
+        mergeMap((token: string) => this.getStatesAsObservable(token))
+      );
+  }
+
+  getStatesAsObservable(token: string): Observable<DataSourceType[]> {
+    const query = new RegExp(token, 'i');
+
+    return of(
+      this.statesComplex.filter((state: any) => {
+        return query.test(state.name);
+      })
+    );
+  }
+
+  changeTypeaheadLoading(e: boolean): void {
+    this.typeaheadLoading = e;
   }
 }
