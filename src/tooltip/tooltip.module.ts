@@ -13,7 +13,7 @@ import { PositioningService } from 'ngx-bootstrap/positioning';
   entryComponents: [TooltipContainerComponent]
 })
 export class TooltipModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<TooltipModule> {
     return {
       ngModule: TooltipModule,
       providers: [TooltipConfig, ComponentLoaderFactory, PositioningService]
