@@ -260,14 +260,14 @@ describe('Component: TimepickerComponent', () => {
     });
 
     it('should block the hours / minutes increment button if clicking on it will cause exceeding the max value', () => {
-      component.max = testTime(18);
-      component.writeValue(testTime(17, 50));
+      component.max = testTime(23, 45);
+      component.writeValue(testTime(22, 50));
       fixture.detectChanges();
 
       expect(buttonChanges[0]).toHaveCssClass('disabled');
       expect(buttonChanges[1]).not.toHaveCssClass('disabled');
 
-      component.writeValue(testTime(17, 57));
+      component.writeValue(testTime(23, 41));
       fixture.detectChanges();
 
       expect(buttonChanges[0]).toHaveCssClass('disabled');
