@@ -30,6 +30,7 @@ import {
 
 import { BsDatepickerDirective } from './bs-datepicker.component';
 import { BsLocaleService } from './bs-locale.service';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 const BS_DATEPICKER_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
@@ -50,6 +51,7 @@ const BS_DATEPICKER_VALIDATOR: Provider = {
   host: {
     '(change)': 'onChange($event)',
     '(keyup.esc)': 'hide()',
+    '(keydown)': 'onKeydownEvent($event)',
     '(blur)': 'onBlur()'
   },
   providers: [BS_DATEPICKER_VALUE_ACCESSOR, BS_DATEPICKER_VALIDATOR]
@@ -69,23 +71,10 @@ export class BsDatepickerInputDirective
               private changeDetection: ChangeDetectorRef) {
     // update input value on datepicker value update
     this._picker.bsValueChange.subscribe((value: Date) => {
-
-      let preValue = value;
-      if (value) {
-        const _localeKey = this._localeService.currentLocale;
-        const _locale = getLocale(_localeKey);
-        if (!_locale) {
-          throw new Error(
-            `Locale "${_localeKey}" is not defined, please add it with "defineLocale(...)"`
-          );
-        }
-        preValue = _locale.preinput(value);
-      }
-
-      this._setInputValue(preValue);
-      if (this._value !== preValue) {
-        this._value = preValue;
-        this._onChange(preValue);
+      this._setInputValue(value);
+      if (this._value !== value) {
+        this._value = value;
+        this._onChange(value);
         this._onTouched();
       }
       this.changeDetection.markForCheck();
@@ -95,6 +84,17 @@ export class BsDatepickerInputDirective
     this._localeService.localeChange.subscribe(() => {
       this._setInputValue(this._value);
     });
+
+    // update input value on format change
+    this._picker.dateInputFormat$.pipe(distinctUntilChanged()).subscribe(() => {
+      this._setInputValue(this._value);
+    });
+  }
+
+  onKeydownEvent(event) {
+    if (event.keyCode === 13 || event.code === 'Enter') {
+      this.hide();
+    }
   }
 
   _setInputValue(value: Date): void {
@@ -108,6 +108,9 @@ export class BsDatepickerInputDirective
     /* tslint:disable-next-line: no-any*/
     this.writeValue((event.target as any).value);
     this._onChange(this._value);
+    if (this._picker._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
+    }
     this._onTouched();
   }
 
@@ -190,5 +193,8 @@ export class BsDatepickerInputDirective
   hide() {
     this._picker.hide();
     this._renderer.selectRootElement(this._elRef.nativeElement).blur();
+    if (this._picker._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
+    }
   }
 }

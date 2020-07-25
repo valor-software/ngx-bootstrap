@@ -2,10 +2,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component, ViewChild, Renderer2 } from '@angular/core';
 
-import { BsDatepickerConfig, BsDatepickerDirective, BsDatepickerModule } from '.';
+import { BsDatepickerModule } from './bs-datepicker.module';
+import { BsDatepickerDirective } from './bs-datepicker.component';
+import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
 import { CalendarCellViewModel, WeekViewModel } from './models';
-import { dispatchKeyboardEvent } from '@netbasal/spectator';
+import { dispatchKeyboardEvent, queryAll } from '@netbasal/spectator';
 import { registerEscClick } from '../utils';
 
 @Component({
@@ -16,7 +18,8 @@ class TestComponent {
   @ViewChild(BsDatepickerDirective, { static: false }) datepicker: BsDatepickerDirective;
   bsConfig: Partial<BsDatepickerConfig> = {
     displayMonths: 2,
-    selectWeek: true
+    selectWeek: true,
+    showTodayButton: true
   };
 }
 
@@ -126,4 +129,44 @@ describe('datepicker:', () => {
 
     expect(spy).toHaveBeenCalled();
   }));
+
+  it('should show the today button when showTodayButton config is true', () => {
+    showDatepicker(fixture);
+    const buttonText: string[] = [];
+    queryAll('button').forEach(button => {
+      buttonText.push(button.textContent);
+    });
+    expect(buttonText.filter(button => button === 'Today').length).toEqual(1);
+  });
+
+  it('should set today date', () => {
+    const datepicker = showDatepicker(fixture);
+    const datepickerContainerInstance = getDatepickerContainer(datepicker);
+
+    datepickerContainerInstance[`_store`]
+      .select(state => state.view)
+      .subscribe(view => {
+        view.date = new Date(2020, 0, 1);
+      }).unsubscribe();
+    fixture.detectChanges();
+
+    datepickerContainerInstance[`_store`]
+      .select(state => state.view)
+      .subscribe(view => {
+        expect(`${(view.date.getDate())}-${(view.date.getMonth())}-${(view.date.getFullYear())}`)
+          .not.toEqual(`${(new Date().getDate())}-${(new Date().getMonth())}-${(new Date().getFullYear())}`,
+          'should start out not equal to today');
+      }).unsubscribe();
+
+    datepickerContainerInstance.setToday();
+    fixture.detectChanges();
+
+    datepickerContainerInstance[`_store`]
+      .select(state => state.view)
+      .subscribe(view => {
+        expect(`${(view.date.getDate())}-${(view.date.getMonth())}-${(view.date.getFullYear())}`)
+          .toEqual(`${(new Date().getDate())}-${(new Date().getMonth())}-${(new Date().getFullYear())}`,
+          'should update to equal today');
+      }).unsubscribe();
+  });
 });

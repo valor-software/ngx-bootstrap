@@ -11,6 +11,9 @@ import { DateFormatterOptions } from '../types';
 // FORMATTING
 
 function getYear(date: Date, opts: DateFormatterOptions): string {
+  if (opts.locale.getFullYear) {
+    return opts.locale.getFullYear(date, opts.isUTC).toString();
+  }
   return getFullYear(date, opts.isUTC).toString();
 }
 

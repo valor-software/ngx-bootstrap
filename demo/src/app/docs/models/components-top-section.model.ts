@@ -1,3 +1,5 @@
+import { SourceCodeModel } from './source-code.model';
+
 export interface ComponentsTopSection {
-  doc: string;
+  doc: SourceCodeModel
 }

@@ -45,10 +45,10 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'events',
         component: require('!!raw-loader!./demos/events/events'),
         html: require('!!raw-loader!./demos/events/events.html'),
-        description: `Collapse directive exposes 4 events: <code>collapses</code>, that fires when a collapse was triggered (aniamtion start),
-                        <code>collapsed</code>, that fires when a content was hidden (aniamtion finished), 
+        description: `Collapse directive exposes 4 events: <code>collapses</code>, that fires when a collapse was triggered (animation start),
+                        <code>collapsed</code>, that fires when a content was hidden (animation finished),
                         <code>expands</code>, that fires when a expansion was triggered (animation start)
-                      and <code>expanded</code>, that fires when a content was shown\`, and <code>expanded</code>, that fires when a content was shown`,
+                      and <code>expanded</code>, that fires when a content was shown`,
         outlet: CollapseDemoEventsComponent
       },
       {

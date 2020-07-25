@@ -30,6 +30,7 @@ import {
 
 import { BsDaterangepickerDirective } from './bs-daterangepicker.component';
 import { BsLocaleService } from './bs-locale.service';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 const BS_DATERANGEPICKER_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
@@ -51,6 +52,7 @@ const BS_DATERANGEPICKER_VALIDATOR: Provider = {
   host: {
     '(change)': 'onChange($event)',
     '(keyup.esc)': 'hide()',
+    '(keydown)': 'onKeydownEvent($event)',
     '(blur)': 'onBlur()'
   },
   providers: [BS_DATERANGEPICKER_VALUE_ACCESSOR, BS_DATERANGEPICKER_VALIDATOR]
@@ -70,24 +72,10 @@ export class BsDaterangepickerInputDirective
               private changeDetection: ChangeDetectorRef) {
     // update input value on datepicker value update
     this._picker.bsValueChange.subscribe((value: Date[]) => {
-
-      let preValue = value;
-
-      if (value) {
-        const _localeKey = this._localeService.currentLocale;
-        const _locale = getLocale(_localeKey);
-        if (!_locale) {
-          throw new Error(
-            `Locale "${_localeKey}" is not defined, please add it with "defineLocale(...)"`
-          );
-        }
-        preValue = value.map(v => _locale.preinput(v));
-      }
-
-      this._setInputValue(preValue);
-      if (this._value !== preValue) {
-        this._value = preValue;
-        this._onChange(preValue);
+      this._setInputValue(value);
+      if (this._value !== value) {
+        this._value = value;
+        this._onChange(value);
         this._onTouched();
       }
       this.changeDetection.markForCheck();
@@ -97,6 +85,17 @@ export class BsDaterangepickerInputDirective
     this._localeService.localeChange.subscribe(() => {
       this._setInputValue(this._value);
     });
+
+    // update input value on format change
+    this._picker.rangeInputFormat$.pipe(distinctUntilChanged()).subscribe(() => {
+      this._setInputValue(this._value);
+    });
+  }
+
+  onKeydownEvent(event) {
+    if (event.keyCode === 13 || event.code === 'Enter') {
+      this.hide();
+    }
   }
 
   _setInputValue(date: Date[]): void {
@@ -122,6 +121,9 @@ export class BsDaterangepickerInputDirective
     /* tslint:disable-next-line: no-any*/
     this.writeValue((event.target as any).value);
     this._onChange(this._value);
+    if (this._picker._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
+    }
     this._onTouched();
   }
 
@@ -192,11 +194,11 @@ export class BsDaterangepickerInputDirective
         .map((_val: string): Date => {
             if (this._picker._config.useUtc) {
               return utcAsLocal(
-                parseDate(_val, this._picker._config.dateInputFormat, this._localeService.currentLocale)
+                parseDate(_val, this._picker._config.rangeInputFormat, this._localeService.currentLocale)
               );
             }
 
-            return parseDate(_val, this._picker._config.dateInputFormat, this._localeService.currentLocale);
+            return parseDate(_val, this._picker._config.rangeInputFormat, this._localeService.currentLocale);
           }
         )
         .map((date: Date) => (isNaN(date.valueOf()) ? null : date));
@@ -232,5 +234,9 @@ export class BsDaterangepickerInputDirective
   hide() {
     this._picker.hide();
     this._renderer.selectRootElement(this._elRef.nativeElement).blur();
+
+    if (this._picker._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
+    }
   }
 }

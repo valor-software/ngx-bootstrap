@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable()
 export class BsModalRef {
@@ -21,4 +21,14 @@ export class BsModalRef {
    * Sets new class to modal window
    */
   setClass: (newClass: string) => void = Function;
+  /**
+   * Event that is fired when the modal behind the ref starts hiding
+   */
+  // tslint:disable-next-line:no-any
+  onHide: EventEmitter<any>;
+  /**
+   * Event that is fired when the modal behind the ref finishes hiding
+   */
+  // tslint:disable-next-line:no-any
+  onHidden: EventEmitter<any>;
 }

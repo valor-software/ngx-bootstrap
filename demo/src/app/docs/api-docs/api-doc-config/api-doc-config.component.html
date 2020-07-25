@@ -24,4 +24,28 @@
       </table>
     </section>
   </ng-template>
+
+  <ng-template [ngIf]="apiDocs.methods && apiDocs.methods.length && this.isShowMethods">
+    <section>
+      <h3>Methods</h3>
+      <table class="table table-bordered">
+        <tbody>
+        <tr *ngFor="let method of apiDocs.methods">
+          <td class="col-xs-3"><code>{{ method.name }}</code></td>
+          <td class="col-xs-9">
+            <div>
+              <code>{{ method.name }}(</code>
+              <span class="api-doc-methods"><ng-container *ngFor="let arg of method.args; let last = last">{{ arg.name }}:
+              {{ arg.type }}<ng-container *ngIf="!last && method.args.length > 1">, </ng-container>
+              </ng-container><code>)</code>
+              => {{ method.returnType }}
+              </span>
+            </div>
+            <div [innerHTML]="method.description"></div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </section>
+  </ng-template>
 </div>
