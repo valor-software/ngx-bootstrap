@@ -138,6 +138,11 @@ export class BsModalService {
       modalContainerRef.instance.config.class = newClass;
     };
 
+    bsModalRef.onHidden = new EventEmitter<any>();
+    bsModalRef.onHide = new EventEmitter<any>();
+
+    this.copyEvent(modalLoader.onBeforeHide, bsModalRef.onHide);
+    this.copyEvent(modalLoader.onHidden, bsModalRef.onHidden);
     // call 'show' method after assign setClass in bsModalRef.
     // it makes modal component's bsModalRef available to call setClass method
     modalContainerRef.show({
