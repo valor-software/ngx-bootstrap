@@ -435,7 +435,6 @@
       text-align: left;
       transition: 0.3s;
 
-      &:active,
       &:hover {
         background-color: $btn-bg2-hover;
       }
@@ -452,6 +451,23 @@
 
     .btn-default {
       margin-left: 10px;
+    }
+
+    .btn-today-wrapper {
+      display: flex;
+      flex-flow: row wrap;
+    }
+
+    .today-right {
+      flex-grow: 0;
+    }
+
+    .today-left {
+      flex-grow: 1;
+    }
+
+    .today-center {
+      flex-grow: 0.5;
     }
   }
 }

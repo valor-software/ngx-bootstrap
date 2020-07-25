@@ -40,6 +40,15 @@ export class TabsetComponent implements OnDestroy {
     this.setClassMap();
   }
 
+  get isKeysAllowed(): boolean {
+    return this._isKeysAllowed;
+  }
+
+  set isKeysAllowed(value: boolean) {
+    this._isKeysAllowed = value;
+  }
+
+
   @HostBinding('class.tab-container') clazz = true;
 
   tabs: TabDirective[] = [];
@@ -52,6 +61,7 @@ export class TabsetComponent implements OnDestroy {
   protected _vertical: boolean;
   protected _justified: boolean;
   protected _type: string;
+  protected _isKeysAllowed: boolean;
 
   constructor(
     config: TabsetConfig,
@@ -97,6 +107,9 @@ export class TabsetComponent implements OnDestroy {
 
   /* tslint:disable-next-line: cyclomatic-complexity */
   keyNavActions(event: KeyboardEvent, index: number) {
+    if (!this.isKeysAllowed) {
+      return;
+    }
     const list: HTMLElement[] = Array.from(this.elementRef.nativeElement.querySelectorAll('.nav-link'));
     // const activeElList = list.filter((el: HTMLElement) => !el.classList.contains('disabled'));
 

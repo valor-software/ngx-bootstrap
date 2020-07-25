@@ -1,6 +1,6 @@
 // RECOMMENDED
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
-// or
+// NOT RECOMMENDED (Angular 9 doesn't support this kind of import)
 import { TimepickerModule } from 'ngx-bootstrap';
 
 @NgModule({

@@ -20,9 +20,12 @@ import {
 export abstract class BsDatepickerAbstractComponent {
   containerClass: string;
   isOtherMonthsActive: boolean;
+  showTodayBtn: boolean;
+  todayPos: string;
 
   _effects: BsDatepickerEffects;
-  _customRangesFish: BsCustomDates[] = [];
+  customRanges: BsCustomDates[] = [];
+  chosenRange: Date[] = [];
 
   set minDate(value: Date) {
     this._effects.setMinDate(value);
@@ -36,6 +39,10 @@ export abstract class BsDatepickerAbstractComponent {
   }
   set datesDisabled(value: Date[]) {
     this._effects.setDatesDisabled(value);
+  }
+
+  set datesEnabled(value: Date[]) {
+    this._effects.setDatesEnabled(value);
   }
 
   set isDisabled(value: boolean) {
@@ -70,7 +77,11 @@ export abstract class BsDatepickerAbstractComponent {
 
   yearSelectHandler(event: CalendarCellViewModel): void {}
 
-  /* tslint:disable-next-line: no-any */
+  setRangeOnCalendar(dates: BsCustomDates): void {}
+
+  setToday(): void {}
+
+    /* tslint:disable-next-line: no-any */
   _stopPropagation(event: any): void {
     event.stopPropagation();
   }

@@ -12,6 +12,7 @@ import { DemoTabsSelectEventComponent } from './select-event/select-event';
 import { DemoAccessibilityComponent } from './accessibility/accessibility';
 import { DynamicContentRenderingComponent } from './dynamic-content-rendering/dynamic-content-rendering';
 import { SubComponent } from './dynamic-content-rendering/sub-component/sub-component';
+import { DemoDisabledKeyNavigationsComponent } from './disabled-key-navigations/disabled-key-navigations';
 
 export const DEMO_COMPONENTS = [
   DemoTabsBasicComponent,
@@ -27,5 +28,6 @@ export const DEMO_COMPONENTS = [
   DemoTabsSelectEventComponent,
   DemoAccessibilityComponent,
   DynamicContentRenderingComponent,
-  SubComponent
+  SubComponent,
+  DemoDisabledKeyNavigationsComponent
 ];

@@ -10,6 +10,7 @@ import { DemoDatepickerCustomTodayClassComponent } from './custom-today-class/cu
 import { DemoDatepickerDateInitialStateComponent } from './date-initial-state/date-initial-state';
 import { DemoDatepickerDaysDisabledComponent } from './disable-days/disable-days';
 import { DemoDatepickerDatesDisabledComponent } from './disable-dates/disable-dates';
+import { DemoDatepickerDatesEnabledComponent } from './enable-dates/enable-dates';
 import { DemoDatepickerDisabledComponent } from './disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './forms/forms.component';
 import { DemoDatepickerHideOnScrollComponent } from './hide-on-scroll/hide-on-scroll';
@@ -19,7 +20,7 @@ import { DemoDatepickerMinModeComponent } from './min-mode/min-mode.component';
 import { DemoDatepickerOutsideClickComponent } from './outside-click/outside-click';
 import { DemoDatepickerPlacementComponent } from './placement/placement';
 import { DemoDatepickerReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
-
+import { DemoDatePickerReturnFocusToInputComponent } from './return-focus-to-input/return-focus-to-input.component'
 import {
   DemoDatePickerSelectDatesFromOtherMonthsComponent
 } from './select-dates-from-other-months/select-dates-from-other-months';
@@ -28,12 +29,16 @@ import { DemoDatePickerAdaptivePositionComponent } from './adaptive-position/ada
 import { DemoDatePickerAnimatedComponent } from './animated/animated';
 import { DemoDatepickerDateCustomClassesComponent } from './date-custom-classes/date-custom-classes'
 import { DemoDatePickerSelectWeekComponent } from './select-week/select-week';
+import { DemoDatePickerSelectWeekRangeComponent } from './select-week-range/select-week-range';
 import { DemoDatepickerTriggersCustomComponent } from './triggers-custom/triggers-custom';
 import { DemoDatepickerTriggersManualComponent } from './triggers-manual/triggers-manual';
 import { DemoDatepickerValueChangeEventComponent } from './value-change-event/value-change-event';
 import { DemoDatePickerVisibilityEventsComponent } from './visibility-events/visibility-events';
+import { DemoDatePickerQuickSelectRangesComponent } from './quick-select-ranges/quick-select-ranges';
 import { DemoDateRangePickerShowPreviousMonth } from './daterangepicker-show-previous-month/show-previous-month';
-
+import { DemoDateRangePickerMaxDateRangeComponent } from './max-date-range/max-date-range';
+import { DemoDateRangePickerDisplayOneMonth } from './daterangepicker-display-one-month/display-one-month';
+import { DemoDatepickerTodayButtonComponent } from './today-button/today-button';
 
 export const DEMO_COMPONENTS = [
   DatepickerDemoComponent,
@@ -50,6 +55,7 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerDateCustomClassesComponent,
   DemoDatepickerDateInitialStateComponent,
   DemoDatepickerDatesDisabledComponent,
+  DemoDatepickerDatesEnabledComponent,
   DemoDatepickerDaysDisabledComponent,
   DemoDatepickerDisabledComponent,
   DemoDatepickerFormsComponent,
@@ -61,12 +67,18 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerPlacementComponent,
   DemoDatepickerPlacementComponent,
   DemoDatepickerReactiveFormsComponent,
-  DemoDatepickerReactiveFormsComponent,
+  DemoDatePickerReturnFocusToInputComponent,
   DemoDatePickerSelectDatesFromOtherMonthsComponent,
   DemoDatePickerSelectWeekComponent,
+  DemoDatePickerSelectWeekRangeComponent,
   DemoDatepickerTriggersCustomComponent,
   DemoDatepickerTriggersManualComponent,
   DemoDatepickerValueChangeEventComponent,
   DemoDateRangePickerShowPreviousMonth,
-  DemoDatePickerVisibilityEventsComponent
+  DemoDateRangePickerDisplayOneMonth,
+  DemoDatePickerVisibilityEventsComponent,
+  DemoDatepickerTodayButtonComponent,
+  DemoDateRangePickerShowPreviousMonth,
+  DemoDateRangePickerMaxDateRangeComponent,
+  DemoDatePickerQuickSelectRangesComponent
 ];

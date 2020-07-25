@@ -3,9 +3,9 @@ import { Data } from '../models';
 export function shift(data: Data): Data {
   const placement = data.placement;
   const basePlacement = placement.split(' ')[0];
-  const shiftvariation = placement.split(' ')[1];
+  const shiftVariation = placement.split(' ')[1];
 
-  if (shiftvariation) {
+  if (shiftVariation) {
     const { host, target } = data.offsets;
     const isVertical = ['bottom', 'top'].indexOf(basePlacement) !== -1;
     const side = isVertical ? 'left' : 'top';
@@ -18,7 +18,11 @@ export function shift(data: Data): Data {
       }
     };
 
-    data.offsets.target = { ...target, ...(shiftOffsets as any)[shiftvariation] };
+    data.offsets.target = {
+      ...target, ...{
+        [side]: (side === shiftVariation ? (shiftOffsets as any).start[side] : (shiftOffsets as any).end[side])
+      }
+    };
   }
 
   return data;
