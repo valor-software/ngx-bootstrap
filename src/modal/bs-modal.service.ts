@@ -129,22 +129,31 @@ export class BsModalService {
       .provide({ provide: ModalOptions, useValue: this.config })
       .provide({ provide: BsModalRef, useValue: bsModalRef })
       .attach(ModalContainerComponent)
-      .to('body')
-      .show({
-        content,
-        isAnimated: this.config.animated,
-        initialState: this.config.initialState,
-        bsModalService: this
-      });
-    modalContainerRef.instance.level = this.getModalsCount();
+      .to('body');
     bsModalRef.hide = () => {
       const duration = this.config.animated ? TRANSITION_DURATIONS.MODAL : 0;
       setTimeout(() => modalContainerRef.instance.hide(), duration);
     };
-    bsModalRef.content = modalLoader.getInnerComponent() || null;
     bsModalRef.setClass = (newClass: string) => {
       modalContainerRef.instance.config.class = newClass;
     };
+
+    bsModalRef.onHidden = new EventEmitter<any>();
+    bsModalRef.onHide = new EventEmitter<any>();
+
+    this.copyEvent(modalLoader.onBeforeHide, bsModalRef.onHide);
+    this.copyEvent(modalLoader.onHidden, bsModalRef.onHidden);
+    // call 'show' method after assign setClass in bsModalRef.
+    // it makes modal component's bsModalRef available to call setClass method
+    modalContainerRef.show({
+      content,
+      isAnimated: this.config.animated,
+      initialState: this.config.initialState,
+      bsModalService: this
+    });
+    modalContainerRef.instance.level = this.getModalsCount();
+
+    bsModalRef.content = modalLoader.getInnerComponent() || null;
 
     return bsModalRef;
   }
