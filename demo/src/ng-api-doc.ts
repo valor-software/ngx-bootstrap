@@ -4167,6 +4167,17 @@ export const ngdoc: any = {
         "description": "<p>minimal no of characters that needs to be entered before\ntypeahead kicks-in. When set to 0, typeahead shows on focus with full\nlist of options (limited as normal by typeaheadOptionsLimit)</p>\n"
       },
       {
+        "name": "typeaheadMultipleSearch",
+        "type": "boolean",
+        "description": "<p>Can be used to conduct a search of multiple items and have suggestion not for the\nwhole value of the input but for the value that comes after a delimiter provided via\ntypeaheadMultipleSearchDelimiters attribute. This option can only be used together with\ntypeaheadSingleWords option if typeaheadWordDelimiters and typeaheadPhraseDelimiters\nare different from typeaheadMultipleSearchDelimiters to avoid conflict in determining\nwhen to delimit multiple searches and when a single word.</p>\n"
+      },
+      {
+        "name": "typeaheadMultipleSearchDelimiters",
+        "defaultValue": ",",
+        "type": "string",
+        "description": "<p>should be used only in case typeaheadMultipleSearch attribute is true.\nSets the multiple search delimiter to know when to start a new search. Defaults to comma.\nIf space needs to be used, then explicitly set typeaheadWordDelimiters to something else than space\nbecause space is used by default OR set typeaheadSingleWords attribute to false if you don&#39;t need\nto use it together with multiple search.</p>\n"
+      },
+      {
         "name": "typeaheadOptionField",
         "type": "string",
         "description": "<p>when options source is an array of objects, the name of field\nthat contains the options value, we use array item as option in case\nof this field is missing. Supports nested properties and methods.</p>\n"

@@ -695,4 +695,120 @@ describe('Directive: Typeahead', () => {
       });
     });
   });
+
+  describe('if typeaheadMultipleSearch is true', () => {
+    beforeEach(
+      fakeAsync(() => {
+        directive.typeahead = component.statesString;
+        directive.typeaheadMultipleSearch = true;
+        fixture.detectChanges();
+        tick(100);
+      })
+    );
+
+    it('and comma entered after one value is picked from typeahead dropdown, should show all available matches',
+      fakeAsync(() => {
+        inputElement.value = 'Alabama';
+        dispatchTouchEvent(inputElement, 'input');
+        fixture.detectChanges();
+        tick(100);
+        expect(directive.matches.length).toBe(1);
+        expect(directive.matches[0].item).toBe('Alabama');
+
+        inputElement.value = 'Alabama,';
+        dispatchTouchEvent(inputElement, 'input');
+        fixture.detectChanges();
+        tick(100);
+        expect(directive.matches.length).toBe(component.statesString.length);
+      }));
+
+    it(`and \'Ala\' is entered after \',\' or \'|\' when these used for typeaheadMultipleSearchDelimiters,
+        should give matches for Alaska and Alabama`,
+      fakeAsync(() => {
+        directive.typeaheadMultipleSearchDelimiters = ',|';
+        inputElement.value = 'Alabama';
+        dispatchTouchEvent(inputElement, 'input');
+        fixture.detectChanges();
+        tick(100);
+        expect(directive.matches.length).toBe(1);
+        expect(directive.matches[0].item).toBe('Alabama');
+
+        inputElement.value = 'Alabama,Ala';
+        dispatchTouchEvent(inputElement, 'input');
+        fixture.detectChanges();
+        tick(100);
+        expect(directive.matches.length).toBe(2);
+        expect(directive.matches[0].item).toBe('Alabama');
+        expect(directive.matches[1].item).toBe('Alaska');
+
+        inputElement.value = 'Alabama|Ala';
+        dispatchTouchEvent(inputElement, 'input');
+        fixture.detectChanges();
+        tick(100);
+        expect(directive.matches.length).toBe(2);
+        expect(directive.matches[0].item).toBe('Alabama');
+        expect(directive.matches[1].item).toBe('Alaska');
+      }));
+
+    it('and use, should give matches for Alaska and Alabama',
+      fakeAsync(() => {
+        inputElement.value = 'Alabama';
+        dispatchTouchEvent(inputElement, 'input');
+        fixture.detectChanges();
+        tick(100);
+        expect(directive.matches.length).toBe(1);
+        expect(directive.matches[0].item).toBe('Alabama');
+
+        inputElement.value = 'Alabama,Ala';
+        dispatchTouchEvent(inputElement, 'input');
+        fixture.detectChanges();
+        tick(100);
+        expect(directive.matches.length).toBe(2);
+        expect(directive.matches[0].item).toBe('Alabama');
+        expect(directive.matches[1].item).toBe('Alaska');
+      }));
+
+    it('and use comma for typeaheadWordDelimiters, should throw error',
+      fakeAsync(() => {
+        directive.typeaheadWordDelimiters = ',';
+        fixture.detectChanges();
+        tick(100);
+        expect(() => directive.ngOnInit()).toThrowError();
+      }));
+
+    it('and use comma for typeaheadPhraseDelimiters, should throw error',
+      fakeAsync(() => {
+        directive.typeaheadPhraseDelimiters = ',';
+        fixture.detectChanges();
+        tick(100);
+        expect(() => directive.ngOnInit()).toThrowError();
+      }));
+
+    it('and use space for typeaheadMultipleSearchDelimiters, should throw error',
+      fakeAsync(() => {
+        directive.typeaheadMultipleSearchDelimiters = ' ';
+        fixture.detectChanges();
+        tick(100);
+        expect(() => directive.ngOnInit()).toThrowError();
+      }));
+
+    it('use space for typeaheadMultipleSearchDelimiters and \',\' for typeaheadWordDelimiters, should not throw error',
+      fakeAsync(() => {
+        directive.typeaheadMultipleSearchDelimiters = ' ';
+        directive.typeaheadWordDelimiters = ',';
+        fixture.detectChanges();
+        tick(100);
+        expect(() => directive.ngOnInit()).not.toThrowError();
+      }));
+
+    it('and use space for typeaheadMultipleSearchDelimiters and typeaheadSingleWords is false, should not throw error',
+      fakeAsync(() => {
+        directive.typeaheadMultipleSearchDelimiters = ' ';
+        directive.typeaheadSingleWords = false;
+        fixture.detectChanges();
+        tick(100);
+        expect(() => directive.ngOnInit()).not.toThrowError();
+      }));
+
+  });
 });

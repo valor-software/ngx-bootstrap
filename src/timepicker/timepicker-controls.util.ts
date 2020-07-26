@@ -119,6 +119,7 @@ export function timepickerControls(
   value: Date,
   state: TimepickerComponentState
 ): TimepickerControls {
+  const hoursPerDay = 24;
   const hoursPerDayHalf = 12;
   const { min, max, hourStep, minuteStep, secondsStep, showSeconds } = state;
   const res: TimepickerControls = {
@@ -140,7 +141,7 @@ export function timepickerControls(
   // compare dates
   if (max) {
     const _newHour = changeTime(value, { hour: hourStep });
-    res.canIncrementHours = max > _newHour;
+    res.canIncrementHours = max > _newHour && (value.getHours() + hourStep) < hoursPerDay;
 
     if (!res.canIncrementHours) {
       const _newMinutes = changeTime(value, { minute: minuteStep });
