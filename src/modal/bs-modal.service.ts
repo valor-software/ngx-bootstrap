@@ -52,7 +52,7 @@ export class BsModalService {
   constructor(
     rendererFactory: RendererFactory2,
     private clf: ComponentLoaderFactory,
-    @Optional() @Inject(MODAL_CONFIG_DEFAULT_OVERRIDE) modalDefaultOption: ModalOptions) {
+    @Optional() @Inject(MODAL_CONFIG_DEFAULT_OVERRIDE) private modalDefaultOption: ModalOptions) {
     this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(
       null,
       null,
@@ -69,7 +69,10 @@ export class BsModalService {
   show(content: string | TemplateRef<any> | any, config?: ModalOptions): BsModalRef {
     this.modalsCount++;
     this._createLoaders();
-    this.config = Object.assign({}, this.config, config);
+    this.config = this.modalDefaultOption ?
+      Object.assign({}, modalConfigDefaults, this.modalDefaultOption, config) :
+      Object.assign({}, modalConfigDefaults, config);
+
     this._showBackdrop();
     this.lastDismissReason = null;
 
@@ -156,7 +159,7 @@ export class BsModalService {
     modalContainerRef.instance.level = this.getModalsCount();
 
     bsModalRef.content = modalLoader.getInnerComponent() || null;
-    bsModalRef.id = modalContainerRef.instance.config.id;
+    bsModalRef.id = modalContainerRef.instance.config?.id;
 
     return bsModalRef;
   }
