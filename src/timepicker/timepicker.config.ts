@@ -37,4 +37,10 @@ export class TimepickerConfig {
   minutesPlaceholder = 'MM';
   /** placeholder for seconds field in timepicker */
   secondsPlaceholder = 'SS';
+  /** hours aria label */
+  ariaLabelHours = 'hours';
+  /** minutes aria label */
+  ariaLabelMinutes = 'minutes';
+  /** seconds aria label */
+  ariaLabelSeconds = 'seconds';
 }

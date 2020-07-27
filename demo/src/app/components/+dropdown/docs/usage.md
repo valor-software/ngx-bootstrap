@@ -2,7 +2,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // RECOMMENDED
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-// or
+// NOT RECOMMENDED (Angular 9 doesn't support this kind of import)
 import { BsDropdownModule } from 'ngx-bootstrap';
 
 @NgModule({

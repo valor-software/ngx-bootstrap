@@ -5,13 +5,13 @@
 
 import {
   ComponentRef, Directive, ElementRef, EventEmitter, HostListener, Input,
-  OnDestroy, OnInit, Output, Renderer2, ViewContainerRef
+  OnDestroy, OnInit, Output, Renderer2, ViewContainerRef, Optional, Inject
 } from '@angular/core';
 
 import { document, window, isBs3, Utils } from 'ngx-bootstrap/utils';
 import { ModalBackdropComponent } from './modal-backdrop.component';
 import {
-  CLASS_NAME, DISMISS_REASONS, modalConfigDefaults, ModalOptions
+  CLASS_NAME, DISMISS_REASONS, modalConfigDefaults, ModalOptions, MODAL_CONFIG_DEFAULT_OVERRIDE
 } from './modal-options.class';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 
@@ -78,25 +78,37 @@ export class ModalDirective implements OnDestroy, OnInit {
   private _backdrop: ComponentLoader<ModalBackdropComponent>;
 
   private isNested = false;
+  private clickStartedInContent = false;
 
-  constructor(private _element: ElementRef,
-              _viewContainerRef: ViewContainerRef,
-              private _renderer: Renderer2,
-              clf: ComponentLoaderFactory) {
+  constructor(
+    private _element: ElementRef,
+    _viewContainerRef: ViewContainerRef,
+    private _renderer: Renderer2,
+    clf: ComponentLoaderFactory,
+    @Optional() @Inject(MODAL_CONFIG_DEFAULT_OVERRIDE) modalDefaultOption: ModalOptions) {
     this._backdrop = clf.createLoader<ModalBackdropComponent>(
       _element,
       _viewContainerRef,
       _renderer
     );
+    this._config = modalConfigDefaults || modalConfigDefaults;
   }
 
-  @HostListener('click', ['$event'])
-  onClick(event: MouseEvent): void {
+  @HostListener('mousedown', ['$event'])
+  onClickStarted(event: MouseEvent): void {
+    this.clickStartedInContent = event.target !== this._element.nativeElement;
+  }
+
+  @HostListener('mouseup', ['$event'])
+  onClickStop(event: MouseEvent): void {
+    const clickedInBackdrop = event.target === this._element.nativeElement && !this.clickStartedInContent;
     if (
       this.config.ignoreBackdropClick ||
       this.config.backdrop === 'static' ||
-      event.target !== this._element.nativeElement
+      !clickedInBackdrop
     ) {
+      this.clickStartedInContent = false;
+
       return;
     }
     this.dismissReason = DISMISS_REASONS.BACKRDOP;
@@ -208,7 +220,7 @@ export class ModalDirective implements OnDestroy, OnInit {
 
   /** Private methods @internal */
   protected getConfig(config?: ModalOptions): ModalOptions {
-    return Object.assign({}, modalConfigDefaults, config);
+    return Object.assign({}, this._config, config);
   }
 
   /**
@@ -310,7 +322,7 @@ export class ModalDirective implements OnDestroy, OnInit {
       this._backdrop
         .attach(ModalBackdropComponent)
         .to('body')
-        .show({isAnimated: this._config.animated});
+        .show({ isAnimated: this._config.animated });
       this.backdrop = this._backdrop._componentRef;
 
       if (!callback) {
@@ -423,7 +435,7 @@ export class ModalDirective implements OnDestroy, OnInit {
 
     if (this.isBodyOverflowing) {
       document.body.style.paddingRight = `${this.originalBodyPadding +
-      this.scrollbarWidth}px`;
+        this.scrollbarWidth}px`;
     }
   }
 

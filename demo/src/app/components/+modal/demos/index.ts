@@ -18,6 +18,7 @@ import { DemoModalScrollingLongContentComponent } from './scrolling-long-content
 import { DemoAccessibilityComponent } from './accessibility/accessibility';
 import { DemoModalWithPopupsComponent } from './modal-with-popups/modal-with-popups';
 import { DemoModalServiceChangeClassComponent } from './service-options/change-class/change-class';
+import { DemoModalRefEventsComponent } from './modal-ref-events/modal-ref-events';
 
 export const DEMO_COMPONENTS = [
   DemoModalSizesComponent,
@@ -38,5 +39,6 @@ export const DEMO_COMPONENTS = [
   DemoModalScrollingLongContentComponent,
   DemoAccessibilityComponent,
   DemoModalServiceChangeClassComponent,
-  DemoModalWithPopupsComponent
+  DemoModalWithPopupsComponent,
+  DemoModalRefEventsComponent
 ];

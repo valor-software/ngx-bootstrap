@@ -1,6 +1,6 @@
 // RECOMMENDED
 import { ModalModule } from 'ngx-bootstrap/modal';
-// or
+// NOT RECOMMENDED (Angular 9 doesn't support this kind of import)
 import { ModalModule } from 'ngx-bootstrap';
 
 @NgModule({

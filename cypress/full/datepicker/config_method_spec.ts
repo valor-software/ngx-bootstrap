@@ -40,14 +40,16 @@ describe('Datepicker demo test suite: Config method', () => {
   it(`when user clicks on "Set min date" button, then container opens,
                  when user click on date after 13 of June 2018 - then this date chosen and appear in the input`, () => {
     datepicker.clickOnDatepickerInput(configMethod);
-    datepicker.clearInputAndSendKeys(configMethod, '05/08/2018');
+    datepicker.clearInputAndSendKeys(configMethod, '05/09/2018');
     datepicker.clickEnterOnInput(configMethod);
     datepicker.isDatepickerOpened(false);
     datepicker.clickOnBtn(configMethod);
     datepicker.isDatepickerOpened(true);
     datepicker.isSelectedDateExist('datepicker', false, 'body');
-    datepicker.clickOnDatepickerTableItem('date', 'body', undefined, '14');
-    datepicker.clickEnterOnInput(configMethod);
-    datepicker.isSelectedDateExist('datepicker', true, 'body', '14');
+    datepicker.clickOnDatepickerTableItem('date', 'body', undefined, '16');
+    datepicker.isDatepickerOpened(false);
+    datepicker.clickOnBtn(configMethod);
+    datepicker.isDatepickerOpened(true);
+    datepicker.isSelectedDateExist('datepicker', true, 'body', '16');
   });
 });

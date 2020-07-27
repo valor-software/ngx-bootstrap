@@ -28,7 +28,9 @@ import { isBs3 } from 'ngx-bootstrap/utils';
     class: 'modal',
     role: 'dialog',
     tabindex: '-1',
-    '[attr.aria-modal]': 'true'
+    '[attr.aria-modal]': 'true',
+    '[attr.aria-labelledby]': 'config.ariaLabelledBy',
+    '[attr.aria-describedby]': 'config.ariaDescribedby'
   }
 })
 export class ModalContainerComponent implements OnInit, OnDestroy {
@@ -38,6 +40,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   isAnimated: boolean;
   bsModalService: BsModalService;
   private isModalHiding = false;
+  private clickStartedInContent = false;
 
   constructor(options: ModalOptions,
               protected _element: ElementRef,
@@ -76,16 +79,29 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     }
   }
 
-  @HostListener('click', ['$event'])
-  onClick(event: MouseEvent): void {
+  @HostListener('mousedown', ['$event'])
+  onClickStarted(event: MouseEvent): void {
+    this.clickStartedInContent = event.target !== this._element.nativeElement;
+  }
+
+  @HostListener('mouseup', ['$event'])
+  onClickStop(event: MouseEvent): void {
+    const clickedInBackdrop = event.target === this._element.nativeElement && !this.clickStartedInContent;
     if (
       this.config.ignoreBackdropClick ||
       this.config.backdrop === 'static' ||
-      event.target !== this._element.nativeElement
+      !clickedInBackdrop
     ) {
+      this.clickStartedInContent = false;
+
       return;
     }
     this.bsModalService.setDismissReason(DISMISS_REASONS.BACKRDOP);
+    this.hide();
+  }
+
+  @HostListener('window:popstate')
+  onPopState(): void {
     this.hide();
   }
 

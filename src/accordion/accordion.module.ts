@@ -13,7 +13,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
   exports: [AccordionComponent, AccordionPanelComponent]
 })
 export class AccordionModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<AccordionModule> {
     return { ngModule: AccordionModule, providers: [AccordionConfig] };
   }
 }

@@ -13,24 +13,37 @@ import {
   TemplateRef,
   ViewContainerRef
 } from '@angular/core';
-
 import { NgControl } from '@angular/forms';
 
-import { from, Subscription, isObservable } from 'rxjs';
+import { from, Subscription, isObservable, Observable } from 'rxjs';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
+import { debounceTime, filter, mergeMap, switchMap, toArray, tap } from 'rxjs/operators';
+
 import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { TypeaheadConfig } from './typeahead.config';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
-import { debounceTime, filter, mergeMap, switchMap, toArray } from 'rxjs/operators';
+import { TypeaheadOrder } from './typeahead-order.class';
+import { TypeaheadOptionItemContext, TypeaheadOptionListContext } from './models';
 
-@Directive({selector: '[typeahead]', exportAs: 'bs-typeahead'})
+type TypeaheadOption = string | {[key in string | number]: any};
+type Typeahead = TypeaheadOption[] | Observable<TypeaheadOption[]>;
+
+@Directive({
+  selector: '[typeahead]',
+  exportAs: 'bs-typeahead',
+  host: {
+    '[attr.aria-activedescendant]': 'activeDescendant',
+    '[attr.aria-aria-owns]': 'isOpen ? this._container.popupId : null',
+    '[attr.aria-aria-expanded]': 'isOpen',
+    '[attr.aria-autocomplete]': 'list'
+  }
+})
 export class TypeaheadDirective implements OnInit, OnDestroy {
   /** options source, can be Array of strings, objects or
    * an Observable for external matching process
    */
-    // tslint:disable-next-line:no-any
-  @Input() typeahead: any;
+  @Input() typeahead: Typeahead;
   /** minimal no of characters that needs to be entered before
    * typeahead kicks-in. When set to 0, typeahead shows on focus with full
    * list of options (limited as normal by typeaheadOptionsLimit)
@@ -53,7 +66,12 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
    * contains the group value, matches are grouped by this field when set.
    */
   @Input() typeaheadGroupField: string;
-  /** should be used only in case of typeahead attribute is array.
+  /** Used to specify a custom order of matches. When options source is an array of objects
+   * a field for sorting has to be set up. In case of options source is an array of string,
+   * a field for sorting is absent. The ordering direction could be changed to ascending or descending.
+   */
+  @Input() typeaheadOrderBy: TypeaheadOrder;
+  /** should be used only in case of typeahead attribute is Observable of array.
    * If true - loading of options will be async, otherwise - sync.
    * true make sense if options array is large.
    */
@@ -70,6 +88,21 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
    * Sets the word delimiter to break words. Defaults to space.
    */
   @Input() typeaheadWordDelimiters = ' ';
+  /** Can be used to conduct a search of multiple items and have suggestion not for the
+   * whole value of the input but for the value that comes after a delimiter provided via
+   * typeaheadMultipleSearchDelimiters attribute. This option can only be used together with
+   * typeaheadSingleWords option if typeaheadWordDelimiters and typeaheadPhraseDelimiters
+   * are different from typeaheadMultipleSearchDelimiters to avoid conflict in determining
+   * when to delimit multiple searches and when a single word.
+   */
+  @Input() typeaheadMultipleSearch: boolean = void 0;
+  /** should be used only in case typeaheadMultipleSearch attribute is true.
+   * Sets the multiple search delimiter to know when to start a new search. Defaults to comma.
+   * If space needs to be used, then explicitly set typeaheadWordDelimiters to something else than space
+   * because space is used by default OR set typeaheadSingleWords attribute to false if you don't need
+   * to use it together with multiple search.
+   */
+  @Input() typeaheadMultipleSearchDelimiters = ',';
   /** should be used only in case typeaheadSingleWords attribute is true.
    * Sets the word delimiter to match exact phrase.
    * Defaults to simple and double quotes.
@@ -78,13 +111,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /** used to specify a custom item template.
    * Template variables exposed are called item and index;
    */
-    // tslint:disable-next-line:no-any
-  @Input() typeaheadItemTemplate: TemplateRef<any>;
+  @Input() typeaheadItemTemplate: TemplateRef<TypeaheadOptionItemContext>;
   /** used to specify a custom options list template.
    * Template variables: matches, itemTemplate, query
    */
-    // tslint:disable-next-line:no-any
-  @Input() optionsListTemplate: TemplateRef<any>;
+  @Input() optionsListTemplate: TemplateRef<TypeaheadOptionListContext>;
   /** specifies if typeahead is scrollable  */
   @Input() typeaheadScrollable = false;
   /** specifies number of options to show in scroll view  */
@@ -109,8 +140,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /** fired when option was selected, return object with data of this option */
   @Output() typeaheadOnSelect = new EventEmitter<TypeaheadMatch>();
   /** fired when blur event occurs. returns the active item */
-  // tslint:disable-next-line:no-any
-  @Output() typeaheadOnBlur = new EventEmitter<any>();
+  @Output() typeaheadOnBlur = new EventEmitter<TypeaheadMatch>();
 
   /**
    * A selector specifying the element the typeahead should be appended to.
@@ -134,19 +164,23 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /**  if false don't focus the input element the typeahead directive is associated with on selection */
     // @Input() protected typeaheadFocusOnSelect:boolean;
 
+  activeDescendant: string;
+  isOpen = false;
+  list = 'list';
   _container: TypeaheadContainerComponent;
   isActiveItemChanged = false;
-  isTypeaheadOptionsListActive = false;
+  isFocused = false;
+  cancelRequestOnFocusLost = false;
 
   // tslint:disable-next-line:no-any
-  protected keyUpEventEmitter: EventEmitter<any> = new EventEmitter();
-  protected _matches: TypeaheadMatch[];
-  protected placement = 'bottom-left';
-  // protected popup:ComponentRef<TypeaheadContainerComponent>;
+  protected keyUpEventEmitter: EventEmitter<string> = new EventEmitter();
+  protected _matches: TypeaheadMatch[] = [];
+  protected placement = 'bottom left';
 
   private _typeahead: ComponentLoader<TypeaheadContainerComponent>;
   private _subscriptions: Subscription[] = [];
   private _outsideClickListener: Function;
+  private _allEnteredValue: string;
 
   constructor(
     cis: ComponentLoaderFactory,
@@ -168,6 +202,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     Object.assign(this,
       {
         typeaheadHideResultsOnBlur: config.hideResultsOnBlur,
+        cancelRequestOnFocusLost: config.cancelRequestOnFocusLost,
         typeaheadSelectFirstItem: config.selectFirstItem,
         typeaheadIsFirstItemActive: config.isFirstItemActive,
         typeaheadMinLength: config.minLength,
@@ -186,10 +221,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this.typeaheadWaitMs = this.typeaheadWaitMs || 0;
 
     // async should be false in case of array
-    if (
-      this.typeaheadAsync === undefined &&
-      !(isObservable(this.typeahead))
-    ) {
+    if (this.typeaheadAsync === undefined && !(isObservable(this.typeahead))) {
       this.typeaheadAsync = false;
     }
 
@@ -202,6 +234,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     } else {
       this.syncActions();
     }
+
+    this.checkDelimitersConflict();
   }
 
   @HostListener('input', ['$event'])
@@ -269,16 +303,29 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   @HostListener('click')
   @HostListener('focus')
   onFocus(): void {
-    if (this.typeaheadMinLength === 0) {
-      this.typeaheadLoading.emit(true);
-      this.keyUpEventEmitter.emit(this.element.nativeElement.value || '');
-    }
+    this.isFocused = true;
+    // add setTimeout to fix issue #5251
+    // to get and emit updated value if it's changed on focus
+    setTimeout(() => {
+      if (this.typeaheadMinLength === 0) {
+        this.typeaheadLoading.emit(true);
+        this.keyUpEventEmitter.emit(this.element.nativeElement.value || '');
+      }
+    }, 0);
   }
 
   @HostListener('blur')
   onBlur(): void {
+    this.isFocused = false;
     if (this._container && !this._container.isFocused) {
       this.typeaheadOnBlur.emit(this._container.active);
+    }
+
+    if (!this.container && this._matches.length === 0) {
+    this.typeaheadOnBlur.emit(new TypeaheadMatch(
+      this.element.nativeElement.value,
+      this.element.nativeElement.value,
+      false));
     }
   }
 
@@ -287,6 +334,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     // no container - no problems
     if (!this._container) {
       return;
+    }
+
+    /* tslint:disable-next-line: deprecation */
+    if (event.keyCode === 9 || event.key === 'Tab') {
+      this.onBlur();
     }
 
     /* tslint:disable-next-line: deprecation */
@@ -307,7 +359,14 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   changeModel(match: TypeaheadMatch): void {
-    const valueStr: string = match.value;
+    let valueStr: string;
+    if (this.typeaheadMultipleSearch) {
+      const tokens = this._allEnteredValue.split(new RegExp(`([${this.typeaheadMultipleSearchDelimiters}]+)`));
+      this._allEnteredValue = tokens.slice(0, tokens.length - 1).concat(match.value).join('');
+      valueStr = this._allEnteredValue;
+    } else {
+      valueStr = match.value;
+    }
     this.ngControl.viewToModelUpdate(valueStr);
     (this.ngControl.control).setValue(valueStr);
     this.changeDetection.markForCheck();
@@ -322,7 +381,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this._typeahead
       .attach(TypeaheadContainerComponent)
       .to(this.container)
-      .position({attachment: `${this.dropup ? 'top' : 'bottom'} start`})
+      .position({attachment: `${this.dropup ? 'top' : 'bottom'} left`})
       .show({
         typeaheadRef: this,
         placement: this.placement,
@@ -350,16 +409,16 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       .toString()
       .toLowerCase();
 
-    this._container.query = this.typeaheadSingleWords
-      ? tokenize(
-        normalizedQuery,
-        this.typeaheadWordDelimiters,
-        this.typeaheadPhraseDelimiters
-      )
-      : normalizedQuery;
+    this._container.query = this.tokenizeQuery(normalizedQuery);
 
     this._container.matches = this._matches;
     this.element.nativeElement.focus();
+
+    this._container.activeChangeEvent.subscribe((activeId: string) => {
+      this.activeDescendant = activeId;
+      this.changeDetection.markForCheck();
+    });
+    this.isOpen = true;
   }
 
   hide(): void {
@@ -367,6 +426,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       this._typeahead.hide();
       this._outsideClickListener();
       this._container = null;
+      this.isOpen = false;
+      this.changeDetection.markForCheck();
     }
   }
 
@@ -388,10 +449,13 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this._subscriptions.push(
       this.keyUpEventEmitter
         .pipe(
-          debounceTime(this.typeaheadWaitMs),
+          debounceTime<string>(this.typeaheadWaitMs),
+          tap(value => {
+            this._allEnteredValue = value;
+          }),
           switchMap(() => this.typeahead)
         )
-        .subscribe((matches: TypeaheadMatch[]) => {
+        .subscribe((matches: TypeaheadOption[]) => {
           this.finalizeAsyncCall(matches);
         })
     );
@@ -401,31 +465,27 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this._subscriptions.push(
       this.keyUpEventEmitter
         .pipe(
-          debounceTime(this.typeaheadWaitMs),
+          debounceTime<string>(this.typeaheadWaitMs),
           mergeMap((value: string) => {
+            this._allEnteredValue = value;
             const normalizedQuery = this.normalizeQuery(value);
 
             return from(this.typeahead)
               .pipe(
-                filter((option: TypeaheadMatch) => {
-
-                  return (
-                    option &&
-                    this.testMatch(this.normalizeOption(option), normalizedQuery)
-                  );
+                filter((option: TypeaheadOption) => {
+                  return option && this.testMatch(this.normalizeOption(option), normalizedQuery);
                 }),
                 toArray()
               );
           })
         )
-        .subscribe((matches: TypeaheadMatch[]) => {
+        .subscribe((matches: TypeaheadOption[]) => {
           this.finalizeAsyncCall(matches);
         })
     );
   }
 
-  // tslint:disable-next-line:no-any
-  protected normalizeOption(option: any): any {
+  protected normalizeOption(option: TypeaheadOption): string {
     const optionValue: string = getValueFromObject(
       option,
       this.typeaheadOptionField
@@ -437,21 +497,48 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     return normalizedOption.toLowerCase();
   }
 
+  protected tokenizeQuery(currentQuery: string | string[]): string | string[] {
+
+    let query = currentQuery;
+    if (this.typeaheadMultipleSearch && this.typeaheadSingleWords) {
+      if (!this.haveCommonCharacters(`${this.typeaheadPhraseDelimiters}${this.typeaheadWordDelimiters}`,
+        this.typeaheadMultipleSearchDelimiters)) {
+        // single words and multiple search delimiters are different, can be used together
+        query = tokenize(
+          query as string,
+          this.typeaheadWordDelimiters,
+          this.typeaheadPhraseDelimiters,
+          this.typeaheadMultipleSearchDelimiters
+        );
+      }
+    } else if (this.typeaheadSingleWords) {
+      query = tokenize(
+        query as string,
+        this.typeaheadWordDelimiters,
+        this.typeaheadPhraseDelimiters
+      );
+    } else {
+      // multiple searches
+      query = tokenize(
+        query as string,
+        null,
+        null,
+        this.typeaheadMultipleSearchDelimiters
+      );
+    }
+
+    return query;
+  }
+
   protected normalizeQuery(value: string): string | string[] {
-    // If singleWords, break model here to not be doing extra work on each
-    // iteration
+    // If singleWords, break model here to not be doing extra work on each iteration
     let normalizedQuery: string | string[] = (this.typeaheadLatinize
       ? latinize(value)
       : value)
       .toString()
       .toLowerCase();
-    normalizedQuery = this.typeaheadSingleWords
-      ? tokenize(
-        normalizedQuery,
-        this.typeaheadWordDelimiters,
-        this.typeaheadPhraseDelimiters
-      )
-      : normalizedQuery;
+
+    normalizedQuery = this.tokenizeQuery(normalizedQuery);
 
     return normalizedQuery;
   }
@@ -473,7 +560,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     return match.indexOf(test) >= 0;
   }
 
-  protected finalizeAsyncCall(matches: TypeaheadMatch[]): void {
+  protected finalizeAsyncCall(matches: TypeaheadOption[]): void {
     this.prepareMatches(matches || []);
 
     this.typeaheadLoading.emit(false);
@@ -482,6 +569,10 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     if (!this.hasMatches()) {
       this.hide();
 
+      return;
+    }
+
+    if (!this.isFocused && this.cancelRequestOnFocusLost) {
       return;
     }
 
@@ -494,27 +585,22 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       // This improves the speed as it won't have to be done for each list item
       const normalizedQuery = _controlValue.toString().toLowerCase();
 
-      this._container.query = this.typeaheadSingleWords
-        ? tokenize(
-          normalizedQuery,
-          this.typeaheadWordDelimiters,
-          this.typeaheadPhraseDelimiters
-        )
-        : normalizedQuery;
+      this._container.query = this.tokenizeQuery(normalizedQuery);
       this._container.matches = this._matches;
     } else {
       this.show();
     }
   }
 
-  protected prepareMatches(options: TypeaheadMatch[]): void {
-    const limited: TypeaheadMatch[] = options.slice(0, this.typeaheadOptionsLimit);
+  protected prepareMatches(options: TypeaheadOption[]): void {
+    const limited = options.slice(0, this.typeaheadOptionsLimit);
+    const sorted = !this.typeaheadOrderBy ? limited : this.orderMatches(limited);
 
     if (this.typeaheadGroupField) {
       let matches: TypeaheadMatch[] = [];
 
       // extract all group names
-      const groups = limited
+      const groups = sorted
         .map((option: TypeaheadMatch) =>
           getValueFromObject(option, this.typeaheadGroupField)
         )
@@ -526,26 +612,22 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
         // add each item of group to array of matches
         matches = matches.concat(
-          limited
-            .filter(
-              // tslint:disable-next-line:no-any
-              (option: any) =>
-                getValueFromObject(option, this.typeaheadGroupField) === group
+          sorted
+            .filter((option: TypeaheadOption) =>
+              getValueFromObject(option, this.typeaheadGroupField) === group
             )
-            .map(
-              // tslint:disable-next-line:no-any
-              (option: any) =>
-                new TypeaheadMatch(
-                  option,
-                  getValueFromObject(option, this.typeaheadOptionField)
-                )
+            .map((option: TypeaheadOption) =>
+              new TypeaheadMatch(
+                option,
+                getValueFromObject(option, this.typeaheadOptionField)
+              )
             )
         );
       });
 
       this._matches = matches;
     } else {
-      this._matches = limited.map(
+      this._matches = sorted.map(
         // tslint:disable-next-line:no-any
         (option: any) =>
           new TypeaheadMatch(
@@ -556,7 +638,79 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
   }
 
+  protected orderMatches(options: TypeaheadOption[]): TypeaheadOption[] {
+    if (!options.length) {
+      return options;
+    }
+
+    if (this.typeaheadOrderBy !== null
+      && this.typeaheadOrderBy !== undefined
+      && typeof this.typeaheadOrderBy === 'object'
+      && Object.keys(this.typeaheadOrderBy).length === 0) {
+      // tslint:disable-next-line:no-console
+      console.error('Field and direction properties for typeaheadOrderBy have to be set according to documentation!');
+
+      return options;
+    }
+
+    const { field, direction } = this.typeaheadOrderBy;
+
+    if (!direction || !(direction === 'asc' || direction === 'desc')) {
+      // tslint:disable-next-line:no-console
+      console.error('typeaheadOrderBy direction has to equal "asc" or "desc". Please follow the documentation.');
+
+      return options;
+    }
+
+    if (typeof options[0] === 'string') {
+      return direction === 'asc' ? options.sort() : options.sort().reverse();
+    }
+
+    if (!field || typeof field !== 'string') {
+      // tslint:disable-next-line:no-console
+      console.error('typeaheadOrderBy field has to set according to the documentation.');
+
+      return options;
+    }
+
+    return options.sort((a: TypeaheadOption, b: TypeaheadOption) => {
+      const stringA = getValueFromObject(a, field);
+      const stringB = getValueFromObject(b, field);
+
+      if (stringA < stringB) {
+        return direction === 'asc' ? -1 : 1;
+      }
+
+      if (stringA > stringB) {
+        return direction === 'asc' ? 1 : -1;
+      }
+
+      return 0;
+    });
+  }
+
   protected hasMatches(): boolean {
     return this._matches.length > 0;
+  }
+
+  protected checkDelimitersConflict(): void {
+    if (this.typeaheadMultipleSearch && this.typeaheadSingleWords
+      && (this.haveCommonCharacters(`${this.typeaheadPhraseDelimiters}${this.typeaheadWordDelimiters}`,
+    this.typeaheadMultipleSearchDelimiters))) {
+        throw new Error(`Delimiters used in typeaheadMultipleSearchDelimiters must be different
+          from delimiters used in typeaheadWordDelimiters (current value: ${this.typeaheadWordDelimiters}) and
+          typeaheadPhraseDelimiters (current value: ${this.typeaheadPhraseDelimiters}).
+          Please refer to the documentation`);
+      }
+  }
+
+  protected haveCommonCharacters(str1: string, str2: string) {
+    for (let i = 0; i < str1.length; i++) {
+      if (str1.charAt(i).indexOf(str2) > -1) {
+        return true;
+      }
+    }
+
+    return false;
   }
 }

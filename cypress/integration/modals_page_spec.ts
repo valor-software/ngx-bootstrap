@@ -44,5 +44,11 @@ describe('Modals demo page test suite', () => {
       modals.isModalEnabled(modals.modalContainer, false);
       modals.isBackdropExist(false);
     });
+
+    it('when user starts to click on body then release click on backdrop then the modal is not closed', () => {
+      modals.clickByText(templateDemo, btnText);
+      modals.startClickOnModalReleaseOnBackdrop(modals.modalContainer);
+      modals.isModalVisible(modals.modalContainerVisible, true);
+    });
   });
 });

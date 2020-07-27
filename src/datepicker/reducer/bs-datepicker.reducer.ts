@@ -13,7 +13,8 @@ import {
   startOf,
   getLocale,
   isAfter,
-  isBefore
+  isBefore,
+  isSame
 } from 'ngx-bootstrap/chronos';
 import { canSwitchMode } from '../engine/view-mode';
 import { formatMonthsCalendar } from '../engine/format-months-calendar';
@@ -161,7 +162,9 @@ export function bsDatepickerReducer(state = initialDatepickerState,
 
 function calculateReducer(state: BsDatepickerState): BsDatepickerState {
   // how many calendars
-  const displayMonths = state.displayMonths;
+  const displayMonths = (state.displayOneMonthRange &&
+    isDisplayOneMonth(state.view.date, state.minDate, state.maxDate)) ? 1 : state.displayMonths;
+
   // use selected date on initial rendering if set
   let viewDate = state.view.date;
 
@@ -282,6 +285,7 @@ function formatReducer(state: BsDatepickerState,
 
 function flagReducer(state: BsDatepickerState,
                      action: Action): BsDatepickerState {
+  const displayMonths = isDisplayOneMonth(state.view.date, state.minDate, state.maxDate) ? 1 : state.displayMonths;
   if (state.view.mode === 'day') {
     const flaggedMonths = state.formattedMonths.map(
       (formattedMonth, monthIndex) =>
@@ -291,10 +295,11 @@ function flagReducer(state: BsDatepickerState,
           maxDate: state.maxDate,
           daysDisabled: state.daysDisabled,
           datesDisabled: state.datesDisabled,
+          datesEnabled: state.datesEnabled,
           hoveredDate: state.hoveredDate,
           selectedDate: state.selectedDate,
           selectedRange: state.selectedRange,
-          displayMonths: state.displayMonths,
+          displayMonths,
           dateCustomClasses: state.dateCustomClasses,
           monthIndex
         })
@@ -312,7 +317,7 @@ function flagReducer(state: BsDatepickerState,
           maxDate: state.maxDate,
           hoveredMonth: state.hoveredMonth,
           selectedDate: state.selectedDate,
-          displayMonths: state.displayMonths,
+          displayMonths,
           monthIndex
         })
     );
@@ -329,7 +334,7 @@ function flagReducer(state: BsDatepickerState,
           maxDate: state.maxDate,
           hoveredYear: state.hoveredYear,
           selectedDate: state.selectedDate,
-          displayMonths: state.displayMonths,
+          displayMonths,
           yearIndex
         })
     );
@@ -395,4 +400,16 @@ function getViewDate(viewDate: Date | Date[], minDate: Date, maxDate: Date) {
   }
 
   return _date;
+}
+
+function isDisplayOneMonth(viewDate: Date, minDate: Date, maxDate: Date) {
+  if (maxDate && isSame(maxDate, viewDate, 'day')) {
+    return true;
+  }
+
+  if (minDate && maxDate &&  minDate.getMonth() === maxDate.getMonth()) {
+    return true;
+  }
+
+  return false;
 }

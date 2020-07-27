@@ -1,23 +1,26 @@
 // tslint:disable:max-file-line-count no-floating-promises
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ComponentFixture, ComponentFixtureAutoDetect, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonsModule } from '../buttons';
 
-@Component({ selector: 'buttons-test', template: '' })
-class TestButtonsComponent {
+@Component({selector: 'buttons-test', template: ''})
+class TestButtonsComponent implements OnInit {
   singleModel = '0';
   /* tslint:disable-next-line: no-any */
   checkModel: any = { left: false, middle: true, right: false };
   radioModel = 'Middle';
+  myForm: FormGroup;
 
   radioGroupControl = new FormControl(null);
   radioGroupModel = null;
 
   groupDisabled = false;
 
-  constructor(public cdRef: ChangeDetectorRef) {}
+  constructor(public cdRef: ChangeDetectorRef,
+              private formBuilder: FormBuilder) {
+  }
+
 
   disableGroups() {
     this.radioGroupControl.disable();
@@ -27,6 +30,12 @@ class TestButtonsComponent {
   enableGroups() {
     this.radioGroupControl.enable();
     this.groupDisabled = false;
+  }
+
+  ngOnInit(): void {
+    this.myForm = this.formBuilder.group({
+      radio: 'Middle'
+    });
   }
 }
 
@@ -64,6 +73,16 @@ const html = `
       <label class="btn btn-success" [(ngModel)]="radioUncheckableModel" btnRadio="Middle" uncheckable>Middle</label>
       <label class="btn btn-success" [(ngModel)]="radioUncheckableModel" btnRadio="Right" uncheckable>Right</label>
     </div>
+
+    <form [formGroup]="myForm" class="form-inline">
+      <div class="form-group">
+        <div class="btn-group reactive-radio" btnRadioGroup formControlName="radio">
+          <label btnRadio="Left" class="btn btn-primary" tabindex="0" role="button">Left</label>
+          <label btnRadio="Middle" class="btn btn-primary" tabindex="0" role="button">Middle</label>
+          <label btnRadio="Right" class="btn btn-primary" tabindex="0" role="button">Right</label>
+        </div>
+      </div>
+    </form>
   </div>
 `;
 
@@ -352,6 +371,126 @@ describe('Directive: Buttons', () => {
   });
 
   describe('radio', () => {
+
+    describe('with reactive form', () => {
+      let btn = null;
+
+      beforeEach(
+        fakeAsync(() => {
+          fixture = createComponent(html);
+          context = fixture.componentInstance;
+          element = fixture.nativeElement;
+
+          fixture.detectChanges();
+          tick();
+          fixture.detectChanges();
+
+          btn = element.querySelector('.btn-group.reactive-radio');
+        })
+      );
+
+      it(
+        'should set active class based on model',
+        fakeAsync(() => {
+          expect(btn.children[0].classList).not.toContain('active');
+          expect(btn.children[1].classList).toContain('active');
+          expect(btn.children[2].classList).not.toContain('active');
+
+          context.myForm.get('radio').setValue('Left');
+          fixture.detectChanges();
+          tick();
+
+          expect(btn.children[0].classList).toContain('active');
+          expect(btn.children[1].classList).not.toContain('active');
+          expect(btn.children[2].classList).not.toContain('active');
+        })
+      );
+
+      it(
+        'should set active class via click',
+        fakeAsync(() => {
+          (btn.children[0] as HTMLElement).click();
+          fixture.detectChanges();
+          tick();
+
+          expect(context.myForm.get('radio').value).toEqual('Left');
+          expect(btn.children[0].classList).toContain('active');
+          expect(btn.children[1].classList).not.toContain('active');
+          expect(btn.children[2].classList).not.toContain('active');
+
+          (btn.children[2] as HTMLElement).click();
+          fixture.detectChanges();
+          tick();
+
+          expect(context.myForm.get('radio').value).toEqual('Right');
+          expect(btn.children[0].classList).not.toContain('active');
+          expect(btn.children[1].classList).not.toContain('active');
+          expect(btn.children[2].classList).toContain('active');
+        })
+      );
+
+      it(
+        'should do nothing when clicking an active radio',
+        fakeAsync(() => {
+          context.myForm.get('radio').setValue('Left');
+          fixture.detectChanges();
+          tick();
+
+          expect(btn.children[0].classList).toContain('active');
+          expect(btn.children[1].classList).not.toContain('active');
+          expect(btn.children[2].classList).not.toContain('active');
+
+          (btn.children[0] as HTMLElement).click();
+          fixture.detectChanges();
+
+          expect(context.myForm.get('radio').value).toEqual('Left');
+          expect(btn.children[0].classList).toContain('active');
+          expect(btn.children[1].classList).not.toContain('active');
+          expect(btn.children[2].classList).not.toContain('active');
+        })
+      );
+
+      it(
+        'should set disabled attribute when form status is changed to disabled',
+        fakeAsync(() => {
+          expect(btn.children[0].getAttribute('disabled')).toBeNull();
+          expect(btn.children[1].getAttribute('disabled')).toBeNull();
+          expect(btn.children[2].getAttribute('disabled')).toBeNull();
+
+          context.myForm.disable();
+          fixture.detectChanges();
+          tick();
+
+          expect(btn.children[0].getAttribute('disabled')).toEqual('disabled');
+          expect(btn.children[1].getAttribute('disabled')).toEqual('disabled');
+          expect(btn.children[2].getAttribute('disabled')).toEqual('disabled');
+        })
+      );
+
+      it(
+        'should not change model when form is disabled',
+        fakeAsync(() => {
+          context.myForm.get('radio').setValue('Left');
+          fixture.detectChanges();
+          tick();
+
+          expect(btn.children[0].classList).toContain('active');
+          expect(btn.children[1].classList).not.toContain('active');
+          expect(btn.children[2].classList).not.toContain('active');
+
+          context.myForm.disable();
+          (btn.children[1] as HTMLElement).click();
+          fixture.detectChanges();
+          tick();
+
+          expect(context.myForm.get('radio').value).toEqual('Left');
+          expect(btn.children[0].classList).toContain('active');
+          expect(btn.children[1].classList).not.toContain('active');
+          expect(btn.children[2].classList).not.toContain('active');
+        })
+      );
+    });
+
     it(
       'should set active class based on model',
       fakeAsync(() => {
@@ -690,6 +829,18 @@ describe('Directive: Buttons', () => {
           expect(radioGroup.children[i].getAttribute('role')).toEqual('radio');
         }
       });
+
+      it(
+        'should not have a tabindex if group is disabled',
+        fakeAsync(() => {
+          context.disableGroups();
+          fixture.detectChanges();
+          tick();
+          fixture.detectChanges();
+          expect(radioGroup.hasAttribute('tabindex')).toBeFalsy();
+        })
+      );
+
       it('should have no radio selected by default', () => {
         fixture.detectChanges();
         expect(radioGroup.children[0].classList).not.toContain('active');

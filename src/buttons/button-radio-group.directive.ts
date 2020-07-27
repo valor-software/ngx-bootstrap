@@ -71,6 +71,16 @@ export class ButtonRadioGroupDirective implements ControlValueAccessor {
     this.onTouched = fn;
   }
 
+  setDisabledState(disabled: boolean): void {
+    if (this.radioButtons) {
+      this._disabled = disabled;
+      this.radioButtons.forEach(buttons => {
+        buttons.setDisabledState(disabled);
+      });
+      this.cdr.markForCheck();
+    }
+  }
+
   @HostListener('focus')
   onFocus() {
     if (this._disabled) {
@@ -106,11 +116,6 @@ export class ButtonRadioGroupDirective implements ControlValueAccessor {
   selectPrevious(event: KeyboardEvent) {
     this.selectInDirection('previous');
     event.preventDefault();
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this._disabled = isDisabled;
-    this.cdr.markForCheck();
   }
 
   get disabled(): boolean {

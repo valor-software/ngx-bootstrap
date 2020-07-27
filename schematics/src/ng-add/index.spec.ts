@@ -25,20 +25,19 @@ describe('ng-add schematic', () => {
   let runner: SchematicTestRunner;
   let appTree: Tree;
 
-  beforeEach(done => {
+  beforeEach(async() => {
     runner = new SchematicTestRunner('schematics', path.join(__dirname, '../collection.json'));
-    createTestApp(runner)
-      .subscribe((tree: Tree) => {
-        appTree = tree;
-        done();
-      });
+    appTree = await createTestApp(runner);
   });
 
-  it('should update package.json', done => {
+  it('should update package.json', async () => {
     removePackageJsonDependency(appTree, 'bootstrap');
 
-    runner.runSchematicAsync('ng-add', {}, appTree)
-      .subscribe(tree => {
+    const tree = await runner
+      .runSchematicAsync('ng-add', {}, appTree)
+      .toPromise();
+
+
         const packageJson = JSON.parse(getFileContent(tree, '/package.json'));
         const dependencies = packageJson.dependencies;
 
@@ -48,19 +47,16 @@ describe('ng-add schematic', () => {
         expect(Object.keys(dependencies)).toEqual(Object.keys(dependencies).sort(),
           'Expected the modified "dependencies" to be sorted alphabetically.');
 
-        done();
-      }, done.fail);
     });
 
-  it('should add bootstrap style', done => {
-    runner.runSchematicAsync('ng-add', {}, appTree)
-      .subscribe(tree => {
+  it('should add bootstrap style', async () => {
+    const tree = await runner
+      .runSchematicAsync('ng-add', {}, appTree)
+      .toPromise();
+
         const workspace = getWorkspace(tree);
         const project = getProjectFromWorkspace(workspace);
 
         expectProjectStyleFile(project, './node_modules/bootstrap/dist/css/bootstrap.min.css');
-
-        done();
-      }, done.fail);
   });
 });

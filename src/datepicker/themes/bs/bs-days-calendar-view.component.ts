@@ -42,17 +42,21 @@ import { BsDatepickerConfig } from '../../bs-datepicker.config';
         <tbody>
         <tr *ngFor="let week of calendar.weeks; let i = index">
           <td class="week" [class.active-week]="isWeekHovered"  *ngIf="options.showWeekNumbers">
-            <span
+            <span *ngIf="isiOS" (click)="selectWeek(week)">{{ calendar.weekNumbers[i] }}</span>
+            <span *ngIf="!isiOS"
                 (click)="selectWeek(week)"
                 (mouseenter)="weekHoverHandler(week, true)"
                 (mouseleave)="weekHoverHandler(week, false)">{{ calendar.weekNumbers[i] }}</span>
           </td>
           <td *ngFor="let day of week.days" role="gridcell">
-          <span bsDatepickerDayDecorator
+          <span *ngIf="!isiOS" bsDatepickerDayDecorator
                 [day]="day"
                 (click)="selectDay(day)"
                 (mouseenter)="hoverDay(day, true)"
                 (mouseleave)="hoverDay(day, false)">{{ day.label }}</span>
+            <span *ngIf="isiOS" bsDatepickerDayDecorator
+                  [day]="day"
+                  (click)="selectDay(day)">{{ day.label }}</span>
           </td>
         </tr>
         </tbody>
@@ -73,8 +77,11 @@ export class BsDaysCalendarViewComponent  {
   @Output() onHoverWeek = new EventEmitter<WeekViewModel>();
 
   isWeekHovered: boolean;
+  isiOS: boolean;
 
-  constructor(private _config: BsDatepickerConfig) { }
+  constructor(private _config: BsDatepickerConfig) {
+    this.isiOS = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  }
 
   navigateTo(event: BsNavigationDirection): void {
     const step = BsNavigationDirection.DOWN === event ? -1 : 1;
@@ -90,22 +97,21 @@ export class BsDaysCalendarViewComponent  {
   }
 
   selectWeek(week: WeekViewModel): void {
-    if (!this._config.selectWeek) {
-      return;
-    }
-
-    if (week.days
-      && week.days[0]
-      && !week.days[0].isDisabled
-      && this._config.selectFromOtherMonth) {
-
-      this.onSelect.emit(week.days[0]);
-
+    if (!this._config.selectWeek && !this._config.selectWeekDateRange) {
       return;
     }
 
     if (week.days.length === 0) {
       return;
+    }
+
+    if (this._config.selectWeek && week.days[0]
+        && !week.days[0].isDisabled
+        && this._config.selectFromOtherMonth) {
+
+        this.onSelect.emit(week.days[0]);
+
+        return;
     }
 
     const selectedDay = week.days.find((day: DayViewModel) => {
@@ -115,10 +121,21 @@ export class BsDaysCalendarViewComponent  {
     });
 
     this.onSelect.emit(selectedDay);
+
+    if (this._config.selectWeekDateRange) {
+      const days = week.days.slice(0);
+      const lastDayOfRange = days.reverse().find((day: DayViewModel) => {
+        return this._config.selectFromOtherMonth
+          ? !day.isDisabled
+          : !day.isOtherMonth && !day.isDisabled;
+      });
+
+      this.onSelect.emit(lastDayOfRange);
+    }
   }
 
   weekHoverHandler(cell: WeekViewModel, isHovered: boolean): void {
-    if (!this._config.selectWeek) {
+    if (!this._config.selectWeek && !this._config.selectWeekDateRange) {
       return;
     }
 
