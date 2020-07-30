@@ -61,13 +61,12 @@ describe('Modal service', () => {
     modalService.show(TestModalComponent, { id });
   });
 
-  it('should return id when hide modal', done => {
+  it('should return id when hide modal', () => {
     const id = 20;
 
     modalService.onHidden.subscribe((data: any) => {
       /* tslint:disable-next-line: no-floating-promises */
       expect(data.id).toBe(id);
-      done();
     });
 
     const bsRef = modalService.show(TestModalComponent, { id });
