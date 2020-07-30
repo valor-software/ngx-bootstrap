@@ -24,6 +24,7 @@
     "templates-use-public": false,
     "no-access-missing-member": false,
     "invoke-injectable": false,
-    "template-to-ng-template": false
+    "template-to-ng-template": false,
+    "linebreak-style": ["error", "native"]
   }
 }
