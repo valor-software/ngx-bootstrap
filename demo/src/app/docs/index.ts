@@ -31,6 +31,7 @@ import {
   NgApiDocClassComponent,
   NgApiDocConfigComponent
 } from './api-docs';
+import { BrowserModule } from '@angular/platform-browser';
 /* export */
 export { DemoSectionComponent } from './demo-section/demo-section.component';
 export { DemoTopSectionComponent } from './demo-section-components/demo-top-section';
@@ -52,6 +53,7 @@ export { DocsSectionComponent } from './docs-section/docs-section.component';
     FormsModule,
     CommonModule,
     NgApiDocModule,
+    BrowserModule,
     ExamplesComponentModule,
     ApiSectionsComponentModule,
     DemoTopSectionComponentModule,

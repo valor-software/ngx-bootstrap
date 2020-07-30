@@ -8,7 +8,7 @@ import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
 import { BsDatepickerViewMode, CalendarCellViewModel, WeekViewModel } from './models';
 import { dispatchKeyboardEvent, queryAll } from '@netbasal/spectator';
-import { registerEscClick } from '../utils';
+import { registerEscClick } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'test-cmp',
