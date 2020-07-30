@@ -11,10 +11,10 @@ export class DemoModalServiceNestedComponent {
   constructor(private modalService: BsModalService) {}
 
   openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+    this.modalRef = this.modalService.show(template, { id: 1, class: 'modal-lg' });
   }
   openModal2(template: TemplateRef<any>) {
-    this.modalRef2 = this.modalService.show(template, { class: 'second' });
+    this.modalRef2 = this.modalService.show(template, {id: 2, class: 'second' });
   }
   closeFirstModal() {
     if (!this.modalRef) {
@@ -23,5 +23,8 @@ export class DemoModalServiceNestedComponent {
 
     this.modalRef.hide();
     this.modalRef = null;
+  }
+  closeModal(modalId?: number){
+    this.modalService.hide(modalId);
   }
 }

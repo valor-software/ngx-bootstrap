@@ -22,6 +22,7 @@ export class ButtonsPo extends BaseComponent {
     checkboxWithForms: 'demo-buttons-checkbox-reactiveforms',
     radioUnckeckable: 'demo-buttons-radio-uncheckable',
     radioBtn: 'demo-buttons-radio',
+    radioBtnWithGroup: 'demo-buttons-radio-with-group',
     radioBtnWithForms: 'demo-buttons-radio-reactiveforms',
     disabled: 'demo-buttons-disabled'
   };

@@ -29,6 +29,7 @@ import {
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
 import { DemoModalScrollingLongContentComponent } from './demos/scrolling-long-content/scrolling-long-content';
+import { DemoModalRefEventsComponent } from './demos/modal-ref-events/modal-ref-events';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -98,6 +99,21 @@ export const demoComponentContent: ContentSection[] = [
           <code>backdrop-click</code>, <code>esc</code> or <code>null</code> if modal was closed by direct call of
           <code>hide()</code> method</p>`,
         outlet: DemoModalServiceEventsComponent
+      },
+      {
+        title: 'ModalRef Events',
+        anchor: 'modal-ref-events',
+        component: require('!!raw-loader!./demos/modal-ref-events/modal-ref-events.ts'),
+        html: require('!!raw-loader!./demos/modal-ref-events/modal-ref-events.html'),
+        description: `
+          <p>Modal ref events. ModalRef exposes 2 events: <code>onHide</code> and <code>onHidden</code>. Note,
+          <code>onShow</code> and <code>onShown</code> are not options because they have already fired by the time
+          the ModalRef is created. 
+          See usage example below.</p>
+          <p><code>onHide</code> and <code>onHidden</code> events emit dismiss reason. Possible values are
+          <code>backdrop-click</code>, <code>esc</code> or <code>null</code> if modal was closed by direct call of
+          <code>hide()</code> method</p>`,
+        outlet: DemoModalRefEventsComponent
       },
       {
         title: 'Confirm Window',
