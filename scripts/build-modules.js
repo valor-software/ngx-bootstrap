@@ -41,12 +41,16 @@ const cli = meow(`
 	Options
 	  --watch Rebuild on source change
 	  --latest required for Latest & Next Env
+	  --windows for development with OS Windows
 `, {
   flags: {
     watch: {
       type: 'boolean'
     },
     latest: {
+      type: 'boolean'
+    },
+    windows: {
       type: 'boolean'
     }
   }
@@ -69,7 +73,7 @@ async function buildModules(modules) {
   for (let module of modules) {
     console.log('Building', module, 'module');
     await execa.shell(`rimraf ${dist}/${module} && node scripts/ng-packagr/api ../../src/${module}/package.json`);
-	
+
     if (flags.latest) {
       await execa.shell(`npm run dist-to-modules.deploy`);
     } if (flags.windows) {
