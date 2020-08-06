@@ -1031,6 +1031,11 @@ export const ngdoc: any = {
         "description": "<p>Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays</p>\n"
       },
       {
+        "name": "displayOneMonthRange",
+        "type": "boolean",
+        "description": "<p>Show one months for special cases (only for dateRangePicker)</p>\n<ol>\n<li>maxDate is equal to today&#39;s date</li>\n<li>minDate&#39;s month is equal to maxDate&#39;s month</li>\n</ol>\n"
+      },
+      {
         "name": "isAnimated",
         "defaultValue": "false",
         "type": "boolean",
@@ -1087,6 +1092,18 @@ export const ngdoc: any = {
         "name": "showPreviousMonth",
         "type": "boolean",
         "description": "<p>Shows previous and current month, instead of current and next (dateRangePicker only)</p>\n"
+      },
+      {
+        "name": "showTodayButton",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>Shows &#39;today&#39; button</p>\n"
+      },
+      {
+        "name": "todayPosition",
+        "defaultValue": "center",
+        "type": "string",
+        "description": "<p>Positioning for &#39;today&#39; button</p>\n"
       },
       {
         "name": "showWeekNumbers",
@@ -2325,6 +2342,11 @@ export const ngdoc: any = {
         "defaultValue": "Function",
         "type": "(newClass: string) => void",
         "description": "<p>Sets new class to modal window</p>\n"
+      },
+      {
+        "name": "id",
+        "type": "number",
+        "description": "<p>Allow user to ID for the modal. Otherwise, a unique number will be given</p>\n"
       }
     ]
   },
@@ -2407,6 +2429,11 @@ export const ngdoc: any = {
         "name": "class",
         "type": "string",
         "description": "<p>Css class for opened modal</p>\n"
+      },
+      {
+        "name": "id",
+        "type": "number",
+        "description": "<p>Allow user to ID for the modal. Otherwise, a unique number will be given</p>\n"
       },
       {
         "name": "ignoreBackdropClick",
@@ -3426,6 +3453,12 @@ export const ngdoc: any = {
         "defaultValue": "tabs",
         "type": "string",
         "description": "<p>provides default navigation context class: &#39;tabs&#39; or &#39;pills&#39;</p>\n"
+      },
+      {
+        "name": "isKeysAllowed",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>provides possibility to set keyNavigations enable or disable, by default is enable</p>\n"
       }
     ]
   },
@@ -4008,7 +4041,12 @@ export const ngdoc: any = {
     "description": "",
     "selector": "typeahead-container",
     "inputs": [],
-    "outputs": [],
+    "outputs": [
+      {
+        "name": "activeChange",
+        "description": ""
+      }
+    ],
     "properties": [],
     "methods": []
   },
@@ -4139,6 +4177,17 @@ export const ngdoc: any = {
         "description": "<p>minimal no of characters that needs to be entered before\ntypeahead kicks-in. When set to 0, typeahead shows on focus with full\nlist of options (limited as normal by typeaheadOptionsLimit)</p>\n"
       },
       {
+        "name": "typeaheadMultipleSearch",
+        "type": "boolean",
+        "description": "<p>Can be used to conduct a search of multiple items and have suggestion not for the\nwhole value of the input but for the value that comes after a delimiter provided via\ntypeaheadMultipleSearchDelimiters attribute. This option can only be used together with\ntypeaheadSingleWords option if typeaheadWordDelimiters and typeaheadPhraseDelimiters\nare different from typeaheadMultipleSearchDelimiters to avoid conflict in determining\nwhen to delimit multiple searches and when a single word.</p>\n"
+      },
+      {
+        "name": "typeaheadMultipleSearchDelimiters",
+        "defaultValue": ",",
+        "type": "string",
+        "description": "<p>should be used only in case typeaheadMultipleSearch attribute is true.\nSets the multiple search delimiter to know when to start a new search. Defaults to comma.\nIf space needs to be used, then explicitly set typeaheadWordDelimiters to something else than space\nbecause space is used by default OR set typeaheadSingleWords attribute to false if you don&#39;t need\nto use it together with multiple search.</p>\n"
+      },
+      {
         "name": "typeaheadOptionField",
         "type": "string",
         "description": "<p>when options source is an array of objects, the name of field\nthat contains the options value, we use array item as option in case\nof this field is missing. Supports nested properties and methods.</p>\n"
@@ -4215,8 +4264,8 @@ export const ngdoc: any = {
     ],
     "properties": [
       {
-        "name": "_container",
-        "type": "TypeaheadContainerComponent",
+        "name": "activeDescendant",
+        "type": "string",
         "description": "<p>if false restrict model values to the ones selected from the popup only will be provided\nif false the first match automatically will not be focused as you type\nformat the ng-model result after selection\nif true automatically select an item when there is one option that exactly matches the user input\nif true select the currently highlighted match on blur\nif false don&#39;t focus the input element the typeahead directive is associated with on selection</p>\n"
       }
     ],

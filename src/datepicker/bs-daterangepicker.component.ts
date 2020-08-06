@@ -1,21 +1,12 @@
-import {
-  AfterViewInit,
-  ComponentRef,
-  Directive,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnDestroy,
-  OnInit,
-  Output,
-  Renderer2,
-  SimpleChanges,
+import { AfterViewInit, ComponentRef,
+  Directive, ElementRef, EventEmitter,
+  Input, OnChanges, OnDestroy, OnInit,
+  Output, Renderer2, SimpleChanges,
   ViewContainerRef
 } from '@angular/core';
 import { BsDaterangepickerConfig } from './bs-daterangepicker.config';
 import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
-import { Subscription, Subject, BehaviorSubject } from 'rxjs';
+import { Observable, Subscription, Subject, BehaviorSubject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { ComponentLoaderFactory, ComponentLoader } from 'ngx-bootstrap/component-loader';
 import { BsDatepickerConfig } from './bs-datepicker.config';
@@ -89,7 +80,14 @@ export class BsDaterangepickerDirective
   /**
    * Config object for daterangepicker
    */
-  @Input() bsConfig: Partial<BsDaterangepickerConfig>;
+  @Input() set bsConfig(bsConfig: Partial<BsDaterangepickerConfig>) {
+    this._bsConfig = bsConfig;
+    this.setConfig();
+    this._rangeInputFormat$.next(bsConfig && bsConfig.rangeInputFormat);
+  }
+  get bsConfig(): Partial<BsDaterangepickerConfig> {
+    return this._bsConfig;
+  }
   /**
    * Indicates whether daterangepicker's content is enabled or not
    */
@@ -124,10 +122,15 @@ export class BsDaterangepickerDirective
    */
   @Output() bsValueChange: EventEmitter<Date[]> = new EventEmitter();
 
-  protected _subs: Subscription[] = [];
+  get rangeInputFormat$(): Observable<string> {
+    return this._rangeInputFormat$;
+  }
 
+  protected _subs: Subscription[] = [];
   private _datepicker: ComponentLoader<BsDaterangepickerContainerComponent>;
   private _datepickerRef: ComponentRef<BsDaterangepickerContainerComponent>;
+  private _bsConfig: Partial<BsDaterangepickerConfig>;
+  private readonly _rangeInputFormat$ = new Subject<string>();
 
   constructor(public _config: BsDaterangepickerConfig,
               private  _elementRef: ElementRef,
@@ -160,31 +163,24 @@ export class BsDaterangepickerDirective
     if (!this._datepickerRef || !this._datepickerRef.instance) {
       return;
     }
-
     if (changes.minDate) {
       this._datepickerRef.instance.minDate = this.minDate;
     }
-
     if (changes.maxDate) {
       this._datepickerRef.instance.maxDate = this.maxDate;
     }
-
     if (changes.datesDisabled) {
       this._datepickerRef.instance.datesDisabled = this.datesDisabled;
     }
-
     if (changes.datesEnabled) {
       this._datepickerRef.instance.datesEnabled = this.datesEnabled;
     }
-
     if (changes.daysDisabled) {
       this._datepickerRef.instance.daysDisabled = this.daysDisabled;
     }
-
     if (changes.isDisabled) {
       this._datepickerRef.instance.isDisabled = this.isDisabled;
     }
-
     if (changes.dateCustomClasses) {
       this._datepickerRef.instance.dateCustomClasses = this.dateCustomClasses;
     }
@@ -253,7 +249,8 @@ export class BsDaterangepickerDirective
         dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
         datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
         datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled,
-        ranges: this.bsConfig && this.bsConfig.ranges
+        ranges: this.bsConfig && this.bsConfig.ranges,
+        maxDateRange: this.bsConfig && this.bsConfig.maxDateRange
       }
     );
   }

@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
-import { Subscription, Subject, BehaviorSubject } from 'rxjs';
+import { Observable, Subscription, Subject, BehaviorSubject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsDatepickerViewMode, DatepickerDateCustomClasses, DatepickerDateTooltipText } from './models';
@@ -75,7 +75,14 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
   /**
    * Config object for datepicker
    */
-  @Input() bsConfig: Partial<BsDatepickerConfig>;
+  @Input() set bsConfig(bsConfig: Partial<BsDatepickerConfig>) {
+    this._bsConfig = bsConfig;
+    this.setConfig();
+    this._dateInputFormat$.next(bsConfig && bsConfig.dateInputFormat);
+  }
+  get bsConfig(): Partial<BsDatepickerConfig> {
+    return this._bsConfig;
+  }
   /**
    * Indicates whether datepicker's content is enabled or not
    */
@@ -120,10 +127,16 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
    */
   @Output() bsValueChange: EventEmitter<Date> = new EventEmitter();
 
+  get dateInputFormat$(): Observable<string> {
+    return this._dateInputFormat$;
+  }
+
   protected _subs: Subscription[] = [];
 
   private _datepicker: ComponentLoader<BsDatepickerContainerComponent>;
   private _datepickerRef: ComponentRef<BsDatepickerContainerComponent>;
+  private _bsConfig: Partial<BsDatepickerConfig>;
+  private readonly _dateInputFormat$ = new Subject<string>();
 
   constructor(public _config: BsDatepickerConfig,
               private  _elementRef: ElementRef,

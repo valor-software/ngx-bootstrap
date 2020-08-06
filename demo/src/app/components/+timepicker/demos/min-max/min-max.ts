@@ -12,7 +12,7 @@ export class DemoTimepickerMinMaxComponent {
   constructor() {
     this.minTime.setHours(8);
     this.minTime.setMinutes(0);
-    this.maxTime.setHours(17);
-    this.maxTime.setMinutes(0);
+    this.maxTime.setHours(23);
+    this.maxTime.setMinutes(55);
   }
 }

@@ -48,7 +48,8 @@ export class DatepickerPo extends BaseComponent {
     selectWeek: 'demo-datepicker-select-week',
     inlineDatepicker: 'bs-datepicker-inline',
     customTodayClass: 'demo-datepicker-custom-today-class',
-    quickSelectRange: 'demo-datepicker-quick-select-ranges'
+    quickSelectRange: 'demo-datepicker-quick-select-ranges',
+    maxDateRange: 'demo-datepicker-max-date-range'
   };
 
   clickOnDatepickerInput(baseSelector: string, datepickerIndex = 0) {
@@ -110,7 +111,7 @@ export class DatepickerPo extends BaseComponent {
   }
 
   isQuickSelectLastDaysApplied(datepicker: string, countOfBtn: number, baseSelector = 'body') {
-    const todayDate = Cypress.moment().format('l');
+    const todayDate = Cypress.moment().format('L');
     const previousDate = Cypress.moment().subtract(7, 'days').calendar();
     const nextDate = Cypress.moment().add(7, 'days').calendar();
 

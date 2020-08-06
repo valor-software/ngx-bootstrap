@@ -47,6 +47,12 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    */
   datesDisabled?: Date[];
   /**
+   * Show one months for special cases (only for dateRangePicker)
+   * 1. maxDate is equal to today's date
+   * 2. minDate's month is equal to maxDate's month
+   */
+  displayOneMonthRange?: boolean;
+  /**
    * Enable specific dates
    */
   datesEnabled?: Date[];
@@ -110,6 +116,11 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    */
   ranges?: BsCustomDates[];
 
+  /**
+   * Max Date Range in days
+   */
+  maxDateRange?: number;
+
   // DatepickerFormatOptions
   monthTitle = 'MMMM';
   yearTitle = 'YYYY';
@@ -117,4 +128,13 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
   monthLabel = 'MMMM';
   yearLabel = 'YYYY';
   weekNumbers = 'w';
+
+  /**
+   * Shows 'today' button
+   */
+  showTodayButton = false;
+  /**
+   * Positioning of 'today' button
+   */
+  todayPosition = 'center';
 }
