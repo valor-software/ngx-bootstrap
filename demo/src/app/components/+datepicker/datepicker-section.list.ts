@@ -311,14 +311,6 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDatepickerConfigMethodComponent
       },
       {
-        title: 'Tooltip for selected dates',
-        anchor: 'tooltip-for-selected-dates',
-        component: require('!!raw-loader!./demos/tooltip-to-selected-dates/tooltip-to-selected-dates.ts'),
-        html: require('!!raw-loader!./demos/tooltip-to-selected-dates/tooltip-to-selected-dates.html'),
-        description: ``,
-        outlet: DemoDatePickerTooltipToSelectedDates
-      },
-      {
         title: 'Visibility Events',
         anchor: 'visibility-events',
         component: require('!!raw-loader!./demos/visibility-events/visibility-events.ts'),
@@ -400,6 +392,14 @@ export const demoComponentContent: ContentSection[] = [
         style: require('!!raw-loader!./demos/date-custom-classes/date-custom-classes.scss'),
         description: `<p>Style dates with custom classes</p>`,
         outlet: DemoDatepickerDateCustomClassesComponent
+      },
+      {
+        title: 'Tooltip for selected dates',
+        anchor: 'tooltip-for-selected-dates',
+        component: require('!!raw-loader!./demos/tooltip-to-selected-dates/tooltip-to-selected-dates.ts'),
+        html: require('!!raw-loader!./demos/tooltip-to-selected-dates/tooltip-to-selected-dates.html'),
+        description: ``,
+        outlet: DemoDatePickerTooltipToSelectedDates
       },
       {
         title: 'Quick select ranges',

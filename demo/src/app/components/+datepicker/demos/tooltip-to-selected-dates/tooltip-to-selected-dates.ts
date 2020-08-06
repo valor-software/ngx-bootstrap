@@ -6,8 +6,8 @@ import { DatepickerDateTooltipText } from 'ngx-bootstrap/datepicker';
   templateUrl: './tooltip-to-selected-dates.html'
 })
 export class DemoDatePickerTooltipToSelectedDates {
-  selectedDates : DatepickerDateTooltipText[] = [{ date: new Date('2020-03-03'), tooltipText: '3rd of March'},
-    { date: new Date('2020-03-04'), tooltipText: '4th of March'},
-    { date: new Date('2020-03-05'), tooltipText: '5th of March'}
+  selectedDates : DatepickerDateTooltipText[] = [{ date: new Date('2020-08-08'), tooltipText: '8th of August'},
+    { date: new Date('2020-08-09'), tooltipText: '9th of August'},
+    { date: new Date('2020-08-07'), tooltipText: '7th of August'}
   ]
 }
