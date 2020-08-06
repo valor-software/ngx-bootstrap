@@ -154,6 +154,11 @@ export function bsDatepickerReducer(state = initialDatepickerState,
         dateCustomClasses: action.payload
       });
     }
+    case BsDatepickerActions.SET_DATE_TOOLTIP_TEXTS: {
+      return Object.assign({}, state, {
+        dateTooltipTexts: action.payload
+      });
+    }
 
     default:
       return state;
@@ -301,6 +306,7 @@ function flagReducer(state: BsDatepickerState,
           selectedRange: state.selectedRange,
           displayMonths,
           dateCustomClasses: state.dateCustomClasses,
+          dateTooltipTexts: state.dateTooltipTexts,
           monthIndex
         })
     );
