@@ -1,3 +1,4 @@
+// tslint:disable:max-file-line-count
 import {
   ComponentRef, Directive, ElementRef, EventEmitter, Input, OnChanges,
   OnDestroy, OnInit, Output, Renderer2, SimpleChanges, ViewContainerRef, AfterViewInit
@@ -7,7 +8,7 @@ import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-contai
 import { Observable, Subscription, Subject, BehaviorSubject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { BsDatepickerConfig } from './bs-datepicker.config';
-import { BsDatepickerViewMode, DatepickerDateCustomClasses } from './models';
+import { BsDatepickerViewMode, DatepickerDateCustomClasses, DatepickerDateTooltipText } from './models';
 
 @Directive({
   selector: '[bsDatepicker]',
@@ -119,6 +120,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
    */
   @Input() dateCustomClasses: DatepickerDateCustomClasses[];
   /**
+   * Date tooltip text
+   */
+  @Input() dateTooltipTexts: DatepickerDateTooltipText[];
+  /**
    * Emits when datepicker value has been changed
    */
   @Output() bsValueChange: EventEmitter<Date> = new EventEmitter();
@@ -193,6 +198,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
 
     if (changes.dateCustomClasses) {
       this._datepickerRef.instance.dateCustomClasses = this.dateCustomClasses;
+    }
+
+    if (changes.dateTooltipTexts) {
+      this._datepickerRef.instance.dateTooltipTexts = this.dateTooltipTexts;
     }
   }
 
@@ -278,6 +287,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
       daysDisabled: this.daysDisabled || this.bsConfig && this.bsConfig.daysDisabled,
       dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
+      dateTooltipTexts: this.dateTooltipTexts || this.bsConfig && this.bsConfig.dateTooltipTexts,
       datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
       datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled,
       minMode: this.minMode || this.bsConfig && this.bsConfig.minMode

@@ -1,3 +1,4 @@
+/* tslint:disable:max-file-line-count */
 import { Injectable } from '@angular/core';
 
 import { Observable, Subscription } from 'rxjs';
@@ -15,6 +16,7 @@ import {
   CellHoverEvent,
   DatepickerRenderOptions,
   DatepickerDateCustomClasses,
+  DatepickerDateTooltipText,
   DaysCalendarViewModel,
   DayViewModel,
   MonthsCalendarViewModel,
@@ -90,6 +92,12 @@ export class BsDatepickerEffects {
 
   setDateCustomClasses(value: DatepickerDateCustomClasses[]): BsDatepickerEffects {
     this._store.dispatch(this._actions.setDateCustomClasses(value));
+
+    return this;
+  }
+
+  setDateTooltipTexts(value: DatepickerDateTooltipText[]): BsDatepickerEffects {
+    this._store.dispatch(this._actions.setDateTooltipTexts(value));
 
     return this;
   }
@@ -248,6 +256,16 @@ export class BsDatepickerEffects {
           filter(dateCustomClasses => !!dateCustomClasses)
         )
         .subscribe(dateCustomClasses => this._store.dispatch(this._actions.flag()))
+    );
+
+    // date tooltip texts
+    this._subs.push(
+      this._store
+        .select(state => state.dateTooltipTexts)
+        .pipe(
+          filter(dateTooltipTexts => !!dateTooltipTexts)
+        )
+        .subscribe(dateTooltipTexts => this._store.dispatch(this._actions.flag()))
     );
 
     // on locale change
