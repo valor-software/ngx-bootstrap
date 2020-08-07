@@ -10,7 +10,7 @@ export { BsDaterangepickerInlineDirective } from './bs-daterangepicker-inline.co
 export { BsDatepickerInputDirective } from './bs-datepicker-input.directive';
 export { BsDaterangepickerInputDirective } from './bs-daterangepicker-input.directive';
 export { BsDatepickerModule } from './bs-datepicker.module';
-export { BsDatepickerViewMode, DatepickerDateCustomClasses } from './models';
+export { BsDatepickerViewMode, DatepickerDateCustomClasses, DatepickerDateTooltipText } from './models';
 export { BsDaterangepickerConfig } from './bs-daterangepicker.config';
 export { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
 export { BsDaterangepickerDirective } from './bs-daterangepicker.component';

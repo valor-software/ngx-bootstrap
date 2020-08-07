@@ -1,16 +1,18 @@
 import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 
+import { take } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+
+import { getFullYear, getMonth } from 'ngx-bootstrap/chronos';
+import { PositioningService } from 'ngx-bootstrap/positioning';
+
 import { BsDatepickerAbstractComponent } from '../../base/bs-datepicker-container';
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
-import { DayViewModel } from '../../models';
+import { CalendarCellViewModel, DayViewModel } from '../../models';
 import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
 import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
-import { PositioningService } from 'ngx-bootstrap/positioning';
-
-import { Subscription } from 'rxjs';
 import { datepickerAnimation } from '../../datepicker-animations';
-import { take } from 'rxjs/operators';
 import { BsCustomDates } from './bs-custom-dates-view.component';
 
 @Component({
@@ -119,12 +121,67 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     if (isDisabled) {
       return;
     }
+    this.rangesProcessing(day);
+  }
 
+  monthSelectHandler(day: CalendarCellViewModel): void {
+    if (!day) {
+      return;
+    }
+
+    day.isSelected = true;
+
+    if (this._config.minMode !== 'month') {
+      if (day.isDisabled) {
+        return;
+      }
+      this._store.dispatch(
+        this._actions.navigateTo({
+          unit: {
+            month: getMonth(day.date),
+            year: getFullYear(day.date)
+          },
+          viewMode: 'day'
+        })
+      );
+
+      return;
+    }
+    this.rangesProcessing(day);
+  }
+
+  yearSelectHandler(day: CalendarCellViewModel): void {
+    if (!day) {
+      return;
+    }
+
+    day.isSelected = true;
+
+    if (this._config.minMode !== 'year') {
+      if (day.isDisabled) {
+        return;
+      }
+      this._store.dispatch(
+        this._actions.navigateTo({
+          unit: {
+            year: getFullYear(day.date)
+          },
+          viewMode: 'month'
+        })
+      );
+
+      return;
+    }
+    this.rangesProcessing(day);
+  }
+
+  rangesProcessing(day: CalendarCellViewModel): void {
     // if only one date is already selected
     // and user clicks on previous date
     // start selection from new date
     // but if new date is after initial one
     // than finish selection
+
     if (this._rangeStack.length === 1) {
       this._rangeStack =
         day.date >= this._rangeStack[0]
