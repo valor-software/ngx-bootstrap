@@ -10,7 +10,7 @@ describe('Datepicker demo test suite: Min-mode', () => {
   });
 
   it(`example contains 1 input of Datepicker and button "Date Picker"`, () => {
-    datepicker.isInputValueEqual(minMode, '08/01/2017');
+    datepicker.isInputValueEqual(minMode, '08/01/2020');
     datepicker.isBtnTxtEqual(minMode, 'Date Picker');
   });
 
@@ -27,7 +27,7 @@ describe('Datepicker demo test suite: Min-mode', () => {
     datepicker.isDatepickerOpened(true);
     datepicker.isDatePickerBodyExistAndCorrect('month');
     datepicker.clickOnDatepickerTableItem('month', 'body', monthIndexToChose);
-    datepicker.isInputValueEqual(minMode, `${monthIndexToChose + 1}/01/2017`);
+    datepicker.isInputValueEqual(minMode, `${monthIndexToChose + 1}/01/2020`);
   });
 
   it(`when user clicks on Datepicker btn, then container opened with mode=month
@@ -51,6 +51,6 @@ describe('Datepicker demo test suite: Min-mode', () => {
     datepicker.isDatepickerNavigationFullyActiveAndCorrect('month', 'body', '01', `${Math.round(yearIndexToChose / 2 + 2017)}`);
     datepicker.clickOnDatepickerTableItem('month', 'body', monthIndexToChose);
     datepicker.isDatepickerOpened(false);
-    datepicker.isInputValueEqual(minMode, `${monthIndexToChose + 1}/01/2025`);
+    datepicker.isInputValueEqual(minMode, `${monthIndexToChose + 1}/01/2028`);
   });
 });
