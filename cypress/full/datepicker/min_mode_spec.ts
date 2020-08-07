@@ -18,7 +18,7 @@ describe('Datepicker demo test suite: Min-mode', () => {
     datepicker.clickOnDatepickerInput(minMode);
     datepicker.isDatepickerOpened(true);
     datepicker.isDatePickerBodyExistAndCorrect('month');
-    datepicker.isDatepickerNavigationFullyActiveAndCorrect('month', 'body', '08', '2017');
+    datepicker.isDatepickerNavigationFullyActiveAndCorrect('month', 'body', '08', '2020');
   });
 
   it(`when user clicks on any month, then this month chosen and date shown in the input in format "mm/01/yyyy"`, () => {
@@ -48,7 +48,7 @@ describe('Datepicker demo test suite: Min-mode', () => {
     datepicker.isDatePickerBodyExistAndCorrect('year');
     datepicker.clickOnDatepickerTableItem('year', 'body', yearIndexToChose);
     datepicker.isDatePickerBodyExistAndCorrect('month');
-    datepicker.isDatepickerNavigationFullyActiveAndCorrect('month', 'body', '01', `${Math.round(yearIndexToChose / 2 + 2017)}`);
+    datepicker.isDatepickerNavigationFullyActiveAndCorrect('month', 'body', '01', `${Math.round(yearIndexToChose / 2 + 2020)}`);
     datepicker.clickOnDatepickerTableItem('month', 'body', monthIndexToChose);
     datepicker.isDatepickerOpened(false);
     datepicker.isInputValueEqual(minMode, `${monthIndexToChose + 1}/01/2028`);
