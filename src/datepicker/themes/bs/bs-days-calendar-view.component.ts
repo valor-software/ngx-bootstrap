@@ -94,7 +94,8 @@ export class BsDaysCalendarViewComponent  {
   isShowTooltip: boolean;
 
   constructor(private _config: BsDatepickerConfig) {
-    this.isiOS = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    this.isiOS = (/iPad|iPhone|iPod/.test(navigator.platform) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1));
     if (this._config.dateTooltipTexts && this._config.dateTooltipTexts.length > 0) {
       this.isShowTooltip = true;
     }
