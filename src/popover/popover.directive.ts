@@ -108,9 +108,9 @@ export class PopoverDirective implements OnInit, OnDestroy {
   ) {
     this._popover = cis
       .createLoader<PopoverContainerComponent>(
-        this._elementRef,
+        _elementRef,
         _viewContainerRef,
-        this._renderer
+        _renderer
       )
       .provide({provide: PopoverConfig, useValue: _config});
 
@@ -121,9 +121,9 @@ export class PopoverDirective implements OnInit, OnDestroy {
 
     // fix: no focus on button on Mac OS #1795
     if (typeof window !== 'undefined') {
-      this._elementRef.nativeElement.addEventListener('click', function () {
+      _elementRef.nativeElement.addEventListener('click', function () {
         try {
-          this._elementRef.nativeElement.focus();
+          _elementRef.nativeElement.focus();
         } catch (err) {
           return;
         }
