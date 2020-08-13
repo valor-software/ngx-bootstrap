@@ -185,15 +185,16 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     if (this._rangeStack.length === 1) {
       this._rangeStack =
         day.date >= this._rangeStack[0]
-          ? (this._effects.setMaxDate(null), [this._rangeStack[0], day.date])
-          : (this.setMaxDateRangeOnCalendar(day.date), [day.date]);
+          ? [this._rangeStack[0], day.date]
+          :  [day.date];
     }
 
     if (this._rangeStack.length === 0) {
       this._rangeStack = [day.date];
 
-      this.setMaxDateRangeOnCalendar(day.date);
-
+      if (this._config.maxDateRange) {
+        this.setMaxDateRangeOnCalendar(day.date);
+      }
     }
 
     this._store.dispatch(this._actions.selectRange(this._rangeStack));
