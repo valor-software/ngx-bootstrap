@@ -182,12 +182,14 @@ export class PopoverDirective implements OnInit, OnDestroy {
           containerClass: this.containerClass
         });
 
+
       if (!this.adaptivePosition) {
         this._positionService.calcPosition();
         this._positionService.deletePositionElement(this._popover._componentRef.location);
       }
 
       this.isOpen = true;
+      this.setAriaDescribedBy();
     };
 
     const cancelDelayedTooltipShowing = () => {
@@ -218,8 +220,6 @@ export class PopoverDirective implements OnInit, OnDestroy {
     } else {
       showPopover();
     }
-    this.setAriaDescribedBy();
-    this.isOpen = true;
   }
 
   /**
