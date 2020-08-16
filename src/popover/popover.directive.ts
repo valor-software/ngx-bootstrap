@@ -182,7 +182,6 @@ export class PopoverDirective implements OnInit, OnDestroy {
           containerClass: this.containerClass
         });
 
-
       if (!this.adaptivePosition) {
         this._positionService.calcPosition();
         this._positionService.deletePositionElement(this._popover._componentRef.location);
