@@ -31,13 +31,19 @@ export class DemoModalRefEventsComponent {
     ).subscribe(() => this.changeDetection.markForCheck());
 
     this.subscriptions.push(
-      this.modalRef.onHide.subscribe((reason: string) => {
+      this.modalRef.onHide.subscribe((reason: string | any) => {
+        if (typeof reason !== 'string') {
+          reason = `onHide(), modalId is : ${reason.id}`;
+        }
         const _reason = reason ? `, dismissed by ${reason}` : '';
         this.messages.push(`onHide event has been fired${_reason}`);
       })
     );
     this.subscriptions.push(
-      this.modalRef.onHidden.subscribe((reason: string) => {
+      this.modalRef.onHidden.subscribe((reason: string | any) => {
+        if (typeof reason !== 'string') {
+          reason = `onHide(), modalId is : ${reason.id}`;
+        }
         const _reason = reason ? `, dismissed by ${reason}` : '';
         this.messages.push(`onHidden event has been fired${_reason}`);
         this.unsubscribe();
