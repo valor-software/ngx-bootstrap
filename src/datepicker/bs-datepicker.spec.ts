@@ -174,19 +174,12 @@ describe('datepicker:', () => {
   it('should clear date', () => {
     const datepicker = showDatepicker(fixture);
     const datepickerContainerInstance = getDatepickerContainer(datepicker);
-
-    datepickerContainerInstance[`_store`]
-      .select(state => state.view)
-      .subscribe(view => {
-        view.date = new Date(2020, 0, 1);
-      }).unsubscribe();
-
-    fixture.detectChanges();
     datepickerContainerInstance.clearDate();
+    fixture.detectChanges();
     datepickerContainerInstance[`_store`]
-      .select(state => state.view)
-      .subscribe(view => {
-        expect(view.date).toBe(undefined);
+      .select(state => state.selectedDate)
+      .subscribe(date => {
+        expect(date).toBe(undefined);
       }).unsubscribe();
     });
 });
