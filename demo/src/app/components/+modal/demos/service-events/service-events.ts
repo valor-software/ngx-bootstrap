@@ -31,23 +31,29 @@ export class DemoModalServiceEventsComponent {
     ).subscribe(() => this.changeDetection.markForCheck());
 
     this.subscriptions.push(
-      this.modalService.onShow.subscribe((reason: string) => {
+      this.modalService.onShow.subscribe(() => {
         this.messages.push(`onShow event has been fired`);
       })
     );
     this.subscriptions.push(
-      this.modalService.onShown.subscribe((reason: string) => {
+      this.modalService.onShown.subscribe(() => {
         this.messages.push(`onShown event has been fired`);
       })
     );
     this.subscriptions.push(
-      this.modalService.onHide.subscribe((reason: string) => {
+      this.modalService.onHide.subscribe((reason: string | any) => {
+        if (typeof reason !== 'string') {
+          reason = `onHide(), modalId is : ${reason.id}`;
+        }
         const _reason = reason ? `, dismissed by ${reason}` : '';
         this.messages.push(`onHide event has been fired${_reason}`);
       })
     );
     this.subscriptions.push(
-      this.modalService.onHidden.subscribe((reason: string) => {
+      this.modalService.onHidden.subscribe((reason: string | any) => {
+        if (typeof reason !== 'string') {
+          reason = `onHide(), modalId is : ${reason.id}`;
+        }
         const _reason = reason ? `, dismissed by ${reason}` : '';
         this.messages.push(`onHidden event has been fired${_reason}`);
         this.unsubscribe();

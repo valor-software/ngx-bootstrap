@@ -149,7 +149,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       ) {
         this._renderer.removeClass(document.body, CLASS_NAME.OPEN);
       }
-      this.bsModalService.hide(this.level);
+      this.bsModalService.hide(this.config.id);
       this.isModalHiding = false;
     }, this.isAnimated ? TRANSITION_DURATIONS.MODAL : 0);
   }

@@ -238,6 +238,30 @@ describe('popover', () => {
       fixture.detectChanges();
       expect(getWindow(fixture.nativeElement)).toBeNull();
     });
+
+    it('should properly set aria-describedBy and id for popover', () => {
+      const fixture = createTestComponent(
+        `<div id="div-container" style="margin: 400px" popover="Great tip!" popoverTitle="Title"></div>`
+      );
+      const directive = fixture.debugElement.query(
+        By.directive(PopoverDirective)
+      );
+
+      dispatchMouseEvent(directive.nativeElement, 'click');
+      fixture.detectChanges();
+
+      const windowEl = getWindow(fixture.nativeElement);
+
+      const popoverId = windowEl.getAttribute('id');
+
+      expect(popoverId.indexOf('ngx-popover-')).toEqual(0);
+      expect(fixture.nativeElement.querySelector('#div-container').getAttribute('aria-describedby')).toEqual(popoverId);
+
+      dispatchMouseEvent(directive.nativeElement, 'click');
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('#div-container').getAttribute('aria-describedby')).toBeNull();
+    });
   });
 
   describe('positioning', () => {

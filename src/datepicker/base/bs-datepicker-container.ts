@@ -10,6 +10,7 @@ import {
   CellHoverEvent,
   DatepickerRenderOptions,
   DatepickerDateCustomClasses,
+  DatepickerDateTooltipText,
   DaysCalendarViewModel,
   DayViewModel,
   MonthsCalendarViewModel,
@@ -53,6 +54,10 @@ export abstract class BsDatepickerAbstractComponent {
 
   set dateCustomClasses(value: DatepickerDateCustomClasses[]) {
     this._effects.setDateCustomClasses(value);
+  }
+
+  set dateTooltipTexts(value: DatepickerDateTooltipText[]) {
+    this._effects.setDateTooltipTexts(value);
   }
 
   viewMode: Observable<BsDatepickerViewMode>;
