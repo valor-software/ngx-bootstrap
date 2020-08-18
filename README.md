@@ -152,6 +152,11 @@ First time:
  - `npm install`
  - `npm run build`
 
+If you're using Windows, run:
+ - `npm run build.windows` instead of `npm run build`
+ - You will have to install [cwRsync](https://en.wikipedia.org/wiki/CwRsync) because one of
+ the scripts requires `rsync`
+
 To update your fork and prepare it for local usage:
  - `git pull upstream development`
  - `rm -rf node_modules`
