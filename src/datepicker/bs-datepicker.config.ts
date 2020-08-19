@@ -133,8 +133,19 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Shows 'today' button
    */
   showTodayButton = false;
+
+  /**
+   * Shows clear button
+   */
+  showClearButton = false;
+
   /**
    * Positioning of 'today' button
    */
   todayPosition = 'center';
+
+  /**
+   * Positioning of 'clear' button
+   */
+  clearPosition = 'right';
 }

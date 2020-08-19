@@ -169,4 +169,17 @@ describe('datepicker:', () => {
           'should update to equal today');
       }).unsubscribe();
   });
+
+
+  it('should clear date', () => {
+    const datepicker = showDatepicker(fixture);
+    const datepickerContainerInstance = getDatepickerContainer(datepicker);
+    datepickerContainerInstance.clearDate();
+    fixture.detectChanges();
+    datepickerContainerInstance[`_store`]
+      .select(state => state.selectedDate)
+      .subscribe(date => {
+        expect(date).toBe(undefined);
+      }).unsubscribe();
+    });
 });
