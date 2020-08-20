@@ -53,7 +53,7 @@
       <button class="btn btn-default" type="button">Cancel</button>
     </div>
 
-    <div class="bs-datepicker-buttons">
+    <div class="bs-datepicker-buttons" *ngIf="showTodayBtn || showClearBtn">
       <div class="btn-today-wrapper"
            [class.today-left]="todayPos === 'left'"
            [class.today-right]="todayPos === 'right'"
@@ -63,10 +63,10 @@
       </div>
 
         <div class="btn-clear-wrapper"
-        [class.clear-left]="clearPos === 'left'" 
+        [class.clear-left]="clearPos === 'left'"
         [class.clear-right]="clearPos === 'right'"
         [class.clear-center]="clearPos === 'center'"
-        *ngIf="showClearBtn"> 
+        *ngIf="showClearBtn">
            <button class="btn btn-success" (click)="clearDate()">Clear</button>
         </div>
     </div>
