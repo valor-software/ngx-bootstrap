@@ -16,7 +16,8 @@ import { isBs3 } from 'ngx-bootstrap/utils';
 // todo: use query from progress?
 @Component({
   selector: 'bar',
-  templateUrl: './bar.component.html',
+  template: `
+  <ng-content></ng-content>`,
   host: {
     role: 'progressbar',
     'aria-valuemin': '0',

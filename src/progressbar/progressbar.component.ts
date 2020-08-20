@@ -6,7 +6,13 @@ import { BarComponent } from './bar.component';
 
 @Component({
   selector: 'progressbar',
-  templateUrl: './progressbar.component.html',
+  template:  `<bar [type]="type" [value]="_value" *ngIf="!isStacked">
+    <ng-content></ng-content>
+  </bar>
+  <ng-template [ngIf]="isStacked">
+    <bar *ngFor="let item of _value" [type]="item.type" [value]="item.value">{{ item.label }}</bar>
+  </ng-template>
+  `,
   styles: [
     `
     :host {

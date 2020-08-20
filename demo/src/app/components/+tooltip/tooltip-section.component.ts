@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Injector, ReflectiveInjector } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { demoComponentContent } from './tooltip-section.list';
 import { ContentSection } from '../../docs/models/content-section.model';

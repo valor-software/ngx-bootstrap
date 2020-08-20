@@ -537,7 +537,7 @@ export const ngdoc: any = {
     "properties": [
       {
         "name": "_a",
-        "type": "number[]",
+        "type": "DateArray",
         "description": "<p>DateArray [year, month, date, .....]</p>\n"
       },
       {
@@ -613,7 +613,7 @@ export const ngdoc: any = {
       {
         "name": "_w",
         "type": "WeekParsing",
-        "description": "<p>date specific info\nweek</p>\n"
+        "description": "<p>week</p>\n"
       }
     ]
   },
@@ -804,6 +804,11 @@ export const ngdoc: any = {
         "description": "<p>Disable specific dates</p>\n"
       },
       {
+        "name": "dateTooltipTexts",
+        "type": "DatepickerDateTooltipText[]",
+        "description": "<p>Date tooltip text</p>\n"
+      },
+      {
         "name": "isDisabled",
         "type": "boolean",
         "description": "<p>Indicates whether datepicker is enabled or not</p>\n"
@@ -891,6 +896,11 @@ export const ngdoc: any = {
         "description": "<p>Enable specific dates</p>\n"
       },
       {
+        "name": "dateTooltipTexts",
+        "type": "DatepickerDateTooltipText[]",
+        "description": "<p>Date tooltip text</p>\n"
+      },
+      {
         "name": "daysDisabled",
         "type": "number[]",
         "description": "<p>Disable Certain days in the week</p>\n"
@@ -959,7 +969,13 @@ export const ngdoc: any = {
         "description": "<p>Emits an event when the datepicker is shown</p>\n"
       }
     ],
-    "properties": [],
+    "properties": [
+      {
+        "name": "bsConfig",
+        "type": "Partial<BsDatepickerConfig>",
+        "description": "<p>Config object for datepicker</p>\n"
+      }
+    ],
     "methods": [
       {
         "name": "show",
@@ -1000,6 +1016,12 @@ export const ngdoc: any = {
         "description": "<p>sets use adaptive position</p>\n"
       },
       {
+        "name": "clearPosition",
+        "defaultValue": "right",
+        "type": "string",
+        "description": "<p>Positioning of &#39;clear&#39; button</p>\n"
+      },
+      {
         "name": "containerClass",
         "defaultValue": "theme-green",
         "type": "string",
@@ -1026,6 +1048,11 @@ export const ngdoc: any = {
         "description": "<p>Enable specific dates</p>\n"
       },
       {
+        "name": "dateTooltipTexts",
+        "type": "DatepickerDateTooltipText[]",
+        "description": "<p>Default tooltip text for all date/range pickers</p>\n"
+      },
+      {
         "name": "daysDisabled",
         "type": "number[]",
         "description": "<p>Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays</p>\n"
@@ -1045,6 +1072,11 @@ export const ngdoc: any = {
         "name": "maxDate",
         "type": "Date",
         "description": "<p>Default max date for all date/range pickers</p>\n"
+      },
+      {
+        "name": "maxDateRange",
+        "type": "number",
+        "description": "<p>Max Date Range in days</p>\n"
       },
       {
         "name": "minDate",
@@ -1089,6 +1121,12 @@ export const ngdoc: any = {
         "description": "<p>Allows select daterange as first and last day of week by click on week number (dateRangePicker only)</p>\n"
       },
       {
+        "name": "showClearButton",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>Shows clear button</p>\n"
+      },
+      {
         "name": "showPreviousMonth",
         "type": "boolean",
         "description": "<p>Shows previous and current month, instead of current and next (dateRangePicker only)</p>\n"
@@ -1100,16 +1138,16 @@ export const ngdoc: any = {
         "description": "<p>Shows &#39;today&#39; button</p>\n"
       },
       {
-        "name": "todayPosition",
-        "defaultValue": "center",
-        "type": "string",
-        "description": "<p>Positioning for &#39;today&#39; button</p>\n"
-      },
-      {
         "name": "showWeekNumbers",
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>Allows to hide week numbers in datepicker</p>\n"
+      },
+      {
+        "name": "todayPosition",
+        "defaultValue": "center",
+        "type": "string",
+        "description": "<p>Positioning of &#39;today&#39; button</p>\n"
       },
       {
         "name": "useUtc",
@@ -1314,7 +1352,13 @@ export const ngdoc: any = {
         "description": "<p>Emits an event when the daterangepicker is shown</p>\n"
       }
     ],
-    "properties": [],
+    "properties": [
+      {
+        "name": "bsConfig",
+        "type": "Partial<BsDaterangepickerConfig>",
+        "description": "<p>Config object for daterangepicker</p>\n"
+      }
+    ],
     "methods": [
       {
         "name": "show",
@@ -1727,7 +1771,7 @@ export const ngdoc: any = {
   "DaysCalendarModel": {
     "fileName": "src/datepicker/models/index.ts",
     "className": "DaysCalendarModel",
-    "description": "<hr>\n<hr>\n",
+    "description": "<hr>\n",
     "methods": [],
     "properties": []
   },
@@ -1755,6 +1799,13 @@ export const ngdoc: any = {
   "DatepickerDateCustomClasses": {
     "fileName": "src/datepicker/models/index.ts",
     "className": "DatepickerDateCustomClasses",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "DatepickerDateTooltipText": {
+    "fileName": "src/datepicker/models/index.ts",
+    "className": "DatepickerDateTooltipText",
     "description": "",
     "methods": [],
     "properties": []
@@ -2338,15 +2389,25 @@ export const ngdoc: any = {
         "description": "<p>Hides the modal</p>\n"
       },
       {
+        "name": "id",
+        "type": "number",
+        "description": "<p>Allow user to ID for the modal. Otherwise, a unique number will be given</p>\n"
+      },
+      {
+        "name": "onHidden",
+        "type": "EventEmitter<any>",
+        "description": "<p>Event that is fired when the modal behind the ref finishes hiding</p>\n"
+      },
+      {
+        "name": "onHide",
+        "type": "EventEmitter<any>",
+        "description": "<p>Event that is fired when the modal behind the ref starts hiding</p>\n"
+      },
+      {
         "name": "setClass",
         "defaultValue": "Function",
         "type": "(newClass: string) => void",
         "description": "<p>Sets new class to modal window</p>\n"
-      },
-      {
-        "name": "id",
-        "type": "number",
-        "description": "<p>Allow user to ID for the modal. Otherwise, a unique number will be given</p>\n"
       }
     ]
   },
@@ -2369,12 +2430,6 @@ export const ngdoc: any = {
           }
         ],
         "returnType": "BsModalRef"
-      },
-      {
-        "name": "checkScrollbar",
-        "description": "<p>Checks if the body is overflowing and sets scrollbar width</p>\n",
-        "args": [],
-        "returnType": "void"
       }
     ],
     "properties": []
@@ -2502,7 +2557,7 @@ export const ngdoc: any = {
       {
         "name": "dismissReason",
         "type": "string",
-        "description": "<p>This field contains last dismiss reason.\nPossible values: <code>backdrop-click</code>, <code>esc</code> and <code>null</code>\n(if modal was closed by direct call of <code>.hide()</code>).</p>\n"
+        "description": "<p>This field contains last dismiss reason.\nPossible values: <code>backdrop-click</code>, <code>esc</code> and <code>id: number</code>\n(if modal was closed by direct call of <code>.hide()</code>).</p>\n"
       }
     ],
     "methods": [
@@ -2538,12 +2593,6 @@ export const ngdoc: any = {
       {
         "name": "focusOtherModal",
         "description": "<p>Events tricks</p>\n",
-        "args": [],
-        "returnType": "void"
-      },
-      {
-        "name": "checkScrollbar",
-        "description": "<p>Scroll bar tricks</p>\n",
         "args": [],
         "returnType": "void"
       }
@@ -2986,8 +3035,20 @@ export const ngdoc: any = {
         "description": "<p>Emits an event when the popover is shown</p>\n"
       }
     ],
-    "properties": [],
+    "properties": [
+      {
+        "name": "popoverId",
+        "type": "number",
+        "description": "<p>unique id popover - use for aria-describedby</p>\n"
+      }
+    ],
     "methods": [
+      {
+        "name": "setAriaDescribedBy",
+        "description": "<p>Set attribute aria-describedBy for element directive and\nset id for the popover</p>\n",
+        "args": [],
+        "returnType": "void"
+      },
       {
         "name": "show",
         "description": "<p>Opens an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n",
@@ -3355,6 +3416,7 @@ export const ngdoc: any = {
     "className": "TabDirective",
     "description": "",
     "selector": "tab, [tab]",
+    "exportAs": "tab",
     "inputs": [
       {
         "name": "active",
@@ -3449,16 +3511,16 @@ export const ngdoc: any = {
         "description": "<p>aria label for tab list</p>\n"
       },
       {
-        "name": "type",
-        "defaultValue": "tabs",
-        "type": "string",
-        "description": "<p>provides default navigation context class: &#39;tabs&#39; or &#39;pills&#39;</p>\n"
-      },
-      {
         "name": "isKeysAllowed",
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>provides possibility to set keyNavigations enable or disable, by default is enable</p>\n"
+      },
+      {
+        "name": "type",
+        "defaultValue": "tabs",
+        "type": "string",
+        "description": "<p>provides default navigation context class: &#39;tabs&#39; or &#39;pills&#39;</p>\n"
       }
     ]
   },
@@ -4266,7 +4328,7 @@ export const ngdoc: any = {
       {
         "name": "activeDescendant",
         "type": "string",
-        "description": "<p>if false restrict model values to the ones selected from the popup only will be provided\nif false the first match automatically will not be focused as you type\nformat the ng-model result after selection\nif true automatically select an item when there is one option that exactly matches the user input\nif true select the currently highlighted match on blur\nif false don&#39;t focus the input element the typeahead directive is associated with on selection</p>\n"
+        "description": "<p>if false don&#39;t focus the input element the typeahead directive is associated with on selection</p>\n"
       }
     ],
     "methods": []
