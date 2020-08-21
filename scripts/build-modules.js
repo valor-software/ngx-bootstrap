@@ -62,8 +62,8 @@ if (flags.watch) {
     ignored: /(^|[\/\\])\../
   })
     .on('change', (event) => {
-      let moduleName = event.replace(new RegExp(`src\\${path.sep}(.*)\\${path.sep}(.*)`,'i'), '$1');
-      buildModules([moduleName])
+      let moduleName = event.replace(new RegExp(`src\\${path.sep}(.*)\\${path.sep}(.*)`, 'i'), '$1');
+      buildModules([moduleName]);
     });
 }
 
@@ -76,7 +76,8 @@ async function buildModules(modules) {
 
     if (flags.latest) {
       await execa.shell(`npm run dist-to-modules.deploy`);
-    } if (flags.windows) {
+    }
+    if (flags.windows) {
       await execa.shell(`npm run dist-to-modules.windows`);
     } else {
       await execa.shell(`npm run dist-to-modules`);

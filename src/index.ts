@@ -98,7 +98,6 @@ export {
 } from './pagination/index';
 
 export {
-  BarComponent,
   ProgressbarComponent,
   ProgressbarConfig,
   ProgressbarModule

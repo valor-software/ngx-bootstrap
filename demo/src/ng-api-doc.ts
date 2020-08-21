@@ -3140,27 +3140,6 @@ export const ngdoc: any = {
     "methods": [],
     "properties": []
   },
-  "BarComponent": {
-    "fileName": "src/progressbar/bar.component.ts",
-    "className": "BarComponent",
-    "description": "",
-    "selector": "bar",
-    "inputs": [
-      {
-        "name": "type",
-        "type": "string",
-        "description": "<p>provide one of the four supported contextual classes: <code>success</code>, <code>info</code>, <code>warning</code>, <code>danger</code></p>\n"
-      },
-      {
-        "name": "value",
-        "type": "number",
-        "description": "<p>current value of progress bar</p>\n"
-      }
-    ],
-    "outputs": [],
-    "properties": [],
-    "methods": []
-  },
   "ProgressbarComponent": {
     "fileName": "src/progressbar/progressbar.component.ts",
     "className": "ProgressbarComponent",
@@ -3171,6 +3150,11 @@ export const ngdoc: any = {
         "name": "animate",
         "type": "boolean",
         "description": "<p>if <code>true</code> changing value of progress bar will be animated</p>\n"
+      },
+      {
+        "name": "isStacked",
+        "type": "boolean",
+        "description": "<p>set it to  <code>true</code> if you want to use stacked bars in one progressbar</p>\n"
       },
       {
         "name": "max",

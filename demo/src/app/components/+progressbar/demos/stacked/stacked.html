@@ -1,7 +1,11 @@
 <div class="row">
   <div class="col-lg-12">
-    <div class="mb-3">
-      <progressbar class="progress" [value]="stacked" [max]="100"></progressbar>
+    <div class="mb-3" style="display: flex" >
+      <progressbar class="progress" *ngFor="let item of stacked; last as isLast"
+                   [type]="item.type"
+                   [isStacked]="!isLast"
+                   [value]="item.value"
+                   [max]="100" >{{ item.label }}</progressbar>
     </div>
   </div>
   <div class="col-lg-12">
