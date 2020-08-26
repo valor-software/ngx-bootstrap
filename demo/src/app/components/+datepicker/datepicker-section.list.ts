@@ -45,10 +45,11 @@ import {
 import { DemoDatePickerQuickSelectRangesComponent } from './demos/quick-select-ranges/quick-select-ranges';
 import { DemoDateRangePickerShowPreviousMonth } from './demos/daterangepicker-show-previous-month/show-previous-month';
 import { DemoDatePickerSelectWeekRangeComponent } from './demos/select-week-range/select-week-range';
+import { DemoDatePickerTooltipToSelectedDates } from './demos/tooltip-to-selected-dates/tooltip-to-selected-dates';
 import { DemoDateRangePickerMaxDateRangeComponent } from './demos/max-date-range/max-date-range';
 import { DemoDateRangePickerDisplayOneMonth } from './demos/daterangepicker-display-one-month/display-one-month';
 import { DemoDatepickerTodayButtonComponent } from './demos/today-button/today-button';
-
+import { DemoDatepickerClearButtonComponent } from './demos/clear-button/clear-button';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -393,6 +394,14 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDatepickerDateCustomClassesComponent
       },
       {
+        title: 'Tooltip for selected dates',
+        anchor: 'tooltip-for-selected-dates',
+        component: require('!!raw-loader!./demos/tooltip-to-selected-dates/tooltip-to-selected-dates.ts'),
+        html: require('!!raw-loader!./demos/tooltip-to-selected-dates/tooltip-to-selected-dates.html'),
+        description: ``,
+        outlet: DemoDatePickerTooltipToSelectedDates
+      },
+      {
         title: 'Quick select ranges',
         anchor: 'quick-select-ranges',
         component: require('!!raw-loader!./demos/quick-select-ranges/quick-select-ranges.ts'),
@@ -416,6 +425,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/today-button/today-button.html'),
         description: `<p>Display an optional 'Today' button that will automatically select today's date.</p>`,
         outlet: DemoDatepickerTodayButtonComponent,
+      },
+      {
+        title: 'Show Clear Button',
+        anchor: 'datepicker-show-clear-button',
+        component: require('!!raw-loader!./demos/clear-button/clear-button.ts'),
+        html: require('!!raw-loader!./demos/clear-button/clear-button.html'),
+        description: `<p>Display an optional 'Clear' button that will automatically clear date.</p>`,
+        outlet: DemoDatepickerClearButtonComponent
       },
       {
         title: 'Max Date Range in Daterangepicker',

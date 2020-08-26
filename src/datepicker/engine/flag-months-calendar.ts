@@ -11,6 +11,7 @@ export interface FlagMonthCalendarOptions {
   maxDate: Date;
   hoveredMonth: Date;
   selectedDate: Date;
+  selectedRange: Date[];
   displayMonths: number;
   monthIndex: number;
 }
@@ -22,11 +23,20 @@ export function flagMonthsCalendar(
   monthCalendar.months.forEach(
     (months: CalendarCellViewModel[], rowIndex: number) => {
       months.forEach((month: CalendarCellViewModel, monthIndex: number) => {
+        let isSelected: boolean;
         const isHovered = isSameMonth(month.date, options.hoveredMonth);
         const isDisabled =
           options.isDisabled ||
           isMonthDisabled(month.date, options.minDate, options.maxDate);
-        const isSelected = isSameMonth(month.date, options.selectedDate);
+
+        if (!options.selectedDate && options.selectedRange) {
+          isSelected = isSameMonth(month.date, options.selectedRange[0]);
+          if (!isSelected) {
+            isSelected = isSameMonth(month.date, options.selectedRange[1]);
+          }
+        } else {
+          isSelected = isSameMonth(month.date, options.selectedDate);
+        }
         const newMonth = Object.assign(/*{},*/ month, {
           isHovered,
           isDisabled,

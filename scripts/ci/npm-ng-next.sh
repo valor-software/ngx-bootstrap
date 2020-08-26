@@ -17,7 +17,7 @@ npm i @angular/animations@next \
     @angular/service-worker@next \
     @schematics/angular@next \
     @types/node@14.0.4 \
-    typescript@latest \
+    typescript@3.9.3 \
     ng-packagr@10.0.0 \
     tsickle@0.35.0 \
     rxjs@6.5.2

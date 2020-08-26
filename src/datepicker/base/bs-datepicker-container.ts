@@ -10,6 +10,7 @@ import {
   CellHoverEvent,
   DatepickerRenderOptions,
   DatepickerDateCustomClasses,
+  DatepickerDateTooltipText,
   DaysCalendarViewModel,
   DayViewModel,
   MonthsCalendarViewModel,
@@ -22,6 +23,8 @@ export abstract class BsDatepickerAbstractComponent {
   isOtherMonthsActive: boolean;
   showTodayBtn: boolean;
   todayPos: string;
+  clearPos: string;
+  showClearBtn: boolean;
 
   _effects: BsDatepickerEffects;
   customRanges: BsCustomDates[] = [];
@@ -53,6 +56,10 @@ export abstract class BsDatepickerAbstractComponent {
     this._effects.setDateCustomClasses(value);
   }
 
+  set dateTooltipTexts(value: DatepickerDateTooltipText[]) {
+    this._effects.setDateTooltipTexts(value);
+  }
+
   viewMode: Observable<BsDatepickerViewMode>;
   daysCalendar: Observable<DaysCalendarViewModel[]>;
   monthsCalendar: Observable<MonthsCalendarViewModel[]>;
@@ -80,6 +87,8 @@ export abstract class BsDatepickerAbstractComponent {
   setRangeOnCalendar(dates: BsCustomDates): void {}
 
   setToday(): void {}
+
+  clearDate(): void {}
 
     /* tslint:disable-next-line: no-any */
   _stopPropagation(event: any): void {

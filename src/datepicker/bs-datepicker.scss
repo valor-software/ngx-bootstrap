@@ -146,7 +146,6 @@
           margin: 0 auto;
           font-size: 13px;
           border-radius: 50%;
-          position: relative;
           /*z-index: 1;*/
           -moz-user-select: none;
           -webkit-user-select: none;
@@ -221,7 +220,7 @@
           z-index: -1;
           top: 6px;
           bottom: 6px;
-          left: -2px;
+          left: -3px;
           right: -2px;
           box-sizing: content-box;
           background: transparent;
@@ -262,10 +261,12 @@
           &.select-start {
             z-index: 2;
           }
-          &.is-highlighted.in-range:before,
+          &.is-highlighted.in-range:before {
+            right: 3px;
+            left: 0;
+          }
           &.in-range.select-end:before {
-            background: none;
-            right: 0;
+            right: 4px;
             left: 0;
           }
         }
@@ -458,14 +459,16 @@
       flex-flow: row wrap;
     }
 
+    .clear-right,
     .today-right {
       flex-grow: 0;
     }
-
+    .clear-left,
     .today-left {
       flex-grow: 1;
     }
 
+    .clear-center,
     .today-center {
       flex-grow: 0.5;
     }
