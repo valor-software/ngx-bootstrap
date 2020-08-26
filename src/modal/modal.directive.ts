@@ -54,7 +54,7 @@ export class ModalDirective implements OnDestroy, OnInit {
   onHidden: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
 
   /** This field contains last dismiss reason.
-   * Possible values: `backdrop-click`, `esc` and `null`
+   * Possible values: `backdrop-click`, `esc` and `id: number`
    * (if modal was closed by direct call of `.hide()`).
    */
   dismissReason: string;

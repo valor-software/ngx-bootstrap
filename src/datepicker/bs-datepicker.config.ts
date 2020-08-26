@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import {
   DatepickerRenderOptions,
   BsDatepickerViewMode,
-  DatepickerDateCustomClasses
+  DatepickerDateCustomClasses,
+  DatepickerDateTooltipText
 } from './models';
 import { BsCustomDates } from './themes/bs/bs-custom-dates-view.component';
 
@@ -33,6 +34,10 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Default date custom classes for all date/range pickers
    */
   dateCustomClasses: DatepickerDateCustomClasses[];
+  /**
+   * Default tooltip text for all date/range pickers
+   */
+  dateTooltipTexts?: DatepickerDateTooltipText[];
   /**
    * Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays
    */
@@ -128,8 +133,19 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Shows 'today' button
    */
   showTodayButton = false;
+
+  /**
+   * Shows clear button
+   */
+  showClearButton = false;
+
   /**
    * Positioning of 'today' button
    */
   todayPosition = 'center';
+
+  /**
+   * Positioning of 'clear' button
+   */
+  clearPosition = 'right';
 }
