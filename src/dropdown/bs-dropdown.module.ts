@@ -5,7 +5,6 @@ import { PositioningService } from 'ngx-bootstrap/positioning';
 import { BsDropdownContainerComponent } from './bs-dropdown-container.component';
 import { BsDropdownMenuDirective } from './bs-dropdown-menu.directive';
 import { BsDropdownToggleDirective } from './bs-dropdown-toggle.directive';
-import { BsDropdownConfig } from './bs-dropdown.config';
 
 import { BsDropdownDirective } from './bs-dropdown.directive';
 import { BsDropdownState } from './bs-dropdown.state';
@@ -32,11 +31,7 @@ export class BsDropdownModule {
       providers: [
         ComponentLoaderFactory,
         PositioningService,
-        BsDropdownState,
-        {
-          provide: BsDropdownConfig,
-          useValue: config ? config : { autoClose: true, insideClick: false }
-        }
+        BsDropdownState
       ]
     };
   }

@@ -12,7 +12,9 @@ import { BsCustomDates } from './themes/bs/bs-custom-dates-view.component';
  * For date range picker there are `BsDaterangepickerConfig` which inherits all properties,
  * except `displayMonths`, for range picker it default to `2`
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class BsDatepickerConfig implements DatepickerRenderOptions {
   /** sets use adaptive position */
   adaptivePosition = false;
