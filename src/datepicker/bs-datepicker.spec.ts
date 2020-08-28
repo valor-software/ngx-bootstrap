@@ -26,9 +26,7 @@ class TestComponent {
 type TestFixture = ComponentFixture<TestComponent>;
 
 function getDatepickerDirective(fixture: TestFixture): BsDatepickerDirective {
-  const datepicker: BsDatepickerDirective = fixture.componentInstance.datepicker;
-
-  return datepicker;
+  return fixture.componentInstance.datepicker;
 }
 
 function showDatepicker(fixture: TestFixture): BsDatepickerDirective {
@@ -137,6 +135,38 @@ describe('datepicker:', () => {
       buttonText.push(button.textContent);
     });
     expect(buttonText.filter(button => button === 'Today').length).toEqual(1);
+  });
+
+  it('should show custom label for today button if set in config', () => {
+    const todayBtnCustomLbl = 'Select today';
+    const datepickerDirective = getDatepickerDirective(fixture);
+    datepickerDirective.bsConfig = {
+      todayButtonLabel: todayBtnCustomLbl,
+      showTodayButton: true
+    };
+    showDatepicker(fixture);
+
+    const buttonText: string[] = [];
+    queryAll('button').forEach(button => {
+      buttonText.push(button.textContent);
+    });
+    expect(buttonText.filter(button => button === todayBtnCustomLbl).length).toEqual(1);
+  });
+
+  it('should show custom label for clear button if set in config', () => {
+    const clearBtnCustomLbl = 'Clear current';
+    const datepickerDirective = getDatepickerDirective(fixture);
+    datepickerDirective.bsConfig = {
+      clearButtonLabel: clearBtnCustomLbl,
+      showClearButton: true
+    };
+    showDatepicker(fixture);
+
+    const buttonText: string[] = [];
+    queryAll('button').forEach(button => {
+      buttonText.push(button.textContent);
+    });
+    expect(buttonText.filter(button => button === clearBtnCustomLbl).length).toEqual(1);
   });
 
   it('should set today date', () => {

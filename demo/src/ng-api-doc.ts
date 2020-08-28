@@ -1106,6 +1106,30 @@ export const ngdoc: any = {
         "description": "<p>Positioning for &#39;today&#39; button</p>\n"
       },
       {
+        "name": "todayButtonLabel",
+        "defaultValue": "Today",
+        "type": "string",
+        "description": "<p>Label for &#39;today&#39; button</p>\n"
+      },
+      {
+        "name": "showClearButton",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>Shows &#39;clear&#39; button</p>\n"
+      },
+      {
+        "name": "clearPosition",
+        "defaultValue": "center",
+        "type": "string",
+        "description": "<p>Positioning for &#39;clear&#39; button</p>\n"
+      },
+      {
+        "name": "clearButtonLabel",
+        "defaultValue": "Clear",
+        "type": "string",
+        "description": "<p>Label for &#39;clear&#39; button</p>\n"
+      },
+      {
         "name": "showWeekNumbers",
         "defaultValue": "true",
         "type": "boolean",
