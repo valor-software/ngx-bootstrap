@@ -1,9 +1,11 @@
 {
   "angularCompilerOptions": {
+    "enableIvy": false,
+    "disableExpressionLowering": true,
     "annotateForClosureCompiler": true,
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
-    "fullTemplateTypeCheck": false,
+    "fullTemplateTypeCheck": true,
     "enableResourceInlining": true
   },
   "buildOnSave": false,
