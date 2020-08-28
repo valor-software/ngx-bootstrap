@@ -150,4 +150,19 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Positioning of 'clear' button
    */
   clearPosition = 'right';
+
+  /**
+   * Label for 'today' button
+   */
+  todayButtonLabel = 'Today';
+
+  /**
+   * Label for 'clear' button
+   */
+  clearButtonLabel = 'Clear';
+
+  /**
+   * Label for 'custom range' button
+   */
+  customRangeButtonLabel = 'Custom Range';
 }
