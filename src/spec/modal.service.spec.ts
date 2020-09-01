@@ -1,7 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 
-import { BsModalService, ModalModule } from '../modal';
+import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 
 /* tslint:disable-next-line: max-classes-per-file */
 @Component({ template: '<div>Dummy Component</div>' })

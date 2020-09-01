@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from './bs-datepicker.module';
 import { BsDaterangepickerInlineDirective } from './bs-daterangepicker-inline.component';
@@ -39,7 +39,7 @@ type TestFixture = ComponentFixture<TestComponent>;
 describe('daterangepicker inline:', () => {
   let fixture: TestFixture;
   beforeEach(
-    async(() => TestBed.configureTestingModule({
+    waitForAsync(() => TestBed.configureTestingModule({
         declarations: [TestComponent],
         imports: [
           BsDatepickerModule.forRoot(),
