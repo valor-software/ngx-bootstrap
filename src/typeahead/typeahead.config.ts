@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 
 /** Default values provider for typeahead */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class TypeaheadConfig {
   /** sets use adaptive position */
   adaptivePosition = false;
@@ -9,6 +11,8 @@ export class TypeaheadConfig {
   isAnimated = false;
   /** used to hide results on blur */
   hideResultsOnBlur = true;
+  /** if true, typeahead will cancel async request on blur */
+  cancelRequestOnFocusLost = false;
   /** used to choose the first item in typeahead container */
   selectFirstItem = true;
   /** used to active/inactive the first item in typeahead container */

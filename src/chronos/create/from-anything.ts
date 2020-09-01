@@ -40,7 +40,7 @@ export function prepareConfig(config: DateParsingConfig): DateParsingConfig {
   }
 
   if (isString(input)) {
-    config._i = input = config._locale.preparse(input);
+    config._i = input = config._locale.preparse(input, format);
   }
 
   if (isDate(input)) {

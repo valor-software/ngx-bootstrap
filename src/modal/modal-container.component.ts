@@ -28,7 +28,9 @@ import { isBs3 } from 'ngx-bootstrap/utils';
     class: 'modal',
     role: 'dialog',
     tabindex: '-1',
-    '[attr.aria-modal]': 'true'
+    '[attr.aria-modal]': 'true',
+    '[attr.aria-labelledby]': 'config.ariaLabelledBy',
+    '[attr.aria-describedby]': 'config.ariaDescribedby'
   }
 })
 export class ModalContainerComponent implements OnInit, OnDestroy {
@@ -98,6 +100,11 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     this.hide();
   }
 
+  @HostListener('window:popstate')
+  onPopState(): void {
+    this.hide();
+  }
+
   @HostListener('window:keydown.esc', ['$event'])
   onEsc(event: KeyboardEvent): void {
     if (!this.isShown) {
@@ -142,7 +149,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       ) {
         this._renderer.removeClass(document.body, CLASS_NAME.OPEN);
       }
-      this.bsModalService.hide(this.level);
+      this.bsModalService.hide(this.config.id);
       this.isModalHiding = false;
     }, this.isAnimated ? TRANSITION_DURATIONS.MODAL : 0);
   }

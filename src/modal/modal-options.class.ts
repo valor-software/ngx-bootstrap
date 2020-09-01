@@ -1,8 +1,12 @@
-import { Injectable, StaticProvider } from '@angular/core';
+import { Injectable, StaticProvider, InjectionToken } from '@angular/core';
 import { ClassName, DismissReasons, Selector, TransitionDurations } from './models';
 
 @Injectable()
 export class ModalOptions {
+  /**
+   *  Allow user to ID for the modal. Otherwise, a unique number will be given
+   */
+  id?: number;
   /**
    *  Includes a modal-backdrop element. Alternatively,
    *  specify static for a backdrop which doesn't close the modal on click.
@@ -38,10 +42,18 @@ export class ModalOptions {
    * Modal providers
    */
   providers?: StaticProvider[];
+  /**
+   * aria-labelledby attribute value to set on the modal window
+   */
+  ariaLabelledBy?: string;
+  /**
+   * aria-describedby attribute value to set on the modal window
+   */
+  ariaDescribedby?: string;
 }
 
-
 export const modalConfigDefaults: ModalOptions = {
+  id: (new Date()).getUTCMilliseconds(),
   backdrop: true,
   keyboard: true,
   focus: true,
@@ -51,6 +63,9 @@ export const modalConfigDefaults: ModalOptions = {
   animated: true,
   initialState: {}
 };
+
+export const MODAL_CONFIG_DEFAULT_OVERRIDE: InjectionToken<ModalOptions> =
+  new InjectionToken<ModalOptions>('override-default-config');
 
 export const CLASS_NAME: ClassName = {
   SCROLLBAR_MEASURER: 'modal-scrollbar-measure',

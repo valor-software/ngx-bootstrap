@@ -1,6 +1,6 @@
 // RECOMMENDED
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-// or
+// NOT RECOMMENDED (Angular 9 doesn't support this kind of import)
 import { TooltipModule } from 'ngx-bootstrap';
 
 @NgModule({

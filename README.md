@@ -152,6 +152,11 @@ First time:
  - `npm install`
  - `npm run build`
 
+If you're using Windows, run:
+ - `npm run build.windows` instead of `npm run build`
+ - You will have to install [cwRsync](https://en.wikipedia.org/wiki/CwRsync) because one of
+ the scripts requires `rsync`
+
 To update your fork and prepare it for local usage:
  - `git pull upstream development`
  - `rm -rf node_modules`
@@ -175,7 +180,9 @@ Here is the versions compatibility list:
 
 | ngx-bootstrap |    Angular    |  Bootstrap CSS |
 | ------------- | ------------- | -------------- |
-| 5.x.x         | 7.x.x - 8.x.x | 3.x.x or 4.x.x |
+| 6.0.0         | 9.x.x - 10.x.x | 3.x.x or 4.x.x |
+| 5.6.x         | 7.x.x - 9.1.0 | 3.x.x or 4.x.x |
+| 5.0.0 - 5.6.0 | 7.x.x - 8.x.x | 3.x.x or 4.x.x |
 | 4.x.x         | 6.x.x - 7.x.x | 3.x.x or 4.x.x |
 | 3.x.x         | 6.x.x - 7.x.x | 3.x.x or 4.x.x |
 | 2.x.x         | 2.x.x - 4.x.x | 3.x.x or 4.x.x |
