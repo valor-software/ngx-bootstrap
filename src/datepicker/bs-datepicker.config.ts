@@ -33,6 +33,10 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    */
   maxDate?: Date;
   /**
+   * The view that the datepicker should start in
+   */
+  startView: BsDatepickerViewMode = 'day';
+  /**
    * Default date custom classes for all date/range pickers
    */
   dateCustomClasses: DatepickerDateCustomClasses[];

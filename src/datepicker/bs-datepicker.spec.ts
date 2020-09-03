@@ -6,7 +6,7 @@ import { BsDatepickerModule } from './bs-datepicker.module';
 import { BsDatepickerDirective } from './bs-datepicker.component';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
-import { CalendarCellViewModel, WeekViewModel } from './models';
+import { BsDatepickerViewMode, CalendarCellViewModel, WeekViewModel } from './models';
 import { dispatchKeyboardEvent, queryAll } from '@netbasal/spectator';
 import { registerEscClick } from '../utils';
 
@@ -108,7 +108,9 @@ describe('datepicker:', () => {
     datepickerContainerInstance[`_store`]
       .select(state => state.view)
       .subscribe(view => {
-        expect(view.date.getDate()).not.toEqual((weekSelection.days[0].date.getDate()));
+        const currentDate = `${view.date.getDate()}${view.date.getFullYear()}` ;
+        const oldDate = `${weekSelection.days[0].date.getDate()}${weekSelection.days[0].date.getFullYear()}`;
+        expect(currentDate).not.toEqual(oldDate);
       });
   });
 
@@ -169,6 +171,56 @@ describe('datepicker:', () => {
     expect(buttonText.filter(button => button === clearBtnCustomLbl).length).toEqual(1);
   });
 
+  describe('should start with', () => {
+
+    const parameters = [
+      {
+        description: 'year view if set in config',
+        startView: 'year',
+        expectedVisibleContainer: ['bs-years-calendar-view'],
+        expectedInvisibleContainer: ['bs-month-calendar-view', 'bs-days-calendar-view'],
+        expectedViewMode: 'year'
+      },
+      {
+        description: 'month view if set in config',
+        startView: 'month',
+        expectedVisibleContainer: ['bs-month-calendar-view'],
+        expectedInvisibleContainer: ['bs-years-calendar-view', 'bs-days-calendar-view'],
+        expectedViewMode: 'month'
+      },
+      {
+        description: 'day view if set in config',
+        startView: 'day',
+        expectedVisibleContainer: ['bs-days-calendar-view'],
+        expectedInvisibleContainer: ['bs-years-calendar-view', 'bs-month-calendar-view'],
+        expectedViewMode: 'day'
+      }
+    ];
+
+    parameters.forEach(parameter => {
+      it(parameter.description, done => {
+        const datepickerDirective = getDatepickerDirective(fixture);
+        datepickerDirective.bsConfig = {
+          startView: parameter.startView as BsDatepickerViewMode
+        };
+
+        const bsDatepickerDirective = showDatepicker(fixture);
+        const datepickerContainerInstance = getDatepickerContainer(bsDatepickerDirective);
+
+        parameter.expectedVisibleContainer.forEach(container => {
+          expect(datepickerContainerInstance[`_element`].nativeElement.querySelectorAll(container)[0]).toBeTruthy();
+        });
+        parameter.expectedInvisibleContainer.forEach(container => {
+          expect(datepickerContainerInstance[`_element`].nativeElement.querySelectorAll(container)[0]).toBeFalsy();
+        });
+        datepickerContainerInstance.viewMode.subscribe(res => {
+          expect(res).toBe(parameter.expectedViewMode);
+          done();
+        });
+      });
+    });
+  });
+
   it('should set today date', () => {
     const datepicker = showDatepicker(fixture);
     const datepickerContainerInstance = getDatepickerContainer(datepicker);
@@ -199,7 +251,6 @@ describe('datepicker:', () => {
           'should update to equal today');
       }).unsubscribe();
   });
-
 
   it('should clear date', () => {
     const datepicker = showDatepicker(fixture);
