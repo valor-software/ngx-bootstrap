@@ -1,4 +1,6 @@
 /* tslint:disable */
+import { BsDatepickerViewMode } from "../../src/datepicker/models";
+
 export const ngdoc: any = {
   "AccordionPanelComponent": {
     "fileName": "src/accordion/accordion-group.component.ts",
@@ -1134,6 +1136,12 @@ export const ngdoc: any = {
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>Allows to hide week numbers in datepicker</p>\n"
+      },
+      {
+        "name": "startView",
+        "defaultValue": "day",
+        "type": "BsDatepickerViewMode",
+        "description": "<p>Allows to change the view that the datepicker should start in</p>\n"
       },
       {
         "name": "useUtc",

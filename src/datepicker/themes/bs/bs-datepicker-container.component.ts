@@ -103,6 +103,8 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
         /* tslint:disable-next-line: no-any */
         .subscribe((date: any) => this.valueChange.emit(date))
     );
+
+    this._store.dispatch(this._actions.changeViewMode(this._config.startView));
   }
 
   get isTopPosition(): boolean {
