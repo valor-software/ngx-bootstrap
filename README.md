@@ -58,12 +58,12 @@ Our main sponsors will be presented under this section! Be the first!
 ## Installation instructions
 ##### Method 1
 Install `ngx-bootstrap` from `npm`:
-```bash
-npm install ngx-bootstrap --save
+```sh
+npm i ngx-bootstrap 
 ```
 
 Add needed package to NgModule imports:
-```
+```ts
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
@@ -74,7 +74,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 ```
 
 Add component to your page:
-```
+```html
 <button type="button" class="btn btn-primary"
         tooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
   Simple demo
@@ -83,28 +83,28 @@ Add component to your page:
 
 You will need bootstrap styles:
 - `Bootstrap 3`
-```
+```html
 <!-- index.html -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 ```
 
 - `Bootstrap 4`
-```
+```html
 <!--- index.html -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 ```
 ##### Method 2
 Use the Angular CLI ng add command for updating your Angular project.
-```bash
+```sh
 ng add ngx-bootstrap
 ```
 
 Or use `ng add` to add needed component (for example tooltip).
-```bash
+```sh
 ng add ngx-bootstrap --component tooltip
 ```
 Add component to your page:
-```
+```html
 <button type="button" class="btn btn-primary"
         tooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
   Simple demo
@@ -112,7 +112,7 @@ Add component to your page:
 ```
 ### Setting up the bootstrap version manually
 Sometimes, your project might contain some library that could interfere with the bootstrap framework, or you might have a customized version of bootstrap. The consequence is that the process of determining bootstrap version might be failed, which can break the UI. In that case, we can still set the bootstrap version manually in the bootstrapping component (i.e. `AppComponent`):
-```
+```ts
 import { setTheme } from 'ngx-bootstrap/utils';
 
 @Component({...})
