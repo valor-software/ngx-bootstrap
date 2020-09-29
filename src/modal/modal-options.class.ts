@@ -2,7 +2,7 @@ import { Injectable, StaticProvider, InjectionToken } from '@angular/core';
 import { ClassName, DismissReasons, Selector, TransitionDurations } from './models';
 
 @Injectable()
-export class ModalOptions {
+export class ModalOptions<T = Object> {
   /**
    *  Allow user to ID for the modal. Otherwise, a unique number will be given
    */
@@ -37,7 +37,7 @@ export class ModalOptions {
   /**
    * Modal data
    */
-  initialState?: Object;
+  initialState?: Partial<T>;
   /**
    * Modal providers
    */
