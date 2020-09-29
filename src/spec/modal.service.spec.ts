@@ -2,6 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 
 import { BsModalService, ModalModule } from '../modal';
+import { pairwise, tap } from 'rxjs/operators';
 
 /* tslint:disable-next-line: max-classes-per-file */
 @Component({ template: '<div>Dummy Component</div>' })
@@ -46,6 +47,20 @@ describe('Modal service', () => {
       done();
     });
 
+    modalService.show(TestModalComponent);
+  });
+
+  it('should return different random id when open nested modal without specifying id', done => {
+    modalService.onShown.pipe(
+      pairwise(),
+      tap(([firstData, secondData]) => {
+        /* tslint:disable-next-line: no-floating-promises */
+        expect(firstData.id).not.toBe(secondData);
+        done();
+      })
+    ).subscribe();
+
+    modalService.show(TestModalComponent);
     modalService.show(TestModalComponent);
   });
 
