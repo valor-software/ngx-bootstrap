@@ -53,7 +53,6 @@ export class ModalOptions {
 }
 
 export const modalConfigDefaults: ModalOptions = {
-  id: (new Date()).getUTCMilliseconds(),
   backdrop: true,
   keyboard: true,
   focus: true,
