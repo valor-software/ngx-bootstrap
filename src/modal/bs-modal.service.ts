@@ -69,9 +69,12 @@ export class BsModalService {
   show(content: string | TemplateRef<any> | any, config?: ModalOptions): BsModalRef {
     this.modalsCount++;
     this._createLoaders();
+
+    const id = config?.id || (new Date()).getUTCMilliseconds(); // must be different per every show() call
     this.config = this.modalDefaultOption ?
       Object.assign({}, modalConfigDefaults, this.modalDefaultOption, config) :
       Object.assign({}, modalConfigDefaults, config);
+    this.config.id = id;
 
     this._showBackdrop();
     this.lastDismissReason = null;
