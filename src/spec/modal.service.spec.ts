@@ -55,7 +55,7 @@ describe('Modal service', () => {
       pairwise(),
       tap(([firstData, secondData]) => {
         /* tslint:disable-next-line: no-floating-promises */
-        expect(firstData.id).not.toBe(secondData);
+        expect(firstData.id).not.toBe(secondData.id);
         done();
       })
     ).subscribe();
