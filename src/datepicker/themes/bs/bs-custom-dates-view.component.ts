@@ -21,7 +21,7 @@ export interface BsCustomDates {
         class="btn"
         (click)="selectFromRanges(customRange)"
         [class.selected]="!checkRange()">
-        Custom Range
+        {{customRangeLabel}}
       </button>
     </div>
   `,
@@ -30,6 +30,7 @@ export interface BsCustomDates {
 export class BsCustomDatesViewComponent {
   @Input() ranges: BsCustomDates[];
   @Input() selectedRange: Date[];
+  @Input() customRangeLabel: string;
   @Output() onSelect = new EventEmitter<BsCustomDates>();
 
   customRange: any = null;
