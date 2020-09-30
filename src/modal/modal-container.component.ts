@@ -43,8 +43,8 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   private clickStartedInContent = false;
 
   constructor(options: ModalOptions,
-              protected _element: ElementRef,
-              private _renderer: Renderer2) {
+    protected _element: ElementRef,
+    private _renderer: Renderer2) {
     this.config = Object.assign({}, options);
   }
 
@@ -103,6 +103,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   @HostListener('window:popstate')
   onPopState(): void {
     this.hide();
+    this.bsModalService.setDismissReason(DISMISS_REASONS.BACK);
   }
 
   @HostListener('window:keydown.esc', ['$event'])
@@ -124,6 +125,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       this.hide();
     }
   }
+
 
   ngOnDestroy(): void {
     if (this.isShown) {

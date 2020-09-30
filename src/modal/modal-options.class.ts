@@ -89,5 +89,6 @@ export const TRANSITION_DURATIONS: TransitionDurations = {
 
 export const DISMISS_REASONS: DismissReasons = {
   BACKRDOP: 'backdrop-click',
-  ESC: 'esc'
+  ESC: 'esc',
+  BACK: 'broswer-back-navigation-clicked'
 };
