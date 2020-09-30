@@ -6,13 +6,20 @@ import { Component } from '@angular/core';
 })
 export class DemoTimepickerMinMaxComponent {
   myTime: Date = new Date();
-  minTime: Date = new Date();
+  targetMinTime: Date = new Date();
   maxTime: Date = new Date();
+  minTime: Date;
 
   constructor() {
-    this.minTime.setHours(8);
-    this.minTime.setMinutes(0);
-    this.maxTime.setHours(23);
-    this.maxTime.setMinutes(55);
+    this.targetMinTime.setHours(8);
+    this.targetMinTime.setMinutes(0);
+    this.myTime.setHours(5);
+    this.myTime.setMinutes(15);
+    this.maxTime.setHours(17);
+    this.maxTime.setMinutes(0);
+  }
+
+  setMinTime() {
+    this.minTime = this.targetMinTime;
   }
 }

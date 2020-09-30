@@ -53,9 +53,8 @@ export function canChangeMinutes(
   if (event.step > 0 && !controls.canIncrementMinutes) {
     return false;
   }
+
   return !(event.step < 0 && !controls.canDecrementMinutes);
-
-
 }
 
 export function canChangeSeconds(
@@ -68,9 +67,8 @@ export function canChangeSeconds(
   if (event.step > 0 && !controls.canIncrementSeconds) {
     return false;
   }
+
   return !(event.step < 0 && !controls.canDecrementSeconds);
-
-
 }
 
 export function getControlsValue(
@@ -115,7 +113,7 @@ export function timepickerControls(
 ): TimepickerControls {
   const hoursPerDay = 24;
   const hoursPerDayHalf = 12;
-  const { min, max, hourStep, showSeconds } = state;
+  const { min, max, hourStep, minuteStep, secondsStep, showSeconds } = state;
   const res: TimepickerControls = {
     canIncrementHours: true,
     canIncrementMinutes: true,
@@ -140,19 +138,21 @@ export function timepickerControls(
   if (max) {
     const _newHour = changeTime(value, { hour: hourStep });
     res.canIncrementHours = max > _newHour && (value.getHours() + hourStep) < hoursPerDay;
-    res.invalidHours = max < value;
+    res.invalidHours = max < _newHour;
 
     if (!res.canIncrementHours) {
+      const _newMinutes = changeTime(value, { minute: minuteStep });
       res.canIncrementMinutes = showSeconds
-        ? max > value
-        : max >= value;
+        ? max > _newMinutes
+        : max >= _newMinutes;
 
-      res.invalidMinutes = max < value;
+      res.invalidMinutes = max < _newMinutes;
     }
 
     if (!res.canIncrementMinutes) {
-      res.canIncrementSeconds = max >= value;
-      res.invalidSeconds = max < value;
+      const _newSeconds = changeTime(value, { seconds: secondsStep });
+      res.canIncrementSeconds = max >= _newSeconds;
+      res.invalidSeconds = max < _newSeconds;
     }
 
     if (value.getHours() < hoursPerDayHalf) {
@@ -161,20 +161,23 @@ export function timepickerControls(
   }
 
   if (min) {
-    res.canDecrementHours = min < value;
-    res.invalidHours = min > value;
+    const _newHour = changeTime(value, { hour: -hourStep });
+    res.canDecrementHours = min < _newHour;
+    res.invalidHours = min > _newHour;
 
     if (!res.canDecrementHours) {
+      const _newMinutes = changeTime(value, { minute: -minuteStep });
       res.canDecrementMinutes = showSeconds
-        ? min < value
-        : min <= value;
+        ? min < _newMinutes
+        : min <= _newMinutes;
 
-      res.invalidMinutes = min > value;
+      res.invalidMinutes = min > _newMinutes;
     }
 
     if (!res.canDecrementMinutes) {
-      res.canDecrementSeconds = min <= value;
-      res.invalidSeconds = min > value;
+      const _newSeconds = changeTime(value, { seconds: -secondsStep });
+      res.canDecrementSeconds = min <= _newSeconds;
+      res.invalidSeconds = min > _newSeconds;
     }
 
     if (value.getHours() >= hoursPerDayHalf) {
