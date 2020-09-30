@@ -43,8 +43,8 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   private clickStartedInContent = false;
 
   constructor(options: ModalOptions,
-    protected _element: ElementRef,
-    private _renderer: Renderer2) {
+              protected _element: ElementRef,
+              private _renderer: Renderer2) {
     this.config = Object.assign({}, options);
   }
 
@@ -125,7 +125,6 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       this.hide();
     }
   }
-
 
   ngOnDestroy(): void {
     if (this.isShown) {
