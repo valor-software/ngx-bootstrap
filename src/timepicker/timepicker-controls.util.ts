@@ -38,11 +38,9 @@ export function canChangeHours(
     return false;
   }
 
-  if (event.step < 0 && !controls.canDecrementHours) {
-    return false;
-  }
+  return !(event.step < 0 && !controls.canDecrementHours);
 
-  return true;
+
 }
 
 export function canChangeMinutes(
@@ -55,11 +53,9 @@ export function canChangeMinutes(
   if (event.step > 0 && !controls.canIncrementMinutes) {
     return false;
   }
-  if (event.step < 0 && !controls.canDecrementMinutes) {
-    return false;
-  }
+  return !(event.step < 0 && !controls.canDecrementMinutes);
 
-  return true;
+
 }
 
 export function canChangeSeconds(
@@ -72,11 +68,9 @@ export function canChangeSeconds(
   if (event.step > 0 && !controls.canIncrementSeconds) {
     return false;
   }
-  if (event.step < 0 && !controls.canDecrementSeconds) {
-    return false;
-  }
+  return !(event.step < 0 && !controls.canDecrementSeconds);
 
-  return true;
+
 }
 
 export function getControlsValue(
@@ -119,8 +113,9 @@ export function timepickerControls(
   value: Date,
   state: TimepickerComponentState
 ): TimepickerControls {
+  const hoursPerDay = 24;
   const hoursPerDayHalf = 12;
-  const { min, max, showSeconds } = state;
+  const { min, max, hourStep, showSeconds } = state;
   const res: TimepickerControls = {
     canIncrementHours: true,
     canIncrementMinutes: true,
@@ -143,7 +138,8 @@ export function timepickerControls(
 
   // compare dates
   if (max) {
-    res.canIncrementHours = max > value;
+    const _newHour = changeTime(value, { hour: hourStep });
+    res.canIncrementHours = max > _newHour && (value.getHours() + hourStep) < hoursPerDay;
     res.invalidHours = max < value;
 
     if (!res.canIncrementHours) {

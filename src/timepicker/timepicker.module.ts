@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { TimepickerComponent } from './timepicker.component';
 import { TimepickerActions } from './reducer/timepicker.actions';
-import { TimepickerConfig } from './timepicker.config';
 import { TimepickerStore } from './reducer/timepicker.store';
 
 @NgModule({
@@ -12,10 +11,10 @@ import { TimepickerStore } from './reducer/timepicker.store';
   exports: [TimepickerComponent]
 })
 export class TimepickerModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<TimepickerModule> {
     return {
       ngModule: TimepickerModule,
-      providers: [TimepickerConfig, TimepickerActions, TimepickerStore]
+      providers: [TimepickerActions, TimepickerStore]
     };
   }
 }

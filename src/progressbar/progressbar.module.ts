@@ -3,7 +3,6 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { BarComponent } from './bar.component';
 import { ProgressbarComponent } from './progressbar.component';
-import { ProgressbarConfig } from './progressbar.config';
 
 @NgModule({
   imports: [CommonModule],
@@ -11,7 +10,7 @@ import { ProgressbarConfig } from './progressbar.config';
   exports: [BarComponent, ProgressbarComponent]
 })
 export class ProgressbarModule {
-  static forRoot(): ModuleWithProviders {
-    return { ngModule: ProgressbarModule, providers: [ProgressbarConfig] };
+  static forRoot(): ModuleWithProviders<ProgressbarModule> {
+    return { ngModule: ProgressbarModule, providers: [] };
   }
 }
