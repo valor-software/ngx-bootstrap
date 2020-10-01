@@ -104,6 +104,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   onPopState(): void {
     this.bsModalService.setDismissReason(DISMISS_REASONS.BACK);
     this.hide();
+    this.bsModalService.setDismissReason(DISMISS_REASONS.BACK);
   }
 
   @HostListener('window:keydown.esc', ['$event'])
