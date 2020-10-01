@@ -91,7 +91,7 @@ export class ModalDirective implements OnDestroy, OnInit {
       _viewContainerRef,
       _renderer
     );
-    this._config = modalConfigDefaults || modalConfigDefaults;
+    this._config = modalDefaultOption || modalConfigDefaults;
   }
 
   @HostListener('mousedown', ['$event'])

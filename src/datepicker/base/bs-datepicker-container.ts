@@ -22,12 +22,15 @@ export abstract class BsDatepickerAbstractComponent {
   containerClass: string;
   isOtherMonthsActive: boolean;
   showTodayBtn: boolean;
+  todayBtnLbl: string;
   todayPos: string;
-  clearPos: string;
   showClearBtn: boolean;
+  clearBtnLbl: string;
+  clearPos: string;
 
   _effects: BsDatepickerEffects;
   customRanges: BsCustomDates[] = [];
+  customRangeBtnLbl: string;
   chosenRange: Date[] = [];
 
   set minDate(value: Date) {
