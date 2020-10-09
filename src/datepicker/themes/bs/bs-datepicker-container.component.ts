@@ -78,9 +78,12 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     this.isOtherMonthsActive = this._config.selectFromOtherMonth;
     this.containerClass = this._config.containerClass;
     this.showTodayBtn = this._config.showTodayButton;
+    this.todayBtnLbl = this._config.todayButtonLabel;
     this.todayPos = this._config.todayPosition;
-    this.clearPos = this._config.clearPosition;
     this.showClearBtn = this._config.showClearButton;
+    this.clearBtnLbl = this._config.clearButtonLabel;
+    this.clearPos = this._config.clearPosition;
+    this.customRangeBtnLbl = this._config.customRangeButtonLabel;
     this._effects
       .init(this._store)
       // intial state options
@@ -100,6 +103,8 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
         /* tslint:disable-next-line: no-any */
         .subscribe((date: any) => this.valueChange.emit(date))
     );
+
+    this._store.dispatch(this._actions.changeViewMode(this._config.startView));
   }
 
   get isTopPosition(): boolean {

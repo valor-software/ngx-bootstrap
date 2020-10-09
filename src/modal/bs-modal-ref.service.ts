@@ -1,7 +1,8 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable()
-export class BsModalRef {
+// tslint:disable-next-line:no-any
+export class BsModalRef<T = any> {
   /**
    *  Allow user to ID for the modal. Otherwise, a unique number will be given
    */
@@ -10,8 +11,7 @@ export class BsModalRef {
   /**
    * Reference to a component inside the modal. Null if modal's been created with TemplateRef
    */
-  // tslint:disable-next-line:no-any
-  content?: any | null;
+  content?: T | null;
 
   /**
    * Hides the modal
