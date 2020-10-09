@@ -174,7 +174,7 @@ function calculateReducer(state: BsDatepickerState): BsDatepickerState {
   let viewDate = state.view.date;
 
   if (state.view.mode === 'day') {
-    if (state.showPreviousMonth && state.selectedRange.length === 0) {
+    if (state.showPreviousMonth && state.selectedRange && state.selectedRange.length === 0) {
       viewDate = shiftDate(viewDate, { month: -1 });
     }
 
