@@ -3564,7 +3564,7 @@ export const ngdoc: any = {
       {
         "name": "minuteStep",
         "type": "number",
-        "description": "<p>hours change step</p>\n"
+        "description": "<p>minutes change step</p>\n"
       },
       {
         "name": "mousewheel",
@@ -3689,7 +3689,7 @@ export const ngdoc: any = {
         "name": "minuteStep",
         "defaultValue": "5",
         "type": "number",
-        "description": "<p>hours change step</p>\n"
+        "description": "<p>minutes change step</p>\n"
       },
       {
         "name": "mousewheel",
