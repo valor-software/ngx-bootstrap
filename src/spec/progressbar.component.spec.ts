@@ -61,7 +61,7 @@ describe('Component: Progress Bar', () => {
   });
 
   it('checking appropriate styles after setting up of type', () => {
-    const tpl = `<progressbar [type]="'warning'"></progressbar>`;
+    const tpl = `<progressbar [type]="typeValue"></progressbar>`;
     TestBed.configureTestingModule({
       declarations: [TestProgressbarComponent],
       imports: [ProgressbarModule.forRoot()]
@@ -71,8 +71,13 @@ describe('Component: Progress Bar', () => {
     });
     fixture = TestBed.createComponent(TestProgressbarComponent);
     element = fixture.nativeElement;
+    const context = fixture.debugElement.componentInstance;
     fixture.detectChanges();
+
     const barElement = element.querySelector('bar');
+    context.typeValue = 'warning';
+    fixture.detectChanges();
+
     expect(barElement.classList).toContain('progress-bar-warning');
   });
 
