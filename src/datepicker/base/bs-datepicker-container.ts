@@ -10,6 +10,7 @@ import {
   CellHoverEvent,
   DatepickerRenderOptions,
   DatepickerDateCustomClasses,
+  DatepickerDateTooltipText,
   DaysCalendarViewModel,
   DayViewModel,
   MonthsCalendarViewModel,
@@ -21,10 +22,15 @@ export abstract class BsDatepickerAbstractComponent {
   containerClass: string;
   isOtherMonthsActive: boolean;
   showTodayBtn: boolean;
+  todayBtnLbl: string;
   todayPos: string;
+  showClearBtn: boolean;
+  clearBtnLbl: string;
+  clearPos: string;
 
   _effects: BsDatepickerEffects;
   customRanges: BsCustomDates[] = [];
+  customRangeBtnLbl: string;
   chosenRange: Date[] = [];
 
   set minDate(value: Date) {
@@ -51,6 +57,10 @@ export abstract class BsDatepickerAbstractComponent {
 
   set dateCustomClasses(value: DatepickerDateCustomClasses[]) {
     this._effects.setDateCustomClasses(value);
+  }
+
+  set dateTooltipTexts(value: DatepickerDateTooltipText[]) {
+    this._effects.setDateTooltipTexts(value);
   }
 
   viewMode: Observable<BsDatepickerViewMode>;
@@ -80,6 +90,8 @@ export abstract class BsDatepickerAbstractComponent {
   setRangeOnCalendar(dates: BsCustomDates): void {}
 
   setToday(): void {}
+
+  clearDate(): void {}
 
     /* tslint:disable-next-line: no-any */
   _stopPropagation(event: any): void {

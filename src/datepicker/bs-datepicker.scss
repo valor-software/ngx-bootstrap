@@ -459,14 +459,16 @@
       flex-flow: row wrap;
     }
 
+    .clear-right,
     .today-right {
       flex-grow: 0;
     }
-
+    .clear-left,
     .today-left {
       flex-grow: 1;
     }
 
+    .clear-center,
     .today-center {
       flex-grow: 0.5;
     }

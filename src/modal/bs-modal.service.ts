@@ -65,13 +65,19 @@ export class BsModalService {
   }
 
   /** Shows a modal */
-  // tslint:disable-next-line:no-any
-  show(content: string | TemplateRef<any> | any, config?: ModalOptions): BsModalRef {
+  show<T = Object>(
+    // tslint:disable-next-line:no-any
+    content: string | TemplateRef<any> | { new(...args: any[]): T },
+    config?: ModalOptions<T>
+  ): BsModalRef<T> {
     this.modalsCount++;
     this._createLoaders();
+
+    const id = config?.id || (new Date()).getUTCMilliseconds(); // must be different per every show() call
     this.config = this.modalDefaultOption ?
       Object.assign({}, modalConfigDefaults, this.modalDefaultOption, config) :
       Object.assign({}, modalConfigDefaults, config);
+    this.config.id = id;
 
     this._showBackdrop();
     this.lastDismissReason = null;

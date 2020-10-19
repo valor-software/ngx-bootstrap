@@ -5,11 +5,13 @@ import {
   Output
 } from '@angular/core';
 
+import { isSameDay } from 'ngx-bootstrap/chronos';
+
 import {
   BsDatepickerViewMode,
   BsNavigationDirection,
   BsNavigationEvent,
-  CellHoverEvent,
+  CellHoverEvent, DatepickerDateTooltipText,
   DatepickerRenderOptions,
   DaysCalendarViewModel,
   DayViewModel, WeekViewModel
@@ -49,14 +51,25 @@ import { BsDatepickerConfig } from '../../bs-datepicker.config';
                 (mouseleave)="weekHoverHandler(week, false)">{{ calendar.weekNumbers[i] }}</span>
           </td>
           <td *ngFor="let day of week.days" role="gridcell">
-          <span *ngIf="!isiOS" bsDatepickerDayDecorator
+
+            <!-- When we want to show tooltips for dates -->
+            <span *ngIf="!isiOS && isShowTooltip" bsDatepickerDayDecorator
                 [day]="day"
                 (click)="selectDay(day)"
+                tooltip="{{day.tooltipText}}"
                 (mouseenter)="hoverDay(day, true)"
-                (mouseleave)="hoverDay(day, false)">{{ day.label }}</span>
+                (mouseleave)="hoverDay(day, false)">{{ day.label }} 3</span>
+            <!-- When tooltips for dates are disabled -->
+            <span *ngIf="!isiOS && !isShowTooltip" bsDatepickerDayDecorator
+                  [day]="day"
+                  (click)="selectDay(day)"
+                  (mouseenter)="hoverDay(day, true)"
+                  (mouseleave)="hoverDay(day, false)">{{ day.label }} 2</span>
+
+            <!-- For mobile iOS view, tooltips are not needed -->
             <span *ngIf="isiOS" bsDatepickerDayDecorator
                   [day]="day"
-                  (click)="selectDay(day)">{{ day.label }}</span>
+                  (click)="selectDay(day)">{{ day.label }} 1</span>
           </td>
         </tr>
         </tbody>
@@ -78,9 +91,14 @@ export class BsDaysCalendarViewComponent  {
 
   isWeekHovered: boolean;
   isiOS: boolean;
+  isShowTooltip: boolean;
 
   constructor(private _config: BsDatepickerConfig) {
-    this.isiOS = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    this.isiOS = (/iPad|iPhone|iPod/.test(navigator.platform) ||
+      (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1));
+    if (this._config.dateTooltipTexts && this._config.dateTooltipTexts.length > 0) {
+      this.isShowTooltip = true;
+    }
   }
 
   navigateTo(event: BsNavigationDirection): void {
@@ -155,6 +173,18 @@ export class BsDaysCalendarViewComponent  {
   hoverDay(cell: DayViewModel, isHovered: boolean): void {
     if (this._config.selectFromOtherMonth && cell.isOtherMonth) {
       cell.isOtherMonthHovered = isHovered;
+    }
+
+    if (this._config.dateTooltipTexts) {
+      cell.tooltipText = '';
+      this._config.dateTooltipTexts.forEach((dateData: DatepickerDateTooltipText) => {
+
+        if (isSameDay(dateData.date, cell.date)) {
+          cell.tooltipText = dateData.tooltipText;
+
+          return;
+        }
+      });
     }
 
     this.onHover.emit({ cell, isHovered });

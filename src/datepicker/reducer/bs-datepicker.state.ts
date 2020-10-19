@@ -3,6 +3,7 @@ import {
   DatepickerFormatOptions,
   DatepickerRenderOptions,
   DatepickerDateCustomClasses,
+  DatepickerDateTooltipText,
   DaysCalendarModel,
   DaysCalendarViewModel,
   MonthsCalendarViewModel,
@@ -36,6 +37,7 @@ export class BsDatepickerState
   datesEnabled?: Date[];
   minMode?: BsDatepickerViewMode;
   dateCustomClasses?: DatepickerDateCustomClasses[];
+  dateTooltipTexts?: DatepickerDateTooltipText[];
 
   hoveredDate?: Date;
   hoveredMonth?: Date;
