@@ -38,6 +38,8 @@ testPostDeploy: &testPostDeploy
 stages:
 - name: "Publish to ngx-bootstrap-ci"
   if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v\d+
+- name: "Deploy to firebase preview channel"
+  if: branch = development AND type = pull_request
 - name: Testing
   if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v\d+
 - name: deploy
@@ -139,6 +141,14 @@ jobs:
     - cd node_modules/ngx-bootstrap
     - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
     - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then npm unpublish --tag $TRAVIS_COMMIT --force; fi
+
+  - stage: "Deploy to firebase preview channel"
+    skip_cleanup: true
+    provider: firebase
+    project: ngx-bootstrap-demo
+    script: npm run demo.ng-build
+    after_success:
+      - npx firebase-tools hosting:channel:deploy test-push --expires 30d --token $FIREBASE_TOKEN --json
 
   - &surge
     stage: deploy
