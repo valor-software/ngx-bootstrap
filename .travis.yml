@@ -21,6 +21,7 @@ env:
     - LOGS_DIR=/tmp/logs
     - CYPRESS_RECORD_KEY=4aa7a1c0-3a4f-444e-b324-6fc305a543a8
     - NPM_AUTH_TOKEN_CI_PR=$(./scripts/ci/npm-ci-key.sh)
+    - PR_NAME=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
 
 #     test cypress smoke
 testSmokeCy: &testSmokeCy
@@ -149,7 +150,7 @@ jobs:
     before_script: npm install firebase-tools -g
     script: npm run demo.ng-build
     after_success:
-      - firebase hosting:channel:deploy test-push --debug --expires 30d --token $FIREBASE_TOKEN
+      - firebase hosting:channel:deploy pr-$PR_NAME --expires 30d --token $FIREBASE_TOKEN --json
 
   - &surge
     stage: deploy
