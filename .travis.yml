@@ -146,9 +146,10 @@ jobs:
     skip_cleanup: true
     provider: firebase
     project: ngx-bootstrap-demo
+    before_script: npm install firebase-tools -g
     script: npm run demo.ng-build
     after_success:
-      - npx firebase-tools hosting:channel:deploy test-push --expires 30d --token $FIREBASE_TOKEN --json
+      - firebase hosting:channel:deploy test-push --debug --expires 30d --token $FIREBASE_TOKEN
 
   - &surge
     stage: deploy
