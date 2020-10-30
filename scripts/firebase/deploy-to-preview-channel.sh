@@ -6,7 +6,8 @@ RESULT=`echo ${DEPLOY_TO_PREVIEW_CHANNEL_RESULT} | jq -r '.result'`
 NGX_BOOTSTRAP_DEMO=`echo ${RESULT} | jq -r '."ngx-bootstrap-demo"'`
 SITE=`echo ${NGX_BOOTSTRAP_DEMO} | jq -r .site`
 URL=`echo ${NGX_BOOTSTRAP_DEMO} | jq -r .url`
-EXPIRE_TIME=`echo ${NGX_BOOTSTRAP_DEMO} | jq -r .expireTime`
+EXPIRE_TIME_UTC=`echo ${NGX_BOOTSTRAP_DEMO} | jq -r .expireTime`
+EXPIRE_TIME=$(TZ='GMT' date -d $EXPIRE_TIME_UTC +%c)
 
 NEW_COMMENT="Project: $SITE \n Url: $URL \n This link will expire at $EXPIRE_TIME"
 COMMENTS=$(curl -H "Authorization: token $GITHUB_TOKEN" -X GET "https://api.github.com/repos/$TRAVIS_REPO_SLUG/issues/$TRAVIS_PULL_REQUEST/comments")
