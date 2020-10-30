@@ -48,6 +48,8 @@ export class ProgressbarComponent {
   isStacked = false;
   _striped: boolean;
   _animate: boolean;
+  _max = 100;
+
   /* tslint:disable-next-line:no-any */
   _value: number | any[];
   get isBs3(): boolean {
@@ -72,9 +74,6 @@ export class ProgressbarComponent {
 
   /* tslint:disable-next-line:no-any */
   bars: BarComponent[] = [];
-
-  protected _max = 100;
-
   constructor(config: ProgressbarConfig) {
     Object.assign(this, config);
   }
