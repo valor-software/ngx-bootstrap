@@ -43,7 +43,7 @@ import { BsDatepickerConfig } from '../../bs-datepicker.config';
         </thead>
         <tbody>
         <tr *ngFor="let week of calendar.weeks; let i = index">
-          <td class="week" [class.active-week]="isWeekHovered"  *ngIf="options.showWeekNumbers">
+          <td class="weeks" [class.active-week]="isWeekHovered"  *ngIf="options.showWeekNumbers">
             <span *ngIf="isiOS" (click)="selectWeek(week)">{{ calendar.weekNumbers[i] }}</span>
             <span *ngIf="!isiOS"
                 (click)="selectWeek(week)"
