@@ -89,7 +89,7 @@ export class TimepickerComponent
     OnDestroy {
   /** hours change step */
   @Input() hourStep: number;
-  /** hours change step */
+  /** minutes change step */
   @Input() minuteStep: number;
   /** seconds change step */
   @Input() secondsStep: number;
