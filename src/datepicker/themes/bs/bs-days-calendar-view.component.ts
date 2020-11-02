@@ -37,7 +37,7 @@ import { BsDatepickerConfig } from '../../bs-datepicker.config';
           <!--if show weeks-->
           <th *ngIf="options.showWeekNumbers"></th>
           <th *ngFor="let weekday of calendar.weekdays; let i = index"
-              aria-label="weekday">{{ calendar.weekdays[i] }}
+              aria-label="weekdays">{{ calendar.weekdays[i] }}
           </th>
         </tr>
         </thead>
