@@ -1,4 +1,6 @@
 /* tslint:disable */
+import { BsDatepickerViewMode } from "../../src/datepicker/models";
+
 export const ngdoc: any = {
   "AccordionPanelComponent": {
     "fileName": "src/accordion/accordion-group.component.ts",
@@ -1106,10 +1108,40 @@ export const ngdoc: any = {
         "description": "<p>Positioning for &#39;today&#39; button</p>\n"
       },
       {
+        "name": "todayButtonLabel",
+        "defaultValue": "Today",
+        "type": "string",
+        "description": "<p>Label for &#39;today&#39; button</p>\n"
+      },
+      {
+        "name": "showClearButton",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>Shows &#39;clear&#39; button</p>\n"
+      },
+      {
+        "name": "clearPosition",
+        "defaultValue": "center",
+        "type": "string",
+        "description": "<p>Positioning for &#39;clear&#39; button</p>\n"
+      },
+      {
+        "name": "clearButtonLabel",
+        "defaultValue": "Clear",
+        "type": "string",
+        "description": "<p>Label for &#39;clear&#39; button</p>\n"
+      },
+      {
         "name": "showWeekNumbers",
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>Allows to hide week numbers in datepicker</p>\n"
+      },
+      {
+        "name": "startView",
+        "defaultValue": "day",
+        "type": "BsDatepickerViewMode",
+        "description": "<p>Allows to change the view that the datepicker should start in</p>\n"
       },
       {
         "name": "useUtc",
@@ -3532,7 +3564,7 @@ export const ngdoc: any = {
       {
         "name": "minuteStep",
         "type": "number",
-        "description": "<p>hours change step</p>\n"
+        "description": "<p>minutes change step</p>\n"
       },
       {
         "name": "mousewheel",
@@ -3657,7 +3689,7 @@ export const ngdoc: any = {
         "name": "minuteStep",
         "defaultValue": "5",
         "type": "number",
-        "description": "<p>hours change step</p>\n"
+        "description": "<p>minutes change step</p>\n"
       },
       {
         "name": "mousewheel",

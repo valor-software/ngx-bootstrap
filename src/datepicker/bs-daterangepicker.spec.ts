@@ -181,7 +181,7 @@ describe('daterangepicker:', () => {
 
     it('should highlight the Custom Range button when dates selected are not in ranges', () => {
         const datepicker = showDatepicker(fixture);
-
+        const customRangeBtnLbl = 'My Custom Range';
         const ranges = [
             {
                 label: 'Last 7 days',
@@ -199,6 +199,7 @@ describe('daterangepicker:', () => {
 
         const daterangepickerInput = fixture.debugElement.query(By.css('input[bsDaterangepicker]'));
         fixture.componentInstance.daterangepicker.bsConfig.ranges = ranges;
+        fixture.componentInstance.daterangepicker.bsConfig.customRangeButtonLabel = customRangeBtnLbl;
         const datepickerContainerInstance = getDaterangepickerContainer(datepicker);
         datepickerContainerInstance.setRangeOnCalendar(selectedRange);
         daterangepickerInput.nativeElement.click();
@@ -209,6 +210,6 @@ describe('daterangepicker:', () => {
 
         expect(activeRangeButton).toBeTruthy();
         expect(activeRangeButton.length).toEqual(1);
-        expect(activeRangeButton[0].innerHTML.trim()).toEqual('Custom Range');
+        expect(activeRangeButton[0].innerHTML.trim()).toEqual(customRangeBtnLbl);
     });
 });

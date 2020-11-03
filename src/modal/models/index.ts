@@ -22,4 +22,5 @@ export interface TransitionDurations {
 export interface DismissReasons {
   BACKRDOP: string;
   ESC: string;
+  BACK: string;
 }

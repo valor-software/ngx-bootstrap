@@ -41,6 +41,7 @@ import { DemoDateRangePickerMaxDateRangeComponent } from './max-date-range/max-d
 import { DemoDateRangePickerDisplayOneMonth } from './daterangepicker-display-one-month/display-one-month';
 import { DemoDatepickerTodayButtonComponent } from './today-button/today-button';
 import { DemoDatepickerClearButtonComponent } from './clear-button/clear-button';
+import { DemoDatepickerStartViewComponent } from "./start-view/start-view";
 
 export const DEMO_COMPONENTS = [
   DatepickerDemoComponent,
@@ -67,7 +68,6 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerMinModeComponent,
   DemoDatepickerOutsideClickComponent,
   DemoDatepickerPlacementComponent,
-  DemoDatepickerPlacementComponent,
   DemoDatepickerReactiveFormsComponent,
   DemoDatePickerReturnFocusToInputComponent,
   DemoDatePickerSelectDatesFromOtherMonthsComponent,
@@ -84,5 +84,6 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerClearButtonComponent,
   DemoDateRangePickerShowPreviousMonth,
   DemoDateRangePickerMaxDateRangeComponent,
-  DemoDatePickerQuickSelectRangesComponent
+  DemoDatePickerQuickSelectRangesComponent,
+  DemoDatepickerStartViewComponent
 ];

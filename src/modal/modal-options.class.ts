@@ -2,7 +2,7 @@ import { Injectable, StaticProvider, InjectionToken } from '@angular/core';
 import { ClassName, DismissReasons, Selector, TransitionDurations } from './models';
 
 @Injectable()
-export class ModalOptions {
+export class ModalOptions<T = Object> {
   /**
    *  Allow user to ID for the modal. Otherwise, a unique number will be given
    */
@@ -37,7 +37,7 @@ export class ModalOptions {
   /**
    * Modal data
    */
-  initialState?: Object;
+  initialState?: Partial<T>;
   /**
    * Modal providers
    */
@@ -53,7 +53,6 @@ export class ModalOptions {
 }
 
 export const modalConfigDefaults: ModalOptions = {
-  id: (new Date()).getUTCMilliseconds(),
   backdrop: true,
   keyboard: true,
   focus: true,
@@ -90,5 +89,6 @@ export const TRANSITION_DURATIONS: TransitionDurations = {
 
 export const DISMISS_REASONS: DismissReasons = {
   BACKRDOP: 'backdrop-click',
-  ESC: 'esc'
+  ESC: 'esc',
+  BACK: 'browser-back-navigation-clicked'
 };

@@ -105,6 +105,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
 
   @HostListener('window:popstate')
   onPopState(): void {
+    this.bsModalService.setDismissReason(DISMISS_REASONS.BACK);
     this.hide();
   }
 
