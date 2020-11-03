@@ -1,6 +1,6 @@
 sudo: false
 language: node_js
-node_js: "10"
+node_js: "12"
 
 services:
   - xvfb
@@ -38,6 +38,8 @@ testPostDeploy: &testPostDeploy
 stages:
 - name: "Publish to ngx-bootstrap-ci"
   if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v\d+
+- name: "Deploy to firebase preview channel"
+  if: branch = development AND type = pull_request
 - name: Testing
   if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v\d+
 - name: deploy
@@ -139,6 +141,16 @@ jobs:
     - cd node_modules/ngx-bootstrap
     - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
     - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then npm unpublish --tag $TRAVIS_COMMIT --force; fi
+
+  - stage: "Deploy to firebase preview channel"
+    skip_cleanup: true
+    provider: firebase
+    project: ngx-bootstrap-demo
+    before_script:
+      - sudo apt-get install jq
+      - npm install firebase-tools -g
+      - npm run demo.ng-build
+    script: bash scripts/firebase/deploy-to-preview-channel.sh
 
   - &surge
     stage: deploy
