@@ -6,6 +6,104 @@
       background-color: $color;
     }
 
+    .btn-today-wrapper, .btn-clear-wrapper {
+      .btn-success {
+        background-color: $color;
+        border-color: $color;
+      }
+      .btn-success:not(:disabled):not(.disabled):active {
+        &:focus {
+          box-shadow: none;
+        }
+      }
+      .btn-success:focus {
+        box-shadow: none;
+      }
+    }
+
+    @if $name == 'green' {
+      .btn-today-wrapper, .btn-clear-wrapper {
+        .btn-success:not(:disabled):not(.disabled):active {
+          background-color: $active-theme-green;
+          border-color: $active-theme-green;
+        }
+
+        .btn-success:hover {
+          background-color: $hover-theme-green;
+          border-color: $hover-theme-green;
+        }
+      }
+    }
+
+    @if $name == 'blue' {
+      .btn-today-wrapper, .btn-clear-wrapper {
+        .btn-success:not(:disabled):not(.disabled):active {
+          background-color: $active-theme-blue;
+          border-color: $active-theme-blue;
+        }
+
+        .btn-success:hover {
+          background-color: $hover-theme-blue;
+          border-color: $hover-theme-blue;
+        }
+      }
+    }
+
+    @if $name == 'dark-blue' {
+      .btn-today-wrapper, .btn-clear-wrapper {
+        .btn-success:not(:disabled):not(.disabled):active {
+          background-color: $active-theme-dark-blue;
+          border-color: $active-theme-dark-blue;
+        }
+
+        .btn-success:hover {
+          background-color: $hover-theme-dark-blue;
+          border-color: $hover-theme-dark-blue;
+        }
+      }
+    }
+
+    @if $name == 'orange' {
+      .btn-today-wrapper, .btn-clear-wrapper {
+        .btn-success:not(:disabled):not(.disabled):active {
+          background-color: $active-theme-orange;
+          border-color: $active-theme-orange;
+        }
+
+        .btn-success:hover {
+          background-color: $hover-theme-orange;
+          border-color: $hover-theme-orange;
+        }
+      }
+    }
+
+    @if $name == 'red' {
+      .btn-today-wrapper, .btn-clear-wrapper {
+        .btn-success:not(:disabled):not(.disabled):active {
+          background-color: $active-theme-red;
+          border-color: $active-theme-red;
+        }
+
+        .btn-success:hover {
+          background-color: $hover-theme-red;
+          border-color: $hover-theme-red;
+        }
+      }
+    }
+
+    @if $name == 'default' {
+      .btn-today-wrapper, .btn-clear-wrapper {
+        .btn-success:not(:disabled):not(.disabled):active {
+          background-color: $active-theme-default;
+          border-color: $active-theme-default;
+        }
+
+        .btn-success:hover {
+          background-color: $hover-theme-default;
+          border-color: $hover-theme-default;
+        }
+      }
+    }
 
       .bs-datepicker-predefined-btns {
         button {
