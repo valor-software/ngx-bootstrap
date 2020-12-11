@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 import { dispatchMouseEvent, dispatchTouchEvent, dispatchKeyboardEvent } from '@netbasal/spectator';
 
-import { TypeaheadMatch, TypeaheadDirective, TypeaheadModule, TypeaheadOrder } from '../typeahead';
+import { TypeaheadMatch, TypeaheadDirective, TypeaheadModule, TypeaheadOrder } from 'ngx-bootstrap/typeahead';
 
 interface State {
   id: number;

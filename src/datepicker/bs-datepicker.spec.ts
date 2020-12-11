@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component, ViewChild, Renderer2 } from '@angular/core';
 
@@ -8,7 +8,7 @@ import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
 import { BsDatepickerViewMode, CalendarCellViewModel, WeekViewModel } from './models';
 import { dispatchKeyboardEvent, queryAll } from '@netbasal/spectator';
-import { registerEscClick } from '../utils';
+import { registerEscClick } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'test-cmp',
@@ -52,7 +52,7 @@ function getDatepickerContainer(datepicker: BsDatepickerDirective): BsDatepicker
 describe('datepicker:', () => {
   let fixture: TestFixture;
   beforeEach(
-    async(() => TestBed.configureTestingModule({
+    waitForAsync(() => TestBed.configureTestingModule({
         declarations: [TestComponent],
         imports: [
           BsDatepickerModule.forRoot(),
@@ -114,7 +114,7 @@ describe('datepicker:', () => {
       });
   });
 
-  it('should hide on esc', async(() => {
+  it('should hide on esc', waitForAsync(() => {
     const datepicker = showDatepicker(fixture);
     const spy = spyOn(datepicker, 'hide');
     const renderer = fixture.componentRef.injector.get<Renderer2>(Renderer2 as any);

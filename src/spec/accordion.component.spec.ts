@@ -1,4 +1,4 @@
-import { AccordionConfig, AccordionModule } from '../accordion';
+import { AccordionConfig, AccordionModule } from 'ngx-bootstrap/accordion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
