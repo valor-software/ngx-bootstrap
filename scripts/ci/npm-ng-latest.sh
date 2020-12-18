@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 npm i @angular/animations@latest \
+    @angular-devkit/build-angular@latest \
     @angular-devkit/core@latest \
     @angular-devkit/schematics@latest \
     @angular/cli@latest \
@@ -9,7 +10,6 @@ npm i @angular/animations@latest \
     @angular/compiler@latest \
     @angular/core@latest \
     @angular/forms@latest \
-    @angular/http@latest \
     @angular/language-service@latest \
     @angular/platform-browser-dynamic@latest \
     @angular/platform-browser@latest \
@@ -18,6 +18,7 @@ npm i @angular/animations@latest \
     @angular/service-worker@latest \
     @schematics/angular@latest \
     @types/node@latest \
+    caniuse-lite@latest \
     typescript@4.0.2 \
     ng-packagr@10.0.0 \
     tsickle@0.35.0 \
