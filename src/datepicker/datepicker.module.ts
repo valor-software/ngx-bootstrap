@@ -28,7 +28,7 @@ import { YearPickerComponent } from './yearpicker.component';
   entryComponents: [DatePickerComponent]
 })
 export class DatepickerModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<DatepickerModule> {
     return { ngModule: DatepickerModule, providers: [DatepickerConfig] };
   }
 }

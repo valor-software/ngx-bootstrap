@@ -52,6 +52,7 @@ export function makeFormatFunction(format: string):
   }
 
   return function (date: Date, locale: Locale, isUTC: boolean, offset = 0): string {
+
     let output = '';
     for (let j = 0; j < length; j++) {
       output += isFunction(formatArr[j])

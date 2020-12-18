@@ -77,7 +77,7 @@ describe('Modals demo page test suite: Service examples', () => {
     const nestedDemo = modals.exampleDemosArr.serviceNested;
     const btnText = 'Open first modal';
     const open2ndModal = 'Open second modal';
-    const close1stModal = 'Close first modal';
+    const close1stModal = 'Close self';
     const firstModalTitle = 'First modal';
     const secondModalTitle = 'Second modal';
 
@@ -94,7 +94,7 @@ describe('Modals demo page test suite: Service examples', () => {
     });
 
     it(`when user clicks on the button "Open second modal" then the second modal with title "Second modal" is opened,
-        "Close first modal" is present`, () => {
+        "Close self" is present`, () => {
       modals.clickByText(nestedDemo, btnText);
       modals.clickByText(modals.modalBtn, open2ndModal);
       modals.isModalTitleIs(secondModalTitle);
@@ -102,7 +102,7 @@ describe('Modals demo page test suite: Service examples', () => {
       modals.checkElementsQuantity(modals.modalContainer, 2);
     });
 
-    it('when user clicks on the button "Close first modal" then the first modal is closed', () => {
+    it('when user clicks on the button "Close self" then the first modal is closed', () => {
       modals.clickByText(nestedDemo, btnText);
       modals.clickByText(modals.modalBtn, open2ndModal);
       modals.clickByText(modals.modalRedBtn, close1stModal);
@@ -174,8 +174,8 @@ describe('Modals demo page test suite: Service examples', () => {
     "onHide event has been fired" and "onHidden event has been fired"`, () => {
         modals.clickByText(eventsDemo, btnText);
         modals.isModalVisible(modals.modalContainer, true);
-        modals.clickOnBackdrop();
-        modals.clickOutside('modal-container');
+        modals.clickOnModalCorner('topLeft');
+        modals.clickOutside(modals.modalContainer);
         modals.isDemoContainsTxt(eventsDemo, demoOnHideFired);
         modals.isDemoContainsTxt(eventsDemo, demoHideDismissed);
         modals.isDemoContainsTxt(eventsDemo, demoHiddenDismissed);

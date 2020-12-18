@@ -1,9 +1,8 @@
+/* tslint:disable:max-file-line-count */
 import { Injectable } from '@angular/core';
 
 import { Observable, Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-
-import { getFullYear, getMonth } from 'ngx-bootstrap/chronos';
 
 import { BsDatepickerAbstractComponent } from '../base/bs-datepicker-container';
 import { BsDatepickerActions } from './bs-datepicker.actions';
@@ -14,10 +13,10 @@ import { BsLocaleService } from '../bs-locale.service';
 import {
   BsDatepickerViewMode,
   BsNavigationEvent,
-  CalendarCellViewModel,
   CellHoverEvent,
   DatepickerRenderOptions,
   DatepickerDateCustomClasses,
+  DatepickerDateTooltipText,
   DaysCalendarViewModel,
   DayViewModel,
   MonthsCalendarViewModel,
@@ -67,14 +66,20 @@ export class BsDatepickerEffects {
     return this;
   }
 
-  setDaysDisabled(value: number[]) {
+  setDaysDisabled(value: number[]): BsDatepickerEffects  {
     this._store.dispatch(this._actions.daysDisabled(value));
 
     return this;
   }
 
-  setDatesDisabled(value: Date[]) {
+  setDatesDisabled(value: Date[]): BsDatepickerEffects  {
     this._store.dispatch(this._actions.datesDisabled(value));
+
+    return this;
+  }
+
+  setDatesEnabled(value: Date[]): BsDatepickerEffects {
+    this._store.dispatch(this._actions.datesEnabled(value));
 
     return this;
   }
@@ -87,6 +92,12 @@ export class BsDatepickerEffects {
 
   setDateCustomClasses(value: DatepickerDateCustomClasses[]): BsDatepickerEffects {
     this._store.dispatch(this._actions.setDateCustomClasses(value));
+
+    return this;
+  }
+
+  setDateTooltipTexts(value: DatepickerDateTooltipText[]): BsDatepickerEffects {
+    this._store.dispatch(this._actions.setDateTooltipTexts(value));
 
     return this;
   }
@@ -158,35 +169,6 @@ export class BsDatepickerEffects {
 
     container.yearHoverHandler = (event: CellHoverEvent): void => {
       event.cell.isHovered = event.isHovered;
-    };
-
-    container.monthSelectHandler = (event: CalendarCellViewModel): void => {
-      if (event.isDisabled) {
-        return;
-      }
-      this._store.dispatch(
-        this._actions.navigateTo({
-          unit: {
-            month: getMonth(event.date),
-            year: getFullYear(event.date)
-          },
-          viewMode: 'day'
-        })
-      );
-    };
-
-    container.yearSelectHandler = (event: CalendarCellViewModel): void => {
-      if (event.isDisabled) {
-        return;
-      }
-      this._store.dispatch(
-        this._actions.navigateTo({
-          unit: {
-            year: getFullYear(event.date)
-          },
-          viewMode: 'month'
-        })
-      );
     };
 
     return this;
@@ -274,6 +256,16 @@ export class BsDatepickerEffects {
           filter(dateCustomClasses => !!dateCustomClasses)
         )
         .subscribe(dateCustomClasses => this._store.dispatch(this._actions.flag()))
+    );
+
+    // date tooltip texts
+    this._subs.push(
+      this._store
+        .select(state => state.dateTooltipTexts)
+        .pipe(
+          filter(dateTooltipTexts => !!dateTooltipTexts)
+        )
+        .subscribe(dateTooltipTexts => this._store.dispatch(this._actions.flag()))
     );
 
     // on locale change
