@@ -30,6 +30,47 @@ describe('Modals demo page test suite: Service examples', () => {
     });
   });
 
+  describe('Component modals with interceptor', () => {
+    beforeEach(() => modals.scrollToMenu('Close interceptor'));
+
+    const interceptorDemo = modals.exampleDemosArr.serviceWithInterceptor;
+    const btnText = 'Create modal with close interceptor';
+    const modalBtnClose = 'Close';
+    const modalBtnAccept = 'Yes';
+    const modalBtnReject = 'No';
+
+    it('example contains the button "Create modal with close interceptor"', () => {
+      modals.isButtonExist(interceptorDemo, btnText);
+    });
+
+    it(`when user clicks on the button "Create modal with close interceptor" then modal is opened
+      "Close" button is present`, () => {
+      modals.clickByText(interceptorDemo, btnText);
+      modals.isModalVisible(modals.modalContainer, true);
+      modals.isButtonExist(modals.modalFooter, modalBtnClose);
+    });
+
+    it('when user clicks on "Close" button, triggers the interceptor and doesn\'t close the modal', () => {
+      modals.clickByText(interceptorDemo, btnText);
+      modals.clickByText(modals.modalFooter, modalBtnClose);
+      modals.checkElementsQuantity(modals.modalContainer, 2);
+    });
+
+    it('when user clicks on "Yes" button, closes the modal', () => {
+      modals.clickByText(interceptorDemo, btnText);
+      modals.clickByText(modals.modalFooter, modalBtnClose);
+      modals.clickByText(modals.modalBody, modalBtnAccept);
+      modals.isModalVisible(modals.modalContainer, false);
+    });
+
+    it('when user clicks on "No" button, doesn\'t close the modal', () => {
+      modals.clickByText(interceptorDemo, btnText);
+      modals.clickByText(modals.modalFooter, modalBtnClose);
+      modals.clickByText(modals.modalBody, modalBtnReject);
+      modals.isModalVisible(modals.modalContainer, true);
+    });
+  });
+
   describe('Nested modals', () => {
     beforeEach(() => modals.scrollToMenu('Nested modals'));
 

@@ -158,11 +158,11 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoModalServiceChangeClassComponent
       },
       {
-        title: 'Close interceptors',
+        title: 'Close interceptor',
         anchor: 'service-with-interceptor',
         component: require('!!raw-loader!./demos/service-interceptor/service-interceptor.ts'),
         html: require('!!raw-loader!./demos/service-interceptor/service-interceptor.html'),
-        description: `<p>When opening a modal with a component, you can provide a list of interceptors which will be triggered
+        description: `<p>When opening a modal with a component, you can provide an interceptor which will be triggered
           whenever the modal try to close, allowing you to block the disappearance of a modal.</p>`,
         outlet: DemoModalServiceWithInterceptorComponent
       }
