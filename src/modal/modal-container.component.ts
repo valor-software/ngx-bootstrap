@@ -14,7 +14,6 @@ import {
 } from './modal-options.class';
 import { BsModalService } from './bs-modal.service';
 import { isBs3 } from 'ngx-bootstrap/utils';
-import { iterateOverInterceptors } from './modal.helpers';
 
 @Component({
   selector: 'modal-container',
@@ -121,8 +120,8 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       return;
     }
 
-    if (this.config.closeInterceptors && this.config.closeInterceptors.length) {
-      iterateOverInterceptors(this.config.closeInterceptors).then(
+    if (this.config.closeInterceptor) {
+      this.config.closeInterceptor().then(
         () => this._hide(),
         () => undefined);
 

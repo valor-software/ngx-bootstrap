@@ -35,9 +35,9 @@ export class ModalOptions {
    */
   initialState?: Object;
   /**
-   * Modal data
+   * Function to intercept the closure
    */
-  closeInterceptors?: CloseInterceptorFn[];
+  closeInterceptor?: CloseInterceptorFn;
 }
 
 
@@ -50,7 +50,7 @@ export const modalConfigDefaults: ModalOptions = {
   class: '',
   animated: true,
   initialState: {},
-  closeInterceptors: []
+  closeInterceptor: null
 };
 
 export const CLASS_NAME: ClassName = {

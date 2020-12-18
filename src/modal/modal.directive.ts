@@ -15,7 +15,6 @@ import {
 } from './modal-options.class';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { CloseInterceptorFn } from './models';
-import { iterateOverInterceptors } from './modal.helpers';
 
 const TRANSITION_DURATION = 300;
 const BACKDROP_TRANSITION_DURATION = 150;
@@ -36,8 +35,8 @@ export class ModalDirective implements OnDestroy, OnInit {
     return this._config;
   }
 
-  /** allows to provide callbacks to intercept the closure of the modal */
-  @Input() closeInterceptors: CloseInterceptorFn[];
+  /** allows to provide a callback to intercept the closure of the modal */
+  @Input() closeInterceptor: CloseInterceptorFn;
 
   /** This event fires immediately when the `show` instance method is called. */
   @Output()
@@ -188,8 +187,8 @@ export class ModalDirective implements OnDestroy, OnInit {
       event.preventDefault();
     }
 
-    if (this.config.closeInterceptors && this.config.closeInterceptors.length) {
-      iterateOverInterceptors(this.config.closeInterceptors).then(
+    if (this.config.closeInterceptor) {
+      this.config.closeInterceptor().then(
         () => this._hide(),
         () => undefined);
 
