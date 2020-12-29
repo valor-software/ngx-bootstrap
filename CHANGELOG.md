@@ -1,3 +1,30 @@
+<a name="6.2.0"></a>
+# [6.2.0](https://github.com/valor-software/ngx-bootstrap/compare/v6.1.0...v6.2.0) (2020-11-06)
+
+
+### Bug Fixes
+
+* **build:** fix latest & next test builds ([f94bd1d](https://github.com/valor-software/ngx-bootstrap/commit/f94bd1d))
+* **datepicker:** fix TypeError when clearing daterange with active showPreviousMonth option ([7b5ea3d](https://github.com/valor-software/ngx-bootstrap/commit/7b5ea3d))
+* **datepicker:** translate the fixed buttons ('today', 'clear', 'custom range') [#5896](https://github.com/valor-software/ngx-bootstrap/issues/5896) ([dbf958e](https://github.com/valor-software/ngx-bootstrap/commit/dbf958e))
+* **demo:** fix stackblitz build, fix core-js not correct version ([#5956](https://github.com/valor-software/ngx-bootstrap/issues/5956)) ([61c6924](https://github.com/valor-software/ngx-bootstrap/commit/61c6924))
+* **modal:** change method call sequence ([#5944](https://github.com/valor-software/ngx-bootstrap/issues/5944)) ([f5e79c8](https://github.com/valor-software/ngx-bootstrap/commit/f5e79c8))
+* **modal:** change to add Dismiss Reason on modal hide with back click ([#5942](https://github.com/valor-software/ngx-bootstrap/issues/5942)) ([bf25a11](https://github.com/valor-software/ngx-bootstrap/commit/bf25a11))
+* **modal:** set random value in `config.id` if it doesn't have any value ([68bd7cc](https://github.com/valor-software/ngx-bootstrap/commit/68bd7cc))
+* **modal.service:** typo error (should compare id value) ([e73d0ab](https://github.com/valor-software/ngx-bootstrap/commit/e73d0ab))
+* **progressbar:** add aria-valuemax fix ([b838326](https://github.com/valor-software/ngx-bootstrap/commit/b838326))
+
+
+### Features
+
+* **ci:** add firebase preview to PRs ([#5970](https://github.com/valor-software/ngx-bootstrap/issues/5970)) ([b7a03cc](https://github.com/valor-software/ngx-bootstrap/commit/b7a03cc))
+* **datepicker:** add startview to datepicker ([#5816](https://github.com/valor-software/ngx-bootstrap/issues/5816)) ([37e33ea](https://github.com/valor-software/ngx-bootstrap/commit/37e33ea))
+* **datepicker:** add theming to Show and Clear buttons ([#5959](https://github.com/valor-software/ngx-bootstrap/issues/5959)) ([313fe90](https://github.com/valor-software/ngx-bootstrap/commit/313fe90))
+* **modal:** add test case for id unspecified case in config (ModalOptions) ([7f0e30a](https://github.com/valor-software/ngx-bootstrap/commit/7f0e30a))
+* **Modal:** enable type-checking for BsModalRef.content & ModalOptions.initialState ([9583752](https://github.com/valor-software/ngx-bootstrap/commit/9583752))
+
+
+
 <a name="6.1.0"></a>
 # [6.1.0](https://github.com/valor-software/ngx-bootstrap/compare/v6.0.0...v6.1.0) (2020-08-28)
 

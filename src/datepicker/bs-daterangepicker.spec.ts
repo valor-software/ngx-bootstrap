@@ -3,7 +3,7 @@ import { BsDaterangepickerDirective } from './bs-daterangepicker.component';
 import { BsDatepickerModule } from './bs-datepicker.module';
 import { BsDaterangepickerConfig } from './bs-daterangepicker.config';
 import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { BsCustomDates } from './themes/bs/bs-custom-dates-view.component';
@@ -53,7 +53,7 @@ function getDaterangepickerContainer(daterangepicker: BsDaterangepickerDirective
 describe('daterangepicker:', () => {
     let fixture: TestFixture;
     beforeEach(
-        async(() => TestBed.configureTestingModule({
+      waitForAsync(() => TestBed.configureTestingModule({
             declarations: [TestComponent],
             imports: [
                 BsDatepickerModule.forRoot(),

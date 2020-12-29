@@ -17,7 +17,7 @@ import {
   PopoverContainerComponent,
   PopoverDirective,
   PopoverConfig
-} from '../../popover';
+} from 'ngx-bootstrap/popover';
 import { createComponent } from './test/common';
 import { dispatchMouseEvent } from '@netbasal/spectator';
 
