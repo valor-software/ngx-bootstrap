@@ -1,7 +1,7 @@
 /* tslint:disable: max-file-line-count */
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TabsetConfig, TabsModule, TabsetComponent } from '../tabs';
+import { TabsetConfig, TabsModule, TabsetComponent } from 'ngx-bootstrap/tabs';
 
 @Component({
   selector: 'tabs-test',
@@ -88,7 +88,7 @@ describe('Component: Tabs', () => {
   /* tslint:disable-next-line: no-any */
   let element: any;
 
-  // beforeEach(async(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
+  // beforeEach(waitForAsync(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {
   //   return tcb
   //     .overrideTemplate(TestTabsetComponent, html)
   //     .createAsync(TestTabsetComponent)

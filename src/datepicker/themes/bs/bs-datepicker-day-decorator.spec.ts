@@ -1,7 +1,6 @@
 import {
-  async,
   ComponentFixture,
-  TestBed
+  TestBed, waitForAsync
 } from '@angular/core/testing';
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
 import { BsDatepickerDayDecoratorComponent } from './bs-datepicker-day-decorator.directive';
@@ -31,7 +30,7 @@ function setDay(fixture: ComponentFixture<TestComponent>,
 describe('datepicker: [bsDatepickerDayDecorator]', () => {
   let fixture: ComponentFixture<TestComponent>;
 
-  beforeEach(async(() =>
+  beforeEach(waitForAsync(() =>
     TestBed.configureTestingModule({
       declarations: [TestComponent, BsDatepickerDayDecoratorComponent],
       providers: [BsDatepickerConfig]

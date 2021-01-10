@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { BsDropdownContainerComponent, BsDropdownModule, BsDropdownState } from '../dropdown';
-import { Subject } from 'rxjs';
-import { window } from '../utils';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Subject } from 'rxjs';
+
+import { BsDropdownContainerComponent, BsDropdownModule, BsDropdownState } from 'ngx-bootstrap/dropdown';
+import { window } from 'ngx-bootstrap/utils';
 
 describe('BsDropdownContainerComponent tests', () => {
   let fixture: ComponentFixture<BsDropdownContainerComponent>;

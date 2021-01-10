@@ -21,7 +21,7 @@ export function preventOverflow(data: Data) {
     data.instance.target,
     data.instance.host,
     0, // padding
-    'scrollParent',
+    data.options.modifiers.preventOverflow.boundariesElement || 'scrollParent',
     false // positionFixed
   );
 

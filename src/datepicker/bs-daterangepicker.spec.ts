@@ -3,7 +3,7 @@ import { BsDaterangepickerDirective } from './bs-daterangepicker.component';
 import { BsDatepickerModule } from './bs-datepicker.module';
 import { BsDaterangepickerConfig } from './bs-daterangepicker.config';
 import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { BsCustomDates } from './themes/bs/bs-custom-dates-view.component';
@@ -53,7 +53,7 @@ function getDaterangepickerContainer(daterangepicker: BsDaterangepickerDirective
 describe('daterangepicker:', () => {
     let fixture: TestFixture;
     beforeEach(
-        async(() => TestBed.configureTestingModule({
+      waitForAsync(() => TestBed.configureTestingModule({
             declarations: [TestComponent],
             imports: [
                 BsDatepickerModule.forRoot(),
@@ -181,7 +181,7 @@ describe('daterangepicker:', () => {
 
     it('should highlight the Custom Range button when dates selected are not in ranges', () => {
         const datepicker = showDatepicker(fixture);
-
+        const customRangeBtnLbl = 'My Custom Range';
         const ranges = [
             {
                 label: 'Last 7 days',
@@ -199,6 +199,7 @@ describe('daterangepicker:', () => {
 
         const daterangepickerInput = fixture.debugElement.query(By.css('input[bsDaterangepicker]'));
         fixture.componentInstance.daterangepicker.bsConfig.ranges = ranges;
+        fixture.componentInstance.daterangepicker.bsConfig.customRangeButtonLabel = customRangeBtnLbl;
         const datepickerContainerInstance = getDaterangepickerContainer(datepicker);
         datepickerContainerInstance.setRangeOnCalendar(selectedRange);
         daterangepickerInput.nativeElement.click();
@@ -209,6 +210,6 @@ describe('daterangepicker:', () => {
 
         expect(activeRangeButton).toBeTruthy();
         expect(activeRangeButton.length).toEqual(1);
-        expect(activeRangeButton[0].innerHTML.trim()).toEqual('Custom Range');
+        expect(activeRangeButton[0].innerHTML.trim()).toEqual(customRangeBtnLbl);
     });
 });

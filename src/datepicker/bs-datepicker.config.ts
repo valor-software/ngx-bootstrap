@@ -33,6 +33,10 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    */
   maxDate?: Date;
   /**
+   * The view that the datepicker should start in
+   */
+  startView: BsDatepickerViewMode = 'day';
+  /**
    * Default date custom classes for all date/range pickers
    */
   dateCustomClasses: DatepickerDateCustomClasses[];
@@ -150,4 +154,19 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Positioning of 'clear' button
    */
   clearPosition = 'right';
+
+  /**
+   * Label for 'today' button
+   */
+  todayButtonLabel = 'Today';
+
+  /**
+   * Label for 'clear' button
+   */
+  clearButtonLabel = 'Clear';
+
+  /**
+   * Label for 'custom range' button
+   */
+  customRangeButtonLabel = 'Custom Range';
 }

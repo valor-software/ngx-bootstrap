@@ -50,6 +50,7 @@ import { DemoDateRangePickerMaxDateRangeComponent } from './demos/max-date-range
 import { DemoDateRangePickerDisplayOneMonth } from './demos/daterangepicker-display-one-month/display-one-month';
 import { DemoDatepickerTodayButtonComponent } from './demos/today-button/today-button';
 import { DemoDatepickerClearButtonComponent } from './demos/clear-button/clear-button';
+import { DemoDatepickerStartViewComponent } from "./demos/start-view/start-view";
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -433,6 +434,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/clear-button/clear-button.html'),
         description: `<p>Display an optional 'Clear' button that will automatically clear date.</p>`,
         outlet: DemoDatepickerClearButtonComponent
+      },
+      {
+        title: 'Start view',
+        anchor: 'start-view',
+        component: require('!!raw-loader!./demos/start-view/start-view.ts'),
+        html: require('!!raw-loader!./demos/start-view/start-view.html'),
+        description: `<p>Add <code>startView</code> property if you want to change start view</p>`,
+        outlet: DemoDatepickerStartViewComponent
       },
       {
         title: 'Max Date Range in Daterangepicker',

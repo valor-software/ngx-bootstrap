@@ -53,6 +53,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     this._effects = _effects;
 
     this.customRanges = this._config.ranges;
+    this.customRangeBtnLbl = this._config.customRangeButtonLabel;
 
     _renderer.setStyle(_element.nativeElement, 'display', 'block');
     _renderer.setStyle(_element.nativeElement, 'position', 'absolute');

@@ -2,6 +2,7 @@
 
 npm i @angular/animations@next \
     @angular/core@next \
+    @angular-devkit/build-angular@next \
     @angular-devkit/core@next \
     @angular-devkit/schematics@next \
     @angular/cli@next \
@@ -17,7 +18,8 @@ npm i @angular/animations@next \
     @angular/service-worker@next \
     @schematics/angular@next \
     @types/node@14.0.4 \
-    typescript@3.9.3 \
+    caniuse-lite@latest \
+    typescript@4.0.2 \
     ng-packagr@10.0.0 \
     tsickle@0.35.0 \
     rxjs@6.5.2
