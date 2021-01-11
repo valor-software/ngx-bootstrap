@@ -10,7 +10,7 @@ import {
   arLocale, bgLocale, caLocale, csLocale, daLocale, deLocale, enGbLocale, esDoLocale, esLocale, esUsLocale, etLocale, frLocale, heLocale,
   hiLocale, hrLocale, fiLocale, glLocale, huLocale, idLocale, itLocale, jaLocale, kaLocale, kkLocale, koLocale, ltLocale, lvLocale, mnLocale, nbLocale,
   nlBeLocale, nlLocale, plLocale, ptBrLocale, ruLocale, roLocale, skLocale, slLocale, sqLocale, svLocale, thLocale, thBeLocale, trLocale, viLocale,
-  zhCnLocale, ukLocale
+  zhCnLocale, ukLocale, faLocale
 } from 'ngx-bootstrap/locale';
 
 import { TabsModule } from 'ngx-bootstrap/tabs';
@@ -24,7 +24,7 @@ const locales = [
   arLocale, bgLocale, caLocale, csLocale, daLocale, deLocale, enGbLocale, esDoLocale, esLocale, esUsLocale, etLocale, frLocale,
   heLocale, hiLocale, hrLocale, fiLocale, glLocale, huLocale, idLocale, itLocale, jaLocale, kaLocale, kkLocale, koLocale, ltLocale, lvLocale, mnLocale,
   nbLocale, nlBeLocale, nlLocale, plLocale, ptBrLocale, ruLocale, roLocale, skLocale, slLocale, sqLocale, svLocale, thLocale, thBeLocale,
-  trLocale, ukLocale, viLocale, zhCnLocale
+  trLocale, ukLocale, viLocale, zhCnLocale, faLocale
 ];
 
 locales.forEach((locale: LocaleData) => {
