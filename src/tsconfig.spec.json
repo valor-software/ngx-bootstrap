@@ -4,7 +4,7 @@
     "outDir": "../dist/out-tsc",
     "baseUrl": ".",
     "module": "commonjs",
-    "target": "ES2017",
+    "target": "ES5",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
