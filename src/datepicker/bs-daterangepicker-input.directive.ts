@@ -181,17 +181,20 @@ export class BsDaterangepickerInputDirective
         );
       }
 
-      let _input: (string[] | Date[]) = [];
+      let _input: (string | Date)[] = [];
       if (typeof value === 'string') {
-        _input = value.split(this._picker._config.rangeSeparator);
+        const trimmedSeparator = this._picker._config.rangeSeparator.trim();
+        _input = value
+          .split(trimmedSeparator.length > 0 ? trimmedSeparator : this._picker._config.rangeSeparator)
+          .map(_val => _val.trim());
       }
 
       if (Array.isArray(value)) {
         _input = value;
       }
 
-      this._value = (_input as string[])
-        .map((_val: string): Date => {
+      this._value = _input
+        .map((_val: string | Date): Date => {
             if (this._picker._config.useUtc) {
               return utcAsLocal(
                 parseDate(_val, this._picker._config.rangeInputFormat, this._localeService.currentLocale)
