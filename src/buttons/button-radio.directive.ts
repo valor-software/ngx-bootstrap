@@ -51,6 +51,7 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
       return;
     }
     this._value = value;
+    this._onChange(value);
   }
   /** If `true` — radio button is disabled */
   @Input()
@@ -118,7 +119,6 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
     }
 
     this.value = this.uncheckable && this.btnRadio === this.value ? undefined : this.btnRadio;
-    this._onChange(this.value);
   }
 
   @HostListener('keydown.space', ['$event'])
