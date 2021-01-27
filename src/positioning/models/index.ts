@@ -34,6 +34,7 @@ export interface Options {
     };
     preventOverflow?: {
       enabled: boolean;
+      boundariesElement?: string;
     };
   };
   allowedPositions?: string[];

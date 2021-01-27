@@ -60,6 +60,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
    * Css class for tooltip container
    */
   @Input() containerClass = '';
+  @Input() boundariesElement: ('viewport' | 'scrollParent' | 'window');
   /**
    * Returns whether or not the tooltip is currently being shown
    */
@@ -281,7 +282,8 @@ export class TooltipDirective implements OnInit, OnDestroy {
           enabled: this.adaptivePosition
         },
         preventOverflow: {
-          enabled: this.adaptivePosition
+          enabled: this.adaptivePosition,
+          boundariesElement: this.boundariesElement || 'scrollParent'
         }
       }
     });

@@ -1,6 +1,6 @@
 import { bsDatepickerReducer } from '../../datepicker/reducer/bs-datepicker.reducer';
 import { BsDatepickerActions } from '../../datepicker/reducer/bs-datepicker.actions';
-import { Action } from '../../mini-ngrx';
+import { Action } from 'ngx-bootstrap/mini-ngrx';
 import { initialDatepickerState } from '../../datepicker/reducer/bs-datepicker.state';
 
 describe('BsDatepickerReducer.', () => {

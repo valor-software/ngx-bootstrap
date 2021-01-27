@@ -50,7 +50,6 @@ export class BsDropdownContainerComponent implements OnDestroy {
 
     this._subscription = _state.isOpenChange.subscribe((value: boolean) => {
       this.isOpen = value;
-
       const dropdown = this._element.nativeElement.querySelector('.dropdown-menu');
 
       this._renderer.addClass(this._element.nativeElement.querySelector('div'), 'open');
