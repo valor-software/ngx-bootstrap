@@ -35,6 +35,8 @@ export { ruLocale } from 'ngx-bootstrap/chronos';
 export { skLocale } from 'ngx-bootstrap/chronos';
 export { slLocale } from 'ngx-bootstrap/chronos';
 export { sqLocale } from 'ngx-bootstrap/chronos';
+export { srCyrlLocale } from 'ngx-bootstrap/chronos';
+export { srLatnLocale } from 'ngx-bootstrap/chronos';
 export { svLocale } from 'ngx-bootstrap/chronos';
 export { thLocale } from 'ngx-bootstrap/chronos';
 export { thBeLocale } from 'ngx-bootstrap/chronos';

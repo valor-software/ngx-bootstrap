@@ -35,6 +35,8 @@ export {
   ruLocale,
   skLocale,
   slLocale,
+  srCyrlLocale,
+  srLatnLocale,
   sqLocale,
   svLocale,
   thLocale,
