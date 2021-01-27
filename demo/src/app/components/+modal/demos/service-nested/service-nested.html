@@ -8,8 +8,10 @@
     </button>
   </div>
   <div class="modal-body">
-    This is a first modal
+    This is a first modal<br />
     <button type="button" class="btn btn-primary" (click)="openModal2(templateNested)">Open second modal</button>
+    <button type="button" class="btn btn-primary" (click)="closeModal(1)">Close self</button>
+    <button type="button" class="btn btn-primary" (click)="closeModal()">Close all modal</button>
   </div>
 </ng-template>
 
@@ -21,7 +23,9 @@
     </button>
   </div>
   <div class="modal-body">
-    This is nested modal.<br>
+    This is nested modal.<br />
     <button *ngIf="modalRef" type="button" class="btn btn-danger" (click)="closeFirstModal()">Close first modal</button>
+    <button type="button" class="btn btn-danger" (click)="closeModal(2)">Close self</button>
+    <button type="button" class="btn btn-danger" (click)="closeModal()">Close all modal</button>
   </div>
 </ng-template>

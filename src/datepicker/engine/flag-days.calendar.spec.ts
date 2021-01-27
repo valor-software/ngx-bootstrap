@@ -35,6 +35,7 @@ describe('flag-days-calendar:', () => {
       selectedRange: [],
       displayMonths: 1,
       monthIndex: 1,
+      dateTooltipTexts: [{date: new Date('2019-03-08'), tooltipText: 'test'}],
       dateCustomClasses: []
     });
 
@@ -76,6 +77,7 @@ describe('flag-days-calendar:', () => {
       selectedRange: [],
       displayMonths: 1,
       monthIndex: 1,
+      dateTooltipTexts: [{date: new Date('2019-03-08'), tooltipText: 'test'}],
       dateCustomClasses: []
     });
 

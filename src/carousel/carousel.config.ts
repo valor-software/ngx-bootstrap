@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CarouselConfig {
   /* Default interval of auto changing of slides */
   interval = 5000;
