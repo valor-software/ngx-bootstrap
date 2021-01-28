@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsDatepickerInlineConfig } from './bs-datepicker-inline.config';
 import { BsDatepickerInlineContainerComponent } from './themes/bs/bs-datepicker-inline-container.component';
-import { DatepickerDateCustomClasses } from './models';
+import { DatepickerDateCustomClasses, DatepickerDateTooltipText } from './models';
 
 @Directive({
   selector: 'bs-datepicker-inline',
@@ -50,6 +50,10 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
    * Date custom classes
    */
   @Input() dateCustomClasses: DatepickerDateCustomClasses[];
+  /**
+   * Date tooltip text
+   */
+  @Input() dateTooltipTexts: DatepickerDateTooltipText[];
   /**
    * Disable specific dates
    */
@@ -136,6 +140,11 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
       this._datepickerRef.instance.dateCustomClasses = this.dateCustomClasses;
       this.setConfig();
     }
+
+    if (changes.dateTooltipTexts) {
+      this._datepickerRef.instance.dateTooltipTexts = this.dateTooltipTexts;
+      this.setConfig();
+    }
   }
 
   /**
@@ -152,6 +161,7 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
       minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
       maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
       dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
+      dateTooltipTexts: this.dateTooltipTexts || this.bsConfig && this.bsConfig.dateTooltipTexts,
       datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
       datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled
     });

@@ -6,7 +6,8 @@ import {
   BsViewNavigationEvent,
   CellHoverEvent,
   DatepickerRenderOptions,
-  DatepickerDateCustomClasses
+  DatepickerDateCustomClasses,
+  DatepickerDateTooltipText
 } from '../models';
 
 @Injectable()
@@ -28,7 +29,7 @@ export class BsDatepickerActions {
   static readonly SET_DATESENABLED = '[datepicker] set dates enabled';
   static readonly SET_IS_DISABLED = '[datepicker] set is disabled';
   static readonly SET_DATE_CUSTOM_CLASSES = '[datepicker] set date custom classes';
-
+  static readonly SET_DATE_TOOLTIP_TEXTS = '[datepicker] set date tooltip texts';
   static readonly SET_LOCALE = '[datepicker] set datepicker locale';
 
   static readonly SELECT_RANGE = '[daterangepicker] select dates range';
@@ -140,6 +141,13 @@ export class BsDatepickerActions {
   setDateCustomClasses(value: DatepickerDateCustomClasses[]): Action {
     return {
       type: BsDatepickerActions.SET_DATE_CUSTOM_CLASSES,
+      payload: value
+    };
+  }
+
+  setDateTooltipTexts(value: DatepickerDateTooltipText[]): Action {
+    return {
+      type: BsDatepickerActions.SET_DATE_TOOLTIP_TEXTS,
       payload: value
     };
   }

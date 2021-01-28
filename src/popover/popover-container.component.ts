@@ -7,6 +7,7 @@ import { isBs3 } from 'ngx-bootstrap/utils';
   changeDetection: ChangeDetectionStrategy.OnPush,
   // tslint:disable-next-line
   host: {
+    '[attr.id]': 'popoverId',
     '[class]':
       '"popover in popover-" + placement + " " + "bs-popover-" + placement + " " + placement + " " + containerClass',
     '[class.show]': '!isBs3',
@@ -42,6 +43,7 @@ export class PopoverContainerComponent {
   @Input() placement: string;
   @Input() title: string;
   containerClass: string;
+  popoverId: string;
 
   get isBs3(): boolean {
     return isBs3();

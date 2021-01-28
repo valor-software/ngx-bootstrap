@@ -26,6 +26,7 @@ export class TypeaheadPo extends BaseComponent {
     groupingResults: 'demo-typeahead-grouping',
     ignoreSpaceAndOrder: 'demo-typeahead-single-world',
     delimiters: 'demo-typeahead-phrase-delimiters',
+    multipleSearch: 'demo-typeahead-multiple-search',
     dropUp: 'demo-typeahead-dropup',
     onBlur: 'demo-typeahead-on-blur',
     appendToBody: 'demo-typeahead-container',

@@ -11,7 +11,7 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 <p align="center">
 <a href="https://badge.fury.io/js/ngx-bootstrap"><img src="https://badge.fury.io/js/ngx-bootstrap.svg" alt="npm version" ></a>
 <a href="https://npmjs.org/ngx-bootstrap"><img src="https://img.shields.io/npm/dm/ngx-bootstrap.svg" alt="npm downloads" ></a>
-<a href="https://travis-ci.org/valor-software/ngx-bootstrap"><img alt="" src="https://travis-ci.org/valor-software/ngx-bootstrap.svg?branch=development"></a>
+<a href="https://travis-ci.org/valor-software/ngx-bootstrap"><img alt="" src="https://travis-ci.com/valor-software/ngx-bootstrap.svg?branch=development"></a>
 <a target="_blank" href="https://opencollective.com/ngx-bootstrap"><img src="https://opencollective.com/ngx-bootstrap/tiers/backer/badge.svg?label=backer&color=brightgreen" /></a>
 
 <br/>
@@ -152,6 +152,11 @@ First time:
  - `npm install`
  - `npm run build`
 
+If you're using Windows, run:
+ - `npm run build.windows` instead of `npm run build`
+ - You will have to install [cwRsync](https://en.wikipedia.org/wiki/CwRsync) because one of
+ the scripts requires `rsync`
+
 To update your fork and prepare it for local usage:
  - `git pull upstream development`
  - `rm -rf node_modules`
@@ -175,7 +180,9 @@ Here is the versions compatibility list:
 
 | ngx-bootstrap |    Angular    |  Bootstrap CSS |
 | ------------- | ------------- | -------------- |
-| 5.x.x         | 7.x.x - 8.x.x | 3.x.x or 4.x.x |
+| 6.0.0         | 9.x.x - 10.x.x | 3.x.x or 4.x.x |
+| 5.6.x         | 7.x.x - 9.1.0 | 3.x.x or 4.x.x |
+| 5.0.0 - 5.6.0 | 7.x.x - 8.x.x | 3.x.x or 4.x.x |
 | 4.x.x         | 6.x.x - 7.x.x | 3.x.x or 4.x.x |
 | 3.x.x         | 6.x.x - 7.x.x | 3.x.x or 4.x.x |
 | 2.x.x         | 2.x.x - 4.x.x | 3.x.x or 4.x.x |
