@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { TabsetComponent } from './tabset.component';
 
-@Directive({ selector: 'tab, [tab]' })
+@Directive({ selector: 'tab, [tab]', exportAs: 'tab' })
 export class TabDirective implements OnInit, OnDestroy {
   /** tab header text */
   @Input() heading: string;
@@ -82,6 +82,10 @@ export class TabDirective implements OnInit, OnDestroy {
   @Output() removed: EventEmitter<TabDirective> = new EventEmitter();
 
   @HostBinding('class.tab-pane') addClass = true;
+  @HostBinding('attr.role') role = 'tabpanel';
+  @HostBinding('attr.aria-labelledby') get ariaLabelledby(): string {
+    return this.id ? `${this.id}-link` : '';
+  }
 
   /* tslint:disable-next-line:no-any */
   headingRef: TemplateRef<any>;

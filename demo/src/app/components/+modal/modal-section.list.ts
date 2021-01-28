@@ -19,9 +19,9 @@ import { DemoAccessibilityComponent } from './demos/accessibility/accessibility'
 import { DemoModalWithPopupsComponent } from './demos/modal-with-popups/modal-with-popups';
 
 import { ContentSection } from '../../docs/models/content-section.model';
-import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
-import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
-import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
+import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section';
+import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section';
+import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section';
 
 import {
   NgApiDocComponent,
@@ -29,6 +29,7 @@ import {
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
 import { DemoModalScrollingLongContentComponent } from './demos/scrolling-long-content/scrolling-long-content';
+import { DemoModalRefEventsComponent } from './demos/modal-ref-events/modal-ref-events';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -66,7 +67,7 @@ export const demoComponentContent: ContentSection[] = [
         description: `<p>Creating a modal with component just as easy as it is with template. Just pass your component
           in <code>.show()</code> method as in example, and don't forget to include your component to
           <code>entryComponents</code> of your <code>NgModule</code><br> If you passed a component
-          to <code>.show()</code> you can get access to opened modal by injecting <code>BsModalRef</code>. Also you can pass data 
+          to <code>.show()</code> you can get access to opened modal by injecting <code>BsModalRef</code>. Also you can pass data
           in your modal by adding <code>initialState</code> field in config. See example for more info</p>`,
         outlet: DemoModalServiceFromComponent
       },
@@ -95,9 +96,24 @@ export const demoComponentContent: ContentSection[] = [
           <code>onHide</code>, <code>onHidden</code>.
           See usage example below.</p>
           <p><code>onHide</code> and <code>onHidden</code> events emit dismiss reason. Possible values are
-          <code>backdrop-click</code>, <code>esc</code> or <code>null</code> if modal was closed by direct call of
+          <code>backdrop-click</code>, <code>esc</code> or <code>{id: number}</code> if modal was closed by direct call of
           <code>hide()</code> method</p>`,
         outlet: DemoModalServiceEventsComponent
+      },
+      {
+        title: 'ModalRef Events',
+        anchor: 'modal-ref-events',
+        component: require('!!raw-loader!./demos/modal-ref-events/modal-ref-events.ts'),
+        html: require('!!raw-loader!./demos/modal-ref-events/modal-ref-events.html'),
+        description: `
+          <p>Modal ref events. ModalRef exposes 2 events: <code>onHide</code> and <code>onHidden</code>. Note,
+          <code>onShow</code> and <code>onShown</code> are not options because they have already fired by the time
+          the ModalRef is created.
+          See usage example below.</p>
+          <p><code>onHide</code> and <code>onHidden</code> events emit dismiss reason. Possible values are
+          <code>backdrop-click</code>, <code>esc</code> or <code>{id: number}</code> if modal was closed by direct call of
+          <code>hide()</code> method</p>`,
+        outlet: DemoModalRefEventsComponent
       },
       {
         title: 'Confirm Window',
@@ -224,6 +240,22 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Accessibility',
         anchor: 'accessibility',
+        component: require('!!raw-loader!./demos/accessibility/accessibility.ts'),
+        html: require('!!raw-loader!./demos/accessibility/accessibility.html'),
+        description: `
+        <p>
+          Be sure to add <code class="highlighter-rouge">id=""</code> attribute to your title and description
+          in the template to make your modal works according to accessibility. The <code class="highlighter-rouge">aria-labelledby</code>
+          attribute establishes relationships between the modal and its title (only if the title has id attribute). The element
+          containing the modal's description is referenced by <code class="highlighter-rouge">aria-describedby</code> attribute.
+          The dialog does not need <code class="highlighter-rouge">aria-describedby</code> since there is no static
+          text that describes it.
+        </p>
+        <p>
+        Use modal options to set <code class="highlighter-rouge">aria-labelledby</code> and
+        <code class="highlighter-rouge">aria-describedby</code> attributes.
+        </p>
+        `,
         outlet: DemoAccessibilityComponent
       }
     ]

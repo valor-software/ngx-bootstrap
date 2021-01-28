@@ -2,7 +2,8 @@ import {
   DaysCalendarViewModel,
   DayViewModel,
   WeekViewModel,
-  DatepickerDateCustomClasses
+  DatepickerDateCustomClasses,
+  DatepickerDateTooltipText
 } from '../models';
 
 import {
@@ -14,7 +15,7 @@ import {
   shiftDate
 } from 'ngx-bootstrap/chronos';
 
-import { isMonthDisabled, isDisabledDate } from '../utils/bs-calendar-utils';
+import { isMonthDisabled, isDisabledDate, isEnabledDate } from '../utils/bs-calendar-utils';
 
 export interface FlagDaysCalendarOptions {
   isDisabled: boolean;
@@ -22,12 +23,14 @@ export interface FlagDaysCalendarOptions {
   maxDate: Date;
   daysDisabled: number[];
   datesDisabled: Date[];
+  datesEnabled: Date[];
   hoveredDate: Date;
   selectedDate: Date;
   selectedRange: Date[];
   displayMonths: number;
   monthIndex: number;
   dateCustomClasses: DatepickerDateCustomClasses[];
+  dateTooltipTexts: DatepickerDateTooltipText[];
 }
 
 export function flagDaysCalendar(
@@ -67,7 +70,8 @@ export function flagDaysCalendar(
         isBefore(day.date, options.minDate, 'day') ||
         isAfter(day.date, options.maxDate, 'day') ||
         isDisabledDay(day.date, options.daysDisabled) ||
-        isDisabledDate(day.date, options.datesDisabled);
+        isDisabledDate(day.date, options.datesDisabled) ||
+        isEnabledDate(day.date, options.datesEnabled);
 
       const currentDate = new Date();
       const isToday = !isOtherMonth && isSameDay(day.date, currentDate);
@@ -78,6 +82,11 @@ export function flagDaysCalendar(
         .join(' ')
         || '';
 
+      const tooltipText = options.dateTooltipTexts && options.dateTooltipTexts
+          .map(tt => isSameDay(day.date, tt.date) ? tt.tooltipText : '')
+          .reduce((previousValue, currentValue) => previousValue.concat(currentValue), [])
+          .join(' ')
+        || '';
 
       // decide update or not
       const newDay = Object.assign({}, day, {
@@ -89,7 +98,8 @@ export function flagDaysCalendar(
         isInRange,
         isDisabled,
         isToday,
-        customClasses
+        customClasses,
+        tooltipText
       });
 
       if (
@@ -100,7 +110,8 @@ export function flagDaysCalendar(
         day.isSelectionEnd !== newDay.isSelectionEnd ||
         day.isDisabled !== newDay.isDisabled ||
         day.isInRange !== newDay.isInRange ||
-        day.customClasses !== newDay.customClasses
+        day.customClasses !== newDay.customClasses ||
+        day.tooltipText !== newDay.tooltipText
       ) {
         week.days[dayIndex] = newDay;
       }

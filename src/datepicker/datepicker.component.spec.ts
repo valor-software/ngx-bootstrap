@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component, ViewChild, OnInit } from '@angular/core';
-
-import { DatepickerModule, DatePickerComponent } from '.';
+import { DatePickerComponent } from './datepicker.component';
+import { DatepickerModule } from './datepicker.module';
 
 @Component({
   selector: 'test-cmp',
@@ -22,7 +22,7 @@ describe('datepicker:', () => {
   let fixture: TestFixture;
 
   beforeEach(
-    async(() => TestBed.configureTestingModule({
+    waitForAsync(() => TestBed.configureTestingModule({
       declarations: [TestComponent],
       imports: [
         DatepickerModule.forRoot(),

@@ -4,7 +4,7 @@
     "outDir": "../dist/out-tsc",
     "baseUrl": ".",
     "module": "commonjs",
-    "target": "es5",
+    "target": "ES5",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
@@ -24,7 +24,8 @@
   },
   "include": [
     "../scripts/typings.d.ts",
-    "../scripts/test.ts",
+    "../scripts/test-demo.ts",
+    "../scripts/test-source.ts",
     "../demo/src/**/*.ts",
     "../demo/src/**/*.d.ts",
     "**/*.ts",

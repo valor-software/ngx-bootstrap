@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 
 /** Provides default configuration values for timepicker */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class TimepickerConfig {
   /** hours change step */
   hourStep = 1;
-  /** hours change step */
+  /** minutes change step */
   minuteStep = 5;
   /** seconds changes step */
   secondsStep = 10;
@@ -37,4 +39,10 @@ export class TimepickerConfig {
   minutesPlaceholder = 'MM';
   /** placeholder for seconds field in timepicker */
   secondsPlaceholder = 'SS';
+  /** hours aria label */
+  ariaLabelHours = 'hours';
+  /** minutes aria label */
+  ariaLabelMinutes = 'minutes';
+  /** seconds aria label */
+  ariaLabelSeconds = 'seconds';
 }

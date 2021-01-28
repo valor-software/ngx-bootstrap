@@ -2,15 +2,19 @@ import { Injectable } from '@angular/core';
 import {
   DatepickerRenderOptions,
   BsDatepickerViewMode,
-  DatepickerDateCustomClasses
+  DatepickerDateCustomClasses,
+  DatepickerDateTooltipText
 } from './models';
+import { BsCustomDates } from './themes/bs/bs-custom-dates-view.component';
 
 
 /**
  * For date range picker there are `BsDaterangepickerConfig` which inherits all properties,
  * except `displayMonths`, for range picker it default to `2`
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class BsDatepickerConfig implements DatepickerRenderOptions {
   /** sets use adaptive position */
   adaptivePosition = false;
@@ -29,16 +33,35 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    */
   maxDate?: Date;
   /**
+   * The view that the datepicker should start in
+   */
+  startView: BsDatepickerViewMode = 'day';
+  /**
    * Default date custom classes for all date/range pickers
    */
   dateCustomClasses: DatepickerDateCustomClasses[];
-
+  /**
+   * Default tooltip text for all date/range pickers
+   */
+  dateTooltipTexts?: DatepickerDateTooltipText[];
+  /**
+   * Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays
+   */
   daysDisabled?: number[];
-
   /**
    * Disable specific dates
    */
   datesDisabled?: Date[];
+  /**
+   * Show one months for special cases (only for dateRangePicker)
+   * 1. maxDate is equal to today's date
+   * 2. minDate's month is equal to maxDate's month
+   */
+  displayOneMonthRange?: boolean;
+  /**
+   * Enable specific dates
+   */
+  datesEnabled?: Date[];
   /**
    * Makes dates from other months active
    */
@@ -48,6 +71,11 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Allows select first date of the week by click on week number
    */
   selectWeek?: boolean;
+
+  /**
+   * Allows select daterange as first and last day of week by click on week number (dateRangePicker only)
+   */
+  selectWeekDateRange?: boolean;
 
   /**
    * Shows previous and current month, instead of current and next (dateRangePicker only)
@@ -63,6 +91,11 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Default mode for all date pickers
    */
   minMode?: BsDatepickerViewMode;
+
+  /**
+   * If true, returns focus to the datepicker / daterangepicker input after date selection
+   */
+  returnFocusToInput = false;
 
   /** CSS class which will be applied to datepicker container,
    * usually used to set color theme
@@ -84,6 +117,16 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    */
   rangeInputFormat = 'L';
 
+  /**
+   * Predefined ranges
+   */
+  ranges?: BsCustomDates[];
+
+  /**
+   * Max Date Range in days
+   */
+  maxDateRange?: number;
+
   // DatepickerFormatOptions
   monthTitle = 'MMMM';
   yearTitle = 'YYYY';
@@ -91,4 +134,39 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
   monthLabel = 'MMMM';
   yearLabel = 'YYYY';
   weekNumbers = 'w';
+
+  /**
+   * Shows 'today' button
+   */
+  showTodayButton = false;
+
+  /**
+   * Shows clear button
+   */
+  showClearButton = false;
+
+  /**
+   * Positioning of 'today' button
+   */
+  todayPosition = 'center';
+
+  /**
+   * Positioning of 'clear' button
+   */
+  clearPosition = 'right';
+
+  /**
+   * Label for 'today' button
+   */
+  todayButtonLabel = 'Today';
+
+  /**
+   * Label for 'clear' button
+   */
+  clearButtonLabel = 'Clear';
+
+  /**
+   * Label for 'custom range' button
+   */
+  customRangeButtonLabel = 'Custom Range';
 }

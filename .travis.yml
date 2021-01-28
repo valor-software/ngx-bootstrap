@@ -1,6 +1,6 @@
 sudo: false
 language: node_js
-node_js: "10"
+node_js: "12"
 
 services:
   - xvfb
@@ -38,6 +38,8 @@ testPostDeploy: &testPostDeploy
 stages:
 - name: "Publish to ngx-bootstrap-ci"
   if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v\d+
+- name: "Deploy to firebase preview channel"
+  if: branch = development AND type = pull_request
 - name: Testing
   if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v\d+
 - name: deploy
@@ -67,6 +69,9 @@ jobs:
   - env: NGV=next
   - name: sauce-tests
   - name: "Cypress Applitools Snapshot tests"
+  - name: "Cypress suit run on SSR 1thread"
+  - name: "Cypress suit run on SSR 2thread"
+  - name: "Cypress suit run on SSR 3thread"
   include:
   # precache npm and apt dependencies
   #    - stage: precache
@@ -103,9 +108,6 @@ jobs:
   - script: npm run test-coverage
     name: "Test with current Angular version"
     after_success: ./node_modules/.bin/codecov
-  - script: ng test --configuration ivy && tsc -p schematics/tsconfig.json && npm run test:schematics
-    name: "Test with current Angular version Ivy:enabled"
-    env: NGV=ivy
   - script: ng test && tsc -p schematics/tsconfig.json && npm run test:schematics
     name: "Test with latest Angular version"
     env: NGV=latest
@@ -120,9 +122,6 @@ jobs:
     <<: *testSmokeCy
   - script: npm run demo.ng-build
     name: "Check prod build with current Angular version"
-  - script: npm run demo.ng-build:ivy
-    name: "Check prod build with current version Ivy:enabled"
-    env: NGV=ivy
   - script: npm run demo.ng-build
     name: "Check prod build with latest Angular version"
     env: NGV=latest
@@ -143,21 +142,25 @@ jobs:
     - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
     - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then npm unpublish --tag $TRAVIS_COMMIT --force; fi
 
+  - stage: "Deploy to firebase preview channel"
+    skip_cleanup: true
+    provider: firebase
+    project: ngx-bootstrap-demo
+    before_script:
+      - sudo apt-get install jq
+      - npm install firebase-tools -g
+      - npm run demo.ng-build
+    script: bash scripts/firebase/deploy-to-preview-channel.sh
+
   - &surge
     stage: deploy
     script:
-    - if [[ "$NGV" == "ivy" ]]; then npm run demo.build:ivy; else npm run demo.build; fi
+    - if [[ "$NGV" == "latest"  ||  "$NGV" == "next"  ]]; then npm run demo.build:latest; fi
+    - if [[ "$NGV" != "latest"  &&  "$NGV" != "next" ]]; then npm run demo.build; fi
     deploy:
       provider: surge
       project: ./gh-pages/
       domain: ngx-bootstrap.surge.sh
-      on: development
-  - <<: *surge
-    env: NGV=ivy
-    deploy:
-      provider: surge
-      project: ./gh-pages/
-      domain: ngx-bootstrap-ivy.surge.sh
       on: development
   - <<: *surge
     env: NGV=latest

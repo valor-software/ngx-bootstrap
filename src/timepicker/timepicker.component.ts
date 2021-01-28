@@ -90,7 +90,7 @@ export class TimepickerComponent
     OnDestroy {
   /** hours change step */
   @Input() hourStep: number;
-  /** hours change step */
+  /** minutes change step */
   @Input() minuteStep: number;
   /** seconds change step */
   @Input() secondsStep: number;
@@ -145,6 +145,11 @@ export class TimepickerComponent
   invalidHours = false;
   invalidMinutes = false;
   invalidSeconds = false;
+
+  // aria-label variables
+  labelHours: string;
+  labelMinutes: string;
+  labelSeconds: string;
 
   // time picker controls state
   canIncrementHours: boolean;

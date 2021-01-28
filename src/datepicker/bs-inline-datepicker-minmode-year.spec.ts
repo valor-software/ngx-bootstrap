@@ -1,10 +1,13 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component, ViewChild } from '@angular/core';
 
-import { BsDatepickerInlineConfig, BsDatepickerInlineDirective, BsDatepickerModule } from '.';
-import { CalendarCellViewModel } from './models';
+import { BsDatepickerModule } from './bs-datepicker.module';
+import { BsDatepickerInlineDirective } from './bs-datepicker-inline.component';
+import { BsDatepickerInlineConfig } from './bs-datepicker-inline.config';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
+
+import { CalendarCellViewModel } from './models';
 import { take } from 'rxjs/operators';
 import { getYearsCalendarInitialDate } from './utils/bs-calendar-utils';
 
@@ -36,7 +39,7 @@ function getDatepickerInlineContainer(datepicker: BsDatepickerInlineDirective): 
 describe('datepicker inline minMode="year":', () => {
   let fixture: TestFixture;
   beforeEach(
-    async(() => TestBed.configureTestingModule({
+    waitForAsync(() => TestBed.configureTestingModule({
         declarations: [TestComponent],
         imports: [
           BsDatepickerModule.forRoot(),

@@ -62,7 +62,8 @@ export {
   DayPickerComponent,
   MonthPickerComponent,
   YearPickerComponent,
-  DatepickerDateCustomClasses
+  DatepickerDateCustomClasses,
+  DatepickerDateTooltipText
 } from './datepicker/index';
 
 export {
@@ -90,7 +91,10 @@ export {
   PaginationComponent,
   PaginationConfig,
   PaginationModule,
-  PageChangedEvent
+  PageChangedEvent,
+  PaginationLinkContext,
+  PaginationNumberLinkContext,
+  PagesModel
 } from './pagination/index';
 
 export {
@@ -100,7 +104,11 @@ export {
   ProgressbarModule
 } from './progressbar/index';
 
-export { RatingComponent, RatingModule } from './rating/index';
+export {
+  RatingComponent,
+  RatingModule,
+  RatingConfig
+} from './rating/index';
 
 export {
   DraggableItem,
@@ -137,7 +145,11 @@ export {
   TypeaheadContainerComponent,
   TypeaheadDirective,
   TypeaheadMatch,
-  TypeaheadModule
+  TypeaheadModule,
+  TypeaheadOrder,
+  TypeaheadOptionItemContext,
+  TypeaheadOptionListContext,
+  TypeaheadTemplateMethods
 } from './typeahead/index';
 
 export {
