@@ -16,7 +16,7 @@ npm i @angular/animations@latest \
     @angular/platform-server@latest \
     @angular/router@latest \
     @angular/service-worker@latest \
-    @schematics/angular@latest \
+    @schematics/angular@11.0.3 \
     @types/node@latest \
     caniuse-lite@latest \
     typescript@4.0.2 \
