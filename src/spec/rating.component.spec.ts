@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
-import { RatingComponent, RatingConfig, RatingModule } from '../rating';
+import { RatingComponent, RatingConfig, RatingModule } from 'ngx-bootstrap/rating';
 
 @Component({
   selector: 'rating-test',

@@ -4,7 +4,9 @@ import { Injectable } from '@angular/core';
 import { ConfigModel, PagerModel } from './models';
 
 /** Provides default values for Pagination and pager components */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class PaginationConfig {
   main: ConfigModel = {
     maxSize: void 0,

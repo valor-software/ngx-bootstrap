@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { AccordionComponent } from './accordion.component';
-import { AccordionConfig } from './accordion.config';
 import { AccordionPanelComponent } from './accordion-group.component';
 
 @NgModule({
@@ -12,7 +11,7 @@ import { AccordionPanelComponent } from './accordion-group.component';
   exports: [AccordionComponent, AccordionPanelComponent]
 })
 export class AccordionModule {
-  static forRoot(): ModuleWithProviders {
-    return { ngModule: AccordionModule, providers: [AccordionConfig] };
+  static forRoot(): ModuleWithProviders<AccordionModule> {
+    return { ngModule: AccordionModule, providers: [] };
   }
 }

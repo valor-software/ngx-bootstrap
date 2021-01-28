@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 
 /** Default dropdown configuration */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class BsDropdownConfig {
   /** default dropdown auto closing behavior */
   autoClose = true;

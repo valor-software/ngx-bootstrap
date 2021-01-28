@@ -9,7 +9,9 @@ import {
   Renderer2,
   TemplateRef,
   ViewChild,
-  ViewChildren
+  ViewChildren,
+  Output,
+  EventEmitter
 } from '@angular/core';
 
 import { isBs3, Utils } from 'ngx-bootstrap/utils';
@@ -22,6 +24,8 @@ import { TypeaheadDirective } from './typeahead.directive';
 import { typeaheadAnimation } from './typeahead-animations';
 import { TypeaheadOptionItemContext, TypeaheadOptionListContext, TypeaheadTemplateMethods } from './models';
 
+let nextWindowId = 0;
+
 @Component({
   selector: 'typeahead-container',
   templateUrl: './typeahead-container.component.html',
@@ -31,7 +35,8 @@ import { TypeaheadOptionItemContext, TypeaheadOptionListContext, TypeaheadTempla
     '[style.height]': `isBs4 && needScrollbar ? guiHeight: 'auto'`,
     '[style.visibility]': `'inherit'`,
     '[class.dropup]': 'dropup',
-    style: 'position: absolute;display: block;'
+    style: 'position: absolute;display: block;',
+    '[attr.role]': `isBs4 ? 'listbox' : null `
   },
   styles: [
     `
@@ -47,7 +52,11 @@ import { TypeaheadOptionItemContext, TypeaheadOptionListContext, TypeaheadTempla
   ],
   animations: [typeaheadAnimation]
 })
+
 export class TypeaheadContainerComponent implements OnDestroy {
+   // tslint:disable-next-line: no-output-rename
+  @Output('activeChange') activeChangeEvent = new EventEmitter();
+
   parent: TypeaheadDirective;
   query: string[] | string;
   isFocused = false;
@@ -61,6 +70,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
   animationState: string;
   positionServiceSubscription: Subscription;
   height = 0;
+  popupId = `ngb-typeahead-${nextWindowId++}`;
 
   get isBs4(): boolean {
     return !isBs3();
@@ -92,6 +102,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
     public element: ElementRef,
     private changeDetectorRef: ChangeDetectorRef
   ) {
+    this.renderer.setAttribute(this.element.nativeElement, 'id', this.popupId);
     this.positionServiceSubscription = this.positionService.event$.subscribe(
       () => {
         if (this.isAnimated) {
@@ -109,6 +120,11 @@ export class TypeaheadContainerComponent implements OnDestroy {
 
   get active(): TypeaheadMatch {
     return this._active;
+  }
+
+  set active(active: TypeaheadMatch) {
+    this._active = active;
+    this.activeChanged();
   }
 
   get matches(): TypeaheadMatch[] {
@@ -132,7 +148,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
     }
 
     if (this.typeaheadIsFirstItemActive && this._matches.length > 0) {
-      this._active = this._matches[0];
+      this.active = this._matches[0];
 
       if (this._active.isHeader()) {
         this.nextActiveMatch();
@@ -148,7 +164,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
         return;
       }
 
-      this._active = null;
+      this.active = null;
     }
   }
 
@@ -195,10 +211,16 @@ export class TypeaheadContainerComponent implements OnDestroy {
     }
   }
 
+  activeChanged(): void {
+    const index = this.matches.indexOf(this._active);
+    this.activeChangeEvent.emit(`${this.popupId}-${index}`);
+  }
+
   prevActiveMatch(): void {
+
     const index = this.matches.indexOf(this._active);
 
-    this._active = this.matches[
+    this.active = this.matches[
       index - 1 < 0 ? this.matches.length - 1 : index - 1
     ];
 
@@ -214,9 +236,10 @@ export class TypeaheadContainerComponent implements OnDestroy {
   nextActiveMatch(): void {
     const index = this.matches.indexOf(this._active);
 
-    this._active = this.matches[
+    this.active = this.matches[
       index + 1 > this.matches.length - 1 ? 0 : index + 1
     ];
+
 
     if (this._active.isHeader()) {
       this.nextActiveMatch();
@@ -229,7 +252,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
 
   selectActive(value: TypeaheadMatch): void {
     this.isFocused = true;
-    this._active = value;
+    this.active = value;
   }
 
   highlight(match: TypeaheadMatch, query: string[] | string): string {
@@ -276,7 +299,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
   }
 
   isActive(value: TypeaheadMatch): boolean {
-    return this._active === value;
+    return this.active === value;
   }
 
   selectMatch(value: TypeaheadMatch, e: Event = void 0): boolean {

@@ -8,6 +8,7 @@ export interface FlagYearsCalendarOptions {
   maxDate: Date;
   hoveredYear: Date;
   selectedDate: Date;
+  selectedRange: Date[];
   displayMonths: number;
   yearIndex: number;
 }
@@ -19,11 +20,20 @@ export function flagYearsCalendar(
   yearsCalendar.years.forEach(
     (years: CalendarCellViewModel[], rowIndex: number) => {
       years.forEach((year: CalendarCellViewModel, yearIndex: number) => {
+        let isSelected: boolean;
         const isHovered = isSameYear(year.date, options.hoveredYear);
         const isDisabled =
           options.isDisabled ||
           isYearDisabled(year.date, options.minDate, options.maxDate);
-        const isSelected = isSameYear(year.date, options.selectedDate);
+
+        if (!options.selectedDate && options.selectedRange) {
+          isSelected = isSameYear(year.date, options.selectedRange[0]);
+          if (!isSelected) {
+            isSelected = isSameYear(year.date, options.selectedRange[1]);
+          }
+        } else {
+          isSelected = isSameYear(year.date, options.selectedDate);
+        }
 
         const newMonth = Object.assign(/*{},*/ year, { isHovered, isDisabled, isSelected });
         if (

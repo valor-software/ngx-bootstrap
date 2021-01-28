@@ -98,7 +98,7 @@ describe('Buttons page test suite', () => {
   });
 
   describe('Radio buttons', () => {
-    const radioCheck = buttons.exampleDemosArr.radioBtn;
+    const radioCheck = buttons.exampleDemosArr.radioBtnWithGroup;
     const btnRadioGroup = buttons.btnRadioGroup;
 
     it('example contains btns, Radio btns and output window. Middle btn is active and other btns - inactive', () => {

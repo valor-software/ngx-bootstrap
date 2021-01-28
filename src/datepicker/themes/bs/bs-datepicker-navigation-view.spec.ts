@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {
   BsNavigationDirection,
   DaysCalendarViewModel
@@ -55,7 +55,7 @@ function setMonth(fixture: TestFixture,
 describe('datepicker: bs-datepicker-navigation-view', () => {
   let fixture: TestFixture;
   beforeEach(
-    async(() => TestBed.configureTestingModule({
+    waitForAsync(() => TestBed.configureTestingModule({
         declarations: [TestComponent, BsDatepickerNavigationViewComponent]
       }).compileComponents()
     ));
