@@ -154,6 +154,11 @@ export function bsDatepickerReducer(state = initialDatepickerState,
         dateCustomClasses: action.payload
       });
     }
+    case BsDatepickerActions.SET_DATE_TOOLTIP_TEXTS: {
+      return Object.assign({}, state, {
+        dateTooltipTexts: action.payload
+      });
+    }
 
     default:
       return state;
@@ -169,7 +174,7 @@ function calculateReducer(state: BsDatepickerState): BsDatepickerState {
   let viewDate = state.view.date;
 
   if (state.view.mode === 'day') {
-    if (state.showPreviousMonth && state.selectedRange.length === 0) {
+    if (state.showPreviousMonth && state.selectedRange && state.selectedRange.length === 0) {
       viewDate = shiftDate(viewDate, { month: -1 });
     }
 
@@ -301,6 +306,7 @@ function flagReducer(state: BsDatepickerState,
           selectedRange: state.selectedRange,
           displayMonths,
           dateCustomClasses: state.dateCustomClasses,
+          dateTooltipTexts: state.dateTooltipTexts,
           monthIndex
         })
     );
@@ -317,6 +323,7 @@ function flagReducer(state: BsDatepickerState,
           maxDate: state.maxDate,
           hoveredMonth: state.hoveredMonth,
           selectedDate: state.selectedDate,
+          selectedRange: state.selectedRange,
           displayMonths,
           monthIndex
         })
@@ -334,6 +341,7 @@ function flagReducer(state: BsDatepickerState,
           maxDate: state.maxDate,
           hoveredYear: state.hoveredYear,
           selectedDate: state.selectedDate,
+          selectedRange: state.selectedRange,
           displayMonths,
           yearIndex
         })

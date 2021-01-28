@@ -8,7 +8,7 @@ import { ComponentFixtureAutoDetect, fakeAsync, inject, TestBed, tick } from '@a
 
 import { By } from '@angular/platform-browser';
 
-import { TooltipConfig, TooltipContainerComponent, TooltipDirective, TooltipModule } from '../../tooltip';
+import { TooltipConfig, TooltipContainerComponent, TooltipDirective, TooltipModule } from 'ngx-bootstrap/tooltip';
 import { createComponent } from './test/common';
 import { dispatchMouseEvent } from '@netbasal/spectator';
 

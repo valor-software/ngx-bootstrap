@@ -10,7 +10,7 @@ describe('Datepicker demo test suite: Min-mode', () => {
   });
 
   it(`example contains 1 input of Datepicker and button "Date Picker"`, () => {
-    datepicker.isInputValueEqual(minMode, '08/01/2017');
+    datepicker.isInputValueEqual(minMode, '08/01/2020');
     datepicker.isBtnTxtEqual(minMode, 'Date Picker');
   });
 
@@ -18,7 +18,7 @@ describe('Datepicker demo test suite: Min-mode', () => {
     datepicker.clickOnDatepickerInput(minMode);
     datepicker.isDatepickerOpened(true);
     datepicker.isDatePickerBodyExistAndCorrect('month');
-    datepicker.isDatepickerNavigationFullyActiveAndCorrect('month', 'body', '08', '2017');
+    datepicker.isDatepickerNavigationFullyActiveAndCorrect('month', 'body', '08', '2020');
   });
 
   it(`when user clicks on any month, then this month chosen and date shown in the input in format "mm/01/yyyy"`, () => {
@@ -27,7 +27,7 @@ describe('Datepicker demo test suite: Min-mode', () => {
     datepicker.isDatepickerOpened(true);
     datepicker.isDatePickerBodyExistAndCorrect('month');
     datepicker.clickOnDatepickerTableItem('month', 'body', monthIndexToChose);
-    datepicker.isInputValueEqual(minMode, `${monthIndexToChose + 1}/01/2017`);
+    datepicker.isInputValueEqual(minMode, `${monthIndexToChose + 1}/01/2020`);
   });
 
   it(`when user clicks on Datepicker btn, then container opened with mode=month
@@ -48,9 +48,9 @@ describe('Datepicker demo test suite: Min-mode', () => {
     datepicker.isDatePickerBodyExistAndCorrect('year');
     datepicker.clickOnDatepickerTableItem('year', 'body', yearIndexToChose);
     datepicker.isDatePickerBodyExistAndCorrect('month');
-    datepicker.isDatepickerNavigationFullyActiveAndCorrect('month', 'body', '01', `${Math.round(yearIndexToChose / 2 + 2017)}`);
+    datepicker.isDatepickerNavigationFullyActiveAndCorrect('month', 'body', '01', `${Math.round(yearIndexToChose / 2 + 2020)}`);
     datepicker.clickOnDatepickerTableItem('month', 'body', monthIndexToChose);
     datepicker.isDatepickerOpened(false);
-    datepicker.isInputValueEqual(minMode, `${monthIndexToChose + 1}/01/2025`);
+    datepicker.isInputValueEqual(minMode, `${monthIndexToChose + 1}/01/2028`);
   });
 });

@@ -43,7 +43,7 @@ export class BsModalService {
   protected backdropRef: ComponentRef<ModalBackdropComponent>;
   private _backdropLoader: ComponentLoader<ModalBackdropComponent>;
   private modalsCount = 0;
-  private lastDismissReason = '';
+  private lastDismissReason: any = null;
 
   private loaders: ComponentLoader<ModalContainerComponent>[] = [];
 
@@ -52,7 +52,7 @@ export class BsModalService {
   constructor(
     rendererFactory: RendererFactory2,
     private clf: ComponentLoaderFactory,
-    @Optional() @Inject(MODAL_CONFIG_DEFAULT_OVERRIDE) modalDefaultOption: ModalOptions) {
+    @Optional() @Inject(MODAL_CONFIG_DEFAULT_OVERRIDE) private modalDefaultOption: ModalOptions) {
     this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(
       null,
       null,
@@ -65,26 +65,35 @@ export class BsModalService {
   }
 
   /** Shows a modal */
-  // tslint:disable-next-line:no-any
-  show(content: string | TemplateRef<any> | any, config?: ModalOptions): BsModalRef {
+  show<T = Object>(
+    // tslint:disable-next-line:no-any
+    content: string | TemplateRef<any> | { new(...args: any[]): T },
+    config?: ModalOptions<T>
+  ): BsModalRef<T> {
     this.modalsCount++;
     this._createLoaders();
-    this.config = Object.assign({}, this.config, config);
+
+    const id = config?.id || (new Date()).getUTCMilliseconds(); // must be different per every show() call
+    this.config = this.modalDefaultOption ?
+      Object.assign({}, modalConfigDefaults, this.modalDefaultOption, config) :
+      Object.assign({}, modalConfigDefaults, config);
+    this.config.id = id;
+
     this._showBackdrop();
     this.lastDismissReason = null;
 
     return this._showModal(content);
   }
 
-  hide(level: number) {
-    if (this.modalsCount === 1) {
+  hide(id?: number) {
+    if (this.modalsCount === 1 || id == null) {
       this._hideBackdrop();
       this.resetScrollbar();
     }
-    this.modalsCount = this.modalsCount >= 1 ? this.modalsCount - 1 : 0;
+    this.modalsCount = this.modalsCount >= 1 && id != null ? this.modalsCount - 1 : 0;
     setTimeout(() => {
-      this._hideModal(level);
-      this.removeLoaders(level);
+      this._hideModal(id);
+      this.removeLoaders(id);
     }, this.config.animated ? TRANSITION_DURATIONS.BACKDROP : 0);
   }
 
@@ -129,30 +138,47 @@ export class BsModalService {
       .provide({ provide: ModalOptions, useValue: this.config })
       .provide({ provide: BsModalRef, useValue: bsModalRef })
       .attach(ModalContainerComponent)
-      .to('body')
-      .show({
-        content,
-        isAnimated: this.config.animated,
-        initialState: this.config.initialState,
-        bsModalService: this
-      });
-    modalContainerRef.instance.level = this.getModalsCount();
-    bsModalRef.hide = () => {
-      const duration = this.config.animated ? TRANSITION_DURATIONS.MODAL : 0;
-      setTimeout(() => modalContainerRef.instance.hide(), duration);
-    };
-    bsModalRef.content = modalLoader.getInnerComponent() || null;
+      .to('body');
+    bsModalRef.hide = () => modalContainerRef.instance.hide();
     bsModalRef.setClass = (newClass: string) => {
       modalContainerRef.instance.config.class = newClass;
     };
 
+    bsModalRef.onHidden = new EventEmitter<any>();
+    bsModalRef.onHide = new EventEmitter<any>();
+
+    this.copyEvent(modalLoader.onBeforeHide, bsModalRef.onHide);
+    this.copyEvent(modalLoader.onHidden, bsModalRef.onHidden);
+    // call 'show' method after assign setClass in bsModalRef.
+    // it makes modal component's bsModalRef available to call setClass method
+    modalContainerRef.show({
+      content,
+      isAnimated: this.config.animated,
+      initialState: this.config.initialState,
+      bsModalService: this,
+      id: this.config.id
+    });
+    modalContainerRef.instance.level = this.getModalsCount();
+
+    bsModalRef.content = modalLoader.getInnerComponent() || null;
+    bsModalRef.id = modalContainerRef.instance.config?.id;
+
     return bsModalRef;
   }
 
-  _hideModal(level: number): void {
-    const modalLoader = this.loaders[level - 1];
-    if (modalLoader) {
-      modalLoader.hide();
+  _hideModal(id?: number): void {
+    if (id != null) {
+      const indexToRemove = this.loaders.findIndex(loader => loader.instance.config.id === id);
+      const modalLoader = this.loaders[indexToRemove];
+      if (modalLoader) {
+        modalLoader.hide(id);
+      }
+    } else {
+      this.loaders.forEach(
+        (loader: ComponentLoader<ModalContainerComponent>) => {
+          loader.hide(loader.instance.config.id);
+        }
+      );
     }
   }
 
@@ -165,6 +191,7 @@ export class BsModalService {
   }
 
   removeBackdrop(): void {
+    this._renderer.removeClass(document.body, CLASS_NAME.OPEN);
     this._backdropLoader.hide();
     this.backdropRef = null;
   }
@@ -222,19 +249,26 @@ export class BsModalService {
     this.loaders.push(loader);
   }
 
-  private removeLoaders(level: number): void {
-    this.loaders.splice(level - 1, 1);
-    this.loaders.forEach(
-      (loader: ComponentLoader<ModalContainerComponent>, i: number) => {
-        loader.instance.level = i + 1;
+  private removeLoaders(id?: number): void {
+    if (id != null) {
+      const indexToRemove = this.loaders.findIndex(loader => loader.instance.config.id === id);
+      if (indexToRemove >= 0) {
+        this.loaders.splice(indexToRemove, 1);
+        this.loaders.forEach(
+          (loader: ComponentLoader<ModalContainerComponent>, i: number) => {
+            loader.instance.level = i + 1;
+          }
+        );
       }
-    );
+    } else {
+      this.loaders.splice(0, this.loaders.length);
+    }
   }
 
   // tslint:disable-next-line:no-any
   private copyEvent(from: EventEmitter<any>, to: EventEmitter<any>) {
-    from.subscribe(() => {
-      to.emit(this.lastDismissReason);
+    from.subscribe((data: any) => {
+      to.emit(this.lastDismissReason || data);
     });
   }
 }

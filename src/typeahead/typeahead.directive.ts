@@ -17,7 +17,7 @@ import { NgControl } from '@angular/forms';
 
 import { from, Subscription, isObservable, Observable } from 'rxjs';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
-import { debounceTime, filter, mergeMap, switchMap, toArray } from 'rxjs/operators';
+import { debounceTime, filter, mergeMap, switchMap, toArray, tap } from 'rxjs/operators';
 
 import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadMatch } from './typeahead-match.class';
@@ -34,8 +34,8 @@ type Typeahead = TypeaheadOption[] | Observable<TypeaheadOption[]>;
   exportAs: 'bs-typeahead',
   host: {
     '[attr.aria-activedescendant]': 'activeDescendant',
-    '[attr.aria-aria-owns]': 'isOpen ? this._container.popupId : null',
-    '[attr.aria-aria-expanded]': 'isOpen',
+    '[attr.aria-owns]': 'isOpen ? this._container.popupId : null',
+    '[attr.aria-expanded]': 'isOpen',
     '[attr.aria-autocomplete]': 'list'
   }
 })
@@ -88,6 +88,21 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
    * Sets the word delimiter to break words. Defaults to space.
    */
   @Input() typeaheadWordDelimiters = ' ';
+  /** Can be used to conduct a search of multiple items and have suggestion not for the
+   * whole value of the input but for the value that comes after a delimiter provided via
+   * typeaheadMultipleSearchDelimiters attribute. This option can only be used together with
+   * typeaheadSingleWords option if typeaheadWordDelimiters and typeaheadPhraseDelimiters
+   * are different from typeaheadMultipleSearchDelimiters to avoid conflict in determining
+   * when to delimit multiple searches and when a single word.
+   */
+  @Input() typeaheadMultipleSearch: boolean = void 0;
+  /** should be used only in case typeaheadMultipleSearch attribute is true.
+   * Sets the multiple search delimiter to know when to start a new search. Defaults to comma.
+   * If space needs to be used, then explicitly set typeaheadWordDelimiters to something else than space
+   * because space is used by default OR set typeaheadSingleWords attribute to false if you don't need
+   * to use it together with multiple search.
+   */
+  @Input() typeaheadMultipleSearchDelimiters = ',';
   /** should be used only in case typeaheadSingleWords attribute is true.
    * Sets the word delimiter to match exact phrase.
    * Defaults to simple and double quotes.
@@ -165,6 +180,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   private _typeahead: ComponentLoader<TypeaheadContainerComponent>;
   private _subscriptions: Subscription[] = [];
   private _outsideClickListener: Function;
+  private _allEnteredValue: string;
 
   constructor(
     cis: ComponentLoaderFactory,
@@ -218,6 +234,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     } else {
       this.syncActions();
     }
+
+    this.checkDelimitersConflict();
   }
 
   @HostListener('input', ['$event'])
@@ -341,7 +359,14 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   changeModel(match: TypeaheadMatch): void {
-    const valueStr: string = match.value;
+    let valueStr: string;
+    if (this.typeaheadMultipleSearch) {
+      const tokens = this._allEnteredValue.split(new RegExp(`([${this.typeaheadMultipleSearchDelimiters}]+)`));
+      this._allEnteredValue = tokens.slice(0, tokens.length - 1).concat(match.value).join('');
+      valueStr = this._allEnteredValue;
+    } else {
+      valueStr = match.value;
+    }
     this.ngControl.viewToModelUpdate(valueStr);
     (this.ngControl.control).setValue(valueStr);
     this.changeDetection.markForCheck();
@@ -384,13 +409,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       .toString()
       .toLowerCase();
 
-    this._container.query = this.typeaheadSingleWords
-      ? tokenize(
-        normalizedQuery,
-        this.typeaheadWordDelimiters,
-        this.typeaheadPhraseDelimiters
-      )
-      : normalizedQuery;
+    this._container.query = this.tokenizeQuery(normalizedQuery);
 
     this._container.matches = this._matches;
     this.element.nativeElement.focus();
@@ -431,6 +450,9 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       this.keyUpEventEmitter
         .pipe(
           debounceTime<string>(this.typeaheadWaitMs),
+          tap(value => {
+            this._allEnteredValue = value;
+          }),
           switchMap(() => this.typeahead)
         )
         .subscribe((matches: TypeaheadOption[]) => {
@@ -445,6 +467,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         .pipe(
           debounceTime<string>(this.typeaheadWaitMs),
           mergeMap((value: string) => {
+            this._allEnteredValue = value;
             const normalizedQuery = this.normalizeQuery(value);
 
             return from(this.typeahead)
@@ -474,6 +497,39 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     return normalizedOption.toLowerCase();
   }
 
+  protected tokenizeQuery(currentQuery: string | string[]): string | string[] {
+
+    let query = currentQuery;
+    if (this.typeaheadMultipleSearch && this.typeaheadSingleWords) {
+      if (!this.haveCommonCharacters(`${this.typeaheadPhraseDelimiters}${this.typeaheadWordDelimiters}`,
+        this.typeaheadMultipleSearchDelimiters)) {
+        // single words and multiple search delimiters are different, can be used together
+        query = tokenize(
+          query as string,
+          this.typeaheadWordDelimiters,
+          this.typeaheadPhraseDelimiters,
+          this.typeaheadMultipleSearchDelimiters
+        );
+      }
+    } else if (this.typeaheadSingleWords) {
+      query = tokenize(
+        query as string,
+        this.typeaheadWordDelimiters,
+        this.typeaheadPhraseDelimiters
+      );
+    } else {
+      // multiple searches
+      query = tokenize(
+        query as string,
+        null,
+        null,
+        this.typeaheadMultipleSearchDelimiters
+      );
+    }
+
+    return query;
+  }
+
   protected normalizeQuery(value: string): string | string[] {
     // If singleWords, break model here to not be doing extra work on each iteration
     let normalizedQuery: string | string[] = (this.typeaheadLatinize
@@ -481,13 +537,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       : value)
       .toString()
       .toLowerCase();
-    normalizedQuery = this.typeaheadSingleWords
-      ? tokenize(
-        normalizedQuery,
-        this.typeaheadWordDelimiters,
-        this.typeaheadPhraseDelimiters
-      )
-      : normalizedQuery;
+
+    normalizedQuery = this.tokenizeQuery(normalizedQuery);
 
     return normalizedQuery;
   }
@@ -534,13 +585,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       // This improves the speed as it won't have to be done for each list item
       const normalizedQuery = _controlValue.toString().toLowerCase();
 
-      this._container.query = this.typeaheadSingleWords
-        ? tokenize(
-          normalizedQuery,
-          this.typeaheadWordDelimiters,
-          this.typeaheadPhraseDelimiters
-        )
-        : normalizedQuery;
+      this._container.query = this.tokenizeQuery(normalizedQuery);
       this._container.matches = this._matches;
     } else {
       this.show();
@@ -646,5 +691,26 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
   protected hasMatches(): boolean {
     return this._matches.length > 0;
+  }
+
+  protected checkDelimitersConflict(): void {
+    if (this.typeaheadMultipleSearch && this.typeaheadSingleWords
+      && (this.haveCommonCharacters(`${this.typeaheadPhraseDelimiters}${this.typeaheadWordDelimiters}`,
+    this.typeaheadMultipleSearchDelimiters))) {
+        throw new Error(`Delimiters used in typeaheadMultipleSearchDelimiters must be different
+          from delimiters used in typeaheadWordDelimiters (current value: ${this.typeaheadWordDelimiters}) and
+          typeaheadPhraseDelimiters (current value: ${this.typeaheadPhraseDelimiters}).
+          Please refer to the documentation`);
+      }
+  }
+
+  protected haveCommonCharacters(str1: string, str2: string) {
+    for (let i = 0; i < str1.length; i++) {
+      if (str1.charAt(i).indexOf(str2) > -1) {
+        return true;
+      }
+    }
+
+    return false;
   }
 }
