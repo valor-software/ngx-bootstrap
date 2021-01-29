@@ -84,7 +84,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     this.clickStartedInContent = event.target !== this._element.nativeElement;
   }
 
-  @HostListener('mouseup', ['$event'])
+  @HostListener('click', ['$event'])
   onClickStop(event: MouseEvent): void {
     const clickedInBackdrop = event.target === this._element.nativeElement && !this.clickStartedInContent;
     if (
@@ -102,6 +102,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
 
   @HostListener('window:popstate')
   onPopState(): void {
+    this.bsModalService.setDismissReason(DISMISS_REASONS.BACK);
     this.hide();
   }
 

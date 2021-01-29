@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class TimepickerConfig {
   /** hours change step */
   hourStep = 1;
-  /** hours change step */
+  /** minutes change step */
   minuteStep = 5;
   /** seconds changes step */
   secondsStep = 10;

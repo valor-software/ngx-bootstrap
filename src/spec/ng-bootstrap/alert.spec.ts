@@ -5,7 +5,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { createGenericTestComponent } from './test/common';
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { AlertModule, AlertComponent, AlertConfig } from '../../alert';
+import { AlertComponent, AlertConfig, AlertModule } from 'ngx-bootstrap/alert';
 
 @Component({
   selector: 'test-cmp',

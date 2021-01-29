@@ -2,7 +2,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CollapseModule } from '../collapse';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 const template = `
   <div [collapse]="isCollapsed">
