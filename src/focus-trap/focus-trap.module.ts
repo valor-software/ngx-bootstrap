@@ -1,11 +1,10 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { FocusTrapDirective } from './focus-trap.directive';
-import { FocusTrapFactory } from './focus-trap.factory';
 import { FocusTrapManager } from './focus-trap-manager';
 import { InteractivityChecker } from './interactivity-checker';
-import { NgxPlatform } from './platform';
+import { FocusTrapDirective } from './focus-trap';
+import { Platform } from './platform';
 
 @NgModule({
   imports: [CommonModule],
@@ -17,10 +16,9 @@ export class FocusTrapModule {
     return {
       ngModule: FocusTrapModule,
       providers: [
-        FocusTrapFactory,
         FocusTrapManager,
-        InteractivityChecker,
-        NgxPlatform
+        Platform,
+        InteractivityChecker
       ]
     };
   }

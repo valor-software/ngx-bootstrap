@@ -1,9 +1,4 @@
 /**
- * This code is a copy of @angular/cdk directive CdkTrapFocus
- * https://github.com/angular/components/tree/master/src/cdk/a11y/focus-trap
- * This copy is using till new major version of ngx-bootstrap will be released
- */
-/**
  * @license
  * Copyright Google LLC All Rights Reserved.
  *
@@ -11,8 +6,20 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
+// tslint:disable
+
+import { Platform } from './platform';
 import { Injectable } from '@angular/core';
-import { NgxPlatform } from './platform';
+
+/**
+ * Configuration for the isFocusable method.
+ */
+export class IsFocusableConfig {
+  /**
+   * Whether to count an element as focusable even if it is not currently visible.
+   */
+  ignoreVisibility: boolean = false;
+}
 
 // The InteractivityChecker leans heavily on the ally.js accessibility utilities.
 // Methods like `isTabbable` are only covering specific edge-cases for the browsers which are
@@ -22,10 +29,11 @@ import { NgxPlatform } from './platform';
  * Utility for checking the interactivity of an element, such as whether is is focusable or
  * tabbable.
  */
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class InteractivityChecker {
 
-  constructor(private _platform: NgxPlatform) {}
+  constructor(private _platform: Platform) {
+  }
 
   /**
    * Gets whether an element is disabled.
@@ -58,7 +66,6 @@ export class InteractivityChecker {
    * @param element Element to be checked.
    * @returns Whether the element is tabbable.
    */
-  // tslint:disable-next-line:cyclomatic-complexity
   isTabbable(element: HTMLElement): boolean {
     // Nothing is tabbable on the server 😎
     if (!this._platform.isBrowser) {
@@ -68,66 +75,64 @@ export class InteractivityChecker {
     const frameElement = getFrameElement(getWindow(element));
 
     if (frameElement) {
-      const frameType = frameElement && frameElement.nodeName.toLowerCase();
-
       // Frame elements inherit their tabindex onto all child elements.
       if (getTabIndexValue(frameElement) === -1) {
         return false;
       }
 
-      // Webkit and Blink consider anything inside of an <object> element as non-tabbable.
-      if ((this._platform.BLINK || this._platform.WEBKIT) && frameType === 'object') {
+      // Browsers disable tabbing to an element inside of an invisible frame.
+      if (!this.isVisible(frameElement)) {
         return false;
       }
-
-      // Webkit and Blink disable tabbing to an element inside of an invisible frame.
-      if ((this._platform.BLINK || this._platform.WEBKIT) && !this.isVisible(frameElement)) {
-        return false;
-      }
-
     }
 
-    const nodeName = element.nodeName.toLowerCase();
-    const tabIndexValue = getTabIndexValue(element);
+    let nodeName = element.nodeName.toLowerCase();
+    let tabIndexValue = getTabIndexValue(element);
 
     if (element.hasAttribute('contenteditable')) {
       return tabIndexValue !== -1;
     }
 
-    if (nodeName === 'iframe') {
-      // The frames may be tabbable depending on content, but it's not possibly to reliably
-      // investigate the content of the frames.
+    if (nodeName === 'iframe' || nodeName === 'object') {
+      // The frame or object's content may be tabbable depending on the content, but it's
+      // not possibly to reliably detect the content of the frames. We always consider such
+      // elements as non-tabbable.
+      return false;
+    }
+
+    // In iOS, the browser only considers some specific elements as tabbable.
+    if (this._platform.WEBKIT && this._platform.IOS && !isPotentiallyTabbableIOS(element)) {
       return false;
     }
 
     if (nodeName === 'audio') {
+      // Audio elements without controls enabled are never tabbable, regardless
+      // of the tabindex attribute explicitly being set.
       if (!element.hasAttribute('controls')) {
-        // By default an <audio> element without the controls enabled is not tabbable.
         return false;
-      } else if (this._platform.BLINK) {
-        // In Blink <audio controls> elements are always tabbable.
-        return true;
       }
+      // Audio elements with controls are by default tabbable unless the
+      // tabindex attribute is set to `-1` explicitly.
+      return tabIndexValue !== -1;
     }
 
     if (nodeName === 'video') {
-      if (!element.hasAttribute('controls') && this._platform.TRIDENT) {
-        // In Trident a <video> element without the controls enabled is not tabbable.
+      // For all video elements, if the tabindex attribute is set to `-1`, the video
+      // is not tabbable. Note: We cannot rely on the default `HTMLElement.tabIndex`
+      // property as that one is set to `-1` in Chrome, Edge and Safari v13.1. The
+      // tabindex attribute is the source of truth here.
+      if (tabIndexValue === -1) {
         return false;
-      } else if (this._platform.BLINK || this._platform.FIREFOX) {
-        // In Chrome and Firefox <video controls> elements are always tabbable.
+      }
+      // If the tabindex is explicitly set, and not `-1` (as per check before), the
+      // video element is always tabbable (regardless of whether it has controls or not).
+      if (tabIndexValue !== null) {
         return true;
       }
-    }
-
-    if (nodeName === 'object' && (this._platform.BLINK || this._platform.WEBKIT)) {
-      // In all Blink and WebKit based browsers <object> elements are never tabbable.
-      return false;
-    }
-
-    // In iOS the browser only considers some specific elements as tabbable.
-    if (this._platform.WEBKIT && this._platform.IOS && !isPotentiallyTabbableIOS(element)) {
-      return false;
+      // Otherwise (when no explicit tabindex is set), a video is only tabbable if it
+      // has controls enabled. Firefox is special as videos are always tabbable regardless
+      // of whether there are controls or not.
+      return this._platform.FIREFOX || element.hasAttribute('controls');
     }
 
     return element.tabIndex >= 0;
@@ -137,12 +142,14 @@ export class InteractivityChecker {
    * Gets whether an element can be focused by the user.
    *
    * @param element Element to be checked.
+   * @param config The config object with options to customize this method's behavior
    * @returns Whether the element is focusable.
    */
-  isFocusable(element: HTMLElement): boolean {
+  isFocusable(element: HTMLElement, config?: IsFocusableConfig): boolean {
     // Perform checks in order of left to most expensive.
     // Again, naive approach that does not capture many edge cases and browser quirks.
-    return isPotentiallyFocusable(element) && !this.isDisabled(element) && this.isVisible(element);
+    return isPotentiallyFocusable(element) && !this.isDisabled(element) &&
+      (config?.ignoreVisibility || this.isVisible(element));
   }
 
 }
@@ -165,14 +172,12 @@ function hasGeometry(element: HTMLElement): boolean {
   // Use logic from jQuery to check for an invisible element.
   // See https://github.com/jquery/jquery/blob/master/src/css/hiddenVisibleSelectors.js#L12
   return !!(element.offsetWidth || element.offsetHeight ||
-    // tslint:disable:no-unbound-method
     (typeof element.getClientRects === 'function' && element.getClientRects().length));
 }
 
 /** Gets whether an element's  */
 function isNativeFormElement(element: Node) {
-  const nodeName = element.nodeName.toLowerCase();
-
+  let nodeName = element.nodeName.toLowerCase();
   return nodeName === 'input' ||
     nodeName === 'select' ||
     nodeName === 'button' ||
@@ -181,7 +186,7 @@ function isNativeFormElement(element: Node) {
 
 /** Gets whether an element is an `<input type="hidden">`. */
 function isHiddenInput(element: HTMLElement): boolean {
-  return isInputElement(element) && element.type === 'hidden';
+  return isInputElement(element) && element.type == 'hidden';
 }
 
 /** Gets whether an element is an anchor that has an href attribute. */
@@ -191,12 +196,12 @@ function isAnchorWithHref(element: HTMLElement): boolean {
 
 /** Gets whether an element is an input element. */
 function isInputElement(element: HTMLElement): element is HTMLInputElement {
-  return element.nodeName.toLowerCase() === 'input';
+  return element.nodeName.toLowerCase() == 'input';
 }
 
 /** Gets whether an element is an anchor element. */
 function isAnchorElement(element: HTMLElement): element is HTMLAnchorElement {
-  return element.nodeName.toLowerCase() === 'a';
+  return element.nodeName.toLowerCase() == 'a';
 }
 
 /** Gets whether an element has a valid tabindex. */
@@ -205,10 +210,10 @@ function hasValidTabIndex(element: HTMLElement): boolean {
     return false;
   }
 
-  const tabIndex = element.getAttribute('tabindex');
+  let tabIndex = element.getAttribute('tabindex');
 
   // IE11 parses tabindex="" as the value "-32768"
-  if (tabIndex === '-32768') {
+  if (tabIndex == '-32768') {
     return false;
   }
 
@@ -232,8 +237,8 @@ function getTabIndexValue(element: HTMLElement): number | null {
 
 /** Checks whether the specified element is potentially tabbable on iOS */
 function isPotentiallyTabbableIOS(element: HTMLElement): boolean {
-  const nodeName = element.nodeName.toLowerCase();
-  const inputType = nodeName === 'input' && (element as HTMLInputElement).type;
+  let nodeName = element.nodeName.toLowerCase();
+  let inputType = nodeName === 'input' && (element as HTMLInputElement).type;
 
   return inputType === 'text'
     || inputType === 'password'

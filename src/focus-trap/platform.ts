@@ -1,9 +1,4 @@
 /**
- * This code is a copy of @angular/cdk Platform
- * https://github.com/angular/components/blob/master/src/cdk/platform/platform.ts
- * This copy is using till new major version of ngx-bootstrap will be released
- */
-/**
  * @license
  * Copyright Google LLC All Rights Reserved.
  *
@@ -11,7 +6,9 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { Inject, Injectable, Optional, PLATFORM_ID } from '@angular/core';
+// tslint:disable
+
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 // Whether the current platform supports the V8 Break Iterator. The V8 check
@@ -33,9 +30,8 @@ try {
  * Service to detect the current platform by comparing the userAgent strings and
  * checking browser-specific global properties.
  */
-// tslint:disable-next-line:cyclomatic-complexity
-@Injectable({providedIn: 'root'})
-export class NgxPlatform {
+@Injectable({ providedIn: 'root' })
+export class Platform {
   // We want to use the Angular platform check because if the Document is shimmed
   // without the navigator, the following checks will fail. This is preferred because
   // sometimes the Document may be shimmed without the user's knowledge or intention
@@ -81,8 +77,6 @@ export class NgxPlatform {
   /** Whether the current browser is Safari. */
   SAFARI: boolean = this.isBrowser && /safari/i.test(navigator.userAgent) && this.WEBKIT;
 
-  /**
-   * @breaking-change 8.0.0 remove optional decorator
-   */
-  constructor(@Optional() @Inject(PLATFORM_ID) private _platformId?: Object) {}
+  constructor(@Inject(PLATFORM_ID) private _platformId: Object) {
+  }
 }

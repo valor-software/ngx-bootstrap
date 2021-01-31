@@ -48,7 +48,7 @@ export class DiscoverComponent {
       link: 'https://developerhub.io'
     },
     {
-      logo: 'https://i.ytimg.com/vi/Em6PAkViyU4/maxresdefault.jpg',
+      logo: 'https://www.inmopc.com/img/products/acuerdos-trovimap.jpg',
       name: 'Trovimap',
       description: 'Trovimap - Houses / Apartments / Locals for sale or rent',
       link: 'https://trovimap.com/'

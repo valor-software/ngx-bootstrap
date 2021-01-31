@@ -66,7 +66,7 @@ export class BsModalService {
 
   /** Shows a modal */
   show<T = Object>(
-    // tslint:disable-next-line:no-any
+    // tslint:disable-next-line
     content: string | TemplateRef<any> | { new(...args: any[]): T },
     config?: ModalOptions<T>
   ): BsModalRef<T> {

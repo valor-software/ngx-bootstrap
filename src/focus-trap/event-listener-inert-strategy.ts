@@ -1,9 +1,4 @@
 /**
- * This code is a copy of @angular/cdk directive CdkTrapFocus
- * https://github.com/angular/components/tree/master/src/cdk/a11y/focus-trap
- * This copy is using till new major version of ngx-bootstrap will be released
- */
-/**
  * @license
  * Copyright Google LLC All Rights Reserved.
  *
@@ -11,8 +6,10 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
+// tslint:disable
+
 import { FocusTrapInertStrategy } from './focus-trap-inert-strategy';
-import { FocusTrap } from './focus-trap';
+import { ConfigurableFocusTrap } from './configurable-focus-trap';
 import { closest } from './polyfill';
 
 /**
@@ -24,24 +21,24 @@ export class EventListenerFocusTrapInertStrategy implements FocusTrapInertStrate
   private _listener: ((e: FocusEvent) => void) | null = null;
 
   /** Adds a document event listener that keeps focus inside the FocusTrap. */
-  preventFocus(focusTrap: FocusTrap): void {
+  preventFocus(focusTrap: ConfigurableFocusTrap): void {
     // Ensure there's only one listener per document
     if (this._listener) {
-      focusTrap._document.removeEventListener('focus', this._listener, true);
+      focusTrap._document.removeEventListener('focus', this._listener!, true);
     }
 
     this._listener = (e: FocusEvent) => this._trapFocus(focusTrap, e);
     focusTrap._ngZone.runOutsideAngular(() => {
-      focusTrap._document.addEventListener('focus', this._listener, true);
+      focusTrap._document.addEventListener('focus', this._listener!, true);
     });
   }
 
   /** Removes the event listener added in preventFocus. */
-  allowFocus(focusTrap: FocusTrap): void {
+  allowFocus(focusTrap: ConfigurableFocusTrap): void {
     if (!this._listener) {
       return;
     }
-    focusTrap._document.removeEventListener('focus', this._listener, true);
+    focusTrap._document.removeEventListener('focus', this._listener!, true);
     this._listener = null;
   }
 
@@ -52,18 +49,19 @@ export class EventListenerFocusTrapInertStrategy implements FocusTrapInertStrate
    * This is an event listener callback. The event listener is added in runOutsideAngular,
    * so all this code runs outside Angular as well.
    */
-  // tslint:disable-next-line
-  private _trapFocus(focusTrap: FocusTrap, event: FocusEvent) {
+  private _trapFocus(focusTrap: ConfigurableFocusTrap, event: FocusEvent) {
     const target = event.target as HTMLElement;
+    const focusTrapRoot = focusTrap._element;
+
     // Don't refocus if target was in an overlay, because the overlay might be associated
     // with an element inside the FocusTrap, ex. mat-select.
-    if (!focusTrap._element.contains(target) &&
-      closest(target, 'div.cdk-overlay-pane') === null) {
+    if (!focusTrapRoot.contains(target) && closest(target, 'div.cdk-overlay-pane') === null) {
       // Some legacy FocusTrap usages have logic that focuses some element on the page
       // just before FocusTrap is destroyed. For backwards compatibility, wait
       // to be sure FocusTrap is still enabled before refocusing.
       setTimeout(() => {
-        if (focusTrap.enabled) {
+        // Check whether focus wasn't put back into the focus trap while the timeout was pending.
+        if (focusTrap.enabled && !focusTrapRoot.contains(focusTrap._document.activeElement)) {
           focusTrap.focusFirstTabbableElement();
         }
       });

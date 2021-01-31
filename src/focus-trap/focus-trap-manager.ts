@@ -1,15 +1,12 @@
 /**
- * This code is a copy of @angular/cdk directive CdkTrapFocus
- * https://github.com/angular/components/tree/master/src/cdk/a11y/focus-trap
- * This copy is using till new major version of ngx-bootstrap will be released
- */
-/**
  * @license
  * Copyright Google LLC All Rights Reserved.
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+
+// tslint:disable
 
 import { Injectable } from '@angular/core';
 
@@ -36,9 +33,9 @@ export class FocusTrapManager {
    */
   register(focusTrap: ManagedFocusTrap): void {
     // Dedupe focusTraps that register multiple times.
-    this._focusTrapStack = this._focusTrapStack.filter(ft => ft !== focusTrap);
+    this._focusTrapStack = this._focusTrapStack.filter((ft) => ft !== focusTrap);
 
-    const stack = this._focusTrapStack;
+    let stack = this._focusTrapStack;
 
     if (stack.length) {
       stack[stack.length - 1]._disable();

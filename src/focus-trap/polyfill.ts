@@ -1,9 +1,4 @@
 /**
- * This code is a copy of @angular/cdk directive CdkTrapFocus
- * https://github.com/angular/components/tree/master/src/cdk/a11y/focus-trap
- * This copy is using till new major version of ngx-bootstrap will be released
- */
-/**
  * @license
  * Copyright Google LLC All Rights Reserved.
  *
@@ -11,21 +6,20 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-const hasNativeClosest = typeof Element !== 'undefined' && !!Element.prototype.closest;
+// tslint:disable
 
 /** IE 11 compatible closest implementation that is able to start from non-Element Nodes. */
 export function closest(element: EventTarget|Element|null|undefined, selector: string):
-  Element|null {
+    Element|null {
   if (!(element instanceof Node)) { return null; }
 
   let curr: any = element;
-
   while (curr != null && !(curr instanceof Element)) {
     curr = curr.parentNode;
   }
 
   return curr && (hasNativeClosest ?
-    curr.closest(selector) : polyfillClosest(curr, selector)) as Element|null;
+      curr.closest(selector) : polyfillClosest(curr, selector)) as Element|null;
 }
 
 /** Polyfill for browsers without Element.closest. */
@@ -38,11 +32,11 @@ function polyfillClosest(element: Element, selector: string): Element|null {
   return (curr || null) as Element|null;
 }
 
+const hasNativeClosest = typeof Element !== 'undefined' && !!Element.prototype.closest;
+
 /** IE 11 compatible matches implementation. */
 function matches(element: Element, selector: string): boolean {
-  const key = 'msMatchesSelector';
-
   return element.matches ?
-    element.matches(selector) :
-    (element as any)[key](selector);
+      element.matches(selector) :
+      (element as any)['msMatchesSelector'](selector);
 }
