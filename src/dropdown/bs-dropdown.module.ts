@@ -5,7 +5,6 @@ import { PositioningService } from 'ngx-bootstrap/positioning';
 import { BsDropdownContainerComponent } from './bs-dropdown-container.component';
 import { BsDropdownMenuDirective } from './bs-dropdown-menu.directive';
 import { BsDropdownToggleDirective } from './bs-dropdown-toggle.directive';
-import { BsDropdownConfig } from './bs-dropdown.config';
 
 import { BsDropdownDirective } from './bs-dropdown.directive';
 import { BsDropdownState } from './bs-dropdown.state';
@@ -26,17 +25,13 @@ import { BsDropdownState } from './bs-dropdown.state';
 })
 export class BsDropdownModule {
   // tslint:disable-next-line:no-any
-  static forRoot(config?: any): ModuleWithProviders {
+  static forRoot(config?: any): ModuleWithProviders<BsDropdownModule> {
     return {
       ngModule: BsDropdownModule,
       providers: [
         ComponentLoaderFactory,
         PositioningService,
-        BsDropdownState,
-        {
-          provide: BsDropdownConfig,
-          useValue: config ? config : { autoClose: true, insideClick: false }
-        }
+        BsDropdownState
       ]
     };
   }

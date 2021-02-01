@@ -5,7 +5,7 @@ import {
   fakeAsync,
   tick
 } from '@angular/core/testing';
-import { PagerComponent, PaginationModule } from '../pagination';
+import { PagerComponent, PaginationModule } from 'ngx-bootstrap/pagination';
 import { fireEvent } from '../../scripts/helpers';
 
 describe('Component: Pager:', () => {
@@ -58,7 +58,7 @@ describe('Component: Pager:', () => {
     const listItems = element.querySelectorAll('li');
 
     expect(listItems[0].classList).toContain('disabled');
-    expect(listItems[0].classList).toContain('pull-right');
+    expect(listItems[0].classList).toContain('pull-left');
     expect(listItems[0].classList).toContain('previous');
     expect(listItems[0].classList).toContain('btn');
     expect(listItems[1].classList).not.toContain('disabled');

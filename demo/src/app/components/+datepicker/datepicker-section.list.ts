@@ -10,6 +10,7 @@ import { DemoDatePickerConfigObjectComponent } from './demos/config-object/confi
 import { DemoDatePickerCustomFormatComponent } from './demos/custom-format/custom-format';
 import { DemoDatepickerDateInitialStateComponent } from './demos/date-initial-state/date-initial-state';
 import { DemoDatepickerDatesDisabledComponent } from './demos/disable-dates/disable-dates';
+import { DemoDatepickerDatesEnabledComponent } from './demos/enable-dates/enable-dates';
 import { DemoDatepickerDaysDisabledComponent } from './demos/disable-days/disable-days';
 import { DemoDatepickerDisabledComponent } from './demos/disabled/disabled.component';
 import { DemoDatepickerFormsComponent } from './demos/forms/forms.component';
@@ -20,6 +21,7 @@ import { DemoDatepickerMinModeComponent } from './demos/min-mode/min-mode.compon
 import { DemoDatepickerOutsideClickComponent } from './demos/outside-click/outside-click';
 import { DemoDatepickerPlacementComponent } from './demos/placement/placement';
 import { DemoDatepickerReactiveFormsComponent } from './demos/reactive-forms/reactive-forms.component';
+import { DemoDatePickerReturnFocusToInputComponent } from './demos/return-focus-to-input/return-focus-to-input.component';
 import { DemoDatepickerDateCustomClassesComponent } from './demos/date-custom-classes/date-custom-classes';
 
 import {
@@ -40,8 +42,15 @@ import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs';
+import { DemoDatePickerQuickSelectRangesComponent } from './demos/quick-select-ranges/quick-select-ranges';
 import { DemoDateRangePickerShowPreviousMonth } from './demos/daterangepicker-show-previous-month/show-previous-month';
-
+import { DemoDatePickerSelectWeekRangeComponent } from './demos/select-week-range/select-week-range';
+import { DemoDatePickerTooltipToSelectedDates } from './demos/tooltip-to-selected-dates/tooltip-to-selected-dates';
+import { DemoDateRangePickerMaxDateRangeComponent } from './demos/max-date-range/max-date-range';
+import { DemoDateRangePickerDisplayOneMonth } from './demos/daterangepicker-display-one-month/display-one-month';
+import { DemoDatepickerTodayButtonComponent } from './demos/today-button/today-button';
+import { DemoDatepickerClearButtonComponent } from './demos/clear-button/clear-button';
+import { DemoDatepickerStartViewComponent } from "./demos/start-view/start-view";
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -191,7 +200,7 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/disable-days/disable-days.html'),
         description: `
           <p>You can set which days of the week should be disabled with <code>daysDisabled</code>
-          <p>In the following example <code>daysDisabled</code> is set with an array which disabled saturday and sunday.
+          <p>In the following example <code>daysDisabled</code> is set with an array which disabled Saturday and Sunday.
           Sunday is considered the first day of the week and thus has the value 0</p>`,
         outlet: DemoDatepickerDaysDisabledComponent
       },
@@ -202,8 +211,29 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/disable-dates/disable-dates.html'),
         description: `
           <p>You can set which dates should be disabled with <code>datesDisabled</code></p>
-          <p>In the following example <code>datesDisabled</code> is set with an array to disable 2019-02-05 and 2019-02-09.</p>`,
+          <p>In the following example <code>datesDisabled</code> is set with an array to disable 2020-02-05 and 2020-02-09.</p>
+          <p>NOTE: DO NOT USE this functionality with <code>datesEnabled</code> at the same time</p>`,
         outlet: DemoDatepickerDatesDisabledComponent
+      },
+      {
+        title: 'Dates enabled',
+        anchor: 'dates-enabled',
+        component: require('!!raw-loader!./demos/enable-dates/enable-dates.ts'),
+        html: require('!!raw-loader!./demos/enable-dates/enable-dates.html'),
+        description: `
+          <p>You can set which dates should be enable with <code>datesEnabled</code></p>
+          <p>In the following example <code>datesEnabled</code> is set with an array to enable 2020-02-06, 2020-02-08 and 2020-02-11. All other dates are disabled</p>
+          <p>NOTE: DO NOT USE this functionality with <code>datesDisabled</code> at the same time</p>`,
+        outlet: DemoDatepickerDatesEnabledComponent
+      },
+      {
+        title: 'Display one month',
+        anchor: 'display-one-month',
+        component: require('!!raw-loader!./demos/daterangepicker-display-one-month/display-one-month.ts'),
+        html: require('!!raw-loader!./demos/daterangepicker-display-one-month/display-one-month.html'),
+        description: `<p>You can configure, how many months  you want to show for daterangepicker via <code>displayMonths</code> in <code>BsDaterangepickerConfig.</code></p>
+        <p>With <code>displayOneMonthRange</code> you can show only one month for two cases</p>`,
+        outlet: DemoDateRangePickerDisplayOneMonth
       },
       {
         title: 'Min-mode',
@@ -247,6 +277,14 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/reactive-forms/reactive-forms.component.ts'),
         html: require('!!raw-loader!./demos/reactive-forms/reactive-forms.component.html'),
         outlet: DemoDatepickerReactiveFormsComponent
+      },
+      {
+        title: 'Return focus to input',
+        anchor: 'return-focus-to-input',
+        component: require('!!raw-loader!./demos/return-focus-to-input/return-focus-to-input.component.ts'),
+        html: require('!!raw-loader!./demos/return-focus-to-input/return-focus-to-input.component.html'),
+        description: `<p>Allows to return focus to input of datepicker or daterangepicker after the date or daterange selection</p>`,
+        outlet: DemoDatePickerReturnFocusToInputComponent
       },
       {
         title: 'Manual triggering',
@@ -314,6 +352,14 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDatePickerSelectWeekComponent
       },
       {
+        title: 'Select week range',
+        anchor: 'select-week-range',
+        component: require('!!raw-loader!./demos/select-week-range/select-week-range.ts'),
+        html: require('!!raw-loader!./demos/select-week-range/select-week-range.html'),
+        description: `<p>You can enable ability to select a week number (range with first weekday - last weekday will be selected) via <code>selectWeekRange</code> option in <code>bsConfig</code></p>`,
+        outlet: DemoDatePickerSelectWeekRangeComponent
+      },
+      {
         title: 'Outside click',
         anchor: 'outside-click',
         component: require('!!raw-loader!./demos/outside-click/outside-click.ts'),
@@ -349,6 +395,22 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDatepickerDateCustomClassesComponent
       },
       {
+        title: 'Tooltip for selected dates',
+        anchor: 'tooltip-for-selected-dates',
+        component: require('!!raw-loader!./demos/tooltip-to-selected-dates/tooltip-to-selected-dates.ts'),
+        html: require('!!raw-loader!./demos/tooltip-to-selected-dates/tooltip-to-selected-dates.html'),
+        description: ``,
+        outlet: DemoDatePickerTooltipToSelectedDates
+      },
+      {
+        title: 'Quick select ranges',
+        anchor: 'quick-select-ranges',
+        component: require('!!raw-loader!./demos/quick-select-ranges/quick-select-ranges.ts'),
+        html: require('!!raw-loader!./demos/quick-select-ranges/quick-select-ranges.html'),
+        description: `<p>Quick select ranges can be added to Daterangepicker using <code>ranges</code></p>`,
+        outlet: DemoDatePickerQuickSelectRangesComponent
+      },
+      {
         title: 'Previous month in Daterangepicker',
         anchor: 'daterangepicker-previous-month',
         component: require('!!raw-loader!./demos/daterangepicker-show-previous-month/show-previous-month.ts'),
@@ -356,6 +418,38 @@ export const demoComponentContent: ContentSection[] = [
         description: `<p>Pick previous & current month instead of current & next month.When daterange selected and related to current month,
         daterangepicker will works by default, with current & next month</p>`,
         outlet: DemoDateRangePickerShowPreviousMonth
+      },
+      {
+        title: 'Show Today Button',
+        anchor: 'datepicker-show-today-button',
+        component: require('!!raw-loader!./demos/today-button/today-button.ts'),
+        html: require('!!raw-loader!./demos/today-button/today-button.html'),
+        description: `<p>Display an optional 'Today' button that will automatically select today's date.</p>`,
+        outlet: DemoDatepickerTodayButtonComponent,
+      },
+      {
+        title: 'Show Clear Button',
+        anchor: 'datepicker-show-clear-button',
+        component: require('!!raw-loader!./demos/clear-button/clear-button.ts'),
+        html: require('!!raw-loader!./demos/clear-button/clear-button.html'),
+        description: `<p>Display an optional 'Clear' button that will automatically clear date.</p>`,
+        outlet: DemoDatepickerClearButtonComponent
+      },
+      {
+        title: 'Start view',
+        anchor: 'start-view',
+        component: require('!!raw-loader!./demos/start-view/start-view.ts'),
+        html: require('!!raw-loader!./demos/start-view/start-view.html'),
+        description: `<p>Add <code>startView</code> property if you want to change start view</p>`,
+        outlet: DemoDatepickerStartViewComponent
+      },
+      {
+        title: 'Max Date Range in Daterangepicker',
+        anchor: 'daterangepicker-max-date-range',
+        component: require('!!raw-loader!./demos/max-date-range/max-date-range.ts'),
+        html: require('!!raw-loader!./demos/max-date-range/max-date-range.html'),
+        description: `<p>Max date range after first date selection can be added to Daterangepicker using <code>maxDateRange</code></p>`,
+        outlet: DemoDateRangePickerMaxDateRangeComponent
       }
     ]
   },

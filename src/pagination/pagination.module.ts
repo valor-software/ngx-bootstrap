@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { PaginationConfig } from './pagination.config';
 
 import { PagerComponent } from './pager.component';
 import { PaginationComponent } from './pagination.component';
@@ -11,7 +10,7 @@ import { PaginationComponent } from './pagination.component';
   exports: [PagerComponent, PaginationComponent]
 })
 export class PaginationModule {
-  static forRoot(): ModuleWithProviders {
-    return { ngModule: PaginationModule, providers: [PaginationConfig] };
+  static forRoot(): ModuleWithProviders<PaginationModule> {
+    return { ngModule: PaginationModule, providers: [] };
   }
 }

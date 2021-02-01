@@ -52,6 +52,19 @@ export class DiscoverComponent {
       name: 'Trovimap',
       description: 'Trovimap - Houses / Apartments / Locals for sale or rent',
       link: 'https://trovimap.com/'
+    },
+    {
+      logo: 'https://www.atmetis.nl/wp-content/uploads/2017/08/cropped-logo-atmetis-tagline-rgb1500px-1.png',
+      name: 'AtMetis',
+      description: 'Internal web-application for AtMetis - assessment company from Netherlands',
+      link: 'https://www.atmetis.nl/'
+    },
+    {
+      logo: 'https://www.pramati.com/wp-content/themes/twentynineteen-child/images/logo.svg',
+      name: 'Pramati Technologies Private Limited',
+      description: 'Pramati - Independent, innovative technology companies focused on\n' +
+        'profitable, well-defined markets',
+      link: 'https://www.pramati.com/'
     }
   ];
 }

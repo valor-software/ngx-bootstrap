@@ -17,7 +17,7 @@ import { AnimationBuilder, AnimationFactory } from '@angular/animations';
   selector: 'bs-dropdown-container',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    style: 'display:block;position: absolute;'
+    style: 'display:block;position: absolute;z-index: 1040'
   },
   template: `
     <div [class.dropup]="direction === 'up'"
@@ -50,7 +50,6 @@ export class BsDropdownContainerComponent implements OnDestroy {
 
     this._subscription = _state.isOpenChange.subscribe((value: boolean) => {
       this.isOpen = value;
-
       const dropdown = this._element.nativeElement.querySelector('.dropdown-menu');
 
       this._renderer.addClass(this._element.nativeElement.querySelector('div'), 'open');

@@ -16,7 +16,6 @@ describe('Timepicker demo page test suite: Min - Max', () => {
     timepicker.isInputValueContain(minMax, `${timepicker.getHoursIn12Format(newDate)}`, 0);
     timepicker.isInputValueContain(minMax, `${newDate.getMinutes()}`, 1);
     timepicker.isButtonExist(minMax, `${(newDate.getHours() >= 12) ? 'PM' : 'AM'} `, 0);
-    timepicker.isButtonDisabled(minMax, 0);
   });
 
   describe(`Hours`, () => {
@@ -59,8 +58,7 @@ describe('Timepicker demo page test suite: Min - Max', () => {
       const hourToSet = new Date().getHours() <= 12 ? 16 : 4;
       timepicker.setTimeInInputs(minMax, hourToSet, minToSet);
       timepicker.clickOnArrow(minMax, 'up', 0);
-      timepicker.isAlertContains(minMax, `${timepicker.getHoursIn24Format(hourToSet)}`);
-      timepicker.isArrowDisabled(minMax, 'up', 0);
+      timepicker.isAlertContains(minMax, `${timepicker.getHoursIn24Format(hourToSet + 1)}`);
     });
 
     it(`when user chose (B) hour, then arrow down become unclickable, min hour, which user can chose - B`, () => {

@@ -9,7 +9,7 @@ import {
   ViewChild,
   ChangeDetectionStrategy,
   Injectable,
-  OnDestroy
+  OnDestroy, ChangeDetectorRef
 } from '@angular/core';
 
 import {
@@ -17,8 +17,8 @@ import {
   PopoverContainerComponent,
   PopoverDirective,
   PopoverConfig
-} from '../../popover';
-import { createGenericTestComponent } from './test/common';
+} from 'ngx-bootstrap/popover';
+import { createComponent } from './test/common';
 import { dispatchMouseEvent } from '@netbasal/spectator';
 
 @Component({selector: 'test-cmpt', template: ``})
@@ -44,7 +44,9 @@ export class TestComponent {
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: ``
 })
-export class TestOnPushComponent {}
+export class TestOnPushComponent {
+  constructor(public cdRef: ChangeDetectorRef) {}
+}
 
 @Injectable()
 class SpyService {
@@ -63,10 +65,10 @@ export class DestroyableCmpt implements OnDestroy {
 }
 
 const createTestComponent = (html: string) =>
-  createGenericTestComponent(html, TestComponent);
+  createComponent(html, TestComponent);
 
 const createOnPushTestComponent = (html: string) =>
-  createGenericTestComponent(html, TestOnPushComponent);
+  createComponent(html, TestOnPushComponent, 'OnPush');
 
 describe('popover-container', () => {
   beforeEach(() => {
@@ -236,6 +238,30 @@ describe('popover', () => {
       fixture.detectChanges();
       expect(getWindow(fixture.nativeElement)).toBeNull();
     });
+
+    it('should properly set aria-describedBy and id for popover', () => {
+      const fixture = createTestComponent(
+        `<div id="div-container" style="margin: 400px" popover="Great tip!" popoverTitle="Title"></div>`
+      );
+      const directive = fixture.debugElement.query(
+        By.directive(PopoverDirective)
+      );
+
+      dispatchMouseEvent(directive.nativeElement, 'click');
+      fixture.detectChanges();
+
+      const windowEl = getWindow(fixture.nativeElement);
+
+      const popoverId = windowEl.getAttribute('id');
+
+      expect(popoverId.indexOf('ngx-popover-')).toEqual(0);
+      expect(fixture.nativeElement.querySelector('#div-container').getAttribute('aria-describedby')).toEqual(popoverId);
+
+      dispatchMouseEvent(directive.nativeElement, 'click');
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('#div-container').getAttribute('aria-describedby')).toBeNull();
+    });
   });
 
   describe('positioning', () => {
@@ -262,6 +288,9 @@ describe('popover', () => {
         `<div style="padding: 400px"><div popover="Great tip!" placement="left"></div></div>`
       );
 
+      const context = fixture.componentInstance;
+      context.cdRef.markForCheck();
+
       const directive = fixture.debugElement.query(
         By.directive(PopoverDirective)
       );
@@ -269,15 +298,16 @@ describe('popover', () => {
       dispatchMouseEvent(directive.nativeElement, 'click');
       fixture.detectChanges();
       const windowEl = getWindow(fixture.nativeElement);
+      context.cdRef.markForCheck();
 
       expect(windowEl).toHaveCssClass('popover');
       expect(windowEl).toHaveCssClass('popover-left');
       expect(windowEl.textContent.trim()).toBe('Great tip!');
     });
 
-    it('should set position to right when use auto position and fit on screen', () => {
+    it('should set position to top when use auto position and fit on screen', () => {
       const fixture = createTestComponent(
-        `<div style="padding: 400px"><div popover="Great tip!" placement="auto"></div></div>`
+        `<div style="padding: 400px"><div popover="Great tip!" placement="auto right"></div></div>`
       );
       const directive = fixture.debugElement.query(
         By.directive(PopoverDirective)
@@ -289,7 +319,7 @@ describe('popover', () => {
 
       expect(windowEl).toHaveCssClass('popover');
       expect(windowEl).toHaveCssClass('popover-auto');
-      expect(windowEl).toHaveCssClass('top');
+      expect(windowEl).toHaveCssClass('right');
       expect(windowEl.textContent.trim()).toBe('Great tip!');
     });
 

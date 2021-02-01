@@ -33,6 +33,7 @@ import {
 import { BsDatepickerDirective } from './bs-datepicker.component';
 import { BsLocaleService } from './bs-locale.service';
 import { Subscription } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 const BS_DATEPICKER_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
@@ -53,6 +54,7 @@ const BS_DATEPICKER_VALIDATOR: Provider = {
   host: {
     '(change)': 'onChange($event)',
     '(keyup.esc)': 'hide()',
+    '(keydown)': 'onKeydownEvent($event)',
     '(blur)': 'onBlur()'
   },
   providers: [BS_DATEPICKER_VALUE_ACCESSOR, BS_DATEPICKER_VALIDATOR]
@@ -92,10 +94,22 @@ export class BsDatepickerInputDirective
         this._setInputValue(this._value);
       })
     );
-  }
+
+    this._subs.add(
+    this._picker.dateInputFormat$.pipe(distinctUntilChanged()).subscribe(() => {
+      this._setInputValue(this._value);
+    })
+  );
+}
 
   ngOnDestroy() {
     this._subs.unsubscribe();
+  }
+
+  onKeydownEvent(event) {
+    if (event.keyCode === 13 || event.code === 'Enter') {
+      this.hide();
+    }
   }
 
   _setInputValue(value: Date): void {
@@ -109,6 +123,9 @@ export class BsDatepickerInputDirective
     /* tslint:disable-next-line: no-any*/
     this.writeValue((event.target as any).value);
     this._onChange(this._value);
+    if (this._picker._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
+    }
     this._onTouched();
   }
 
@@ -191,5 +208,8 @@ export class BsDatepickerInputDirective
   hide() {
     this._picker.hide();
     this._renderer.selectRootElement(this._elRef.nativeElement).blur();
+    if (this._picker._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
+    }
   }
 }

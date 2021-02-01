@@ -33,6 +33,7 @@ import {
 import { BsDaterangepickerDirective } from './bs-daterangepicker.component';
 import { BsLocaleService } from './bs-locale.service';
 import { Subscription } from 'rxjs';
+import { distinctUntilChanged } from 'rxjs/operators';
 
 const BS_DATERANGEPICKER_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
@@ -54,6 +55,7 @@ const BS_DATERANGEPICKER_VALIDATOR: Provider = {
   host: {
     '(change)': 'onChange($event)',
     '(keyup.esc)': 'hide()',
+    '(keydown)': 'onKeydownEvent($event)',
     '(blur)': 'onBlur()'
   },
   providers: [BS_DATERANGEPICKER_VALUE_ACCESSOR, BS_DATERANGEPICKER_VALIDATOR]
@@ -91,10 +93,22 @@ export class BsDaterangepickerInputDirective
     this._subs.add(this._localeService.localeChange.subscribe(() => {
       this._setInputValue(this._value);
     }));
+
+    this._subs.add(
+      // update input value on format change
+      this._picker.rangeInputFormat$.pipe(distinctUntilChanged()).subscribe(() => {
+        this._setInputValue(this._value);
+      }));
   }
 
   ngOnDestroy() {
     this._subs.unsubscribe();
+  }
+
+  onKeydownEvent(event) {
+    if (event.keyCode === 13 || event.code === 'Enter') {
+      this.hide();
+    }
   }
 
   _setInputValue(date: Date[]): void {
@@ -120,6 +134,9 @@ export class BsDaterangepickerInputDirective
     /* tslint:disable-next-line: no-any*/
     this.writeValue((event.target as any).value);
     this._onChange(this._value);
+    if (this._picker._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
+    }
     this._onTouched();
   }
 
@@ -177,25 +194,27 @@ export class BsDaterangepickerInputDirective
         );
       }
 
-      let _input: (string[] | Date[]) = [];
+      let _input: (string | Date)[] = [];
       if (typeof value === 'string') {
-        _input = value.split(this._picker._config.rangeSeparator);
+        const trimmedSeparator = this._picker._config.rangeSeparator.trim();
+        _input = value
+          .split(trimmedSeparator.length > 0 ? trimmedSeparator : this._picker._config.rangeSeparator)
+          .map(_val => _val.trim());
       }
 
       if (Array.isArray(value)) {
         _input = value;
       }
 
-
-      this._value = (_input as string[])
-        .map((_val: string): Date => {
+      this._value = _input
+        .map((_val: string | Date): Date => {
             if (this._picker._config.useUtc) {
               return utcAsLocal(
-                parseDate(_val, this._picker._config.dateInputFormat, this._localeService.currentLocale)
+                parseDate(_val, this._picker._config.rangeInputFormat, this._localeService.currentLocale)
               );
             }
 
-            return parseDate(_val, this._picker._config.dateInputFormat, this._localeService.currentLocale);
+            return parseDate(_val, this._picker._config.rangeInputFormat, this._localeService.currentLocale);
           }
         )
         .map((date: Date) => (isNaN(date.valueOf()) ? null : date));
@@ -231,5 +250,9 @@ export class BsDaterangepickerInputDirective
   hide() {
     this._picker.hide();
     this._renderer.selectRootElement(this._elRef.nativeElement).blur();
+
+    if (this._picker._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
+    }
   }
 }
