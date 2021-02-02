@@ -128,7 +128,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.isShown) {
-      this.hide();
+      this._hide();
     }
   }
 
@@ -136,6 +136,19 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     if (this.isModalHiding || !this.isShown) {
       return;
     }
+
+    if (this.config.closeInterceptor) {
+      this.config.closeInterceptor().then(
+        () => this._hide(),
+        () => undefined);
+
+      return;
+    }
+
+    this._hide();
+  }
+
+  private _hide(): void {
     this.isModalHiding = true;
     this._renderer.removeClass(
       this._element.nativeElement,

@@ -1,5 +1,5 @@
 import { Injectable, StaticProvider, InjectionToken } from '@angular/core';
-import { ClassName, DismissReasons, Selector, TransitionDurations } from './models';
+import { ClassName, CloseInterceptorFn, DismissReasons, Selector, TransitionDurations } from './models';
 
 @Injectable()
 export class ModalOptions<T = Object> {
@@ -39,6 +39,10 @@ export class ModalOptions<T = Object> {
    */
   initialState?: Partial<T>;
   /**
+   * Function to intercept the closure
+   */
+  closeInterceptor?: CloseInterceptorFn;
+  /**
    * Modal providers
    */
   providers?: StaticProvider[];
@@ -60,7 +64,8 @@ export const modalConfigDefaults: ModalOptions = {
   ignoreBackdropClick: false,
   class: '',
   animated: true,
-  initialState: {}
+  initialState: {},
+  closeInterceptor: null
 };
 
 export const MODAL_CONFIG_DEFAULT_OVERRIDE: InjectionToken<ModalOptions> =
