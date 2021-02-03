@@ -1,7 +1,7 @@
 module.exports = {
   projects: [
     '<rootDir>/apps/ngx-bootstrap-docs',
-    '<rootDir>/libs/utils',
+    '<rootDir>/src/utils',
     '<rootDir>/libs/positioning',
     '<rootDir>/libs/component-loader',
     '<rootDir>/libs/chronos',

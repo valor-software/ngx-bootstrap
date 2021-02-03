@@ -149,19 +149,19 @@
     },
     "utils": {
       "projectType": "library",
-      "root": "libs/utils",
-      "sourceRoot": "libs/utils/src",
+      "root": "src/utils",
+      "sourceRoot": "src/utils",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/utils/tsconfig.lib.json",
-            "project": "libs/utils/ng-package.json"
+            "tsConfig": "src/utils/tsconfig.lib.json",
+            "project": "src/utils/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/utils/tsconfig.lib.prod.json"
+              "tsConfig": "src/utils/tsconfig.lib.prod.json"
             }
           }
         },
@@ -169,16 +169,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/utils/src/**/*.ts",
-              "libs/utils/src/**/*.html"
+              "src/utils/**/*.ts",
+              "src/utils/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/utils"],
+          "outputs": ["coverage/src/utils"],
           "options": {
-            "jestConfig": "libs/utils/jest.config.js",
+            "jestConfig": "src/utils/jest.config.js",
             "passWithNoTests": true
           }
         }

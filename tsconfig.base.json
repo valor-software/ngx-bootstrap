@@ -15,7 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "ngx-bootstrap/utils": ["libs/utils/src/index.ts"],
       "ngx-bootstrap/positioning": ["libs/positioning/src/index.ts"],
       "ngx-bootstrap/component-loader": ["libs/component-loader/src/index.ts"],
       "ngx-bootstrap/chronos": ["libs/chronos/src/index.ts"],
