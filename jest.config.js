@@ -16,7 +16,7 @@ module.exports = {
     '<rootDir>/libs/tabs',
     '<rootDir>/src/buttons',
     '<rootDir>/src/pagination',
-    '<rootDir>/libs/rating',
+    '<rootDir>/src/rating',
     '<rootDir>/libs/timepicker',
     '<rootDir>/src/carousel',
     '<rootDir>/src/datepicker',

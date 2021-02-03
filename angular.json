@@ -710,19 +710,19 @@
     },
     "rating": {
       "projectType": "library",
-      "root": "libs/rating",
-      "sourceRoot": "libs/rating/src",
+      "root": "src/rating",
+      "sourceRoot": "src/rating",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/rating/tsconfig.lib.json",
-            "project": "libs/rating/ng-package.json"
+            "tsConfig": "src/rating/tsconfig.lib.json",
+            "project": "src/rating/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/rating/tsconfig.lib.prod.json"
+              "tsConfig": "src/rating/tsconfig.lib.prod.json"
             }
           }
         },
@@ -730,16 +730,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/rating/src/**/*.ts",
-              "libs/rating/src/**/*.html"
+              "src/rating/src/**/*.ts",
+              "src/rating/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/rating"],
+          "outputs": ["coverage/src/rating"],
           "options": {
-            "jestConfig": "libs/rating/jest.config.js",
+            "jestConfig": "src/rating/jest.config.js",
             "passWithNoTests": true
           }
         }
