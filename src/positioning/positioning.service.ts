@@ -41,7 +41,7 @@ export interface PositioningOptions {
 }
 
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class PositioningService {
   private options: Options;
   private update$$ = new Subject<null>();
