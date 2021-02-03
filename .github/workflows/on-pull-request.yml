@@ -1,0 +1,30 @@
+name: Deploy to Firebase preview channel
+on: pull_request
+
+jobs:
+  build_and_preview:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 12.20
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.20
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build prod
+        run: npm run build -- --prod
+
+      - name: Deploy to preview channel
+        uses: FirebaseExtended/action-hosting-deploy@v0.6-alpha
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}"
+          projectId: ngx-bootstrap-demo
+        env:
+          FIREBASE_CLI_PREVIEWS: hostingchannels
