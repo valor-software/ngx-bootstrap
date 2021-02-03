@@ -2,8 +2,8 @@ module.exports = {
   projects: [
     '<rootDir>/apps/ngx-bootstrap-docs',
     '<rootDir>/src/utils',
-    '<rootDir>/libs/positioning',
-    '<rootDir>/libs/component-loader',
+    '<rootDir>/src/positioning',
+    '<rootDir>/src/component-loader',
     '<rootDir>/libs/chronos',
     '<rootDir>/libs/locale',
     '<rootDir>/libs/mini-ngrx',
@@ -23,6 +23,6 @@ module.exports = {
     '<rootDir>/libs/popover',
     '<rootDir>/libs/sortable',
     '<rootDir>/libs/tooltip',
-    '<rootDir>/libs/typeahead',
+    '<rootDir>/src/typeahead',
   ],
 };

@@ -15,8 +15,6 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "ngx-bootstrap/positioning": ["libs/positioning/src/index.ts"],
-      "ngx-bootstrap/component-loader": ["libs/component-loader/src/index.ts"],
       "ngx-bootstrap/chronos": ["libs/chronos/src/index.ts"],
       "ngx-bootstrap/locale": ["libs/locale/src/index.ts"],
       "ngx-bootstrap/mini-ngrx": ["libs/mini-ngrx/src/index.ts"],
@@ -35,8 +33,7 @@
       "ngx-bootstrap/datepicker": ["libs/datepicker/src/index.ts"],
       "ngx-bootstrap/popover": ["libs/popover/src/index.ts"],
       "ngx-bootstrap/sortable": ["libs/sortable/src/index.ts"],
-      "ngx-bootstrap/tooltip": ["libs/tooltip/src/index.ts"],
-      "ngx-bootstrap/typeahead": ["libs/typeahead/src/index.ts"]
+      "ngx-bootstrap/tooltip": ["libs/tooltip/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

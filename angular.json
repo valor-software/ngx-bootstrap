@@ -186,19 +186,19 @@
     },
     "positioning": {
       "projectType": "library",
-      "root": "libs/positioning",
-      "sourceRoot": "libs/positioning/src",
+      "root": "src/positioning",
+      "sourceRoot": "src/positioning",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/positioning/tsconfig.lib.json",
-            "project": "libs/positioning/ng-package.json"
+            "tsConfig": "src/positioning/tsconfig.lib.json",
+            "project": "src/positioning/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/positioning/tsconfig.lib.prod.json"
+              "tsConfig": "src/positioning/tsconfig.lib.prod.json"
             }
           }
         },
@@ -206,16 +206,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/positioning/src/**/*.ts",
-              "libs/positioning/src/**/*.html"
+              "src/positioning/**/*.ts",
+              "src/positioning/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/positioning"],
+          "outputs": ["coverage/src/positioning"],
           "options": {
-            "jestConfig": "libs/positioning/jest.config.js",
+            "jestConfig": "src/positioning/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -223,19 +223,19 @@
     },
     "component-loader": {
       "projectType": "library",
-      "root": "libs/component-loader",
-      "sourceRoot": "libs/component-loader/src",
+      "root": "src/component-loader",
+      "sourceRoot": "src/component-loader",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/component-loader/tsconfig.lib.json",
-            "project": "libs/component-loader/ng-package.json"
+            "tsConfig": "src/component-loader/tsconfig.lib.json",
+            "project": "src/component-loader/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/component-loader/tsconfig.lib.prod.json"
+              "tsConfig": "src/component-loader/tsconfig.lib.prod.json"
             }
           }
         },
@@ -243,16 +243,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/component-loader/src/**/*.ts",
-              "libs/component-loader/src/**/*.html"
+              "src/component-loader/**/*.ts",
+              "src/component-loader/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/component-loader"],
+          "outputs": ["coverage/src/component-loader"],
           "options": {
-            "jestConfig": "libs/component-loader/jest.config.js",
+            "jestConfig": "src/component-loader/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -963,19 +963,19 @@
     },
     "typeahead": {
       "projectType": "library",
-      "root": "libs/typeahead",
-      "sourceRoot": "libs/typeahead/src",
+      "root": "src/typeahead",
+      "sourceRoot": "src/typeahead",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/typeahead/tsconfig.lib.json",
-            "project": "libs/typeahead/ng-package.json"
+            "tsConfig": "src/typeahead/tsconfig.lib.json",
+            "project": "src/typeahead/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/typeahead/tsconfig.lib.prod.json"
+              "tsConfig": "src/typeahead/tsconfig.lib.prod.json"
             }
           }
         },
@@ -983,16 +983,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/typeahead/src/**/*.ts",
-              "libs/typeahead/src/**/*.html"
+              "src/typeahead/**/*.ts",
+              "src/typeahead/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/typeahead"],
+          "outputs": ["coverage/src/typeahead"],
           "options": {
-            "jestConfig": "libs/typeahead/jest.config.js",
+            "jestConfig": "src/typeahead/jest.config.js",
             "passWithNoTests": true
           }
         }

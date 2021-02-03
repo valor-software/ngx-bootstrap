@@ -23,7 +23,7 @@
     },
     "utils": { "tags": [] },
     "positioning": { "tags": [] },
-    "component-loader": { "tags": [] },
+    "component-loader": { "tags": [], "implicitDependencies": ["utils"] },
     "chronos": { "tags": [] },
     "locale": { "tags": [] },
     "mini-ngrx": { "tags": [] },
@@ -43,6 +43,6 @@
     "popover": { "tags": [] },
     "sortable": { "tags": [] },
     "tooltip": { "tags": [] },
-    "typeahead": { "tags": [] }
+    "typeahead": { "tags": [], "implicitDependencies": ["positioning", "component-loader"]  }
   }
 }
