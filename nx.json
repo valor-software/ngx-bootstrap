@@ -39,7 +39,7 @@
     "rating": { "tags": [] },
     "timepicker": { "tags": [] },
     "carousel": { "tags": [] },
-    "datepicker": { "tags": [] },
+    "datepicker": { "tags": [], "implicitDependencies": ["mini-ngrx", "tooltip"] },
     "popover": { "tags": [] },
     "sortable": { "tags": [] },
     "tooltip": { "tags": [] },

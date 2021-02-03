@@ -338,19 +338,20 @@
     },
     "mini-ngrx": {
       "projectType": "library",
-      "root": "libs/mini-ngrx",
-      "sourceRoot": "libs/mini-ngrx/src",
+      "root": "src/mini-ngrx",
+      "sourceRoot": "src/mini-ngrx",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/mini-ngrx"],
           "options": {
-            "tsConfig": "libs/mini-ngrx/tsconfig.lib.json",
-            "project": "libs/mini-ngrx/ng-package.json"
+            "tsConfig": "src/mini-ngrx/tsconfig.lib.json",
+            "project": "src/mini-ngrx/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/mini-ngrx/tsconfig.lib.prod.json"
+              "tsConfig": "src/mini-ngrx/tsconfig.lib.prod.json"
             }
           }
         },
@@ -358,16 +359,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/mini-ngrx/src/**/*.ts",
-              "libs/mini-ngrx/src/**/*.html"
+              "src/mini-ngrx/src/**/*.ts",
+              "src/mini-ngrx/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mini-ngrx"],
+          "outputs": ["coverage/src/mini-ngrx"],
           "options": {
-            "jestConfig": "libs/mini-ngrx/jest.config.js",
+            "jestConfig": "src/mini-ngrx/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -820,19 +821,19 @@
     },
     "datepicker": {
       "projectType": "library",
-      "root": "libs/datepicker",
-      "sourceRoot": "libs/datepicker/src",
+      "root": "src/datepicker",
+      "sourceRoot": "src/datepicker",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/datepicker/tsconfig.lib.json",
-            "project": "libs/datepicker/ng-package.json"
+            "tsConfig": "src/datepicker/tsconfig.lib.json",
+            "project": "src/datepicker/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/datepicker/tsconfig.lib.prod.json"
+              "tsConfig": "src/datepicker/tsconfig.lib.prod.json"
             }
           }
         },
@@ -840,16 +841,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/datepicker/src/**/*.ts",
-              "libs/datepicker/src/**/*.html"
+              "src/datepicker/src/**/*.ts",
+              "src/datepicker/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/datepicker"],
+          "outputs": ["coverage/src/datepicker"],
           "options": {
-            "jestConfig": "libs/datepicker/jest.config.js",
+            "jestConfig": "src/datepicker/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -931,19 +932,20 @@
     },
     "tooltip": {
       "projectType": "library",
-      "root": "libs/tooltip",
-      "sourceRoot": "libs/tooltip/src",
+      "root": "src/tooltip",
+      "sourceRoot": "src/tooltip",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/tooltip"],
           "options": {
-            "tsConfig": "libs/tooltip/tsconfig.lib.json",
-            "project": "libs/tooltip/ng-package.json"
+            "tsConfig": "src/tooltip/tsconfig.lib.json",
+            "project": "src/tooltip/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/tooltip/tsconfig.lib.prod.json"
+              "tsConfig": "src/tooltip/tsconfig.lib.prod.json"
             }
           }
         },
@@ -951,16 +953,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/tooltip/src/**/*.ts",
-              "libs/tooltip/src/**/*.html"
+              "src/tooltip/src/**/*.ts",
+              "src/tooltip/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/tooltip"],
+          "outputs": ["coverage/src/tooltip"],
           "options": {
-            "jestConfig": "libs/tooltip/jest.config.js",
+            "jestConfig": "src/tooltip/jest.config.js",
             "passWithNoTests": true
           }
         }
