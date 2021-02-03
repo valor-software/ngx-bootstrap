@@ -782,19 +782,19 @@
     },
     "carousel": {
       "projectType": "library",
-      "root": "libs/carousel",
-      "sourceRoot": "libs/carousel/src",
+      "root": "src/carousel",
+      "sourceRoot": "src/carousel/src",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/carousel/tsconfig.lib.json",
-            "project": "libs/carousel/ng-package.json"
+            "tsConfig": "src/carousel/tsconfig.lib.json",
+            "project": "src/carousel/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/carousel/tsconfig.lib.prod.json"
+              "tsConfig": "src/carousel/tsconfig.lib.prod.json"
             }
           }
         },
@@ -802,16 +802,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/carousel/src/**/*.ts",
-              "libs/carousel/src/**/*.html"
+              "src/carousel/src/**/*.ts",
+              "src/carousel/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/carousel"],
+          "outputs": ["coverage/src/carousel"],
           "options": {
-            "jestConfig": "libs/carousel/jest.config.js",
+            "jestConfig": "src/carousel/jest.config.js",
             "passWithNoTests": true
           }
         }

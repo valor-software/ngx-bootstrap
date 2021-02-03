@@ -1,13 +1,11 @@
 {
   "name": "ngx-bootstrap/carousel",
-  "version": "6.2.0",
-  "description": "Native Angular Bootstrap Components",
-  "private": true,
-  "ngPackage": {
-    "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-    "lib": {
-      "entryFile": "public_api.ts"
-    },
-    "dest": "../../dist/carousel"
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^11.0.9",
+    "@angular/core": "^11.0.9"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
   }
 }
