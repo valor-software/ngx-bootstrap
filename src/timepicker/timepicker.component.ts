@@ -3,13 +3,17 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   EventEmitter,
   forwardRef,
   Input,
   OnChanges,
   OnDestroy,
   Output,
-  SimpleChanges, ViewEncapsulation
+  Renderer2,
+  SimpleChanges,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -82,11 +86,11 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: ControlValueAccessorModel = {
   encapsulation: ViewEncapsulation.None
 })
 export class TimepickerComponent
-  implements ControlValueAccessor,
-    TimepickerComponentState,
-    TimepickerControls,
-    OnChanges,
-    OnDestroy {
+  implements ControlValueAccessor, TimepickerComponentState, TimepickerControls, OnChanges, OnDestroy {
+  @ViewChild('hoursRef', { static: false }) hoursRef: ElementRef;
+  @ViewChild('minutesRef', { static: false }) minutesRef: ElementRef;
+  @ViewChild('secondsRef', { static: false }) secondsRef: ElementRef;
+
   /** hours change step */
   @Input() hourStep: number;
   /** minutes change step */
@@ -173,7 +177,8 @@ export class TimepickerComponent
     _config: TimepickerConfig,
     private _cd: ChangeDetectorRef,
     private _store: TimepickerStore,
-    private _timepickerActions: TimepickerActions
+    private _timepickerActions: TimepickerActions,
+    private renderer: Renderer2
   ) {
     Object.assign(this, _config);
 
@@ -192,9 +197,9 @@ export class TimepickerComponent
     _store
       .select(state => state.controls)
       .subscribe((controlsState: TimepickerControls) => {
-        this.isValid.emit(isInputValid(this.hours, this.minutes, this.seconds, this.isPM()));
+        this.isValid.emit(isInputValid(this.hours, this.minutes, this.seconds));
         Object.assign(this, controlsState);
-        _cd.markForCheck();
+        this._cd.markForCheck();
       });
   }
 
@@ -245,7 +250,7 @@ export class TimepickerComponent
     this.resetValidation();
     this.hours = hours;
 
-    const isValid = isHourInputValid(this.hours, this.isPM()) && this.isValidLimit();
+    const isValid = isHourInputValid(this.hours) && this.isValidLimit();
 
     if (!isValid) {
       this.invalidHours = true;
@@ -304,7 +309,7 @@ export class TimepickerComponent
   _updateTime() {
     const _seconds = this.showSeconds ? this.seconds : void 0;
     const _minutes = this.showMinutes ? this.minutes : void 0;
-    if (!isInputValid(this.hours, _minutes, _seconds, this.isPM())) {
+    if (!isInputValid(this.hours, _minutes, _seconds)) {
       this.isValid.emit(false);
       this.onChange(null);
 
@@ -400,7 +405,19 @@ export class TimepickerComponent
     }
 
     this.hours = padNumber(_hours);
+    // rewrite value only if do not passed
+    if (this.hoursRef && this.hoursRef.nativeElement.value !== this.hours) {
+      this.renderer.setProperty(this.hoursRef.nativeElement, 'value', this.hours);
+    }
+
     this.minutes = padNumber(_value.getMinutes());
+    if (this.minutesRef && this.minutesRef.nativeElement.value !== this.minutes) {
+      this.renderer.setProperty(this.minutesRef.nativeElement, 'value', this.minutes);
+    }
+
     this.seconds = padNumber(_value.getUTCSeconds());
+    if (this.secondsRef && this.secondsRef.nativeElement.value !== this.seconds) {
+      this.renderer.setProperty(this.secondsRef.nativeElement, 'value', this.seconds);
+    }
   }
 }

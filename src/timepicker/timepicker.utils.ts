@@ -2,7 +2,6 @@ import { Time, TimepickerComponentState } from './timepicker.models';
 
 const dex = 10;
 const hoursPerDay = 24;
-const hoursPerDayHalf = 12;
 const minutesPerHour = 60;
 const secondsPerMinute = 60;
 
@@ -47,14 +46,13 @@ export function isNumber(value: string | number): value is number {
 }
 
 export function parseHours(
-  value: string | number,
-  isPM = false
+  value: string | number
 ): number {
   const hour = toNumber(value);
   if (
     isNaN(hour) ||
     hour < 0 ||
-    hour > (isPM ? hoursPerDayHalf : hoursPerDay)
+    hour > hoursPerDay
   ) {
     return NaN;
   }
@@ -113,13 +111,9 @@ export function changeTime(value: Date, diff: Time): Date {
 }
 
 export function setTime(value: Date, opts: Time): Date {
-  let hour = parseHours(opts.hour);
+  const hour = parseHours(opts.hour);
   const minute = parseMinutes(opts.minute);
   const seconds = parseSeconds(opts.seconds) || 0;
-
-  if (opts.isPM && hour !== 12) {
-    hour += hoursPerDayHalf;
-  }
 
   if (!value) {
     if (!isNaN(hour) && !isNaN(minute)) {
@@ -168,8 +162,8 @@ export function padNumber(value: number): string {
   return `0${_value}`;
 }
 
-export function isHourInputValid(hours: string, isPM: boolean): boolean {
-  return !isNaN(parseHours(hours, isPM));
+export function isHourInputValid(hours: string): boolean {
+  return !isNaN(parseHours(hours));
 }
 
 export function isMinuteInputValid(minutes: string): boolean {
@@ -197,10 +191,9 @@ export function isInputLimitValid(diff: Time, max: Date, min: Date): boolean {
 export function isInputValid(
   hours: string,
   minutes = '0',
-  seconds = '0',
-  isPM: boolean
+  seconds = '0'
 ): boolean {
-  return isHourInputValid(hours, isPM)
+  return isHourInputValid(hours)
     && isMinuteInputValid(minutes)
     && isSecondInputValid(seconds);
 }
