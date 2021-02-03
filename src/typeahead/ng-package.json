@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../ngx-bootstraps/typeahead",
+  "dest": "../../node_modules/ngx-bootstraps/typeahead",
   "lib": {
     "entryFile": "index.ts"
   }

@@ -1,1 +1,0 @@
-{"version":3,"file":"ngx-bootstrap-typeahead.js","sourceRoot":"","sources":["../../../src/typeahead/ngx-bootstrap-typeahead.ts"],"names":[],"mappings":"AAAA;;GAEG;AAEH,cAAc,SAAS,CAAC","sourcesContent":["/**\n * Generated bundle index. Do not edit.\n */\n\nexport * from './index';\n"]}

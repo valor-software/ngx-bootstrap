@@ -1,1 +1,0 @@
-{"version":3,"file":"typeahead-order.class.js","sourceRoot":"","sources":["../../../src/typeahead/typeahead-order.class.ts"],"names":[],"mappings":"AAAA,MAAM,OAAO,cAAc;CAK1B","sourcesContent":["export class TypeaheadOrder {\n  /** field for sorting */\n  field?: string;\n  /** ordering direction, could be 'asc' or 'desc' */\n  direction: 'asc' | 'desc';\n}\n"]}
