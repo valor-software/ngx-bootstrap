@@ -301,19 +301,19 @@
     },
     "locale": {
       "projectType": "library",
-      "root": "libs/locale",
-      "sourceRoot": "libs/locale/src",
+      "root": "src/locale",
+      "sourceRoot": "src/locale",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/locale/tsconfig.lib.json",
-            "project": "libs/locale/ng-package.json"
+            "tsConfig": "src/locale/tsconfig.lib.json",
+            "project": "src/locale/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/locale/tsconfig.lib.prod.json"
+              "tsConfig": "src/locale/tsconfig.lib.prod.json"
             }
           }
         },
@@ -321,16 +321,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/locale/src/**/*.ts",
-              "libs/locale/src/**/*.html"
+              "src/locale/src/**/*.ts",
+              "src/locale/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/locale"],
+          "outputs": ["coverage/src/locale"],
           "options": {
-            "jestConfig": "libs/locale/jest.config.js",
+            "jestConfig": "src/locale/jest.config.js",
             "passWithNoTests": true
           }
         }

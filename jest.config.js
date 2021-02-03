@@ -5,7 +5,7 @@ module.exports = {
     '<rootDir>/src/positioning',
     '<rootDir>/src/component-loader',
     '<rootDir>/src/chronos',
-    '<rootDir>/libs/locale',
+    '<rootDir>/src/locale',
     '<rootDir>/src/mini-ngrx',
     '<rootDir>/src/accordion',
     '<rootDir>/src/alert',
