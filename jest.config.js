@@ -9,7 +9,7 @@ module.exports = {
     '<rootDir>/src/mini-ngrx',
     '<rootDir>/src/accordion',
     '<rootDir>/src/alert',
-    '<rootDir>/libs/dropdown',
+    '<rootDir>/src/dropdown',
     '<rootDir>/libs/modal',
     '<rootDir>/src/collapse',
     '<rootDir>/libs/progressbar',
