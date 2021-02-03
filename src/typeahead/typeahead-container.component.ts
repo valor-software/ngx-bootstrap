@@ -148,7 +148,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
     }
 
     if (this.typeaheadIsFirstItemActive && this._matches.length > 0) {
-      this.active = this._matches[0];
+      this.setActive(this._matches[0]);
 
       if (this._active.isHeader()) {
         this.nextActiveMatch();
@@ -219,10 +219,9 @@ export class TypeaheadContainerComponent implements OnDestroy {
   prevActiveMatch(): void {
 
     const index = this.matches.indexOf(this._active);
-
-    this.active = this.matches[
+    this.setActive(this.matches[
       index - 1 < 0 ? this.matches.length - 1 : index - 1
-    ];
+      ]);
 
     if (this._active.isHeader()) {
       this.prevActiveMatch();
@@ -235,11 +234,9 @@ export class TypeaheadContainerComponent implements OnDestroy {
 
   nextActiveMatch(): void {
     const index = this.matches.indexOf(this._active);
-
-    this.active = this.matches[
+    this.setActive(this.matches[
       index + 1 > this.matches.length - 1 ? 0 : index + 1
-    ];
-
+      ]);
 
     if (this._active.isHeader()) {
       this.nextActiveMatch();
@@ -252,7 +249,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
 
   selectActive(value: TypeaheadMatch): void {
     this.isFocused = true;
-    this.active = value;
+    this.setActive(value);
   }
 
   highlight(match: TypeaheadMatch, query: string[] | string): string {
@@ -296,6 +293,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
   @HostListener('blur')
   focusLost(): void {
     this.isFocused = false;
+    this.setActive(null);
   }
 
   isActive(value: TypeaheadMatch): boolean {
@@ -369,6 +367,14 @@ export class TypeaheadContainerComponent implements OnDestroy {
     this.positionServiceSubscription.unsubscribe();
   }
 
+  protected setActive(value: TypeaheadMatch): void {
+    this._active = value;
+    let preview = value;
+    if ((this._active === null) || (this._active.isHeader())) {
+      preview = null;
+    }
+    this.parent.typeaheadOnPreview.emit(preview);
+  }
 
   private isScrolledIntoView = function (elem: HTMLElement) {
     const containerViewTop: number = this.ulElement.nativeElement.scrollTop;

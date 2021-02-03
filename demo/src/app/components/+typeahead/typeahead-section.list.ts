@@ -241,11 +241,13 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoTypeaheadLatinizeComponent
       },
       {
-        title: 'On select',
+        title: 'On select / On preview',
         anchor: 'on-select',
         description: `
           <p><code>typeaheadOnSelect</code> event is fired when an option was selected.
-          Returns an object with this option</p>
+          Returns an object with this option.</p>
+          <p><code>typeaheadOnPreview</code> event is fired when an option was highlighted.
+          Returns an object with this option.</p>
         `,
         component: require('!!raw-loader!./demos/on-select/on-select.ts'),
         html: require('!!raw-loader!./demos/on-select/on-select.html'),
