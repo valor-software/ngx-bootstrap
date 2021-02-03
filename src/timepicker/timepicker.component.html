@@ -4,7 +4,7 @@
     <!-- increment hours button-->
     <td>
       <a class="btn btn-link" [class.disabled]="!canIncrementHours || !isEditable"
-         (click)="changeHours(hourStep)"
+         (click)="changeHours(hourStep);onTouched()"
       ><span class="bs-chevron bs-chevron-up"></span></a>
     </td>
     <!-- divider -->
@@ -12,7 +12,7 @@
     <!-- increment minutes button -->
     <td *ngIf="showMinutes">
       <a class="btn btn-link" [class.disabled]="!canIncrementMinutes || !isEditable"
-         (click)="changeMinutes(minuteStep)"
+         (click)="changeMinutes(minuteStep);onTouched()"
       ><span class="bs-chevron bs-chevron-up"></span></a>
     </td>
     <!-- divider -->
@@ -20,7 +20,7 @@
     <!-- increment seconds button -->
     <td *ngIf="showSeconds">
       <a class="btn btn-link" [class.disabled]="!canIncrementSeconds || !isEditable"
-         (click)="changeSeconds(secondsStep)">
+         (click)="changeSeconds(secondsStep);onTouched()">
         <span class="bs-chevron bs-chevron-up"></span>
       </a>
     </td>
@@ -39,7 +39,8 @@
              [readonly]="readonlyInput"
              [disabled]="disabled"
              [value]="hours"
-             (wheel)="prevDef($event);changeHours(hourStep * wheelSign($event), 'wheel')"
+             (blur)="onTouched()"
+             (wheel)="prevDef($event);changeHours(hourStep * wheelSign($event), 'wheel');onTouched()"
              (keydown.ArrowUp)="changeHours(hourStep, 'key')"
              (keydown.ArrowDown)="changeHours(-hourStep, 'key')"
              (change)="updateHours($event.target.value)" [attr.aria-label]="labelHours"></td>
@@ -54,7 +55,8 @@
              [readonly]="readonlyInput"
              [disabled]="disabled"
              [value]="minutes"
-             (wheel)="prevDef($event);changeMinutes(minuteStep * wheelSign($event), 'wheel')"
+             (blur)="onTouched()"
+             (wheel)="prevDef($event);changeMinutes(minuteStep * wheelSign($event), 'wheel');onTouched()"
              (keydown.ArrowUp)="changeMinutes(minuteStep, 'key')"
              (keydown.ArrowDown)="changeMinutes(-minuteStep, 'key')"
              (change)="updateMinutes($event.target.value)" [attr.aria-label]="labelMinutes">
@@ -70,7 +72,8 @@
              [readonly]="readonlyInput"
              [disabled]="disabled"
              [value]="seconds"
-             (wheel)="prevDef($event);changeSeconds(secondsStep * wheelSign($event), 'wheel')"
+             (blur)="onTouched()"
+             (wheel)="prevDef($event);changeSeconds(secondsStep * wheelSign($event), 'wheel');onTouched()"
              (keydown.ArrowUp)="changeSeconds(secondsStep, 'key')"
              (keydown.ArrowDown)="changeSeconds(-secondsStep, 'key')"
              (change)="updateSeconds($event.target.value)" [attr.aria-label]="labelSeconds">
@@ -91,7 +94,7 @@
     <!-- decrement hours button-->
     <td>
       <a class="btn btn-link" [class.disabled]="!canDecrementHours || !isEditable"
-         (click)="changeHours(-hourStep)">
+         (click)="changeHours(-hourStep);onTouched()">
         <span class="bs-chevron bs-chevron-down"></span>
       </a>
     </td>
@@ -100,7 +103,7 @@
     <!-- decrement minutes button-->
     <td *ngIf="showMinutes">
       <a class="btn btn-link" [class.disabled]="!canDecrementMinutes || !isEditable"
-         (click)="changeMinutes(-minuteStep)">
+         (click)="changeMinutes(-minuteStep);onTouched()">
         <span class="bs-chevron bs-chevron-down"></span>
       </a>
     </td>
@@ -109,7 +112,7 @@
     <!-- decrement seconds button-->
     <td *ngIf="showSeconds">
       <a class="btn btn-link" [class.disabled]="!canDecrementSeconds || !isEditable"
-         (click)="changeSeconds(-secondsStep)">
+         (click)="changeSeconds(-secondsStep);onTouched()">
         <span class="bs-chevron bs-chevron-down"></span>
       </a>
     </td>
