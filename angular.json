@@ -747,19 +747,19 @@
     },
     "timepicker": {
       "projectType": "library",
-      "root": "libs/timepicker",
-      "sourceRoot": "libs/timepicker/src",
+      "root": "src/timepicker",
+      "sourceRoot": "src/timepicker",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/timepicker/tsconfig.lib.json",
-            "project": "libs/timepicker/ng-package.json"
+            "tsConfig": "src/timepicker/tsconfig.lib.json",
+            "project": "src/timepicker/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/timepicker/tsconfig.lib.prod.json"
+              "tsConfig": "src/timepicker/tsconfig.lib.prod.json"
             }
           }
         },
@@ -767,16 +767,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/timepicker/src/**/*.ts",
-              "libs/timepicker/src/**/*.html"
+              "src/timepicker/src/**/*.ts",
+              "src/timepicker/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/timepicker"],
+          "outputs": ["coverage/src/timepicker"],
           "options": {
-            "jestConfig": "libs/timepicker/jest.config.js",
+            "jestConfig": "src/timepicker/jest.config.js",
             "passWithNoTests": true
           }
         }

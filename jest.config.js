@@ -17,7 +17,7 @@ module.exports = {
     '<rootDir>/src/buttons',
     '<rootDir>/src/pagination',
     '<rootDir>/src/rating',
-    '<rootDir>/libs/timepicker',
+    '<rootDir>/src/timepicker',
     '<rootDir>/src/carousel',
     '<rootDir>/src/datepicker',
     '<rootDir>/src/popover',
