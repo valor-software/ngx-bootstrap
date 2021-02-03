@@ -1,5 +1,10 @@
 name: Deploy to Firebase Hosting on PR
 on: pull_request
+
+env:
+  NX_BRANCH: ${{ github.event.number }}
+  NX_RUN_GROUP: ${{ github.run_id }}
+
 jobs:
   build_and_preview:
     runs-on: ubuntu-latest
