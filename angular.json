@@ -263,19 +263,20 @@
     },
     "chronos": {
       "projectType": "library",
-      "root": "libs/chronos",
-      "sourceRoot": "libs/chronos/src",
+      "root": "src/chronos",
+      "sourceRoot": "src/chronos",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "output": ["node_modules/ngx-bootstrap/chronos"],
           "options": {
-            "tsConfig": "libs/chronos/tsconfig.lib.json",
-            "project": "libs/chronos/ng-package.json"
+            "tsConfig": "src/chronos/tsconfig.lib.json",
+            "project": "src/chronos/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/chronos/tsconfig.lib.prod.json"
+              "tsConfig": "src/chronos/tsconfig.lib.prod.json"
             }
           }
         },
@@ -283,16 +284,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/chronos/src/**/*.ts",
-              "libs/chronos/src/**/*.html"
+              "src/chronos/src/**/*.ts",
+              "src/chronos/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/chronos"],
+          "outputs": ["coverage/src/chronos"],
           "options": {
-            "jestConfig": "libs/chronos/jest.config.js",
+            "jestConfig": "src/chronos/jest.config.js",
             "passWithNoTests": true
           }
         }

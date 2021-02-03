@@ -4,7 +4,7 @@ module.exports = {
     '<rootDir>/src/utils',
     '<rootDir>/src/positioning',
     '<rootDir>/src/component-loader',
-    '<rootDir>/libs/chronos',
+    '<rootDir>/src/chronos',
     '<rootDir>/libs/locale',
     '<rootDir>/libs/mini-ngrx',
     '<rootDir>/src/accordion',
