@@ -15,7 +15,7 @@ module.exports = {
     '<rootDir>/libs/progressbar',
     '<rootDir>/libs/tabs',
     '<rootDir>/src/buttons',
-    '<rootDir>/libs/pagination',
+    '<rootDir>/src/pagination',
     '<rootDir>/libs/rating',
     '<rootDir>/libs/timepicker',
     '<rootDir>/src/carousel',

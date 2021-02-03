@@ -673,19 +673,19 @@
     },
     "pagination": {
       "projectType": "library",
-      "root": "libs/pagination",
-      "sourceRoot": "libs/pagination/src",
+      "root": "src/pagination",
+      "sourceRoot": "src/pagination",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/pagination/tsconfig.lib.json",
-            "project": "libs/pagination/ng-package.json"
+            "tsConfig": "src/pagination/tsconfig.lib.json",
+            "project": "src/pagination/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/pagination/tsconfig.lib.prod.json"
+              "tsConfig": "src/pagination/tsconfig.lib.prod.json"
             }
           }
         },
@@ -693,16 +693,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/pagination/src/**/*.ts",
-              "libs/pagination/src/**/*.html"
+              "src/pagination/src/**/*.ts",
+              "src/pagination/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/pagination"],
+          "outputs": ["coverage/src/pagination"],
           "options": {
-            "jestConfig": "libs/pagination/jest.config.js",
+            "jestConfig": "src/pagination/jest.config.js",
             "passWithNoTests": true
           }
         }
