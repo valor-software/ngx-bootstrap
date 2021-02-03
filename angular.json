@@ -411,19 +411,19 @@
     },
     "alert": {
       "projectType": "library",
-      "root": "libs/alert",
-      "sourceRoot": "libs/alert/src",
+      "root": "src/alert",
+      "sourceRoot": "src/alert",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/alert/tsconfig.lib.json",
-            "project": "libs/alert/ng-package.json"
+            "tsConfig": "src/alert/tsconfig.lib.json",
+            "project": "src/alert/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/alert/tsconfig.lib.prod.json"
+              "tsConfig": "src/alert/tsconfig.lib.prod.json"
             }
           }
         },
@@ -431,16 +431,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/alert/src/**/*.ts",
-              "libs/alert/src/**/*.html"
+              "src/alert/**/*.ts",
+              "src/alert/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/alert"],
+          "outputs": ["coverage/src/alert"],
           "options": {
-            "jestConfig": "libs/alert/jest.config.js",
+            "jestConfig": "src/alert/jest.config.js",
             "passWithNoTests": true
           }
         }

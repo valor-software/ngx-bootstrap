@@ -8,7 +8,7 @@ module.exports = {
     '<rootDir>/libs/locale',
     '<rootDir>/libs/mini-ngrx',
     '<rootDir>/src/accordion',
-    '<rootDir>/libs/alert',
+    '<rootDir>/src/alert',
     '<rootDir>/libs/dropdown',
     '<rootDir>/libs/modal',
     '<rootDir>/src/collapse',
