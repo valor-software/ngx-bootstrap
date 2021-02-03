@@ -147,22 +147,21 @@
         }
       }
     },
-    "utils": {
+    "accordion": {
       "projectType": "library",
-      "root": "src/utils",
-      "sourceRoot": "src/utils",
+      "root": "src/accordion",
+      "sourceRoot": "src/accordion",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/utils"],
           "options": {
-            "tsConfig": "src/utils/tsconfig.lib.json",
-            "project": "src/utils/ng-package.json"
+            "tsConfig": "src/accordion/tsconfig.lib.json",
+            "project": "src/accordion/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "src/utils/tsconfig.lib.prod.json"
+              "tsConfig": "src/accordion/tsconfig.lib.prod.json"
             }
           }
         },
@@ -170,37 +169,36 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "src/utils/**/*.ts",
-              "src/utils/**/*.html"
+              "src/accordion/**/*.ts",
+              "src/accordion/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/utils"],
+          "outputs": ["coverage/src/accordion"],
           "options": {
-            "jestConfig": "src/utils/jest.config.js",
+            "jestConfig": "src/accordion/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "positioning": {
+    "alert": {
       "projectType": "library",
-      "root": "src/positioning",
-      "sourceRoot": "src/positioning",
+      "root": "src/alert",
+      "sourceRoot": "src/alert",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/positioning"],
           "options": {
-            "tsConfig": "src/positioning/tsconfig.lib.json",
-            "project": "src/positioning/ng-package.json"
+            "tsConfig": "src/alert/tsconfig.lib.json",
+            "project": "src/alert/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "src/positioning/tsconfig.lib.prod.json"
+              "tsConfig": "src/alert/tsconfig.lib.prod.json"
             }
           }
         },
@@ -208,16 +206,166 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "src/positioning/**/*.ts",
-              "src/positioning/**/*.html"
+              "src/alert/**/*.ts",
+              "src/alert/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/positioning"],
+          "outputs": ["coverage/src/alert"],
           "options": {
-            "jestConfig": "src/positioning/jest.config.js",
+            "jestConfig": "src/alert/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "buttons": {
+      "projectType": "library",
+      "root": "src/buttons",
+      "sourceRoot": "src/buttons",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "src/buttons/tsconfig.lib.json",
+            "project": "src/buttons/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "src/buttons/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "src/buttons/**/*.ts",
+              "src/buttons/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/src/buttons"],
+          "options": {
+            "jestConfig": "src/buttons/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "carousel": {
+      "projectType": "library",
+      "root": "src/carousel",
+      "sourceRoot": "src/carousel/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "src/carousel/tsconfig.lib.json",
+            "project": "src/carousel/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "src/carousel/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "src/carousel/src/**/*.ts",
+              "src/carousel/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/src/carousel"],
+          "options": {
+            "jestConfig": "src/carousel/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "chronos": {
+      "projectType": "library",
+      "root": "src/chronos",
+      "sourceRoot": "src/chronos",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/chronos"],
+          "options": {
+            "tsConfig": "src/chronos/tsconfig.lib.json",
+            "project": "src/chronos/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "src/chronos/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "src/chronos/src/**/*.ts",
+              "src/chronos/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/src/chronos"],
+          "options": {
+            "jestConfig": "src/chronos/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "collapse": {
+      "projectType": "library",
+      "root": "src/collapse",
+      "sourceRoot": "src/collapse",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/collapse"],
+          "options": {
+            "tsConfig": "src/collapse/tsconfig.lib.json",
+            "project": "src/collapse/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "src/collapse/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "src/collapse/**/*.ts",
+              "src/collapse/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/src/collapse"],
+          "options": {
+            "jestConfig": "src/collapse/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -261,22 +409,21 @@
         }
       }
     },
-    "chronos": {
+    "datepicker": {
       "projectType": "library",
-      "root": "src/chronos",
-      "sourceRoot": "src/chronos",
+      "root": "src/datepicker",
+      "sourceRoot": "src/datepicker",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "output": ["node_modules/ngx-bootstrap/chronos"],
           "options": {
-            "tsConfig": "src/chronos/tsconfig.lib.json",
-            "project": "src/chronos/ng-package.json"
+            "tsConfig": "src/datepicker/tsconfig.lib.json",
+            "project": "src/datepicker/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "src/chronos/tsconfig.lib.prod.json"
+              "tsConfig": "src/datepicker/tsconfig.lib.prod.json"
             }
           }
         },
@@ -284,16 +431,53 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "src/chronos/src/**/*.ts",
-              "src/chronos/src/**/*.html"
+              "src/datepicker/src/**/*.ts",
+              "src/datepicker/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/chronos"],
+          "outputs": ["coverage/src/datepicker"],
           "options": {
-            "jestConfig": "src/chronos/jest.config.js",
+            "jestConfig": "src/datepicker/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "dropdown": {
+      "projectType": "library",
+      "root": "src/dropdown",
+      "sourceRoot": "src/dropdown",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "src/dropdown/tsconfig.lib.json",
+            "project": "src/dropdown/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "src/dropdown/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "src/dropdown/src/**/*.ts",
+              "src/dropdown/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/src/dropdown"],
+          "options": {
+            "jestConfig": "src/dropdown/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -374,117 +558,6 @@
         }
       }
     },
-    "accordion": {
-      "projectType": "library",
-      "root": "src/accordion",
-      "sourceRoot": "src/accordion",
-      "prefix": "ngx-bootstrap-base",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "src/accordion/tsconfig.lib.json",
-            "project": "src/accordion/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "src/accordion/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "src/accordion/**/*.ts",
-              "src/accordion/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/accordion"],
-          "options": {
-            "jestConfig": "src/accordion/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "alert": {
-      "projectType": "library",
-      "root": "src/alert",
-      "sourceRoot": "src/alert",
-      "prefix": "ngx-bootstrap-base",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "src/alert/tsconfig.lib.json",
-            "project": "src/alert/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "src/alert/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "src/alert/**/*.ts",
-              "src/alert/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/alert"],
-          "options": {
-            "jestConfig": "src/alert/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "dropdown": {
-      "projectType": "library",
-      "root": "src/dropdown",
-      "sourceRoot": "src/dropdown",
-      "prefix": "ngx-bootstrap-base",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "src/dropdown/tsconfig.lib.json",
-            "project": "src/dropdown/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "src/dropdown/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "src/dropdown/src/**/*.ts",
-              "src/dropdown/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/dropdown"],
-          "options": {
-            "jestConfig": "src/dropdown/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "modal": {
       "projectType": "library",
       "root": "src/modal",
@@ -517,155 +590,6 @@
           "outputs": ["coverage/src/modal"],
           "options": {
             "jestConfig": "src/modal/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "collapse": {
-      "projectType": "library",
-      "root": "src/collapse",
-      "sourceRoot": "src/collapse",
-      "prefix": "ngx-bootstrap-base",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/collapse"],
-          "options": {
-            "tsConfig": "src/collapse/tsconfig.lib.json",
-            "project": "src/collapse/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "src/collapse/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "src/collapse/**/*.ts",
-              "src/collapse/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/collapse"],
-          "options": {
-            "jestConfig": "src/collapse/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "progressbar": {
-      "projectType": "library",
-      "root": "src/progressbar",
-      "sourceRoot": "src/progressbar",
-      "prefix": "ngx-bootstrap-base",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "src/progressbar/tsconfig.lib.json",
-            "project": "src/progressbar/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "src/progressbar/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "src/progressbar/src/**/*.ts",
-              "src/progressbar/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/progressbar"],
-          "options": {
-            "jestConfig": "src/progressbar/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "tabs": {
-      "projectType": "library",
-      "root": "src/tabs",
-      "sourceRoot": "src/tabs",
-      "prefix": "ngx-bootstrap-base",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "src/tabs/tsconfig.lib.json",
-            "project": "src/tabs/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "src/tabs/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "src/tabs/src/**/*.ts",
-              "src/tabs/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/tabs"],
-          "options": {
-            "jestConfig": "src/tabs/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "buttons": {
-      "projectType": "library",
-      "root": "src/buttons",
-      "sourceRoot": "src/buttons",
-      "prefix": "ngx-bootstrap-base",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "src/buttons/tsconfig.lib.json",
-            "project": "src/buttons/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "src/buttons/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "src/buttons/**/*.ts",
-              "src/buttons/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/buttons"],
-          "options": {
-            "jestConfig": "src/buttons/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -708,154 +632,6 @@
         }
       }
     },
-    "rating": {
-      "projectType": "library",
-      "root": "src/rating",
-      "sourceRoot": "src/rating",
-      "prefix": "ngx-bootstrap-base",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "src/rating/tsconfig.lib.json",
-            "project": "src/rating/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "src/rating/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "src/rating/src/**/*.ts",
-              "src/rating/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/rating"],
-          "options": {
-            "jestConfig": "src/rating/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "timepicker": {
-      "projectType": "library",
-      "root": "src/timepicker",
-      "sourceRoot": "src/timepicker",
-      "prefix": "ngx-bootstrap-base",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "src/timepicker/tsconfig.lib.json",
-            "project": "src/timepicker/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "src/timepicker/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "src/timepicker/src/**/*.ts",
-              "src/timepicker/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/timepicker"],
-          "options": {
-            "jestConfig": "src/timepicker/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "carousel": {
-      "projectType": "library",
-      "root": "src/carousel",
-      "sourceRoot": "src/carousel/src",
-      "prefix": "ngx-bootstrap-base",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "src/carousel/tsconfig.lib.json",
-            "project": "src/carousel/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "src/carousel/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "src/carousel/src/**/*.ts",
-              "src/carousel/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/carousel"],
-          "options": {
-            "jestConfig": "src/carousel/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "datepicker": {
-      "projectType": "library",
-      "root": "src/datepicker",
-      "sourceRoot": "src/datepicker",
-      "prefix": "ngx-bootstrap-base",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "options": {
-            "tsConfig": "src/datepicker/tsconfig.lib.json",
-            "project": "src/datepicker/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "src/datepicker/tsconfig.lib.prod.json"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "src/datepicker/src/**/*.ts",
-              "src/datepicker/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/datepicker"],
-          "options": {
-            "jestConfig": "src/datepicker/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "popover": {
       "projectType": "library",
       "root": "src/popover",
@@ -893,6 +669,118 @@
         }
       }
     },
+    "positioning": {
+      "projectType": "library",
+      "root": "src/positioning",
+      "sourceRoot": "src/positioning",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/positioning"],
+          "options": {
+            "tsConfig": "src/positioning/tsconfig.lib.json",
+            "project": "src/positioning/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "src/positioning/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "src/positioning/**/*.ts",
+              "src/positioning/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/src/positioning"],
+          "options": {
+            "jestConfig": "src/positioning/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "progressbar": {
+      "projectType": "library",
+      "root": "src/progressbar",
+      "sourceRoot": "src/progressbar",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "src/progressbar/tsconfig.lib.json",
+            "project": "src/progressbar/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "src/progressbar/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "src/progressbar/src/**/*.ts",
+              "src/progressbar/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/src/progressbar"],
+          "options": {
+            "jestConfig": "src/progressbar/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "rating": {
+      "projectType": "library",
+      "root": "src/rating",
+      "sourceRoot": "src/rating",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "src/rating/tsconfig.lib.json",
+            "project": "src/rating/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "src/rating/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "src/rating/src/**/*.ts",
+              "src/rating/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/src/rating"],
+          "options": {
+            "jestConfig": "src/rating/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "sortable": {
       "projectType": "library",
       "root": "src/sortable",
@@ -925,6 +813,80 @@
           "outputs": ["coverage/src/sortable"],
           "options": {
             "jestConfig": "src/sortable/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "tabs": {
+      "projectType": "library",
+      "root": "src/tabs",
+      "sourceRoot": "src/tabs",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "src/tabs/tsconfig.lib.json",
+            "project": "src/tabs/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "src/tabs/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "src/tabs/src/**/*.ts",
+              "src/tabs/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/src/tabs"],
+          "options": {
+            "jestConfig": "src/tabs/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "timepicker": {
+      "projectType": "library",
+      "root": "src/timepicker",
+      "sourceRoot": "src/timepicker",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "src/timepicker/tsconfig.lib.json",
+            "project": "src/timepicker/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "src/timepicker/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "src/timepicker/src/**/*.ts",
+              "src/timepicker/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/src/timepicker"],
+          "options": {
+            "jestConfig": "src/timepicker/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -1000,6 +962,44 @@
           "outputs": ["coverage/src/typeahead"],
           "options": {
             "jestConfig": "src/typeahead/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "utils": {
+      "projectType": "library",
+      "root": "src/utils",
+      "sourceRoot": "src/utils",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/utils"],
+          "options": {
+            "tsConfig": "src/utils/tsconfig.lib.json",
+            "project": "src/utils/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "src/utils/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "src/utils/**/*.ts",
+              "src/utils/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/src/utils"],
+          "options": {
+            "jestConfig": "src/utils/jest.config.js",
             "passWithNoTests": true
           }
         }
