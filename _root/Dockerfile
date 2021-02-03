@@ -6,7 +6,7 @@ RUN mkdir /home/ngx-bootstrap
 
 WORKDIR  /home/ngx-bootstrap
 
-COPY ./ ./
+COPY .. ./
 
 RUN npm i
 

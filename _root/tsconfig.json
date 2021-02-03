@@ -16,7 +16,7 @@
     "lib": ["es2017", "dom"]
   },
   "exclude": [
-    "scripts",
+    "../scripts",
     "cypress"
   ]
 }
