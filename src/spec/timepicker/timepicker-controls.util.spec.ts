@@ -46,7 +46,10 @@ describe('Util: Timepicker-controls', () => {
       canDecrementHours: true,
       canDecrementMinutes: true,
       canDecrementSeconds: true,
-      canToggleMeridian: true
+      canToggleMeridian: true,
+      invalidHours: false,
+      invalidMinutes: false,
+      invalidSeconds: false
     };
 
     event = {

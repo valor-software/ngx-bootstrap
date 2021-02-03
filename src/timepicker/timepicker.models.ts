@@ -15,6 +15,10 @@ export interface TimepickerControls {
   canDecrementSeconds: boolean;
 
   canToggleMeridian: boolean;
+
+  invalidHours: boolean;
+  invalidMinutes: boolean;
+  invalidSeconds: boolean;
 }
 
 export interface TimepickerComponentState {

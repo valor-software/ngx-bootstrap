@@ -1,3 +1,5 @@
 <timepicker [(ngModel)]="myTime" [min]="minTime" [max]="maxTime"></timepicker>
 
 <pre class="alert alert-info">Time is: {{myTime}}</pre>
+
+<button (click)="setMinTime()"> Set Min Time to 8 AM</button>

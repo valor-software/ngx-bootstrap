@@ -32,7 +32,11 @@ export const initialState: TimepickerState = {
     canDecrementMinutes: true,
     canDecrementSeconds: true,
 
-    canToggleMeridian: true
+    canToggleMeridian: true,
+
+    invalidHours: false,
+    invalidMinutes: false,
+    invalidSeconds: false
   }
 };
 
@@ -54,7 +58,7 @@ export function timepickerReducer(state = initialState, action: Action) {
       const _newTime = changeTime(state.value, { hour: action.payload.step });
 
       if ((state.config.max || state.config.min) && !isValidLimit(state.config, _newTime)) {
-          return state;
+          state.controls.invalidHours = true;
       }
 
       return Object.assign({}, state, { value: _newTime });
@@ -71,7 +75,7 @@ export function timepickerReducer(state = initialState, action: Action) {
       const _newTime = changeTime(state.value, { minute: action.payload.step });
 
       if ((state.config.max || state.config.min) && !isValidLimit(state.config, _newTime)) {
-        return state;
+        state.controls.invalidMinutes = true;
       }
 
       return Object.assign({}, state, { value: _newTime });
@@ -90,7 +94,7 @@ export function timepickerReducer(state = initialState, action: Action) {
       });
 
       if ((state.config.max || state.config.min) && !isValidLimit(state.config, _newTime)) {
-        return state;
+        state.controls.invalidSeconds = true;
       }
 
       return Object.assign({}, state, { value: _newTime });
