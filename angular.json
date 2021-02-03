@@ -895,19 +895,19 @@
     },
     "sortable": {
       "projectType": "library",
-      "root": "libs/sortable",
-      "sourceRoot": "libs/sortable/src",
+      "root": "src/sortable",
+      "sourceRoot": "src/sortable",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/sortable/tsconfig.lib.json",
-            "project": "libs/sortable/ng-package.json"
+            "tsConfig": "src/sortable/tsconfig.lib.json",
+            "project": "src/sortable/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/sortable/tsconfig.lib.prod.json"
+              "tsConfig": "src/sortable/tsconfig.lib.prod.json"
             }
           }
         },
@@ -915,16 +915,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/sortable/src/**/*.ts",
-              "libs/sortable/src/**/*.html"
+              "src/sortable/src/**/*.ts",
+              "src/sortable/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/sortable"],
+          "outputs": ["coverage/src/sortable"],
           "options": {
-            "jestConfig": "libs/sortable/jest.config.js",
+            "jestConfig": "src/sortable/jest.config.js",
             "passWithNoTests": true
           }
         }

@@ -21,7 +21,7 @@ module.exports = {
     '<rootDir>/src/carousel',
     '<rootDir>/src/datepicker',
     '<rootDir>/src/popover',
-    '<rootDir>/libs/sortable',
+    '<rootDir>/src/sortable',
     '<rootDir>/src/tooltip',
     '<rootDir>/src/typeahead',
   ],
