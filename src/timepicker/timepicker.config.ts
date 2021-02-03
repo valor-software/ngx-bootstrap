@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 
 /** Provides default configuration values for timepicker */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class TimepickerConfig {
   /** hours change step */
   hourStep = 1;
-  /** hours change step */
+  /** minutes change step */
   minuteStep = 5;
   /** seconds changes step */
   secondsStep = 10;
@@ -19,7 +21,7 @@ export class TimepickerConfig {
   disabled = false;
   /** if true scroll inside hours and minutes inputs will change time */
   mousewheel = true;
-  /** if true up/down arrowkeys inside hours and minutes inputs will change time */
+  /** if true the values of hours and minutes can be changed using the up/down arrow keys on the keyboard */
   arrowkeys = true;
   /** if true spinner arrows above and below the inputs will be shown */
   showSpinners = true;
@@ -31,4 +33,16 @@ export class TimepickerConfig {
   min: Date;
   /** maximum time user can select */
   max: Date;
+  /** placeholder for hours field in timepicker */
+  hoursPlaceholder = 'HH';
+  /** placeholder for minutes field in timepicker */
+  minutesPlaceholder = 'MM';
+  /** placeholder for seconds field in timepicker */
+  secondsPlaceholder = 'SS';
+  /** hours aria label */
+  ariaLabelHours = 'hours';
+  /** minutes aria label */
+  ariaLabelMinutes = 'minutes';
+  /** seconds aria label */
+  ariaLabelSeconds = 'seconds';
 }

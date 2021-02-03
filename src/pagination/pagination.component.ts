@@ -1,25 +1,27 @@
 import {
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
+  forwardRef,
   Input,
   OnInit,
   Output,
-  Renderer2,
-  forwardRef, ChangeDetectorRef
+  Provider, TemplateRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { PaginationConfig } from './pagination.config';
+import { ConfigModel, PagesModel, PaginationLinkContext, PaginationNumberLinkContext } from './models';
 
 export interface PageChangedEvent {
   itemsPerPage: number;
   page: number;
 }
 
-export const PAGINATION_CONTROL_VALUE_ACCESSOR: any = {
+export const PAGINATION_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-  // tslint:disable-next-line
+  /* tslint:disable-next-line: no-use-before-declare */
   useExisting: forwardRef(() => PaginationComponent),
   multi: true
 };
@@ -30,7 +32,7 @@ export const PAGINATION_CONTROL_VALUE_ACCESSOR: any = {
   providers: [PAGINATION_CONTROL_VALUE_ACCESSOR]
 })
 export class PaginationComponent implements ControlValueAccessor, OnInit {
-  config: any;
+  config: ConfigModel;
   /** if `true` aligns each link to the sides of pager */
   @Input() align: boolean;
   /** limit number for page links in pager */
@@ -51,11 +53,20 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   /** if true current page will in the middle of pages list */
   @Input() rotate: boolean;
   // css
-  /** add class to <code><li\></code>*/
+  /** add class to <code><li\></code> */
   @Input() pageBtnClass: string;
-
   /** if true pagination component will be disabled */
   @Input() disabled: boolean;
+  /** custom template for page link */
+  @Input() customPageTemplate: TemplateRef<PaginationNumberLinkContext>;
+  /** custom template for next link */
+  @Input() customNextTemplate: TemplateRef<PaginationLinkContext>;
+  /** custom template for previous link */
+  @Input() customPreviousTemplate: TemplateRef<PaginationLinkContext>;
+  /** custom template for first link */
+  @Input() customFirstTemplate: TemplateRef<PaginationLinkContext>;
+  /** custom template for last link */
+  @Input() customLastTemplate: TemplateRef<PaginationLinkContext>;
 
   /** fired when total pages count changes, $event:number equals to total pages count */
   @Output() numPages: EventEmitter<number> = new EventEmitter<number>();
@@ -118,11 +129,11 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     return this._page;
   }
 
-  onChange: any = Function.prototype;
-  onTouched: any = Function.prototype;
+  onChange = Function.prototype;
+  onTouched = Function.prototype;
 
   classMap: string;
-  pages: any[];
+  pages: PagesModel[];
 
   protected _itemsPerPage: number;
   protected _totalItems: number;
@@ -131,19 +142,17 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   protected _page = 1;
 
   constructor(
-    private renderer: Renderer2,
     private elementRef: ElementRef,
     paginationConfig: PaginationConfig,
     private changeDetection: ChangeDetectorRef
   ) {
-    this.renderer = renderer;
     this.elementRef = elementRef;
     if (!this.config) {
       this.configureOptions(paginationConfig.main);
     }
   }
 
-  configureOptions(config: any): void {
+  configureOptions(config: ConfigModel): void {
     this.config = Object.assign({}, config);
   }
 
@@ -186,7 +195,8 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   }
 
   getText(key: string): string {
-    return (this as any)[`${key}Text`] || this.config[`${key}Text`];
+    // tslint:disable-next-line:no-any
+    return (this as any)[`${key}Text`] || (this as any).config[`${key}Text`];
   }
 
   noPrevious(): boolean {
@@ -197,7 +207,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     return this.page === this.totalPages;
   }
 
-  registerOnChange(fn: (_: any) => {}): void {
+  registerOnChange(fn: () => {}): void {
     this.onChange = fn;
   }
 
@@ -212,6 +222,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
 
     if (!this.disabled) {
       if (event && event.target) {
+        // tslint:disable-next-line:no-any
         const target: any = event.target;
         target.blur();
       }
@@ -229,8 +240,8 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     return { text, number: num, active };
   }
 
-  protected getPages(currentPage: number, totalPages: number): any[] {
-    const pages: any[] = [];
+  protected getPages(currentPage: number, totalPages: number): PagesModel[] {
+    const pages: PagesModel[] = [];
 
     // Default page limits
     let startPage = 1;
@@ -291,4 +302,5 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
 
     return Math.max(totalPages || 0, 1);
   }
+// tslint:disable-next-line:max-file-line-count
 }

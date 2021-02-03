@@ -1,9 +1,15 @@
-// RECOMMENDED (doesn't work with system.js)
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// RECOMMENDED
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-// or
+// NOT RECOMMENDED (Angular 9 doesn't support this kind of import)
 import { BsDatepickerModule } from 'ngx-bootstrap';
 
 @NgModule({
-  imports: [BsDatepickerModule.forRoot(),...]
+  imports: [
+    BrowserAnimationsModule,
+    BsDatepickerModule.forRoot(),
+    ...
+  ]
 })
 export class AppModule(){}

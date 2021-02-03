@@ -1,61 +1,85 @@
 <!-- days calendar view mode -->
 <div class="bs-datepicker" [ngClass]="containerClass" *ngIf="viewMode | async">
-  <div class="bs-datepicker-container">
-
+  <div class="bs-datepicker-container"
+    [@datepickerAnimation]="animationState"
+    (@datepickerAnimation.done)="positionServiceEnable()">
     <!--calendars-->
     <div class="bs-calendar-container" [ngSwitch]="viewMode | async" role="application">
       <!--days calendar-->
-      <div *ngSwitchCase="'day'">
+      <div *ngSwitchCase="'day'" class="bs-media-container">
         <bs-days-calendar-view
-          *ngFor="let calendar of (daysCalendar | async)"
+          *ngFor="let calendar of daysCalendar | async"
           [class.bs-datepicker-multiple]="(daysCalendar | async)?.length > 1"
           [calendar]="calendar"
           [options]="options | async"
           (onNavigate)="navigateTo($event)"
           (onViewMode)="setViewMode($event)"
           (onHover)="dayHoverHandler($event)"
-          (onSelect)="daySelectHandler($event)"
-        ></bs-days-calendar-view>
+          (onHoverWeek)="weekHoverHandler($event)"
+          (onSelect)="daySelectHandler($event)">
+        </bs-days-calendar-view>
       </div>
 
       <!--months calendar-->
-      <div *ngSwitchCase="'month'">
+      <div *ngSwitchCase="'month'" class="bs-media-container">
         <bs-month-calendar-view
-          *ngFor="let calendar of (monthsCalendar | async)"
+          *ngFor="let calendar of monthsCalendar | async"
           [class.bs-datepicker-multiple]="(daysCalendar | async)?.length > 1"
           [calendar]="calendar"
           (onNavigate)="navigateTo($event)"
           (onViewMode)="setViewMode($event)"
           (onHover)="monthHoverHandler($event)"
-          (onSelect)="monthSelectHandler($event)"
-        ></bs-month-calendar-view>
+          (onSelect)="monthSelectHandler($event)">
+        </bs-month-calendar-view>
       </div>
 
       <!--years calendar-->
-      <div *ngSwitchCase="'year'">
+      <div *ngSwitchCase="'year'" class="bs-media-container">
         <bs-years-calendar-view
-          *ngFor="let calendar of (yearsCalendar | async)"
+          *ngFor="let calendar of yearsCalendar | async"
           [class.bs-datepicker-multiple]="(daysCalendar | async)?.length > 1"
           [calendar]="calendar"
           (onNavigate)="navigateTo($event)"
           (onViewMode)="setViewMode($event)"
           (onHover)="yearHoverHandler($event)"
-          (onSelect)="yearSelectHandler($event)"
-        ></bs-years-calendar-view>
+          (onSelect)="yearSelectHandler($event)">
+        </bs-years-calendar-view>
       </div>
-
     </div>
 
     <!--applycancel buttons-->
     <div class="bs-datepicker-buttons" *ngIf="false">
-      <button class="btn btn-success">Apply</button>
-      <button class="btn btn-default">Cancel</button>
+      <button class="btn btn-success" type="button">Apply</button>
+      <button class="btn btn-default" type="button">Cancel</button>
+    </div>
+
+    <div class="bs-datepicker-buttons" *ngIf="showTodayBtn || showClearBtn">
+      <div class="btn-today-wrapper"
+           [class.today-left]="todayPos === 'left'"
+           [class.today-right]="todayPos === 'right'"
+           [class.today-center]="todayPos === 'center'"
+           *ngIf="showTodayBtn">
+        <button class="btn btn-success" (click)="setToday()">{{todayBtnLbl}}</button>
+      </div>
+
+        <div class="btn-clear-wrapper"
+        [class.clear-left]="clearPos === 'left'"
+        [class.clear-right]="clearPos === 'right'"
+        [class.clear-center]="clearPos === 'center'"
+        *ngIf="showClearBtn">
+          <button class="btn btn-success" (click)="clearDate()">{{clearBtnLbl}}</button>
+        </div>
     </div>
 
   </div>
 
   <!--custom dates or date ranges picker-->
-  <div class="bs-datepicker-custom-range" *ngIf="false">
-    <bs-custom-date-view [ranges]="_customRangesFish"></bs-custom-date-view>
+  <div class="bs-datepicker-custom-range" *ngIf="customRanges?.length > 0">
+    <bs-custom-date-view
+      [selectedRange]="chosenRange"
+      [ranges]="customRanges"
+      [customRangeLabel]="customRangeBtnLbl"
+      (onSelect)="setRangeOnCalendar($event)">
+    </bs-custom-date-view>
   </div>
 </div>

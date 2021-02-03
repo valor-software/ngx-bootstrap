@@ -1,8 +1,8 @@
-// tslint:disable:max-file-line-count
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CollapseModule } from '../collapse/collapse.module';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 const template = `
   <div [collapse]="isCollapsed">
@@ -22,13 +22,18 @@ class TestCollapseComponent {}
 
 describe('Directive: Collapse', () => {
   let fixture: ComponentFixture<TestCollapseComponent>;
+  /* tslint:disable-next-line: no-any */
   let element: any;
+  /* tslint:disable-next-line: no-any */
   let context: any;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestCollapseComponent],
-      imports: [CollapseModule]
+      imports: [
+        CollapseModule,
+        BrowserAnimationsModule
+      ]
     });
     fixture = TestBed.createComponent(TestCollapseComponent);
     fixture.detectChanges();

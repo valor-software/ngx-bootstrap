@@ -2,8 +2,8 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { ModalBackdropComponent } from './modal-backdrop.component';
 import { ModalDirective } from './modal.directive';
-import { PositioningService } from '../positioning/index';
-import { ComponentLoaderFactory } from '../component-loader/index';
+import { PositioningService } from 'ngx-bootstrap/positioning';
+import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { ModalContainerComponent } from './modal-container.component';
 import { BsModalService } from './bs-modal.service';
 
@@ -17,7 +17,13 @@ import { BsModalService } from './bs-modal.service';
   entryComponents: [ModalBackdropComponent, ModalContainerComponent]
 })
 export class ModalModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<ModalModule> {
+    return {
+      ngModule: ModalModule,
+      providers: [BsModalService, ComponentLoaderFactory, PositioningService]
+    };
+  }
+  static forChild(): ModuleWithProviders<ModalModule> {
     return {
       ngModule: ModalModule,
       providers: [BsModalService, ComponentLoaderFactory, PositioningService]

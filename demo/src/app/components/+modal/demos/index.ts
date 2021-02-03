@@ -7,6 +7,7 @@ import { DemoModalEventsComponent } from './events/events';
 
 import { DemoModalServiceStaticComponent } from './service-template/service-template';
 import { DemoModalServiceFromComponent } from './service-component/service-component';
+import { DemoModalServiceWithInterceptorComponent } from './service-interceptor/service-interceptor';
 import { DemoModalServiceNestedComponent } from './service-nested/service-nested';
 import { DemoModalServiceDisableAnimationComponent } from './service-options/disable-animation/disable-animation';
 import { DemoModalServiceCustomCSSClassComponent } from './service-options/custom-css-class/custom-css-class';
@@ -17,6 +18,8 @@ import { DemoModalServiceConfirmWindowComponent } from './service-confirm-window
 import { DemoModalScrollingLongContentComponent } from './scrolling-long-content/scrolling-long-content';
 import { DemoAccessibilityComponent } from './accessibility/accessibility';
 import { DemoModalWithPopupsComponent } from './modal-with-popups/modal-with-popups';
+import { DemoModalServiceChangeClassComponent } from './service-options/change-class/change-class';
+import { DemoModalRefEventsComponent } from './modal-ref-events/modal-ref-events';
 
 export const DEMO_COMPONENTS = [
   DemoModalSizesComponent,
@@ -26,6 +29,7 @@ export const DEMO_COMPONENTS = [
   DemoModalNestedComponent,
   DemoModalServiceStaticComponent,
   DemoModalServiceFromComponent,
+  DemoModalServiceWithInterceptorComponent,
   DemoModalServiceNestedComponent,
   DemoModalServiceCustomCSSClassComponent,
   DemoModalServiceDisableAnimationComponent,
@@ -36,5 +40,7 @@ export const DEMO_COMPONENTS = [
   DemoModalServiceConfirmWindowComponent,
   DemoModalScrollingLongContentComponent,
   DemoAccessibilityComponent,
-  DemoModalWithPopupsComponent
+  DemoModalServiceChangeClassComponent,
+  DemoModalWithPopupsComponent,
+  DemoModalRefEventsComponent
 ];

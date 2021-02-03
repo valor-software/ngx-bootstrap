@@ -2,22 +2,22 @@ import {
   DatepickerFormatOptions,
   YearsCalendarViewModel,
   CalendarCellViewModel
-} from '../models/index';
-import { shiftDate } from '../../chronos/utils/date-setters';
-import { formatDate } from '../../chronos/format';
+} from '../models';
+import { shiftDate, formatDate } from 'ngx-bootstrap/chronos';
 import { createMatrix } from '../utils/matrix-utils';
 
 const height = 4;
 const width = 4;
 export const yearsPerCalendar = height * width;
-const initialShift = (Math.floor(yearsPerCalendar / 2) - 1) * -1;
+export const initialYearShift = (Math.floor(yearsPerCalendar / 2) - 1) * -1;
 const shift = { year: 1 };
 
 export function formatYearsCalendar(
   viewDate: Date,
-  formatOptions: DatepickerFormatOptions
+  formatOptions: DatepickerFormatOptions,
+  previousInitialDate?: Date
 ): YearsCalendarViewModel {
-  const initialDate = shiftDate(viewDate, { year: initialShift });
+  const initialDate = calculateInitialDate(viewDate, previousInitialDate);
   const matrixOptions = { width, height, initialDate, shift };
   const yearsMatrix = createMatrix<
     CalendarCellViewModel
@@ -32,6 +32,16 @@ export function formatYearsCalendar(
     monthTitle: '',
     yearTitle
   };
+}
+
+function calculateInitialDate(viewDate: Date, previousInitialDate?: Date): Date {
+  if (previousInitialDate
+    && viewDate.getFullYear() >= previousInitialDate.getFullYear()
+    && viewDate.getFullYear() < previousInitialDate.getFullYear() + yearsPerCalendar) {
+    return previousInitialDate;
+  }
+
+  return shiftDate(viewDate, { year: initialYearShift });
 }
 
 function formatYearRangeTitle(

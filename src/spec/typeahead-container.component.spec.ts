@@ -1,39 +1,88 @@
+/* tslint:disable: max-file-line-count */
 import { TestBed, ComponentFixture, tick, fakeAsync } from '@angular/core/testing';
 import { asNativeElements, EventEmitter } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
-import { TypeaheadContainerComponent } from '../typeahead/typeahead-container.component';
-import { TypeaheadOptions } from '../typeahead/typeahead-options.class';
-import { TypeaheadMatch } from '../typeahead/typeahead-match.class';
-import { TypeaheadDirective } from '../typeahead/typeahead.directive';
+import { Subject } from 'rxjs';
+
+import { PositioningService } from 'ngx-bootstrap/positioning';
+
+import {
+  TypeaheadConfig,
+  TypeaheadContainerComponent,
+  TypeaheadDirective,
+  TypeaheadMatch,
+  TypeaheadOptions
+} from 'ngx-bootstrap/typeahead';
+
+export class PositionServiceMock {
+  setOptions() {
+    return;
+  }
+
+  enable() {
+    return;
+  }
+
+  get event$() {
+  return new Subject<any>();
+  }
+}
 
 describe('Component: TypeaheadContainer', () => {
   let fixture: ComponentFixture<TypeaheadContainerComponent>;
+  /* tslint:disable-next-line: no-any */
   let testModule: any;
   let component: TypeaheadContainerComponent;
 
   beforeEach(fakeAsync(() => {
     testModule = TestBed.configureTestingModule({
       declarations: [TypeaheadContainerComponent],
-      providers: [{
-        provide: TypeaheadOptions,
-        useValue: new TypeaheadOptions({ animation: false, placement: 'bottom-left', typeaheadRef: undefined })
-      }]
+      imports: [BrowserAnimationsModule],
+      providers: [
+        {
+          provide: TypeaheadOptions,
+          useValue: new TypeaheadOptions({ animation: false, placement: 'bottom start', typeaheadRef: undefined })
+        },
+        {
+          provide: TypeaheadConfig,
+          useValue: new TypeaheadConfig()
+        },
+        { provide: PositioningService,
+          useClass: PositionServiceMock
+        }
+      ]
     });
     fixture = testModule.createComponent(TypeaheadContainerComponent);
 
     component = fixture.componentInstance;
-    component.parent = { } as TypeaheadDirective;
+    /* tslint:disable-next-line: no-object-literal-type-assertion */
+    component.parent = {
+      typeaheadSelectFirstItem: false,
+      typeaheadIsFirstItemActive: true
+    } as TypeaheadDirective;
+
     component.parent.typeaheadOnPreview = new EventEmitter<TypeaheadMatch>();
+
     fixture.detectChanges();
     tick(1);
   }));
 
-  it('should be defined', () => {
-    expect(component).toBeTruthy();
+  afterAll(() => {
+    TestBed.resetTestingModule();
+  });
+
+  it('selectMatch should not be called if active was not existed' , () => {
+    component.selectActiveMatch();
+    expect(component.matches.length).toBe(0);
   });
 
   it('should have an "element" property', () => {
     expect(component.element).toBeTruthy();
+  });
+
+  it('should have an empty "matches" array', () => {
+    expect(component.matches.length).toBe(0);
   });
 
   it('should have an empty "matches" array', () => {
@@ -64,6 +113,7 @@ describe('Component: TypeaheadContainer', () => {
         new TypeaheadMatch({ id: 0, name: 'foo' }, 'foo'),
         new TypeaheadMatch({ id: 1, name: 'food' }, 'food')
       ];
+
       fixture.detectChanges();
 
       matches = asNativeElements(
@@ -76,8 +126,7 @@ describe('Component: TypeaheadContainer', () => {
         expect(matches.length).toBe(2);
       });
 
-      xit('should highlight query for match', () => {
-        // expect(matches[1].children[0].innerHTML).toBe('<strong>fo</strong>od');
+      it('should highlight query for match', () => {
         const ms = fixture.debugElement.queryAll(
           By.css('.dropdown-menu li span')
         );
@@ -94,17 +143,25 @@ describe('Component: TypeaheadContainer', () => {
     });
 
     describe('nextActiveMatch', () => {
-      it('should select the next match', () => {
+      it('should select the first match on first use', () => {
         component.nextActiveMatch();
 
         expect(component.isActive(component.matches[1])).toBeTruthy();
       });
 
-      it('should select the first match again, when triggered twice', () => {
+      it('should select the next match after the first', () => {
         component.nextActiveMatch();
         component.nextActiveMatch();
 
         expect(component.isActive(component.matches[0])).toBeTruthy();
+      });
+
+      it('should not select the first match again, when triggered three times', () => {
+        component.nextActiveMatch();
+        component.nextActiveMatch();
+        component.nextActiveMatch();
+
+        expect(component.isActive(component.matches[0])).toBeFalsy();
       });
     });
 
@@ -120,6 +177,61 @@ describe('Component: TypeaheadContainer', () => {
         component.prevActiveMatch();
 
         expect(component.isActive(component.matches[0])).toBeTruthy();
+      });
+    });
+  });
+
+  describe('(if first item was selected) matches', () => {
+    let matches: HTMLLIElement[];
+
+    beforeEach(() => {
+      /* tslint:disable-next-line: no-object-literal-type-assertion */
+      component.parent = {
+        typeaheadSelectFirstItem: true,
+        typeaheadIsFirstItemActive: true
+      } as TypeaheadDirective;
+
+      component.parent.typeaheadOnPreview = new EventEmitter<TypeaheadMatch>();
+
+      component.query = 'fo';
+      component.matches = [
+        new TypeaheadMatch({ id: 0, name: 'foo' }, 'foo'),
+        new TypeaheadMatch({ id: 1, name: 'food' }, 'food')
+      ];
+      fixture.detectChanges();
+
+      matches = asNativeElements(
+        fixture.debugElement.queryAll(By.css('.dropdown-menu li'))
+      );
+    });
+
+    describe('rendering', () => {
+      it('should set the "active" class on first match', () => {
+        expect(matches[0].classList.contains('active')).toBeTruthy();
+        expect(matches[1].classList.contains('active')).toBeFalsy();
+      });
+    });
+
+    describe('nextActiveMatch', () => {
+      it('should not select the first match on first use', () => {
+        component.nextActiveMatch();
+
+        expect(component.isActive(component.matches[0])).toBeFalsy();
+      });
+
+      it('should not select the next match after the first', () => {
+        component.nextActiveMatch();
+        component.nextActiveMatch();
+
+        expect(component.isActive(component.matches[1])).toBeFalsy();
+      });
+
+      it('should not select the first match again, when triggered three times', () => {
+        component.nextActiveMatch();
+        component.nextActiveMatch();
+        component.nextActiveMatch();
+
+        expect(component.isActive(component.matches[0])).toBeFalsy();
       });
     });
   });
@@ -157,15 +269,16 @@ describe('Component: TypeaheadContainer', () => {
         expect(itemMatches.length).toBe(2);
       });
 
-      xit('should highlight query for item match', () => {
+      it('should highlight query for item match', () => {
         const im = fixture.debugElement.queryAll(
           By.css('.dropdown-menu li:not(.dropdown-header) span')
         );
         expect(im[1].nativeElement.innerHTML).toBe('<strong>a</strong>pple');
       });
 
-      it('should set the "active" class on the first item match', () => {
+      it('should not set the "active" class on any matches', () => {
         expect(itemMatches[0].classList.contains('active')).toBeTruthy();
+        expect(itemMatches[1].classList.contains('active')).toBeFalsy();
       });
 
       it('should not set the "active" class on the header match', () => {
@@ -178,13 +291,14 @@ describe('Component: TypeaheadContainer', () => {
     });
 
     describe('nextActiveMatch', () => {
-      it('should select the next item match', () => {
+      it('should select the first item match', () => {
         component.nextActiveMatch();
 
         expect(component.isActive(component.matches[2])).toBeTruthy();
       });
 
-      it('should skip the header match, when triggered twice', () => {
+      it('should skip the header match, when triggered three times', () => {
+        component.nextActiveMatch();
         component.nextActiveMatch();
         component.nextActiveMatch();
 
@@ -208,6 +322,54 @@ describe('Component: TypeaheadContainer', () => {
     });
   });
 
+  describe('(if first item was selected) grouped matches', () => {
+    let itemMatches: HTMLLIElement[];
+
+    beforeEach(() => {
+      /* tslint:disable-next-line: no-object-literal-type-assertion */
+      component.parent = {
+        typeaheadSelectFirstItem: true,
+        typeaheadIsFirstItemActive: true
+      } as TypeaheadDirective;
+      component.parent.typeaheadOnPreview = new EventEmitter<TypeaheadMatch>();
+
+      component.query = 'a';
+      component.matches = [
+        new TypeaheadMatch('fruits', 'fruits', true),
+        new TypeaheadMatch(
+          { id: 0, name: 'banana', category: 'fruits' },
+          'banana'
+        ),
+        new TypeaheadMatch(
+          { id: 0, name: 'apple', category: 'fruits' },
+          'apple'
+        )
+      ];
+
+      fixture.detectChanges();
+      itemMatches = asNativeElements(
+        fixture.debugElement.queryAll(
+          By.css('.dropdown-menu li:not(.dropdown-header)')
+        )
+      );
+    });
+
+    describe('rendering', () => {
+      it('should set the "active" class on first match', () => {
+        expect(itemMatches[0].classList.contains('active')).toBeTruthy();
+        expect(itemMatches[1].classList.contains('active')).toBeFalsy();
+      });
+    });
+
+    describe('nextActiveMatch', () => {
+      it('should not select the first item match', () => {
+        component.nextActiveMatch();
+
+        expect(component.isActive(component.matches[1])).toBeFalsy();
+      });
+    });
+  });
+
   describe('isFocused', () => {
     it('should not be focus after init', () => {
       expect(component.isFocused).toBeFalsy();
@@ -219,16 +381,24 @@ describe('Component: TypeaheadContainer', () => {
       expect(component.isFocused).toBeFalsy();
     });
   });
+
   describe('scrollable matches', () => {
     let itemMatches: HTMLLIElement[];
+    /* tslint:disable-next-line: no-unused-variable */
     let headerMatch: HTMLLIElement;
     let containingElementScrollable: HTMLElement[];
 
     beforeEach(fakeAsync(() => {
       fixture = testModule.createComponent(TypeaheadContainerComponent);
       component = fixture.componentInstance;
-      component.parent = { typeaheadOptionsInScrollableView: 3, typeaheadScrollable: true } as TypeaheadDirective;
+      /* tslint:disable-next-line: no-object-literal-type-assertion */
+      component.parent = {
+        typeaheadOptionsInScrollableView: 3,
+        typeaheadScrollable: true,
+        typeaheadIsFirstItemActive: true
+      } as TypeaheadDirective;
       component.parent.typeaheadOnPreview = new EventEmitter<TypeaheadMatch>();
+
       fixture.detectChanges();
       tick(1);
       component.query = 'a';
@@ -248,8 +418,7 @@ describe('Component: TypeaheadContainer', () => {
 
       fixture.detectChanges();
       tick(1);
-      // component.ngAfterViewInit();
-      let headers = fixture.debugElement.queryAll(By.css('.dropdown-header'));
+      const headers = fixture.debugElement.queryAll(By.css('.dropdown-header'));
       if (headers) {
         headerMatch = asNativeElements(headers);
       }
@@ -263,26 +432,32 @@ describe('Component: TypeaheadContainer', () => {
       });
 
       it('should not throw exception when scrollPrevious is without li elements', () => {
+        /* tslint:disable-next-line: no-any */
         (component as any).liElements = undefined;
+        /* tslint:disable-next-line: no-any */
         (component as any).scrollPrevious(1);
         expect(component.element.nativeElement.scrollTop).toBe(0);
       });
 
       it('should not throw exception when scrollPrevious is scrolling outside of index ', () => {
+        /* tslint:disable-next-line: no-any */
         (component as any).scrollPrevious(100);
         expect(component.element.nativeElement.scrollTop).toBe(0);
 
       });
 
       it('should not throw exception when scrollNext is without li elements', () => {
+        /* tslint:disable-next-line: no-any */
         (component as any).liElements = undefined;
 
+        /* tslint:disable-next-line: no-any */
         (component as any).scrollNext(1);
         expect(component.element.nativeElement.scrollTop).toBe(0);
 
       });
 
       it('should not throw exception when scrollNext is scrolling outside of index', () => {
+        /* tslint:disable-next-line: no-any */
         (component as any).scrollNext(100);
         expect(component.element.nativeElement.scrollTop).toBe(0);
       });
@@ -295,36 +470,38 @@ describe('Component: TypeaheadContainer', () => {
         expect(getComputedStyle(containingElementScrollable[0]).getPropertyValue('overflow-y')).toBe('scroll');
       });
 
-      xit('should show correct height on scrollable element', () => {
-        expect(getComputedStyle(containingElementScrollable[0]).getPropertyValue('height')).toBe('60px');
-      });
-
       it('should highlight query for item match', () => {
         expect(itemMatches[1].children[0].children[0].innerHTML).toBe('<strong>a</strong>pple');
       });
 
-      it('should set the \"active\" class on the first item match', () => {
-        expect(itemMatches[0].classList.contains('active')).toBeTruthy();
+      it('should not set the \"active\" class on any matches except first', () => {
+        for (let i = 1; i < 9; i++) {
+          expect(itemMatches[i].classList.contains('active')).toBeFalsy();
+        }
       });
     });
 
     describe('nextActiveMatch', () => {
-      it('should select the next item match', () => {
+      it('should select the first item match', () => {
         component.nextActiveMatch();
         expect(component.isActive(component.matches[1])).toBeTruthy();
       });
+
       it('should select the next item match and scroll', fakeAsync(() => {
+        component.nextActiveMatch();
         component.nextActiveMatch();
         component.nextActiveMatch();
         fixture.detectChanges();
         tick(1);
-        expect(component.isActive(component.matches[2])).toBeTruthy();
+        expect(component.isActive(component.matches[3])).toBeTruthy();
         expect(containingElementScrollable[0].scrollTop).toBe(0);
       }));
+
       it('should select the last item match and scroll', () => {
         for (let i = 0; i < 8; i++) {
           component.nextActiveMatch();
         }
+
         expect(component.isActive(component.matches[10])).toBeTruthy();
       });
 
@@ -332,6 +509,7 @@ describe('Component: TypeaheadContainer', () => {
         for (let i = 0; i < 9; i++) {
           component.nextActiveMatch();
         }
+
         expect(component.isActive(component.matches[0])).toBeTruthy();
         expect(containingElementScrollable[0].scrollTop).toBe(0);
       });
@@ -349,10 +527,55 @@ describe('Component: TypeaheadContainer', () => {
         component.nextActiveMatch();
         component.nextActiveMatch();
         component.prevActiveMatch();
+
         expect(component.isActive(component.matches[2])).toBeTruthy();
       });
     });
-
   });
 
+  describe('(if first item inactive) matches', () => {
+    let matches: HTMLLIElement[];
+
+    beforeEach(() => {
+      /* tslint:disable-next-line: no-object-literal-type-assertion */
+      component.parent = {
+        typeaheadIsFirstItemActive: false
+      } as TypeaheadDirective;
+      component.parent.typeaheadOnPreview = new EventEmitter<TypeaheadMatch>();
+
+      component.query = 'fo';
+      component.matches = [
+        new TypeaheadMatch({ id: 0, name: 'foo' }, 'foo'),
+        new TypeaheadMatch({ id: 1, name: 'food' }, 'food')
+      ];
+
+      fixture.detectChanges();
+
+      matches = asNativeElements(
+        fixture.debugElement.queryAll(By.css('.dropdown-menu li'))
+      );
+    });
+
+    describe('rendering', () => {
+      it('should not set the "active" class on any matches', () => {
+        expect(matches[0].classList.contains('active')).toBeFalsy();
+        expect(matches[1].classList.contains('active')).toBeFalsy();
+      });
+    });
+
+    describe('nextActiveMatch', () => {
+      it('should select the first match on first use', () => {
+        component.nextActiveMatch();
+
+        expect(component.isActive(component.matches[0])).toBeTruthy();
+      });
+
+      it('should select the next match after the first', () => {
+        component.nextActiveMatch();
+        component.nextActiveMatch();
+
+        expect(component.isActive(component.matches[1])).toBeTruthy();
+      });
+    });
+  });
 });

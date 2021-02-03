@@ -1,4 +1,4 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { AlertModule } from './alert/alert.module';
 import { AccordionModule } from './accordion/accordion.module';
 import { ButtonsModule } from './buttons/buttons.module';
@@ -17,8 +17,8 @@ import { TooltipModule } from './tooltip/tooltip.module';
 import { TypeaheadModule } from './typeahead/typeahead.module';
 
 describe('datepicker: [bsDatepickerDayDecorator]', () => {
-  beforeEach(
-    async(() => TestBed.configureTestingModule({
+   beforeEach(
+    waitForAsync(() => TestBed.configureTestingModule({
         imports: [
           AccordionModule.forRoot(),
           AlertModule.forRoot(),
@@ -38,5 +38,5 @@ describe('datepicker: [bsDatepickerDayDecorator]', () => {
           TypeaheadModule.forRoot()
         ]
       }).compileComponents()
-    ));
+     ));
 });

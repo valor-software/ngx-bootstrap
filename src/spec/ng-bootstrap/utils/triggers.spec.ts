@@ -2,7 +2,7 @@
  * @copyright Valor Software
  * @copyright Angular ng-bootstrap team
  */
-import { parseTriggers } from '../../../utils/triggers';
+import { parseTriggers } from 'ngx-bootstrap/utils';
 
 describe('triggers', () => {
   describe('parseTriggers', () => {
@@ -64,8 +64,10 @@ describe('triggers', () => {
 
     it('should detect manual triggers', () => {
       const t = parseTriggers('manual');
+      spyOn(t[0], 'isManual').and.stub();
 
-      expect(t[0].isManual).toBeTruthy();
+      expect(spyOn).toBeTruthy();
+
     });
 
     it('should ignore empty inputs', () => {

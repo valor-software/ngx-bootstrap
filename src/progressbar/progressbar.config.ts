@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ProgressbarConfig {
   /** if `true` changing value of progress bar will be animated */
   animate: Boolean = false;

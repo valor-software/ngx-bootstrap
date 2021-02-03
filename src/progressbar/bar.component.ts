@@ -4,11 +4,13 @@ import {
   HostBinding,
   Input,
   OnDestroy,
-  OnInit
+  OnInit,
+  ElementRef,
+  Renderer2, SimpleChanges
 } from '@angular/core';
 
 import { ProgressbarComponent } from './progressbar.component';
-import { isBs3 } from '../utils/theme-provider';
+import { isBs3 } from 'ngx-bootstrap/utils';
 
 // todo: number pipe
 // todo: use query from progress?
@@ -18,7 +20,6 @@ import { isBs3 } from '../utils/theme-provider';
   host: {
     role: 'progressbar',
     'aria-valuemin': '0',
-    '[class]': '"progress-bar " + (type ? "progress-bar-" + type + " bg-" + type : "")',
     '[class.progress-bar-animated]': '!isBs3 && animate',
     '[class.progress-bar-striped]': 'striped',
     '[class.active]': 'isBs3 && animate',
@@ -29,24 +30,12 @@ import { isBs3 } from '../utils/theme-provider';
   }
 })
 export class BarComponent implements OnInit, OnDestroy {
-  max: number;
-
+  @Input() max: number;
   /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
   @Input() type: string;
 
   /** current value of progress bar */
-  @Input()
-  get value(): number {
-    return this._value;
-  }
-
-  set value(v: number) {
-    if (!v && v !== 0) {
-      return;
-    }
-    this._value = v;
-    this.recalculatePercentage();
-  }
+  @Input() value: number;
 
   @HostBinding('style.width.%')
   get setBarWidth() {
@@ -54,6 +43,8 @@ export class BarComponent implements OnInit, OnDestroy {
 
     return this.percent;
   }
+
+  @HostBinding('class.progress-bar') addClass = true;
 
   get isBs3(): boolean {
     return isBs3();
@@ -64,9 +55,13 @@ export class BarComponent implements OnInit, OnDestroy {
   percent = 0;
   progress: ProgressbarComponent;
 
-  protected _value: number;
+  private _prevType: string;
 
-  constructor(@Host() progress: ProgressbarComponent) {
+  constructor(
+    private el: ElementRef,
+    @Host() progress: ProgressbarComponent,
+    private renderer: Renderer2
+  ) {
     this.progress = progress;
   }
 
@@ -76,6 +71,21 @@ export class BarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.progress.removeBar(this);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.value) {
+      if (!changes.value.currentValue && changes.value.currentValue !== 0) {
+        return;
+      }
+      this.value = changes.value.currentValue;
+      this.recalculatePercentage();
+    }
+
+    if (changes.type) {
+      this.type = changes.type.currentValue;
+      this.applyTypeClasses();
+    }
   }
 
   recalculatePercentage(): void {
@@ -88,6 +98,24 @@ export class BarComponent implements OnInit, OnDestroy {
 
     if (totalPercentage > 100) {
       this.percent -= totalPercentage - 100;
+    }
+  }
+
+  private applyTypeClasses(): void {
+    if (this._prevType) {
+      const barTypeClass = `progress-bar-${this._prevType}`;
+      const bgClass = `bg-${this._prevType}`;
+      this.renderer.removeClass(this.el.nativeElement, barTypeClass);
+      this.renderer.removeClass(this.el.nativeElement, bgClass);
+      this._prevType = null;
+    }
+
+    if (this.type) {
+      const barTypeClass = `progress-bar-${this.type}`;
+      const bgClass = `bg-${this.type}`;
+      this.renderer.addClass(this.el.nativeElement, barTypeClass);
+      this.renderer.addClass(this.el.nativeElement, bgClass);
+      this._prevType = this.type;
     }
   }
 }

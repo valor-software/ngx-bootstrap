@@ -1,25 +1,27 @@
+import { DemoAccordionAnimatedComponent } from './animated/animated';
 import { DemoAccordionBasicComponent } from './basic/basic';
-import { DemoAccordionDisabledComponent } from './disabled/disabled';
-import { DemoAccordionStylingComponent } from './styling/styling';
-import { DemoAccordionOneAtATimeComponent } from './one-at-a-time/one-at-a-time';
-import { DemoAccordionDynamicComponent } from './dymanic/dynamic';
 import { DemoAccordionConfigComponent } from './config/config';
-import { DemoAccordionOpenEventComponent } from './open-event/open-event';
 import { DemoAccordionCustomHTMLComponent } from './custom-html/custom-html';
-import { DemoAccordionOpenedComponent } from './opened/opened';
-import { DemoAccordionManualToggleComponent } from './manual-toggle/manual-toggle';
+import { DemoAccordionDisabledComponent } from './disabled/disabled';
 import { DemoAccordionDynamicBodyComponent } from './dynamic-body/dynamic-body';
+import { DemoAccordionDynamicComponent } from './dymanic/dynamic';
+import { DemoAccordionManualToggleComponent } from './manual-toggle/manual-toggle';
+import { DemoAccordionOneAtATimeComponent } from './one-at-a-time/one-at-a-time';
+import { DemoAccordionOpenedComponent } from './opened/opened';
+import { DemoAccordionOpenEventComponent } from './open-event/open-event';
+import { DemoAccordionStylingComponent } from './styling/styling';
 
 export const DEMO_COMPONENTS = [
+  DemoAccordionAnimatedComponent,
   DemoAccordionBasicComponent,
-  DemoAccordionDisabledComponent,
-  DemoAccordionStylingComponent,
-  DemoAccordionOneAtATimeComponent,
-  DemoAccordionDynamicComponent,
   DemoAccordionConfigComponent,
-  DemoAccordionOpenEventComponent,
   DemoAccordionCustomHTMLComponent,
-  DemoAccordionOpenedComponent,
+  DemoAccordionDisabledComponent,
+  DemoAccordionDynamicBodyComponent,
+  DemoAccordionDynamicComponent,
   DemoAccordionManualToggleComponent,
-  DemoAccordionDynamicBodyComponent
+  DemoAccordionOneAtATimeComponent,
+  DemoAccordionOpenedComponent,
+  DemoAccordionOpenEventComponent,
+  DemoAccordionStylingComponent
 ];

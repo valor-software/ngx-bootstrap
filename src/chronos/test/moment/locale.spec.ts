@@ -7,6 +7,7 @@ import { defineLocale } from '../../locale/locales';
 import { enGbLocale } from '../../i18n/en-gb';
 import { frLocale } from '../../i18n/fr';
 import { esLocale } from '../../i18n/es';
+import { viLocale } from '../../i18n/vi';
 import { zhCnLocale } from '../../i18n/zh-cn';
 import { itLocale as italy } from '../../i18n/it';
 import { getDate } from '../../utils/date-getters';
@@ -18,6 +19,7 @@ defineLocale('fr', frLocale);
 defineLocale('fr-ca', frLocale);
 defineLocale('it', italy);
 defineLocale('it', zhCnLocale);
+defineLocale('vi', viLocale);
 defineLocale('zh-cn', zhCnLocale);
 
 moment.locale('en');
@@ -168,6 +170,7 @@ describe('locale', function () {
 
     assertEq(moment.localeData().months(jan.toDate()), 'January', 'no arguments returns global');
     assertEq(moment.localeData('zh-cn').months(jan.toDate()), '一月', 'a string returns the locale based on key');
+    assertEq(moment.localeData('vi').months(jan.toDate()), 'tháng 1', 'a string returns the locale based on key');
     assertEq(moment.localeData(moment().locale('es')).months(jan.toDate()), 'enero', 'if you pass in a moment it uses the moment\'s locale');
   });
 

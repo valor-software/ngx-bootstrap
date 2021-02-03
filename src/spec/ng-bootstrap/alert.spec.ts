@@ -5,7 +5,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { createGenericTestComponent } from './test/common';
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { AlertModule, AlertComponent, AlertConfig } from '../../alert/index';
+import { AlertComponent, AlertConfig, AlertModule } from 'ngx-bootstrap/alert';
 
 @Component({
   selector: 'test-cmp',
@@ -21,11 +21,11 @@ const createTestComponent = (html: string) =>
   createGenericTestComponent(html, TestComponent);
 
 function getAlertElement(element: HTMLElement): HTMLDivElement {
-  return element.querySelector('.alert') as HTMLDivElement;
+  return element.querySelector<HTMLDivElement>('.alert');
 }
 
 function getCloseButton(element: HTMLElement): HTMLButtonElement {
-  return element.querySelector('button');
+  return element.querySelector<HTMLButtonElement>('button');
 }
 
 describe('ngb-alert', () => {
@@ -42,7 +42,7 @@ describe('ngb-alert', () => {
   it('should initialize inputs with default values', () => {
     const defaultConfig = new AlertConfig();
     /*const alertCmp = new AlertComponent(new AlertConfig());*/
-    const alertCmp = TestBed.get(AlertComponent);
+    const alertCmp = TestBed.inject(AlertComponent);
 
     expect(alertCmp.dismissible).toBe(defaultConfig.dismissible);
     expect(alertCmp.type).toBe(defaultConfig.type);

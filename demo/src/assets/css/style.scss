@@ -114,6 +114,35 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
 }
+/* supporting */
+.sponsor-icon {
+  margin: -3px 8px 0 0;
+}
+.sponsor-link {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  color: #555555;
+}
+.sponsor-link:hover {
+  color: #0056b3;
+}
+.content-supporting {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.compatibility {
+  table, th, td {
+    text-align: left;
+  }
+  th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+  tr:hover {background-color: #dadadd;}
+
+}
 /* entry */
 .entry {
   padding: 75px 0 ;
@@ -128,9 +157,9 @@ a:hover {
     margin: 40px 0 20px;
 
     .btn {
-      width: 160px;
+      min-width: 160px;
       margin: 0 13px;
-      padding: 12px 0;
+      padding: 12px 10px;
       cursor: pointer;
       text-transform: uppercase;
       letter-spacing: 2px;
@@ -304,6 +333,7 @@ a:hover {
 .main-container {
   flex: 0 0 66.666667%;
   max-width: 66.666667%;
+  margin-left: 16.66667%;
 }
 .content {
   padding: 30px 30px 120px;
@@ -364,6 +394,10 @@ a:hover {
   }
 }
 
+.api-doc-methods {
+  color: #808080;
+}
+
 .panel-body {
   padding: 15px;
 }
@@ -372,8 +406,7 @@ a:hover {
   flex: 0 0 16.666667%;
   max-width: 16.666667%;
   padding-right: 5px;
-  position: -webkit-sticky;
-  position: sticky;
+  position: fixed;
   top: 84px;
   left: 83.33%;
   right: 0;
@@ -541,11 +574,12 @@ a:hover {
     z-index: 2001; // to overlap header :)
   }
   .sidebar {
-    position: -webkit-sticky;
-    position: sticky;
+    position: fixed;
     top: $header-height;
-    max-height: calc(100vh - #{$header-height});
+    bottom: 0;
   }
+
+
   #mobile-main-menu {
     display: none;
   }
@@ -558,6 +592,7 @@ a:hover {
   .main-container {
     flex: 0 0 75%;
     max-width: 75%;
+    margin-left: 25%;
   }
 
   .content {
@@ -611,6 +646,11 @@ a:hover {
     flex: 0 0 100%;
     max-width: 100%;
   }
+
+  .main-container {
+    margin-left: 0;
+  }
+
   .sidebar {
     border-right: none;
     border-bottom: none;

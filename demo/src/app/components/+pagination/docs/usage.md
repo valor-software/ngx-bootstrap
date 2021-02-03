@@ -1,6 +1,6 @@
-// RECOMMENDED (doesn't work with system.js)
+// RECOMMENDED
 import { PaginationModule } from 'ngx-bootstrap/pagination';
-// or
+// NOT RECOMMENDED (Angular 9 doesn't support this kind of import)
 import { PaginationModule } from 'ngx-bootstrap';
 
 @NgModule({

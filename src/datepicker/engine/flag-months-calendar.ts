@@ -1,16 +1,17 @@
-import { isSameMonth } from '../../chronos/utils/date-getters';
+import { isSameMonth, shiftDate } from 'ngx-bootstrap/chronos';
 import {
   MonthsCalendarViewModel,
   CalendarCellViewModel
-} from '../models/index';
+} from '../models';
 import { isMonthDisabled, isYearDisabled } from '../utils/bs-calendar-utils';
-import { shiftDate } from '../../chronos/utils/date-setters';
 
 export interface FlagMonthCalendarOptions {
   isDisabled: boolean;
   minDate: Date;
   maxDate: Date;
   hoveredMonth: Date;
+  selectedDate: Date;
+  selectedRange: Date[];
   displayMonths: number;
   monthIndex: number;
 }
@@ -22,17 +23,29 @@ export function flagMonthsCalendar(
   monthCalendar.months.forEach(
     (months: CalendarCellViewModel[], rowIndex: number) => {
       months.forEach((month: CalendarCellViewModel, monthIndex: number) => {
+        let isSelected: boolean;
         const isHovered = isSameMonth(month.date, options.hoveredMonth);
         const isDisabled =
           options.isDisabled ||
           isMonthDisabled(month.date, options.minDate, options.maxDate);
+
+        if (!options.selectedDate && options.selectedRange) {
+          isSelected = isSameMonth(month.date, options.selectedRange[0]);
+          if (!isSelected) {
+            isSelected = isSameMonth(month.date, options.selectedRange[1]);
+          }
+        } else {
+          isSelected = isSameMonth(month.date, options.selectedDate);
+        }
         const newMonth = Object.assign(/*{},*/ month, {
           isHovered,
-          isDisabled
+          isDisabled,
+          isSelected
         });
         if (
           month.isHovered !== newMonth.isHovered ||
-          month.isDisabled !== newMonth.isDisabled
+          month.isDisabled !== newMonth.isDisabled ||
+          month.isSelected !== newMonth.isSelected
         ) {
           monthCalendar.months[rowIndex][monthIndex] = newMonth;
         }

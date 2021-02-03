@@ -1,6 +1,6 @@
-// RECOMMENDED (doesn't work with system.js)
+// RECOMMENDED
 import { TabsModule } from 'ngx-bootstrap/tabs';
-// or
+// NOT RECOMMENDED (Angular 9 doesn't support this kind of import)
 import { TabsModule } from 'ngx-bootstrap';
 
 @NgModule({

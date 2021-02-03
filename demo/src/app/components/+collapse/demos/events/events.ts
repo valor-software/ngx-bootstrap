@@ -6,13 +6,21 @@ import { Component } from '@angular/core';
 })
 export class CollapseDemoEventsComponent {
   isCollapsed = false;
-  message: string;
+  message: string = 'expanded';
 
   collapsed(): void {
     this.message = 'collapsed';
   }
 
+  collapses(): void {
+    this.message = 'collapses';
+  }
+
   expanded(): void {
     this.message = 'expanded';
+  }
+
+  expands(): void {
+    this.message = 'expands';
   }
 }

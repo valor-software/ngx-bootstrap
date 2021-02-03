@@ -34,7 +34,7 @@
     <td class="form-group" [class.has-error]="invalidHours">
       <input type="text" [class.is-invalid]="invalidHours"
              class="form-control text-center bs-timepicker-field"
-             placeholder="HH"
+             [placeholder]="hoursPlaceholder"
              maxlength="2"
              [readonly]="readonlyInput"
              [disabled]="disabled"
@@ -42,14 +42,14 @@
              (wheel)="prevDef($event);changeHours(hourStep * wheelSign($event), 'wheel')"
              (keydown.ArrowUp)="changeHours(hourStep, 'key')"
              (keydown.ArrowDown)="changeHours(-hourStep, 'key')"
-             (change)="updateHours($event.target.value)"></td>
+             (change)="updateHours($event.target.value)" [attr.aria-label]="labelHours"></td>
     <!-- divider -->
     <td *ngIf="showMinutes">&nbsp;:&nbsp;</td>
     <!-- minutes -->
     <td class="form-group" *ngIf="showMinutes" [class.has-error]="invalidMinutes">
       <input type="text" [class.is-invalid]="invalidMinutes"
              class="form-control text-center bs-timepicker-field"
-             placeholder="MM"
+             [placeholder]="minutesPlaceholder"
              maxlength="2"
              [readonly]="readonlyInput"
              [disabled]="disabled"
@@ -57,7 +57,7 @@
              (wheel)="prevDef($event);changeMinutes(minuteStep * wheelSign($event), 'wheel')"
              (keydown.ArrowUp)="changeMinutes(minuteStep, 'key')"
              (keydown.ArrowDown)="changeMinutes(-minuteStep, 'key')"
-             (change)="updateMinutes($event.target.value)">
+             (change)="updateMinutes($event.target.value)" [attr.aria-label]="labelMinutes">
     </td>
     <!-- divider -->
     <td *ngIf="showSeconds">&nbsp;:&nbsp;</td>
@@ -65,7 +65,7 @@
     <td class="form-group" *ngIf="showSeconds" [class.has-error]="invalidSeconds">
       <input type="text" [class.is-invalid]="invalidSeconds"
              class="form-control text-center bs-timepicker-field"
-             placeholder="SS"
+             [placeholder]="secondsPlaceholder"
              maxlength="2"
              [readonly]="readonlyInput"
              [disabled]="disabled"
@@ -73,7 +73,7 @@
              (wheel)="prevDef($event);changeSeconds(secondsStep * wheelSign($event), 'wheel')"
              (keydown.ArrowUp)="changeSeconds(secondsStep, 'key')"
              (keydown.ArrowDown)="changeSeconds(-secondsStep, 'key')"
-             (change)="updateSeconds($event.target.value)">
+             (change)="updateSeconds($event.target.value)" [attr.aria-label]="labelSeconds">
     </td>
     <!-- space between -->
     <td *ngIf="showMeridian">&nbsp;&nbsp;&nbsp;</td>

@@ -1,6 +1,6 @@
-// RECOMMENDED (doesn't work with system.js)
+// RECOMMENDED
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-// or
+// NOT RECOMMENDED (Angular 9 doesn't support this kind of import)
 import { CarouselModule } from 'ngx-bootstrap';
 
 @NgModule({

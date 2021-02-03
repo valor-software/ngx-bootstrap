@@ -42,7 +42,7 @@ export function toNumber(value: string | number): number {
   return parseInt(value, dex);
 }
 
-export function isNumber(value: any): value is number {
+export function isNumber(value: string | number): value is number {
   return !isNaN(toNumber(value));
 }
 
@@ -98,10 +98,7 @@ export function changeTime(value: Date, diff: Time): Date {
   let seconds = value.getSeconds();
 
   if (diff.hour) {
-    hour = (hour + toNumber(diff.hour)) % hoursPerDay;
-    if (hour < 0) {
-      hour += hoursPerDay;
-    }
+    hour = hour + toNumber(diff.hour);
   }
 
   if (diff.minute) {
@@ -120,7 +117,7 @@ export function setTime(value: Date, opts: Time): Date {
   const minute = parseMinutes(opts.minute);
   const seconds = parseSeconds(opts.seconds) || 0;
 
-  if (opts.isPM) {
+  if (opts.isPM && hour !== 12) {
     hour += hoursPerDayHalf;
   }
 
@@ -145,7 +142,7 @@ export function createDate(
   minutes: number,
   seconds: number
 ): Date {
-  return new Date(
+  const newValue = new Date(
     value.getFullYear(),
     value.getMonth(),
     value.getDate(),
@@ -154,6 +151,12 @@ export function createDate(
     seconds,
     value.getMilliseconds()
   );
+  // #3139 ensure date part remains unchanged
+  newValue.setFullYear(value.getFullYear());
+  newValue.setMonth(value.getMonth());
+  newValue.setDate(value.getDate());
+
+  return newValue;
 }
 
 export function padNumber(value: number): string {
@@ -178,7 +181,7 @@ export function isSecondInputValid(seconds: string): boolean {
 }
 
 export function isInputLimitValid(diff: Time, max: Date, min: Date): boolean {
-  const newDate = changeTime(new Date(), diff);
+  const newDate = setTime(new Date(), diff);
 
   if (max && newDate > max) {
     return false;

@@ -1,9 +1,15 @@
-// RECOMMENDED (doesn't work with system.js)
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// RECOMMENDED
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
-// or
+// NOT RECOMMENDED (Angular 9 doesn't support this kind of import)
 import { TypeaheadModule } from 'ngx-bootstrap';
 
 @NgModule({
-  imports: [TypeaheadModule.forRoot(),...]
+  imports: [
+    BrowserAnimationsModule,
+    TypeaheadModule.forRoot(),
+    ...
+  ]
 })
 export class AppModule(){}

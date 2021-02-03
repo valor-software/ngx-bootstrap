@@ -1,6 +1,6 @@
-// RECOMMENDED (doesn't work with system.js)
+// RECOMMENDED
 import { AlertModule } from 'ngx-bootstrap/alert';
-// or
+// NOT RECOMMENDED (Angular 9 doesn't support this kind of import)
 import { AlertModule } from 'ngx-bootstrap';
 
 @NgModule({

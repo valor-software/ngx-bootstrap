@@ -15,6 +15,7 @@
             "index": "demo/src/index.html",
             "main": "demo/src/main.ts",
             "tsConfig": "demo/src/tsconfig.json",
+            "aot": true,
             "polyfills": "demo/src/polyfills.ts",
             "assets": [
               "demo/src/assets"
@@ -88,10 +89,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "demo/src/../../scripts/test.ts",
+            "main": "scripts/test-demo.ts",
             "karmaConfig": "karma-demo.conf.js",
             "polyfills": "demo/src/polyfills.ts",
-            "tsConfig": "demo/src/../../src/tsconfig.spec.json",
+            "tsConfig": "src/tsconfig.spec.json",
+            "codeCoverageExclude": ["dist/**/*"],
+            "sourceMap": false,
             "scripts": [],
             "styles": [
               "src/datepicker/bs-datepicker.scss",
@@ -116,29 +119,50 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "demo/dist/server",
-            "main": "main.server.ts",
-            "tsConfig": "tsconfig.server.json"
+            "main": "demo/src/main.server.ts",
+            "tsConfig": "demo/src/tsconfig.server.json"
           }
         }
       }
     },
-    "ngx-bootstrap-e2e": {
+    "ngx-bootstrap-source": {
       "root": "",
-      "sourceRoot": "",
-      "projectType": "application",
+      "sourceRoot": "src",
+      "projectType": "library",
       "architect": {
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "protractorConfig": "protractor.conf.js",
-            "devServerTarget": "ngx-bootstrap:serve"
+            "main": "scripts/test-source.ts",
+            "karmaConfig": "karma-source.conf.js",
+            "polyfills": "demo/src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
+            "codeCoverageExclude": ["dist/**/*"],
+            "sourceMap": false,
+            "scripts": [],
+            "styles": [
+              "src/datepicker/bs-datepicker.scss",
+              "demo/src/assets/css/style.scss",
+              "demo/src/assets/css/prettify-angulario.css"
+            ],
+            "assets": []
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [],
+            "tsConfig": [
+              "../tslint.json"
+            ],
             "exclude": []
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "demo/dist/server",
+            "main": "demo/src/main.server.ts",
+            "tsConfig": "demo/src/tsconfig.server.json"
           }
         }
       }

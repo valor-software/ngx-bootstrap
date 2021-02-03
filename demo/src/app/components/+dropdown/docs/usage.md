@@ -1,9 +1,16 @@
-// RECOMMENDED (doesn't work with system.js)
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// RECOMMENDED
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-// or
+// NOT RECOMMENDED (Angular 9 doesn't support this kind of import)
 import { BsDropdownModule } from 'ngx-bootstrap';
 
 @NgModule({
-  imports: [BsDropdownModule.forRoot(),...]
+  imports: [
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot()
+  ]
 })
 export class AppModule(){}
+
+Also should be added web-animations-js polyfill for IE browser (Edge)

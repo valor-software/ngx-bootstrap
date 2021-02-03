@@ -1,12 +1,13 @@
-/* tslint:disable: max-classes-per-file */
+/* tslint:disable: no-unused-variable */
 import { AccordionModule } from './accordion/accordion.module';
 import { AlertModule } from './alert/alert.module';
+import { BsDatepickerInlineConfig } from './datepicker/bs-datepicker-inline.config';
+import { BsDaterangepickerConfig } from './datepicker/bs-daterangepicker.config';
+import { BsDropdownModule } from './dropdown/bs-dropdown.module';
 import { ButtonsModule } from './buttons/buttons.module';
 import { CarouselModule } from './carousel/carousel.module';
 import { CollapseModule } from './collapse/collapse.module';
-import { BsDaterangepickerConfig } from './datepicker/bs-daterangepicker.config';
 import { DatepickerModule } from './datepicker/datepicker.module';
-import { BsDropdownModule } from './dropdown/bs-dropdown.module';
 import { ModalModule } from './modal/modal.module';
 import { PaginationModule } from './pagination/pagination.module';
 import { PopoverModule } from './popover/popover.module';
@@ -46,6 +47,14 @@ export {
 export { CollapseDirective, CollapseModule } from './collapse/index';
 
 export {
+  BsDatepickerConfig,
+  BsDatepickerDirective,
+  BsDatepickerInlineConfig,
+  BsDatepickerModule,
+  BsDaterangepickerConfig,
+  BsDaterangepickerDirective,
+  BsDaterangepickerInlineConfig,
+  BsLocaleService,
   DateFormatter,
   DatePickerComponent,
   DatepickerConfig,
@@ -53,12 +62,8 @@ export {
   DayPickerComponent,
   MonthPickerComponent,
   YearPickerComponent,
-  BsDatepickerModule,
-  BsDatepickerConfig,
-  BsDaterangepickerConfig,
-  BsLocaleService,
-  BsDaterangepickerDirective,
-  BsDatepickerDirective
+  DatepickerDateCustomClasses,
+  DatepickerDateTooltipText
 } from './datepicker/index';
 
 export {
@@ -86,7 +91,10 @@ export {
   PaginationComponent,
   PaginationConfig,
   PaginationModule,
-  PageChangedEvent
+  PageChangedEvent,
+  PaginationLinkContext,
+  PaginationNumberLinkContext,
+  PagesModel
 } from './pagination/index';
 
 export {
@@ -96,7 +104,11 @@ export {
   ProgressbarModule
 } from './progressbar/index';
 
-export { RatingComponent, RatingModule } from './rating/index';
+export {
+  RatingComponent,
+  RatingModule,
+  RatingConfig
+} from './rating/index';
 
 export {
   DraggableItem,
@@ -133,7 +145,11 @@ export {
   TypeaheadContainerComponent,
   TypeaheadDirective,
   TypeaheadMatch,
-  TypeaheadModule
+  TypeaheadModule,
+  TypeaheadOrder,
+  TypeaheadOptionItemContext,
+  TypeaheadOptionListContext,
+  TypeaheadTemplateMethods
 } from './typeahead/index';
 
 export {
@@ -143,12 +159,25 @@ export {
   PopoverModule
 } from './popover/index';
 
-export { OnChange, LinkedList, isBs3, Trigger, Utils } from './utils/index';
+export {
+  OnChange,
+  document,
+  window,
+  parseTriggers,
+  LinkedList,
+  isBs3,
+  Trigger,
+  warnOnce,
+  Utils,
+  listenToTriggersV2,
+  registerOutsideClick
+} from './utils/index';
 
 export {
   ComponentLoader,
   ComponentLoaderFactory,
-  ContentRef
+  ContentRef,
+  BsComponentRef
 } from './component-loader/index';
 
 export {
@@ -158,6 +187,38 @@ export {
   positionElements
 } from './positioning/index';
 
-export { defineLocale, getSetGlobalLocale, LocaleData } from './chronos/index';
+export {
+  Action,
+  MiniState,
+  MiniStore
+} from './mini-ngrx/index';
+
+export {
+  defineLocale,
+  getSetGlobalLocale,
+  LocaleData,
+  parseDate,
+  formatDate,
+  getDay,
+  isFirstDayOfWeek,
+  isSameYear,
+  isSameDay,
+  isSameMonth,
+  getFullYear,
+  getFirstDayOfMonth,
+  getMonth,
+  getLocale,
+  updateLocale,
+  isAfter,
+  isBefore,
+  isArray,
+  isDateValid,
+  isDate,
+  shiftDate,
+  setFullDate,
+  endOf,
+  startOf,
+  TimeUnit
+} from './chronos/index';
 
 export * from './locale';

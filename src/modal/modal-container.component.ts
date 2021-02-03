@@ -13,7 +13,7 @@ import {
   TRANSITION_DURATIONS
 } from './modal-options.class';
 import { BsModalService } from './bs-modal.service';
-import { isBs3 } from '../utils/theme-provider';
+import { isBs3 } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'modal-container',
@@ -28,7 +28,9 @@ import { isBs3 } from '../utils/theme-provider';
     class: 'modal',
     role: 'dialog',
     tabindex: '-1',
-    '[attr.aria-modal]': 'true'
+    '[attr.aria-modal]': 'true',
+    '[attr.aria-labelledby]': 'config.ariaLabelledBy',
+    '[attr.aria-describedby]': 'config.ariaDescribedby'
   }
 })
 export class ModalContainerComponent implements OnInit, OnDestroy {
@@ -38,6 +40,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   isAnimated: boolean;
   bsModalService: BsModalService;
   private isModalHiding = false;
+  private clickStartedInContent = false;
 
   constructor(options: ModalOptions,
               protected _element: ElementRef,
@@ -76,26 +79,41 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     }
   }
 
+  @HostListener('mousedown', ['$event'])
+  onClickStarted(event: MouseEvent): void {
+    this.clickStartedInContent = event.target !== this._element.nativeElement;
+  }
+
   @HostListener('click', ['$event'])
-  onClick(event: any): void {
+  onClickStop(event: MouseEvent): void {
+    const clickedInBackdrop = event.target === this._element.nativeElement && !this.clickStartedInContent;
     if (
       this.config.ignoreBackdropClick ||
       this.config.backdrop === 'static' ||
-      event.target !== this._element.nativeElement
+      !clickedInBackdrop
     ) {
+      this.clickStartedInContent = false;
+
       return;
     }
     this.bsModalService.setDismissReason(DISMISS_REASONS.BACKRDOP);
     this.hide();
   }
 
+  @HostListener('window:popstate')
+  onPopState(): void {
+    this.bsModalService.setDismissReason(DISMISS_REASONS.BACK);
+    this.hide();
+  }
+
   @HostListener('window:keydown.esc', ['$event'])
-  onEsc(event: any): void {
+  onEsc(event: KeyboardEvent): void {
     if (!this.isShown) {
       return;
     }
 
-    if (event.keyCode === 27) {
+    // tslint:disable-next-line:deprecation
+    if (event.keyCode === 27 || event.key === 'Escape') {
       event.preventDefault();
     }
 
@@ -110,7 +128,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.isShown) {
-      this.hide();
+      this._hide();
     }
   }
 
@@ -118,6 +136,19 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     if (this.isModalHiding || !this.isShown) {
       return;
     }
+
+    if (this.config.closeInterceptor) {
+      this.config.closeInterceptor().then(
+        () => this._hide(),
+        () => undefined);
+
+      return;
+    }
+
+    this._hide();
+  }
+
+  private _hide(): void {
     this.isModalHiding = true;
     this._renderer.removeClass(
       this._element.nativeElement,
@@ -132,7 +163,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       ) {
         this._renderer.removeClass(document.body, CLASS_NAME.OPEN);
       }
-      this.bsModalService.hide(this.level);
+      this.bsModalService.hide(this.config.id);
       this.isModalHiding = false;
     }, this.isAnimated ? TRANSITION_DURATIONS.MODAL : 0);
   }

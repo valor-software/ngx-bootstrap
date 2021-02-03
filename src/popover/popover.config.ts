@@ -6,8 +6,12 @@ import { Injectable } from '@angular/core';
  * the values of its properties in order to provide default values for all the
  * popovers used in the application.
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class PopoverConfig {
+  /** sets disable adaptive position */
+  adaptivePosition = true;
   /**
    * Placement of a popover. Accepts: "top", "bottom", "left", "right", "auto"
    */
@@ -21,7 +25,8 @@ export class PopoverConfig {
   outsideClick = false;
   /**
    * A selector specifying the element the popover should be appended to.
-   * Currently only supports "body".
    */
   container: string;
+  /** delay before showing the tooltip */
+  delay = 0;
 }

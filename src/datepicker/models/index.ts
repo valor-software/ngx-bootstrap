@@ -1,4 +1,4 @@
-import { TimeUnit } from '../../chronos/types';
+import { TimeUnit } from 'ngx-bootstrap/chronos';
 
 export type BsDatepickerViewMode = 'day' | 'month' | 'year';
 
@@ -18,16 +18,20 @@ export interface CalendarCellViewModel {
   label: string;
   isDisabled?: boolean;
   isHovered?: boolean;
+  isSelected?: boolean;
 }
 
 /** *************** */
 // days matrix: day cell view model
 export interface DayViewModel extends CalendarCellViewModel {
+  isOtherMonthHovered?: boolean;
   isOtherMonth?: boolean;
   isInRange?: boolean;
   isSelectionStart?: boolean;
   isSelectionEnd?: boolean;
-  isSelected?: boolean;
+  isToday?: boolean;
+  customClasses?: string;
+  tooltipText?: string;
   // day index
   monthIndex?: number;
   weekIndex?: number;
@@ -36,6 +40,7 @@ export interface DayViewModel extends CalendarCellViewModel {
 
 export interface WeekViewModel {
   days: DayViewModel[];
+  isHovered?: boolean;
 }
 
 // todo: split navigation settings
@@ -96,6 +101,16 @@ export interface DatepickerFormatOptions {
 export interface DatepickerRenderOptions {
   showWeekNumbers?: boolean;
   displayMonths?: number;
+}
+
+export interface DatepickerDateCustomClasses {
+  date: Date;
+  classes: string[];
+}
+
+export interface DatepickerDateTooltipText {
+  date: Date;
+  tooltipText: string;
 }
 
 /** *************** */
