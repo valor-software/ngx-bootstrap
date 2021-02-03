@@ -1,7 +1,7 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-  "dest": "../../dist/libs/modal",
+  "dest": "../../node_modules/ngx-bootstrap/modal",
   "lib": {
-    "entryFile": "src/index.ts"
+    "entryFile": "index.ts"
   }
 }

@@ -487,19 +487,19 @@
     },
     "modal": {
       "projectType": "library",
-      "root": "libs/modal",
-      "sourceRoot": "libs/modal/src",
+      "root": "src/modal",
+      "sourceRoot": "src/modal",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/modal/tsconfig.lib.json",
-            "project": "libs/modal/ng-package.json"
+            "tsConfig": "src/modal/tsconfig.lib.json",
+            "project": "src/modal/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/modal/tsconfig.lib.prod.json"
+              "tsConfig": "src/modal/tsconfig.lib.prod.json"
             }
           }
         },
@@ -507,16 +507,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/modal/src/**/*.ts",
-              "libs/modal/src/**/*.html"
+              "src/modal/src/**/*.ts",
+              "src/modal/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/modal"],
+          "outputs": ["coverage/src/modal"],
           "options": {
-            "jestConfig": "libs/modal/jest.config.js",
+            "jestConfig": "src/modal/jest.config.js",
             "passWithNoTests": true
           }
         }

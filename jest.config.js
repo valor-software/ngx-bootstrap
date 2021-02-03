@@ -10,7 +10,7 @@ module.exports = {
     '<rootDir>/src/accordion',
     '<rootDir>/src/alert',
     '<rootDir>/src/dropdown',
-    '<rootDir>/libs/modal',
+    '<rootDir>/src/modal',
     '<rootDir>/src/collapse',
     '<rootDir>/libs/progressbar',
     '<rootDir>/libs/tabs',
