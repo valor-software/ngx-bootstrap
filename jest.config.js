@@ -20,7 +20,7 @@ module.exports = {
     '<rootDir>/libs/timepicker',
     '<rootDir>/src/carousel',
     '<rootDir>/src/datepicker',
-    '<rootDir>/libs/popover',
+    '<rootDir>/src/popover',
     '<rootDir>/libs/sortable',
     '<rootDir>/src/tooltip',
     '<rootDir>/src/typeahead',

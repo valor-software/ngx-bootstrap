@@ -858,19 +858,19 @@
     },
     "popover": {
       "projectType": "library",
-      "root": "libs/popover",
-      "sourceRoot": "libs/popover/src",
+      "root": "src/popover",
+      "sourceRoot": "src/popover",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/popover/tsconfig.lib.json",
-            "project": "libs/popover/ng-package.json"
+            "tsConfig": "src/popover/tsconfig.lib.json",
+            "project": "src/popover/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/popover/tsconfig.lib.prod.json"
+              "tsConfig": "src/popover/tsconfig.lib.prod.json"
             }
           }
         },
@@ -878,16 +878,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/popover/src/**/*.ts",
-              "libs/popover/src/**/*.html"
+              "src/popover/src/**/*.ts",
+              "src/popover/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/popover"],
+          "outputs": ["coverage/src/popover"],
           "options": {
-            "jestConfig": "libs/popover/jest.config.js",
+            "jestConfig": "src/popover/jest.config.js",
             "passWithNoTests": true
           }
         }
