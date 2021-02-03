@@ -1,0 +1,1 @@
+{"version":3,"file":"typeahead-match.class.d.ts","sourceRoot":"","sources":["../../src/typeahead/typeahead-match.class.ts"],"names":[],"mappings":"AAAA,qBAAa,cAAc;IACzB,QAAQ,CAAC,KAAK,EAAE,MAAM,CAAC;IAGvB,QAAQ,CAAC,IAAI,EAAE,GAAG,CAAC;IACnB,SAAS,CAAC,MAAM,EAAE,OAAO,CAAC;gBAGd,IAAI,EAAE,GAAG,EAAE,KAAK,GAAE,MAAa,EAAE,MAAM,UAAQ;IAM3D,QAAQ,IAAI,OAAO;IAInB,QAAQ,IAAI,MAAM;CAGnB"}

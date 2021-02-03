@@ -1,0 +1,17 @@
+{
+  "name": "ngx-bootstrap/typeahead",
+  "version": "0.0.1",
+  "main": "bundles/ngx-bootstrap-typeahead.umd.js",
+  "module": "fesm2015/ngx-bootstrap-typeahead.js",
+  "es2015": "fesm2015/ngx-bootstrap-typeahead.js",
+  "esm2015": "esm2015/ngx-bootstrap-typeahead.js",
+  "fesm2015": "fesm2015/ngx-bootstrap-typeahead.js",
+  "typings": "ngx-bootstrap-typeahead.d.ts",
+  "sideEffects": false,
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "scripts": {
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy. This is not allowed.\\nPlease delete and rebuild the package, without compiling with Ivy, before attempting to publish.\\n')\" && exit 1"
+  }
+}

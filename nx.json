@@ -27,7 +27,7 @@
     "chronos": { "tags": [] },
     "locale": { "tags": [] },
     "mini-ngrx": { "tags": [] },
-    "accordion": { "tags": [] },
+    "accordion": { "tags": [], "implicitDependencies": ["utils", "collapse"] },
     "alert": { "tags": [] },
     "dropdown": { "tags": [] },
     "modal": { "tags": [] },

@@ -155,6 +155,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/utils"],
           "options": {
             "tsConfig": "src/utils/tsconfig.lib.json",
             "project": "src/utils/ng-package.json"
@@ -192,6 +193,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/positioning"],
           "options": {
             "tsConfig": "src/positioning/tsconfig.lib.json",
             "project": "src/positioning/ng-package.json"
@@ -229,6 +231,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/component-loader"],
           "options": {
             "tsConfig": "src/component-loader/tsconfig.lib.json",
             "project": "src/component-loader/ng-package.json"
@@ -371,19 +374,19 @@
     },
     "accordion": {
       "projectType": "library",
-      "root": "libs/accordion",
-      "sourceRoot": "libs/accordion/src",
+      "root": "src/accordion",
+      "sourceRoot": "src/accordion",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/accordion/tsconfig.lib.json",
-            "project": "libs/accordion/ng-package.json"
+            "tsConfig": "src/accordion/tsconfig.lib.json",
+            "project": "src/accordion/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/accordion/tsconfig.lib.prod.json"
+              "tsConfig": "src/accordion/tsconfig.lib.prod.json"
             }
           }
         },
@@ -391,16 +394,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/accordion/src/**/*.ts",
-              "libs/accordion/src/**/*.html"
+              "src/accordion/**/*.ts",
+              "src/accordion/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/accordion"],
+          "outputs": ["coverage/src/accordion"],
           "options": {
-            "jestConfig": "libs/accordion/jest.config.js",
+            "jestConfig": "src/accordion/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -519,19 +522,20 @@
     },
     "collapse": {
       "projectType": "library",
-      "root": "libs/collapse",
-      "sourceRoot": "libs/collapse/src",
+      "root": "src/collapse",
+      "sourceRoot": "src/collapse",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/collapse"],
           "options": {
-            "tsConfig": "libs/collapse/tsconfig.lib.json",
-            "project": "libs/collapse/ng-package.json"
+            "tsConfig": "src/collapse/tsconfig.lib.json",
+            "project": "src/collapse/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/collapse/tsconfig.lib.prod.json"
+              "tsConfig": "src/collapse/tsconfig.lib.prod.json"
             }
           }
         },
@@ -539,16 +543,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/collapse/src/**/*.ts",
-              "libs/collapse/src/**/*.html"
+              "src/collapse/**/*.ts",
+              "src/collapse/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/collapse"],
+          "outputs": ["coverage/src/collapse"],
           "options": {
-            "jestConfig": "libs/collapse/jest.config.js",
+            "jestConfig": "src/collapse/jest.config.js",
             "passWithNoTests": true
           }
         }
