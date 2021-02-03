@@ -20,6 +20,29 @@
     "ngx-bootstrap-docs-e2e": {
       "tags": [],
       "implicitDependencies": ["ngx-bootstrap-docs"]
-    }
+    },
+    "utils": { "tags": [] },
+    "positioning": { "tags": [] },
+    "component-loader": { "tags": [] },
+    "chronos": { "tags": [] },
+    "locale": { "tags": [] },
+    "mini-ngrx": { "tags": [] },
+    "accordion": { "tags": [] },
+    "alert": { "tags": [] },
+    "dropdown": { "tags": [] },
+    "modal": { "tags": [] },
+    "collapse": { "tags": [] },
+    "progressbar": { "tags": [] },
+    "tabs": { "tags": [] },
+    "buttons": { "tags": [] },
+    "pagination": { "tags": [] },
+    "rating": { "tags": [] },
+    "timepicker": { "tags": [] },
+    "carousel": { "tags": [] },
+    "datepicker": { "tags": [] },
+    "popover": { "tags": [] },
+    "sortable": { "tags": [] },
+    "tooltip": { "tags": [] },
+    "typeahead": { "tags": [] }
   }
 }

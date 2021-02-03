@@ -14,7 +14,31 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "ngx-bootstrap/utils": ["libs/utils/src/index.ts"],
+      "ngx-bootstrap/positioning": ["libs/positioning/src/index.ts"],
+      "ngx-bootstrap/component-loader": ["libs/component-loader/src/index.ts"],
+      "ngx-bootstrap/chronos": ["libs/chronos/src/index.ts"],
+      "ngx-bootstrap/locale": ["libs/locale/src/index.ts"],
+      "ngx-bootstrap/mini-ngrx": ["libs/mini-ngrx/src/index.ts"],
+      "ngx-bootstrap/accordion": ["libs/accordion/src/index.ts"],
+      "ngx-bootstrap/alert": ["libs/alert/src/index.ts"],
+      "ngx-bootstrap/dropdown": ["libs/dropdown/src/index.ts"],
+      "ngx-bootstrap/modal": ["libs/modal/src/index.ts"],
+      "ngx-bootstrap/collapse": ["libs/collapse/src/index.ts"],
+      "ngx-bootstrap/progressbar": ["libs/progressbar/src/index.ts"],
+      "ngx-bootstrap/tabs": ["libs/tabs/src/index.ts"],
+      "ngx-bootstrap/buttons": ["libs/buttons/src/index.ts"],
+      "ngx-bootstrap/pagination": ["libs/pagination/src/index.ts"],
+      "ngx-bootstrap/rating": ["libs/rating/src/index.ts"],
+      "ngx-bootstrap/timepicker": ["libs/timepicker/src/index.ts"],
+      "ngx-bootstrap/carousel": ["libs/carousel/src/index.ts"],
+      "ngx-bootstrap/datepicker": ["libs/datepicker/src/index.ts"],
+      "ngx-bootstrap/popover": ["libs/popover/src/index.ts"],
+      "ngx-bootstrap/sortable": ["libs/sortable/src/index.ts"],
+      "ngx-bootstrap/tooltip": ["libs/tooltip/src/index.ts"],
+      "ngx-bootstrap/typeahead": ["libs/typeahead/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
