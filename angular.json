@@ -599,19 +599,19 @@
     },
     "tabs": {
       "projectType": "library",
-      "root": "libs/tabs",
-      "sourceRoot": "libs/tabs/src",
+      "root": "src/tabs",
+      "sourceRoot": "src/tabs",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/tabs/tsconfig.lib.json",
-            "project": "libs/tabs/ng-package.json"
+            "tsConfig": "src/tabs/tsconfig.lib.json",
+            "project": "src/tabs/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/tabs/tsconfig.lib.prod.json"
+              "tsConfig": "src/tabs/tsconfig.lib.prod.json"
             }
           }
         },
@@ -619,16 +619,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/tabs/src/**/*.ts",
-              "libs/tabs/src/**/*.html"
+              "src/tabs/src/**/*.ts",
+              "src/tabs/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/tabs"],
+          "outputs": ["coverage/src/tabs"],
           "options": {
-            "jestConfig": "libs/tabs/jest.config.js",
+            "jestConfig": "src/tabs/jest.config.js",
             "passWithNoTests": true
           }
         }
