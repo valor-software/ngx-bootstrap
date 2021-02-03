@@ -14,7 +14,7 @@ module.exports = {
     '<rootDir>/src/collapse',
     '<rootDir>/libs/progressbar',
     '<rootDir>/libs/tabs',
-    '<rootDir>/libs/buttons',
+    '<rootDir>/src/buttons',
     '<rootDir>/libs/pagination',
     '<rootDir>/libs/rating',
     '<rootDir>/libs/timepicker',

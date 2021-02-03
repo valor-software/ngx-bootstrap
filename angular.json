@@ -634,19 +634,19 @@
     },
     "buttons": {
       "projectType": "library",
-      "root": "libs/buttons",
-      "sourceRoot": "libs/buttons/src",
+      "root": "src/buttons",
+      "sourceRoot": "src/buttons",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/buttons/tsconfig.lib.json",
-            "project": "libs/buttons/ng-package.json"
+            "tsConfig": "src/buttons/tsconfig.lib.json",
+            "project": "src/buttons/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/buttons/tsconfig.lib.prod.json"
+              "tsConfig": "src/buttons/tsconfig.lib.prod.json"
             }
           }
         },
@@ -654,16 +654,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/buttons/src/**/*.ts",
-              "libs/buttons/src/**/*.html"
+              "src/buttons/**/*.ts",
+              "src/buttons/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/buttons"],
+          "outputs": ["coverage/src/buttons"],
           "options": {
-            "jestConfig": "libs/buttons/jest.config.js",
+            "jestConfig": "src/buttons/jest.config.js",
             "passWithNoTests": true
           }
         }
