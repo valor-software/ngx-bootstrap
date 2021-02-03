@@ -562,19 +562,19 @@
     },
     "progressbar": {
       "projectType": "library",
-      "root": "libs/progressbar",
-      "sourceRoot": "libs/progressbar/src",
+      "root": "src/progressbar",
+      "sourceRoot": "src/progressbar",
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
           "options": {
-            "tsConfig": "libs/progressbar/tsconfig.lib.json",
-            "project": "libs/progressbar/ng-package.json"
+            "tsConfig": "src/progressbar/tsconfig.lib.json",
+            "project": "src/progressbar/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/progressbar/tsconfig.lib.prod.json"
+              "tsConfig": "src/progressbar/tsconfig.lib.prod.json"
             }
           }
         },
@@ -582,16 +582,16 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/progressbar/src/**/*.ts",
-              "libs/progressbar/src/**/*.html"
+              "src/progressbar/src/**/*.ts",
+              "src/progressbar/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/progressbar"],
+          "outputs": ["coverage/src/progressbar"],
           "options": {
-            "jestConfig": "libs/progressbar/jest.config.js",
+            "jestConfig": "src/progressbar/jest.config.js",
             "passWithNoTests": true
           }
         }

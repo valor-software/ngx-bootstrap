@@ -12,7 +12,7 @@ module.exports = {
     '<rootDir>/src/dropdown',
     '<rootDir>/src/modal',
     '<rootDir>/src/collapse',
-    '<rootDir>/libs/progressbar',
+    '<rootDir>/src/progressbar',
     '<rootDir>/libs/tabs',
     '<rootDir>/src/buttons',
     '<rootDir>/src/pagination',
