@@ -280,8 +280,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "src/carousel/src/**/*.ts",
-              "src/carousel/src/**/*.html"
+              "src/carousel/**/*.ts",
+              "src/carousel/**/*.html"
             ]
           }
         },
@@ -318,8 +318,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "src/chronos/src/**/*.ts",
-              "src/chronos/src/**/*.html"
+              "src/chronos/**/*.ts",
+              "src/chronos/**/*.html"
             ]
           }
         },
@@ -431,8 +431,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "src/datepicker/src/**/*.ts",
-              "src/datepicker/src/**/*.html"
+              "src/datepicker/**/*.ts",
+              "src/datepicker/**/*.html"
             ]
           }
         },
@@ -468,8 +468,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "src/dropdown/src/**/*.ts",
-              "src/dropdown/src/**/*.html"
+              "src/dropdown/**/*.ts",
+              "src/dropdown/**/*.html"
             ]
           }
         },
@@ -505,8 +505,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "src/locale/src/**/*.ts",
-              "src/locale/src/**/*.html"
+              "src/locale/**/*.ts",
+              "src/locale/**/*.html"
             ]
           }
         },
@@ -543,8 +543,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "src/mini-ngrx/src/**/*.ts",
-              "src/mini-ngrx/src/**/*.html"
+              "src/mini-ngrx/**/*.ts",
+              "src/mini-ngrx/**/*.html"
             ]
           }
         },
@@ -580,8 +580,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "src/modal/src/**/*.ts",
-              "src/modal/src/**/*.html"
+              "src/modal/**/*.ts",
+              "src/modal/**/*.html"
             ]
           }
         },
@@ -617,8 +617,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "src/pagination/src/**/*.ts",
-              "src/pagination/src/**/*.html"
+              "src/pagination/**/*.ts",
+              "src/pagination/**/*.html"
             ]
           }
         },
@@ -654,8 +654,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "src/popover/src/**/*.ts",
-              "src/popover/src/**/*.html"
+              "src/popover/**/*.ts",
+              "src/popover/**/*.html"
             ]
           }
         },
@@ -729,8 +729,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "src/progressbar/src/**/*.ts",
-              "src/progressbar/src/**/*.html"
+              "src/progressbar/**/*.ts",
+              "src/progressbar/**/*.html"
             ]
           }
         },
@@ -766,8 +766,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "src/rating/src/**/*.ts",
-              "src/rating/src/**/*.html"
+              "src/rating/**/*.ts",
+              "src/rating/**/*.html"
             ]
           }
         },
@@ -803,8 +803,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "src/sortable/src/**/*.ts",
-              "src/sortable/src/**/*.html"
+              "src/sortable/**/*.ts",
+              "src/sortable/**/*.html"
             ]
           }
         },
@@ -840,8 +840,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "src/tabs/src/**/*.ts",
-              "src/tabs/src/**/*.html"
+              "src/tabs/**/*.ts",
+              "src/tabs/**/*.html"
             ]
           }
         },
@@ -877,8 +877,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "src/timepicker/src/**/*.ts",
-              "src/timepicker/src/**/*.html"
+              "src/timepicker/**/*.ts",
+              "src/timepicker/**/*.html"
             ]
           }
         },
@@ -915,8 +915,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "src/tooltip/src/**/*.ts",
-              "src/tooltip/src/**/*.html"
+              "src/tooltip/**/*.ts",
+              "src/tooltip/**/*.html"
             ]
           }
         },

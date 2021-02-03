@@ -10,22 +10,6 @@
       ],
       "parserOptions": { "project": ["src/carousel/tsconfig.*?.json"] },
       "rules": {
-        "@angular-eslint/directive-selector": [
-          "error",
-          {
-            "type": "attribute",
-            "prefix": "ngx-bootstrap-base",
-            "style": "camelCase"
-          }
-        ],
-        "@angular-eslint/component-selector": [
-          "error",
-          {
-            "type": "element",
-            "prefix": "ngx-bootstrap-base",
-            "style": "kebab-case"
-          }
-        ]
       }
     },
     {
