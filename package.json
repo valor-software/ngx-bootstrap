@@ -34,7 +34,8 @@
     "update": "nx migrate latest",
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "cy:run:all": "APPLITOOLS_CONCURRENCY=100 cypress run --config integrationFolder=cypress --spec '**/*_spec.ts'"
   },
   "private": true,
   "keywords": [
