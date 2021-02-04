@@ -4,13 +4,19 @@ on: pull_request
 env:
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
+  CYPRESS_RECORD_KEY: 4aa7a1c0-3a4f-444e-b324-6fc305a543a8
 
 jobs:
   build_and_preview:
     runs-on: ubuntu-latest
 
+    outputs:
+      output_url: ${{ steps.firebase_hosting_preview.outputs.details_url }}
+
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
       - run: npm ci
       - run: npm run build -- --prod
       - run: npm run lint
@@ -28,6 +34,7 @@ jobs:
   test:
     name: Cypress run
     runs-on: ubuntu-latest
+    needs: build_and_preview
     strategy:
       # when one test fails, DO NOT cancel the other
       # containers, because this will kill Cypress processes
@@ -36,25 +43,11 @@ jobs:
       fail-fast: false
       matrix:
         # run 3 copies of the current job in parallel
-        containers: [1, 2, 3]
+        containers: [1]
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
-        with:
-          record: true
-          parallel: true
-          group: 'Actions example'
-        env:
-          CYPRESS_host: ${{steps.firebase_hosting_preview.outputs.url}}
-          CYPRESS_port: 80
-          # pass the Dashboard record key as an environment variable
-#          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          CYPRESS_RECORD_KEY: 4aa7a1c0-3a4f-444e-b324-6fc305a543a8
-          # Recommended: pass the GitHub token lets this action correctly
-          # determine the unique run id necessary to re-run the checks
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

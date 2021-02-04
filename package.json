@@ -71,6 +71,7 @@
     "@angular/cli": "~11.0.0",
     "@angular/compiler-cli": "^11.0.0",
     "@angular/language-service": "^11.0.0",
+    "@applitools/eyes.cypress": "3.4.11",
     "@ngneat/spectator": "7.0.0",
     "@nrwl/cli": "11.2.9",
     "@nrwl/cypress": "11.2.9",
