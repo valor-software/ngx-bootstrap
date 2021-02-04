@@ -49,10 +49,13 @@
             "tsConfig": "apps/ngx-bootstrap-docs/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "apps/ngx-bootstrap-docs/src/favicon.ico",
               "apps/ngx-bootstrap-docs/src/assets"
             ],
-            "styles": ["apps/ngx-bootstrap-docs/src/styles.scss"],
+            "styles": [
+              "src/datepicker/bs-datepicker.scss",
+              "apps/ngx-bootstrap-docs/src/assets/css/style.scss",
+              "apps/ngx-bootstrap-docs/src/assets/css/prettify-angulario.css"
+            ],
             "scripts": []
           },
           "configurations": {

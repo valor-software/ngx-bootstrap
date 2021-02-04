@@ -10,7 +10,7 @@ applyDomino(global, join(BROWSER_DIR, 'index.html'));
   imports: [
     AngularUniversalModule.forRoot({
       viewsPath: BROWSER_DIR,
-      bundle: require('./../../demo/dist/server/main.js')
+      bundle: require('../../_root/demo/dist/server/main.js')
     })
   ]
 })

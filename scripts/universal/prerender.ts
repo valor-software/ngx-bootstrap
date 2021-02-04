@@ -24,7 +24,7 @@ applyDomino(global, indexPath);
 const {
   AppServerModuleNgFactory,
   LAZY_MODULE_MAP
-} = require('../../demo/dist/server/main');
+} = require('../../_root/demo/dist/server/main');
 
 let previousRender = Promise.resolve();
 

@@ -16,7 +16,11 @@
     }
   },
   "projects": {
-    "ngx-bootstrap-docs": { "tags": [] },
+    "ngx-bootstrap-docs": { "tags": [], "implicitDependencies": [
+      "accordion", "alert", "buttons", "carousel", "chronos", "collapse", "datepicker",
+      "dropdown", "locale", "modal", "pagination", "popover", "progressbar", "rating",
+      "sortable", "tabs", "timepicker", "tooltip", "typeahead"
+    ] },
     "ngx-bootstrap-docs-e2e": {
       "tags": [],
       "implicitDependencies": ["ngx-bootstrap-docs"]
