@@ -1,6 +1,6 @@
 import { ProgressbarPo } from '../support/progressbar.po';
 
-describe('Progressbar demo page test suite', () => {
+describe('Progressbar demo page testing suite', () => {
   const progressbar = new ProgressbarPo();
 
   beforeEach(() => progressbar.navigateTo());

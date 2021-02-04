@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Inline Datepicker', () => {
+describe('Datepicker demo testing suite: Inline Datepicker', () => {
   const datepicker = new DatepickerPo();
   const inlineDatepicker = datepicker.exampleDemosArr.inlineDatepicker;
   const todayDay = new Date().getDate();

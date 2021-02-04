@@ -1,6 +1,6 @@
 import { AccordionPo } from '../support/accordion.po';
 
-describe('Accordion page test suite', () => {
+describe('Accordion page testing suite', () => {
   const accordion = new AccordionPo();
 
   beforeEach(() => accordion.navigateTo());

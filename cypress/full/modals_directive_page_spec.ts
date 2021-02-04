@@ -1,6 +1,6 @@
 import { ModalsPo } from '../support/modals.po';
 
-describe('Modals demo page test suite: Directive examples', () => {
+describe('Modals demo page testing suite: Directive examples', () => {
   const modals = new ModalsPo();
   beforeEach(() => modals.navigateTo());
 

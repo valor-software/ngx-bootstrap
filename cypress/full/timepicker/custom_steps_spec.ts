@@ -1,6 +1,6 @@
 import { TimepickerPo } from '../../support/timepicker.po';
 
-describe('Timepicker demo page test suite: Custom steps', () => {
+describe('Timepicker demo page testing suite: Custom steps', () => {
   const timepicker = new TimepickerPo();
   const customSteps = timepicker.exampleDemosArr.customSteps;
 

@@ -1,6 +1,6 @@
 import { AlertsPo } from '../support/alerts.po';
 
-describe('Alerts page test suite', () => {
+describe('Alerts page testing suite', () => {
   const alerts = new AlertsPo();
 
   beforeEach(() => alerts.navigateTo());

@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Select week', () => {
+describe('Datepicker demo testing suite: Select week', () => {
   const datepicker = new DatepickerPo();
   const selectWeek = datepicker.exampleDemosArr.selectWeek;
 

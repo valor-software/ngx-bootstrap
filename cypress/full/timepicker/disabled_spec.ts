@@ -1,6 +1,6 @@
 import { TimepickerPo } from '../../support/timepicker.po';
 
-describe('Timepicker demo page test suite: Disabled', () => {
+describe('Timepicker demo page testing suite: Disabled', () => {
   const timepicker = new TimepickerPo();
   const disabled = timepicker.exampleDemosArr.disabled;
 

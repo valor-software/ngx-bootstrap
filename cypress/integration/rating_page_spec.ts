@@ -1,6 +1,6 @@
 import { RatingPo } from '../support/rating.po';
 
-describe('Rating demo page test suite', () => {
+describe('Rating demo page testing suite', () => {
   const rating = new RatingPo();
 
   beforeEach(() => rating.navigateTo());

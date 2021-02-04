@@ -1,7 +1,7 @@
 import { ModalsPo } from '../support/modals.po';
 import { TooltipPo } from '../support/tooltip.po';
 
-describe('Modals demo page test suite: Service examples', () => {
+describe('Modals demo page testing suite: Service examples', () => {
   const modals = new ModalsPo();
   beforeEach(() => modals.navigateTo());
 

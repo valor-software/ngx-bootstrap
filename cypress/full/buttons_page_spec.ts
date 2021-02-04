@@ -1,6 +1,6 @@
 import { ButtonsPo } from '../support/buttons.po';
 
-describe('Buttons page test suite', () => {
+describe('Buttons page testing suite', () => {
   const buttons = new ButtonsPo();
   const buttonGroupSelector = buttons.buttonGroupSelector;
 

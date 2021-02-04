@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Initial state', () => {
+describe('Datepicker demo testing suite: Initial state', () => {
   const datepicker = new DatepickerPo();
   const initialState = datepicker.exampleDemosArr.initialState;
   const newDate = new Date();

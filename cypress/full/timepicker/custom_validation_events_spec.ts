@@ -1,6 +1,6 @@
 import { TimepickerPo } from '../../support/timepicker.po';
 
-describe('Timepicker demo page test suite: Custom validation with isValid event', () => {
+describe('Timepicker demo page testing suite: Custom validation with isValid event', () => {
   const timepicker = new TimepickerPo();
   const customEvent = timepicker.exampleDemosArr.isValidEvent;
 

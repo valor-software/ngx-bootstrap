@@ -1,6 +1,6 @@
 import { TimepickerPo } from '../../support/timepicker.po';
 
-describe('Timepicker demo page test suite: Readonly', () => {
+describe('Timepicker demo page testing suite: Readonly', () => {
   const timepicker = new TimepickerPo();
   const readonly = timepicker.exampleDemosArr.readonly;
 

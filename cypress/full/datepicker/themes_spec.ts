@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Themes', () => {
+describe('Datepicker demo testing suite: Themes', () => {
   const datepicker = new DatepickerPo();
   const themes = datepicker.exampleDemosArr.themes;
 

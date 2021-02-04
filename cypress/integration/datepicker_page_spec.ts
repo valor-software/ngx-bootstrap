@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../support/datepicker.po';
 
-describe('Datepicker demo page test suite', () => {
+describe('Datepicker demo page testing suite', () => {
   const datepicker = new DatepickerPo();
   const currentMonthNum: number = new Date().getMonth();
   const prevMonthStr: string = datepicker.monthNames[currentMonthNum === 0 ? 11 : currentMonthNum - 1];

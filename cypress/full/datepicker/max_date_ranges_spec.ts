@@ -1,6 +1,6 @@
 import {DatepickerPo} from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Max-Date-Range', () => {
+describe('Datepicker demo testing suite: Max-Date-Range', () => {
   const datepicker = new DatepickerPo();
   const maxDateRange = datepicker.exampleDemosArr.maxDateRange;
 

@@ -1,6 +1,6 @@
 import { CarouselPo } from '../support/carousel.po';
 
-describe('Carousel page test suite', () => {
+describe('Carousel page testing suite', () => {
   const carousel = new CarouselPo();
 
   beforeEach(() => {

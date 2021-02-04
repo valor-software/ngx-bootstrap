@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Min-mode', () => {
+describe('Datepicker demo testing suite: Min-mode', () => {
   const datepicker = new DatepickerPo();
   const minMode = datepicker.exampleDemosArr.minMode;
 

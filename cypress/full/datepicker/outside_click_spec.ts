@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Outside click', () => {
+describe('Datepicker demo testing suite: Outside click', () => {
   const datepicker = new DatepickerPo();
   const outsideClick = datepicker.exampleDemosArr.outsideClick;
 

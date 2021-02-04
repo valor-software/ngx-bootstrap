@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Reactive forms', () => {
+describe('Datepicker demo testing suite: Reactive forms', () => {
   const datepicker = new DatepickerPo();
   const reactiveForms = datepicker.exampleDemosArr.reactiveForms;
 

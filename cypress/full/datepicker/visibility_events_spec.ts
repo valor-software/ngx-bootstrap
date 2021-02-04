@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Visibility Events', () => {
+describe('Datepicker demo testing suite: Visibility Events', () => {
   const datepicker = new DatepickerPo();
   const visibilityEvents = datepicker.exampleDemosArr.visibilityEvents;
 

@@ -26,7 +26,7 @@ export function checkDynamicProgressbar() {
 }
 
 // TODO: Tests are broken with Angular latest on Travis, need to investigate, excluded for now
-xdescribe('Progressbar demo page test suite', () => {
+xdescribe('Progressbar demo page testing suite', () => {
   const progressbar = new ProgressbarPo();
 
   beforeEach(() => progressbar.navigateTo());

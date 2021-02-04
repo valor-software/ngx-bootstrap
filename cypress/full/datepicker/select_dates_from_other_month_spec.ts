@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Select dates from other month', () => {
+describe('Datepicker demo testing suite: Select dates from other month', () => {
   const datepicker = new DatepickerPo();
   const selectDatesFromOtherMonths = datepicker.exampleDemosArr.selectFromOtherMonth;
 

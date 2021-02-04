@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Placement', () => {
+describe('Datepicker demo testing suite: Placement', () => {
   const datepicker = new DatepickerPo();
   const placement = datepicker.exampleDemosArr.placement;
 

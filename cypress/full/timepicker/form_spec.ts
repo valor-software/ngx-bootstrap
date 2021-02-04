@@ -1,6 +1,6 @@
 import { TimepickerPo } from '../../support/timepicker.po';
 
-describe('Timepicker demo page test suite: Form', () => {
+describe('Timepicker demo page testing suite: Form', () => {
   const timepicker = new TimepickerPo();
   const form = timepicker.exampleDemosArr.form;
 

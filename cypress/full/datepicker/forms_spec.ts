@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Forms', () => {
+describe('Datepicker demo testing suite: Forms', () => {
   const datepicker = new DatepickerPo();
   const forms = datepicker.exampleDemosArr.forms;
 

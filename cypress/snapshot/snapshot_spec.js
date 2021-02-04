@@ -4,7 +4,7 @@ import { ModalsPo } from '../support/modals.po';
 import { TabsPo } from '../support/tabs.po';
 import { TypeaheadPo } from '../support/typeahead.po';
 
-describe('Snapshot test', () => {
+describe('Snapshot testing', () => {
   const componentsArray = [
     new DatepickerPo(),
     new DropdownsPo(),

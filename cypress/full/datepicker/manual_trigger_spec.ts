@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Manual triggering', () => {
+describe('Datepicker demo testing suite: Manual triggering', () => {
   const datepicker = new DatepickerPo();
   const manualTrigger = datepicker.exampleDemosArr.manualTrigger;
 

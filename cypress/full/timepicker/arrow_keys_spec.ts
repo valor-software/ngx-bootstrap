@@ -1,6 +1,6 @@
 import { TimepickerPo } from '../../support/timepicker.po';
 
-describe('Timepicker demo page test suite: Arrow Keys', () => {
+describe('Timepicker demo page testing suite: Arrow Keys', () => {
   const timepicker = new TimepickerPo();
   const arrowKeys = timepicker.exampleDemosArr.arrowKeys;
   const btnEnableDisable = 'Enable / Disable keyboard arrow keys';

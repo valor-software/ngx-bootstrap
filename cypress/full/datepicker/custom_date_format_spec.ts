@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Custom date format', () => {
+describe('Datepicker demo testing suite: Custom date format', () => {
   const datepicker = new DatepickerPo();
   const customFormat = datepicker.exampleDemosArr.customFormat;
   const newDate = new Date();

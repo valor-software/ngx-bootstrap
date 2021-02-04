@@ -1,6 +1,6 @@
 import { TimepickerPo } from '../../support/timepicker.po';
 
-describe('Timepicker demo page test suite: Meridian', () => {
+describe('Timepicker demo page testing suite: Meridian', () => {
   const timepicker = new TimepickerPo();
   const meridian = timepicker.exampleDemosArr.meridian;
 

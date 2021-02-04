@@ -1,6 +1,6 @@
 import { TimepickerPo } from '../../support/timepicker.po';
 
-describe('Timepicker demo page test suite: Min - Max', () => {
+describe('Timepicker demo page testing suite: Min - Max', () => {
   const timepicker = new TimepickerPo();
   const minMax = timepicker.exampleDemosArr.minMax;
   const maxHours = 5;

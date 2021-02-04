@@ -1,6 +1,6 @@
 import { TimepickerPo } from '../support/timepicker.po';
 
-describe('Timepicker demo page test suite', () => {
+describe('Timepicker demo page testing suite', () => {
   const timepicker = new TimepickerPo();
 
   beforeEach(() => timepicker.navigateTo());

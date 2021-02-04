@@ -6,7 +6,7 @@
     "types": ["jest", "node"]
   },
   "files": [
-    "test-setup.ts"
-  ],ц
+    "testing/test-setup.ts"
+  ],
   "include": ["**/*.spec.ts", "**/*.d.ts"]
 }

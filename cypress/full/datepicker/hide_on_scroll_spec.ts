@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Hide on scroll', () => {
+describe('Datepicker demo testing suite: Hide on scroll', () => {
   const datepicker = new DatepickerPo();
   const hideOnScroll = datepicker.exampleDemosArr.hideOnScroll;
 

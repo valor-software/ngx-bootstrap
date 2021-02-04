@@ -645,14 +645,14 @@ export const ngdoc: any = {
     "properties": []
   },
   "MomentFn": {
-    "fileName": "src/chronos/test/chain.ts",
+    "fileName": "src/chronos/testing/chain.ts",
     "className": "MomentFn",
     "description": "",
     "methods": [],
     "properties": []
   },
   "MomentInputObject": {
-    "fileName": "src/chronos/test/chain.ts",
+    "fileName": "src/chronos/testing/chain.ts",
     "className": "MomentInputObject",
     "description": "",
     "methods": [],

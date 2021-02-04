@@ -1,6 +1,6 @@
 import { CollapsePo } from '../support/collapse.po';
 
-describe('Collapse demo page test suite', () => {
+describe('Collapse demo page testing suite', () => {
   const collapse = new CollapsePo();
 
   beforeEach(() => collapse.navigateTo());

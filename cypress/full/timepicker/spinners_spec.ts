@@ -1,6 +1,6 @@
 import { TimepickerPo } from '../../support/timepicker.po';
 
-describe('Timepicker demo page test suite: Spinners', () => {
+describe('Timepicker demo page testing suite: Spinners', () => {
   const timepicker = new TimepickerPo();
   const spinners = timepicker.exampleDemosArr.spinners;
   const newDate = new Date();

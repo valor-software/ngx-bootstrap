@@ -1,6 +1,6 @@
 import { TimepickerPo } from '../../support/timepicker.po';
 
-describe('Timepicker demo page test suite: Mouse wheel', () => {
+describe('Timepicker demo page testing suite: Mouse wheel', () => {
   const timepicker = new TimepickerPo();
   const mouseWheel = timepicker.exampleDemosArr.mousewheel;
 

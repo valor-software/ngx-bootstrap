@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Config method', () => {
+describe('Datepicker demo testing suite: Config method', () => {
   const datepicker = new DatepickerPo();
   const configMethod = datepicker.exampleDemosArr.configMethod;
 

@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Days disabled', () => {
+describe('Datepicker demo testing suite: Days disabled', () => {
   const datepicker = new DatepickerPo();
   const daysDisabled = datepicker.exampleDemosArr.daysDisabled;
 

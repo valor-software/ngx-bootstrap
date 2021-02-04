@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Quick-select-ranges', () => {
+describe('Datepicker demo testing suite: Quick-select-ranges', () => {
   const datepicker = new DatepickerPo();
   const quickSelectRange = datepicker.exampleDemosArr.quickSelectRange;
 

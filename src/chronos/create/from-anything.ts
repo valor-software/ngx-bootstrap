@@ -10,7 +10,7 @@ import { configFromString } from './from-string';
 import { configFromArray } from './from-array';
 import { configFromObject } from './from-object';
 import { checkOverflow } from './check-overflow';
-import { DateInput } from '../test/chain';
+import { DateInput } from '../testing/chain';
 
 function createFromConfig(config: DateParsingConfig): DateParsingConfig {
   const res = checkOverflow(prepareConfig(config));
@@ -95,7 +95,7 @@ export function createLocalOrUTC(input: DateInput, format?: string | string[], l
   const config: DateParsingConfig = {};
   let _input = input;
 
-  // params switch -> skip; test it well
+  // params switch -> skip; testing it well
   // if (localeKey === true || localeKey === false) {
   //     strict = localeKey;
   //     localeKey = undefined;

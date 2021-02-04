@@ -1,6 +1,6 @@
 import { PaginationPo } from '../support/pagination.po';
 
-describe('Pagination demo page test suite', () => {
+describe('Pagination demo page testing suite', () => {
   const pagination = new PaginationPo();
 
   beforeEach(() => pagination.navigateTo());

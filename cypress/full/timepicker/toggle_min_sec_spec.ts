@@ -1,6 +1,6 @@
 import { TimepickerPo } from '../../support/timepicker.po';
 
-describe('Timepicker demo page test suite: Toggle minutes/seconds', () => {
+describe('Timepicker demo page testing suite: Toggle minutes/seconds', () => {
   const timepicker = new TimepickerPo();
   const toggleMinSec = timepicker.exampleDemosArr.toggleMinSec;
 

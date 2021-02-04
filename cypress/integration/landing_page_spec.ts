@@ -1,6 +1,6 @@
 import { LandingPo } from '../support/landing.po';
 
-describe('Landing Page test suite', () => {
+describe('Landing Page testing suite', () => {
   const landing = new LandingPo();
 
   beforeEach(() => landing.navigateTo());

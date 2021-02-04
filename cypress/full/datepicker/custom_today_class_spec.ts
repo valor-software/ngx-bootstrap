@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Custom today class', () => {
+describe('Datepicker demo testing suite: Custom today class', () => {
   const datepicker = new DatepickerPo();
   const customToday = datepicker.exampleDemosArr.customTodayClass;
 

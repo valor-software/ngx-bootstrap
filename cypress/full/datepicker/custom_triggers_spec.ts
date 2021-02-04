@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Custom triggers', () => {
+describe('Datepicker demo testing suite: Custom triggers', () => {
   const datepicker = new DatepickerPo();
   const customTriggers = datepicker.exampleDemosArr.customTriggers;
   const currentMonthNum: number = new Date().getMonth();

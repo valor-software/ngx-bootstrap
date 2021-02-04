@@ -15,6 +15,6 @@
     "enableResourceInlining": true
   },
   "exclude": [
-    "test-setup.ts", "**/*.spec.ts"],
+    "testing/test-setup.ts", "**/*.spec.ts"],
   "include": ["**/*.ts"]
 }

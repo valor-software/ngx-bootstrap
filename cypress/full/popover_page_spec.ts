@@ -1,6 +1,6 @@
 import { PopoverPo } from '../support/popover.po';
 
-describe('Popover demo page test suite', () => {
+describe('Popover demo page testing suite', () => {
 
   const popover = new PopoverPo();
 

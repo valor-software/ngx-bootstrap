@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Value change event', () => {
+describe('Datepicker demo testing suite: Value change event', () => {
   const datepicker = new DatepickerPo();
   const valueChangeEvent = datepicker.exampleDemosArr.valueChangeEvent;
 

@@ -1,6 +1,6 @@
 import { DropdownsPo } from '../support/dropdowns.po';
 
-describe('Dropdowns demo page test suite', () => {
+describe('Dropdowns demo page testing suite', () => {
   const dropdowns = new DropdownsPo();
 
   beforeEach(() => {

@@ -1,6 +1,6 @@
 import { SortablePo } from '../support/sortable.po';
 
-describe('Sortable demo page test suite', () => {
+describe('Sortable demo page testing suite', () => {
   const sortable = new SortablePo();
 
   beforeEach(() => sortable.navigateTo());

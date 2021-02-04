@@ -1,6 +1,6 @@
 import { TimepickerPo } from '../../support/timepicker.po';
 
-describe('Timepicker demo page test suite: Configuring defaults', () => {
+describe('Timepicker demo page testing suite: Configuring defaults', () => {
   const timepicker = new TimepickerPo();
   const configDefaults = timepicker.exampleDemosArr.configDefaults;
 

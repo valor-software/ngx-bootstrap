@@ -22,7 +22,7 @@ env:
     - CYPRESS_RECORD_KEY=4aa7a1c0-3a4f-444e-b324-6fc305a543a8
     - NPM_AUTH_TOKEN_CI_PR=$(./scripts/ci/npm-ci-key.sh)
 
-#     test cypress smoke
+#     testing cypress smoke
 testSmokeCy: &testSmokeCy
   script:
   - ng serve --prod &
@@ -81,7 +81,7 @@ jobs:
   #        chrome: stable
   #        apt:
   #          sources:
-  #          - ubuntu-toolchain-r-test
+  #          - ubuntu-toolchain-r-testing
   #          # required by node-gyp to build some packages
   #          packages:
   #          - g++-4.8
@@ -104,14 +104,14 @@ jobs:
     script: npm run lint-src
     name: "Lint"
     install: true
-  #   test
-  - script: npm run test-coverage
+  #   testing
+  - script: npm run testing-coverage
     name: "Test with current Angular version"
     after_success: ./node_modules/.bin/codecov
-  - script: ng test && tsc -p schematics/tsconfig.json && npm run test:schematics
+  - script: ng testing && tsc -p schematics/tsconfig.json && npm run testing:schematics
     name: "Test with latest Angular version"
     env: NGV=latest
-  - script: ng test && tsc -p schematics/tsconfig.json && npm run test:schematics
+  - script: ng testing && tsc -p schematics/tsconfig.json && npm run testing:schematics
     name: "Test with next Angular version"
     env: NGV=next
   - script:
@@ -128,7 +128,7 @@ jobs:
   - script: npm run demo.ng-build
     name: "Check prod build with next Angular version"
     env: NGV=next
-  - script: npm run test-cross
+  - script: npm run testing-cross
     name: sauce-tests
     env: SAUCE=true
     addons:
@@ -212,7 +212,7 @@ jobs:
       on:
         tags: true
 
-  #     test cypress full for herokuapp
+  #     testing cypress full for herokuapp
   - stage: "post deploy testing"
     #      name: "Run cypress to check SSR"
     #      env: URL=https://ngx-universal.herokuapp.com/#
@@ -234,7 +234,7 @@ jobs:
     - GROUP_NAME=SSR
     - BASE_URL=https://ngx-universal.herokuapp.com/#/
     <<: *testPostDeploy
-  #     test cypress full for gh-pages
+  #     testing cypress full for gh-pages
   - script:
     name: "Cypress with @latest angular 1thread"
     env:

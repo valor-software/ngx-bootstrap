@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Trigger by isOpen property', () => {
+describe('Datepicker demo testing suite: Trigger by isOpen property', () => {
   const datepicker = new DatepickerPo();
   const triggerByIsOpen = datepicker.exampleDemosArr.triggerByIsOpen;
 

@@ -1,6 +1,6 @@
 import { TimepickerPo } from '../../support/timepicker.po';
 
-describe('Timepicker demo page test suite: Dynamic', () => {
+describe('Timepicker demo page testing suite: Dynamic', () => {
   const timepicker = new TimepickerPo();
   const dynamic = timepicker.exampleDemosArr.dynamic;
   const btnSet1400 = 'Set to 14:00';

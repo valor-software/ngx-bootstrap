@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../../support/datepicker.po';
 
-describe('Datepicker demo test suite: Min-max', () => {
+describe('Datepicker demo testing suite: Min-max', () => {
   const datepicker = new DatepickerPo();
   const minMax = datepicker.exampleDemosArr.minMax;
 
