@@ -190,6 +190,10 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
           :  [day.date];
     }
 
+    if (this._config.maxDateRange) {
+      this.setMaxDateRangeOnCalendar(day.date);
+    }
+
     if (this._rangeStack.length === 0) {
       this._rangeStack = [day.date];
 
@@ -218,8 +222,19 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   }
 
   setMaxDateRangeOnCalendar(currentSelection: Date): void {
-    const maxDateRange = new Date(currentSelection);
-    maxDateRange.setDate(currentSelection.getDate() + this._config.maxDateRange);
+    let maxDateRange = new Date(currentSelection);
+
+    if (this._config.maxDate) {
+      const maxDateValue = this._config.maxDate.getDate();
+      if (maxDateValue > (currentSelection.getDate() + this._config.maxDateRange)) {
+        maxDateRange = new Date(this._config.maxDate);
+      } else {
+        maxDateRange.setDate(currentSelection.getDate() + this._config.maxDateRange);
+      }
+    } else {
+      maxDateRange.setDate(currentSelection.getDate() + this._config.maxDateRange);
+    }
+
     this._effects.setMaxDate(maxDateRange);
   }
 
