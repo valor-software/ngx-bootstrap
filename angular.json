@@ -158,6 +158,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/accordion"],
           "options": {
             "tsConfig": "src/accordion/tsconfig.lib.json",
             "project": "src/accordion/ng-package.json"
@@ -195,6 +196,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/alert"],
           "options": {
             "tsConfig": "src/alert/tsconfig.lib.json",
             "project": "src/alert/ng-package.json"
@@ -232,6 +234,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/buttons"],
           "options": {
             "tsConfig": "src/buttons/tsconfig.lib.json",
             "project": "src/buttons/ng-package.json"
@@ -269,6 +272,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/carousel"],
           "options": {
             "tsConfig": "src/carousel/tsconfig.lib.json",
             "project": "src/carousel/ng-package.json"
@@ -420,6 +424,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/datepicker"],
           "options": {
             "tsConfig": "src/datepicker/tsconfig.lib.json",
             "project": "src/datepicker/ng-package.json"
@@ -457,6 +462,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/dropdown"],
           "options": {
             "tsConfig": "src/dropdown/tsconfig.lib.json",
             "project": "src/dropdown/ng-package.json"
@@ -494,6 +500,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/locale"],
           "options": {
             "tsConfig": "src/locale/tsconfig.lib.json",
             "project": "src/locale/ng-package.json"
@@ -569,6 +576,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/modal"],
           "options": {
             "tsConfig": "src/modal/tsconfig.lib.json",
             "project": "src/modal/ng-package.json"
@@ -606,6 +614,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/pagination"],
           "options": {
             "tsConfig": "src/pagination/tsconfig.lib.json",
             "project": "src/pagination/ng-package.json"
@@ -643,6 +652,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/popover"],
           "options": {
             "tsConfig": "src/popover/tsconfig.lib.json",
             "project": "src/popover/ng-package.json"
@@ -718,6 +728,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/progressbar"],
           "options": {
             "tsConfig": "src/progressbar/tsconfig.lib.json",
             "project": "src/progressbar/ng-package.json"
@@ -755,6 +766,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/rating"],
           "options": {
             "tsConfig": "src/rating/tsconfig.lib.json",
             "project": "src/rating/ng-package.json"
@@ -830,6 +842,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/tabs"],
           "options": {
             "tsConfig": "src/tabs/tsconfig.lib.json",
             "project": "src/tabs/ng-package.json"
@@ -867,6 +880,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/timepicker"],
           "options": {
             "tsConfig": "src/timepicker/tsconfig.lib.json",
             "project": "src/timepicker/ng-package.json"
@@ -942,6 +956,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
+          "outputs": ["node_modules/ngx-bootstrap/typeahead"],
           "options": {
             "tsConfig": "src/typeahead/tsconfig.lib.json",
             "project": "src/typeahead/ng-package.json"
