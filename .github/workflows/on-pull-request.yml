@@ -33,6 +33,11 @@ jobs:
     name: Cypress run
     runs-on: ubuntu-latest
     needs: build_and_preview
+    env:
+      MOZ_HEADLESS: 1
+      SAUCE_USERNAME_PR: valorkinpr
+      SAUCE_ACCESS_KEY_PR: e0a97bd3-4b74-4408-89bf-cce1b44a8bf1
+      CYPRESS_RECORD_KEY: 4aa7a1c0-3a4f-444e-b324-6fc305a543a8
     strategy:
       # when one test fails, DO NOT cancel the other
       # containers, because this will kill Cypress processes
@@ -45,8 +50,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: npm ci
-      - run: npm run build
-      - run: npm run e2e -- --baseUrl=${{steps.firebase_hosting_preview.outputs.url}}/#
+      - run: npm run build -- --prod
+      - run: npm run e2e -- --baseUrl=${{ needs.build_and_preview.outputs.output_url }}/# --record --parallel
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves
 
