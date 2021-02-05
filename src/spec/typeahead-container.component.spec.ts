@@ -1,8 +1,8 @@
 /* tslint:disable: max-file-line-count */
-import { asNativeElements } from '@angular/core';
+import { TestBed, ComponentFixture, tick, fakeAsync } from '@angular/core/testing';
+import { asNativeElements, EventEmitter } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
-import { TestBed, ComponentFixture, tick, fakeAsync } from '@angular/core/testing';
 import { Subject } from 'rxjs';
 
 import { PositioningService } from 'ngx-bootstrap/positioning';
@@ -49,7 +49,8 @@ describe('Component: TypeaheadContainer', () => {
           useValue: new TypeaheadConfig()
         },
         { provide: PositioningService,
-          useClass: PositionServiceMock}
+          useClass: PositionServiceMock
+        }
       ]
     });
     fixture = testModule.createComponent(TypeaheadContainerComponent);
@@ -61,9 +62,15 @@ describe('Component: TypeaheadContainer', () => {
       typeaheadIsFirstItemActive: true
     } as TypeaheadDirective;
 
+    component.parent.typeaheadOnPreview = new EventEmitter<TypeaheadMatch>();
+
     fixture.detectChanges();
     tick(1);
   }));
+
+  afterAll(() => {
+    TestBed.resetTestingModule();
+  });
 
   it('selectMatch should not be called if active was not existed' , () => {
     component.selectActiveMatch();
@@ -183,6 +190,8 @@ describe('Component: TypeaheadContainer', () => {
         typeaheadSelectFirstItem: true,
         typeaheadIsFirstItemActive: true
       } as TypeaheadDirective;
+
+      component.parent.typeaheadOnPreview = new EventEmitter<TypeaheadMatch>();
 
       component.query = 'fo';
       component.matches = [
@@ -322,6 +331,7 @@ describe('Component: TypeaheadContainer', () => {
         typeaheadSelectFirstItem: true,
         typeaheadIsFirstItemActive: true
       } as TypeaheadDirective;
+      component.parent.typeaheadOnPreview = new EventEmitter<TypeaheadMatch>();
 
       component.query = 'a';
       component.matches = [
@@ -387,6 +397,7 @@ describe('Component: TypeaheadContainer', () => {
         typeaheadScrollable: true,
         typeaheadIsFirstItemActive: true
       } as TypeaheadDirective;
+      component.parent.typeaheadOnPreview = new EventEmitter<TypeaheadMatch>();
 
       fixture.detectChanges();
       tick(1);
@@ -530,6 +541,7 @@ describe('Component: TypeaheadContainer', () => {
       component.parent = {
         typeaheadIsFirstItemActive: false
       } as TypeaheadDirective;
+      component.parent.typeaheadOnPreview = new EventEmitter<TypeaheadMatch>();
 
       component.query = 'fo';
       component.matches = [

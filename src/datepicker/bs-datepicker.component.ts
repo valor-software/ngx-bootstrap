@@ -69,6 +69,16 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
     if (this._bsValue && value && this._bsValue.getTime() === value.getTime()) {
       return;
     }
+
+    if (!this._bsValue && value) {
+      const now = new Date();
+
+      value.setMilliseconds(now.getMilliseconds());
+      value.setSeconds(now.getSeconds());
+      value.setMinutes(now.getMinutes());
+      value.setHours(now.getHours());
+    }
+
     this._bsValue = value;
     this.bsValueChange.emit(value);
   }

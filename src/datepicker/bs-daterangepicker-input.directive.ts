@@ -4,6 +4,8 @@ import {
   ElementRef,
   forwardRef,
   Host,
+  OnDestroy,
+  OnInit,
   Provider,
   Renderer2
 } from '@angular/core';
@@ -30,6 +32,7 @@ import {
 
 import { BsDaterangepickerDirective } from './bs-daterangepicker.component';
 import { BsLocaleService } from './bs-locale.service';
+import { Subscription } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 
 const BS_DATERANGEPICKER_VALUE_ACCESSOR: Provider = {
@@ -58,38 +61,48 @@ const BS_DATERANGEPICKER_VALIDATOR: Provider = {
   providers: [BS_DATERANGEPICKER_VALUE_ACCESSOR, BS_DATERANGEPICKER_VALIDATOR]
 })
 export class BsDaterangepickerInputDirective
-  implements ControlValueAccessor, Validator {
+  implements ControlValueAccessor, Validator, OnInit, OnDestroy {
   private _onChange = Function.prototype;
   private _onTouched = Function.prototype;
   /* tslint:disable-next-line: no-unused-variable */
   private _validatorChange = Function.prototype;
   private _value: Date[];
+  private _subs = new Subscription();
 
   constructor(@Host() private _picker: BsDaterangepickerDirective,
               private _localeService: BsLocaleService,
               private _renderer: Renderer2,
               private _elRef: ElementRef,
               private changeDetection: ChangeDetectorRef) {
+  }
+
+  ngOnInit() {
     // update input value on datepicker value update
-    this._picker.bsValueChange.subscribe((value: Date[]) => {
-      this._setInputValue(value);
-      if (this._value !== value) {
-        this._value = value;
-        this._onChange(value);
-        this._onTouched();
-      }
-      this.changeDetection.markForCheck();
-    });
+    this._subs.add(
+      this._picker.bsValueChange.subscribe((value: Date[]) => {
+        this._setInputValue(value);
+        if (this._value !== value) {
+          this._value = value;
+          this._onChange(value);
+          this._onTouched();
+        }
+        this.changeDetection.markForCheck();
+      }));
 
     // update input value on locale change
-    this._localeService.localeChange.subscribe(() => {
+    this._subs.add(this._localeService.localeChange.subscribe(() => {
       this._setInputValue(this._value);
-    });
+    }));
 
-    // update input value on format change
-    this._picker.rangeInputFormat$.pipe(distinctUntilChanged()).subscribe(() => {
-      this._setInputValue(this._value);
-    });
+    this._subs.add(
+      // update input value on format change
+      this._picker.rangeInputFormat$.pipe(distinctUntilChanged()).subscribe(() => {
+        this._setInputValue(this._value);
+      }));
+  }
+
+  ngOnDestroy() {
+    this._subs.unsubscribe();
   }
 
   onKeydownEvent(event) {
@@ -181,17 +194,20 @@ export class BsDaterangepickerInputDirective
         );
       }
 
-      let _input: (string[] | Date[]) = [];
+      let _input: (string | Date)[] = [];
       if (typeof value === 'string') {
-        _input = value.split(this._picker._config.rangeSeparator);
+        const trimmedSeparator = this._picker._config.rangeSeparator.trim();
+        _input = value
+          .split(trimmedSeparator.length > 0 ? trimmedSeparator : this._picker._config.rangeSeparator)
+          .map(_val => _val.trim());
       }
 
       if (Array.isArray(value)) {
         _input = value;
       }
 
-      this._value = (_input as string[])
-        .map((_val: string): Date => {
+      this._value = _input
+        .map((_val: string | Date): Date => {
             if (this._picker._config.useUtc) {
               return utcAsLocal(
                 parseDate(_val, this._picker._config.rangeInputFormat, this._localeService.currentLocale)

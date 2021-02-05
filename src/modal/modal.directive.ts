@@ -14,6 +14,7 @@ import {
   CLASS_NAME, DISMISS_REASONS, modalConfigDefaults, ModalOptions, MODAL_CONFIG_DEFAULT_OVERRIDE
 } from './modal-options.class';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
+import { CloseInterceptorFn } from './models';
 
 const TRANSITION_DURATION = 300;
 const BACKDROP_TRANSITION_DURATION = 150;
@@ -33,6 +34,9 @@ export class ModalDirective implements OnDestroy, OnInit {
   get config(): ModalOptions {
     return this._config;
   }
+
+  /** allows to provide a callback to intercept the closure of the modal */
+  @Input() closeInterceptor: CloseInterceptorFn;
 
   /** This event fires immediately when the `show` instance method is called. */
   @Output()
@@ -185,18 +189,35 @@ export class ModalDirective implements OnDestroy, OnInit {
     });
   }
 
-  /** Allows to manually close modal */
+  /** Check if we can close the modal */
   hide(event?: Event): void {
+    if (!this._isShown) {
+      return;
+    }
+
     if (event) {
       event.preventDefault();
     }
 
-    this.onHide.emit(this);
+    if (this.config.closeInterceptor) {
+      this.config.closeInterceptor().then(
+        () => this._hide(),
+        () => undefined);
 
-    // todo: add an option to prevent hiding
-    if (!this._isShown) {
       return;
     }
+
+    this._hide();
+  }
+
+  /** Private methods @internal */
+
+  /**
+   *  Manually close modal
+   *  @internal
+   */
+  protected _hide(): void {
+    this.onHide.emit(this);
 
     window.clearTimeout(this.timerHideModal);
     window.clearTimeout(this.timerRmBackDrop);
@@ -218,7 +239,6 @@ export class ModalDirective implements OnDestroy, OnInit {
     }
   }
 
-  /** Private methods @internal */
   protected getConfig(config?: ModalOptions): ModalOptions {
     return Object.assign({}, this._config, config);
   }

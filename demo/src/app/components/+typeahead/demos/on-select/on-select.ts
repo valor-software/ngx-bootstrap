@@ -8,6 +8,7 @@ import { TypeaheadMatch } from 'ngx-bootstrap/typeahead/typeahead-match.class';
 export class DemoTypeaheadOnSelectComponent {
   selectedValue: string;
   selectedOption: any;
+  previewOption: any = null;
   states: any[] = [
     { id: 1, name: 'Alabama', region: 'South' },
     { id: 2, name: 'Alaska', region: 'West' },
@@ -63,5 +64,13 @@ export class DemoTypeaheadOnSelectComponent {
 
   onSelect(event: TypeaheadMatch): void {
     this.selectedOption = event.item;
+  }
+
+  onPreview(event: TypeaheadMatch): void {
+    if (event) {
+      this.previewOption = event.item;
+    } else {
+      this.previewOption = null;
+    }
   }
 }

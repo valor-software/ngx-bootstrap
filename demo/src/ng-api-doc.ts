@@ -2468,6 +2468,11 @@ export const ngdoc: any = {
         "description": "<p>Allow user to ID for the modal. Otherwise, a unique number will be given</p>\n"
       },
       {
+        "name": "closeInterceptor",
+        "type": "CloseInterceptorFn",
+        "description": "<p>Function to intercept the closure</p>\n"
+      },
+      {
         "name": "ignoreBackdropClick",
         "type": "boolean",
         "description": "<p>Ignore the backdrop click</p>\n"
@@ -2501,6 +2506,11 @@ export const ngdoc: any = {
     "selector": "[bsModal]",
     "exportAs": "bs-modal",
     "inputs": [
+      {
+        "name": "closeInterceptor",
+        "type": "CloseInterceptorFn",
+        "description": "<p>allows to provide a callback to intercept the closure of the modal</p>\n"
+      },
       {
         "name": "config",
         "type": "ModalOptions",
@@ -2552,7 +2562,7 @@ export const ngdoc: any = {
       },
       {
         "name": "hide",
-        "description": "<p>Allows to manually close modal</p>\n",
+        "description": "<p>Check if we can close the modal</p>\n",
         "args": [
           {
             "name": "event",
@@ -4290,8 +4300,12 @@ export const ngdoc: any = {
         "description": "<p>fired when blur event occurs. returns the active item</p>\n"
       },
       {
+        "name": "typeaheadOnPreview",
+        "description": "<p>fired when option was previewed, return object with data of this option. </p>\n"
+      },
+      {
         "name": "typeaheadOnSelect",
-        "description": "<p>fired when option was selected, return object with data of this option</p>\n"
+        "description": "<p>fired when option was selected, return object with data of this option. </p>\n"
       }
     ],
     "properties": [

@@ -7,6 +7,7 @@ import { DemoModalEventsComponent } from './events/events';
 
 import { DemoModalServiceStaticComponent } from './service-template/service-template';
 import { DemoModalServiceFromComponent } from './service-component/service-component';
+import { DemoModalServiceWithInterceptorComponent } from './service-interceptor/service-interceptor';
 import { DemoModalServiceNestedComponent } from './service-nested/service-nested';
 import { DemoModalServiceDisableAnimationComponent } from './service-options/disable-animation/disable-animation';
 import { DemoModalServiceCustomCSSClassComponent } from './service-options/custom-css-class/custom-css-class';
@@ -28,6 +29,7 @@ export const DEMO_COMPONENTS = [
   DemoModalNestedComponent,
   DemoModalServiceStaticComponent,
   DemoModalServiceFromComponent,
+  DemoModalServiceWithInterceptorComponent,
   DemoModalServiceNestedComponent,
   DemoModalServiceCustomCSSClassComponent,
   DemoModalServiceDisableAnimationComponent,

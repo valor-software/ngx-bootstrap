@@ -1,8 +1,16 @@
 <pre class="card card-block card-header mb-3">Model: {{selectedValue | json}}</pre>
 <pre class="card card-block card-header mb-3">Selected option: {{selectedOption | json}}</pre>
-
-<input [(ngModel)]="selectedValue"
-       [typeahead]="states"
-       typeaheadOptionField="name"
-       (typeaheadOnSelect)="onSelect($event)"
-       class="form-control">
+<div>
+    <input [(ngModel)]="selectedValue"
+        [typeahead]="states"
+        typeaheadOptionField="name"
+        (typeaheadOnSelect)="onSelect($event)"
+        (typeaheadOnPreview)="onPreview($event)"
+        class="form-control">
+    <div style="float:right;width:160px;"
+         class="card card-block card-header mb-3">
+        Preview region: 
+        <span *ngIf="previewOption != null">{{previewOption?.region}}</span>
+        <span *ngIf="previewOption == null">N/A</span>
+    </div>
+</div>

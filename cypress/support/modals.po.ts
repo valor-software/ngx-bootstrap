@@ -26,6 +26,7 @@ export class ModalsPo extends BaseComponent {
   exampleDemosArr = {
     serviceTemplate: 'demo-modal-service-static',
     serviceComponent: 'demo-modal-service-component',
+    serviceWithInterceptor: 'demo-modal-service-interceptor',
     serviceNested: 'demo-modal-service-nested',
     serviceScroll: 'demo-modal-scrolling-long-content',
     serviceEvents: 'demo-modal-service-events',
