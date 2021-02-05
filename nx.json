@@ -40,6 +40,7 @@
       "tags": [],
       "implicitDependencies": ["ngx-bootstrap-docs"]
     },
+    "ci-docs-e2e": { "tags": [] },
     "accordion": { "tags": ["lib"], "implicitDependencies": ["utils", "collapse"] },
     "alert": { "tags": ["lib"], "implicitDependencies": ["utils"] },
     "buttons": { "tags": ["lib"] },

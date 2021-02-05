@@ -50,7 +50,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: npm ci
-      - run: npm run e2e -- --baseUrl=${{ needs.build_and_preview.outputs.output_url }}/# --record --parallel --ciBuildId=${{ github.run_id }} --group=integration-${{ github.run_id }}
+      - run: npm run ng -- e2e ci-docs-e2e --baseUrl=${{ needs.build_and_preview.outputs.output_url }}/# --record --parallel --ciBuildId=${{ github.run_id }} --group=integration-${{ github.run_id }}
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves
 
