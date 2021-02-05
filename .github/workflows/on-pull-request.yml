@@ -15,8 +15,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 1
       - run: npm ci
       - run: npm run build -- --prod
       - run: npm run lint
@@ -46,8 +44,9 @@ jobs:
         containers: [1]
     steps:
       - uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
+      - run: npm ci
+      - run: npm run build
+      - run: npm run e2e -- --baseUrl=${{steps.firebase_hosting_preview.outputs.url}}/#
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves
 

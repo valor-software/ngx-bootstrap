@@ -19,4 +19,8 @@ module.exports = (on, config) => {
 
   // Preprocess Typescript file using Nx helper
   on('file:preprocessor', preprocessTypescript(config));
+
+  config.env.bsVersion = process.env.bsVersion ? process.env.bsVersion : false;
 };
+
+require('@applitools/eyes.cypress')(module);

@@ -1,6 +1,5 @@
 import { BaseComponent } from './base.component';
 import * as globalLocales from 'ngx-bootstrap/locale';
-import { getDate } from '../../src/chronos/utils/date-getters';
 
 export class DatepickerPo extends BaseComponent {
   pageUrl = '/datepicker';

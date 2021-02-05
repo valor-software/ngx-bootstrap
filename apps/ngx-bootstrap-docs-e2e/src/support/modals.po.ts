@@ -1,4 +1,5 @@
 import { BaseComponent } from './base.component';
+import PositionType = Cypress.PositionType;
 
 export class ModalsPo extends BaseComponent {
   pageUrl = '/modals';
@@ -79,14 +80,14 @@ export class ModalsPo extends BaseComponent {
     cy.get(`${baseSelector} .modal`).click();
   }
 
-  clickOnModalCorner(position: string) {
+  clickOnModalCorner(position: PositionType) {
     cy.get(this.modalContainer).click(position);
   }
 
   startClickOnModalReleaseOnBackdrop(baseSelector: string) {
     cy.get(`${baseSelector} .modal-content`)
       .trigger('mousedown')
-      .wait(100)
+      // .wait(100)
       .get(this.modalContainer)
       .trigger('mouseup');
   }

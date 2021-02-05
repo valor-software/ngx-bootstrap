@@ -1,1 +1,1 @@
-export const getGreeting = () => cy.get('h1');
+// no idea where it's required

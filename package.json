@@ -19,7 +19,7 @@
     "build": "ng build --with-deps",
     "test": "nx run-many --all --target=lint",
     "lint": "nx run-many --all --target=lint",
-    "e2e": "ng e2e",
+    "e2e": "ng e2e --with-deps",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",
@@ -35,7 +35,10 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "cy:run:all": "APPLITOOLS_CONCURRENCY=100 cypress run --config integrationFolder=cypress --spec '**/*_spec.ts'"
+    "cy:run:smoke": "nx e2e --config integrationFolder=cypress/integration",
+    "cy:run:full": "nx e2e --config integrationFolder=cypress/full",
+    "cy:run:all": "nx e2e --config integrationFolder=cypress --spec '**/*_spec.ts'",
+    "cy:run:snapshot": "nx e2e --config integrationFolder=cypress/snapshot"
   },
   "private": true,
   "keywords": [
@@ -78,6 +81,7 @@
     "@nrwl/eslint-plugin-nx": "11.2.9",
     "@nrwl/jest": "11.2.9",
     "@nrwl/linter": "11.2.9",
+    "@nrwl/nx-cloud": "11.1.3",
     "@nrwl/tao": "11.2.9",
     "@nrwl/workspace": "11.2.9",
     "@types/jest": "26.0.8",

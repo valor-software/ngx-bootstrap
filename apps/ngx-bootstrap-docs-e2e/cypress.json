@@ -1,4 +1,5 @@
 {
+  "projectId": "5mm2dy",
   "fileServerFolder": ".",
   "fixturesFolder": "./src/fixtures",
   "integrationFolder": "./src/integration",
@@ -8,5 +9,7 @@
   "video": true,
   "videosFolder": "../../dist/cypress/apps/ngx-bootstrap-docs-e2e/videos",
   "screenshotsFolder": "../../dist/cypress/apps/ngx-bootstrap-docs-e2e/screenshots",
-  "chromeWebSecurity": false
+  "chromeWebSecurity": false,
+  "responseTimeout": 60000,
+  "pageLoadTimeout": 120000
 }

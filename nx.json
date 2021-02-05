@@ -1,6 +1,6 @@
 {
   "npmScope": "ngx-bootstrap-base",
-  "affected": { "defaultBase": "master" },
+  "affected": { "defaultBase": "development" },
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": { "dependencies": "*", "devDependencies": "*" },
@@ -11,8 +11,23 @@
   },
   "tasksRunnerOptions": {
     "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "accessToken": "MzQ0ZGM2ZGQtMjAyMy00Nzc3LTg0YWEtNGI3NzliZGQ4OTA3fHJlYWQtd3JpdGU=",
+        "cacheableOperations": [
+          "build",
+          "test",
+          "lint",
+          "e2e"
+        ],
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
+      }
+    },
+    "local": {
       "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
+      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] },
+      "cacheDirectory": ".nx-cache"
     }
   },
   "projects": {

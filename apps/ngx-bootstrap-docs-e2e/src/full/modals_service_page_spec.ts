@@ -239,7 +239,7 @@ describe('Modals demo page testing suite: Service examples', () => {
   });
 
   describe('Custom css class', () => {
-    beforeEach(() => modals.scrollToMenu('Сustom css class'));
+    beforeEach(() => modals.scrollToMenu('Custom css class'));
 
     const customCSSDemo = modals.exampleDemosArr.serviceCustomCSS;
     const btnText = 'Open modal with custom css class';

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertComponent } from 'ngx-bootstrap/alert/alert.component';
+import { AlertComponent } from 'ngx-bootstrap/alert';
 
 @Component({
   selector: 'demo-alert-timeout',
