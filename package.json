@@ -37,8 +37,7 @@
     "help": "nx help",
     "cy:run:smoke": "nx e2e --config integrationFolder=cypress/integration",
     "cy:run:full": "nx e2e --config integrationFolder=cypress/full",
-    "cy:run:all": "nx e2e --config integrationFolder=cypress --spec '**/*_spec.ts'",
-    "cy:run:snapshot": "nx e2e --config integrationFolder=cypress/snapshot"
+    "cy:run:all": "nx e2e --config integrationFolder=cypress --spec '**/*_spec.ts'"
   },
   "private": true,
   "keywords": [
