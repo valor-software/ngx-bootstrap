@@ -6,8 +6,8 @@
   "scripts": {
     "lite-server": "lite-server -c scripts/bs-config.js",
     "demo.gen-docs": "node ../scripts/docs/get-doc.js",
-    "demo.fetch": "node ../scripts/fetch-docs.js",
-    "demo.archive": "node ../scripts/archive.js",
+    "demo.fetch": "node scripts/fetch-docs.js",
+    "demo.archive": "node ../scripts/gh-pages-predepliy.ts",
     "demo.ng-build": "ng build --prod",
     "demo.set-version": "run-s demo.fetch demo.archive",
     "demo.deploy-gh-pages": "gh-pages -d gh-pages",

@@ -71,6 +71,51 @@ jobs:
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
 
+
+# 1. pull dist
+# 2. pull gh-pages
+# 3. archive old
+# 4. deploy new scully
+  gh_pages_deploy:
+    runs-on: ubuntu-latest
+    needs: build_and_cache
+    outputs:
+      output_url: ${{ steps.firebase_hosting_preview.outputs.details_url }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+        with:
+          ref: 'gh-pages'
+          path: '
+
+      # start: npm ci && build
+      - uses: actions/cache@v2
+        id: cache-build
+        with:
+          path: |
+            ~/.npm
+            ~/.cache/Cypress
+            node_modules
+            dist
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: npm ci && npm run build --prod
+        if: steps.cache-build.outputs.cache-hit != 'true'
+        run: |
+          npm ci
+          npm run build -- --prod --with-deps
+    # end: npm ci && build
+
+      - run: npm run scully
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        id: firebase_hosting_preview
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NGX_BOOTSTRAP_DEMO }}'
+          projectId: ngx-bootstrap-demo
+        env:
+          FIREBASE_CLI_PREVIEWS: hostingchannels
+
   test_and_lint:
     runs-on: ubuntu-latest
     needs: build_and_cache
