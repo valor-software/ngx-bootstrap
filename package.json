@@ -37,7 +37,9 @@
     "help": "nx help",
     "cy:run:smoke": "nx e2e --config integrationFolder=cypress/integration",
     "cy:run:full": "nx e2e --config integrationFolder=cypress/full",
-    "cy:run:all": "nx e2e --config integrationFolder=cypress --spec '**/*_spec.ts'"
+    "cy:run:all": "nx e2e --config integrationFolder=cypress --spec '**/*_spec.ts'",
+    "scully": "scully",
+    "scully:serve": "scully serve"
   },
   "private": true,
   "keywords": [
@@ -63,6 +65,9 @@
     "@angular/service-worker": "11.2.0-rc.0",
     "@nrwl/angular": "11.2.9",
     "@schematics/angular": "11.2.0-rc.1",
+    "@scullyio/init": "1.0.1",
+    "@scullyio/ng-lib": "^1.0.0",
+    "@scullyio/scully": "^1.0.0",
     "@stackblitz/sdk": "1.5.2",
     "ngx-page-scroll": "7.0.3",
     "ngx-page-scroll-core": "7.0.3",

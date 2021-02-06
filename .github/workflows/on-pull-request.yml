@@ -57,6 +57,7 @@ jobs:
           npm run build -- --prod
     # end: npm ci && build
 
+      - run: npm run scully
       - uses: FirebaseExtended/action-hosting-deploy@v0
         id: firebase_hosting_preview
         with:

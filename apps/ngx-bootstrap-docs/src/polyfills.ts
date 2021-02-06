@@ -24,3 +24,9 @@ import 'zone.js/dist/zone';
 // import 'web-animations-js';
 // import 'intl';
 // import 'intl/locale-data/jsonp/en';
+
+/***************************************************************************************************
+* SCULLY IMPORTS
+*/
+// tslint:disable-next-line: align
+import 'zone.js/dist/task-tracking';
