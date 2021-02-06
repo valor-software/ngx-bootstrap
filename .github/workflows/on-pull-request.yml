@@ -5,8 +5,8 @@ env:
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
   MOZ_HEADLESS: 1
-  SAUCE_USERNAME_PR: valorkinpr
-  SAUCE_ACCESS_KEY_PR: e0a97bd3-4b74-4408-89bf-cce1b44a8bf1
+#  SAUCE_USERNAME_PR: valorkinpr
+#  SAUCE_ACCESS_KEY_PR: e0a97bd3-4b74-4408-89bf-cce1b44a8bf1
   CYPRESS_RECORD_KEY: 4aa7a1c0-3a4f-444e-b324-6fc305a543a8
 
 jobs:
@@ -18,8 +18,23 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: npm ci
-      - run: npm run build -- --prod
+
+      # start: npm ci && build
+      - uses: actions/cache@v2
+        id: cache-build
+        with:
+          path: |
+            node_modules
+            dist
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: npm ci && npm run build --prod
+        if: steps.cache-build.outputs.cache-hit != 'true'
+        run: |
+          npm ci
+          npm run build -- --prod
+      # end: npm ci && build
+
       - uses: FirebaseExtended/action-hosting-deploy@v0
         id: firebase_hosting_preview
         with:
@@ -56,8 +71,23 @@ jobs:
         containers: [1, 2, 3, 4, 5]
     steps:
       - uses: actions/checkout@v2
-      - run: npm ci
-      - run: npm run build -- --prod
+
+      # start: npm ci && build
+      - uses: actions/cache@v2
+        id: cache-build
+        with:
+          path: |
+            node_modules
+            dist
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: npm ci && npm run build --prod
+        if: steps.cache-build.outputs.cache-hit != 'true'
+        run: |
+          npm ci
+          npm run build -- --prod
+      # end: npm ci && build
+
       - name: smoke e2e
         continue-on-error: true
         run: ./node_modules/.bin/nx run ci-docs-e2e:e2e --record --group smoke --baseUrl=${{ needs.build_and_preview.outputs.output_url }}/# -- --parallel
