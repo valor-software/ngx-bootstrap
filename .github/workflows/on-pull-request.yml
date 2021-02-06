@@ -28,7 +28,7 @@ jobs:
             dist
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-      - name: npm ci && npm run build --prod
+      - name: npm ci
         if: steps.cache-build.outputs.cache-hit != 'true'
         run: |
           npm ci
