@@ -9,3 +9,4 @@ todo:
 - gen api-docs
 - split docs into libs
 - gen api-docs per lib
+- change deployment to include base and disable hash page 404.html

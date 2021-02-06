@@ -20,8 +20,7 @@ import { NgApiDoc } from './docs/api-docs/api-docs.model';
 import { StyleManager } from './theme/style-manager';
 import { ThemeStorage } from './theme/theme-storage';
 import { ScullyLibModule } from '@scullyio/ng-lib';
-
-import { Routes } from '@angular/router';
+import { routes } from './app.routing';
 
 @NgModule({
   declarations: [AppComponent, DocumentationComponent, TopMenuComponent, LandingComponent, DiscoverComponent],
@@ -40,4 +39,5 @@ import { Routes } from '@angular/router';
   providers: [ThemeStorage, StyleManager, { provide: NgApiDoc, useValue: ngdoc }],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}
