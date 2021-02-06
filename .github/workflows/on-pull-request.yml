@@ -1,3 +1,5 @@
+# todo: build and test only affected
+
 name: Build Test and Deploy
 on: pull_request
 
@@ -10,12 +12,32 @@ env:
   CYPRESS_RECORD_KEY: 4aa7a1c0-3a4f-444e-b324-6fc305a543a8
 
 jobs:
-  build_and_preview:
+  build_and_cache:
     runs-on: ubuntu-latest
 
+    steps:
+      - uses: actions/checkout@v2
+      # start: npm ci && build
+      - uses: actions/cache@v2
+        id: cache-build
+        with:
+          path: |
+            node_modules
+            dist
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: npm ci && npm run build --prod
+        if: steps.cache-build.outputs.cache-hit != 'true'
+        run: |
+          npm ci
+      # end: npm ci && build
+      - run: npm run build -- --prod
+
+  firebase_preview:
+    runs-on: ubuntu-latest
+    needs: build_and_cache
     outputs:
       output_url: ${{ steps.firebase_hosting_preview.outputs.details_url }}
-
     steps:
       - uses: actions/checkout@v2
 
@@ -33,7 +55,7 @@ jobs:
         run: |
           npm ci
           npm run build -- --prod
-      # end: npm ci && build
+    # end: npm ci && build
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         id: firebase_hosting_preview
@@ -45,8 +67,8 @@ jobs:
           FIREBASE_CLI_PREVIEWS: hostingchannels
 
   test_and_lint:
-    name: test and lint
     runs-on: ubuntu-latest
+    needs: build_and_cache
     steps:
       - uses: actions/checkout@v2
 #   - run: npm ci
@@ -55,10 +77,11 @@ jobs:
 #        continue-on-error: true
 #      - run: npm test
 #        continue-on-error: true
+
   e2e_smoke:
     name: Cypress run
     runs-on: ubuntu-latest
-    needs: [build_and_preview, test_and_lint]
+    needs: [build_and_cache, firebase_preview]
 
     strategy:
       # when one test fails, DO NOT cancel the other
@@ -90,7 +113,7 @@ jobs:
 
       - name: smoke e2e
         continue-on-error: true
-        run: ./node_modules/.bin/nx run ci-docs-e2e:e2e --record --group smoke --baseUrl=${{ needs.build_and_preview.outputs.output_url }}/# -- --parallel
+        run: ./node_modules/.bin/nx run ci-docs-e2e:e2e --record --group smoke --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/# -- --parallel
 
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves
