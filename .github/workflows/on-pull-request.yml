@@ -33,7 +33,7 @@ jobs:
         run: |
           npm ci
       # end: npm ci && build
-      - run: npm run build -- --prod
+      - run: npm run build -- --prod --with-deps
 
   firebase_preview:
     runs-on: ubuntu-latest
@@ -58,7 +58,7 @@ jobs:
         if: steps.cache-build.outputs.cache-hit != 'true'
         run: |
           npm ci
-          npm run build -- --prod
+          npm run build -- --prod --with-deps
     # end: npm ci && build
 
       - run: npm run scully
@@ -115,12 +115,12 @@ jobs:
         if: steps.cache-build.outputs.cache-hit != 'true'
         run: |
           npm ci
-          npm run build -- --prod
+          npm run build -- --prod --with-deps
       # end: npm ci && build
 
       - name: smoke e2e
         continue-on-error: true
-        run: ./node_modules/.bin/nx run ci-docs-e2e:e2e --record --group smoke --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/# -- --parallel
+        run: ./node_modules/.bin/nx run ci-docs-e2e:e2e --record --group smoke --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/ -- --parallel
 
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves

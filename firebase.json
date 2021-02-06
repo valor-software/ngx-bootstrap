@@ -9,8 +9,13 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "destination": "/ngx-bootstrap/index.html"
       }
-    ]
+    ],
+    "redirects": [ {
+      "source": "/",
+      "destination": "/ngx-bootstrap/",
+      "type": 302
+    } ]
   }
 }

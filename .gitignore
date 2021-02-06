@@ -42,3 +42,4 @@ firebase-debug.log
 .nx-cache
 scully.log
 .scully
+.firebase

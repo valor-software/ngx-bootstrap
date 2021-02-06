@@ -2,11 +2,28 @@
 2. Dropped forRoot() ?
 
 todo:
-- root lib with .md
-- sass
-- sauce
-- version - update versions 
-- gen api-docs
-- split docs into libs
+- change gh-pages deployment to include base and disable hash page 404.html
+- deploy scully
+  
+- root lib:
+  - with .md
+  - build sass assets
+- merge in dev:
+  - test sauce
+- on npm version
+  - update package json and current version in assets 
+  - gen api-docs
 - gen api-docs per lib
-- change deployment to include base and disable hash page 404.html
+- deploy and test SSR
+  
+- documentation:
+  - update contribution documentation
+  - remove links to surge
+
+deprecate:
+- surge.sh
+- forRoot()
+
+v8:
+- bs5 support
+- animation
