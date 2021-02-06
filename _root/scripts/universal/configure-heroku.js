@@ -1,6 +1,6 @@
 const fs = require('fs-extra');
 const path = require('path');
-const devDependencies = JSON.stringify(require('../../package').devDependencies, null, 2);
+const devDependencies = JSON.stringify(require('../../../package.json').devDependencies, null, 2);
 
 fs.writeFileSync(path.join(process.cwd(), 'demo/dist/Procfile'), 'web: node server.js', 'utf8');
 fs.writeFileSync(path.join(process.cwd(), 'demo/dist/package.json'),

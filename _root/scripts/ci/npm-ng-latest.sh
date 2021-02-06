@@ -16,10 +16,7 @@ npm i @angular/animations@latest \
     @angular/platform-server@latest \
     @angular/router@latest \
     @angular/service-worker@latest \
-    @schematics/angular@11.0.3 \
+    @schematics/angular@latest\
     @types/node@latest \
-    caniuse-lite@latest \
-    typescript@4.0.2 \
-    ng-packagr@10.0.0 \
-    tsickle@0.35.0 \
-    rxjs@6.5.2
+    ng-packagr@latest \
+    rxjs@latest

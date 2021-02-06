@@ -4,7 +4,7 @@
   "description": "Native Angular Bootstrap Components",
   "private": true,
   "scripts": {
-    "lite-server": "lite-server -c ../scripts/bs-config.js",
+    "lite-server": "lite-server -c scripts/bs-config.js",
     "demo.gen-docs": "node ../scripts/docs/get-doc.js",
     "demo.fetch": "node ../scripts/fetch-docs.js",
     "demo.archive": "node ../scripts/archive.js",
@@ -34,7 +34,7 @@
     "build-modules.latest": "node scripts/build-modules --latest",
     "build:schematics": "node scripts/schematics/build",
     "build.modules": "node scripts/build-modules",
-    "ci:update-pkg": "node ../scripts/ci/update-pkg.js",
+    "ci:update-pkg": "node scripts/ci/update-pkg.js",
     "ci:rename-pkg": "mv node_modules/ngx-bootstrap-ci node_modules/ngx-bootstrap",
     "build.sass": "node-sass --recursive ../src --output dist --source-map true --source-map-contents sass",
     "start": "ng serve --aot --host 0.0.0.0",
@@ -57,8 +57,8 @@
     "build:ssr": "run-s build build:client-and-server-bundles webpack:server configure-heroku",
     "serve:ssr": "node demo/dist/server",
     "build:client-and-server-bundles": "ng build --prod && ng run ngx-bootstrap:server",
-    "webpack:server": "webpack --config ../scripts/universal/webpack.server.config.js --progress --colors",
-    "configure-heroku": "node ../scripts/universal/configure-heroku.js"
+    "webpack:server": "webpack --config scripts/universal/webpack.server.config.js --progress --colors",
+    "configure-heroku": "node scripts/universal/configure-heroku.js"
   },
   "husky": {
     "hooks": {
