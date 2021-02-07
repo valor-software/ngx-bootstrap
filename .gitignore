@@ -41,5 +41,6 @@ Thumbs.db
 firebase-debug.log
 .nx-cache
 scully.log
-.scully
-.firebase
+/.scully
+/.firebase
+/gh-pages

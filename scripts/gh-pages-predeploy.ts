@@ -16,8 +16,7 @@ const oldVersionDir = 'gh-pages/old/';
 const versionsFilePath = 'assets/json/versions.json';
 const currentVersionFilePath = 'assets/json/current-version.json';
 
-// const demoSrcDir = 'demo/src';
-const demoDistDir = 'demo/static/ngx-bootstrap';
+const demoDistDir = 'dist/static/ngx-bootstrap';
 const hostname = 'ngx-bootstrap';
 
 (async () => {
@@ -25,14 +24,14 @@ const hostname = 'ngx-bootstrap';
     .then(json => json.version);
 
   if (!existsSync(ghPagesDir)) {
-    throw new Error('gh-pages dir wasn\'t found. Run `npm run docs.fetch`');
+    throw new Error(`gh-pages dir wasn't found. Run 'git clone -b gh-pages --single-branch --depth 3 https://github.com/valor-software/ngx-bootstrap.git gh-pages'\n`);
   }
 
   if (!existsSync(demoDistDir)) {
-    throw new Error('demo/dist dir wasn\'t found. Run `npm run demo.build`');
+    throw new Error(`${demoDistDir} dir wasn't found. Run 'npm run build && npm run build scully'`);
   }
 
-  let prevVersion = await readJson(join('../', ghPagesDir, currentVersionFilePath))
+  let prevVersion = await readJson(join(ghPagesDir, currentVersionFilePath))
     .then(json => json.version);
 
   console.log('Previous version:', prevVersion);
@@ -50,7 +49,7 @@ const hostname = 'ngx-bootstrap';
         return files;
       }
 
-      console.log('Version hasn\'t changed. Current gh-pages version will be replaced with the one from demo/dist');
+      console.log(`Version hasn't changed. Current gh-pages version will be replaced with the one from ${demoDistDir}`);
       return await Promise.all(files
         .map(file => remove(join(ghPagesDir, file))))
         .then(() => files);
