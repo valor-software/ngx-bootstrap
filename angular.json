@@ -119,7 +119,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/ngx-bootstrap-docs"],
+          "outputs": [
+            "coverage/apps/ngx-bootstrap-docs"
+          ],
           "options": {
             "jestConfig": "apps/ngx-bootstrap-docs/jest.config.js",
             "passWithNoTests": true
@@ -148,7 +150,9 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/ngx-bootstrap-docs-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/ngx-bootstrap-docs-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -166,14 +170,15 @@
             "baseUrl": "http://localhost:4200/#/"
           },
           "configurations": {
-            "production": {
-            }
+            "production": {}
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/ngx-bootstrap-docs-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/ngx-bootstrap-docs-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
@@ -186,7 +191,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/accordion"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/accordion"
+          ],
           "options": {
             "tsConfig": "src/accordion/tsconfig.lib.json",
             "project": "src/accordion/ng-package.json"
@@ -208,7 +215,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/accordion"],
+          "outputs": [
+            "coverage/src/accordion"
+          ],
           "options": {
             "jestConfig": "src/accordion/jest.config.js",
             "passWithNoTests": true
@@ -224,7 +233,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/alert"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/alert"
+          ],
           "options": {
             "tsConfig": "src/alert/tsconfig.lib.json",
             "project": "src/alert/ng-package.json"
@@ -246,7 +257,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/alert"],
+          "outputs": [
+            "coverage/src/alert"
+          ],
           "options": {
             "jestConfig": "src/alert/jest.config.js",
             "passWithNoTests": true
@@ -262,7 +275,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/buttons"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/buttons"
+          ],
           "options": {
             "tsConfig": "src/buttons/tsconfig.lib.json",
             "project": "src/buttons/ng-package.json"
@@ -284,7 +299,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/buttons"],
+          "outputs": [
+            "coverage/src/buttons"
+          ],
           "options": {
             "jestConfig": "src/buttons/jest.config.js",
             "passWithNoTests": true
@@ -300,7 +317,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/carousel"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/carousel"
+          ],
           "options": {
             "tsConfig": "src/carousel/tsconfig.lib.json",
             "project": "src/carousel/ng-package.json"
@@ -322,7 +341,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/carousel"],
+          "outputs": [
+            "coverage/src/carousel"
+          ],
           "options": {
             "jestConfig": "src/carousel/jest.config.js",
             "passWithNoTests": true
@@ -338,7 +359,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/chronos"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/chronos"
+          ],
           "options": {
             "tsConfig": "src/chronos/tsconfig.lib.json",
             "project": "src/chronos/ng-package.json"
@@ -360,7 +383,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/chronos"],
+          "outputs": [
+            "coverage/src/chronos"
+          ],
           "options": {
             "jestConfig": "src/chronos/jest.config.js",
             "passWithNoTests": true
@@ -376,7 +401,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/collapse"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/collapse"
+          ],
           "options": {
             "tsConfig": "src/collapse/tsconfig.lib.json",
             "project": "src/collapse/ng-package.json"
@@ -398,7 +425,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/collapse"],
+          "outputs": [
+            "coverage/src/collapse"
+          ],
           "options": {
             "jestConfig": "src/collapse/jest.config.js",
             "passWithNoTests": true
@@ -414,7 +443,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/component-loader"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/component-loader"
+          ],
           "options": {
             "tsConfig": "src/component-loader/tsconfig.lib.json",
             "project": "src/component-loader/ng-package.json"
@@ -436,7 +467,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/component-loader"],
+          "outputs": [
+            "coverage/src/component-loader"
+          ],
           "options": {
             "jestConfig": "src/component-loader/jest.config.js",
             "passWithNoTests": true
@@ -452,7 +485,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/datepicker"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/datepicker"
+          ],
           "options": {
             "tsConfig": "src/datepicker/tsconfig.lib.json",
             "project": "src/datepicker/ng-package.json"
@@ -474,7 +509,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/datepicker"],
+          "outputs": [
+            "coverage/src/datepicker"
+          ],
           "options": {
             "jestConfig": "src/datepicker/jest.config.js",
             "passWithNoTests": true
@@ -490,7 +527,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/dropdown"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/dropdown"
+          ],
           "options": {
             "tsConfig": "src/dropdown/tsconfig.lib.json",
             "project": "src/dropdown/ng-package.json"
@@ -512,7 +551,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/dropdown"],
+          "outputs": [
+            "coverage/src/dropdown"
+          ],
           "options": {
             "jestConfig": "src/dropdown/jest.config.js",
             "passWithNoTests": true
@@ -528,7 +569,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/locale"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/locale"
+          ],
           "options": {
             "tsConfig": "src/locale/tsconfig.lib.json",
             "project": "src/locale/ng-package.json"
@@ -550,7 +593,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/locale"],
+          "outputs": [
+            "coverage/src/locale"
+          ],
           "options": {
             "jestConfig": "src/locale/jest.config.js",
             "passWithNoTests": true
@@ -566,7 +611,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/mini-ngrx"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/mini-ngrx"
+          ],
           "options": {
             "tsConfig": "src/mini-ngrx/tsconfig.lib.json",
             "project": "src/mini-ngrx/ng-package.json"
@@ -588,7 +635,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/mini-ngrx"],
+          "outputs": [
+            "coverage/src/mini-ngrx"
+          ],
           "options": {
             "jestConfig": "src/mini-ngrx/jest.config.js",
             "passWithNoTests": true
@@ -604,7 +653,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/modal"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/modal"
+          ],
           "options": {
             "tsConfig": "src/modal/tsconfig.lib.json",
             "project": "src/modal/ng-package.json"
@@ -626,7 +677,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/modal"],
+          "outputs": [
+            "coverage/src/modal"
+          ],
           "options": {
             "jestConfig": "src/modal/jest.config.js",
             "passWithNoTests": true
@@ -642,7 +695,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/pagination"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/pagination"
+          ],
           "options": {
             "tsConfig": "src/pagination/tsconfig.lib.json",
             "project": "src/pagination/ng-package.json"
@@ -664,7 +719,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/pagination"],
+          "outputs": [
+            "coverage/src/pagination"
+          ],
           "options": {
             "jestConfig": "src/pagination/jest.config.js",
             "passWithNoTests": true
@@ -680,7 +737,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/popover"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/popover"
+          ],
           "options": {
             "tsConfig": "src/popover/tsconfig.lib.json",
             "project": "src/popover/ng-package.json"
@@ -702,7 +761,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/popover"],
+          "outputs": [
+            "coverage/src/popover"
+          ],
           "options": {
             "jestConfig": "src/popover/jest.config.js",
             "passWithNoTests": true
@@ -718,7 +779,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/positioning"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/positioning"
+          ],
           "options": {
             "tsConfig": "src/positioning/tsconfig.lib.json",
             "project": "src/positioning/ng-package.json"
@@ -740,7 +803,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/positioning"],
+          "outputs": [
+            "coverage/src/positioning"
+          ],
           "options": {
             "jestConfig": "src/positioning/jest.config.js",
             "passWithNoTests": true
@@ -756,7 +821,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/progressbar"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/progressbar"
+          ],
           "options": {
             "tsConfig": "src/progressbar/tsconfig.lib.json",
             "project": "src/progressbar/ng-package.json"
@@ -778,7 +845,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/progressbar"],
+          "outputs": [
+            "coverage/src/progressbar"
+          ],
           "options": {
             "jestConfig": "src/progressbar/jest.config.js",
             "passWithNoTests": true
@@ -794,7 +863,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/rating"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/rating"
+          ],
           "options": {
             "tsConfig": "src/rating/tsconfig.lib.json",
             "project": "src/rating/ng-package.json"
@@ -816,7 +887,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/rating"],
+          "outputs": [
+            "coverage/src/rating"
+          ],
           "options": {
             "jestConfig": "src/rating/jest.config.js",
             "passWithNoTests": true
@@ -832,7 +905,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/sortable"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/sortable"
+          ],
           "options": {
             "tsConfig": "src/sortable/tsconfig.lib.json",
             "project": "src/sortable/ng-package.json"
@@ -854,7 +929,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/sortable"],
+          "outputs": [
+            "coverage/src/sortable"
+          ],
           "options": {
             "jestConfig": "src/sortable/jest.config.js",
             "passWithNoTests": true
@@ -870,7 +947,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/tabs"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/tabs"
+          ],
           "options": {
             "tsConfig": "src/tabs/tsconfig.lib.json",
             "project": "src/tabs/ng-package.json"
@@ -892,7 +971,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/tabs"],
+          "outputs": [
+            "coverage/src/tabs"
+          ],
           "options": {
             "jestConfig": "src/tabs/jest.config.js",
             "passWithNoTests": true
@@ -908,7 +989,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/timepicker"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/timepicker"
+          ],
           "options": {
             "tsConfig": "src/timepicker/tsconfig.lib.json",
             "project": "src/timepicker/ng-package.json"
@@ -930,7 +1013,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/timepicker"],
+          "outputs": [
+            "coverage/src/timepicker"
+          ],
           "options": {
             "jestConfig": "src/timepicker/jest.config.js",
             "passWithNoTests": true
@@ -946,7 +1031,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/tooltip"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/tooltip"
+          ],
           "options": {
             "tsConfig": "src/tooltip/tsconfig.lib.json",
             "project": "src/tooltip/ng-package.json"
@@ -968,7 +1055,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/tooltip"],
+          "outputs": [
+            "coverage/src/tooltip"
+          ],
           "options": {
             "jestConfig": "src/tooltip/jest.config.js",
             "passWithNoTests": true
@@ -984,7 +1073,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/typeahead"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/typeahead"
+          ],
           "options": {
             "tsConfig": "src/typeahead/tsconfig.lib.json",
             "project": "src/typeahead/ng-package.json"
@@ -1006,7 +1097,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/typeahead"],
+          "outputs": [
+            "coverage/src/typeahead"
+          ],
           "options": {
             "jestConfig": "src/typeahead/jest.config.js",
             "passWithNoTests": true
@@ -1022,7 +1115,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["node_modules/ngx-bootstrap/utils"],
+          "outputs": [
+            "node_modules/ngx-bootstrap/utils"
+          ],
           "options": {
             "tsConfig": "src/utils/tsconfig.lib.json",
             "project": "src/utils/ng-package.json"
@@ -1044,9 +1139,50 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/src/utils"],
+          "outputs": [
+            "coverage/src/utils"
+          ],
           "options": {
             "jestConfig": "src/utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-bootstrap": {
+      "projectType": "library",
+      "root": "src/root",
+      "sourceRoot": "src/root",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "src/root/tsconfig.lib.json",
+            "project": "src/root/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "src/root/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "src/root/src/**/*.ts",
+              "src/root/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/src/root"
+          ],
+          "options": {
+            "jestConfig": "src/root/jest.config.js",
             "passWithNoTests": true
           }
         }

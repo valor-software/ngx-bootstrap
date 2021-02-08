@@ -1,10 +1,6 @@
 1. Dropped huge mega bundle `ngx-bootstrap`, please import only components you are actually using
 2. Dropped forRoot() ?
 
-todo:
-- change gh-pages deployment to include base and disable hash page 404.html
-- deploy scully
-  
 - root lib:
   - with .md
   - build sass assets
@@ -38,3 +34,8 @@ deprecate:
 v8:
 - bs5 support
 - animation
+
+done:
+- change gh-pages deployment to include base and disable hash page 404.html
+- deploy scully
+  
