@@ -2,8 +2,8 @@
 2. Dropped forRoot() ?
 
 - root lib:
-  - with .md
-  - build sass assets
+#  - with .md
+#  - build sass assets
   - build and test schematics 
 - merge in dev:
   - test sauce

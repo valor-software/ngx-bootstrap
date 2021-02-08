@@ -33,7 +33,9 @@ jobs:
         run: |
           npm ci
       # end: npm ci && build
-      - run: npm run build -- --prod --with-deps
+      - run: |
+          npm run build -- --prod --with-deps
+          npm run nx -- run ngx-bootstrap:node-sass
 
   firebase_preview:
     runs-on: ubuntu-latest
@@ -105,8 +107,10 @@ jobs:
       - run: |
           ./node_modules/.bin/ts-node ./scripts/gh-pages-predeploy.ts
           cd gh-pages
+          git config user.email "valorkin@gmail.com"
+          git config user.name "ngx bootstrap ci"
           git add -A
-          git commit -am "gh-pages update"
+          git commit -am "ci: gh-pages update"
       - name: push to gh-pages
         uses: ad-m/github-push-action@v0.6.0
         with:

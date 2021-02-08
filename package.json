@@ -71,6 +71,7 @@
     "@stackblitz/sdk": "1.5.2",
     "ngx-page-scroll": "7.0.3",
     "ngx-page-scroll-core": "7.0.3",
+    "node-sass": "5.0.0",
     "rxjs": "6.6.3",
     "tslib": "2.1.0",
     "zone.js": "0.11.3"
