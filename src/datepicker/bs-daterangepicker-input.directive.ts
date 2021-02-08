@@ -139,14 +139,14 @@ export class BsDaterangepickerInputDirective
   }
 
   validate(c: AbstractControl): ValidationErrors | null {
-    const _value: [Date, Date] = c.value;
+    let _value: [Date, Date] = c.value;
     const errors: Record<string, unknown>[] = [];
 
     if (_value === null || _value === undefined || !isArray(_value)) {
       return null;
     }
 
-    _value.sort((a, b) => a.getTime() - b.getTime());
+    _value = _value.slice().sort((a, b) => a.getTime() - b.getTime()) as [Date, Date];
 
     const _isFirstDateValid = isDateValid(_value[0]);
     const _isSecondDateValid = isDateValid(_value[1]);
