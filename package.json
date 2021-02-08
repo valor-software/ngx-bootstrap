@@ -64,6 +64,7 @@
     "@angular/router": "11.1.2",
     "@angular/service-worker": "11.1.2",
     "@nrwl/angular": "11.2.10",
+    "@nrwl/node": "11.2.10",
     "@schematics/angular": "11.1.4",
     "@scullyio/init": "1.0.1",
     "@scullyio/ng-lib": "1.0.2",

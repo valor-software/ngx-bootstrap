@@ -4,13 +4,13 @@
 - root lib:
 #  - with .md
 #  - build sass assets
-  - build and test schematics 
+  - FIX for nx 11 (build and test schematics) 
 - merge in dev:
   - test sauce
   - test ssr 
   - add https://github.com/marketplace/actions/ci-skip-action
 - on npm version
-  - update package json and current version in assets 
+#  - update package json and current version in assets 
   - gen api-docs
 - on tag:
   - update gh-pages

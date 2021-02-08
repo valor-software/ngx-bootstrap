@@ -1194,6 +1194,46 @@
           }
         }
       }
+    },
+    "schematics": {
+      "root": "schematics",
+      "sourceRoot": "schematics/src",
+      "projectType": "library",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "schematics/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/schematics"
+          ],
+          "options": {
+            "jestConfig": "schematics/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@nrwl/node:package",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/schematics",
+            "tsConfig": "schematics/tsconfig.lib.json",
+            "packageJson": "schematics/package.json",
+            "main": "schematics/src/index.ts",
+            "assets": [
+              "schematics/*.md"
+            ]
+          }
+        }
+      }
     }
   }
 }

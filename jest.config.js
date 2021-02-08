@@ -24,6 +24,7 @@ module.exports = {
     '<rootDir>/src/sortable',
     '<rootDir>/src/tooltip',
     '<rootDir>/src/typeahead',
-    '<rootDir>/src/root'
+    '<rootDir>/src/root',
+    '<rootDir>/schematics'
   ]
 };

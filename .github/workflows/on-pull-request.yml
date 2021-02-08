@@ -35,7 +35,7 @@ jobs:
       # end: npm ci && build
       - run: |
           npm run build -- --prod --with-deps
-          npm run nx -- run ngx-bootstrap:node-sass
+          npm run nx run ngx-bootstrap:build-sass
 
   firebase_preview:
     runs-on: ubuntu-latest

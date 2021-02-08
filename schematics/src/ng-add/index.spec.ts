@@ -9,23 +9,26 @@
 import { getFileContent } from '@schematics/angular/utility/test';
 import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
 import { Tree } from '@angular-devkit/schematics';
-import { getWorkspace } from '@schematics/angular/utility/config';
+import { getWorkspace } from '@schematics/angular/utility/workspace';
 
 import {
   createTestApp,
-  expectProjectStyleFile,
-  getProjectFromWorkspace,
+  getProjectFromWorkspace, getProjectTargetOptions,
   removePackageJsonDependency
 } from '../utils';
 
 import * as path from 'path';
+import { WorkspaceProject } from '@schematics/angular/utility/workspace-models';
 
+export function expectProjectStyleFile(project: WorkspaceProject, filePath: string) {
+  expect(getProjectTargetOptions(project, 'build').styles).toContain(filePath);
+}
 
 describe('ng-add schematic', () => {
   let runner: SchematicTestRunner;
   let appTree: Tree;
 
-  beforeEach(async() => {
+  beforeEach(async () => {
     runner = new SchematicTestRunner('schematics', path.join(__dirname, '../collection.json'));
     appTree = await createTestApp(runner);
   });
@@ -38,25 +41,24 @@ describe('ng-add schematic', () => {
       .toPromise();
 
 
-        const packageJson = JSON.parse(getFileContent(tree, '/package.json'));
-        const dependencies = packageJson.dependencies;
+    const packageJson = JSON.parse(getFileContent(tree, '/package.json'));
+    const dependencies = packageJson.dependencies;
 
-        expect(dependencies.bootstrap).toBeDefined();
-        expect(dependencies['ngx-bootstrap']).toBeDefined();
+    expect(dependencies.bootstrap).toBeDefined();
+    expect(dependencies['ngx-bootstrap']).toBeDefined();
 
-        expect(Object.keys(dependencies)).toEqual(Object.keys(dependencies).sort(),
-          'Expected the modified "dependencies" to be sorted alphabetically.');
+    expect(Object.keys(dependencies)).toEqual(Object.keys(dependencies).sort());
 
-    });
+  });
 
   it('should add bootstrap style', async () => {
     const tree = await runner
       .runSchematicAsync('ng-add', {}, appTree)
       .toPromise();
 
-        const workspace = getWorkspace(tree);
-        const project = getProjectFromWorkspace(workspace);
+    const workspace = getWorkspace(tree);
+    const project = getProjectFromWorkspace(workspace);
 
-        expectProjectStyleFile(project, './node_modules/bootstrap/dist/css/bootstrap.min.css');
+    expectProjectStyleFile(project, './node_modules/bootstrap/dist/css/bootstrap.min.css');
   });
 });
