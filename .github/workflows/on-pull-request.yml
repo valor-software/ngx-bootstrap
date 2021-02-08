@@ -16,9 +16,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@latest
+      - uses: actions/checkout@v2.3.4
       # start: npm ci && build
-      - uses: actions/cache@latest
+      - uses: actions/cache@v2.1.4
         id: cache-build
         with:
           path: |
@@ -41,10 +41,10 @@ jobs:
     outputs:
       output_url: ${{ steps.firebase_hosting_preview.outputs.details_url }}
     steps:
-      - uses: actions/checkout@latest
+      - uses: actions/checkout@v2.3.4
 
       # start: npm ci && build
-      - uses: actions/cache@latest
+      - uses: actions/cache@v2.1.4
         id: cache-build
         with:
           path: |
@@ -77,14 +77,14 @@ jobs:
     outputs:
       output_url: ${{ steps.firebase_hosting_preview.outputs.details_url }}
     steps:
-      - uses: actions/checkout@latest
-      - uses: actions/checkout@latest
+      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.3.4
         with:
           ref: 'gh-pages'
           path: 'gh-pages'
 
       # start: npm ci && build
-      - uses: actions/cache@latest
+      - uses: actions/cache@v2.1.4
         id: cache-build
         with:
           path: |
@@ -118,7 +118,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_and_cache
     steps:
-      - uses: actions/checkout@latest
+      - uses: actions/checkout@v2.3.4
 #   - run: npm ci
 #   - run: npm run build -- --prod
 #      - run: npm run lint
@@ -141,10 +141,10 @@ jobs:
         # run 3 copies of the current job in parallel
         containers: [1, 2, 3, 4, 5]
     steps:
-      - uses: actions/checkout@latest
+      - uses: actions/checkout@v2.3.4
 
       # start: npm ci && build
-      - uses: actions/cache@latest
+      - uses: actions/cache@v2.1.4
         id: cache-build
         with:
           path: |
