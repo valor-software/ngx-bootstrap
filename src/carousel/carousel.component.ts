@@ -169,6 +169,28 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     }
   }
 
+  addSlideOnBegin(slide: SlideComponent): void {
+    this._slides.unshift(slide);
+
+    if (this.multilist && this._slides.length <= this.itemsPerSlide) {
+      slide.active = true;
+    }
+
+    if (!this.multilist && this.isAnimated) {
+      slide.isAnimated = true;
+    }
+
+    if (!this.multilist && this._slides.length === 1) {
+      this._currentActiveSlide = undefined;
+      this.activeSlide = 0;
+      this.play();
+    }
+
+    if (this.multilist && this._slides.length > this.itemsPerSlide) {
+      this.play();
+    }
+  }
+
   /**
    * Removes specified slide. If this slide is active - will roll to another
    * slide
