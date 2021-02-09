@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 /* common */
@@ -49,7 +48,6 @@ export { DocsSectionComponent } from './docs-section/docs-section.component';
   ],
   imports: [
     TabsModule.forRoot(),
-    FormsModule,
     CommonModule,
     NgApiDocModule,
     ExamplesComponentModule,

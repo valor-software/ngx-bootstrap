@@ -1,7 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
@@ -27,13 +25,11 @@ import { routes } from './app.routing';
   imports: [
     BrowserAnimationsModule,
     DocsModule,
-    FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes, { useHash: environment.useHash }),
     NgxPageScrollCoreModule.forRoot({ duration: 11, scrollOffset: 70 }),
     NgxPageScrollModule,
     BsDropdownModule.forRoot(),
-    BrowserModule.withServerTransition({ appId: 'ngx-bootstrap' }),
     ScullyLibModule
   ],
   providers: [ThemeStorage, StyleManager, { provide: NgApiDoc, useValue: ngdoc }],

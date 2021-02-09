@@ -1,7 +1,7 @@
 <form class="sidebar-search">
   <input type="text"
          aria-label="Search in docs" name="search"
-         placeholder="Search..." [(ngModel)]="search.text"/>
+         placeholder="Search..." [value]="search.text" (change)='search.text = $event.target?.value'/>
 
   <button id="mobile-main-menu" (click)="toggle()">
     <img src="assets/images/icons/menu-left.svg" alt="left menu">

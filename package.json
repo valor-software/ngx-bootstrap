@@ -72,7 +72,6 @@
     "@stackblitz/sdk": "1.5.2",
     "ngx-page-scroll": "7.0.3",
     "ngx-page-scroll-core": "7.0.3",
-    "node-sass": "5.0.0",
     "rxjs": "6.6.3",
     "tslib": "2.1.0",
     "zone.js": "0.11.3"
@@ -114,6 +113,7 @@
     "prettier": "2.2.1",
     "ts-jest": "26.5.0",
     "ts-node": "9.1.1",
-    "typescript": "4.1.3"
+    "typescript": "4.1.3",
+    "webpack-bundle-analyzer": "4.4.0"
   }
 }
