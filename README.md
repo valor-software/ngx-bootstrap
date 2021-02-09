@@ -11,11 +11,12 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 <p align="center">
 <a href="https://badge.fury.io/js/ngx-bootstrap"><img src="https://badge.fury.io/js/ngx-bootstrap.svg" alt="npm version" ></a>
 <a href="https://npmjs.org/ngx-bootstrap"><img src="https://img.shields.io/npm/dm/ngx-bootstrap.svg" alt="npm downloads" ></a>
-<a href="https://travis-ci.org/valor-software/ngx-bootstrap"><img alt="" src="https://travis-ci.org/valor-software/ngx-bootstrap.svg?branch=development"></a>
+<a href="https://travis-ci.org/valor-software/ngx-bootstrap"><img alt="" src="https://travis-ci.com/valor-software/ngx-bootstrap.svg?branch=development"></a>
 <a target="_blank" href="https://opencollective.com/ngx-bootstrap"><img src="https://opencollective.com/ngx-bootstrap/tiers/backer/badge.svg?label=backer&color=brightgreen" /></a>
 
 <br/>
-<a  href="https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWVjZGU2MjI4MTVhMGVlMTc2OWRiMzA0NzBhNDU5YzQ0MDM3MWI5NzJjZTUzNzIxZmNjYmFlMjU2MzE0YmY0NWY"><img src="https://thehomeofthefuture.files.wordpress.com/2018/12/Joinslack.png" width="20%" alt="slack" ></a>
+<a href="https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWVjZGU2MjI4MTVhMGVlMTc2OWRiMzA0NzBhNDU5YzQ0MDM3MWI5NzJjZTUzNzIxZmNjYmFlMjU2MzE0YmY0NWY">
+<img src="https://cdn.brandfolder.io/5H442O3W/at/pl546j-7le8zk-btwjnu/Slack_RGB.png?width=1200&height=150" alt="slack" ></a>
 
 </p>
 
@@ -152,6 +153,11 @@ First time:
  - `npm install`
  - `npm run build`
 
+If you're using Windows, run:
+ - `npm run build.windows` instead of `npm run build`
+ - You will have to install [cwRsync](https://en.wikipedia.org/wiki/CwRsync) because one of
+ the scripts requires `rsync`
+
 To update your fork and prepare it for local usage:
  - `git pull upstream development`
  - `rm -rf node_modules`
@@ -175,7 +181,9 @@ Here is the versions compatibility list:
 
 | ngx-bootstrap |    Angular    |  Bootstrap CSS |
 | ------------- | ------------- | -------------- |
-| 5.x.x         | 7.x.x - 8.x.x | 3.x.x or 4.x.x |
+| 6.0.0         | 9.x.x - 10.x.x | 3.x.x or 4.x.x |
+| 5.6.x         | 7.x.x - 9.1.0 | 3.x.x or 4.x.x |
+| 5.0.0 - 5.6.0 | 7.x.x - 8.x.x | 3.x.x or 4.x.x |
 | 4.x.x         | 6.x.x - 7.x.x | 3.x.x or 4.x.x |
 | 3.x.x         | 6.x.x - 7.x.x | 3.x.x or 4.x.x |
 | 2.x.x         | 2.x.x - 4.x.x | 3.x.x or 4.x.x |

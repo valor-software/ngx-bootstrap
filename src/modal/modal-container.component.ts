@@ -84,7 +84,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     this.clickStartedInContent = event.target !== this._element.nativeElement;
   }
 
-  @HostListener('mouseup', ['$event'])
+  @HostListener('click', ['$event'])
   onClickStop(event: MouseEvent): void {
     const clickedInBackdrop = event.target === this._element.nativeElement && !this.clickStartedInContent;
     if (
@@ -97,6 +97,12 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       return;
     }
     this.bsModalService.setDismissReason(DISMISS_REASONS.BACKRDOP);
+    this.hide();
+  }
+
+  @HostListener('window:popstate')
+  onPopState(): void {
+    this.bsModalService.setDismissReason(DISMISS_REASONS.BACK);
     this.hide();
   }
 
@@ -122,7 +128,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.isShown) {
-      this.hide();
+      this._hide();
     }
   }
 
@@ -130,6 +136,19 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     if (this.isModalHiding || !this.isShown) {
       return;
     }
+
+    if (this.config.closeInterceptor) {
+      this.config.closeInterceptor().then(
+        () => this._hide(),
+        () => undefined);
+
+      return;
+    }
+
+    this._hide();
+  }
+
+  private _hide(): void {
     this.isModalHiding = true;
     this._renderer.removeClass(
       this._element.nativeElement,
@@ -144,7 +163,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       ) {
         this._renderer.removeClass(document.body, CLASS_NAME.OPEN);
       }
-      this.bsModalService.hide(this.level);
+      this.bsModalService.hide(this.config.id);
       this.isModalHiding = false;
     }, this.isAnimated ? TRANSITION_DURATIONS.MODAL : 0);
   }

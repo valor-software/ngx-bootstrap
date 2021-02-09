@@ -32,6 +32,7 @@ import { NgApiDocComponent, NgApiDocConfigComponent } from '../../docs/api-docs'
 import { DemoTypeaheadFirstItemActiveComponent } from './demos/first-item-active/first-item-active';
 import { DemoTypeaheadAsyncHttpRequestComponent } from './demos/async-http-request/async-http-request';
 import { DemoTypeaheadOrderingComponent } from './demos/ordering/ordering';
+import { DemoTypeaheadMultipleSearchComponent } from './demos/multiple-search/multiple-search';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -240,11 +241,13 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoTypeaheadLatinizeComponent
       },
       {
-        title: 'On select',
+        title: 'On select / On preview',
         anchor: 'on-select',
         description: `
           <p><code>typeaheadOnSelect</code> event is fired when an option was selected.
-          Returns an object with this option</p>
+          Returns an object with this option.</p>
+          <p><code>typeaheadOnPreview</code> event is fired when an option was highlighted.
+          Returns an object with this option.</p>
         `,
         component: require('!!raw-loader!./demos/on-select/on-select.ts'),
         html: require('!!raw-loader!./demos/on-select/on-select.html'),
@@ -307,6 +310,22 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/ordering/ordering.ts'),
         html: require('!!raw-loader!./demos/ordering/ordering.html'),
         outlet: DemoTypeaheadOrderingComponent
+      },
+      {
+        title: 'Multiple search',
+        anchor: 'multiple-search',
+        component: require('!!raw-loader!./demos/multiple-search/multiple-search.ts'),
+        html: require('!!raw-loader!./demos/multiple-search/multiple-search.html'),
+        description: `
+          <p>Set <code>typeaheadMultipleSearch</code> input property to <code>true</code>
+          and provide the multiple search delimiter by <code>typeaheadMultipleSearchDelimiters</code>
+          to be able to search typeahead again after using one of the provided delimiters. Default delimiter
+          is "<code>,</code>" if <code>typeaheadMultipleSearchDelimiters</code> is not used.
+          After picking a first value from typeahead
+          dropdown, type "<code>,</code>" or "<code>|</code>" and then next value can be searched.
+          This is demo with delimeters "<code>,</code>" and "<code>|</code>"</p>
+        `,
+        outlet: DemoTypeaheadMultipleSearchComponent
       }
     ]
   },

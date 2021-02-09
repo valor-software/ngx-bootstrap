@@ -1,18 +1,20 @@
+// tslint:disable:max-file-line-count
 import {
   ComponentRef, Directive, ElementRef, EventEmitter, Input, OnChanges,
-  OnDestroy, OnInit, Output, Renderer2, SimpleChanges, ViewContainerRef
+  OnDestroy, OnInit, Output, Renderer2, SimpleChanges, ViewContainerRef, AfterViewInit
 } from '@angular/core';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, Subject, BehaviorSubject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 import { BsDatepickerConfig } from './bs-datepicker.config';
-import { BsDatepickerViewMode, DatepickerDateCustomClasses } from './models';
+import { BsDatepickerViewMode, DatepickerDateCustomClasses, DatepickerDateTooltipText } from './models';
 
 @Directive({
   selector: '[bsDatepicker]',
   exportAs: 'bsDatepicker'
 })
-export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
+export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, AfterViewInit {
   /**
    * Placement of a datepicker. Accepts: "top", "bottom", "left", "right"
    */
@@ -42,11 +44,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   }
 
   set isOpen(value: boolean) {
-    if (value) {
-      this.show();
-    } else {
-      this.hide();
-    }
+    this.isOpen$.next(value);
   }
 
   /**
@@ -61,6 +59,8 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   @Output() onHidden: EventEmitter<any>;
 
   _bsValue: Date;
+  isOpen$: BehaviorSubject<boolean>;
+  isDestroy$: Subject<void>;
   /**
    * Initial value of datepicker
    */
@@ -69,6 +69,16 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
     if (this._bsValue && value && this._bsValue.getTime() === value.getTime()) {
       return;
     }
+
+    if (!this._bsValue && value) {
+      const now = new Date();
+
+      value.setMilliseconds(now.getMilliseconds());
+      value.setSeconds(now.getSeconds());
+      value.setMinutes(now.getMinutes());
+      value.setHours(now.getHours());
+    }
+
     this._bsValue = value;
     this.bsValueChange.emit(value);
   }
@@ -76,7 +86,14 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
   /**
    * Config object for datepicker
    */
-  @Input() bsConfig: Partial<BsDatepickerConfig>;
+  @Input() set bsConfig(bsConfig: Partial<BsDatepickerConfig>) {
+    this._bsConfig = bsConfig;
+    this.setConfig();
+    this._dateInputFormat$.next(bsConfig && bsConfig.dateInputFormat);
+  }
+  get bsConfig(): Partial<BsDatepickerConfig> {
+    return this._bsConfig;
+  }
   /**
    * Indicates whether datepicker's content is enabled or not
    */
@@ -113,14 +130,24 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
    */
   @Input() dateCustomClasses: DatepickerDateCustomClasses[];
   /**
+   * Date tooltip text
+   */
+  @Input() dateTooltipTexts: DatepickerDateTooltipText[];
+  /**
    * Emits when datepicker value has been changed
    */
   @Output() bsValueChange: EventEmitter<Date> = new EventEmitter();
+
+  get dateInputFormat$(): Observable<string> {
+    return this._dateInputFormat$;
+  }
 
   protected _subs: Subscription[] = [];
 
   private _datepicker: ComponentLoader<BsDatepickerContainerComponent>;
   private _datepickerRef: ComponentRef<BsDatepickerContainerComponent>;
+  private _bsConfig: Partial<BsDatepickerConfig>;
+  private readonly _dateInputFormat$ = new Subject<string>();
 
   constructor(public _config: BsDatepickerConfig,
               private  _elementRef: ElementRef,
@@ -136,9 +163,11 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
     );
     this.onShown = this._datepicker.onShown;
     this.onHidden = this._datepicker.onHidden;
+    this.isOpen$ = new BehaviorSubject(this.isOpen);
   }
 
   ngOnInit(): void {
+    this.isDestroy$ = new Subject();
     this._datepicker.listen({
       outsideClick: this.outsideClick,
       outsideEsc: this.outsideEsc,
@@ -180,6 +209,18 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
     if (changes.dateCustomClasses) {
       this._datepickerRef.instance.dateCustomClasses = this.dateCustomClasses;
     }
+
+    if (changes.dateTooltipTexts) {
+      this._datepickerRef.instance.dateTooltipTexts = this.dateTooltipTexts;
+    }
+  }
+
+  ngAfterViewInit(): void {
+    this.isOpen$.pipe(
+      filter(isOpen => isOpen !== this.isOpen),
+      takeUntil(this.isDestroy$)
+    )
+    .subscribe(() => this.toggle());
   }
 
   /**
@@ -256,6 +297,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
       maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
       daysDisabled: this.daysDisabled || this.bsConfig && this.bsConfig.daysDisabled,
       dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
+      dateTooltipTexts: this.dateTooltipTexts || this.bsConfig && this.bsConfig.dateTooltipTexts,
       datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
       datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled,
       minMode: this.minMode || this.bsConfig && this.bsConfig.minMode
@@ -264,5 +306,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges {
 
   ngOnDestroy(): void {
     this._datepicker.dispose();
+    this.isOpen$.next(false);
+    if (this.isDestroy$) {
+      this.isDestroy$.next();
+      this.isDestroy$.complete();
+    }
   }
 }

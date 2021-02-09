@@ -26,6 +26,7 @@ import { DemoTypeaheadShowOnBlurComponent } from './show-on-blur/show-on-blur';
 import { DemoTypeaheadSingleWorldComponent } from './single-world/single-world';
 import { DemoTypeaheadAsyncHttpRequestComponent } from './async-http-request/async-http-request';
 import { DemoTypeaheadOrderingComponent } from './ordering/ordering';
+import { DemoTypeaheadMultipleSearchComponent } from './multiple-search/multiple-search';
 
 export const DEMO_COMPONENTS = [
   DemoTypeaheadAdaptivePositionComponent,
@@ -57,5 +58,6 @@ export const DEMO_COMPONENTS = [
   DemoTypeaheadShowOnBlurComponent,
   DemoTypeaheadSingleWorldComponent,
   DemoTypeaheadAsyncHttpRequestComponent,
-  DemoTypeaheadOrderingComponent
+  DemoTypeaheadOrderingComponent,
+  DemoTypeaheadMultipleSearchComponent
 ];

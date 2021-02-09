@@ -1,8 +1,12 @@
-import { Injectable, StaticProvider } from '@angular/core';
-import { ClassName, DismissReasons, Selector, TransitionDurations } from './models';
+import { Injectable, StaticProvider, InjectionToken } from '@angular/core';
+import { ClassName, CloseInterceptorFn, DismissReasons, Selector, TransitionDurations } from './models';
 
 @Injectable()
-export class ModalOptions {
+export class ModalOptions<T = Object> {
+  /**
+   *  Allow user to ID for the modal. Otherwise, a unique number will be given
+   */
+  id?: number;
   /**
    *  Includes a modal-backdrop element. Alternatively,
    *  specify static for a backdrop which doesn't close the modal on click.
@@ -33,7 +37,11 @@ export class ModalOptions {
   /**
    * Modal data
    */
-  initialState?: Object;
+  initialState?: Partial<T>;
+  /**
+   * Function to intercept the closure
+   */
+  closeInterceptor?: CloseInterceptorFn;
   /**
    * Modal providers
    */
@@ -48,7 +56,6 @@ export class ModalOptions {
   ariaDescribedby?: string;
 }
 
-
 export const modalConfigDefaults: ModalOptions = {
   backdrop: true,
   keyboard: true,
@@ -57,8 +64,12 @@ export const modalConfigDefaults: ModalOptions = {
   ignoreBackdropClick: false,
   class: '',
   animated: true,
-  initialState: {}
+  initialState: {},
+  closeInterceptor: null
 };
+
+export const MODAL_CONFIG_DEFAULT_OVERRIDE: InjectionToken<ModalOptions> =
+  new InjectionToken<ModalOptions>('override-default-config');
 
 export const CLASS_NAME: ClassName = {
   SCROLLBAR_MEASURER: 'modal-scrollbar-measure',
@@ -83,5 +94,6 @@ export const TRANSITION_DURATIONS: TransitionDurations = {
 
 export const DISMISS_REASONS: DismissReasons = {
   BACKRDOP: 'backdrop-click',
-  ESC: 'esc'
+  ESC: 'esc',
+  BACK: 'browser-back-navigation-clicked'
 };

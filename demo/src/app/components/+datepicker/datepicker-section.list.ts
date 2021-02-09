@@ -45,7 +45,12 @@ import {
 import { DemoDatePickerQuickSelectRangesComponent } from './demos/quick-select-ranges/quick-select-ranges';
 import { DemoDateRangePickerShowPreviousMonth } from './demos/daterangepicker-show-previous-month/show-previous-month';
 import { DemoDatePickerSelectWeekRangeComponent } from './demos/select-week-range/select-week-range';
-
+import { DemoDatePickerTooltipToSelectedDates } from './demos/tooltip-to-selected-dates/tooltip-to-selected-dates';
+import { DemoDateRangePickerMaxDateRangeComponent } from './demos/max-date-range/max-date-range';
+import { DemoDateRangePickerDisplayOneMonth } from './demos/daterangepicker-display-one-month/display-one-month';
+import { DemoDatepickerTodayButtonComponent } from './demos/today-button/today-button';
+import { DemoDatepickerClearButtonComponent } from './demos/clear-button/clear-button';
+import { DemoDatepickerStartViewComponent } from "./demos/start-view/start-view";
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -206,7 +211,7 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/disable-dates/disable-dates.html'),
         description: `
           <p>You can set which dates should be disabled with <code>datesDisabled</code></p>
-          <p>In the following example <code>datesDisabled</code> is set with an array to disable 2019-02-05 and 2019-02-09.</p>
+          <p>In the following example <code>datesDisabled</code> is set with an array to disable 2020-02-05 and 2020-02-09.</p>
           <p>NOTE: DO NOT USE this functionality with <code>datesEnabled</code> at the same time</p>`,
         outlet: DemoDatepickerDatesDisabledComponent
       },
@@ -220,6 +225,15 @@ export const demoComponentContent: ContentSection[] = [
           <p>In the following example <code>datesEnabled</code> is set with an array to enable 2020-02-06, 2020-02-08 and 2020-02-11. All other dates are disabled</p>
           <p>NOTE: DO NOT USE this functionality with <code>datesDisabled</code> at the same time</p>`,
         outlet: DemoDatepickerDatesEnabledComponent
+      },
+      {
+        title: 'Display one month',
+        anchor: 'display-one-month',
+        component: require('!!raw-loader!./demos/daterangepicker-display-one-month/display-one-month.ts'),
+        html: require('!!raw-loader!./demos/daterangepicker-display-one-month/display-one-month.html'),
+        description: `<p>You can configure, how many months  you want to show for daterangepicker via <code>displayMonths</code> in <code>BsDaterangepickerConfig.</code></p>
+        <p>With <code>displayOneMonthRange</code> you can show only one month for two cases</p>`,
+        outlet: DemoDateRangePickerDisplayOneMonth
       },
       {
         title: 'Min-mode',
@@ -381,6 +395,14 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDatepickerDateCustomClassesComponent
       },
       {
+        title: 'Tooltip for selected dates',
+        anchor: 'tooltip-for-selected-dates',
+        component: require('!!raw-loader!./demos/tooltip-to-selected-dates/tooltip-to-selected-dates.ts'),
+        html: require('!!raw-loader!./demos/tooltip-to-selected-dates/tooltip-to-selected-dates.html'),
+        description: ``,
+        outlet: DemoDatePickerTooltipToSelectedDates
+      },
+      {
         title: 'Quick select ranges',
         anchor: 'quick-select-ranges',
         component: require('!!raw-loader!./demos/quick-select-ranges/quick-select-ranges.ts'),
@@ -396,6 +418,38 @@ export const demoComponentContent: ContentSection[] = [
         description: `<p>Pick previous & current month instead of current & next month.When daterange selected and related to current month,
         daterangepicker will works by default, with current & next month</p>`,
         outlet: DemoDateRangePickerShowPreviousMonth
+      },
+      {
+        title: 'Show Today Button',
+        anchor: 'datepicker-show-today-button',
+        component: require('!!raw-loader!./demos/today-button/today-button.ts'),
+        html: require('!!raw-loader!./demos/today-button/today-button.html'),
+        description: `<p>Display an optional 'Today' button that will automatically select today's date.</p>`,
+        outlet: DemoDatepickerTodayButtonComponent,
+      },
+      {
+        title: 'Show Clear Button',
+        anchor: 'datepicker-show-clear-button',
+        component: require('!!raw-loader!./demos/clear-button/clear-button.ts'),
+        html: require('!!raw-loader!./demos/clear-button/clear-button.html'),
+        description: `<p>Display an optional 'Clear' button that will automatically clear date.</p>`,
+        outlet: DemoDatepickerClearButtonComponent
+      },
+      {
+        title: 'Start view',
+        anchor: 'start-view',
+        component: require('!!raw-loader!./demos/start-view/start-view.ts'),
+        html: require('!!raw-loader!./demos/start-view/start-view.html'),
+        description: `<p>Add <code>startView</code> property if you want to change start view</p>`,
+        outlet: DemoDatepickerStartViewComponent
+      },
+      {
+        title: 'Max Date Range in Daterangepicker',
+        anchor: 'daterangepicker-max-date-range',
+        component: require('!!raw-loader!./demos/max-date-range/max-date-range.ts'),
+        html: require('!!raw-loader!./demos/max-date-range/max-date-range.html'),
+        description: `<p>Max date range after first date selection can be added to Daterangepicker using <code>maxDateRange</code></p>`,
+        outlet: DemoDateRangePickerMaxDateRangeComponent
       }
     ]
   },

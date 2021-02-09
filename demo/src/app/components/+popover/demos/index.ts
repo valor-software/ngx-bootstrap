@@ -18,6 +18,7 @@ import { DemoPopoverStylingGlobalComponent } from './styling-global/styling-glob
 import { DemoPopoverStylingLocalComponent } from './styling-local/styling-local';
 import { DemoPopoverTriggersCustomComponent } from './triggers-custom/triggers-custom';
 import { DemoPopoverTriggersManualComponent } from './triggers-manual/triggers-manual';
+import { DemoPopoverCornerPlacementComponent } from './corner-placement/corner-placement';
 
 export const DEMO_COMPONENTS = [
   DemoPopoverAdaptivePositionComponent,
@@ -39,5 +40,6 @@ export const DEMO_COMPONENTS = [
   DemoPopoverStylingGlobalComponent,
   DemoPopoverStylingLocalComponent,
   DemoPopoverTriggersCustomComponent,
-  DemoPopoverTriggersManualComponent
+  DemoPopoverTriggersManualComponent,
+  DemoPopoverCornerPlacementComponent
 ];

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 
 /** Default values provider for tooltip */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class TooltipConfig {
   /** sets disable adaptive position */
   adaptivePosition = true;

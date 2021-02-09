@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { EMPTY } from 'rxjs';
 
-import { BsModalService, ModalOptions } from '../../modal/index';
+import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 
 class TestService { }
 
@@ -19,12 +19,14 @@ describe('Service: BsModal', () => {
       'hide',
       'provide',
       'show',
+      'instance',
       'to'
     ]);
     componentLoader.attach.and.returnValue(componentLoader);
     componentLoader.hide.and.returnValue(componentLoader);
     componentLoader.provide.and.returnValue(componentLoader);
     componentLoader.to.and.returnValue(componentLoader);
+    componentLoader.instance.and.returnValue(componentLoader);
 
     componentLoader.onBeforeShow = EMPTY;
     componentLoader.onShown = EMPTY;
@@ -52,7 +54,7 @@ describe('Service: BsModal', () => {
     mockComponentLoader.show.and.callFake(mockShow);
     mockComponentLoaderFactory.createLoader.and.callFake(mockCreateLoader);
 
-    bsModalService = TestBed.get(BsModalService);
+    bsModalService = TestBed.inject(BsModalService);
 
     function mockCreateLoader() {
       if (createdBackdrop) {

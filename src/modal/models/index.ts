@@ -22,4 +22,7 @@ export interface TransitionDurations {
 export interface DismissReasons {
   BACKRDOP: string;
   ESC: string;
+  BACK: string;
 }
+
+export type CloseInterceptorFn = () => Promise<void>;

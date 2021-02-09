@@ -10,6 +10,9 @@ import { DemoTabsDisabledComponent } from './disabled/disabled';
 import { DemoTabsCustomComponent } from './custom-template/custom-template';
 import { DemoTabsSelectEventComponent } from './select-event/select-event';
 import { DemoAccessibilityComponent } from './accessibility/accessibility';
+import { DynamicContentRenderingComponent } from './dynamic-content-rendering/dynamic-content-rendering';
+import { SubComponent } from './dynamic-content-rendering/sub-component/sub-component';
+import { DemoDisabledKeyNavigationsComponent } from './disabled-key-navigations/disabled-key-navigations';
 
 export const DEMO_COMPONENTS = [
   DemoTabsBasicComponent,
@@ -23,5 +26,8 @@ export const DEMO_COMPONENTS = [
   DemoTabsConfigComponent,
   DemoTabsCustomComponent,
   DemoTabsSelectEventComponent,
-  DemoAccessibilityComponent
+  DemoAccessibilityComponent,
+  DynamicContentRenderingComponent,
+  SubComponent,
+  DemoDisabledKeyNavigationsComponent
 ];
