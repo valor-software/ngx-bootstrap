@@ -24,12 +24,24 @@
   - update contribution documentation
   - remove links to surge
 
+- testing
+  - add image testing
+
 - package:
   -update metadata
+
+migration:
+  - https://github.com/ngneat/spectator/blob/master/MIGRATION.md#moved-from-netbasalspectator-to-ngneatspectator
 
 deprecate:
 - surge.sh
 - forRoot()
+
+cypress:
+  "cy:run:smoke": "APPLITOOLS_CONCURRENCY=100 ../cypress run --config integrationFolder=cypress/integration",
+  "cy:run:full": "APPLITOOLS_CONCURRENCY=100 ../cypress run --config integrationFolder=cypress/full",
+  "cy:run:all": "APPLITOOLS_CONCURRENCY=100 ../cypress run --config integrationFolder=cypress --spec '**/*_spec.ts'",
+  "cy:run:snapshot": "APPLITOOLS_CONCURRENCY=100 ../cypress run --config integrationFolder=cypress/snapshot",
 
 v8:
 - bs5 support

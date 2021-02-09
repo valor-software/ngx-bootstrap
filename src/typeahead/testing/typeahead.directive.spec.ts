@@ -1,14 +1,14 @@
 /* tslint:disable:no-floating-promises max-file-line-count */
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { By } from '@angular/platform-browser';
 import { Component, DebugElement } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent } from '@ngneat/spectator';
+
+import { TypeaheadDirective, TypeaheadMatch, TypeaheadModule, TypeaheadOrder } from 'ngx-bootstrap/typeahead';
 
 import { of } from 'rxjs';
-import { dispatchMouseEvent, dispatchTouchEvent, dispatchKeyboardEvent } from '@netbasal/spectator';
-
-import { TypeaheadMatch, TypeaheadDirective, TypeaheadModule, TypeaheadOrder } from 'ngx-bootstrap/typeahead';
 
 interface State {
   id: number;
@@ -18,19 +18,19 @@ interface State {
 
 @Component({
   template: `
-    <input [(ngModel)]="selectedState"
-           [typeahead]="states"
+    <input [(ngModel)]='selectedState'
+           [typeahead]='states'
            [typeaheadOptionField]="'name'"
-           [adaptivePosition]="false"
-           (typeaheadOnBlur)="onBlurEvent($event)">`
+           [adaptivePosition]='false'
+           (typeaheadOnBlur)='onBlurEvent($event)'>`
 })
 class TestTypeaheadComponent {
   selectedState: string;
   states: State[] = [
-    {id: 1, name: 'Alabama', region: 'South'},
-    {id: 2, name: 'Alaska', region: 'West'},
-    {id: 3, name: 'Arizona', region: 'West'},
-    {id: 4, name: 'Arkansas', region: 'South'}
+    { id: 1, name: 'Alabama', region: 'South' },
+    { id: 2, name: 'Alaska', region: 'West' },
+    { id: 3, name: 'Arizona', region: 'West' },
+    { id: 4, name: 'Arkansas', region: 'South' }
   ];
   statesString: string[] = [
     'Alabama',
@@ -42,7 +42,9 @@ class TestTypeaheadComponent {
     'Connecticut'
   ];
 
-  onBlurEvent(activeItem) { return undefined; }
+  onBlurEvent(activeItem) {
+    return undefined;
+  }
 }
 
 describe('Directive: Typeahead', () => {
@@ -51,11 +53,15 @@ describe('Directive: Typeahead', () => {
   let directive: TypeaheadDirective;
   let inputElement: HTMLInputElement;
 
-  beforeEach(() => {
-    fixture = TestBed.configureTestingModule({
-      declarations: [ TestTypeaheadComponent],
+  beforeEach(waitForAsync(() =>
+    TestBed.configureTestingModule({
+      declarations: [TestTypeaheadComponent],
       imports: [TypeaheadModule.forRoot(), BrowserAnimationsModule, FormsModule]
-    }).createComponent(TestTypeaheadComponent);
+    }).compileComponents()
+  ));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(TestTypeaheadComponent);
 
     fixture.detectChanges();
     component = fixture.componentInstance;
@@ -221,7 +227,7 @@ describe('Directive: Typeahead', () => {
     it('should set the selectedState value', () => {
       directive.changeModel(
         new TypeaheadMatch(
-          {id: 1, name: 'Alabama', region: 'South'},
+          { id: 1, name: 'Alabama', region: 'South' },
           'Alabama'
         )
       );
@@ -265,13 +271,13 @@ describe('Directive: Typeahead', () => {
       fakeAsync(() => {
         expect(directive.matches).toContain(
           new TypeaheadMatch(
-            {id: 1, name: 'Alabama', region: 'South'},
+            { id: 1, name: 'Alabama', region: 'South' },
             'Alabama'
           )
         );
         expect(directive.matches).toContain(
           new TypeaheadMatch(
-            {id: 2, name: 'Alaska', region: 'West'},
+            { id: 2, name: 'Alaska', region: 'West' },
             'Alaska'
           )
         );
@@ -325,13 +331,13 @@ describe('Directive: Typeahead', () => {
     it('should result in 2 item matches, when "Ala" is entered', fakeAsync(() => {
         expect(directive.matches).toContain(
           new TypeaheadMatch(
-            {id: 1, name: 'Alabama', region: 'South'},
+            { id: 1, name: 'Alabama', region: 'South' },
             'Alabama'
           )
         );
         expect(directive.matches).toContain(
           new TypeaheadMatch(
-            {id: 2, name: 'Alaska', region: 'West'},
+            { id: 2, name: 'Alaska', region: 'West' },
             'Alaska'
           )
         );
@@ -359,7 +365,7 @@ describe('Directive: Typeahead', () => {
     );
 
     it('should not display null item', fakeAsync(() => {
-        component.states.push({id: 3, name: null, region: 'West'});
+        component.states.push({ id: 3, name: null, region: 'West' });
         inputElement.value = 'Ala';
         dispatchTouchEvent(inputElement, 'input');
         fixture.detectChanges();
@@ -513,71 +519,47 @@ describe('Directive: Typeahead', () => {
   describe('if typeaheadOrderBy is not null', () => {
     describe('and source of options is an array of string should result in 2 items, when "Ala" is entered',
       () => {
-      beforeEach(
-        fakeAsync(() => {
-          directive.typeahead = component.statesString;
-          directive.typeaheadOptionField = null;
-          inputElement.value = 'Ala';
-          fixture.detectChanges();
-          tick(100);
-        })
-      );
-
-      it('and order direction "asc". 1st - Alabama, 2sd - Alaska',
-        fakeAsync(() => {
-          directive.typeaheadOrderBy = {direction: 'asc'};
-          dispatchTouchEvent(inputElement, 'input');
-          fixture.detectChanges();
-          tick(100);
-
-          expect(directive.matches.length).toBe(2);
-          expect(directive.matches[0].item).toBe('Alabama');
-          expect(directive.matches[1].item).toBe('Alaska');
-        })
-      );
-
-      it(
-        'and order direction "desc". 1st - Alaska, 2sd - Alabama',
-        fakeAsync(() => {
-          directive.typeaheadOrderBy = {direction: 'desc'};
-          dispatchTouchEvent(inputElement, 'input');
-          fixture.detectChanges();
-          tick(100);
-
-          expect(directive.matches.length).toBe(2);
-          expect(directive.matches[0].item).toBe('Alaska');
-          expect(directive.matches[1].item).toBe('Alabama');
-        })
-      );
-
-      it('and typeaheadOrderBy is empty object, shouldn\'t break the app',
-        fakeAsync(() => {
-          // tslint:disable-next-line:no-object-literal-type-assertion
-          directive.typeaheadOrderBy = {} as TypeaheadOrder;
-          dispatchTouchEvent(inputElement, 'input');
-          fixture.detectChanges();
-          tick(100);
-
-          expect(directive.matches.length).toBe(2);
-        })
-      );
-
-      it('and order direction is not equal "asc" or "desc", shouldn\'t break the app',
-        fakeAsync(() => {
-          // tslint:disable-next-line
-          directive.typeaheadOrderBy = {direction: 'test' as 'asc'};
-          dispatchTouchEvent(inputElement, 'input');
-          fixture.detectChanges();
-          tick(100);
-
-          expect(directive.matches.length).toBe(2);
-        })
-      );
-
-        it('and order field is setup, it shouldn\'t affect the result',
+        beforeEach(
           fakeAsync(() => {
-            // tslint:disable-next-line
-            directive.typeaheadOrderBy = {direction: 'asc', field: 'name'};
+            directive.typeahead = component.statesString;
+            directive.typeaheadOptionField = null;
+            inputElement.value = 'Ala';
+            fixture.detectChanges();
+            tick(100);
+          })
+        );
+
+        it('and order direction "asc". 1st - Alabama, 2sd - Alaska',
+          fakeAsync(() => {
+            directive.typeaheadOrderBy = { direction: 'asc' };
+            dispatchTouchEvent(inputElement, 'input');
+            fixture.detectChanges();
+            tick(100);
+
+            expect(directive.matches.length).toBe(2);
+            expect(directive.matches[0].item).toBe('Alabama');
+            expect(directive.matches[1].item).toBe('Alaska');
+          })
+        );
+
+        it(
+          'and order direction "desc". 1st - Alaska, 2sd - Alabama',
+          fakeAsync(() => {
+            directive.typeaheadOrderBy = { direction: 'desc' };
+            dispatchTouchEvent(inputElement, 'input');
+            fixture.detectChanges();
+            tick(100);
+
+            expect(directive.matches.length).toBe(2);
+            expect(directive.matches[0].item).toBe('Alaska');
+            expect(directive.matches[1].item).toBe('Alabama');
+          })
+        );
+
+        it('and typeaheadOrderBy is empty object, shouldn\'t break the app',
+          fakeAsync(() => {
+            // tslint:disable-next-line:no-object-literal-type-assertion
+            directive.typeaheadOrderBy = {} as TypeaheadOrder;
             dispatchTouchEvent(inputElement, 'input');
             fixture.detectChanges();
             tick(100);
@@ -585,7 +567,31 @@ describe('Directive: Typeahead', () => {
             expect(directive.matches.length).toBe(2);
           })
         );
-    });
+
+        it('and order direction is not equal "asc" or "desc", shouldn\'t break the app',
+          fakeAsync(() => {
+            // tslint:disable-next-line
+            directive.typeaheadOrderBy = { direction: 'test' as 'asc' };
+            dispatchTouchEvent(inputElement, 'input');
+            fixture.detectChanges();
+            tick(100);
+
+            expect(directive.matches.length).toBe(2);
+          })
+        );
+
+        it('and order field is setup, it shouldn\'t affect the result',
+          fakeAsync(() => {
+            // tslint:disable-next-line
+            directive.typeaheadOrderBy = { direction: 'asc', field: 'name' };
+            dispatchTouchEvent(inputElement, 'input');
+            fixture.detectChanges();
+            tick(100);
+
+            expect(directive.matches.length).toBe(2);
+          })
+        );
+      });
 
     describe('and source of options is an array of objects', () => {
       describe('should result in 2 items, when "Ala" is entered', () => {
@@ -599,7 +605,7 @@ describe('Directive: Typeahead', () => {
 
         it('and order direction "asc", order field - "name". 1st - Alabama, 2sd - Alaska',
           fakeAsync(() => {
-            directive.typeaheadOrderBy = {direction: 'asc', field: 'name'};
+            directive.typeaheadOrderBy = { direction: 'asc', field: 'name' };
             dispatchTouchEvent(inputElement, 'input');
             fixture.detectChanges();
             tick(100);
@@ -612,7 +618,7 @@ describe('Directive: Typeahead', () => {
 
         it('and order direction "desc", order field - "name". 1st - Alaska, 2sd - Alabama',
           fakeAsync(() => {
-            directive.typeaheadOrderBy = {direction: 'desc', field: 'name'};
+            directive.typeaheadOrderBy = { direction: 'desc', field: 'name' };
             dispatchTouchEvent(inputElement, 'input');
             fixture.detectChanges();
             tick(100);
@@ -627,7 +633,7 @@ describe('Directive: Typeahead', () => {
           // tslint:disable-next-line:max-line-length
           'and order direction "desc", order field is null. 1st - Alabama, 2sd - Alaska. Lack of the field doesn\'t affect the result',
           fakeAsync(() => {
-            directive.typeaheadOrderBy = {direction: 'desc', field: null};
+            directive.typeaheadOrderBy = { direction: 'desc', field: null };
             dispatchTouchEvent(inputElement, 'input');
             fixture.detectChanges();
             tick(100);
@@ -642,7 +648,7 @@ describe('Directive: Typeahead', () => {
           // tslint:disable-next-line:max-line-length
           'and order direction "desc", order field is "testing". 1st - Alabama, 2sd - Alaska. The wrong field doesn\'t affect the result',
           fakeAsync(() => {
-            directive.typeaheadOrderBy = {direction: 'desc', field: 'test'};
+            directive.typeaheadOrderBy = { direction: 'desc', field: 'test' };
             dispatchTouchEvent(inputElement, 'input');
             fixture.detectChanges();
             tick(100);
@@ -665,7 +671,7 @@ describe('Directive: Typeahead', () => {
 
         it('and order direction "asc", order field - "region". Result = Alabama-Arkansas-Alaska-Arizona',
           fakeAsync(() => {
-            directive.typeaheadOrderBy = {direction: 'asc', field: 'region'};
+            directive.typeaheadOrderBy = { direction: 'asc', field: 'region' };
             dispatchTouchEvent(inputElement, 'input');
             fixture.detectChanges();
             tick(100);
@@ -680,7 +686,7 @@ describe('Directive: Typeahead', () => {
 
         it('and order direction "desc", order field - "id". Result = Arkansas-Arizona-Alaska-Alabama',
           fakeAsync(() => {
-            directive.typeaheadOrderBy = {direction: 'desc', field: 'id'};
+            directive.typeaheadOrderBy = { direction: 'desc', field: 'id' };
             dispatchTouchEvent(inputElement, 'input');
             fixture.detectChanges();
             tick(100);

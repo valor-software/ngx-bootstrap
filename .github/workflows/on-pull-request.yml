@@ -123,12 +123,29 @@ jobs:
     needs: build_and_cache
     steps:
       - uses: actions/checkout@v2.3.4
-#   - run: npm ci
-#   - run: npm run build -- --prod
-#      - run: npm run lint
-#        continue-on-error: true
-#      - run: npm test
-#        continue-on-error: true
+
+      # start: npm ci && build
+      - uses: actions/cache@v2.1.4
+        id: cache-build
+        with:
+          path: |
+            ~/.npm
+            ~/.cache/Cypress
+            node_modules
+            dist
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: npm ci && npm run build --prod
+        if: steps.cache-build.outputs.cache-hit != 'true'
+        run: |
+          npm ci
+          npm run build -- --prod --with-deps
+      # end: npm ci && build
+
+      - run: npm run lint
+        continue-on-error: true
+      - run: npm test
+        continue-on-error: true
 
   e2e_smoke:
     name: Cypress run

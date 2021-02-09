@@ -1171,8 +1171,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "src/root/src/**/*.ts",
-              "src/root/src/**/*.html"
+              "src/root/**/*.ts",
+              "src/root/**/*.html"
             ]
           }
         },

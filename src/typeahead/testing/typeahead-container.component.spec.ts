@@ -474,7 +474,7 @@ describe('Component: TypeaheadContainer', () => {
         expect(itemMatches[1].children[0].children[0].innerHTML).toBe('<strong>a</strong>pple');
       });
 
-      it('should not set the \"active\" class on any matches except first', () => {
+      it('should not set the "active" class on any matches except first', () => {
         for (let i = 1; i < 9; i++) {
           expect(itemMatches[i].classList.contains('active')).toBeFalsy();
         }

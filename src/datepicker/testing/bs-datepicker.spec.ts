@@ -1,13 +1,14 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Component, ViewChild, Renderer2 } from '@angular/core';
+import { TypeaheadModule } from '../../typeahead';
 
 import { BsDatepickerModule } from '../bs-datepicker.module';
 import { BsDatepickerDirective } from '../bs-datepicker.component';
 import { BsDatepickerConfig } from '../bs-datepicker.config';
 import { BsDatepickerContainerComponent } from '../themes/bs/bs-datepicker-container.component';
 import { BsDatepickerViewMode, CalendarCellViewModel, WeekViewModel } from '../models';
-import { dispatchKeyboardEvent, queryAll } from '@netbasal/spectator';
+import { createComponentFactory, dispatchKeyboardEvent, Spectator } from '@ngneat/spectator';
 import { registerEscClick } from 'ngx-bootstrap/utils';
 
 @Component({
@@ -51,24 +52,28 @@ function getDatepickerContainer(datepicker: BsDatepickerDirective): BsDatepicker
 
 describe('datepicker:', () => {
   let fixture: TestFixture;
+  let spectator: Spectator<TestComponent>;
+  const createComponent = createComponentFactory(TestComponent);
   beforeEach(
     waitForAsync(() => TestBed.configureTestingModule({
         declarations: [TestComponent],
         imports: [
-          BsDatepickerModule.forRoot(),
-          BrowserAnimationsModule
+          NoopAnimationsModule,
+          BsDatepickerModule.forRoot()
         ]
     }).compileComponents()
     ));
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
     fixture.detectChanges();
+    spectator = createComponent();
   });
 
-  it('should display datepicker on show', () => {
+  fit('should display datepicker on show', fakeAsync(() => {
     const datepicker = showDatepicker(fixture);
+    tick(10);
     expect(getDatepickerContainer(datepicker)).toBeDefined();
-  });
+  }));
 
   it('should hide datepicker on hide', () => {
     const datepicker = hideDatepicker(fixture);
@@ -133,7 +138,7 @@ describe('datepicker:', () => {
   it('should show the today button when showTodayButton config is true', () => {
     showDatepicker(fixture);
     const buttonText: string[] = [];
-    queryAll('button').forEach(button => {
+    spectator.queryAll('button').forEach(button => {
       buttonText.push(button.textContent);
     });
     expect(buttonText.filter(button => button === 'Today').length).toEqual(1);
@@ -149,7 +154,7 @@ describe('datepicker:', () => {
     showDatepicker(fixture);
 
     const buttonText: string[] = [];
-    queryAll('button').forEach(button => {
+    spectator.queryAll('button').forEach(button => {
       buttonText.push(button.textContent);
     });
     expect(buttonText.filter(button => button === todayBtnCustomLbl).length).toEqual(1);
@@ -165,7 +170,7 @@ describe('datepicker:', () => {
     showDatepicker(fixture);
 
     const buttonText: string[] = [];
-    queryAll('button').forEach(button => {
+    spectator.queryAll('button').forEach(button => {
       buttonText.push(button.textContent);
     });
     expect(buttonText.filter(button => button === clearBtnCustomLbl).length).toEqual(1);
@@ -236,8 +241,7 @@ describe('datepicker:', () => {
       .select(state => state.view)
       .subscribe(view => {
         expect(`${(view.date.getDate())}-${(view.date.getMonth())}-${(view.date.getFullYear())}`)
-          .not.toEqual(`${(new Date().getDate())}-${(new Date().getMonth())}-${(new Date().getFullYear())}`,
-          'should start out not equal to today');
+          .not.toEqual(`${(new Date().getDate())}-${(new Date().getMonth())}-${(new Date().getFullYear())}`);
       }).unsubscribe();
 
     datepickerContainerInstance.setToday();
@@ -247,8 +251,7 @@ describe('datepicker:', () => {
       .select(state => state.view)
       .subscribe(view => {
         expect(`${(view.date.getDate())}-${(view.date.getMonth())}-${(view.date.getFullYear())}`)
-          .toEqual(`${(new Date().getDate())}-${(new Date().getMonth())}-${(new Date().getFullYear())}`,
-          'should update to equal today');
+          .toEqual(`${(new Date().getDate())}-${(new Date().getMonth())}-${(new Date().getFullYear())}`);
       }).unsubscribe();
   });
 

@@ -1,10 +1,10 @@
 module.exports = {
   displayName: 'locale',
   preset: '../../jest.preset.js',
-  setupFilesAfterEnv: ['<rootDir>/src/testing-setup.ts'],
+  setupFilesAfterEnv: ['<rootDir>/testing/test-setup.ts'],
   globals: {
     'ts-jest': {
-      tsConfig: '<rootDir>/tsconfig.spec.json',
+      tsconfig: '<rootDir>/tsconfig.spec.json',
       stringifyContentPathRegex: '\\.(html|svg)$',
       astTransformers: {
         before: [
