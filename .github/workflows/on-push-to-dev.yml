@@ -1,6 +1,6 @@
-# todo: heroku deploy to ssr preview and test
+# todo: heroku deploy to ssr preview and test -> delete env
+name: on-push-to-dev
 
-name: Build Test and Deploy
 on:
   push:
     branches:

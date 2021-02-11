@@ -1,6 +1,6 @@
-# todo: build and test only affected
 
-name: Build Test and Deploy
+
+name: on-release
 on: release
 
 env:
@@ -119,7 +119,7 @@ jobs:
   e2e_full:
     name: Cypress run
     runs-on: ubuntu-latest
-    needs: [ build_and_cache, firebase_preview ]
+    needs: [ build_and_cache, gh_pages_deploy ]
 
     strategy:
       # when one test fails, DO NOT cancel the other
@@ -148,8 +148,8 @@ jobs:
         if: steps.cache-build.outputs.cache-hit != 'true'
         run: |
           npm ci
-          npx ng build --prod --with-deps
-          npx nx run ngx-bootstrap:build-sass
+          npx ng build --runner cloud --prod --with-deps
+          npx nx run ngx-bootstrap:build-sass --runner cloud
       # end: npm ci && build
 
       - name: full e2e
