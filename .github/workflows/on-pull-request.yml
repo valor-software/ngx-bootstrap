@@ -104,15 +104,17 @@ jobs:
     # end: npm ci && build
 
       - run: npm run scully
+      - run: ./node_modules/.bin/ts-node ./scripts/gh-pages-predeploy.ts
       - run: |
-          ./node_modules/.bin/ts-node ./scripts/gh-pages-predeploy.ts
           cd gh-pages
           git config user.email "valorkin@gmail.com"
           git config user.name "ngx bootstrap ci"
           git add -A
           git commit -am "ci: gh-pages update"
+        continue-on-error: true
       - name: push to gh-pages
         uses: ad-m/github-push-action@v0.6.0
+        continue-on-error: true
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: 'gh-pages'
