@@ -1,6 +1,12 @@
 1. Dropped huge mega bundle `ngx-bootstrap`, please import only components you are actually using
 2. Dropped forRoot() ?
 
+- nx: use local runner by default and nx-cloud in ci
+- ci: use heroku preview instances to test ssr
+- nx: split docs into libs
+- ng: fix schematics for ng 11
+- test: update tests for jest runner
+- test: fix coverage and use relative imports of ngx-bootstrap modules
 - root lib:
 #  - with .md
 #  - build sass assets

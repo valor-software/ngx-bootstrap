@@ -1,15 +1,16 @@
 # todo: build and test only affected
-# todo: codecov after
+
 name: Build Test and Deploy
-on: pull_request
+on: release
 
 env:
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
   MOZ_HEADLESS: 1
-#  SAUCE_USERNAME_PR: valorkinpr
-#  SAUCE_ACCESS_KEY_PR: e0a97bd3-4b74-4408-89bf-cce1b44a8bf1
+  #  SAUCE_USERNAME_PR: valorkinpr
+  #  SAUCE_ACCESS_KEY_PR: e0a97bd3-4b74-4408-89bf-cce1b44a8bf1
   CYPRESS_RECORD_KEY: 4aa7a1c0-3a4f-444e-b324-6fc305a543a8
+  GH_PAGES_URI: https://valorkin.github.io
 
 jobs:
   build_and_cache:
@@ -37,15 +38,17 @@ jobs:
           npx ng build --runner cloud --prod --with-deps
           npx nx run ngx-bootstrap:build-sass --runner cloud
 
-
-
-  firebase_preview:
+  gh_pages_deploy:
     runs-on: ubuntu-latest
     needs: build_and_cache
     outputs:
       output_url: ${{ steps.firebase_hosting_preview.outputs.details_url }}
     steps:
       - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.3.4
+        with:
+          ref: 'gh-pages'
+          path: 'gh-pages'
 
       # start: npm ci && build
       - uses: actions/cache@v2.1.4
@@ -64,17 +67,24 @@ jobs:
           npm ci
           npx ng build --runner cloud --prod --with-deps
           npx nx run ngx-bootstrap:build-sass --runner cloud
-    # end: npm ci && build
+      # end: npm ci && build
 
       - run: npm run scully
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        id: firebase_hosting_preview
+      - run: npx ts-node ./scripts/gh-pages-predeploy.ts
+      - run: |
+          cd gh-pages
+          git config user.email "valorkin@gmail.com"
+          git config user.name "ngx bootstrap ci"
+          git add -A
+          git commit -am "ci: gh-pages update"
+        continue-on-error: true
+      - name: push to gh-pages
+        uses: ad-m/github-push-action@v0.6.0
+        continue-on-error: true
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NGX_BOOTSTRAP_DEMO }}'
-          projectId: ngx-bootstrap-demo
-        env:
-          FIREBASE_CLI_PREVIEWS: hostingchannels
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: 'gh-pages'
+          directory: 'gh-pages'
 
   test_and_lint:
     runs-on: ubuntu-latest
@@ -106,10 +116,10 @@ jobs:
       - run: npm test --  --runner cloud
         continue-on-error: true
 
-  e2e_smoke:
+  e2e_full:
     name: Cypress run
     runs-on: ubuntu-latest
-    needs: [build_and_cache, firebase_preview]
+    needs: [ build_and_cache, firebase_preview ]
 
     strategy:
       # when one test fails, DO NOT cancel the other
@@ -119,7 +129,7 @@ jobs:
       fail-fast: false
       matrix:
         # run 3 copies of the current job in parallel
-        containers: [1, 2, 3, 4, 5]
+        containers: [ 1, 2, 3, 4, 5 ]
     steps:
       - uses: actions/checkout@v2.3.4
 
@@ -138,14 +148,13 @@ jobs:
         if: steps.cache-build.outputs.cache-hit != 'true'
         run: |
           npm ci
-          npx ng build --runner cloud --prod --with-deps
-          npx nx run ngx-bootstrap:build-sass --runner cloud
+          npx ng build --prod --with-deps
+          npx nx run ngx-bootstrap:build-sass
       # end: npm ci && build
 
-      - name: smoke e2e
+      - name: full e2e
         continue-on-error: true
-        run: npx nx run ci-docs-e2e:e2e --runner cloud --record --group smoke --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/ -- --parallel
-
+        run: npx nx run ngx-bootstrap-docs-e2e:e2e --runner cloud --cypressConfig ./apps/ngx-bootstrap-docs-e2e/cypress-full.json --record --group full --baseUrl=${{ GH_PAGES_URI }}/ngx-bootstrap/ -- --parallel
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves
 

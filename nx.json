@@ -15,7 +15,7 @@
     "nx.json": "*"
   },
   "tasksRunnerOptions": {
-    "default": {
+    "cloud": {
       "runner": "@nrwl/nx-cloud",
       "options": {
         "accessToken": "MzQ0ZGM2ZGQtMjAyMy00Nzc3LTg0YWEtNGI3NzliZGQ4OTA3fHJlYWQtd3JpdGU=",
@@ -29,7 +29,7 @@
         "showUsageWarnings": true
       }
     },
-    "local": {
+    "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
         "cacheableOperations": [

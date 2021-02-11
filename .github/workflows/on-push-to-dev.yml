@@ -1,14 +1,18 @@
-# todo: build and test only affected
-# todo: codecov after
+# todo: heroku deploy to ssr preview and test
+
 name: Build Test and Deploy
-on: pull_request
+on:
+  push:
+    branches:
+      - development
+      - nx-workspace
 
 env:
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
   MOZ_HEADLESS: 1
-#  SAUCE_USERNAME_PR: valorkinpr
-#  SAUCE_ACCESS_KEY_PR: e0a97bd3-4b74-4408-89bf-cce1b44a8bf1
+  #  SAUCE_USERNAME_PR: valorkinpr
+  #  SAUCE_ACCESS_KEY_PR: e0a97bd3-4b74-4408-89bf-cce1b44a8bf1
   CYPRESS_RECORD_KEY: 4aa7a1c0-3a4f-444e-b324-6fc305a543a8
 
 jobs:
@@ -39,6 +43,7 @@ jobs:
 
 
 
+
   firebase_preview:
     runs-on: ubuntu-latest
     needs: build_and_cache
@@ -64,7 +69,7 @@ jobs:
           npm ci
           npx ng build --runner cloud --prod --with-deps
           npx nx run ngx-bootstrap:build-sass --runner cloud
-    # end: npm ci && build
+      # end: npm ci && build
 
       - run: npm run scully
       - uses: FirebaseExtended/action-hosting-deploy@v0
@@ -106,7 +111,7 @@ jobs:
       - run: npm test --  --runner cloud
         continue-on-error: true
 
-  e2e_smoke:
+  e2e_full:
     name: Cypress run
     runs-on: ubuntu-latest
     needs: [build_and_cache, firebase_preview]
@@ -138,14 +143,12 @@ jobs:
         if: steps.cache-build.outputs.cache-hit != 'true'
         run: |
           npm ci
-          npx ng build --runner cloud --prod --with-deps
-          npx nx run ngx-bootstrap:build-sass --runner cloud
+          npx ng build --prod --with-deps
+          npx nx run ngx-bootstrap:build-sass
       # end: npm ci && build
 
-      - name: smoke e2e
+      - name: full e2e
         continue-on-error: true
-        run: npx nx run ci-docs-e2e:e2e --runner cloud --record --group smoke --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/ -- --parallel
-
+        run: npx nx run ngx-bootstrap-docs-e2e:e2e --runner cloud --cypressConfig ./apps/ngx-bootstrap-docs-e2e/cypress-full.json --record --group full --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/ -- --parallel
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves
-

@@ -1,5 +1,6 @@
 module.exports = {
   displayName: 'alert',
+  coverageReporters: ["lcov"],
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/testing/test-setup.ts'],
   globals: {
