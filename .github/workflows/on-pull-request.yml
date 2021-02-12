@@ -26,7 +26,6 @@ jobs:
         with:
           path: |
             ~/.npm
-            /home/runner/.cache/Cypress
             node_modules
             dist
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -56,7 +55,6 @@ jobs:
         with:
           path: |
             ~/.npm
-            ~/.cache/Cypress
             node_modules
             dist
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -91,7 +89,6 @@ jobs:
         with:
           path: |
             ~/.npm
-            ~/.cache/Cypress
             node_modules
             dist
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -132,7 +129,6 @@ jobs:
         with:
           path: |
             ~/.npm
-            ~/.cache/Cypresss
             node_modules
             dist
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
