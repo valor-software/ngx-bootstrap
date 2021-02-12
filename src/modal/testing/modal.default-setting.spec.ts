@@ -1,7 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 
-import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
+import { BsModalService, ModalModule } from '../index';
 import { MODAL_CONFIG_DEFAULT_OVERRIDE } from '../modal-options.class';
 
 /* tslint:disable-next-line: max-classes-per-file */

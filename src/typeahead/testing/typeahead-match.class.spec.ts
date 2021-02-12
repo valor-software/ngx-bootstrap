@@ -1,4 +1,4 @@
-import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
+import { TypeaheadMatch } from '../index';
 
 describe('TypeaheadMatch tests', () => {
   let typeaheadMatch: TypeaheadMatch = null;

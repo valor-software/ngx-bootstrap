@@ -1,7 +1,7 @@
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { TimepickerActions, TimepickerComponent, TimepickerConfig, TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { TimepickerActions, TimepickerComponent, TimepickerConfig, TimepickerModule } from '../index';
 
 import { fireEvent } from '../../../scripts/helpers';
 import { matchers } from '../../../scripts/jest/customMatchers';

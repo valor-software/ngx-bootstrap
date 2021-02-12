@@ -2,7 +2,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ComponentFixture, ComponentFixtureAutoDetect, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { ButtonsModule } from '../index';
 
 @Component({selector: 'buttons-test', template: ''})
 class TestButtonsComponent implements OnInit {

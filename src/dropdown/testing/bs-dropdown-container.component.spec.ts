@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Subject } from 'rxjs';
 
-import { BsDropdownContainerComponent, BsDropdownModule, BsDropdownState } from 'ngx-bootstrap/dropdown';
+import { BsDropdownContainerComponent, BsDropdownModule, BsDropdownState } from '../index';
 import { window } from 'ngx-bootstrap/utils';
 
 describe('BsDropdownContainerComponent tests', () => {

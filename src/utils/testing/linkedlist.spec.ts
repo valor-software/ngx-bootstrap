@@ -1,4 +1,4 @@
-import { LinkedList } from 'ngx-bootstrap/utils';
+import { LinkedList } from '../index';
 
 /* tslint:disable-next-line: no-any */
 let list: LinkedList<any>;

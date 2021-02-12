@@ -1,4 +1,4 @@
-import { ModalBackdropComponent } from 'ngx-bootstrap/modal';
+import { ModalBackdropComponent } from '../index';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 describe('ModalBackdropComponent tests', () => {

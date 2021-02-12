@@ -7,7 +7,7 @@ env:
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
   NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
-  NX_VERBOSE_LOGGING: true
+  CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
   MOZ_HEADLESS: 1
 #  SAUCE_USERNAME_PR: valorkinpr
 #  SAUCE_ACCESS_KEY_PR: e0a97bd3-4b74-4408-89bf-cce1b44a8bf1
@@ -103,7 +103,9 @@ jobs:
 
       - run: npm run lint -- --runner cloud
         continue-on-error: true
-      - run: npm test --  --runner cloud
+      - run: npm test --  --runner cloud --codeCoverage
+        continue-on-error: true
+      - run: npx codecov ./coverage/
         continue-on-error: true
 
   e2e_smoke:

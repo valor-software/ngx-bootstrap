@@ -1,5 +1,4 @@
 module.exports = {
-  coverageReporters: ["lcov"],
   setupFilesAfterEnv: ["<rootDir>/scripts/jest/customMatchers.ts"],
   projects: [
     '<rootDir>/apps/ngx-bootstrap-docs',

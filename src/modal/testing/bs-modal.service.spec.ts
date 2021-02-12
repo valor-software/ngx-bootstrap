@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { EMPTY } from 'rxjs';
 
-import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { BsModalService, ModalOptions } from '../index';
 
 class TestService { }
 

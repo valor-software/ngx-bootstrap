@@ -6,7 +6,7 @@ import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent } from '@ngneat/spectator';
 
-import { TypeaheadDirective, TypeaheadMatch, TypeaheadModule, TypeaheadOrder } from 'ngx-bootstrap/typeahead';
+import { TypeaheadDirective, TypeaheadMatch, TypeaheadModule, TypeaheadOrder } from '../index';
 
 import { of } from 'rxjs';
 

@@ -13,7 +13,7 @@ import {
   TypeaheadDirective,
   TypeaheadMatch,
   TypeaheadOptions
-} from 'ngx-bootstrap/typeahead';
+} from '../index';
 
 export class PositionServiceMock {
   setOptions() {
