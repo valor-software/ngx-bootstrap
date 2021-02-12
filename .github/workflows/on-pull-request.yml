@@ -23,7 +23,7 @@ jobs:
         with:
           path: |
             ~/.npm
-            ~/.cache/Cypress
+            /home/runner/.cache/Cypress
             node_modules
             dist
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
