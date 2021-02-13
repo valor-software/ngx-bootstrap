@@ -6,18 +6,18 @@
 - ng: fix schematics for ng 11
 - test: update tests for jest runner
 
-#- root lib:
-#  - with .md
-#  - build sass assets
-#  - FIX for nx 11 (build and test schematics) 
+- root lib:
+  - done: with .md
+  - done: build sass assets
+  - FIX for nx 11 (build and test schematics) 
 - merge in dev:
   - test sauce
   - test ssr 
 - on npm version
-#  - update package json and current version in assets 
+  - done: update package json and current version in assets 
   - gen api-docs
 - on tag:
-#  - update gh-pages
+  - update gh-pages
   - publish to npm
   - create release notes
 
