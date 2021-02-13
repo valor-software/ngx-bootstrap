@@ -40,12 +40,9 @@ jobs:
           npx nx run ngx-bootstrap:build-sass --runner cloud
       - run: npx cypress verify
 
-
-  firebase_preview:
+  unit_tests_with_coverage:
     runs-on: ubuntu-latest
     needs: build_and_cache
-    outputs:
-      output_url: ${{ steps.firebase_hosting_preview.outputs.details_url }}
     steps:
       - uses: actions/checkout@v2.3.4
 
@@ -65,19 +62,14 @@ jobs:
           npm ci
           npx ng build --runner cloud --prod --with-deps
           npx nx run ngx-bootstrap:build-sass --runner cloud
-    # end: npm ci && build
+      # end: npm ci && build
 
-      - run: npm run scully
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        id: firebase_hosting_preview
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NGX_BOOTSTRAP_DEMO }}'
-          projectId: ngx-bootstrap-demo
-        env:
-          FIREBASE_CLI_PREVIEWS: hostingchannels
+      - run: npm test --  --runner cloud --codeCoverage
+        continue-on-error: true
+      - run: npx codecov ./coverage/
+        continue-on-error: true
 
-  test_and_lint:
+  linting:
     runs-on: ubuntu-latest
     needs: build_and_cache
     steps:
@@ -103,10 +95,42 @@ jobs:
 
       - run: npm run lint -- --runner cloud
         continue-on-error: true
-      - run: npm test --  --runner cloud --codeCoverage
-        continue-on-error: true
-      - run: npx codecov ./coverage/
-        continue-on-error: true
+
+  firebase_preview:
+    runs-on: ubuntu-latest
+    needs: build_and_cache
+    outputs:
+      output_url: ${{ steps.firebase_hosting_preview.outputs.details_url }}
+    steps:
+      - uses: actions/checkout@v2.3.4
+
+      # start: npm ci && build
+      - uses: actions/cache@v2.1.4
+        id: cache-build
+        with:
+          path: |
+            ~/.npm
+            node_modules
+            dist
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: npm ci && npm run build --prod
+        if: steps.cache-build.outputs.cache-hit != 'true'
+        run: |
+          npm ci
+          npx ng build --runner cloud --prod --with-deps
+          npx nx run ngx-bootstrap:build-sass --runner cloud
+      # end: npm ci && build
+
+      - run: npm run scully
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        id: firebase_hosting_preview
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NGX_BOOTSTRAP_DEMO }}'
+          projectId: ngx-bootstrap-demo
+        env:
+          FIREBASE_CLI_PREVIEWS: hostingchannels
 
   e2e_smoke:
     name: Cypress run
