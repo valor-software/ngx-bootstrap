@@ -10,14 +10,17 @@
   - done: with .md
   - done: build sass assets
   - FIX for nx 11 (build and test schematics) 
+ssr:
+- https://blog.niteo.co/staging-like-its-2020/
+- https://github.com/marketplace/actions/heroku-review-app-deployment-status
 - merge in dev:
   - test sauce
   - test ssr 
 - on npm version
-  - done: update package json and current version in assets 
+#  - update package json and current version in assets 
   - gen api-docs
 - on tag:
-  - update gh-pages
+#  - update gh-pages
   - publish to npm
   - create release notes
 
