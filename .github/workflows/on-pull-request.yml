@@ -1,14 +1,14 @@
 # todo: build and test only affected
 # todo: codecov after
 name: on-pull-request
-on: pull_request_target
+on: pull_request
 
 env:
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
   NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-  MOZ_HEADLESS: 1
+  MOZ_HEALESS: 1
 #  SAUCE_USERNAME_PR: valorkinpr
 #  SAUCE_ACCESS_KEY_PR: e0a97bd3-4b74-4408-89bf-cce1b44a8bf1
   CYPRESS_CACHE_FOLDER: 'node_modules/.cypress'
@@ -20,8 +20,6 @@ jobs:
     steps:
       # checkout
       - uses: actions/checkout@v2.3.4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
       # start: npm ci && build
       - uses: actions/cache@v2.1.4
         id: cache-build
@@ -47,8 +45,6 @@ jobs:
     needs: build_and_cache
     steps:
       - uses: actions/checkout@v2.3.4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
 
       # start: npm ci && build
       - uses: actions/cache@v2.1.4
@@ -78,8 +74,6 @@ jobs:
     needs: build_and_cache
     steps:
       - uses: actions/checkout@v2.3.4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
 
       # start: npm ci && build
       - uses: actions/cache@v2.1.4
@@ -109,8 +103,6 @@ jobs:
       output_url: ${{ steps.firebase_hosting_preview.outputs.details_url }}
     steps:
       - uses: actions/checkout@v2.3.4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
 
       # start: npm ci && build
       - uses: actions/cache@v2.1.4
@@ -132,6 +124,9 @@ jobs:
 
 #      - run: npm run scully
       - uses: FirebaseExtended/action-hosting-deploy@v0
+        if: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_NGX_BOOTSTRAP_DEMO }}
+        continue-on-error: true
+
         id: firebase_hosting_preview
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -156,8 +151,6 @@ jobs:
         containers: [1, 2, 3, 4, 5]
     steps:
       - uses: actions/checkout@v2.3.4
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
 
       # start: npm ci && build
       - uses: actions/cache@v2.1.4
@@ -178,9 +171,16 @@ jobs:
       # end: npm ci && build
 
       - run: npx cypress verify
-      - name: smoke e2e
+
+      - name: smoke e2e on firebase
+        if: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_NGX_BOOTSTRAP_DEMO }}
         continue-on-error: true
-        run: npx nx run ci-docs-e2e:e2e --runner cloud --record --group smoke --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/ -- --parallel
+        run: npx nx run ngx-bootstrap-docs-e2e:e2e --runner cloud --record --group smoke --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/ -- --parallel
+
+      - name: smoke e2e local
+        if: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_NGX_BOOTSTRAP_DEMO }} != null
+        continue-on-error: true
+        run: npx nx run ngx-bootstrap-docs-e2e:e2e --prod --runner cloud --record --group smoke -- --parallel
 
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves

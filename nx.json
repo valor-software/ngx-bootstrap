@@ -72,15 +72,7 @@
         "typeahead"
       ]
     },
-    "ngx-bootstrap-docs-e2e": {
-      "tags": [],
-      "implicitDependencies": [
-        "ngx-bootstrap-docs"
-      ]
-    },
-    "ci-docs-e2e": {
-      "tags": []
-    },
+    "ngx-bootstrap-docs-e2e": { "tags": [] },
     "accordion": {
       "tags": [
         "lib"
