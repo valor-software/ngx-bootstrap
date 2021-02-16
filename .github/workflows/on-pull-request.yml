@@ -17,6 +17,8 @@ env:
 jobs:
   build_and_cache:
     runs-on: ubuntu-latest
+    outputs:
+      firebase_token_set: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_NGX_BOOTSTRAP_DEMO != null }}
     steps:
       # checkout
       - uses: actions/checkout@v2.3.4
@@ -124,7 +126,7 @@ jobs:
 
 #      - run: npm run scully
       - uses: FirebaseExtended/action-hosting-deploy@v0
-        if: secrets.FIREBASE_SERVICE_ACCOUNT_NGX_BOOTSTRAP_DEMO
+        if: steps.build_and_cache.outputs.firebase_token_set
         continue-on-error: true
 
         id: firebase_hosting_preview
@@ -173,12 +175,12 @@ jobs:
       - run: npx cypress verify
 
       - name: smoke e2e on firebase
-        if: secrets.FIREBASE_SERVICE_ACCOUNT_NGX_BOOTSTRAP_DEMO
+        if: steps.build_and_cache.outputs.firebase_token_set
         continue-on-error: true
         run: npx nx run ngx-bootstrap-docs-e2e:e2e --runner cloud --record --group smoke --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/ -- --parallel
 
       - name: smoke e2e local
-        if: secrets.FIREBASE_SERVICE_ACCOUNT_NGX_BOOTSTRAP_DEMO != null
+        if: steps.build_and_cache.outputs.firebase_token_set
         continue-on-error: true
         run: npx nx run ngx-bootstrap-docs-e2e:e2e --prod --runner cloud --record --group smoke -- --parallel
 
