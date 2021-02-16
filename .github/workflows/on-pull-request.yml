@@ -124,7 +124,7 @@ jobs:
 
 #      - run: npm run scully
       - uses: FirebaseExtended/action-hosting-deploy@v0
-        if: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_NGX_BOOTSTRAP_DEMO }}
+        if: secrets.FIREBASE_SERVICE_ACCOUNT_NGX_BOOTSTRAP_DEMO
         continue-on-error: true
 
         id: firebase_hosting_preview
