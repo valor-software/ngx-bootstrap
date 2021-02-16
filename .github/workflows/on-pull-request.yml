@@ -7,18 +7,15 @@ env:
   NX_BRANCH: ${{ github.event.number }}
   NX_RUN_GROUP: ${{ github.run_id }}
   NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
-  CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
   MOZ_HEALESS: 1
-#  SAUCE_USERNAME_PR: valorkinpr
-#  SAUCE_ACCESS_KEY_PR: e0a97bd3-4b74-4408-89bf-cce1b44a8bf1
+  SAUCE_USERNAME_PR: valorkinpr
+  SAUCE_ACCESS_KEY_PR: e0a97bd3-4b74-4408-89bf-cce1b44a8bf1
   CYPRESS_CACHE_FOLDER: 'node_modules/.cypress'
-  CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+  CYPRESS_RECORD_KEY: 4aa7a1c0-3a4f-444e-b324-6fc305a543a8
 
 jobs:
   build_and_cache:
     runs-on: ubuntu-latest
-    outputs:
-      firebase_token_set: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_NGX_BOOTSTRAP_DEMO != null }}
     steps:
       # checkout
       - uses: actions/checkout@v2.3.4
@@ -32,10 +29,9 @@ jobs:
             dist
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-      - name: npm ci
+      - run: npm ci
         if: steps.cache-build.outputs.cache-hit != 'true'
-        run: |
-          npm ci
+
       # end: npm ci && build
       - run: |
           npx ng build --runner cloud --prod --with-deps
@@ -93,7 +89,6 @@ jobs:
           npx ng build --runner cloud --prod --with-deps
           npx nx run ngx-bootstrap:build-sass --runner cloud
       # end: npm ci && build
-
       - run: npm run lint -- --runner cloud
         continue-on-error: true
 
@@ -125,9 +120,7 @@ jobs:
 
 #      - run: npm run scully
       - uses: FirebaseExtended/action-hosting-deploy@v0
-        if: needs.build_and_cache.outputs.firebase_token_set
         continue-on-error: true
-
         id: firebase_hosting_preview
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -171,17 +164,16 @@ jobs:
           npx nx run ngx-bootstrap:build-sass --runner cloud
       # end: npm ci && build
 
-      - run: echo "is firebase token set ${{ needs.build_and_cache.outputs.firebase_token_set }}"
+      # because of "record" and "parallel" parameters
+      # these containers will load balance all found tests among themselves
       - name: smoke e2e on firebase
-        if: needs.build_and_cache.outputs.firebase_token_set
+        if: ${{ needs.firebase_preview.outputs.output_url }}
         continue-on-error: true
         run: npx nx run ngx-bootstrap-docs-e2e:e2e --runner cloud --record --group smoke --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/ -- --parallel
 
       - name: smoke e2e local
-        if: needs.build_and_cache.outputs.firebase_token_set
+        if: ${{ !needs.firebase_preview.outputs.output_url }}
         continue-on-error: true
         run: npx nx run ngx-bootstrap-docs-e2e:e2e --prod --runner cloud --record --group smoke -- --parallel
 
-      # because of "record" and "parallel" parameters
-      # these containers will load balance all found tests among themselves
 

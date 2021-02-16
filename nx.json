@@ -37,8 +37,7 @@
           "test",
           "e2e"
         ]
-      },
-      "cacheDirectory": ".nx-cache"
+      }
     }
   },
   "projects": {
