@@ -1,0 +1,31 @@
+module.exports = {
+  setupFilesAfterEnv: ["<rootDir>/scripts/jest/customMatchers.ts"],
+  projects: [
+    '<rootDir>/apps/ngx-bootstrap-docs',
+    '<rootDir>/src/utils',
+    '<rootDir>/src/positioning',
+    '<rootDir>/src/component-loader',
+    '<rootDir>/src/chronos',
+    '<rootDir>/src/locale',
+    '<rootDir>/src/mini-ngrx',
+    '<rootDir>/src/accordion',
+    '<rootDir>/src/alert',
+    '<rootDir>/src/dropdown',
+    '<rootDir>/src/modal',
+    '<rootDir>/src/collapse',
+    '<rootDir>/src/progressbar',
+    '<rootDir>/src/tabs',
+    '<rootDir>/src/buttons',
+    '<rootDir>/src/pagination',
+    '<rootDir>/src/rating',
+    '<rootDir>/src/timepicker',
+    '<rootDir>/src/carousel',
+    '<rootDir>/src/datepicker',
+    '<rootDir>/src/popover',
+    '<rootDir>/src/sortable',
+    '<rootDir>/src/tooltip',
+    '<rootDir>/src/typeahead',
+    '<rootDir>/src/root',
+    '<rootDir>/schematics'
+  ]
+};

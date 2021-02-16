@@ -7,7 +7,7 @@
  */
 
 import { chain, noop, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
-import { getWorkspace } from '@schematics/angular/utility/config';
+import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { Schema } from './schema';
 import { WorkspaceProject, WorkspaceSchema } from '@schematics/angular/utility/workspace-models';
 
@@ -70,8 +70,8 @@ export default function (options: Schema): Rule {
 
 function addModuleOfComponent(projectName: string | undefined, componentName: string) {
 
-  return (host: Tree) => {
-    const workspace = getWorkspace(host);
+  return async (host: Tree) => {
+    const workspace = await getWorkspace(host);
     const project = getProjectFromWorkspace(workspace, projectName);
     const appModulePath = getAppModulePath(host, getProjectMainFile(project));
 

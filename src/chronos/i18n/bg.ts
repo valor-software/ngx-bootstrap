@@ -4,7 +4,7 @@
 // tslint:disable:one-variable-per-declaration newline-before-return
 
 import { LocaleData } from '../locale/locale.class';
-import { Khronos } from '../test/chain';
+import { Khronos } from '../testing/chain';
 
 //! moment.js locale configuration
 //! locale : Bulgarian [bg]

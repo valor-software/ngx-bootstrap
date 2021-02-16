@@ -292,7 +292,7 @@ export class Locale {
         regex = `^${this.months(date, '', true)}|^${this.monthsShort(date, '', true)}`;
         this._monthsParse[i] = new RegExp(regex.replace('.', ''), 'i');
       }
-      // test the regex
+      // testing the regex
       if (strict && format === 'MMMM' && (this._longMonthsParse[i] as RegExp).test(monthName)) {
         return i;
       }
@@ -430,7 +430,7 @@ export class Locale {
         return;
       }
 
-      // test the regex
+      // testing the regex
       if (strict && format === 'dddd' && this._fullWeekdaysParse[i].test(weekdayName)) {
         return i;
       } else if (strict && format === 'ddd' && this._shortWeekdaysParse[i].test(weekdayName)) {

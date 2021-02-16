@@ -16,6 +16,7 @@ import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { Rule, SchematicContext, SchematicsException, Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
 import { WorkspaceProject, WorkspaceSchema } from '@schematics/angular/utility/workspace-models';
+import { WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
 
 export function installPackageJsonDependencies(): Rule {
   return (host: Tree, context: SchematicContext) => {
@@ -53,7 +54,7 @@ export function addStyleToTarget(project: WorkspaceProject, targetName: string, 
   host.overwrite('angular.json', JSON.stringify(workspace, null, 2));
 }
 
-export function getProjectFromWorkspace(workspace: WorkspaceSchema, projectName?: string): WorkspaceProject {
+export function getProjectFromWorkspace(workspace: WorkspaceDefinition, projectName?: string): WorkspaceProject {
 
   /* tslint:disable-next-line: no-non-null-assertion */
   const project = workspace.projects[projectName || workspace.defaultProject!];
@@ -63,11 +64,6 @@ export function getProjectFromWorkspace(workspace: WorkspaceSchema, projectName?
   }
 
   return project;
-}
-
-export function expectProjectStyleFile(project: WorkspaceProject, filePath: string) {
-  expect(getProjectTargetOptions(project, 'build').styles).toContain(filePath,
-    `Expected "${filePath}" to be added to the project styles in the workspace.`);
 }
 
 export function getProjectTargetOptions(project: WorkspaceProject, buildTarget: string) {
