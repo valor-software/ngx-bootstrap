@@ -1,7 +1,7 @@
 # todo: build and test only affected
 # todo: codecov after
 name: on-pull-request
-on: pull_request
+on: pull_request_target
 
 env:
   NX_BRANCH: ${{ github.event.number }}
@@ -20,6 +20,8 @@ jobs:
     steps:
       # checkout
       - uses: actions/checkout@v2.3.4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       # start: npm ci && build
       - uses: actions/cache@v2.1.4
         id: cache-build
@@ -45,6 +47,8 @@ jobs:
     needs: build_and_cache
     steps:
       - uses: actions/checkout@v2.3.4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       # start: npm ci && build
       - uses: actions/cache@v2.1.4
@@ -74,6 +78,8 @@ jobs:
     needs: build_and_cache
     steps:
       - uses: actions/checkout@v2.3.4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       # start: npm ci && build
       - uses: actions/cache@v2.1.4
@@ -103,6 +109,8 @@ jobs:
       output_url: ${{ steps.firebase_hosting_preview.outputs.details_url }}
     steps:
       - uses: actions/checkout@v2.3.4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       # start: npm ci && build
       - uses: actions/cache@v2.1.4
@@ -122,7 +130,7 @@ jobs:
           npx nx run ngx-bootstrap:build-sass --runner cloud
       # end: npm ci && build
 
-      - run: npm run scully
+#      - run: npm run scully
       - uses: FirebaseExtended/action-hosting-deploy@v0
         id: firebase_hosting_preview
         with:
@@ -148,6 +156,8 @@ jobs:
         containers: [1, 2, 3, 4, 5]
     steps:
       - uses: actions/checkout@v2.3.4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       # start: npm ci && build
       - uses: actions/cache@v2.1.4
