@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - development
+      - nx-workspace
 
 env:
   NX_BRANCH: ${{ github.event.number }}
@@ -128,8 +129,6 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NGX_BOOTSTRAP_DEMO }}'
           channelId: live
           projectId: ngx-bootstrap-demo
-        env:
-          FIREBASE_CLI_PREVIEWS: hostingchannels
 
   e2e_full:
     name: Cypress run
