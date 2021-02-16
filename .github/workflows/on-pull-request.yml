@@ -173,12 +173,12 @@ jobs:
       - run: npx cypress verify
 
       - name: smoke e2e on firebase
-        if: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_NGX_BOOTSTRAP_DEMO }}
+        if: secrets.FIREBASE_SERVICE_ACCOUNT_NGX_BOOTSTRAP_DEMO
         continue-on-error: true
         run: npx nx run ngx-bootstrap-docs-e2e:e2e --runner cloud --record --group smoke --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/ -- --parallel
 
       - name: smoke e2e local
-        if: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_NGX_BOOTSTRAP_DEMO }} != null
+        if: secrets.FIREBASE_SERVICE_ACCOUNT_NGX_BOOTSTRAP_DEMO != null
         continue-on-error: true
         run: npx nx run ngx-bootstrap-docs-e2e:e2e --prod --runner cloud --record --group smoke -- --parallel
 
