@@ -43,7 +43,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "baseHref": "/ngx-bootstrap/",
-            "outputPath": "dist/apps/ngx-bootstrap-docs",
+            "outputPath": "dist/apps/ngx-bootstrap",
             "index": "apps/ngx-bootstrap-docs/src/index.html",
             "main": "apps/ngx-bootstrap-docs/src/main.ts",
             "polyfills": "apps/ngx-bootstrap-docs/src/polyfills.ts",

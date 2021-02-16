@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - development
-      - nx-workspace
 
 env:
   NX_BRANCH: ${{ github.event.number }}
