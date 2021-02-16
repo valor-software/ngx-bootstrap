@@ -40,7 +40,6 @@ jobs:
       - run: |
           npx ng build --runner cloud --prod --with-deps
           npx nx run ngx-bootstrap:build-sass --runner cloud
-      - run: npx cypress verify
 
   unit_tests_with_coverage:
     runs-on: ubuntu-latest
@@ -126,7 +125,7 @@ jobs:
 
 #      - run: npm run scully
       - uses: FirebaseExtended/action-hosting-deploy@v0
-        if: steps.build_and_cache.outputs.firebase_token_set
+        if: needs.build_and_cache.outputs.firebase_token_set
         continue-on-error: true
 
         id: firebase_hosting_preview
@@ -172,15 +171,14 @@ jobs:
           npx nx run ngx-bootstrap:build-sass --runner cloud
       # end: npm ci && build
 
-      - run: npx cypress verify
-
+      - run: echo "is firebase token set ${{ needs.build_and_cache.outputs.firebase_token_set }}"
       - name: smoke e2e on firebase
-        if: steps.build_and_cache.outputs.firebase_token_set
+        if: needs.build_and_cache.outputs.firebase_token_set
         continue-on-error: true
         run: npx nx run ngx-bootstrap-docs-e2e:e2e --runner cloud --record --group smoke --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/ -- --parallel
 
       - name: smoke e2e local
-        if: steps.build_and_cache.outputs.firebase_token_set
+        if: needs.build_and_cache.outputs.firebase_token_set
         continue-on-error: true
         run: npx nx run ngx-bootstrap-docs-e2e:e2e --prod --runner cloud --record --group smoke -- --parallel
 
