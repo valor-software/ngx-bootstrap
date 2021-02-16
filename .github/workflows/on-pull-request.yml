@@ -167,7 +167,7 @@ jobs:
       - name: smoke e2e on firebase
         if: ${{ needs.firebase_preview.outputs.output_url }}
         continue-on-error: true
-        run: npx nx run ngx-bootstrap-docs-e2e:e2e --runner cloud --record --group smoke --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/ -- --parallel
+        run: npx nx run ci-docs-e2e:e2e --runner cloud --record --group smoke --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/ -- --parallel
 
       - name: smoke e2e local
         if: ${{ !needs.firebase_preview.outputs.output_url }}
