@@ -1,5 +1,3 @@
-# todo: build and test only affected
-# todo: codecov after
 name: on-pull-request
 on: pull_request
 
