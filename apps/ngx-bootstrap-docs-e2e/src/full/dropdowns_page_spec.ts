@@ -5,7 +5,7 @@ describe('Dropdowns demo page testing suite', () => {
 
   beforeEach(() => dropdowns.navigateTo());
 
-  describe('Trigger by tag \<\a\>', () => {
+  describe('Trigger by tag <a>', () => {
     const triggerTag = dropdowns.exampleDemosArr.triggerByTag;
 
     it(`example contains clickable link as a dropdown, when user clicks on it, then dropdown opened with 3 items,

@@ -9,7 +9,7 @@ import {
   OnChanges,
   OnDestroy,
   Output,
-  SimpleChanges, ViewEncapsulation
+  ViewEncapsulation
 } from '@angular/core';
 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -162,9 +162,9 @@ export class TimepickerComponent
   canToggleMeridian: boolean;
 
   // control value accessor methods
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange = Function.prototype;
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onTouched = Function.prototype;
 
   timepickerSub: Subscription;
@@ -216,7 +216,7 @@ export class TimepickerComponent
     return Math.sign($event.deltaY) * -1;
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     this._store.dispatch(
       this._timepickerActions.updateControls(getControlsValue(this))
     );
@@ -349,15 +349,15 @@ export class TimepickerComponent
   /**
    * Set the function to be called when the control receives a change event.
    */
-  // tslint:disable-next-line:no-any
-  registerOnChange(fn: (_: any) => {}): void {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  registerOnChange(fn: (_: any) => void): void {
     this.onChange = fn;
   }
 
   /**
    * Set the function to be called when the control receives a touch event.
    */
-  registerOnTouched(fn: () => {}): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 

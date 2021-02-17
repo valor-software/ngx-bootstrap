@@ -184,7 +184,7 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
       .show();
   }
 
-  ngOnDestroy(): any {
+  ngOnDestroy() {
     this._datepicker.dispose();
   }
 }

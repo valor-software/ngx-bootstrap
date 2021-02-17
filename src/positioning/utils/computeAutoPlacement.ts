@@ -5,7 +5,7 @@
 import { getBoundaries } from './getBoundaries';
 import { Offsets } from '../models';
 
-function getArea({ width, height }: { [key: string]: number }) {
+function getArea({ width, height }: Record<string, number>) {
   return width * height;
 }
 
@@ -14,7 +14,7 @@ export function computeAutoPlacement(
   refRect: Offsets,
   target: HTMLElement,
   host: HTMLElement,
-  allowedPositions: any[] = ['top', 'bottom', 'right', 'left'],
+  allowedPositions = ['top', 'bottom', 'right', 'left'],
   boundariesElement = 'viewport',
   padding = 0
 ) {
@@ -24,7 +24,7 @@ export function computeAutoPlacement(
 
   const boundaries = getBoundaries(target, host, padding, boundariesElement);
 
-  const rects: any = {
+  const rects = {
     top: {
       width: boundaries.width,
       height: refRect.top - boundaries.top
@@ -51,14 +51,14 @@ export function computeAutoPlacement(
     }))
     .sort((a, b) => b.area - a.area);
 
-  let filteredAreas: any[] = sortedAreas.filter(
+  let filteredAreas = sortedAreas.filter(
     ({ width, height }) => {
       return width >= target.clientWidth
         && height >= target.clientHeight;
     }
   );
 
-  filteredAreas = filteredAreas.filter((position: any) => {
+  filteredAreas = filteredAreas.filter((position) => {
     return allowedPositions
       .some((allowedPosition: string) => {
         return allowedPosition === position.key;

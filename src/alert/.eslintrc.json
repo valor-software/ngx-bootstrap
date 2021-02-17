@@ -10,6 +10,7 @@
       ],
       "parserOptions": { "project": ["src/alert/tsconfig.*?.json"] },
       "rules": {
+        "@angular-eslint/no-output-on-prefix": 0
       }
     },
     {

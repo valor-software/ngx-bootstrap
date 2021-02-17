@@ -11,6 +11,7 @@ import {
 
 import { DateFormatter } from './date-formatter';
 
+type CompareDatesFn = (date1: Date, date2: Date) => number;
 
 @Component({
   selector: 'datepicker-inner',
@@ -51,12 +52,9 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   @Output() update: EventEmitter<Date> = new EventEmitter<Date>(false);
   @Output() activeDateChange: EventEmitter<Date> = new EventEmitter<Date>(undefined);
 
-  /* tslint:disable-next-line: no-any*/
-  stepDay: any = {};
-  /* tslint:disable-next-line: no-any*/
-  stepMonth: any = {};
-  /* tslint:disable-next-line: no-any*/
-  stepYear: any = {};
+  stepDay = {};
+  stepMonth = {};
+  stepYear = {};
 
   uniqueId: string;
 
@@ -66,12 +64,12 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   protected selectedDate: Date;
   protected activeDateId: string;
 
-  protected refreshViewHandlerDay: Function;
-  protected compareHandlerDay: Function;
-  protected refreshViewHandlerMonth: Function;
-  protected compareHandlerMonth: Function;
-  protected refreshViewHandlerYear: Function;
-  protected compareHandlerYear: Function;
+  protected refreshViewHandlerDay: () => void;
+  protected compareHandlerDay: CompareDatesFn;
+  protected refreshViewHandlerMonth: () => void;
+  protected compareHandlerMonth: CompareDatesFn;
+  protected refreshViewHandlerYear: () => void;
+  protected compareHandlerYear: CompareDatesFn;
 
   @Input()
   get activeDate(): Date {
@@ -104,7 +102,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   }
 
   // Check if activeDate has been update and then emit the activeDateChange with the new date
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   checkIfActiveDateGotUpdated(activeDate: any): void {
     if (activeDate && !activeDate.firstChange) {
       const previousValue = activeDate.previousValue;
@@ -118,7 +116,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     }
   }
 
-  setCompareHandler(handler: Function, type: string): void {
+  setCompareHandler(handler: CompareDatesFn, type: string): void {
     if (type === 'day') {
       this.compareHandlerDay = handler;
     }
@@ -152,7 +150,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     return void 0;
   }
 
-  setRefreshViewHandler(handler: Function, type: string): void {
+  setRefreshViewHandler(handler: () => void, type: string): void {
     if (type === 'day') {
       this.refreshViewHandlerDay = handler;
     }
@@ -184,7 +182,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     return this.dateFormatter.format(date, format, this.locale);
   }
 
-  /* tslint:disable-next-line: no-any*/
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   isActive(dateObject: any): boolean {
     if (this.compare(dateObject.date, this.activeDate) === 0) {
       this.activeDateId = dateObject.uid;
@@ -195,9 +193,9 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     return false;
   }
 
-  /* tslint:disable-next-line: no-any*/
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   createDateObject(date: Date, format: string): any {
-    /* tslint:disable-next-line: no-any*/
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const dateObject: any = {};
     dateObject.date = new Date(
       date.getFullYear(),
@@ -214,9 +212,9 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     return dateObject;
   }
 
-  /* tslint:disable-next-line: no-any*/
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   split(arr: any[], size: number): any[] {
-    /* tslint:disable-next-line: no-any*/
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const arrays: any[] = [];
     while (arr.length > 0) {
       arrays.push(arr.splice(0, size));
@@ -277,7 +275,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
   }
 
   move(direction: number): void {
-    /* tslint:disable-next-line: no-any*/
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let expectedStep: any;
     if (this.datepickerMode === 'day') {
       expectedStep = this.stepDay;
@@ -328,7 +326,7 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
       date: Date;
       mode: string;
       clazz: string;
-    /* tslint:disable-next-line: no-any */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } = this.customClass.find((customClass: any) => {
       return (
         customClass.date.valueOf() === date.valueOf() &&

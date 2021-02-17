@@ -8,9 +8,3 @@ declare const PR: any;
 
 // declare const require:any;
 // declare const global:any;
-
-declare namespace jasmine {
-  interface Matchers<T> {
-    toHaveCssClass(expected: any): boolean;
-  }
-}

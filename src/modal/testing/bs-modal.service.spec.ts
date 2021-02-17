@@ -8,11 +8,11 @@ import { BsModalService, ModalOptions } from '../index';
 class TestService { }
 
 describe('Service: BsModal', () => {
-  let mockModalComponentRef: any;
-  let mockComponentLoader: any;
+  let mockModalComponentRef;
+  let mockComponentLoader;
   let bsModalService: BsModalService;
 
-  function createMockComponentLoader(baseName: string): any {
+  function createMockComponentLoader(baseName: string) {
     const componentLoader = jasmine.createSpyObj(baseName, [
       'attach',
       'getInnerComponent',

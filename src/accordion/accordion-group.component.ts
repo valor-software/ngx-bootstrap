@@ -13,6 +13,7 @@ import { AccordionComponent } from './accordion.component';
 @Component({
   selector: 'accordion-group, accordion-panel',
   templateUrl: './accordion-group.component.html',
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     class: 'panel',
     style: 'display: block'
@@ -53,7 +54,6 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
         this.isOpenChange.emit(value);
       })
         .catch((error: Error) => {
-          /* tslint:disable: no-console */
           console.log(error);
         });
     }

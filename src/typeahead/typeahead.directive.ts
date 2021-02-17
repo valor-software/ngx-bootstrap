@@ -26,12 +26,13 @@ import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
 import { TypeaheadOrder } from './typeahead-order.class';
 import { TypeaheadOptionItemContext, TypeaheadOptionListContext } from './models';
 
-type TypeaheadOption = string | {[key in string | number]: any};
+type TypeaheadOption = string | {[key in string | number]: unknown};
 type Typeahead = TypeaheadOption[] | Observable<TypeaheadOption[]>;
 
 @Directive({
   selector: '[typeahead]',
   exportAs: 'bs-typeahead',
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[attr.aria-activedescendant]': 'activeDescendant',
     '[attr.aria-owns]': 'isOpen ? this._container.popupId : null',
@@ -174,14 +175,14 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   isFocused = false;
   cancelRequestOnFocusLost = false;
 
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected keyUpEventEmitter: EventEmitter<string> = new EventEmitter();
   protected _matches: TypeaheadMatch[] = [];
   protected placement = 'bottom left';
 
   private _typeahead: ComponentLoader<TypeaheadContainerComponent>;
   private _subscriptions: Subscription[] = [];
-  private _outsideClickListener: Function;
+  private _outsideClickListener: () => void;
   private _allEnteredValue: string;
 
   constructor(
@@ -241,7 +242,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   @HostListener('input', ['$event'])
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onInput(e: any): void {
     // For `<input>`s, use the `value` property. For others that don't have a
     // `value` (such as `<span contenteditable="true">`), use either
@@ -604,7 +605,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
       // extract all group names
       const groups = sorted
-        .map((option: TypeaheadMatch) =>
+        .map((option: TypeaheadOption) =>
           getValueFromObject(option, this.typeaheadGroupField)
         )
         .filter((v: string, i: number, a: string[]) => a.indexOf(v) === i);
@@ -631,7 +632,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       this._matches = matches;
     } else {
       this._matches = sorted.map(
-        // tslint:disable-next-line:no-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (option: any) =>
           new TypeaheadMatch(
             option,

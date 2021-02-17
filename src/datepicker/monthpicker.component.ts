@@ -20,7 +20,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
                 (click)="datePicker.toggleMode(0)"
                 [disabled]="datePicker.datepickerMode === maxMode"
                 [ngClass]="{disabled: datePicker.datepickerMode === maxMode}" tabindex="-1" style="width:100%;">
-          <strong>{{ title }}</strong> 
+          <strong>{{ title }}</strong>
         </button>
       </th>
       <th>
@@ -53,7 +53,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
 })
 export class MonthPickerComponent implements OnInit {
   title: string;
-  rows: any[] = [];
+  rows = [];
   datePicker: DatePickerInnerComponent;
   maxMode: string;
 
@@ -66,12 +66,13 @@ export class MonthPickerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this;
 
     this.datePicker.stepMonth = { years: 1 };
 
     this.datePicker.setRefreshViewHandler(function(): void {
-      const months: any[] = new Array(12);
+      const months = new Array(12);
       const year: number = this.activeDate.getFullYear();
       let date: Date;
 

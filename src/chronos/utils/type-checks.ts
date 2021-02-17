@@ -16,6 +16,7 @@ export function isDateValid(date: Date): boolean {
   return date && date.getTime && !isNaN(date.getTime());
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export function isFunction(fn: any): fn is Function {
   return (
     fn instanceof Function ||
@@ -38,7 +39,7 @@ export function hasOwnProp<T>(a: T /*object*/, b: string): b is Extract<keyof T,
   return Object.prototype.hasOwnProperty.call(a, b);
 }
 
-export function isObject<T>(input: any /*object*/): input is T {
+export function isObject<T>(input: any /*object*/): input is Record<string, unknown> {
   // IE8 will treat undefined and null as object if it wasn't for
   // input != null
   return (
@@ -52,6 +53,7 @@ export function isObjectEmpty(obj: any): boolean {
   }
   let k;
   for (k in obj) {
+    // eslint-disable-next-line no-prototype-builtins
     if (obj.hasOwnProperty(k)) {
       return false;
     }

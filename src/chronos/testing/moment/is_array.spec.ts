@@ -9,7 +9,7 @@ describe('is array', () => {
   it('isArray recognizes Array objects', function () {
     assertOk(isArray([1, 2, 3]), 'array args');
     assertOk(isArray([]), 'empty array');
-    assertOk(isArray(new Array(1, 2, 3)), 'array constructor');
+    assertOk(isArray([1, 2, 3]), 'array constructor');
   });
 
   it('isArray rejects non-Array objects', function () {

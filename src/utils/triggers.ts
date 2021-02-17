@@ -5,7 +5,7 @@
 import { Renderer2 } from '@angular/core';
 import { Trigger } from './trigger.class';
 
-/* tslint:disable-next-line: no-any */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type BsEventCallback = (event?: any) => boolean | void;
 
 export interface ListenOptions {
@@ -24,7 +24,7 @@ const DEFAULT_ALIASES = {
   focus: ['focusin', 'focusout']
 };
 
-/* tslint:disable-next-line: no-any */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function parseTriggers(triggers: string, aliases: any = DEFAULT_ALIASES): Trigger[] {
   const trimmedTriggers = (triggers || '').trim();
 
@@ -57,18 +57,17 @@ export function parseTriggers(triggers: string, aliases: any = DEFAULT_ALIASES):
 }
 
 export function listenToTriggers(renderer: Renderer2,
-                                 /* tslint:disable-next-line: no-any */
+                                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                                  target: any,
                                  triggers: string,
                                  showFn: BsEventCallback,
                                  hideFn: BsEventCallback,
-                                 toggleFn: BsEventCallback): Function {
+                                 toggleFn: BsEventCallback): () => void {
   const parsedTriggers = parseTriggers(triggers);
-  /* tslint:disable-next-line: no-any */
-  const listeners: any[] = [];
+  const listeners: Array<() => void> = [];
 
   if (parsedTriggers.length === 1 && parsedTriggers[0].isManual()) {
-    return Function.prototype;
+    return Function.prototype as () => void;
   }
 
   parsedTriggers.forEach((trigger: Trigger) => {
@@ -85,28 +84,27 @@ export function listenToTriggers(renderer: Renderer2,
   });
 
   return () => {
-    listeners.forEach((unsubscribeFn: Function) => unsubscribeFn());
+    listeners.forEach((unsubscribeFn) => unsubscribeFn());
   };
 }
 
 export function listenToTriggersV2(renderer: Renderer2,
-                                   options: ListenOptions): Function {
+                                   options: ListenOptions): () => void {
   const parsedTriggers = parseTriggers(options.triggers);
   const target = options.target;
   // do nothing
   if (parsedTriggers.length === 1 && parsedTriggers[0].isManual()) {
-    return Function.prototype;
+    return Function.prototype as () => void;
   }
 
   // all listeners
-  /* tslint:disable-next-line: no-any */
-  const listeners: any[] = [];
+  const listeners: Array<() => void> = [];
 
   // lazy listeners registration
-  const _registerHide: Function[] = [];
+  const _registerHide: Array<() => () => void> = [];
   const registerHide = () => {
     // add hide listeners to unregister array
-    _registerHide.forEach((fn: Function) => listeners.push(fn()));
+    _registerHide.forEach((fn) => listeners.push(fn()));
     // register hide events only once
     _registerHide.length = 0;
   };
@@ -128,7 +126,7 @@ export function listenToTriggersV2(renderer: Renderer2,
   });
 
   return () => {
-    listeners.forEach((unsubscribeFn: Function) => unsubscribeFn());
+    listeners.forEach((unsubscribeFn: () => void) => unsubscribeFn());
   };
 }
 
@@ -138,7 +136,7 @@ export function registerOutsideClick(renderer: Renderer2,
     return Function.prototype;
   }
 
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return renderer.listen('document', 'click', (event: any) => {
     if (options.target && options.target.contains(event.target)) {
       return undefined;
@@ -160,7 +158,7 @@ export function registerEscClick(renderer: Renderer2,
     return Function.prototype;
   }
 
-  return renderer.listen('document', 'keyup.esc', (event: any) => {
+  return renderer.listen('document', 'keyup.esc', (event) => {
     if (options.target && options.target.contains(event.target)) {
       return undefined;
     }

@@ -24,6 +24,7 @@ import { isBs3 } from 'ngx-bootstrap/utils';
       </div>
     </div>
   `,
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     class: 'modal',
     role: 'dialog',

@@ -4,7 +4,7 @@
 import { getStyleComputedProperty } from './getStyleComputedProperty';
 import { isIE } from './isIE';
 
-export function getOffsetParent(element: any): any {
+export function getOffsetParent(element: HTMLElement): HTMLElement {
   if (!element) {
     return document.documentElement;
   }
@@ -21,7 +21,8 @@ export function getOffsetParent(element: any): any {
          && element.nextElementSibling
          && sibling !== element.nextElementSibling) {
 
-      sibling = element.nextElementSibling;
+      // todo: valorkin fix
+      sibling = element.nextElementSibling as HTMLElement;
       offsetParent = sibling.offsetParent;
     }
 

@@ -143,7 +143,7 @@ export class Locale {
   private _ordinal: string;
 
   constructor(config: LocaleData) {
-    if (!!config) {
+    if (config) {
       this.set(config);
     }
   }
@@ -151,6 +151,7 @@ export class Locale {
   set(config: LocaleData): void {
     let confKey;
     for (confKey in config) {
+      // eslint-disable-next-line no-prototype-builtins
       if (!config.hasOwnProperty(confKey)) {
         continue;
       }

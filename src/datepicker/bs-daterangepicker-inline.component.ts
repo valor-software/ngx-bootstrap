@@ -180,7 +180,7 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
         .show();
     }
 
-    ngOnDestroy(): any {
+    ngOnDestroy() {
       this._datepicker.dispose();
     }
 }

@@ -15,6 +15,7 @@ import { BsDropdownDirective } from './bs-dropdown.directive';
 @Directive({
   selector: '[bsDropdownToggle],[dropdownToggle]',
   exportAs: 'bs-dropdown-toggle',
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[attr.aria-haspopup]': 'true'
   }
@@ -24,8 +25,8 @@ export class BsDropdownToggleDirective implements OnDestroy {
   @HostBinding('attr.aria-expanded') isOpen: boolean;
 
   private _subscriptions: Subscription[] = [];
-  private _documentClickListener: Function;
-  private _escKeyUpListener: Function;
+  private _documentClickListener: () => void;
+  private _escKeyUpListener: () => void;
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
@@ -41,7 +42,7 @@ export class BsDropdownToggleDirective implements OnDestroy {
           this.isOpen = value;
 
           if (value) {
-            this._documentClickListener = this._renderer.listen('document', 'click', (event: any) => {
+            this._documentClickListener = this._renderer.listen('document', 'click', (event: MouseEvent) => {
               if (this._state.autoClose && event.button !== 2 &&
                 !this._element.nativeElement.contains(event.target) &&
                 !(this._state.insideClick && this._dropdown._contains(event))

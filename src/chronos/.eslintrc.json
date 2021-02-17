@@ -10,6 +10,13 @@
       ],
       "parserOptions": { "project": ["src/chronos/tsconfig.*?.json"] },
       "rules": {
+        "no-var": "off",
+        "no-useless-escape": "off",
+        "prefer-spread": "off",
+        "prefer-rest-params": "off",
+        "prefer-const": "off",
+        "@typescript-eslint/no-unused-vars": 0,
+        "@typescript-eslint/no-explicit-any": 0
       }
     },
     {

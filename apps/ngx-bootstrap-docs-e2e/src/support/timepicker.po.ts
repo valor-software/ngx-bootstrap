@@ -1,4 +1,5 @@
 import { BaseComponent } from './base.component';
+import PositionType = Cypress.PositionType;
 
 export class TimepickerPo extends BaseComponent {
   pageUrl = '/timepicker';
@@ -60,7 +61,7 @@ export class TimepickerPo extends BaseComponent {
       .click({ force: true });
   }
 
-  triggerEventOnInput(baseSelector: string, event: string, inputIndex = 0, params?: any) {
+  triggerEventOnInput(baseSelector: string, event: string, inputIndex = 0, params?: PositionType) {
     if (!params) {
       cy.get(`${baseSelector} input`).eq(inputIndex).trigger(event);
     } else {

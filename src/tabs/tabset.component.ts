@@ -124,7 +124,7 @@ export class TabsetComponent implements OnDestroy {
 
     // tslint:disable-next-line:deprecation
     if (event.keyCode === 39 || event.key === 'RightArrow') {
-      let nextTab: any;
+      let nextTab: HTMLElement;
       let shift = 1;
 
       do {
@@ -140,7 +140,7 @@ export class TabsetComponent implements OnDestroy {
 
     // tslint:disable-next-line:deprecation
     if (event.keyCode === 37 || event.key === 'LeftArrow') {
-      let previousTab: any;
+      let previousTab: HTMLElement;
       let shift = 1;
       let i = index;
 
@@ -165,7 +165,7 @@ export class TabsetComponent implements OnDestroy {
     if (event.keyCode === 36 || event.key === 'Home') {
       event.preventDefault();
 
-      let firstTab: any;
+      let firstTab: HTMLElement;
       let shift = 0;
 
       do {
@@ -183,7 +183,7 @@ export class TabsetComponent implements OnDestroy {
     if (event.keyCode === 35 || event.key === 'End') {
       event.preventDefault();
 
-      let lastTab: any;
+      let lastTab: HTMLElement;
       let shift = 1;
       let i = index;
 

@@ -1,7 +1,7 @@
 import { DemoPaginationBasicComponent } from './demos/basic/basic';
 import { DemoPaginationPagerComponent } from './demos/pager/pager';
 import { DemoPaginationLimitComponent } from './demos/limit/limit';
-import { DemoPaginationStylingComponent } from './demos/styling-global/styling-global';
+// import { DemoPaginationStylingComponent } from './demos/styling-global/styling-global';
 import { DemoPaginationManualSwitchingComponent } from './demos/manual-switching/manual-switching';
 import { DemoPaginationPageChangedComponent } from './demos/page-changed-event/page-changed-event';
 import { DemoPaginationPagesCountChangedComponent } from './demos/pages-count-changed/pages-count-changed';
@@ -11,9 +11,9 @@ import { DemoPaginationCustomLinksContentComponent } from './demos/custom-links-
 import { DemoPaginationContentSwitchingComponent } from './demos/content-switching/content-switching';
 
 import { ContentSection } from '../../docs/models/content-section.model';
-import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
-import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
-import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
+import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section';
+import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section';
+import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section';
 
 import {
   NgApiDocComponent,

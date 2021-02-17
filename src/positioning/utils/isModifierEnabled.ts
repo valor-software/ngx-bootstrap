@@ -1,7 +1,9 @@
 /**
  * Helper used to know if the given modifier is enabled.
  */
-export function isModifierEnabled(options: any, modifierName: string) {
+import { Options } from '../models';
+
+export function isModifierEnabled(options: Options, modifierName: string): boolean {
   return options
     && options.modifiers
     && options.modifiers[modifierName]

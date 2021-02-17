@@ -10,9 +10,9 @@ import { fireEvent } from '../../../scripts/helpers';
 
 describe('Component: Pager:', () => {
   let fixture: ComponentFixture<PagerComponent>;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let context: any;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let element: any;
 
   beforeEach(() => {

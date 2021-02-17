@@ -1,4 +1,3 @@
-// tslint:disable:max-file-line-count
 import {
   Directive,
   ElementRef,
@@ -27,6 +26,7 @@ import { dropdownAnimation } from './dropdown-animations';
   selector: '[bsDropdown],[dropdown]',
   exportAs: 'bs-dropdown',
   providers: [BsDropdownState],
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[class.dropup]': 'dropup',
     '[class.open]': 'isOpen',
@@ -219,7 +219,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         .pipe(
           filter((value: boolean) => value)
         )
-        .subscribe((value: boolean) => this.hide())
+        .subscribe((/*value: boolean*/) => this.hide())
     );
   }
 
@@ -320,9 +320,10 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   }
 
   /** @internal */
-  _contains(event: any): boolean {
+  _contains(event: MouseEvent): boolean {
+    // todo: valorkin fix
     return this._elementRef.nativeElement.contains(event.target) ||
-      (this._dropdown.instance && this._dropdown.instance._contains(event.target));
+      this._dropdown?.instance._contains(event.target as unknown as Element);
   }
 
   ngOnDestroy(): void {

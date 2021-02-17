@@ -1,10 +1,8 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'demo-pagination-styling',
-  // encapsulation: ViewEncapsulation.None,
   templateUrl: './styling-global.html',
-  /* tslint:disable no-unused-css*/
   styles: [
     `
     .btn-custom a {
@@ -14,9 +12,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
   ]
 })
 export class DemoPaginationStylingComponent {
-  totalItems: number = 64;
-  currentPage: number = 4;
-  smallnumPages: number = 0;
+  totalItems = 64;
+  currentPage = 4;
+  smallnumPages = 0;
 
   pageChanged(event: any): void {
     console.log('Page changed to: ' + event.page);

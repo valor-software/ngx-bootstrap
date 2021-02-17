@@ -4,20 +4,17 @@ import { pairwise, tap } from 'rxjs/operators';
 
 import { BsModalService, ModalModule } from '../index';
 
-/* tslint:disable-next-line: max-classes-per-file */
 @Component({ template: '<div>Dummy Component</div>' })
 class DummyComponent {
-/* tslint:disable-next-line: no-empty */
+  // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
     constructor(modalService: BsModalService) { }
 }
 
-/* tslint:disable-next-line: max-classes-per-file */
 @Component({
     template: '<div>Test Component</div>'
 })
 class TestModalComponent { }
 
-/* tslint:disable-next-line: max-classes-per-file */
 @NgModule({
     declarations: [TestModalComponent],
     entryComponents: [TestModalComponent]
@@ -41,8 +38,7 @@ describe('Modal service', () => {
   });
 
   it('should return random id on spin up a new modal', done => {
-    modalService.onShown.subscribe((data: any) => {
-      /* tslint:disable-next-line: no-floating-promises */
+    modalService.onShown.subscribe((data) => {
       expect(data.id).toBeTruthy();
       done();
     });
@@ -54,7 +50,6 @@ describe('Modal service', () => {
     modalService.onShown.pipe(
       pairwise(),
       tap(([firstData, secondData]) => {
-        /* tslint:disable-next-line: no-floating-promises */
         expect(firstData.id).not.toBe(secondData.id);
         done();
       })
@@ -67,8 +62,7 @@ describe('Modal service', () => {
   it('should return id in config when specified', done => {
     const id = 20;
 
-    modalService.onShown.subscribe((data: any) => {
-      /* tslint:disable-next-line: no-floating-promises */
+    modalService.onShown.subscribe((data) => {
       expect(data.id).toBe(id);
       done();
     });
@@ -79,8 +73,7 @@ describe('Modal service', () => {
   it('should return id when hide modal', () => {
     const id = 20;
 
-    modalService.onHidden.subscribe((data: any) => {
-      /* tslint:disable-next-line: no-floating-promises */
+    modalService.onHidden.subscribe((data) => {
       expect(data.id).toBe(id);
     });
 

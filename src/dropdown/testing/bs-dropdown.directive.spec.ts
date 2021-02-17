@@ -1,9 +1,7 @@
-/* tslint:disable:max-file-line-count */
 import { Component, DebugElement } from '@angular/core';
 import { fakeAsync, TestBed, tick, ComponentFixture, waitForAsync } from '@angular/core/testing';
 
 import { BsDropdownConfig, BsDropdownDirective, BsDropdownModule } from '../index';
-import { window } from '../../utils/facade/browser';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -12,14 +10,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   template: ''
 })
 class TestDropdownComponent {
-  isOpen: Boolean = false;
-  dropup: Boolean = false;
-  isDisabled: Boolean = false;
-  autoClose: Boolean = true;
-  isOpenChangeValue: Boolean = false;
-  insideClick: Boolean = false;
-  container: String = '';
-  placement: String = '';
+  isOpen = false;
+  dropup = false;
+  isDisabled = false;
+  autoClose = true;
+  isOpenChangeValue = false;
+  insideClick = false;
+  container = '';
+  placement = '';
 
   constructor(config: BsDropdownConfig) {
     Object.assign(this, config);
@@ -341,8 +339,8 @@ describe('Directive: Dropdown', () => {
 
   it('should open if isBs3 method return true', fakeAsync(() => {
     context.placement = 'bottom';
-    const tempVal = window.__theme;
-    window.__theme = 'bs4';
+    const tempVal = window['__theme'];
+    window['__theme'] = 'bs4';
     fixture.detectChanges();
     element.querySelector('button').click();
     fixture.detectChanges();
@@ -350,6 +348,6 @@ describe('Directive: Dropdown', () => {
     expect(element.querySelector('[dropdownToggle]').getAttribute('aria-expanded')).toEqual('true');
     tick();
     expect(element.querySelector('[dropdown]').classList).toContain('open');
-    window.__theme = tempVal;
+    window['__theme'] = tempVal;
   }));
 });

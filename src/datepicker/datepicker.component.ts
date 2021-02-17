@@ -125,9 +125,9 @@ export class DatePickerComponent implements ControlValueAccessor {
   @ViewChild(DatePickerInnerComponent, { static: true })
   _datePicker: DatePickerInnerComponent;
 
-  /* tslint:disable-next-line: no-any*/
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange: any = Function.prototype;
-  /* tslint:disable-next-line: no-any*/
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onTouched: any = Function.prototype;
 
   config: DatepickerConfig;
@@ -157,7 +157,7 @@ export class DatePickerComponent implements ControlValueAccessor {
     this.activeDateChange.emit(event);
   }
   // todo: support null value
-  /* tslint:disable-next-line: no-any*/
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   writeValue(value: any): void {
     if (this._datePicker.compare(value, this._activeDate) === 0) {
       return;

@@ -183,7 +183,7 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
   }
 
   getText(key: string): string {
-    // tslint:disable-next-line:no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (this as any)[`${key}Text`] || (this as any).config[`${key}Text`];
   }
 
@@ -195,11 +195,11 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
     return this.page === this.totalPages;
   }
 
-  registerOnChange(fn: () => {}): void {
+  registerOnChange(fn: () => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: () => {}): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
@@ -210,7 +210,7 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
 
     if (!this.disabled) {
       if (event && event.target) {
-        // tslint:disable-next-line:no-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const target: any = event.target;
         target.blur();
       }

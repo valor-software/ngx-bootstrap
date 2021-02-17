@@ -8,9 +8,9 @@ import { Action, ActionReducer } from './index';
 export class MiniStore<T> extends Observable<T> implements Observer<Action> {
   constructor(
     private _dispatcher: Observer<Action>,
-    /* tslint:disable-next-line: no-any */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private _reducer: ActionReducer<any>,
-    /* tslint:disable-next-line: no-any */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     state$: Observable<any>
   ) {
     super();
@@ -42,7 +42,7 @@ export class MiniStore<T> extends Observable<T> implements Observer<Action> {
     this._dispatcher.next(action);
   }
 
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   error(err: any) {
     this._dispatcher.error(err);
   }

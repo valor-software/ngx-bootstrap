@@ -54,20 +54,19 @@ export class AlertsPo extends BaseComponent {
   }
 
   getAlertClass(alertType: string) {
-    let alertClass: string;
     switch (alertType) {
       case 'success':
-        return alertClass = '.alert-success';
+        return '.alert-success';
       case 'info':
-        return alertClass = '.alert-info';
+        return '.alert-info';
       case 'warning':
-        return alertClass = '.alert-warning';
+        return '.alert-warning';
       case 'danger':
-        return alertClass = '.alert-danger';
+        return '.alert-danger';
       case 'colored':
-        return alertClass = '.alert-md-color';
+        return '.alert-md-color';
       case 'local':
-        return alertClass = '.alert-md-local';
+        return '.alert-md-local';
 
       default:
         throw new Error('Incorrect alert type, available: success, info, warning, danger, coloured, local');

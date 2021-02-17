@@ -94,7 +94,6 @@ jobs:
           npx nx run ngx-bootstrap:build-sass --runner cloud
       # end: npm ci && build
       - run: npm run lint -- --runner cloud
-        continue-on-error: true
 
   firebase_preview:
     runs-on: ubuntu-latest

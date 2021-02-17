@@ -42,7 +42,7 @@ class TestTypeaheadComponent {
     'Connecticut'
   ];
 
-  onBlurEvent(activeItem) {
+  onBlurEvent() {
     return undefined;
   }
 }
@@ -728,7 +728,7 @@ describe('Directive: Typeahead', () => {
         expect(directive.matches.length).toBe(component.statesString.length);
       }));
 
-    it(`and \'Ala\' is entered after \',\' or \'|\' when these used for typeaheadMultipleSearchDelimiters,
+    it(`and 'Ala' is entered after ',' or '|' when these used for typeaheadMultipleSearchDelimiters,
         should give matches for Alaska and Alabama`,
       fakeAsync(() => {
         directive.typeaheadMultipleSearchDelimiters = ',|';

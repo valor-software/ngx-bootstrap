@@ -9,8 +9,8 @@ export class DemoModalServiceWithInterceptorComponent {
   bsModalRef: BsModalRef;
 
   confirmModalRef: BsModalRef;
-  confirmResolve: Function;
-  confirmReject: Function;
+  confirmResolve: () => void;
+  confirmReject: () => void;
   confirmPromise: Promise<void>;
 
   constructor(private modalService: BsModalService) {}

@@ -134,6 +134,7 @@ describe('create', () => {
   });
 
   it('cloning moment should only copy own properties', function () {
+    // eslint-disable-next-line no-prototype-builtins
     assertOk(!moment().clone().hasOwnProperty('month'), 'Should not clone prototype methods');
   });
 

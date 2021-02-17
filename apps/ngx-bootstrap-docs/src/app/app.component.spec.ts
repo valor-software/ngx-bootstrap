@@ -4,7 +4,7 @@ import { AppModule } from './app.module';
 
 xdescribe('App: Ng2Bootstrap', () => {
   let fixture: ComponentFixture<AppComponent>;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let context: any;
 
   beforeEach(waitForAsync(() => {

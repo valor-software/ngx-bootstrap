@@ -34,11 +34,11 @@ export function bsDatepickerReducer(state = initialDatepickerState,
     }
 
     case BsDatepickerActions.FORMAT: {
-      return formatReducer(state, action);
+      return formatReducer(state);
     }
 
     case BsDatepickerActions.FLAG: {
-      return flagReducer(state, action);
+      return flagReducer(state);
     }
 
     case BsDatepickerActions.NAVIGATE_OFFSET: {
@@ -233,8 +233,7 @@ function calculateReducer(state: BsDatepickerState): BsDatepickerState {
   return state;
 }
 
-function formatReducer(state: BsDatepickerState,
-                       action: Action): BsDatepickerState {
+function formatReducer(state: BsDatepickerState): BsDatepickerState {
   if (state.view.mode === 'day') {
     const formattedMonths = state.monthsModel.map((month, monthIndex) =>
       formatDaysCalendar(month, getFormatOptions(state), monthIndex)
@@ -288,8 +287,7 @@ function formatReducer(state: BsDatepickerState,
   return state;
 }
 
-function flagReducer(state: BsDatepickerState,
-                     action: Action): BsDatepickerState {
+function flagReducer(state: BsDatepickerState): BsDatepickerState {
   const displayMonths = isDisplayOneMonth(state.view.date, state.minDate, state.maxDate) ? 1 : state.displayMonths;
   if (state.view.mode === 'day') {
     const flaggedMonths = state.formattedMonths.map(

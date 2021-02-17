@@ -19,7 +19,7 @@ export function getBoundaries(
 ) {
   // NOTE: 1 DOM access here
 
-  let boundaries: any = { top: 0, left: 0 };
+  let boundaries = { top: 0, left: 0 };
   const offsetParent = fixedPosition ? getFixedPositionOffsetParent(target) : findCommonOffsetParent(target, host);
 
   // Handle viewport case

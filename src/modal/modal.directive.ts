@@ -332,7 +332,7 @@ export class ModalDirective implements OnDestroy, OnInit {
   // todo: original show was calling a callback when done, but we can use
   // promise
   /** @internal */
-  protected showBackdrop(callback?: Function): void {
+  protected showBackdrop(callback?: () => void): void {
     if (
       this._isShown &&
       this.config.backdrop &&

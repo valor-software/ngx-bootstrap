@@ -8,17 +8,17 @@ import { matchers } from '../../../scripts/jest/customMatchers';
 
 jasmine.addMatchers(matchers);
 
-/* tslint:disable-next-line: no-any */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getInputElements(fixture: any) {
   return fixture.nativeElement.querySelectorAll('input') as HTMLInputElement[];
 }
 
-/* tslint:disable-next-line: no-any */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getElements(fixture: any, selector: string) {
   return fixture.nativeElement.querySelectorAll(selector) as HTMLElement[];
 }
 
-/* tslint:disable-next-line: no-any */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getDebugElements(fixture: any, selector: string) {
   return fixture.debugElement.queryAll(By.css(selector));
 }
@@ -38,14 +38,14 @@ describe('Component: TimepickerComponent', () => {
   let inputHours: HTMLInputElement;
   let inputMinutes: HTMLInputElement;
   let inputSeconds: HTMLInputElement;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let inputDebugHours: any;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let inputDebugMinutes: any;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let inputDebugSeconds: any;
   let buttonMeridian: HTMLElement;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let buttonDebugMeridian: any;
   let buttonChanges: HTMLElement[];
 

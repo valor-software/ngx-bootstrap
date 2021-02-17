@@ -51,6 +51,7 @@ const BS_DATEPICKER_VALIDATOR: Provider = {
 
 @Directive({
   selector: `input[bsDatepicker]`,
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '(change)': 'onChange($event)',
     '(keyup.esc)': 'hide()',
@@ -120,7 +121,7 @@ export class BsDatepickerInputDirective
   }
 
   onChange(event: Event) {
-    /* tslint:disable-next-line: no-any*/
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     this.writeValue((event.target as any).value);
     this._onChange(this._value);
     if (this._picker._config.returnFocusToInput) {

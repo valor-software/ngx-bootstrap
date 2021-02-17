@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './dynamic.html'
 })
 export class DemoProgressbarDynamicComponent {
-  max: number = 200;
+  max = 200;
   showWarning: boolean;
   dynamic: number;
   type: string;
@@ -15,7 +15,7 @@ export class DemoProgressbarDynamicComponent {
   }
 
   random(): void {
-    let value = Math.floor(Math.random() * 100 + 1);
+    const value = Math.floor(Math.random() * 100 + 1);
     let type: string;
 
     if (value < 25) {

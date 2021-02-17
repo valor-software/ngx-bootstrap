@@ -5,7 +5,7 @@ import { isOffsetContainer } from './isOffsetContainer';
 import { getRoot } from './getRoot';
 import { getOffsetParent } from './getOffsetParent';
 
-export function findCommonOffsetParent(element1: HTMLElement, element2: HTMLElement): any {
+export function findCommonOffsetParent(element1: HTMLElement, element2: HTMLElement): HTMLElement {
   // This check is needed to avoid errors in case one of the elements isn't defined for any reason
   if (!element1 || !element1.nodeType || !element2 || !element2.nodeType) {
     return document.documentElement;
@@ -31,7 +31,8 @@ export function findCommonOffsetParent(element1: HTMLElement, element2: HTMLElem
     start.contains(end)
   ) {
     if (isOffsetContainer(commonAncestorContainer)) {
-      return commonAncestorContainer;
+      // todo: valorkin fix
+      return commonAncestorContainer as unknown as HTMLElement;
     }
 
     return getOffsetParent(commonAncestorContainer);

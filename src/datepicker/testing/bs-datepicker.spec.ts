@@ -1,7 +1,6 @@
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Component, ViewChild, Renderer2 } from '@angular/core';
-import { TypeaheadModule } from '../../typeahead';
 
 import { BsDatepickerModule } from '../bs-datepicker.module';
 import { BsDatepickerDirective } from '../bs-datepicker.component';
@@ -122,7 +121,7 @@ describe('datepicker:', () => {
   it('should hide on esc', waitForAsync(() => {
     const datepicker = showDatepicker(fixture);
     const spy = spyOn(datepicker, 'hide');
-    const renderer = fixture.componentRef.injector.get<Renderer2>(Renderer2 as any);
+    const renderer = fixture.componentRef.injector.get<Renderer2>(Renderer2);
 
     registerEscClick(renderer, {
       outsideEsc: true,

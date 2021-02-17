@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './one-at-a-time.html'
 })
 export class DemoAccordionOneAtATimeComponent {
-  oneAtATime: boolean = true;
+  oneAtATime = true;
 }

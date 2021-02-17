@@ -26,13 +26,13 @@ export class BsModalService {
   // constructor props
   config: ModalOptions;
 
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onShow: EventEmitter<any> = new EventEmitter();
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onShown: EventEmitter<any> = new EventEmitter();
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onHide: EventEmitter<any> = new EventEmitter();
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onHidden: EventEmitter<any> = new EventEmitter();
 
   protected isBodyOverflowing = false;
@@ -43,7 +43,7 @@ export class BsModalService {
   protected backdropRef: ComponentRef<ModalBackdropComponent>;
   private _backdropLoader: ComponentLoader<ModalBackdropComponent>;
   private modalsCount = 0;
-  private lastDismissReason: any = null;
+  private lastDismissReason = null;
 
   private loaders: ComponentLoader<ModalContainerComponent>[] = [];
 
@@ -65,15 +65,16 @@ export class BsModalService {
   }
 
   /** Shows a modal */
-  show<T = Object>(
-    // tslint:disable-next-line:no-any
+  show<T = unknown>(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     content: string | TemplateRef<any> | { new(...args: any[]): T },
     config?: ModalOptions<T>
   ): BsModalRef<T> {
     this.modalsCount++;
     this._createLoaders();
 
-    const id = config?.id || (new Date()).getUTCMilliseconds(); // must be different per every show() call
+    // must be different per every show() call
+    const id = config?.id || (new Date()).getUTCMilliseconds();
     this.config = this.modalDefaultOption ?
       Object.assign({}, modalConfigDefaults, this.modalDefaultOption, config) :
       Object.assign({}, modalConfigDefaults, config);
@@ -124,7 +125,7 @@ export class BsModalService {
     const duration = this.config.animated ? TRANSITION_DURATIONS.BACKDROP : 0;
     setTimeout(() => this.removeBackdrop(), duration);
   }
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   _showModal(content: any): BsModalRef {
     const modalLoader = this.loaders[this.loaders.length - 1];
     if (this.config && this.config.providers) {
@@ -144,8 +145,8 @@ export class BsModalService {
       modalContainerRef.instance.config.class = newClass;
     };
 
-    bsModalRef.onHidden = new EventEmitter<any>();
-    bsModalRef.onHide = new EventEmitter<any>();
+    bsModalRef.onHidden = new EventEmitter<unknown>();
+    bsModalRef.onHide = new EventEmitter<unknown>();
 
     this.copyEvent(modalLoader.onBeforeHide, bsModalRef.onHide);
     this.copyEvent(modalLoader.onHidden, bsModalRef.onHidden);
@@ -265,9 +266,8 @@ export class BsModalService {
     }
   }
 
-  // tslint:disable-next-line:no-any
-  private copyEvent(from: EventEmitter<any>, to: EventEmitter<any>) {
-    from.subscribe((data: any) => {
+  private copyEvent(from: EventEmitter<unknown>, to: EventEmitter<unknown>) {
+    from.subscribe((data) => {
       to.emit(this.lastDismissReason || data);
     });
   }

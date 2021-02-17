@@ -1,4 +1,3 @@
-// tslint:disable:max-file-line-count no-floating-promises
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ComponentFixture, ComponentFixtureAutoDetect, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -7,7 +6,7 @@ import { ButtonsModule } from '../index';
 @Component({selector: 'buttons-test', template: ''})
 class TestButtonsComponent implements OnInit {
   singleModel = '0';
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   checkModel: any = { left: false, middle: true, right: false };
   radioModel = 'Middle';
   myForm: FormGroup;
@@ -130,9 +129,9 @@ function createComponent(htmlTemplate, dtc?: string): ComponentFixture<TestButto
 
 describe('Directive: Buttons', () => {
   let fixture: ComponentFixture<TestButtonsComponent>;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let context: any;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let element: any;
 
   beforeEach(
