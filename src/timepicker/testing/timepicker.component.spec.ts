@@ -4,9 +4,7 @@ import { By } from '@angular/platform-browser';
 import { TimepickerActions, TimepickerComponent, TimepickerConfig, TimepickerModule } from '../index';
 
 import { fireEvent } from '../../../scripts/helpers';
-import { matchers } from '../../../scripts/jest/customMatchers';
-
-jasmine.addMatchers(matchers);
+import '../../../scripts/jest/toHaveCssClass';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getInputElements(fixture: any) {

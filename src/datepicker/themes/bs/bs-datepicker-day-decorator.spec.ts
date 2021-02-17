@@ -7,6 +7,8 @@ import { BsDatepickerDayDecoratorComponent } from './bs-datepicker-day-decorator
 import { Component } from '@angular/core';
 import { DayViewModel } from '../../models';
 
+import '../../../../scripts/jest/toHaveCssClass';
+
 @Component({
   selector: 'test-cmp',
   template: `<span bsDatepickerDayDecorator [day]="day">{{ day.label }}</span>`

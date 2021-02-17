@@ -25,7 +25,8 @@ import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
 import { TypeaheadOrder } from './typeahead-order.class';
 import { TypeaheadOptionItemContext, TypeaheadOptionListContext } from './models';
 
-type TypeaheadOption = string | {[key in string | number]: unknown};
+// eslint-disable-next-line
+type TypeaheadOption = string | Record<string|number, any>;
 type Typeahead = TypeaheadOption[] | Observable<TypeaheadOption[]>;
 
 @Directive({
