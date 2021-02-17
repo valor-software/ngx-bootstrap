@@ -10,7 +10,7 @@ import * as ts from 'typescript';
 import { addImportToModule } from '@schematics/angular/utility/ast-utils';
 import { Change, InsertChange } from '@schematics/angular/utility/change';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
-import { getFileContent } from '@schematics/angular/utility/test/index';
+import { getFileContent } from '@schematics/angular/utility/test';
 import { getProjectMainFile } from './project-main-file';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { Rule, SchematicContext, SchematicsException, Tree } from '@angular-devkit/schematics';
@@ -27,7 +27,7 @@ export function installPackageJsonDependencies(): Rule {
   };
 }
 
-export function addStyleToTarget(project: WorkspaceProject, targetName: string, host: Tree,
+export function addStyleToTarget(project: ProjectDefinition, targetName: string, host: Tree,
                                  assetPath: string, workspace: WorkspaceSchema) {
 
   const targetOptions = getProjectTargetOptions(project, targetName);
@@ -66,9 +66,9 @@ export function getProjectFromWorkspace(workspace: WorkspaceDefinition, projectN
   return project;
 }
 
-export function getProjectTargetOptions(project: WorkspaceProject, buildTarget: string) {
-  const targetConfig = project.architect && project.architect[buildTarget] ||
-    project.targets && project.targets[buildTarget];
+export function getProjectTargetOptions(project: ProjectDefinition, buildTarget: string) {
+  // const targetConfig = project.architect && project.architect[buildTarget] ||
+  const targetConfig = project.targets && project.targets[buildTarget];
 
   if (targetConfig && targetConfig.options) {
 

@@ -18,9 +18,9 @@ import {
 } from '../utils';
 
 import * as path from 'path';
-import { WorkspaceProject } from '@schematics/angular/utility/workspace-models';
+import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
 
-export function expectProjectStyleFile(project: WorkspaceProject, filePath: string) {
+export function expectProjectStyleFile(project: ProjectDefinition, filePath: string) {
   expect(getProjectTargetOptions(project, 'build').styles).toContain(filePath);
 }
 
@@ -56,7 +56,7 @@ describe('ng-add schematic', () => {
       .runSchematicAsync('ng-add', {}, appTree)
       .toPromise();
 
-    const workspace = getWorkspace(tree);
+    const workspace = await getWorkspace(tree);
     const project = getProjectFromWorkspace(workspace);
 
     expectProjectStyleFile(project, './node_modules/bootstrap/dist/css/bootstrap.min.css');
