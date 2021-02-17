@@ -4,20 +4,17 @@ import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { BsModalService, ModalModule } from '../index';
 import { MODAL_CONFIG_DEFAULT_OVERRIDE } from '../modal-options.class';
 
-/* tslint:disable-next-line: max-classes-per-file */
 @Component({ template: '<div>Dummy Component</div>' })
 class DummyComponent {
-  /* tslint:disable-next-line: no-empty */
+  // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
   constructor(modalService: BsModalService) {}
 }
 
-/* tslint:disable-next-line: max-classes-per-file */
 @Component({
   template: '<div>Test Component</div>'
 })
 class TestModalComponent {}
 
-/* tslint:disable-next-line: max-classes-per-file */
 @NgModule({
   declarations: [TestModalComponent],
   providers: [{ provide: MODAL_CONFIG_DEFAULT_OVERRIDE, useValue: { ignoreBackdropClick: true, keyboard: false } }],
@@ -42,14 +39,12 @@ describe('Modal service', () => {
   });
 
   it('should replace modal setting by default', () => {
-    /* tslint:disable-next-line: no-floating-promises */
     expect(modalService.config.ignoreBackdropClick).toBeFalsy();
   });
 
   it('should be able to replace module defined default config on show', () => {
     modalService.show(TestModalComponent, { ignoreBackdropClick: false });
 
-    /* tslint:disable-next-line: no-floating-promises */
     expect(modalService.config.ignoreBackdropClick).toBeFalsy();
   });
 });

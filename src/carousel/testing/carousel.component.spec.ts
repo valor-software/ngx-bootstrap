@@ -1,5 +1,3 @@
-// tslint:disable:max-file-line-count max-line-length
-
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { CarouselModule } from '../index';
@@ -13,7 +11,7 @@ class TestCarouselComponent {
   singleSlideOffset = false;
   startFromIndex = 0;
 
-  slides: any[] = [
+  slides: {image: string, text: string, active?: boolean}[] = [
     {image: '//placekitten.com/600/300', text: 'slide0'},
     {image: '//placekitten.com/600/300', text: 'slide1'},
     {image: '//placekitten.com/600/300', text: 'slide2'},
@@ -31,7 +29,7 @@ const html = `
               [itemsPerSlide]="itemsPerSlide">
       <slide *ngFor="let slide of slides; let index=index"
              [active]="slide.active">
-        <img [src]="slide.image" style="margin:auto;">
+        <img [src]="slide.image" style="margin:auto;" alt='slide image'>
         <div class="carousel-caption">
           <h4>Slide {{index}}</h4>
           <p>{{slide.text}}</p>
@@ -69,13 +67,9 @@ function expectActiveSlides(nativeEl: HTMLDivElement, active: boolean[]): void {
 }
 
 describe('Component: Carousel', () => {
-  /* tslint:disable-next-line: no-any */
-  let fixture: ComponentFixture<any>;
+  let fixture: ComponentFixture<TestCarouselComponent>;
   let context: TestCarouselComponent;
-  /* tslint:disable-next-line: no-any */
-  let element: any;
-  /* tslint:disable-next-line: no-any no-unused-variable */
-  let clean: any;
+  let element;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -88,7 +82,6 @@ describe('Component: Carousel', () => {
     fixture = TestBed.createComponent(TestCarouselComponent);
     context = fixture.componentInstance;
     element = fixture.nativeElement.querySelector('#c1');
-    clean = fixture.nativeElement.querySelector('#c2');
     fixture.detectChanges();
   });
 

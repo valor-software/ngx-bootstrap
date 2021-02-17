@@ -20,7 +20,7 @@ export function shift(data: Data): Data {
 
     data.offsets.target = {
       ...target, ...{
-        [side]: (side === shiftVariation ? (shiftOffsets as any).start[side] : (shiftOffsets as any).end[side])
+        [side]: (side === shiftVariation ? shiftOffsets.start[side] : shiftOffsets.end[side])
       }
     };
   }

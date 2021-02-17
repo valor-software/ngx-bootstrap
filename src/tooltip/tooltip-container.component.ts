@@ -9,7 +9,7 @@ import { isBs3 } from 'ngx-bootstrap/utils';
 @Component({
   selector: 'bs-tooltip-container',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  // tslint:disable-next-line
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[class]':
       '"tooltip in tooltip-" + placement + " " + "bs-tooltip-" + placement + " " + placement + " " + containerClass',

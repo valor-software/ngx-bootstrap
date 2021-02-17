@@ -1,4 +1,3 @@
-// tslint:disable:max-file-line-count
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, ComponentFixtureAutoDetect, inject, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
@@ -12,7 +11,7 @@ import {
 } from '../index';
 
 const HEROES: string[] = ['Windstorm', 'Bombasto', 'Magneta', 'Tornado'];
-/* tslint:disable-next-line: no-any */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const HEROES_OBJ: any[] = [
   { id: 1, name: 'Windstorm' },
   { id: 2, name: 'Bombasto' },
@@ -30,7 +29,7 @@ const HEROES_OBJ: any[] = [
 class TestSortableComponent {
   selectedState: string;
   heroes: string[] = [...HEROES];
-  /* tslint:disable-next-line: no-any*/
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   heroesObj: any[] = [...HEROES_OBJ];
 }
 
@@ -65,9 +64,9 @@ xdescribe('Component: Sortable', () => {
   });
 
   it('different zones should have different ids', () => {
-    /* tslint:disable-next-line: no-any*/
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((sort1 as any).currentZoneIndex).not.toBe(
-      /* tslint:disable-next-line: no-any*/
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (sort2 as any).currentZoneIndex
     );
   });
@@ -87,7 +86,7 @@ xdescribe('Component: Sortable', () => {
       // act
       const renderedItems = getItemsByContainerId('sort2');
       // assert
-      /* tslint:disable-next-line: no-any*/
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       expect(renderedItems).toEqual(HEROES_OBJ.map((h: any) => h.name));
     });
   });
@@ -100,8 +99,7 @@ xdescribe('Component: Sortable', () => {
       sort1.itemActiveStyle
     );
     // act
-    /* tslint:disable-next-line:no-inferred-empty-object-type */
-    const style = sort1.getItemStyle(true);
+        const style = sort1.getItemStyle(true);
     // assert
     expect(style).toEqual(activeItemStyle);
   });
@@ -110,8 +108,7 @@ xdescribe('Component: Sortable', () => {
     // arrange
     const normalItemStyle = Object.assign({}, sort1.itemStyle);
     // act
-    /* tslint:disable-next-line:no-inferred-empty-object-type */
-    const style = sort1.getItemStyle(false);
+        const style = sort1.getItemStyle(false);
     // assert
     expect(style).toEqual(normalItemStyle);
   });
@@ -132,12 +129,11 @@ xdescribe('Component: Sortable', () => {
       inject([DraggableItemService], (service: DraggableItemService) => {
         transfer = service;
         item = getItemToDrag();
-        /* tslint:disable-next-line: no-object-literal-type-assertion */
-        event = {
+                event = {
           preventDefault: Function.prototype,
           dataTransfer: { setData: Function.prototype }
         } as DragEvent;
-        /* tslint:disable-next-line: no-any*/
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         sort1ZoneNumber = (sort1 as any).currentZoneIndex;
         draggableItem = getDraggableItem(item, event, sort1ZoneNumber);
         spyOnChanged = spyOn(sort1, 'onChanged');
@@ -359,7 +355,7 @@ xdescribe('Component: Sortable', () => {
       transfer
         .onCaptureItem()
         .subscribe(() => {
-          /* tslint:disable-next-line: no-any*/
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           expect((sort1 as any).activeItem).toBe(-1);
           done();
         });
@@ -386,7 +382,7 @@ xdescribe('Component: Sortable', () => {
   function getItemsByContainerId(id = 'sort1'): string[] {
     return fixture.debugElement
       .queryAll(By.css(`#${id} div[draggable]`))
-      /* tslint:disable-next-line: no-any */
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .map((item: any) => item.nativeElement.innerText);
   }
 });

@@ -1,5 +1,5 @@
 module.exports = {
-  setupFilesAfterEnv: ["<rootDir>/scripts/jest/customMatchers.ts"],
+  setupFilesAfterEnv: ["<rootDir>/scripts/jest/toHaveCssClass.ts"],
   projects: [
     '<rootDir>/apps/ngx-bootstrap-docs',
     '<rootDir>/src/utils',

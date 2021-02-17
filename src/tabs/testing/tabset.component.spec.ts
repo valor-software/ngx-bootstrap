@@ -1,4 +1,3 @@
-/* tslint:disable: max-file-line-count */
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TabsetConfig, TabsModule, TabsetComponent } from '../index';
@@ -8,9 +7,9 @@ import { TabsetConfig, TabsModule, TabsetComponent } from '../index';
   template: ''
 })
 class TestTabsetComponent {
-  isVertical: Boolean = false;
-  isJustified: Boolean = false;
-  /* tslint:disable-next-line: no-any */
+  isVertical = false;
+  isJustified = false;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   tabs: any[] = [
     { title: 'tab1', content: 'tab1 content', customClass: 'testCustomClass' },
     { title: 'tab2', content: 'tab2 content', disabled: true },
@@ -81,11 +80,11 @@ function expectActiveTabs(nativeEl: HTMLElement, active: boolean[]): void {
 }
 
 describe('Component: Tabs', () => {
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let fixture: ComponentFixture<any>;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let context: any;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let element: any;
 
   // beforeEach(waitForAsync(inject([TestComponentBuilder], (tcb: TestComponentBuilder) => {

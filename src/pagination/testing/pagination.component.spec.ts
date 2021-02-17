@@ -8,9 +8,9 @@ import { PaginationModule, PaginationComponent } from '../index';
 
 describe('Component: Pagination:', () => {
   let fixture: ComponentFixture<PaginationComponent>;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let context: any;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let element: any;
 
   beforeEach(() => {

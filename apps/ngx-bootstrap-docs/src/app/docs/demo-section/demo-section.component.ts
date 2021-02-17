@@ -10,5 +10,5 @@ export class DemoSectionComponent {
   @Input() html: string;
   @Input() ts: string;
 
-  @Input() componentContent: Object;
+  @Input() componentContent: unknown;
 }

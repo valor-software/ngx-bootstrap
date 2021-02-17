@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
 })
 export class DemoTimepickerToggleMinutesSecondsComponent {
   myTime: Date = new Date();
-  showMin: boolean = true;
-  showSec: boolean = true;
+  showMin = true;
+  showSec = true;
 
   toggleMinutes(): void {
     this.showMin = !this.showMin;

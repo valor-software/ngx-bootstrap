@@ -2,7 +2,7 @@
  * @author ng-team
  * @copyright ng-bootstrap
  */
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 // import docs from '../../../../api-docs';
 import { ClassDesc, NgApiDoc } from '../api-docs.model';
 import { Analytics } from '../analytics/analytics';

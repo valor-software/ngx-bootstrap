@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './dynamic.html'
 })
 export class DemoTooltipDynamicComponent {
-  content: string = 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus.';
+  content = 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus.';
 }

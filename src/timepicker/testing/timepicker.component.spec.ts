@@ -4,21 +4,19 @@ import { By } from '@angular/platform-browser';
 import { TimepickerActions, TimepickerComponent, TimepickerConfig, TimepickerModule } from '../index';
 
 import { fireEvent } from '../../../scripts/helpers';
-import { matchers } from '../../../scripts/jest/customMatchers';
+import '../../../scripts/jest/toHaveCssClass';
 
-jasmine.addMatchers(matchers);
-
-/* tslint:disable-next-line: no-any */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getInputElements(fixture: any) {
   return fixture.nativeElement.querySelectorAll('input') as HTMLInputElement[];
 }
 
-/* tslint:disable-next-line: no-any */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getElements(fixture: any, selector: string) {
   return fixture.nativeElement.querySelectorAll(selector) as HTMLElement[];
 }
 
-/* tslint:disable-next-line: no-any */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getDebugElements(fixture: any, selector: string) {
   return fixture.debugElement.queryAll(By.css(selector));
 }
@@ -38,14 +36,14 @@ describe('Component: TimepickerComponent', () => {
   let inputHours: HTMLInputElement;
   let inputMinutes: HTMLInputElement;
   let inputSeconds: HTMLInputElement;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let inputDebugHours: any;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let inputDebugMinutes: any;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let inputDebugSeconds: any;
   let buttonMeridian: HTMLElement;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let buttonDebugMeridian: any;
   let buttonChanges: HTMLElement[];
 
@@ -990,8 +988,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateHours('99');
 
       expect(methodSpy).toHaveBeenCalledWith(null);
-      /* tslint:disable-next-line:no-unbound-method */
-      expect(component.isValid.emit).toHaveBeenCalledWith(false);
+            expect(component.isValid.emit).toHaveBeenCalledWith(false);
       expect(component.invalidHours).toEqual(true);
     });
 
@@ -1003,8 +1000,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateHours('19');
 
       expect(methodSpy).toHaveBeenCalledWith(null);
-      /* tslint:disable-next-line:no-unbound-method */
-      expect(component.isValid.emit).toHaveBeenCalledWith(false);
+            expect(component.isValid.emit).toHaveBeenCalledWith(false);
       expect(component.invalidHours).toEqual(true);
     });
 
@@ -1016,8 +1012,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateHours('17');
 
       expect(component.invalidHours).toEqual(false);
-      /* tslint:disable-next-line:no-unbound-method */
-      expect(component._updateTime).toHaveBeenCalled();
+            expect(component._updateTime).toHaveBeenCalled();
     });
 
     it('should clear model if minute input is invalid', () => {
@@ -1028,8 +1023,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateMinutes('99');
 
       expect(methodSpy).toHaveBeenCalledWith(null);
-      /* tslint:disable-next-line:no-unbound-method */
-      expect(component.isValid.emit).toHaveBeenCalledWith(false);
+            expect(component.isValid.emit).toHaveBeenCalledWith(false);
     });
 
     it('should clear model if minute limits are invalid', () => {
@@ -1040,8 +1034,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateMinutes('30');
 
       expect(methodSpy).toHaveBeenCalledWith(null);
-      /* tslint:disable-next-line:no-unbound-method */
-      expect(component.isValid.emit).toHaveBeenCalledWith(false);
+            expect(component.isValid.emit).toHaveBeenCalledWith(false);
     });
 
     it('should update time if minute is valid', () => {
@@ -1051,8 +1044,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateMinutes('30');
 
       expect(component.invalidMinutes).toEqual(false);
-      /* tslint:disable-next-line:no-unbound-method */
-      expect(component._updateTime).toHaveBeenCalled();
+            expect(component._updateTime).toHaveBeenCalled();
     });
 
     it('should clear model if second input is invalid', () => {
@@ -1064,8 +1056,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateSeconds('99');
 
       expect(methodSpy).toHaveBeenCalledWith(null);
-      /* tslint:disable-next-line:no-unbound-method */
-      expect(component.isValid.emit).toHaveBeenCalledWith(false);
+            expect(component.isValid.emit).toHaveBeenCalledWith(false);
     });
 
     it('should clear model if second limits are invalid', () => {
@@ -1076,8 +1067,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateSeconds('50');
 
       expect(methodSpy).toHaveBeenCalledWith(null);
-      /* tslint:disable-next-line:no-unbound-method */
-      expect(component.isValid.emit).toHaveBeenCalledWith(false);
+            expect(component.isValid.emit).toHaveBeenCalledWith(false);
     });
 
     it('should update time if second is valid', () => {
@@ -1087,8 +1077,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateSeconds('30');
 
       expect(component.invalidSeconds).toEqual(false);
-      /* tslint:disable-next-line:no-unbound-method */
-      expect(component._updateTime).toHaveBeenCalled();
+            expect(component._updateTime).toHaveBeenCalled();
     });
 
     it('should valid value in input fields', fakeAsync(() => {

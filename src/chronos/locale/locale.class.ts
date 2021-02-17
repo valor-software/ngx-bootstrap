@@ -1,5 +1,3 @@
-// tslint:disable:max-file-line-count max-line-length cyclomatic-complexity
-
 import { weekOfYear } from '../units/week-calendar-utils';
 import { hasOwnProp, isArray, isFunction } from '../utils/type-checks';
 import { getDay, getMonth, getFullYear } from '../utils/date-getters';
@@ -64,7 +62,6 @@ export interface LocaleData {
   calendar?: {
     [key: string]: (string
       | ((date: Date, now?: Date) => string)
-      // tslint:disable-next-line
       | ((dayOfWeek: number, isNextWeek: boolean) => string))
   };
   relativeTime?: { [key: string]: string | PluralizeDateFn };
@@ -143,7 +140,7 @@ export class Locale {
   private _ordinal: string;
 
   constructor(config: LocaleData) {
-    if (!!config) {
+    if (config) {
       this.set(config);
     }
   }
@@ -151,6 +148,7 @@ export class Locale {
   set(config: LocaleData): void {
     let confKey;
     for (confKey in config) {
+      // eslint-disable-next-line no-prototype-builtins
       if (!config.hasOwnProperty(confKey)) {
         continue;
       }

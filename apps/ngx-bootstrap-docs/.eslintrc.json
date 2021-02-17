@@ -13,7 +13,7 @@
       },
       "rules": {
         "@angular-eslint/directive-selector": [
-          "error",
+          "off",
           {
             "type": "attribute",
             "prefix": "ngx-bootstrap-base",
@@ -21,13 +21,16 @@
           }
         ],
         "@angular-eslint/component-selector": [
-          "error",
+          "off",
           {
             "type": "element",
             "prefix": "ngx-bootstrap-base",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@typescript-eslint/no-explicit-any": 0,
+        "@angular-eslint/component-class-suffix": 0,
+        "@angular-eslint/no-output-on-prefix": 0
       }
     },
     {

@@ -1,4 +1,3 @@
-/* tslint:disable:no-floating-promises max-file-line-count */
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
@@ -42,7 +41,7 @@ class TestTypeaheadComponent {
     'Connecticut'
   ];
 
-  onBlurEvent(activeItem) {
+  onBlurEvent() {
     return undefined;
   }
 }
@@ -558,7 +557,6 @@ describe('Directive: Typeahead', () => {
 
         it('and typeaheadOrderBy is empty object, shouldn\'t break the app',
           fakeAsync(() => {
-            // tslint:disable-next-line:no-object-literal-type-assertion
             directive.typeaheadOrderBy = {} as TypeaheadOrder;
             dispatchTouchEvent(inputElement, 'input');
             fixture.detectChanges();
@@ -570,7 +568,6 @@ describe('Directive: Typeahead', () => {
 
         it('and order direction is not equal "asc" or "desc", shouldn\'t break the app',
           fakeAsync(() => {
-            // tslint:disable-next-line
             directive.typeaheadOrderBy = { direction: 'test' as 'asc' };
             dispatchTouchEvent(inputElement, 'input');
             fixture.detectChanges();
@@ -582,7 +579,6 @@ describe('Directive: Typeahead', () => {
 
         it('and order field is setup, it shouldn\'t affect the result',
           fakeAsync(() => {
-            // tslint:disable-next-line
             directive.typeaheadOrderBy = { direction: 'asc', field: 'name' };
             dispatchTouchEvent(inputElement, 'input');
             fixture.detectChanges();
@@ -630,7 +626,6 @@ describe('Directive: Typeahead', () => {
         );
 
         it(
-          // tslint:disable-next-line:max-line-length
           'and order direction "desc", order field is null. 1st - Alabama, 2sd - Alaska. Lack of the field doesn\'t affect the result',
           fakeAsync(() => {
             directive.typeaheadOrderBy = { direction: 'desc', field: null };
@@ -645,7 +640,6 @@ describe('Directive: Typeahead', () => {
         );
 
         it(
-          // tslint:disable-next-line:max-line-length
           'and order direction "desc", order field is "testing". 1st - Alabama, 2sd - Alaska. The wrong field doesn\'t affect the result',
           fakeAsync(() => {
             directive.typeaheadOrderBy = { direction: 'desc', field: 'test' };
@@ -728,7 +722,7 @@ describe('Directive: Typeahead', () => {
         expect(directive.matches.length).toBe(component.statesString.length);
       }));
 
-    it(`and \'Ala\' is entered after \',\' or \'|\' when these used for typeaheadMultipleSearchDelimiters,
+    it(`and 'Ala' is entered after ',' or '|' when these used for typeaheadMultipleSearchDelimiters,
         should give matches for Alaska and Alabama`,
       fakeAsync(() => {
         directive.typeaheadMultipleSearchDelimiters = ',|';

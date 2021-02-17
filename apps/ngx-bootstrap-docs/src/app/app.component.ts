@@ -32,7 +32,7 @@ export class AppComponent implements AfterContentInit {
     const getUrl = (router: Router) =>
       router.routerState.snapshot.url.slice(0, router.routerState.snapshot.url.indexOf('#'));
     let _prev = getUrl(this.router);
-    const justDoIt = (event: any): void => {
+    const justDoIt = (): void => {
       const _cur = getUrl(this.router);
       if (typeof PR !== 'undefined' && _prev !== _cur) {
         _prev = _cur;
@@ -50,6 +50,6 @@ export class AppComponent implements AfterContentInit {
       .pipe(
         filter(event => event instanceof NavigationEnd)
       )
-      .subscribe((event: any) => setTimeout(() => justDoIt(event), 50));
+      .subscribe(() => setTimeout(() => justDoIt(), 50));
   }
 }

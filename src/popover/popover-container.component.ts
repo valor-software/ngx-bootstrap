@@ -5,7 +5,7 @@ import { isBs3 } from 'ngx-bootstrap/utils';
 @Component({
   selector: 'popover-container',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  // tslint:disable-next-line
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[attr.id]': 'popoverId',
     '[class]':

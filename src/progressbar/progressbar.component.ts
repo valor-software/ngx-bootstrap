@@ -40,8 +40,7 @@ export class ProgressbarComponent {
    * like {"value":15,"type":"info","label":"15 %"}
    */
   @Input()
-  /* tslint:disable-next-line:no-any */
-  set value(value: number | any[]) {
+  set value(value: number | Record<string, number | string>) {
     this.isStacked = Array.isArray(value);
     this._value = value;
   }
@@ -50,8 +49,8 @@ export class ProgressbarComponent {
   _animate: boolean;
   _max = 100;
 
-  /* tslint:disable-next-line:no-any */
-  _value: number | any[];
+  _value: number | Record<string, number | string>;
+
   get isBs3(): boolean {
     return isBs3();
   }
@@ -72,7 +71,6 @@ export class ProgressbarComponent {
 
   @HostBinding('class.progress') addClass = true;
 
-  /* tslint:disable-next-line:no-any */
   bars: BarComponent[] = [];
   constructor(config: ProgressbarConfig) {
     Object.assign(this, config);

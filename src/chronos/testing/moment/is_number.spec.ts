@@ -1,6 +1,3 @@
-// tslint:disable:max-line-length max-file-line-count prefer-const forin prefer-template one-variable-per-declaration newline-before-return
-// tslint:disable:binary-expression-operand-order comment-format one-line no-var-keyword object-literal-shorthand
-// tslint:disable:variable-name number-literal-format no-construct
 import { assertEq, assertDeepEq, assertOk } from '../test-helpers';
 import { moment } from '../chain';
 import { isNumber } from '../../utils/type-checks';

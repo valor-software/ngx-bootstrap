@@ -31,7 +31,7 @@ export class LandingPo extends BaseComponent {
   crCommonsUrl = 'https://creativecommons.org/licenses/by/3.0/';
   originalBsUrl = 'https://getbootstrap.com/';
 
-  isNavigateBtnExist(btnName: string, elementIndex: number) {
+  isNavigateBtnExist(btnName: string) {
     cy.get(this.navBtn).contains(btnName)
       .should('be.enabled');
   }

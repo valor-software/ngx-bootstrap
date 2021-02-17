@@ -31,7 +31,7 @@ describe('Datepicker demo testing suite: Custom today class', () => {
 
   it(`when user clicks on input again, then 1t date selected and current with custom-today-class
                  when user chose today and click on input again, then current selected with custom-today-class`, () => {
-    const chosenDate = new Date(`${new Date().getMonth() + 1}/10/${new Date().getFullYear()}`);
+    // const chosenDate = new Date(`${new Date().getMonth() + 1}/10/${new Date().getFullYear()}`);
     datepicker.clickOnDatepickerInput(customToday);
     datepicker.clickOnDatepickerTableItem('date', 'body', undefined, '10');
     datepicker.clickOnDatepickerInput(customToday);

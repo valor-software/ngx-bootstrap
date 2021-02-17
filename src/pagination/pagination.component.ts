@@ -21,7 +21,6 @@ export interface PageChangedEvent {
 
 export const PAGINATION_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-  /* tslint:disable-next-line: no-use-before-declare */
   useExisting: forwardRef(() => PaginationComponent),
   multi: true
 };
@@ -195,7 +194,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   }
 
   getText(key: string): string {
-    // tslint:disable-next-line:no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     return (this as any)[`${key}Text`] || (this as any).config[`${key}Text`];
   }
 
@@ -207,11 +206,11 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     return this.page === this.totalPages;
   }
 
-  registerOnChange(fn: () => {}): void {
+  registerOnChange(fn: () => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: () => {}): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
@@ -222,7 +221,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
 
     if (!this.disabled) {
       if (event && event.target) {
-        // tslint:disable-next-line:no-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const target: any = event.target;
         target.blur();
       }
@@ -302,5 +301,4 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
 
     return Math.max(totalPages || 0, 1);
   }
-// tslint:disable-next-line:max-file-line-count
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { noop, Observable, Observer, of } from 'rxjs';
@@ -31,7 +31,7 @@ interface GitHubUser {
   selector: 'demo-typeahead-async-http',
   templateUrl: './async-http-request.html'
 })
-export class DemoTypeaheadAsyncHttpRequestComponent {
+export class DemoTypeaheadAsyncHttpRequestComponent implements OnInit {
   search: string;
   suggestions$: Observable<GitHubUser[]>;
   errorMessage: string;

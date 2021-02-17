@@ -1,4 +1,3 @@
-// tslint:disable:max-line-length max-file-line-count
 import { add, parseDate, subtract } from '../index';
 import { DateArray, DateObject, UnitOfTime } from '../types';
 import {
@@ -231,7 +230,6 @@ moment.duration = (input?: Duration | DateInput | Khronos, unit?: MomentUnitOfTi
 moment.min = function _min(...dates: ((DateInput | Khronos)[] | (DateInput | Khronos))[]): Khronos {
   const _firstArg = dates[0];
   const _dates = (isArray(_firstArg) ? _firstArg : dates)
-  // tslint:disable-next-line
     .map((date: Khronos) => _moment(date))
     .map(date => date.toDate());
 
@@ -243,7 +241,6 @@ moment.min = function _min(...dates: ((DateInput | Khronos)[] | (DateInput | Khr
 moment.max = function _max(...dates: ((DateInput | Khronos)[] | (DateInput | Khronos))[]): Khronos {
   const _firstArg = dates[0];
   const _dates = (isArray(_firstArg) ? _firstArg : dates)
-  // tslint:disable-next-line
     .map((date: Khronos) => _moment(date))
     .map(date => date.toDate());
 

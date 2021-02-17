@@ -362,5 +362,4 @@ export const demoComponentContent: ContentSection[] = [
       }
     ]
   }
-// tslint:disable-next-line:max-file-line-count
 ];

@@ -1,4 +1,3 @@
-/* tslint:disable:use-view-encapsulation */
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
 import { demoComponentContent } from './sortable-section.list';

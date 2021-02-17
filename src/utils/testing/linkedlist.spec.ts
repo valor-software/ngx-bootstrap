@@ -1,6 +1,6 @@
 import { LinkedList } from '../index';
 
-/* tslint:disable-next-line: no-any */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 let list: LinkedList<any>;
 
 describe('Linked List. Base functions.', () => {
@@ -121,7 +121,7 @@ describe('Linked List. Overridden (from Array) methods.', () => {
 
 describe('Linked List. Working with objects.', () => {
   beforeEach(() => {
-    /* tslint:disable-next-line: no-any */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     list = new LinkedList<any>();
     list.add({ stringProperty: 'String1', numberProperty: 10 });
     list.add({ stringProperty: 'String2', numberProperty: 20 });
@@ -131,29 +131,29 @@ describe('Linked List. Working with objects.', () => {
   });
 
   it('Check find', () => {
-    /* tslint:disable-next-line: no-any */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let result: any = list.find((item: any) => item.numberProperty === 20);
     expect(result.stringProperty).toEqual('String2');
 
-    /* tslint:disable-next-line: no-any */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     result = list.find((item: any, index: number) => index === 2);
     expect(result.stringProperty).toEqual('String3');
   });
 
   it('Check findIndex', () => {
     let result: number = list.findIndex(
-      /* tslint:disable-next-line: no-any */
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (item: any) => item.numberProperty === 20
     );
     expect(result).toEqual(1);
 
-    /* tslint:disable-next-line: no-any */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     result = list.findIndex((item: any, index: number) => index === 2);
     expect(result).toEqual(2);
   });
 
   it('Check findAll', () => {
-    /* tslint:disable-next-line: no-any */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const result: any = list.findAll((item: any) => item.numberProperty > 20);
     expect(result.length).toEqual(3);
   });

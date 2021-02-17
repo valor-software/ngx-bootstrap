@@ -23,12 +23,12 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /**
    * Content to be displayed as popover.
    */
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @Input() popover: string | TemplateRef<any>;
   /**
    * Context to be used if popover is a template.
    */
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @Input() popoverContext: any;
   /**
    * Title of a popover.
@@ -82,17 +82,15 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /**
    * Emits an event when the popover is shown
    */
-  /* tslint:disable-next-line: no-any */
-  @Output() onShown: EventEmitter<any>;
+  @Output() onShown: EventEmitter<unknown>;
   /**
    * Emits an event when the popover is hidden
    */
-  /* tslint:disable-next-line: no-any */
-  @Output() onHidden: EventEmitter<any>;
+  @Output() onHidden: EventEmitter<unknown>;
 
-  protected _popoverCancelShowFn: Function;
+  protected _popoverCancelShowFn: () => void;
 
-  protected _delayTimeoutId: number | any;
+  protected _delayTimeoutId?: number;
 
   private _popover: ComponentLoader<PopoverContainerComponent>;
   private _isInited = false;

@@ -1,4 +1,3 @@
-/* tslint:disable: max-file-line-count */
 import { TestBed, ComponentFixture, tick, fakeAsync } from '@angular/core/testing';
 import { asNativeElements, EventEmitter } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,13 +24,13 @@ export class PositionServiceMock {
   }
 
   get event$() {
-  return new Subject<any>();
+  return new Subject<unknown>();
   }
 }
 
 describe('Component: TypeaheadContainer', () => {
   let fixture: ComponentFixture<TypeaheadContainerComponent>;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let testModule: any;
   let component: TypeaheadContainerComponent;
 
@@ -56,8 +55,7 @@ describe('Component: TypeaheadContainer', () => {
     fixture = testModule.createComponent(TypeaheadContainerComponent);
 
     component = fixture.componentInstance;
-    /* tslint:disable-next-line: no-object-literal-type-assertion */
-    component.parent = {
+        component.parent = {
       typeaheadSelectFirstItem: false,
       typeaheadIsFirstItemActive: true
     } as TypeaheadDirective;
@@ -185,8 +183,7 @@ describe('Component: TypeaheadContainer', () => {
     let matches: HTMLLIElement[];
 
     beforeEach(() => {
-      /* tslint:disable-next-line: no-object-literal-type-assertion */
-      component.parent = {
+            component.parent = {
         typeaheadSelectFirstItem: true,
         typeaheadIsFirstItemActive: true
       } as TypeaheadDirective;
@@ -326,8 +323,7 @@ describe('Component: TypeaheadContainer', () => {
     let itemMatches: HTMLLIElement[];
 
     beforeEach(() => {
-      /* tslint:disable-next-line: no-object-literal-type-assertion */
-      component.parent = {
+            component.parent = {
         typeaheadSelectFirstItem: true,
         typeaheadIsFirstItemActive: true
       } as TypeaheadDirective;
@@ -384,14 +380,11 @@ describe('Component: TypeaheadContainer', () => {
 
   describe('scrollable matches', () => {
     let itemMatches: HTMLLIElement[];
-    /* tslint:disable-next-line: no-unused-variable */
-    let headerMatch: HTMLLIElement;
     let containingElementScrollable: HTMLElement[];
 
     beforeEach(fakeAsync(() => {
       fixture = testModule.createComponent(TypeaheadContainerComponent);
       component = fixture.componentInstance;
-      /* tslint:disable-next-line: no-object-literal-type-assertion */
       component.parent = {
         typeaheadOptionsInScrollableView: 3,
         typeaheadScrollable: true,
@@ -418,10 +411,10 @@ describe('Component: TypeaheadContainer', () => {
 
       fixture.detectChanges();
       tick(1);
-      const headers = fixture.debugElement.queryAll(By.css('.dropdown-header'));
-      if (headers) {
-        headerMatch = asNativeElements(headers);
-      }
+      // const headers = fixture.debugElement.queryAll(By.css('.dropdown-header'));
+      // if (headers) {
+      //   headerMatch = asNativeElements(headers);
+      // }
       itemMatches = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu li:not(.dropdown-header)')));
       containingElementScrollable = asNativeElements(fixture.debugElement.queryAll(By.css('.dropdown-menu')));
     }));
@@ -432,32 +425,32 @@ describe('Component: TypeaheadContainer', () => {
       });
 
       it('should not throw exception when scrollPrevious is without li elements', () => {
-        /* tslint:disable-next-line: no-any */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (component as any).liElements = undefined;
-        /* tslint:disable-next-line: no-any */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (component as any).scrollPrevious(1);
         expect(component.element.nativeElement.scrollTop).toBe(0);
       });
 
       it('should not throw exception when scrollPrevious is scrolling outside of index ', () => {
-        /* tslint:disable-next-line: no-any */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (component as any).scrollPrevious(100);
         expect(component.element.nativeElement.scrollTop).toBe(0);
 
       });
 
       it('should not throw exception when scrollNext is without li elements', () => {
-        /* tslint:disable-next-line: no-any */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (component as any).liElements = undefined;
 
-        /* tslint:disable-next-line: no-any */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (component as any).scrollNext(1);
         expect(component.element.nativeElement.scrollTop).toBe(0);
 
       });
 
       it('should not throw exception when scrollNext is scrolling outside of index', () => {
-        /* tslint:disable-next-line: no-any */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (component as any).scrollNext(100);
         expect(component.element.nativeElement.scrollTop).toBe(0);
       });
@@ -537,8 +530,7 @@ describe('Component: TypeaheadContainer', () => {
     let matches: HTMLLIElement[];
 
     beforeEach(() => {
-      /* tslint:disable-next-line: no-object-literal-type-assertion */
-      component.parent = {
+            component.parent = {
         typeaheadIsFirstItemActive: false
       } as TypeaheadDirective;
       component.parent.typeaheadOnPreview = new EventEmitter<TypeaheadMatch>();

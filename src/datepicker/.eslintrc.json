@@ -10,6 +10,8 @@
       ],
       "parserOptions": { "project": ["src/datepicker/tsconfig.*?.json"] },
       "rules": {
+        "@angular-eslint/no-output-on-prefix": 0,
+        "@angular-eslint/no-host-metadata-property": 0
       }
     },
     {

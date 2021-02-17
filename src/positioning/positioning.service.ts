@@ -60,8 +60,7 @@ export class PositioningService {
         this.triggerEvent$ = merge(
           fromEvent(window, 'scroll', { passive: true }),
           fromEvent(window, 'resize', { passive: true }),
-          /* tslint:disable-next-line: deprecation */
-          of(0, animationFrameScheduler),
+                    of(0, animationFrameScheduler),
           this.update$$
         );
 
@@ -71,7 +70,7 @@ export class PositioningService {
           }
 
           this.positionElements
-          /* tslint:disable-next-line: no-any */
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
             .forEach((positionElement: any) => {
               positionElements(
                 _getHtmlElement(positionElement.target),

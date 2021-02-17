@@ -35,8 +35,7 @@ export class AccordionPo extends BaseComponent {
   clickOnAccordionGroup(baseSelector: string, itemIndex: number) {
     cy.get(`${baseSelector} accordion-group button`)
       .eq(itemIndex)
-      .click()
-      .wait(500);
+      .click();
   }
 
   isItemContentVisible(baseSelector: string, itemIndex: number, visible: boolean) {

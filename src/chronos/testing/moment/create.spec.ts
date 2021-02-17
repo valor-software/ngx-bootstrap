@@ -1,6 +1,3 @@
-// tslint:disable:max-line-length max-file-line-count prefer-const forin prefer-template one-variable-per-declaration newline-before-return
-// tslint:disable:binary-expression-operand-order comment-format one-line no-var-keyword object-literal-shorthand
-// tslint:disable:variable-name
 import { assertEq, assertDeepEq, assertOk, assertNotEqual } from '../test-helpers';
 import { moment } from '../chain';
 import { ruLocale } from '../../i18n/ru';
@@ -134,6 +131,7 @@ describe('create', () => {
   });
 
   it('cloning moment should only copy own properties', function () {
+    // eslint-disable-next-line no-prototype-builtins
     assertOk(!moment().clone().hasOwnProperty('month'), 'Should not clone prototype methods');
   });
 

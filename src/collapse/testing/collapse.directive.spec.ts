@@ -22,9 +22,9 @@ class TestCollapseComponent {}
 
 describe('Directive: Collapse', () => {
   let fixture: ComponentFixture<TestCollapseComponent>;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let element: any;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let context: any;
 
   beforeEach(() => {

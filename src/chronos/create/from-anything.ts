@@ -1,4 +1,3 @@
-// tslint:disable:max-line-length
 import { isArray, isDate, isNumber, isObject, isObjectEmpty, isString, isUndefined } from '../utils/type-checks';
 import { DateParsingConfig } from './parsing.types';
 import { getLocale } from '../locale/locales';

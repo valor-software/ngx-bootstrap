@@ -9,7 +9,7 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testin
 })
 class TestAccordionComponent {
   oneAtATime = true;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   panels: any[] = [
     { isOpen: false, isDisabled: false },
     { isOpen: false, isDisabled: false },
@@ -68,9 +68,9 @@ function hasTitle(element: HTMLElement, str: string): boolean {
 
 describe('Component: Accordion', () => {
   let fixture: ComponentFixture<TestAccordionComponent>;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let context: any;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   let element: any;
 
   beforeEach(() => {

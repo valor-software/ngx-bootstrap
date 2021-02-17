@@ -13,8 +13,8 @@ export function getOffsetRectRelativeToArbitraryNode(
 ): Offsets {
   const isIE10 = runIsIE(10);
   const isHTML = parent.nodeName === 'HTML';
-  const childrenRect: any = getBoundingClientRect(children);
-  const parentRect: any = getBoundingClientRect(parent);
+  const childrenRect = getBoundingClientRect(children);
+  const parentRect = getBoundingClientRect(parent);
   const scrollParent = getScrollParent(children);
 
   const styles = getStyleComputedProperty(parent);

@@ -37,14 +37,12 @@ import { distinctUntilChanged } from 'rxjs/operators';
 
 const BS_DATERANGEPICKER_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-  /* tslint:disable-next-line: no-use-before-declare */
-  useExisting: forwardRef(() => BsDaterangepickerInputDirective),
+    useExisting: forwardRef(() => BsDaterangepickerInputDirective),
   multi: true
 };
 
 const BS_DATERANGEPICKER_VALIDATOR: Provider = {
   provide: NG_VALIDATORS,
-  /* tslint:disable-next-line: no-use-before-declare */
   useExisting: forwardRef(() => BsDaterangepickerInputDirective),
   multi: true
 };
@@ -52,6 +50,7 @@ const BS_DATERANGEPICKER_VALIDATOR: Provider = {
 
 @Directive({
   selector: `input[bsDaterangepicker]`,
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '(change)': 'onChange($event)',
     '(keyup.esc)': 'hide()',
@@ -64,7 +63,6 @@ export class BsDaterangepickerInputDirective
   implements ControlValueAccessor, Validator, OnInit, OnDestroy {
   private _onChange = Function.prototype;
   private _onTouched = Function.prototype;
-  /* tslint:disable-next-line: no-unused-variable */
   private _validatorChange = Function.prototype;
   private _value: Date[];
   private _subs = new Subscription();
@@ -131,7 +129,7 @@ export class BsDaterangepickerInputDirective
   }
 
   onChange(event: Event) {
-    /* tslint:disable-next-line: no-any*/
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     this.writeValue((event.target as any).value);
     this._onChange(this._value);
     if (this._picker._config.returnFocusToInput) {
@@ -142,14 +140,13 @@ export class BsDaterangepickerInputDirective
 
   validate(c: AbstractControl): ValidationErrors | null {
     const _value: [Date, Date] = c.value;
-    const errors: object[] = [];
+    const errors: Record<string, unknown>[] = [];
 
     if (_value === null || _value === undefined || !isArray(_value)) {
       return null;
     }
 
-    // @ts-ignore
-    _value.sort((a, b) => a - b);
+    _value.sort((a, b) => a.getTime() - b.getTime());
 
     const _isFirstDateValid = isDateValid(_value[0]);
     const _isSecondDateValid = isDateValid(_value[1]);
@@ -233,12 +230,12 @@ export class BsDaterangepickerInputDirective
     this._renderer.removeAttribute(this._elRef.nativeElement, 'disabled');
   }
 
-  /* tslint:disable-next-line: no-any*/
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   registerOnChange(fn: () => void): void {
     this._onChange = fn;
   }
 
-  /* tslint:disable-next-line: no-any*/
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   registerOnTouched(fn: () => void): void {
     this._onTouched = fn;
   }

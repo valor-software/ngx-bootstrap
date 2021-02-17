@@ -1,4 +1,3 @@
-/* tslint:disable */
 export const ngdoc: any = {
   "AccordionPanelComponent": {
     "fileName": "src/accordion/accordion-group.component.ts",

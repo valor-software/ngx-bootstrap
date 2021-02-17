@@ -37,20 +37,19 @@ import { distinctUntilChanged } from 'rxjs/operators';
 
 const BS_DATEPICKER_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-  /* tslint:disable-next-line: no-use-before-declare */
-  useExisting: forwardRef(() => BsDatepickerInputDirective),
+    useExisting: forwardRef(() => BsDatepickerInputDirective),
   multi: true
 };
 
 const BS_DATEPICKER_VALIDATOR: Provider = {
   provide: NG_VALIDATORS,
-  /* tslint:disable-next-line: no-use-before-declare */
-  useExisting: forwardRef(() => BsDatepickerInputDirective),
+    useExisting: forwardRef(() => BsDatepickerInputDirective),
   multi: true
 };
 
 @Directive({
   selector: `input[bsDatepicker]`,
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '(change)': 'onChange($event)',
     '(keyup.esc)': 'hide()',
@@ -63,8 +62,7 @@ export class BsDatepickerInputDirective
   implements ControlValueAccessor, Validator, OnInit, OnDestroy {
   private _onChange = Function.prototype;
   private _onTouched = Function.prototype;
-  /* tslint:disable-next-line: no-unused-variable */
-  private _validatorChange = Function.prototype;
+    private _validatorChange = Function.prototype;
   private _value: Date;
   private _subs = new Subscription();
 
@@ -120,7 +118,7 @@ export class BsDatepickerInputDirective
   }
 
   onChange(event: Event) {
-    /* tslint:disable-next-line: no-any*/
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     this.writeValue((event.target as any).value);
     this._onChange(this._value);
     if (this._picker._config.returnFocusToInput) {
@@ -132,8 +130,7 @@ export class BsDatepickerInputDirective
   validate(c: AbstractControl): ValidationErrors | null {
     const _value: Date | string = c.value;
 
-    /* tslint:disable-next-line: prefer-switch */
-    if (_value === null || _value === undefined || _value === '') {
+        if (_value === null || _value === undefined || _value === '') {
       return null;
     }
 

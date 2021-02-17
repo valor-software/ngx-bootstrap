@@ -53,13 +53,11 @@ export class BsDaterangepickerDirective
   /**
    * Emits an event when the daterangepicker is shown
    */
-  /* tslint:disable-next-line: no-any*/
-  @Output() onShown: EventEmitter<any>;
+  @Output() onShown: EventEmitter<unknown>;
   /**
    * Emits an event when the daterangepicker is hidden
    */
-  /* tslint:disable-next-line: no-any*/
-  @Output() onHidden: EventEmitter<any>;
+  @Output() onHidden: EventEmitter<unknown>;
 
   _bsValue: Date[];
   isOpen$: BehaviorSubject<boolean>;

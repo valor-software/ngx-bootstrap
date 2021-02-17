@@ -33,7 +33,6 @@ describe('datepicker:', () => {
 
   it('should not throw undefined reference error when initializing value before content init hook',
     () => {
-      // tslint:disable-next-line: no-floating-promises
       expect(() => {
         fixture = TestBed.createComponent(TestComponent);
         fixture.detectChanges();

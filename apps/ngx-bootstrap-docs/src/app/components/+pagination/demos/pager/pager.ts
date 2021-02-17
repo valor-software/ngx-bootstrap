@@ -7,9 +7,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class DemoPaginationPagerComponent {
-  totalItems: number = 64;
-  currentPage: number = 4;
-  smallnumPages: number = 0;
+  totalItems = 64;
+  currentPage = 4;
+  smallnumPages = 0;
 
   pageChanged(event: any): void {
     console.log('Page changed to: ' + event.page);

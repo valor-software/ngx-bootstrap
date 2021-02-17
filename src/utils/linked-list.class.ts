@@ -1,11 +1,14 @@
+interface ListNode<T> {
+  value: T,
+  next?: ListNode<T>,
+  previous?: ListNode<T>
+}
+
 export class LinkedList<T> {
   length = 0;
-  /* tslint:disable-next-line: no-any*/
-  protected head: any;
-  /* tslint:disable-next-line: no-any*/
-  protected tail: any;
-  /* tslint:disable-next-line: no-any*/
-  protected current: any;
+  protected head: ListNode<T>;
+  protected tail: ListNode<T>;
+  protected current: ListNode<T>;
   protected asArray: T[] = [];
 
   get(position: number): T {
@@ -27,8 +30,7 @@ export class LinkedList<T> {
       throw new Error('Position is out of the list');
     }
 
-    /* tslint:disable-next-line: no-any*/
-    const node: any = {
+    const node: ListNode<T> = {
       value,
       next: undefined,
       previous: undefined
@@ -110,11 +112,9 @@ export class LinkedList<T> {
     return this.asArray;
   }
 
-  /* tslint:disable-next-line: no-any*/
-  findAll(fn: any): any[] {
+  findAll(fn): {index: number, value: T}[] {
     let current = this.head;
-    /* tslint:disable-next-line: no-any*/
-    const result: any[] = [];
+    const result: {index: number, value: T}[] = [];
     for (let index = 0; index < this.length; index++) {
       if (fn(current.value, index)) {
         result.push({index, value: current.value});
@@ -127,8 +127,7 @@ export class LinkedList<T> {
 
   // Array methods overriding start
   push(...args: T[]): number {
-    /* tslint:disable-next-line: no-any*/
-    args.forEach((arg: any) => {
+    args.forEach((arg: T) => {
       this.add(arg);
     });
 
@@ -147,8 +146,7 @@ export class LinkedList<T> {
 
   unshift(...args: T[]): number {
     args.reverse();
-    /* tslint:disable-next-line: no-any*/
-    args.forEach((arg: any) => {
+    args.forEach((arg: T) => {
       this.add(arg, 0);
     });
 
@@ -165,8 +163,7 @@ export class LinkedList<T> {
     return lastItem;
   }
 
-  /* tslint:disable-next-line: no-any*/
-  forEach(fn: any): void {
+  forEach(fn: (value: T, index: number) => void): void {
     let current = this.head;
     for (let index = 0; index < this.length; index++) {
       fn(current.value, index);
@@ -189,8 +186,7 @@ export class LinkedList<T> {
     return position;
   }
 
-  /* tslint:disable-next-line: no-any*/
-  some(fn: any): boolean {
+  some(fn: (value: T) => boolean): boolean {
     let current = this.head;
     let result = false;
     while (current && !result) {
@@ -204,8 +200,7 @@ export class LinkedList<T> {
     return result;
   }
 
-  /* tslint:disable-next-line: no-any*/
-  every(fn: any): boolean {
+  every(fn: (value: T) => boolean): boolean {
     let current = this.head;
     let result = true;
     while (current && result) {
@@ -222,8 +217,7 @@ export class LinkedList<T> {
     return '[Linked List]';
   }
 
-  /* tslint:disable-next-line: no-any*/
-  find(fn: any): T {
+  find(fn: (value: T, index: number) => boolean): T {
     let current = this.head;
     let result: T;
     for (let index = 0; index < this.length; index++) {
@@ -237,8 +231,7 @@ export class LinkedList<T> {
     return result;
   }
 
-  /* tslint:disable-next-line: no-any*/
-  findIndex(fn: any): number {
+  findIndex(fn: (value: T, index: number) => boolean): number {
     let current = this.head;
     let result: number;
     for (let index = 0; index < this.length; index++) {
@@ -252,8 +245,7 @@ export class LinkedList<T> {
     return result;
   }
 
-  /* tslint:disable-next-line: no-any*/
-  protected getNode(position: number): any {
+  protected getNode(position: number): ListNode<T> {
     if (this.length === 0 || position < 0 || position >= this.length) {
       throw new Error('Position is out of the list');
     }
@@ -268,8 +260,7 @@ export class LinkedList<T> {
   }
 
   protected createInternalArrayRepresentation(): void {
-    /* tslint:disable-next-line: no-any*/
-    const outArray: any[] = [];
+    const outArray: T[] = [];
     let current = this.head;
 
     while (current) {

@@ -90,7 +90,7 @@ export class DatepickerPo extends BaseComponent {
       .and('to.have.text', expectedValueRight);
   }
 
-  isQuickSelectRangesDisplayed(baseSelector = 'body'){
+  isQuickSelectRangesDisplayed(){
     cy.get(this.daterangepickerQuickSelectContainer)
       .find('button')
       .as('DateRangePicker');
@@ -468,7 +468,7 @@ export class DatepickerPo extends BaseComponent {
   }
 
   isMonthLocaleAppropriate(expectedLocale: string, pickerType = 'datepicker', baseSelector = 'body') {
-    let actualMonthArr: any;
+    let actualMonthArr;
     switch (expectedLocale) {
       case 'hi' :
         actualMonthArr = globalLocales.hiLocale.months;
@@ -711,16 +711,15 @@ export class DatepickerPo extends BaseComponent {
   }
 
   private getAppropriateContainer(picker: string) {
-    let appropriateContainer: string;
     switch (picker) {
       case 'datepicker':
-        return appropriateContainer = this.datepickerContainer;
+        return this.datepickerContainer;
       case 'daterangepicker':
-        return appropriateContainer = this.daterangepickerContainer;
+        return this.daterangepickerContainer;
       case 'datepickerInline':
-        return appropriateContainer = this.datepickerInlineContainer;
+        return this.datepickerInlineContainer;
       default:
-        return appropriateContainer = this.datepickerContainer;
+        return this.datepickerContainer;
     }
   }
 }

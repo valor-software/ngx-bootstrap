@@ -1,4 +1,3 @@
-/* tslint:disable: max-file-line-count deprecation */
 import {
   Directive,
   ElementRef,
@@ -36,12 +35,10 @@ export class TooltipDirective implements OnInit, OnDestroy {
    */
   @OnChange()
   @Input()
-  /* tslint:disable-next-line:no-any */
-  tooltip: string | TemplateRef<any>;
+  tooltip: string | TemplateRef<unknown>;
   /** Fired when tooltip content changes */
   @Output()
-  /* tslint:disable-next-line:no-any */
-  tooltipChange: EventEmitter<string | TemplateRef<any>> = new EventEmitter();
+  tooltipChange: EventEmitter<string | TemplateRef<unknown>> = new EventEmitter();
 
   /**
    * Placement of a tooltip. Accepts: "top", "bottom", "left", "right"
@@ -90,23 +87,21 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /**
    * Emits an event when the tooltip is shown
    */
-  /* tslint:disable-next-line:no-any */
-  @Output() onShown: EventEmitter<any>;
+  @Output() onShown: EventEmitter<unknown>;
   /**
    * Emits an event when the tooltip is hidden
    */
-  /* tslint:disable-next-line:no-any */
-  @Output() onHidden: EventEmitter<any>;
+    @Output() onHidden: EventEmitter<unknown>;
 
   /** @deprecated - please use `tooltip` instead */
   @Input('tooltipHtml')
-  /* tslint:disable-next-line:no-any */
-  set htmlContent(value: string | TemplateRef<any>) {
+    set htmlContent(value: string | TemplateRef<unknown>) {
     warnOnce('tooltipHtml was deprecated, please use `tooltip` instead');
     this.tooltip = value;
   }
 
   /** @deprecated - please use `placement` instead */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('tooltipPlacement')
   set _placement(value: string) {
     warnOnce('tooltipPlacement was deprecated, please use `placement` instead');
@@ -114,6 +109,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   /** @deprecated - please use `isOpen` instead */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('tooltipIsOpen')
   set _isOpen(value: boolean) {
     warnOnce('tooltipIsOpen was deprecated, please use `isOpen` instead');
@@ -127,6 +123,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   /** @deprecated - please use `isDisabled` instead */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('tooltipEnable')
   set _enable(value: boolean) {
     warnOnce('tooltipEnable was deprecated, please use `isDisabled` instead');
@@ -140,6 +137,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   /** @deprecated - please use `container="body"` instead */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('tooltipAppendToBody')
   set _appendToBody(value: boolean) {
     warnOnce(
@@ -160,19 +158,21 @@ export class TooltipDirective implements OnInit, OnDestroy {
   @Input() tooltipAnimation = true;
 
   /** @deprecated - will replaced with customClass */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('tooltipClass')
   set _popupClass(value: string) {
     warnOnce('tooltipClass deprecated');
   }
 
   /** @deprecated - removed */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('tooltipContext')
-  /* tslint:disable-next-line:no-any */
-  set _tooltipContext(value: any) {
+  set _tooltipContext(value: undefined) {
     warnOnce('tooltipContext deprecated');
   }
 
   /** @deprecated */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('tooltipPopupDelay')
   set _tooltipPopupDelay(value: number) {
     warnOnce('tooltipPopupDelay is deprecated, use `delay` instead');
@@ -199,9 +199,8 @@ export class TooltipDirective implements OnInit, OnDestroy {
   @Output()
   tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  /* tslint:disable-next-line:no-any */
-  protected _delayTimeoutId: number | any;
-  protected _tooltipCancelShowFn: Function;
+  protected _delayTimeoutId?: number;
+  protected _tooltipCancelShowFn?: () => void;
 
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
   private _delaySubscription: Subscription;
@@ -233,8 +232,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
       triggers: this.triggers,
       show: () => this.show()
     });
-    /* tslint:disable-next-line:no-any */
-    this.tooltipChange.subscribe((value: any) => {
+    this.tooltipChange.subscribe((value) => {
       if (!value) {
         this._tooltip.hide();
       }

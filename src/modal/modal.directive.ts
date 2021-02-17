@@ -1,4 +1,3 @@
-/* tslint:disable:max-file-line-count */
 // todo: should we support enforce focus in?
 // todo: in original bs there are was a way to prevent modal from showing
 // todo: original modal had resize events
@@ -125,7 +124,6 @@ export class ModalDirective implements OnDestroy, OnInit {
     if (!this._isShown) {
       return;
     }
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === 27 || event.key === 'Escape') {
       event.preventDefault();
     }
@@ -332,7 +330,7 @@ export class ModalDirective implements OnDestroy, OnInit {
   // todo: original show was calling a callback when done, but we can use
   // promise
   /** @internal */
-  protected showBackdrop(callback?: Function): void {
+  protected showBackdrop(callback?: () => void): void {
     if (
       this._isShown &&
       this.config.backdrop &&

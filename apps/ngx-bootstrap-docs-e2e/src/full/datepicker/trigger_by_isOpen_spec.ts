@@ -26,7 +26,7 @@ describe('Datepicker demo testing suite: Trigger by isOpen property', () => {
 
   it(`when user clicks on "Toggle" again (after chosing day), then bs-datepicker-container opens again
                  when user clicks on "Toggle" again, then bs-datepicker-container disappear`, () => {
-    const chosenDate = new Date(`${new Date().getMonth() + 1}/10/${new Date().getFullYear()}`);
+    // const chosenDate = new Date(`${new Date().getMonth() + 1}/10/${new Date().getFullYear()}`);
     datepicker.clickOnBtn(triggerByIsOpen);
     datepicker.clickOnDatepickerTableItem('date', 'body', undefined, '10');
     datepicker.clickOnBtn(triggerByIsOpen);

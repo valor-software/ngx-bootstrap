@@ -1,6 +1,3 @@
-// tslint:disable:max-line-length max-file-line-count prefer-const forin prefer-template one-variable-per-declaration newline-before-return
-// tslint:disable:binary-expression-operand-order comment-format one-line no-var-keyword object-literal-shorthand
-// tslint:disable:variable-name no-shadowed-variable
 
 import { assertEq, assertDeepEq } from '../test-helpers';
 import { moment } from '../chain';

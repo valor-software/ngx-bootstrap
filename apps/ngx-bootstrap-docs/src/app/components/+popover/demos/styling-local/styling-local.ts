@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'demo-popover-styling-local',
   templateUrl: './styling-local.html',
-  /* tslint:disable no-unused-css*/
   styles: [
     `
 :host >>> .popover {

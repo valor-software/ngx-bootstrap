@@ -10,13 +10,13 @@ import * as ts from 'typescript';
 import { addImportToModule } from '@schematics/angular/utility/ast-utils';
 import { Change, InsertChange } from '@schematics/angular/utility/change';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
-import { getFileContent } from '@schematics/angular/utility/test/index';
+import { getFileContent } from '@schematics/angular/utility/test';
 import { getProjectMainFile } from './project-main-file';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { Rule, SchematicContext, SchematicsException, Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
 import { WorkspaceProject, WorkspaceSchema } from '@schematics/angular/utility/workspace-models';
-import { WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
+import { ProjectDefinition, WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
 
 export function installPackageJsonDependencies(): Rule {
   return (host: Tree, context: SchematicContext) => {
@@ -27,7 +27,7 @@ export function installPackageJsonDependencies(): Rule {
   };
 }
 
-export function addStyleToTarget(project: WorkspaceProject, targetName: string, host: Tree,
+export function addStyleToTarget(project: ProjectDefinition, targetName: string, host: Tree,
                                  assetPath: string, workspace: WorkspaceSchema) {
 
   const targetOptions = getProjectTargetOptions(project, targetName);
@@ -54,10 +54,10 @@ export function addStyleToTarget(project: WorkspaceProject, targetName: string, 
   host.overwrite('angular.json', JSON.stringify(workspace, null, 2));
 }
 
-export function getProjectFromWorkspace(workspace: WorkspaceDefinition, projectName?: string): WorkspaceProject {
+export function getProjectFromWorkspace(workspace: WorkspaceDefinition, projectName?: string): ProjectDefinition {
 
-  /* tslint:disable-next-line: no-non-null-assertion */
-  const project = workspace.projects[projectName || workspace.defaultProject!];
+  const _projectName = projectName || workspace.extensions.defaultProject?.toString();
+  const project = workspace.projects.get(_projectName);
 
   if (!project) {
     throw new Error(`Could not find project in workspace: ${projectName}`);
@@ -66,9 +66,9 @@ export function getProjectFromWorkspace(workspace: WorkspaceDefinition, projectN
   return project;
 }
 
-export function getProjectTargetOptions(project: WorkspaceProject, buildTarget: string) {
-  const targetConfig = project.architect && project.architect[buildTarget] ||
-    project.targets && project.targets[buildTarget];
+export function getProjectTargetOptions(project: ProjectDefinition, buildTarget: string) {
+  // const targetConfig = project.architect && project.architect[buildTarget] ||
+  const targetConfig = project.targets && project.targets[buildTarget];
 
   if (targetConfig && targetConfig.options) {
 
@@ -82,7 +82,7 @@ function sortObjectByKeys(obj: { [key: string]: string }) {
   return Object
     .keys(obj)
     .sort()
-    /* tslint:disable-next-line: no-any */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     .reduce((result: any, key: any) => (
       result[key] = obj[key]
     ) && result, {});
@@ -91,8 +91,7 @@ function sortObjectByKeys(obj: { [key: string]: string }) {
 export function addPackageToPackageJson(host: Tree, pkg: string, version: string): Tree {
 
   if (host.exists('package.json')) {
-    /* tslint:disable-next-line: no-non-null-assertion */
-    const sourceText = host.read('package.json')!.toString('utf-8');
+    const sourceText = host.read('package.json')?.toString('utf-8');
     const json = JSON.parse(sourceText);
 
     if (!json.dependencies) {

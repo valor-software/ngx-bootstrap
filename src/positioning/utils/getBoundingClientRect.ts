@@ -10,7 +10,7 @@ import { isIE } from './isIE';
 import { Offsets } from '../models';
 
 export function getBoundingClientRect(element: HTMLElement): Offsets {
-  let rect: any = {};
+  let rect: Offsets;
 
   // IE10 10 FIX: Please, don't ask, the element isn't
   // considered in DOM in some circumstances...
@@ -31,7 +31,7 @@ export function getBoundingClientRect(element: HTMLElement): Offsets {
     return undefined;
   }
 
-  const result: any = {
+  const result: Offsets = {
     left: rect.left,
     top: rect.top,
     width: rect.right - rect.left,
@@ -39,11 +39,11 @@ export function getBoundingClientRect(element: HTMLElement): Offsets {
   };
 
   // subtract scrollbar size from sizes
-  const sizes: any = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
+  const sizes = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : undefined;
   const width =
-    sizes.width || element.clientWidth || result.right - result.left;
+    sizes && sizes.width || element.clientWidth || result.right - result.left;
   const height =
-    sizes.height || element.clientHeight || result.bottom - result.top;
+    sizes && sizes.height || element.clientHeight || result.bottom - result.top;
 
   let horizScrollbar = element.offsetWidth - width;
   let vertScrollbar = element.offsetHeight - height;

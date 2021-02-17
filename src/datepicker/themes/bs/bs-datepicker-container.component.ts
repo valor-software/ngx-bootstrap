@@ -98,9 +98,9 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     // on selected date change
     this._subs.push(
       this._store
-        /* tslint:disable-next-line: no-any */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .select((state: any) => state.selectedDate)
-        /* tslint:disable-next-line: no-any */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .subscribe((date: any) => this.valueChange.emit(date))
     );
 

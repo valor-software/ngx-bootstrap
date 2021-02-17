@@ -6,7 +6,7 @@ import {
   OnDestroy,
   OnInit,
   ElementRef,
-  Renderer2, SimpleChanges
+  Renderer2, SimpleChanges, OnChanges
 } from '@angular/core';
 
 import { ProgressbarComponent } from './progressbar.component';
@@ -17,6 +17,7 @@ import { isBs3 } from 'ngx-bootstrap/utils';
 @Component({
   selector: 'bar',
   templateUrl: './bar.component.html',
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     role: 'progressbar',
     'aria-valuemin': '0',
@@ -29,7 +30,7 @@ import { isBs3 } from 'ngx-bootstrap/utils';
     '[style.height.%]': '"100"'
   }
 })
-export class BarComponent implements OnInit, OnDestroy {
+export class BarComponent implements OnInit, OnDestroy, OnChanges {
   @Input() max: number;
   /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
   @Input() type: string;
