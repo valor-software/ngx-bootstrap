@@ -48,7 +48,7 @@ describe('Landing Page testing suite', () => {
       const buttonText = 'Documentation';
       const searchedUrl = '/documentation';
 
-      landing.isNavigateBtnExist(buttonText, 1);
+      landing.isNavigateBtnExist(buttonText);
       landing.clickByText(landing.navBtn, buttonText);
       landing.isUrlExist(searchedUrl);
     });
