@@ -1,4 +1,3 @@
-// tslint:disable:max-file-line-count
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, ComponentFixtureAutoDetect, inject, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
@@ -100,8 +99,7 @@ xdescribe('Component: Sortable', () => {
       sort1.itemActiveStyle
     );
     // act
-    /* tslint:disable-next-line:no-inferred-empty-object-type */
-    const style = sort1.getItemStyle(true);
+        const style = sort1.getItemStyle(true);
     // assert
     expect(style).toEqual(activeItemStyle);
   });
@@ -110,8 +108,7 @@ xdescribe('Component: Sortable', () => {
     // arrange
     const normalItemStyle = Object.assign({}, sort1.itemStyle);
     // act
-    /* tslint:disable-next-line:no-inferred-empty-object-type */
-    const style = sort1.getItemStyle(false);
+        const style = sort1.getItemStyle(false);
     // assert
     expect(style).toEqual(normalItemStyle);
   });
@@ -132,8 +129,7 @@ xdescribe('Component: Sortable', () => {
       inject([DraggableItemService], (service: DraggableItemService) => {
         transfer = service;
         item = getItemToDrag();
-        /* tslint:disable-next-line: no-object-literal-type-assertion */
-        event = {
+                event = {
           preventDefault: Function.prototype,
           dataTransfer: { setData: Function.prototype }
         } as DragEvent;

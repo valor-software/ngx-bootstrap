@@ -1,4 +1,3 @@
-// tslint:disable:max-file-line-count
 import { BsDatepickerState, initialDatepickerState } from './bs-datepicker.state';
 import { Action } from 'ngx-bootstrap/mini-ngrx';
 import { BsDatepickerActions } from './bs-datepicker.actions';
@@ -25,7 +24,6 @@ import { BsViewNavigationEvent, DatepickerFormatOptions, BsDatepickerViewMode } 
 import { getYearsCalendarInitialDate } from '../utils/bs-calendar-utils';
 
 
-/* tslint:disable-next-line: cyclomatic-complexity */
 export function bsDatepickerReducer(state = initialDatepickerState,
                                     action: Action): BsDatepickerState {
   switch (action.type) {

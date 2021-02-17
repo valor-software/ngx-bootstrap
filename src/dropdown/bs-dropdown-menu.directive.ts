@@ -6,7 +6,6 @@ import { BsDropdownState } from './bs-dropdown.state';
   exportAs: 'bs-dropdown-menu'
 })
 export class BsDropdownMenuDirective {
-  // tslint:disable:no-any
   constructor(
     _state: BsDropdownState,
     _viewContainer: ViewContainerRef,

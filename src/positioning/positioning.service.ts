@@ -60,8 +60,7 @@ export class PositioningService {
         this.triggerEvent$ = merge(
           fromEvent(window, 'scroll', { passive: true }),
           fromEvent(window, 'resize', { passive: true }),
-          /* tslint:disable-next-line: deprecation */
-          of(0, animationFrameScheduler),
+                    of(0, animationFrameScheduler),
           this.update$$
         );
 

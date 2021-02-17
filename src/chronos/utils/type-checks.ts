@@ -39,7 +39,7 @@ export function hasOwnProp<T>(a: T /*object*/, b: string): b is Extract<keyof T,
   return Object.prototype.hasOwnProperty.call(a, b);
 }
 
-export function isObject<T>(input: any /*object*/): input is Record<string, unknown> {
+export function isObject<T>(input: any /*object*/): input is T {
   // IE8 will treat undefined and null as object if it wasn't for
   // input != null
   return (

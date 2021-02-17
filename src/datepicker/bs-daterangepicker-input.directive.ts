@@ -37,8 +37,7 @@ import { distinctUntilChanged } from 'rxjs/operators';
 
 const BS_DATERANGEPICKER_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-  /* tslint:disable-next-line: no-use-before-declare */
-  useExisting: forwardRef(() => BsDaterangepickerInputDirective),
+    useExisting: forwardRef(() => BsDaterangepickerInputDirective),
   multi: true
 };
 

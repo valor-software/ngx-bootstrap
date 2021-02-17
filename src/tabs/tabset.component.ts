@@ -105,15 +105,12 @@ export class TabsetComponent implements OnDestroy {
     }
   }
 
-  /* tslint:disable-next-line: cyclomatic-complexity */
-  keyNavActions(event: KeyboardEvent, index: number) {
+    keyNavActions(event: KeyboardEvent, index: number) {
     if (!this.isKeysAllowed) {
       return;
     }
     const list: HTMLElement[] = Array.from(this.elementRef.nativeElement.querySelectorAll('.nav-link'));
     // const activeElList = list.filter((el: HTMLElement) => !el.classList.contains('disabled'));
-
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === 13 || event.key === 'Enter' || event.keyCode === 32 || event.key === 'Space') {
       event.preventDefault();
       const currentTab = list[(index) % list.length];
@@ -122,7 +119,6 @@ export class TabsetComponent implements OnDestroy {
       return;
     }
 
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === 39 || event.key === 'RightArrow') {
       let nextTab: HTMLElement;
       let shift = 1;
@@ -138,7 +134,6 @@ export class TabsetComponent implements OnDestroy {
       return;
     }
 
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === 37 || event.key === 'LeftArrow') {
       let previousTab: HTMLElement;
       let shift = 1;
@@ -161,7 +156,6 @@ export class TabsetComponent implements OnDestroy {
       return;
     }
 
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === 36 || event.key === 'Home') {
       event.preventDefault();
 
@@ -179,7 +173,6 @@ export class TabsetComponent implements OnDestroy {
       return;
     }
 
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === 35 || event.key === 'End') {
       event.preventDefault();
 
@@ -204,7 +197,6 @@ export class TabsetComponent implements OnDestroy {
       return;
     }
 
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === 46 || event.key === 'Delete') {
       if (this.tabs[index].removable) {
         this.removeTab(this.tabs[index]);

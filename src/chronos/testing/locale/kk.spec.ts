@@ -12,7 +12,6 @@ describe('locale: kk', () => {
   });
 
   it('parse', () => {
-    // tslint:disable-next-line:one-variable-per-declaration max-line-length
     const _tests = 'қаңтар қаң_ақпан ақп_наурыз нау_сәуір сәу_мамыр мам_маусым мау_шілде шіл_тамыз там_қыркүйек қыр_қазан қаз_қараша қар_желтоқсан жел'.split('_');
 
     function equalTest(input, mmm, index) {
@@ -106,7 +105,6 @@ describe('locale: kk', () => {
   });
 
   it('format month', () => {
-    // tslint:disable-next-line:one-variable-per-declaration max-line-length
     const expected = 'қаңтар қаң_ақпан ақп_наурыз нау_сәуір сәу_мамыр мам_маусым мау_шілде шіл_тамыз там_қыркүйек қыр_қазан қаз_қараша қар_желтоқсан жел'.split('_');
 
     for (let j = 0; j < expected.length; j++) {
@@ -115,7 +113,6 @@ describe('locale: kk', () => {
   });
 
   it('format week', () => {
-    // tslint:disable-next-line:one-variable-per-declaration max-line-length
     const expected = 'жексенбі жек жк_дүйсенбі дүй дй_сейсенбі сей сй_сәрсенбі сәр ср_бейсенбі бей бй_жұма жұм жм_сенбі сен сн'.split('_');
 
     for (let j = 0; j < expected.length; j++) {

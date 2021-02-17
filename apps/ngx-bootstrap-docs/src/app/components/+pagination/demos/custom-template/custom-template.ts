@@ -29,7 +29,6 @@ export class DemoPaginationCustomTemplateComponent {
 
     return Object.keys(roman).reduce((acc, symbol) => {
       const numeralSystem = Math.floor(pageNumber / roman[symbol]);
-      // tslint:disable-next-line:no-parameter-reassignment
       pageNumber -= numeralSystem * roman[symbol];
 
       return acc + symbol.repeat(numeralSystem);

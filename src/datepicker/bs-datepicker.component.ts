@@ -1,4 +1,3 @@
-// tslint:disable:max-file-line-count
 import {
   ComponentRef, Directive, ElementRef, EventEmitter, Input, OnChanges,
   OnDestroy, OnInit, Output, Renderer2, SimpleChanges, ViewContainerRef, AfterViewInit

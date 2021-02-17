@@ -1,4 +1,3 @@
-/* tslint:disable: max-file-line-count */
 import { TestBed, ComponentFixture, tick, fakeAsync } from '@angular/core/testing';
 import { asNativeElements, EventEmitter } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -56,8 +55,7 @@ describe('Component: TypeaheadContainer', () => {
     fixture = testModule.createComponent(TypeaheadContainerComponent);
 
     component = fixture.componentInstance;
-    /* tslint:disable-next-line: no-object-literal-type-assertion */
-    component.parent = {
+        component.parent = {
       typeaheadSelectFirstItem: false,
       typeaheadIsFirstItemActive: true
     } as TypeaheadDirective;
@@ -185,8 +183,7 @@ describe('Component: TypeaheadContainer', () => {
     let matches: HTMLLIElement[];
 
     beforeEach(() => {
-      /* tslint:disable-next-line: no-object-literal-type-assertion */
-      component.parent = {
+            component.parent = {
         typeaheadSelectFirstItem: true,
         typeaheadIsFirstItemActive: true
       } as TypeaheadDirective;
@@ -326,8 +323,7 @@ describe('Component: TypeaheadContainer', () => {
     let itemMatches: HTMLLIElement[];
 
     beforeEach(() => {
-      /* tslint:disable-next-line: no-object-literal-type-assertion */
-      component.parent = {
+            component.parent = {
         typeaheadSelectFirstItem: true,
         typeaheadIsFirstItemActive: true
       } as TypeaheadDirective;
@@ -534,8 +530,7 @@ describe('Component: TypeaheadContainer', () => {
     let matches: HTMLLIElement[];
 
     beforeEach(() => {
-      /* tslint:disable-next-line: no-object-literal-type-assertion */
-      component.parent = {
+            component.parent = {
         typeaheadIsFirstItemActive: false
       } as TypeaheadDirective;
       component.parent.typeaheadOnPreview = new EventEmitter<TypeaheadMatch>();

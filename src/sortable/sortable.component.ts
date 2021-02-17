@@ -53,7 +53,6 @@ import { DraggableItemService } from './draggable-item.service';
     }
   ]
 })
-/* tslint:enable */
 export class SortableComponent implements ControlValueAccessor {
   private static globalZoneIndex = 0;
   /** field name if input array consists of objects */

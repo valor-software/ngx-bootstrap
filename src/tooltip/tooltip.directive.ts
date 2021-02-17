@@ -1,4 +1,3 @@
-/* tslint:disable: max-file-line-count deprecation */
 import {
   Directive,
   ElementRef,
@@ -92,13 +91,11 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /**
    * Emits an event when the tooltip is hidden
    */
-  /* tslint:disable-next-line:no-any */
-  @Output() onHidden: EventEmitter<unknown>;
+    @Output() onHidden: EventEmitter<unknown>;
 
   /** @deprecated - please use `tooltip` instead */
   @Input('tooltipHtml')
-  /* tslint:disable-next-line:no-any */
-  set htmlContent(value: string | TemplateRef<unknown>) {
+    set htmlContent(value: string | TemplateRef<unknown>) {
     warnOnce('tooltipHtml was deprecated, please use `tooltip` instead');
     this.tooltip = value;
   }

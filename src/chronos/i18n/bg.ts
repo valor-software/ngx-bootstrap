@@ -1,8 +1,3 @@
-// tslint:disable:comment-format binary-expression-operand-order max-line-length
-// tslint:disable:no-bitwise prefer-template cyclomatic-complexity
-// tslint:disable:no-shadowed-variable switch-default prefer-const
-// tslint:disable:one-variable-per-declaration newline-before-return
-
 import { LocaleData } from '../locale/locale.class';
 import { Khronos } from '../testing/chain';
 

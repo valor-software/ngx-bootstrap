@@ -18,8 +18,7 @@ import { ConfigModel, PagesModel } from './models';
 
 export const PAGER_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-  /* tslint:disable-next-line: no-use-before-declare */
-  useExisting: forwardRef(() => PagerComponent),
+    useExisting: forwardRef(() => PagerComponent),
   multi: true
 };
 

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-/* tslint:disable:max-classes-per-file max-file-line-count component-class-suffix */
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { fireEvent } from '../../../scripts/helpers';

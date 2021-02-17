@@ -13,12 +13,10 @@ import { DatepickerConfig } from './datepicker.config';
 
 export const DATEPICKER_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-  /* tslint:disable-next-line: no-use-before-declare */
-  useExisting: forwardRef(() => DatePickerComponent),
+    useExisting: forwardRef(() => DatePickerComponent),
   multi: true
 };
 
-/* tslint:disable:component-selector-name component-selector-type */
 @Component({
   selector: 'datepicker',
   template: `
@@ -56,7 +54,6 @@ export const DATEPICKER_CONTROL_VALUE_ACCESSOR: Provider = {
     `,
   providers: [DATEPICKER_CONTROL_VALUE_ACCESSOR]
 })
-/* tslint:enable:component-selector-name component-selector-type */
 export class DatePickerComponent implements ControlValueAccessor {
   /** sets datepicker mode, supports: `day`, `month`, `year` */
   @Input() datepickerMode = 'day';

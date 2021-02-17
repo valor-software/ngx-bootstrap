@@ -1,9 +1,5 @@
-// tslint:disable:max-line-length max-file-line-count prefer-const forin prefer-template one-variable-per-declaration newline-before-return
-// tslint:disable:binary-expression-operand-order comment-format one-line no-var-keyword object-literal-shorthand
-// tslint:disable:variable-name
 import { assertEq, assertDeepEq, assertOk } from '../test-helpers';
 import { moment } from '../chain';
-
 
 describe('add and subtract', () => {
 

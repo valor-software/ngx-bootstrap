@@ -1,4 +1,3 @@
-/* tslint:disable:no-forward-ref max-file-line-count */
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -42,8 +41,7 @@ import { ControlValueAccessorModel } from './models';
 
 export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: ControlValueAccessorModel = {
   provide: NG_VALUE_ACCESSOR,
-  /* tslint:disable-next-line: no-use-before-declare */
-  useExisting: forwardRef(() => TimepickerComponent),
+    useExisting: forwardRef(() => TimepickerComponent),
   multi: true
 };
 

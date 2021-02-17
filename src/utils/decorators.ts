@@ -1,4 +1,3 @@
-/*tslint:disable:no-invalid-this */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function OnChange(): any {
   const sufix = 'Change';
@@ -22,4 +21,3 @@ export function OnChange(): any {
     });
   };
 }
-/* tslint:enable */

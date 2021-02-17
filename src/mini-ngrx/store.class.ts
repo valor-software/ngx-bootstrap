@@ -15,21 +15,18 @@ export class MiniStore<T> extends Observable<T> implements Observer<Action> {
   ) {
     super();
 
-    /* tslint:disable-next-line: deprecation */
-    this.source = state$;
+        this.source = state$;
   }
 
   select<R>(pathOrMapFn: (state: T) => R): Observable<R> {
-    /* tslint:disable-next-line: deprecation */
-    const mapped$: Observable<R> = this.source.pipe(map(pathOrMapFn));
+        const mapped$: Observable<R> = this.source.pipe(map(pathOrMapFn));
 
     return mapped$.pipe(distinctUntilChanged());
   }
 
   lift<R>(operator: Operator<T, R>): MiniStore<R> {
     const store = new MiniStore<R>(this._dispatcher, this._reducer, this);
-    /* tslint:disable-next-line: deprecation */
-    store.operator = operator;
+        store.operator = operator;
 
     return store;
   }

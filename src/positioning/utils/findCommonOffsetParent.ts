@@ -12,8 +12,7 @@ export function findCommonOffsetParent(element1: HTMLElement, element2: HTMLElem
   }
 
   // Here we make sure to give as "start" the element that comes first in the DOM
-  /* tslint:disable-next-line: no-bitwise */
-  const order = element1.compareDocumentPosition(element2) & Node.DOCUMENT_POSITION_FOLLOWING;
+    const order = element1.compareDocumentPosition(element2) & Node.DOCUMENT_POSITION_FOLLOWING;
 
   const start = order ? element1 : element2;
   const end = order ? element2 : element1;
@@ -22,7 +21,9 @@ export function findCommonOffsetParent(element1: HTMLElement, element2: HTMLElem
   const range = document.createRange();
   range.setStart(start, 0);
   range.setEnd(end, 0);
-  const { commonAncestorContainer } = range;
+
+  // todo: valorkin fix
+  const commonAncestorContainer = range.commonAncestorContainer as unknown as HTMLElement;
 
   // Both nodes are inside #document
   if (
@@ -31,18 +32,17 @@ export function findCommonOffsetParent(element1: HTMLElement, element2: HTMLElem
     start.contains(end)
   ) {
     if (isOffsetContainer(commonAncestorContainer)) {
-      // todo: valorkin fix
-      return commonAncestorContainer as unknown as HTMLElement;
+      return commonAncestorContainer;
     }
 
     return getOffsetParent(commonAncestorContainer);
   }
 
   // one of the nodes is inside shadowDOM, find which one
-  const element1root = getRoot(element1);
+  const element1root = getRoot(element1) as ShadowRoot;
   if (element1root.host) {
-    return findCommonOffsetParent(element1root.host, element2);
+    return findCommonOffsetParent(element1root.host as HTMLElement, element2);
   } else {
-    return findCommonOffsetParent(element1, getRoot(element2).host);
+    return findCommonOffsetParent(element1, (getRoot(element2) as ShadowRoot).host as HTMLElement);
   }
 }

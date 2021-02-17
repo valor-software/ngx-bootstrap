@@ -17,7 +17,6 @@ export function escapeRegexp(queryToEscape: string): string {
   return queryToEscape.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
 }
 
-/* tslint:disable */
 export function tokenize(str: string,
   wordRegexDelimiters = ' ',
   phraseRegexDelimiters = '', delimitersForMultipleSearch?: string): Array<string> {
@@ -43,8 +42,7 @@ export function tokenize(str: string,
 
 function tokenizeWordsAndPhrases(str: string, wordRegexDelimiters: string, phraseRegexDelimiters: string): Array<string> {
   const result: string[] = [];
-  /* tslint:enable */
-  const regexStr = `(?:[${phraseRegexDelimiters}])([^${phraseRegexDelimiters}]+)` +
+    const regexStr = `(?:[${phraseRegexDelimiters}])([^${phraseRegexDelimiters}]+)` +
   `(?:[${phraseRegexDelimiters}])|([^${wordRegexDelimiters}]+)`;
   const preTokenized: string[] = str.split(new RegExp(regexStr, 'g'));
   const preTokenizedLength: number = preTokenized.length;

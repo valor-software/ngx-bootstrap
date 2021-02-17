@@ -113,7 +113,6 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === 27 || event.key === 'Escape') {
       event.preventDefault();
     }

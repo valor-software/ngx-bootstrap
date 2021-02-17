@@ -65,7 +65,7 @@ export class BsModalService {
   }
 
   /** Shows a modal */
-  show<T = unknown>(
+  show<T>(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     content: string | TemplateRef<any> | { new(...args: any[]): T },
     config?: ModalOptions<T>
@@ -83,7 +83,7 @@ export class BsModalService {
     this._showBackdrop();
     this.lastDismissReason = null;
 
-    return this._showModal(content);
+    return this._showModal<T>(content);
   }
 
   hide(id?: number) {
@@ -126,7 +126,7 @@ export class BsModalService {
     setTimeout(() => this.removeBackdrop(), duration);
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  _showModal(content: any): BsModalRef {
+  _showModal<T>(content: any): BsModalRef<T> {
     const modalLoader = this.loaders[this.loaders.length - 1];
     if (this.config && this.config.providers) {
       for (const provider of this.config.providers) {
@@ -134,7 +134,8 @@ export class BsModalService {
       }
     }
 
-    const bsModalRef = new BsModalRef();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const bsModalRef = new BsModalRef<any>();
     const modalContainerRef = modalLoader
       .provide({ provide: ModalOptions, useValue: this.config })
       .provide({ provide: BsModalRef, useValue: bsModalRef })

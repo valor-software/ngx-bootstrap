@@ -1,4 +1,3 @@
-/* tslint:disable:max-file-line-count */
 import {
   ChangeDetectorRef,
   Directive,
@@ -268,16 +267,14 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   onChange(event: KeyboardEvent): void {
     if (this._container) {
       // esc
-      /* tslint:disable-next-line: deprecation */
-      if (event.keyCode === 27 || event.key === 'Escape') {
+            if (event.keyCode === 27 || event.key === 'Escape') {
         this.hide();
 
         return;
       }
 
       // up
-      /* tslint:disable-next-line: deprecation */
-      if (event.keyCode === 38 || event.key === 'ArrowUp') {
+            if (event.keyCode === 38 || event.key === 'ArrowUp') {
         this.isActiveItemChanged = true;
         this._container.prevActiveMatch();
 
@@ -285,8 +282,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       }
 
       // down
-      /* tslint:disable-next-line: deprecation */
-      if (event.keyCode === 40 || event.key === 'ArrowDown') {
+            if (event.keyCode === 40 || event.key === 'ArrowDown') {
         this.isActiveItemChanged = true;
         this._container.nextActiveMatch();
 
@@ -294,8 +290,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       }
 
       // enter
-      /* tslint:disable-next-line: deprecation */
-      if (event.keyCode === 13 || event.key === 'Enter') {
+            if (event.keyCode === 13 || event.key === 'Enter') {
         this._container.selectActiveMatch();
 
         return;
@@ -339,13 +334,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       return;
     }
 
-    /* tslint:disable-next-line: deprecation */
-    if (event.keyCode === 9 || event.key === 'Tab') {
+        if (event.keyCode === 9 || event.key === 'Tab') {
       this.onBlur();
     }
 
-    /* tslint:disable-next-line: deprecation */
-    if (event.keyCode === 9 || event.key === 'Tab' || event.keyCode === 13 || event.key === 'Enter') {
+        if (event.keyCode === 9 || event.key === 'Tab' || event.keyCode === 13 || event.key === 'Enter') {
       event.preventDefault();
       if (this.typeaheadSelectFirstItem) {
         this._container.selectActiveMatch();
@@ -651,7 +644,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       && this.typeaheadOrderBy !== undefined
       && typeof this.typeaheadOrderBy === 'object'
       && Object.keys(this.typeaheadOrderBy).length === 0) {
-      // tslint:disable-next-line:no-console
       console.error('Field and direction properties for typeaheadOrderBy have to be set according to documentation!');
 
       return options;
@@ -660,7 +652,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     const { field, direction } = this.typeaheadOrderBy;
 
     if (!direction || !(direction === 'asc' || direction === 'desc')) {
-      // tslint:disable-next-line:no-console
       console.error('typeaheadOrderBy direction has to equal "asc" or "desc". Please follow the documentation.');
 
       return options;
@@ -671,7 +662,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
 
     if (!field || typeof field !== 'string') {
-      // tslint:disable-next-line:no-console
       console.error('typeaheadOrderBy field has to set according to the documentation.');
 
       return options;

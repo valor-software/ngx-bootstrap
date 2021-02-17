@@ -21,7 +21,6 @@ export interface PageChangedEvent {
 
 export const PAGINATION_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-  /* tslint:disable-next-line: no-use-before-declare */
   useExisting: forwardRef(() => PaginationComponent),
   multi: true
 };
@@ -302,5 +301,4 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
 
     return Math.max(totalPages || 0, 1);
   }
-// tslint:disable-next-line:max-file-line-count
 }

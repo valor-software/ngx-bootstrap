@@ -1,7 +1,8 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable()
-export class BsModalRef<T = unknown> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export class BsModalRef<T = any> {
   /**
    * Event that is fired when the modal behind the ref starts hiding
    */

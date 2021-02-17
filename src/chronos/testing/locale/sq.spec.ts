@@ -1,4 +1,3 @@
-// tslint:disable:max-line-length
 
 import { assertEq } from '../test-helpers';
 import { moment } from '../chain';

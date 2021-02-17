@@ -8,8 +8,7 @@ import { window } from 'ngx-bootstrap/utils';
 describe('BsDropdownContainerComponent tests', () => {
   let fixture: ComponentFixture<BsDropdownContainerComponent>;
   let component: BsDropdownContainerComponent;
-  /* tslint:disable-next-line:no-inferred-empty-object-type */
-  const stateSubject = new Subject();
+    const stateSubject = new Subject();
   let fakeService;
 
   beforeEach(() => {

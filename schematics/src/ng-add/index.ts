@@ -49,7 +49,6 @@ const components: { [key: string]: { moduleName: string; link: string; animated?
   typeahead: { moduleName: 'TypeaheadModule', link: `${bsName}/typeahead`, animated: true }
 };
 
-/* tslint:disable-next-line: no-default-export */
 export default async function (options: Schema): Promise<Rule> {
   const componentName = options.component
     ? options.component

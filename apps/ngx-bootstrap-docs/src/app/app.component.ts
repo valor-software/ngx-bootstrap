@@ -50,6 +50,6 @@ export class AppComponent implements AfterContentInit {
       .pipe(
         filter(event => event instanceof NavigationEnd)
       )
-      .subscribe((event: any) => setTimeout(() => justDoIt(event), 50));
+      .subscribe(() => setTimeout(() => justDoIt(), 50));
   }
 }
