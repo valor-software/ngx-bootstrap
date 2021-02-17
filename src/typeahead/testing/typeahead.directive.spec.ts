@@ -256,10 +256,10 @@ describe('Directive: Typeahead', () => {
     it(
       'should result in 2 header matches, when "Ala" is entered',
       fakeAsync(() => {
-        expect(directive.matches).toContain(
+        expect(directive.matches).toContainEqual(
           new TypeaheadMatch('South', 'South', true)
         );
-        expect(directive.matches).toContain(
+        expect(directive.matches).toContainEqual(
           new TypeaheadMatch('West', 'West', true)
         );
       })
@@ -268,13 +268,13 @@ describe('Directive: Typeahead', () => {
     it(
       'should result in 2 item matches, when "Ala" is entered',
       fakeAsync(() => {
-        expect(directive.matches).toContain(
+        expect(directive.matches).toContainEqual(
           new TypeaheadMatch(
             { id: 1, name: 'Alabama', region: 'South' },
             'Alabama'
           )
         );
-        expect(directive.matches).toContain(
+        expect(directive.matches).toContainEqual(
           new TypeaheadMatch(
             { id: 2, name: 'Alaska', region: 'West' },
             'Alaska'
@@ -328,13 +328,13 @@ describe('Directive: Typeahead', () => {
     );
 
     it('should result in 2 item matches, when "Ala" is entered', fakeAsync(() => {
-        expect(directive.matches).toContain(
+        expect(directive.matches).toContainEqual(
           new TypeaheadMatch(
             { id: 1, name: 'Alabama', region: 'South' },
             'Alabama'
           )
         );
-        expect(directive.matches).toContain(
+        expect(directive.matches).toContainEqual(
           new TypeaheadMatch(
             { id: 2, name: 'Alaska', region: 'West' },
             'Alaska'
