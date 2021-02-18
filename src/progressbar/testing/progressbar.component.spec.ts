@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { ProgressbarComponent, ProgressbarModule } from '../index';
 
 @Component({
@@ -137,30 +137,41 @@ describe('Component: Progress Bar', () => {
     expect(barElement.classList).toContain('progress-bar-danger');
     expect(barElement.style.width).toEqual('50%');
   });
+});
 
-  it('check type binding does not override other class names', () => {
-    const tpl = `<progressbar [type]="typeValue" [animate]="true" [striped]="true"></progressbar>`;
+describe('progress bar', () => {
+  const tpl = `<progressbar [type]="typeValue" [animate]="true" [striped]="true"></progressbar>`;
+  let fixture;
+
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestProgressbarComponent],
       imports: [ProgressbarModule.forRoot()]
     });
-    TestBed.overrideComponent(TestProgressbarComponent, {
+    fixture = TestBed.overrideComponent(TestProgressbarComponent, {
       set: { template: tpl }
-    });
-    fixture = TestBed.createComponent(TestProgressbarComponent);
-    const context = fixture.debugElement.componentInstance;
-    element = fixture.nativeElement;
+    })
+      .createComponent(TestProgressbarComponent);
     fixture.detectChanges();
+  })
+
+  it('check type binding does not override other class names', fakeAsync(() => {
+
+    const context = fixture.debugElement.componentInstance;
+    const element = fixture.nativeElement;
     const barElement: HTMLElement = element.querySelector('bar');
     expect(barElement.classList).toContain('progress-bar');
     expect(barElement.classList).toContain('progress-bar-striped');
-    expect(barElement.classList).toContain('active');
+    // todo: isBs3 only
+    // expect(barElement.classList).toContain('active');
+
 
     context.typeValue = 'success';
     fixture.detectChanges();
     expect(barElement.classList).toContain('progress-bar');
     expect(barElement.classList).toContain('progress-bar-striped');
-    expect(barElement.classList).toContain('active');
+    // todo: isBs3 only
+    // expect(barElement.classList).toContain('active');
     expect(barElement.classList).toContain('progress-bar-success');
     expect(barElement.classList).toContain('bg-success');
 
@@ -168,7 +179,8 @@ describe('Component: Progress Bar', () => {
     fixture.detectChanges();
     expect(barElement.classList).toContain('progress-bar');
     expect(barElement.classList).toContain('progress-bar-striped');
-    expect(barElement.classList).toContain('active');
+    // todo: isBs3 only
+    // expect(barElement.classList).toContain('active');
     expect(barElement.classList).toContain('progress-bar-info');
     expect(barElement.classList).toContain('bg-info');
     expect(barElement.classList).not.toContain('progress-bar-success');
@@ -178,8 +190,10 @@ describe('Component: Progress Bar', () => {
     fixture.detectChanges();
     expect(barElement.classList).toContain('progress-bar');
     expect(barElement.classList).toContain('progress-bar-striped');
-    expect(barElement.classList).toContain('active');
+    // todo: isBs3 only
+    // expect(barElement.classList).toContain('active');
     expect(barElement.classList).not.toContain('progress-bar-info');
     expect(barElement.classList).not.toContain('bg-info');
-  });
+  }));
+
 });
