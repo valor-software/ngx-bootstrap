@@ -144,6 +144,9 @@ describe('Directive: Buttons', () => {
   );
 
   describe('checkbox', () => {
+    afterEach(() => {
+      fixture.destroy();
+    });
     it(
       'should work correctly with default model values',
       fakeAsync(() => {
@@ -208,7 +211,7 @@ describe('Directive: Buttons', () => {
       })
     );
 
-    it('should toggle default model values on click', () => {
+    it('should toggle default model values on click', fakeAsync(() => {
       fixture = createComponent(html);
       context = fixture.componentInstance;
       element = fixture.nativeElement;
@@ -217,22 +220,28 @@ describe('Directive: Buttons', () => {
       fixture.detectChanges();
       const btn = element.querySelector('#default');
 
-      btn.click();
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(context.singleModel).toEqual(true);
-        expect(btn.classList).toContainEqual('active');
-      });
+      fixture.whenStable()
+        .then(() => {
+          btn.click();
+          fixture.detectChanges();
+          return fixture.whenStable();
+        })
+        .then(() => {
+          expect(context.singleModel).toEqual(true);
+          expect(btn.classList).toContainEqual('active');
+        })
+        .then(() => {
+          btn.click();
+          fixture.detectChanges();
+          return fixture.whenStable();
+        })
+        .then(() => {
+          expect(context.singleModel).toEqual(false);
+          expect(btn.classList).not.toContain('active');
+        });
+    }));
 
-      // btn.click();
-      // fixture.detectChanges();
-      // fixture.whenStable().then(() => {
-      //   expect(context.singleModel).toEqual(false);
-      //   expect(btn.classList).not.toContain('active');
-      // });
-    });
-
-    it('should toggle default model values on click OnPush', () => {
+    it('should toggle default model values on click OnPush', fakeAsync(() => {
       fixture = createComponent(html, 'OnPush');
       context = fixture.componentInstance;
       element = fixture.nativeElement;
@@ -243,20 +252,26 @@ describe('Directive: Buttons', () => {
       fixture.detectChanges();
       const btn = element.querySelector('#default');
 
-      btn.click();
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(context.singleModel).toEqual(true);
-        expect(btn.classList).toContain('active');
-      });
-
-      btn.click();
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(context.singleModel).toEqual(false);
-        expect(btn.classList).not.toContain('active');
-      });
-    });
+      fixture.whenStable()
+        .then(() => {
+          btn.click();
+          fixture.detectChanges();
+          return fixture.whenStable();
+        })
+        .then(() => {
+          expect(context.singleModel).toEqual(true);
+          expect(btn.classList).toContain('active');
+        })
+        .then(() => {
+          btn.click();
+          fixture.detectChanges();
+          return fixture.whenStable();
+        })
+        .then(() => {
+          expect(context.singleModel).toEqual(false);
+          expect(btn.classList).not.toContain('active');
+        });
+    }));
 
     it('should toggle custom model values on click', () => {
       fixture = createComponent(html);
@@ -265,19 +280,27 @@ describe('Directive: Buttons', () => {
 
       const btn = element.querySelector('#custom');
 
-      btn.click();
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(context.singleModel).toEqual('1');
-        expect(btn.classList).toContain('active');
-      });
 
-      btn.click();
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(context.singleModel).toEqual('0');
-        expect(btn.classList).not.toContain('active');
-      });
+      fixture.whenStable()
+        .then(() => {
+          btn.click();
+          fixture.detectChanges();
+          return fixture.whenStable();
+        })
+        .then(() => {
+          expect(context.singleModel).toEqual('1');
+          expect(btn.classList).toContain('active');
+        })
+        .then(() => {
+          btn.click();
+          fixture.detectChanges();
+          return fixture.whenStable();
+        })
+        .then(() => {
+          expect(context.singleModel).toEqual('0');
+          expect(btn.classList).not.toContain('active');
+        });
     });
 
     it('should toggle custom model values on click OnPush', () => {
@@ -289,19 +312,25 @@ describe('Directive: Buttons', () => {
 
       const btn = element.querySelector('#custom');
 
-      btn.click();
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(context.singleModel).toEqual('1');
-        expect(btn.classList).toContain('active');
-      });
-
-      btn.click();
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(context.singleModel).toEqual('0');
-        expect(btn.classList).not.toContain('active');
-      });
+      fixture.whenStable()
+        .then(() => {
+          btn.click();
+          fixture.detectChanges();
+          return fixture.whenStable();
+        })
+        .then(() => {
+          expect(context.singleModel).toEqual('1');
+          expect(btn.classList).toContain('active');
+        })
+        .then(() => {
+          btn.click();
+          fixture.detectChanges();
+          return fixture.whenStable();
+        })
+        .then(() => {
+          expect(context.singleModel).toEqual('0');
+          expect(btn.classList).not.toContain('active');
+        });
     });
 
     it('should not toggle when disabled', () => {
@@ -747,26 +776,33 @@ describe('Directive: Buttons', () => {
       fixture = createComponent(html);
       context = fixture.componentInstance;
       element = fixture.nativeElement;
+      fixture.detectChanges();
 
       const btn = element.querySelector('.btn-group.radioUncheckable');
       expect(context.radioUncheckableModel).toBeUndefined();
-      (btn.children[0] as HTMLElement).click();
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(context.radioUncheckableModel).toEqual('Left');
-        expect(btn.children[0].classList).toContain('active');
-        expect(btn.children[1].classList).not.toContain('active');
-        expect(btn.children[2].classList).not.toContain('active');
-      });
-
-      (btn.children[0] as HTMLElement).click();
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(context.radioUncheckableModel).toBeUndefined();
-        expect(btn.children[0].classList).not.toContain('active');
-        expect(btn.children[1].classList).not.toContain('active');
-        expect(btn.children[2].classList).not.toContain('active');
-      });
+      fixture.whenStable()
+        .then(() => {
+          (btn.children[0] as HTMLElement).click();
+          fixture.detectChanges();
+          return fixture.whenStable();
+        })
+        .then(() => {
+          expect(context.radioUncheckableModel).toEqual('Left');
+          expect(btn.children[0].classList).toContain('active');
+          expect(btn.children[1].classList).not.toContain('active');
+          expect(btn.children[2].classList).not.toContain('active');
+        })
+        .then(() => {
+          (btn.children[0] as HTMLElement).click();
+          fixture.detectChanges();
+          return fixture.whenStable();
+        })
+        .then(() => {
+          expect(context.radioUncheckableModel).toBeUndefined();
+          expect(btn.children[0].classList).not.toContain('active');
+          expect(btn.children[1].classList).not.toContain('active');
+          expect(btn.children[2].classList).not.toContain('active');
+        });
     });
 
     it('should unset active class via click OnPush', () => {
@@ -778,23 +814,30 @@ describe('Directive: Buttons', () => {
 
       const btn = element.querySelector('.btn-group.radioUncheckable');
       expect(context.radioUncheckableModel).toBeUndefined();
-      (btn.children[0] as HTMLElement).click();
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(context.radioUncheckableModel).toEqual('Left');
-        expect(btn.children[0].classList).toContain('active');
-        expect(btn.children[1].classList).not.toContain('active');
-        expect(btn.children[2].classList).not.toContain('active');
-      });
 
-      (btn.children[0] as HTMLElement).click();
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        expect(context.radioUncheckableModel).toBeUndefined();
-        expect(btn.children[0].classList).not.toContain('active');
-        expect(btn.children[1].classList).not.toContain('active');
-        expect(btn.children[2].classList).not.toContain('active');
-      });
+      fixture.whenStable()
+        .then(() => {
+          (btn.children[0] as HTMLElement).click();
+          fixture.detectChanges();
+          return fixture.whenStable();
+        })
+        .then(() => {
+          expect(context.radioUncheckableModel).toEqual('Left');
+          expect(btn.children[0].classList).toContain('active');
+          expect(btn.children[1].classList).not.toContain('active');
+          expect(btn.children[2].classList).not.toContain('active');
+        })
+        .then(() => {
+          (btn.children[0] as HTMLElement).click();
+          fixture.detectChanges();
+          return fixture.whenStable();
+        })
+        .then(() => {
+          expect(context.radioUncheckableModel).toBeUndefined();
+          expect(btn.children[0].classList).not.toContain('active');
+          expect(btn.children[1].classList).not.toContain('active');
+          expect(btn.children[2].classList).not.toContain('active');
+        });
     });
   });
 
