@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+
+import '../../../scripts/jest/toHaveCssClass';
 import { CarouselModule } from '../index';
 
 @Component({selector: 'carousel-test', template: ''})
@@ -228,7 +230,7 @@ describe('Component: Carousel', () => {
   });
 
   it('Multilist: should shift visible slides on carousel control click' +
-  'by number equal to itemsPerSlide value', () => fakeAsync(() => {
+  'by number equal to itemsPerSlide value', fakeAsync(() => {
     context.itemsPerSlide = 3;
     fixture.detectChanges();
     tick();
@@ -251,27 +253,36 @@ describe('Component: Carousel', () => {
     expectActiveSlides(element, [false, false, false, true, true, true]);
   }));
 
-  it('Multilist: should select slides on carousel via indicator', () => fakeAsync(() => {
+  it('Multilist: should select slides on carousel via indicator', fakeAsync(() => {
     const indicators = element.querySelectorAll('ol.carousel-indicators > li');
 
     context.itemsPerSlide = 3;
 
     fixture.detectChanges();
-    tick();
 
-    expectActiveSlides(element, [true, true, true, false, false, false]);
-
-    indicators[2].click();
-    fixture.detectChanges();
-    expectActiveSlides(element, [true, true, true, false, false, false]);
-
-    indicators[3].click();
-    fixture.detectChanges();
-    expectActiveSlides(element, [false, false, false, true, true, true]);
+    fixture.whenStable().then(() => {
+      expectActiveSlides(element, [true, true, true, false, false, false]);
+    })
+      .then(() => {
+        indicators[2].click();
+        fixture.detectChanges();
+        return fixture.whenStable();
+      })
+      .then(() => {
+        expectActiveSlides(element, [true, true, true, false, false, false]);
+      })
+      .then(() => {
+        indicators[3].click();
+        fixture.detectChanges();
+        return fixture.whenStable();
+      })
+      .then(() => {
+        expectActiveSlides(element, [false, false, false, true, true, true]);
+      });
   }));
 
   it('Multilist: carousel should not shifts if noWrap is false' +
-  'last or first items are visible', () => fakeAsync(() => {
+  'last or first items are visible', fakeAsync(() => {
     context.itemsPerSlide = 3;
     fixture.detectChanges();
     context.noWrapSlides = false;
@@ -301,7 +312,7 @@ describe('Component: Carousel', () => {
     expectActiveSlides(element, [true, true, true, false, false, false]);
   }));
 
-  it('Multilist: carousel should shifts by 1 one item if singleSlideOffset is true', () => fakeAsync(() => {
+  it('Multilist: carousel should shifts by 1 one item if singleSlideOffset is true', fakeAsync(() => {
     context.itemsPerSlide = 3;
     fixture.detectChanges();
 
@@ -323,7 +334,7 @@ describe('Component: Carousel', () => {
     expectActiveSlides(element, [false, false, true, true, true, false]);
   }));
 
-  it('Multilist: carousel should starts from specific index if fromStartIndex is defined', () => fakeAsync(() => {
+  it('Multilist: carousel should starts from specific index if fromStartIndex is defined', fakeAsync(() => {
     context.itemsPerSlide = 3;
     fixture.detectChanges();
 
