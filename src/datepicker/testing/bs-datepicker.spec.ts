@@ -54,7 +54,6 @@ function getDatepickerContainer(datepicker: BsDatepickerDirective): BsDatepicker
 
 describe('datepicker:', () => {
   let fixture: TestFixture;
-  let spectator: Spectator<TestComponent>;
   beforeEach(
     waitForAsync(() => TestBed.configureTestingModule({
         declarations: [TestComponent],
@@ -141,9 +140,8 @@ describe('datepicker:', () => {
     showDatepicker(fixture);
     fixture.whenStable().then(() => {
       const buttonText: string[] = [];
-      fixture.debugElement.queryAll(By.css('button')).forEach(button => {
-        buttonText.push(button.nativeElement.textContent);
-      });
+      Array.from(document.body.getElementsByTagName('button'))
+        .forEach(button => buttonText.push(button.textContent));
       expect(buttonText.filter(button => button === 'Today').length).toEqual(1);
     });
   }));
@@ -158,9 +156,8 @@ describe('datepicker:', () => {
     showDatepicker(fixture);
 
     const buttonText: string[] = [];
-    fixture.debugElement.queryAll(By.css('button')).forEach(button => {
-      buttonText.push(button.nativeElement.textContent);
-    });
+    Array.from(document.body.getElementsByTagName('button'))
+      .forEach(button => buttonText.push(button.textContent));
     expect(buttonText.filter(button => button === todayBtnCustomLbl).length).toEqual(1);
   });
 
@@ -174,9 +171,9 @@ describe('datepicker:', () => {
     showDatepicker(fixture);
 
     const buttonText: string[] = [];
-    fixture.debugElement.queryAll(By.css('button')).forEach(button => {
-      buttonText.push(button.nativeElement.textContent);
-    });
+    // fixture.debugElement.queryAll(By.css('button'))
+    Array.from(document.body.getElementsByTagName('button'))
+      .forEach(button => buttonText.push(button.textContent));
     expect(buttonText.filter(button => button === clearBtnCustomLbl).length).toEqual(1);
   });
 
