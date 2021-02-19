@@ -1,4 +1,3 @@
-/* tslint:disable:max-file-line-count */
 import { Injectable } from '@angular/core';
 
 import { Observable, Subscription } from 'rxjs';
@@ -176,7 +175,7 @@ export class BsDatepickerEffects {
 
   registerDatepickerSideEffects(): BsDatepickerEffects {
     this._subs.push(
-      this._store.select(state => state.view).subscribe(view => {
+      this._store.select(state => state.view).subscribe(() => {
         this._store.dispatch(this._actions.calculate());
       })
     );
@@ -188,7 +187,7 @@ export class BsDatepickerEffects {
         .pipe(
           filter(monthModel => !!monthModel)
         )
-        .subscribe(month => this._store.dispatch(this._actions.format()))
+        .subscribe(() => this._store.dispatch(this._actions.format()))
     );
 
     // flag day values
@@ -198,7 +197,7 @@ export class BsDatepickerEffects {
         .pipe(
           filter(month => !!month)
         )
-        .subscribe(month => this._store.dispatch(this._actions.flag()))
+        .subscribe(() => this._store.dispatch(this._actions.flag()))
     );
 
     // flag day values
@@ -208,7 +207,7 @@ export class BsDatepickerEffects {
         .pipe(
           filter(selectedDate => !!selectedDate)
         )
-        .subscribe(selectedDate => this._store.dispatch(this._actions.flag()))
+        .subscribe(() => this._store.dispatch(this._actions.flag()))
     );
 
     // flag for date range picker
@@ -218,7 +217,7 @@ export class BsDatepickerEffects {
         .pipe(
           filter(selectedRange => !!selectedRange)
         )
-        .subscribe(selectedRange => this._store.dispatch(this._actions.flag()))
+        .subscribe(() => this._store.dispatch(this._actions.flag()))
     );
 
     // monthsCalendar
@@ -245,7 +244,7 @@ export class BsDatepickerEffects {
         .pipe(
           filter(hoveredDate => !!hoveredDate)
         )
-        .subscribe(hoveredDate => this._store.dispatch(this._actions.flag()))
+        .subscribe(() => this._store.dispatch(this._actions.flag()))
     );
 
     // date custom classes
@@ -255,7 +254,7 @@ export class BsDatepickerEffects {
         .pipe(
           filter(dateCustomClasses => !!dateCustomClasses)
         )
-        .subscribe(dateCustomClasses => this._store.dispatch(this._actions.flag()))
+        .subscribe(() => this._store.dispatch(this._actions.flag()))
     );
 
     // date tooltip texts
@@ -265,7 +264,7 @@ export class BsDatepickerEffects {
         .pipe(
           filter(dateTooltipTexts => !!dateTooltipTexts)
         )
-        .subscribe(dateTooltipTexts => this._store.dispatch(this._actions.flag()))
+        .subscribe(() => this._store.dispatch(this._actions.flag()))
     );
 
     // on locale change

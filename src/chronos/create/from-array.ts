@@ -26,15 +26,13 @@ export function configFromArray(config: DateParsingConfig): DateParsingConfig {
   const input = [];
   let i;
   let date;
-  let currentDate;
-  let expectedWeekday;
   let yearToUse;
 
   if (config._d) {
     return config;
   }
 
-  currentDate = currentDateArray(config);
+  const currentDate = currentDateArray(config);
 
   // compute day of the year from weeks and weekdays
   if (config._w && config._a[DATE] == null && config._a[MONTH] == null) {
@@ -77,8 +75,9 @@ export function configFromArray(config: DateParsingConfig): DateParsingConfig {
     config._a[HOUR] = 0;
   }
 
+  // eslint-disable-next-line prefer-spread
   config._d = (config._useUTC ? createUTCDate : createDate).apply(null, input);
-  expectedWeekday = config._useUTC ? config._d.getUTCDay() : config._d.getDay();
+  const expectedWeekday = config._useUTC ? config._d.getUTCDay() : config._d.getDay();
 
   // Apply timezone offset from input. The actual utcOffset can be changed
   // with parseZone.
@@ -99,9 +98,9 @@ export function configFromArray(config: DateParsingConfig): DateParsingConfig {
 }
 
 function dayOfYearFromWeekInfo(config: DateParsingConfig): DateParsingConfig {
-  let w, weekYear, week, weekday, dow, doy, temp, weekdayOverflow;
+  let weekYear, week, weekday, dow, doy, temp, weekdayOverflow;
 
-  w = config._w;
+  const w = config._w;
   if (w.GG != null || w.W != null || w.E != null) {
     dow = 1;
     doy = 4;
@@ -134,13 +133,13 @@ function dayOfYearFromWeekInfo(config: DateParsingConfig): DateParsingConfig {
         weekdayOverflow = true;
       }
     } else if (w.e != null) {
-      // local weekday -- counting starts from begining of week
+      // local weekday -- counting starts from beginning of week
       weekday = w.e + dow;
       if (w.e < 0 || w.e > 6) {
         weekdayOverflow = true;
       }
     } else {
-      // default to begining of week
+      // default to beginning of week
       weekday = dow;
     }
   }

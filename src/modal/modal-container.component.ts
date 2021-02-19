@@ -24,6 +24,7 @@ import { isBs3 } from 'ngx-bootstrap/utils';
       </div>
     </div>
   `,
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     class: 'modal',
     role: 'dialog',
@@ -112,7 +113,6 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === 27 || event.key === 'Escape') {
       event.preventDefault();
     }

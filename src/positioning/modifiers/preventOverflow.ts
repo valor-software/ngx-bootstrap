@@ -8,7 +8,7 @@ export function preventOverflow(data: Data) {
   }
 
   // NOTE: DOM access here
-  // resets the targetOffsets's position so that the document size can be calculated excluding
+  // resets the target Offsets's position so that the document size can be calculated excluding
   // the size of the targetOffsets element itself
   const transformProp = 'transform';
   const targetStyles = data.instance.target.style; // assignment to help minification
@@ -35,12 +35,10 @@ export function preventOverflow(data: Data) {
 
   const check = {
     primary(placement: string) {
-      let value = (data as any).offsets.target[placement];
-      if (
-        (data as any).offsets.target[placement] < boundaries[placement] &&
-        !false // options.escapeWithReference
-      ) {
-        value = Math.max((data as any).offsets.target[placement], boundaries[placement]);
+      let value = data.offsets.target[placement];
+      // options.escapeWithReference
+      if (data.offsets.target[placement] < boundaries[placement]) {
+        value = Math.max(data.offsets.target[placement], boundaries[placement]);
       }
 
       return { [placement]: value };
@@ -48,10 +46,8 @@ export function preventOverflow(data: Data) {
     secondary(placement: string) {
       const mainSide = placement === 'right' ? 'left' : 'top';
       let value = data.offsets.target[mainSide];
-      if (
-        (data as any).offsets.target[placement] > boundaries[placement] &&
-        !false // escapeWithReference
-      ) {
+      // escapeWithReference
+      if (data.offsets.target[placement] > boundaries[placement]) {
         value = Math.min(
           data.offsets.target[mainSide],
           boundaries[placement] -
@@ -73,7 +69,7 @@ export function preventOverflow(data: Data) {
 
     data.offsets.target = {
       ...data.offsets.target,
-      ...(check as any)[side](placement)
+      ...check[side](placement)
     };
 
   });

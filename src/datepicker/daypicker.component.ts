@@ -1,5 +1,4 @@
 // @deprecated
-// tslint:disable
 import { Component, OnInit } from '@angular/core';
 import { isBs3 } from 'ngx-bootstrap/utils';
 import { DatePickerInnerComponent } from './datepicker-inner.component';
@@ -86,9 +85,9 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
   ]
 })
 export class DayPickerComponent implements OnInit {
-  labels: any[] = [];
+  labels = [];
   title: string;
-  rows: any[] = [];
+  rows = [];
   weekNumbers: number[] = [];
   datePicker: DatePickerInnerComponent;
 
@@ -105,6 +104,7 @@ export class DayPickerComponent implements OnInit {
    ((year % 100 !== 0) || (year % 400 === 0))) ? 29 : DAYS_IN_MONTH[month];
    }*/
   ngOnInit(): void {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this;
 
     this.datePicker.stepDay = { months: 1 };
@@ -124,7 +124,7 @@ export class DayPickerComponent implements OnInit {
 
       // 42 is the number of days on a six-week calendar
       const _days: Date[] = self.getDates(firstDate, 42);
-      const days: any[] = [];
+      const days = [];
       for (let i = 0; i < 42; i++) {
         const _dateObject = this.createDateObject(_days[i], this.formatDay);
         _dateObject.secondary = _days[i].getMonth() !== month;

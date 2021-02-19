@@ -6,12 +6,11 @@ import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 export class NgTranscludeDirective {
   viewRef: ViewContainerRef;
 
-  protected _viewRef: ViewContainerRef;
-  /* tslint:disable-next-line:no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected _ngTransclude: TemplateRef<any>;
 
   @Input()
-  /* tslint:disable-next-line:no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   set ngTransclude(templateRef: TemplateRef<any>) {
     this._ngTransclude = templateRef;
     if (templateRef) {
@@ -19,7 +18,7 @@ export class NgTranscludeDirective {
     }
   }
 
-  /* tslint:disable-next-line:no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   get ngTransclude(): TemplateRef<any> {
     return this._ngTransclude;
   }

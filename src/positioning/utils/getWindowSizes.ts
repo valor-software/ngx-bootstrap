@@ -2,15 +2,15 @@ import { isIE } from './isIE';
 
 function getSize(axis: string, body: HTMLElement, html: HTMLElement, computedStyle: CSSStyleDeclaration) {
   return Math.max(
-    (body as any)[`offset${axis}`],
-    (body as any)[`scroll${axis}`],
-    (html as any)[`client${axis}`],
-    (html as any)[`offset${axis}`],
-    (html as any)[`scroll${axis}`],
+    body[`offset${axis}`],
+    body[`scroll${axis}`],
+    html[`client${axis}`],
+    html[`offset${axis}`],
+    html[`scroll${axis}`],
     isIE(10)
-      ? (parseInt((html as any)[`offset${axis}`], 10) +
-      parseInt(computedStyle[`margin${axis === 'Height' ? 'Top' : 'Left'}` as any], 10) +
-      parseInt(computedStyle[`margin${axis === 'Height' ? 'Bottom' : 'Right'}` as any], 10))
+      ? (parseInt(html[`offset${axis}`], 10) +
+      parseInt(computedStyle[`margin${axis === 'Height' ? 'Top' : 'Left'}`], 10) +
+      parseInt(computedStyle[`margin${axis === 'Height' ? 'Bottom' : 'Right'}`], 10))
     : 0
   );
 }

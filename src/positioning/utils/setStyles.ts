@@ -5,12 +5,12 @@ import { Renderer2 } from '@angular/core';
 
 import { isNumeric } from './isNumeric';
 
-export function setStyles(element: HTMLElement, styles: any, renderer?: Renderer2) {
-  Object.keys(styles).forEach((prop: any) => {
+export function setStyles(element: HTMLElement, styles: Record<string, string|number|HTMLElement>, renderer?: Renderer2) {
+  Object.keys(styles).forEach((prop) => {
     let unit = '';
     // add unit if the value is numeric and is one of the following
     if (['width', 'height', 'top', 'right', 'bottom', 'left'].indexOf(prop) !== -1 &&
-      isNumeric(styles[prop])) {
+      isNumeric(styles[prop] as string)) {
       unit = 'px';
     }
 

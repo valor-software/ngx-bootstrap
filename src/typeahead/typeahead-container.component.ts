@@ -1,4 +1,3 @@
-// tslint:disable:max-file-line-count max-line-length
 import {
   ChangeDetectorRef,
   Component,
@@ -29,6 +28,7 @@ let nextWindowId = 0;
 @Component({
   selector: 'typeahead-container',
   templateUrl: './typeahead-container.component.html',
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     class: 'dropdown open bottom',
     '[class.dropdown-menu]': 'isBs4',
@@ -54,7 +54,7 @@ let nextWindowId = 0;
 })
 
 export class TypeaheadContainerComponent implements OnDestroy {
-   // tslint:disable-next-line: no-output-rename
+  // eslint-disable-next-line @angular-eslint/no-output-rename
   @Output('activeChange') activeChangeEvent = new EventEmitter();
 
   parent: TypeaheadDirective;
@@ -77,13 +77,10 @@ export class TypeaheadContainerComponent implements OnDestroy {
   }
 
   get typeaheadTemplateMethods(): TypeaheadTemplateMethods {
-    /* tslint:disable:no-this-assignment */
-    const _that = this;
-
     return {
-      selectMatch: this.selectMatch.bind(_that),
-      selectActive: this.selectActive.bind(_that),
-      isActive: this.isActive.bind(_that)
+      selectMatch: this.selectMatch.bind(this),
+      selectActive: this.selectActive.bind(this),
+      isActive: this.isActive.bind(this)
     };
   }
 
@@ -172,7 +169,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
     return this.element.nativeElement.classList.contains('top');
   }
 
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   get optionsListTemplate(): TemplateRef<TypeaheadOptionListContext> {
     return this.parent ? this.parent.optionsListTemplate : undefined;
   }
@@ -196,7 +193,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
   get typeaheadIsFirstItemActive(): boolean {
     return this.parent ? this.parent.typeaheadIsFirstItemActive : true;
   }
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   get itemTemplate(): TemplateRef<TypeaheadOptionItemContext> {
     return this.parent ? this.parent.typeaheadItemTemplate : undefined;
   }

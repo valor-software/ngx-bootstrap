@@ -1,4 +1,3 @@
-// tslint:disable:max-file-line-count
 /***
  * pause (not yet supported) (?string='hover') - event group name which pauses
  * the cycling of the carousel, if hover pauses on mouseenter and resumes on
@@ -104,7 +103,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     return this._slides.toArray();
   }
 
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected currentInterval: any;
   protected _currentActiveSlide: number;
   protected _interval: number;
@@ -268,7 +267,6 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
    * @internal
    */
   keydownPress(event: KeyboardEvent) {
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === 13 || event.key === 'Enter' || event.keyCode === 32 || event.key === 'Space') {
       this.nextSlide();
       event.preventDefault();
@@ -276,14 +274,12 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       return;
     }
 
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === 37 || event.key === 'LeftArrow') {
       this.previousSlide();
 
       return;
     }
 
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === 39 || event.key === 'RightArrow') {
       this.nextSlide();
 
