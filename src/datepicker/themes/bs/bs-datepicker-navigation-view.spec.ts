@@ -31,7 +31,7 @@ const nextNavSelector = '.next';
 function getTitles(fixture: TestFixture): string[] {
   const elements = fixture.nativeElement.querySelectorAll(titleSelector);
 
-  return [elements[0].innerText, elements[1].innerText];
+  return [elements[0].textContent, elements[1].textContent];
 }
 
 function getPrevNavButton(fixture: TestFixture): HTMLElement {
