@@ -1,7 +1,9 @@
 /**
  * Get CSS computed property of the given element
  */
-export function getStyleComputedProperty(element: HTMLElement, property?: string): any {
+export function getStyleComputedProperty(element: Element): CSSStyleDeclaration;
+export function getStyleComputedProperty(element: Element, property?: string): string | string[];
+export function getStyleComputedProperty(element: Element, property?: string): string | string[] | CSSStyleDeclaration {
   if (element.nodeType !== 1) {
     return [];
   }
@@ -9,5 +11,5 @@ export function getStyleComputedProperty(element: HTMLElement, property?: string
   const window = element.ownerDocument.defaultView;
   const css = window.getComputedStyle(element, null);
 
-  return property ? css[property as any] : css;
+  return property ? css[property] : css;
 }

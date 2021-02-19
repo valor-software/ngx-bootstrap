@@ -16,6 +16,7 @@ export function isDateValid(date: Date): boolean {
   return date && date.getTime && !isNaN(date.getTime());
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 export function isFunction(fn: any): fn is Function {
   return (
     fn instanceof Function ||
@@ -52,6 +53,7 @@ export function isObjectEmpty(obj: any): boolean {
   }
   let k;
   for (k in obj) {
+    // eslint-disable-next-line no-prototype-builtins
     if (obj.hasOwnProperty(k)) {
       return false;
     }

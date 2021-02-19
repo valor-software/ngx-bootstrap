@@ -42,7 +42,7 @@ export class AlertComponent implements OnInit {
 
   constructor(_config: AlertConfig, private changeDetection: ChangeDetectorRef) {
     Object.assign(this, _config);
-    this.dismissibleChange.subscribe((dismissible: boolean) => {
+    this.dismissibleChange.subscribe((/*dismissible: boolean*/) => {
       this.classes = this.dismissible ? 'alert-dismissible' : '';
       this.changeDetection.markForCheck();
     });

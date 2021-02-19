@@ -1,0 +1,160 @@
+
+
+name: on-release
+on: release
+
+env:
+  NX_BRANCH: ${{ github.event.number }}
+  NX_RUN_GROUP: ${{ github.run_id }}
+  MOZ_HEADLESS: 1
+  #  SAUCE_USERNAME_PR: valorkinpr
+  #  SAUCE_ACCESS_KEY_PR: e0a97bd3-4b74-4408-89bf-cce1b44a8bf1
+  CYPRESS_RECORD_KEY: 4aa7a1c0-3a4f-444e-b324-6fc305a543a8
+  GH_PAGES_URI: https://valorkin.github.io
+
+jobs:
+  build_and_cache:
+    runs-on: ubuntu-latest
+    steps:
+      # checkout
+      - uses: actions/checkout@v2.3.4
+      # start: npm ci && build
+      - uses: actions/cache@v2.1.4
+        id: cache-build
+        with:
+          path: |
+            ~/.npm
+            ~/.cache/Cypress
+            node_modules
+            dist
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: npm ci
+        if: steps.cache-build.outputs.cache-hit != 'true'
+        run: |
+          npm ci
+      # end: npm ci && build
+      - run: |
+          npx ng build --runner cloud --prod --with-deps
+          npx nx run ngx-bootstrap:build-sass --runner cloud
+
+  gh_pages_deploy:
+    runs-on: ubuntu-latest
+    needs: build_and_cache
+    outputs:
+      output_url: ${{ steps.firebase_hosting_preview.outputs.details_url }}
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.3.4
+        with:
+          ref: 'gh-pages'
+          path: 'gh-pages'
+
+      # start: npm ci && build
+      - uses: actions/cache@v2.1.4
+        id: cache-build
+        with:
+          path: |
+            ~/.npm
+            ~/.cache/Cypress
+            node_modules
+            dist
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: npm ci && npm run build --prod
+        if: steps.cache-build.outputs.cache-hit != 'true'
+        run: |
+          npm ci
+          npx ng build --runner cloud --prod --with-deps
+          npx nx run ngx-bootstrap:build-sass --runner cloud
+      # end: npm ci && build
+
+      - run: npm run scully
+      - run: npx ts-node ./scripts/gh-pages-predeploy.ts
+      - run: |
+          cd gh-pages
+          git config user.email "valorkin@gmail.com"
+          git config user.name "ngx bootstrap ci"
+          git add -A
+          git commit -am "ci: gh-pages update"
+        continue-on-error: true
+      - name: push to gh-pages
+        uses: ad-m/github-push-action@v0.6.0
+        continue-on-error: true
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: 'gh-pages'
+          directory: 'gh-pages'
+
+  test_and_lint:
+    runs-on: ubuntu-latest
+    needs: build_and_cache
+    steps:
+      - uses: actions/checkout@v2.3.4
+
+      # start: npm ci && build
+      - uses: actions/cache@v2.1.4
+        id: cache-build
+        with:
+          path: |
+            ~/.npm
+            ~/.cache/Cypress
+            node_modules
+            dist
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: npm ci && npm run build --prod
+        if: steps.cache-build.outputs.cache-hit != 'true'
+        run: |
+          npm ci
+          npx ng build --runner cloud --prod --with-deps
+          npx nx run ngx-bootstrap:build-sass --runner cloud
+      # end: npm ci && build
+
+      - run: npm run lint -- --runner cloud
+        continue-on-error: true
+      - run: npm test --  --runner cloud
+        continue-on-error: true
+
+  e2e_full:
+    name: Cypress run
+    runs-on: ubuntu-latest
+    needs: [ build_and_cache, gh_pages_deploy ]
+
+    strategy:
+      # when one test fails, DO NOT cancel the other
+      # containers, because this will kill Cypress processes
+      # leaving the Dashboard hanging ...
+      # https://github.com/cypress-io/github-action/issues/48
+      fail-fast: false
+      matrix:
+        # run 3 copies of the current job in parallel
+        containers: [ 1, 2, 3, 4, 5 ]
+    steps:
+      - uses: actions/checkout@v2.3.4
+
+      # start: npm ci && build
+      - uses: actions/cache@v2.1.4
+        id: cache-build
+        with:
+          path: |
+            ~/.npm
+            ~/.cache/Cypresss
+            node_modules
+            dist
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+      - name: npm ci && npm run build --prod
+        if: steps.cache-build.outputs.cache-hit != 'true'
+        run: |
+          npm ci
+          npx ng build --runner cloud --prod --with-deps
+          npx nx run ngx-bootstrap:build-sass --runner cloud
+      # end: npm ci && build
+
+      - name: full e2e
+        continue-on-error: true
+        run: npx nx run ngx-bootstrap-docs-e2e:e2e --runner cloud --cypressConfig ./apps/ngx-bootstrap-docs-e2e/cypress-full.json --record --group full --baseUrl=${{ GH_PAGES_URI }}/ngx-bootstrap/ -- --parallel
+      # because of "record" and "parallel" parameters
+      # these containers will load balance all found tests among themselves
+

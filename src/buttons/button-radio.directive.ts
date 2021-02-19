@@ -17,7 +17,6 @@ import { ButtonRadioGroupDirective } from './button-radio-group.directive';
 
 export const RADIO_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-  /* tslint:disable-next-line: no-use-before-declare */
   useExisting: forwardRef(() => ButtonRadioDirective),
   multi: true
 };
@@ -167,11 +166,11 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
     this.cdr.markForCheck();
   }
 
-  registerOnChange(fn: () => {}): void {
+  registerOnChange(fn: () => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: () => {}): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 

@@ -44,8 +44,7 @@ export function flip(data: Data): Data {
   const adaptivePosition = computeAutoPlacement('auto', offsetsHost, target, host, data.options.allowedPositions);
   const flipOrder = [placement, adaptivePosition];
 
-  /* tslint:disable-next-line: cyclomatic-complexity */
-  flipOrder.forEach((step, index) => {
+    flipOrder.forEach((step, index) => {
     if (placement !== step || flipOrder.length === index + 1) {
       return data;
     }

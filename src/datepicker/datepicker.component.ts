@@ -13,12 +13,10 @@ import { DatepickerConfig } from './datepicker.config';
 
 export const DATEPICKER_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-  /* tslint:disable-next-line: no-use-before-declare */
-  useExisting: forwardRef(() => DatePickerComponent),
+    useExisting: forwardRef(() => DatePickerComponent),
   multi: true
 };
 
-/* tslint:disable:component-selector-name component-selector-type */
 @Component({
   selector: 'datepicker',
   template: `
@@ -56,7 +54,6 @@ export const DATEPICKER_CONTROL_VALUE_ACCESSOR: Provider = {
     `,
   providers: [DATEPICKER_CONTROL_VALUE_ACCESSOR]
 })
-/* tslint:enable:component-selector-name component-selector-type */
 export class DatePickerComponent implements ControlValueAccessor {
   /** sets datepicker mode, supports: `day`, `month`, `year` */
   @Input() datepickerMode = 'day';
@@ -125,9 +122,9 @@ export class DatePickerComponent implements ControlValueAccessor {
   @ViewChild(DatePickerInnerComponent, { static: true })
   _datePicker: DatePickerInnerComponent;
 
-  /* tslint:disable-next-line: no-any*/
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange: any = Function.prototype;
-  /* tslint:disable-next-line: no-any*/
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onTouched: any = Function.prototype;
 
   config: DatepickerConfig;
@@ -157,7 +154,7 @@ export class DatePickerComponent implements ControlValueAccessor {
     this.activeDateChange.emit(event);
   }
   // todo: support null value
-  /* tslint:disable-next-line: no-any*/
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   writeValue(value: any): void {
     if (this._datePicker.compare(value, this._activeDate) === 0) {
       return;

@@ -11,11 +11,11 @@ import { Data, Offsets, Options } from './models';
 
 
 export class Positioning {
-  position(hostElement: HTMLElement, targetElement: HTMLElement, round = true): Offsets {
-    return this.offset(hostElement, targetElement, false);
+  position(hostElement: HTMLElement, targetElement: HTMLElement/*, round = true*/): Offsets {
+    return this.offset(hostElement, targetElement/*, false*/);
   }
 
-  offset(hostElement: HTMLElement, targetElement: HTMLElement, round = true): Offsets {
+  offset(hostElement: HTMLElement, targetElement: HTMLElement/*, round = true*/): Offsets {
     return getReferenceOffsets(targetElement, hostElement);
   }
 

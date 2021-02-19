@@ -7,7 +7,7 @@ function _guessBsVersion(): 'bs3' | 'bs4' {
     return null;
   }
   const spanEl = document.createElement('span');
-  spanEl.innerText = 'test bs version';
+  spanEl.innerText = 'testing bs version';
   document.body.appendChild(spanEl);
   spanEl.classList.add('d-none');
   const rect = spanEl.getBoundingClientRect();

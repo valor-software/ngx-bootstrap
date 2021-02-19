@@ -1,5 +1,4 @@
 // @deprecated
-// tslint:disable
 import { Component, OnInit } from '@angular/core';
 
 import { isBs3 } from 'ngx-bootstrap/utils';
@@ -55,7 +54,7 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
 export class YearPickerComponent implements OnInit {
   datePicker: DatePickerInnerComponent;
   title: string;
-  rows: any[] = [];
+  rows = [];
 
   constructor(datePicker: DatePickerInnerComponent) {
     this.datePicker = datePicker;
@@ -66,12 +65,13 @@ export class YearPickerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     const self = this;
 
     this.datePicker.stepYear = { years: this.datePicker.yearRange };
 
     this.datePicker.setRefreshViewHandler(function(): void {
-      const years: any[] = new Array(this.yearRange);
+      const years = new Array(this.yearRange);
       let date: Date;
       const start = self.getStartingYear(this.activeDate.getFullYear());
 

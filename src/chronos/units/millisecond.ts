@@ -1,4 +1,3 @@
-// tslint:disable:no-bitwise
 // FORMATTING
 
 import { addFormatToken } from '../format/format';
