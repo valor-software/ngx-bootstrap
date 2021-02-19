@@ -14,8 +14,7 @@ export function initData(
 
   if (!position.match(/^(auto)*\s*(left|right|top|bottom)*$/)
     && !position.match(/^(left|right|top|bottom)*(?: (left|right|top|bottom))?\s*(start|end)*$/)) {
-      /* tslint:disable-next-line: no-parameter-reassignment */
-      position = 'auto';
+            position = 'auto';
     }
 
   const placementAuto = !!position.match(/auto/g);

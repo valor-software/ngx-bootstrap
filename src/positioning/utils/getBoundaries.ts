@@ -9,6 +9,7 @@ import { getViewportOffsetRectRelativeToArtbitraryNode } from './getViewportOffs
 import { getWindowSizes } from './getWindowSizes';
 import { isFixed } from './isFixed';
 import { getFixedPositionOffsetParent } from './getFixedPositionOffsetParent';
+import { Offsets } from '../models';
 
 export function getBoundaries(
   target: HTMLElement,
@@ -19,7 +20,7 @@ export function getBoundaries(
 ) {
   // NOTE: 1 DOM access here
 
-  let boundaries: any = { top: 0, left: 0 };
+  let boundaries: Partial<Offsets> = { top: 0, left: 0 };
   const offsetParent = fixedPosition ? getFixedPositionOffsetParent(target) : findCommonOffsetParent(target, host);
 
   // Handle viewport case

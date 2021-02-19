@@ -26,6 +26,7 @@ import { isBs3 } from 'ngx-bootstrap/utils';
       </div>
     </div>
   `,
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     class: 'modal',
     role: 'dialog',
@@ -114,7 +115,6 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       return;
     }
 
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === 27 || event.key === 'Escape') {
       event.preventDefault();
     }
@@ -130,7 +130,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     if (this.isShown) {
-      this.hide();
+      this._hide();
     }
   }
 
@@ -138,6 +138,19 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     if (this.isModalHiding || !this.isShown) {
       return;
     }
+
+    if (this.config.closeInterceptor) {
+      this.config.closeInterceptor().then(
+        () => this._hide(),
+        () => undefined);
+
+      return;
+    }
+
+    this._hide();
+  }
+
+  private _hide(): void {
     this.isModalHiding = true;
     this._renderer.removeClass(
       this._element.nativeElement,

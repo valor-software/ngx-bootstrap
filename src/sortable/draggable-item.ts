@@ -1,6 +1,6 @@
 export interface DraggableItem {
   event: DragEvent;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   item: any;
   i: number;
   initialIndex: number;

@@ -1,4 +1,3 @@
-// tslint:disable:max-file-line-count
 import {
   ComponentRef, Directive, ElementRef, EventEmitter, Input, OnChanges,
   OnDestroy, OnInit, Output, Renderer2, SimpleChanges, ViewContainerRef, AfterViewInit
@@ -50,13 +49,11 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
   /**
    * Emits an event when the datepicker is shown
    */
-  /* tslint:disable-next-line: no-any*/
-  @Output() onShown: EventEmitter<any>;
+  @Output() onShown: EventEmitter<unknown>;
   /**
    * Emits an event when the datepicker is hidden
    */
-  /* tslint:disable-next-line: no-any*/
-  @Output() onHidden: EventEmitter<any>;
+  @Output() onHidden: EventEmitter<unknown>;
 
   _bsValue: Date;
   isOpen$: BehaviorSubject<boolean>;

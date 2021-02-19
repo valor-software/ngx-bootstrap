@@ -87,7 +87,7 @@ export class TabDirective implements OnInit, OnDestroy {
     return this.id ? `${this.id}-link` : '';
   }
 
-  /* tslint:disable-next-line:no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   headingRef: TemplateRef<any>;
   tabset: TabsetComponent;
   protected _active: boolean;
@@ -103,7 +103,7 @@ export class TabDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.removable = this.removable;
+    this.removable = !!this.removable;
   }
 
   ngOnDestroy(): void {

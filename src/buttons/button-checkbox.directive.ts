@@ -1,4 +1,3 @@
-// tslint:disable:no-use-before-declare
 import {
   Directive,
   forwardRef,
@@ -13,7 +12,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 // TODO: config: activeClass - Class to apply to the checked buttons
 export const CHECKBOX_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-  /* tslint:disable-next-line: no-use-before-declare */
   useExisting: forwardRef(() => ButtonCheckboxDirective),
   multi: true
 };
@@ -84,11 +82,11 @@ export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
     this.isDisabled = isDisabled;
   }
 
-  registerOnChange(fn: () => {}): void {
+  registerOnChange(fn: () => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: () => {}): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 }

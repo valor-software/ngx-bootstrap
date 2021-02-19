@@ -1,5 +1,4 @@
 // datepicker container component
-/* tslint:disable:no-empty */
 import { BsCustomDates } from '../themes/bs/bs-custom-dates-view.component';
 import { BsDatepickerEffects } from '../reducer/bs-datepicker.effects';
 import { Observable } from 'rxjs';
@@ -68,32 +67,44 @@ export abstract class BsDatepickerAbstractComponent {
   monthsCalendar: Observable<MonthsCalendarViewModel[]>;
   yearsCalendar: Observable<YearsCalendarViewModel[]>;
   options: Observable<DatepickerRenderOptions>;
-
+  // todo: valorkin fix
+  // eslint-disable-next-line
   setViewMode(event: BsDatepickerViewMode): void {}
 
+  // eslint-disable-next-line
   navigateTo(event: BsNavigationEvent): void {}
 
+  // eslint-disable-next-line
   dayHoverHandler(event: CellHoverEvent): void {}
 
+  // eslint-disable-next-line
   weekHoverHandler(event: WeekViewModel): void {}
 
+  // eslint-disable-next-line
   monthHoverHandler(event: CellHoverEvent): void {}
 
+  // eslint-disable-next-line
   yearHoverHandler(event: CellHoverEvent): void {}
 
+  // eslint-disable-next-line
   daySelectHandler(day: DayViewModel): void {}
 
+  // eslint-disable-next-line
   monthSelectHandler(event: CalendarCellViewModel): void {}
 
+  // eslint-disable-next-line
   yearSelectHandler(event: CalendarCellViewModel): void {}
 
+  // eslint-disable-next-line
   setRangeOnCalendar(dates: BsCustomDates): void {}
 
+  // eslint-disable-next-line
   setToday(): void {}
 
+  // eslint-disable-next-line
   clearDate(): void {}
 
-    /* tslint:disable-next-line: no-any */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   _stopPropagation(event: any): void {
     event.stopPropagation();
   }

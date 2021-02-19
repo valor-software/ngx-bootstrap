@@ -1,13 +1,4 @@
 {
   "name": "ngx-bootstrap/pagination",
-  "version": "6.2.0",
-  "description": "Native Angular Bootstrap Components",
-  "private": true,
-  "ngPackage": {
-    "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
-    "lib": {
-      "entryFile": "public_api.ts"
-    },
-    "dest": "../../dist/pagination"
-  }
+  "version": "7.0.0-rc.0"
 }

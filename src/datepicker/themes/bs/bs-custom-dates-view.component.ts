@@ -33,7 +33,7 @@ export class BsCustomDatesViewComponent {
   @Input() customRangeLabel: string;
   @Output() onSelect = new EventEmitter<BsCustomDates>();
 
-  customRange: any = null;
+  customRange = null;
 
   selectFromRanges(range: BsCustomDates) {
     this.onSelect.emit(range);

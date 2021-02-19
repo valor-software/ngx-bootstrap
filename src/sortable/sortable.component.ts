@@ -10,7 +10,6 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { DraggableItem } from './draggable-item';
 import { DraggableItemService } from './draggable-item.service';
 
-/* tslint:disable */
 @Component({
   selector: 'bs-sortable',
   exportAs: 'bs-sortable',
@@ -44,7 +43,7 @@ import { DraggableItemService } from './draggable-item.service';
   [ngTemplateOutletContext]="{item:item, index: i}"></ng-template></div>
 </div>
 
-<ng-template #defItemTemplate let-item="item">{{item.value}}</ng-template>  
+<ng-template #defItemTemplate let-item="item">{{item.value}}</ng-template>
 `,
   providers: [
     {
@@ -54,7 +53,6 @@ import { DraggableItemService } from './draggable-item.service';
     }
   ]
 })
-/* tslint:enable */
 export class SortableComponent implements ControlValueAccessor {
   private static globalZoneIndex = 0;
   /** field name if input array consists of objects */
@@ -64,38 +62,36 @@ export class SortableComponent implements ControlValueAccessor {
   @Input() wrapperClass = '';
 
   /** style object for items wrapper */
-  @Input() wrapperStyle: { [key: string]: string } = {};
+  @Input() wrapperStyle: Record<string, string> = {};
 
   /** class name for item */
   @Input() itemClass = '';
 
   /** style object for item */
-  @Input() itemStyle: { [key: string]: string } = {};
+  @Input() itemStyle: Record<string, string> = {};
 
   /** class name for active item */
   @Input() itemActiveClass = '';
 
   /** style object for active item */
-  @Input() itemActiveStyle: { [key: string]: string } = {};
+  @Input() itemActiveStyle: Record<string, string> = {};
 
   /** class name for placeholder */
   @Input() placeholderClass = '';
 
   /** style object for placeholder */
-  @Input() placeholderStyle: { [key: string]: string } = {};
+  @Input() placeholderStyle: Record<string, string> = {};
 
   /** placeholder item which will be shown if collection is empty */
   @Input() placeholderItem = '';
 
   /** used to specify a custom item template. Template variables: item and index; */
-  /* tslint:disable-next-line: no-any */
-  @Input() itemTemplate: TemplateRef<any>;
+  @Input() itemTemplate: TemplateRef<unknown>;
 
   /** fired on array change (reordering, insert, remove), same as <code>ngModelChange</code>.
    *  Returns new items collection as a payload.
    */
-  /* tslint:disable-next-line: no-any */
-  @Output() onChange: EventEmitter<any[]> = new EventEmitter<any[]>();
+  @Output() onChange: EventEmitter<unknown[]> = new EventEmitter<unknown[]>();
 
   showPlaceholder = false;
   activeItem = -1;
@@ -111,9 +107,9 @@ export class SortableComponent implements ControlValueAccessor {
     this.onChange.emit(out);
   }
 
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onTouched: any = Function.prototype;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChanged: any = Function.prototype;
 
   private transfer: DraggableItemService;
@@ -155,7 +151,7 @@ export class SortableComponent implements ControlValueAccessor {
       this.items.length
     );
 
-    /* tslint:disable-next-line: no-any */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let newArray: any[] = [];
 
     if (!this.items.length) {
@@ -182,7 +178,7 @@ export class SortableComponent implements ControlValueAccessor {
     this.updatePlaceholderState();
   }
 
-  cancelEvent(event: DragEvent): void {
+  cancelEvent(event: DragEvent|MouseEvent): void {
     if (!this.transfer.getItem() || !event) {
       return;
     }
@@ -203,7 +199,7 @@ export class SortableComponent implements ControlValueAccessor {
     this.resetActiveItem(undefined);
   }
 
-  resetActiveItem(event: DragEvent): void {
+  resetActiveItem(event: DragEvent|MouseEvent): void {
     this.cancelEvent(event);
     this.activeItem = -1;
   }
@@ -216,10 +212,10 @@ export class SortableComponent implements ControlValueAccessor {
     this.onTouched = callback;
   }
 
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   writeValue(value: any[]): void {
     if (value) {
-      /* tslint:disable-next-line: no-any */
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       this.items = value.map((x: any, i: number) => ({
         id: i,
         initData: x,
@@ -235,13 +231,12 @@ export class SortableComponent implements ControlValueAccessor {
     this.showPlaceholder = !this._items.length;
   }
 
-  getItemStyle(isActive: boolean): {} {
+  getItemStyle(isActive: boolean) {
     return isActive
       ? Object.assign({}, this.itemStyle, this.itemActiveStyle)
       : this.itemStyle;
   }
 
-  // tslint:disable-next-line
   private initDragstartEvent(event: DragEvent): void {
     // it is necessary for mozilla
     // data type should be 'Text' instead of 'text/plain' to keep compatibility
@@ -253,6 +248,6 @@ export class SortableComponent implements ControlValueAccessor {
 export declare interface SortableItem {
   id: number;
   value: string;
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   initData: any;
 }

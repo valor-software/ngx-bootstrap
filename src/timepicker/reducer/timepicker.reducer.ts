@@ -36,7 +36,6 @@ export const initialState: TimepickerState = {
   }
 };
 
-// tslint:disable-next-line:cyclomatic-complexity
 export function timepickerReducer(state = initialState, action: Action) {
   switch (action.type) {
     case TimepickerActions.WRITE_VALUE: {
