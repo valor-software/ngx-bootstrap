@@ -6,58 +6,45 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import * as ts from 'typescript';
+import { JsonArray } from '@angular-devkit/core';
+import { ProjectDefinition, WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
+import { SchematicsException, Tree } from '@angular-devkit/schematics';
+import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
 import { addImportToModule } from '@schematics/angular/utility/ast-utils';
 import { Change, InsertChange } from '@schematics/angular/utility/change';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 import { getFileContent } from '@schematics/angular/utility/test';
+import { updateWorkspace } from '@schematics/angular/utility/workspace';
+import * as ts from 'typescript';
 import { getProjectMainFile } from './project-main-file';
-import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
-import { Rule, SchematicContext, SchematicsException, Tree } from '@angular-devkit/schematics';
-import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
-import { WorkspaceProject, WorkspaceSchema } from '@schematics/angular/utility/workspace-models';
-import { ProjectDefinition, WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
-
-export function installPackageJsonDependencies(): Rule {
-  return (host: Tree, context: SchematicContext) => {
-    context.addTask(new NodePackageInstallTask());
-    context.logger.log('info', `🔍 Installing packages...`);
-
-    return host;
-  };
-}
 
 export function addStyleToTarget(project: ProjectDefinition, targetName: string, host: Tree,
-                                 assetPath: string, workspace: WorkspaceSchema) {
+                                 assetPath: string, workspace: WorkspaceDefinition) {
 
   const targetOptions = getProjectTargetOptions(project, targetName);
-
-  if (!targetOptions.styles) {
+  const styles = (targetOptions.styles as JsonArray | undefined);
+  if (!styles) {
     targetOptions.styles = [assetPath];
   } else {
+    const existingStyles = styles.map((s) => typeof s === 'string' ? s : s !['input']);
 
-    const existingStyles = targetOptions.styles
-      .map((style: string | { input: string }) => {
-        return typeof style === 'string' ? style : style.input;
-      });
-
-    const hasBootstrapStyle = existingStyles.find(
-      (style: string) => {
-        return style.includes(assetPath);
-      });
-
-    if (!hasBootstrapStyle) {
-      targetOptions.styles.unshift(assetPath);
+    for (const[, stylePath] of existingStyles.entries()) {
+      // If the given asset is already specified in the styles, we don't need to do anything.
+      if (stylePath === assetPath) {
+        return () => host;
+      }
     }
+    styles.unshift(assetPath);
   }
 
-  host.overwrite('angular.json', JSON.stringify(workspace, null, 2));
+  // host.overwrite('angular.json', JSON.stringify(workspace, null, 2));
+  return updateWorkspace(workspace);
 }
 
 export function getProjectFromWorkspace(workspace: WorkspaceDefinition, projectName?: string): ProjectDefinition {
 
   const _projectName = projectName || workspace.extensions.defaultProject?.toString();
-  const project = workspace.projects.get(_projectName);
+  const project: ProjectDefinition = workspace.projects.get(_projectName);
 
   if (!project) {
     throw new Error(`Could not find project in workspace: ${projectName}`);
@@ -67,9 +54,7 @@ export function getProjectFromWorkspace(workspace: WorkspaceDefinition, projectN
 }
 
 export function getProjectTargetOptions(project: ProjectDefinition, buildTarget: string) {
-  // const targetConfig = project.architect && project.architect[buildTarget] ||
-  const targetConfig = project.targets && project.targets[buildTarget];
-
+  const targetConfig = project.targets.get(buildTarget);
   if (targetConfig && targetConfig.options) {
 
     return targetConfig.options;
@@ -135,14 +120,8 @@ export function removePackageJsonDependency(tree: Tree, dependencyName: string) 
   tree.overwrite('/package.json', JSON.stringify(packageContent, null, 2));
 }
 
-
-export function addModuleImportToRootModule(host: Tree, moduleName: string, src: string, project: WorkspaceProject) {
+export function addModuleImportToRootModule(host: Tree, moduleName: string, src: string, project: ProjectDefinition) {
   const modulePath = getAppModulePath(host, getProjectMainFile(project));
-  addModuleImportToModule(host, modulePath, moduleName, src);
-}
-
-export function addModuleImportToModule(host: Tree, modulePath: string, moduleName: string, src: string) {
-
   const moduleSource = getSourceFile(host, modulePath);
 
   if (!moduleSource) {
