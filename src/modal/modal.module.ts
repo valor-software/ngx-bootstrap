@@ -9,10 +9,9 @@ import { ModalDirective } from './modal.directive';
 import { ModalContainerComponent } from './modal-container.component';
 import { BsModalService } from './bs-modal.service';
 
-export const focusTrapModule = FocusTrapModule.forRoot();
 
 @NgModule({
-  imports: [focusTrapModule],
+  imports: [FocusTrapModule],
   declarations: [
     ModalBackdropComponent,
     ModalDirective,
