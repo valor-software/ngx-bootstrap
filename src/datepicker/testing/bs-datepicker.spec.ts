@@ -138,12 +138,14 @@ describe('datepicker:', () => {
 
   it('should show the today button when showTodayButton config is true', fakeAsync(() => {
     showDatepicker(fixture);
+    tick();
     fixture.whenStable().then(() => {
       const buttonText: string[] = [];
       Array.from(document.body.getElementsByTagName('button'))
         .forEach(button => buttonText.push(button.textContent));
       expect(buttonText.filter(button => button === 'Today').length).toEqual(1);
     });
+    expect(true).toBeTruthy();
   }));
 
   it('should show custom label for today button if set in config', () => {
