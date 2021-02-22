@@ -8,7 +8,6 @@ import { dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent } from '@
 import { TypeaheadDirective, TypeaheadMatch, TypeaheadModule, TypeaheadOrder } from '../index';
 
 import { of } from 'rxjs';
-import exp = require('constants');
 
 interface State {
   id: number;

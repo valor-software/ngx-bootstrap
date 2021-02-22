@@ -1,15 +1,14 @@
+import { Component, Renderer2, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
-import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Component, ViewChild, Renderer2 } from '@angular/core';
-
-import { BsDatepickerModule } from '../bs-datepicker.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { dispatchKeyboardEvent } from '@ngneat/spectator';
+import { registerEscClick } from 'ngx-bootstrap/utils';
 import { BsDatepickerDirective } from '../bs-datepicker.component';
 import { BsDatepickerConfig } from '../bs-datepicker.config';
-import { BsDatepickerContainerComponent } from '../themes/bs/bs-datepicker-container.component';
+
+import { BsDatepickerModule } from '../bs-datepicker.module';
 import { BsDatepickerViewMode, CalendarCellViewModel, WeekViewModel } from '../models';
-import { createComponentFactory, dispatchKeyboardEvent, Spectator } from '@ngneat/spectator';
-import { registerEscClick } from 'ngx-bootstrap/utils';
-import { By } from '@angular/platform-browser';
+import { BsDatepickerContainerComponent } from '../themes/bs/bs-datepicker-container.component';
 
 @Component({
   selector: 'test-cmp',
