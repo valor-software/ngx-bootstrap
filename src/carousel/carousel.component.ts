@@ -40,13 +40,13 @@ export enum Direction {
 })
 export class CarouselComponent implements AfterViewInit, OnDestroy {
   /* If `true` — carousel will not cycle continuously and will have hard stops (prevent looping) */
-  @Input() noWrap: boolean;
+  @Input() noWrap = false;
   /*  If `true` — will disable pausing on carousel mouse hover */
-  @Input() noPause: boolean;
+  @Input() noPause = false;
   /*  If `true` — carousel-indicators are visible  */
-  @Input() showIndicators: boolean;
+  @Input() showIndicators = true;
   /*  If `true` - autoplay will be stopped on focus */
-  @Input() pauseOnFocus: boolean;
+  @Input() pauseOnFocus = false;
   /* If `true` - carousel indicators indicate slides chunks
      works ONLY if singleSlideOffset = FALSE */
   @Input() indicatorsByChunk = false;
