@@ -41,6 +41,11 @@
     "scully": "scully",
     "scully:serve": "scully serve"
   },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run lint-src"
+    }
+  },
   "private": true,
   "keywords": [
     "angular",

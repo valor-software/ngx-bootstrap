@@ -15,7 +15,7 @@ describe('Carousel page testing suite', () => {
       carousel.isCarouselHaveIndicatorsItemsCtrls(basic);
     });
 
-    it('when user click on indicator item - appropriate slide shown', () => {
+    xit('when user click on indicator item - appropriate slide shown', () => {
       carousel.isClickActivatedCarouselItem(basic, 1);
       carousel.isClickActivatedCarouselItem(basic, 0);
       carousel.isClickActivatedCarouselItem(basic, 2);
