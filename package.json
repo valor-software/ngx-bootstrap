@@ -43,7 +43,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run lint-src"
+      "pre-push": "npm run lint"
     }
   },
   "private": true,
