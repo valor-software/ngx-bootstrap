@@ -381,7 +381,7 @@ describe('locale', function () {
   it('month name callback function', function () {
     function fakeReplace(m: Date, format: string): string {
       if (/test/.test(format)) {
-        return 'test';
+        return 'testing';
       }
       if (getDate(m) === 1) {
         return 'date';

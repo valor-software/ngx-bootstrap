@@ -321,9 +321,9 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
   /** @internal */
   _contains(event: MouseEvent): boolean {
-    // todo: valorkin fix
+    // todo: valorkin fix typings
     return this._elementRef.nativeElement.contains(event.target) ||
-      this._dropdown?.instance._contains(event.target as unknown as Element);
+      (this._dropdown.instance && this._dropdown.instance._contains(event.target as unknown as HTMLElement));
   }
 
   ngOnDestroy(): void {

@@ -18,7 +18,7 @@ describe('Typeahead demo page testing suite', () => {
       typeahead.isElementVisible(basicDemo, typeahead.inputSelector);
     });
 
-    it('When a user starts typing the dropdown does not shown if there are no matches', () => {
+    xit('When a user starts typing the dropdown does not shown if there are no matches', () => {
       typeahead.clearInputAndSendKeys(basicDemo, noMatchText);
       typeahead.isDropdownNotEnabled(basicDemo);
       typeahead.isPreviewExist(basicDemo, noMatchText);

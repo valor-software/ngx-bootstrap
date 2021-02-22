@@ -1087,21 +1087,21 @@ describe('Component: TimepickerComponent', () => {
 
       fixture.detectChanges();
 
-      expect(inputHours.value).toBeGreaterThan(0);
-      expect(inputHours.value).toBeLessThan(13);
+      expect(+inputHours.value).toBeGreaterThan(0);
+      expect(+inputHours.value).toBeLessThan(13);
 
-      expect(inputMinutes.value).toBeGreaterThan(-1);
-      expect(inputMinutes.value).toBeLessThan(60);
+      expect(+inputMinutes.value).toBeGreaterThan(-1);
+      expect(+inputMinutes.value).toBeLessThan(60);
 
       component.writeValue(testTime(22, 25, 45));
       fixture.detectChanges();
 
       fixture.whenStable().then(() => {
-        expect(inputHours.value).toBeGreaterThan(-1);
-        expect(inputHours.value).toBeLessThan(24);
+        expect(+inputHours.value).toBeGreaterThan(-1);
+        expect(+inputHours.value).toBeLessThan(24);
 
-        expect(inputSeconds.value).toBeGreaterThan(-1);
-        expect(inputSeconds.value).toBeLessThan(60);
+        expect(+inputSeconds.value).toBeGreaterThan(-1);
+        expect(+inputSeconds.value).toBeLessThan(60);
       });
     }));
   });

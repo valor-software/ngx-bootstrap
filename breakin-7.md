@@ -5,7 +5,6 @@
 - ci: use heroku preview instances to test ssr
 - nx: split docs into libs
 - ng: fix schematics for ng 11
-- test: update tests for jest runner
 
 - root lib:
   - done: with .md
@@ -61,3 +60,4 @@ done:
 - deploy scully
 - nx: use local runner by default and nx-cloud in ci
 - test: fix coverage and use relative imports of ngx-bootstrap modules
+- test: update tests for jest runner

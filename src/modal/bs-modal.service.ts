@@ -26,14 +26,10 @@ export class BsModalService {
   // constructor props
   config: ModalOptions;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onShow: EventEmitter<any> = new EventEmitter();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onShown: EventEmitter<any> = new EventEmitter();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onHide: EventEmitter<any> = new EventEmitter();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  onHidden: EventEmitter<any> = new EventEmitter();
+  onShow = new EventEmitter();
+  onShown = new EventEmitter();
+  onHide = new EventEmitter();
+  onHidden = new EventEmitter();
 
   protected isBodyOverflowing = false;
   protected originalBodyPadding = 0;
