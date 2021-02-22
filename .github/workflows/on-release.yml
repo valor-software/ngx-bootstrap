@@ -112,9 +112,7 @@ jobs:
       # end: npm ci && build
 
       - run: npm run lint -- --runner cloud
-        continue-on-error: true
       - run: npm test --  --runner cloud
-        continue-on-error: true
 
   e2e_full:
     name: Cypress run
