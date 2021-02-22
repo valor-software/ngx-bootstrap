@@ -8,6 +8,7 @@ import { dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent } from '@
 import { TypeaheadDirective, TypeaheadMatch, TypeaheadModule, TypeaheadOrder } from '../index';
 
 import { of } from 'rxjs';
+import exp = require('constants');
 
 interface State {
   id: number;
@@ -558,22 +559,28 @@ describe('Directive: Typeahead', () => {
         it('and typeaheadOrderBy is empty object, shouldn\'t break the app',
           fakeAsync(() => {
             directive.typeaheadOrderBy = {} as TypeaheadOrder;
+            console.error = jest.fn();
+
             dispatchTouchEvent(inputElement, 'input');
             fixture.detectChanges();
             tick(100);
 
             expect(directive.matches.length).toBe(2);
+            expect(console.error).toHaveBeenCalled();
           })
         );
 
         it('and order direction is not equal "asc" or "desc", shouldn\'t break the app',
           fakeAsync(() => {
             directive.typeaheadOrderBy = { direction: 'test' as 'asc' };
+            console.error = jest.fn();
+
             dispatchTouchEvent(inputElement, 'input');
             fixture.detectChanges();
             tick(100);
 
             expect(directive.matches.length).toBe(2);
+            expect(console.error).toHaveBeenCalled();
           })
         );
 
@@ -629,6 +636,7 @@ describe('Directive: Typeahead', () => {
           'and order direction "desc", order field is null. 1st - Alabama, 2sd - Alaska. Lack of the field doesn\'t affect the result',
           fakeAsync(() => {
             directive.typeaheadOrderBy = { direction: 'desc', field: null };
+            console.error = jest.fn();
             dispatchTouchEvent(inputElement, 'input');
             fixture.detectChanges();
             tick(100);
@@ -636,6 +644,7 @@ describe('Directive: Typeahead', () => {
             expect(directive.matches.length).toBe(2);
             expect(directive.matches[0].item.name).toBe('Alabama');
             expect(directive.matches[1].item.name).toBe('Alaska');
+            expect(console.error).toHaveBeenCalled();
           })
         );
 
