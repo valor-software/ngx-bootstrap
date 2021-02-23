@@ -60,11 +60,11 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
 
   /** Will be emitted when active slide has been changed. Part of two-way-bindable [(activeSlide)] property */
   @Output()
-  activeSlideChange: EventEmitter<number> = new EventEmitter<number>(false);
+  activeSlideChange = new EventEmitter<number>(false);
 
   /** Will be emitted when active slides has been changed in multilist mode */
   @Output()
-  slideRangeChange: EventEmitter<number[]> = new EventEmitter<number[]>();
+  slideRangeChange = new EventEmitter<number[]|void>();
 
   /** Index of currently displayed slide(started for 0) */
   @Input()
@@ -78,7 +78,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   }
 
   get activeSlide(): number {
-    return this._currentActiveSlide;
+    return this._currentActiveSlide || 0;
   }
 
   /* Index to start display slides from it */
@@ -103,15 +103,14 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     return this._slides.toArray();
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  protected currentInterval: any;
-  protected _currentActiveSlide: number;
-  protected _interval: number;
+  protected currentInterval?: number;
+  protected _currentActiveSlide?: number;
+  protected _interval = 5000;
   protected _slides: LinkedList<SlideComponent> = new LinkedList<SlideComponent>();
-  protected _chunkedSlides: SlideWithIndex[][];
-  protected _slidesWithIndexes: SlideWithIndex[];
+  protected _chunkedSlides?: SlideWithIndex[][];
+  protected _slidesWithIndexes?: SlideWithIndex[];
   protected _currentVisibleSlidesIndex = 0;
-  protected isPlaying: boolean;
+  protected isPlaying = false;
   protected destroyed = false;
 
   get isBs4(): boolean {
@@ -178,7 +177,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
 
     if (this._currentActiveSlide === remIndex) {
       // removing of active slide
-      let nextSlideIndex: number = void 0;
+      let nextSlideIndex: number;
       if (this._slides.length > 1) {
         // if this slide last - will roll to first slide, if noWrap flag is
         // FALSE or to previous, if noWrap is TRUE in case, if this slide in
@@ -256,7 +255,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     }
 
     if (!this.multilist) {
-      this.activeSlide = this.findNextSlideIndex(direction, force);
+      this.activeSlide = this.findNextSlideIndex(direction, force) || 0;
     } else {
       this.moveMultilist(direction);
     }
@@ -404,7 +403,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       if (this._slides.length - startIndex < this.itemsPerSlide) {
         const slidesToAppend = this._slidesWithIndexes.slice(0, startIndex);
 
-        this._slidesWithIndexes  = [
+        this._slidesWithIndexes = [
           ...this._slidesWithIndexes,
           ...slidesToAppend
         ]
@@ -432,7 +431,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
    * @param force: {boolean} if TRUE - will ignore noWrap flag, else will
    *   return undefined if next slide require wrapping
    */
-  private findNextSlideIndex(direction: Direction, force: boolean): number {
+  private findNextSlideIndex(direction: Direction, force: boolean): number | void {
     let nextSlideIndex = 0;
 
     if (
@@ -441,26 +440,38 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
         direction !== Direction.PREV &&
         this.noWrap)
     ) {
-      return undefined;
+      return;
     }
 
     switch (direction) {
       case Direction.NEXT:
         // if this is last slide, not force, looping is disabled
         // and need to going forward - select current slide, as a next
-        nextSlideIndex = !this.isLast(this._currentActiveSlide)
-          ? this._currentActiveSlide + 1
-          : !force && this.noWrap ? this._currentActiveSlide : 0;
+        if (this._currentActiveSlide && !!Number(this._currentActiveSlide)) {
+          if (!this.isLast(this._currentActiveSlide)) {
+            nextSlideIndex = this._currentActiveSlide + 1;
+            break;
+          }
+          nextSlideIndex = !force && this.noWrap ? this._currentActiveSlide : 0;
+          break;
+        }
+        nextSlideIndex = 0;
         break;
       case Direction.PREV:
         // if this is first slide, not force, looping is disabled
         // and need to going backward - select current slide, as a next
-        nextSlideIndex =
-          this._currentActiveSlide > 0
-            ? this._currentActiveSlide - 1
-            : !force && this.noWrap
-              ? this._currentActiveSlide
-              : this._slides.length - 1;
+        if (this._currentActiveSlide && !!Number(this._currentActiveSlide)) {
+          if (this._currentActiveSlide > 0) {
+            nextSlideIndex = this._currentActiveSlide - 1;
+            break;
+          }
+          if (!force && this.noWrap) {
+            nextSlideIndex = this._currentActiveSlide;
+            break;
+          }
+          nextSlideIndex = this._slides.length - 1;
+        }
+        nextSlideIndex = 0;
         break;
       default:
         throw new Error('Unknown direction');
@@ -509,6 +520,10 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   }
 
   private selectRangeByNestedIndex(index: number): void {
+    if (!this._chunkedSlides) {
+      return;
+    }
+
     const selectedRange = this._chunkedSlides
       .map((slidesList, i: number) => {
         return {
@@ -521,6 +536,10 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
           return slidesList.list.find(slide => slide.index === index) !== undefined;
         }
       );
+
+    if (!selectedRange) {
+      return;
+    }
 
     this._currentVisibleSlidesIndex = selectedRange.index;
 
@@ -537,7 +556,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   }
 
   private isIndexInRange(index: number): boolean {
-    if (this.singleSlideOffset) {
+    if (this.singleSlideOffset && this._slidesWithIndexes) {
       const visibleIndexes = this._slidesWithIndexes.map((slide: SlideWithIndex) => slide.index);
 
       return visibleIndexes.indexOf(index) >= 0;
@@ -554,6 +573,9 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   }
 
   private isVisibleSlideListLast(): boolean {
+    if (!this._chunkedSlides) {
+      return false;
+    }
     return this._currentVisibleSlidesIndex === this._chunkedSlides.length - 1;
   }
 
@@ -590,50 +612,55 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       this.makeSlidesConsistent(slidesToReorder);
 
       this.slideRangeChange.emit(this.getVisibleIndexes());
-    } else {
-      let displayedIndex: number;
-
-      firstVisibleIndex = this._slidesWithIndexes[0].index;
-      lastVisibleIndex = this._slidesWithIndexes[this._slidesWithIndexes.length - 1].index;
-
-      if (direction === Direction.NEXT) {
-        this._slidesWithIndexes.shift();
-
-        displayedIndex = this.isLast(lastVisibleIndex)
-          ? 0
-          : lastVisibleIndex + 1;
-
-        this._slidesWithIndexes.push({
-          index: displayedIndex,
-          item: this._slides.get(displayedIndex)
-        });
-      } else {
-        this._slidesWithIndexes.pop();
-        displayedIndex = this.isFirst(firstVisibleIndex)
-          ? this._slides.length - 1
-          : firstVisibleIndex - 1;
-
-        this._slidesWithIndexes = [{
-          index: displayedIndex,
-          item: this._slides.get(displayedIndex)
-        }, ...this._slidesWithIndexes];
-      }
-
-      this.hideSlides();
-
-      this._slidesWithIndexes.forEach(slide => slide.item.active = true);
-
-      this.makeSlidesConsistent(this._slidesWithIndexes);
-
-      this.slideRangeChange.emit(
-        this._slidesWithIndexes.map((slide: SlideWithIndex) => slide.index)
-      );
+      return;
     }
+
+    if (!this._slidesWithIndexes || !this._slidesWithIndexes[0]) {
+      return;
+    }
+
+    let displayedIndex: number;
+
+    firstVisibleIndex = this._slidesWithIndexes[0].index;
+    lastVisibleIndex = this._slidesWithIndexes[this._slidesWithIndexes.length - 1].index;
+
+    if (direction === Direction.NEXT) {
+      this._slidesWithIndexes.shift();
+
+      displayedIndex = this.isLast(lastVisibleIndex)
+        ? 0
+        : lastVisibleIndex + 1;
+
+      this._slidesWithIndexes.push({
+        index: displayedIndex,
+        item: this._slides.get(displayedIndex)
+      });
+    } else {
+      this._slidesWithIndexes.pop();
+      displayedIndex = this.isFirst(firstVisibleIndex)
+        ? this._slides.length - 1
+        : firstVisibleIndex - 1;
+
+      this._slidesWithIndexes = [{
+        index: displayedIndex,
+        item: this._slides.get(displayedIndex)
+      }, ...this._slidesWithIndexes];
+    }
+
+    this.hideSlides();
+
+    this._slidesWithIndexes.forEach(slide => slide.item.active = true);
+
+    this.makeSlidesConsistent(this._slidesWithIndexes);
+
+    this.slideRangeChange.emit(
+      this._slidesWithIndexes.map((slide: SlideWithIndex) => slide.index)
+    );
   }
 
   private makeSlidesConsistent = (slides: SlideWithIndex[]): void => {
     slides.forEach((slide: SlideWithIndex, index: number) => slide.item.order = index);
-  }
+  };
 
   private moveMultilist(direction: Direction): void {
     if (this.singleSlideOffset) {
@@ -645,31 +672,36 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
         this._currentVisibleSlidesIndex = direction === Direction.NEXT
           ? this._currentVisibleSlidesIndex + 1
           : this._currentVisibleSlidesIndex - 1;
+      } else if (direction === Direction.NEXT) {
+        this._currentVisibleSlidesIndex = this.isVisibleSlideListLast()
+          ? 0
+          : this._currentVisibleSlidesIndex + 1;
       } else {
-        if (direction === Direction.NEXT) {
-          this._currentVisibleSlidesIndex = this.isVisibleSlideListLast()
-            ? 0
-            : this._currentVisibleSlidesIndex + 1;
-        } else {
-          this._currentVisibleSlidesIndex = this.isVisibleSlideListFirst()
+        if (this.isVisibleSlideListFirst()) {
+          this._currentVisibleSlidesIndex = this._chunkedSlides
             ? this._chunkedSlides.length - 1
-            : this._currentVisibleSlidesIndex - 1;
+            : 0;
+        } else {
+          this._currentVisibleSlidesIndex = this._currentVisibleSlidesIndex - 1;
         }
       }
 
-      this._chunkedSlides[this._currentVisibleSlidesIndex].forEach(
-        (slide: SlideWithIndex) => slide.item.active = true
-      );
+      if (this._chunkedSlides) {
+        this._chunkedSlides[this._currentVisibleSlidesIndex].forEach(
+          (slide: SlideWithIndex) => slide.item.active = true
+        );
+      }
 
       this.slideRangeChange.emit(this.getVisibleIndexes());
     }
   }
 
-  private getVisibleIndexes(): number[] {
-    if (!this.singleSlideOffset) {
+  private getVisibleIndexes(): number[] | void {
+    if (!this.singleSlideOffset && this._chunkedSlides) {
       return this._chunkedSlides[this._currentVisibleSlidesIndex]
         .map((slide: SlideWithIndex) => slide.index);
-    } else {
+    }
+    if (this._slidesWithIndexes) {
       return this._slidesWithIndexes.map((slide: SlideWithIndex) => slide.index);
     }
   }
@@ -685,7 +717,8 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       return;
     }
 
-    if (!this.multilist) {
+    if (!this.multilist
+      && this._currentActiveSlide && !!Number(this._currentActiveSlide)) {
       const currentSlide = this._slides.get(this._currentActiveSlide);
       if (currentSlide) {
         currentSlide.active = false;
@@ -708,7 +741,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     this.resetTimer();
     const interval = +this.interval;
     if (!isNaN(interval) && interval > 0) {
-      this.currentInterval = this.ngZone.runOutsideAngular(() => {
+      this.currentInterval = this.ngZone.runOutsideAngular<number>(() => {
         return setInterval(() => {
           const nInterval = +this.interval;
           this.ngZone.run(() => {
