@@ -18,57 +18,57 @@ import {
 } from '../models';
 
 export abstract class BsDatepickerAbstractComponent {
-  containerClass: string;
-  isOtherMonthsActive: boolean;
-  showTodayBtn: boolean;
-  todayBtnLbl: string;
-  todayPos: string;
-  showClearBtn: boolean;
-  clearBtnLbl: string;
-  clearPos: string;
+  containerClass = '';
+  isOtherMonthsActive?: boolean;
+  showTodayBtn?: boolean;
+  todayBtnLbl?: string;
+  todayPos?: string;
+  showClearBtn?: boolean;
+  clearBtnLbl?: string;
+  clearPos?: string;
 
-  _effects: BsDatepickerEffects;
+  _effects?: BsDatepickerEffects;
   customRanges: BsCustomDates[] = [];
-  customRangeBtnLbl: string;
+  customRangeBtnLbl?: string;
   chosenRange: Date[] = [];
 
-  set minDate(value: Date) {
-    this._effects.setMinDate(value);
+  set minDate(value: Date|undefined) {
+    this._effects?.setMinDate(value);
   }
 
-  set maxDate(value: Date) {
-    this._effects.setMaxDate(value);
+  set maxDate(value: Date|undefined) {
+    this._effects?.setMaxDate(value);
   }
-  set daysDisabled(value: number[]) {
-    this._effects.setDaysDisabled(value);
+  set daysDisabled(value: number[]|undefined) {
+    this._effects?.setDaysDisabled(value);
   }
-  set datesDisabled(value: Date[]) {
-    this._effects.setDatesDisabled(value);
-  }
-
-  set datesEnabled(value: Date[]) {
-    this._effects.setDatesEnabled(value);
+  set datesDisabled(value: Date[]|undefined) {
+    this._effects?.setDatesDisabled(value);
   }
 
-  set isDisabled(value: boolean) {
-    this._effects.setDisabled(value);
+  set datesEnabled(value: Date[]|undefined) {
+    this._effects?.setDatesEnabled(value);
   }
 
-  set dateCustomClasses(value: DatepickerDateCustomClasses[]) {
-    this._effects.setDateCustomClasses(value);
+  set isDisabled(value: boolean|undefined) {
+    this._effects?.setDisabled(value);
   }
 
-  set dateTooltipTexts(value: DatepickerDateTooltipText[]) {
-    this._effects.setDateTooltipTexts(value);
+  set dateCustomClasses(value: DatepickerDateCustomClasses[]|undefined) {
+    this._effects?.setDateCustomClasses(value);
   }
 
-  viewMode: Observable<BsDatepickerViewMode>;
-  daysCalendar: Observable<DaysCalendarViewModel[]>;
-  monthsCalendar: Observable<MonthsCalendarViewModel[]>;
-  yearsCalendar: Observable<YearsCalendarViewModel[]>;
-  options: Observable<DatepickerRenderOptions>;
+  set dateTooltipTexts(value: DatepickerDateTooltipText[]|undefined) {
+    this._effects?.setDateTooltipTexts(value);
+  }
+
+  viewMode?: Observable<BsDatepickerViewMode|undefined>;
+  daysCalendar$!: Observable<DaysCalendarViewModel[]|undefined>;
+  monthsCalendar?: Observable<MonthsCalendarViewModel[]|undefined>;
+  yearsCalendar?: Observable<YearsCalendarViewModel[]|undefined>;
+  options$!: Observable<DatepickerRenderOptions|undefined>;
   // todo: valorkin fix
-  // eslint-disable-next-line
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-empty-function
   setViewMode(event: BsDatepickerViewMode): void {}
 
   // eslint-disable-next-line

@@ -36,7 +36,7 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
   /** Radio button value, will be set to `ngModel` */
   @Input() btnRadio?: string;
   /** If `true` — radio button can be unchecked */
-  @Input() uncheckable = false;
+  @Input() uncheckable = true;
   /** Current value of radio component or group */
   @Input()
   get value() {
@@ -117,7 +117,11 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
       return;
     }
 
-    this.value = this.uncheckable && this.btnRadio === this.value ? undefined : this.btnRadio;
+    if (this.uncheckable && this.btnRadio === this.value) {
+      this.value = undefined;
+    } else {
+      this.value = this.btnRadio;
+    }
   }
 
   @HostListener('keydown.space', ['$event'])

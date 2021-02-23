@@ -18,7 +18,7 @@ import { DatepickerDateCustomClasses } from './models';
     exportAs: 'bsDaterangepickerInline'
 })
 export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnChanges {
-    _bsValue: Date[];
+    _bsValue?: Date[];
     /**
      * Initial value of datepicker
      */
@@ -34,23 +34,23 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
     /**
      * Config object for datepicker
      */
-    @Input() bsConfig: Partial<BsDaterangepickerInlineConfig>;
+    @Input() bsConfig?: Partial<BsDaterangepickerInlineConfig>;
     /**
      * Indicates whether datepicker is enabled or not
      */
-    @Input() isDisabled: boolean;
+    @Input() isDisabled = false;
     /**
      * Minimum date which is available for selection
      */
-    @Input() minDate: Date;
+    @Input() minDate?: Date;
     /**
      * Maximum date which is available for selection
      */
-    @Input() maxDate: Date;
+    @Input() maxDate?: Date;
     /**
      * Date custom classes
      */
-    @Input() dateCustomClasses: DatepickerDateCustomClasses[];
+    @Input() dateCustomClasses?: DatepickerDateCustomClasses[];
     /**
      * Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays
      */
@@ -58,11 +58,11 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
     /**
      * Disable specific dates
      */
-    @Input() datesDisabled: Date[];
+    @Input() datesDisabled?: Date[];
     /**
      * Disable specific dates
      */
-    @Input() datesEnabled: Date[];
+    @Input() datesEnabled?: Date[];
     /**
      * Emits when daterangepicker value has been changed
      */
@@ -70,8 +70,8 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
 
     protected _subs: Subscription[] = [];
 
-    private _datepicker: ComponentLoader<BsDaterangepickerInlineContainerComponent>;
-    private _datepickerRef: ComponentRef<BsDaterangepickerInlineContainerComponent>;
+    private readonly _datepicker: ComponentLoader<BsDaterangepickerInlineContainerComponent>;
+    private _datepickerRef?: ComponentRef<BsDaterangepickerInlineContainerComponent>;
 
     constructor(
       public _config: BsDaterangepickerInlineConfig,
@@ -95,20 +95,24 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
         // if date changes from external source (model -> view)
         this._subs.push(
           this.bsValueChange.subscribe((value: Date[]) => {
-            this._datepickerRef.instance.value = value;
+            if (this._datepickerRef) {
+              this._datepickerRef.instance.value = value;
+            }
           })
         );
 
         // if date changes from picker (view -> model)
+      if (this._datepickerRef) {
         this._subs.push(
           this._datepickerRef.instance.valueChange
             .pipe(
-                filter((range: Date[]) => range && range[0] && !!range[1])
+              filter((range: Date[]) => range && range[0] && !!range[1])
             )
             .subscribe((value: Date[]) => {
               this.bsValue = value;
             })
         );
+      }
     }
 
     ngOnChanges(changes: SimpleChanges): void {

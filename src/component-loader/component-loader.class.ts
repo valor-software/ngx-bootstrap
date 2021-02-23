@@ -130,7 +130,7 @@ export class ComponentLoader<T> {
          [key: string]: unknown;
          id?: number | string;
        } = {}
-  ): ComponentRef<T> | void {
+  ): ComponentRef<T> | undefined {
 
     this._subscribePositioning();
     this._innerComponent = void 0;

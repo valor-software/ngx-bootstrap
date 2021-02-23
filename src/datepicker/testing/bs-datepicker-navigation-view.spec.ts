@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import {
-  BsNavigationDirection,
-  DaysCalendarViewModel
-} from '../../models';
-import { BsDatepickerNavigationViewComponent } from './bs-datepicker-navigation-view.component';
+import { BsNavigationDirection, DaysCalendarViewModel } from '../models';
+import { BsDatepickerNavigationViewComponent } from '../themes/bs/bs-datepicker-navigation-view.component';
+
 
 @Component({
   selector: 'test-cmp',
@@ -15,8 +13,8 @@ import { BsDatepickerNavigationViewComponent } from './bs-datepicker-navigation-
     ></bs-datepicker-navigation-view>`
 })
 class TestComponent {
-  month: DaysCalendarViewModel;
-  _navTo: BsNavigationDirection;
+  month!: DaysCalendarViewModel;
+  _navTo!: BsNavigationDirection;
 
   navTo(event: BsNavigationDirection): void {
     this._navTo = event;

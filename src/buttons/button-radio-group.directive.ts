@@ -162,7 +162,7 @@ export class ButtonRadioGroupDirective implements ControlValueAccessor {
 
   private getActiveOrFocusedRadio(): ButtonRadioDirective | undefined {
     if (!this.radioButtons) {
-      return;
+      return void 0;
     }
 
     return this.radioButtons.find(button => button.isActive)
