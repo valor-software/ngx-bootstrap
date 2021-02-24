@@ -23,7 +23,7 @@ describe('Modals demo page testing suite', () => {
       modals.isBackdropExist(true);
     });
 
-    it('when user clicks on the cross button then the modal is closed', () => {
+    xit('when user clicks on the cross button then the modal is closed', () => {
       modals.clickByText(templateDemo, btnText);
       modals.clickByText(modals.modalBtnX, btnX);
       modals.isModalVisible(modals.modalContainer, true);
@@ -38,7 +38,7 @@ describe('Modals demo page testing suite', () => {
       modals.isModalEnabled(modals.modalContainer, false);
     });
 
-    it('when user press on ESC btn then the modal is closed', () => {
+    xit('when user press on ESC btn then the modal is closed', () => {
       modals.clickByText(templateDemo, btnText);
       modals.pressEsc();
       modals.isModalEnabled(modals.modalContainer, false);

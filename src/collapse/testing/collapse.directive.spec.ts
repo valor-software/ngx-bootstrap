@@ -1,11 +1,12 @@
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component } from '@angular/core';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import '../../../scripts/jest/toHaveCssClass';
 import { CollapseModule } from '../index';
 
+// in jsdom elements has zero size by default
 const template = `
-  <div [collapse]="isCollapsed">
+  <div [collapse]="isCollapsed" style='height: 300px;width: 500px;'>
     collapse directive
     <div [hidden]="isHidden">dynamic content</div>
   </div>
@@ -22,10 +23,8 @@ class TestCollapseComponent {}
 
 describe('Directive: Collapse', () => {
   let fixture: ComponentFixture<TestCollapseComponent>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let element: any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let context: any;
+  let element;
+  let context;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -74,14 +73,18 @@ describe('Directive: Collapse', () => {
     expect(element.offsetHeight).toBe(0);
   });
 
-  it('should show after toggled from collapsed', () => {
+  // in jsdom offsetHeight is always zero
+  it('should show after toggled from collapsed', fakeAsync(() => {
     context.isCollapsed = true;
     fixture.detectChanges();
-    expect(element.offsetHeight).toBe(0);
+    // expect(element.offsetHeight).toBe(0);
+    expect(element).not.toHaveCssClass('show');
+
     context.isCollapsed = false;
     fixture.detectChanges();
-    expect(element.offsetHeight).not.toBe(0);
-  });
+    // expect(element.offsetHeight).not.toBe(0);
+    expect(element).toHaveCssClass('show');
+  }));
 
   xit(
     'should not trigger any animation on initialization if isCollapsed = false',
@@ -90,6 +93,7 @@ describe('Directive: Collapse', () => {
     }
   );
 
+  // in jsdom offsetHeight is always zero
   it('should expand if isCollapsed = false on subsequent use', () => {
     context.isCollapsed = false;
     fixture.detectChanges();
@@ -97,7 +101,8 @@ describe('Directive: Collapse', () => {
     fixture.detectChanges();
     context.isCollapsed = false;
     fixture.detectChanges();
-    expect(element.offsetHeight).not.toBe(0);
+    // expect(element.offsetHeight).not.toBe(0);
+    expect(element).toHaveCssClass('show');
   });
 
   it('should collapse if isCollapsed = true on subsequent uses', () => {

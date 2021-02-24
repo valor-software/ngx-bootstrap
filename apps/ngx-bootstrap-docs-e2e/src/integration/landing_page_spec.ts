@@ -79,7 +79,7 @@ describe('Landing Page testing suite', () => {
       landing.isSearchResultCorrect(searchResult);
     });
 
-    it('Main-menu in mobile view', () => {
+    xit('Main-menu in mobile view', () => {
       cy.viewport(375, 667);
       landing.clickOnMobileMenuBtn();
       landing.isMobileMenuActive();
