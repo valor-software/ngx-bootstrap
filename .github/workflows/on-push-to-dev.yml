@@ -66,9 +66,7 @@ jobs:
       # end: npm ci && build
 
       - run: npm test --  --runner cloud --codeCoverage
-        continue-on-error: true
       - run: npx codecov ./coverage/
-        continue-on-error: true
 
   linting:
     runs-on: ubuntu-latest

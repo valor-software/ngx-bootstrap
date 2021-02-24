@@ -1,9 +1,9 @@
 import { Component, DebugElement } from '@angular/core';
-import { fakeAsync, TestBed, tick, ComponentFixture, waitForAsync } from '@angular/core/testing';
-
-import { BsDropdownConfig, BsDropdownDirective, BsDropdownModule } from '../index';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { BsDropdownConfig, BsDropdownDirective, BsDropdownModule } from '../index';
 
 @Component({
   selector: 'dropdown-test',
@@ -25,13 +25,13 @@ class TestDropdownComponent {
 }
 
 const defaultHtml = `
-  <div dropdown [(isDisabled)]="isDisabled"
-                [(dropup)]="dropup"
+  <div dropdown [isDisabled]="isDisabled"
+                [dropup]="dropup"
                 (isOpenChange)="isOpenChangeValue = true"
                 [(isOpen)]="isOpen"
-                [(insideClick)]="insideClick"
-                [(autoClose)]="autoClose">
-    <button aria-expanded = "false" dropdownToggle class="dropdown-toggle">Dropdown</button>
+                [insideClick]="insideClick"
+                [autoClose]="autoClose">
+    <button aria-expanded="false" dropdownToggle class="dropdown-toggle">Dropdown</button>
     <ul *dropdownMenu>
       <li><a href="#">One</a></li>
       <li><a href="#">Two</a></li>
@@ -46,7 +46,7 @@ describe('Directive: Dropdown', () => {
   let element: HTMLElement;
   let context: TestDropdownComponent;
   let directive: BsDropdownDirective;
-  beforeEach(waitForAsync(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       declarations: [TestDropdownComponent],
       imports: [
@@ -57,8 +57,6 @@ describe('Directive: Dropdown', () => {
     TestBed.overrideComponent(TestDropdownComponent, {
       set: {template: defaultHtml}
     });
-  }));
-  beforeEach(() => {
     fixture = TestBed.createComponent(TestDropdownComponent);
     element = fixture.nativeElement;
     context = fixture.componentInstance;
@@ -71,7 +69,7 @@ describe('Directive: Dropdown', () => {
         de.injector.get<BsDropdownDirective>(BsDropdownDirective)
     )[0];
     fixture.detectChanges();
-  });
+  }));
 
   it('should be closed by default', () => {
     expect(element.querySelector('[dropdown]').classList).not.toContain('open');

@@ -1,18 +1,20 @@
+import { Component, Renderer2, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { Component, ViewChild, Renderer2 } from '@angular/core';
-
-import { BsDatepickerModule } from '../bs-datepicker.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { dispatchKeyboardEvent } from '@ngneat/spectator';
+import { registerEscClick } from 'ngx-bootstrap/utils';
 import { BsDatepickerDirective } from '../bs-datepicker.component';
 import { BsDatepickerConfig } from '../bs-datepicker.config';
-import { BsDatepickerContainerComponent } from '../themes/bs/bs-datepicker-container.component';
+
+import { BsDatepickerModule } from '../bs-datepicker.module';
 import { BsDatepickerViewMode, CalendarCellViewModel, WeekViewModel } from '../models';
-import { createComponentFactory, dispatchKeyboardEvent, Spectator } from '@ngneat/spectator';
-import { registerEscClick } from 'ngx-bootstrap/utils';
+import { BsDatepickerContainerComponent } from '../themes/bs/bs-datepicker-container.component';
 
 @Component({
   selector: 'test-cmp',
-  template: `<input type="text" bsDatepicker [bsConfig]="bsConfig">`
+  template: `<input type='text'
+                    bsDatepicker
+                    [bsConfig]='bsConfig'>`
 })
 class TestComponent {
   @ViewChild(BsDatepickerDirective, { static: false }) datepicker: BsDatepickerDirective;
@@ -51,24 +53,21 @@ function getDatepickerContainer(datepicker: BsDatepickerDirective): BsDatepicker
 
 describe('datepicker:', () => {
   let fixture: TestFixture;
-  let spectator: Spectator<TestComponent>;
-  const createComponent = createComponentFactory(TestComponent);
   beforeEach(
     waitForAsync(() => TestBed.configureTestingModule({
         declarations: [TestComponent],
         imports: [
-          NoopAnimationsModule,
-          BsDatepickerModule.forRoot()
+          BsDatepickerModule.forRoot(),
+          BrowserAnimationsModule
         ]
-    }).compileComponents()
+      }).compileComponents()
     ));
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
     fixture.detectChanges();
-    spectator = createComponent();
   });
 
-  fit('should display datepicker on show', fakeAsync(() => {
+  it('should display datepicker on show', fakeAsync(() => {
     const datepicker = showDatepicker(fixture);
     tick(10);
     expect(getDatepickerContainer(datepicker)).toBeDefined();
@@ -90,7 +89,7 @@ describe('datepicker:', () => {
     datepickerContainerInstance[`_store`]
       .select(state => state.view)
       .subscribe(view => {
-          expect(view.date.getFullYear()).toEqual(monthSelection.date.getFullYear());
+        expect(view.date.getFullYear()).toEqual(monthSelection.date.getFullYear());
       });
   });
 
@@ -98,21 +97,23 @@ describe('datepicker:', () => {
     const datepicker = showDatepicker(fixture);
     const datepickerContainerInstance = getDatepickerContainer(datepicker);
     datepickerContainerInstance.setViewMode('day');
-    const weekSelection: WeekViewModel = { days: [
-      { date: new Date(2019, 1 , 6), label: 'label' },
+    const weekSelection: WeekViewModel = {
+      days: [
+        { date: new Date(2019, 1, 6), label: 'label' },
         { date: new Date(2019, 1, 7), label: 'label' },
         { date: new Date(2019, 1, 8), label: 'label' },
         { date: new Date(2019, 1, 9), label: 'label' },
         { date: new Date(2019, 1, 10), label: 'label' },
         { date: new Date(2019, 1, 11), label: 'label' },
         { date: new Date(2019, 1, 12), label: 'label' }
-      ], isHovered: true};
+      ], isHovered: true
+    };
     datepickerContainerInstance.weekHoverHandler(weekSelection);
     fixture.detectChanges();
     datepickerContainerInstance[`_store`]
       .select(state => state.view)
       .subscribe(view => {
-        const currentDate = `${view.date.getDate()}${view.date.getFullYear()}` ;
+        const currentDate = `${view.date.getDate()}${view.date.getFullYear()}`;
         const oldDate = `${weekSelection.days[0].date.getDate()}${weekSelection.days[0].date.getFullYear()}`;
         expect(currentDate).not.toEqual(oldDate);
       });
@@ -134,14 +135,17 @@ describe('datepicker:', () => {
     expect(spy).toHaveBeenCalled();
   }));
 
-  it('should show the today button when showTodayButton config is true', () => {
+  it('should show the today button when showTodayButton config is true', fakeAsync(() => {
     showDatepicker(fixture);
-    const buttonText: string[] = [];
-    spectator.queryAll('button').forEach(button => {
-      buttonText.push(button.textContent);
+    tick();
+    fixture.whenStable().then(() => {
+      const buttonText: string[] = [];
+      Array.from(document.body.getElementsByTagName('button'))
+        .forEach(button => buttonText.push(button.textContent));
+      expect(buttonText.filter(button => button === 'Today').length).toEqual(1);
     });
-    expect(buttonText.filter(button => button === 'Today').length).toEqual(1);
-  });
+    expect(true).toBeTruthy();
+  }));
 
   it('should show custom label for today button if set in config', () => {
     const todayBtnCustomLbl = 'Select today';
@@ -153,9 +157,8 @@ describe('datepicker:', () => {
     showDatepicker(fixture);
 
     const buttonText: string[] = [];
-    spectator.queryAll('button').forEach(button => {
-      buttonText.push(button.textContent);
-    });
+    Array.from(document.body.getElementsByTagName('button'))
+      .forEach(button => buttonText.push(button.textContent));
     expect(buttonText.filter(button => button === todayBtnCustomLbl).length).toEqual(1);
   });
 
@@ -169,9 +172,9 @@ describe('datepicker:', () => {
     showDatepicker(fixture);
 
     const buttonText: string[] = [];
-    spectator.queryAll('button').forEach(button => {
-      buttonText.push(button.textContent);
-    });
+    // fixture.debugElement.queryAll(By.css('button'))
+    Array.from(document.body.getElementsByTagName('button'))
+      .forEach(button => buttonText.push(button.textContent));
     expect(buttonText.filter(button => button === clearBtnCustomLbl).length).toEqual(1);
   });
 
@@ -264,5 +267,5 @@ describe('datepicker:', () => {
       .subscribe(date => {
         expect(date).toBe(undefined);
       }).unsubscribe();
-    });
+  });
 });

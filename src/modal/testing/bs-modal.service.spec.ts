@@ -2,6 +2,7 @@ import { StaticProvider } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { EMPTY } from 'rxjs';
+import { createSpyObj } from 'jest-createspyobj';
 
 import { BsModalService, ModalOptions } from '../index';
 
@@ -13,7 +14,7 @@ describe('Service: BsModal', () => {
   let bsModalService: BsModalService;
 
   function createMockComponentLoader(baseName: string) {
-    const componentLoader = jasmine.createSpyObj(baseName, [
+    const componentLoader = createSpyObj(baseName, [
       'attach',
       'getInnerComponent',
       'hide',
@@ -22,16 +23,18 @@ describe('Service: BsModal', () => {
       'instance',
       'to'
     ]);
-    componentLoader.attach.and.returnValue(componentLoader);
-    componentLoader.hide.and.returnValue(componentLoader);
-    componentLoader.provide.and.returnValue(componentLoader);
-    componentLoader.to.and.returnValue(componentLoader);
-    componentLoader.instance.and.returnValue(componentLoader);
+    componentLoader.attach.mockReturnValue(componentLoader);
+    componentLoader.hide.mockReturnValue(componentLoader);
+    componentLoader.provide.mockReturnValue(componentLoader);
+    componentLoader.to.mockReturnValue(componentLoader);
+    componentLoader.instance.mockReturnValue(componentLoader);
 
-    componentLoader.onBeforeShow = EMPTY;
-    componentLoader.onShown = EMPTY;
-    componentLoader.onBeforeHide = EMPTY;
-    componentLoader.onHidden = EMPTY;
+    Object.defineProperties(componentLoader, {
+      onBeforeShow: {value: EMPTY},
+      onShown: {value: EMPTY},
+      onBeforeHide: {value: EMPTY},
+      onHidden: {value: EMPTY},
+    })
 
     return componentLoader;
   }
@@ -41,7 +44,7 @@ describe('Service: BsModal', () => {
     let createdBackdrop = false;
     const mockBackdropComponentLoader = createMockComponentLoader('backdropComponentLoader');
     mockComponentLoader = createMockComponentLoader('modalComponentLoader');
-    const mockComponentLoaderFactory = jasmine.createSpyObj('componentLoaderFactory', [
+    const mockComponentLoaderFactory = createSpyObj('componentLoaderFactory', [
       'createLoader'
     ]);
     TestBed.configureTestingModule({
@@ -51,8 +54,10 @@ describe('Service: BsModal', () => {
       ]
     });
 
-    mockComponentLoader.show.and.callFake(mockShow);
-    mockComponentLoaderFactory.createLoader.and.callFake(mockCreateLoader);
+    mockComponentLoader.show.mockImplementation(mockShow)
+    // mockComponentLoader.show.and.callFake(mockShow);
+    mockComponentLoaderFactory.createLoader.mockImplementation(mockCreateLoader);
+    // mockComponentLoaderFactory.createLoader.and.callFake(mockCreateLoader);
 
     bsModalService = TestBed.inject(BsModalService);
 
@@ -83,12 +88,8 @@ describe('Service: BsModal', () => {
           provider
         ]
       };
-      const mockModalInstance = jasmine.createSpyObj('modalInstance', [
-        'hide'
-      ]);
-      mockModalComponentRef = {
-        instance: mockModalInstance
-      };
+      const mockModalInstance = createSpyObj('modalInstance', ['hide']);
+      mockModalComponentRef = { instance: mockModalInstance };
 
       bsModalService.show(content, options);
 

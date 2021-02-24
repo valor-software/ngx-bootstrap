@@ -3,15 +3,15 @@
          aria-label="Search in docs" name="search"
          placeholder="Search..." [value]="search.text" (change)='search.text = $event.target?.value'/>
 
-  <button id="mobile-main-menu" (click)="toggle()">
+  <button id="mobile-main-menu" type="button" (click)="toggle()">
     <img src="assets/images/icons/menu-left.svg" alt="left menu">
   </button>
 </form>
 <div class="mobile-menu">
   <div class="bootstrap-version">
     <span>Bootstrap: </span>
-    <button class="btn" [class.selected]="isBs3" (click)="installTheme('bs3')">3</button>
-    <button class="btn" [class.selected]="!isBs3" (click)="installTheme('bs4')">4</button>
+    <button class="btn" type="button" [class.selected]="isBs3" (click)="installTheme('bs3')">3</button>
+    <button class="btn" type="button" [class.selected]="!isBs3" (click)="installTheme('bs4')">4</button>
   </div>
   <div class="sidebar-content" *ngIf="routes && routes.length">
     <ul class="sidebar-list">

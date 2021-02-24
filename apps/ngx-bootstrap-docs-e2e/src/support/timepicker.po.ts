@@ -1,5 +1,4 @@
 import { BaseComponent } from './base.component';
-import PositionType = Cypress.PositionType;
 import ObjectLike = Cypress.ObjectLike;
 import TriggerOptions = Cypress.TriggerOptions;
 
