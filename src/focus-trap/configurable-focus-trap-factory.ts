@@ -6,7 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-// tslint:disable
+/* eslint-disable */
 
 import { DOCUMENT } from '@angular/common';
 import {

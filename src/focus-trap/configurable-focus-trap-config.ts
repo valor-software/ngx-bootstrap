@@ -10,7 +10,7 @@
  * Configuration for creating a ConfigurableFocusTrap.
  */
 
-// tslint:disable
+/* eslint-disable */
 
 export class ConfigurableFocusTrapConfig {
   /**

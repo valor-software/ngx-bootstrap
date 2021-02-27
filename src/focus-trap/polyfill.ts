@@ -6,7 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-// tslint:disable
+/* eslint-disable */
 
 /** IE 11 compatible closest implementation that is able to start from non-Element Nodes. */
 export function closest(element: EventTarget|Element|null|undefined, selector: string):

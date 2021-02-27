@@ -6,7 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-// tslint:disable
+/* eslint-disable */
 
 import { coerceBooleanProperty, BooleanInput } from './boolean-property';
 import { DOCUMENT } from '@angular/common';

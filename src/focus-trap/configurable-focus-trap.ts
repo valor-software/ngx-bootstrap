@@ -6,7 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-// tslint:disable
+/* eslint-disable */
 
 import { NgZone } from '@angular/core';
 import { InteractivityChecker } from './interactivity-checker';

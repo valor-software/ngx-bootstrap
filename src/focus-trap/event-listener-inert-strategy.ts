@@ -6,7 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-// tslint:disable
+/* eslint-disable */
 
 import { FocusTrapInertStrategy } from './focus-trap-inert-strategy';
 import { ConfigurableFocusTrap } from './configurable-focus-trap';
