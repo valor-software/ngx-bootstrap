@@ -7,7 +7,7 @@ export function getBordersSize(styles: CSSStyleDeclaration, axis: string) {
   const sideB = sideA === 'Left' ? 'Right' : 'Bottom';
 
   return (
-    parseFloat(styles[`border${sideA}Width` as any]) +
-    parseFloat(styles[`border${sideB}Width` as any])
+    parseFloat(styles[`border${sideA}Width`]) +
+    parseFloat(styles[`border${sideB}Width`])
   );
 }

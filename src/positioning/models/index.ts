@@ -19,7 +19,7 @@ export interface Data {
   offsets: {
     target: Offsets;
     host: Offsets;
-    arrow: { [key: string]: string | number | HTMLElement };
+    arrow: Record<string, string | number | HTMLElement>;
   };
   positionFixed: boolean;
   placement: string;

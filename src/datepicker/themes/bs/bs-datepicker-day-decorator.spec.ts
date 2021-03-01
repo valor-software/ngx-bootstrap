@@ -7,6 +7,8 @@ import { BsDatepickerDayDecoratorComponent } from './bs-datepicker-day-decorator
 import { Component } from '@angular/core';
 import { DayViewModel } from '../../models';
 
+import '../../../../scripts/jest/toHaveCssClass';
+
 @Component({
   selector: 'test-cmp',
   template: `<span bsDatepickerDayDecorator [day]="day">{{ day.label }}</span>`
@@ -47,7 +49,7 @@ describe('datepicker: [bsDatepickerDayDecorator]', () => {
     setDay(fixture, {label});
     const el = getDayElement(fixture);
     // assert
-    expect(el.innerText).toBe(label);
+    expect(el.innerHTML).toBe(label);
   });
 
   it('should not add any special classes by default', () => {

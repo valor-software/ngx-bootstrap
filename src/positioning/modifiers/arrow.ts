@@ -22,14 +22,14 @@ export function arrow(data: Data) {
   const placementVariation = data.placement.split(' ')[1];
 
   // top/left side
-  if (data.offsets.host[opSide] - arrowElementSize < (targetOffsets as any)[side]) {
-    (targetOffsets as any)[side] -=
-      (targetOffsets as any)[side] - (data.offsets.host[opSide] - arrowElementSize);
+  if (data.offsets.host[opSide] - arrowElementSize < (targetOffsets)[side]) {
+    (targetOffsets)[side] -=
+      (targetOffsets)[side] - (data.offsets.host[opSide] - arrowElementSize);
   }
   // bottom/right side
-  if (Number((data as any).offsets.host[side]) + Number(arrowElementSize) > (targetOffsets as any)[opSide]) {
-    (targetOffsets as any)[side] +=
-      Number((data as any).offsets.host[side]) + Number(arrowElementSize) - Number((targetOffsets as any)[opSide]);
+  if (Number((data).offsets.host[side]) + Number(arrowElementSize) > (targetOffsets)[opSide]) {
+    (targetOffsets)[side] +=
+      Number((data).offsets.host[side]) + Number(arrowElementSize) - Number((targetOffsets)[opSide]);
   }
   targetOffsets = getClientRect(targetOffsets);
 
@@ -42,17 +42,17 @@ export function arrow(data: Data) {
   // compute center of the target
   let center: number;
   if (!placementVariation) {
-    center = Number((data as any).offsets.host[side]) + Number(data.offsets.host[len] / 2 - arrowElementSize / 2);
+    center = Number((data).offsets.host[side]) + Number(data.offsets.host[len] / 2 - arrowElementSize / 2);
   } else {
     const targetBorderRadius = parseFloat(css.borderRadius);
     const targetSideArrowOffset = Number(targetMarginSide + targetBorderSide + targetBorderRadius);
     center = side === placementVariation ?
-      Number((data as any).offsets.host[side]) + targetSideArrowOffset :
-      Number((data as any).offsets.host[side]) + Number(data.offsets.host[len] - targetSideArrowOffset);
+      Number((data).offsets.host[side]) + targetSideArrowOffset :
+      Number((data).offsets.host[side]) + Number(data.offsets.host[len] - targetSideArrowOffset);
   }
 
   let sideValue =
-    center - (targetOffsets as any)[side] - targetMarginSide - targetBorderSide;
+    center - (targetOffsets)[side] - targetMarginSide - targetBorderSide;
 
   // prevent arrowElement from being placed not contiguously to its target
   sideValue = Math.max(Math.min(targetOffsets[len] - arrowElementSize, sideValue), 0);

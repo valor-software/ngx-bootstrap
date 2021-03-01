@@ -5,15 +5,14 @@ import {
   Input,
   OnInit,
   Output,
-  forwardRef, TemplateRef, ChangeDetectionStrategy, ChangeDetectorRef
+  forwardRef, TemplateRef, ChangeDetectionStrategy, ChangeDetectorRef, Provider
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { AccessorContent, RatingResults } from './models';
+import { RatingResults } from './models';
 import { RatingConfig } from './rating.config';
 
-export const RATING_CONTROL_VALUE_ACCESSOR: AccessorContent = {
+export const RATING_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-  /* tslint:disable-next-line: no-use-before-declare */
   useExisting: forwardRef(() => RatingComponent),
   multi: true
 };
@@ -32,17 +31,15 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   /** array of icons titles, default: (["one", "two", "three", "four", "five"]) */
   @Input() titles: string[];
   /** custom template for icons */
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @Input() customTemplate: TemplateRef<any>;
   /** fired when icon selected, $event:number equals to selected rating */
   @Output() onHover: EventEmitter<number> = new EventEmitter();
   /** fired when icon selected, $event:number equals to previous rating value */
   @Output() onLeave: EventEmitter<number> = new EventEmitter();
 
-  // tslint:disable-next-line:no-any
-  onChange: any = Function.prototype;
-  // tslint:disable-next-line:no-any
-  onTouched: any = Function.prototype;
+  onChange = Function.prototype;
+  onTouched = Function.prototype;
   /** aria label for rating */
   ariaLabel: string;
   range: RatingResults[];
@@ -56,14 +53,12 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
 
   @HostListener('keydown', ['$event'])
   onKeydown(event: KeyboardEvent): void {
-    /* tslint:disable-next-line: deprecation */
     if ([37, 38, 39, 40].indexOf(event.which) === -1) {
       return;
     }
 
     event.preventDefault();
     event.stopPropagation();
-    /* tslint:disable-next-line: deprecation */
     const sign = event.which === 38 || event.which === 39 ? 1 : -1;
     this.rate(this.value + sign);
   }
@@ -106,11 +101,11 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
     this.onLeave.emit(this.value);
   }
 
-  registerOnChange(fn: (_: number) => {}): void {
+  registerOnChange(fn: (_: number) => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: () => {}): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
