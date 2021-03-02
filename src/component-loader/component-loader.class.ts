@@ -27,7 +27,7 @@ import { ContentRef } from './content-ref.class';
 import { ListenOptions } from './listen-options.model';
 
 export class ComponentLoader<T> {
-  onBeforeShow: EventEmitter<void> = new EventEmitter();
+  onBeforeShow = new EventEmitter();
   onShown = new EventEmitter();
   onBeforeHide = new EventEmitter();
   onHidden = new EventEmitter();
@@ -71,9 +71,9 @@ export class ComponentLoader<T> {
    * @internal
    */
   public constructor(
-    private _viewContainerRef: ViewContainerRef,
-    private _renderer: Renderer2,
-    private _elementRef: ElementRef,
+    private _viewContainerRef: ViewContainerRef | undefined,
+    private _renderer: Renderer2 | undefined,
+    private _elementRef: ElementRef | undefined,
     private _injector: Injector,
     private _componentFactoryResolver: ComponentFactoryResolver,
     private _ngZone: NgZone,
@@ -264,7 +264,7 @@ export class ComponentLoader<T> {
     this.triggers = listenOpts.triggers || this.triggers;
     this._listenOpts.outsideClick = listenOpts.outsideClick;
     this._listenOpts.outsideEsc = listenOpts.outsideEsc;
-    listenOpts.target = listenOpts.target || this._elementRef.nativeElement;
+    listenOpts.target = listenOpts.target || this._elementRef?.nativeElement;
 
     const hide = (this._listenOpts.hide = () =>
       listenOpts.hide ? listenOpts.hide() : void this.hide());
@@ -277,13 +277,15 @@ export class ComponentLoader<T> {
       this.isShown ? hide() : show(registerHide);
     };
 
-    this._unregisterListenersFn = listenToTriggersV2(this._renderer, {
-      target: listenOpts.target,
-      triggers: listenOpts.triggers,
-      show,
-      hide,
-      toggle
-    });
+    if (this._renderer) {
+      this._unregisterListenersFn = listenToTriggersV2(this._renderer, {
+        target: listenOpts.target,
+        triggers: listenOpts.triggers,
+        show,
+        hide,
+        toggle
+      });
+    }
 
     return this;
   }
@@ -315,14 +317,16 @@ export class ComponentLoader<T> {
     if (this._listenOpts.outsideClick) {
       const target = this._componentRef.location.nativeElement;
       setTimeout(() => {
-        this._globalListener = registerOutsideClick(this._renderer, {
-          targets: [target, this._elementRef.nativeElement],
-          outsideClick: this._listenOpts.outsideClick,
-          hide: () => this._listenOpts.hide && this._listenOpts.hide()
-        });
+        if (this._renderer && this._elementRef) {
+          this._globalListener = registerOutsideClick(this._renderer, {
+            targets: [target, this._elementRef.nativeElement],
+            outsideClick: this._listenOpts.outsideClick,
+            hide: () => this._listenOpts.hide && this._listenOpts.hide()
+          });
+        }
       });
     }
-    if (this._listenOpts.outsideEsc) {
+    if (this._listenOpts.outsideEsc && this._renderer && this._elementRef) {
       const target = this._componentRef.location.nativeElement;
       this._globalListener = registerEscClick(this._renderer, {
         targets: [target, this._elementRef.nativeElement],
@@ -332,7 +336,7 @@ export class ComponentLoader<T> {
     }
   }
 
-  getInnerComponent(): ComponentRef<T> | void {
+  getInnerComponent(): ComponentRef<T> | undefined {
     return this._innerComponent;
   }
 
@@ -415,6 +419,9 @@ export class ComponentLoader<T> {
       );
     }
 
-    return new ContentRef([[this._renderer.createText(`${content}`)]]);
+    const nodes = this._renderer
+      ? [this._renderer.createText(`${content}`)]
+      : [];
+    return new ContentRef([nodes]);
   }
 }

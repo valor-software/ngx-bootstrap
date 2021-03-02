@@ -37,9 +37,9 @@ import { isBs3 } from 'ngx-bootstrap/utils';
 export class ModalContainerComponent implements OnInit, OnDestroy {
   config: ModalOptions;
   isShown = false;
-  level: number;
-  isAnimated: boolean;
-  bsModalService: BsModalService;
+  level?: number;
+  isAnimated = false;
+  bsModalService?: BsModalService;
   private isModalHiding = false;
   private clickStartedInContent = false;
 
@@ -69,7 +69,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       );
     }, this.isAnimated ? TRANSITION_DURATIONS.BACKDROP : 0);
     if (document && document.body) {
-      if (this.bsModalService.getModalsCount() === 1) {
+      if (this.bsModalService && this.bsModalService.getModalsCount() === 1) {
         this.bsModalService.checkScrollbar();
         this.bsModalService.setScrollbar();
       }
@@ -97,13 +97,13 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
 
       return;
     }
-    this.bsModalService.setDismissReason(DISMISS_REASONS.BACKRDOP);
+    this.bsModalService?.setDismissReason(DISMISS_REASONS.BACKRDOP);
     this.hide();
   }
 
   @HostListener('window:popstate')
   onPopState(): void {
-    this.bsModalService.setDismissReason(DISMISS_REASONS.BACK);
+    this.bsModalService?.setDismissReason(DISMISS_REASONS.BACK);
     this.hide();
   }
 
@@ -119,9 +119,9 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
 
     if (
       this.config.keyboard &&
-      this.level === this.bsModalService.getModalsCount()
+      this.level === this.bsModalService?.getModalsCount()
     ) {
-      this.bsModalService.setDismissReason(DISMISS_REASONS.ESC);
+      this.bsModalService?.setDismissReason(DISMISS_REASONS.ESC);
       this.hide();
     }
   }
@@ -159,11 +159,11 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       if (
         document &&
         document.body &&
-        this.bsModalService.getModalsCount() === 1
+        this.bsModalService?.getModalsCount() === 1
       ) {
         this._renderer.removeClass(document.body, CLASS_NAME.OPEN);
       }
-      this.bsModalService.hide(this.config.id);
+      this.bsModalService?.hide(this.config.id);
       this.isModalHiding = false;
     }, this.isAnimated ? TRANSITION_DURATIONS.MODAL : 0);
   }
