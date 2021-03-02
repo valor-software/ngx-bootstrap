@@ -56,7 +56,7 @@ import { DraggableItemService } from './draggable-item.service';
 export class SortableComponent implements ControlValueAccessor {
   private static globalZoneIndex = 0;
   /** field name if input array consists of objects */
-  @Input() fieldName: string;
+  @Input() fieldName?: string;
 
   /** class name for items wrapper */
   @Input() wrapperClass = '';
@@ -86,7 +86,7 @@ export class SortableComponent implements ControlValueAccessor {
   @Input() placeholderItem = '';
 
   /** used to specify a custom item template. Template variables: item and index; */
-  @Input() itemTemplate: TemplateRef<unknown>;
+  @Input() itemTemplate?: TemplateRef<unknown>;
 
   /** fired on array change (reordering, insert, remove), same as <code>ngModelChange</code>.
    *  Returns new items collection as a payload.
@@ -114,7 +114,7 @@ export class SortableComponent implements ControlValueAccessor {
 
   private transfer: DraggableItemService;
   private currentZoneIndex: number;
-  private _items: SortableItem[];
+  private _items: SortableItem[] = [];
 
   constructor(transfer: DraggableItemService) {
     this.transfer = transfer;
@@ -154,6 +154,10 @@ export class SortableComponent implements ControlValueAccessor {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let newArray: any[] = [];
 
+    if (!dragItem) {
+      return;
+    }
+
     if (!this.items.length) {
       newArray = [dragItem.item];
     } else if (dragItem.i > i) {
@@ -178,7 +182,7 @@ export class SortableComponent implements ControlValueAccessor {
     this.updatePlaceholderState();
   }
 
-  cancelEvent(event: DragEvent|MouseEvent): void {
+  cancelEvent(event?: DragEvent|MouseEvent): void {
     if (!this.transfer.getItem() || !event) {
       return;
     }
@@ -196,10 +200,10 @@ export class SortableComponent implements ControlValueAccessor {
       );
       this.updatePlaceholderState();
     }
-    this.resetActiveItem(undefined);
+    this.resetActiveItem();
   }
 
-  resetActiveItem(event: DragEvent|MouseEvent): void {
+  resetActiveItem(event?: DragEvent|MouseEvent): void {
     this.cancelEvent(event);
     this.activeItem = -1;
   }
@@ -241,7 +245,7 @@ export class SortableComponent implements ControlValueAccessor {
     // it is necessary for mozilla
     // data type should be 'Text' instead of 'text/plain' to keep compatibility
     // with IE
-    event.dataTransfer.setData('Text', 'placeholder');
+    event.dataTransfer?.setData('Text', 'placeholder');
   }
 }
 
