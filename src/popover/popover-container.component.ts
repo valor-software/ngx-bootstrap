@@ -40,10 +40,10 @@ import { isBs3 } from 'ngx-bootstrap/utils';
   templateUrl: './popover-container.component.html'
 })
 export class PopoverContainerComponent {
-  @Input() placement: string;
-  @Input() title: string;
-  containerClass: string;
-  popoverId: string;
+  @Input() placement?: string;
+  @Input() title?: string;
+  containerClass?: string;
+  popoverId?: string;
 
   get isBs3(): boolean {
     return isBs3();
