@@ -296,11 +296,13 @@ export class ComponentLoader<T> {
   }
 
   attachInline(
-    vRef: ViewContainerRef,
+    vRef: ViewContainerRef | undefined,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    template: TemplateRef<any>
+    template: TemplateRef<any> | undefined
   ): ComponentLoader<T> {
-    this._inlineViewRef = vRef.createEmbeddedView(template);
+    if (vRef && template) {
+      this._inlineViewRef = vRef.createEmbeddedView(template);
+    }
 
     return this;
   }
