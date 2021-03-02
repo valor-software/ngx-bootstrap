@@ -86,48 +86,48 @@ export class TimepickerComponent
     OnChanges,
     OnDestroy {
   /** hours change step */
-  @Input() hourStep: number;
+  @Input() hourStep = 1;
   /** minutes change step */
-  @Input() minuteStep: number;
+  @Input() minuteStep = 5;
   /** seconds change step */
-  @Input() secondsStep: number;
+  @Input() secondsStep = 10;
   /** if true hours and minutes fields will be readonly */
-  @Input() readonlyInput: boolean;
+  @Input() readonlyInput = false;
   /** if true hours and minutes fields will be disabled */
-  @Input() disabled: boolean;
+  @Input() disabled = false;
   /** if true scroll inside hours and minutes inputs will change time */
-  @Input() mousewheel: boolean;
+  @Input() mousewheel = true;
   /** if true the values of hours and minutes can be changed using the up/down arrow keys on the keyboard */
-  @Input() arrowkeys: boolean;
+  @Input() arrowkeys = true;
   /** if true spinner arrows above and below the inputs will be shown */
-  @Input() showSpinners: boolean;
+  @Input() showSpinners = true;
   /** if true meridian button will be shown */
-  @Input() showMeridian: boolean;
+  @Input() showMeridian = true;
   /** show minutes in timepicker */
-  @Input() showMinutes: boolean;
+  @Input() showMinutes = true;
   /** show seconds in timepicker */
-  @Input() showSeconds: boolean;
+  @Input() showSeconds = false;
   /** meridian labels based on locale */
-  @Input() meridians: string[];
+  @Input() meridians: string[] = ['AM', 'PM'];
   /** minimum time user can select */
-  @Input() min: Date;
+  @Input() min?: Date;
   /** maximum time user can select */
-  @Input() max: Date;
+  @Input() max?: Date;
   /** placeholder for hours field in timepicker */
-  @Input() hoursPlaceholder: string;
+  @Input() hoursPlaceholder = 'HH';
   /** placeholder for minutes field in timepicker */
-  @Input() minutesPlaceholder: string;
+  @Input() minutesPlaceholder = 'MM';
   /** placeholder for seconds field in timepicker */
-  @Input() secondsPlaceholder: string;
+  @Input() secondsPlaceholder = 'SS';
 
   /** emits true if value is a valid date */
   @Output() isValid = new EventEmitter<boolean>();
 
   // ui variables
-  hours: string;
-  minutes: string;
-  seconds: string;
-  meridian: string;
+  hours = '';
+  minutes = '';
+  seconds = '';
+  meridian = '';
 
   /** @deprecated - please use `isEditable` instead */
   get isSpinnersVisible(): boolean {
@@ -144,20 +144,20 @@ export class TimepickerComponent
   invalidSeconds = false;
 
   // aria-label variables
-  labelHours: string;
-  labelMinutes: string;
-  labelSeconds: string;
+  labelHours = 'hours';
+  labelMinutes = 'minutes';
+  labelSeconds = 'seconds';
 
   // time picker controls state
-  canIncrementHours: boolean;
-  canIncrementMinutes: boolean;
-  canIncrementSeconds: boolean;
+  canIncrementHours = true;
+  canIncrementMinutes = true
+  canIncrementSeconds = true
 
-  canDecrementHours: boolean;
-  canDecrementMinutes: boolean;
-  canDecrementSeconds: boolean;
+  canDecrementHours = true
+  canDecrementMinutes = true
+  canDecrementSeconds = true
 
-  canToggleMeridian: boolean;
+  canToggleMeridian = true
 
   // control value accessor methods
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -177,7 +177,7 @@ export class TimepickerComponent
 
     this.timepickerSub = _store
       .select(state => state.value)
-      .subscribe((value: Date) => {
+      .subscribe((value: Date|undefined) => {
         // update UI values if date changed
         this._renderTime(value);
         this.onChange(value);
@@ -211,7 +211,7 @@ export class TimepickerComponent
   }
 
   wheelSign($event: WheelEventInit): number {
-    return Math.sign($event.deltaY) * -1;
+    return Math.sign($event.deltaY || 0) * -1;
   }
 
   ngOnChanges(): void {
@@ -239,9 +239,9 @@ export class TimepickerComponent
     );
   }
 
-  updateHours(hours: string): void {
+  updateHours(target: EventTarget | null): void {
     this.resetValidation();
-    this.hours = hours;
+    this.hours = (target as HTMLInputElement).value;
 
     const isValid = isHourInputValid(this.hours, this.isPM()) && this.isValidLimit();
 
@@ -256,9 +256,9 @@ export class TimepickerComponent
     this._updateTime();
   }
 
-  updateMinutes(minutes: string) {
+  updateMinutes(target: EventTarget | null) {
     this.resetValidation();
-    this.minutes = minutes;
+    this.minutes = (target as HTMLInputElement).value;
 
     const isValid = isMinuteInputValid(this.minutes) && this.isValidLimit();
 
@@ -273,9 +273,9 @@ export class TimepickerComponent
     this._updateTime();
   }
 
-  updateSeconds(seconds: string) {
+  updateSeconds(target: EventTarget | null) {
     this.resetValidation();
-    this.seconds = seconds;
+    this.seconds = (target as HTMLInputElement).value;
 
     const isValid = isSecondInputValid(this.seconds) && this.isValidLimit();
 
@@ -336,11 +336,11 @@ export class TimepickerComponent
   /**
    * Write a new value to the element.
    */
-  writeValue(obj: string | null | undefined | Date): void {
+  writeValue(obj?: string | Date): void {
     if (isValidDate(obj)) {
       this._store.dispatch(this._timepickerActions.writeValue(parseTime(obj)));
     } else if (obj == null) {
-      this._store.dispatch(this._timepickerActions.writeValue(null));
+      this._store.dispatch(this._timepickerActions.writeValue());
     }
   }
 
@@ -374,8 +374,8 @@ export class TimepickerComponent
     this.timepickerSub.unsubscribe();
   }
 
-  private _renderTime(value: string | Date): void {
-    if (!isValidDate(value)) {
+  private _renderTime(value?: string | Date): void {
+    if (!value || !isValidDate(value)) {
       this.hours = '';
       this.minutes = '';
       this.seconds = '';
@@ -385,6 +385,10 @@ export class TimepickerComponent
     }
 
     const _value = parseTime(value);
+    if (!_value) {
+      return;
+    }
+
     const _hoursPerDayHalf = 12;
     let _hours = _value.getHours();
 
