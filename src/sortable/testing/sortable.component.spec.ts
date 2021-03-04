@@ -27,7 +27,7 @@ const HEROES_OBJ: any[] = [
   `
 })
 class TestSortableComponent {
-  selectedState: string;
+  selectedState?: string;
   heroes: string[] = [...HEROES];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   heroesObj: any[] = [...HEROES_OBJ];

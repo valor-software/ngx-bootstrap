@@ -53,10 +53,10 @@ xdescribe('Directives: Tooltips', () => {
     fixture.detectChanges();
   });
 
-  afterEach(() => {
+/*  afterEach(() => {
     fixture = undefined;
     context = undefined;
-  });
+  });*/
 
   it('tooltip should not be displayed until user does not any actions', () => {
     const element: HTMLElement = fixture.debugElement.nativeElement;

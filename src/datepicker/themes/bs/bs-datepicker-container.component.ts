@@ -59,10 +59,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
       allowedPositions: ['top', 'bottom']
     });
 
-    this._positionService.event$
-      .pipe(
-        take(1)
-      )
+    this._positionService.event$?.pipe(take(1))
       .subscribe(() => {
         this._positionService.disable();
 

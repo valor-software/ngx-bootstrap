@@ -13,35 +13,31 @@ import {
 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+import { Subscription } from 'rxjs';
+
+import { ControlValueAccessorModel } from './models';
+
 import { TimepickerActions } from './reducer/timepicker.actions';
 import { TimepickerStore } from './reducer/timepicker.store';
 import { getControlsValue } from './timepicker-controls.util';
 import { TimepickerConfig } from './timepicker.config';
 
-import {
-  TimeChangeSource,
-  TimepickerComponentState,
-  TimepickerControls
-} from './timepicker.models';
+import { TimeChangeSource, TimepickerComponentState, TimepickerControls } from './timepicker.models';
 
 import {
-  isValidDate,
-  padNumber,
-  parseTime,
-  isInputValid,
   isHourInputValid,
+  isInputLimitValid,
+  isInputValid,
   isMinuteInputValid,
   isSecondInputValid,
-  isInputLimitValid
+  isValidDate,
+  padNumber,
+  parseTime
 } from './timepicker.utils';
-
-import { Subscription } from 'rxjs';
-
-import { ControlValueAccessorModel } from './models';
 
 export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: ControlValueAccessorModel = {
   provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => TimepickerComponent),
+  useExisting: forwardRef(() => TimepickerComponent),
   multi: true
 };
 
@@ -128,43 +124,28 @@ export class TimepickerComponent
   minutes = '';
   seconds = '';
   meridian = '';
-
-  /** @deprecated - please use `isEditable` instead */
-  get isSpinnersVisible(): boolean {
-    return this.showSpinners && !this.readonlyInput;
-  }
-
-  get isEditable(): boolean {
-    return !(this.readonlyInput || this.disabled);
-  }
-
   // min\max validation for input fields
   invalidHours = false;
   invalidMinutes = false;
   invalidSeconds = false;
-
   // aria-label variables
   labelHours = 'hours';
   labelMinutes = 'minutes';
   labelSeconds = 'seconds';
-
   // time picker controls state
   canIncrementHours = true;
-  canIncrementMinutes = true
-  canIncrementSeconds = true
-
-  canDecrementHours = true
-  canDecrementMinutes = true
-  canDecrementSeconds = true
-
-  canToggleMeridian = true
-
-  // control value accessor methods
+  canIncrementMinutes = true;
+  canIncrementSeconds = true;
+  canDecrementHours = true;
+  canDecrementMinutes = true;
+  canDecrementSeconds = true;
+  canToggleMeridian = true;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange = Function.prototype;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onTouched = Function.prototype;
 
+  // control value accessor methods
   timepickerSub: Subscription;
 
   constructor(
@@ -177,7 +158,7 @@ export class TimepickerComponent
 
     this.timepickerSub = _store
       .select(state => state.value)
-      .subscribe((value: Date|undefined) => {
+      .subscribe((value: Date | undefined) => {
         // update UI values if date changed
         this._renderTime(value);
         this.onChange(value);
@@ -194,6 +175,15 @@ export class TimepickerComponent
         Object.assign(this, controlsState);
         _cd.markForCheck();
       });
+  }
+
+  /** @deprecated - please use `isEditable` instead */
+  get isSpinnersVisible(): boolean {
+    return this.showSpinners && !this.readonlyInput;
+  }
+
+  get isEditable(): boolean {
+    return !(this.readonlyInput || this.disabled);
   }
 
   resetValidation(): void {
@@ -239,7 +229,7 @@ export class TimepickerComponent
     );
   }
 
-  updateHours(target: EventTarget | null): void {
+  updateHours(target?: Partial<EventTarget> | null): void {
     this.resetValidation();
     this.hours = (target as HTMLInputElement).value;
 
@@ -256,7 +246,7 @@ export class TimepickerComponent
     this._updateTime();
   }
 
-  updateMinutes(target: EventTarget | null) {
+  updateMinutes(target: Partial<EventTarget> | null) {
     this.resetValidation();
     this.minutes = (target as HTMLInputElement).value;
 
@@ -273,7 +263,7 @@ export class TimepickerComponent
     this._updateTime();
   }
 
-  updateSeconds(target: EventTarget | null) {
+  updateSeconds(target: Partial<EventTarget> | null) {
     this.resetValidation();
     this.seconds = (target as HTMLInputElement).value;
 

@@ -602,8 +602,15 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
         : !this.isLast(lastVisibleIndex)
           ? lastVisibleIndex + 1 : 0;
 
-      this._slides.get(indexToHide).active = false;
-      this._slides.get(indexToShow).active = true;
+      const slideToHide = this._slides.get(indexToHide);
+      if (slideToHide) {
+        slideToHide.active = false;
+      }
+
+      const slideToShow = this._slides.get(indexToShow);
+      if (slideToShow) {
+        slideToShow.active = true;
+      }
 
       const slidesToReorder = this.mapSlidesAndIndexes().filter(
         (slide: SlideWithIndex) => slide.item.active
@@ -619,7 +626,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       return;
     }
 
-    let displayedIndex: number;
+    let index: number;
 
     firstVisibleIndex = this._slidesWithIndexes[0].index;
     lastVisibleIndex = this._slidesWithIndexes[this._slidesWithIndexes.length - 1].index;
@@ -627,24 +634,25 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     if (direction === Direction.NEXT) {
       this._slidesWithIndexes.shift();
 
-      displayedIndex = this.isLast(lastVisibleIndex)
+      index = this.isLast(lastVisibleIndex)
         ? 0
         : lastVisibleIndex + 1;
 
-      this._slidesWithIndexes.push({
-        index: displayedIndex,
-        item: this._slides.get(displayedIndex)
-      });
+      const item = this._slides.get(index);
+
+      if (item) {
+        this._slidesWithIndexes.push({ index, item });
+      }
     } else {
       this._slidesWithIndexes.pop();
-      displayedIndex = this.isFirst(firstVisibleIndex)
+      index = this.isFirst(firstVisibleIndex)
         ? this._slides.length - 1
         : firstVisibleIndex - 1;
 
-      this._slidesWithIndexes = [{
-        index: displayedIndex,
-        item: this._slides.get(displayedIndex)
-      }, ...this._slidesWithIndexes];
+      const item = this._slides.get(index);
+      if (item) {
+        this._slidesWithIndexes = [{ index, item }, ...this._slidesWithIndexes];
+      }
     }
 
     this.hideSlides();

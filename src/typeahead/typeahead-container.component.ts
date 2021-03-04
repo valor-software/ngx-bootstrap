@@ -68,7 +68,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
   guiHeight?: string;
   needScrollbar?: boolean;
   animationState?: string;
-  positionServiceSubscription: Subscription;
+  positionServiceSubscription = new Subscription();
   height = 0;
   popupId = `ngb-typeahead-${nextWindowId++}`;
 
@@ -100,7 +100,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
     private changeDetectorRef: ChangeDetectorRef
   ) {
     this.renderer.setAttribute(this.element.nativeElement, 'id', this.popupId);
-    this.positionServiceSubscription = this.positionService.event$.subscribe(
+    this.positionServiceSubscription.add(this.positionService.event$?.subscribe(
       () => {
         if (this.isAnimated) {
           this.animationState = this.isTopPosition ? 'animated-up' : 'animated-down';
@@ -112,7 +112,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
         this.animationState = 'unanimated';
         this.changeDetectorRef.detectChanges();
       }
-    );
+    ));
   }
 
   get active(): TypeaheadMatch | undefined {
@@ -208,11 +208,17 @@ export class TypeaheadContainerComponent implements OnDestroy {
   }
 
   activeChanged(): void {
+    if (!this._active) {
+      return;
+    }
     const index = this.matches.indexOf(this._active);
     this.activeChangeEvent.emit(`${this.popupId}-${index}`);
   }
 
   prevActiveMatch(): void {
+    if (!this._active) {
+      return;
+    }
 
     const index = this.matches.indexOf(this._active);
     this.setActive(this.matches[
@@ -229,6 +235,10 @@ export class TypeaheadContainerComponent implements OnDestroy {
   }
 
   nextActiveMatch(): void {
+    if (!this._active){
+      return;
+    }
+
     const index = this.matches.indexOf(this._active);
     this.setActive(this.matches[
       index + 1 > this.matches.length - 1 ? 0 : index + 1
@@ -289,7 +299,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
   @HostListener('blur')
   focusLost(): void {
     this.isFocused = false;
-    this.setActive(null);
+    this.setActive(void 0);
   }
 
   isActive(value: TypeaheadMatch): boolean {
@@ -363,10 +373,10 @@ export class TypeaheadContainerComponent implements OnDestroy {
     this.positionServiceSubscription.unsubscribe();
   }
 
-  protected setActive(value: TypeaheadMatch): void {
+  protected setActive(value?: TypeaheadMatch): void {
     this._active = value;
     let preview;
-    if (!((this._active === null) || (this._active.isHeader()))) {
+    if (!(this._active == null || this._active.isHeader())) {
       preview = value;
     }
     this.parent?.typeaheadOnPreview.emit(preview);

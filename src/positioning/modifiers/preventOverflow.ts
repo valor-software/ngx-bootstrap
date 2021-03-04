@@ -1,5 +1,5 @@
 import { getBoundaries, isModifierEnabled } from '../utils';
-import { Data } from '../models';
+import { Data, Offsets } from '../models';
 
 export function preventOverflow(data: Data) {
 
@@ -21,7 +21,7 @@ export function preventOverflow(data: Data) {
     data.instance.target,
     data.instance.host,
     0, // padding
-    data.options.modifiers.preventOverflow.boundariesElement || 'scrollParent',
+    data.options.modifiers.preventOverflow?.boundariesElement || 'scrollParent',
     false // positionFixed
   );
 
@@ -34,23 +34,23 @@ export function preventOverflow(data: Data) {
   const order = ['left', 'right', 'top', 'bottom'];
 
   const check = {
-    primary(placement: string) {
+    primary(placement: keyof Offsets) {
       let value = data.offsets.target[placement];
       // options.escapeWithReference
-      if (data.offsets.target[placement] < boundaries[placement]) {
-        value = Math.max(data.offsets.target[placement], boundaries[placement]);
+      if ((data.offsets.target[placement] ?? 0) < (boundaries[placement] ?? 0)) {
+        value = Math.max(data.offsets.target[placement] ?? 0, boundaries[placement] ?? 0);
       }
 
       return { [placement]: value };
     },
-    secondary(placement: string) {
+    secondary(placement: keyof Offsets) {
       const mainSide = placement === 'right' ? 'left' : 'top';
       let value = data.offsets.target[mainSide];
       // escapeWithReference
-      if (data.offsets.target[placement] > boundaries[placement]) {
+      if ((data.offsets.target[placement] ?? 0) < (boundaries[placement] ?? 0)) {
         value = Math.min(
-          data.offsets.target[mainSide],
-          boundaries[placement] -
+          data.offsets.target[mainSide] ?? 0,
+          (boundaries[placement] ?? 0) -
           (placement === 'right' ? data.offsets.target.width : data.offsets.target.height)
         );
       }
@@ -59,17 +59,13 @@ export function preventOverflow(data: Data) {
     }
   };
 
-  let side: string;
 
-  order.forEach(placement => {
-    side = ['left', 'top']
-      .indexOf(placement) !== -1
-      ? 'primary'
-      : 'secondary';
+  order.forEach((placement ) => {
+    const side = ['left', 'top'].indexOf(placement) !== -1 ? check['primary'] : check['secondary'];
 
     data.offsets.target = {
       ...data.offsets.target,
-      ...check[side](placement)
+      ...side(placement as keyof Offsets)
     };
 
   });

@@ -1,10 +1,10 @@
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { TimepickerActions, TimepickerComponent, TimepickerConfig, TimepickerModule } from '../index';
 
 import { fireEvent } from '../../../scripts/helpers';
 import '../../../scripts/jest/toHaveCssClass';
+import { TimepickerActions, TimepickerComponent, TimepickerConfig, TimepickerModule } from '../index';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getInputElements(fixture: any) {
@@ -169,13 +169,13 @@ describe('Component: TimepickerComponent', () => {
     });
 
     it('should change time period after click on AM/PM button', fakeAsync(() => {
-      expect(buttonMeridian.textContent.trim()).toBe(component.meridians[0]);
+      expect(buttonMeridian.textContent?.trim()).toBe(component.meridians[0]);
 
       buttonDebugMeridian.triggerEventHandler('click', null);
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        expect(buttonMeridian.textContent.trim()).toBe(component.meridians[1]);
+        expect(buttonMeridian.textContent?.trim()).toBe(component.meridians[1]);
       });
     }));
 
@@ -189,7 +189,7 @@ describe('Component: TimepickerComponent', () => {
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        expect(buttonMeridian.textContent.trim()).toBe(component.meridians[0]);
+        expect(buttonMeridian.textContent?.trim()).toBe(component.meridians[0]);
       });
     }));
 
@@ -203,7 +203,7 @@ describe('Component: TimepickerComponent', () => {
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        expect(buttonMeridian.textContent.trim()).toBe(component.meridians[1]);
+        expect(buttonMeridian.textContent?.trim()).toBe(component.meridians[1]);
       });
     }));
   });
@@ -985,7 +985,7 @@ describe('Component: TimepickerComponent', () => {
       component.hours = '10';
       component.showMeridian = false;
 
-      component.updateHours('99');
+      component.updateHours({value: '99'});
 
       expect(methodSpy).toHaveBeenCalledWith(null);
             expect(component.isValid.emit).toHaveBeenCalledWith(false);
@@ -997,7 +997,7 @@ describe('Component: TimepickerComponent', () => {
       spyOn(component.isValid, 'emit').and.stub();
       spyOn(component, 'isValidLimit').and.returnValue(false);
 
-      component.updateHours('19');
+      component.updateHours({ value: '19' });
 
       expect(methodSpy).toHaveBeenCalledWith(null);
             expect(component.isValid.emit).toHaveBeenCalledWith(false);
@@ -1009,7 +1009,7 @@ describe('Component: TimepickerComponent', () => {
       component.hours = '10';
       component.showMeridian = false;
 
-      component.updateHours('17');
+      component.updateHours({value: '17'});
 
       expect(component.invalidHours).toEqual(false);
             expect(component._updateTime).toHaveBeenCalled();
@@ -1020,7 +1020,7 @@ describe('Component: TimepickerComponent', () => {
       spyOn(component.isValid, 'emit').and.stub();
       component.minutes = '10';
 
-      component.updateMinutes('99');
+      component.updateMinutes({value: '99'});
 
       expect(methodSpy).toHaveBeenCalledWith(null);
             expect(component.isValid.emit).toHaveBeenCalledWith(false);
@@ -1031,7 +1031,7 @@ describe('Component: TimepickerComponent', () => {
       spyOn(component.isValid, 'emit').and.stub();
       spyOn(component, 'isValidLimit').and.returnValue(false);
 
-      component.updateMinutes('30');
+      component.updateMinutes({value: '30'});
 
       expect(methodSpy).toHaveBeenCalledWith(null);
             expect(component.isValid.emit).toHaveBeenCalledWith(false);
@@ -1041,7 +1041,7 @@ describe('Component: TimepickerComponent', () => {
       spyOn(component, '_updateTime').and.stub();
       component.minutes = '10';
 
-      component.updateMinutes('30');
+      component.updateMinutes({value: '30'});
 
       expect(component.invalidMinutes).toEqual(false);
             expect(component._updateTime).toHaveBeenCalled();
@@ -1053,7 +1053,7 @@ describe('Component: TimepickerComponent', () => {
       component.showSeconds = true;
       component.seconds = '10';
 
-      component.updateSeconds('99');
+      component.updateSeconds({value: '99'});
 
       expect(methodSpy).toHaveBeenCalledWith(null);
             expect(component.isValid.emit).toHaveBeenCalledWith(false);
@@ -1064,7 +1064,7 @@ describe('Component: TimepickerComponent', () => {
       spyOn(component.isValid, 'emit').and.stub();
       spyOn(component, 'isValidLimit').and.returnValue(false);
 
-      component.updateSeconds('50');
+      component.updateSeconds({value: '50'});
 
       expect(methodSpy).toHaveBeenCalledWith(null);
             expect(component.isValid.emit).toHaveBeenCalledWith(false);
@@ -1074,7 +1074,7 @@ describe('Component: TimepickerComponent', () => {
       spyOn(component, '_updateTime').and.stub();
       component.seconds = '10';
 
-      component.updateSeconds('30');
+      component.updateSeconds({value: '30'});
 
       expect(component.invalidSeconds).toEqual(false);
             expect(component._updateTime).toHaveBeenCalled();
@@ -1168,12 +1168,13 @@ describe('Component: TimepickerComponent', () => {
       const hourA = 23;
       const hourAstr = '23';
 
-      let componentDateTime: Date;
+      // todo: remove = new Date()
+      let componentDateTime: Date = new Date();
       component.registerOnChange((newDateTime: Date) => {
         componentDateTime = newDateTime;
-
         return newDateTime;
       });
+
       expect(componentDateTime).toBeUndefined();
       const testedTime = testTime(hourA);
       component.writeValue(testedTime);
@@ -1210,7 +1211,8 @@ describe('Component: TimepickerComponent', () => {
       const hourA = 0;
       const hourAstr = '00';
 
-      let componentDateTime: Date;
+      // todo: remove = new Date()
+      let componentDateTime: Date = new Date();
       component.registerOnChange((newDateTime: Date) => {
         componentDateTime = newDateTime;
 
@@ -1252,7 +1254,8 @@ describe('Component: TimepickerComponent', () => {
       const minutesA = 59;
       const minutesAstr = '59';
 
-      let componentDateTime: Date;
+      // todo: remove = new Date()
+      let componentDateTime: Date = new Date();
       component.registerOnChange((newDateTime: Date) => {
         componentDateTime = newDateTime;
 
@@ -1299,7 +1302,8 @@ describe('Component: TimepickerComponent', () => {
       const minutesA = 1;
       const minutesAstr = '01';
 
-      let componentDateTime: Date;
+      // todo: remove = new Date()
+      let componentDateTime: Date = new Date();
       component.registerOnChange((newDateTime: Date) => {
         componentDateTime = newDateTime;
 
@@ -1349,7 +1353,8 @@ describe('Component: TimepickerComponent', () => {
       const secondsA = 59;
       const secondsAstr = '59';
 
-      let componentDateTime: Date;
+      // todo: remove = new Date()
+      let componentDateTime: Date = new Date();
       component.registerOnChange((newDateTime: Date) => {
         componentDateTime = newDateTime;
 
@@ -1404,7 +1409,8 @@ describe('Component: TimepickerComponent', () => {
       const secondsA = 1;
       const secondsAstr = '01';
 
-      let componentDateTime: Date;
+      // todo: remove = new Date()
+      let componentDateTime: Date = new Date();
       component.registerOnChange((newDateTime: Date) => {
         componentDateTime = newDateTime;
 

@@ -50,8 +50,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   value = 0;
   protected preValue?: number;
 
-  constructor(private changeDetection: ChangeDetectorRef,
-              config: RatingConfig) {
+  constructor(private changeDetection: ChangeDetectorRef, config: RatingConfig) {
     Object.assign(this, config);
   }
 

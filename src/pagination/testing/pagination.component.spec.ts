@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import {
   ComponentFixture,
   TestBed,
@@ -8,8 +9,8 @@ import { PaginationModule, PaginationComponent } from '../index';
 
 describe('Component: Pagination:', () => {
   let fixture: ComponentFixture<PaginationComponent>;
-  let context;
-  let element;
+  let context: PaginationComponent;
+  let element: HTMLElement;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -37,7 +38,7 @@ describe('Component: Pagination:', () => {
     expect(links[1].innerHTML.replace(/<!--[^>]*>/gm, '')).toEqual('1');
     expect(links[2].innerHTML.replace(/<!--[^>]*>/gm, '')).toEqual('Next');
 
-    expect(context._totalPages).toEqual(1);
+    expect((context as any)._totalPages).toEqual(1);
   });
 
   it('checking of working with custom values(several pages)', () => {
@@ -64,7 +65,7 @@ describe('Component: Pagination:', () => {
     expect(links[2].innerHTML.replace(/<!--[^>]*>/gm, '')).toEqual('2');
     expect(links[4].innerHTML.replace(/<!--[^>]*>/gm, '')).toEqual('New next');
 
-    expect(context._totalPages).toEqual(3);
+    expect((context as any)._totalPages).toEqual(3);
   });
 
   it('checking of working with custom values(many pages)', () => {
@@ -82,7 +83,7 @@ describe('Component: Pagination:', () => {
     expect(listItems[1].classList).toContain('active');
     expect(listItems[9].classList).not.toContain('disabled');
     expect(listItems.length).toEqual(10);
-    expect(context._totalPages).toEqual(8);
+    expect((context as any)._totalPages).toEqual(8);
 
     expect(links[0].innerHTML.replace(/<!--[^>]*>/gm, '')).toEqual('Previous');
     expect(links[1].innerHTML.replace(/<!--[^>]*>/gm, '')).toEqual('1');
@@ -103,14 +104,14 @@ describe('Component: Pagination:', () => {
     expect(listItems[4].classList).not.toContain('disabled');
 
     // total number of pages should be unchanged
-    expect(context._totalPages).toEqual(8);
+    expect((context as any)._totalPages).toEqual(8);
 
     expect(links[0].innerHTML.replace(/<!--[^>]*>/gm, '')).toEqual('Previous');
     expect(links[1].innerHTML.replace(/<!--[^>]*>/gm, '')).toEqual('1');
     expect(links[3].innerHTML.replace(/<!--[^>]*>/gm, '')).toEqual('3');
     expect(links[4].innerHTML.replace(/<!--[^>]*>/gm, '')).toEqual('Next');
 
-    expect(context._page).toEqual(1);
+    expect((context as any)._page).toEqual(1);
     expect(listItems.length).toEqual(5);
   });
 
@@ -141,7 +142,7 @@ describe('Component: Pagination:', () => {
       expect(listItems[1].classList).not.toContain('active');
       expect(listItems[5].classList).toContain('active');
 
-      expect(context._page).toEqual(5);
+      expect((context as any)._page).toEqual(5);
 
       // <Previous> 1 2 3 4 5 6 7 _8_ <~Next~>
       links[8].click();
@@ -155,8 +156,8 @@ describe('Component: Pagination:', () => {
       expect(listItems[1].classList).not.toContain('active');
       expect(listItems[8].classList).toContain('active');
 
-      expect(context._page).toEqual(8);
-      expect(context._totalPages).toEqual(8);
+      expect((context as any)._page).toEqual(8);
+      expect((context as any)._totalPages).toEqual(8);
     })
   );
 
@@ -179,7 +180,7 @@ describe('Component: Pagination:', () => {
       expect(listItems[1].classList).toContain('active');
       expect(listItems.length).toEqual(5);
 
-      expect(context._page).toEqual(1);
+      expect((context as any)._page).toEqual(1);
 
       links[3].click();
       tick(200);
@@ -194,9 +195,9 @@ describe('Component: Pagination:', () => {
       expect(listItems[2].classList).toContain('active');
       expect(listItems[4].classList).not.toContain('disabled');
 
-      expect(context._page).toEqual(3);
+      expect((context as any)._page).toEqual(3);
       expect(links[1].innerHTML.replace(/<!--[^>]*>/gm, '')).toEqual('2');
-      expect(context._totalPages).toEqual(8);
+      expect((context as any)._totalPages).toEqual(8);
     })
   );
 
@@ -221,7 +222,7 @@ describe('Component: Pagination:', () => {
       expect(listItems[8].classList).not.toContain('disabled');
       expect(listItems[2].classList).toContain('active');
       expect(listItems.length).toEqual(9);
-      expect(context._page).toEqual(1);
+      expect((context as any)._page).toEqual(1);
 
       expect(links[2].innerHTML.replace(/<!--[^>]*>/gm, '')).toEqual('1');
       expect(links[6].innerHTML.replace(/<!--[^>]*>/gm, '')).toEqual('5');
@@ -231,7 +232,7 @@ describe('Component: Pagination:', () => {
       fixture.detectChanges();
 
       // Click to disabled "First" link -> page should'nt change
-      expect(context._page).toEqual(1);
+      expect((context as any)._page).toEqual(1);
 
       links[8].click();
       tick(200);
@@ -240,13 +241,13 @@ describe('Component: Pagination:', () => {
       listItems = element.querySelectorAll('li');
 
       // <First> <Previous> 4 5 6 7 _8_ <~Next~> <~Last~>
-      expect(context._page).toEqual(8);
+      expect((context as any)._page).toEqual(8);
       expect(listItems[0].classList).not.toContain('disabled');
       expect(listItems[1].classList).not.toContain('disabled');
       expect(listItems[6].classList).toContain('active');
       expect(listItems[7].classList).toContain('disabled');
       expect(listItems[8].classList).toContain('disabled');
-      expect(context._totalPages).toEqual(8);
+      expect((context as any)._totalPages).toEqual(8);
     })
   );
 });

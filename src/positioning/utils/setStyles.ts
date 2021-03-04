@@ -5,7 +5,10 @@ import { Renderer2 } from '@angular/core';
 
 import { isNumeric } from './isNumeric';
 
-export function setStyles(element: HTMLElement, styles: Record<string, string|number|HTMLElement>, renderer?: Renderer2) {
+export function setStyles(element: HTMLElement | null, styles?: Record<string, string|number|HTMLElement>, renderer?: Renderer2) {
+  if (!element || !styles) {
+    return;
+  }
   Object.keys(styles).forEach((prop) => {
     let unit = '';
     // add unit if the value is numeric and is one of the following
@@ -20,6 +23,6 @@ export function setStyles(element: HTMLElement, styles: Record<string, string|nu
       return;
     }
 
-    element.style[prop] = String(styles[prop]) + unit;
+    (element.style as any)[prop] = String(styles[prop]) + unit;
   });
 }

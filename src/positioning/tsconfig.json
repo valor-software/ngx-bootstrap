@@ -15,8 +15,8 @@
   ],
   "compilerOptions": {
     "forceConsistentCasingInFileNames": true,
-    "strict": false,
-    "noImplicitReturns": false,
+    "strict": true,
+    "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true
   },
   "angularCompilerOptions": {

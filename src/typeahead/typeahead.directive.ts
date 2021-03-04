@@ -15,7 +15,7 @@ import {
 import { NgControl } from '@angular/forms';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 
-import { from, isObservable, Observable, Subscription } from 'rxjs';
+import { EMPTY, from, isObservable, Observable, Subscription } from 'rxjs';
 import { debounceTime, filter, mergeMap, switchMap, tap, toArray } from 'rxjs/operators';
 import { TypeaheadOptionItemContext, TypeaheadOptionListContext } from './models';
 
@@ -27,7 +27,7 @@ import { TypeaheadConfig } from './typeahead.config';
 
 // eslint-disable-next-line
 type TypeaheadOption = string | Record<string | number, any>;
-type Typeahead = TypeaheadOption[] | Observable<TypeaheadOption[]>;
+type TypeaheadOptionArr = TypeaheadOption[] | Observable<TypeaheadOption[]>;
 
 @Directive({
   selector: '[typeahead]',
@@ -44,7 +44,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /** options source, can be Array of strings, objects or
    * an Observable for external matching process
    */
-  @Input() typeahead?: Typeahead;
+  @Input() typeahead?: TypeaheadOptionArr;
   /** minimal no of characters that needs to be entered before
    * typeahead kicks-in. When set to 0, typeahead shows on focus with full
    * list of options (limited as normal by typeaheadOptionsLimit)
@@ -175,8 +175,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   isFocused = false;
   cancelRequestOnFocusLost = false;
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  protected keyUpEventEmitter: EventEmitter<string> = new EventEmitter();
+  protected keyUpEventEmitter = new EventEmitter<string>();
   protected placement = 'bottom left';
   protected _matches: TypeaheadMatch[] = [];
 
@@ -456,7 +455,12 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         .pipe(
           debounceTime<string>(this.typeaheadWaitMs),
           tap(value => this._allEnteredValue = value),
-          switchMap(() => this.typeahead)
+          switchMap(() => {
+            if (!this.typeahead) {
+              return EMPTY;
+            }
+            return this.typeahead;
+          })
         )
         .subscribe((matches) => {
           this.finalizeAsyncCall(matches);
@@ -473,10 +477,16 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
             this._allEnteredValue = value;
             const normalizedQuery = this.normalizeQuery(value);
 
-            return from(this.typeahead)
+            if (!this.typeahead) {
+              return EMPTY;
+            }
+
+            const typeahead = isObservable(this.typeahead) ? this.typeahead : from(this.typeahead);
+
+            return typeahead
               .pipe(
                 filter((option: TypeaheadOption) => {
-                  return option && this.testMatch(this.normalizeOption(option), normalizedQuery);
+                  return !!option && this.testMatch(this.normalizeOption(option), normalizedQuery);
                 }),
                 toArray()
               );
@@ -524,8 +534,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       // multiple searches
       query = tokenize(
         query as string,
-        null,
-        null,
+        void 0,
+        void 0,
         this.typeaheadMultipleSearchDelimiters
       );
     }
@@ -563,7 +573,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     return match.indexOf(test) >= 0;
   }
 
-  protected finalizeAsyncCall(matches: TypeaheadOption[]): void {
+  protected finalizeAsyncCall(matches?: TypeaheadOption | TypeaheadOption[]): void {
     this.prepareMatches(matches || []);
 
     this.typeaheadLoading.emit(false);
@@ -595,7 +605,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
   }
 
-  protected prepareMatches(options: TypeaheadOption[]): void {
+  protected prepareMatches(options: TypeaheadOption | TypeaheadOption[]): void {
     const limited = options.slice(0, this.typeaheadOptionsLimit);
     const sorted = !this.typeaheadOrderBy ? limited : this.orderMatches(limited);
 
@@ -655,7 +665,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       return options;
     }
 
-    const { field, direction } = this.typeaheadOrderBy;
+    const { field, direction } = (this.typeaheadOrderBy || {});
 
     if (!direction || !(direction === 'asc' || direction === 'desc')) {
       console.error('typeaheadOrderBy direction has to equal "asc" or "desc". Please follow the documentation.');
