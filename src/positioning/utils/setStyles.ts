@@ -23,6 +23,7 @@ export function setStyles(element: HTMLElement | null, styles?: Record<string, s
       return;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (element.style as any)[prop] = String(styles[prop]) + unit;
   });
 }

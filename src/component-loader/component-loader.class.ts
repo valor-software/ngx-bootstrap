@@ -273,6 +273,7 @@ export class ComponentLoader<T> {
       registerHide();
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const toggle = (registerHide: any) => {
       this.isShown ? hide() : show(registerHide);
     };

@@ -89,6 +89,7 @@ export class DayPickerComponent implements OnInit {
   title?: string;
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   rows: any = [];
   weekNumbers: number[] = [];
   datePicker: DatePickerInnerComponent;
