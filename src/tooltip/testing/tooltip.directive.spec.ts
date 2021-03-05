@@ -35,10 +35,9 @@ const overTemplate = `
      <button class="btn btn-danger" id="hideTooltipBtn" (click)="tooltip.hide()">Hide tooltip</button>
    </p>`;
 
-xdescribe('Directives: Tooltips', () => {
+describe('Directives: Tooltips', () => {
   let fixture: ComponentFixture<TestTooltipComponent>;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let context: any;
+  let context: TestTooltipComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -53,25 +52,19 @@ xdescribe('Directives: Tooltips', () => {
     fixture.detectChanges();
   });
 
-/*  afterEach(() => {
-    fixture = undefined;
-    context = undefined;
-  });*/
-
   it('tooltip should not be displayed until user does not any actions', () => {
     const element: HTMLElement = fixture.debugElement.nativeElement;
     expect(element.querySelector('.tooltip-inner')).toBeNull();
   });
 
-  it(
-    'tooltip should be displayed by focus event after 0 ms by default',
-    fakeAsync(() => {
+  it('tooltip should be displayed by focus event after 0 ms by default', fakeAsync(() => {
       const element: HTMLElement = fixture.debugElement.nativeElement;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const tooltipElement: any = element.querySelector('#testing-tooltip1');
+      const tooltipElement = element.querySelector('#testing-tooltip1') as HTMLElement;
+      expect(tooltipElement).toBeDefined();
+      if (!tooltipElement) {
+        return;
+      }
       tooltipElement.focus();
-      fixture.detectChanges();
-      tick(0);
       fixture.detectChanges();
       expect(element.querySelector('.tooltip-inner')).not.toBeNull();
     })
@@ -83,8 +76,11 @@ xdescribe('Directives: Tooltips', () => {
       const element: HTMLElement = fixture.debugElement.nativeElement;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const tooltipElement: any = element.querySelector('#testing-tooltip1');
-      context._delay = 1000;
+      context.delay = 1000;
       fixture.detectChanges();
+      if (!tooltipElement) {
+        return;
+      }
       tooltipElement.focus();
       fixture.detectChanges();
       tick(1100);
@@ -93,12 +89,15 @@ xdescribe('Directives: Tooltips', () => {
     })
   );
 
-  xit(
+  it(
     'tooltip should be displayed by mouseenter event',
     fakeAsync(() => {
       const element: HTMLElement = fixture.debugElement.nativeElement;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const tooltipElement: any = element.querySelector('#testing-tooltip1');
+      if (!tooltipElement) {
+        return;
+      }
       fireEvent(tooltipElement, 'mouseenter');
       fixture.detectChanges();
       tick(context.delay);
