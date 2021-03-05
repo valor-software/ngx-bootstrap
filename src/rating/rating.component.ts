@@ -33,7 +33,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   /** if true will not react on any user events */
   @Input() readonly = false;
   /** array of icons titles, default: (["one", "two", "three", "four", "five"]) */
-  @Input() titles?: string[];
+  @Input() titles: string[] = [];
   /** custom template for icons */
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @Input() customTemplate?: TemplateRef<any>;
@@ -67,7 +67,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   }
 
   ngOnInit(): void {
-    this.max = typeof this.max !== 'undefined' ? this.max : 5;
+    this.max = this.max || 5;
     this.titles =
       typeof this.titles !== 'undefined' && this.titles.length > 0
         ? this.titles
@@ -124,10 +124,6 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
 
   protected buildTemplateObjects(max: number): RatingResults[] {
     const result: RatingResults[] = [];
-
-    if (!this.titles || !this.titles.length) {
-      return result;
-    }
 
     for (let i = 0; i < max; i++) {
       result.push({
