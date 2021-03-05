@@ -80,7 +80,7 @@ export function bsDatepickerReducer(state = initialDatepickerState,
     }
 
     case BsDatepickerActions.SELECT: {
-      if (!state.view || !state.minDate || !state.maxDate) {
+      if (!state.view) {
         return state;
       }
 
@@ -131,7 +131,7 @@ export function bsDatepickerReducer(state = initialDatepickerState,
 
     // date range picker
     case BsDatepickerActions.SELECT_RANGE: {
-      if (!state.view || !state.minDate || !state.maxDate) {
+      if (!state.view) {
         return state;
       }
 
@@ -180,7 +180,7 @@ export function bsDatepickerReducer(state = initialDatepickerState,
 }
 
 function calculateReducer(state: BsDatepickerState): BsDatepickerState {
-  if (!state.view || !state.minDate || !state.maxDate) {
+  if (!state.view) {
     return state;
   }
 
@@ -257,11 +257,11 @@ function calculateReducer(state: BsDatepickerState): BsDatepickerState {
 }
 
 function formatReducer(state: BsDatepickerState): BsDatepickerState {
-  if (!state.view || !state.monthsModel) {
+  if (!state.view) {
     return state;
   }
 
-  if (state.view.mode === 'day') {
+  if (state.view.mode === 'day' && state.monthsModel) {
     const formattedMonths = state.monthsModel.map((month, monthIndex) =>
       formatDaysCalendar(month, getFormatOptions(state), monthIndex)
     );
@@ -315,12 +315,12 @@ function formatReducer(state: BsDatepickerState): BsDatepickerState {
 }
 
 function flagReducer(state: BsDatepickerState): BsDatepickerState {
-  if (!state.view || !state.minDate || !state.maxDate || !state.formattedMonths) {
+  if (!state.view) {
     return state;
   }
 
   const displayMonths = isDisplayOneMonth(state.view.date, state.minDate, state.maxDate) ? 1 : state.displayMonths;
-  if (state.view.mode === 'day') {
+  if (state.formattedMonths && state.view.mode === 'day') {
     const flaggedMonths = state.formattedMonths.map(
       (formattedMonth, monthIndex) =>
         flagDaysCalendar(formattedMonth, {
@@ -403,7 +403,7 @@ function navigateOffsetReducer(state: BsDatepickerState, action: Action): BsDate
 }
 
 function shiftViewDate(state: BsDatepickerState, action: Action): Date | undefined {
-  if (!state.view || !state.minMode) {
+  if (!state.view) {
     return;
   }
 
@@ -429,7 +429,7 @@ function getFormatOptions(state: BsDatepickerState): DatepickerFormatOptions {
     monthLabel: state.monthLabel,
     yearLabel: state.yearLabel,
 
-    weekNumber: state.weekNumbers
+    weekNumbers: state.weekNumbers
   };
 }
 
@@ -439,7 +439,7 @@ function getFormatOptions(state: BsDatepickerState): DatepickerFormatOptions {
  * if minDate>currentDate (default view value), show minDate
  * if maxDate<currentDate(default view value) show maxDate
  */
-function getViewDate(viewDate: Date | Date[], minDate: Date, maxDate: Date) {
+function getViewDate(viewDate: Date | Date[], minDate?: Date, maxDate?: Date) {
   const _date = Array.isArray(viewDate) ? viewDate[0] : viewDate;
 
   if (minDate && isAfter(minDate, _date, 'day')) {
@@ -453,7 +453,7 @@ function getViewDate(viewDate: Date | Date[], minDate: Date, maxDate: Date) {
   return _date;
 }
 
-function isDisplayOneMonth(viewDate: Date, minDate: Date, maxDate: Date) {
+function isDisplayOneMonth(viewDate: Date, minDate?: Date, maxDate?: Date) {
   if (maxDate && isSame(maxDate, viewDate, 'day')) {
     return true;
   }

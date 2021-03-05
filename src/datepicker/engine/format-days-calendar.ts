@@ -22,7 +22,7 @@ export function formatDaysCalendar(daysCalendar: DaysCalendarModel,
     ),
     weekNumbers: getWeekNumbers(
       daysCalendar.daysMatrix,
-      formatOptions.weekNumber,
+      formatOptions.weekNumbers,
       formatOptions.locale
     ),
     weekdays: getShiftedWeekdays(formatOptions.locale),

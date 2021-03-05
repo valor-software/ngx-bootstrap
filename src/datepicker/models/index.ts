@@ -95,7 +95,7 @@ export interface DatepickerFormatOptions {
   monthLabel?: string;
   yearLabel?: string;
 
-  weekNumber?: string;
+  weekNumbers?: string;
 }
 
 export interface DatepickerRenderOptions {
