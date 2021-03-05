@@ -21,7 +21,7 @@ import { BsDropdownDirective } from './bs-dropdown.directive';
   }
 })
 export class BsDropdownToggleDirective implements OnDestroy {
-  @HostBinding('attr.disabled') isDisabled = false;
+  @HostBinding('attr.disabled') isDisabled: undefined | true;
   @HostBinding('attr.aria-expanded') isOpen = false;
 
   private _subscriptions: Subscription[] = [];
@@ -69,7 +69,7 @@ export class BsDropdownToggleDirective implements OnDestroy {
     // populate disabled state
     this._subscriptions.push(
       this._state.isDisabledChange
-        .subscribe((value: boolean) => this.isDisabled = value)
+        .subscribe((value: boolean) => this.isDisabled = value || void 0)
     );
   }
 
