@@ -7,12 +7,13 @@ import {
   Input,
   OnInit,
   Output,
-  Provider, TemplateRef
+  Provider,
+  TemplateRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ConfigModel, PagesModel, PaginationLinkContext, PaginationNumberLinkContext } from './models';
 
 import { PaginationConfig } from './pagination.config';
-import { ConfigModel, PagesModel, PaginationLinkContext, PaginationNumberLinkContext } from './models';
 
 export interface PageChangedEvent {
   itemsPerPage: number;
@@ -35,7 +36,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   /** if `true` aligns each link to the sides of pager */
   @Input() align = true;
   /** limit number for page links in pager */
-  @Input() maxSize = 0;
+  @Input() maxSize?: number;
   /** if false first and last buttons will be hidden */
   @Input() boundaryLinks = false;
   /** if false previous and next buttons will be hidden */
@@ -73,6 +74,24 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
    * with current page index and number of items per page
    */
   @Output() pageChanged = new EventEmitter<PageChangedEvent>();
+  onChange = Function.prototype;
+  onTouched = Function.prototype;
+  classMap = '';
+  pages?: PagesModel[];
+  protected inited = false;
+
+  constructor(
+    private elementRef: ElementRef,
+    paginationConfig: PaginationConfig,
+    private changeDetection: ChangeDetectorRef
+  ) {
+    this.elementRef = elementRef;
+    if (!this.config) {
+      this.configureOptions(paginationConfig.main);
+    }
+  }
+
+  protected _itemsPerPage = 10;
 
   /** maximum number of items per page. If value less than 1 will display all items on one page */
   @Input()
@@ -85,6 +104,8 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     this.totalPages = this.calculateTotalPages();
   }
 
+  protected _totalItems = 0;
+
   /** total number of items in all pages */
   @Input()
   get totalItems(): number {
@@ -96,6 +117,8 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     this.totalPages = this.calculateTotalPages();
   }
 
+  protected _totalPages = 0;
+
   get totalPages(): number {
     return this._totalPages;
   }
@@ -106,6 +129,12 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     if (this.inited) {
       this.selectPage(this.page);
     }
+  }
+
+  protected _page = 1;
+
+  get page(): number {
+    return this._page;
   }
 
   set page(value: number) {
@@ -123,33 +152,6 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     });
   }
 
-  get page(): number {
-    return this._page;
-  }
-
-  onChange = Function.prototype;
-  onTouched = Function.prototype;
-
-  classMap = '';
-  pages?: PagesModel[];
-
-  protected _itemsPerPage = 0;
-  protected _totalItems = 0;
-  protected _totalPages = 0;
-  protected inited = false;
-  protected _page = 1;
-
-  constructor(
-    private elementRef: ElementRef,
-    paginationConfig: PaginationConfig,
-    private changeDetection: ChangeDetectorRef
-  ) {
-    this.elementRef = elementRef;
-    if (!this.config) {
-      this.configureOptions(paginationConfig.main);
-    }
-  }
-
   configureOptions(config: Partial<ConfigModel>): void {
     this.config = Object.assign({}, config);
   }
@@ -159,7 +161,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
       this.classMap = this.elementRef.nativeElement.getAttribute('class') || '';
     }
     // watch for maxSize
-    this.maxSize =
+/*    this.maxSize =
       typeof this.maxSize !== 'undefined' ? this.maxSize : this.config?.maxSize || 0;
     this.rotate =
       !!(typeof this.rotate !== 'undefined' ? this.rotate : this.config?.rotate);
@@ -174,13 +176,13 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     this.pageBtnClass =
       typeof this.pageBtnClass !== 'undefined'
         ? this.pageBtnClass
-        : this.config?.pageBtnClass || '';
+        : this.config?.pageBtnClass || '';*/
 
     // base class
-    this.itemsPerPage =
+/*    this.itemsPerPage =
       typeof this.itemsPerPage !== 'undefined'
         ? this.itemsPerPage
-        : this.config?.itemsPerPage || 0;
+        : this.config?.itemsPerPage || 0;*/
     this.totalPages = this.calculateTotalPages();
     // this class
     this.pages = this.getPages(this.page, this.totalPages);
@@ -248,7 +250,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
       typeof this.maxSize !== 'undefined' && this.maxSize < totalPages;
 
     // recompute if maxSize
-    if (isMaxSized) {
+    if (isMaxSized && this.maxSize) {
       if (this.rotate) {
         // Current page is displayed in the middle of the visible ones
         startPage = Math.max(currentPage - Math.floor(this.maxSize / 2), 1);
