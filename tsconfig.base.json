@@ -21,7 +21,7 @@
     }
   },
   "exclude": [
-    "node_modules",
+    "node_modules/!(ngx-bootstrap)",
     "tmp"
   ]
 }

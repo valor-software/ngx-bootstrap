@@ -76,7 +76,7 @@ export class TabsetComponent implements OnDestroy {
 
   addTab(tab: TabDirective): void {
     this.tabs.push(tab);
-    tab.active = this.tabs.length === 1 && typeof tab.active === 'undefined';
+    tab.active = this.tabs.length === 1 && !tab.active;
   }
 
   removeTab(
