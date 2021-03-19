@@ -91,7 +91,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /**
    * Emits an event when the tooltip is hidden
    */
-    @Output() onHidden: EventEmitter<unknown>;
+  @Output() onHidden: EventEmitter<unknown>;
 
   /** @deprecated - please use `tooltip` instead */
   @Input('tooltipHtml')

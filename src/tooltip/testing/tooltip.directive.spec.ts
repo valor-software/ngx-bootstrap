@@ -16,7 +16,7 @@ const overTemplate = `
     <div class="form-group">
       <label>Or use custom triggers, like focus: </label>
       <input type="text" name="clickMe" id="test-tooltip1" value="Click me!"
-      [tooltipPopupDelay] = "delay" tooltip="See? Now click away..."  triggers="focus"  class="form-control" />
+      [delay] = "delay" tooltip="See? Now click away..."  triggers="focus mouseenter"  class="form-control" />
     </div>
 
     <div class="form-group" ngClass="{'has-error' : !inputModel}">
@@ -29,8 +29,7 @@ const overTemplate = `
 
     <p>
     Programatically show/hide tooltip
-     <a href="#" [tooltip]="'Foo'"
-                 #tooltip="bs-tooltip">Check me out!</a>
+     <a href="#" tooltip="Foo" #tooltip="bs-tooltip">Check me out!</a>
      <button class="btn btn-primary" id="showTooltipBtn" (click)="tooltip.show()">Show tooltip</button>
      <button class="btn btn-danger" id="hideTooltipBtn" (click)="tooltip.hide()">Hide tooltip</button>
    </p>`;
@@ -59,11 +58,7 @@ describe('Directives: Tooltips', () => {
 
   it('tooltip should be displayed by focus event after 0 ms by default', fakeAsync(() => {
       const element: HTMLElement = fixture.debugElement.nativeElement;
-      const tooltipElement = element.querySelector('#testing-tooltip1') as HTMLElement;
-      expect(tooltipElement).toBeDefined();
-      if (!tooltipElement) {
-        return;
-      }
+      const tooltipElement = element.querySelector('#test-tooltip1') as HTMLElement;
       tooltipElement.focus();
       fixture.detectChanges();
       expect(element.querySelector('.tooltip-inner')).not.toBeNull();
@@ -74,11 +69,10 @@ describe('Directives: Tooltips', () => {
     'tooltip should be displayed after specified delay',
     fakeAsync(() => {
       const element: HTMLElement = fixture.debugElement.nativeElement;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const tooltipElement: any = element.querySelector('#testing-tooltip1');
-      context._delay = 1000;
+      const tooltipElement = element.querySelector('#test-tooltip1');
+      context.delay = 1000;
       fixture.detectChanges();
-      tooltipElement.focus();
+      (tooltipElement as any).focus();
       fixture.detectChanges();
       tick(1100);
       fixture.detectChanges();
@@ -86,12 +80,9 @@ describe('Directives: Tooltips', () => {
     })
   );
 
-  it(
-    'tooltip should be displayed by mouseenter event',
-    fakeAsync(() => {
+  it('tooltip should be displayed by mouseenter event', fakeAsync(() => {
       const element: HTMLElement = fixture.debugElement.nativeElement;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const tooltipElement: any = element.querySelector('#testing-tooltip1');
+      const tooltipElement: any = element.querySelector('#test-tooltip1') as HTMLElement;
       fireEvent(tooltipElement, 'mouseenter');
       fixture.detectChanges();
       tick(context.delay);
@@ -104,8 +95,7 @@ describe('Directives: Tooltips', () => {
     'tooltip should be displayed after user clicks on specified DOM element which refers to showing the tooltip',
     fakeAsync(() => {
       const element: Element = fixture.debugElement.nativeElement;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const showTooltipBtn: any = element.querySelector('#showTooltipBtn');
+      const showTooltipBtn = element.querySelector('#showTooltipBtn') as HTMLElement;
       showTooltipBtn.click();
       fixture.detectChanges();
       tick(context.delay);
@@ -118,8 +108,7 @@ describe('Directives: Tooltips', () => {
     'tooltip should be hidden after user clicks on specified DOM element which refers to hiding the tooltip',
     fakeAsync(() => {
       const element: Element = fixture.debugElement.nativeElement;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const showTooltipBtn: any = element.querySelector('#hideTooltipBtn');
+      const showTooltipBtn = element.querySelector('#hideTooltipBtn') as HTMLElement;
       showTooltipBtn.click();
       fixture.detectChanges();
       tick(context.delay);
