@@ -39,7 +39,7 @@ describe('Modal service', () => {
   });
 
   it('should replace modal setting by default', () => {
-    expect(modalService.config.ignoreBackdropClick).toBeFalsy();
+    expect(modalService.config.ignoreBackdropClick).toBeTruthy();
   });
 
   it('should be able to replace module defined default config on show', () => {

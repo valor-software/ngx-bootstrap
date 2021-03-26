@@ -23,8 +23,8 @@ export class SidebarComponent implements OnDestroy {
     return isBs3();
   }
 
-  routes: any = routes;
-  search: any = {};
+  routes = routes;
+  search = {text: ''};
 
   currentTheme: 'bs3' | 'bs4';
   scrollSubscription: Subscription;

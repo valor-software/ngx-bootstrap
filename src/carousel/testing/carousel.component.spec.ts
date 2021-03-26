@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+
+import '../../../scripts/jest/toHaveCssClass';
 import { CarouselModule } from '../index';
 
-@Component({selector: 'carousel-test', template: ''})
+@Component({ selector: 'carousel-test', template: '' })
 class TestCarouselComponent {
   myInterval = 5000;
   noWrapSlides = false;
@@ -11,26 +13,26 @@ class TestCarouselComponent {
   singleSlideOffset = false;
   startFromIndex = 0;
 
-  slides: {image: string, text: string, active?: boolean}[] = [
-    {image: '//placekitten.com/600/300', text: 'slide0'},
-    {image: '//placekitten.com/600/300', text: 'slide1'},
-    {image: '//placekitten.com/600/300', text: 'slide2'},
-    {image: '//placekitten.com/600/300', text: 'slide3'},
-    {image: '//placekitten.com/600/300', text: 'slide4'},
-    {image: '//placekitten.com/600/300', text: 'slide5'}
+  slides: { image: string, text: string, active?: boolean }[] = [
+    { image: '//placekitten.com/600/300', text: 'slide0' },
+    { image: '//placekitten.com/600/300', text: 'slide1' },
+    { image: '//placekitten.com/600/300', text: 'slide2' },
+    { image: '//placekitten.com/600/300', text: 'slide3' },
+    { image: '//placekitten.com/600/300', text: 'slide4' },
+    { image: '//placekitten.com/600/300', text: 'slide5' }
   ];
 }
 
 const html = `
-  <div id="c1">
-    <carousel [interval]="myInterval"
-              [noWrap]="noWrapSlides"
-              [showIndicators]="showIndicators"
-              [itemsPerSlide]="itemsPerSlide">
-      <slide *ngFor="let slide of slides; let index=index"
-             [active]="slide.active">
-        <img [src]="slide.image" style="margin:auto;" alt='slide image'>
-        <div class="carousel-caption">
+  <div id='c1'>
+    <carousel [interval]='myInterval'
+              [noWrap]='noWrapSlides'
+              [showIndicators]='showIndicators'
+              [itemsPerSlide]='itemsPerSlide'>
+      <slide *ngFor='let slide of slides; let index=index'
+             [active]='slide.active'>
+        <img [src]='slide.image' style='margin:auto;' alt='slide image'>
+        <div class='carousel-caption'>
           <h4>Slide {{index}}</h4>
           <p>{{slide.text}}</p>
         </div>
@@ -38,7 +40,7 @@ const html = `
     </carousel>
   </div>
 
-  <div id="c2">
+  <div id='c2'>
     <carousel>
       <slide>slide1</slide>
       <slide>slide2</slide>
@@ -71,13 +73,19 @@ describe('Component: Carousel', () => {
   let context: TestCarouselComponent;
   let element;
 
+  const stableAct = (action) => {
+    action();
+    fixture.detectChanges();
+    return fixture.whenStable();
+  };
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestCarouselComponent],
       imports: [CarouselModule]
     });
     TestBed.overrideComponent(TestCarouselComponent, {
-      set: {template: html}
+      set: { template: html }
     });
     fixture = TestBed.createComponent(TestCarouselComponent);
     context = fixture.componentInstance;
@@ -112,10 +120,13 @@ describe('Component: Carousel', () => {
     context.slides.splice(0, 5);
     fixture.detectChanges();
     expect(context.slides.length).toBe(1);
+
     const indicators = element.querySelectorAll('ol.carousel-indicators > li');
     expect(indicators.length).toBe(0);
+
     const prev = element.querySelectorAll('a.left');
     expect(prev.length).toBe(0);
+
     const next = element.querySelectorAll('a.right');
     expect(next.length).toBe(0);
   });
@@ -227,51 +238,42 @@ describe('Component: Carousel', () => {
     expectActiveSlides(element, [false, false, true, false, false, false]);
   });
 
-  it('Multilist: should shift visible slides on carousel control click' +
-  'by number equal to itemsPerSlide value', () => fakeAsync(() => {
-    context.itemsPerSlide = 3;
-    fixture.detectChanges();
-    tick();
-
-    const prev = element.querySelector('a.left');
-    const next = element.querySelector('a.right');
-
-    expectActiveSlides(element, [true, true, true, false, false, false]);
-
-    next.click();
-    fixture.detectChanges();
-    expectActiveSlides(element, [false, false, false, true, true, true]);
-
-    next.click();
-    fixture.detectChanges();
-    expectActiveSlides(element, [true, true, true, false, false, false]);
-
-    prev.click();
-    fixture.detectChanges();
-    expectActiveSlides(element, [false, false, false, true, true, true]);
-  }));
-
-  it('Multilist: should select slides on carousel via indicator', () => fakeAsync(() => {
+  it('Multilist: should select slides on carousel via indicator', fakeAsync(() => {
     const indicators = element.querySelectorAll('ol.carousel-indicators > li');
 
     context.itemsPerSlide = 3;
 
     fixture.detectChanges();
-    tick();
 
-    expectActiveSlides(element, [true, true, true, false, false, false]);
+    fixture.whenStable()
+      .then(() => expectActiveSlides(element, [true, true, true, false, false, false]))
 
-    indicators[2].click();
+      .then(() => stableAct(() => indicators[2].click()))
+      .then(() => expectActiveSlides(element, [true, true, true, false, false, false]))
+
+      .then(() => stableAct(() => indicators[3].click()))
+      .then(() => expectActiveSlides(element, [false, false, false, true, true, true]));
+  }));
+
+  it('Multilist: should shift visible slides on carousel control click' +
+    'by number equal to itemsPerSlide value', fakeAsync(() => {
+    context.itemsPerSlide = 3;
     fixture.detectChanges();
-    expectActiveSlides(element, [true, true, true, false, false, false]);
+    const prev = element.querySelector('a.left');
+    const next = element.querySelector('a.right');
 
-    indicators[3].click();
-    fixture.detectChanges();
-    expectActiveSlides(element, [false, false, false, true, true, true]);
+    fixture.whenStable()
+      .then(() => expectActiveSlides(element, [true, true, true, false, false, false]))
+      .then(() => stableAct(() => next.click()))
+      .then(() => expectActiveSlides(element, [false, false, false, true, true, true]))
+      .then(() => stableAct(() => next.click()))
+      .then(() => expectActiveSlides(element, [true, true, true, false, false, false]))
+      .then(() => stableAct(() => prev.click()))
+      .then(() => expectActiveSlides(element, [false, false, false, true, true, true]));
   }));
 
   it('Multilist: carousel should not shifts if noWrap is false' +
-  'last or first items are visible', () => fakeAsync(() => {
+    'last or first items are visible', fakeAsync(() => {
     context.itemsPerSlide = 3;
     fixture.detectChanges();
     context.noWrapSlides = false;
@@ -282,62 +284,43 @@ describe('Component: Carousel', () => {
     const prev = element.querySelector('a.left');
     const next = element.querySelector('a.right');
 
-    expectActiveSlides(element, [true, true, true, false, false, false]);
-
-    next.click();
-    fixture.detectChanges();
-    expectActiveSlides(element, [false, false, false, true, true, true]);
-
-    next.click();
-    fixture.detectChanges();
-    expectActiveSlides(element, [false, false, false, true, true, true]);
-
-    prev.click();
-    fixture.detectChanges();
-    expectActiveSlides(element, [true, true, true, false, false, false]);
-
-    prev.click();
-    fixture.detectChanges();
-    expectActiveSlides(element, [true, true, true, false, false, false]);
+    fixture.whenStable()
+      .then(() => expectActiveSlides(element, [true, true, true, false, false, false]))
+      .then(() => stableAct(() => next.click()))
+      .then(() => expectActiveSlides(element, [false, false, false, true, true, true]))
+      .then(() => stableAct(() => next.click()))
+      .then(() => expectActiveSlides(element, [false, false, false, true, true, true]))
+      .then(() => prev.click())
+      .then(() => expectActiveSlides(element, [true, true, true, false, false, false]))
+      .then(() => prev.click())
+      .then(() => expectActiveSlides(element, [true, true, true, false, false, false]));
   }));
 
-  it('Multilist: carousel should shifts by 1 one item if singleSlideOffset is true', () => fakeAsync(() => {
+  it('Multilist: carousel should shifts by 1 one item if singleSlideOffset is true', fakeAsync(() => {
     context.itemsPerSlide = 3;
-    fixture.detectChanges();
-
     context.singleSlideOffset = true;
     fixture.detectChanges();
 
-    tick();
-
     const next = element.querySelector('a.right');
 
-    expectActiveSlides(element, [true, true, true, false, false, false]);
-
-    next.click();
-    fixture.detectChanges();
-    expectActiveSlides(element, [false, true, true, true, false, false]);
-
-    next.click();
-    fixture.detectChanges();
-    expectActiveSlides(element, [false, false, true, true, true, false]);
+    fixture.whenStable()
+      .then(() => expectActiveSlides(element, [true, true, true, false, false, false]))
+      .then(() => stableAct(() => next.click()))
+      .then(() => expectActiveSlides(element, [false, true, true, true, false, false]))
+      .then(() => stableAct(() => next.click()))
+      .then(() => expectActiveSlides(element, [false, false, true, true, true, false]));
   }));
 
-  it('Multilist: carousel should starts from specific index if fromStartIndex is defined', () => fakeAsync(() => {
+  it('Multilist: carousel should starts from specific index if fromStartIndex is defined', fakeAsync(() => {
     context.itemsPerSlide = 3;
-    fixture.detectChanges();
-
     context.startFromIndex = 5;
     fixture.detectChanges();
 
-    tick();
-
     const next = element.querySelector('a.right');
 
-    expectActiveSlides(element, [true, true, false, false, false, true]);
-
-    next.click();
-    fixture.detectChanges();
-    expectActiveSlides(element, [true, true, true, false, false, false]);
+    fixture.whenStable()
+      .then(() => expectActiveSlides(element, [true, true, false, false, false, true]))
+      .then(() => stableAct(() => next.click()))
+      .then(() => expectActiveSlides(element, [true, true, true, false, false, false]));
   }));
-});
+})

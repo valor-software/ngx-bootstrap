@@ -112,9 +112,7 @@ jobs:
       # end: npm ci && build
 
       - run: npm run lint -- --runner cloud
-        continue-on-error: true
       - run: npm test --  --runner cloud
-        continue-on-error: true
 
   e2e_full:
     name: Cypress run
@@ -153,7 +151,6 @@ jobs:
       # end: npm ci && build
 
       - name: full e2e
-        continue-on-error: true
         run: npx nx run ngx-bootstrap-docs-e2e:e2e --runner cloud --cypressConfig ./apps/ngx-bootstrap-docs-e2e/cypress-full.json --record --group full --baseUrl=${{ GH_PAGES_URI }}/ngx-bootstrap/ -- --parallel
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves

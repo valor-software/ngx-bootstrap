@@ -2,7 +2,7 @@ import { BaseComponent } from './base.component';
 
 export class LandingPo extends BaseComponent {
   pageUrl = '/';
-  documentationUrl = '/documentation';
+  documentationUrl = '/documentation/';
 
   mainClass = '.main';
   logoAtHeader = '.logo';
@@ -33,7 +33,7 @@ export class LandingPo extends BaseComponent {
 
   isNavigateBtnExist(btnName: string) {
     cy.get(this.navBtn).contains(btnName)
-      .should('be.enabled');
+      .should('exist');
   }
 
   clickOnMobileMenuBtn() {

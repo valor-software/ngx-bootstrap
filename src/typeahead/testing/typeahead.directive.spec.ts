@@ -256,10 +256,10 @@ describe('Directive: Typeahead', () => {
     it(
       'should result in 2 header matches, when "Ala" is entered',
       fakeAsync(() => {
-        expect(directive.matches).toContain(
+        expect(directive.matches).toContainEqual(
           new TypeaheadMatch('South', 'South', true)
         );
-        expect(directive.matches).toContain(
+        expect(directive.matches).toContainEqual(
           new TypeaheadMatch('West', 'West', true)
         );
       })
@@ -268,13 +268,13 @@ describe('Directive: Typeahead', () => {
     it(
       'should result in 2 item matches, when "Ala" is entered',
       fakeAsync(() => {
-        expect(directive.matches).toContain(
+        expect(directive.matches).toContainEqual(
           new TypeaheadMatch(
             { id: 1, name: 'Alabama', region: 'South' },
             'Alabama'
           )
         );
-        expect(directive.matches).toContain(
+        expect(directive.matches).toContainEqual(
           new TypeaheadMatch(
             { id: 2, name: 'Alaska', region: 'West' },
             'Alaska'
@@ -328,13 +328,13 @@ describe('Directive: Typeahead', () => {
     );
 
     it('should result in 2 item matches, when "Ala" is entered', fakeAsync(() => {
-        expect(directive.matches).toContain(
+        expect(directive.matches).toContainEqual(
           new TypeaheadMatch(
             { id: 1, name: 'Alabama', region: 'South' },
             'Alabama'
           )
         );
-        expect(directive.matches).toContain(
+        expect(directive.matches).toContainEqual(
           new TypeaheadMatch(
             { id: 2, name: 'Alaska', region: 'West' },
             'Alaska'
@@ -558,22 +558,28 @@ describe('Directive: Typeahead', () => {
         it('and typeaheadOrderBy is empty object, shouldn\'t break the app',
           fakeAsync(() => {
             directive.typeaheadOrderBy = {} as TypeaheadOrder;
+            console.error = jest.fn();
+
             dispatchTouchEvent(inputElement, 'input');
             fixture.detectChanges();
             tick(100);
 
             expect(directive.matches.length).toBe(2);
+            expect(console.error).toHaveBeenCalled();
           })
         );
 
         it('and order direction is not equal "asc" or "desc", shouldn\'t break the app',
           fakeAsync(() => {
             directive.typeaheadOrderBy = { direction: 'test' as 'asc' };
+            console.error = jest.fn();
+
             dispatchTouchEvent(inputElement, 'input');
             fixture.detectChanges();
             tick(100);
 
             expect(directive.matches.length).toBe(2);
+            expect(console.error).toHaveBeenCalled();
           })
         );
 
@@ -629,6 +635,7 @@ describe('Directive: Typeahead', () => {
           'and order direction "desc", order field is null. 1st - Alabama, 2sd - Alaska. Lack of the field doesn\'t affect the result',
           fakeAsync(() => {
             directive.typeaheadOrderBy = { direction: 'desc', field: null };
+            console.error = jest.fn();
             dispatchTouchEvent(inputElement, 'input');
             fixture.detectChanges();
             tick(100);
@@ -636,6 +643,7 @@ describe('Directive: Typeahead', () => {
             expect(directive.matches.length).toBe(2);
             expect(directive.matches[0].item.name).toBe('Alabama');
             expect(directive.matches[1].item.name).toBe('Alaska');
+            expect(console.error).toHaveBeenCalled();
           })
         );
 
