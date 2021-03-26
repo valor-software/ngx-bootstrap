@@ -1100,6 +1100,11 @@ export const ngdoc: any = {
         "description": "<p>Default mode for all date pickers</p>\n"
       },
       {
+        "name": "preventChangeToNextMonth",
+        "type": "boolean",
+        "description": "<p>Prevents change to next month after first date pick in right calendar (dateRangePicker only)</p>\n"
+      },
+      {
         "name": "rangeInputFormat",
         "defaultValue": "L",
         "type": "string",
