@@ -177,7 +177,7 @@ function calculateReducer(state: BsDatepickerState): BsDatepickerState {
     }
 
     state.monthViewOptions.firstDayOfWeek = getLocale(state.locale).firstDayOfWeek();
-    const monthsModel = new Array(displayMonths);
+    let monthsModel = new Array(displayMonths);
     for (let monthIndex = 0; monthIndex < displayMonths; monthIndex++) {
       // todo: for unlinked calendars it will be harder
       monthsModel[monthIndex] = calcDaysCalendar(
@@ -185,6 +185,18 @@ function calculateReducer(state: BsDatepickerState): BsDatepickerState {
         state.monthViewOptions
       );
       viewDate = shiftDate(viewDate, { month: 1 });
+    }
+    // Check if parameter enabled and check if it's not months navigation event
+    if (state.preventChangeToNextMonth && state.flaggedMonths && state.hoveredDate) {
+      const viewMonth = calcDaysCalendar(state.view.date, state.monthViewOptions);
+      // Check if viewed right month same as in flaggedMonths state, then override months model with flaggedMonths
+      if (state.flaggedMonths.length && state.flaggedMonths[1].month.getMonth() === viewMonth.month.getMonth()) {
+        monthsModel = state.flaggedMonths
+          .map(item => calcDaysCalendar(
+            item.month,
+            state.monthViewOptions
+          ));
+      }
     }
 
     return Object.assign({}, state, { monthsModel });
