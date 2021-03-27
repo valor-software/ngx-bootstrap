@@ -176,19 +176,15 @@ describe('Component: Accordion', () => {
 
     // Clicking (internal state modified)
     headingLinks[0].click();
-    tick();
     fixture.detectChanges();
-    expect(context.panels[0].isOpen).toBe(true);
-    expect(context.panels[1].isOpen).toBe(false);
-    expect(context.panels[2].isOpen).toBe(false);
+    expectOpenPanels(element, [true, false, false]);
 
     // State modified by parent component
+
     headingLinks[2].click();
-    tick();
     fixture.detectChanges();
-    expect(context.panels[0].isOpen).toBe(false);
-    expect(context.panels[1].isOpen).toBe(false);
-    expect(context.panels[2].isOpen).toBe(true);
+    expectOpenPanels(element, [false, false, true]);
+
 
     // Modified by binding
     context.panels[1].isOpen = true;
