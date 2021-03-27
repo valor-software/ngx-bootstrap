@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import '../../../../scripts/jest/toHaveCssClass';
 import { BsDatepickerConfig } from '../bs-datepicker.config';
 import { DayViewModel } from '../models';
 import { BsDatepickerDayDecoratorComponent } from '../themes/bs/bs-datepicker-day-decorator.directive';

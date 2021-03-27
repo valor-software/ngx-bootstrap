@@ -113,6 +113,6 @@ export class YearPickerComponent implements OnInit {
         (year - 1) / this.datePicker.yearRange * this.datePicker.yearRange + 1
       );
     }
-    return;
+    return undefined;
   }
 }

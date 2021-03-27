@@ -139,7 +139,7 @@ describe('Util: Timepicker-controls', () => {
   });
 
   it('canChangeMinutes method should validate and return false if no step', () => {
-    event.step = null;
+    event.step = 0;
 
     const result = canChangeMinutes(event, controls);
 
@@ -170,7 +170,7 @@ describe('Util: Timepicker-controls', () => {
   });
 
   it('canChangeSeconds method should validate and return false if no step', () => {
-    event.step = null;
+    event.step = 0;
 
     const result = canChangeSeconds(event, controls);
 
@@ -201,7 +201,7 @@ describe('Util: Timepicker-controls', () => {
   });
 
   it('timepickerControls method should return default data if no value', () => {
-    const result = timepickerControls(null, state);
+    const result = timepickerControls(undefined, state);
 
     expect(result).toEqual(controls);
   });
