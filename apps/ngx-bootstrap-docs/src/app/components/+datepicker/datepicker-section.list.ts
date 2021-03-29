@@ -51,6 +51,7 @@ import { DemoDateRangePickerDisplayOneMonth } from './demos/daterangepicker-disp
 import { DemoDatepickerTodayButtonComponent } from './demos/today-button/today-button';
 import { DemoDatepickerClearButtonComponent } from './demos/clear-button/clear-button';
 import { DemoDatepickerStartViewComponent } from "./demos/start-view/start-view";
+import { DemoDatepickerPreventChangeToNextMonthComponent } from './demos/prevent-change-to-next-month/prevent-change-to-next-month.component';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -409,6 +410,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/quick-select-ranges/quick-select-ranges.html'),
         description: `<p>Quick select ranges can be added to Daterangepicker using <code>ranges</code></p>`,
         outlet: DemoDatePickerQuickSelectRangesComponent
+      },
+      {
+        title: 'Prevent change to next month',
+        anchor: 'prevent-change-to-next-month',
+        component: require('!!raw-loader!./demos/prevent-change-to-next-month/prevent-change-to-next-month.component.ts'),
+        html: require('!!raw-loader!./demos/prevent-change-to-next-month/prevent-change-to-next-month.component.html'),
+        description: `<p>Pick some date from second month and it wont change to the next month</p>`,
+        outlet: DemoDatepickerPreventChangeToNextMonthComponent
       },
       {
         title: 'Previous month in Daterangepicker',
