@@ -6,11 +6,12 @@ import {
   HostBinding,
   HostListener,
   Inject,
-  Input, OnChanges,
-  OnInit,
+  Input,
+  OnChanges,
   Optional,
   Provider,
-  Renderer2, SimpleChanges
+  Renderer2,
+  SimpleChanges
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ButtonRadioGroupDirective } from './button-radio-group.directive';
@@ -148,10 +149,6 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnChanges {
   canToggle(): boolean {
     return !this.controlOrGroupDisabled && (this.uncheckable || this.btnRadio !== this.value);
   }
-
-  // ngOnInit(): void {
-  //   this.uncheckable = this.uncheckable && typeof this.uncheckable !== 'undefined';
-  // }
 
   ngOnChanges(changes: SimpleChanges) {
     if ('uncheckable' in changes) {
