@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -1187,19 +1188,23 @@ describe('Component: TimepickerComponent', () => {
       const hourA = 23;
       const hourAstr = '23';
 
-      // todo: remove = new Date()
-      let componentDateTime: Date = new Date();
+      let componentDateTime: Date;
       component.registerOnChange((newDateTime: Date) => {
         componentDateTime = newDateTime;
         return newDateTime;
       });
 
+      // @ts-ignore
       expect(componentDateTime).toBeUndefined();
       const testedTime = testTime(hourA);
       component.writeValue(testedTime);
 
       fixture.detectChanges();
 
+      // @ts-ignore
+      if (!componentDateTime) {
+        return expect(void 0).toBeDefined();
+      }
       expect(componentDateTime.getHours()).toBe(hourA);
       expect(inputHours.value).toBe(hourAstr);
 
@@ -1230,18 +1235,24 @@ describe('Component: TimepickerComponent', () => {
       const hourA = 0;
       const hourAstr = '00';
 
-      // todo: remove = new Date()
-      let componentDateTime: Date = new Date();
+      let componentDateTime: Date;
       component.registerOnChange((newDateTime: Date) => {
         componentDateTime = newDateTime;
 
         return newDateTime;
       });
+
+      // @ts-ignore
       expect(componentDateTime).toBeUndefined();
       const testedTime = testTime(hourA);
       component.writeValue(testedTime);
 
       fixture.detectChanges();
+
+      // @ts-ignore
+      if (!componentDateTime) {
+        return expect(void 0).toBeDefined();
+      }
 
       expect(componentDateTime.getHours()).toBe(hourA);
       expect(inputHours.value).toBe(hourAstr);
@@ -1273,18 +1284,24 @@ describe('Component: TimepickerComponent', () => {
       const minutesA = 59;
       const minutesAstr = '59';
 
-      // todo: remove = new Date()
-      let componentDateTime: Date = new Date();
+      let componentDateTime: Date;
       component.registerOnChange((newDateTime: Date) => {
         componentDateTime = newDateTime;
 
         return newDateTime;
       });
+      // @ts-ignore
       expect(componentDateTime).toBeUndefined();
+
       const testedTime = testTime(hourA, minutesA);
       component.writeValue(testedTime);
 
       fixture.detectChanges();
+
+      // @ts-ignore
+      if (!componentDateTime) {
+        return expect(void 0).toBeDefined();
+      }
 
       expect(componentDateTime.getHours()).toBe(hourA);
       expect(inputHours.value).toBe(hourAstr);
@@ -1321,18 +1338,24 @@ describe('Component: TimepickerComponent', () => {
       const minutesA = 1;
       const minutesAstr = '01';
 
-      // todo: remove = new Date()
-      let componentDateTime: Date = new Date();
+      let componentDateTime: Date;
       component.registerOnChange((newDateTime: Date) => {
         componentDateTime = newDateTime;
 
         return newDateTime;
       });
+      // @ts-ignore
       expect(componentDateTime).toBeUndefined();
+
       const testedTime = testTime(hourA, minutesA);
       component.writeValue(testedTime);
 
       fixture.detectChanges();
+
+      // @ts-ignore
+      if (!componentDateTime) {
+        return expect(void 0).toBeDefined();
+      }
 
       expect(componentDateTime.getHours()).toBe(hourA);
       expect(inputHours.value).toBe(hourAstr);
@@ -1372,18 +1395,24 @@ describe('Component: TimepickerComponent', () => {
       const secondsA = 59;
       const secondsAstr = '59';
 
-      // todo: remove = new Date()
-      let componentDateTime: Date = new Date();
+      let componentDateTime: Date;
       component.registerOnChange((newDateTime: Date) => {
         componentDateTime = newDateTime;
 
         return newDateTime;
       });
+      // @ts-ignore
       expect(componentDateTime).toBeUndefined();
+
       const testedTime = testTime(hourA, minutesA, secondsA);
       component.writeValue(testedTime);
 
       fixture.detectChanges();
+
+      // @ts-ignore
+      if (!componentDateTime) {
+        return expect(void 0).toBeDefined();
+      }
 
       expect(componentDateTime.getHours()).toBe(hourA);
       expect(inputHours.value).toBe(hourAstr);
@@ -1428,18 +1457,24 @@ describe('Component: TimepickerComponent', () => {
       const secondsA = 1;
       const secondsAstr = '01';
 
-      // todo: remove = new Date()
-      let componentDateTime: Date = new Date();
+      let componentDateTime: Date;
       component.registerOnChange((newDateTime: Date) => {
         componentDateTime = newDateTime;
 
         return newDateTime;
       });
+      // @ts-ignore
       expect(componentDateTime).toBeUndefined();
+
+
       const testedTime = testTime(hourA, minutesA, secondsA);
       component.writeValue(testedTime);
 
       fixture.detectChanges();
+      // @ts-ignore
+      if (!componentDateTime) {
+        return expect(void 0).toBeDefined();
+      }
 
       expect(componentDateTime.getHours()).toBe(hourA);
       expect(inputHours.value).toBe(hourAstr);
