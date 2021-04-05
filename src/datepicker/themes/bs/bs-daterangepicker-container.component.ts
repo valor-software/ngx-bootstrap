@@ -221,12 +221,11 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     let maxDateRange = new Date(currentSelection);
 
     if (this._config.maxDate) {
-      const maxDateValue = this._config.maxDate.getDate();
-      if (maxDateValue > (currentSelection.getDate() + (this._config.maxDateRange || 0))) {
-        maxDateRange = new Date(this._config.maxDate);
-      } else {
-        maxDateRange.setDate(currentSelection.getDate() + (this._config.maxDateRange || 0));
-      }
+      const maxDateValueInMilliseconds = this._config.maxDate.getTime();
+      const maxDateRangeInMilliseconds = currentSelection.getTime() + ((this._config.maxDateRange || 0) * 24 * 60 * 60 * 1000);
+      maxDateRange = maxDateRangeInMilliseconds > maxDateValueInMilliseconds ?
+        new Date(this._config.maxDate) :
+        new Date(maxDateRangeInMilliseconds);
     } else {
       maxDateRange.setDate(currentSelection.getDate() + (this._config.maxDateRange || 0));
     }
