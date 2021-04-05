@@ -6,11 +6,11 @@ import {
   HostBinding,
   HostListener,
   Inject,
-  Input,
+  Input, OnChanges,
   OnInit,
   Optional,
   Provider,
-  Renderer2
+  Renderer2, SimpleChanges
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ButtonRadioGroupDirective } from './button-radio-group.directive';
@@ -29,14 +29,14 @@ export const RADIO_CONTROL_VALUE_ACCESSOR: Provider = {
   selector: '[btnRadio]',
   providers: [RADIO_CONTROL_VALUE_ACCESSOR]
 })
-export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
+export class ButtonRadioDirective implements ControlValueAccessor, OnChanges {
   onChange = Function.prototype;
   onTouched = Function.prototype;
 
   /** Radio button value, will be set to `ngModel` */
   @Input() btnRadio?: string;
   /** If `true` — radio button can be unchecked */
-  @Input() uncheckable = true;
+  @Input() uncheckable = false;
   /** Current value of radio component or group */
   @Input()
   get value() {
@@ -149,8 +149,14 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
     return !this.controlOrGroupDisabled && (this.uncheckable || this.btnRadio !== this.value);
   }
 
-  ngOnInit(): void {
-    this.uncheckable = typeof this.uncheckable !== 'undefined';
+  // ngOnInit(): void {
+  //   this.uncheckable = this.uncheckable && typeof this.uncheckable !== 'undefined';
+  // }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if ('uncheckable' in changes) {
+      this.uncheckable = this.uncheckable !== false && typeof this.uncheckable !== 'undefined';
+    }
   }
 
   _onChange(value?: string): void {
