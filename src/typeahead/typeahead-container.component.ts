@@ -235,16 +235,12 @@ export class TypeaheadContainerComponent implements OnDestroy {
   }
 
   nextActiveMatch(): void {
-    if (!this._active){
-      return;
-    }
-
-    const index = this.matches.indexOf(this._active);
+    const index = this._active ? this.matches.indexOf(this._active) : -1;
     this.setActive(this.matches[
       index + 1 > this.matches.length - 1 ? 0 : index + 1
       ]);
 
-    if (this._active.isHeader()) {
+    if (this._active?.isHeader()) {
       this.nextActiveMatch();
     }
 

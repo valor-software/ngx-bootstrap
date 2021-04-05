@@ -21,7 +21,7 @@ interface State {
            [typeahead]='states'
            [typeaheadOptionField]="'name'"
            [adaptivePosition]='false'
-           (typeaheadOnBlur)='onBlurEvent()'>`
+           (typeaheadOnBlur)='onBlurEvent($event)'>`
 })
 class TestTypeaheadComponent {
   selectedState?: string;
@@ -41,8 +41,8 @@ class TestTypeaheadComponent {
     'Connecticut'
   ];
 
-  onBlurEvent() {
-    return undefined;
+  onBlurEvent(event: TypeaheadMatch) {
+    return event;
   }
 }
 
