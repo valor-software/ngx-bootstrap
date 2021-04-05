@@ -85,9 +85,12 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
   ]
 })
 export class DayPickerComponent implements OnInit {
-  labels = [];
-  title: string;
-  rows = [];
+  labels: {abbr?: unknown, full?: unknown}[] = [];
+  title?: string;
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  rows: any = [];
   weekNumbers: number[] = [];
   datePicker: DatePickerInnerComponent;
 
@@ -109,11 +112,16 @@ export class DayPickerComponent implements OnInit {
 
     this.datePicker.stepDay = { months: 1 };
 
+    // todo valorkin fix
     this.datePicker.setRefreshViewHandler(function(): void {
-      const year = this.activeDate.getFullYear();
-      const month = this.activeDate.getMonth();
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      // eslint-disable-next-line @typescript-eslint/no-this-alias
+      const that = this;
+      const year = that.activeDate.getFullYear();
+      const month = that.activeDate.getMonth();
       const firstDayOfMonth = new Date(year, month, 1);
-      const difference = this.startingDay - firstDayOfMonth.getDay();
+      const difference = that.startingDay - firstDayOfMonth.getDay();
       const numDisplayedFromPreviousMonth =
         difference > 0 ? 7 - difference : -difference;
       const firstDate = new Date(firstDayOfMonth.getTime());
@@ -126,33 +134,34 @@ export class DayPickerComponent implements OnInit {
       const _days: Date[] = self.getDates(firstDate, 42);
       const days = [];
       for (let i = 0; i < 42; i++) {
-        const _dateObject = this.createDateObject(_days[i], this.formatDay);
+        const _dateObject = that.createDateObject(_days[i], that.formatDay);
         _dateObject.secondary = _days[i].getMonth() !== month;
-        _dateObject.uid = this.uniqueId + '-' + i;
+        _dateObject.uid = that.uniqueId + '-' + i;
         days[i] = _dateObject;
       }
 
       self.labels = [];
       for (let j = 0; j < 7; j++) {
         self.labels[j] = {};
-        self.labels[j].abbr = this.dateFilter(
+        self.labels[j].abbr = that.dateFilter(
           days[j].date,
-          this.formatDayHeader
+          that.formatDayHeader
         );
-        self.labels[j].full = this.dateFilter(days[j].date, 'EEEE');
+        self.labels[j].full = that.dateFilter(days[j].date, 'EEEE');
       }
 
-      self.title = this.dateFilter(this.activeDate, this.formatDayTitle);
-      self.rows = this.split(days, 7);
+      self.title = that.dateFilter(that.activeDate, that.formatDayTitle);
+      self.rows = that.split(days, 7);
 
-      if (this.showWeeks) {
+      if (that.showWeeks) {
         self.weekNumbers = [];
-        const thursdayIndex = (4 + 7 - this.startingDay) % 7;
+        const thursdayIndex = (4 + 7 - that.startingDay) % 7;
         const numWeeks = self.rows.length;
         for (let curWeek = 0; curWeek < numWeeks; curWeek++) {
-          self.weekNumbers.push(
-            self.getISO8601WeekNumber(self.rows[curWeek][thursdayIndex].date)
-          );
+          const _date = self.rows[curWeek][thursdayIndex].date;
+          if (_date) {
+            self.weekNumbers.push(self.getISO8601WeekNumber(_date));
+          }
         }
       }
     }, 'day');

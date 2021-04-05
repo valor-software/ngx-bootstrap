@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { TimepickerActions, TimepickerComponent, TimepickerConfig, TimepickerModule } from '../index';
 
 import { fireEvent } from '../../../scripts/helpers';
 import '../../../scripts/jest/toHaveCssClass';
+import { TimepickerActions, TimepickerComponent, TimepickerConfig, TimepickerModule } from '../index';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getInputElements(fixture: any) {
@@ -169,13 +170,13 @@ describe('Component: TimepickerComponent', () => {
     });
 
     it('should change time period after click on AM/PM button', fakeAsync(() => {
-      expect(buttonMeridian.textContent.trim()).toBe(component.meridians[0]);
+      expect(buttonMeridian.textContent?.trim()).toBe(component.meridians[0]);
 
       buttonDebugMeridian.triggerEventHandler('click', null);
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        expect(buttonMeridian.textContent.trim()).toBe(component.meridians[1]);
+        expect(buttonMeridian.textContent?.trim()).toBe(component.meridians[1]);
       });
     }));
 
@@ -189,7 +190,7 @@ describe('Component: TimepickerComponent', () => {
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        expect(buttonMeridian.textContent.trim()).toBe(component.meridians[0]);
+        expect(buttonMeridian.textContent?.trim()).toBe(component.meridians[0]);
       });
     }));
 
@@ -203,7 +204,7 @@ describe('Component: TimepickerComponent', () => {
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        expect(buttonMeridian.textContent.trim()).toBe(component.meridians[1]);
+        expect(buttonMeridian.textContent?.trim()).toBe(component.meridians[1]);
       });
     }));
   });
@@ -985,7 +986,9 @@ describe('Component: TimepickerComponent', () => {
       component.hours = '10';
       component.showMeridian = false;
 
-      component.updateHours('99');
+      inputHours = getInputElements(fixture)[0];
+      (inputHours as HTMLInputElement).value = '99';
+      component.updateHours(inputHours);
 
       expect(methodSpy).toHaveBeenCalledWith(null);
             expect(component.isValid.emit).toHaveBeenCalledWith(false);
@@ -997,7 +1000,9 @@ describe('Component: TimepickerComponent', () => {
       spyOn(component.isValid, 'emit').and.stub();
       spyOn(component, 'isValidLimit').and.returnValue(false);
 
-      component.updateHours('19');
+      inputHours = getInputElements(fixture)[0];
+      (inputHours as HTMLInputElement).value = '19';
+      component.updateHours(inputHours);
 
       expect(methodSpy).toHaveBeenCalledWith(null);
             expect(component.isValid.emit).toHaveBeenCalledWith(false);
@@ -1009,7 +1014,9 @@ describe('Component: TimepickerComponent', () => {
       component.hours = '10';
       component.showMeridian = false;
 
-      component.updateHours('17');
+      inputHours = getInputElements(fixture)[0];
+      (inputHours as HTMLInputElement).value = '17';
+      component.updateHours(inputHours);
 
       expect(component.invalidHours).toEqual(false);
             expect(component._updateTime).toHaveBeenCalled();
@@ -1020,7 +1027,9 @@ describe('Component: TimepickerComponent', () => {
       spyOn(component.isValid, 'emit').and.stub();
       component.minutes = '10';
 
-      component.updateMinutes('99');
+      inputMinutes = getInputElements(fixture)[1];
+      (inputMinutes as HTMLInputElement).value = '99';
+      component.updateMinutes(inputMinutes);
 
       expect(methodSpy).toHaveBeenCalledWith(null);
             expect(component.isValid.emit).toHaveBeenCalledWith(false);
@@ -1031,7 +1040,9 @@ describe('Component: TimepickerComponent', () => {
       spyOn(component.isValid, 'emit').and.stub();
       spyOn(component, 'isValidLimit').and.returnValue(false);
 
-      component.updateMinutes('30');
+      inputMinutes = getInputElements(fixture)[1];
+      (inputMinutes as HTMLInputElement).value = '30';
+      component.updateMinutes(inputMinutes);
 
       expect(methodSpy).toHaveBeenCalledWith(null);
             expect(component.isValid.emit).toHaveBeenCalledWith(false);
@@ -1041,7 +1052,9 @@ describe('Component: TimepickerComponent', () => {
       spyOn(component, '_updateTime').and.stub();
       component.minutes = '10';
 
-      component.updateMinutes('30');
+      inputMinutes = getInputElements(fixture)[1];
+      (inputMinutes as HTMLInputElement).value = '30';
+      component.updateMinutes(inputMinutes);
 
       expect(component.invalidMinutes).toEqual(false);
             expect(component._updateTime).toHaveBeenCalled();
@@ -1053,7 +1066,9 @@ describe('Component: TimepickerComponent', () => {
       component.showSeconds = true;
       component.seconds = '10';
 
-      component.updateSeconds('99');
+      inputSeconds = getInputElements(fixture)[2];
+      (inputSeconds as HTMLInputElement).value = '99';
+      component.updateSeconds(inputSeconds);
 
       expect(methodSpy).toHaveBeenCalledWith(null);
             expect(component.isValid.emit).toHaveBeenCalledWith(false);
@@ -1064,7 +1079,10 @@ describe('Component: TimepickerComponent', () => {
       spyOn(component.isValid, 'emit').and.stub();
       spyOn(component, 'isValidLimit').and.returnValue(false);
 
-      component.updateSeconds('50');
+
+      inputSeconds = getInputElements(fixture)[2];
+      (inputSeconds as HTMLInputElement).value = '50';
+      component.updateSeconds(inputSeconds);
 
       expect(methodSpy).toHaveBeenCalledWith(null);
             expect(component.isValid.emit).toHaveBeenCalledWith(false);
@@ -1074,7 +1092,9 @@ describe('Component: TimepickerComponent', () => {
       spyOn(component, '_updateTime').and.stub();
       component.seconds = '10';
 
-      component.updateSeconds('30');
+      inputSeconds = getInputElements(fixture)[2];
+      (inputSeconds as HTMLInputElement).value = '30';
+      component.updateSeconds(inputSeconds);
 
       expect(component.invalidSeconds).toEqual(false);
             expect(component._updateTime).toHaveBeenCalled();
@@ -1171,15 +1191,20 @@ describe('Component: TimepickerComponent', () => {
       let componentDateTime: Date;
       component.registerOnChange((newDateTime: Date) => {
         componentDateTime = newDateTime;
-
         return newDateTime;
       });
+
+      // @ts-ignore
       expect(componentDateTime).toBeUndefined();
       const testedTime = testTime(hourA);
       component.writeValue(testedTime);
 
       fixture.detectChanges();
 
+      // @ts-ignore
+      if (!componentDateTime) {
+        return expect(void 0).toBeDefined();
+      }
       expect(componentDateTime.getHours()).toBe(hourA);
       expect(inputHours.value).toBe(hourAstr);
 
@@ -1216,11 +1241,18 @@ describe('Component: TimepickerComponent', () => {
 
         return newDateTime;
       });
+
+      // @ts-ignore
       expect(componentDateTime).toBeUndefined();
       const testedTime = testTime(hourA);
       component.writeValue(testedTime);
 
       fixture.detectChanges();
+
+      // @ts-ignore
+      if (!componentDateTime) {
+        return expect(void 0).toBeDefined();
+      }
 
       expect(componentDateTime.getHours()).toBe(hourA);
       expect(inputHours.value).toBe(hourAstr);
@@ -1258,11 +1290,18 @@ describe('Component: TimepickerComponent', () => {
 
         return newDateTime;
       });
+      // @ts-ignore
       expect(componentDateTime).toBeUndefined();
+
       const testedTime = testTime(hourA, minutesA);
       component.writeValue(testedTime);
 
       fixture.detectChanges();
+
+      // @ts-ignore
+      if (!componentDateTime) {
+        return expect(void 0).toBeDefined();
+      }
 
       expect(componentDateTime.getHours()).toBe(hourA);
       expect(inputHours.value).toBe(hourAstr);
@@ -1305,11 +1344,18 @@ describe('Component: TimepickerComponent', () => {
 
         return newDateTime;
       });
+      // @ts-ignore
       expect(componentDateTime).toBeUndefined();
+
       const testedTime = testTime(hourA, minutesA);
       component.writeValue(testedTime);
 
       fixture.detectChanges();
+
+      // @ts-ignore
+      if (!componentDateTime) {
+        return expect(void 0).toBeDefined();
+      }
 
       expect(componentDateTime.getHours()).toBe(hourA);
       expect(inputHours.value).toBe(hourAstr);
@@ -1355,11 +1401,18 @@ describe('Component: TimepickerComponent', () => {
 
         return newDateTime;
       });
+      // @ts-ignore
       expect(componentDateTime).toBeUndefined();
+
       const testedTime = testTime(hourA, minutesA, secondsA);
       component.writeValue(testedTime);
 
       fixture.detectChanges();
+
+      // @ts-ignore
+      if (!componentDateTime) {
+        return expect(void 0).toBeDefined();
+      }
 
       expect(componentDateTime.getHours()).toBe(hourA);
       expect(inputHours.value).toBe(hourAstr);
@@ -1410,11 +1463,18 @@ describe('Component: TimepickerComponent', () => {
 
         return newDateTime;
       });
+      // @ts-ignore
       expect(componentDateTime).toBeUndefined();
+
+
       const testedTime = testTime(hourA, minutesA, secondsA);
       component.writeValue(testedTime);
 
       fixture.detectChanges();
+      // @ts-ignore
+      if (!componentDateTime) {
+        return expect(void 0).toBeDefined();
+      }
 
       expect(componentDateTime.getHours()).toBe(hourA);
       expect(inputHours.value).toBe(hourAstr);

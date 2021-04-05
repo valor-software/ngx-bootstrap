@@ -29,13 +29,13 @@ let id = 0;
 export class TooltipDirective implements OnInit, OnDestroy {
   tooltipId = id++;
   /** sets disable adaptive position */
-  @Input() adaptivePosition: boolean;
+  @Input() adaptivePosition = true;
   /**
    * Content to be displayed as tooltip.
    */
   @OnChange()
   @Input()
-  tooltip: string | TemplateRef<unknown>;
+  tooltip?: string | TemplateRef<unknown>;
   /** Fired when tooltip content changes */
   @Output()
   tooltipChange: EventEmitter<string | TemplateRef<unknown>> = new EventEmitter();
@@ -43,21 +43,21 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /**
    * Placement of a tooltip. Accepts: "top", "bottom", "left", "right"
    */
-  @Input() placement: string;
+  @Input() placement = 'top';
   /**
    * Specifies events that should trigger. Supports a space separated list of
    * event names.
    */
-  @Input() triggers: string;
+  @Input() triggers = 'hover focus';
   /**
    * A selector specifying the element the tooltip should be appended to.
    */
-  @Input() container: string;
+  @Input() container?: string;
   /**
    * Css class for tooltip container
    */
   @Input() containerClass = '';
-  @Input() boundariesElement: ('viewport' | 'scrollParent' | 'window');
+  @Input() boundariesElement?: ('viewport' | 'scrollParent' | 'window');
   /**
    * Returns whether or not the tooltip is currently being shown
    */
@@ -77,12 +77,12 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /**
    * Allows to disable tooltip
    */
-  @Input() isDisabled: boolean;
+  @Input() isDisabled = false;
 
   /**
    * Delay before showing the tooltip
    */
-  @Input() delay: number;
+  @Input() delay = 0;
 
   /**
    * Emits an event when the tooltip is shown
@@ -91,7 +91,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /**
    * Emits an event when the tooltip is hidden
    */
-    @Output() onHidden: EventEmitter<unknown>;
+  @Output() onHidden: EventEmitter<unknown>;
 
   /** @deprecated - please use `tooltip` instead */
   @Input('tooltipHtml')
@@ -203,8 +203,8 @@ export class TooltipDirective implements OnInit, OnDestroy {
   protected _tooltipCancelShowFn?: () => void;
 
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
-  private _delaySubscription: Subscription;
-  private _ariaDescribedby: string;
+  private _delaySubscription?: Subscription;
+  private _ariaDescribedby?: string;
   constructor(
     _viewContainerRef: ViewContainerRef,
     cis: ComponentLoaderFactory,
@@ -248,7 +248,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   setAriaDescribedBy(): void {
-    this._ariaDescribedby = this.isOpen ? `tooltip-${this.tooltipId}` : null;
+    this._ariaDescribedby = this.isOpen ? `tooltip-${this.tooltipId}` : void 0;
 
     if (this._ariaDescribedby) {
       this._renderer.setAttribute(this._elementRef.nativeElement, 'aria-describedby', this._ariaDescribedby);
@@ -330,11 +330,14 @@ export class TooltipDirective implements OnInit, OnDestroy {
       if (this.triggers) {
         parseTriggers(this.triggers)
           .forEach((trigger: Trigger) => {
+            if (!trigger.close) {
+              return;
+            }
             this._tooltipCancelShowFn = this._renderer.listen(
               this._elementRef.nativeElement,
               trigger.close,
               () => {
-                this._delaySubscription.unsubscribe();
+                this._delaySubscription?.unsubscribe();
                 cancelDelayedTooltipShowing();
               }
             );
@@ -359,7 +362,10 @@ export class TooltipDirective implements OnInit, OnDestroy {
       return;
     }
 
-    this._tooltip.instance.classMap.in = false;
+    if (this._tooltip.instance?.classMap) {
+      this._tooltip.instance.classMap.in = false;
+    }
+
     setTimeout(() => {
       this._tooltip.hide();
     }, this.tooltipFadeDuration);

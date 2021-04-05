@@ -1,7 +1,7 @@
 import { TypeaheadMatch } from '../index';
 
 describe('TypeaheadMatch tests', () => {
-  let typeaheadMatch: TypeaheadMatch = null;
+  let typeaheadMatch: TypeaheadMatch;
 
   beforeEach(() => {
     typeaheadMatch = new TypeaheadMatch('test', 'testing text', false);
@@ -27,7 +27,7 @@ describe('TypeaheadMatch tests', () => {
     expect(value).toEqual('testing text');
   });
 
-  afterEach(() => {
-    typeaheadMatch = null;
-  });
+  /*afterEach(() => {
+    typeaheadMatch = void 0;
+  });*/
 });

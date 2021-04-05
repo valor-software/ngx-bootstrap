@@ -63,7 +63,7 @@ export class BsDatepickerInputDirective
   private _onChange = Function.prototype;
   private _onTouched = Function.prototype;
     private _validatorChange = Function.prototype;
-  private _value: Date;
+  private _value?: Date;
   private _subs = new Subscription();
 
   constructor(@Host() private _picker: BsDatepickerDirective,
@@ -104,13 +104,13 @@ export class BsDatepickerInputDirective
     this._subs.unsubscribe();
   }
 
-  onKeydownEvent(event) {
+  onKeydownEvent(event: KeyboardEvent): void {
     if (event.keyCode === 13 || event.code === 'Enter') {
       this.hide();
     }
   }
 
-  _setInputValue(value: Date): void {
+  _setInputValue(value?: Date): void {
     const initialDate = !value ? ''
       : formatDate(value, this._picker._config.dateInputFormat, this._localeService.currentLocale);
 
@@ -152,6 +152,8 @@ export class BsDatepickerInputDirective
         return { bsDate: { maxDate: this._picker.maxDate } };
       }
     }
+
+    return null;
   }
 
   registerOnValidatorChange(fn: () => void): void {
@@ -160,7 +162,7 @@ export class BsDatepickerInputDirective
 
   writeValue(value: Date | string) {
     if (!value) {
-      this._value = null;
+      this._value = void 0;
     } else {
       const _localeKey = this._localeService.currentLocale;
       const _locale = getLocale(_localeKey);

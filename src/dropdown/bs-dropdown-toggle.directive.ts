@@ -21,12 +21,12 @@ import { BsDropdownDirective } from './bs-dropdown.directive';
   }
 })
 export class BsDropdownToggleDirective implements OnDestroy {
-  @HostBinding('attr.disabled') isDisabled: boolean = null;
-  @HostBinding('attr.aria-expanded') isOpen: boolean;
+  @HostBinding('attr.disabled') isDisabled: undefined | true;
+  @HostBinding('attr.aria-expanded') isOpen = false;
 
   private _subscriptions: Subscription[] = [];
-  private _documentClickListener: () => void;
-  private _escKeyUpListener: () => void;
+  private _documentClickListener?: () => void;
+  private _escKeyUpListener?: () => void;
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
@@ -59,8 +59,8 @@ export class BsDropdownToggleDirective implements OnDestroy {
               }
             });
           } else {
-            this._documentClickListener();
-            this._escKeyUpListener();
+            this._documentClickListener && this._documentClickListener();
+            this._escKeyUpListener && this._escKeyUpListener();
           }
         }
       )
@@ -68,9 +68,8 @@ export class BsDropdownToggleDirective implements OnDestroy {
 
     // populate disabled state
     this._subscriptions.push(
-      this._state.isDisabledChange.subscribe(
-        (value: boolean) => (this.isDisabled = value || null)
-      )
+      this._state.isDisabledChange
+        .subscribe((value: boolean) => this.isDisabled = value || void 0)
     );
   }
 

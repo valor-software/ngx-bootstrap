@@ -45,3 +45,7 @@ scully.log
 /.scully
 /.firebase
 /gh-pages
+
+/schematics/**/*.js
+/schematics/**/*.js.map
+/schematics/**/*.d.ts

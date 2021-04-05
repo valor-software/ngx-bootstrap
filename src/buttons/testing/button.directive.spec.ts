@@ -472,9 +472,7 @@ describe('Directive: Buttons', () => {
         })
       );
 
-      it(
-        'should do nothing when clicking an active radio',
-        fakeAsync(() => {
+      it('should do nothing when clicking an active radio', fakeAsync(() => {
           context.myForm.get('radio').setValue('Left');
           fixture.detectChanges();
           tick();
@@ -485,7 +483,6 @@ describe('Directive: Buttons', () => {
 
           (btn.children[0] as HTMLElement).click();
           fixture.detectChanges();
-
           expect(context.myForm.get('radio').value).toEqual('Left');
           expect(btn.children[0].classList).toContain('active');
           expect(btn.children[1].classList).not.toContain('active');

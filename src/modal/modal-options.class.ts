@@ -65,7 +65,7 @@ export const modalConfigDefaults: ModalOptions = {
   class: '',
   animated: true,
   initialState: {},
-  closeInterceptor: null
+  closeInterceptor: void 0
 };
 
 export const MODAL_CONFIG_DEFAULT_OVERRIDE: InjectionToken<ModalOptions> =

@@ -15,7 +15,7 @@ export interface FlagYearsCalendarOptions {
 
 export function flagYearsCalendar(
   yearsCalendar: YearsCalendarViewModel,
-  options: FlagYearsCalendarOptions
+  options: Partial<FlagYearsCalendarOptions>
 ): YearsCalendarViewModel {
   yearsCalendar.years.forEach(
     (years: CalendarCellViewModel[], rowIndex: number) => {
@@ -49,8 +49,9 @@ export function flagYearsCalendar(
 
   // todo: add check for linked calendars
   yearsCalendar.hideLeftArrow =
-    options.yearIndex > 0 && options.yearIndex !== options.displayMonths;
+    !!options.yearIndex && options.yearIndex > 0 && options.yearIndex !== options.displayMonths;
   yearsCalendar.hideRightArrow =
+    !!options.yearIndex && !!options.displayMonths &&
     options.yearIndex < options.displayMonths &&
     options.yearIndex + 1 !== options.displayMonths;
 

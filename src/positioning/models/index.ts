@@ -1,10 +1,10 @@
 export interface Offsets {
-  bottom?: number;
+  width: number;
   height: number;
+  bottom?: number;
   left?: number;
   right?: number;
   top?: number;
-  width: number;
   marginTop?: number;
   marginLeft?: number;
 }
@@ -14,12 +14,12 @@ export interface Data {
   instance: {
     target: HTMLElement;
     host: HTMLElement;
-    arrow: HTMLElement;
+    arrow?: HTMLElement;
   };
   offsets: {
     target: Offsets;
     host: Offsets;
-    arrow: Record<string, string | number | HTMLElement>;
+    arrow?: Record<string, string | number | HTMLElement>;
   };
   positionFixed: boolean;
   placement: string;

@@ -2,5 +2,5 @@
   <ng-content></ng-content>
 </bar>
 <ng-template [ngIf]="isStacked">
-  <bar *ngFor="let item of _value" [type]="item.type" [value]="item.value" [max]="item.max">{{ item.label }}</bar>
+  <bar *ngFor="let item of _values" [type]="item.type" [value]="item.value" [max]="item.max">{{ item.label }}</bar>
 </ng-template>

@@ -15,7 +15,7 @@ export function getOffsetParent(element: HTMLElement): HTMLElement {
   let offsetParent = element?.offsetParent;
 
   // Skip hidden elements which don't have an offsetParent
-  let sibling: HTMLElement | null;
+  let sibling: HTMLElement | undefined = void 0;
 
   while (offsetParent === noOffsetParent
          && element.nextElementSibling
@@ -34,6 +34,7 @@ export function getOffsetParent(element: HTMLElement): HTMLElement {
 
   // .offsetParent will return the closest TH, TD or TABLE in case
   if (
+    offsetParent &&
     ['TH', 'TD', 'TABLE'].indexOf(offsetParent.nodeName) !== -1 &&
     getStyleComputedProperty(offsetParent, 'position') === 'static'
   ) {

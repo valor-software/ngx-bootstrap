@@ -7,10 +7,11 @@ import {
   HostListener,
   Inject,
   Input,
-  OnInit,
+  OnChanges,
   Optional,
   Provider,
-  Renderer2
+  Renderer2,
+  SimpleChanges
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ButtonRadioGroupDirective } from './button-radio-group.directive';
@@ -29,21 +30,21 @@ export const RADIO_CONTROL_VALUE_ACCESSOR: Provider = {
   selector: '[btnRadio]',
   providers: [RADIO_CONTROL_VALUE_ACCESSOR]
 })
-export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
+export class ButtonRadioDirective implements ControlValueAccessor, OnChanges {
   onChange = Function.prototype;
   onTouched = Function.prototype;
 
   /** Radio button value, will be set to `ngModel` */
-  @Input() btnRadio: string;
+  @Input() btnRadio?: string;
   /** If `true` — radio button can be unchecked */
-  @Input() uncheckable: boolean;
+  @Input() uncheckable = false;
   /** Current value of radio component or group */
   @Input()
   get value() {
     return this.group ? this.group.value : this._value;
   }
 
-  set value(value: null | string) {
+  set value(value: string | undefined) {
     if (this.group) {
       this.group.value = value;
 
@@ -98,8 +99,8 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
     return this._hasFocus;
   }
 
-  private _value: null | string;
-  private _disabled: boolean;
+  private _value?: string;
+  private _disabled = false;
   private _hasFocus = false;
 
   constructor(
@@ -117,7 +118,11 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
       return;
     }
 
-    this.value = this.uncheckable && this.btnRadio === this.value ? undefined : this.btnRadio;
+    if (this.uncheckable && this.btnRadio === this.value) {
+      this.value = undefined;
+    } else {
+      this.value = this.btnRadio;
+    }
   }
 
   @HostListener('keydown.space', ['$event'])
@@ -145,11 +150,13 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnInit {
     return !this.controlOrGroupDisabled && (this.uncheckable || this.btnRadio !== this.value);
   }
 
-  ngOnInit(): void {
-    this.uncheckable = typeof this.uncheckable !== 'undefined';
+  ngOnChanges(changes: SimpleChanges) {
+    if ('uncheckable' in changes) {
+      this.uncheckable = this.uncheckable !== false && typeof this.uncheckable !== 'undefined';
+    }
   }
 
-  _onChange(value: string): void {
+  _onChange(value?: string): void {
     if (this.group) {
       this.group.value = value;
 

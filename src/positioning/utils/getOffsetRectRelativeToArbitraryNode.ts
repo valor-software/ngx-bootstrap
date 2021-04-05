@@ -5,6 +5,7 @@ import { getStyleComputedProperty } from './getStyleComputedProperty';
 import { includeScroll } from './includeScroll';
 import { isIE as runIsIE } from './isIE';
 import { Offsets } from '../models';
+import { isNumber } from './isNumeric';
 
 export function getOffsetRectRelativeToArbitraryNode(
   children: HTMLElement,
@@ -23,13 +24,13 @@ export function getOffsetRectRelativeToArbitraryNode(
 
   // In cases where the parent is fixed, we must ignore negative scroll in offset calc
   if (fixedPosition && isHTML) {
-    parentRect.top = Math.max(parentRect.top, 0);
-    parentRect.left = Math.max(parentRect.left, 0);
+    parentRect.top = Math.max(parentRect.top ?? 0, 0);
+    parentRect.left = Math.max(parentRect.left ?? 0, 0);
   }
 
   let offsets: Offsets = getClientRect({
-    top: childrenRect.top - parentRect.top - borderTopWidth,
-    left: childrenRect.left - parentRect.left - borderLeftWidth,
+    top: (childrenRect.top ?? 0) - (parentRect.top ?? 0) - borderTopWidth,
+    left: (childrenRect.left ?? 0) - (parentRect.left ?? 0) - borderLeftWidth,
     width: childrenRect.width,
     height: childrenRect.height
   });
@@ -45,10 +46,18 @@ export function getOffsetRectRelativeToArbitraryNode(
     const marginTop = parseFloat(styles.marginTop);
     const marginLeft = parseFloat(styles.marginLeft);
 
-    offsets.top -= borderTopWidth - marginTop;
-    offsets.bottom -= borderTopWidth - marginTop;
-    offsets.left -= borderLeftWidth - marginLeft;
-    offsets.right -= borderLeftWidth - marginLeft;
+    if (isNumber(offsets.top)) {
+      offsets.top -= borderTopWidth - marginTop;
+    }
+    if (isNumber(offsets.bottom)) {
+      offsets.bottom -= borderTopWidth - marginTop;
+    }
+    if (isNumber(offsets.left)) {
+      offsets.left -= borderLeftWidth - marginLeft;
+    }
+    if (isNumber(offsets.right)) {
+      offsets.right -= borderLeftWidth - marginLeft;
+    }
 
     // Attach marginTop and marginLeft because in some circumstances we may need them
     offsets.marginTop = marginTop;

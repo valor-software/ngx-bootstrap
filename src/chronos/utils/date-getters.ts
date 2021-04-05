@@ -62,11 +62,11 @@ export function _daysInMonth(year: number, month: number): number {
   return new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
 }
 
-export function isFirstDayOfWeek(date: Date, firstDayOfWeek: number): boolean {
-  return date.getDay() === firstDayOfWeek;
+export function isFirstDayOfWeek(date: Date, firstDayOfWeek?: number): boolean {
+  return date.getDay() === Number(firstDayOfWeek);
 }
 
-export function isSameMonth(date1: Date, date2: Date) {
+export function isSameMonth(date1?: Date, date2?: Date) {
   if (!date1 || !date2) {
     return false;
   }
@@ -74,7 +74,7 @@ export function isSameMonth(date1: Date, date2: Date) {
   return isSameYear(date1, date2) && getMonth(date1) === getMonth(date2);
 }
 
-export function isSameYear(date1: Date, date2: Date) {
+export function isSameYear(date1?: Date, date2?: Date) {
   if (!date1 || !date2) {
     return false;
   }
@@ -82,7 +82,7 @@ export function isSameYear(date1: Date, date2: Date) {
   return getFullYear(date1) === getFullYear(date2);
 }
 
-export function isSameDay(date1: Date, date2: Date): boolean {
+export function isSameDay(date1?: Date, date2?: Date): boolean {
   if (!date1 || !date2) {
     return false;
   }
