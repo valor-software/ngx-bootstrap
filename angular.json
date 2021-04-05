@@ -536,6 +536,48 @@
         }
       }
     },
+    "focus-trap": {
+      "projectType": "library",
+      "root": "src/focus-trap",
+      "sourceRoot": "src/focus-trap",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": [
+            "node_modules/ngx-bootstrap/focus-trap"
+          ],
+          "options": {
+            "tsConfig": "src/focus-trap/tsconfig.lib.json",
+            "project": "src/focus-trap/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "src/focus-trap/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "src/focus-trap/**/*.ts",
+              "src/focus-trap/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/src/focus-trap"
+          ],
+          "options": {
+            "jestConfig": "src/focus-trap/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "locale": {
       "projectType": "library",
       "root": "src/locale",

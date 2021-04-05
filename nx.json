@@ -58,6 +58,7 @@
         "collapse",
         "datepicker",
         "dropdown",
+        "focus-trap",
         "locale",
         "modal",
         "pagination",
@@ -142,6 +143,11 @@
         "component-loader"
       ]
     },
+    "focus-trap": {
+      "tags": [
+        "lib"
+      ]
+    },
     "locale": {
       "tags": [
         "lib"
@@ -161,6 +167,7 @@
       ],
       "implicitDependencies": [
         "positioning",
+        "focus-trap",
         "component-loader"
       ]
     },
