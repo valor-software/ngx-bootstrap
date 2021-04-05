@@ -6,20 +6,20 @@ export class BsModalRef<T = any> {
   /**
    * Event that is fired when the modal behind the ref starts hiding
    */
-  onHide: EventEmitter<unknown>;
+  onHide?: EventEmitter<unknown>;
   /**
    * Event that is fired when the modal behind the ref finishes hiding
    */
-  onHidden: EventEmitter<unknown>;
+  onHidden?: EventEmitter<unknown>;
   /**
    *  Allow user to ID for the modal. Otherwise, a unique number will be given
    */
-  id: number;
+  id?: number;
 
   /**
    * Reference to a component inside the modal. Null if modal's been created with TemplateRef
    */
-  content?: T | null;
+  content?: T;
 
   /**
    * Hides the modal

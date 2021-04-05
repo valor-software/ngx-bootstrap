@@ -49,10 +49,10 @@ function modelTime(hours: string | number,
                    second: string | number,
                    PM: boolean): Time {
   return {
-    hour: hours || null,
-    minute: minutes || null,
-    seconds: second || null,
-    isPM: PM || null
+    hour: hours,
+    minute: minutes,
+    seconds: second,
+    isPM: PM
   };
 }
 
@@ -236,7 +236,7 @@ xdescribe('Runtime coverage. Utils: Timepicker', () => {
     const date = modelTime(0, 0, 0, true);
     const max = changeTime(new Date(), modelTime(-1, 0, 0, true));
 
-    const result = isInputLimitValid(date, max, null);
+    const result = isInputLimitValid(date, max, void 0);
 
     expect(result).toEqual(false);
   });
@@ -245,13 +245,13 @@ xdescribe('Runtime coverage. Utils: Timepicker', () => {
     const date = modelTime(0, 0, 0, true);
     const min = changeTime(new Date(), modelTime(0, 30, 0, true));
 
-    const result = isInputLimitValid(date, null, min);
+    const result = isInputLimitValid(date, void 0, min);
 
     expect(result).toEqual(false);
   });
 
   it('isInputLimitValid method should validate input according to the limits and return true', () => {
-    const result = isInputLimitValid(modelTime(1, 0, 0, true), null, null);
+    const result = isInputLimitValid(modelTime(1, 0, 0, true), void 0, void 0);
 
     expect(result).toEqual(true);
   });

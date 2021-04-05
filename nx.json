@@ -75,9 +75,6 @@
     "ngx-bootstrap-docs-e2e": {
       "tags": []
     },
-    "ci-docs-e2e": {
-      "tags": []
-    },
     "accordion": {
       "tags": [
         "lib"
@@ -133,6 +130,7 @@
       ],
       "implicitDependencies": [
         "mini-ngrx",
+        "chronos",
         "tooltip"
       ]
     },

@@ -9,11 +9,11 @@ import { BsModalService, ModalOptions } from '../index';
 class TestService { }
 
 describe('Service: BsModal', () => {
-  let mockModalComponentRef;
-  let mockComponentLoader;
+  let mockModalComponentRef: { instance: {[k: string]: jest.Mock} } | undefined;
+  let mockComponentLoader: { [k: string]: jest.Mock };
   let bsModalService: BsModalService;
 
-  function createMockComponentLoader(baseName: string) {
+  function createMockComponentLoader(baseName: string): { [k: string]: jest.Mock } {
     const componentLoader = createSpyObj(baseName, [
       'attach',
       'getInnerComponent',
@@ -40,7 +40,7 @@ describe('Service: BsModal', () => {
   }
 
   beforeEach(() => {
-    mockModalComponentRef = null;
+    mockModalComponentRef = void 0;
     let createdBackdrop = false;
     const mockBackdropComponentLoader = createMockComponentLoader('backdropComponentLoader');
     mockComponentLoader = createMockComponentLoader('modalComponentLoader');

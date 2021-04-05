@@ -4,8 +4,5 @@
 import { Options } from '../models';
 
 export function isModifierEnabled(options: Options, modifierName: string): boolean {
-  return options
-    && options.modifiers
-    && options.modifiers[modifierName]
-    && options.modifiers[modifierName].enabled;
+  return !!options.modifiers[modifierName as keyof typeof options.modifiers]?.enabled;
 }

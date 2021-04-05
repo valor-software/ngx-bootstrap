@@ -15,7 +15,7 @@ class TestTabsetComponent {
     { title: 'tab2', content: 'tab2 content', disabled: true },
     { title: 'tab3', content: 'tab3 content', removable: true }
   ];
-  @ViewChild('tabset', { static: false }) tabset: TabsetComponent;
+  @ViewChild('tabset', { static: false }) tabset?: TabsetComponent;
 
   constructor(config: TabsetConfig) {
     Object.assign(this, config);

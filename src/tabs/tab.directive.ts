@@ -15,14 +15,14 @@ import { TabsetComponent } from './tabset.component';
 @Directive({ selector: 'tab, [tab]', exportAs: 'tab' })
 export class TabDirective implements OnInit, OnDestroy {
   /** tab header text */
-  @Input() heading: string;
+  @Input() heading?: string;
   /** tab id. The same id with suffix '-link' will be added to the corresponding &lt;li&gt; element  */
   @HostBinding('attr.id')
-  @Input() id: string;
+  @Input() id?: string;
   /** if true tab can not be activated */
-  @Input() disabled: boolean;
+  @Input() disabled = false;
   /** if true tab can be removable, additional button will appear */
-  @Input() removable: boolean;
+  @Input() removable = false;
   /** if set, will be added to the tab's class attribute. Multiple classes are supported. */
   @Input()
   get customClass(): string {
@@ -36,7 +36,7 @@ export class TabDirective implements OnInit, OnDestroy {
       });
     }
 
-    this._customClass = customClass ? customClass.trim() : null;
+    this._customClass = customClass ? customClass.trim() : '';
 
     if (this.customClass) {
       this.customClass.split(' ').forEach((cssClass: string) => {
@@ -88,10 +88,10 @@ export class TabDirective implements OnInit, OnDestroy {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  headingRef: TemplateRef<any>;
+  headingRef?: TemplateRef<any>;
   tabset: TabsetComponent;
-  protected _active: boolean;
-  protected _customClass: string;
+  protected _active = false;
+  protected _customClass = '';
 
   constructor(
     tabset: TabsetComponent,

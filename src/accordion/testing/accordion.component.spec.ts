@@ -1,7 +1,7 @@
-import { AccordionConfig, AccordionModule } from '../index';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AccordionConfig, AccordionModule } from '../index';
 
 @Component({
   selector: 'accordion-test',
@@ -63,7 +63,7 @@ function expectOpenPanels(nativeEl: HTMLElement,
 }
 
 function hasTitle(element: HTMLElement, str: string): boolean {
-  return element.textContent.trim() === str;
+  return element.textContent?.trim() === str;
 }
 
 describe('Component: Accordion', () => {
@@ -129,13 +129,11 @@ describe('Component: Accordion', () => {
   });
 
   it('should have the appropriate heading', () => {
-    const titles = Array.from(
-      element.querySelectorAll('.panel-heading .accordion-toggle button')
-    );
-    titles.forEach((title: HTMLElement, idx: number) => {
-      const expectedTitle = `Panel ${idx + 1}`;
-      expect(hasTitle(title, expectedTitle)).toBeTruthy();
-    });
+    element.querySelectorAll('.panel-heading .accordion-toggle button')
+      .forEach((title: HTMLElement, idx: number) => {
+        const expectedTitle = `Panel ${idx + 1}`;
+        expect(hasTitle(title, expectedTitle)).toBeTruthy();
+      });
   });
 
   it('should only open one at a time', () => {
@@ -178,19 +176,15 @@ describe('Component: Accordion', () => {
 
     // Clicking (internal state modified)
     headingLinks[0].click();
-    tick();
     fixture.detectChanges();
-    expect(context.panels[0].isOpen).toBe(true);
-    expect(context.panels[1].isOpen).toBe(false);
-    expect(context.panels[2].isOpen).toBe(false);
+    expectOpenPanels(element, [true, false, false]);
 
     // State modified by parent component
+
     headingLinks[2].click();
-    tick();
     fixture.detectChanges();
-    expect(context.panels[0].isOpen).toBe(false);
-    expect(context.panels[1].isOpen).toBe(false);
-    expect(context.panels[2].isOpen).toBe(true);
+    expectOpenPanels(element, [false, false, true]);
+
 
     // Modified by binding
     context.panels[1].isOpen = true;
