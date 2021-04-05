@@ -447,7 +447,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       case Direction.NEXT:
         // if this is last slide, not force, looping is disabled
         // and need to going forward - select current slide, as a next
-        if (this._currentActiveSlide && !!Number(this._currentActiveSlide)) {
+        if (typeof this._currentActiveSlide !== 'undefined') {
           if (!this.isLast(this._currentActiveSlide)) {
             nextSlideIndex = this._currentActiveSlide + 1;
             break;
@@ -460,7 +460,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       case Direction.PREV:
         // if this is first slide, not force, looping is disabled
         // and need to going backward - select current slide, as a next
-        if (this._currentActiveSlide && !!Number(this._currentActiveSlide)) {
+        if (typeof this._currentActiveSlide !== 'undefined') {
           if (this._currentActiveSlide > 0) {
             nextSlideIndex = this._currentActiveSlide - 1;
             break;
@@ -725,16 +725,15 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       return;
     }
 
-    if (!this.multilist
-      && this._currentActiveSlide && !!Number(this._currentActiveSlide)) {
+    if (!this.multilist && typeof this._currentActiveSlide !== 'undefined') {
       const currentSlide = this._slides.get(this._currentActiveSlide);
-      if (currentSlide) {
+      if (typeof currentSlide !== 'undefined') {
         currentSlide.active = false;
       }
     }
 
     const nextSlide = this._slides.get(index);
-    if (nextSlide) {
+    if (typeof nextSlide !== 'undefined') {
       this._currentActiveSlide = index;
       nextSlide.active = true;
       this.activeSlide = index;
