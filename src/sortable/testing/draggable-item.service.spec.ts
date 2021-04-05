@@ -22,7 +22,7 @@ describe('Service: DraggableItem', () => {
 
   beforeEach(
     inject([DraggableItemService], (service: DraggableItemService) => {
-      draggableItem = getDraggableItem(getItemToDrag(), undefined, 1);
+      draggableItem = getDraggableItem(getItemToDrag(), undefined as unknown as DragEvent, 1);
       transfer = service;
       transfer.dragStart(draggableItem);
     })

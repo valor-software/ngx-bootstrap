@@ -1,20 +1,18 @@
-import {
-  ComponentFixture,
-  TestBed, waitForAsync
-} from '@angular/core/testing';
-import { BsDatepickerConfig } from '../../bs-datepicker.config';
-import { BsDatepickerDayDecoratorComponent } from './bs-datepicker-day-decorator.directive';
 import { Component } from '@angular/core';
-import { DayViewModel } from '../../models';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import '../../../../scripts/jest/toHaveCssClass';
+import { BsDatepickerConfig } from '../bs-datepicker.config';
+import { DayViewModel } from '../models';
+import { BsDatepickerDayDecoratorComponent } from '../themes/bs/bs-datepicker-day-decorator.directive';
+
+import '../../../scripts/jest/toHaveCssClass';
 
 @Component({
   selector: 'test-cmp',
-  template: `<span bsDatepickerDayDecorator [day]="day">{{ day.label }}</span>`
+  template: `<span bsDatepickerDayDecorator [day]='day'>{{ day.label }}</span>`
 })
 class TestComponent {
-  day: DayViewModel = {date: new Date(), label: ''};
+  day: DayViewModel = { date: new Date(), label: '' };
 }
 
 function getDayElement(fixture: ComponentFixture<TestComponent>): HTMLElement {
@@ -46,7 +44,7 @@ describe('datepicker: [bsDatepickerDayDecorator]', () => {
   it('should display date', () => {
     // arrange
     const label = 'some label';
-    setDay(fixture, {label});
+    setDay(fixture, { label });
     const el = getDayElement(fixture);
     // assert
     expect(el.innerHTML).toBe(label);

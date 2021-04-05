@@ -43,10 +43,10 @@ export interface PositioningOptions {
 
 @Injectable({providedIn: 'root'})
 export class PositioningService {
-  private options: Options;
+  private options?: Options;
   private update$$ = new Subject<null>();
   private positionElements = new Map();
-  private triggerEvent$: Observable<number|Event>;
+  private triggerEvent$?: Observable<number|Event|null>;
   private isDisabled = false;
 
   constructor(
@@ -90,7 +90,7 @@ export class PositioningService {
     this.addPositionElement(options);
   }
 
-  get event$(): Observable<number|Event> {
+  get event$(): Observable<number|Event|null>|undefined {
     return this.triggerEvent$;
   }
 
@@ -119,7 +119,7 @@ export class PositioningService {
   }
 }
 
-function _getHtmlElement(element: HTMLElement | ElementRef | string): HTMLElement {
+function _getHtmlElement(element?: HTMLElement | ElementRef | string): HTMLElement | null {
   // it means that we got a selector
   if (typeof element === 'string') {
     return document.querySelector(element);
@@ -129,5 +129,5 @@ function _getHtmlElement(element: HTMLElement | ElementRef | string): HTMLElemen
     return element.nativeElement;
   }
 
-  return element;
+  return element ?? null;
 }

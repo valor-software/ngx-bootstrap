@@ -15,19 +15,19 @@ export function arrow(data: Data) {
 
   const len = isVertical ? 'height' : 'width';
   const sideCapitalized = isVertical ? 'Top' : 'Left';
-  const side = sideCapitalized.toLowerCase();
+  const side = sideCapitalized.toLowerCase() as keyof typeof targetOffsets;
   const altSide = isVertical ? 'left' : 'top';
   const opSide = isVertical ? 'bottom' : 'right';
   const arrowElementSize = getOuterSizes(arrowElement)[len];
   const placementVariation = data.placement.split(' ')[1];
 
   // top/left side
-  if (data.offsets.host[opSide] - arrowElementSize < (targetOffsets)[side]) {
+  if ((data.offsets.host[opSide] ?? 0) - arrowElementSize < (targetOffsets[side] ?? 0)) {
     (targetOffsets)[side] -=
-      (targetOffsets)[side] - (data.offsets.host[opSide] - arrowElementSize);
+      (targetOffsets[side] ?? 0) - ((data.offsets.host[opSide] ?? 0) - arrowElementSize);
   }
   // bottom/right side
-  if (Number((data).offsets.host[side]) + Number(arrowElementSize) > (targetOffsets)[opSide]) {
+  if (Number((data).offsets.host[side]) + Number(arrowElementSize) > (targetOffsets[opSide] ?? 0)) {
     (targetOffsets)[side] +=
       Number((data).offsets.host[side]) + Number(arrowElementSize) - Number((targetOffsets)[opSide]);
   }
@@ -35,7 +35,7 @@ export function arrow(data: Data) {
 
   // Compute the sideValue using the updated target offsets
   // take target margin in account because we don't have this info available
-  const css = getStyleComputedProperty(data.instance.target);
+  const css = getStyleComputedProperty(data.instance.target) as unknown as Record<string, string>;
   const targetMarginSide = parseFloat(css[`margin${sideCapitalized}`]);
   const targetBorderSide = parseFloat(css[`border${sideCapitalized}Width`]);
 
@@ -52,7 +52,7 @@ export function arrow(data: Data) {
   }
 
   let sideValue =
-    center - (targetOffsets)[side] - targetMarginSide - targetBorderSide;
+    center - (targetOffsets[side] ?? 0) - targetMarginSide - targetBorderSide;
 
   // prevent arrowElement from being placed not contiguously to its target
   sideValue = Math.max(Math.min(targetOffsets[len] - arrowElementSize, sideValue), 0);

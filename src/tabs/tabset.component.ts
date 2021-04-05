@@ -48,20 +48,19 @@ export class TabsetComponent implements OnDestroy {
     this._isKeysAllowed = value;
   }
 
-
   @HostBinding('class.tab-container') clazz = true;
 
   tabs: TabDirective[] = [];
   classMap: { [key: string]: boolean } = {};
 
   /** aria label for tab list */
-  ariaLabel: string;
+  ariaLabel = 'Tabs';
 
-  protected isDestroyed: boolean;
-  protected _vertical: boolean;
-  protected _justified: boolean;
-  protected _type: string;
-  protected _isKeysAllowed: boolean;
+  protected isDestroyed = false;
+  protected _vertical = false;
+  protected _justified = false;
+  protected _type = 'tabs';
+  protected _isKeysAllowed = true;
 
   constructor(
     config: TabsetConfig,
@@ -77,7 +76,7 @@ export class TabsetComponent implements OnDestroy {
 
   addTab(tab: TabDirective): void {
     this.tabs.push(tab);
-    tab.active = this.tabs.length === 1 && typeof tab.active === 'undefined';
+    tab.active = this.tabs.length === 1 && !tab.active;
   }
 
   removeTab(

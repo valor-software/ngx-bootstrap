@@ -1,6 +1,6 @@
 import { Component, HostBinding, Input } from '@angular/core';
 import { ProgressbarConfig } from './progressbar.config';
-import { ProgressbarType } from './progressbar-type.interface';
+import { BarValue, ProgressbarType } from './progressbar-type.interface';
 import { isBs3 } from 'ngx-bootstrap/utils';
 import { BarComponent } from './bar.component';
 
@@ -35,21 +35,28 @@ export class ProgressbarComponent {
   }
 
   /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
-  @Input() type: ProgressbarType;
+  @Input() type?: ProgressbarType;
   /** current value of progress bar. Could be a number or array of objects
    * like {"value":15,"type":"info","label":"15 %"}
    */
   @Input()
-  set value(value: number | Record<string, number | string>) {
+  set value(value: number | BarValue[]) {
     this.isStacked = Array.isArray(value);
-    this._value = value;
+    if (typeof value === 'number') {
+      this._value = value;
+      this._values = void 0;
+    } else {
+      this._value = void 0;
+      this._values = value;
+    }
   }
   isStacked = false;
-  _striped: boolean;
-  _animate: boolean;
+  _striped?: boolean;
+  _animate = false;
   _max = 100;
 
-  _value: number | Record<string, number | string>;
+  _value?: number;
+  _values?: BarValue[];
 
   get isBs3(): boolean {
     return isBs3();

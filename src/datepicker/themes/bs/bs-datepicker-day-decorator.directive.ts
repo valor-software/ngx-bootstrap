@@ -23,10 +23,10 @@ import { DayViewModel } from '../../models';
     '[class.select-end]': 'day.isSelectionEnd',
     '[class.selected]': 'day.isSelected'
   },
-  template: `{{ day.label }}`
+  template: `{{ day && day.label || '' }}`
 })
 export class BsDatepickerDayDecoratorComponent implements OnInit {
-  @Input() day: DayViewModel;
+  @Input() day?: DayViewModel;
 
   constructor(
     private _config: BsDatepickerConfig,
@@ -35,6 +35,10 @@ export class BsDatepickerDayDecoratorComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (!this.day) {
+      return;
+    }
+
     if (this.day.isToday && this._config && this._config.customTodayClass) {
       this._renderer.addClass(this._elRef.nativeElement, this._config.customTodayClass);
     }

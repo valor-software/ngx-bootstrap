@@ -3,34 +3,38 @@
  * @copyright Federico Zivolo and contributors
  */
 import { Renderer2 } from '@angular/core';
-
-import { getOffsets, getReferenceOffsets, updateContainerClass, setStyles } from './utils';
-
-import { arrow, flip, preventOverflow, shift, initData } from './modifiers';
 import { Data, Offsets, Options } from './models';
+
+import { arrow, flip, initData, preventOverflow, shift } from './modifiers';
+
+import { getOffsets, getReferenceOffsets, setStyles, updateContainerClass } from './utils';
 
 
 export class Positioning {
-  position(hostElement: HTMLElement, targetElement: HTMLElement/*, round = true*/): Offsets {
+  position(hostElement: HTMLElement, targetElement: HTMLElement/*, round = true*/): Offsets | undefined {
     return this.offset(hostElement, targetElement/*, false*/);
   }
 
-  offset(hostElement: HTMLElement, targetElement: HTMLElement/*, round = true*/): Offsets {
+  offset(hostElement: HTMLElement, targetElement: HTMLElement/*, round = true*/): Offsets | undefined {
     return getReferenceOffsets(targetElement, hostElement);
   }
 
   positionElements(
-    hostElement: HTMLElement,
-    targetElement: HTMLElement,
+    hostElement: HTMLElement | null,
+    targetElement: HTMLElement | null,
     position: string,
     appendToBody?: boolean,
     options?: Options
-  ): Data {
+  ): Data | undefined {
     const chainOfModifiers = [flip, shift, preventOverflow, arrow];
+    const data = initData(targetElement, hostElement, position, options);
+    if (!data) {
+      return;
+    }
 
     return chainOfModifiers.reduce(
       (modifiedData, modifier) => modifier(modifiedData),
-      initData(targetElement, hostElement, position, options)
+      data
     );
   }
 }
@@ -38,8 +42,8 @@ export class Positioning {
 const positionService = new Positioning();
 
 export function positionElements(
-  hostElement: HTMLElement,
-  targetElement: HTMLElement,
+  hostElement: HTMLElement | null,
+  targetElement: HTMLElement | null,
   placement: string,
   appendToBody?: boolean,
   options?: Options,
@@ -53,6 +57,10 @@ export function positionElements(
     appendToBody,
     options
   );
+
+  if (!data) {
+    return;
+  }
 
   const offsets = getOffsets(data);
 

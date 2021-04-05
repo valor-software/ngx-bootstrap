@@ -9,7 +9,7 @@ export class BsDropdownMenuDirective {
   constructor(
     _state: BsDropdownState,
     _viewContainer: ViewContainerRef,
-    _templateRef: TemplateRef<unknown>
+    _templateRef: TemplateRef<BsDropdownMenuDirective>
   ) {
     _state.resolveDropdownMenu({
       templateRef: _templateRef,

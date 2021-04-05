@@ -24,8 +24,8 @@ describe('Util: Timepicker-controls', () => {
 
   beforeEach(() => {
     state = {
-      min: null,
-      max: null,
+      min: void 0,
+      max: void 0,
       hourStep: 1,
       minuteStep: 5,
       secondsStep: 10,
@@ -108,7 +108,7 @@ describe('Util: Timepicker-controls', () => {
   });
 
   it('canChangeHours method should validate and return false if no step', () => {
-    event.step = null;
+    (event as Partial<TimeChangeEvent>).step = void 0;
 
     const result = canChangeHours(event, controls);
 
@@ -139,7 +139,7 @@ describe('Util: Timepicker-controls', () => {
   });
 
   it('canChangeMinutes method should validate and return false if no step', () => {
-    event.step = null;
+    event.step = 0;
 
     const result = canChangeMinutes(event, controls);
 
@@ -170,7 +170,7 @@ describe('Util: Timepicker-controls', () => {
   });
 
   it('canChangeSeconds method should validate and return false if no step', () => {
-    event.step = null;
+    event.step = 0;
 
     const result = canChangeSeconds(event, controls);
 
@@ -201,7 +201,7 @@ describe('Util: Timepicker-controls', () => {
   });
 
   it('timepickerControls method should return default data if no value', () => {
-    const result = timepickerControls(null, state);
+    const result = timepickerControls(undefined, state);
 
     expect(result).toEqual(controls);
   });

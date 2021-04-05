@@ -21,8 +21,8 @@ class TestRatingComponent {
 
 describe('Component: Rating. Init:', () => {
   let fixture: ComponentFixture<RatingComponent>;
-  let context;
-  let element;
+  let context: RatingComponent;
+  let element: HTMLElement;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -51,7 +51,7 @@ describe('Component: Rating. Init:', () => {
     expect(icons[4].getAttribute('title')).toEqual('5');
 
     const container = element.querySelector('[role="slider"]');
-    const ariaAttribute = container.getAttribute('aria-label');
+    const ariaAttribute = container?.getAttribute('aria-label');
 
     expect(ariaAttribute).toEqual('rating');
   });
@@ -59,7 +59,8 @@ describe('Component: Rating. Init:', () => {
   it('checking of working with changed values', () => {
     context.max = 3;
     context.titles = ['one', 'two', 'new title'];
-    context.changeDetection.markForCheck();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (context as any).changeDetection.markForCheck();
     context.ngOnInit();
     fixture.detectChanges();
 
@@ -79,7 +80,7 @@ describe('Component: Rating. Init:', () => {
 
 describe('Component: Rating. Custom template:', () => {
   let fixture: ComponentFixture<TestRatingComponent>;
-  let element;
+  let element: HTMLElement;
 
   beforeEach(
     fakeAsync(() => {
@@ -102,7 +103,8 @@ describe('Component: Rating. Custom template:', () => {
 
   it('checking of working with custom icons', () => {
     const icons = element.querySelectorAll('span.bs-rating-star');
-    expect(icons[0].querySelector('span').classList).toContain('label-default');
+    const icon = icons[0].querySelector('span');
+    expect(icon?.classList).toContain('label-default');
   });
 });
 
@@ -113,8 +115,8 @@ describe('Component: Rating. Clicks:', () => {
         [titles]="titles"></rating>
     `;
   let fixture: ComponentFixture<TestRatingComponent>;
-  let context;
-  let element;
+  let context: TestRatingComponent;
+  let element: HTMLElement;
 
   beforeEach(
     fakeAsync(() => {
@@ -141,7 +143,7 @@ describe('Component: Rating. Clicks:', () => {
       expect(items[0].innerHTML).toEqual('( )');
       expect(icons[0].classList).not.toContain('active');
 
-      icons[1].click();
+      (icons[1] as HTMLElement).click();
       tick(200);
       fixture.detectChanges();
 
@@ -162,7 +164,7 @@ describe('Component: Rating. Clicks:', () => {
       context.isReadonly = true;
       fixture.detectChanges();
 
-      icons[1].click();
+      (icons[1] as HTMLElement).click();
       tick(200);
       fixture.detectChanges();
 
@@ -172,7 +174,7 @@ describe('Component: Rating. Clicks:', () => {
       context.isReadonly = false;
       fixture.detectChanges();
 
-      icons[1].click();
+      (icons[1] as HTMLElement).click();
       tick(200);
       fixture.detectChanges();
 

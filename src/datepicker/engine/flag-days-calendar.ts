@@ -35,7 +35,7 @@ export interface FlagDaysCalendarOptions {
 
 export function flagDaysCalendar(
   formattedMonth: DaysCalendarViewModel,
-  options: FlagDaysCalendarOptions
+  options: Partial<FlagDaysCalendarOptions>
 ): DaysCalendarViewModel {
   formattedMonth.weeks.forEach((week: WeekViewModel) => {
         week.days.forEach((day: DayViewModel, dayIndex: number) => {
@@ -83,7 +83,10 @@ export function flagDaysCalendar(
 
       const tooltipText = options.dateTooltipTexts && options.dateTooltipTexts
           .map(tt => isSameDay(day.date, tt.date) ? tt.tooltipText : '')
-          .reduce((previousValue, currentValue) => previousValue.concat(currentValue), [])
+          .reduce((previousValue, currentValue) => {
+            previousValue.push(currentValue);
+            return previousValue;
+          }, [] as string[])
           .join(' ')
         || '';
 
@@ -120,10 +123,10 @@ export function flagDaysCalendar(
   // todo: add check for linked calendars
   formattedMonth.hideLeftArrow =
     options.isDisabled ||
-    (options.monthIndex > 0 && options.monthIndex !== options.displayMonths);
+    (!!options.monthIndex && options.monthIndex > 0 && options.monthIndex !== options.displayMonths);
   formattedMonth.hideRightArrow =
     options.isDisabled ||
-    (options.monthIndex < options.displayMonths &&
+    (!!options.monthIndex && !!options.displayMonths && options.monthIndex < options.displayMonths &&
       options.monthIndex + 1 !== options.displayMonths);
 
   formattedMonth.disableLeftArrow = isMonthDisabled(
@@ -142,10 +145,10 @@ export function flagDaysCalendar(
 
 function isDateInRange(
   date: Date,
-  selectedRange: Date[],
-  hoveredDate: Date
+  selectedRange?: Date[],
+  hoveredDate?: Date
 ): boolean {
-  if (!date || !selectedRange[0]) {
+  if (!date || !selectedRange || !selectedRange[0]) {
     return false;
   }
 
