@@ -985,7 +985,9 @@ describe('Component: TimepickerComponent', () => {
       component.hours = '10';
       component.showMeridian = false;
 
-      component.updateHours({value: '99'});
+      inputHours = getInputElements(fixture)[0];
+      (inputHours as HTMLInputElement).value = '99';
+      component.updateHours(inputHours);
 
       expect(methodSpy).toHaveBeenCalledWith(null);
             expect(component.isValid.emit).toHaveBeenCalledWith(false);
@@ -997,7 +999,9 @@ describe('Component: TimepickerComponent', () => {
       spyOn(component.isValid, 'emit').and.stub();
       spyOn(component, 'isValidLimit').and.returnValue(false);
 
-      component.updateHours({ value: '19' });
+      inputHours = getInputElements(fixture)[0];
+      (inputHours as HTMLInputElement).value = '19';
+      component.updateHours(inputHours);
 
       expect(methodSpy).toHaveBeenCalledWith(null);
             expect(component.isValid.emit).toHaveBeenCalledWith(false);
@@ -1009,7 +1013,9 @@ describe('Component: TimepickerComponent', () => {
       component.hours = '10';
       component.showMeridian = false;
 
-      component.updateHours({value: '17'});
+      inputHours = getInputElements(fixture)[0];
+      (inputHours as HTMLInputElement).value = '17';
+      component.updateHours(inputHours);
 
       expect(component.invalidHours).toEqual(false);
             expect(component._updateTime).toHaveBeenCalled();
@@ -1020,7 +1026,9 @@ describe('Component: TimepickerComponent', () => {
       spyOn(component.isValid, 'emit').and.stub();
       component.minutes = '10';
 
-      component.updateMinutes({value: '99'});
+      inputMinutes = getInputElements(fixture)[1];
+      (inputMinutes as HTMLInputElement).value = '99';
+      component.updateMinutes(inputMinutes);
 
       expect(methodSpy).toHaveBeenCalledWith(null);
             expect(component.isValid.emit).toHaveBeenCalledWith(false);
@@ -1031,7 +1039,9 @@ describe('Component: TimepickerComponent', () => {
       spyOn(component.isValid, 'emit').and.stub();
       spyOn(component, 'isValidLimit').and.returnValue(false);
 
-      component.updateMinutes({value: '30'});
+      inputMinutes = getInputElements(fixture)[1];
+      (inputMinutes as HTMLInputElement).value = '30';
+      component.updateMinutes(inputMinutes);
 
       expect(methodSpy).toHaveBeenCalledWith(null);
             expect(component.isValid.emit).toHaveBeenCalledWith(false);
@@ -1041,7 +1051,9 @@ describe('Component: TimepickerComponent', () => {
       spyOn(component, '_updateTime').and.stub();
       component.minutes = '10';
 
-      component.updateMinutes({value: '30'});
+      inputMinutes = getInputElements(fixture)[1];
+      (inputMinutes as HTMLInputElement).value = '30';
+      component.updateMinutes(inputMinutes);
 
       expect(component.invalidMinutes).toEqual(false);
             expect(component._updateTime).toHaveBeenCalled();
@@ -1053,7 +1065,9 @@ describe('Component: TimepickerComponent', () => {
       component.showSeconds = true;
       component.seconds = '10';
 
-      component.updateSeconds({value: '99'});
+      inputSeconds = getInputElements(fixture)[2];
+      (inputSeconds as HTMLInputElement).value = '99';
+      component.updateSeconds(inputSeconds);
 
       expect(methodSpy).toHaveBeenCalledWith(null);
             expect(component.isValid.emit).toHaveBeenCalledWith(false);
@@ -1064,7 +1078,10 @@ describe('Component: TimepickerComponent', () => {
       spyOn(component.isValid, 'emit').and.stub();
       spyOn(component, 'isValidLimit').and.returnValue(false);
 
-      component.updateSeconds({value: '50'});
+
+      inputSeconds = getInputElements(fixture)[2];
+      (inputSeconds as HTMLInputElement).value = '50';
+      component.updateSeconds(inputSeconds);
 
       expect(methodSpy).toHaveBeenCalledWith(null);
             expect(component.isValid.emit).toHaveBeenCalledWith(false);
@@ -1074,7 +1091,9 @@ describe('Component: TimepickerComponent', () => {
       spyOn(component, '_updateTime').and.stub();
       component.seconds = '10';
 
-      component.updateSeconds({value: '30'});
+      inputSeconds = getInputElements(fixture)[2];
+      (inputSeconds as HTMLInputElement).value = '30';
+      component.updateSeconds(inputSeconds);
 
       expect(component.invalidSeconds).toEqual(false);
             expect(component._updateTime).toHaveBeenCalled();

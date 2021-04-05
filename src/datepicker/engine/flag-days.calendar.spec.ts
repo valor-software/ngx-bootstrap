@@ -18,7 +18,11 @@ describe('flag-days-calendar:', () => {
       weekNumbers: [],
       weekdays: [],
       monthTitle: '',
-      yearTitle: ''
+      yearTitle: '',
+      disableRightArrow: false,
+      disableLeftArrow: false,
+      hideRightArrow: false,
+      hideLeftArrow: false
     };
     const datesDisabled = [
       new Date('2019-02-07'),
@@ -60,7 +64,11 @@ describe('flag-days-calendar:', () => {
       weekNumbers: [],
       weekdays: [],
       monthTitle: '',
-      yearTitle: ''
+      yearTitle: '',
+      disableRightArrow: false,
+      disableLeftArrow: false,
+      hideRightArrow: false,
+      hideLeftArrow: false
     };
     const datesEnabled = [
       new Date('2020-02-07'),

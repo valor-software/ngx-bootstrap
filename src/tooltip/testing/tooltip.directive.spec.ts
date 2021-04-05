@@ -59,6 +59,7 @@ describe('Directives: Tooltips', () => {
   it('tooltip should be displayed by focus event after 0 ms by default', fakeAsync(() => {
       const element: HTMLElement = fixture.debugElement.nativeElement;
       const tooltipElement = element.querySelector('#test-tooltip1') as HTMLElement;
+
       tooltipElement.focus();
       fixture.detectChanges();
       expect(element.querySelector('.tooltip-inner')).not.toBeNull();
@@ -82,7 +83,7 @@ describe('Directives: Tooltips', () => {
 
   it('tooltip should be displayed by mouseenter event', fakeAsync(() => {
       const element: HTMLElement = fixture.debugElement.nativeElement;
-      const tooltipElement: any = element.querySelector('#test-tooltip1') as HTMLElement;
+      const tooltipElement = element.querySelector('#test-tooltip1') as HTMLElement;
       fireEvent(tooltipElement, 'mouseenter');
       fixture.detectChanges();
       tick(context.delay);

@@ -404,7 +404,7 @@ function navigateOffsetReducer(state: BsDatepickerState, action: Action): BsDate
 
 function shiftViewDate(state: BsDatepickerState, action: Action): Date | undefined {
   if (!state.view) {
-    return;
+    return undefined;
   }
 
   if (state.view.mode === 'year' && state.minMode === 'year') {
