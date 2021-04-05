@@ -70,10 +70,10 @@ describe('Directives: Tooltips', () => {
     'tooltip should be displayed after specified delay',
     fakeAsync(() => {
       const element: HTMLElement = fixture.debugElement.nativeElement;
-      const tooltipElement = element.querySelector('#test-tooltip1');
+      const tooltipElement = element.querySelector('#test-tooltip1') as HTMLElement;
       context.delay = 1000;
       fixture.detectChanges();
-      (tooltipElement as any).focus();
+      tooltipElement.focus();
       fixture.detectChanges();
       tick(1100);
       fixture.detectChanges();
