@@ -39,7 +39,7 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
   /**
    * Default date custom classes for all date/range pickers
    */
-  dateCustomClasses: DatepickerDateCustomClasses[];
+  dateCustomClasses?: DatepickerDateCustomClasses[];
   /**
    * Default tooltip text for all date/range pickers
    */

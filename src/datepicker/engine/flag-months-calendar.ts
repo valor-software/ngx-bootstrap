@@ -18,7 +18,7 @@ export interface FlagMonthCalendarOptions {
 
 export function flagMonthsCalendar(
   monthCalendar: MonthsCalendarViewModel,
-  options: FlagMonthCalendarOptions
+  options: Partial<FlagMonthCalendarOptions>
 ): MonthsCalendarViewModel {
   monthCalendar.months.forEach(
     (months: CalendarCellViewModel[], rowIndex: number) => {
@@ -55,10 +55,11 @@ export function flagMonthsCalendar(
 
   // todo: add check for linked calendars
   monthCalendar.hideLeftArrow =
-    options.monthIndex > 0 && options.monthIndex !== options.displayMonths;
+    !!options.monthIndex && options.monthIndex > 0 && options.monthIndex !== options.displayMonths;
   monthCalendar.hideRightArrow =
-    options.monthIndex < options.displayMonths &&
-    options.monthIndex + 1 !== options.displayMonths;
+    !!options.monthIndex && !!options.displayMonths
+    && options.monthIndex < options.displayMonths
+    && options.monthIndex + 1 !== options.displayMonths;
 
   monthCalendar.disableLeftArrow = isYearDisabled(
     shiftDate(monthCalendar.months[0][0].date, { year: -1 }),

@@ -5,7 +5,7 @@
 import { getBoundaries } from './getBoundaries';
 import { Offsets } from '../models';
 
-function getArea({ width, height }: Record<string, number>) {
+function getArea({ width, height }: { width: number, height: number }) {
   return width * height;
 }
 
@@ -24,30 +24,31 @@ export function computeAutoPlacement(
 
   const boundaries = getBoundaries(target, host, padding, boundariesElement);
 
-  const rects = {
+  type Rects = {top: Offsets, right: Offsets, bottom: Offsets, left: Offsets};
+  const rects: Rects = {
     top: {
-      width: boundaries.width,
-      height: refRect.top - boundaries.top
+      width: boundaries.width ?? 0,
+      height: refRect.top && boundaries.top ? refRect.top - boundaries.top : 0
     },
     right: {
-      width: boundaries.right - refRect.right,
-      height: boundaries.height
+      width: boundaries.right && refRect.right ? boundaries.right - refRect.right : 0,
+      height: boundaries.height ?? 0
     },
     bottom: {
-      width: boundaries.width,
-      height: boundaries.bottom - refRect.bottom
+      width: boundaries.width ?? 0,
+      height: boundaries.bottom && refRect.bottom ? boundaries.bottom - refRect.bottom: 0
     },
     left: {
-      width: refRect.left - boundaries.left,
-      height: boundaries.height
+      width: refRect.left && boundaries.left ? refRect.left - boundaries.left : 0,
+      height: boundaries.height ?? 0
     }
   };
 
   const sortedAreas = Object.keys(rects)
-    .map(key => ({
+    .map((key) => ({
       key,
-      ...rects[key],
-      area: getArea(rects[key])
+      ...rects[key as keyof Rects],
+      area: getArea(rects[key as keyof Rects] as {width: number, height: number})
     }))
     .sort((a, b) => b.area - a.area);
 

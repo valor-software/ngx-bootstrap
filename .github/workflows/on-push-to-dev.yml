@@ -162,6 +162,6 @@ jobs:
 
       - name: full e2e
         continue-on-error: true
-        run: npx nx run ci-docs-e2e:e2e --runner cloud --cypressConfig ./apps/ngx-bootstrap-docs-e2e/cypress-full.json --record --group full --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/ -- --parallel
+        run: npx nx run ngx-bootstrap-docs-e2e:e2e -c firebase --runner cloud --cypressConfig ./apps/ngx-bootstrap-docs-e2e/cypress-full.json --record --group full --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/ -- --parallel
       # because of "record" and "parallel" parameters
       # these containers will load balance all found tests among themselves

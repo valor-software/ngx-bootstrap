@@ -5,9 +5,9 @@ import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent } from '@ngneat/spectator';
 
-import { TypeaheadDirective, TypeaheadMatch, TypeaheadModule, TypeaheadOrder } from '../index';
-
 import { of } from 'rxjs';
+
+import { TypeaheadDirective, TypeaheadMatch, TypeaheadModule, TypeaheadOrder } from '../index';
 
 interface State {
   id: number;
@@ -24,7 +24,7 @@ interface State {
            (typeaheadOnBlur)='onBlurEvent($event)'>`
 })
 class TestTypeaheadComponent {
-  selectedState: string;
+  selectedState?: string;
   states: State[] = [
     { id: 1, name: 'Alabama', region: 'South' },
     { id: 2, name: 'Alaska', region: 'West' },
@@ -41,8 +41,8 @@ class TestTypeaheadComponent {
     'Connecticut'
   ];
 
-  onBlurEvent() {
-    return undefined;
+  onBlurEvent(event: TypeaheadMatch) {
+    return event;
   }
 }
 
@@ -294,7 +294,7 @@ describe('Directive: Typeahead', () => {
         expect(param.item.id).toBe(1);
       });
       directive.onBlur();
-      expect(directive._container.isFocused).toBeFalsy();
+      expect(directive._container?.isFocused).toBeFalsy();
       fixture.detectChanges();
     }));
 
@@ -364,7 +364,8 @@ describe('Directive: Typeahead', () => {
     );
 
     it('should not display null item', fakeAsync(() => {
-        component.states.push({ id: 3, name: null, region: 'West' });
+        // eslint-disable-next-line
+        component.states.push({ id: 3, name: null, region: 'West' } as any);
         inputElement.value = 'Ala';
         dispatchTouchEvent(inputElement, 'input');
         fixture.detectChanges();
@@ -521,7 +522,7 @@ describe('Directive: Typeahead', () => {
         beforeEach(
           fakeAsync(() => {
             directive.typeahead = component.statesString;
-            directive.typeaheadOptionField = null;
+            directive.typeaheadOptionField = void 0;
             inputElement.value = 'Ala';
             fixture.detectChanges();
             tick(100);
@@ -634,7 +635,8 @@ describe('Directive: Typeahead', () => {
         it(
           'and order direction "desc", order field is null. 1st - Alabama, 2sd - Alaska. Lack of the field doesn\'t affect the result',
           fakeAsync(() => {
-            directive.typeaheadOrderBy = { direction: 'desc', field: null };
+            // eslint-disable-next-line
+            directive.typeaheadOrderBy = { direction: 'desc', field: null } as any;
             console.error = jest.fn();
             dispatchTouchEvent(inputElement, 'input');
             fixture.detectChanges();

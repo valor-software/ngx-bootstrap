@@ -33,8 +33,8 @@ export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
   @HostBinding('attr.aria-pressed')
   state = false;
 
-  protected value: boolean | string;
-  protected isDisabled: boolean;
+  protected value?: boolean | string;
+  protected isDisabled = false;
 
   protected onChange = Function.prototype;
   protected onTouched = Function.prototype;

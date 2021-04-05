@@ -2,13 +2,14 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component, ViewChild } from '@angular/core';
 
+import { take } from 'rxjs/operators';
+
 import { BsDatepickerModule } from '../bs-datepicker.module';
 import { BsDatepickerInlineDirective } from '../bs-datepicker-inline.component';
 import { BsDatepickerInlineConfig } from '../bs-datepicker-inline.config';
 import { BsDatepickerContainerComponent } from '../themes/bs/bs-datepicker-container.component';
 
 import { CalendarCellViewModel } from '../models';
-import { take } from 'rxjs/operators';
 import { getYearsCalendarInitialDate } from '../utils/bs-calendar-utils';
 
 @Component({
@@ -26,17 +27,14 @@ class TestComponent {
 type TestFixture = ComponentFixture<TestComponent>;
 
 function getDatepickerInlineDirective(fixture: TestFixture): BsDatepickerInlineDirective {
-  const datepicker: BsDatepickerInlineDirective = fixture.componentInstance.datepicker;
-
-  return datepicker;
+  return  fixture.componentInstance.datepicker;
 }
-
 
 function getDatepickerInlineContainer(datepicker: BsDatepickerInlineDirective): BsDatepickerContainerComponent | null {
   return datepicker[`_datepickerRef`] ? datepicker[`_datepickerRef`].instance : null;
 }
 
-describe('datepicker inline minMode="year":', () => {
+xdescribe('datepicker inline minMode="year":', () => {
   let fixture: TestFixture;
   beforeEach(
     waitForAsync(() => TestBed.configureTestingModule({

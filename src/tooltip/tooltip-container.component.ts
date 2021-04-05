@@ -44,11 +44,11 @@ import { isBs3 } from 'ngx-bootstrap/utils';
     `
 })
 export class TooltipContainerComponent implements AfterViewInit {
-  classMap: { [key: string]: boolean };
-  placement: string;
-  containerClass: string;
-  animation: boolean;
-  id: string;
+  classMap?: { [key: string]: boolean };
+  placement?: string;
+  containerClass?: string;
+  animation?: boolean;
+  id?: string;
 
   get isBs3(): boolean {
     return isBs3();
@@ -60,7 +60,9 @@ export class TooltipContainerComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.classMap = { in: false, fade: false };
-    this.classMap[this.placement] = true;
+    if (this.placement) {
+      this.classMap[this.placement] = true;
+    }
     this.classMap[`tooltip-${this.placement}`] = true;
 
     this.classMap.in = true;

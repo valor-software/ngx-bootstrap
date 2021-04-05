@@ -77,7 +77,7 @@ describe('Component: Progress Bar', () => {
     context.typeValue = 'warning';
     fixture.detectChanges();
 
-    expect(barElement.classList).toContain('progress-bar-warning');
+    expect(barElement?.classList).toContain('progress-bar-warning');
   });
 
   it('checking of correct calculation of percent value(bar length)', () => {
@@ -92,8 +92,8 @@ describe('Component: Progress Bar', () => {
     fixture = TestBed.createComponent(TestProgressbarComponent);
     element = fixture.nativeElement;
     fixture.detectChanges();
-    const barElement: HTMLElement = element.querySelector('bar');
-    expect(barElement.style.width).toEqual('60%');
+    const barElement: HTMLElement|null = element.querySelector('bar');
+    expect(barElement?.style.width).toEqual('60%');
   });
 
   it('checking of correct working with dynamically changed values', () => {
@@ -121,27 +121,27 @@ describe('Component: Progress Bar', () => {
     const context = fixture.debugElement.componentInstance;
     element = fixture.nativeElement;
     fixture.detectChanges();
-    const barElement: HTMLElement = element.querySelector('bar');
+    const barElement: HTMLElement|null = element.querySelector('bar');
 
     context.maxValue = componentData.initial.max;
     context.typeValue = componentData.initial.type;
     context.valueValue = componentData.initial.value;
     fixture.detectChanges();
-    expect(barElement.style.width).toEqual('75%');
-    expect(barElement.classList).toContain('progress-bar-warning');
+    expect(barElement?.style.width).toEqual('75%');
+    expect(barElement?.classList).toContain('progress-bar-warning');
 
     context.maxValue = componentData.changed.max;
     context.typeValue = componentData.changed.type;
     context.valueValue = componentData.changed.value;
     fixture.detectChanges();
-    expect(barElement.classList).toContain('progress-bar-danger');
-    expect(barElement.style.width).toEqual('50%');
+    expect(barElement?.classList).toContain('progress-bar-danger');
+    expect(barElement?.style.width).toEqual('50%');
   });
 });
 
 describe('progress bar', () => {
   const tpl = `<progressbar [type]="typeValue" [animate]="true" [striped]="true"></progressbar>`;
-  let fixture;
+  let fixture: ComponentFixture<TestProgressbarComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

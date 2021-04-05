@@ -12,7 +12,6 @@
     "module": "esnext",
     "lib": [
       "es2017",
-      "es2015",
       "dom"
     ],
     "skipLibCheck": true,
@@ -22,7 +21,7 @@
     }
   },
   "exclude": [
-    "node_modules",
+    "node_modules/!(ngx-bootstrap)",
     "tmp"
   ]
 }

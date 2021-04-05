@@ -28,14 +28,14 @@ export function getTargetOffsets(
   const measurement = isHoriz ? 'height' : 'width';
   const secondaryMeasurement = !isHoriz ? 'height' : 'width';
 
-  targetOffsets[mainSide] =
-    hostOffsets[mainSide] +
+  targetOffsets[mainSide as keyof typeof targetOffsets] =
+    (hostOffsets[mainSide] ?? 0) +
     hostOffsets[measurement] / 2 -
     targetRect[measurement] / 2;
 
-  targetOffsets[secondarySide] = placement === secondarySide
-    ? hostOffsets[secondarySide] - targetRect[secondaryMeasurement]
-    : hostOffsets[getOppositePlacement(secondarySide)];
+  targetOffsets[secondarySide as keyof typeof targetOffsets] = placement === secondarySide
+    ? (hostOffsets[secondarySide] ?? 0)- targetRect[secondaryMeasurement]
+    : hostOffsets[getOppositePlacement(secondarySide) as keyof typeof hostOffsets] ?? 0;
 
   return targetOffsets;
 }

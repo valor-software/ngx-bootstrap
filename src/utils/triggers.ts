@@ -25,7 +25,7 @@ const DEFAULT_ALIASES = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function parseTriggers(triggers: string, aliases: any = DEFAULT_ALIASES): Trigger[] {
+export function parseTriggers(triggers?: string, aliases: any = DEFAULT_ALIASES): Trigger[] {
   const trimmedTriggers = (triggers || '').trim();
 
   if (trimmedTriggers.length === 0) {
@@ -77,10 +77,10 @@ export function listenToTriggers(renderer: Renderer2,
       return;
     }
 
-    listeners.push(
-      renderer.listen(target, trigger.open, showFn),
-      renderer.listen(target, trigger.close, hideFn)
-    );
+    listeners.push(renderer.listen(target, trigger.open, showFn));
+    if (trigger.close) {
+      listeners.push(renderer.listen(target, trigger.close, hideFn));
+    }
   });
 
   return () => {
@@ -114,15 +114,14 @@ export function listenToTriggersV2(renderer: Renderer2,
     const useToggle = trigger.open === trigger.close;
     const showFn = useToggle ? options.toggle : options.show;
 
-    if (!useToggle) {
-      _registerHide.push(() =>
-        renderer.listen(target, trigger.close, options.hide)
-      );
+    if (!useToggle && trigger.close && options.hide) {
+      const _hide = renderer.listen(target, trigger.close, options.hide);
+      _registerHide.push(() => _hide);
     }
 
-    listeners.push(
-      renderer.listen(target, trigger.open, () => showFn(registerHide))
-    );
+    if (showFn) {
+      listeners.push(renderer.listen(target, trigger.open, () => showFn(registerHide)));
+    }
   });
 
   return () => {
@@ -139,16 +138,18 @@ export function registerOutsideClick(renderer: Renderer2,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return renderer.listen('document', 'click', (event: any) => {
     if (options.target && options.target.contains(event.target)) {
-      return undefined;
+      return;
     }
     if (
       options.targets &&
       options.targets.some(target => target.contains(event.target))
     ) {
-      return undefined;
+      return;
     }
 
-    options.hide();
+    if (options.hide) {
+      options.hide();
+    }
   });
 }
 
@@ -160,15 +161,17 @@ export function registerEscClick(renderer: Renderer2,
 
   return renderer.listen('document', 'keyup.esc', (event) => {
     if (options.target && options.target.contains(event.target)) {
-      return undefined;
+      return;
     }
     if (
       options.targets &&
       options.targets.some(target => target.contains(event.target))
     ) {
-      return undefined;
+      return;
     }
 
-    options.hide();
+    if (options.hide) {
+      options.hide();
+    }
   });
 }

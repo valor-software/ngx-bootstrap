@@ -18,7 +18,6 @@ export class ModalBackdropComponent implements OnInit {
 
   set isAnimated(value: boolean) {
     this._isAnimated = value;
-    // this.renderer.setElementClass(this.element.nativeElement, `${ClassName.FADE}`, value);
   }
 
   get isShown(): boolean {
@@ -56,7 +55,7 @@ export class ModalBackdropComponent implements OnInit {
   element: ElementRef;
   renderer: Renderer2;
 
-  protected _isAnimated: boolean;
+  protected _isAnimated = false;
   protected _isShown = false;
 
   constructor(element: ElementRef, renderer: Renderer2) {

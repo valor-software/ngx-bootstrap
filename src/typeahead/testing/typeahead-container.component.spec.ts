@@ -30,17 +30,17 @@ export class PositionServiceMock {
 
 describe('Component: TypeaheadContainer', () => {
   let fixture: ComponentFixture<TypeaheadContainerComponent>;
-  let testModule;
   let component: TypeaheadContainerComponent;
 
   beforeEach(fakeAsync(() => {
-    testModule = TestBed.configureTestingModule({
+    TestBed.configureTestingModule({
       declarations: [TypeaheadContainerComponent],
       imports: [BrowserAnimationsModule],
       providers: [
         {
           provide: TypeaheadOptions,
-          useValue: new TypeaheadOptions({ animation: false, placement: 'bottom start', typeaheadRef: undefined })
+          // eslint-disable-next-line
+          useValue: new TypeaheadOptions({ animation: false, placement: 'bottom start', typeaheadRef: undefined } as any)
         },
         {
           provide: TypeaheadConfig,
@@ -52,7 +52,7 @@ describe('Component: TypeaheadContainer', () => {
         }
       ]
     });
-    fixture = testModule.createComponent(TypeaheadContainerComponent);
+    fixture = TestBed.createComponent(TypeaheadContainerComponent);
 
     component = fixture.componentInstance;
     component.parent = {
@@ -380,7 +380,7 @@ describe('Component: TypeaheadContainer', () => {
     let containingElementScrollable: HTMLElement[];
 
     beforeEach(waitForAsync(() => {
-      fixture = testModule.createComponent(TypeaheadContainerComponent);
+      fixture = TestBed.createComponent(TypeaheadContainerComponent);
       component = fixture.componentInstance;
       component.parent = {
         typeaheadOptionsInScrollableView: 3,

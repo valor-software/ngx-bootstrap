@@ -15,12 +15,12 @@
   ],
   "compilerOptions": {
     "forceConsistentCasingInFileNames": true,
-    "strict": false,
-    "noImplicitReturns": false,
+    "strict": true,
+    "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true
   },
   "angularCompilerOptions": {
-    "strictInjectionParameters": false,
-    "strictTemplates": false
+    "strictInjectionParameters": true,
+    "strictTemplates": true
   }
 }

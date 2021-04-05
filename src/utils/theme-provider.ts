@@ -4,7 +4,7 @@ let guessedVersion: 'bs3' | 'bs4';
 
 function _guessBsVersion(): 'bs3' | 'bs4' {
   if (typeof document === 'undefined') {
-    return null;
+    return 'bs4';
   }
   const spanEl = document.createElement('span');
   spanEl.innerText = 'testing bs version';

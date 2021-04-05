@@ -26,7 +26,7 @@ export class BsDatepickerState
   selectedRange?: Date[];
 
   // initial date of calendar, today by default
-  view: BsDatepickerViewState;
+  view?: BsDatepickerViewState;
 
   isDisabled?: boolean;
   // bounds
@@ -60,23 +60,23 @@ export class BsDatepickerState
   yearsCalendarFlagged?: YearsCalendarViewModel[];
 
   // options
-  monthViewOptions: MonthViewOptions;
+  monthViewOptions?: MonthViewOptions;
 
   // DatepickerRenderOptions
-  showWeekNumbers?: boolean;
-  displayMonths?: number;
+  showWeekNumbers = true;
+  displayMonths = 1;
 
   // DatepickerFormatOptions
-  locale: string;
+  locale?: string;
 
-  monthTitle: string;
-  yearTitle: string;
+  monthTitle?: string;
+  yearTitle?: string;
 
-  dayLabel: string;
-  monthLabel: string;
-  yearLabel: string;
+  dayLabel?: string;
+  monthLabel?: string;
+  yearLabel?: string;
 
-  weekNumbers: string;
+  weekNumbers?: string;
 }
 
 const _initialView: BsDatepickerViewState = { date: new Date(), mode: 'day' };

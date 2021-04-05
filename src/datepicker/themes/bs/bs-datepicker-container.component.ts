@@ -29,8 +29,8 @@ import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
 export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponent
   implements OnInit, OnDestroy {
 
-  set value(value: Date) {
-    this._effects.setValue(value);
+  set value(value: Date|undefined) {
+    this._effects?.setValue(value);
   }
 
   valueChange: EventEmitter<Date> = new EventEmitter<Date>();
@@ -59,10 +59,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
       allowedPositions: ['top', 'bottom']
     });
 
-    this._positionService.event$
-      .pipe(
-        take(1)
-      )
+    this._positionService.event$?.pipe(take(1))
       .subscribe(() => {
         this._positionService.disable();
 
@@ -84,8 +81,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     this.clearBtnLbl = this._config.clearButtonLabel;
     this.clearPos = this._config.clearPosition;
     this.customRangeBtnLbl = this._config.customRangeButtonLabel;
-    this._effects
-      .init(this._store)
+    this._effects?.init(this._store)
       // intial state options
       .setOptions(this._config)
       // data binding view --> model
@@ -172,6 +168,6 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     for (const sub of this._subs) {
       sub.unsubscribe();
     }
-    this._effects.destroy();
+    this._effects?.destroy();
   }
 }

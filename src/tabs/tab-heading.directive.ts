@@ -6,7 +6,7 @@ import { TabDirective } from './tab.directive';
 @Directive({ selector: '[tabHeading]' })
 export class TabHeadingDirective {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  templateRef: TemplateRef<any>;
+  templateRef?: TemplateRef<any>;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor(templateRef: TemplateRef<any>, tab: TabDirective) {

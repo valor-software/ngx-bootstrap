@@ -18,7 +18,7 @@ export class AccordionComponent {
   /** turn on/off animation */
   @Input() isAnimated = false;
   /** if `true` expanding one item will close all others */
-  @Input() closeOthers: boolean;
+  @Input() closeOthers = false;
 
   protected groups: AccordionPanelComponent[] = [];
 

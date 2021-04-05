@@ -51,10 +51,10 @@ import { DatePickerInnerComponent } from './datepicker-inner.component';
   ]
 })
 export class MonthPickerComponent implements OnInit {
-  title: string;
+  title?: string;
   rows = [];
   datePicker: DatePickerInnerComponent;
-  maxMode: string;
+  maxMode?: string;
 
   constructor(datePicker: DatePickerInnerComponent) {
     this.datePicker = datePicker;
@@ -71,19 +71,23 @@ export class MonthPickerComponent implements OnInit {
     this.datePicker.stepMonth = { years: 1 };
 
     this.datePicker.setRefreshViewHandler(function(): void {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      // eslint-disable-next-line @typescript-eslint/no-this-alias
+      const that = this;
       const months = new Array(12);
-      const year: number = this.activeDate.getFullYear();
+      const year: number = that.activeDate.getFullYear();
       let date: Date;
 
       for (let i = 0; i < 12; i++) {
         date = new Date(year, i, 1);
-        date = this.fixTimeZone(date);
-        months[i] = this.createDateObject(date, this.formatMonth);
-        months[i].uid = this.uniqueId + '-' + i;
+        date = that.fixTimeZone(date);
+        months[i] = that.createDateObject(date, that.formatMonth);
+        months[i].uid = that.uniqueId + '-' + i;
       }
 
-      self.title = this.dateFilter(this.activeDate, this.formatMonthTitle);
-      self.rows = this.split(months, self.datePicker.monthColLimit);
+      self.title = that.dateFilter(that.activeDate, that.formatMonthTitle);
+      self.rows = that.split(months, self.datePicker.monthColLimit);
     }, 'month');
 
     this.datePicker.setCompareHandler(function(

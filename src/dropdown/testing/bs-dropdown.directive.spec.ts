@@ -72,7 +72,8 @@ describe('Directive: Dropdown', () => {
   }));
 
   it('should be closed by default', () => {
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    const dropdown = element.querySelector('[dropdown]');
+    expect(dropdown?.classList).not.toContain('open');
   });
 
   it('autoClose value should be true by default', () => {
@@ -86,84 +87,84 @@ describe('Directive: Dropdown', () => {
   it('should be opened if isOpen === true and toggle on isOpen changes', () => {
     context.isOpen = true;
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
     context.isOpen = false;
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain('open');
     context.isOpen = true;
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
   });
 
   it('should toggle by click', () => {
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
-    element.querySelector('button').click();
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain('open');
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
-    element.querySelector('button').click();
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain('open');
   });
 
   it('should be closed if was opened by click and then isOpen === false was set', () => {
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
-    element.querySelector('button').click();
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain('open');
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
     context.isOpen = false;
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain('open');
   });
 
   it('should close by click on any element inside the dropdown', fakeAsync(() => {
-    element.querySelector('button').click();
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
 
     tick();
-    element.querySelector('li').click();
+    element.querySelector('li')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain('open');
 
     tick();
-    element.querySelector('button').click();
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
 
     tick();
     element.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain('open');
   }));
 
   it('should close by click on any element outside the dropdown', () => {
-    element.querySelector('button').click();
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
-    element.querySelector('h1').click();
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
+    element.querySelector('h1')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain('open');
   });
 
   it('should be opened if isOpen === true and toggle on isOpen changes', () => {
     context.isOpen = true;
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
     context.isOpen = false;
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain('open');
   });
 
   it('should change and update isOpen when it is opened or closed', fakeAsync(() => {
-    element.querySelector('button').click();
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
     expect(context.isOpen).toBe(true);
 
     tick();
-    element.querySelector('li').click();
+    element.querySelector('li')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).not.toContain(
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain(
       'open'
     );
     expect(context.isOpen).toBe(false);
@@ -172,180 +173,182 @@ describe('Directive: Dropdown', () => {
   it('should has class dropup if property dropup equal true', () => {
     context.dropup = true;
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('dropup');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('dropup');
   });
 
   it('should not open if isDisabled equal true', () => {
     context.isDisabled = true;
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
-    element.querySelector('button').click();
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain('open');
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain('open');
     context.isDisabled = false;
     fixture.detectChanges();
-    element.querySelector('button').click();
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
   });
 
   it('should close if only dropdown button was clicked if autoClose equal false', fakeAsync(() => {
     context.autoClose = false;
     fixture.detectChanges();
-    element.querySelector('button').click();
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
 
     tick();
     element.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
     tick();
 
-    element.querySelector('h1').click();
+    element.querySelector('h1')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
 
     tick();
-    element.querySelector('button').click();
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain('open');
   }));
 
   it('should not close by click on menu item if autoClose equal true', fakeAsync(() => {
     context.autoClose = true;
     fixture.detectChanges();
-    element.querySelector('button').click();
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
 
     tick();
-    element.querySelector('li').click();
+    element.querySelector('li')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain('open');
   }));
 
   it('value isOpenChange emits event', () => {
-    element.querySelector('button').click();
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
     expect(context.isOpenChangeValue).toBeTruthy();
   });
 
   it('should close if only dropdown button was clicked if autoClose equal false', fakeAsync(() => {
     context.autoClose = false;
     fixture.detectChanges();
-    element.querySelector('button').click();
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
 
     tick();
     element.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
 
     tick();
-    element.querySelector('h1').click();
+    element.querySelector('h1')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
 
     tick();
-    element.querySelector('button').click();
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain('open');
   }));
 
   it('should not close by click on menu item if insideClick equal true', fakeAsync(() => {
     context.insideClick = true;
     fixture.detectChanges();
-    element.querySelector('button').click();
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
 
     tick();
-    element.querySelector('li').click();
+    element.querySelector('li')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
 
     tick();
-    element.querySelector('ul').click();
+    element.querySelector('ul')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
 
     tick();
-    element.querySelector('h1').click();
+    element.querySelector('h1')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain('open');
   }));
 
   it('should close by click on menu item if insideClick equal false', fakeAsync(() => {
     context.insideClick = false;
     fixture.detectChanges();
-    element.querySelector('button').click();
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
     tick();
-    element.querySelector('li').click();
+    element.querySelector('li')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain('open');
   }));
 
   it('should close by click on menu item if insideClick equal false', fakeAsync(() => {
     context.insideClick = false;
     fixture.detectChanges();
-    element.querySelector('button').click();
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
     tick();
-    element.querySelector('li').click();
+    element.querySelector('li')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain('open');
   }));
 
   it('should change aria-expanded property, when dropdown was opened', fakeAsync(() => {
-    element.querySelector('button').click();
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
-    expect(element.querySelector('[dropdownToggle]').getAttribute('aria-expanded')).toEqual('true');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
+    expect(element.querySelector('[dropdownToggle]')?.getAttribute('aria-expanded')).toEqual('true');
     tick();
-    element.querySelector('li').click();
+    element.querySelector('li')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdownToggle]').getAttribute('aria-expanded')).toEqual('false');
+    expect(element.querySelector('[dropdownToggle]')?.getAttribute('aria-expanded')).toEqual('false');
   }));
 
   it('should change disabled property, when dropdown was opened', fakeAsync(() => {
     context.isDisabled = true;
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
-    element.querySelector('button').click();
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain('open');
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
-    expect(element.querySelector('[dropdownToggle]').getAttribute('disabled')).toEqual('true');
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain('open');
+    expect(element.querySelector('[dropdownToggle]')?.getAttribute('disabled')).toEqual('true');
   }));
 
   it('should open if container is body', () => {
     context.container = 'body';
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
-    element.querySelector('button').click();
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain('open');
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
-    element.querySelector('button').click();
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).not.toContain('open');
+    expect(element.querySelector('[dropdown]')?.classList).not.toContain('open');
   });
 
   it('should open if isBs3 method return true', fakeAsync(() => {
     context.placement = 'bottom';
-    const tempVal = window['__theme'];
-    window['__theme'] = 'bs4';
+    const tempVal = (window as never)['__theme'];
+    // eslint-disable-next-line
+    (window as any)['__theme'] = 'bs4';
     fixture.detectChanges();
-    element.querySelector('button').click();
+    element.querySelector('button')?.click();
     fixture.detectChanges();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
-    expect(element.querySelector('[dropdownToggle]').getAttribute('aria-expanded')).toEqual('true');
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
+    expect(element.querySelector('[dropdownToggle]')?.getAttribute('aria-expanded')).toEqual('true');
     tick();
-    expect(element.querySelector('[dropdown]').classList).toContain('open');
-    window['__theme'] = tempVal;
+    expect(element.querySelector('[dropdown]')?.classList).toContain('open');
+    // eslint-disable-next-line
+    (window as any)['__theme'] = tempVal;
   }));
 });
