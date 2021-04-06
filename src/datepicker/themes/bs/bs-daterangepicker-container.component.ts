@@ -14,6 +14,7 @@ import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
 import { datepickerAnimation } from '../../datepicker-animations';
 import { BsCustomDates } from './bs-custom-dates-view.component';
+import { dayInMilliseconds } from '../../reducer/_defaults';
 
 @Component({
   selector: 'bs-daterangepicker-container',
@@ -222,7 +223,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
 
     if (this._config.maxDate) {
       const maxDateValueInMilliseconds = this._config.maxDate.getTime();
-      const maxDateRangeInMilliseconds = currentSelection.getTime() + ((this._config.maxDateRange || 0) * 24 * 60 * 60 * 1000);
+      const maxDateRangeInMilliseconds = currentSelection.getTime() + ((this._config.maxDateRange || 0) * dayInMilliseconds );
       maxDateRange = maxDateRangeInMilliseconds > maxDateValueInMilliseconds ?
         new Date(this._config.maxDate) :
         new Date(maxDateRangeInMilliseconds);
