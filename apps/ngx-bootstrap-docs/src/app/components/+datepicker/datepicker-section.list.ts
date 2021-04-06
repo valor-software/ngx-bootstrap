@@ -448,7 +448,8 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'daterangepicker-max-date-range',
         component: require('!!raw-loader!./demos/max-date-range/max-date-range.ts'),
         html: require('!!raw-loader!./demos/max-date-range/max-date-range.html'),
-        description: `<p>Max date range after first date selection can be added to Daterangepicker using <code>maxDateRange</code></p>`,
+        description: `<p>Max date range after first date selection can be added to Daterangepicker using <code>maxDateRange</code>.</p>
+        <p>If you also use <code>maxDate</code> property, you can't select second date, which exceeds value of <code>maxDate</code>.</p>`,
         outlet: DemoDateRangePickerMaxDateRangeComponent
       }
     ]

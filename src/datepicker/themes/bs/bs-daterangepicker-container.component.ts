@@ -14,6 +14,7 @@ import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
 import { datepickerAnimation } from '../../datepicker-animations';
 import { BsCustomDates } from './bs-custom-dates-view.component';
+import { dayInMilliseconds } from '../../reducer/_defaults';
 
 @Component({
   selector: 'bs-daterangepicker-container',
@@ -186,6 +187,10 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
           :  [day.date];
     }
 
+    if (this._config.maxDateRange) {
+      this.setMaxDateRangeOnCalendar(day.date);
+    }
+
     if (this._rangeStack.length === 0) {
       this._rangeStack = [day.date];
 
@@ -214,9 +219,18 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   }
 
   setMaxDateRangeOnCalendar(currentSelection: Date): void {
-    const maxDateRange = new Date(currentSelection);
-    maxDateRange.setDate(currentSelection.getDate() + (this._config.maxDateRange || 0));
+    let maxDateRange = new Date(currentSelection);
+
+    if (this._config.maxDate) {
+      const maxDateValueInMilliseconds = this._config.maxDate.getTime();
+      const maxDateRangeInMilliseconds = currentSelection.getTime() + ((this._config.maxDateRange || 0) * dayInMilliseconds );
+      maxDateRange = maxDateRangeInMilliseconds > maxDateValueInMilliseconds ?
+        new Date(this._config.maxDate) :
+        new Date(maxDateRangeInMilliseconds);
+    } else {
+      maxDateRange.setDate(currentSelection.getDate() + (this._config.maxDateRange || 0));
+    }
+
     this._effects?.setMaxDate(maxDateRange);
   }
-
 }
