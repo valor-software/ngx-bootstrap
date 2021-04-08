@@ -11,14 +11,14 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+import { ConfigModel, PagesModel } from './models';
+
 import { PageChangedEvent } from './pagination.component';
 import { PaginationConfig } from './pagination.config';
 
-import { ConfigModel, PagesModel } from './models';
-
 export const PAGER_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => PagerComponent),
+  useExisting: forwardRef(() => PagerComponent),
   multi: true
 };
 
@@ -28,40 +28,58 @@ export const PAGER_CONTROL_VALUE_ACCESSOR: Provider = {
   providers: [PAGER_CONTROL_VALUE_ACCESSOR]
 })
 export class PagerComponent implements ControlValueAccessor, OnInit {
-  config: ConfigModel;
+  config?: Partial<ConfigModel>;
   /** if `true` aligns each link to the sides of pager */
-  @Input() align: boolean;
+  @Input() align = true;
   /** limit number for page links in pager */
-  @Input() maxSize: number;
+  @Input() maxSize?: number;
   /** if false first and last buttons will be hidden */
-  @Input() boundaryLinks: boolean;
+  @Input() boundaryLinks = false;
   /** if false previous and next buttons will be hidden */
-  @Input() directionLinks: boolean;
+  @Input() directionLinks = true;
   // labels
   /** first button text */
-  @Input() firstText: string;
+  @Input() firstText = 'First';
   /** previous button text */
-  @Input() previousText: string;
+  @Input() previousText = '« Previous';
   /** next button text */
-  @Input() nextText: string;
+  @Input() nextText = 'Next »';
   /** last button text */
-  @Input() lastText: string;
+  @Input() lastText = 'Last';
   /** if true current page will in the middle of pages list */
-  @Input() rotate: boolean;
+  @Input() rotate = true;
   // css
   /** add class to <code><li\></code> */
-  @Input() pageBtnClass: string;
+  @Input() pageBtnClass = '';
 
   /** if true pagination component will be disabled */
-  @Input() disabled: boolean;
+  @Input() disabled = false;
 
   /** fired when total pages count changes, $event:number equals to total pages count */
-  @Output() numPages: EventEmitter<number> = new EventEmitter<number>();
+  @Output() numPages = new EventEmitter<number>();
   /** fired when page was changed, $event:{page, itemsPerPage} equals to
    * object with current page index and number of items per page
    */
   @Output()
-  pageChanged: EventEmitter<PageChangedEvent> = new EventEmitter<PageChangedEvent>();
+  pageChanged = new EventEmitter<PageChangedEvent>();
+  onChange = Function.prototype;
+  onTouched = Function.prototype;
+  classMap = '';
+  pages?: PagesModel[];
+  protected inited = false;
+
+  constructor(private elementRef: ElementRef,
+              paginationConfig: PaginationConfig,
+              private changeDetection: ChangeDetectorRef) {
+    this.elementRef = elementRef;
+    if (!this.config) {
+      this.configureOptions(
+        Object.assign({}, paginationConfig.main, paginationConfig.pager)
+      );
+    }
+  }
+
+  protected _itemsPerPage = 15;
 
   /** maximum number of items per page. If value less than 1 will display all items on one page */
   @Input()
@@ -74,6 +92,8 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
     this.totalPages = this.calculateTotalPages();
   }
 
+  protected _totalItems = 0;
+
   /** total number of items in all pages */
   @Input()
   get totalItems(): number {
@@ -85,6 +105,8 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
     this.totalPages = this.calculateTotalPages();
   }
 
+  protected _totalPages = 0;
+
   get totalPages(): number {
     return this._totalPages;
   }
@@ -95,6 +117,12 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
     if (this.inited) {
       this.selectPage(this.page);
     }
+  }
+
+  protected _page = 1;
+
+  get page(): number {
+    return this._page;
   }
 
   set page(value: number) {
@@ -112,34 +140,7 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
     });
   }
 
-  get page(): number {
-    return this._page;
-  }
-
-  onChange = Function.prototype;
-  onTouched = Function.prototype;
-
-  classMap: string;
-  pages: PagesModel[];
-
-  protected _itemsPerPage: number;
-  protected _totalItems: number;
-  protected _totalPages: number;
-  protected inited = false;
-  protected _page = 1;
-
-  constructor(private elementRef: ElementRef,
-              paginationConfig: PaginationConfig,
-              private changeDetection: ChangeDetectorRef) {
-    this.elementRef = elementRef;
-    if (!this.config) {
-      this.configureOptions(
-        Object.assign({}, paginationConfig.main, paginationConfig.pager)
-      );
-    }
-  }
-
-  configureOptions(config: ConfigModel): void {
+  configureOptions(config: Partial<ConfigModel>): void {
     this.config = Object.assign({}, config);
   }
 
@@ -147,29 +148,29 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
     if (typeof window !== 'undefined') {
       this.classMap = this.elementRef.nativeElement.getAttribute('class') || '';
     }
-    // watch for maxSize
+ /*   // watch for maxSize
     this.maxSize =
-      typeof this.maxSize !== 'undefined' ? this.maxSize : this.config.maxSize;
+      typeof this.maxSize !== 'undefined' ? this.maxSize : this.config?.maxSize || 0;
     this.rotate =
-      typeof this.rotate !== 'undefined' ? this.rotate : this.config.rotate;
+      !!(typeof this.rotate !== 'undefined' ? this.rotate : this.config?.rotate);
     this.boundaryLinks =
-      typeof this.boundaryLinks !== 'undefined'
+      !!(typeof this.boundaryLinks !== 'undefined'
         ? this.boundaryLinks
-        : this.config.boundaryLinks;
+        : this.config?.boundaryLinks);
     this.directionLinks =
-      typeof this.directionLinks !== 'undefined'
+      !!(typeof this.directionLinks !== 'undefined'
         ? this.directionLinks
-        : this.config.directionLinks;
+        : this.config?.directionLinks);
     this.pageBtnClass =
       typeof this.pageBtnClass !== 'undefined'
         ? this.pageBtnClass
-        : this.config.pageBtnClass;
+        : this.config?.pageBtnClass || '';
 
     // base class
     this.itemsPerPage =
       typeof this.itemsPerPage !== 'undefined'
         ? this.itemsPerPage
-        : this.config.itemsPerPage;
+        : this.config?.itemsPerPage || 0;*/
     this.totalPages = this.calculateTotalPages();
     // this class
     this.pages = this.getPages(this.page, this.totalPages);
@@ -222,7 +223,7 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
   protected makePage(num: number,
                      text: string,
                      active: boolean): { number: number; text: string; active: boolean } {
-    return {text, number: num, active};
+    return { text, number: num, active };
   }
 
   protected getPages(currentPage: number, totalPages: number): PagesModel[] {
@@ -235,7 +236,7 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
       typeof this.maxSize !== 'undefined' && this.maxSize < totalPages;
 
     // recompute if maxSize
-    if (isMaxSized) {
+    if (isMaxSized && this.maxSize) {
       if (this.rotate) {
         // Current page is displayed in the middle of the visible ones
         startPage = Math.max(currentPage - Math.floor(this.maxSize / 2), 1);

@@ -24,15 +24,15 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
   /** turn on/off animation */
   isAnimated = false;
   /** Clickable text in accordion's group header, check `accordion heading` below for using html in header */
-  @Input() heading: string;
+  @Input() heading!: string;
   /** Provides an ability to use Bootstrap's contextual panel classes
    * (`panel-primary`, `panel-success`, `panel-info`, etc...).
    * List of all available classes [available here]
    * (https://getbootstrap.com/docs/3.3/components/#panels-alternatives)
    */
-  @Input() panelClass: string;
+  @Input() panelClass = 'panel-default';
   /** if <code>true</code> — disables accordion group */
-  @Input() isDisabled: boolean;
+  @Input() isDisabled = false;
   /** Emits when the opened state changes */
   @Output() isOpenChange: EventEmitter<boolean> = new EventEmitter();
 
@@ -50,12 +50,10 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
         this.accordion.closeOtherPanels(this);
       }
       this._isOpen = value;
-      Promise.resolve(null).then(() => {
+      (async () => {
+        await Promise.resolve();
         this.isOpenChange.emit(value);
       })
-        .catch((error: Error) => {
-          console.log(error);
-        });
     }
   }
 
@@ -71,7 +69,6 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.panelClass = this.panelClass || 'panel-default';
     this.accordion.addGroup(this);
   }
 

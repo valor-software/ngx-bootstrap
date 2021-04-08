@@ -1,11 +1,15 @@
 import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
+  forwardRef,
   HostListener,
   Input,
   OnInit,
   Output,
-  forwardRef, TemplateRef, ChangeDetectionStrategy, ChangeDetectorRef, Provider
+  Provider,
+  TemplateRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { RatingResults } from './models';
@@ -27,27 +31,26 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   /** number of icons */
   @Input() max = 5;
   /** if true will not react on any user events */
-  @Input() readonly: boolean;
+  @Input() readonly = false;
   /** array of icons titles, default: (["one", "two", "three", "four", "five"]) */
-  @Input() titles: string[];
+  @Input() titles: string[] = [];
   /** custom template for icons */
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  @Input() customTemplate: TemplateRef<any>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  @Input() customTemplate?: TemplateRef<any>;
   /** fired when icon selected, $event:number equals to selected rating */
-  @Output() onHover: EventEmitter<number> = new EventEmitter();
+  @Output() onHover = new EventEmitter<number>();
   /** fired when icon selected, $event:number equals to previous rating value */
-  @Output() onLeave: EventEmitter<number> = new EventEmitter();
+  @Output() onLeave = new EventEmitter<number>();
 
   onChange = Function.prototype;
   onTouched = Function.prototype;
   /** aria label for rating */
-  ariaLabel: string;
-  range: RatingResults[];
-  value: number;
-  protected preValue: number;
+  ariaLabel = 'rating';
+  range: RatingResults[] = [];
+  value = 0;
+  protected preValue?: number;
 
-  constructor(private changeDetection: ChangeDetectorRef,
-              config: RatingConfig) {
+  constructor(private changeDetection: ChangeDetectorRef, config: RatingConfig) {
     Object.assign(this, config);
   }
 
@@ -64,7 +67,7 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   }
 
   ngOnInit(): void {
-    this.max = typeof this.max !== 'undefined' ? this.max : 5;
+    this.max = this.max || 5;
     this.titles =
       typeof this.titles !== 'undefined' && this.titles.length > 0
         ? this.titles
@@ -96,9 +99,11 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   }
 
   reset(): void {
-    this.value = Math.round(this.preValue);
-    this.changeDetection.markForCheck();
-    this.onLeave.emit(this.value);
+    if (typeof this.preValue === 'number') {
+      this.value = Math.round(this.preValue);
+      this.changeDetection.markForCheck();
+      this.onLeave.emit(this.value);
+    }
   }
 
   registerOnChange(fn: (_: number) => void): void {
@@ -110,7 +115,8 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   }
 
   rate(value: number): void {
-    if (!this.readonly && value >= 0 && value <= this.range.length) {
+    if (!this.readonly && this.range
+      && value >= 0 && value <= this.range.length) {
       this.writeValue(value);
       this.onChange(value);
     }
@@ -118,11 +124,12 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
 
   protected buildTemplateObjects(max: number): RatingResults[] {
     const result: RatingResults[] = [];
+
     for (let i = 0; i < max; i++) {
       result.push({
-          index: i,
-          title: this.titles[i] || i + 1
-        });
+        index: i,
+        title: this.titles[i] || i + 1
+      });
     }
 
     return result;

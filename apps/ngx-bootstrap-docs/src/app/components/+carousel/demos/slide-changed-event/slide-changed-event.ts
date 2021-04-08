@@ -14,6 +14,9 @@ export class DemoCarouselSlideChangedEventComponent {
   ];
 
   log(event: number) {
-    this.slideChangeMessage = `Slide has been switched: ${event}`;
+    // simple hack for expression has been changed error
+    setTimeout(() => {
+      this.slideChangeMessage = `Slide has been switched: ${event}`;
+    });
   }
 }

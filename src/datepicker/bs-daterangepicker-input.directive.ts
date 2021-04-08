@@ -64,7 +64,7 @@ export class BsDaterangepickerInputDirective
   private _onChange = Function.prototype;
   private _onTouched = Function.prototype;
   private _validatorChange = Function.prototype;
-  private _value: Date[];
+  private _value?: (Date|undefined)[];
   private _subs = new Subscription();
 
   constructor(@Host() private _picker: BsDaterangepickerDirective,
@@ -103,13 +103,13 @@ export class BsDaterangepickerInputDirective
     this._subs.unsubscribe();
   }
 
-  onKeydownEvent(event) {
+  onKeydownEvent(event: KeyboardEvent) {
     if (event.keyCode === 13 || event.code === 'Enter') {
       this.hide();
     }
   }
 
-  _setInputValue(date: Date[]): void {
+  _setInputValue(date?: (Date|undefined)[]): void {
     let range = '';
     if (date) {
       const start: string = !date[0] ? ''
@@ -139,14 +139,14 @@ export class BsDaterangepickerInputDirective
   }
 
   validate(c: AbstractControl): ValidationErrors | null {
-    const _value: [Date, Date] = c.value;
+    let _value: [Date, Date] = c.value;
     const errors: Record<string, unknown>[] = [];
 
     if (_value === null || _value === undefined || !isArray(_value)) {
       return null;
     }
 
-    _value.sort((a, b) => a.getTime() - b.getTime());
+    _value = _value.slice().sort((a, b) => a.getTime() - b.getTime()) as [Date, Date];
 
     const _isFirstDateValid = isDateValid(_value[0]);
     const _isSecondDateValid = isDateValid(_value[1]);
@@ -173,6 +173,8 @@ export class BsDaterangepickerInputDirective
 
       return errors;
     }
+
+    return null;
   }
 
   registerOnValidatorChange(fn: () => void): void {
@@ -181,7 +183,7 @@ export class BsDaterangepickerInputDirective
 
   writeValue(value: Date[] | string) {
     if (!value) {
-      this._value = null;
+      this._value = void 0;
     } else {
       const _localeKey = this._localeService.currentLocale;
       const _locale = getLocale(_localeKey);
@@ -214,7 +216,7 @@ export class BsDaterangepickerInputDirective
             return parseDate(_val, this._picker._config.rangeInputFormat, this._localeService.currentLocale);
           }
         )
-        .map((date: Date) => (isNaN(date.valueOf()) ? null : date));
+        .map((date: Date) => (isNaN(date.valueOf()) ? void 0 : date));
     }
 
     this._picker.bsValue = this._value;

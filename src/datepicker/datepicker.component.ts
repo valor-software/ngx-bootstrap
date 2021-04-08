@@ -58,55 +58,55 @@ export class DatePickerComponent implements ControlValueAccessor {
   /** sets datepicker mode, supports: `day`, `month`, `year` */
   @Input() datepickerMode = 'day';
   /** default date to show if `ng-model` value is not specified */
-  @Input() initDate: Date;
+  @Input() initDate?: Date;
   /**  oldest selectable date */
-  @Input() minDate: Date;
+  @Input() minDate?: Date;
   /** latest selectable date */
-  @Input() maxDate: Date;
+  @Input() maxDate?: Date;
   /** set lower datepicker mode, supports: `day`, `month`, `year` */
-  @Input() minMode: string;
+  @Input() minMode?: string;
   /** sets upper datepicker mode, supports: `day`, `month`, `year` */
-  @Input() maxMode: string;
+  @Input() maxMode?: string;
   /** if false week numbers will be hidden */
   @Input() showWeeks = true;
   /** format of day in month */
-  @Input() formatDay: string;
+  @Input() formatDay?: string;
   /** format of month in year */
-  @Input() formatMonth: string;
+  @Input() formatMonth?: string;
   /** format of year in year range */
-  @Input() formatYear: string;
+  @Input() formatYear?: string;
   /** format of day in week header */
-  @Input() formatDayHeader: string;
+  @Input() formatDayHeader?: string;
   /** format of title when selecting day */
-  @Input() formatDayTitle: string;
+  @Input() formatDayTitle?: string;
   /** format of title when selecting month */
-  @Input() formatMonthTitle: string;
+  @Input() formatMonthTitle?: string;
   /** starting day of the week from 0-6 (0=Sunday, ..., 6=Saturday) */
-  @Input() startingDay: number;
+  @Input() startingDay?: number;
   /** number of years displayed in year selection */
-  @Input() yearRange: number;
+  @Input() yearRange?: number;
   /** if true only dates from the currently displayed month will be shown */
-  @Input() onlyCurrentMonth: boolean;
+  @Input() onlyCurrentMonth?: boolean;
   /** if true shortcut`s event propagation will be disabled */
-  @Input() shortcutPropagation: boolean;
+  @Input() shortcutPropagation?: boolean;
   /** number of months displayed in a single row of month picker */
-  @Input() monthColLimit: number;
+  @Input() monthColLimit = 3;
   /** number of years displayed in a single row of year picker */
-  @Input() yearColLimit: number;
+  @Input() yearColLimit = 5;
   /** array of custom css classes to be applied to targeted dates */
-  @Input() customClass: { date: Date; mode: string; clazz: string }[];
+  @Input() customClass?: { date: Date; mode: string; clazz: string }[];
   /** array of disabled dates */
-  @Input() dateDisabled: { date: Date; mode: string }[];
+  @Input() dateDisabled?: { date: Date; mode: string }[];
   /** disabled days of the week from 0-6 (0=Sunday, ..., 6=Saturday) */
-  @Input() dayDisabled: number[];
+  @Input() dayDisabled?: number[];
 
   /** currently active date */
   @Input()
-  get activeDate(): Date {
+  get activeDate(): Date|undefined {
     return this._activeDate || this._now;
   }
 
-  set activeDate(value: Date) {
+  set activeDate(value: Date|undefined) {
     this._activeDate = value;
   }
 
@@ -120,7 +120,7 @@ export class DatePickerComponent implements ControlValueAccessor {
   );
 
   @ViewChild(DatePickerInnerComponent, { static: true })
-  _datePicker: DatePickerInnerComponent;
+  _datePicker?: DatePickerInnerComponent;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onChange: any = Function.prototype;
@@ -130,7 +130,7 @@ export class DatePickerComponent implements ControlValueAccessor {
   config: DatepickerConfig;
 
   protected _now: Date = new Date();
-  protected _activeDate: Date;
+  protected _activeDate?: Date;
 
   constructor(config: DatepickerConfig) {
     this.config = config;
@@ -156,12 +156,12 @@ export class DatePickerComponent implements ControlValueAccessor {
   // todo: support null value
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   writeValue(value: any): void {
-    if (this._datePicker.compare(value, this._activeDate) === 0) {
+    if (this._datePicker?.compare(value, this._activeDate) === 0) {
       return;
     }
     if (value && value instanceof Date) {
       this.activeDate = value;
-      this._datePicker.select(value, false);
+      this._datePicker?.select(value, false);
 
       return;
     }

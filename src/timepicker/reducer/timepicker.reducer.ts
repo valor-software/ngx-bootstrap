@@ -14,14 +14,14 @@ import {
 import { changeTime, setTime, isValidLimit } from '../timepicker.utils';
 import { TimepickerActions } from './timepicker.actions';
 
-export class TimepickerState {
-  value: Date;
+export interface TimepickerState {
+  value?: Date;
   config: TimepickerComponentState;
   controls: TimepickerControls;
 }
 
 export const initialState: TimepickerState = {
-  value: null,
+  value: void 0,
   config: new TimepickerConfig(),
   controls: {
     canIncrementHours: true,

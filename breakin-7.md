@@ -1,6 +1,7 @@
 1. Dropped huge mega bundle `ngx-bootstrap`, please import only components you are actually using
 2. Dropped forRoot() ?
 3. remove deprecated properties
+4. remove deprecated datepicker
 
 - ci: use heroku preview instances to test ssr
 - nx: split docs into libs

@@ -18,8 +18,8 @@ export interface TimepickerControls {
 }
 
 export interface TimepickerComponentState {
-  min: Date;
-  max: Date;
+  min?: Date;
+  max?: Date;
 
   hourStep: number;
   minuteStep: number;

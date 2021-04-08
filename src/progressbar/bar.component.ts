@@ -31,12 +31,12 @@ import { isBs3 } from 'ngx-bootstrap/utils';
   }
 })
 export class BarComponent implements OnInit, OnDestroy, OnChanges {
-  @Input() max: number;
+  @Input() max = 100;
   /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
-  @Input() type: string;
+  @Input() type?: string;
 
   /** current value of progress bar */
-  @Input() value: number;
+  @Input() value?: number;
 
   @HostBinding('style.width.%')
   get setBarWidth() {
@@ -51,12 +51,12 @@ export class BarComponent implements OnInit, OnDestroy, OnChanges {
     return isBs3();
   }
 
-  striped: boolean;
-  animate: boolean;
+  striped?: boolean;
+  animate = false;
   percent = 0;
   progress: ProgressbarComponent;
 
-  private _prevType: string;
+  private _prevType?: string;
 
   constructor(
     private el: ElementRef,
@@ -90,7 +90,7 @@ export class BarComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   recalculatePercentage(): void {
-    this.percent = +(this.value / this.progress.max * 100).toFixed(2);
+    this.percent = +((this.value || 0) / this.progress.max * 100).toFixed(2);
 
     const totalPercentage = this.progress.bars
       .reduce(function (total: number, bar: BarComponent): number {
@@ -108,7 +108,7 @@ export class BarComponent implements OnInit, OnDestroy, OnChanges {
       const bgClass = `bg-${this._prevType}`;
       this.renderer.removeClass(this.el.nativeElement, barTypeClass);
       this.renderer.removeClass(this.el.nativeElement, bgClass);
-      this._prevType = null;
+      this._prevType = void 0;
     }
 
     if (this.type) {

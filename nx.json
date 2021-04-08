@@ -58,6 +58,7 @@
         "collapse",
         "datepicker",
         "dropdown",
+        "focus-trap",
         "locale",
         "modal",
         "pagination",
@@ -72,9 +73,6 @@
       ]
     },
     "ngx-bootstrap-docs-e2e": {
-      "tags": []
-    },
-    "ci-docs-e2e": {
       "tags": []
     },
     "accordion": {
@@ -132,6 +130,7 @@
       ],
       "implicitDependencies": [
         "mini-ngrx",
+        "chronos",
         "tooltip"
       ]
     },
@@ -142,6 +141,11 @@
       "implicitDependencies": [
         "positioning",
         "component-loader"
+      ]
+    },
+    "focus-trap": {
+      "tags": [
+        "lib"
       ]
     },
     "locale": {
@@ -163,6 +167,7 @@
       ],
       "implicitDependencies": [
         "positioning",
+        "focus-trap",
         "component-loader"
       ]
     },

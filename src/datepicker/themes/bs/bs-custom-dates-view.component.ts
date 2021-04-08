@@ -28,12 +28,12 @@ export interface BsCustomDates {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BsCustomDatesViewComponent {
-  @Input() ranges: BsCustomDates[];
-  @Input() selectedRange: Date[];
-  @Input() customRangeLabel: string;
+  @Input() ranges?: BsCustomDates[];
+  @Input() selectedRange?: Date[];
+  @Input() customRangeLabel?: string;
   @Output() onSelect = new EventEmitter<BsCustomDates>();
 
-  customRange = null;
+  customRange!:BsCustomDates;
 
   selectFromRanges(range: BsCustomDates) {
     this.onSelect.emit(range);

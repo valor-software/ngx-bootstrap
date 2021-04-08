@@ -7,6 +7,9 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { BsCustomDates } from '../themes/bs/bs-custom-dates-view.component';
+import { take } from 'rxjs/operators';
+import { getYearsCalendarInitialDate } from '../utils/bs-calendar-utils';
+import { initialYearShift } from '../engine/format-years-calendar';
 
 
 @Component({
@@ -212,4 +215,47 @@ describe('daterangepicker:', () => {
         expect(activeRangeButton.length).toEqual(1);
         expect(activeRangeButton[0].innerHTML.trim()).toEqual(customRangeBtnLbl);
     });
+
+  it('should not allow to select date behind max value', () => {
+    const datepicker = showDatepicker(fixture);
+    datepicker.bsConfig.maxDate = new Date();
+    datepicker.bsConfig.maxDateRange = 10;
+
+    const datepickerContainerInstance = getDaterangepickerContainer(datepicker);
+
+    const correctDateStart = new Date(new Date().setDate(new Date().getDate() - 14))
+    const correctDateEnd = new Date(new Date().setDate(new Date().getDate() - 7))
+    const selectedRange: BsCustomDates = {
+      label: '',
+      value: [correctDateStart, correctDateEnd]
+    };
+
+    datepickerContainerInstance.setMaxDateRangeOnCalendar(correctDateStart);
+    datepickerContainerInstance.setRangeOnCalendar(selectedRange);
+    fixture.detectChanges();
+
+    datepickerContainerInstance[`_store`]
+      .select(state => state)
+      .subscribe(view => {
+        expect(view.maxDate).toEqual(correctDateEnd)
+      });
+
+    const incorrectCaseStart = new Date(new Date().setDate(new Date().getDate() - 5))
+    const incorrectCaseEnd = new Date(new Date().setDate(new Date().getDate() + 15))
+    const selectedRange1: BsCustomDates = {
+      label: '',
+      value: [incorrectCaseStart, incorrectCaseEnd]
+    };
+
+    datepickerContainerInstance.setMaxDateRangeOnCalendar(incorrectCaseStart);
+    datepickerContainerInstance.setRangeOnCalendar(selectedRange1);
+    fixture.detectChanges();
+
+    datepickerContainerInstance[`_store`]
+      .select(state => state)
+      .subscribe(view => {
+        expect(view.maxDate).not.toEqual(incorrectCaseEnd)
+      });
+  });
+
 });

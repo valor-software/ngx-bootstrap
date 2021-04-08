@@ -24,7 +24,7 @@ export class AlertComponent implements OnInit {
   /** If set, displays an inline "Close" button */
   @OnChange()   @Input()   dismissible = false;
   /** Number in milliseconds, after which alert will be closed */
-  @Input() dismissOnTimeout: number | string;
+  @Input() dismissOnTimeout?: number | string;
 
   /** Is alert visible */
   @Input() isOpen = true;
