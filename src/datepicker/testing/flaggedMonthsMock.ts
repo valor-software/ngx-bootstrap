@@ -692,7 +692,9 @@ export const mockFlaggedMonths: DaysCalendarViewModel[] = [{
     }]
   }],
   hideLeftArrow: false,
-  hideRightArrow: true
+  hideRightArrow: true,
+  disableLeftArrow: false,
+  disableRightArrow: false
 }, {
   month: new Date('2021-04-01T12:36:16'),
   monthTitle: 'April',
@@ -1385,5 +1387,7 @@ export const mockFlaggedMonths: DaysCalendarViewModel[] = [{
     }]
   }],
   hideLeftArrow: false,
-  hideRightArrow: true
+  hideRightArrow: true,
+  disableRightArrow: false,
+  disableLeftArrow: false
 }]

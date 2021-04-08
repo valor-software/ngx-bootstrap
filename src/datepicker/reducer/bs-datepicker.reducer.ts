@@ -24,7 +24,7 @@ import { BsViewNavigationEvent, DatepickerFormatOptions, BsDatepickerViewMode } 
 import { getYearsCalendarInitialDate } from '../utils/bs-calendar-utils';
 
 
-export function bsDatepickerReducer(state = initialDatepickerState,
+export function bsDatepickerReducer(state: BsDatepickerState = initialDatepickerState,
                                     action: Action): BsDatepickerState {
   switch (action.type) {
     case BsDatepickerActions.CALCULATE: {
@@ -217,10 +217,16 @@ function calculateReducer(state: BsDatepickerState): BsDatepickerState {
       // Check if viewed right month same as in flaggedMonths state, then override months model with flaggedMonths
       if (state.flaggedMonths.length && state.flaggedMonths[1].month.getMonth() === viewMonth.month.getMonth()) {
         monthsModel = state.flaggedMonths
-          .map(item => calcDaysCalendar(
-            item.month,
-            state.monthViewOptions
-          ));
+          .map(item => {
+            if (state.monthViewOptions) {
+              return calcDaysCalendar(
+                item.month,
+                state.monthViewOptions
+              )
+            }
+            return null;
+          })
+          .filter(item => item !== null);
       }
     }
 
