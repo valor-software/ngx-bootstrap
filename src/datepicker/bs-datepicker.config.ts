@@ -83,6 +83,11 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
   showPreviousMonth?: boolean;
 
   /**
+   * Prevents change to next month for right calendar in two calendars view (dateRangePicker only)
+   */
+  preventChangeToNextMonth?: boolean;
+
+  /**
    * Add class to current day
    */
   customTodayClass?: string;

@@ -7,9 +7,6 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { BsCustomDates } from '../themes/bs/bs-custom-dates-view.component';
-import { take } from 'rxjs/operators';
-import { getYearsCalendarInitialDate } from '../utils/bs-calendar-utils';
-import { initialYearShift } from '../engine/format-years-calendar';
 
 
 @Component({
