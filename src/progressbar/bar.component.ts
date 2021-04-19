@@ -6,7 +6,7 @@ import {
   OnDestroy,
   OnInit,
   ElementRef,
-  Renderer2
+  Renderer2, SimpleChanges, OnChanges
 } from '@angular/core';
 
 import { ProgressbarComponent } from './progressbar.component';
@@ -17,6 +17,7 @@ import { isBs3 } from 'ngx-bootstrap/utils';
 @Component({
   selector: 'bar',
   templateUrl: './bar.component.html',
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     role: 'progressbar',
     'aria-valuemin': '0',
@@ -29,33 +30,13 @@ import { isBs3 } from 'ngx-bootstrap/utils';
     '[style.height.%]': '"100"'
   }
 })
-export class BarComponent implements OnInit, OnDestroy {
-  max: number;
-
+export class BarComponent implements OnInit, OnDestroy, OnChanges {
+  @Input() max = 100;
   /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
-  @Input()
-  get type(): string {
-    return this._type;
-  }
-
-  set type(v: string) {
-    this._type = v;
-    this.applyTypeClasses();
-  }
+  @Input() type?: string;
 
   /** current value of progress bar */
-  @Input()
-  get value(): number {
-    return this._value;
-  }
-
-  set value(v: number) {
-    if (!v && v !== 0) {
-      return;
-    }
-    this._value = v;
-    this.recalculatePercentage();
-  }
+  @Input() value?: number;
 
   @HostBinding('style.width.%')
   get setBarWidth() {
@@ -70,14 +51,12 @@ export class BarComponent implements OnInit, OnDestroy {
     return isBs3();
   }
 
-  striped: boolean;
-  animate: boolean;
+  striped?: boolean;
+  animate = false;
   percent = 0;
   progress: ProgressbarComponent;
 
-  protected _value: number;
-  protected _type: string;
-  private _prevType: string;
+  private _prevType?: string;
 
   constructor(
     private el: ElementRef,
@@ -95,8 +74,23 @@ export class BarComponent implements OnInit, OnDestroy {
     this.progress.removeBar(this);
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.value) {
+      if (!changes.value.currentValue && changes.value.currentValue !== 0) {
+        return;
+      }
+      this.value = changes.value.currentValue;
+      this.recalculatePercentage();
+    }
+
+    if (changes.type) {
+      this.type = changes.type.currentValue;
+      this.applyTypeClasses();
+    }
+  }
+
   recalculatePercentage(): void {
-    this.percent = +(this.value / this.progress.max * 100).toFixed(2);
+    this.percent = +((this.value || 0) / this.progress.max * 100).toFixed(2);
 
     const totalPercentage = this.progress.bars
       .reduce(function (total: number, bar: BarComponent): number {
@@ -114,15 +108,15 @@ export class BarComponent implements OnInit, OnDestroy {
       const bgClass = `bg-${this._prevType}`;
       this.renderer.removeClass(this.el.nativeElement, barTypeClass);
       this.renderer.removeClass(this.el.nativeElement, bgClass);
-      this._prevType = null;
+      this._prevType = void 0;
     }
 
-    if (this._type) {
-      const barTypeClass = `progress-bar-${this._type}`;
-      const bgClass = `bg-${this._type}`;
+    if (this.type) {
+      const barTypeClass = `progress-bar-${this.type}`;
+      const bgClass = `bg-${this.type}`;
       this.renderer.addClass(this.el.nativeElement, barTypeClass);
       this.renderer.addClass(this.el.nativeElement, bgClass);
-      this._prevType = this._type;
+      this._prevType = this.type;
     }
   }
 }

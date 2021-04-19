@@ -1,4 +1,3 @@
-/* tslint:disable */
 export const latinMap: { [key: string]: string } = {
     'Á': 'A',
     'Ă': 'A',

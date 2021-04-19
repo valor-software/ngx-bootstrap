@@ -6,7 +6,9 @@ import { Injectable } from '@angular/core';
  * the values of its properties in order to provide default values for all the
  * popovers used in the application.
  */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class PopoverConfig {
   /** sets disable adaptive position */
   adaptivePosition = true;
@@ -24,7 +26,7 @@ export class PopoverConfig {
   /**
    * A selector specifying the element the popover should be appended to.
    */
-  container: string;
+  container?: string;
   /** delay before showing the tooltip */
   delay = 0;
 }

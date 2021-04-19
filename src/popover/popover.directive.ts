@@ -9,31 +9,36 @@ import { PositioningService } from 'ngx-bootstrap/positioning';
 import { timer } from 'rxjs';
 import { parseTriggers, Trigger } from 'ngx-bootstrap/utils';
 
+let id = 0;
+
 /**
  * A lightweight, extensible directive for fancy popover creation.
  */
 @Directive({selector: '[popover]', exportAs: 'bs-popover'})
 export class PopoverDirective implements OnInit, OnDestroy {
+  /** unique id popover - use for aria-describedby */
+  popoverId = id++;
   /** sets disable adaptive position */
-  @Input() adaptivePosition: boolean;
+  @Input() adaptivePosition = true;
   /**
    * Content to be displayed as popover.
    */
-  /* tslint:disable-next-line: no-any */
-  @Input() popover: string | TemplateRef<any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  @Input() popover?: string | TemplateRef<any>;
   /**
    * Context to be used if popover is a template.
    */
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   @Input() popoverContext: any;
   /**
    * Title of a popover.
    */
-  @Input() popoverTitle: string;
+  @Input() popoverTitle?: string;
   /**
    * Placement of a popover. Accepts: "top", "bottom", "left", "right"
    */
-  @Input() placement: 'top' | 'bottom' | 'left' | 'right' | 'auto';
+  @Input() placement: 'top' | 'bottom' | 'left' | 'right' | 'auto' | 'top left' | 'top right' |
+    'right top' | 'right bottom' | 'bottom right' | 'bottom left' | 'left bottom' | 'left top' = 'top';
   /**
    * Close popover on outside click
    */
@@ -42,11 +47,11 @@ export class PopoverDirective implements OnInit, OnDestroy {
    * Specifies events that should trigger. Supports a space separated list of
    * event names.
    */
-  @Input() triggers: string;
+  @Input() triggers = 'click';
   /**
    * A selector specifying the element the popover should be appended to.
    */
-  @Input() container: string;
+  @Input() container?: string;
 
   /**
    * Css class for popover container
@@ -72,25 +77,24 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /**
    * Delay before showing the tooltip
    */
-  @Input() delay: number;
+  @Input() delay = 0;
 
   /**
    * Emits an event when the popover is shown
    */
-  /* tslint:disable-next-line: no-any */
-  @Output() onShown: EventEmitter<any>;
+  @Output() onShown: EventEmitter<unknown>;
   /**
    * Emits an event when the popover is hidden
    */
-  /* tslint:disable-next-line: no-any */
-  @Output() onHidden: EventEmitter<any>;
+  @Output() onHidden: EventEmitter<unknown>;
 
-  protected _popoverCancelShowFn: Function;
+  protected _popoverCancelShowFn?: () => void;
 
-  protected _delayTimeoutId: number | any;
+  protected _delayTimeoutId?: number;
 
   private _popover: ComponentLoader<PopoverContainerComponent>;
   private _isInited = false;
+  private _ariaDescribedby?: string;
 
   constructor(
     _config: PopoverConfig,
@@ -122,6 +126,22 @@ export class PopoverDirective implements OnInit, OnDestroy {
           return;
         }
       });
+    }
+  }
+
+  /**
+   * Set attribute aria-describedBy for element directive and
+   * set id for the popover
+   */
+  setAriaDescribedBy(): void {
+    this._ariaDescribedby = this.isOpen ? `ngx-popover-${this.popoverId}` : void 0;
+    if (this._ariaDescribedby) {
+      if (this._popover.instance) {
+        this._popover.instance.popoverId = this._ariaDescribedby;
+      }
+      this._renderer.setAttribute(this._elementRef.nativeElement, 'aria-describedby', this._ariaDescribedby);
+    } else {
+      this._renderer.removeAttribute(this._elementRef.nativeElement, 'aria-describedby');
     }
   }
 
@@ -162,12 +182,13 @@ export class PopoverDirective implements OnInit, OnDestroy {
           containerClass: this.containerClass
         });
 
-      if (!this.adaptivePosition) {
+      if (!this.adaptivePosition && this._popover._componentRef) {
         this._positionService.calcPosition();
         this._positionService.deletePositionElement(this._popover._componentRef.location);
       }
 
       this.isOpen = true;
+      this.setAriaDescribedBy();
     };
 
     const cancelDelayedTooltipShowing = () => {
@@ -185,6 +206,10 @@ export class PopoverDirective implements OnInit, OnDestroy {
       if (this.triggers) {
         parseTriggers(this.triggers)
           .forEach((trigger: Trigger) => {
+            if (!trigger.close) {
+              return;
+            }
+
             this._popoverCancelShowFn = this._renderer.listen(
               this._elementRef.nativeElement,
               trigger.close,
@@ -212,6 +237,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
 
     if (this.isOpen) {
       this._popover.hide();
+      this.setAriaDescribedBy();
       this.isOpen = false;
     }
   }
@@ -240,7 +266,8 @@ export class PopoverDirective implements OnInit, OnDestroy {
     this._popover.listen({
       triggers: this.triggers,
       outsideClick: this.outsideClick,
-      show: () => this.show()
+      show: () => this.show(),
+      hide: () => this.hide()
     });
   }
 

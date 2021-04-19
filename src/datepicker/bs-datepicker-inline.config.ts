@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class BsDatepickerInlineConfig extends BsDatepickerConfig { }

@@ -12,17 +12,17 @@ import {
 } from '@angular/core';
 import { TabsetComponent } from './tabset.component';
 
-@Directive({ selector: 'tab, [tab]' })
+@Directive({ selector: 'tab, [tab]', exportAs: 'tab' })
 export class TabDirective implements OnInit, OnDestroy {
   /** tab header text */
-  @Input() heading: string;
+  @Input() heading?: string;
   /** tab id. The same id with suffix '-link' will be added to the corresponding &lt;li&gt; element  */
   @HostBinding('attr.id')
-  @Input() id: string;
+  @Input() id?: string;
   /** if true tab can not be activated */
-  @Input() disabled: boolean;
+  @Input() disabled = false;
   /** if true tab can be removable, additional button will appear */
-  @Input() removable: boolean;
+  @Input() removable = false;
   /** if set, will be added to the tab's class attribute. Multiple classes are supported. */
   @Input()
   get customClass(): string {
@@ -36,7 +36,7 @@ export class TabDirective implements OnInit, OnDestroy {
       });
     }
 
-    this._customClass = customClass ? customClass.trim() : null;
+    this._customClass = customClass ? customClass.trim() : '';
 
     if (this.customClass) {
       this.customClass.split(' ').forEach((cssClass: string) => {
@@ -82,12 +82,16 @@ export class TabDirective implements OnInit, OnDestroy {
   @Output() removed: EventEmitter<TabDirective> = new EventEmitter();
 
   @HostBinding('class.tab-pane') addClass = true;
+  @HostBinding('attr.role') role = 'tabpanel';
+  @HostBinding('attr.aria-labelledby') get ariaLabelledby(): string {
+    return this.id ? `${this.id}-link` : '';
+  }
 
-  /* tslint:disable-next-line:no-any */
-  headingRef: TemplateRef<any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  headingRef?: TemplateRef<any>;
   tabset: TabsetComponent;
-  protected _active: boolean;
-  protected _customClass: string;
+  protected _active = false;
+  protected _customClass = '';
 
   constructor(
     tabset: TabsetComponent,
@@ -99,7 +103,7 @@ export class TabDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.removable = this.removable;
+    this.removable = !!this.removable;
   }
 
   ngOnDestroy(): void {

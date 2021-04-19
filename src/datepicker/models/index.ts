@@ -7,10 +7,10 @@ export type BsDatepickerViewMode = 'day' | 'month' | 'year';
 export interface NavigationViewModel {
   monthTitle: string;
   yearTitle: string;
-  hideLeftArrow?: boolean;
-  hideRightArrow?: boolean;
-  disableLeftArrow?: boolean;
-  disableRightArrow?: boolean;
+  hideLeftArrow: boolean;
+  hideRightArrow: boolean;
+  disableLeftArrow: boolean;
+  disableRightArrow: boolean;
 }
 
 export interface CalendarCellViewModel {
@@ -31,6 +31,7 @@ export interface DayViewModel extends CalendarCellViewModel {
   isSelectionEnd?: boolean;
   isToday?: boolean;
   customClasses?: string;
+  tooltipText?: string;
   // day index
   monthIndex?: number;
   weekIndex?: number;
@@ -85,26 +86,31 @@ export interface MonthViewOptions {
 /** *************** */
 // rendering options
 export interface DatepickerFormatOptions {
-  locale: string;
+  locale?: string;
 
-  monthTitle: string;
-  yearTitle: string;
+  monthTitle?: string;
+  yearTitle?: string;
 
-  dayLabel: string;
-  monthLabel: string;
-  yearLabel: string;
+  dayLabel?: string;
+  monthLabel?: string;
+  yearLabel?: string;
 
-  weekNumbers: string;
+  weekNumbers?: string;
 }
 
 export interface DatepickerRenderOptions {
-  showWeekNumbers?: boolean;
-  displayMonths?: number;
+  showWeekNumbers: boolean;
+  displayMonths: number;
 }
 
 export interface DatepickerDateCustomClasses {
   date: Date;
   classes: string[];
+}
+
+export interface DatepickerDateTooltipText {
+  date: Date;
+  tooltipText: string;
 }
 
 /** *************** */

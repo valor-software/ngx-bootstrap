@@ -1,19 +1,19 @@
-/* tslint:disable:max-file-line-count */
 // todo: should we support enforce focus in?
 // todo: in original bs there are was a way to prevent modal from showing
 // todo: original modal had resize events
 
 import {
   ComponentRef, Directive, ElementRef, EventEmitter, HostListener, Input,
-  OnDestroy, OnInit, Output, Renderer2, ViewContainerRef
+  OnDestroy, OnInit, Output, Renderer2, ViewContainerRef, Optional, Inject
 } from '@angular/core';
 
 import { document, window, isBs3, Utils } from 'ngx-bootstrap/utils';
 import { ModalBackdropComponent } from './modal-backdrop.component';
 import {
-  CLASS_NAME, DISMISS_REASONS, modalConfigDefaults, ModalOptions
+  CLASS_NAME, DISMISS_REASONS, modalConfigDefaults, ModalOptions, MODAL_CONFIG_DEFAULT_OVERRIDE
 } from './modal-options.class';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
+import { CloseInterceptorFn } from './models';
 
 const TRANSITION_DURATION = 300;
 const BACKDROP_TRANSITION_DURATION = 150;
@@ -33,6 +33,9 @@ export class ModalDirective implements OnDestroy, OnInit {
   get config(): ModalOptions {
     return this._config;
   }
+
+  /** allows to provide a callback to intercept the closure of the modal */
+  @Input() closeInterceptor?: CloseInterceptorFn;
 
   /** This event fires immediately when the `show` instance method is called. */
   @Output()
@@ -54,10 +57,10 @@ export class ModalDirective implements OnDestroy, OnInit {
   onHidden: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
 
   /** This field contains last dismiss reason.
-   * Possible values: `backdrop-click`, `esc` and `null`
+   * Possible values: `backdrop-click`, `esc` and `id: number`
    * (if modal was closed by direct call of `.hide()`).
    */
-  dismissReason: string;
+  dismissReason?: string;
 
   get isShown(): boolean {
     return this._isShown;
@@ -74,29 +77,41 @@ export class ModalDirective implements OnDestroy, OnInit {
   protected timerRmBackDrop = 0;
 
   // reference to backdrop component
-  protected backdrop: ComponentRef<ModalBackdropComponent>;
+  protected backdrop?: ComponentRef<ModalBackdropComponent>;
   private _backdrop: ComponentLoader<ModalBackdropComponent>;
 
   private isNested = false;
+  private clickStartedInContent = false;
 
-  constructor(private _element: ElementRef,
-              _viewContainerRef: ViewContainerRef,
-              private _renderer: Renderer2,
-              clf: ComponentLoaderFactory) {
+  constructor(
+    private _element: ElementRef,
+    _viewContainerRef: ViewContainerRef,
+    private _renderer: Renderer2,
+    clf: ComponentLoaderFactory,
+    @Optional() @Inject(MODAL_CONFIG_DEFAULT_OVERRIDE) modalDefaultOption: ModalOptions) {
     this._backdrop = clf.createLoader<ModalBackdropComponent>(
       _element,
       _viewContainerRef,
       _renderer
     );
+    this._config = modalDefaultOption || modalConfigDefaults;
   }
 
-  @HostListener('click', ['$event'])
-  onClick(event: MouseEvent): void {
+  @HostListener('mousedown', ['$event'])
+  onClickStarted(event: MouseEvent): void {
+    this.clickStartedInContent = event.target !== this._element.nativeElement;
+  }
+
+  @HostListener('mouseup', ['$event'])
+  onClickStop(event: MouseEvent): void {
+    const clickedInBackdrop = event.target === this._element.nativeElement && !this.clickStartedInContent;
     if (
       this.config.ignoreBackdropClick ||
       this.config.backdrop === 'static' ||
-      event.target !== this._element.nativeElement
+      !clickedInBackdrop
     ) {
+      this.clickStartedInContent = false;
+
       return;
     }
     this.dismissReason = DISMISS_REASONS.BACKRDOP;
@@ -109,7 +124,6 @@ export class ModalDirective implements OnDestroy, OnInit {
     if (!this._isShown) {
       return;
     }
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === 27 || event.key === 'Escape') {
       event.preventDefault();
     }
@@ -121,7 +135,6 @@ export class ModalDirective implements OnDestroy, OnInit {
   }
 
   ngOnDestroy() {
-    this.config = void 0;
     if (this._isShown) {
       this._isShown = false;
       this.hideModal();
@@ -147,7 +160,7 @@ export class ModalDirective implements OnDestroy, OnInit {
 
   /** Allows to manually open modal */
   show(): void {
-    this.dismissReason = null;
+    this.dismissReason = void 0;
     this.onShow.emit(this);
     if (this._isShown) {
       return;
@@ -173,18 +186,35 @@ export class ModalDirective implements OnDestroy, OnInit {
     });
   }
 
-  /** Allows to manually close modal */
+  /** Check if we can close the modal */
   hide(event?: Event): void {
+    if (!this._isShown) {
+      return;
+    }
+
     if (event) {
       event.preventDefault();
     }
 
-    this.onHide.emit(this);
+    if (this.config.closeInterceptor) {
+      this.config.closeInterceptor().then(
+        () => this._hide(),
+        () => undefined);
 
-    // todo: add an option to prevent hiding
-    if (!this._isShown) {
       return;
     }
+
+    this._hide();
+  }
+
+  /** Private methods @internal */
+
+  /**
+   *  Manually close modal
+   *  @internal
+   */
+  protected _hide(): void {
+    this.onHide.emit(this);
 
     window.clearTimeout(this.timerHideModal);
     window.clearTimeout(this.timerRmBackDrop);
@@ -206,9 +236,8 @@ export class ModalDirective implements OnDestroy, OnInit {
     }
   }
 
-  /** Private methods @internal */
   protected getConfig(config?: ModalOptions): ModalOptions {
-    return Object.assign({}, modalConfigDefaults, config);
+    return Object.assign({}, this._config, config);
   }
 
   /**
@@ -300,7 +329,7 @@ export class ModalDirective implements OnDestroy, OnInit {
   // todo: original show was calling a callback when done, but we can use
   // promise
   /** @internal */
-  protected showBackdrop(callback?: Function): void {
+  protected showBackdrop(callback?: () => void): void {
     if (
       this._isShown &&
       this.config.backdrop &&
@@ -310,7 +339,7 @@ export class ModalDirective implements OnDestroy, OnInit {
       this._backdrop
         .attach(ModalBackdropComponent)
         .to('body')
-        .show({isAnimated: this._config.animated});
+        .show({ isAnimated: this._config.animated });
       this.backdrop = this._backdrop._componentRef;
 
       if (!callback) {
@@ -423,7 +452,7 @@ export class ModalDirective implements OnDestroy, OnInit {
 
     if (this.isBodyOverflowing) {
       document.body.style.paddingRight = `${this.originalBodyPadding +
-      this.scrollbarWidth}px`;
+        this.scrollbarWidth}px`;
     }
   }
 

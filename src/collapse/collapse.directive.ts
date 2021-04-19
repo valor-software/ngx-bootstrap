@@ -23,6 +23,7 @@ import {
 @Directive({
   selector: '[collapse]',
   exportAs: 'bs-collapse',
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[class.collapse]': 'true'
   }
@@ -36,12 +37,12 @@ export class CollapseDirective implements AfterViewChecked {
   @Output() expanded: EventEmitter<CollapseDirective> = new EventEmitter();
   /** This event fires when expansion is started */
   @Output() expands: EventEmitter<CollapseDirective> = new EventEmitter();
-
   // shown
   @HostBinding('class.in')
   @HostBinding('class.show')
   @HostBinding('attr.aria-expanded')
   isExpanded = true;
+  collapseNewValue = true;
   // hidden
   @HostBinding('attr.aria-hidden') isCollapsed = false;
   // stale state
@@ -72,6 +73,7 @@ export class CollapseDirective implements AfterViewChecked {
   /** A flag indicating visibility of content (shown or hidden) */
   @Input()
   set collapse(value: boolean) {
+    this.collapseNewValue = value;
     if (!this._player || this._isAnimationDone) {
       this.isExpanded = value;
       this.toggle();
@@ -83,14 +85,15 @@ export class CollapseDirective implements AfterViewChecked {
   }
 
   private _display = 'block';
-  private _factoryCollapseAnimation: AnimationFactory;
-  private _factoryExpandAnimation: AnimationFactory;
-  private _isAnimationDone: boolean;
-  private _player: AnimationPlayer;
+  private _isAnimationDone?: boolean;
+  private _player?: AnimationPlayer;
   private _stylesLoaded = false;
 
   private _COLLAPSE_ACTION_NAME = 'collapse';
   private _EXPAND_ACTION_NAME = 'expand';
+
+  private readonly _factoryCollapseAnimation: AnimationFactory;
+  private readonly _factoryExpandAnimation: AnimationFactory;
 
   constructor(
     private _el: ElementRef,
@@ -134,6 +137,11 @@ export class CollapseDirective implements AfterViewChecked {
 
     this.animationRun(this.isAnimated, this._COLLAPSE_ACTION_NAME)(() => {
       this._isAnimationDone = true;
+      if (this.collapseNewValue !== this.isCollapsed && this.isAnimated) {
+        this.show();
+
+        return;
+      }
       this.collapsed.emit(this);
       this._renderer.setStyle(this._el.nativeElement, 'display', 'none');
     });
@@ -150,10 +158,15 @@ export class CollapseDirective implements AfterViewChecked {
     this.expands.emit(this);
 
     this._isAnimationDone = false;
-
     this.animationRun(this.isAnimated, this._EXPAND_ACTION_NAME)(() => {
       this._isAnimationDone = true;
+      if (this.collapseNewValue !== this.isCollapsed && this.isAnimated) {
+        this.hide();
+
+        return;
+      }
       this.expanded.emit(this);
+      this._renderer.removeStyle(this._el.nativeElement, 'overflow');
     });
   }
 
@@ -176,6 +189,6 @@ export class CollapseDirective implements AfterViewChecked {
     this._player = factoryAnimation.create(this._el.nativeElement);
     this._player.play();
 
-    return (callback: () => void) => this._player.onDone(callback);
+    return (callback: () => void) => this._player?.onDone(callback);
   }
 }

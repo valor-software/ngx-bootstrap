@@ -12,12 +12,14 @@ import { isBs3 } from 'ngx-bootstrap/utils';
 
 import { dropdownAnimation } from './dropdown-animations';
 import { AnimationBuilder, AnimationFactory } from '@angular/animations';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'bs-dropdown-container',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
-    style: 'display:block;position: absolute;'
+    style: 'display:block;position: absolute;z-index: 1040'
   },
   template: `
     <div [class.dropup]="direction === 'up'"
@@ -36,8 +38,7 @@ export class BsDropdownContainerComponent implements OnDestroy {
     return this._state.direction;
   }
 
-// tslint:disable-next-line:no-any
-  private _subscription: any;
+  private _subscription: Subscription;
 
   constructor(
     private _state: BsDropdownState,
@@ -50,7 +51,6 @@ export class BsDropdownContainerComponent implements OnDestroy {
 
     this._subscription = _state.isOpenChange.subscribe((value: boolean) => {
       this.isOpen = value;
-
       const dropdown = this._element.nativeElement.querySelector('.dropdown-menu');
 
       this._renderer.addClass(this._element.nativeElement.querySelector('div'), 'open');

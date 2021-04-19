@@ -5,8 +5,9 @@ import { isBs3 } from 'ngx-bootstrap/utils';
 @Component({
   selector: 'popover-container',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  // tslint:disable-next-line
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
+    '[attr.id]': 'popoverId',
     '[class]':
       '"popover in popover-" + placement + " " + "bs-popover-" + placement + " " + placement + " " + containerClass',
     '[class.show]': '!isBs3',
@@ -39,9 +40,10 @@ import { isBs3 } from 'ngx-bootstrap/utils';
   templateUrl: './popover-container.component.html'
 })
 export class PopoverContainerComponent {
-  @Input() placement: string;
-  @Input() title: string;
-  containerClass: string;
+  @Input() placement?: string;
+  @Input() title?: string;
+  containerClass?: string;
+  popoverId?: string;
 
   get isBs3(): boolean {
     return isBs3();

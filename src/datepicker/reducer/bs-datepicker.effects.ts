@@ -1,43 +1,42 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, Subscription } from 'rxjs';
+import { combineLatest, Observable, Subscription } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
-import { getFullYear, getMonth } from 'ngx-bootstrap/chronos';
-
 import { BsDatepickerAbstractComponent } from '../base/bs-datepicker-container';
-import { BsDatepickerActions } from './bs-datepicker.actions';
 import { BsDatepickerConfig } from '../bs-datepicker.config';
-import { BsDatepickerStore } from './bs-datepicker.store';
 import { BsLocaleService } from '../bs-locale.service';
 
 import {
   BsDatepickerViewMode,
   BsNavigationEvent,
-  CalendarCellViewModel,
   CellHoverEvent,
-  DatepickerRenderOptions,
   DatepickerDateCustomClasses,
+  DatepickerDateTooltipText,
+  DatepickerRenderOptions,
   DaysCalendarViewModel,
   DayViewModel,
   MonthsCalendarViewModel,
   YearsCalendarViewModel
 } from '../models';
+import { BsDatepickerActions } from './bs-datepicker.actions';
+import { BsDatepickerStore } from './bs-datepicker.store';
 
 
 @Injectable()
 export class BsDatepickerEffects {
-  viewMode: Observable<BsDatepickerViewMode>;
-  daysCalendar: Observable<DaysCalendarViewModel[]>;
-  monthsCalendar: Observable<MonthsCalendarViewModel[]>;
-  yearsCalendar: Observable<YearsCalendarViewModel[]>;
-  options: Observable<DatepickerRenderOptions>;
+  viewMode?: Observable<BsDatepickerViewMode>;
+  daysCalendar?: Observable<DaysCalendarViewModel[]>;
+  monthsCalendar?: Observable<MonthsCalendarViewModel[]>;
+  yearsCalendar?: Observable<YearsCalendarViewModel[]>;
+  options?: Observable<DatepickerRenderOptions>;
 
-  private _store: BsDatepickerStore;
+  private _store?: BsDatepickerStore;
   private _subs: Subscription[] = [];
 
   constructor(private _actions: BsDatepickerActions,
-              private _localeService: BsLocaleService) {}
+              private _localeService: BsLocaleService) {
+  }
 
   init(_bsDatepickerStore: BsDatepickerStore): BsDatepickerEffects {
     this._store = _bsDatepickerStore;
@@ -47,87 +46,98 @@ export class BsDatepickerEffects {
 
   /** setters */
 
-  setValue(value: Date): void {
-    this._store.dispatch(this._actions.select(value));
+  setValue(value?: Date): void {
+    this._store?.dispatch(this._actions.select(value));
   }
 
-  setRangeValue(value: Date[]): void {
-    this._store.dispatch(this._actions.selectRange(value));
+  setRangeValue(value?: Date[]): void {
+    this._store?.dispatch(this._actions.selectRange(value));
   }
 
-  setMinDate(value: Date): BsDatepickerEffects {
-    this._store.dispatch(this._actions.minDate(value));
+  setMinDate(value?: Date): BsDatepickerEffects {
+    this._store?.dispatch(this._actions.minDate(value));
 
     return this;
   }
 
-  setMaxDate(value: Date): BsDatepickerEffects {
-    this._store.dispatch(this._actions.maxDate(value));
+  setMaxDate(value?: Date): BsDatepickerEffects {
+    this._store?.dispatch(this._actions.maxDate(value));
 
     return this;
   }
 
-  setDaysDisabled(value: number[]) {
-    this._store.dispatch(this._actions.daysDisabled(value));
+  setDaysDisabled(value?: number[]): BsDatepickerEffects {
+    this._store?.dispatch(this._actions.daysDisabled(value));
 
     return this;
   }
 
-  setDatesDisabled(value: Date[]) {
-    this._store.dispatch(this._actions.datesDisabled(value));
+  setDatesDisabled(value?: Date[]): BsDatepickerEffects {
+    this._store?.dispatch(this._actions.datesDisabled(value));
 
     return this;
   }
 
-  setDisabled(value: boolean): BsDatepickerEffects {
-    this._store.dispatch(this._actions.isDisabled(value));
+  setDatesEnabled(value?: Date[]): BsDatepickerEffects {
+    this._store?.dispatch(this._actions.datesEnabled(value));
 
     return this;
   }
 
-  setDateCustomClasses(value: DatepickerDateCustomClasses[]): BsDatepickerEffects {
-    this._store.dispatch(this._actions.setDateCustomClasses(value));
+  setDisabled(value?: boolean): BsDatepickerEffects {
+    this._store?.dispatch(this._actions.isDisabled(value));
+
+    return this;
+  }
+
+  setDateCustomClasses(value?: DatepickerDateCustomClasses[]): BsDatepickerEffects {
+    this._store?.dispatch(this._actions.setDateCustomClasses(value));
+
+    return this;
+  }
+
+  setDateTooltipTexts(value?: DatepickerDateTooltipText[]): BsDatepickerEffects {
+    this._store?.dispatch(this._actions.setDateTooltipTexts(value));
 
     return this;
   }
 
   /* Set rendering options */
   setOptions(_config: BsDatepickerConfig): BsDatepickerEffects {
-    const _options = Object.assign({locale: this._localeService.currentLocale}, _config);
-    this._store.dispatch(this._actions.setOptions(_options));
+    const _options = Object.assign({ locale: this._localeService.currentLocale }, _config);
+    this._store?.dispatch(this._actions.setOptions(_options));
 
     return this;
   }
 
   /** view to mode bindings */
   setBindings(container: BsDatepickerAbstractComponent): BsDatepickerEffects {
-    container.daysCalendar = this._store
-      .select(state => state.flaggedMonths)
-      .pipe(
-        filter(months => !!months)
-      );
+    if (!this._store) {
+      return this;
+    }
+
+    container.daysCalendar$ = this._store.select(state => state.flaggedMonths)
+      .pipe(filter(months => !!months));
 
     // month calendar
-    container.monthsCalendar = this._store
-      .select(state => state.flaggedMonthsCalendar)
-      .pipe(
-        filter(months => !!months)
-      );
+    container.monthsCalendar = this._store.select(state => state.flaggedMonthsCalendar)
+      .pipe(filter(months => !!months));
 
     // year calendar
-    container.yearsCalendar = this._store
-      .select(state => state.yearsCalendarFlagged)
-      .pipe(
-        filter(years => !!years)
-      );
+    container.yearsCalendar = this._store.select(state => state.yearsCalendarFlagged)
+      .pipe(filter(years => !!years));
 
-    container.viewMode = this._store.select(state => state.view.mode);
+    container.viewMode = this._store.select(state => state.view?.mode);
 
-    container.options = this._store
-      .select(state => state.showWeekNumbers)
-      .pipe(
-        map(showWeekNumbers => ({showWeekNumbers}))
-      );
+    container.options$ = combineLatest([
+      this._store.select(state => state.showWeekNumbers),
+      this._store.select(state => state.displayMonths)
+    ])
+      .pipe(map((latest) => ({
+          showWeekNumbers: latest[0],
+          displayMonths: latest[1]
+        })
+      ));
 
     return this;
   }
@@ -135,11 +145,11 @@ export class BsDatepickerEffects {
   /** event handlers */
   setEventHandlers(container: BsDatepickerAbstractComponent): BsDatepickerEffects {
     container.setViewMode = (event: BsDatepickerViewMode): void => {
-      this._store.dispatch(this._actions.changeViewMode(event));
+      this._store?.dispatch(this._actions.changeViewMode(event));
     };
 
     container.navigateTo = (event: BsNavigationEvent): void => {
-      this._store.dispatch(this._actions.navigateStep(event.step));
+      this._store?.dispatch(this._actions.navigateStep(event.step));
     };
 
     container.dayHoverHandler = (event: CellHoverEvent): void => {
@@ -148,7 +158,7 @@ export class BsDatepickerEffects {
         return;
       }
 
-      this._store.dispatch(this._actions.hoverDay(event));
+      this._store?.dispatch(this._actions.hoverDay(event));
       _cell.isHovered = event.isHovered;
     };
 
@@ -160,42 +170,17 @@ export class BsDatepickerEffects {
       event.cell.isHovered = event.isHovered;
     };
 
-    container.monthSelectHandler = (event: CalendarCellViewModel): void => {
-      if (event.isDisabled) {
-        return;
-      }
-      this._store.dispatch(
-        this._actions.navigateTo({
-          unit: {
-            month: getMonth(event.date),
-            year: getFullYear(event.date)
-          },
-          viewMode: 'day'
-        })
-      );
-    };
-
-    container.yearSelectHandler = (event: CalendarCellViewModel): void => {
-      if (event.isDisabled) {
-        return;
-      }
-      this._store.dispatch(
-        this._actions.navigateTo({
-          unit: {
-            year: getFullYear(event.date)
-          },
-          viewMode: 'month'
-        })
-      );
-    };
-
     return this;
   }
 
   registerDatepickerSideEffects(): BsDatepickerEffects {
+    if (!this._store) {
+      return this;
+    }
+
     this._subs.push(
-      this._store.select(state => state.view).subscribe(view => {
-        this._store.dispatch(this._actions.calculate());
+      this._store.select(state => state.view).subscribe(() => {
+        this._store?.dispatch(this._actions.calculate());
       })
     );
 
@@ -206,7 +191,7 @@ export class BsDatepickerEffects {
         .pipe(
           filter(monthModel => !!monthModel)
         )
-        .subscribe(month => this._store.dispatch(this._actions.format()))
+        .subscribe(() => this._store?.dispatch(this._actions.format()))
     );
 
     // flag day values
@@ -216,7 +201,7 @@ export class BsDatepickerEffects {
         .pipe(
           filter(month => !!month)
         )
-        .subscribe(month => this._store.dispatch(this._actions.flag()))
+        .subscribe(() => this._store?.dispatch(this._actions.flag()))
     );
 
     // flag day values
@@ -226,7 +211,7 @@ export class BsDatepickerEffects {
         .pipe(
           filter(selectedDate => !!selectedDate)
         )
-        .subscribe(selectedDate => this._store.dispatch(this._actions.flag()))
+        .subscribe(() => this._store?.dispatch(this._actions.flag()))
     );
 
     // flag for date range picker
@@ -236,14 +221,14 @@ export class BsDatepickerEffects {
         .pipe(
           filter(selectedRange => !!selectedRange)
         )
-        .subscribe(selectedRange => this._store.dispatch(this._actions.flag()))
+        .subscribe(() => this._store?.dispatch(this._actions.flag()))
     );
 
     // monthsCalendar
     this._subs.push(
       this._store
         .select(state => state.monthsCalendar)
-        .subscribe(() => this._store.dispatch(this._actions.flag()))
+        .subscribe(() => this._store?.dispatch(this._actions.flag()))
     );
 
     // years calendar
@@ -253,7 +238,7 @@ export class BsDatepickerEffects {
         .pipe(
           filter(state => !!state)
         )
-        .subscribe(() => this._store.dispatch(this._actions.flag()))
+        .subscribe(() => this._store?.dispatch(this._actions.flag()))
     );
 
     // on hover
@@ -263,7 +248,7 @@ export class BsDatepickerEffects {
         .pipe(
           filter(hoveredDate => !!hoveredDate)
         )
-        .subscribe(hoveredDate => this._store.dispatch(this._actions.flag()))
+        .subscribe(() => this._store?.dispatch(this._actions.flag()))
     );
 
     // date custom classes
@@ -273,13 +258,23 @@ export class BsDatepickerEffects {
         .pipe(
           filter(dateCustomClasses => !!dateCustomClasses)
         )
-        .subscribe(dateCustomClasses => this._store.dispatch(this._actions.flag()))
+        .subscribe(() => this._store?.dispatch(this._actions.flag()))
+    );
+
+    // date tooltip texts
+    this._subs.push(
+      this._store
+        .select(state => state.dateTooltipTexts)
+        .pipe(
+          filter(dateTooltipTexts => !!dateTooltipTexts)
+        )
+        .subscribe(() => this._store?.dispatch(this._actions.flag()))
     );
 
     // on locale change
     this._subs.push(
       this._localeService.localeChange
-        .subscribe(locale => this._store.dispatch(this._actions.setLocale(locale)))
+        .subscribe(locale => this._store?.dispatch(this._actions.setLocale(locale)))
     );
 
     return this;

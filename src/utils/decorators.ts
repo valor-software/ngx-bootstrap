@@ -1,17 +1,16 @@
-/*tslint:disable:no-invalid-this */
-/* tslint:disable-next-line: no-any */
-export function OnChange(defaultValue?: any): any {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function OnChange(): any {
   const sufix = 'Change';
 
-  /* tslint:disable-next-line: no-any */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return function OnChangeHandler(target: any, propertyKey: string): void {
     const _key = ` __${propertyKey}Value`;
     Object.defineProperty(target, propertyKey, {
-      /* tslint:disable-next-line: no-any */
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       get(): any {
         return this[_key];
       },
-      /* tslint:disable-next-line: no-any */
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       set(value: any): void {
         const prevValue = this[_key];
         this[_key] = value;
@@ -22,4 +21,3 @@ export function OnChange(defaultValue?: any): any {
     });
   };
 }
-/* tslint:enable */

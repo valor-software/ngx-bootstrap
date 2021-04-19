@@ -1,0 +1,23 @@
+{
+  "hosting": {
+    "public": "dist/apps",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/ngx-bootstrap/index.html"
+      }
+    ],
+    "redirects": [
+      {
+        "source": "/",
+        "destination": "/ngx-bootstrap/",
+        "type": 302
+      }
+    ]
+  }
+}

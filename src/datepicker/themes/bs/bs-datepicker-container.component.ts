@@ -1,16 +1,18 @@
 import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 
+import { take } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+
+import { getFullYear, getMonth } from 'ngx-bootstrap/chronos';
+import { PositioningService } from 'ngx-bootstrap/positioning';
+
+import { datepickerAnimation } from '../../datepicker-animations';
 import { BsDatepickerAbstractComponent } from '../../base/bs-datepicker-container';
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
-import { DayViewModel } from '../../models';
+import { CalendarCellViewModel, DayViewModel } from '../../models';
 import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
 import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
-import { PositioningService } from 'ngx-bootstrap/positioning';
-
-import { Subscription } from 'rxjs';
-import { datepickerAnimation } from '../../datepicker-animations';
-import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'bs-datepicker-container',
@@ -27,8 +29,8 @@ import { take } from 'rxjs/operators';
 export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponent
   implements OnInit, OnDestroy {
 
-  set value(value: Date) {
-    this._effects.setValue(value);
+  set value(value: Date|undefined) {
+    this._effects?.setValue(value);
   }
 
   valueChange: EventEmitter<Date> = new EventEmitter<Date>();
@@ -57,10 +59,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
       allowedPositions: ['top', 'bottom']
     });
 
-    this._positionService.event$
-      .pipe(
-        take(1)
-      )
+    this._positionService.event$?.pipe(take(1))
       .subscribe(() => {
         this._positionService.disable();
 
@@ -75,8 +74,14 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
 
     this.isOtherMonthsActive = this._config.selectFromOtherMonth;
     this.containerClass = this._config.containerClass;
-    this._effects
-      .init(this._store)
+    this.showTodayBtn = this._config.showTodayButton;
+    this.todayBtnLbl = this._config.todayButtonLabel;
+    this.todayPos = this._config.todayPosition;
+    this.showClearBtn = this._config.showClearButton;
+    this.clearBtnLbl = this._config.clearButtonLabel;
+    this.clearPos = this._config.clearPosition;
+    this.customRangeBtnLbl = this._config.customRangeButtonLabel;
+    this._effects?.init(this._store)
       // intial state options
       .setOptions(this._config)
       // data binding view --> model
@@ -89,11 +94,13 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     // on selected date change
     this._subs.push(
       this._store
-        /* tslint:disable-next-line: no-any */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .select((state: any) => state.selectedDate)
-        /* tslint:disable-next-line: no-any */
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .subscribe((date: any) => this.valueChange.emit(date))
     );
+
+    this._store.dispatch(this._actions.changeViewMode(this._config.startView));
   }
 
   get isTopPosition(): boolean {
@@ -105,6 +112,10 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
   }
 
   daySelectHandler(day: DayViewModel): void {
+    if (!day) {
+     return;
+    }
+
     const isDisabled = this.isOtherMonthsActive ? day.isDisabled : (day.isOtherMonth || day.isDisabled);
 
     if (isDisabled) {
@@ -114,10 +125,49 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     this._store.dispatch(this._actions.select(day.date));
   }
 
+  monthSelectHandler(day: CalendarCellViewModel): void {
+    if (!day || day.isDisabled) {
+      return;
+    }
+
+    this._store.dispatch(
+      this._actions.navigateTo({
+        unit: {
+          month: getMonth(day.date),
+          year: getFullYear(day.date)
+        },
+        viewMode: 'day'
+      })
+    );
+  }
+
+  yearSelectHandler(day: CalendarCellViewModel): void {
+    if (!day || day.isDisabled) {
+      return;
+    }
+
+    this._store.dispatch(
+      this._actions.navigateTo({
+        unit: {
+          year: getFullYear(day.date)
+        },
+        viewMode: 'month'
+      })
+    );
+  }
+
+  setToday(): void {
+    this._store.dispatch(this._actions.select(new Date()));
+  }
+
+  clearDate(): void {
+    this._store.dispatch(this._actions.select(undefined));
+  }
+
   ngOnDestroy(): void {
     for (const sub of this._subs) {
       sub.unsubscribe();
     }
-    this._effects.destroy();
+    this._effects?.destroy();
   }
 }

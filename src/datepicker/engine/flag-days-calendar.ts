@@ -2,7 +2,8 @@ import {
   DaysCalendarViewModel,
   DayViewModel,
   WeekViewModel,
-  DatepickerDateCustomClasses
+  DatepickerDateCustomClasses,
+  DatepickerDateTooltipText
 } from '../models';
 
 import {
@@ -14,7 +15,7 @@ import {
   shiftDate
 } from 'ngx-bootstrap/chronos';
 
-import { isMonthDisabled, isDisabledDate } from '../utils/bs-calendar-utils';
+import { isMonthDisabled, isDisabledDate, isEnabledDate } from '../utils/bs-calendar-utils';
 
 export interface FlagDaysCalendarOptions {
   isDisabled: boolean;
@@ -22,21 +23,22 @@ export interface FlagDaysCalendarOptions {
   maxDate: Date;
   daysDisabled: number[];
   datesDisabled: Date[];
+  datesEnabled: Date[];
   hoveredDate: Date;
   selectedDate: Date;
   selectedRange: Date[];
   displayMonths: number;
   monthIndex: number;
   dateCustomClasses: DatepickerDateCustomClasses[];
+  dateTooltipTexts: DatepickerDateTooltipText[];
 }
 
 export function flagDaysCalendar(
   formattedMonth: DaysCalendarViewModel,
-  options: FlagDaysCalendarOptions
+  options: Partial<FlagDaysCalendarOptions>
 ): DaysCalendarViewModel {
   formattedMonth.weeks.forEach((week: WeekViewModel) => {
-    /* tslint:disable-next-line: cyclomatic-complexity */
-    week.days.forEach((day: DayViewModel, dayIndex: number) => {
+        week.days.forEach((day: DayViewModel, dayIndex: number) => {
       // datepicker
       const isOtherMonth = !isSameMonth(day.date, formattedMonth.month);
 
@@ -67,7 +69,8 @@ export function flagDaysCalendar(
         isBefore(day.date, options.minDate, 'day') ||
         isAfter(day.date, options.maxDate, 'day') ||
         isDisabledDay(day.date, options.daysDisabled) ||
-        isDisabledDate(day.date, options.datesDisabled);
+        isDisabledDate(day.date, options.datesDisabled) ||
+        isEnabledDate(day.date, options.datesEnabled);
 
       const currentDate = new Date();
       const isToday = !isOtherMonth && isSameDay(day.date, currentDate);
@@ -78,6 +81,14 @@ export function flagDaysCalendar(
         .join(' ')
         || '';
 
+      const tooltipText = options.dateTooltipTexts && options.dateTooltipTexts
+          .map(tt => isSameDay(day.date, tt.date) ? tt.tooltipText : '')
+          .reduce((previousValue, currentValue) => {
+            previousValue.push(currentValue);
+            return previousValue;
+          }, [] as string[])
+          .join(' ')
+        || '';
 
       // decide update or not
       const newDay = Object.assign({}, day, {
@@ -89,7 +100,8 @@ export function flagDaysCalendar(
         isInRange,
         isDisabled,
         isToday,
-        customClasses
+        customClasses,
+        tooltipText
       });
 
       if (
@@ -100,7 +112,8 @@ export function flagDaysCalendar(
         day.isSelectionEnd !== newDay.isSelectionEnd ||
         day.isDisabled !== newDay.isDisabled ||
         day.isInRange !== newDay.isInRange ||
-        day.customClasses !== newDay.customClasses
+        day.customClasses !== newDay.customClasses ||
+        day.tooltipText !== newDay.tooltipText
       ) {
         week.days[dayIndex] = newDay;
       }
@@ -110,10 +123,10 @@ export function flagDaysCalendar(
   // todo: add check for linked calendars
   formattedMonth.hideLeftArrow =
     options.isDisabled ||
-    (options.monthIndex > 0 && options.monthIndex !== options.displayMonths);
+    (!!options.monthIndex && options.monthIndex > 0 && options.monthIndex !== options.displayMonths);
   formattedMonth.hideRightArrow =
     options.isDisabled ||
-    (options.monthIndex < options.displayMonths &&
+    (!!options.monthIndex && !!options.displayMonths && options.monthIndex < options.displayMonths &&
       options.monthIndex + 1 !== options.displayMonths);
 
   formattedMonth.disableLeftArrow = isMonthDisabled(
@@ -132,10 +145,10 @@ export function flagDaysCalendar(
 
 function isDateInRange(
   date: Date,
-  selectedRange: Date[],
-  hoveredDate: Date
+  selectedRange?: Date[],
+  hoveredDate?: Date
 ): boolean {
-  if (!date || !selectedRange[0]) {
+  if (!date || !selectedRange || !selectedRange[0]) {
     return false;
   }
 

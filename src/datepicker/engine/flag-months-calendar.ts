@@ -11,22 +11,32 @@ export interface FlagMonthCalendarOptions {
   maxDate: Date;
   hoveredMonth: Date;
   selectedDate: Date;
+  selectedRange: Date[];
   displayMonths: number;
   monthIndex: number;
 }
 
 export function flagMonthsCalendar(
   monthCalendar: MonthsCalendarViewModel,
-  options: FlagMonthCalendarOptions
+  options: Partial<FlagMonthCalendarOptions>
 ): MonthsCalendarViewModel {
   monthCalendar.months.forEach(
     (months: CalendarCellViewModel[], rowIndex: number) => {
       months.forEach((month: CalendarCellViewModel, monthIndex: number) => {
+        let isSelected: boolean;
         const isHovered = isSameMonth(month.date, options.hoveredMonth);
         const isDisabled =
           options.isDisabled ||
           isMonthDisabled(month.date, options.minDate, options.maxDate);
-        const isSelected = isSameMonth(month.date, options.selectedDate);
+
+        if (!options.selectedDate && options.selectedRange) {
+          isSelected = isSameMonth(month.date, options.selectedRange[0]);
+          if (!isSelected) {
+            isSelected = isSameMonth(month.date, options.selectedRange[1]);
+          }
+        } else {
+          isSelected = isSameMonth(month.date, options.selectedDate);
+        }
         const newMonth = Object.assign(/*{},*/ month, {
           isHovered,
           isDisabled,
@@ -45,10 +55,11 @@ export function flagMonthsCalendar(
 
   // todo: add check for linked calendars
   monthCalendar.hideLeftArrow =
-    options.monthIndex > 0 && options.monthIndex !== options.displayMonths;
+    !!options.monthIndex && options.monthIndex > 0 && options.monthIndex !== options.displayMonths;
   monthCalendar.hideRightArrow =
-    options.monthIndex < options.displayMonths &&
-    options.monthIndex + 1 !== options.displayMonths;
+    !!options.monthIndex && !!options.displayMonths
+    && options.monthIndex < options.displayMonths
+    && options.monthIndex + 1 !== options.displayMonths;
 
   monthCalendar.disableLeftArrow = isYearDisabled(
     shiftDate(monthCalendar.months[0][0].date, { year: -1 }),

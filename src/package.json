@@ -1,8 +1,0 @@
-{
-  "name": "ngx-bootstrap",
-  "peerDependencies": {
-    "@angular/core": "*",
-    "@angular/common": "*"
-  },
-  "version": "5.4.0"
-}

@@ -6,7 +6,8 @@ import {
   BsViewNavigationEvent,
   CellHoverEvent,
   DatepickerRenderOptions,
-  DatepickerDateCustomClasses
+  DatepickerDateCustomClasses,
+  DatepickerDateTooltipText
 } from '../models';
 
 @Injectable()
@@ -25,9 +26,10 @@ export class BsDatepickerActions {
   static readonly SET_MAX_DATE = '[datepicker] set max date';
   static readonly SET_DAYSDISABLED = '[datepicker] set days disabled';
   static readonly SET_DATESDISABLED = '[datepicker] set dates disabled';
+  static readonly SET_DATESENABLED = '[datepicker] set dates enabled';
   static readonly SET_IS_DISABLED = '[datepicker] set is disabled';
   static readonly SET_DATE_CUSTOM_CLASSES = '[datepicker] set date custom classes';
-
+  static readonly SET_DATE_TOOLTIP_TEXTS = '[datepicker] set date tooltip texts';
   static readonly SET_LOCALE = '[datepicker] set datepicker locale';
 
   static readonly SELECT_RANGE = '[daterangepicker] select dates range';
@@ -44,7 +46,7 @@ export class BsDatepickerActions {
     return { type: BsDatepickerActions.FLAG };
   }
 
-  select(date: Date): Action {
+  select(date?: Date): Action {
     return {
       type: BsDatepickerActions.SELECT,
       payload: date
@@ -65,7 +67,7 @@ export class BsDatepickerActions {
     };
   }
 
-  navigateStep(step: TimeUnit): Action {
+  navigateStep(step?: TimeUnit): Action {
     return {
       type: BsDatepickerActions.NAVIGATE_OFFSET,
       payload: step
@@ -80,7 +82,7 @@ export class BsDatepickerActions {
   }
 
   // date range picker
-  selectRange(value: Date[]): Action {
+  selectRange(value?: Date[]): Action {
     return {
       type: BsDatepickerActions.SELECT_RANGE,
       payload: value
@@ -94,44 +96,58 @@ export class BsDatepickerActions {
     };
   }
 
-  minDate(date: Date): Action {
+  minDate(date?: Date): Action {
     return {
       type: BsDatepickerActions.SET_MIN_DATE,
       payload: date
     };
   }
 
-  maxDate(date: Date): Action {
+  maxDate(date?: Date): Action {
     return {
       type: BsDatepickerActions.SET_MAX_DATE,
       payload: date
     };
   }
 
-  daysDisabled(days: number[]): Action {
+  daysDisabled(days?: number[]): Action {
     return {
       type: BsDatepickerActions.SET_DAYSDISABLED,
       payload: days
     };
   }
 
-  datesDisabled(dates: Date[]): Action {
+  datesDisabled(dates?: Date[]): Action {
     return {
       type: BsDatepickerActions.SET_DATESDISABLED,
       payload: dates
     };
   }
 
-  isDisabled(value: boolean): Action {
+  datesEnabled(dates?: Date[]): Action {
+    return {
+      type: BsDatepickerActions.SET_DATESENABLED,
+      payload: dates
+    };
+  }
+
+  isDisabled(value?: boolean): Action {
     return {
       type: BsDatepickerActions.SET_IS_DISABLED,
       payload: value
     };
   }
 
-  setDateCustomClasses(value: DatepickerDateCustomClasses[]): Action {
+  setDateCustomClasses(value?: DatepickerDateCustomClasses[]): Action {
     return {
       type: BsDatepickerActions.SET_DATE_CUSTOM_CLASSES,
+      payload: value
+    };
+  }
+
+  setDateTooltipTexts(value?: DatepickerDateTooltipText[]): Action {
+    return {
+      type: BsDatepickerActions.SET_DATE_TOOLTIP_TEXTS,
       payload: value
     };
   }

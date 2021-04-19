@@ -4,7 +4,9 @@ import {
   TemplateRef,
   EventEmitter,
   Renderer2,
-  RendererFactory2
+  RendererFactory2,
+  Inject,
+  Optional
 } from '@angular/core';
 
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
@@ -14,74 +16,83 @@ import {
   CLASS_NAME,
   modalConfigDefaults,
   ModalOptions,
-  TRANSITION_DURATIONS
+  TRANSITION_DURATIONS,
+  MODAL_CONFIG_DEFAULT_OVERRIDE
 } from './modal-options.class';
 import { BsModalRef } from './bs-modal-ref.service';
 
 @Injectable()
 export class BsModalService {
   // constructor props
-  config: ModalOptions = modalConfigDefaults;
+  config: ModalOptions;
 
-  // tslint:disable-next-line:no-any
-  onShow: EventEmitter<any> = new EventEmitter();
-  // tslint:disable-next-line:no-any
-  onShown: EventEmitter<any> = new EventEmitter();
-  // tslint:disable-next-line:no-any
-  onHide: EventEmitter<any> = new EventEmitter();
-  // tslint:disable-next-line:no-any
-  onHidden: EventEmitter<any> = new EventEmitter();
+  onShow = new EventEmitter();
+  onShown = new EventEmitter();
+  onHide = new EventEmitter();
+  onHidden = new EventEmitter();
 
   protected isBodyOverflowing = false;
   protected originalBodyPadding = 0;
 
   protected scrollbarWidth = 0;
 
-  protected backdropRef: ComponentRef<ModalBackdropComponent>;
+  protected backdropRef?: ComponentRef<ModalBackdropComponent>;
   private _backdropLoader: ComponentLoader<ModalBackdropComponent>;
   private modalsCount = 0;
-  private lastDismissReason = '';
+  private lastDismissReason?: string;
 
   private loaders: ComponentLoader<ModalContainerComponent>[] = [];
 
   private _renderer: Renderer2;
 
-  constructor(rendererFactory: RendererFactory2, private clf: ComponentLoaderFactory) {
-    this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>(
-      null,
-      null,
-      null
-    );
+  constructor(
+    rendererFactory: RendererFactory2,
+    private clf: ComponentLoaderFactory,
+    @Optional() @Inject(MODAL_CONFIG_DEFAULT_OVERRIDE) private modalDefaultOption: ModalOptions) {
+    this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>();
     this._renderer = rendererFactory.createRenderer(null, null);
+    this.config = modalDefaultOption ?
+      (Object.assign({}, modalConfigDefaults, modalDefaultOption)) :
+      modalConfigDefaults;
   }
 
   /** Shows a modal */
-  // tslint:disable-next-line:no-any
-  show(content: string | TemplateRef<any> | any, config?: ModalOptions): BsModalRef {
+  show<T>(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    content: string | TemplateRef<any> | { new(...args: any[]): T },
+    config?: ModalOptions<T>
+  ): BsModalRef<T> {
     this.modalsCount++;
     this._createLoaders();
-    this.config = Object.assign({}, modalConfigDefaults, config);
-    this._showBackdrop();
-    this.lastDismissReason = null;
 
-    return this._showModal(content);
+    // must be different per every show() call
+    const id = config?.id || (new Date()).getUTCMilliseconds();
+    this.config = this.modalDefaultOption ?
+      Object.assign({}, modalConfigDefaults, this.modalDefaultOption, config) :
+      Object.assign({}, modalConfigDefaults, config);
+    this.config.id = id;
+
+    this._showBackdrop();
+    this.lastDismissReason = void 0;
+
+    return this._showModal<T>(content);
   }
 
-  hide(level: number) {
-    if (this.modalsCount === 1) {
+  hide(id?: number) {
+    if (this.modalsCount === 1 || id == null) {
       this._hideBackdrop();
       this.resetScrollbar();
     }
-    this.modalsCount = this.modalsCount >= 1 ? this.modalsCount - 1 : 0;
+    this.modalsCount = this.modalsCount >= 1 && id != null ? this.modalsCount - 1 : 0;
     setTimeout(() => {
-      this._hideModal(level);
-      this.removeLoaders(level);
+      this._hideModal(id);
+      this.removeLoaders(id);
     }, this.config.animated ? TRANSITION_DURATIONS.BACKDROP : 0);
   }
 
   _showBackdrop(): void {
     const isBackdropEnabled =
-      this.config.backdrop || this.config.backdrop === 'static';
+      this.config.backdrop === true || this.config.backdrop === 'static';
     const isBackdropInDOM =
       !this.backdropRef || !this.backdropRef.instance.isShown;
 
@@ -106,32 +117,68 @@ export class BsModalService {
     const duration = this.config.animated ? TRANSITION_DURATIONS.BACKDROP : 0;
     setTimeout(() => this.removeBackdrop(), duration);
   }
-  // tslint:disable-next-line:no-any
-  _showModal(content: any): BsModalRef {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  _showModal<T>(content: any): BsModalRef<T> {
     const modalLoader = this.loaders[this.loaders.length - 1];
-    const bsModalRef = new BsModalRef();
+    if (this.config && this.config.providers) {
+      for (const provider of this.config.providers) {
+        modalLoader.provide(provider);
+      }
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const bsModalRef = new BsModalRef<any>();
     const modalContainerRef = modalLoader
       .provide({ provide: ModalOptions, useValue: this.config })
       .provide({ provide: BsModalRef, useValue: bsModalRef })
       .attach(ModalContainerComponent)
-      .to('body')
-      .show({content, isAnimated: this.config.animated, initialState: this.config.initialState, bsModalService: this});
-    modalContainerRef.instance.level = this.getModalsCount();
-    bsModalRef.hide = () => {
-      modalContainerRef.instance.hide();
-    };
-    bsModalRef.content = modalLoader.getInnerComponent() || null;
+      .to('body');
+    bsModalRef.hide = () => modalContainerRef.instance?.hide();
     bsModalRef.setClass = (newClass: string) => {
-      modalContainerRef.instance.config.class = newClass;
+      if (modalContainerRef.instance) {
+        modalContainerRef.instance.config.class = newClass;
+      }
     };
+
+    bsModalRef.onHidden = new EventEmitter<unknown>();
+    bsModalRef.onHide = new EventEmitter<unknown>();
+
+    this.copyEvent(modalLoader.onBeforeHide, bsModalRef.onHide);
+    this.copyEvent(modalLoader.onHidden, bsModalRef.onHidden);
+    // call 'show' method after assign setClass in bsModalRef.
+    // it makes modal component's bsModalRef available to call setClass method
+    modalContainerRef.show({
+      content,
+      isAnimated: this.config.animated,
+      initialState: this.config.initialState,
+      bsModalService: this,
+      id: this.config.id
+    });
+
+    if (modalContainerRef.instance) {
+      modalContainerRef.instance.level = this.getModalsCount();
+      bsModalRef.content = modalLoader.getInnerComponent();
+      bsModalRef.id = modalContainerRef.instance.config?.id;
+    }
 
     return bsModalRef;
   }
 
-  _hideModal(level: number): void {
-    const modalLoader = this.loaders[level - 1];
-    if (modalLoader) {
-      modalLoader.hide();
+  _hideModal(id?: number): void {
+    if (id != null) {
+      const indexToRemove = this.loaders.findIndex(loader => loader.instance?.config.id === id);
+      const modalLoader = this.loaders[indexToRemove];
+      if (modalLoader) {
+        modalLoader.hide(id);
+      }
+    } else {
+      this.loaders.forEach(
+        (loader: ComponentLoader<ModalContainerComponent>) => {
+          if (loader.instance) {
+            loader.hide(loader.instance.config.id);
+          }
+        }
+      );
     }
   }
 
@@ -144,8 +191,9 @@ export class BsModalService {
   }
 
   removeBackdrop(): void {
+    this._renderer.removeClass(document.body, CLASS_NAME.OPEN);
     this._backdropLoader.hide();
-    this.backdropRef = null;
+    this.backdropRef = void 0;
   }
 
   /** Checks if the body is overflowing and sets scrollbar width */
@@ -189,11 +237,7 @@ export class BsModalService {
   }
 
   private _createLoaders(): void {
-    const loader = this.clf.createLoader<ModalContainerComponent>(
-      null,
-      null,
-      null
-    );
+    const loader = this.clf.createLoader<ModalContainerComponent>();
     this.copyEvent(loader.onBeforeShow, this.onShow);
     this.copyEvent(loader.onShown, this.onShown);
     this.copyEvent(loader.onBeforeHide, this.onHide);
@@ -201,19 +245,27 @@ export class BsModalService {
     this.loaders.push(loader);
   }
 
-  private removeLoaders(level: number): void {
-    this.loaders.splice(level - 1, 1);
-    this.loaders.forEach(
-      (loader: ComponentLoader<ModalContainerComponent>, i: number) => {
-        loader.instance.level = i + 1;
+  private removeLoaders(id?: number): void {
+    if (id != null) {
+      const indexToRemove = this.loaders.findIndex(loader => loader.instance?.config.id === id);
+      if (indexToRemove >= 0) {
+        this.loaders.splice(indexToRemove, 1);
+        this.loaders.forEach(
+          (loader: ComponentLoader<ModalContainerComponent>, i: number) => {
+            if (loader.instance) {
+              loader.instance.level = i + 1;
+            }
+          }
+        );
       }
-    );
+    } else {
+      this.loaders.splice(0, this.loaders.length);
+    }
   }
 
-  // tslint:disable-next-line:no-any
-  private copyEvent(from: EventEmitter<any>, to: EventEmitter<any>) {
-    from.subscribe(() => {
-      to.emit(this.lastDismissReason);
+  private copyEvent(from: EventEmitter<unknown>, to: EventEmitter<unknown>) {
+    from.subscribe((data) => {
+      to.emit(this.lastDismissReason || data);
     });
   }
 }

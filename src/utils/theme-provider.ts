@@ -4,10 +4,10 @@ let guessedVersion: 'bs3' | 'bs4';
 
 function _guessBsVersion(): 'bs3' | 'bs4' {
   if (typeof document === 'undefined') {
-    return null;
+    return 'bs4';
   }
   const spanEl = document.createElement('span');
-  spanEl.innerText = 'test bs version';
+  spanEl.innerText = 'testing bs version';
   document.body.appendChild(spanEl);
   spanEl.classList.add('d-none');
   const rect = spanEl.getBoundingClientRect();

@@ -6,21 +6,20 @@ import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 export class NgTranscludeDirective {
   viewRef: ViewContainerRef;
 
-  protected _viewRef: ViewContainerRef;
-  /* tslint:disable-next-line:no-any */
-  protected _ngTransclude: TemplateRef<any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  protected _ngTransclude?: TemplateRef<any>;
 
   @Input()
-  /* tslint:disable-next-line:no-any */
-  set ngTransclude(templateRef: TemplateRef<any>) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  set ngTransclude(templateRef: TemplateRef<any> | undefined) {
     this._ngTransclude = templateRef;
     if (templateRef) {
       this.viewRef.createEmbeddedView(templateRef);
     }
   }
 
-  /* tslint:disable-next-line:no-any */
-  get ngTransclude(): TemplateRef<any> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  get ngTransclude(): TemplateRef<any> | undefined {
     return this._ngTransclude;
   }
 

@@ -1,8 +1,6 @@
-// tslint:disable:max-file-line-count max-line-length cyclomatic-complexity
-
 import { weekOfYear } from '../units/week-calendar-utils';
 import { hasOwnProp, isArray, isFunction } from '../utils/type-checks';
-import { getDay, getMonth } from '../utils/date-getters';
+import { getDay, getMonth, getFullYear } from '../utils/date-getters';
 import { matchWord, regexEscape } from '../parse/regex';
 import { setDayOfWeek } from '../units/day-of-week';
 
@@ -64,7 +62,6 @@ export interface LocaleData {
   calendar?: {
     [key: string]: (string
       | ((date: Date, now?: Date) => string)
-      // tslint:disable-next-line
       | ((dayOfWeek: number, isNextWeek: boolean) => string))
   };
   relativeTime?: { [key: string]: string | PluralizeDateFn };
@@ -87,13 +84,15 @@ export interface LocaleData {
 
   meridiemHour?(hour: number, meridiem: string): number;
 
-  preparse?(str: string): string;
+  preparse?(str: string, format?: string | string[]): string;
 
   postformat?(str: string | number): string;
 
   meridiem?(hour: number, minute?: number, isLower?: boolean): string;
 
   isPM?(input: string): boolean;
+
+  getFullYear?(date: Date, isUTC: boolean): number;
 }
 
 export class Locale {
@@ -141,7 +140,7 @@ export class Locale {
   private _ordinal: string;
 
   constructor(config: LocaleData) {
-    if (!!config) {
+    if (config) {
       this.set(config);
     }
   }
@@ -149,6 +148,7 @@ export class Locale {
   set(config: LocaleData): void {
     let confKey;
     for (confKey in config) {
+      // eslint-disable-next-line no-prototype-builtins
       if (!config.hasOwnProperty(confKey)) {
         continue;
       }
@@ -194,8 +194,13 @@ export class Locale {
     return this._ordinal.replace('%d', num.toString(10));
   }
 
-  preparse(str: string) {
+  preparse(str: string, format?: string | string[]) {
     return str;
+  }
+
+
+  getFullYear(date: Date, isUTC = false): number {
+    return getFullYear(date, isUTC);
   }
 
   postformat(str: string) {
@@ -285,7 +290,7 @@ export class Locale {
         regex = `^${this.months(date, '', true)}|^${this.monthsShort(date, '', true)}`;
         this._monthsParse[i] = new RegExp(regex.replace('.', ''), 'i');
       }
-      // test the regex
+      // testing the regex
       if (strict && format === 'MMMM' && (this._longMonthsParse[i] as RegExp).test(monthName)) {
         return i;
       }
@@ -423,7 +428,7 @@ export class Locale {
         return;
       }
 
-      // test the regex
+      // testing the regex
       if (strict && format === 'dddd' && this._fullWeekdaysParse[i].test(weekdayName)) {
         return i;
       } else if (strict && format === 'ddd' && this._shortWeekdaysParse[i].test(weekdayName)) {

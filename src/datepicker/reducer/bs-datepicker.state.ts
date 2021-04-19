@@ -3,6 +3,7 @@ import {
   DatepickerFormatOptions,
   DatepickerRenderOptions,
   DatepickerDateCustomClasses,
+  DatepickerDateTooltipText,
   DaysCalendarModel,
   DaysCalendarViewModel,
   MonthsCalendarViewModel,
@@ -25,7 +26,7 @@ export class BsDatepickerState
   selectedRange?: Date[];
 
   // initial date of calendar, today by default
-  view: BsDatepickerViewState;
+  view?: BsDatepickerViewState;
 
   isDisabled?: boolean;
   // bounds
@@ -33,8 +34,10 @@ export class BsDatepickerState
   maxDate?: Date;
   daysDisabled?: number[];
   datesDisabled?: Date[];
+  datesEnabled?: Date[];
   minMode?: BsDatepickerViewMode;
   dateCustomClasses?: DatepickerDateCustomClasses[];
+  dateTooltipTexts?: DatepickerDateTooltipText[];
 
   hoveredDate?: Date;
   hoveredMonth?: Date;
@@ -46,6 +49,8 @@ export class BsDatepickerState
   flaggedMonths?: DaysCalendarViewModel[];
   selectFromOtherMonth?: boolean;
   showPreviousMonth?: boolean; // dateRangePicker only;
+  preventChangeToNextMonth?: boolean; // dateRangePicker only;
+  displayOneMonthRange?: boolean; // dateRangePicker only;
 
   // months calendar
   monthsCalendar?: MonthsCalendarViewModel[];
@@ -56,23 +61,23 @@ export class BsDatepickerState
   yearsCalendarFlagged?: YearsCalendarViewModel[];
 
   // options
-  monthViewOptions: MonthViewOptions;
+  monthViewOptions?: MonthViewOptions;
 
   // DatepickerRenderOptions
-  showWeekNumbers?: boolean;
-  displayMonths?: number;
+  showWeekNumbers = true;
+  displayMonths = 1;
 
   // DatepickerFormatOptions
-  locale: string;
+  locale?: string;
 
-  monthTitle: string;
-  yearTitle: string;
+  monthTitle?: string;
+  yearTitle?: string;
 
-  dayLabel: string;
-  monthLabel: string;
-  yearLabel: string;
+  dayLabel?: string;
+  monthLabel?: string;
+  yearLabel?: string;
 
-  weekNumbers: string;
+  weekNumbers?: string;
 }
 
 const _initialView: BsDatepickerViewState = { date: new Date(), mode: 'day' };
