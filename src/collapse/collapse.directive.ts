@@ -11,8 +11,10 @@ import {
   EventEmitter,
   HostBinding,
   Input,
+  OnChanges,
   Output,
-  Renderer2
+  Renderer2,
+  SimpleChanges
 } from '@angular/core';
 
 import {
@@ -28,7 +30,7 @@ import {
     '[class.collapse]': 'true'
   }
 })
-export class CollapseDirective implements AfterViewChecked {
+export class CollapseDirective implements OnChanges, AfterViewChecked {
   /** This event fires as soon as content collapses */
   @Output() collapsed: EventEmitter<CollapseDirective> = new EventEmitter();
   /** This event fires when collapsing is started */
@@ -50,41 +52,20 @@ export class CollapseDirective implements AfterViewChecked {
   // animation state
   @HostBinding('class.collapsing') isCollapsing = false;
 
-  @Input()
-  set display(value: string) {
-    if (!this.isAnimated) {
-      this._renderer.setStyle(this._el.nativeElement, 'display', value);
-
-      return;
-    }
-
-    this._display = value;
-
-    if (value === 'none') {
-      this.hide();
-
-      return;
-    }
-
-    this.show();
-  }
+  /** display value used when collapse is visible */
+  @Input() display = 'block';
   /** turn on/off animation */
   @Input() isAnimated = false;
   /** A flag indicating visibility of content (shown or hidden) */
   @Input()
   set collapse(value: boolean) {
     this.collapseNewValue = value;
-    if (!this._player || this._isAnimationDone) {
-      this.isExpanded = value;
-      this.toggle();
-    }
   }
 
   get collapse(): boolean {
     return this.isExpanded;
   }
 
-  private _display = 'block';
   private _isAnimationDone?: boolean;
   private _player?: AnimationPlayer;
   private _stylesLoaded = false;
@@ -102,6 +83,15 @@ export class CollapseDirective implements AfterViewChecked {
   ) {
     this._factoryCollapseAnimation = _builder.build(collapseAnimation);
     this._factoryExpandAnimation = _builder.build(expandAnimation);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('collapse' in changes) {
+      if (!this._player || this._isAnimationDone) {
+        this.isExpanded = this.collapseNewValue;
+        this.toggle();
+      }
+    }
   }
 
   ngAfterViewChecked(): void {
@@ -148,7 +138,7 @@ export class CollapseDirective implements AfterViewChecked {
   }
   /** allows to manually show collapsed content */
   show(): void {
-    this._renderer.setStyle(this._el.nativeElement, 'display', this._display);
+    this._renderer.setStyle(this._el.nativeElement, 'display', this.display);
 
     this.isCollapsing = true;
     this.isExpanded = true;

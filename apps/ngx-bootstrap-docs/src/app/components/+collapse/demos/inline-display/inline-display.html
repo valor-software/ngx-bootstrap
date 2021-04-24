@@ -1,10 +1,10 @@
-<button type="button" class="btn btn-success" (click)="collapse.display='inline-block'"
+<button type="button" class="btn btn-success" (click)="isCollapsed = false"
         aria-controls="collapseBasic">Inline-block
 </button>
-<button type="button" class="btn btn-primary" (click)="collapse.display='none'"
+<button type="button" class="btn btn-primary" (click)="isCollapsed = true"
         aria-controls="collapseBasic">None
 </button>
 <hr>
-<div id="collapseBasic" [collapse]="!isCollapsed" #collapse="bs-collapse">
+<div id="collapseBasic" [collapse]="isCollapsed" [display]="'inline-block'">
   <div class="well well-lg card card-block card-header">Some content</div>
 </div>
