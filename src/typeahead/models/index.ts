@@ -23,7 +23,7 @@ export interface TypeaheadOptionListContext {
  */
 export interface TypeaheadOptionItemContext {
   /** Item */
-  item: any;
+  item: unknown;
   /** Item index */
   index: number;
   /** Typeahead match */

@@ -8,30 +8,34 @@ import { getScroll } from './getScroll';
 import { getClientRect } from './getClientRect';
 import { isIE } from './isIE';
 import { Offsets } from '../models';
+import { isNumber } from './isNumeric';
 
 export function getBoundingClientRect(element: HTMLElement): Offsets {
-  let rect: any = {};
+  const rect: Offsets = element.getBoundingClientRect();
 
   // IE10 10 FIX: Please, don't ask, the element isn't
   // considered in DOM in some circumstances...
   // This isn't reproducible in IE10 compatibility mode of IE11
   try {
     if (isIE(10)) {
-      rect = element.getBoundingClientRect();
       const scrollTop = getScroll(element, 'top');
       const scrollLeft = getScroll(element, 'left');
-      rect.top += scrollTop;
-      rect.left += scrollLeft;
-      rect.bottom += scrollTop;
-      rect.right += scrollLeft;
-    } else {
-      rect = element.getBoundingClientRect();
+      if (rect && isNumber(rect.top) && isNumber(rect.left) && isNumber(rect.bottom) && isNumber(rect.right)) {
+        rect.top += scrollTop;
+        rect.left += scrollLeft;
+        rect.bottom += scrollTop;
+        rect.right += scrollLeft;
+      }
     }
   } catch (e) {
-    return undefined;
+    return rect;
   }
 
-  const result: any = {
+  if (!(rect && isNumber(rect.top) && isNumber(rect.left) && isNumber(rect.bottom) && isNumber(rect.right))) {
+    return rect;
+  }
+
+  const result: Offsets = {
     left: rect.left,
     top: rect.top,
     width: rect.right - rect.left,
@@ -39,11 +43,11 @@ export function getBoundingClientRect(element: HTMLElement): Offsets {
   };
 
   // subtract scrollbar size from sizes
-  const sizes: any = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
-  const width =
-    sizes.width || element.clientWidth || result.right - result.left;
-  const height =
-    sizes.height || element.clientHeight || result.bottom - result.top;
+  const sizes = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : undefined;
+  const width = sizes?.width || element.clientWidth
+    || isNumber(result.right) && isNumber(result.left) && result.right - result.left || 0;
+  const height = sizes?.height || element.clientHeight
+    || isNumber(result.bottom) && isNumber(result.top) && result.bottom - result.top || 0;
 
   let horizScrollbar = element.offsetWidth - width;
   let vertScrollbar = element.offsetHeight - height;
