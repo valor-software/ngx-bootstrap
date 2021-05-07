@@ -9,19 +9,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
 import { ngdoc } from '../ng-api-doc';
 import { AppComponent } from './app.component';
-import { DocumentationComponent } from './common/documentation/documentation.component';
-import { LandingComponent } from './common/landing/landing.component';
-import { TopMenuComponent } from './common/top-menu/top-menu.component';
-import { DiscoverComponent } from './common/discover/discover.component';
-import { DocsModule } from './docs/index';
-import { NgApiDoc } from './docs/api-docs/api-docs.model';
-import { StyleManager } from './theme/style-manager';
-import { ThemeStorage } from './theme/theme-storage';
+import { TopMenuComponent } from '@ngx-bootstrap-doc/docs';
+import { DocsModule } from '@ngx-bootstrap-doc/docs';
+import { NgApiDoc } from '@ngx-bootstrap-doc/docs';
+import { StyleManager } from '@ngx-bootstrap-doc/docs';
+import { ThemeStorage } from '@ngx-bootstrap-doc/docs';
 import { ScullyLibModule } from '@scullyio/ng-lib';
 import { routes } from './app.routing';
 
 @NgModule({
-  declarations: [AppComponent, DocumentationComponent, TopMenuComponent, LandingComponent, DiscoverComponent],
+  declarations: [
+    AppComponent,
+    TopMenuComponent,
+  ],
   imports: [
     BrowserAnimationsModule,
     DocsModule,
