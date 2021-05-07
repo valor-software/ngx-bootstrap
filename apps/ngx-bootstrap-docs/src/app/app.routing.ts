@@ -22,7 +22,7 @@ export const routes: Routes = [
   {
     path: 'accordion',
     data: ['Accordion', {moduleName: 'AccordionModule', moduleFolder: 'accordion'}],
-    loadChildren: () => import('./components/+accordion/demo-accordion.module').then(m => m.DemoAccordionModule)
+    loadChildren: () => import('@ngx-bootstrap-doc/accordion').then(m => m.DemoAccordionModule)
   },
   {
     path: 'alerts',

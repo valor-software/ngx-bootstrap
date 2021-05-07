@@ -142,7 +142,9 @@
             "devServerTarget": "ngx-bootstrap-docs:serve"
           },
           "configurations": {
-            "firebase": { "devServerTarget":  "" },
+            "firebase": {
+              "devServerTarget": ""
+            },
             "production": {
               "devServerTarget": "ngx-bootstrap-docs:serve:production"
             }
@@ -1262,6 +1264,48 @@
             "assets": [
               "schematics/*.md"
             ]
+          }
+        }
+      }
+    },
+    "doc-pages-accordion": {
+      "projectType": "library",
+      "root": "libs/doc-pages/accordion",
+      "sourceRoot": "libs/doc-pages/accordion/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": [
+            "node_modules/ngx-bootstrap/accordion"
+          ],
+          "options": {
+            "tsConfig": "libs/doc-pages/accordion/tsconfig.lib.json",
+            "project": "libs/doc-pages/accordion/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/doc-pages/accordion/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/doc-pages/accordion/src/**/*.ts",
+              "libs/doc-pages/accordion/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/doc-pages/accordion"
+          ],
+          "options": {
+            "jestConfig": "libs/doc-pages/accordion/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

@@ -1,5 +1,5 @@
 module.exports = {
-  setupFilesAfterEnv: ["<rootDir>/scripts/jest/toHaveCssClass.ts"],
+  setupFilesAfterEnv: ['<rootDir>/scripts/jest/toHaveCssClass.ts'],
   projects: [
     '<rootDir>/apps/ngx-bootstrap-docs',
     '<rootDir>/src/utils',
@@ -26,6 +26,7 @@ module.exports = {
     '<rootDir>/src/tooltip',
     '<rootDir>/src/typeahead',
     '<rootDir>/src/root',
-    '<rootDir>/schematics'
+    '<rootDir>/schematics',
+    '<rootDir>/libs/doc-pages/accordion'
   ]
 };

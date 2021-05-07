@@ -18,6 +18,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@ngx-bootstrap-doc/accordion": [
+        "libs/doc-pages/accordion/src/index.ts"
+      ],
+      "@ngx-bootstrap-docs/*": [
+        "apps/ngx-bootstrap-docs/src/*"
+      ]
     }
   },
   "exclude": [
