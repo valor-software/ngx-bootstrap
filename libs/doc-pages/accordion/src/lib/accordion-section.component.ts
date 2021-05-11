@@ -3,10 +3,13 @@
 
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { demoComponentContent } from './accordion-section.list';
-import { ContentSection } from '../../docs/models/content-section.model';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import { ContentSection } from '@ngx-bootstrap-doc/docs';
 
 // webpack html imports
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'accordion-section',
   templateUrl: './accordion-section.components.html',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -15,4 +18,5 @@ export class AccordionSectionComponent {
   name = 'Accordion';
   src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/accordion';
   componentContent: ContentSection[] = demoComponentContent;
+  // componentContent: any[] = demoComponentContent;
 }

@@ -3,9 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
-
-// import { DocsModule } from '../../docs/index';
-import { DocsModule } from '@ngx-bootstrap-docs/app/docs/index;
+import { DocsModule } from '@ngx-bootstrap-doc/docs';
 
 import { AccordionSectionComponent } from './accordion-section.component';
 import { DEMO_COMPONENTS } from './demos/index';

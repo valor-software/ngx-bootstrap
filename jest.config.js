@@ -27,6 +27,7 @@ module.exports = {
     '<rootDir>/src/typeahead',
     '<rootDir>/src/root',
     '<rootDir>/schematics',
-    '<rootDir>/libs/doc-pages/accordion'
+    '<rootDir>/libs/doc-pages/accordion',
+    '<rootDir>/libs/docs'
   ]
 };

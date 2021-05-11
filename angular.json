@@ -1309,6 +1309,45 @@
           }
         }
       }
+    },
+    "docs": {
+      "projectType": "library",
+      "root": "libs/docs",
+      "sourceRoot": "libs/docs/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/docs/tsconfig.lib.json",
+            "project": "libs/docs/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/docs/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/docs/src/**/*.ts",
+              "libs/docs/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/docs"
+          ],
+          "options": {
+            "jestConfig": "libs/docs/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

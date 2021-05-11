@@ -23,6 +23,9 @@
       ],
       "@ngx-bootstrap-docs/*": [
         "apps/ngx-bootstrap-docs/src/*"
+      ],
+      "@ngx-bootstrap-doc/docs": [
+        "libs/docs/src/index.ts"
       ]
     }
   },

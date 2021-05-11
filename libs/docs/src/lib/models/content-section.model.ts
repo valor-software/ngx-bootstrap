@@ -1,13 +1,13 @@
-import { Injectable, InjectionToken } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { ComponentExample } from './components-examples.model';
 import { ComponentApi } from './components-api.model';
 import { ComponentsTopSection } from './components-top-section.model';
 
 @Injectable()
 export class ContentSection {
-  name: string;
-  anchor: string;
+  name: string | undefined;
+  anchor: string | undefined;
   outlet: any;
   description?: string;
-  content: ComponentExample[] | ComponentApi[] | ComponentsTopSection;
+  content: ComponentExample[] | ComponentApi[] | ComponentsTopSection | undefined;
 }
