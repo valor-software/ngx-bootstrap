@@ -6,8 +6,8 @@ export class PaginationPo extends BaseComponent {
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/pagination';
 
   classActive = '.active';
-  classPrevBtn = '.pagination-prev';
-  classNextBtn = '.pagination-next';
+  classPrevBtn = '[class*="prev"]';
+  classNextBtn = '[class*="next"]';
   classFirstBtn = '.pagination-first';
   classLastBtn = '.pagination-last';
   classPaginationPage = '.pagination-page';

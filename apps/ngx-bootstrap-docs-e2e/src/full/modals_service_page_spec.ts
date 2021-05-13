@@ -239,7 +239,7 @@ describe('Modals demo page testing suite: Service examples', () => {
   });
 
   describe('Custom css class', () => {
-    beforeEach(() => modals.scrollToMenu('Custom css class'));
+    beforeEach(() => modals.scrollToMenu('Сustom css class'));
 
     const customCSSDemo = modals.exampleDemosArr.serviceCustomCSS;
     const btnText = 'Open modal with custom css class';
@@ -313,6 +313,7 @@ describe('Modals demo page testing suite: Service examples', () => {
 
     it(`when user clicks on "Open modal" button then modal is opened. when user closes modal by click
       ESC button then modal stays opened`, () => {
+      modals.clickByText(escapeDemo, btnDisable);
       modals.clickByText(escapeDemo, btnText);
       modals.pressEsc();
       modals.isModalVisible(modals.modalContainer, true);
