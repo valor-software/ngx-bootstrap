@@ -36,8 +36,8 @@ export class ProgressbarSectionComponent {
   }
 
   get isBs3(): boolean {
-    if (typeof PR !== 'undefined') {
-      setTimeout(() => PR.prettyPrint(), 10);
+    if (typeof window['PR'] !== 'undefined') {
+      setTimeout(() => window['PR'].prettyPrint(), 10);
     }
 
     return isBs3();

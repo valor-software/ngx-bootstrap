@@ -24,8 +24,8 @@ export class DatepickerSectionComponent {
         this.componentContent = demoComponentContent;
     }
 
-    if (typeof PR !== 'undefined') {
-      setTimeout(() => PR.prettyPrint(), 10);
+    if (typeof window['PR'] !== 'undefined') {
+      setTimeout(() => window['PR'].prettyPrint(), 10);
     }
   }
 }
