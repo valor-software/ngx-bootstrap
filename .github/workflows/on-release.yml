@@ -1,5 +1,3 @@
-
-
 name: on-release
 on: release
 
