@@ -12,8 +12,8 @@ env:
   CYPRESS_RECORD_KEY: 4aa7a1c0-3a4f-444e-b324-6fc305a543a8
 
 jobs:
-  # install dependencies and run
-  build_and_cache:
+  # install dependencies
+  install:
     runs-on: ubuntu-latest
     steps:
       - name: Cancel Previous Runs
@@ -29,20 +29,27 @@ jobs:
             node_modules
             !node_modules/ngx-bootstrap
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
+      - run: npm ci
+        if: steps.cache.outputs.cache-hit != 'true'
+
+  # build ngx-bootstrap
+  build:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.4
       - uses: actions/cache@v2.1.4
         with:
           path: |
             dist
             node_modules/ngx-bootstrap
           key: dist-${{ github.run_id }}
-      - run: npm ci
-        if: steps.cache.outputs.cache-hit != 'true'
       - run: npx ng build --runner cloud --prod --with-deps
 
   # run unit tests
   unit_tests_with_coverage:
     runs-on: ubuntu-latest
-    needs: build_and_cache
+    needs: install
     steps:
       - uses: actions/checkout@v2.3.4
       - uses: actions/cache@v2.1.4
@@ -59,7 +66,7 @@ jobs:
   # run linting
   linting:
     runs-on: ubuntu-latest
-    needs: build_and_cache
+    needs: install
     steps:
       - uses: actions/checkout@v2.3.4
       - uses: actions/cache@v2.1.4
@@ -74,7 +81,7 @@ jobs:
   # firebase deploy preview
   firebase_preview:
     runs-on: ubuntu-latest
-    needs: build_and_cache
+    needs: build
     outputs:
       output_url: ${{ steps.firebase_hosting_preview.outputs.details_url }}
     steps:
@@ -100,7 +107,7 @@ jobs:
   e2e_smoke:
     name: Cypress run
     runs-on: ubuntu-latest
-    needs: [build_and_cache, firebase_preview]
+    needs: [build, firebase_preview]
 
     strategy:
       # when one test fails, DO NOT cancel the other
@@ -130,3 +137,65 @@ jobs:
       - name: smoke e2e local
         if: ${{ !needs.firebase_preview.outputs.output_url }}
         run: npx nx run ngx-bootstrap-docs-e2e:e2e --prod --runner cloud --record --group smoke -- --parallel
+
+  # run migrate to latest
+  latest_install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - uses: actions/cache@v2.1.4
+        id: cache
+        with:
+          path: |
+            ~/.npm
+            node_modules
+            !node_modules/ngx-bootstrap
+          key: latest-node_modules-${{ hashFiles('**/package-lock.json') }}
+      - run: npm ci
+        if: steps.cache.outputs.cache-hit != 'true'
+
+  # build with latest
+  latest_build:
+    runs-on: ubuntu-latest
+    needs: latest_install
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - uses: actions/cache@v2.1.4
+        with:
+          path: |
+            ~/.npm
+            node_modules
+            !node_modules/ngx-bootstrap
+          key: latest-node_modules-${{ hashFiles('**/package-lock.json') }}
+      - run: nx migrate --run-migrations
+      - run: nx build --prod --with-deps
+
+  # run unit tests on latest
+  latest_unit_tests_with_coverage:
+    runs-on: ubuntu-latest
+    needs: latest_install
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - uses: actions/cache@v2.1.4
+        with:
+          path: |
+            ~/.npm
+            node_modules
+            !node_modules/ngx-bootstrap
+          key: latest-node_modules-${{ hashFiles('**/package-lock.json') }}
+      - run: npm test
+
+  # run linting on latest
+  latest_linting:
+    runs-on: ubuntu-latest
+    needs: latest_install
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - uses: actions/cache@v2.1.4
+        with:
+          path: |
+            ~/.npm
+            node_modules
+            !node_modules/ngx-bootstrap
+          key: latest-node_modules-${{ hashFiles('**/package-lock.json') }}
+      - run: npm run lint
