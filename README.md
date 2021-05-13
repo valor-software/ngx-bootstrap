@@ -34,19 +34,20 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 
 ## Table of contents
 1. [Getting Started](#getting-started)
-2. [Supporting](#supporting-ngx-bootstrap)
-3. [Installation instructions](#installation-instructions)
-4. [Usage & Demo](#usage--demo)
-5. [API](#api)
-6. [Compatibility](#compatibility)
-7. [Troubleshooting](#troubleshooting)
-8. [Contributing](#contribution)
+2. [Usage & Demo](#usage--demo)
+3. [Supporting](#supporting-ngx-bootstrap)
+4. [Installation](#installation)
+5. [Compatibility](#compatibility)
+6. [Troubleshooting](#troubleshooting)
+7. [Contributing](#contribution)
+8. [Credits](#credits)
+9. [License](#license)
 
 ## Getting Started
 
 ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using markup and CSS provided by Bootstrap.
 
-Check our [Getting started guide](https://valor-software.com/ngx-bootstrap/#/documentation#getting-started) 
+Check our [Getting started guide](https://valor-software.com/ngx-bootstrap/#/documentation#getting-started) if it's your first project with Angular Bootstrap.
 
 ## Usage & Demo
 
