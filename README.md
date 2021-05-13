@@ -1,8 +1,9 @@
 <a href="http://valor-software.com/ngx-bootstrap/#/">
-    <h1 align="center">ngx-bootstrap</h1>
+<div align="center">
+<img class="mx-auto center-block d-block" src="https://valor-software.com/ngx-bootstrap/assets/images/logos/ngx-bootstrap-logo.svg" alt="ngx-bootstrap" width="200" height="200">
+    <h1>ngx-bootstrap</h1>
+</div>
 </a>
-Server side rendered version of this documentation available
-<a href="https://ngx-universal.herokuapp.com/">here</a> served with Angular universal and <a href="https://nestjs.com">nest.js</a>
 
 <p align="center">
 Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a> or <a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> Components with <a href="https://angular.io/">Angular</a>
@@ -27,9 +28,7 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 
 <!-- [![codecov](https://codecov.io/gh/valor-software/ngx-bootstrap/branch/development/graph/badge.svg)](https://codecov.io/gh/valor-software/ngx-bootstrap) -->
 
-<!-- [![NPM](https://nodei.co/npm/ngx-bootstrap.png?downloads=true&downloadRank=true&stars=true)](https://npmjs.org/ngx-bootstrap)
-[![NPM](https://nodei.co/npm-dl/ngx-bootstrap.png?height=3&months=6)](https://npmjs.org/ngx-bootstrap)
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/valorkin.svg)](https://saucelabs.com/u/valorkin)
+<!-- [![Sauce Test Status](https://saucelabs.com/browser-matrix/valorkin.svg)](https://saucelabs.com/u/valorkin)
 -->
 
 ## Table of contents
@@ -45,7 +44,7 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 
 ## Getting Started
 
-ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using markup and CSS provided by Bootstrap.
+ngx-bootstrap provides Bootstrap components powered by Angular, so you don't need to include original JS components.
 
 Check our [Getting started guide](https://valor-software.com/ngx-bootstrap/#/documentation#getting-started) if it's your first project with Angular Bootstrap.
 
