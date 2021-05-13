@@ -1,4 +1,4 @@
-//some ts classes but no docs to extract
+//some ts classes but no common-docs to extract
 
 class Foo {
 }

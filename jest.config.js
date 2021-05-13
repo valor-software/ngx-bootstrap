@@ -1,7 +1,7 @@
 module.exports = {
   setupFilesAfterEnv: ['<rootDir>/scripts/jest/toHaveCssClass.ts'],
   projects: [
-    '<rootDir>/apps/ngx-bootstrap-docs',
+    '<rootDir>/apps/ngx-bootstrap-common-docs',
     '<rootDir>/src/utils',
     '<rootDir>/src/positioning',
     '<rootDir>/src/component-loader',
@@ -28,6 +28,22 @@ module.exports = {
     '<rootDir>/src/root',
     '<rootDir>/schematics',
     '<rootDir>/libs/doc-pages/accordion',
-    '<rootDir>/libs/docs'
+    '<rootDir>/libs/common-docs',
+    '<rootDir>/libs/doc-pages/alerts',
+    '<rootDir>/libs/doc-pages/buttons',
+    '<rootDir>/libs/doc-pages/carousel',
+    '<rootDir>/libs/doc-pages/collapse',
+    '<rootDir>/libs/doc-pages/datepicker',
+    '<rootDir>/libs/doc-pages/dropdown',
+    '<rootDir>/libs/doc-pages/modal',
+    '<rootDir>/libs/doc-pages/pagination',
+    '<rootDir>/libs/doc-pages/popover',
+    '<rootDir>/libs/doc-pages/progressbar',
+    '<rootDir>/libs/doc-pages/rating',
+    '<rootDir>/libs/doc-pages/sortable',
+    '<rootDir>/libs/doc-pages/tabs',
+    '<rootDir>/libs/doc-pages/timepicker',
+    '<rootDir>/libs/doc-pages/tooltip',
+    '<rootDir>/libs/doc-pages/typeahead'
   ]
 };

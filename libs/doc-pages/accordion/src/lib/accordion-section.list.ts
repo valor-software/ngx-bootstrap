@@ -10,17 +10,17 @@ import { DemoAccordionOneAtATimeComponent } from './demos/one-at-a-time/one-at-a
 import { DemoAccordionOpenEventComponent } from './demos/open-event/open-event';
 import { DemoAccordionStylingComponent } from './demos/styling/styling';
 
-import { ContentSection } from '@ngx-bootstrap-docs/app/docs/models/content-section.model';
-import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
-// import { DemoTopSectionComponent, DEMO_TOP_SECTION_TOKEN } from '@ngx-bootstrap-docs/app/docs/demo-section-components/demo-top-section/demo-top-section.component';
+import { ContentSection } from '@ngx-bootstrap-doc/docs';
+import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
+// import { DemoTopSectionComponent, DEMO_TOP_SECTION_TOKEN } from '@ngx-bootstrap-common-docs/app/common-docs/demo-section-components/demo-top-section/demo-top-section.component';
 
-import { ExamplesComponent } from '@ngx-bootstrap-docs/app/docs/demo-section-components/demo-examples-section/index';
-import { ApiSectionsComponent } from '@ngx-bootstrap-docs/app/docs/demo-section-components/demo-api-section/index';
+import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
+import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 
 import {
   NgApiDocComponent,
   NgApiDocConfigComponent
-} from '@ngx-bootstrap-docs/app/docs/api-docs/index';
+} from '@ngx-bootstrap-doc/docs';
 import { DemoAccordionOpenedComponent } from './demos/opened/opened';
 import { DemoAccordionDynamicBodyComponent } from './demos/dynamic-body/dynamic-body';
 

@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { DocsModule } from '@ngx-bootstrap-doc/docs';
-
 import { AccordionSectionComponent } from './accordion-section.component';
 import { DEMO_COMPONENTS } from './demos/index';
-
 import { routes } from './demo-accordion.routes';
+/* export */
+export { AccordionSectionComponent } from './accordion-section.component';
+
 
 @NgModule({
   declarations: [

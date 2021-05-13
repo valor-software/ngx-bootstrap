@@ -2,8 +2,8 @@ var apiDoc = require('./api-doc');
 
 describe('APIDocVisitor', function() {
 
-  it('should return [] if there are no docs to extract',
-     function() { expect(apiDoc(['./misc/api-doc-testing-cases/no-docs.ts'])).toEqual({}); });
+  it('should return [] if there are no common-docs to extract',
+     function() { expect(apiDoc(['./misc/api-doc-testing-cases/no-common-docs.ts'])).toEqual({}); });
 
   it('should extract basic info from directives and components', function() {
     var docs = apiDoc(['misc/api-doc-testing-cases/directives-no-in-out.ts']);

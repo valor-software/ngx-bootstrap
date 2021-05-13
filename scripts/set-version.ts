@@ -3,7 +3,7 @@ import { sync as glob } from 'glob';
 
 const packagesGlob = './src/**/package.json';
 const mainPackage = './package.json';
-const docsVersion = './apps/ngx-bootstrap-docs/src/assets/json/current-version.json';
+const docsVersion = './apps/ngx-bootstrap-common-docs/src/assets/json/current-version.json';
 
 (async () => {
   const version = await readJson(mainPackage).then(json => json.version);

@@ -3,7 +3,7 @@
  * @copyright ng-bootstrap
  */
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-// import docs from '../../../../api-docs';
+// import common-docs from '../../../../api-common-docs';
 import { ClassDesc, NgApiDoc } from '../api-docs.model';
 import { Analytics } from '../analytics/analytics';
 import { ComponentApi } from '../../models/components-api.model';
@@ -11,7 +11,7 @@ import { ComponentApi } from '../../models/components-api.model';
 const CONFIG_SUFFIX_LENGTH = 'Config'.length;
 
 /**
- * Displays the API docs of a Config service. A Config service for a component Foo is named, by convention,
+ * Displays the API common-docs of a Config service. A Config service for a component Foo is named, by convention,
  * FooConfig, and only has properties, whose name matches with an input of the directive.
  * In order to avoid cluttering the demo pages, the only things displayed by this component
  * is the description of the Config service and the list of its properties, whose documentation and

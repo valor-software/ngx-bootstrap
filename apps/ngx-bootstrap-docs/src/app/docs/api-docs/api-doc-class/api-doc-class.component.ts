@@ -8,7 +8,7 @@ import { Analytics } from '../analytics/analytics';
 import { ComponentApi } from '../../models/components-api.model';
 
 /**
- * Displays the API docs of a class, which is not a directive.
+ * Displays the API common-docs of a class, which is not a directive.
  *
  * For Config services, use NgbdApiDocsConfig instead.
  */
