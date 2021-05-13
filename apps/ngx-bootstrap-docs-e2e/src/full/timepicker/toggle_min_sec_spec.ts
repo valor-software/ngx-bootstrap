@@ -12,8 +12,8 @@ describe('Timepicker demo page testing suite: Toggle minutes/seconds', () => {
     timepicker.isTimepickerVisible(toggleMinSec);
     timepicker.isInputValueContain(toggleMinSec, `${timepicker.getHoursIn12Format(newDate)}`, 0);
     timepicker.isInputValueContain(toggleMinSec, `${newDate.getMinutes()}`, 1);
-    timepicker.isTimepickerInputVisible(toggleMinSec, 'minutes');
-    timepicker.isTimepickerInputVisible(toggleMinSec, 'seconds');
+    timepicker.isTimepickerInputExist(toggleMinSec, 'minutes');
+    timepicker.isTimepickerInputExist(toggleMinSec, 'seconds');
     timepicker.isButtonExist(toggleMinSec, `${(newDate.getHours() >= 12) ? 'PM' : 'AM'} `, 0);
     timepicker.isAlertContains(toggleMinSec, `Time is: ${newDate.toString().split(':')[0]}`);
     timepicker.isAlertContains(toggleMinSec, `showMinutes: trueshowSeconds: true`);
@@ -25,8 +25,8 @@ describe('Timepicker demo page testing suite: Toggle minutes/seconds', () => {
     info alert show "showMinutes: false"`, () => {
     const newDate = new Date();
     timepicker.clickOnBtn(toggleMinSec, 1);
-    timepicker.isTimepickerInputVisible(toggleMinSec, 'minutes', false);
-    timepicker.isTimepickerInputVisible(toggleMinSec, 'seconds');
+    timepicker.isTimepickerInputExist(toggleMinSec, 'minutes', false);
+    timepicker.isTimepickerInputExist(toggleMinSec, 'seconds');
     timepicker.isButtonExist(toggleMinSec, `${(newDate.getHours() >= 12) ? 'PM' : 'AM'} `, 0);
     timepicker.isAlertContains(toggleMinSec, `Time is: ${newDate.toString().split(':')[0]}`);
     timepicker.isAlertContains(toggleMinSec, `showMinutes: falseshowSeconds: true`);
@@ -36,8 +36,8 @@ describe('Timepicker demo page testing suite: Toggle minutes/seconds', () => {
     info alert show "showSeconds: false"`, () => {
     const newDate = new Date();
     timepicker.clickOnBtn(toggleMinSec, 2);
-    timepicker.isTimepickerInputVisible(toggleMinSec, 'minutes');
-    timepicker.isTimepickerInputVisible(toggleMinSec, 'seconds', false);
+    timepicker.isTimepickerInputExist(toggleMinSec, 'minutes');
+    timepicker.isTimepickerInputExist(toggleMinSec, 'seconds', false);
     timepicker.isButtonExist(toggleMinSec, `${(newDate.getHours() >= 12) ? 'PM' : 'AM'} `, 0);
     timepicker.isAlertContains(toggleMinSec, `Time is: ${newDate.toString().split(':')[0]}`);
     timepicker.isAlertContains(toggleMinSec, `showMinutes: trueshowSeconds: false`);
@@ -49,8 +49,8 @@ describe('Timepicker demo page testing suite: Toggle minutes/seconds', () => {
     timepicker.clickOnBtn(toggleMinSec, 1);
     timepicker.clickOnBtn(toggleMinSec, 2);
     timepicker.clickOnBtn(toggleMinSec, 1);
-    timepicker.isTimepickerInputVisible(toggleMinSec, 'minutes', true);
-    timepicker.isTimepickerInputVisible(toggleMinSec, 'seconds', false);
+    timepicker.isTimepickerInputExist(toggleMinSec, 'minutes');
+    timepicker.isTimepickerInputExist(toggleMinSec, 'seconds', false);
     timepicker.isAlertContains(toggleMinSec, `Time is: ${newDate.toString().split(':')[0]}`);
     timepicker.isAlertContains(toggleMinSec, `showMinutes: trueshowSeconds: false`);
   });
@@ -60,8 +60,8 @@ describe('Timepicker demo page testing suite: Toggle minutes/seconds', () => {
     const newDate = new Date();
     timepicker.clickOnBtn(toggleMinSec, 2);
     timepicker.clickOnBtn(toggleMinSec, 2);
-    timepicker.isTimepickerInputVisible(toggleMinSec, 'minutes', true);
-    timepicker.isTimepickerInputVisible(toggleMinSec, 'seconds', true);
+    timepicker.isTimepickerInputExist(toggleMinSec, 'minutes');
+    timepicker.isTimepickerInputExist(toggleMinSec, 'seconds');
     timepicker.isAlertContains(toggleMinSec, `Time is: ${newDate.toString().split(':')[0]}`);
     timepicker.isAlertContains(toggleMinSec, `showMinutes: trueshowSeconds: true`);
   });
