@@ -12,14 +12,20 @@ env:
   CYPRESS_RECORD_KEY: 4aa7a1c0-3a4f-444e-b324-6fc305a543a8
 
 jobs:
-  # install dependencies
-  install:
+  # one run
+  one_run:
     runs-on: ubuntu-latest
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.9.0
         with:
-          access_token: ${{ github.token }}
+          access_token: ${{ secrets.GITHUB_TOKEN }}
+
+  # install dependencies
+  install:
+    runs-on: ubuntu-latest
+    needs: one_run
+    steps:
       - uses: actions/checkout@v2.3.4
       - uses: actions/cache@v2.1.4
         id: cache
@@ -38,6 +44,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.4
+      - uses: actions/cache@v2.1.4
+        with:
+          path: |
+            ~/.npm
+            node_modules
+            !node_modules/ngx-bootstrap
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
       - uses: actions/cache@v2.1.4
         with:
           path: |
@@ -138,9 +151,12 @@ jobs:
         if: ${{ !needs.firebase_preview.outputs.output_url }}
         run: npx nx run ngx-bootstrap-docs-e2e:e2e --prod --runner cloud --record --group smoke -- --parallel
 
+################
+
   # run migrate to latest
   latest_install:
     runs-on: ubuntu-latest
+    needs: one_run
     steps:
       - uses: actions/checkout@v2.3.4
       - uses: actions/cache@v2.1.4
@@ -167,8 +183,8 @@ jobs:
             node_modules
             !node_modules/ngx-bootstrap
           key: latest-node_modules-${{ hashFiles('**/package-lock.json') }}
-      - run: nx migrate --run-migrations
-      - run: nx build --prod --with-deps
+      - run: npx nx migrate --run-migrations
+      - run: npx nx build --prod --with-deps
 
   # run unit tests on latest
   latest_unit_tests_with_coverage:
@@ -183,6 +199,7 @@ jobs:
             node_modules
             !node_modules/ngx-bootstrap
           key: latest-node_modules-${{ hashFiles('**/package-lock.json') }}
+      - run: npx nx migrate --run-migrations
       - run: npm test
 
   # run linting on latest
@@ -198,4 +215,5 @@ jobs:
             node_modules
             !node_modules/ngx-bootstrap
           key: latest-node_modules-${{ hashFiles('**/package-lock.json') }}
+      - run: npx nx migrate --run-migrations
       - run: npm run lint
