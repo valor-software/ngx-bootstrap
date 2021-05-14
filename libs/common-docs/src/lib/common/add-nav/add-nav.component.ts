@@ -4,6 +4,7 @@ import { DOCUMENT } from '@angular/common';
 import { ContentSection } from '../../models/content-section.model';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'add-nav',
   templateUrl: './add-nav.component.html'
 })

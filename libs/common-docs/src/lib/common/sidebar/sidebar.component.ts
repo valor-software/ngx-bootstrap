@@ -13,6 +13,7 @@ const _bs3Css = 'assets/css/bootstrap-3.3.7/css/bootstrap.min.css';
 const _bs4Css = 'assets/css/bootstrap-4.0.0/css/bootstrap.min.css';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'sidebar',
   templateUrl: './sidebar.component.html'
 })

@@ -4,6 +4,7 @@ import { demoComponentContent } from './timepicker-section.list';
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'timepicker-section',
   templateUrl: './timepicker-section.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush

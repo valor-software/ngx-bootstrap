@@ -8,6 +8,7 @@ export function getAlertConfig(): AlertConfig {
 }
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-alert-config',
   templateUrl: './config.html',
   providers: [{ provide: AlertConfig, useFactory: getAlertConfig }]

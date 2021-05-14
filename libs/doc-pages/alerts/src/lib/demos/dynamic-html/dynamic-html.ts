@@ -2,6 +2,7 @@ import { Component, SecurityContext } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-alert-dynamic-html',
   templateUrl: './dynamic-html.html'
 })

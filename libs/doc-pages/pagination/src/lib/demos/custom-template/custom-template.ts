@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { PagesModel } from 'ngx-bootstrap/pagination';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-pagination-custom-template',
   templateUrl: './custom-template.html'
 })

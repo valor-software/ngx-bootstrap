@@ -4,6 +4,7 @@ import { demoComponentContent } from './modal-section.list';
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'modal-section',
   templateUrl: './modal-section.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush

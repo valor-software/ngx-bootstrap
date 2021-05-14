@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AbstractControl, FormControl } from '@angular/forms';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-timepicker-custom-validation',
   templateUrl: './custom-validation.html'
 })

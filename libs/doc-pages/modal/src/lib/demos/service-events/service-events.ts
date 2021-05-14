@@ -3,6 +3,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { combineLatest, Subscription } from 'rxjs';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-modal-service-events',
   templateUrl: './service-events.html',
   styles: [`

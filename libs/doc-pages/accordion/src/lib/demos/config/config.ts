@@ -8,6 +8,7 @@ export function getAccordionConfig(): AccordionConfig {
 }
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-accordion-config',
   templateUrl: './config.html',
   providers: [{ provide: AccordionConfig, useFactory: getAccordionConfig }]

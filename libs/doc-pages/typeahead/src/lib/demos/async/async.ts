@@ -10,6 +10,7 @@ interface DataSourceType {
 }
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-async',
   templateUrl: './async.html'
 })

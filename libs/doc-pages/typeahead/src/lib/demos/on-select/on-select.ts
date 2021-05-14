@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-on-select',
   templateUrl: './on-select.html'
 })

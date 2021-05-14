@@ -2,6 +2,7 @@ import { Component, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-accessibility',
   templateUrl: './accessibility.html'
 })

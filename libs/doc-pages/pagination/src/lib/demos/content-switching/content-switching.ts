@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-pagination-content-switching',
   templateUrl: './content-switching.html',
   styles: [`
     .content-wrapper {
-      border: 1px solid #ddd; 
-      border-radius: 4px; 
-      padding-left: 10px; 
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding-left: 10px;
       margin-bottom: 10px;
     }
   `]

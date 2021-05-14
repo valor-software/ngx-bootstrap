@@ -19,6 +19,7 @@ export function getTimepickerConfig(): TimepickerConfig {
 }
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-timepicker-config',
   templateUrl: './config.html',
   providers: [{ provide: TimepickerConfig, useFactory: getTimepickerConfig }]

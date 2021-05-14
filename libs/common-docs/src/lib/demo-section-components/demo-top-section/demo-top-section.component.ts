@@ -4,6 +4,7 @@ import { ComponentsTopSection } from '../../models/components-top-section.model'
 
 export const DEMO_TOP_SECTION_TOKEN = new InjectionToken('DemoTopSectionComponent');
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-top-section',
   templateUrl: './demo-top-section.component.html'
 })

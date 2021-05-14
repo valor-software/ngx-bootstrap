@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AlertComponent } from 'ngx-bootstrap/alert';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-alert-timeout',
   templateUrl: './dismiss-on-timeout.html'
 })

@@ -4,6 +4,7 @@ import { demoComponentContent } from './sortable-section.list';
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'sortable-section',
   templateUrl: './sortable-section.component.html',
   encapsulation: ViewEncapsulation.None,

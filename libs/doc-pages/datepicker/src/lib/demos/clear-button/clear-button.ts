@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-    selector: 'demo-datepicker-clear-button',
-    templateUrl: './clear-button.html'
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-datepicker-clear-button',
+  templateUrl: './clear-button.html'
 })
 export class DemoDatepickerClearButtonComponent {}

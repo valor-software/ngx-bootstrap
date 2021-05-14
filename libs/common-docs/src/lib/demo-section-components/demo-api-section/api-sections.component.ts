@@ -4,6 +4,7 @@ import { ContentSection } from '../../models/content-section.model';
 import { ComponentApi } from '../../models/components-api.model';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'api-sections',
   templateUrl: './api-sections.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush

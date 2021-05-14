@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-modal-service-component',
   templateUrl: './service-component.html'
 })
@@ -27,6 +28,7 @@ export class DemoModalServiceFromComponent {
 /* This is a component which we pass in modal*/
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'modal-content',
   template: `
     <div class="modal-header">

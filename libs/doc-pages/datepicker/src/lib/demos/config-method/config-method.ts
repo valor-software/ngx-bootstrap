@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { BsDaterangepickerDirective, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-datepicker-config-method',
   templateUrl: './config-method.html'
 })

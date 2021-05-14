@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-tabs-dynamic',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './dynamic.html'

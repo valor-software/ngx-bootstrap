@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-pagination-pager',
   templateUrl: './pager.html',
   styles: ['.pager li.btn:active { box-shadow: none; }'],

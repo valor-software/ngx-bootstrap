@@ -4,6 +4,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'top-menu',
   templateUrl: './top-menu.component.html'
 })

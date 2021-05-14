@@ -5,6 +5,7 @@ import { Observable, of, Subscriber } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-ordering',
   templateUrl: './ordering.html'
 })

@@ -2,6 +2,7 @@ import { Component, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-modal-service-interceptor',
   templateUrl: './service-interceptor.html'
 })
@@ -41,6 +42,7 @@ export class DemoModalServiceWithInterceptorComponent {
 }
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'modal-content-with-interceptor',
   template: `
     <div class="modal-header">

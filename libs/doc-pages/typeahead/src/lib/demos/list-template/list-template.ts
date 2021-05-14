@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { isBs3 } from 'ngx-bootstrap/utils';
 
 @Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-templates',
   templateUrl: './list-template.html',
   styles: [`
