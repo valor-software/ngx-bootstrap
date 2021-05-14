@@ -1,13 +1,13 @@
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Route, Router, Routes } from '@angular/router';
 import { Component, Inject, OnDestroy, Renderer2 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
 import { isBs3, setTheme } from 'ngx-bootstrap/utils';
-import { routes } from './app.routing';
 import { StyleManager } from '../../theme/style-manager';
 import { ThemeStorage } from '../../theme/theme-storage';
 
 import { Subscription } from 'rxjs';
+import { DOCS_TOKENS } from '../../tokens/docs-routes-token';
 
 const _bs3Css = 'assets/css/bootstrap-3.3.7/css/bootstrap.min.css';
 const _bs4Css = 'assets/css/bootstrap-4.0.0/css/bootstrap.min.css';
@@ -23,8 +23,8 @@ export class SidebarComponent implements OnDestroy {
     return isBs3();
   }
 
-  routes = routes;
-  search = {text: ''};
+  routes: Routes;
+  search = { text: '' };
 
   currentTheme: 'bs3' | 'bs4';
   scrollSubscription: Subscription;
@@ -35,16 +35,15 @@ export class SidebarComponent implements OnDestroy {
     private router: Router,
     private themeStorage: ThemeStorage,
     public styleManager: StyleManager,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
+    @Inject(DOCS_TOKENS) _routes: Routes
   ) {
+    this.routes = _routes.filter((v: Route) => v.path !== '**');
     const themeFromUrl = this.activatedRoute.snapshot.queryParams._bsVersion;
     const currentTheme = themeFromUrl || this.themeStorage.getStoredTheme();
     if (currentTheme) {
       this.installTheme(currentTheme);
     }
-
-    this.router = router;
-    this.routes = this.routes.filter((v: any) => v.path !== '**');
 
     this.scrollSubscription = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {

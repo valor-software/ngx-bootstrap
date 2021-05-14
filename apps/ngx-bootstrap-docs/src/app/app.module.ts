@@ -16,6 +16,7 @@ import { StyleManager } from '@ngx-bootstrap-doc/docs';
 import { ThemeStorage } from '@ngx-bootstrap-doc/docs';
 import { ScullyLibModule } from '@scullyio/ng-lib';
 import { routes } from './app.routing';
+import { DOCS_TOKENS } from '@ngx-bootstrap-doc/docs';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,9 @@ import { routes } from './app.routing';
     BsDropdownModule.forRoot(),
     ScullyLibModule
   ],
-  providers: [ThemeStorage, StyleManager, { provide: NgApiDoc, useValue: ngdoc }],
+  providers: [ThemeStorage, StyleManager,
+    { provide: NgApiDoc, useValue: ngdoc },
+    { provide: DOCS_TOKENS, useValue: routes }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

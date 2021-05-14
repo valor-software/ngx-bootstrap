@@ -15,7 +15,7 @@ import {
 
 import { TabsModule } from 'ngx-bootstrap/tabs';
 
-import { DocsModule } from '../../docs/index';
+import { DocsModule } from '@ngx-bootstrap-doc/docs';
 import { DatepickerSectionComponent } from './datepicker-section.component';
 import { routes } from './demo-datepicker.routes';
 import { DEMO_COMPONENTS } from './demos/index';

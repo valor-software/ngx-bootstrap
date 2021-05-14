@@ -37,21 +37,21 @@ function getLinkElementForKey(key: string) {
   return getExistingLinkElementByKey(key) || createLinkElementWithKey(key);
 }
 
-function getExistingLinkElementByKey(key: string) {
+function getExistingLinkElementByKey(key: string): Element | void{
   if (!document.head) {
-    return undefined;
+    return;
   }
 
   return document.head.querySelector(`link[rel="stylesheet"].${getClassNameForKey(key)}`);
 }
 
-function createLinkElementWithKey(key: string) {
+function createLinkElementWithKey(key: string): HTMLLinkElement | void {
   const linkEl = document.createElement('link');
   linkEl.setAttribute('rel', 'stylesheet');
   linkEl.classList.add(getClassNameForKey(key));
 
   if (!document.head) {
-    return undefined;
+    return;
   }
 
   document.head.appendChild(linkEl);

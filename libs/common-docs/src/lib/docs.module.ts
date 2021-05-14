@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 /* common */
@@ -8,6 +7,7 @@ import { AppFooterComponent } from './common/app-footer/app-footer.component';
 import { AddNavComponent } from './common/add-nav/add-nav.component';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { SearchFilterPipe } from './common/sidebar/search-filter.pipe';
+
 /* docs */
 import { DemoSectionComponent } from './demo-section/demo-section.component';
 import { ContentSection } from './models/content-section.model';
@@ -55,6 +55,7 @@ export { ThemeStorage } from './theme/theme-storage';
 export { NgApiDoc } from './api-docs/api-docs.model';
 export { TopMenuComponent } from './common/top-menu/top-menu.component';
 export { Analytics } from './api-docs/analytics/analytics';
+export { DOCS_TOKENS } from './tokens/docs-routes-token';
 
 @NgModule({
   declarations: [
@@ -69,14 +70,13 @@ export { Analytics } from './api-docs/analytics/analytics';
     DiscoverComponent
   ],
   imports: [
-    TabsModule.forRoot(),
+    TabsModule,
     CommonModule,
     NgApiDocModule,
     ExamplesComponentModule,
     ApiSectionsComponentModule,
     DemoTopSectionComponentModule,
     NgxPageScrollModule,
-    RouterModule
   ],
   exports: [
     SearchFilterPipe,
@@ -87,7 +87,6 @@ export { Analytics } from './api-docs/analytics/analytics';
     ExamplesComponentModule,
     ApiSectionsComponentModule,
     NgxPageScrollModule,
-    RouterModule,
     DocsSectionComponent
   ],
   providers: [ContentSection],
