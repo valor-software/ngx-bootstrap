@@ -1,10 +1,10 @@
 import { async, TestBed } from '@angular/core/testing';
-import { SortableModule } from './sortable.module';
+import { DemoSortableModule } from './sortable.module';
 
 describe('SortableModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SortableModule]
+      imports: [DemoSortableModule]
     }).compileComponents();
   }));
 
@@ -13,6 +13,6 @@ describe('SortableModule', () => {
   // NB: This particular test does not do anything useful.
   //     It does NOT check for correct instantiation of the module.
   it('should have a module definition', () => {
-    expect(SortableModule).toBeDefined();
+    expect(DemoSortableModule).toBeDefined();
   });
 });

@@ -1,10 +1,10 @@
 import { async, TestBed } from '@angular/core/testing';
-import { DropdownModule } from './dropdown.module';
+import { DemoDropdownModule } from './dropdown.module';
 
 describe('DropdownModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [DropdownModule]
+      imports: [DemoDropdownModule]
     }).compileComponents();
   }));
 
@@ -13,6 +13,6 @@ describe('DropdownModule', () => {
   // NB: This particular test does not do anything useful.
   //     It does NOT check for correct instantiation of the module.
   it('should have a module definition', () => {
-    expect(DropdownModule).toBeDefined();
+    expect(DemoDropdownModule).toBeDefined();
   });
 });

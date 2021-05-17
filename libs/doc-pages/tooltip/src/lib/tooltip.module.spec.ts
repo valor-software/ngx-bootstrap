@@ -1,10 +1,10 @@
 import { async, TestBed } from '@angular/core/testing';
-import { TooltipModule } from './tooltip.module';
+import { DemoTooltipModule } from './tooltip.module';
 
 describe('TooltipModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TooltipModule]
+      imports: [DemoTooltipModule]
     }).compileComponents();
   }));
 
@@ -13,6 +13,6 @@ describe('TooltipModule', () => {
   // NB: This particular test does not do anything useful.
   //     It does NOT check for correct instantiation of the module.
   it('should have a module definition', () => {
-    expect(TooltipModule).toBeDefined();
+    expect(DemoTooltipModule).toBeDefined();
   });
 });

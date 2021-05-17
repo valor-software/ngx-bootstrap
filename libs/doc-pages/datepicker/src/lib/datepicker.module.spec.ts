@@ -1,10 +1,10 @@
 import { async, TestBed } from '@angular/core/testing';
-import { DatepickerModule } from './datepicker.module';
+import { DemoDatepickerModule } from './datepicker.module';
 
 describe('DatepickerModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [DatepickerModule]
+      imports: [DemoDatepickerModule]
     }).compileComponents();
   }));
 
@@ -13,6 +13,6 @@ describe('DatepickerModule', () => {
   // NB: This particular test does not do anything useful.
   //     It does NOT check for correct instantiation of the module.
   it('should have a module definition', () => {
-    expect(DatepickerModule).toBeDefined();
+    expect(DemoDatepickerModule).toBeDefined();
   });
 });

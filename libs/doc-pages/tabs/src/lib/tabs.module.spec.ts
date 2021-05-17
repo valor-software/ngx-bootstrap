@@ -1,10 +1,10 @@
 import { async, TestBed } from '@angular/core/testing';
-import { TabsModule } from './tabs.module';
+import { DemoTabsModule } from './tabs.module';
 
 describe('TabsModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [TabsModule]
+      imports: [DemoTabsModule]
     }).compileComponents();
   }));
 
@@ -13,6 +13,6 @@ describe('TabsModule', () => {
   // NB: This particular test does not do anything useful.
   //     It does NOT check for correct instantiation of the module.
   it('should have a module definition', () => {
-    expect(TabsModule).toBeDefined();
+    expect(DemoTabsModule).toBeDefined();
   });
 });
