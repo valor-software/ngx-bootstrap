@@ -1,30 +1,31 @@
-import { DemoTimepickerBasicComponent } from './demos/basic/basic';
-import { DemoTimepickerMeridianComponent } from './demos/meridian/meridian';
-import { DemoTimepickerCustomMeridianComponent } from './demos/custom-meridian/custom-meridian';
-import { DemoTimepickerMinMaxComponent } from './demos/min-max/min-max';
-import { DemoTimepickerPlaceholderComponent } from './demos/placeholder/placeholder';
-import { DemoTimepickerToggleMinutesSecondsComponent } from './demos/toggle-minutes-seconds/toggle-minutes-seconds';
-import { DemoTimepickerDisabledComponent } from './demos/disabled/disabled';
-import { DemoTimepickerCustomComponent } from './demos/custom/custom';
-import { DemoTimepickerCustomValidationComponent } from './demos/custom-validation/custom-validation';
-import { DemoTimepickerDynamicComponent } from './demos/dynamic/dynamic';
-import { DemoTimepickerMousewheelComponent } from './demos/mousewheel/mousewheel';
-import { DemoTimepickerArrowkeysComponent } from './demos/arrowkeys/arrowkeys';
-import { DemoTimepickerConfigComponent } from './demos/config/config';
-import { DemoTimepickerReadonlyComponent } from './demos/readonly/readonly';
-import { DemoTimepickerSpinnersComponent } from './demos/spinners/spinners';
-
-import { ContentSection } from '../../docs/models/content-section.model';
-import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
-import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
-import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
-
 import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '../../docs/api-docs/index';
-import { DemoTimepickerIsValidComponent } from './demos/isvalid/isvalid';
+import { ApiSectionsComponent } from '../../docs/demo-section-components/demo-api-section/index';
+import { ExamplesComponent } from '../../docs/demo-section-components/demo-examples-section/index';
+import { DemoTopSectionComponent } from '../../docs/demo-section-components/demo-top-section/index';
+import { ContentSection } from '../../docs/models/content-section.model';
+import { DemoTimepickerArrowkeysComponent } from './demos/arrowkeys/arrowkeys';
+import { DemoTimepickerBasicComponent } from './demos/basic/basic';
+import { DemoTimepickerConfigComponent } from './demos/config/config';
+import { DemoTimepickerCustomMeridianComponent } from './demos/custom-meridian/custom-meridian';
+import { DemoTimepickerCustomValidationComponent } from './demos/custom-validation/custom-validation';
+import { DemoTimepickerCustomComponent } from './demos/custom/custom';
+import { DemoTimepickerDisabledComponent } from './demos/disabled/disabled';
+import { DemoTimepickerDynamicComponent } from './demos/dynamic/dynamic';
+import { DemoTimepickerEmptyDateComponent } from './demos/empty-date/empty-date';
 import { DemoTimepickerFormComponent } from './demos/form/form';
+import { DemoTimepickerIsValidComponent } from './demos/isvalid/isvalid';
+import { DemoTimepickerMeridianComponent } from './demos/meridian/meridian';
+import { DemoTimepickerMinMaxComponent } from './demos/min-max/min-max';
+import { DemoTimepickerMousewheelComponent } from './demos/mousewheel/mousewheel';
+import { DemoTimepickerPlaceholderComponent } from './demos/placeholder/placeholder';
+import { DemoTimepickerReadonlyComponent } from './demos/readonly/readonly';
+import { DemoTimepickerSpinnersComponent } from './demos/spinners/spinners';
+import { DemoTimepickerToggleMinutesSecondsComponent } from './demos/toggle-minutes-seconds/toggle-minutes-seconds';
+
+
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -133,6 +134,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/mousewheel/mousewheel'),
         html: require('!!raw-loader!./demos/mousewheel/mousewheel.html'),
         outlet: DemoTimepickerMousewheelComponent
+      },
+      {
+        title: 'Empty Date',
+        anchor: 'empty-date',
+        component: require('!!raw-loader!./demos/empty-date/empty-date'),
+        html: require('!!raw-loader!./demos/empty-date/empty-date.html'),
+        outlet: DemoTimepickerEmptyDateComponent
       },
       {
         title: 'Arrow keys',

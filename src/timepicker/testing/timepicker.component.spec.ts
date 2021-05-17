@@ -2,10 +2,10 @@
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-
 import { fireEvent } from '../../../scripts/helpers';
 import '../../../scripts/jest/toHaveCssClass';
 import { TimepickerActions, TimepickerComponent, TimepickerConfig, TimepickerModule } from '../index';
+
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getInputElements(fixture: any) {
@@ -141,6 +141,14 @@ describe('Component: TimepickerComponent', () => {
 
       expect(inputHours.value).toBe('01');
       expect(inputMinutes.value).toBe('00');
+    });
+
+    it('should emit isValid with false when clearing date', () => {
+      spyOn(component.isValid, 'emit').and.stub();
+      fireEvent(inputMinutes, 'change');
+      component.writeValue(testTime());
+      fixture.detectChanges();
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
     });
   });
 
@@ -295,6 +303,36 @@ describe('Component: TimepickerComponent', () => {
 
       expect(buttonChanges[2]).toHaveCssClass('disabled');
       expect(buttonChanges[3]).toHaveCssClass('disabled');
+    });
+  });
+
+  describe('validate input fields with property of allowEmptyDate', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TimepickerComponent);
+      fixture.detectChanges();
+
+      component = fixture.componentInstance;
+      inputHours = getInputElements(fixture)[0];
+      inputMinutes = getInputElements(fixture)[1];
+      buttonChanges = getElements(fixture, 'a.btn');
+    });
+
+    it('should emit isValid with false when allowEmptyDate is false', () => {
+      component.allowEmptyDate = false;
+      spyOn(component.isValid, 'emit').and.stub();
+      fireEvent(inputMinutes, 'change');
+      component.writeValue(testTime());
+      fixture.detectChanges();
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
+    });
+
+    it('should emit isValid with true when allowEmptyDate is true ', () => {
+      component.allowEmptyDate = true;
+      spyOn(component.isValid, 'emit').and.stub();
+      fireEvent(inputMinutes, 'change');
+      component.writeValue(testTime());
+      fixture.detectChanges();
+      expect(component.isValid.emit).toHaveBeenCalledWith(true);
     });
   });
 
@@ -531,6 +569,7 @@ describe('Component: TimepickerComponent', () => {
       });
     }));
   });
+
 
   describe('hide change button', () => {
     beforeEach(() => {
@@ -991,7 +1030,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateHours(inputHours);
 
       expect(methodSpy).toHaveBeenCalledWith(null);
-            expect(component.isValid.emit).toHaveBeenCalledWith(false);
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
       expect(component.invalidHours).toEqual(true);
     });
 
@@ -1005,7 +1044,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateHours(inputHours);
 
       expect(methodSpy).toHaveBeenCalledWith(null);
-            expect(component.isValid.emit).toHaveBeenCalledWith(false);
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
       expect(component.invalidHours).toEqual(true);
     });
 
@@ -1019,7 +1058,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateHours(inputHours);
 
       expect(component.invalidHours).toEqual(false);
-            expect(component._updateTime).toHaveBeenCalled();
+      expect(component._updateTime).toHaveBeenCalled();
     });
 
     it('should clear model if minute input is invalid', () => {
@@ -1032,7 +1071,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateMinutes(inputMinutes);
 
       expect(methodSpy).toHaveBeenCalledWith(null);
-            expect(component.isValid.emit).toHaveBeenCalledWith(false);
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
     });
 
     it('should clear model if minute limits are invalid', () => {
@@ -1045,7 +1084,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateMinutes(inputMinutes);
 
       expect(methodSpy).toHaveBeenCalledWith(null);
-            expect(component.isValid.emit).toHaveBeenCalledWith(false);
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
     });
 
     it('should update time if minute is valid', () => {
@@ -1057,7 +1096,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateMinutes(inputMinutes);
 
       expect(component.invalidMinutes).toEqual(false);
-            expect(component._updateTime).toHaveBeenCalled();
+      expect(component._updateTime).toHaveBeenCalled();
     });
 
     it('should clear model if second input is invalid', () => {
@@ -1071,7 +1110,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateSeconds(inputSeconds);
 
       expect(methodSpy).toHaveBeenCalledWith(null);
-            expect(component.isValid.emit).toHaveBeenCalledWith(false);
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
     });
 
     it('should clear model if second limits are invalid', () => {
@@ -1085,7 +1124,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateSeconds(inputSeconds);
 
       expect(methodSpy).toHaveBeenCalledWith(null);
-            expect(component.isValid.emit).toHaveBeenCalledWith(false);
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
     });
 
     it('should update time if second is valid', () => {
@@ -1097,7 +1136,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateSeconds(inputSeconds);
 
       expect(component.invalidSeconds).toEqual(false);
-            expect(component._updateTime).toHaveBeenCalled();
+      expect(component._updateTime).toHaveBeenCalled();
     });
 
     it('should valid value in input fields', fakeAsync(() => {

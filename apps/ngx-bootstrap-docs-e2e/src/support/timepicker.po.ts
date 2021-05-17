@@ -20,6 +20,7 @@ export class TimepickerPo extends BaseComponent {
     customValidation: 'demo-timepicker-custom-validation',
     isValidEvent: 'demo-timepicker-isvalid',
     dynamic: 'demo-timepicker-dynamic',
+    allowEmptyDate: 'demo-timepicker-empty-date',
     mousewheel: 'demo-timepicker-mousewheel',
     arrowKeys: 'demo-timepicker-arrowkeys',
     spinners: 'demo-timepicker-spinners',
@@ -48,6 +49,11 @@ export class TimepickerPo extends BaseComponent {
       .eq(alertIndex)
       .invoke('text')
       .should('to.contain', expectedText);
+  }
+
+  alertShouldNotExists(baseSelector: string, alertType = 'info') {
+    cy.get(`${baseSelector} .alert.alert-${alertType}`)
+      .should('not.exist');
   }
 
   setTimeInInputs(baseSelector: string, hourToSet: number | string, minuteToSet: number | string) {

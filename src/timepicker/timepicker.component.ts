@@ -10,26 +10,18 @@ import {
   Output,
   ViewEncapsulation
 } from '@angular/core';
-
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-
 import { Subscription } from 'rxjs';
-
 import { ControlValueAccessorModel } from './models';
-
 import { TimepickerActions } from './reducer/timepicker.actions';
 import { TimepickerStore } from './reducer/timepicker.store';
 import { getControlsValue } from './timepicker-controls.util';
 import { TimepickerConfig } from './timepicker.config';
-
 import { TimeChangeSource, TimepickerComponentState, TimepickerControls } from './timepicker.models';
-
 import {
-  isHourInputValid,
-  isInputLimitValid,
+  isHourInputValid, isInputLimitValid,
   isInputValid,
-  isMinuteInputValid,
-  isSecondInputValid,
+  isMinuteInputValid, isOneOfDatesEmpty, isSecondInputValid,
   isValidDate,
   padNumber,
   parseTime
@@ -77,10 +69,10 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: ControlValueAccessorModel = {
 })
 export class TimepickerComponent
   implements ControlValueAccessor,
-    TimepickerComponentState,
-    TimepickerControls,
-    OnChanges,
-    OnDestroy {
+  TimepickerComponentState,
+  TimepickerControls,
+  OnChanges,
+  OnDestroy {
   /** hours change step */
   @Input() hourStep = 1;
   /** minutes change step */
@@ -115,7 +107,8 @@ export class TimepickerComponent
   @Input() minutesPlaceholder = 'MM';
   /** placeholder for seconds field in timepicker */
   @Input() secondsPlaceholder = 'SS';
-
+  /** if true emptyDate is not marked as invalid */
+  @Input() allowEmptyDate = false;
   /** emits true if value is a valid date */
   @Output() isValid = new EventEmitter<boolean>();
 
@@ -171,7 +164,11 @@ export class TimepickerComponent
     _store
       .select(state => state.controls)
       .subscribe((controlsState: TimepickerControls) => {
-        this.isValid.emit(isInputValid(this.hours, this.minutes, this.seconds, this.isPM()));
+        const isTimepickerInputValid = isInputValid(this.hours, this.minutes, this.seconds, this.isPM())
+        const isValid = this.allowEmptyDate ?
+          this.isOneOfDatesIsEmpty() || isTimepickerInputValid
+          : isTimepickerInputValid;
+        this.isValid.emit(isValid);
         Object.assign(this, controlsState);
         _cd.markForCheck();
       });
@@ -232,9 +229,10 @@ export class TimepickerComponent
   updateHours(target?: Partial<EventTarget> | null): void {
     this.resetValidation();
     this.hours = (target as HTMLInputElement).value;
-
-    const isValid = isHourInputValid(this.hours, this.isPM()) && this.isValidLimit();
-
+    const isTimepickerInputValid = isHourInputValid(this.hours, this.isPM()) && this.isValidLimit();
+    const isValid = this.allowEmptyDate ?
+      this.isOneOfDatesIsEmpty() || isTimepickerInputValid
+      : isTimepickerInputValid;
     if (!isValid) {
       this.invalidHours = true;
       this.isValid.emit(false);
@@ -250,8 +248,10 @@ export class TimepickerComponent
     this.resetValidation();
     this.minutes = (target as HTMLInputElement).value;
 
-    const isValid = isMinuteInputValid(this.minutes) && this.isValidLimit();
-
+    const isTimepickerInputValid = isMinuteInputValid(this.minutes) && this.isValidLimit();
+    const isValid = this.allowEmptyDate ?
+      this.isOneOfDatesIsEmpty() || isTimepickerInputValid
+      : isTimepickerInputValid;
     if (!isValid) {
       this.invalidMinutes = true;
       this.isValid.emit(false);
@@ -266,9 +266,10 @@ export class TimepickerComponent
   updateSeconds(target: Partial<EventTarget> | null) {
     this.resetValidation();
     this.seconds = (target as HTMLInputElement).value;
-
-    const isValid = isSecondInputValid(this.seconds) && this.isValidLimit();
-
+    const isTimepickerInputValid = isSecondInputValid(this.seconds) && this.isValidLimit();
+    const isValid = this.allowEmptyDate ?
+      this.isOneOfDatesIsEmpty() || isTimepickerInputValid
+      : isTimepickerInputValid;
     if (!isValid) {
       this.invalidSeconds = true;
       this.isValid.emit(false);
@@ -289,13 +290,23 @@ export class TimepickerComponent
     }, this.max, this.min);
   }
 
+  isOneOfDatesIsEmpty(): boolean {
+    return isOneOfDatesEmpty(
+      this.hours,
+      this.minutes,
+      this.seconds);
+  }
+
   _updateTime() {
     const _seconds = this.showSeconds ? this.seconds : void 0;
     const _minutes = this.showMinutes ? this.minutes : void 0;
-    if (!isInputValid(this.hours, _minutes, _seconds, this.isPM())) {
+    const isTimepickerInputValid = isInputValid(this.hours, _minutes, _seconds, this.isPM());
+    const isValid = this.allowEmptyDate ?
+      this.isOneOfDatesIsEmpty() || isTimepickerInputValid
+      : isTimepickerInputValid;
+    if (!isValid) {
       this.isValid.emit(false);
       this.onChange(null);
-
       return;
     }
 

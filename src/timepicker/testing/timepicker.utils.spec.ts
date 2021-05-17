@@ -1,22 +1,11 @@
 import { Time, TimepickerComponentState } from '../timepicker.models';
 import {
-  isValidDate,
-  isValidLimit,
-  toNumber,
-  isNumber,
-  parseHours,
+  changeTime, createDate, isHourInputValid, isInputLimitValid,
+  isInputValid, isMinuteInputValid, isNumber, isOneOfDatesEmpty, isSecondInputValid, isValidDate,
+  isValidLimit, padNumber, parseHours,
   parseMinutes,
   parseSeconds,
-  parseTime,
-  changeTime,
-  setTime,
-  createDate,
-  padNumber,
-  isHourInputValid,
-  isMinuteInputValid,
-  isSecondInputValid,
-  isInputLimitValid,
-  isInputValid
+  parseTime, setTime, toNumber
 } from '../timepicker.utils';
 
 const controls: TimepickerComponentState = {
@@ -45,9 +34,9 @@ function testTime(hours?: number, minutes?: number, seconds?: number): Date {
 }
 
 function modelTime(hours: string | number,
-                   minutes: string | number,
-                   second: string | number,
-                   PM: boolean): Time {
+  minutes: string | number,
+  second: string | number,
+  PM: boolean): Time {
   return {
     hour: hours,
     minute: minutes,
@@ -255,4 +244,16 @@ xdescribe('Runtime coverage. Utils: Timepicker', () => {
 
     expect(result).toEqual(true);
   });
+
+  it('isOneOfDatesEmpty method should validate input and return false', () => {
+    const result = isOneOfDatesEmpty('10', '10', '10');
+    expect(result).toEqual(false);
+  });
+
+  it('isOneOfDatesEmpty method should validate input and return true', () => {
+    const result = isOneOfDatesEmpty('', '', '');
+    expect(result).toEqual(true);
+  });
+
+
 });
