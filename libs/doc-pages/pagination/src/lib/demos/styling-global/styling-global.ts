@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -17,7 +18,7 @@ export class DemoPaginationStylingComponent {
   currentPage = 4;
   smallnumPages = 0;
 
-  pageChanged(event: any): void {
+  pageChanged(event: PageChangedEvent): void {
     console.log('Page changed to: ' + event.page);
     console.log('Number items per page: ' + event.itemsPerPage);
   }

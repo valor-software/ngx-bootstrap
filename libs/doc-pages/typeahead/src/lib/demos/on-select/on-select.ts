@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
+import { DataSourceType } from '../interfaces/typeahead.interfaces';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -10,7 +11,7 @@ export class DemoTypeaheadOnSelectComponent {
   selectedValue: string;
   selectedOption: any;
   previewOption: any = null;
-  states: any[] = [
+  states: DataSourceType[] = [
     { id: 1, name: 'Alabama', region: 'South' },
     { id: 2, name: 'Alaska', region: 'West' },
     { id: 3, name: 'Arizona', region: 'West' },

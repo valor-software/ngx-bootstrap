@@ -6,12 +6,12 @@ import { Component } from '@angular/core';
   templateUrl: './custom-item-template.html'
 })
 export class CustomItemTemplateDemoComponent {
-  itemStringsLeft: any[] = [
+  itemStringsLeft: string[] = [
     'Windstorm',
     'Bombasto',
     'Magneta',
     'Tornado'
   ];
 
-  itemStringsRight: any[] = ['Mr. O', 'Tomato'];
+  itemStringsRight: string[] = ['Mr. O', 'Tomato'];
 }

@@ -1,4 +1,3 @@
-import { inject } from '@angular/core';
 import { DemoAccordionAnimatedComponent } from './demos/animated/animated';
 import { DemoAccordionBasicComponent } from './demos/basic/basic';
 import { DemoAccordionConfigComponent } from './demos/config/config';

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { DocsModule } from '@ngx-bootstrap-doc/docs';
 import { AccordionSectionComponent } from './accordion-section.component';
@@ -27,5 +27,5 @@ export { AccordionSectionComponent } from './accordion-section.component';
   entryComponents: [...DEMO_COMPONENTS]
 })
 export class DemoAccordionModule {
-  static routes: any = routes;
+  static routes: Routes = routes;
 }

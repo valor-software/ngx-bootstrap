@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataSourceType } from '../interfaces/typeahead.interfaces';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -7,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class DemoTypeaheadGroupingComponent {
   groupSelected: string;
-  statesComplex: any[] = [
+  statesComplex: DataSourceType[] = [
     { id: 1, name: 'Alabama', region: 'South' },
     { id: 2, name: 'Alaska', region: 'West' },
     { id: 3, name: 'Arizona', region: 'West' },

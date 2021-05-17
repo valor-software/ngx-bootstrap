@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { mergeMap, delay } from 'rxjs/operators';
 import { TypeaheadConfig } from 'ngx-bootstrap/typeahead';
+import { DataSourceType } from '../interfaces/typeahead.interfaces';
 
 export function getTypeaheadConfig(): TypeaheadConfig {
   return Object.assign(new TypeaheadConfig(), { cancelRequestOnFocusLost: true });
@@ -19,7 +20,7 @@ export class DemoTypeaheadCancelRequestOnFocusLostComponent {
   typeaheadLoading: boolean;
   typeaheadNoResults: boolean;
   dataSource: Observable<any>;
-  statesComplex: any[] = [
+  statesComplex: DataSourceType[] = [
     { id: 1, name: 'Alabama', region: 'South' },
     { id: 2, name: 'Alaska', region: 'West' },
     { id: 3, name: 'Arizona', region: 'West' },
@@ -87,7 +88,7 @@ export class DemoTypeaheadCancelRequestOnFocusLostComponent {
     const query = new RegExp(token, 'i');
 
     return of(
-      this.statesComplex.filter((state: any) => {
+      this.statesComplex.filter((state: { id: number; name: string; region: string; }) => {
         return query.test(state.name);
       })
     );

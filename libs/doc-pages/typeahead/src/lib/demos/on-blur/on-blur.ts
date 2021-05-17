@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -61,7 +62,7 @@ export class DemoTypeaheadOnBlurComponent {
     'Wyoming'
   ];
 
-  typeaheadOnBlur(event: any): void {
+  typeaheadOnBlur(event: TypeaheadMatch): void {
     this.optionOnBlur = event.item;
   }
 }

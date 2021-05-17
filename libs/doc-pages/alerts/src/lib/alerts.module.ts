@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { AlertsSectionComponent } from './alerts-section.component';
 import { DEMO_COMPONENTS } from './demos/index';
@@ -24,5 +24,5 @@ export { AlertsSectionComponent } from './alerts-section.component';
   entryComponents: [...DEMO_COMPONENTS]
 })
 export class DemoAlertsModule {
-  static routes: any = routes;
+  static routes: Routes = routes;
 }

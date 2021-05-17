@@ -1,5 +1,15 @@
 import { Component } from '@angular/core';
 
+interface IEvent {
+  date: Date;
+  status: string;
+}
+
+interface IDateOption {
+  formatYear: string;
+  startingDay: number;
+}
+
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'datepicker-demo',
@@ -8,7 +18,7 @@ import { Component } from '@angular/core';
 export class DatepickerDemoComponent {
   dt: Date | undefined = new Date();
   minDate: Date | undefined = void 0;
-  events: any[];
+  events: IEvent[];
   tomorrow: Date;
   afterTomorrow: Date;
   dateDisabled: { date: Date; mode: string }[] | undefined;
@@ -19,7 +29,7 @@ export class DatepickerDemoComponent {
     'shortDate'
   ];
   format: string = this.formats[0];
-  dateOptions: any = {
+  dateOptions: IDateOption = {
     formatYear: 'YY',
     startingDay: 1
   };
@@ -53,7 +63,7 @@ export class DatepickerDemoComponent {
   }
 
   // todo: implement custom class cases
-  getDayClass(date: any, mode: string): string {
+  getDayClass(date: string, mode: string): string {
     if (mode === 'day') {
       const dayToCheck = new Date(date).setHours(0, 0, 0, 0);
 

@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
-
 import { Observable, of, Subscriber } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
-
-interface DataSourceType {
-  id: number;
-  name: string;
-  region: string;
-}
+import { DataSourceType } from '../interfaces/typeahead.interfaces';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -85,7 +79,7 @@ export class DemoTypeaheadAsyncComponent {
     const query = new RegExp(token, 'i');
 
     return of(
-      this.statesComplex.filter((state: any) => {
+      this.statesComplex.filter((state: DataSourceType) => {
         return query.test(state.name);
       })
     );

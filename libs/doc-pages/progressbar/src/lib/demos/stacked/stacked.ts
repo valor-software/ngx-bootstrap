@@ -1,5 +1,11 @@
 import { Component } from '@angular/core';
 
+interface IStack {
+  value: number;
+  type: string;
+  label: string;
+}
+
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-progressbar-stacked',
@@ -7,7 +13,7 @@ import { Component } from '@angular/core';
 })
 export class DemoProgressbarStackedComponent {
   type: string;
-  stacked: any[] = [];
+  stacked: IStack[] = [];
 
   constructor() {
     this.randomStacked();

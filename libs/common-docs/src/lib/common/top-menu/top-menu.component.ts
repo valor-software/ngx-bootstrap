@@ -32,7 +32,7 @@ export class TopMenuComponent implements AfterViewInit {
   }
 
 
-  ngAfterViewInit(): any {
+  ngAfterViewInit(): void {
     if (!this.isBrowser) {
       return;
     }
