@@ -10,8 +10,8 @@ describe('Timepicker demo page testing suite: Custom steps', () => {
     3 dropdowns "Hours step is:", "Minutes step is:", "Seconds step is:", chosen (1|15|10) values by default`, () => {
     const newDate = new Date();
     timepicker.isTimepickerVisible(customSteps);
-    timepicker.isTimepickerInputVisible(customSteps, 'minutes');
-    timepicker.isTimepickerInputVisible(customSteps, 'seconds');
+    timepicker.isTimepickerInputExist(customSteps, 'minutes');
+    timepicker.isTimepickerInputExist(customSteps, 'seconds');
     timepicker.isButtonExist(customSteps, `${(newDate.getHours() >= 12) ? 'PM' : 'AM'} `, 0);
     timepicker.isAlertContains(customSteps, `Time is: ${newDate.toString().split(':')[0]}`);
     timepicker.isDemoContainsTxt(customSteps, 'Hours step is:');

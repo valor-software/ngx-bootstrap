@@ -8,8 +8,8 @@ export class CarouselPo extends BaseComponent {
   carouselClass = '.carousel';
   indicatorClass = '.carousel-indicators';
   itemClass = '.carousel-item';
-  leftControl = '.carousel-control-prev';
-  rightControl = '.carousel-control-next';
+  leftControl = '.icon-prev';
+  rightControl = '.icon-next';
 
   exampleDemosArr = {
     basic: 'demo-carousel-basic',
@@ -28,7 +28,7 @@ export class CarouselPo extends BaseComponent {
   isClickActivatedCarouselItem(baseSelector: string, itemIndex: number) {
     cy.get(`${baseSelector} ${this.carouselClass} ${this.indicatorClass} li `)
       .eq(itemIndex)
-      .click()
+      .click({ force: true })
       .should('have.class', 'active');
   }
 
