@@ -142,7 +142,9 @@
             "devServerTarget": "ngx-bootstrap-docs:serve"
           },
           "configurations": {
-            "firebase": { "devServerTarget":  "" },
+            "firebase": {
+              "devServerTarget": ""
+            },
             "production": {
               "devServerTarget": "ngx-bootstrap-docs:serve:production"
             }
@@ -1262,6 +1264,711 @@
             "assets": [
               "schematics/*.md"
             ]
+          }
+        }
+      }
+    },
+    "doc-pages-accordion": {
+      "projectType": "library",
+      "root": "libs/doc-pages/accordion",
+      "sourceRoot": "libs/doc-pages/accordion/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": [
+            "node_modules/ngx-bootstrap/accordion"
+          ],
+          "options": {
+            "tsConfig": "libs/doc-pages/accordion/tsconfig.lib.json",
+            "project": "libs/doc-pages/accordion/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/doc-pages/accordion/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/doc-pages/accordion/src/**/*.ts",
+              "libs/doc-pages/accordion/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/doc-pages/accordion"
+          ],
+          "options": {
+            "jestConfig": "libs/doc-pages/accordion/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "common-docs": {
+      "projectType": "library",
+      "root": "libs/common-docs",
+      "sourceRoot": "libs/common-docs/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/common-docs/tsconfig.lib.json",
+            "project": "libs/common-docs/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/common-docs/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/common-docs/src/**/*.ts",
+              "libs/common-docs/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/common-docs"
+          ],
+          "options": {
+            "jestConfig": "libs/common-docs/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "doc-pages-alerts": {
+      "projectType": "library",
+      "root": "libs/doc-pages/alerts",
+      "sourceRoot": "libs/doc-pages/alerts/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/doc-pages/alerts/tsconfig.lib.json",
+            "project": "libs/doc-pages/alerts/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/doc-pages/alerts/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/doc-pages/alerts/src/**/*.ts",
+              "libs/doc-pages/alerts/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/doc-pages/alerts"
+          ],
+          "options": {
+            "jestConfig": "libs/doc-pages/alerts/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "doc-pages-buttons": {
+      "projectType": "library",
+      "root": "libs/doc-pages/buttons",
+      "sourceRoot": "libs/doc-pages/buttons/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/doc-pages/buttons/tsconfig.lib.json",
+            "project": "libs/doc-pages/buttons/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/doc-pages/buttons/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/doc-pages/buttons/src/**/*.ts",
+              "libs/doc-pages/buttons/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/doc-pages/buttons"
+          ],
+          "options": {
+            "jestConfig": "libs/doc-pages/buttons/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "doc-pages-carousel": {
+      "projectType": "library",
+      "root": "libs/doc-pages/carousel",
+      "sourceRoot": "libs/doc-pages/carousel/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/doc-pages/carousel/tsconfig.lib.json",
+            "project": "libs/doc-pages/carousel/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/doc-pages/carousel/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/doc-pages/carousel/src/**/*.ts",
+              "libs/doc-pages/carousel/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/doc-pages/carousel"
+          ],
+          "options": {
+            "jestConfig": "libs/doc-pages/carousel/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "doc-pages-collapse": {
+      "projectType": "library",
+      "root": "libs/doc-pages/collapse",
+      "sourceRoot": "libs/doc-pages/collapse/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/doc-pages/collapse/tsconfig.lib.json",
+            "project": "libs/doc-pages/collapse/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/doc-pages/collapse/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/doc-pages/collapse/src/**/*.ts",
+              "libs/doc-pages/collapse/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/doc-pages/collapse"
+          ],
+          "options": {
+            "jestConfig": "libs/doc-pages/collapse/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "doc-pages-datepicker": {
+      "projectType": "library",
+      "root": "libs/doc-pages/datepicker",
+      "sourceRoot": "libs/doc-pages/datepicker/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/doc-pages/datepicker/tsconfig.lib.json",
+            "project": "libs/doc-pages/datepicker/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/doc-pages/datepicker/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/doc-pages/datepicker/src/**/*.ts",
+              "libs/doc-pages/datepicker/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/doc-pages/datepicker"
+          ],
+          "options": {
+            "jestConfig": "libs/doc-pages/datepicker/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "doc-pages-dropdown": {
+      "projectType": "library",
+      "root": "libs/doc-pages/dropdown",
+      "sourceRoot": "libs/doc-pages/dropdown/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/doc-pages/dropdown/tsconfig.lib.json",
+            "project": "libs/doc-pages/dropdown/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/doc-pages/dropdown/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/doc-pages/dropdown/src/**/*.ts",
+              "libs/doc-pages/dropdown/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/doc-pages/dropdown"
+          ],
+          "options": {
+            "jestConfig": "libs/doc-pages/dropdown/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "doc-pages-modal": {
+      "projectType": "library",
+      "root": "libs/doc-pages/modal",
+      "sourceRoot": "libs/doc-pages/modal/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/doc-pages/modal/tsconfig.lib.json",
+            "project": "libs/doc-pages/modal/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/doc-pages/modal/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/doc-pages/modal/src/**/*.ts",
+              "libs/doc-pages/modal/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/doc-pages/modal"
+          ],
+          "options": {
+            "jestConfig": "libs/doc-pages/modal/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "doc-pages-pagination": {
+      "projectType": "library",
+      "root": "libs/doc-pages/pagination",
+      "sourceRoot": "libs/doc-pages/pagination/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/doc-pages/pagination/tsconfig.lib.json",
+            "project": "libs/doc-pages/pagination/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/doc-pages/pagination/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/doc-pages/pagination/src/**/*.ts",
+              "libs/doc-pages/pagination/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/doc-pages/pagination"
+          ],
+          "options": {
+            "jestConfig": "libs/doc-pages/pagination/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "doc-pages-popover": {
+      "projectType": "library",
+      "root": "libs/doc-pages/popover",
+      "sourceRoot": "libs/doc-pages/popover/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/doc-pages/popover/tsconfig.lib.json",
+            "project": "libs/doc-pages/popover/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/doc-pages/popover/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/doc-pages/popover/src/**/*.ts",
+              "libs/doc-pages/popover/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/doc-pages/popover"
+          ],
+          "options": {
+            "jestConfig": "libs/doc-pages/popover/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "doc-pages-progressbar": {
+      "projectType": "library",
+      "root": "libs/doc-pages/progressbar",
+      "sourceRoot": "libs/doc-pages/progressbar/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/doc-pages/progressbar/tsconfig.lib.json",
+            "project": "libs/doc-pages/progressbar/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/doc-pages/progressbar/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/doc-pages/progressbar/src/**/*.ts",
+              "libs/doc-pages/progressbar/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/doc-pages/progressbar"
+          ],
+          "options": {
+            "jestConfig": "libs/doc-pages/progressbar/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "doc-pages-rating": {
+      "projectType": "library",
+      "root": "libs/doc-pages/rating",
+      "sourceRoot": "libs/doc-pages/rating/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/doc-pages/rating/tsconfig.lib.json",
+            "project": "libs/doc-pages/rating/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/doc-pages/rating/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/doc-pages/rating/src/**/*.ts",
+              "libs/doc-pages/rating/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/doc-pages/rating"
+          ],
+          "options": {
+            "jestConfig": "libs/doc-pages/rating/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "doc-pages-sortable": {
+      "projectType": "library",
+      "root": "libs/doc-pages/sortable",
+      "sourceRoot": "libs/doc-pages/sortable/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/doc-pages/sortable/tsconfig.lib.json",
+            "project": "libs/doc-pages/sortable/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/doc-pages/sortable/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/doc-pages/sortable/src/**/*.ts",
+              "libs/doc-pages/sortable/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/doc-pages/sortable"
+          ],
+          "options": {
+            "jestConfig": "libs/doc-pages/sortable/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "doc-pages-tabs": {
+      "projectType": "library",
+      "root": "libs/doc-pages/tabs",
+      "sourceRoot": "libs/doc-pages/tabs/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/doc-pages/tabs/tsconfig.lib.json",
+            "project": "libs/doc-pages/tabs/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/doc-pages/tabs/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/doc-pages/tabs/src/**/*.ts",
+              "libs/doc-pages/tabs/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/doc-pages/tabs"
+          ],
+          "options": {
+            "jestConfig": "libs/doc-pages/tabs/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "doc-pages-timepicker": {
+      "projectType": "library",
+      "root": "libs/doc-pages/timepicker",
+      "sourceRoot": "libs/doc-pages/timepicker/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/doc-pages/timepicker/tsconfig.lib.json",
+            "project": "libs/doc-pages/timepicker/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/doc-pages/timepicker/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/doc-pages/timepicker/src/**/*.ts",
+              "libs/doc-pages/timepicker/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/doc-pages/timepicker"
+          ],
+          "options": {
+            "jestConfig": "libs/doc-pages/timepicker/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "doc-pages-tooltip": {
+      "projectType": "library",
+      "root": "libs/doc-pages/tooltip",
+      "sourceRoot": "libs/doc-pages/tooltip/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/doc-pages/tooltip/tsconfig.lib.json",
+            "project": "libs/doc-pages/tooltip/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/doc-pages/tooltip/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/doc-pages/tooltip/src/**/*.ts",
+              "libs/doc-pages/tooltip/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/doc-pages/tooltip"
+          ],
+          "options": {
+            "jestConfig": "libs/doc-pages/tooltip/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "doc-pages-typeahead": {
+      "projectType": "library",
+      "root": "libs/doc-pages/typeahead",
+      "sourceRoot": "libs/doc-pages/typeahead/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "options": {
+            "tsConfig": "libs/doc-pages/typeahead/tsconfig.lib.json",
+            "project": "libs/doc-pages/typeahead/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/doc-pages/typeahead/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/doc-pages/typeahead/src/**/*.ts",
+              "libs/doc-pages/typeahead/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/doc-pages/typeahead"
+          ],
+          "options": {
+            "jestConfig": "libs/doc-pages/typeahead/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

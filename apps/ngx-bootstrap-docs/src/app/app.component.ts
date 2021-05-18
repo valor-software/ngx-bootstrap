@@ -4,7 +4,7 @@ import { ActivatedRoute, NavigationEnd, Router, UrlSerializer } from '@angular/r
 import { PageScrollService } from 'ngx-page-scroll-core';
 import { isBs3 } from 'ngx-bootstrap/utils';
 
-import { Analytics } from './docs/api-docs/analytics/analytics';
+import { Analytics } from '@ngx-bootstrap-doc/docs';
 import { filter } from 'rxjs/operators';
 
 
