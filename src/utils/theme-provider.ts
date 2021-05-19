@@ -1,6 +1,6 @@
 import { window } from './facade/browser';
 
-let guessedVersion: 'bs3' | 'bs4';
+let guessedVersion: 'bs3' | 'bs4' | 'bs5';
 
 function _guessBsVersion(): 'bs3' | 'bs4' {
   if (typeof document === 'undefined') {
@@ -19,7 +19,7 @@ function _guessBsVersion(): 'bs3' | 'bs4' {
   return rect.top === 0 ? 'bs4' : 'bs3';
 }
 
-export function setTheme(theme: 'bs3' | 'bs4'): void {
+export function setTheme(theme: 'bs3' | 'bs4' | 'bs5'): void {
   guessedVersion = theme;
 }
 
@@ -39,4 +39,16 @@ export function isBs3(): boolean {
   }
 
   return window.__theme !== 'bs4';
+}
+
+export function getBsVer(): 'bs3' | 'bs4' | 'bs5' {
+  if (isBs3()) {
+    return 'bs3';
+  }
+
+  if (guessedVersion) {
+    return guessedVersion;
+  }
+
+  return _guessBsVersion();
 }

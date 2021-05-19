@@ -1,16 +1,16 @@
 import { ActivatedRoute, NavigationEnd, Route, Router, Routes } from '@angular/router';
-import { Component, Inject, OnDestroy, Renderer2 } from '@angular/core';
+import { Component, Inject, OnDestroy, Renderer2, Injectable } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
-import { isBs3, setTheme } from 'ngx-bootstrap/utils';
+import { isBs3, setTheme, getBsVer } from 'ngx-bootstrap/utils';
 import { StyleManager } from '../../theme/style-manager';
 import { ThemeStorage } from '../../theme/theme-storage';
 
 import { Subscription } from 'rxjs';
 import { DOCS_TOKENS } from '../../tokens/docs-routes-token';
-
 const _bs3Css = 'assets/css/bootstrap-3.3.7/css/bootstrap.min.css';
 const _bs4Css = 'assets/css/bootstrap-4.0.0/css/bootstrap.min.css';
+const _bs5Css = 'assets/css/bootstrap-5.0.1/css/bootstrap.min.css';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -24,10 +24,14 @@ export class SidebarComponent implements OnDestroy {
     return isBs3();
   }
 
+  get getBsVer(): 'bs3' | 'bs4' | 'bs5'{
+    return getBsVer()
+  }
+
   routes: Routes;
   search = { text: '' };
 
-  currentTheme: 'bs3' | 'bs4';
+  currentTheme: 'bs3' | 'bs4' | 'bs5';
   scrollSubscription: Subscription;
 
   constructor(
@@ -42,6 +46,7 @@ export class SidebarComponent implements OnDestroy {
     this.routes = _routes.filter((v: Route) => v.path !== '**');
     const themeFromUrl = this.activatedRoute.snapshot.queryParams._bsVersion;
     const currentTheme = themeFromUrl || this.themeStorage.getStoredTheme();
+    console.log('CURRENT THEME COMPONENT', currentTheme)
     if (currentTheme) {
       this.installTheme(currentTheme);
     }
@@ -70,17 +75,23 @@ export class SidebarComponent implements OnDestroy {
     }
   }
 
-  installTheme(theme: 'bs3' | 'bs4') {
+  installTheme(theme: 'bs3' | 'bs4' | 'bs5') {
     setTheme(theme);
-    this.currentTheme = this.isBs3 ? 'bs3' : 'bs4';
-    this.styleManager.setStyle('theme', this.isBs3 ? _bs3Css : _bs4Css);
-
+    this.currentTheme = this.getBsVer;
+    this.styleManager.setStyle('theme', this.bsCssFile);
     if (this.currentTheme) {
       this.themeStorage.storeTheme(this.currentTheme);
     }
   }
 
+  get bsCssFile(): string {
+    return this.isBs3 ? _bs3Css : this.getBsVer === 'bs5' ? _bs5Css : _bs4Css
+  }
+
   ngOnDestroy() {
     this.scrollSubscription.unsubscribe();
   }
+
 }
+
+
