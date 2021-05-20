@@ -41,14 +41,32 @@ export function isBs3(): boolean {
   return window.__theme !== 'bs4';
 }
 
-export function getBsVer(): 'bs3' | 'bs4' | 'bs5' {
-  if (isBs3()) {
-    return 'bs3';
-  }
+export function isBs4(): boolean {
+  if (isBs3()) return false;
 
-  if (guessedVersion) {
-    return guessedVersion;
-  }
+  if (guessedVersion) return guessedVersion === 'bs4';
+
+  guessedVersion = _guessBsVersion();
+
+  return guessedVersion === 'bs4';
+}
+
+export function isBs5(): boolean {
+  if (isBs3() || isBs4()) return false;
+
+  if (guessedVersion) return guessedVersion === 'bs5';
+
+  return false
+}
+
+export function getBsVer(): 'bs3' | 'bs4' | 'bs5' {
+  if (isBs3()) return 'bs3';
+
+  if (isBs4()) return 'bs4';
+
+  if (isBs5()) return 'bs5';
 
   return _guessBsVersion();
 }
+
+

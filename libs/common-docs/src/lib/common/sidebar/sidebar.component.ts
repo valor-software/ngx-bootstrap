@@ -2,7 +2,7 @@ import { ActivatedRoute, NavigationEnd, Route, Router, Routes } from '@angular/r
 import { Component, Inject, OnDestroy, Renderer2, Injectable } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
-import { isBs3, setTheme, getBsVer } from 'ngx-bootstrap/utils';
+import { isBs3, setTheme, getBsVer, isBs4, isBs5 } from 'ngx-bootstrap/utils';
 import { StyleManager } from '../../theme/style-manager';
 import { ThemeStorage } from '../../theme/theme-storage';
 
@@ -22,6 +22,14 @@ export class SidebarComponent implements OnDestroy {
 
   get isBs3(): boolean {
     return isBs3();
+  }
+
+  get isBs4(): boolean {
+    return isBs4();
+  }
+
+  get isBs5(): boolean {
+    return isBs5();
   }
 
   get getBsVer(): 'bs3' | 'bs4' | 'bs5'{
@@ -46,7 +54,6 @@ export class SidebarComponent implements OnDestroy {
     this.routes = _routes.filter((v: Route) => v.path !== '**');
     const themeFromUrl = this.activatedRoute.snapshot.queryParams._bsVersion;
     const currentTheme = themeFromUrl || this.themeStorage.getStoredTheme();
-    console.log('CURRENT THEME COMPONENT', currentTheme)
     if (currentTheme) {
       this.installTheme(currentTheme);
     }
@@ -85,7 +92,7 @@ export class SidebarComponent implements OnDestroy {
   }
 
   get bsCssFile(): string {
-    return this.isBs3 ? _bs3Css : this.getBsVer === 'bs5' ? _bs5Css : _bs4Css
+    return this.isBs3 ? _bs3Css : this.isBs5 ? _bs5Css : _bs4Css
   }
 
   ngOnDestroy() {

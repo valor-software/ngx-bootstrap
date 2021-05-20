@@ -1,5 +1,11 @@
 export * from './triggers';
-export { isBs3, setTheme, getBsVer } from './theme-provider';
+export {
+  isBs3,
+  setTheme,
+  getBsVer,
+  isBs4,
+  isBs5
+} from './theme-provider';
 export { LinkedList } from './linked-list.class';
 
 export {
