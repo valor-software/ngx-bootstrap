@@ -56,17 +56,15 @@ export function isBs5(): boolean {
 
   if (guessedVersion) return guessedVersion === 'bs5';
 
-  return false
+  return false;
 }
 
-export function getBsVer(): 'bs3' | 'bs4' | 'bs5' {
-  if (isBs3()) return 'bs3';
-
-  if (isBs4()) return 'bs4';
-
-  if (isBs5()) return 'bs5';
-
-  return _guessBsVersion();
+export function getBsVer(): {isBs3: boolean; isBs4: boolean; isBs5: boolean} {
+  return {
+    isBs3: isBs3(),
+    isBs4: isBs4(),
+    isBs5: isBs5()
+  }
 }
 
 

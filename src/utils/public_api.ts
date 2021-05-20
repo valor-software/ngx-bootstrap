@@ -3,8 +3,6 @@ export {
   isBs3,
   setTheme,
   getBsVer,
-  isBs4,
-  isBs5
 } from './theme-provider';
 export { LinkedList } from './linked-list.class';
 
