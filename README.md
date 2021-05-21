@@ -1,8 +1,9 @@
 <a href="http://valor-software.com/ngx-bootstrap/#/">
-    <h1 align="center">ngx-bootstrap</h1>
+<div align="center">
+<img class="mx-auto center-block d-block" src="https://valor-software.com/ngx-bootstrap/assets/images/logos/ngx-bootstrap-logo.svg" alt="ngx-bootstrap" width="200" height="200">
+    <h1>ngx-bootstrap</h1>
+</div>
 </a>
-Server side rendered version of this documentation available
-<a href="https://ngx-universal.herokuapp.com/">here</a> served with Angular universal and <a href="https://nestjs.com">nest.js</a>
 
 <p align="center">
 Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a> or <a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> Components with <a href="https://angular.io/">Angular</a>
@@ -11,7 +12,6 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 <p align="center">
 <a href="https://badge.fury.io/js/ngx-bootstrap"><img src="https://badge.fury.io/js/ngx-bootstrap.svg" alt="npm version" ></a>
 <a href="https://npmjs.org/ngx-bootstrap"><img src="https://img.shields.io/npm/dm/ngx-bootstrap.svg" alt="npm downloads" ></a>
-<a href="https://travis-ci.org/valor-software/ngx-bootstrap"><img alt="" src="https://travis-ci.com/valor-software/ngx-bootstrap.svg?branch=development"></a>
 <a target="_blank" href="https://opencollective.com/ngx-bootstrap"><img src="https://opencollective.com/ngx-bootstrap/tiers/backer/badge.svg?label=backer&color=brightgreen" /></a>
 
 <br/>
@@ -28,24 +28,32 @@ Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a
 
 <!-- [![codecov](https://codecov.io/gh/valor-software/ngx-bootstrap/branch/development/graph/badge.svg)](https://codecov.io/gh/valor-software/ngx-bootstrap) -->
 
-<!-- [![NPM](https://nodei.co/npm/ngx-bootstrap.png?downloads=true&downloadRank=true&stars=true)](https://npmjs.org/ngx-bootstrap)
-[![NPM](https://nodei.co/npm-dl/ngx-bootstrap.png?height=3&months=6)](https://npmjs.org/ngx-bootstrap)
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/valorkin.svg)](https://saucelabs.com/u/valorkin)
+<!-- [![Sauce Test Status](https://saucelabs.com/browser-matrix/valorkin.svg)](https://saucelabs.com/u/valorkin)
 -->
 
 ## Table of contents
 1. [Getting Started](#getting-started)
-2. [Supporting](#supporting-ngx-bootstrap)
-3. [Installation instructions](#installation-instructions)
-4. [Usage & Demo](#usage--demo)
-5. [API](#api)
-6. [Compatibility](#compatibility)
-7. [Troubleshooting](#troubleshooting)
-8. [Contributing](#contribution)
+2. [Usage & Demo](#usage--demo)
+3. [Supporting](#supporting-ngx-bootstrap)
+4. [Installation](#installation)
+5. [Compatibility](#compatibility)
+6. [Troubleshooting](#troubleshooting)
+7. [Contributing](#contribution)
+8. [Credits](#credits)
+9. [License](#license)
 
 ## Getting Started
 
-ngx-bootstrap contains all core (and not only) Bootstrap components powered by Angular. So you don't need to include original JS components, but we are using markup and CSS provided by Bootstrap.
+ngx-bootstrap provides Bootstrap components powered by Angular, so you don't need to include original JS components.
+
+Check our [Getting started guide](https://valor-software.com/ngx-bootstrap/#/documentation#getting-started) if it's your first project with Angular Bootstrap.
+
+## Usage & Demo
+
+Bootstrap components for Angular applications, dozens of demos and API documentation could be found here:
+[https://valor-software.com/ngx-bootstrap/](https://valor-software.com/ngx-bootstrap/).
+
+<!-- Server side rendered version of this documentation available <a href="https://ngx-universal.herokuapp.com/">here</a> served with Angular universal and [nest.js](https://nestjs.com/). -->
 
 ## Supporting NGX-Bootstrap
 ngx-bootstrap is an Open Source (MIT Licensed) project, it's an independent project with ongoing development made possible thanks to the support of our awesome backers.
@@ -56,14 +64,22 @@ All donated funds are managed transparently on OpenCollective and will be used s
 What's there for you? Proper recognition and exposure of your name/logo/website on our page.
 Our main sponsors will be presented under this section! Be the first!
 
-## Installation instructions
-##### Method 1
+## Installation
+
+
+##### Angular CLI way
+Use the Angular CLI ng add command for updating your Angular project.
+```bash
+ng add ngx-bootstrap
+```
+
+##### Manual way
 Install `ngx-bootstrap` from `npm`:
 ```bash
 npm install ngx-bootstrap --save
 ```
 
-Add needed package to NgModule imports:
+Add wanted package to NgModule imports:
 ```
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
@@ -82,7 +98,7 @@ Add component to your page:
 </button>
 ```
 
-You will need bootstrap styles:
+You will need to add bootstrap css:
 - `Bootstrap 3`
 ```
 <!-- index.html -->
@@ -94,24 +110,13 @@ You will need bootstrap styles:
 <!--- index.html -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 ```
-##### Method 2
-Use the Angular CLI ng add command for updating your Angular project.
-```bash
-ng add ngx-bootstrap
-```
 
-Or use `ng add` to add needed component (for example tooltip).
-```bash
-ng add ngx-bootstrap --component tooltip
-```
-Add component to your page:
-```
-<button type="button" class="btn btn-primary"
-        tooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
-  Simple demo
-</button>
-```
+
+
 ### Setting up the bootstrap version manually
+
+As you may know `ngx-bootstrap` support several `bootstrap.css` versions at the same time and has automatic tool to guess current used version of library, but if this guess fails you can specify version of `bootstrap.css` manually. 
+
 Sometimes, your project might contain some library that could interfere with the bootstrap framework, or you might have a customized version of bootstrap. The consequence is that the process of determining bootstrap version might be failed, which can break the UI. In that case, we can still set the bootstrap version manually in the bootstrapping component (i.e. `AppComponent`):
 ```
 import { setTheme } from 'ngx-bootstrap/utils';
@@ -125,54 +130,17 @@ export class AppComponent {
 }
 ```
 
-## Usage & Demo
-
-Main source of API documentation and usage scenarios available here:
-[https://valor-software.com/ngx-bootstrap/](https://valor-software.com/ngx-bootstrap/).
-
-Additionally you can find demos and docs deployed from latest code with <a href="https://ngx-bootstrap.surge.sh/">angular@latest</a> and <a
-  href="https://ngx-bootstrap-latest.surge.sh/">angular@next</a>.
-
-Server side rendered version of this documentation available <a href="https://ngx-universal.herokuapp.com/">here</a> served with Angular universal and [nest.js](https://nestjs.com/).
-
-## API
-Check demo page for API [reference](https://valor-software.com/ngx-bootstrap/).
-
-### How to use it with:
- - `Bootstrap and angular-cli` please refer to [using-with-bootstrap-and-angular-cli](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/bootstrap.md)
- - `angular-seed` please refer to [getting-started-with-angular-seed](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/angular-seed.md)
- - `system.js` (and [angular2 quickstart](https://angular.io/docs/ts/latest/quickstart.html)) please checkout [sample repository](https://github.com/valor-software/angular2-quickstart)
- - `plnkr` sample available [here](https://plnkr.co/edit/0NipkZrnckZZROAcnjzB?p=preview)
- - `AoT using ngc and rollup` please refer to [ngx-bootstrap-with-aot](https://github.com/valor-software/ngx-bootstrap/tree/development/docs/getting-started/aot.md)
- - `ASP.NET Core 2.0` please refer to [using-with-asp.net-core-2](https://github.com/csegyud/ASPNETCore_ngx-bootstrap_Sample/blob/master/README.md)
-
 ### How to build lib for development
 
 First time:
- - clone repository
- - `npm install`
- - `npm run build`
 
-If you're using Windows, run:
- - `npm run build.windows` instead of `npm run build`
- - You will have to install [cwRsync](https://en.wikipedia.org/wiki/CwRsync) because one of
- the scripts requires `rsync`
-
-To update your fork and prepare it for local usage:
- - `git pull upstream development`
- - `rm -rf node_modules`
- - `npm install`
- - `npm run build`
-
-To run the demo:
- - `npm run demo.serve` _*// to serve local demo. This is for testing only, without watchers.*_
-
-For local development run:
- - `npm run build.watch` _*// in first terminal*_
- - `ng serve` _*// in second*_
-
-If you want to run the demo with Angular Universal:
- - `npm run demo.serve-universal`
+```bash
+git clone https://github.com/valor-software/ngx-bootstrap.git
+cd ngx-bootstrap
+npm ci
+npm run build
+npm start
+```
 
 ## Compatibility
 
@@ -204,10 +172,6 @@ If, **and only if**, none of the above helped, please open a [new issue](https:/
 All contributions very welcome! And remember, contribution is not only PRs and code, but any help with docs or helping other developers to solve issues are very appreciated! Thanks in advance!
 
 Please read our [contribution guidelines](https://github.com/valor-software/ngx-bootstrap/blob/development/CONTRIBUTING.md).
-
-### If you need more modules, check [here](https://github.com/valor-software/ng2-plans)
-
-Please read central `ngx` modules [readme](https://github.com/valor-software/ng2-plans) for details, plans and approach.
 
 ### Credits
 Crossbrowser testing sponsored by [Saucelabs](https://saucelabs.com/)

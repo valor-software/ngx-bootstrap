@@ -1,0 +1,7 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../node_modules/ngx-bootstrap/mini-ngrx",
+  "lib": {
+    "entryFile": "index.ts"
+  }
+}

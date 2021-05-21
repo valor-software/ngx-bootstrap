@@ -1,4 +1,3 @@
-/* tslint:disable:max-file-line-count */
 // todo: should we support enforce focus in?
 // todo: in original bs there are was a way to prevent modal from showing
 // todo: original modal had resize events
@@ -36,7 +35,7 @@ export class ModalDirective implements OnDestroy, OnInit {
   }
 
   /** allows to provide a callback to intercept the closure of the modal */
-  @Input() closeInterceptor: CloseInterceptorFn;
+  @Input() closeInterceptor?: CloseInterceptorFn;
 
   /** This event fires immediately when the `show` instance method is called. */
   @Output()
@@ -61,7 +60,7 @@ export class ModalDirective implements OnDestroy, OnInit {
    * Possible values: `backdrop-click`, `esc` and `id: number`
    * (if modal was closed by direct call of `.hide()`).
    */
-  dismissReason: string;
+  dismissReason?: string;
 
   get isShown(): boolean {
     return this._isShown;
@@ -78,7 +77,7 @@ export class ModalDirective implements OnDestroy, OnInit {
   protected timerRmBackDrop = 0;
 
   // reference to backdrop component
-  protected backdrop: ComponentRef<ModalBackdropComponent>;
+  protected backdrop?: ComponentRef<ModalBackdropComponent>;
   private _backdrop: ComponentLoader<ModalBackdropComponent>;
 
   private isNested = false;
@@ -125,7 +124,6 @@ export class ModalDirective implements OnDestroy, OnInit {
     if (!this._isShown) {
       return;
     }
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === 27 || event.key === 'Escape') {
       event.preventDefault();
     }
@@ -137,7 +135,6 @@ export class ModalDirective implements OnDestroy, OnInit {
   }
 
   ngOnDestroy() {
-    this.config = void 0;
     if (this._isShown) {
       this._isShown = false;
       this.hideModal();
@@ -163,7 +160,7 @@ export class ModalDirective implements OnDestroy, OnInit {
 
   /** Allows to manually open modal */
   show(): void {
-    this.dismissReason = null;
+    this.dismissReason = void 0;
     this.onShow.emit(this);
     if (this._isShown) {
       return;
@@ -332,7 +329,7 @@ export class ModalDirective implements OnDestroy, OnInit {
   // todo: original show was calling a callback when done, but we can use
   // promise
   /** @internal */
-  protected showBackdrop(callback?: Function): void {
+  protected showBackdrop(callback?: () => void): void {
     if (
       this._isShown &&
       this.config.backdrop &&

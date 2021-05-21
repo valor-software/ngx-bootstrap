@@ -15,6 +15,7 @@ import { CarouselComponent } from './carousel.component';
       <ng-content></ng-content>
     </div>
   `,
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[attr.aria-hidden]': '!active'
   },
@@ -39,11 +40,11 @@ export class SlideComponent implements OnInit, OnDestroy {
   /** Is current slide active */
   @HostBinding('class.active')
   @Input()
-  active: boolean;
+  active = false;
 
   @HostBinding('style.width') itemWidth = '100%';
   @HostBinding('style.order') order = 0;
-  @HostBinding('class.carousel-animation') isAnimated: boolean;
+  @HostBinding('class.carousel-animation') isAnimated = false;
 
   /** Wraps element by appropriate CSS classes */
   @HostBinding('class.item')

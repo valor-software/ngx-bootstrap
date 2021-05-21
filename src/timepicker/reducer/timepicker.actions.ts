@@ -15,7 +15,7 @@ export class TimepickerActions {
   static readonly SET_TIME_UNIT = '[timepicker] set time unit';
   static readonly UPDATE_CONTROLS = '[timepicker] update controls';
 
-  writeValue(value: Date | string) {
+  writeValue(value?: Date | string) {
     return {
       type: TimepickerActions.WRITE_VALUE,
       payload: value
