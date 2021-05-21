@@ -1,7 +1,7 @@
 // datepicker container component
 import { BsCustomDates } from '../themes/bs/bs-custom-dates-view.component';
 import { BsDatepickerEffects } from '../reducer/bs-datepicker.effects';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import {
   BsDatepickerViewMode,
   BsNavigationEvent,
@@ -31,6 +31,8 @@ export abstract class BsDatepickerAbstractComponent {
   customRanges: BsCustomDates[] = [];
   customRangeBtnLbl?: string;
   chosenRange: Date[] = [];
+
+  multipleCalendars?: boolean;
 
   set minDate(value: Date|undefined) {
     this._effects?.setMinDate(value);
@@ -63,10 +65,26 @@ export abstract class BsDatepickerAbstractComponent {
   }
 
   viewMode?: Observable<BsDatepickerViewMode|undefined>;
-  daysCalendar$!: Observable<DaysCalendarViewModel[]|undefined>;
   monthsCalendar?: Observable<MonthsCalendarViewModel[]|undefined>;
   yearsCalendar?: Observable<YearsCalendarViewModel[]|undefined>;
   options$!: Observable<DatepickerRenderOptions|undefined>;
+
+  _daysCalendar$!: Observable<DaysCalendarViewModel[]|undefined>;
+  _daysCalendarSub = new Subscription();
+
+  set daysCalendar$(value: Observable<DaysCalendarViewModel[]|undefined>) {
+    this._daysCalendar$ = value;
+    this._daysCalendarSub.unsubscribe();
+    this._daysCalendarSub.add(this._daysCalendar$.subscribe(value => {
+      this.multipleCalendars = !!value && value.length > 1;
+    }))
+  }
+
+  get daysCalendar$(): Observable<DaysCalendarViewModel[]|undefined> {
+    return this._daysCalendar$;
+  }
+
+
   // todo: valorkin fix
   // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-empty-function
   setViewMode(event: BsDatepickerViewMode): void {}

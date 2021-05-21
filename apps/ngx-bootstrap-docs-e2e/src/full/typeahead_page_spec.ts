@@ -250,7 +250,7 @@ describe('Typeahead demo page testing suite', () => {
       typeahead.clickOnBtn(ignoreSpace);
       typeahead.isPreviewExist(ignoreSpace, formTemplateFalse);
       typeahead.clearInputAndSendKeys(ignoreSpace, textToInput);
-      typeahead.isDropdownNotEnabled(ignoreSpace);
+      typeahead.isDropdownNotExist(ignoreSpace);
     });
 
     it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State',
@@ -279,7 +279,7 @@ describe('Typeahead demo page testing suite', () => {
     it('When user uses "&" and type "&york new&" or ",york new," then no drop-down with the match would be shown',
       () => {
         typeahead.clearInputAndSendKeys(phraseDelimiters, textWithDelimiters);
-        typeahead.isDropdownNotEnabled(phraseDelimiters);
+        typeahead.isDropdownNotExist(phraseDelimiters);
       });
 
     it('when user starts to type "york new" without delimiters then a drop-down with the match is shown', () => {
@@ -444,7 +444,7 @@ describe('Typeahead demo page testing suite', () => {
     it('when user starts to type and if there are no matches found than an error message "No Results Found" is shown',
       () => {
         typeahead.clearInputAndSendKeys(noResult, textToInput);
-        typeahead.isDropdownNotEnabled(noResult);
+        typeahead.isDropdownNotExist(noResult);
         typeahead.isElemTextContain(noResult, typeahead.noResultAlert, alertText);
       });
 

@@ -248,6 +248,137 @@
       "tags": [
         "schematics"
       ]
+    },
+    "doc-pages-accordion": {
+      "tags": [],
+      "implicitDependencies": [
+        "accordion",
+        "common-docs",
+        "collapse"
+      ]
+    },
+    "common-docs": {
+      "tags": [],
+      "implicitDependencies": [
+        "utils",
+        "tabs"
+      ]
+    },
+    "doc-pages-alerts": {
+      "tags": [],
+      "implicitDependencies": [
+        "alert"
+      ]
+    },
+    "doc-pages-buttons": {
+      "tags": [],
+      "implicitDependencies": [
+        "buttons"
+      ]
+    },
+    "doc-pages-carousel": {
+      "tags": [],
+      "implicitDependencies": [
+        "carousel"
+      ]
+    },
+    "doc-pages-collapse": {
+      "tags": [],
+      "implicitDependencies": [
+        "collapse"
+      ]
+    },
+    "doc-pages-datepicker": {
+      "tags": [],
+      "implicitDependencies": [
+        "datepicker",
+        "chronos",
+        "mini-ngrx",
+        "tooltip",
+        "positioning",
+        "component-loader",
+        "locale"
+      ]
+    },
+    "doc-pages-dropdown": {
+      "tags": [],
+      "implicitDependencies": [
+        "dropdown",
+        "positioning",
+        "component-loader"
+      ]
+    },
+    "doc-pages-modal": {
+      "tags": [],
+      "implicitDependencies": [
+        "modal",
+        "positioning",
+        "focus-trap",
+        "component-loader",
+        "popover",
+        "tooltip"
+      ]
+    },
+    "doc-pages-pagination": {
+      "tags": [],
+      "implicitDependencies": [
+        "pagination"
+      ]
+    },
+    "doc-pages-popover": {
+      "tags": [],
+      "implicitDependencies": [
+        "popover",
+        "positioning",
+        "component-loader"
+      ]
+    },
+    "doc-pages-progressbar": {
+      "tags": [],
+      "implicitDependencies": [
+        "progressbar"
+      ]
+    },
+    "doc-pages-rating": {
+      "tags": [],
+      "implicitDependencies": [
+        "rating"
+      ]
+    },
+    "doc-pages-sortable": {
+      "tags": [],
+      "implicitDependencies": [
+        "sortable"
+      ]
+    },
+    "doc-pages-tabs": {
+      "tags": [],
+      "implicitDependencies": [
+        "tabs"
+      ]
+    },
+    "doc-pages-timepicker": {
+      "tags": [],
+      "implicitDependencies": [
+        "timepicker",
+        "mini-ngrx"
+      ]
+    },
+    "doc-pages-tooltip": {
+      "tags": [],
+      "implicitDependencies": [
+        "tooltip",
+        "positioning",
+        "component-loader"
+      ]
+    },
+    "doc-pages-typeahead": {
+      "tags": [],
+      "implicitDependencies": [
+        "typeahead",
+        "positioning",
+        "component-loader"
+      ]
     }
   }
 }
