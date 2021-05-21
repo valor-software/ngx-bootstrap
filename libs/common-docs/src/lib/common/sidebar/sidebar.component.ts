@@ -90,8 +90,8 @@ export class SidebarComponent implements OnDestroy {
     setTheme(theme);
     this.currentTheme = this.currentBsVersion;
     this.styleManager.setStyle('theme', this.bsCssFile);
-    if (this.currentBsVersion) {
-      this.themeStorage.storeTheme(this.currentBsVersion);
+    if (this.currentTheme) {
+      this.themeStorage.storeTheme(this.currentTheme);
     }
   }
 
