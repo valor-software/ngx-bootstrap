@@ -14,9 +14,9 @@
     - done: with .md
     - done: build sass assets
     - done: test sauce
-  3. Drop old versions from gh-pages, keep only latest major versions
+  3. ~~Drop old versions from gh-pages, keep only latest major versions
      manual task, remember about 5.6.0 is actually latest
-     (@2d) 1 day
+     (@2d) 1 day~~
   4. Split latest and next versions in docs (@2d) 1day
   5. Check that it works on npm version script (generate api-docs) (@qa) after we release RC version, deps on #6
   5. Review docs (.md)

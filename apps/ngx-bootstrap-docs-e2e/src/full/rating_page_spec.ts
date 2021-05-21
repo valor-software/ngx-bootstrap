@@ -27,8 +27,10 @@ describe('Rating demo page testing suite', () => {
       rating.mouseMoveToRatingIcon(dynamic, 2);
       rating.isPreviewExist(dynamic, 'Rate: 7;  Readonly is: false;  Hovering over: 2', 0);
       rating.addRatingMark(dynamic, 0, 5);
+      rating.mouseMoveToRatingIcon(dynamic, 2);
       rating.isPreviewExist(dynamic, 'Rate: 5;  Readonly is: false;  Hovering over: 2', 0);
       rating.addRatingMark(dynamic, 0, 1);
+      rating.mouseMoveToRatingIcon(dynamic, 2);
       rating.isPreviewExist(dynamic, 'Rate: 1;  Readonly is: false;  Hovering over: 2', 0);
     });
 
@@ -65,7 +67,7 @@ describe('Rating demo page testing suite', () => {
       rating.isPreviewExist(dynamic, 'Readonly is: false', 0);
       rating.addRatingMark(dynamic, 0, 5);
       rating.isRatingCurrentEqual(dynamic, 5);
-      rating.isPreviewExist(dynamic, 'Rate: 5;  Readonly is: false;  Hovering over: none', 0);
+      rating.isPreviewExist(dynamic, 'Rate: 5;  Readonly is: false;  Hovering over: 5', 0);
     });
   });
 
