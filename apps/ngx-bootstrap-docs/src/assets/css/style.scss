@@ -553,6 +553,12 @@ a:hover {
   border-radius: 4px;
 }
 
+/* Specify styling for bs5 changes */
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
 /*** Media Query ***/
 /* above 768px */
 @media (min-width: 768px) {
