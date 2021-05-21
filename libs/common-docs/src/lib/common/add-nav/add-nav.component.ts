@@ -10,9 +10,8 @@ import { ContentSection } from '../../models/content-section.model';
 })
 export class AddNavComponent {
   @Input() componentContent: ContentSection[];
-  private document: Document;
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  constructor(@Inject(DOCUMENT) document: any){ }
+  constructor(@Inject(DOCUMENT) private document: Document){ }
 
   goToSection(event: Event): void {
     const item: HTMLElement = event.target as HTMLElement;

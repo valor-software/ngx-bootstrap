@@ -75,6 +75,21 @@ export class BsDaterangepickerInputDirective
   }
 
   ngOnInit() {
+    const setBsValue = (value: (Date|undefined)[]) => {
+      this._setInputValue(value);
+      if (this._value !== value) {
+        this._value = value;
+        this._onChange(value);
+        this._onTouched();
+      }
+      this.changeDetection.markForCheck();
+    };
+
+    // if value set via [bsValue] it will not get into value change
+    if (this._picker._bsValue) {
+      setBsValue(this._picker._bsValue);
+    }
+
     // update input value on datepicker value update
     this._subs.add(
       this._picker.bsValueChange.subscribe((value: Date[]) => {
