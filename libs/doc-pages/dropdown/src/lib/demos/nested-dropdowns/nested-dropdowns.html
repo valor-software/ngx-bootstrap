@@ -1,4 +1,4 @@
-<div class="btn-group" dropdown [autoClose]="false" container="body" [dropup]="false">
+<div class="btn-group" dropdown [autoClose]="false" container="body">
   <button id="button-nested" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
           aria-controls="dropdown-nested">
     This dropdown has nested submenu <span class="caret"></span>
@@ -7,7 +7,7 @@
       role="menu" aria-labelledby="button-nested">
     <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Action</a></li>
 
-    <li role="menuitem" dropdown triggers="mouseover" placement="right" container="body" [dropup]="false">
+    <li role="menuitem" dropdown triggers="mouseover" placement="right" container="body">
       <a dropdownToggle class="dropdown-item dropdown-toggle"
          (click)="false">Hover me for nested dropdown <span class="caret"></span></a>
       <ul *dropdownMenu class="dropdown-menu" role="menu">
@@ -17,7 +17,7 @@
       </ul>
     </li>
 
-    <li role="menuitem" dropdown triggers="mouseover" placement="right" container="body" [dropup]="false">
+    <li role="menuitem" dropdown triggers="mouseover" placement="right" container="body">
       <a dropdownToggle class="dropdown-item dropdown-toggle"
          (click)="false">Hover me for nested dropdown <span class="caret"></span></a>
       <ul *dropdownMenu class="dropdown-menu" role="menu">

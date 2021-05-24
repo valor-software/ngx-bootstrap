@@ -51,7 +51,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   /**
    * This attribute indicates that the dropdown should be opened upwards
    */
-  @Input() dropup = true;
+  @Input() dropup = false;
 
   /**
    * Indicates that dropdown will be closed on item or document click,
