@@ -7,7 +7,7 @@
       role="menu" aria-labelledby="button-nested">
     <li role="menuitem"><a class="dropdown-item" href="#/dropdowns#nested-dropdowns">Action</a></li>
 
-    <li role="menuitem" dropdown triggers="mouseover" placement="right" container="body">
+    <li role="menuitem" dropdown triggers="mouseover" placement="right" container="body" [dropup]="false">
       <a dropdownToggle class="dropdown-item dropdown-toggle"
          (click)="false">Hover me for nested dropdown <span class="caret"></span></a>
       <ul *dropdownMenu class="dropdown-menu" role="menu">
@@ -17,7 +17,7 @@
       </ul>
     </li>
 
-    <li role="menuitem" dropdown triggers="mouseover" placement="right" container="body">
+    <li role="menuitem" dropdown triggers="mouseover" placement="right" container="body" [dropup]="false">
       <a dropdownToggle class="dropdown-item dropdown-toggle"
          (click)="false">Hover me for nested dropdown <span class="caret"></span></a>
       <ul *dropdownMenu class="dropdown-menu" role="menu">
