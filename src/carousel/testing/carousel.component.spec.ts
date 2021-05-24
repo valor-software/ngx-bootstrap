@@ -3,6 +3,8 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testin
 
 import '../../../scripts/jest/toHaveCssClass';
 import { CarouselModule } from '../index';
+import { getBsVer } from 'ngx-bootstrap/utils';
+import { IBsVersion } from '@ngx-bootstrap-doc/docs';
 
 @Component({ selector: 'carousel-test', template: '' })
 class TestCarouselComponent {
@@ -12,6 +14,10 @@ class TestCarouselComponent {
   itemsPerSlide = 1;
   singleSlideOffset = false;
   startFromIndex = 0;
+
+  get _bsVer(): IBsVersion {
+    return getBsVer();
+  }
 
   slides: { image: string, text: string, active?: boolean }[] = [
     { image: '//placekitten.com/600/300', text: 'slide0' },
@@ -48,11 +54,9 @@ const html = `
   </div>
 `;
 
-function expectActiveSlides(nativeEl: HTMLDivElement, active: boolean[]): void {
+function expectActiveSlides(nativeEl: HTMLDivElement, active: boolean[], bsVersion: IBsVersion): void {
   const slideElms = nativeEl.querySelectorAll('.carousel-item');
-  const indicatorElms = nativeEl.querySelectorAll(
-    'ol.carousel-indicators > li'
-  );
+  const indicatorElms = bsVersion.isBs5 ? nativeEl.querySelectorAll('div.carousel-indicators > button') : nativeEl.querySelectorAll('ol.carousel-indicators > li');
 
   expect(slideElms.length).toBe(active.length);
   expect(indicatorElms.length).toBe(active.length);
@@ -94,14 +98,14 @@ describe('Component: Carousel', () => {
   });
 
   it('should set first slide as active by default', () => {
-    expectActiveSlides(element, [true, false, false, false, false, false]);
+    expectActiveSlides(element, [true, false, false, false, false, false],fixture.componentInstance._bsVer);
   });
 
   // TODO:
   xit('should be able to select a slide via model changes', () => {
     context.slides[2].active = true;
     fixture.detectChanges();
-    expectActiveSlides(element, [false, false, true, false, false, false]);
+    expectActiveSlides(element, [false, false, true, false, false, false],fixture.componentInstance._bsVer);
   });
 
   it('should create next/prev nav button', () => {
@@ -112,7 +116,7 @@ describe('Component: Carousel', () => {
   });
 
   it('should display slide indicators', () => {
-    const indicators = element.querySelectorAll('ol.carousel-indicators > li');
+    const indicators =  fixture.componentInstance._bsVer.isBs5 ? element.querySelectorAll('div.carousel-indicators > button') : element.querySelectorAll('ol.carousel-indicators > li');
     expect(indicators.length).toBe(6);
   });
 
@@ -121,7 +125,7 @@ describe('Component: Carousel', () => {
     fixture.detectChanges();
     expect(context.slides.length).toBe(1);
 
-    const indicators = element.querySelectorAll('ol.carousel-indicators > li');
+    const indicators = fixture.componentInstance._bsVer.isBs5 ? element.querySelectorAll('div.carousel-indicators > button') : element.querySelectorAll('ol.carousel-indicators > li');
     expect(indicators.length).toBe(0);
 
     const prev = element.querySelectorAll('a.left');
@@ -140,7 +144,7 @@ describe('Component: Carousel', () => {
 
   it('should disable next button when last slide is active, noWrap is truthy', () => {
     context.noWrapSlides = true;
-    const indicators = element.querySelectorAll('ol.carousel-indicators > li');
+    const indicators = fixture.componentInstance._bsVer.isBs5 ? element.querySelectorAll('div.carousel-indicators > button') : element.querySelectorAll('ol.carousel-indicators > li');
     indicators[5].click();
     fixture.detectChanges();
     const next = element.querySelector('a.right');
@@ -148,7 +152,7 @@ describe('Component: Carousel', () => {
   });
 
   it('should enable next button when last slide is active, noWrap is truthy', () => {
-    const indicators = element.querySelectorAll('ol.carousel-indicators > li');
+    const indicators = fixture.componentInstance._bsVer.isBs5 ? element.querySelectorAll('div.carousel-indicators > button') : element.querySelectorAll('ol.carousel-indicators > li');
     indicators[5].click();
     fixture.detectChanges();
     const next = element.querySelector('a.right');
@@ -156,14 +160,14 @@ describe('Component: Carousel', () => {
   });
 
   it('should change slide on indicator click', () => {
-    const indicators = element.querySelectorAll('ol.carousel-indicators > li');
-    expectActiveSlides(element, [true, false, false, false, false, false]);
+    const indicators = fixture.componentInstance._bsVer.isBs5 ? element.querySelectorAll('div.carousel-indicators > button') : element.querySelectorAll('ol.carousel-indicators > li');
+    expectActiveSlides(element, [true, false, false, false, false, false],fixture.componentInstance._bsVer);
     indicators[2].click();
     fixture.detectChanges();
-    expectActiveSlides(element, [false, false, true, false, false, false]);
+    expectActiveSlides(element, [false, false, true, false, false, false],fixture.componentInstance._bsVer);
     indicators[1].click();
     fixture.detectChanges();
-    expectActiveSlides(element, [false, true, false, false, false, false]);
+    expectActiveSlides(element, [false, true, false, false, false, false],fixture.componentInstance._bsVer);
   });
 
   it('should hide carousel-indicators if property showIndicators is == false', () => {
@@ -178,42 +182,42 @@ describe('Component: Carousel', () => {
 
     next.click();
     fixture.detectChanges();
-    expectActiveSlides(element, [false, true, false, false, false, false]);
+    expectActiveSlides(element, [false, true, false, false, false, false],fixture.componentInstance._bsVer);
 
     prev.click();
     fixture.detectChanges();
-    expectActiveSlides(element, [true, false, false, false, false, false]);
+    expectActiveSlides(element, [true, false, false, false, false, false],fixture.componentInstance._bsVer);
   });
 
   it('should wrap slide changes by default', () => {
     const prev = element.querySelector('a.left');
     const next = element.querySelector('a.right');
 
-    expectActiveSlides(element, [true, false, false, false, false, false]);
+    expectActiveSlides(element, [true, false, false, false, false, false],fixture.componentInstance._bsVer);
 
     next.click();
     fixture.detectChanges();
-    expectActiveSlides(element, [false, true, false, false, false, false]);
+    expectActiveSlides(element, [false, true, false, false, false, false],fixture.componentInstance._bsVer);
 
     next.click();
     fixture.detectChanges();
-    expectActiveSlides(element, [false, false, true, false, false, false]);
+    expectActiveSlides(element, [false, false, true, false, false, false],fixture.componentInstance._bsVer);
 
     next.click();
     fixture.detectChanges();
-    expectActiveSlides(element, [false, false, false, true, false, false]);
+    expectActiveSlides(element, [false, false, false, true, false, false],fixture.componentInstance._bsVer);
 
     prev.click();
     fixture.detectChanges();
-    expectActiveSlides(element, [false, false, true, false, false, false]);
+    expectActiveSlides(element, [false, false, true, false, false, false],fixture.componentInstance._bsVer);
 
     prev.click();
     fixture.detectChanges();
-    expectActiveSlides(element, [false, true, false, false, false, false]);
+    expectActiveSlides(element, [false, true, false, false, false, false],fixture.componentInstance._bsVer);
 
     prev.click();
     fixture.detectChanges();
-    expectActiveSlides(element, [true, false, false, false, false, false]);
+    expectActiveSlides(element, [true, false, false, false, false, false],fixture.componentInstance._bsVer);
   });
 
   it('should not wrap slide changes if noWrap == true', () => {
@@ -223,36 +227,36 @@ describe('Component: Carousel', () => {
     const prev = element.querySelector('a.left');
     const next = element.querySelector('a.right');
 
-    expectActiveSlides(element, [true, false, false, false, false, false]);
+    expectActiveSlides(element, [true, false, false, false, false, false],fixture.componentInstance._bsVer);
 
     prev.click();
     fixture.detectChanges();
-    expectActiveSlides(element, [true, false, false, false, false, false]);
+    expectActiveSlides(element, [true, false, false, false, false, false],fixture.componentInstance._bsVer);
 
     next.click();
     fixture.detectChanges();
-    expectActiveSlides(element, [false, true, false, false, false, false]);
+    expectActiveSlides(element, [false, true, false, false, false, false],fixture.componentInstance._bsVer);
 
     next.click();
     fixture.detectChanges();
-    expectActiveSlides(element, [false, false, true, false, false, false]);
+    expectActiveSlides(element, [false, false, true, false, false, false],fixture.componentInstance._bsVer);
   });
 
   it('Multilist: should select slides on carousel via indicator', fakeAsync(() => {
-    const indicators = element.querySelectorAll('ol.carousel-indicators > li');
+    const indicators = fixture.componentInstance._bsVer.isBs5 ? element.querySelectorAll('div.carousel-indicators > button') : element.querySelectorAll('ol.carousel-indicators > li');
 
     context.itemsPerSlide = 3;
 
     fixture.detectChanges();
 
     fixture.whenStable()
-      .then(() => expectActiveSlides(element, [true, true, true, false, false, false]))
+      .then(() => expectActiveSlides(element, [true, true, true, false, false, false],fixture.componentInstance._bsVer))
 
       .then(() => stableAct(() => indicators[2].click()))
-      .then(() => expectActiveSlides(element, [true, true, true, false, false, false]))
+      .then(() => expectActiveSlides(element, [true, true, true, false, false, false],fixture.componentInstance._bsVer))
 
       .then(() => stableAct(() => indicators[3].click()))
-      .then(() => expectActiveSlides(element, [false, false, false, true, true, true]));
+      .then(() => expectActiveSlides(element, [false, false, false, true, true, true],fixture.componentInstance._bsVer));
   }));
 
   it('Multilist: should shift visible slides on carousel control click' +
@@ -263,13 +267,13 @@ describe('Component: Carousel', () => {
     const next = element.querySelector('a.right');
 
     fixture.whenStable()
-      .then(() => expectActiveSlides(element, [true, true, true, false, false, false]))
+      .then(() => expectActiveSlides(element, [true, true, true, false, false, false],fixture.componentInstance._bsVer))
       .then(() => stableAct(() => next.click()))
-      .then(() => expectActiveSlides(element, [false, false, false, true, true, true]))
+      .then(() => expectActiveSlides(element, [false, false, false, true, true, true],fixture.componentInstance._bsVer))
       .then(() => stableAct(() => next.click()))
-      .then(() => expectActiveSlides(element, [true, true, true, false, false, false]))
+      .then(() => expectActiveSlides(element, [true, true, true, false, false, false],fixture.componentInstance._bsVer))
       .then(() => stableAct(() => prev.click()))
-      .then(() => expectActiveSlides(element, [false, false, false, true, true, true]));
+      .then(() => expectActiveSlides(element, [false, false, false, true, true, true],fixture.componentInstance._bsVer));
   }));
 
   it('Multilist: carousel should not shifts if noWrap is false' +
@@ -285,15 +289,15 @@ describe('Component: Carousel', () => {
     const next = element.querySelector('a.right');
 
     fixture.whenStable()
-      .then(() => expectActiveSlides(element, [true, true, true, false, false, false]))
+      .then(() => expectActiveSlides(element, [true, true, true, false, false, false],fixture.componentInstance._bsVer))
       .then(() => stableAct(() => next.click()))
-      .then(() => expectActiveSlides(element, [false, false, false, true, true, true]))
+      .then(() => expectActiveSlides(element, [false, false, false, true, true, true],fixture.componentInstance._bsVer))
       .then(() => stableAct(() => next.click()))
-      .then(() => expectActiveSlides(element, [false, false, false, true, true, true]))
+      .then(() => expectActiveSlides(element, [false, false, false, true, true, true],fixture.componentInstance._bsVer))
       .then(() => prev.click())
-      .then(() => expectActiveSlides(element, [true, true, true, false, false, false]))
+      .then(() => expectActiveSlides(element, [true, true, true, false, false, false],fixture.componentInstance._bsVer))
       .then(() => prev.click())
-      .then(() => expectActiveSlides(element, [true, true, true, false, false, false]));
+      .then(() => expectActiveSlides(element, [true, true, true, false, false, false],fixture.componentInstance._bsVer));
   }));
 
   it('Multilist: carousel should shifts by 1 one item if singleSlideOffset is true', fakeAsync(() => {
@@ -304,11 +308,11 @@ describe('Component: Carousel', () => {
     const next = element.querySelector('a.right');
 
     fixture.whenStable()
-      .then(() => expectActiveSlides(element, [true, true, true, false, false, false]))
+      .then(() => expectActiveSlides(element, [true, true, true, false, false, false],fixture.componentInstance._bsVer))
       .then(() => stableAct(() => next.click()))
-      .then(() => expectActiveSlides(element, [false, true, true, true, false, false]))
+      .then(() => expectActiveSlides(element, [false, true, true, true, false, false],fixture.componentInstance._bsVer))
       .then(() => stableAct(() => next.click()))
-      .then(() => expectActiveSlides(element, [false, false, true, true, true, false]));
+      .then(() => expectActiveSlides(element, [false, false, true, true, true, false],fixture.componentInstance._bsVer));
   }));
 
   it('Multilist: carousel should starts from specific index if fromStartIndex is defined', fakeAsync(() => {
@@ -319,8 +323,8 @@ describe('Component: Carousel', () => {
     const next = element.querySelector('a.right');
 
     fixture.whenStable()
-      .then(() => expectActiveSlides(element, [true, true, false, false, false, true]))
+      .then(() => expectActiveSlides(element, [true, true, false, false, false, true],fixture.componentInstance._bsVer))
       .then(() => stableAct(() => next.click()))
-      .then(() => expectActiveSlides(element, [true, true, true, false, false, false]));
+      .then(() => expectActiveSlides(element, [true, true, true, false, false, false],fixture.componentInstance._bsVer));
   }));
 })
