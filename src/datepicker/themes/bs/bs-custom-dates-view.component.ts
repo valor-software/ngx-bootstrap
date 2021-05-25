@@ -19,6 +19,7 @@ export interface BsCustomDates {
       <button
         type="button"
         class="btn"
+        *ngIf="selectedRange && selectedRange.length && selectedRange.length > 1"
         (click)="selectFromRanges(customRange)"
         [class.selected]="!checkRange()">
         {{customRangeLabel}}
@@ -33,9 +34,9 @@ export class BsCustomDatesViewComponent {
   @Input() customRangeLabel?: string;
   @Output() onSelect = new EventEmitter<BsCustomDates>();
 
-  customRange!:BsCustomDates;
+  customRange?:BsCustomDates;
 
-  selectFromRanges(range: BsCustomDates) {
+  selectFromRanges(range?: BsCustomDates) {
     this.onSelect.emit(range);
   }
 

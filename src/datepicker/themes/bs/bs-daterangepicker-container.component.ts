@@ -214,7 +214,6 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   }
 
   setRangeOnCalendar(dates: BsCustomDates): void {
-    this._rangeStack = [];
     if (dates) {
       this._rangeStack = dates.value instanceof Date ? [dates.value] : dates.value;
     }
