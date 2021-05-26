@@ -266,23 +266,23 @@ export class BsDaterangepickerDirective
 
   checkMaxRangeDate(ranges?: BsCustomDates[], maxDate?: Date): BsCustomDates[] | void {
     if (!ranges || !maxDate || (ranges && !ranges.length && !ranges[0].value)) return ranges;
-    ranges.forEach(date => {
-      if (date && date.value) {
-        if (date.value instanceof Array && date.value.length) {
-          const mass = date.value.map(item => {
-            if (isAfter(item, maxDate, 'date')) {
-              item = maxDate
+    ranges.forEach((item: BsCustomDates) => {
+      if (item && item.value) {
+        if (item.value instanceof Array && item.value.length) {
+          const editedValues = item.value.map(date => {
+            if (isAfter(date, maxDate, 'date')) {
+              date = maxDate
             }
             return item
           })
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
-          date.value = mass;
+          item.value = editedValues;
           return ranges
         }
-        if (date.value instanceof Date) {
-            if (isAfter(date.value, maxDate, 'date')) {
-              date.value = maxDate
+        if (item.value instanceof Date) {
+            if (isAfter(item.value, maxDate, 'date')) {
+              item.value = maxDate
             }
           return ranges
         }
