@@ -123,7 +123,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   }
 
   monthSelectHandler(day: CalendarCellViewModel): void {
-    if (!day) {
+    if (!day || day.isDisabled) {
       return;
     }
 
@@ -149,7 +149,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   }
 
   yearSelectHandler(day: CalendarCellViewModel): void {
-    if (!day) {
+    if (!day || day.isDisabled) {
       return;
     }
 
