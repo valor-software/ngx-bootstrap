@@ -11,7 +11,8 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { ComponentLoaderFactory, ComponentLoader } from 'ngx-bootstrap/component-loader';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { DatepickerDateCustomClasses } from './models';
-
+import { BsCustomDates } from './themes/bs/bs-custom-dates-view.component';
+import { isAfter } from 'ngx-bootstrap/chronos';
 @Directive({
   selector: '[bsDaterangepicker]',
   exportAs: 'bsDaterangepicker'
@@ -251,10 +252,44 @@ export class BsDaterangepickerDirective
         dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
         datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
         datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled,
-        ranges: this.bsConfig && this.bsConfig.ranges,
+        ranges: this.checkMaxRangeDate(this.bsConfig && this.bsConfig.ranges, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
         maxDateRange: this.bsConfig && this.bsConfig.maxDateRange
       }
     );
+  }
+
+  /**
+   * Checks max date and dates in ranges
+   * if one of dates in ranges is later then maxDate
+   * this date becomes equal to maxDate
+   */
+
+  checkMaxRangeDate(ranges?: BsCustomDates[], maxDate?: Date): BsCustomDates[] | void {
+    if (!ranges || !maxDate || (ranges && !ranges.length && !ranges[0].value)) return ranges;
+    ranges.forEach(date => {
+      if (date && date.value) {
+        if (date.value instanceof Array && date.value.length) {
+          const mass = date.value.map(item => {
+            if (isAfter(item, maxDate, 'date')) {
+              item = maxDate
+            }
+            return item
+          })
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          date.value = mass;
+          return ranges
+        }
+        if (date.value instanceof Date) {
+            if (isAfter(date.value, maxDate, 'date')) {
+              date.value = maxDate
+            }
+          return ranges
+        }
+      }
+      return ranges
+    })
+    return ranges
   }
 
   /**
