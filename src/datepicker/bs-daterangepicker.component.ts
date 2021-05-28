@@ -273,7 +273,7 @@ export class BsDaterangepickerDirective
             if (isAfter(date, maxDate, 'date')) {
               date = maxDate
             }
-            return item
+            return date
           })
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
