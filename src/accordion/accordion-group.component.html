@@ -2,7 +2,7 @@
   <div
     class="panel-heading card-header"
     role="tab"
-    (click)="toggleOpen()"
+    (click)="toggleOpen($event)"
     [ngClass]="isDisabled ? 'panel-disabled' : 'panel-enabled'"
   >
     <div class="panel-title">
