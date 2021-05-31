@@ -157,7 +157,7 @@ jobs:
   e2e_full:
     name: e2e full
     runs-on: ubuntu-latest
-    needs: [install, build, firebase_preview]
+    needs: [e2e_smoke]
 
     strategy:
       # when one test fails, DO NOT cancel the other
