@@ -15,6 +15,10 @@
     "tslib": "^2.0.0"
   },
   "sideEffects": false,
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "tag": "next"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/valor-software/ngx-bootstrap.git"
