@@ -2,21 +2,25 @@ import { window } from './facade/browser';
 
 let guessedVersion: 'bs3' | 'bs4' | 'bs5';
 
-function _guessBsVersion(): 'bs3' | 'bs4' {
+function _guessBsVersion(): 'bs3' | 'bs4' | 'bs5' {
   if (typeof document === 'undefined') {
     return 'bs4';
   }
-  const spanEl = document.createElement('span');
+  const spanEl = window.document.createElement('span');
   spanEl.innerText = 'testing bs version';
-  document.body.appendChild(spanEl);
   spanEl.classList.add('d-none');
+  spanEl.classList.add('visually-hidden');
+  window.document.head.appendChild(spanEl);
   const rect = spanEl.getBoundingClientRect();
-  document.body.removeChild(spanEl);
-  if (!rect) {
+  const overflowStyle = window.getComputedStyle(spanEl).overflow;
+  document.head.removeChild(spanEl);
+  if (!rect || (rect && rect.top !== 0)) {
     return 'bs3';
   }
-
-  return rect.top === 0 ? 'bs4' : 'bs3';
+  if (overflowStyle && overflowStyle === 'hidden') {
+    return 'bs5'
+  }
+  return 'bs4';
 }
 
 export function setTheme(theme: 'bs3' | 'bs4' | 'bs5'): void {
@@ -56,7 +60,9 @@ export function isBs5(): boolean {
 
   if (guessedVersion) return guessedVersion === 'bs5';
 
-  return false;
+  guessedVersion = _guessBsVersion();
+
+  return guessedVersion === 'bs5';
 }
 
 export function getBsVer(): {isBs3: boolean; isBs4: boolean; isBs5: boolean} {
