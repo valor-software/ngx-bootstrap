@@ -70,6 +70,12 @@ jobs:
         with:
           path: node_modules
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
+      - uses: actions/cache@v2.1.4
+        with:
+          path: |
+            dist
+            node_modules/ngx-bootstrap
+          key: dist-${{ github.run_id }}
       - run: npm test -- --runner cloud --codeCoverage
       - run: npx codecov ./coverage/
         continue-on-error: true
