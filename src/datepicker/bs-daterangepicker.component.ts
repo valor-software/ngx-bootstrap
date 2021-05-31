@@ -271,25 +271,25 @@ export class BsDaterangepickerDirective
         if (item.value instanceof Array && item.value.length) {
           const editedValues = item.value.map(date => {
             if (isAfter(date, maxDate, 'date')) {
-              date = maxDate
+              date = maxDate;
             }
-            return date
+            return date;
           })
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           item.value = editedValues;
-          return ranges
+          return ranges;
         }
         if (item.value instanceof Date) {
             if (isAfter(item.value, maxDate, 'date')) {
-              item.value = maxDate
+              item.value = maxDate;
             }
-          return ranges
+          return ranges;
         }
       }
-      return ranges
+      return ranges;
     })
-    return ranges
+    return ranges;
   }
 
   /**
