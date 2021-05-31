@@ -1,4 +1,4 @@
-name: on-push-to-dev
+name: on-pull-request-or-push
 
 on:
   pull_request:
