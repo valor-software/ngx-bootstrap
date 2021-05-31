@@ -1,5 +1,10 @@
 name: on-release
-on: release
+on:
+  push:
+    branches:
+      - development
+    tags:
+      - v*
 
 env:
   NX_BRANCH: ${{ github.event.number }}
@@ -7,6 +12,7 @@ env:
   NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
   MOZ_HEADLESS: 1
   GH_PAGES_URI: https://valorkin.github.io
+  CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   # one run
@@ -50,26 +56,17 @@ jobs:
           key: dist-${{ github.run_id }}
       - run: npx ng build --runner cloud --prod --with-deps
 
-  # publish to npm
-  npm_publish:
+  # update release notes in github
+  update_release_draft:
+    needs: install
     runs-on: ubuntu-latest
-    needs: build
     steps:
       - uses: actions/checkout@v2.3.4
       - uses: actions/cache@v2.1.4
         with:
           path: node_modules
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - uses: actions/cache@v2.1.4
-        with:
-          path: |
-            dist
-            node_modules/ngx-bootstrap
-          key: dist-${{ github.run_id }}
-      - uses: JS-DevTools/npm-publish@v1
-        with:
-          package: "node_modules/ngx-bootstrap/package.json"
-          token: ${{ secrets.NPM_TOKEN }}
+      - run: npx conventional-github-releaser -p angular
 
   # update gh_pages
   gh_pages_deploy:
@@ -97,8 +94,8 @@ jobs:
       - run: npx ts-node ./scripts/gh-pages-predeploy.ts
       - run: |
           cd gh-pages
-          git config user.email "valorkin@gmail.com"
-          git config user.name "ngx bootstrap ci"
+          git config user.email gh-actions-${GITHUB_ACTOR}@github.com
+          git config user.name $GITHUB_ACTOR
           git add -A
           git commit -am "ci: gh-pages update"
         continue-on-error: true
@@ -110,20 +107,23 @@ jobs:
           branch: 'gh-pages'
           directory: 'gh-pages'
 
-  update_release_draft:
-    needs: one_run
+  # publish to npm
+  npm_publish:
     runs-on: ubuntu-latest
+    needs: build
     steps:
-      # (Optional) GitHub Enterprise requires GHE_HOST variable set
-      #- name: Set GHE_HOST
-      #  run: |
-      #    echo "GHE_HOST=${GITHUB_SERVER_URL##https:\/\/}" >> $GITHUB_ENV
-
-      # Drafts your next Release notes as Pull Requests are merged into "master"
-      - uses: release-drafter/release-drafter@v5
-        # (Optional) specify config name to use, relative to .github/. Default: release-drafter.yml
-        # with:
-        #   config-name: my-config.yml
-        #   disable-autolabeler: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v2.3.4
+      - uses: actions/cache@v2.1.4
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+      - uses: actions/cache@v2.1.4
+        with:
+          path: |
+            dist
+            node_modules/ngx-bootstrap
+          key: dist-${{ github.run_id }}
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          package: "node_modules/ngx-bootstrap/package.json"
+          token: ${{ secrets.NPM_TOKEN }}
