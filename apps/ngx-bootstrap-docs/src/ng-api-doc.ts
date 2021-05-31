@@ -1,3 +1,4 @@
+/* tslint:disable */
 export const ngdoc: any = {
   "AccordionPanelComponent": {
     "fileName": "src/accordion/accordion-group.component.ts",
@@ -12,6 +13,7 @@ export const ngdoc: any = {
       },
       {
         "name": "isDisabled",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>if <code>true</code> — disables accordion group</p>\n"
       },
@@ -22,6 +24,7 @@ export const ngdoc: any = {
       },
       {
         "name": "panelClass",
+        "defaultValue": "panel-default",
         "type": "string",
         "description": "<p>Provides an ability to use Bootstrap&#39;s contextual panel classes\n(<code>panel-primary</code>, <code>panel-success</code>, <code>panel-info</code>, etc...).\nList of all available classes [available here]\n(<a href=\"https://getbootstrap.com/docs/3.3/components/#panels-alternatives\" target=\"_blank\" title=\"undefined\">https://getbootstrap.com/docs/3.3/components/#panels-alternatives</a>)</p>\n"
       }
@@ -50,6 +53,7 @@ export const ngdoc: any = {
     "inputs": [
       {
         "name": "closeOthers",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>if <code>true</code> expanding one item will close all others</p>\n"
       },
@@ -73,13 +77,13 @@ export const ngdoc: any = {
       {
         "name": "closeOthers",
         "defaultValue": "false",
-        "type": "Boolean",
+        "type": "boolean",
         "description": "<p>Whether the other panels should be closed when a panel is opened</p>\n"
       },
       {
         "name": "isAnimated",
         "defaultValue": "false",
-        "type": "Boolean",
+        "type": "boolean",
         "description": "<p>turn on/off animation</p>\n"
       }
     ]
@@ -211,6 +215,7 @@ export const ngdoc: any = {
       },
       {
         "name": "uncheckable",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>If <code>true</code> — radio button can be unchecked</p>\n"
       },
@@ -260,21 +265,25 @@ export const ngdoc: any = {
       },
       {
         "name": "noPause",
+        "defaultValue": "false",
         "type": "boolean",
         "description": ""
       },
       {
         "name": "noWrap",
+        "defaultValue": "false",
         "type": "boolean",
         "description": ""
       },
       {
         "name": "pauseOnFocus",
+        "defaultValue": "false",
         "type": "boolean",
         "description": ""
       },
       {
         "name": "showIndicators",
+        "defaultValue": "true",
         "type": "boolean",
         "description": ""
       },
@@ -452,7 +461,7 @@ export const ngdoc: any = {
             "type": "boolean"
           }
         ],
-        "returnType": "number"
+        "returnType": "number | void"
       },
       {
         "name": "_select",
@@ -508,6 +517,7 @@ export const ngdoc: any = {
     "inputs": [
       {
         "name": "active",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>Is current slide active</p>\n"
       }
@@ -809,6 +819,7 @@ export const ngdoc: any = {
       },
       {
         "name": "isDisabled",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>Indicates whether datepicker is enabled or not</p>\n"
       },
@@ -906,6 +917,7 @@ export const ngdoc: any = {
       },
       {
         "name": "isDisabled",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>Indicates whether datepicker&#39;s content is enabled or not</p>\n"
       },
@@ -1102,7 +1114,7 @@ export const ngdoc: any = {
       {
         "name": "preventChangeToNextMonth",
         "type": "boolean",
-        "description": "<p>Prevents change to next month after first date pick in right calendar (dateRangePicker only)</p>\n"
+        "description": "<p>Prevents change to next month for right calendar in two calendars view (dateRangePicker only)</p>\n"
       },
       {
         "name": "rangeInputFormat",
@@ -1224,6 +1236,7 @@ export const ngdoc: any = {
       },
       {
         "name": "isDisabled",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>Indicates whether datepicker is enabled or not</p>\n"
       },
@@ -1323,6 +1336,7 @@ export const ngdoc: any = {
       },
       {
         "name": "isDisabled",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>Indicates whether daterangepicker&#39;s content is enabled or not</p>\n"
       },
@@ -1521,6 +1535,7 @@ export const ngdoc: any = {
       },
       {
         "name": "monthColLimit",
+        "defaultValue": "0",
         "type": "number",
         "description": ""
       },
@@ -1546,6 +1561,7 @@ export const ngdoc: any = {
       },
       {
         "name": "yearColLimit",
+        "defaultValue": "0",
         "type": "number",
         "description": ""
       },
@@ -1661,6 +1677,7 @@ export const ngdoc: any = {
       },
       {
         "name": "monthColLimit",
+        "defaultValue": "3",
         "type": "number",
         "description": "<p>number of months displayed in a single row of month picker</p>\n"
       },
@@ -1687,6 +1704,7 @@ export const ngdoc: any = {
       },
       {
         "name": "yearColLimit",
+        "defaultValue": "5",
         "type": "number",
         "description": "<p>number of years displayed in a single row of year picker</p>\n"
       },
@@ -2039,7 +2057,7 @@ export const ngdoc: any = {
     "inputs": [
       {
         "name": "calendar",
-        "type": "DaysCalendarViewModel",
+        "type": "NavigationViewModel",
         "description": ""
       }
     ],
@@ -2288,6 +2306,7 @@ export const ngdoc: any = {
       },
       {
         "name": "dropup",
+        "defaultValue": "true",
         "type": "boolean",
         "description": "<p>This attribute indicates that the dropdown should be opened upwards</p>\n"
       },
@@ -2392,8 +2411,536 @@ export const ngdoc: any = {
     "properties": [
       {
         "name": "dropdownMenu",
-        "type": "Promise<any>",
+        "type": "Promise<BsComponentRef<BsDropdownMenuDirective>>",
         "description": "<p>Content to be displayed as popover.</p>\n"
+      }
+    ]
+  },
+  "ConfigurableFocusTrapConfig": {
+    "fileName": "src/focus-trap/configurable-focus-trap-config.ts",
+    "className": "ConfigurableFocusTrapConfig",
+    "description": "<p>Configuration for creating a ConfigurableFocusTrap.</p>\n",
+    "methods": [],
+    "properties": [
+      {
+        "name": "defer",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>Whether to defer the creation of FocusTrap elements to be\ndone manually by the user. Default is to create them\nautomatically.</p>\n"
+      }
+    ]
+  },
+  "ConfigurableFocusTrapFactory": {
+    "fileName": "src/focus-trap/configurable-focus-trap-factory.ts",
+    "className": "ConfigurableFocusTrapFactory",
+    "description": "<p>Factory that allows easy instantiation of configurable focus traps.</p>\n",
+    "methods": [
+      {
+        "name": "create",
+        "description": "<p>Creates a focus-trapped region around the given element.</p>\n",
+        "args": [
+          {
+            "name": "element",
+            "type": "HTMLElement"
+          },
+          {
+            "name": "config",
+            "type": "ConfigurableFocusTrapConfig"
+          }
+        ],
+        "returnType": "ConfigurableFocusTrap"
+      },
+      {
+        "name": "create",
+        "description": "<p>Creates a focus-trapped region around the given element.</p>\n",
+        "args": [
+          {
+            "name": "element",
+            "type": "HTMLElement"
+          },
+          {
+            "name": "deferCaptureElements",
+            "type": "boolean"
+          }
+        ],
+        "returnType": "ConfigurableFocusTrap"
+      },
+      {
+        "name": "create",
+        "description": "<p>Creates a focus-trapped region around the given element.</p>\n",
+        "args": [
+          {
+            "name": "element",
+            "type": "HTMLElement"
+          },
+          {
+            "name": "config",
+            "type": "boolean | ConfigurableFocusTrapConfig"
+          }
+        ],
+        "returnType": "ConfigurableFocusTrap"
+      }
+    ],
+    "properties": []
+  },
+  "ConfigurableFocusTrap": {
+    "fileName": "src/focus-trap/configurable-focus-trap.ts",
+    "className": "ConfigurableFocusTrap",
+    "description": "<p>Class that allows for trapping focus within a DOM element.</p>\n<p>This class uses a strategy pattern that determines how it traps focus.\nSee FocusTrapInertStrategy.</p>\n",
+    "methods": [
+      {
+        "name": "destroy",
+        "description": "<p>Notifies the FocusTrapManager that this FocusTrap will be destroyed.</p>\n",
+        "args": [],
+        "returnType": "void"
+      }
+    ],
+    "properties": [
+      {
+        "name": "enabled",
+        "type": "boolean",
+        "description": "<p>Whether the FocusTrap is enabled.</p>\n"
+      }
+    ]
+  },
+  "EventListenerFocusTrapInertStrategy": {
+    "fileName": "src/focus-trap/event-listener-inert-strategy.ts",
+    "className": "EventListenerFocusTrapInertStrategy",
+    "description": "<p>Lightweight FocusTrapInertStrategy that adds a document focus event\nlistener to redirect focus back inside the FocusTrap.</p>\n",
+    "methods": [
+      {
+        "name": "preventFocus",
+        "description": "<p>Adds a document event listener that keeps focus inside the FocusTrap.</p>\n",
+        "args": [
+          {
+            "name": "focusTrap",
+            "type": "ConfigurableFocusTrap"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "allowFocus",
+        "description": "<p>Removes the event listener added in preventFocus.</p>\n",
+        "args": [
+          {
+            "name": "focusTrap",
+            "type": "ConfigurableFocusTrap"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "_trapFocus",
+        "description": "<p>Refocuses the first element in the FocusTrap if the focus event target was outside\nthe FocusTrap.</p>\n<p>This is an event listener callback. The event listener is added in runOutsideAngular,\nso all this code runs outside Angular as well.</p>\n",
+        "args": [
+          {
+            "name": "focusTrap",
+            "type": "ConfigurableFocusTrap"
+          },
+          {
+            "name": "event",
+            "type": "FocusEvent"
+          }
+        ],
+        "returnType": "void"
+      }
+    ],
+    "properties": [
+      {
+        "name": "_listener",
+        "type": "(e: FocusEvent) => void",
+        "description": "<p>Focus event handler.</p>\n"
+      }
+    ]
+  },
+  "FocusTrapInertStrategy": {
+    "fileName": "src/focus-trap/focus-trap-inert-strategy.ts",
+    "className": "FocusTrapInertStrategy",
+    "description": "<p>A strategy that dictates how FocusTrap should prevent elements\noutside of the FocusTrap from being focused.</p>\n",
+    "methods": [
+      {
+        "name": "preventFocus",
+        "description": "<p>Makes all elements outside focusTrap unfocusable.</p>\n",
+        "args": [
+          {
+            "name": "focusTrap",
+            "type": "FocusTrap"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "allowFocus",
+        "description": "<p>Reverts elements made unfocusable by preventFocus to their previous state.</p>\n",
+        "args": [
+          {
+            "name": "focusTrap",
+            "type": "FocusTrap"
+          }
+        ],
+        "returnType": "void"
+      }
+    ],
+    "properties": []
+  },
+  "ManagedFocusTrap": {
+    "fileName": "src/focus-trap/focus-trap-manager.ts",
+    "className": "ManagedFocusTrap",
+    "description": "<p>A FocusTrap managed by FocusTrapManager.\nImplemented by ConfigurableFocusTrap to avoid circular dependency.</p>\n",
+    "methods": [],
+    "properties": []
+  },
+  "FocusTrapManager": {
+    "fileName": "src/focus-trap/focus-trap-manager.ts",
+    "className": "FocusTrapManager",
+    "description": "<p>Injectable that ensures only the most recently enabled FocusTrap is active.</p>\n",
+    "methods": [
+      {
+        "name": "register",
+        "description": "<p>Disables the FocusTrap at the top of the stack, and then pushes\nthe new FocusTrap onto the stack.</p>\n",
+        "args": [
+          {
+            "name": "focusTrap",
+            "type": "ManagedFocusTrap"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "deregister",
+        "description": "<p>Removes the FocusTrap from the stack, and activates the\nFocusTrap that is the new top of the stack.</p>\n",
+        "args": [
+          {
+            "name": "focusTrap",
+            "type": "ManagedFocusTrap"
+          }
+        ],
+        "returnType": "void"
+      }
+    ],
+    "properties": []
+  },
+  "FocusTrap": {
+    "fileName": "src/focus-trap/focus-trap.ts",
+    "className": "FocusTrap",
+    "description": "<p>Class that allows for trapping focus within a DOM element.</p>\n<p>This class currently uses a relatively simple approach to focus trapping.\nIt assumes that the tab order is the same as DOM order, which is not necessarily true.\nThings like <code>tabIndex &gt; 0</code>, flex <code>order</code>, and shadow roots can cause the two to misalign.</p>\n",
+    "methods": [
+      {
+        "name": "destroy",
+        "description": "<p>Destroys the focus trap by cleaning up the anchors.</p>\n",
+        "args": [],
+        "returnType": "void"
+      },
+      {
+        "name": "attachAnchors",
+        "description": "<p>Inserts the anchors into the DOM. This is usually done automatically\nin the constructor, but can be deferred for cases like directives with <code>*ngIf</code>.</p>\n",
+        "args": [],
+        "returnType": "boolean"
+      },
+      {
+        "name": "focusInitialElementWhenReady",
+        "description": "<p>Waits for the zone to stabilize, then either focuses the first element that the\nuser specified, or the first tabbable element.</p>\n",
+        "args": [],
+        "returnType": "Promise<boolean>"
+      },
+      {
+        "name": "focusFirstTabbableElementWhenReady",
+        "description": "<p>Waits for the zone to stabilize, then focuses\nthe first tabbable element within the focus trap region.</p>\n",
+        "args": [],
+        "returnType": "Promise<boolean>"
+      },
+      {
+        "name": "focusLastTabbableElementWhenReady",
+        "description": "<p>Waits for the zone to stabilize, then focuses\nthe last tabbable element within the focus trap region.</p>\n",
+        "args": [],
+        "returnType": "Promise<boolean>"
+      },
+      {
+        "name": "_getRegionBoundary",
+        "description": "<p>Get the specified boundary element of the trapped region.</p>\n",
+        "args": [
+          {
+            "name": "bound",
+            "type": "\"start\" | \"end\""
+          }
+        ],
+        "returnType": "HTMLElement"
+      },
+      {
+        "name": "focusInitialElement",
+        "description": "<p>Focuses the element that should be focused when the focus trap is initialized.</p>\n",
+        "args": [],
+        "returnType": "boolean"
+      },
+      {
+        "name": "focusFirstTabbableElement",
+        "description": "<p>Focuses the first tabbable element within the focus trap region.</p>\n",
+        "args": [],
+        "returnType": "boolean"
+      },
+      {
+        "name": "focusLastTabbableElement",
+        "description": "<p>Focuses the last tabbable element within the focus trap region.</p>\n",
+        "args": [],
+        "returnType": "boolean"
+      },
+      {
+        "name": "hasAttached",
+        "description": "<p>Checks whether the focus trap has successfully been attached.</p>\n",
+        "args": [],
+        "returnType": "boolean"
+      },
+      {
+        "name": "_getFirstTabbableElement",
+        "description": "<p>Get the first tabbable element from a DOM subtree (inclusive).</p>\n",
+        "args": [
+          {
+            "name": "root",
+            "type": "HTMLElement"
+          }
+        ],
+        "returnType": "HTMLElement"
+      },
+      {
+        "name": "_getLastTabbableElement",
+        "description": "<p>Get the last tabbable element from a DOM subtree (inclusive).</p>\n",
+        "args": [
+          {
+            "name": "root",
+            "type": "HTMLElement"
+          }
+        ],
+        "returnType": "HTMLElement"
+      },
+      {
+        "name": "_createAnchor",
+        "description": "<p>Creates an anchor element.</p>\n",
+        "args": [],
+        "returnType": "HTMLElement"
+      },
+      {
+        "name": "_toggleAnchorTabIndex",
+        "description": "<p>Toggles the <code>tabindex</code> of an anchor, based on the enabled state of the focus trap.</p>\n",
+        "args": [
+          {
+            "name": "isEnabled",
+            "type": "boolean"
+          },
+          {
+            "name": "anchor",
+            "type": "HTMLElement"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "toggleAnchors",
+        "description": "<p>Toggles the<code>tabindex</code> of both anchors to either trap Tab focus or allow it to escape.</p>\n",
+        "args": [
+          {
+            "name": "enabled",
+            "type": "boolean"
+          }
+        ],
+        "returnType": "void"
+      },
+      {
+        "name": "_executeOnStable",
+        "description": "<p>Executes a function when the zone is stable.</p>\n",
+        "args": [
+          {
+            "name": "fn",
+            "type": "() => any"
+          }
+        ],
+        "returnType": "void"
+      }
+    ],
+    "properties": [
+      {
+        "name": "enabled",
+        "type": "boolean",
+        "description": "<p>Whether the focus trap is active.</p>\n"
+      }
+    ]
+  },
+  "FocusTrapFactory": {
+    "fileName": "src/focus-trap/focus-trap.ts",
+    "className": "FocusTrapFactory",
+    "description": "<p>Factory that allows easy instantiation of focus traps.</p>\n",
+    "methods": [
+      {
+        "name": "create",
+        "description": "<p>Creates a focus-trapped region around the given element.</p>\n",
+        "args": [
+          {
+            "name": "element",
+            "type": "HTMLElement"
+          },
+          {
+            "name": "deferCaptureElements",
+            "type": "boolean"
+          }
+        ],
+        "returnType": "FocusTrap"
+      }
+    ],
+    "properties": []
+  },
+  "FocusTrapDirective": {
+    "fileName": "src/focus-trap/focus-trap.ts",
+    "className": "FocusTrapDirective",
+    "description": "<p>Directive for trapping focus within a region.</p>\n",
+    "selector": "[focusTrap]",
+    "exportAs": "focusTrap",
+    "inputs": [
+      {
+        "name": "cdkTrapFocus",
+        "type": "boolean",
+        "description": "<p>Whether the focus trap is active.</p>\n"
+      },
+      {
+        "name": "cdkTrapFocusAutoCapture",
+        "type": "boolean",
+        "description": "<p>Whether the directive should automatically move focus into the trapped region upon\ninitialization and return focus to the previous activeElement upon destruction.</p>\n"
+      }
+    ],
+    "outputs": [],
+    "properties": [
+      {
+        "name": "_previouslyFocusedElement",
+        "type": "HTMLElement",
+        "description": "<p>Previously focused element to restore focus to upon destroy when using autoCapture.</p>\n"
+      },
+      {
+        "name": "focusTrap",
+        "type": "FocusTrap",
+        "description": "<p>Underlying FocusTrap instance.</p>\n"
+      }
+    ],
+    "methods": []
+  },
+  "IsFocusableConfig": {
+    "fileName": "src/focus-trap/interactivity-checker.ts",
+    "className": "IsFocusableConfig",
+    "description": "<p>Configuration for the isFocusable method.</p>\n",
+    "methods": [],
+    "properties": [
+      {
+        "name": "ignoreVisibility",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>Whether to count an element as focusable even if it is not currently visible.</p>\n"
+      }
+    ]
+  },
+  "InteractivityChecker": {
+    "fileName": "src/focus-trap/interactivity-checker.ts",
+    "className": "InteractivityChecker",
+    "description": "<p>Utility for checking the interactivity of an element, such as whether is is focusable or\ntabbable.</p>\n",
+    "methods": [
+      {
+        "name": "isDisabled",
+        "description": "<p>Gets whether an element is disabled.</p>\n",
+        "args": [
+          {
+            "name": "element",
+            "type": "HTMLElement"
+          }
+        ],
+        "returnType": "boolean"
+      },
+      {
+        "name": "isVisible",
+        "description": "<p>Gets whether an element is visible for the purposes of interactivity.</p>\n<p>This will capture states like <code>display: none</code> and <code>visibility: hidden</code>, but not things like\nbeing clipped by an <code>overflow: hidden</code> parent or being outside the viewport.</p>\n",
+        "args": [
+          {
+            "name": "element",
+            "type": "HTMLElement"
+          }
+        ],
+        "returnType": "boolean"
+      },
+      {
+        "name": "isTabbable",
+        "description": "<p>Gets whether an element can be reached via Tab key.\nAssumes that the element has already been checked with isFocusable.</p>\n",
+        "args": [
+          {
+            "name": "element",
+            "type": "HTMLElement"
+          }
+        ],
+        "returnType": "boolean"
+      },
+      {
+        "name": "isFocusable",
+        "description": "<p>Gets whether an element can be focused by the user.</p>\n",
+        "args": [
+          {
+            "name": "element",
+            "type": "HTMLElement"
+          },
+          {
+            "name": "config",
+            "type": "IsFocusableConfig"
+          }
+        ],
+        "returnType": "boolean"
+      }
+    ],
+    "properties": []
+  },
+  "Platform": {
+    "fileName": "src/focus-trap/platform.ts",
+    "className": "Platform",
+    "description": "<p>Service to detect the current platform by comparing the userAgent strings and\nchecking browser-specific global properties.</p>\n",
+    "methods": [],
+    "properties": [
+      {
+        "name": "ANDROID",
+        "type": "boolean",
+        "description": "<p>Whether the current platform is Android.</p>\n"
+      },
+      {
+        "name": "BLINK",
+        "type": "boolean",
+        "description": "<p>Whether the current rendering engine is Blink.</p>\n"
+      },
+      {
+        "name": "EDGE",
+        "type": "boolean",
+        "description": "<p>Whether the current browser is Microsoft Edge.</p>\n"
+      },
+      {
+        "name": "FIREFOX",
+        "type": "boolean",
+        "description": "<p>Whether the current browser is Firefox.</p>\n"
+      },
+      {
+        "name": "IOS",
+        "type": "boolean",
+        "description": "<p>Whether the current platform is Apple iOS.</p>\n"
+      },
+      {
+        "name": "isBrowser",
+        "type": "boolean",
+        "description": "<p>Whether the Angular application is being rendered in the browser.</p>\n"
+      },
+      {
+        "name": "SAFARI",
+        "type": "boolean",
+        "description": "<p>Whether the current browser is Safari.</p>\n"
+      },
+      {
+        "name": "TRIDENT",
+        "type": "boolean",
+        "description": "<p>Whether the current rendering engine is Microsoft Trident.</p>\n"
+      },
+      {
+        "name": "WEBKIT",
+        "type": "boolean",
+        "description": "<p>Whether the current rendering engine is WebKit.</p>\n"
       }
     ]
   },
@@ -2417,7 +2964,6 @@ export const ngdoc: any = {
       },
       {
         "name": "hide",
-        "defaultValue": "Function",
         "type": "() => void",
         "description": "<p>Hides the modal</p>\n"
       },
@@ -2428,17 +2974,16 @@ export const ngdoc: any = {
       },
       {
         "name": "onHidden",
-        "type": "EventEmitter<any>",
+        "type": "EventEmitter<unknown>",
         "description": "<p>Event that is fired when the modal behind the ref finishes hiding</p>\n"
       },
       {
         "name": "onHide",
-        "type": "EventEmitter<any>",
+        "type": "EventEmitter<unknown>",
         "description": "<p>Event that is fired when the modal behind the ref starts hiding</p>\n"
       },
       {
         "name": "setClass",
-        "defaultValue": "Function",
         "type": "(newClass: string) => void",
         "description": "<p>Sets new class to modal window</p>\n"
       }
@@ -2569,7 +3114,7 @@ export const ngdoc: any = {
       },
       {
         "name": "config",
-        "type": "ModalOptions<Object>",
+        "type": "ModalOptions<Record<string, unknown>>",
         "description": "<p>allows to set modal configuration via element property</p>\n"
       }
     ],
@@ -2594,7 +3139,7 @@ export const ngdoc: any = {
     "properties": [
       {
         "name": "config",
-        "type": "ModalOptions<Object>",
+        "type": "ModalOptions<Record<string, unknown>>",
         "description": "<p>allows to set modal configuration via element property</p>\n"
       },
       {
@@ -2751,26 +3296,31 @@ export const ngdoc: any = {
     "inputs": [
       {
         "name": "align",
+        "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if <code>true</code> aligns each link to the sides of pager</p>\n"
       },
       {
         "name": "boundaryLinks",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>if false first and last buttons will be hidden</p>\n"
       },
       {
         "name": "directionLinks",
+        "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if false previous and next buttons will be hidden</p>\n"
       },
       {
         "name": "disabled",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>if true pagination component will be disabled</p>\n"
       },
       {
         "name": "firstText",
+        "defaultValue": "First",
         "type": "string",
         "description": "<p>first button text</p>\n"
       },
@@ -2781,6 +3331,7 @@ export const ngdoc: any = {
       },
       {
         "name": "lastText",
+        "defaultValue": "Last",
         "type": "string",
         "description": "<p>last button text</p>\n"
       },
@@ -2791,6 +3342,7 @@ export const ngdoc: any = {
       },
       {
         "name": "nextText",
+        "defaultValue": "Next »",
         "type": "string",
         "description": "<p>next button text</p>\n"
       },
@@ -2801,11 +3353,13 @@ export const ngdoc: any = {
       },
       {
         "name": "previousText",
+        "defaultValue": "« Previous",
         "type": "string",
         "description": "<p>previous button text</p>\n"
       },
       {
         "name": "rotate",
+        "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if true current page will in the middle of pages list</p>\n"
       },
@@ -2843,11 +3397,13 @@ export const ngdoc: any = {
     "inputs": [
       {
         "name": "align",
+        "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if <code>true</code> aligns each link to the sides of pager</p>\n"
       },
       {
         "name": "boundaryLinks",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>if false first and last buttons will be hidden</p>\n"
       },
@@ -2878,16 +3434,19 @@ export const ngdoc: any = {
       },
       {
         "name": "directionLinks",
+        "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if false previous and next buttons will be hidden</p>\n"
       },
       {
         "name": "disabled",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>if true pagination component will be disabled</p>\n"
       },
       {
         "name": "firstText",
+        "defaultValue": "First",
         "type": "string",
         "description": "<p>first button text</p>\n"
       },
@@ -2898,6 +3457,7 @@ export const ngdoc: any = {
       },
       {
         "name": "lastText",
+        "defaultValue": "Last",
         "type": "string",
         "description": "<p>last button text</p>\n"
       },
@@ -2908,6 +3468,7 @@ export const ngdoc: any = {
       },
       {
         "name": "nextText",
+        "defaultValue": "Next",
         "type": "string",
         "description": "<p>next button text</p>\n"
       },
@@ -2918,11 +3479,13 @@ export const ngdoc: any = {
       },
       {
         "name": "previousText",
+        "defaultValue": "Previous",
         "type": "string",
         "description": "<p>previous button text</p>\n"
       },
       {
         "name": "rotate",
+        "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if true current page will in the middle of pages list</p>\n"
       },
@@ -3019,6 +3582,7 @@ export const ngdoc: any = {
     "inputs": [
       {
         "name": "adaptivePosition",
+        "defaultValue": "true",
         "type": "boolean",
         "description": "<p>sets disable adaptive position</p>\n"
       },
@@ -3034,6 +3598,7 @@ export const ngdoc: any = {
       },
       {
         "name": "delay",
+        "defaultValue": "0",
         "type": "number",
         "description": "<p>Delay before showing the tooltip</p>\n"
       },
@@ -3050,6 +3615,7 @@ export const ngdoc: any = {
       },
       {
         "name": "placement",
+        "defaultValue": "top",
         "type": "\"top\" | \"bottom\" | \"left\" | \"right\" | \"auto\" | \"top left\" | \"top right\" | \"right top\" | \"right bottom\" | \"bottom right\" | \"bottom left\" | \"left bottom\" | \"left top\"",
         "description": "<p>Placement of a popover. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;</p>\n"
       },
@@ -3070,6 +3636,7 @@ export const ngdoc: any = {
       },
       {
         "name": "triggers",
+        "defaultValue": "click",
         "type": "string",
         "description": "<p>Specifies events that should trigger. Supports a space separated list of\nevent names.</p>\n"
       }
@@ -3197,6 +3764,7 @@ export const ngdoc: any = {
     "inputs": [
       {
         "name": "max",
+        "defaultValue": "100",
         "type": "number",
         "description": ""
       },
@@ -3214,6 +3782,13 @@ export const ngdoc: any = {
     "outputs": [],
     "properties": [],
     "methods": []
+  },
+  "BarValue": {
+    "fileName": "src/progressbar/progressbar-type.interface.ts",
+    "className": "BarValue",
+    "description": "",
+    "methods": [],
+    "properties": []
   },
   "ProgressbarComponent": {
     "fileName": "src/progressbar/progressbar.component.ts",
@@ -3243,7 +3818,7 @@ export const ngdoc: any = {
       },
       {
         "name": "value",
-        "type": "number | any[]",
+        "type": "number | BarValue[]",
         "description": "<p>current value of progress bar. Could be a number or array of objects\nlike {&quot;value&quot;:15,&quot;type&quot;:&quot;info&quot;,&quot;label&quot;:&quot;15 %&quot;}</p>\n"
       }
     ],
@@ -3260,7 +3835,7 @@ export const ngdoc: any = {
       {
         "name": "animate",
         "defaultValue": "false",
-        "type": "Boolean",
+        "type": "boolean",
         "description": "<p>if <code>true</code> changing value of progress bar will be animated</p>\n"
       },
       {
@@ -3274,13 +3849,6 @@ export const ngdoc: any = {
   "RatingResults": {
     "fileName": "src/rating/models/index.ts",
     "className": "RatingResults",
-    "description": "",
-    "methods": [],
-    "properties": []
-  },
-  "AccessorContent": {
-    "fileName": "src/rating/models/index.ts",
-    "className": "AccessorContent",
     "description": "",
     "methods": [],
     "properties": []
@@ -3304,6 +3872,7 @@ export const ngdoc: any = {
       },
       {
         "name": "readonly",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>if true will not react on any user events</p>\n"
       },
@@ -3326,6 +3895,7 @@ export const ngdoc: any = {
     "properties": [
       {
         "name": "ariaLabel",
+        "defaultValue": "rating",
         "type": "string",
         "description": "<p>aria label for rating</p>\n"
       }
@@ -3379,7 +3949,7 @@ export const ngdoc: any = {
       },
       {
         "name": "itemActiveStyle",
-        "type": "{ [key: string]: string; }",
+        "type": "Record<string, string>",
         "description": "<p>style object for active item</p>\n"
       },
       {
@@ -3389,12 +3959,12 @@ export const ngdoc: any = {
       },
       {
         "name": "itemStyle",
-        "type": "{ [key: string]: string; }",
+        "type": "Record<string, string>",
         "description": "<p>style object for item</p>\n"
       },
       {
         "name": "itemTemplate",
-        "type": "TemplateRef<any>",
+        "type": "TemplateRef<unknown>",
         "description": "<p>used to specify a custom item template. Template variables: item and index;</p>\n"
       },
       {
@@ -3409,7 +3979,7 @@ export const ngdoc: any = {
       },
       {
         "name": "placeholderStyle",
-        "type": "{ [key: string]: string; }",
+        "type": "Record<string, string>",
         "description": "<p>style object for placeholder</p>\n"
       },
       {
@@ -3419,7 +3989,7 @@ export const ngdoc: any = {
       },
       {
         "name": "wrapperStyle",
-        "type": "{ [key: string]: string; }",
+        "type": "Record<string, string>",
         "description": "<p>style object for items wrapper</p>\n"
       }
     ],
@@ -3484,6 +4054,7 @@ export const ngdoc: any = {
       },
       {
         "name": "disabled",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>if true tab can not be activated</p>\n"
       },
@@ -3499,6 +4070,7 @@ export const ngdoc: any = {
       },
       {
         "name": "removable",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>if true tab can be removable, additional button will appear</p>\n"
       }
@@ -3546,6 +4118,7 @@ export const ngdoc: any = {
     "properties": [
       {
         "name": "ariaLabel",
+        "defaultValue": "Tabs",
         "type": "string",
         "description": "<p>aria label for tab list</p>\n"
       }
@@ -3592,6 +4165,13 @@ export const ngdoc: any = {
     "methods": [],
     "properties": []
   },
+  "TimepickerState": {
+    "fileName": "src/timepicker/reducer/timepicker.reducer.ts",
+    "className": "TimepickerState",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
   "TimepickerStore": {
     "fileName": "src/timepicker/reducer/timepicker.store.ts",
     "className": "TimepickerStore",
@@ -3607,21 +4187,25 @@ export const ngdoc: any = {
     "inputs": [
       {
         "name": "arrowkeys",
+        "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if true the values of hours and minutes can be changed using the up/down arrow keys on the keyboard</p>\n"
       },
       {
         "name": "disabled",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>if true hours and minutes fields will be disabled</p>\n"
       },
       {
         "name": "hoursPlaceholder",
+        "defaultValue": "HH",
         "type": "string",
         "description": "<p>placeholder for hours field in timepicker</p>\n"
       },
       {
         "name": "hourStep",
+        "defaultValue": "1",
         "type": "number",
         "description": "<p>hours change step</p>\n"
       },
@@ -3642,51 +4226,61 @@ export const ngdoc: any = {
       },
       {
         "name": "minutesPlaceholder",
+        "defaultValue": "MM",
         "type": "string",
         "description": "<p>placeholder for minutes field in timepicker</p>\n"
       },
       {
         "name": "minuteStep",
+        "defaultValue": "5",
         "type": "number",
         "description": "<p>minutes change step</p>\n"
       },
       {
         "name": "mousewheel",
+        "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if true scroll inside hours and minutes inputs will change time</p>\n"
       },
       {
         "name": "readonlyInput",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>if true hours and minutes fields will be readonly</p>\n"
       },
       {
         "name": "secondsPlaceholder",
+        "defaultValue": "SS",
         "type": "string",
         "description": "<p>placeholder for seconds field in timepicker</p>\n"
       },
       {
         "name": "secondsStep",
+        "defaultValue": "10",
         "type": "number",
         "description": "<p>seconds change step</p>\n"
       },
       {
         "name": "showMeridian",
+        "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if true meridian button will be shown</p>\n"
       },
       {
         "name": "showMinutes",
+        "defaultValue": "true",
         "type": "boolean",
         "description": "<p>show minutes in timepicker</p>\n"
       },
       {
         "name": "showSeconds",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>show seconds in timepicker</p>\n"
       },
       {
         "name": "showSpinners",
+        "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if true spinner arrows above and below the inputs will be shown</p>\n"
       }
@@ -3909,6 +4503,7 @@ export const ngdoc: any = {
     "inputs": [
       {
         "name": "adaptivePosition",
+        "defaultValue": "true",
         "type": "boolean",
         "description": "<p>sets disable adaptive position</p>\n"
       },
@@ -3929,11 +4524,13 @@ export const ngdoc: any = {
       },
       {
         "name": "delay",
+        "defaultValue": "0",
         "type": "number",
         "description": "<p>Delay before showing the tooltip</p>\n"
       },
       {
         "name": "isDisabled",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>Allows to disable tooltip</p>\n"
       },
@@ -3944,12 +4541,13 @@ export const ngdoc: any = {
       },
       {
         "name": "placement",
+        "defaultValue": "top",
         "type": "string",
         "description": "<p>Placement of a tooltip. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;</p>\n"
       },
       {
         "name": "tooltip",
-        "type": "string | TemplateRef<any>",
+        "type": "string | TemplateRef<unknown>",
         "description": "<p>Content to be displayed as tooltip.</p>\n"
       },
       {
@@ -3970,7 +4568,7 @@ export const ngdoc: any = {
       },
       {
         "name": "tooltipContext",
-        "type": "any",
+        "type": "undefined",
         "description": ""
       },
       {
@@ -3986,7 +4584,7 @@ export const ngdoc: any = {
       },
       {
         "name": "tooltipHtml",
-        "type": "string | TemplateRef<any>",
+        "type": "string | TemplateRef<unknown>",
         "description": ""
       },
       {
@@ -4011,6 +4609,7 @@ export const ngdoc: any = {
       },
       {
         "name": "triggers",
+        "defaultValue": "hover focus",
         "type": "string",
         "description": "<p>Specifies events that should trigger. Supports a space separated list of\nevent names.</p>\n"
       }
@@ -4096,7 +4695,7 @@ export const ngdoc: any = {
       },
       {
         "name": "item",
-        "type": "any",
+        "type": "unknown",
         "description": "<p>Item</p>\n"
       },
       {
@@ -4171,6 +4770,24 @@ export const ngdoc: any = {
     "properties": [],
     "methods": []
   },
+  "TypeaheadOrder": {
+    "fileName": "src/typeahead/typeahead-order.class.ts",
+    "className": "TypeaheadOrder",
+    "description": "",
+    "methods": [],
+    "properties": [
+      {
+        "name": "direction",
+        "type": "\"asc\" | \"desc\"",
+        "description": "<p>ordering direction, could be &#39;asc&#39; or &#39;desc&#39;</p>\n"
+      },
+      {
+        "name": "field",
+        "type": "string",
+        "description": "<p>field for sorting</p>\n"
+      }
+    ]
+  },
   "TypeaheadConfig": {
     "fileName": "src/typeahead/typeahead.config.ts",
     "className": "TypeaheadConfig",
@@ -4230,6 +4847,7 @@ export const ngdoc: any = {
     "inputs": [
       {
         "name": "adaptivePosition",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>sets use adaptive position</p>\n"
       },
@@ -4257,7 +4875,7 @@ export const ngdoc: any = {
       },
       {
         "name": "typeahead",
-        "type": "Typeahead",
+        "type": "TypeaheadOptionArr",
         "description": "<p>options source, can be Array of strings, objects or\nan Observable for external matching process</p>\n"
       },
       {
@@ -4294,6 +4912,7 @@ export const ngdoc: any = {
       },
       {
         "name": "typeaheadMinLength",
+        "defaultValue": "1",
         "type": "number",
         "description": "<p>minimal no of characters that needs to be entered before\ntypeahead kicks-in. When set to 0, typeahead shows on focus with full\nlist of options (limited as normal by typeaheadOptionsLimit)</p>\n"
       },
@@ -4355,6 +4974,7 @@ export const ngdoc: any = {
       },
       {
         "name": "typeaheadWaitMs",
+        "defaultValue": "0",
         "type": "number",
         "description": "<p>minimal wait time after last character typed before typeahead kicks-in</p>\n"
       },
@@ -4395,5 +5015,12 @@ export const ngdoc: any = {
       }
     ],
     "methods": []
+  },
+  "ListNode": {
+    "fileName": "src/utils/linked-list.class.ts",
+    "className": "ListNode",
+    "description": "",
+    "methods": [],
+    "properties": []
   }
 };
