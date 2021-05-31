@@ -15,7 +15,7 @@ env:
   SAUCE_ACCESS_KEY_PR: e0a97bd3-4b74-4408-89bf-cce1b44a8bf1
   CYPRESS_CACHE_FOLDER: 'node_modules/.cypress'
   CYPRESS_RECORD_KEY: 4aa7a1c0-3a4f-444e-b324-6fc305a543a8
-  FIREBASE_CHANNEL: ${{ fromJSON('["live", ""]')[!github.base_ref] }}
+  FIREBASE_CHANNEL: ${{ fromJSON('["", "live"]')[!github.base_ref] }}
 
 jobs:
   # one run
