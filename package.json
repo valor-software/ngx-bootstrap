@@ -1,6 +1,6 @@
 {
   "name": "ngx-bootstrap-base",
-  "version": "7.0.0-rc.0",
+  "version": "7.0.0-rc.1",
   "license": "MIT",
   "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
   "repository": {
@@ -68,9 +68,9 @@
     "@nrwl/angular": "11.2.12",
     "@nrwl/node": "11.2.12",
     "@schematics/angular": "11.2.0",
-    "@scullyio/init": "1.0.1",
-    "@scullyio/ng-lib": "1.0.2",
-    "@scullyio/scully": "1.0.11",
+    "@scullyio/init": "1.1.4",
+    "@scullyio/ng-lib": "1.1.1",
+    "@scullyio/scully": "1.1.1",
     "@stackblitz/sdk": "1.5.2",
     "ngx-page-scroll": "7.0.4",
     "ngx-page-scroll-core": "7.0.4",

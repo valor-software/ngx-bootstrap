@@ -1,6 +1,6 @@
 {
   "name": "ngx-bootstrap-ci",
-  "version": "7.0.0-rc.0",
+  "version": "7.0.0-rc.1",
   "description": "Angular Bootstrap",
   "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
   "license": "MIT",
@@ -15,6 +15,10 @@
     "tslib": "^2.0.0"
   },
   "sideEffects": false,
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "tag": "next"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/valor-software/ngx-bootstrap.git"
