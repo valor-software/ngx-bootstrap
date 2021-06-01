@@ -17,6 +17,15 @@ env:
   CYPRESS_RECORD_KEY: 4aa7a1c0-3a4f-444e-b324-6fc305a543a8
   FIREBASE_CHANNEL: ${{ fromJSON('["", "live"]')[!github.base_ref] }}
 
+  CACHE_NODE_MODULES_PATH: |
+    ~/.npm
+    node_modules
+    node_modules/ngx-bootstrap
+
+  CACHE_DIST_PATH: |
+    dist
+    node_modules/ngx-bootstrap
+
 jobs:
   # one run
   one_run:
@@ -32,11 +41,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: one_run
     steps:
-      - uses: actions/checkout@v2.3.4
-      - uses: actions/cache@v2.1.4
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
         id: cache
         with:
-          path: node_modules
+          path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
       - run: npm ci
         if: steps.cache.outputs.cache-hit != 'true'
@@ -46,16 +55,14 @@ jobs:
     needs: install
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
-      - uses: actions/cache@v2.1.4
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
         with:
-          path: node_modules
+          path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - uses: actions/cache@v2.1.4
+      - uses: actions/cache@v2
         with:
-          path: |
-            dist
-            node_modules/ngx-bootstrap
+          path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
       - run: npx ng build --runner cloud --prod --with-deps
 
@@ -65,16 +72,14 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - uses: actions/checkout@v2.3.4
-      - uses: actions/cache@v2.1.4
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
         with:
-          path: node_modules
+          path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - uses: actions/cache@v2.1.4
+      - uses: actions/cache@v2
         with:
-          path: |
-            dist
-            node_modules/ngx-bootstrap
+          path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
       - run: npm test -- --runner cloud --codeCoverage
       - run: npx codecov ./coverage/
@@ -85,10 +90,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: install
     steps:
-      - uses: actions/checkout@v2.3.4
-      - uses: actions/cache@v2.1.4
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
         with:
-          path: node_modules
+          path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
       - run: npm run lint -- --runner cloud
 
@@ -99,12 +104,10 @@ jobs:
     outputs:
       output_url: ${{ steps.firebase_hosting_preview.outputs.details_url }}
     steps:
-      - uses: actions/checkout@v2.3.4
-      - uses: actions/cache@v2.1.4
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
         with:
-          path: |
-            dist
-            node_modules/ngx-bootstrap
+          path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
       - uses: FirebaseExtended/action-hosting-deploy@v0
         continue-on-error: true
@@ -132,16 +135,14 @@ jobs:
         # run 3 copies of the current job in parallel
         containers: [1, 2, 3, 4, 5]
     steps:
-      - uses: actions/checkout@v2.3.4
-      - uses: actions/cache@v2.1.4
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
         with:
-          path: node_modules
+          path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - uses: actions/cache@v2.1.4
+      - uses: actions/cache@v2
         with:
-          path: |
-            dist
-            node_modules/ngx-bootstrap
+          path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
 
       # because of "record" and "parallel" parameters
@@ -169,16 +170,14 @@ jobs:
         # run 3 copies of the current job in parallel
         containers: [1, 2, 3, 4, 5]
     steps:
-      - uses: actions/checkout@v2.3.4
-      - uses: actions/cache@v2.1.4
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
         with:
-          path: node_modules
+          path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - uses: actions/cache@v2.1.4
+      - uses: actions/cache@v2
         with:
-          path: |
-            dist
-            node_modules/ngx-bootstrap
+          path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
 
       # because of "record" and "parallel" parameters
