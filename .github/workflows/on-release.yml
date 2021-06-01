@@ -1,8 +1,6 @@
 name: on-release
 on:
   push:
-    branches:
-      - development
     tags:
       - v*
 
@@ -11,7 +9,6 @@ env:
   NX_RUN_GROUP: ${{ github.run_id }}
   NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
   MOZ_HEADLESS: 1
-  GH_PAGES_URI: https://valorkin.github.io
   CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
