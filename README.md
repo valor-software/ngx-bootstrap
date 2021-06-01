@@ -10,8 +10,10 @@ The best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 
 </p>
 
 <p align="center">
+<a href="https://npmjs.org/ngx-bootstrap"><img src="https://img.shields.io/npm/v/ngx-bootstrap/latest.svg" alt="npm latest version" ></a>
+<a href="https://npmjs.org/ngx-bootstrap"><img src="https://img.shields.io/npm/v/ngx-bootstrap/next.svg" alt="npm next version" ></a>
+<br/>
 <a href="https://github.com/valor-software/ngx-bootstrap/actions/workflows/on-push-or-pull.yml"><img src="https://github.com/valor-software/ngx-bootstrap/actions/workflows/on-push-or-pull.yml/badge.svg" alt="npm version" ></a>
-<a href="https://badge.fury.io/js/ngx-bootstrap"><img src="https://badge.fury.io/js/ngx-bootstrap.svg" alt="npm version" ></a>
 <a href="https://npmjs.org/ngx-bootstrap"><img src="https://img.shields.io/npm/dm/ngx-bootstrap.svg" alt="npm downloads" ></a>
 <a target="_blank" href="https://opencollective.com/ngx-bootstrap"><img src="https://opencollective.com/ngx-bootstrap/tiers/backer/badge.svg?label=backer&color=brightgreen" /></a>
 
@@ -150,6 +152,7 @@ Here is the versions compatibility list:
 
 | ngx-bootstrap |    Angular    |  Bootstrap CSS |
 | ------------- | ------------- | -------------- |
+| 7.0.0         | 11.x.x - 12.x.x | 3.x.x or 4.x.x |
 | 6.0.0         | 9.x.x - 10.x.x | 3.x.x or 4.x.x |
 | 5.6.x         | 7.x.x - 9.1.0 | 3.x.x or 4.x.x |
 | 5.0.0 - 5.6.0 | 7.x.x - 8.x.x | 3.x.x or 4.x.x |
