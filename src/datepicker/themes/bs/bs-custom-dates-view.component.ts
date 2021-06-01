@@ -16,14 +16,6 @@ export interface BsCustomDates {
         [class.selected]="range.value === selectedRange">
         {{ range.label }}
       </button>
-      <button
-        type="button"
-        class="btn"
-        *ngIf="selectedRange && selectedRange.length && selectedRange.length > 1"
-        (click)="selectFromRanges(customRange)"
-        [class.selected]="!checkRange()">
-        {{customRangeLabel}}
-      </button>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -34,14 +26,14 @@ export class BsCustomDatesViewComponent {
   @Input() customRangeLabel?: string;
   @Output() onSelect = new EventEmitter<BsCustomDates>();
 
-  customRange?:BsCustomDates;
+  // customRange?:BsCustomDates;
 
   selectFromRanges(range?: BsCustomDates) {
     this.onSelect.emit(range);
   }
 
-  checkRange() {
-    return this.ranges ? this.ranges.filter(range => range.value === this.selectedRange).length > 0 : false;
-  }
+  // checkRange() {
+  //   return this.ranges ? this.ranges.filter(range => range.value === this.selectedRange).length > 0 : false;
+  // }
 
 }
