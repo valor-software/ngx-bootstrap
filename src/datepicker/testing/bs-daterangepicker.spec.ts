@@ -122,7 +122,7 @@ describe('daterangepicker:', () => {
 
         const rangesButton = document.querySelector('.bs-datepicker-predefined-btns');
 
-        expect(rangesButton.childElementCount).toEqual(ranges.length + 1); // +1 for `custom range` button
+        expect(rangesButton.childElementCount).toEqual(ranges.length); // deleted +1 for `custom range` button, cause we show it after range selecting
 
     });
 
