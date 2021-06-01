@@ -1,6 +1,6 @@
 [
   {
-    "version": "6.2.0",
+    "version": "Current",
     "url": "ngx-bootstrap",
     "unprefixedUrl": ""
   },
@@ -33,5 +33,10 @@
     "version": "6.1.0",
     "url": "ngx-bootstrap/old/6.1.0",
     "unprefixedUrl": "old/6.1.0"
+  },
+  {
+    "version": "6.2.0",
+    "url": "ngx-bootstrap/old/6.2.0",
+    "unprefixedUrl": "old/6.2.0"
   }
 ]
