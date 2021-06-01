@@ -26,14 +26,7 @@ export class BsCustomDatesViewComponent {
   @Input() customRangeLabel?: string;
   @Output() onSelect = new EventEmitter<BsCustomDates>();
 
-  // customRange?:BsCustomDates;
-
   selectFromRanges(range?: BsCustomDates) {
     this.onSelect.emit(range);
   }
-
-  // checkRange() {
-  //   return this.ranges ? this.ranges.filter(range => range.value === this.selectedRange).length > 0 : false;
-  // }
-
 }
