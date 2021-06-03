@@ -34,7 +34,7 @@ describe('Service: BsModal', () => {
       onShown: {value: EMPTY},
       onBeforeHide: {value: EMPTY},
       onHidden: {value: EMPTY},
-    })
+    });
 
     return componentLoader;
   }
@@ -54,7 +54,7 @@ describe('Service: BsModal', () => {
       ]
     });
 
-    mockComponentLoader.show.mockImplementation(mockShow)
+    mockComponentLoader.show.mockImplementation(mockShow);
     // mockComponentLoader.show.and.callFake(mockShow);
     mockComponentLoaderFactory.createLoader.mockImplementation(mockCreateLoader);
     // mockComponentLoaderFactory.createLoader.and.callFake(mockCreateLoader);

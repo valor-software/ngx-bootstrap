@@ -15,6 +15,6 @@ export class DemoPopoverCornerPlacementComponent {
     'bottom left',
     'left bottom',
     'left top'
-  ]
+  ];
   placement: "top" | "bottom" | "left" | "right" | "auto" | "top left" | "top right" | "right top" | "right bottom" | "bottom right" | "bottom left" | "left bottom" | "left top" = 'top left';
 }

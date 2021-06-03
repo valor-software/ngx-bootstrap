@@ -11,5 +11,5 @@ export class DemoDatePickerTooltipToSelectedDates {
   selectedDates : DatepickerDateTooltipText[] = [{ date: new Date('2020-08-08'), tooltipText: '8th of August'},
     { date: new Date('2020-08-09'), tooltipText: '9th of August'},
     { date: new Date('2020-08-07'), tooltipText: '7th of August'}
-  ]
+  ];
 }
