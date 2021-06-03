@@ -10,6 +10,7 @@ import {
   isSame
 } from 'ngx-bootstrap/chronos';
 import { BsDatepickerState } from '../reducer/bs-datepicker.state';
+import { BsCustomDates } from '../themes/bs/bs-custom-dates-view.component';
 
 export function getStartingDayOfCalendar(date: Date,
                                          options: { firstDayOfWeek?: number }): Date {
@@ -72,4 +73,41 @@ export function getYearsCalendarInitialDate(state: BsDatepickerState, calendarIn
   const model = state && state.yearsCalendarModel && state.yearsCalendarModel[calendarIndex];
 
   return model?.years[0] && model.years[0][0] && model.years[0][0].date;
+}
+
+export function checkRangesWithMaxDate(ranges?: BsCustomDates[], maxDate?: Date): BsCustomDates[] | void {
+  if (!ranges || !maxDate || (ranges && !ranges.length && !ranges[0].value)) return ranges;
+
+  ranges.forEach((item: BsCustomDates) => {
+    if (!item || !item.value) return ranges;
+
+    if (!(item.value instanceof Array && item.value.length) && !(item.value instanceof Date)) return ranges;
+
+    item.value = compareDateWithMaxDateHelper(item.value, maxDate);
+
+    return ranges;
+  });
+  return ranges;
+}
+
+export function checkBsValue(date?: Array<Date> | Date | [], maxDate?: Date): Array<Date> | Date | void {
+  if (!date || !maxDate || (date && date instanceof Array && !date.length)) return date;
+
+  return compareDateWithMaxDateHelper(date, maxDate);
+}
+
+function compareDateWithMaxDateHelper(date: Array<Date> | Date, maxDate: Date): Array<Date> | Date {
+  if (date instanceof Date && isAfter(date, maxDate, 'date')) {
+    return maxDate;
+  }
+  if (date instanceof Array) {
+    const editedValues = date.map(item => {
+      if (isAfter(item, maxDate, 'date')) {
+        item = maxDate;
+      }
+      return item;
+    });
+    return editedValues;
+  }
+  return date;
 }

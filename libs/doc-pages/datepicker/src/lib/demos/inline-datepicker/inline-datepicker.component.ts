@@ -11,7 +11,8 @@ export class DemoDatepickerInlineComponent {
   maxDate = new Date();
 
   constructor() {
-    this.maxDate.setDate(this.maxDate.getDate() + 7);
-    this.bsInlineRangeValue = [this.bsInlineValue, this.maxDate];
+    this.maxDate.setDate(this.maxDate.getDate() + 4);
+    this.bsInlineRangeValue = [this.bsInlineValue, new Date(new Date().setDate(new Date().getDate() +7))];
+    console.log(this.bsInlineRangeValue);
   }
 }

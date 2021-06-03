@@ -11,8 +11,8 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { ComponentLoaderFactory, ComponentLoader } from 'ngx-bootstrap/component-loader';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { DatepickerDateCustomClasses } from './models';
-import { BsCustomDates } from './themes/bs/bs-custom-dates-view.component';
-import { isAfter } from 'ngx-bootstrap/chronos';
+import { checkBsValue, checkRangesWithMaxDate } from './utils/bs-calendar-utils';
+
 @Directive({
   selector: '[bsDaterangepicker]',
   exportAs: 'bsDaterangepicker'
@@ -244,7 +244,8 @@ export class BsDaterangepickerDirective
       this._config,
       this.bsConfig,
       {
-        value: this._bsValue,
+        // value: checkBsValue(this._bsValue, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
+        value:this._bsValue,
         isDisabled: this.isDisabled,
         minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
         maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
@@ -252,44 +253,10 @@ export class BsDaterangepickerDirective
         dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
         datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
         datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled,
-        ranges: this.checkMaxRangeDate(this.bsConfig && this.bsConfig.ranges, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
+        ranges: checkRangesWithMaxDate(this.bsConfig && this.bsConfig.ranges, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
         maxDateRange: this.bsConfig && this.bsConfig.maxDateRange
       }
     );
-  }
-
-  /**
-   * Checks max date and dates in ranges
-   * if one of dates in ranges is later then maxDate
-   * this date becomes equal to maxDate
-   */
-
-  checkMaxRangeDate(ranges?: BsCustomDates[], maxDate?: Date): BsCustomDates[] | void {
-    if (!ranges || !maxDate || (ranges && !ranges.length && !ranges[0].value)) return ranges;
-    ranges.forEach((item: BsCustomDates) => {
-      if (item && item.value) {
-        if (item.value instanceof Array && item.value.length) {
-          const editedValues = item.value.map(date => {
-            if (isAfter(date, maxDate, 'date')) {
-              date = maxDate;
-            }
-            return date;
-          })
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          item.value = editedValues;
-          return ranges;
-        }
-        if (item.value instanceof Date) {
-            if (isAfter(item.value, maxDate, 'date')) {
-              item.value = maxDate;
-            }
-          return ranges;
-        }
-      }
-      return ranges;
-    })
-    return ranges;
   }
 
   /**
