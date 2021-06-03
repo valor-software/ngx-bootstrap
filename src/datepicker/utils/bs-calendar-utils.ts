@@ -76,35 +76,33 @@ export function getYearsCalendarInitialDate(state: BsDatepickerState, calendarIn
 }
 
 export function checkRangesWithMaxDate(ranges?: BsCustomDates[], maxDate?: Date): BsCustomDates[] | void {
-  if (!ranges || !maxDate || (ranges && !ranges.length && !ranges[0].value)) return ranges;
+  if (!ranges) return ranges;
+  if (!maxDate) return ranges;
+  if (!ranges.length && !ranges[0].value) return  ranges;
 
   ranges.forEach((item: BsCustomDates) => {
     if (!item || !item.value) return ranges;
-
-    if (!(item.value instanceof Array && item.value.length) && !(item.value instanceof Date)) return ranges;
-
+    if (item.value instanceof Date) return  ranges;
+    if (!(item.value instanceof Array && item.value.length) ) return ranges;
     item.value = compareDateWithMaxDateHelper(item.value, maxDate);
-
     return ranges;
   });
   return ranges;
 }
 
-export function checkBsValue(date?: Array<Date> | Date | [], maxDate?: Date): Array<Date> | Date | void {
-  if (!date || !maxDate || (date && date instanceof Array && !date.length)) return date;
-
+export function checkBsValue(date?: Array<Date> | Date | (Date|undefined)[], maxDate?: Date): Array<Date> | Date | (Date|undefined)[] |void {
+  if (!date) return date;
+  if (!maxDate) return date;
+  if (date instanceof Array && !date.length) return date;
+  if (date instanceof Date) return  date;
   return compareDateWithMaxDateHelper(date, maxDate);
 }
 
-function compareDateWithMaxDateHelper(date: Array<Date> | Date, maxDate: Date): Array<Date> | Date {
-  if (date instanceof Date && isAfter(date, maxDate, 'date')) {
-    return maxDate;
-  }
+function compareDateWithMaxDateHelper <T>(date: T, maxDate: Date): T | Date[] {
   if (date instanceof Array) {
     const editedValues = date.map(item => {
-      if (isAfter(item, maxDate, 'date')) {
-        item = maxDate;
-      }
+      if (!item) return  item;
+      if (isAfter(item, maxDate, 'date')) item = maxDate;
       return item;
     });
     return editedValues;

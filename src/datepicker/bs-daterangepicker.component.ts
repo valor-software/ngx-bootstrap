@@ -11,7 +11,7 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { ComponentLoaderFactory, ComponentLoader } from 'ngx-bootstrap/component-loader';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { DatepickerDateCustomClasses } from './models';
-import { checkRangesWithMaxDate } from './utils/bs-calendar-utils';
+import { checkBsValue, checkRangesWithMaxDate } from './utils/bs-calendar-utils';
 
 @Directive({
   selector: '[bsDaterangepicker]',
@@ -244,8 +244,7 @@ export class BsDaterangepickerDirective
       this._config,
       this.bsConfig,
       {
-        // value: checkBsValue(this._bsValue, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
-        value:this._bsValue,
+        value: checkBsValue(this._bsValue, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
         isDisabled: this.isDisabled,
         minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
         maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
