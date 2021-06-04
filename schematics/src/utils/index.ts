@@ -17,8 +17,10 @@ import { getFileContent } from '@schematics/angular/utility/test';
 import { updateWorkspace } from '@schematics/angular/utility/workspace';
 import * as ts from 'typescript';
 import { getProjectMainFile } from './project-main-file';
-
-export function addStyleToTarget(project: ProjectDefinition, targetName: string, host: Tree,
+import { WorkspaceProject, WorkspaceSchema } from '@schematics/angular/utility/workspace-models';
+import { getWorkspacePath } from '@nrwl/workspace';
+import { parse } from 'jsonc-parser';
+export function addStyleToTarget(project: WorkspaceProject, targetName: string, host: Tree,
                                  assetPath: string, workspace: WorkspaceDefinition) {
 
   const targetOptions = getProjectTargetOptions(project, targetName);
@@ -53,13 +55,20 @@ export function getProjectFromWorkspace(workspace: WorkspaceDefinition, projectN
   return project;
 }
 
-export function getProjectTargetOptions(project: ProjectDefinition, buildTarget: string) {
-  const targetConfig = project.targets.get(buildTarget);
-  if (targetConfig && targetConfig.options) {
-
-    return targetConfig.options;
+export function getProjectTargetOptions(project: WorkspaceProject, buildTarget: string) {
+  if (project.targets) {
+    const targetConfig = project.targets.get(buildTarget);
+    if (targetConfig && targetConfig.options) {
+      return targetConfig.options;
+    }
   }
 
+  if (project.architect) {
+    const targetConfig = project.architect[buildTarget];
+    if (targetConfig && targetConfig.options) {
+      return targetConfig.options;
+    }
+  }
   throw new Error(`Cannot determine project target configuration for: ${buildTarget}.`);
 }
 
@@ -120,7 +129,8 @@ export function removePackageJsonDependency(tree: Tree, dependencyName: string) 
   tree.overwrite('/package.json', JSON.stringify(packageContent, null, 2));
 }
 
-export function addModuleImportToRootModule(host: Tree, moduleName: string, src: string, project: ProjectDefinition) {
+export function addModuleImportToRootModule(host: Tree, moduleName: string, src: string, project: WorkspaceProject) {
+  console.log('in addModuleImportToRootModule', moduleName)
   const modulePath = getAppModulePath(host, getProjectMainFile(project));
   const moduleSource = getSourceFile(host, modulePath);
 
@@ -149,3 +159,27 @@ export function getSourceFile(host: Tree, path: string) {
 
   return ts.createSourceFile(path, content, ts.ScriptTarget.Latest, true);
 }
+
+export function getProjectFromWorkSpace(workspace: WorkspaceSchema, projectName?: string): WorkspaceProject {
+  const finalProjectName = projectName || workspace.defaultProject;
+  if (!finalProjectName) throw new Error(`Could not find project in workspace: ${projectName}`);
+  console.log('WORKSPACE!!!!!!!!!!!!!!!!!', workspace);
+  console.log('WORKSPACE PROJECTS!!!!!!!!!!!!!!!!!!!!!', workspace.projects);
+  console.log('PROJECTNAME', projectName)
+  console.log('finalProjectName', finalProjectName)
+
+  const project = workspace.projects[finalProjectName];
+  console.log('PROJECT UTILS', project)
+
+  return project;
+}
+
+export function getWorkspace (host: Tree) {
+  const path = getWorkspacePath(host);
+  const configBuffer = host.read(path);
+  if (configBuffer === null) {
+    throw new SchematicsException(`Could not find (${path})`);
+  }
+  const content = configBuffer.toString();
+  return parse(content);
+};

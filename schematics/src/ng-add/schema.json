@@ -4,7 +4,7 @@
   "title": "Ngx-bootstrap ng-add schematic",
   "type": "object",
   "properties": {
-    "ng-add": {
+    "project": {
       "type": "string",
       "description": "The name of the project.",
       "$default": {

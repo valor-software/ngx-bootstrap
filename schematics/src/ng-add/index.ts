@@ -6,18 +6,26 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { ProjectDefinition, WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
+// import { ProjectDefinition, WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
+import { WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
+
 import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
-import { getWorkspace } from '@schematics/angular/utility/workspace';
+// import { getWorkspace } from '@schematics/angular/utility/workspace';
 
-import { addModuleImportToRootModule, addPackageToPackageJson, addStyleToTarget } from '../utils';
+import {
+  addModuleImportToRootModule,
+  addPackageToPackageJson,
+  addStyleToTarget,
+  getProjectFromWorkSpace,
+  getWorkspace
+} from '../utils';
 import { hasNgModuleImport } from '../utils/ng-module-imports';
 import { getProjectMainFile } from '../utils/project-main-file';
 import { Schema } from './schema';
-
+import { WorkspaceProject } from '@schematics/angular/utility/workspace-models';
 const NGX_BOOTSTRAP_VERSION = '^6.2.0';
 const BOOTSTRAP_VERSION = '^4.5.0';
 
@@ -47,14 +55,15 @@ const components: { [key: string]: { moduleName: string; link: string; animated?
 };
 
 export default function addBsToPackage(options: Schema): Rule {
+  console.log('MODULE NAME', options)
   const componentName = options.component
     ? options.component
     : options['--'] && options['--'][1];
-  const { project } = options;
 
   return async (tree: Tree, context: SchematicContext) => {
-    const workspace = await getWorkspace(tree);
-    const projectWorkspace = workspace.projects.get(project);
+    const workspace = getWorkspace(tree) as any;
+    const projectName = options.project ? options.project : Object.keys(workspace.projects)[0];
+    const projectWorkspace = getProjectFromWorkSpace(workspace, projectName);
 
     addPackageJsonDependencies(tree, context);
     context.addTask(new NodePackageInstallTask());
@@ -64,7 +73,6 @@ export default function addBsToPackage(options: Schema): Rule {
     } else {
       insertBootstrapStyles(projectWorkspace, tree, workspace);
     }
-
     if (componentName) {
       addModuleOfComponent(projectWorkspace, tree, context, componentName);
     }
@@ -72,7 +80,7 @@ export default function addBsToPackage(options: Schema): Rule {
   };
 }
 
-function addModuleOfComponent(project: ProjectDefinition, host: Tree, context: SchematicContext, componentName: string): Rule {
+function addModuleOfComponent(project: WorkspaceProject, host: Tree, context: SchematicContext, componentName: string): Rule {
   if (!project) {
     return;
   }
@@ -80,10 +88,12 @@ function addModuleOfComponent(project: ProjectDefinition, host: Tree, context: S
   const appModulePath = getAppModulePath(host, getProjectMainFile(project));
 
   if (componentName && components[componentName]) {
+    console.log('added module', componentName)
     if (hasNgModuleImport(host, appModulePath, components[componentName].moduleName)) {
       context.logger.warn(`Could not set up ${components[componentName].moduleName} because it already imported.`);
       return;
     }
+    console.log('addModuleOfComponent missed if', componentName)
 
     addModuleImportToRootModule(
       host, `${components[componentName].moduleName}.forRoot()`, components[componentName].link, project
@@ -103,7 +113,7 @@ function addPackageJsonDependencies(host: Tree, context: SchematicContext) {
   });
 }
 
-function insertBootstrapStyles(project: ProjectDefinition, host: Tree, workspace: WorkspaceDefinition) {
+function insertBootstrapStyles(project: WorkspaceProject, host: Tree, workspace: WorkspaceDefinition) {
   if (!project) {
     return;
   }
@@ -111,7 +121,7 @@ function insertBootstrapStyles(project: ProjectDefinition, host: Tree, workspace
   addStyleToTarget(project, 'test', host, bootstrapStylePath, workspace);
 }
 
-function insertCommonStyles(project: ProjectDefinition, host: Tree, workspace: WorkspaceDefinition) {
+function insertCommonStyles(project: WorkspaceProject, host: Tree, workspace: WorkspaceDefinition) {
   if (!project) {
     return;
   }
@@ -121,7 +131,7 @@ function insertCommonStyles(project: ProjectDefinition, host: Tree, workspace: W
   insertBootstrapStyles(project, host, workspace);
 }
 
-function addAnimationModule(project: ProjectDefinition, host: Tree, context: SchematicContext, componentName: string): Rule {
+function addAnimationModule(project: WorkspaceProject, host: Tree, context: SchematicContext, componentName: string): Rule {
   if (!project || !(!componentName || components[componentName].animated)) {
     return;
   }
