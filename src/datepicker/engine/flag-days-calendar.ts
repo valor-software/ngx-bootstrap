@@ -126,7 +126,7 @@ export function flagDaysCalendar(
     (!!options.monthIndex && options.monthIndex > 0 && options.monthIndex !== options.displayMonths);
   formattedMonth.hideRightArrow =
     options.isDisabled ||
-    (!!options.monthIndex && !!options.displayMonths && options.monthIndex < options.displayMonths &&
+    ((!!options.monthIndex || options.monthIndex === 0) && !!options.displayMonths && options.monthIndex < options.displayMonths &&
       options.monthIndex + 1 !== options.displayMonths);
 
   formattedMonth.disableLeftArrow = isMonthDisabled(
@@ -139,7 +139,6 @@ export function flagDaysCalendar(
     options.minDate,
     options.maxDate
   );
-
   return formattedMonth;
 }
 

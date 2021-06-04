@@ -1175,6 +1175,22 @@
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
+          "builder": "@nrwl/workspace:run-commands",
+          "outputs": [
+            "node_modules/ngx-bootstrap"
+          ],
+          "options": {
+            "commands": [
+              "nx run ngx-bootstrap:ng-build:production",
+              "nx run ngx-bootstrap:build-sass",
+              "nx run ngx-bootstrap:docs"
+            ]
+          },
+          "configurations": {
+            "production": {}
+          }
+        },
+        "ng-build": {
           "builder": "@nrwl/angular:package",
           "options": {
             "tsConfig": "src/root/tsconfig.lib.json",
@@ -1217,6 +1233,22 @@
           "outputs": [],
           "options": {
             "command": "node ./scripts/docs/get-doc.js"
+          }
+        },
+        "version": {
+          "builder": "@nrwl/workspace:run-commands",
+          "outputs": [
+          ],
+          "options": {
+            "commands": [
+              "ts-node ./scripts/set-version.ts",
+              "conventional-changelog --preset angular --infile CHANGELOG.md --same-file --release-count 1",
+              "git commit -a --amend --no-edit"
+            ],
+            "parallel": false
+          },
+          "configurations": {
+            "production": {}
           }
         },
         "stats": {
