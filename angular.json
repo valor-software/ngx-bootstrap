@@ -1,5 +1,6 @@
 {
   "version": 1,
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
     "defaultCollection": "@nrwl/angular"
   },
@@ -1292,7 +1293,7 @@
             "outputPath": "dist/schematics",
             "tsConfig": "schematics/tsconfig.lib.json",
             "packageJson": "schematics/package.json",
-            "main": "schematics/src/index.ts",
+            "main": "schematics/src/ng-add/index.ts",
             "assets": [
               "schematics/*.md"
             ]

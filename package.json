@@ -3,6 +3,7 @@
   "version": "7.0.0-rc.1",
   "license": "MIT",
   "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
+  "schematics": "./schematics/src/collection.json",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/valor-software/ngx-bootstrap.git"
@@ -16,7 +17,7 @@
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
     "nx": "nx",
     "start": "ng serve",
-    "build": "ng build --with-deps",
+    "build": "ng build --with-deps && npm run build:schematics",
     "test": "nx run-many --all --target=test",
     "lint": "nx run-many --all --target=lint",
     "e2e": "ng e2e --with-deps",
@@ -41,7 +42,10 @@
     "cy:run:all": "nx e2e --config integrationFolder=cypress --spec '**/*_spec.ts'",
     "scully": "scully",
     "scully:serve": "scully serve",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build:schematics": "tsc -p schematics/tsconfig.json && npm run ngx:static",
+    "test:schematics": "ts-node --project schematics/tsconfig.spec.json node_modules/jasmine/bin/jasmine  schematics/src/**/*.spec.ts",
+    "ngx:static": "node scripts/schematics/copy-static-files.js"
   },
   "private": true,
   "keywords": [
@@ -55,6 +59,7 @@
   "dependencies": {
     "@angular-devkit/core": "11.2.0",
     "@angular-devkit/schematics": "11.2.0",
+    "@angular-devkit/schematics-cli": "12.0.3",
     "@angular/animations": "11.2.0",
     "@angular/common": "11.2.0",
     "@angular/compiler": "11.2.0",
@@ -72,6 +77,7 @@
     "@scullyio/ng-lib": "1.1.1",
     "@scullyio/scully": "1.1.1",
     "@stackblitz/sdk": "1.5.2",
+    "jasmine": "3.7.0",
     "ngx-page-scroll": "7.0.4",
     "ngx-page-scroll-core": "7.0.4",
     "rxjs": "6.6.3",
