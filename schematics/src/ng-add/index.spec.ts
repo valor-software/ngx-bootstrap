@@ -20,6 +20,7 @@ import * as path from 'path';
 import { WorkspaceProject } from '@schematics/angular/utility/workspace-models';
 import { getProjectMainFile } from '../utils/project-main-file';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
+import { checkComponentName } from './index';
 
 const defaultOptions = {
   component: 'carousel'
@@ -75,6 +76,8 @@ describe('ng-add schematic', () => {
     const workspace = await getWorkspace(tree);
     const project = getProjectFromWorkSpace(workspace);
     const content = tree.readContent(getAppModulePath(tree, getProjectMainFile(project)));
+    expect(checkComponentName(options.component)).toBeTruthy();
+    expect(content).toBeTruthy();
     expect(content.includes(`import { CarouselModule } from 'ngx-bootstrap/carousel'`)).toBeTruthy();
-  })
+  });
 });

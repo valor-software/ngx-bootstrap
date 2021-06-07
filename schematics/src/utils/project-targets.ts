@@ -10,13 +10,8 @@ import { WorkspaceProject } from '@schematics/angular/utility/workspace-models';
 
 /** Resolves the architect options for the build target of the given project. */
 export function getProjectTargetOptions(project: WorkspaceProject, buildTarget: string) {
-  if (
-    !project.architect ||
-    !project.architect[buildTarget] ||
-    !project.architect[buildTarget].options ||
-    !project.architect[buildTarget].options.main
-  ) {
+  if (!project?.architect || !project.architect[buildTarget]?.options?.main) {
     throw new Error(`Cannot determine project target configuration for: ${buildTarget}.`);
   }
-  return project.architect[buildTarget].options
+  return project.architect[buildTarget].options;
 }

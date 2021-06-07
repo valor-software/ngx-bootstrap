@@ -1262,7 +1262,7 @@
       }
     },
     "schematics": {
-      "root": "schematics",
+      "root": "schematics/src",
       "sourceRoot": "schematics/src",
       "projectType": "library",
       "architect": {
@@ -1287,7 +1287,7 @@
         "build": {
           "builder": "@nrwl/node:package",
           "outputs": [
-            "{options.outputPath}"
+            "dist/schematics"
           ],
           "options": {
             "outputPath": "dist/schematics",
@@ -1295,7 +1295,10 @@
             "packageJson": "schematics/package.json",
             "main": "schematics/src/ng-add/index.ts",
             "assets": [
-              "schematics/*.md"
+              "schematics/*.md",
+              "schematics/src/collection.json",
+              { "glob": "schema.json", "input": "schematics/src/ng-add", "output": "ng-add" }
+
             ]
           }
         }

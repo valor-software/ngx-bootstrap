@@ -124,9 +124,13 @@ function insertCommonStyles(project: WorkspaceProject, host: Tree, workspace: Wo
 }
 
 function addAnimationModule(project: WorkspaceProject, host: Tree, context: SchematicContext, componentName: string): Rule {
-  if (!project || !(!componentName || components[componentName].animated)) {
+  if (!project || !(!componentName || components[componentName]?.animated)) {
     return;
   }
 
   addModuleImportToRootModule(host, 'BrowserAnimationsModule', '@angular/platform-browser/animations', project);
+}
+
+export function checkComponentName(componentName: string): boolean {
+  return !!components[componentName];
 }
