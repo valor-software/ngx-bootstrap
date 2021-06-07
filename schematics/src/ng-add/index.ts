@@ -55,7 +55,7 @@ export default function addBsToPackage(options: Schema): Rule {
     ? options.component
     : options['--'] && options['--'][1];
 
-  return async (tree: Tree, context: SchematicContext) => {
+  return (tree: Tree, context: SchematicContext) => {
     const workspace = getWorkspace(tree) as any;
     const projectName = options.project ? options.project : Object.keys(workspace.projects)[0];
     const projectWorkspace = getProjectFromWorkSpace(workspace, projectName);
@@ -95,8 +95,8 @@ function addModuleOfComponent(project: WorkspaceProject, host: Tree, context: Sc
 
 function addPackageJsonDependencies(host: Tree, context: SchematicContext) {
   const dependencies: { name: string; version: string }[] = [
-    { name: 'bootstrap', version: NGX_BOOTSTRAP_VERSION },
-    { name: 'ngx-bootstrap', version: BOOTSTRAP_VERSION }
+    { name: 'bootstrap', version: BOOTSTRAP_VERSION},
+    { name: 'ngx-bootstrap', version: NGX_BOOTSTRAP_VERSION}
   ];
 
   dependencies.forEach(dependency => {

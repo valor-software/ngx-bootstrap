@@ -71,7 +71,6 @@ function sortObjectByKeys(obj: { [key: string]: string }) {
 }
 
 export function addPackageToPackageJson(host: Tree, pkg: string, version: string): Tree {
-
   if (host.exists('package.json')) {
     const sourceText = host.read('package.json')?.toString('utf-8');
     const json = JSON.parse(sourceText);
@@ -84,7 +83,6 @@ export function addPackageToPackageJson(host: Tree, pkg: string, version: string
       json.dependencies[pkg] = version;
       json.dependencies = sortObjectByKeys(json.dependencies);
     }
-
     host.overwrite('package.json', JSON.stringify(json, null, 2));
   }
 
