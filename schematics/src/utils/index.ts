@@ -118,7 +118,6 @@ export function removePackageJsonDependency(tree: Tree, dependencyName: string) 
 export function addModuleImportToRootModule(host: Tree, moduleName: string, src: string, project: WorkspaceProject) {
   const modulePath = getAppModulePath(host, getProjectMainFile(project));
   const moduleSource = getSourceFile(host, modulePath);
-
   if (!moduleSource) {
     throw new SchematicsException(`Module not found: ${modulePath}`);
   }
@@ -161,4 +160,4 @@ export function getWorkspace (host: Tree) {
   }
   const content = configBuffer.toString();
   return parse(content);
-};
+}

@@ -18,7 +18,7 @@
     "nx": "nx",
     "start": "ng serve",
     "build": "ng build --with-deps && npm run build:schematics",
-    "test": "nx run-many --all --target=test",
+    "test": "nx run-many --all --target=test && npm run test:schematics",
     "lint": "nx run-many --all --target=lint",
     "e2e": "ng e2e --with-deps",
     "postversion": "nx run ngx-bootstrap:version",

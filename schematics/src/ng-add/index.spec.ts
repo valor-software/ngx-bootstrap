@@ -5,7 +5,6 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 import { getFileContent } from '@schematics/angular/utility/test';
 import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
 import { Tree } from '@angular-devkit/schematics';
@@ -19,6 +18,12 @@ import {
 
 import * as path from 'path';
 import { WorkspaceProject } from '@schematics/angular/utility/workspace-models';
+import { getProjectMainFile } from '../utils/project-main-file';
+import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
+
+const defaultOptions = {
+  component: 'carousel'
+};
 
 export function expectProjectStyleFile(project: WorkspaceProject, filePath: string) {
   expect(getProjectTargetOptions(project, 'build').styles).toContain(filePath);
@@ -61,4 +66,15 @@ describe('ng-add schematic', () => {
 
     expectProjectStyleFile(project, './node_modules/bootstrap/dist/css/bootstrap.min.css');
   });
+
+  it('should import a specific module', async() => {
+    const options = {...defaultOptions};
+    const tree = await runner
+      .runSchematicAsync('ng-add', options, appTree)
+      .toPromise();
+    const workspace = await getWorkspace(tree);
+    const project = getProjectFromWorkSpace(workspace);
+    const content = tree.readContent(getAppModulePath(tree, getProjectMainFile(project)));
+    expect(content.includes(`import { CarouselModule } from 'ngx-bootstrap/carousel'`)).toBeTruthy();
+  })
 });
