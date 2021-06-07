@@ -6,15 +6,11 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-// import { ProjectDefinition, WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
 import { WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
 
 import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
-
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
-// import { getWorkspace } from '@schematics/angular/utility/workspace';
-
 import {
   addModuleImportToRootModule,
   addPackageToPackageJson,
@@ -55,7 +51,6 @@ const components: { [key: string]: { moduleName: string; link: string; animated?
 };
 
 export default function addBsToPackage(options: Schema): Rule {
-  console.log('MODULE NAME', options)
   const componentName = options.component
     ? options.component
     : options['--'] && options['--'][1];
@@ -88,13 +83,10 @@ function addModuleOfComponent(project: WorkspaceProject, host: Tree, context: Sc
   const appModulePath = getAppModulePath(host, getProjectMainFile(project));
 
   if (componentName && components[componentName]) {
-    console.log('added module', componentName)
     if (hasNgModuleImport(host, appModulePath, components[componentName].moduleName)) {
       context.logger.warn(`Could not set up ${components[componentName].moduleName} because it already imported.`);
       return;
     }
-    console.log('addModuleOfComponent missed if', componentName)
-
     addModuleImportToRootModule(
       host, `${components[componentName].moduleName}.forRoot()`, components[componentName].link, project
     );

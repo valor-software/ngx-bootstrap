@@ -9,18 +9,18 @@
 import { getFileContent } from '@schematics/angular/utility/test';
 import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
 import { Tree } from '@angular-devkit/schematics';
-import { getWorkspace } from '@schematics/angular/utility/workspace';
 
 import {
   createTestApp,
-  getProjectFromWorkspace, getProjectTargetOptions,
-  removePackageJsonDependency
+  getProjectFromWorkSpace, getProjectTargetOptions,
+  removePackageJsonDependency,
+  getWorkspace
 } from '../utils';
 
 import * as path from 'path';
-import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
+import { WorkspaceProject } from '@schematics/angular/utility/workspace-models';
 
-export function expectProjectStyleFile(project: ProjectDefinition, filePath: string) {
+export function expectProjectStyleFile(project: WorkspaceProject, filePath: string) {
   expect(getProjectTargetOptions(project, 'build').styles).toContain(filePath);
 }
 
@@ -57,7 +57,7 @@ describe('ng-add schematic', () => {
       .toPromise();
 
     const workspace = await getWorkspace(tree);
-    const project = getProjectFromWorkspace(workspace);
+    const project = getProjectFromWorkSpace(workspace);
 
     expectProjectStyleFile(project, './node_modules/bootstrap/dist/css/bootstrap.min.css');
   });

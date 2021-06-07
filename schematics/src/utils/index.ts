@@ -7,7 +7,7 @@
  */
 
 import { JsonArray } from '@angular-devkit/core';
-import { ProjectDefinition, WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
+import { WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
 import { SchematicsException, Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
 import { addImportToModule } from '@schematics/angular/utility/ast-utils';
@@ -41,18 +41,6 @@ export function addStyleToTarget(project: WorkspaceProject, targetName: string, 
 
   // host.overwrite('angular.json', JSON.stringify(workspace, null, 2));
   return updateWorkspace(workspace);
-}
-
-export function getProjectFromWorkspace(workspace: WorkspaceDefinition, projectName?: string): ProjectDefinition {
-
-  const _projectName = projectName || workspace.extensions.defaultProject?.toString();
-  const project: ProjectDefinition = workspace.projects.get(_projectName);
-
-  if (!project) {
-    throw new Error(`Could not find project in workspace: ${projectName}`);
-  }
-
-  return project;
 }
 
 export function getProjectTargetOptions(project: WorkspaceProject, buildTarget: string) {
@@ -130,7 +118,6 @@ export function removePackageJsonDependency(tree: Tree, dependencyName: string) 
 }
 
 export function addModuleImportToRootModule(host: Tree, moduleName: string, src: string, project: WorkspaceProject) {
-  console.log('in addModuleImportToRootModule', moduleName)
   const modulePath = getAppModulePath(host, getProjectMainFile(project));
   const moduleSource = getSourceFile(host, modulePath);
 
@@ -163,14 +150,8 @@ export function getSourceFile(host: Tree, path: string) {
 export function getProjectFromWorkSpace(workspace: WorkspaceSchema, projectName?: string): WorkspaceProject {
   const finalProjectName = projectName || workspace.defaultProject;
   if (!finalProjectName) throw new Error(`Could not find project in workspace: ${projectName}`);
-  console.log('WORKSPACE!!!!!!!!!!!!!!!!!', workspace);
-  console.log('WORKSPACE PROJECTS!!!!!!!!!!!!!!!!!!!!!', workspace.projects);
-  console.log('PROJECTNAME', projectName)
-  console.log('finalProjectName', finalProjectName)
-
   const project = workspace.projects[finalProjectName];
-  console.log('PROJECT UTILS', project)
-
+  if (!project) throw new Error(`Could not find project in workspace: ${projectName}`);
   return project;
 }
 
