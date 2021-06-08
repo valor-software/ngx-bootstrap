@@ -40,7 +40,18 @@ import { BsDatepickerViewMode, BsNavigationDirection, NavigationViewModel } from
             type="button"
             (click)="navTo(false)"><span>&rsaquo;</span>
     </button>
-  `
+  `,
+  styles: [
+    `
+    button.previous span {
+      transform: translate(-1px, -1px);
+    }
+
+    button.next span {
+      transform: translate(1px, -1px);
+    }
+    `
+  ]
 })
 export class BsDatepickerNavigationViewComponent {
   @Input() calendar!: NavigationViewModel;
