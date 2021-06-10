@@ -1287,7 +1287,7 @@
         "build": {
           "builder": "@nrwl/node:package",
           "outputs": [
-            "dist/schematics"
+            "{options.outputPath}"
           ],
           "options": {
             "outputPath": "dist/schematics",
@@ -1298,7 +1298,6 @@
               "schematics/*.md",
               "schematics/src/collection.json",
               { "glob": "schema.json", "input": "schematics/src/ng-add", "output": "ng-add" }
-
             ]
           }
         }

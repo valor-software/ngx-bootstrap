@@ -17,7 +17,12 @@ import { getFileContent } from '@schematics/angular/utility/test';
 import { updateWorkspace } from '@schematics/angular/utility/workspace';
 import * as ts from 'typescript';
 import { getProjectMainFile } from './project-main-file';
-import { WorkspaceProject, WorkspaceSchema } from '@schematics/angular/utility/workspace-models';
+import {
+  BrowserBuilderOptions,
+  TestBuilderOptions,
+  WorkspaceProject,
+  WorkspaceSchema
+} from '@schematics/angular/utility/workspace-models';
 import { getWorkspacePath } from '@nrwl/workspace';
 import { parse } from 'jsonc-parser';
 export function addStyleToTarget(project: WorkspaceProject, targetName: string, host: Tree,
@@ -43,20 +48,15 @@ export function addStyleToTarget(project: WorkspaceProject, targetName: string, 
   return updateWorkspace(workspace);
 }
 
-export function getProjectTargetOptions(project: WorkspaceProject, buildTarget: string) {
-  if (project.targets) {
-    const targetConfig = project.targets.get(buildTarget);
-    if (targetConfig && targetConfig.options) {
-      return targetConfig.options;
-    }
+export function getProjectTargetOptions(project: WorkspaceProject, buildTarget: string): BrowserBuilderOptions | TestBuilderOptions{
+  if (project?.targets?.get(buildTarget)?.options) {
+    return project.targets.get(buildTarget).options;
   }
 
-  if (project.architect) {
-    const targetConfig = project.architect[buildTarget];
-    if (targetConfig && targetConfig.options) {
-      return targetConfig.options;
-    }
+  if (project?.architect && project.architect[buildTarget]?.options) {
+    return project.architect[buildTarget].options
   }
+
   throw new Error(`Cannot determine project target configuration for: ${buildTarget}.`);
 }
 
@@ -146,9 +146,15 @@ export function getSourceFile(host: Tree, path: string) {
 
 export function getProjectFromWorkSpace(workspace: WorkspaceSchema, projectName?: string): WorkspaceProject {
   const finalProjectName = projectName || workspace.defaultProject;
-  if (!finalProjectName) throw new Error(`Could not find project in workspace: ${projectName}`);
+  if (!finalProjectName) {
+    throw new Error(`Could not find project in workspace: ${projectName}`);
+  }
+
   const project = workspace.projects[finalProjectName];
-  if (!project) throw new Error(`Could not find project in workspace: ${projectName}`);
+  if (!project) {
+    throw new Error(`Could not find project in workspace: ${projectName}`);
+  }
+
   return project;
 }
 
@@ -158,6 +164,7 @@ export function getWorkspace (host: Tree) {
   if (configBuffer === null) {
     throw new SchematicsException(`Could not find (${path})`);
   }
+
   const content = configBuffer.toString();
   return parse(content);
 }
