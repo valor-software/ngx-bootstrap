@@ -123,7 +123,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   }
 
   monthSelectHandler(day: CalendarCellViewModel): void {
-    if (!day) {
+    if (!day || day.isDisabled) {
       return;
     }
 
@@ -149,7 +149,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   }
 
   yearSelectHandler(day: CalendarCellViewModel): void {
-    if (!day) {
+    if (!day || day.isDisabled) {
       return;
     }
 
@@ -214,7 +214,9 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   }
 
   setRangeOnCalendar(dates: BsCustomDates): void {
-    this._rangeStack = (dates === null) ? [] : (dates.value instanceof Date ? [dates.value] : dates.value);
+    if (dates) {
+      this._rangeStack = dates.value instanceof Date ? [dates.value] : dates.value;
+    }
     this._store.dispatch(this._actions.selectRange(this._rangeStack));
   }
 
