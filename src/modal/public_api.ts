@@ -6,3 +6,4 @@ export { ModalOptions, MODAL_CONFIG_DEFAULT_OVERRIDE } from './modal-options.cla
 export { ModalDirective } from './modal.directive';
 export { ModalModule } from './modal.module';
 export { BsModalService } from './bs-modal.service';
+export { CloseInterceptorFn } from './models';

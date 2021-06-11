@@ -42,7 +42,7 @@
              (wheel)="prevDef($event);changeHours(hourStep * wheelSign($event), 'wheel')"
              (keydown.ArrowUp)="changeHours(hourStep, 'key')"
              (keydown.ArrowDown)="changeHours(-hourStep, 'key')"
-             (change)="updateHours($event.target.value)" [attr.aria-label]="labelHours"></td>
+             (change)="updateHours($event.target)" [attr.aria-label]="labelHours"></td>
     <!-- divider -->
     <td *ngIf="showMinutes">&nbsp;:&nbsp;</td>
     <!-- minutes -->
@@ -57,7 +57,7 @@
              (wheel)="prevDef($event);changeMinutes(minuteStep * wheelSign($event), 'wheel')"
              (keydown.ArrowUp)="changeMinutes(minuteStep, 'key')"
              (keydown.ArrowDown)="changeMinutes(-minuteStep, 'key')"
-             (change)="updateMinutes($event.target.value)" [attr.aria-label]="labelMinutes">
+             (change)="updateMinutes($event.target)" [attr.aria-label]="labelMinutes">
     </td>
     <!-- divider -->
     <td *ngIf="showSeconds">&nbsp;:&nbsp;</td>
@@ -73,7 +73,7 @@
              (wheel)="prevDef($event);changeSeconds(secondsStep * wheelSign($event), 'wheel')"
              (keydown.ArrowUp)="changeSeconds(secondsStep, 'key')"
              (keydown.ArrowDown)="changeSeconds(-secondsStep, 'key')"
-             (change)="updateSeconds($event.target.value)" [attr.aria-label]="labelSeconds">
+             (change)="updateSeconds($event.target)" [attr.aria-label]="labelSeconds">
     </td>
     <!-- space between -->
     <td *ngIf="showMeridian">&nbsp;&nbsp;&nbsp;</td>

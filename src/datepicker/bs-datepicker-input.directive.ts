@@ -4,6 +4,8 @@ import {
   ElementRef,
   forwardRef,
   Host,
+  OnDestroy,
+  OnInit,
   Provider,
   Renderer2
 } from '@angular/core';
@@ -30,24 +32,24 @@ import {
 
 import { BsDatepickerDirective } from './bs-datepicker.component';
 import { BsLocaleService } from './bs-locale.service';
+import { Subscription } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
 
 const BS_DATEPICKER_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-  /* tslint:disable-next-line: no-use-before-declare */
-  useExisting: forwardRef(() => BsDatepickerInputDirective),
+    useExisting: forwardRef(() => BsDatepickerInputDirective),
   multi: true
 };
 
 const BS_DATEPICKER_VALIDATOR: Provider = {
   provide: NG_VALIDATORS,
-  /* tslint:disable-next-line: no-use-before-declare */
-  useExisting: forwardRef(() => BsDatepickerInputDirective),
+    useExisting: forwardRef(() => BsDatepickerInputDirective),
   multi: true
 };
 
 @Directive({
   selector: `input[bsDatepicker]`,
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '(change)': 'onChange($event)',
     '(keyup.esc)': 'hide()',
@@ -57,20 +59,21 @@ const BS_DATEPICKER_VALIDATOR: Provider = {
   providers: [BS_DATEPICKER_VALUE_ACCESSOR, BS_DATEPICKER_VALIDATOR]
 })
 export class BsDatepickerInputDirective
-  implements ControlValueAccessor, Validator {
+  implements ControlValueAccessor, Validator, OnInit, OnDestroy {
   private _onChange = Function.prototype;
   private _onTouched = Function.prototype;
-  /* tslint:disable-next-line: no-unused-variable */
-  private _validatorChange = Function.prototype;
-  private _value: Date;
+    private _validatorChange = Function.prototype;
+  private _value?: Date;
+  private _subs = new Subscription();
 
   constructor(@Host() private _picker: BsDatepickerDirective,
               private _localeService: BsLocaleService,
               private _renderer: Renderer2,
               private _elRef: ElementRef,
-              private changeDetection: ChangeDetectorRef) {
-    // update input value on datepicker value update
-    this._picker.bsValueChange.subscribe((value: Date) => {
+              private changeDetection: ChangeDetectorRef) {}
+
+  ngOnInit() {
+    const setBsValue = (value: Date) => {
       this._setInputValue(value);
       if (this._value !== value) {
         this._value = value;
@@ -78,26 +81,43 @@ export class BsDatepickerInputDirective
         this._onTouched();
       }
       this.changeDetection.markForCheck();
-    });
+    };
+
+    // if value set via [bsValue] it will not get into value change
+    if (this._picker._bsValue) {
+      setBsValue(this._picker._bsValue);
+    }
+
+    // update input value on datepicker value update
+    this._subs.add(
+      this._picker.bsValueChange.subscribe(setBsValue)
+    );
 
     // update input value on locale change
-    this._localeService.localeChange.subscribe(() => {
-      this._setInputValue(this._value);
-    });
+    this._subs.add(
+      this._localeService.localeChange.subscribe(() => {
+        this._setInputValue(this._value);
+      })
+    );
 
-    // update input value on format change
+    this._subs.add(
     this._picker.dateInputFormat$.pipe(distinctUntilChanged()).subscribe(() => {
       this._setInputValue(this._value);
-    });
+    })
+  );
+}
+
+  ngOnDestroy() {
+    this._subs.unsubscribe();
   }
 
-  onKeydownEvent(event) {
+  onKeydownEvent(event: KeyboardEvent): void {
     if (event.keyCode === 13 || event.code === 'Enter') {
       this.hide();
     }
   }
 
-  _setInputValue(value: Date): void {
+  _setInputValue(value?: Date): void {
     const initialDate = !value ? ''
       : formatDate(value, this._picker._config.dateInputFormat, this._localeService.currentLocale);
 
@@ -105,7 +125,7 @@ export class BsDatepickerInputDirective
   }
 
   onChange(event: Event) {
-    /* tslint:disable-next-line: no-any*/
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     this.writeValue((event.target as any).value);
     this._onChange(this._value);
     if (this._picker._config.returnFocusToInput) {
@@ -117,8 +137,7 @@ export class BsDatepickerInputDirective
   validate(c: AbstractControl): ValidationErrors | null {
     const _value: Date | string = c.value;
 
-    /* tslint:disable-next-line: prefer-switch */
-    if (_value === null || _value === undefined || _value === '') {
+        if (_value === null || _value === undefined || _value === '') {
       return null;
     }
 
@@ -140,6 +159,8 @@ export class BsDatepickerInputDirective
         return { bsDate: { maxDate: this._picker.maxDate } };
       }
     }
+
+    return null;
   }
 
   registerOnValidatorChange(fn: () => void): void {
@@ -148,7 +169,7 @@ export class BsDatepickerInputDirective
 
   writeValue(value: Date | string) {
     if (!value) {
-      this._value = null;
+      this._value = void 0;
     } else {
       const _localeKey = this._localeService.currentLocale;
       const _locale = getLocale(_localeKey);

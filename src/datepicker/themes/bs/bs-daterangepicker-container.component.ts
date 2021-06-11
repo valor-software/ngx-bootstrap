@@ -14,6 +14,7 @@ import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
 import { datepickerAnimation } from '../../datepicker-animations';
 import { BsCustomDates } from './bs-custom-dates-view.component';
+import { dayInMilliseconds } from '../../reducer/_defaults';
 
 @Component({
   selector: 'bs-daterangepicker-container',
@@ -30,7 +31,7 @@ import { BsCustomDates } from './bs-custom-dates-view.component';
 export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractComponent
   implements OnInit, OnDestroy {
   set value(value: Date[]) {
-    this._effects.setRangeValue(value);
+    this._effects?.setRangeValue(value);
   }
 
   valueChange = new EventEmitter<Date[]>();
@@ -52,7 +53,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     super();
     this._effects = _effects;
 
-    this.customRanges = this._config.ranges;
+    this.customRanges = this._config.ranges || [];
     this.customRangeBtnLbl = this._config.customRangeButtonLabel;
 
     _renderer.setStyle(_element.nativeElement, 'display', 'block');
@@ -65,10 +66,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
       allowedPositions: ['top', 'bottom']
     });
 
-    this._positionService.event$
-      .pipe(
-        take(1)
-      )
+    this._positionService.event$?.pipe(take(1))
       .subscribe(() => {
         this._positionService.disable();
 
@@ -82,8 +80,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
       });
     this.containerClass = this._config.containerClass;
     this.isOtherMonthsActive = this._config.selectFromOtherMonth;
-    this._effects
-      .init(this._store)
+    this._effects?.init(this._store)
       // intial state options
       // todo: fix this, split configs
       .setOptions(this._config)
@@ -98,9 +95,9 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     this._subs.push(
       this._store
         .select(state => state.selectedRange)
-        .subscribe(date => {
-          this.valueChange.emit(date);
-          this.chosenRange = date;
+        .subscribe(dateRange => {
+          this.valueChange.emit(dateRange);
+          this.chosenRange = dateRange || [];
         })
     );
   }
@@ -126,7 +123,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   }
 
   monthSelectHandler(day: CalendarCellViewModel): void {
-    if (!day) {
+    if (!day || day.isDisabled) {
       return;
     }
 
@@ -152,7 +149,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   }
 
   yearSelectHandler(day: CalendarCellViewModel): void {
-    if (!day) {
+    if (!day || day.isDisabled) {
       return;
     }
 
@@ -190,6 +187,10 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
           :  [day.date];
     }
 
+    if (this._config.maxDateRange) {
+      this.setMaxDateRangeOnCalendar(day.date);
+    }
+
     if (this._rangeStack.length === 0) {
       this._rangeStack = [day.date];
 
@@ -209,18 +210,29 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     for (const sub of this._subs) {
       sub.unsubscribe();
     }
-    this._effects.destroy();
+    this._effects?.destroy();
   }
 
   setRangeOnCalendar(dates: BsCustomDates): void {
-    this._rangeStack = (dates === null) ? [] : (dates.value instanceof Date ? [dates.value] : dates.value);
+    if (dates) {
+      this._rangeStack = dates.value instanceof Date ? [dates.value] : dates.value;
+    }
     this._store.dispatch(this._actions.selectRange(this._rangeStack));
   }
 
   setMaxDateRangeOnCalendar(currentSelection: Date): void {
-    const maxDateRange = new Date(currentSelection);
-    maxDateRange.setDate(currentSelection.getDate() + this._config.maxDateRange);
-    this._effects.setMaxDate(maxDateRange);
-  }
+    let maxDateRange = new Date(currentSelection);
 
+    if (this._config.maxDate) {
+      const maxDateValueInMilliseconds = this._config.maxDate.getTime();
+      const maxDateRangeInMilliseconds = currentSelection.getTime() + ((this._config.maxDateRange || 0) * dayInMilliseconds );
+      maxDateRange = maxDateRangeInMilliseconds > maxDateValueInMilliseconds ?
+        new Date(this._config.maxDate) :
+        new Date(maxDateRangeInMilliseconds);
+    } else {
+      maxDateRange.setDate(currentSelection.getDate() + (this._config.maxDateRange || 0));
+    }
+
+    this._effects?.setMaxDate(maxDateRange);
+  }
 }

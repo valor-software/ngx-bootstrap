@@ -23,6 +23,7 @@ import {
 @Directive({
   selector: '[collapse]',
   exportAs: 'bs-collapse',
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[class.collapse]': 'true'
   }
@@ -84,14 +85,15 @@ export class CollapseDirective implements AfterViewChecked {
   }
 
   private _display = 'block';
-  private _factoryCollapseAnimation: AnimationFactory;
-  private _factoryExpandAnimation: AnimationFactory;
-  private _isAnimationDone: boolean;
-  private _player: AnimationPlayer;
+  private _isAnimationDone?: boolean;
+  private _player?: AnimationPlayer;
   private _stylesLoaded = false;
 
   private _COLLAPSE_ACTION_NAME = 'collapse';
   private _EXPAND_ACTION_NAME = 'expand';
+
+  private readonly _factoryCollapseAnimation: AnimationFactory;
+  private readonly _factoryExpandAnimation: AnimationFactory;
 
   constructor(
     private _el: ElementRef,
@@ -187,6 +189,6 @@ export class CollapseDirective implements AfterViewChecked {
     this._player = factoryAnimation.create(this._el.nativeElement);
     this._player.play();
 
-    return (callback: () => void) => this._player.onDone(callback);
+    return (callback: () => void) => this._player?.onDone(callback);
   }
 }
