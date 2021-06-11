@@ -92,6 +92,7 @@
     "@ngneat/spectator": "7.0.0",
     "@nrwl/cli": "11.2.12",
     "@nrwl/cypress": "11.2.12",
+    "@nrwl/devkit": "11.2.12",
     "@nrwl/eslint-plugin-nx": "11.2.12",
     "@nrwl/jest": "11.2.12",
     "@nrwl/linter": "11.2.12",
