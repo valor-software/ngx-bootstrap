@@ -58,7 +58,9 @@
               "apps/ngx-bootstrap-docs/src/assets/css/style.scss",
               "apps/ngx-bootstrap-docs/src/assets/css/prettify-angulario.css"
             ],
-            "scripts": []
+            "scripts": [
+
+            ]
           },
           "configurations": {
             "production": {
@@ -1184,7 +1186,8 @@
             "commands": [
               "nx run ngx-bootstrap:ng-build:production",
               "nx run ngx-bootstrap:build-sass",
-              "nx run ngx-bootstrap:docs"
+              "nx run ngx-bootstrap:docs",
+              "nx run ngx-bootstrap:static-files"
             ]
           },
           "configurations": {
@@ -1236,6 +1239,13 @@
             "command": "node ./scripts/docs/get-doc.js"
           }
         },
+        "static-files": {
+          "builder": "@nrwl/workspace:run-commands",
+          "outputs": [],
+          "options": {
+            "command": "node ./scripts/copy-static.file.js"
+          }
+        },
         "version": {
           "builder": "@nrwl/workspace:run-commands",
           "outputs": [
@@ -1262,15 +1272,15 @@
       }
     },
     "schematics": {
-      "root": "schematics/src",
-      "sourceRoot": "schematics/src",
+      "root": "src/schematics/src",
+      "sourceRoot": "src/schematics/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "schematics/**/*.ts"
+              "src/schematics/**/*.ts"
             ]
           }
         },
@@ -1280,7 +1290,7 @@
             "coverage/schematics"
           ],
           "options": {
-            "jestConfig": "schematics/jest.config.js",
+            "jestConfig": "src/schematics/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -1290,14 +1300,14 @@
             "{options.outputPath}"
           ],
           "options": {
-            "outputPath": "dist/schematics",
-            "tsConfig": "schematics/tsconfig.lib.json",
-            "packageJson": "schematics/package.json",
-            "main": "schematics/src/ng-add/index.ts",
+            "outputPath": "node_modules/ngx-bootstrap/schematics",
+            "tsConfig": "src/schematics/tsconfig.lib.json",
+            "packageJson": "src/schematics/package.json",
+            "main": "src/schematics/src/ng-add/index.ts",
             "assets": [
-              "schematics/*.md",
-              "schematics/src/collection.json",
-              { "glob": "schema.json", "input": "schematics/src/ng-add", "output": "ng-add" }
+              "src/schematics/*.md",
+              "src/schematics/src/collection.json",
+              { "glob": "schema.json", "input": "src/schematics/src/ng-add", "output": "ng-add" }
             ]
           }
         }
