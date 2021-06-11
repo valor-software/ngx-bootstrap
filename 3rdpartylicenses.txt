@@ -131,7 +131,47 @@ SOFTWARE.
 
 ngx-bootstrap/accordion
 
+ngx-bootstrap/alert
+
+ngx-bootstrap/buttons
+
+ngx-bootstrap/carousel
+
+ngx-bootstrap/collapse
+
+ngx-bootstrap/component-loader
+
 ngx-bootstrap/datepicker
+
+ngx-bootstrap/dropdown
+
+ngx-bootstrap/focus-trap
+
+ngx-bootstrap/mini-ngrx
+
+ngx-bootstrap/modal
+
+ngx-bootstrap/pagination
+
+ngx-bootstrap/popover
+
+ngx-bootstrap/positioning
+
+ngx-bootstrap/progressbar
+
+ngx-bootstrap/rating
+
+ngx-bootstrap/sortable
+
+ngx-bootstrap/tabs
+
+ngx-bootstrap/timepicker
+
+ngx-bootstrap/tooltip
+
+ngx-bootstrap/typeahead
+
+ngx-bootstrap/utils
 
 ngx-page-scroll
 MIT
