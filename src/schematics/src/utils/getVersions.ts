@@ -1,8 +1,7 @@
-import { readJson} from 'fs-extra';
-import path = require("path");
 import { normalize } from '@angular-devkit/core';
+import { Tree } from '@angular-devkit/schematics';
 
-const NGX_BOOTSTRAP_VERSION = '^6.2.0';
+let NGX_BOOTSTRAP_VERSION = '7.0.0-rc.1';
 const BOOTSTRAP_VERSION = '^4.5.0';
 const dependencies = [
   { name: 'bootstrap', version: BOOTSTRAP_VERSION},
@@ -13,34 +12,35 @@ const defaultStyleFileRegex = /styles\.(c|le|sc|sa)ss/;
 // Regular expression that matches all files that have a proper stylesheet extension
 const validStyleFileRegex = /\.(c|le|sc|sa)ss/;
 
-export async function getVersion() {
-  const directory = path.join(__dirname, '../');
-  const packageFile = `${directory}/package.json`
-  return await readJson(packageFile).then(json => json.version);
+export function getDependencies(host: Tree): { name: string, version: string }[] {
+  if (host.exists('node_modules/ngx-bootstrap/schematics/package.json')) {
+    const sourceText = host.read('node_modules/ngx-bootstrap/schematics/package.json')?.toString('utf-8');
+    const json = JSON.parse(sourceText);
+    if (json.version) {
+      NGX_BOOTSTRAP_VERSION = json.version;
+      return updateVersionDependencies(json.version, 'ngx-bootstrap');
+    }
+  }
+  return dependencies;
 }
 
-export async function getDependencies(): Promise<Array<{ name: string; version: string }>> {
-  return getVersion().then(res => {
-    const updatedDependencies = dependencies.map(dep => {
-      if (dep.name === 'ngx-bootstrap') {
-        dep.version = res;
-      }
-      return dep;
-    });
-    return updatedDependencies;
-  }, error => {
-    return dependencies;
+function updateVersionDependencies(version: string, name: string): { name: string, version: string }[] {
+  dependencies.find(dep => {
+    if (dep.name === name) {
+      dep.version = version;
+    }
   });
+  return  dependencies;
 }
 
 export function getProjectStyleFile(existingStyles: string[], extension?: string): string | null {
   const defaultExtension = existingStyles.find((file) => extension ? file === `styles.${extension}` : defaultStyleFileRegex.test(file));
   if (defaultExtension) {
-    return defaultExtension
-  }
+    return defaultExtension;
+  };
 
   const fallbackStylePath = existingStyles.find((file) => extension ? file.endsWith(`.${extension}`) : validStyleFileRegex.test(file));
   if (fallbackStylePath) {
     return normalize(fallbackStylePath);
-  }
+  };
 }

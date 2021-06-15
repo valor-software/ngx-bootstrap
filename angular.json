@@ -1220,6 +1220,13 @@
             "passWithNoTests": true
           }
         },
+        "build-sass": {
+          "builder": "@nrwl/workspace:run-commands",
+          "outputs": [],
+          "options": {
+            "command": "sass src:node_modules/ngx-bootstrap --source-map"
+          }
+        },
         "docs": {
           "builder": "@nrwl/workspace:run-commands",
           "outputs": [],
@@ -1241,13 +1248,6 @@
           },
           "configurations": {
             "production": {}
-          }
-        },
-        "datepicker-styles": {
-          "builder": "@nrwl/workspace:run-commands",
-          "outputs": [],
-          "options": {
-            "command": "node ./scripts/copy-datepicker-styles.js"
           }
         },
         "stats": {
