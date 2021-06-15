@@ -3923,6 +3923,13 @@ export const ngdoc: any = {
     "methods": [],
     "properties": []
   },
+  "availablePaths": {
+    "fileName": "src/schematics/src/utils/index.ts",
+    "className": "availablePaths",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
   "DraggableItemService": {
     "fileName": "src/sortable/draggable-item.service.ts",
     "className": "DraggableItemService",

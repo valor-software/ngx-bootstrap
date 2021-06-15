@@ -22,13 +22,24 @@ import { hasNgModuleImport } from '../utils/ng-module-imports';
 import { getProjectMainFile } from '../utils/project-main-file';
 import { Schema } from './schema';
 import { WorkspaceProject } from '@schematics/angular/utility/workspace-models';
-const NGX_BOOTSTRAP_VERSION = '^6.2.0';
-const BOOTSTRAP_VERSION = '^4.5.0';
+import { getDependencies } from '../utils/getVersions';
 
-const bootstrapStylePath = `./node_modules/bootstrap/dist/css/bootstrap.min.css`;
-const datePickerStylePath = `./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css`;
+// const bootstrapStylePath = `./node_modules/bootstrap/dist/css/bootstrap.min.css`;
+// const datePickerStylePath = `./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css`;
 const datepickerComponentName = 'datepicker';
 const bsName = 'ngx-bootstrap';
+const BOOTSTRAP_AVAILABLE_STYLES = {
+  type: 'bootstrap',
+  '.css': [`./node_modules/bootstrap/dist/css/bootstrap.min.css`],
+  '.scss': [`
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+`]
+};
+const DATEPICKER_AVAILABLESTYLES = {
+  '.css': [`./node_modules/ngx-bootstrap/datepicker/styles.css`],
+  '.scss': ['./node_modules/ngx-bootstrap/datepicker/scss/bs-datepicker.scss']
+}
 
 const components: { [key: string]: { moduleName: string; link: string; animated?: boolean } } = {
   accordion: { moduleName: 'AccordionModule', link: `${bsName}/accordion`, animated: true },
@@ -94,14 +105,13 @@ function addModuleOfComponent(project: WorkspaceProject, host: Tree, context: Sc
 }
 
 function addPackageJsonDependencies(host: Tree, context: SchematicContext) {
-  const dependencies: { name: string; version: string }[] = [
-    { name: 'bootstrap', version: BOOTSTRAP_VERSION},
-    { name: 'ngx-bootstrap', version: NGX_BOOTSTRAP_VERSION}
-  ];
-
-  dependencies.forEach(dependency => {
-    addPackageToPackageJson(host, dependency.name, `${dependency.version}`);
-    context.logger.log('info', `✅️ Added "${dependency.name}`);
+  let dependencies: { name: string; version: string }[];
+  getDependencies().then(res => {
+    dependencies = res;
+    dependencies.forEach(dependency => {
+      addPackageToPackageJson(host, dependency.name, `${dependency.version}`);
+      context.logger.log('info', `✅️ Added "${dependency.name}`);
+    });
   });
 }
 
@@ -109,18 +119,19 @@ function insertBootstrapStyles(project: WorkspaceProject, host: Tree, workspace:
   if (!project) {
     return;
   }
-  addStyleToTarget(project, 'build', host, bootstrapStylePath, workspace);
-  addStyleToTarget(project, 'test', host, bootstrapStylePath, workspace);
+  addStyleToTarget(project, 'build', host, BOOTSTRAP_AVAILABLE_STYLES, workspace);
+  // addStyleToTarget(project, 'test', host, BOOTSTRAP_AVAILABLE_STYLES, workspace);
 }
 
 function insertCommonStyles(project: WorkspaceProject, host: Tree, workspace: WorkspaceDefinition) {
   if (!project) {
     return;
   }
-  addStyleToTarget(project, 'build', host, datePickerStylePath, workspace);
-  addStyleToTarget(project, 'test', host, datePickerStylePath, workspace);
-
   insertBootstrapStyles(project, host, workspace);
+  return addStyleToTarget(project, 'build', host, DATEPICKER_AVAILABLESTYLES, workspace);
+  // addStyleToTarget(project, 'test', host, DATEPICKER_AVAILABLESTYLES, workspace);
+
+
 }
 
 function addAnimationModule(project: WorkspaceProject, host: Tree, context: SchematicContext, componentName: string): Rule {

@@ -15,4 +15,5 @@ export interface Schema {
   flat?: boolean;
   path?: string;
   skipImport?: boolean;
+  styles?: string;
 }

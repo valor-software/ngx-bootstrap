@@ -8,7 +8,8 @@ import { ContentSection } from '@ngx-bootstrap-doc/docs';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'datepicker-section',
   templateUrl: './datepicker-section.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./styles.scss']
 })
 export class DatepickerSectionComponent {
   name = 'Datepicker';
