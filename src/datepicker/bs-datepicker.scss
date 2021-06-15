@@ -472,15 +472,18 @@
     }
 
     .clear-right,
+    .custom-right,
     .today-right {
       flex-grow: 0;
     }
     .clear-left,
+    .custom-left,
     .today-left {
       flex-grow: 1;
     }
 
     .clear-center,
+    .custom-center,
     .today-center {
       flex-grow: 0.5;
     }
