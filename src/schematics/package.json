@@ -1,5 +1,9 @@
 {
   "name": "schematics",
+<<<<<<< HEAD
   "version": "7.0.0-rc.1",
+=======
+  "version": "0.0.1",
+>>>>>>> c87d129f45438c561ab3ae030f2a071842a56c41
   "schematics": "./collection.json"
 }
