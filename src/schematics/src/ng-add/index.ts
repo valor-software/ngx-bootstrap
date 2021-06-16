@@ -9,12 +9,7 @@
 import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
-import {
-  addModuleImportToRootModule,
-  addPackageToPackageJson,
-  getProjectFromWorkSpace,
-  getWorkspace,
-} from '../utils';
+import { addModuleImportToRootModule, addPackageToPackageJson, getProjectFromWorkSpace, getWorkspace } from '../utils';
 import { hasNgModuleImport } from '../utils/ng-module-imports';
 import { getProjectMainFile } from '../utils/project-main-file';
 import { Schema } from './schema';

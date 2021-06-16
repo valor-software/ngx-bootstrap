@@ -21,6 +21,7 @@ import {
 } from '@schematics/angular/utility/workspace-models';
 import { getWorkspacePath } from '@nrwl/workspace';
 import { parse } from 'jsonc-parser';
+
 const enum availableTargetNames {
   targets = 'targets',
   architect ='architect'
@@ -31,7 +32,7 @@ export function getProjectTargetOptions(project: WorkspaceProject, buildTarget: 
     return project.targets.get(buildTarget).options;
   }
 
-  if (project?.architect && project.architect[buildTarget]?.options) {
+  if (project?.architect?.[buildTarget]?.options) {
     return project.architect[buildTarget].options;
   }
 

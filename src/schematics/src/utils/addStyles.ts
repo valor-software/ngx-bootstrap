@@ -6,8 +6,9 @@ import {
 import { Tree } from '@angular-devkit/schematics';
 import { JsonArray } from '@angular-devkit/core';
 import { getProjectStyleFile } from './getVersions';
-import { getProjectTargetOptions, getProjectTargetName } from './index';
-import path = require("path");
+import { getProjectTargetName, getProjectTargetOptions } from './index';
+import path = require('path');
+
 const DEFAULT_STYLE_EXTENSION = 'css';
 
 interface availablePaths {
