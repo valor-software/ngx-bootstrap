@@ -10,6 +10,14 @@
       "$default": {
         "$source": "projectName"
       }
+    },
+    "component": {
+      "type": "string",
+      "description": "The name of the module which you need. Available values: accordion, alerts, buttons, carousel, collapse, datepicker, dropdowns, modals, pagination, popover, progressbar, rating, sortable, tabs, timepicker, tooltip, typeahead"
+    },
+    "stylesExtension": {
+      "type": "string",
+      "description": "Style extensions which you can choose for project. Available values: css, scss"
     }
   },
   "required": []

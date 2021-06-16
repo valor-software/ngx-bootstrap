@@ -21,6 +21,10 @@ import {
 } from '@schematics/angular/utility/workspace-models';
 import { getWorkspacePath } from '@nrwl/workspace';
 import { parse } from 'jsonc-parser';
+const enum availableTargetNames {
+  targets = 'targets',
+  architect ='architect'
+}
 
 export function getProjectTargetOptions(project: WorkspaceProject, buildTarget: string): BrowserBuilderOptions | TestBuilderOptions{
   if (project?.targets?.get(buildTarget)?.options) {
@@ -32,6 +36,17 @@ export function getProjectTargetOptions(project: WorkspaceProject, buildTarget: 
   }
 
   throw new Error(`Cannot determine project target configuration for: ${buildTarget}.`);
+}
+
+export function getProjectTargetName(project: WorkspaceProject): string {
+  if (project?.targets) {
+    return availableTargetNames.targets;
+  }
+
+  if(project?.architect) {
+    return availableTargetNames.architect;
+  }
+  throw new Error(`Cannot determine target name`);
 }
 
 function sortObjectByKeys(obj: { [key: string]: string }) {

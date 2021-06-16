@@ -39,7 +39,7 @@ export function getProjectStyleFile(existingStyles: string[], extension?: string
     return defaultExtension;
   };
 
-  const fallbackStylePath = existingStyles.find((file) => extension ? file.endsWith(`.${extension}`) : validStyleFileRegex.test(file));
+  const fallbackStylePath = existingStyles.find((file) => extension ? file?.endsWith(`.${extension}`) : validStyleFileRegex.test(file));
   if (fallbackStylePath) {
     return normalize(fallbackStylePath);
   };
