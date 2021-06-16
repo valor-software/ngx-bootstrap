@@ -54,7 +54,7 @@ function addEmptyStyles(targetOptions: BrowserBuilderOptions | TestBuilderOption
   return targetOptions;
 }
 
-function addImportToStylesFile(host: Tree, styleFilePath: string, styleFilePatch: string) {
+function addImportToStylesFile(host: Tree, styleFilePath: string, styleFilePatch: string): Tree {
   const styleContent = host.read(styleFilePath) !.toString('utf-8');
   if (!styleContent.includes(styleFilePatch)) {
     const recorder = host.beginUpdate(styleFilePath);

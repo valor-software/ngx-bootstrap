@@ -26,7 +26,7 @@ module.exports = {
     '<rootDir>/src/tooltip',
     '<rootDir>/src/typeahead',
     '<rootDir>/src/root',
-    '<rootDir>/schematics',
+    '<rootDir>/src/schematics',
     '<rootDir>/libs/doc-pages/accordion',
     '<rootDir>/libs/common-docs',
     '<rootDir>/libs/doc-pages/alerts',
