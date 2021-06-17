@@ -77,7 +77,7 @@ function setUpdatedTargetOptions(host: Tree, project: WorkspaceProject, targetOp
 
 // extension in path could be with .
 function normalizeExtension(pathExtension: string, extension: string, defaultValue: string): string {
-  if ((!pathExtension && !extension) || (!pathExtension && extension)) {
+  if (!pathExtension) {
     return defaultValue;
   }
 
