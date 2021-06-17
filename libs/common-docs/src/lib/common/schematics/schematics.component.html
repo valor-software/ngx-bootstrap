@@ -51,7 +51,7 @@
         <li>
           <p>Main project's module (standard ex. <code>app.module.ts</code>) will be updated with import of <code>BrowserAnimationsModule</code>, but only if such module hasn't been imported before.</p>
           <pre class="prettyprint lang-js prettyprinted">
-<span class="pln">  &hellip;</span>
+// added import of BrowserAnimationsModule to app.module.ts by ngx-bootstrap schematics
 <span class="kwd">import </span><span class="pun">{{'{'}}</span><span class="lit"> BrowserAnimationsModule </span><span class="pun">{{'}'}}</span><span class="kwd"> from </span><span>'@angular/platform-browser/animations';</span>
 
 @NgModule(<span class="pun">{{'{'}}</span>
@@ -61,7 +61,6 @@
     <span class="kwd">imports</span>: [
         <span class="pln">  &hellip;</span>
         <span class="lit">BrowserAnimationsModule</span>,
-        <span class="pln">  &hellip;</span>
     ],
     providers: [],
         bootstrap: [AppComponent]
@@ -79,7 +78,7 @@
         <li>
           <p>If ngx-bootstrap has been installed previously, in this case will be updated only project's main file (standard ex. <code>app.module.ts</code>)</p>
           <pre class="prettyprint lang-js prettyprinted">
-<span class="pln">  &hellip;</span>
+// added import of AccordionModule to app.module.ts by ngx-bootstrap schematics
 <span class="kwd">import </span><span class="pun">{{'{'}}</span><span class="lit"> AccordionModule </span><span class="pun">{{'}'}}</span><span class="kwd"> from </span><span>'ngx-bootstrap/accordion';</span>
 
 @NgModule(<span class="pun">{{'{'}}</span>
@@ -89,7 +88,6 @@
     <span class="kwd">imports</span>: [
         <span class="pln">  &hellip;</span>
         <span class="lit">AccordionModule.forRoot()</span>,
-        <span class="pln">  &hellip;</span>
     ],
     providers: [],
         bootstrap: [AppComponent]
