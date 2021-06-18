@@ -21,17 +21,17 @@
 
     <section class="section">
       <p>
-        Library ngx-bootstrap contains Angular Cli Schematics to allow easier installation. After installing npm packages it will be available through the Angular CLI. You can update your project with ngx-bootstrap library using this command.
+        The ngx-bootstrap library contains Angular Cli Schematics to allow easier installation. You can add ngx-bootstrap with one simple command.
       </p>
       <pre class="prettyprint lang-bash prettyprinted"><span class="pln">ng add ngx-bootstrap</span></pre>
-      <p>To know more about installation of our library you can <a routerLink="/documentation" fragment="installation">there</a></p>
-      <p>In case you install ngx-bootstrap with Angular Cli Schematics you will get such updates:</p>
+      <p>Alternative installation methods can be found <a routerLink="/documentation" fragment="installation">there</a></p>
+      <p>When you install ngx-bootstrap with Angular Cli Schematics you will get such updates:</p>
       <ul id="installation">
         <li><p><code>package.json</code></p>
           <p>List of dependencies will be updated with 2 new packages <code>"bootstrap": "^4.5.0"</code>, <code>"ngx-bootstrap": "7.0.0-rc.1"</code>. After packages will be installed and node_modules folder will be updated also.</p>
         </li>
-        <li id="style_updates"><p>Depends on which style extension is used in project, schematics will add necessary imports or styles links. It allows use SCSS or CSS extensions.</p>
-          <p>In case CSS extension - <code>angular.json</code> file wil be updated.</p>
+        <li id="style_updates"><p>Depending on which style extension is used in the project, schematics will add necessary imports or styles links. It, as expected, allows the use SCSS or CSS extensions.</p>
+          <p>In case CSS extension - <code>angular.json</code> file will be updated.</p>
           <pre class="prettyprint lang-js prettyprinted">
 <span class="kwd">"styles"</span><span class="pun">: [</span>
     "<span class="lit">./node_modules/bootstrap/dist/css/bootstrap.min.css</span>",
@@ -46,10 +46,10 @@
 /* Importing Datepicker SCSS file. */
 <span class="kwd">@import</span>"<span class="lit">~ngx-bootstrap/datepicker/bs-datepicker</span>";
           </pre>
-          <p>In case if project will not have any style file or project will not have style files with available extensions - project will be updated with default CSS extension (first case).</p>
+          <p>If the project will not have any style file or project will not have style files with available extensions - project will be updated with default CSS extension (first case).</p>
         </li>
         <li>
-          <p>Main project's module (standard ex. <code>app.module.ts</code>) will be updated with import of <code>BrowserAnimationsModule</code>, but only if such module hasn't been imported before.</p>
+          <p>The project's main module (standard ex. <code>app.module.ts</code>) will be updated with import of <code>BrowserAnimationsModule</code>, if it has not been previously imported.</p>
           <pre class="prettyprint lang-js prettyprinted">
 // added import of BrowserAnimationsModule to app.module.ts by ngx-bootstrap schematics
 <span class="kwd">import </span><span class="pun">{{'{'}}</span><span class="lit"> BrowserAnimationsModule </span><span class="pun">{{'}'}}</span><span class="kwd"> from </span><span>'@angular/platform-browser/animations';</span>
@@ -71,7 +71,7 @@
     </section>
 
     <section class="section">
-      <p>The ngx-bootstrap's <code>ng add</code> schematics allows install library and add separate modules. It could be resolved in this way</p>
+      <p>ngx-bootstrap's <code>ng add</code> schematic allows the easy installation. Additionally specific modules can be installed directly to a module with the following flag.</p>
       <pre class="prettyprint lang-bash prettyprinted"><span class="pln">ng add ngx-bootstrap  --component accordion</span></pre>
       <p>Property <code>component</code> accepts name of component which should be added into project.</p>
       <ul>
@@ -118,9 +118,9 @@
         </li>
       </ul>
       <p><strong>Note:</strong> Styles for datepicker will be added only if you add all library or use property <code>component</code> with datepicker</p>
-      <p>For getting more information for each of component you can find in <strong>Components</strong>.</p>
-      <p>One more property which can be used with ngx-bootstrap schematics is <code>stylesExtension</code>. This property accepts preferred style extension and update project regarding <a routerLink="./" fragment="style_updates">these cases</a></p>
-      <p>Also you are able to get information regarding ngx-bootstrap's schematics with command</p>
+      <p>More information for each of the components you can find in <strong>Components</strong>.</p>
+      <p>One more property which can be used with ngx-bootstrap schematics is <code>stylesExtension</code>. This property accepts preferred style extension and update project regarding <a routerLink="./" fragment="style_updates">these use cases</a></p>
+      <p>For more information ngx-bootstrap's schematics you can always use the help command</p>
       <pre class="prettyprint lang-bash prettyprinted"><span class="pln">ng add ngx-bootstrap --help</span></pre>
     </section>
   </div>
