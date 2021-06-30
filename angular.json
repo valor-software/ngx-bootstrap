@@ -50,7 +50,8 @@
             "tsConfig": "apps/ngx-bootstrap-docs/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "apps/ngx-bootstrap-docs/src/assets"
+              "apps/ngx-bootstrap-docs/src/assets",
+              "apps/ngx-bootstrap-docs/src/404.html"
             ],
             "styles": [
               "src/datepicker/bs-datepicker.scss",
