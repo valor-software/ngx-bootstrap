@@ -22,7 +22,6 @@ import { NgApiDocClassComponent, NgApiDocComponent, NgApiDocConfigComponent, NgA
 import { LandingComponent } from './common/landing/landing.component';
 import { DocumentationComponent } from './common/documentation/documentation.component';
 import { DiscoverComponent } from './common/discover/discover.component';
-import { bsVerions, IBsVersion } from './models/bsVersions.model';
 
 /* export */
 export {
@@ -57,7 +56,6 @@ export { NgApiDoc } from './api-docs/api-docs.model';
 export { TopMenuComponent } from './common/top-menu/top-menu.component';
 export { Analytics } from './api-docs/analytics/analytics';
 export { DOCS_TOKENS } from './tokens/docs-routes-token';
-export { IBsVersion, bsVerions} from './models/bsVersions.model';
 
 @NgModule({
   declarations: [
