@@ -67,7 +67,6 @@ export function isBs4(): boolean {
   if (guessedVersion) return guessedVersion === 'bs4';
 
   guessedVersion = _guessBsVersion();
-
   return guessedVersion === 'bs4';
 }
 
@@ -77,7 +76,6 @@ export function isBs5(): boolean {
   if (guessedVersion) return guessedVersion === 'bs5';
 
   guessedVersion = _guessBsVersion();
-
   return guessedVersion === 'bs5';
 }
 
