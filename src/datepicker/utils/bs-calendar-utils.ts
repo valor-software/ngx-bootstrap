@@ -75,7 +75,7 @@ export function getYearsCalendarInitialDate(state: BsDatepickerState, calendarIn
   return model?.years[0] && model.years[0][0] && model.years[0][0].date;
 }
 
-export function checkRangesWithMaxDate(ranges?: BsCustomDates[], maxDate?: Date): BsCustomDates[] | void {
+export function checkRangesWithMaxDate(ranges?: BsCustomDates[], maxDate?: Date): BsCustomDates[] | undefined {
   if (!ranges) return ranges;
   if (!maxDate) return ranges;
   if (!ranges.length && !ranges[0].value) return  ranges;
@@ -90,7 +90,7 @@ export function checkRangesWithMaxDate(ranges?: BsCustomDates[], maxDate?: Date)
   return ranges;
 }
 
-export function checkBsValue(date?: Array<Date> | Date | (Date|undefined)[], maxDate?: Date): Array<Date> | Date | (Date|undefined)[] |void {
+export function checkBsValue(date?: Array<Date> | Date | (Date | undefined)[], maxDate?: Date): Array<Date> | Date | (Date|undefined)[] | undefined {
   if (!date) return date;
   if (!maxDate) return date;
   if (date instanceof Array && !date.length) return date;

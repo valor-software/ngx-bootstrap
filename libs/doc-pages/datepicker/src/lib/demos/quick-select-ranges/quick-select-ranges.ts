@@ -11,7 +11,6 @@ interface IRange {
   templateUrl: './quick-select-ranges.html'
 })
 export class DemoDatePickerQuickSelectRangesComponent {
-  maxDate = new Date(new Date().setDate(new Date().getDate() +3));
   ranges: IRange[] = [{
     value: [new Date(new Date().setDate(new Date().getDate() - 7)), new Date()],
     label: 'Last 7 Days'

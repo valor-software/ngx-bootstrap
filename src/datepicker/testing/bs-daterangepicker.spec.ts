@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { BsCustomDates } from '../themes/bs/bs-custom-dates-view.component';
 
-
 @Component({
     selector: 'test-cmp',
     template: `<input type="text"
@@ -213,7 +212,7 @@ describe('daterangepicker:', () => {
         expect(activeRangeButton[0].innerHTML.trim()).toEqual(customRangeBtnLbl);
     });
 
-  it('should not allow to select date behind max value', () => {
+    it('should not allow to select date behind max value', () => {
     const datepicker = showDatepicker(fixture);
     datepicker.bsConfig.maxDate = new Date();
     datepicker.bsConfig.maxDateRange = 10;
@@ -254,5 +253,4 @@ describe('daterangepicker:', () => {
         expect(view.maxDate).not.toEqual(incorrectCaseEnd);
       });
   });
-
-});
+  });
