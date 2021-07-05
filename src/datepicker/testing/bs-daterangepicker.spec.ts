@@ -177,40 +177,6 @@ describe('daterangepicker:', () => {
         expect(activeRangeButton[0].innerHTML.trim()).toEqual(ranges[0].label);
     });
 
-    it('should highlight the Custom Range button when dates selected are not in ranges', () => {
-        const datepicker = showDatepicker(fixture);
-        const customRangeBtnLbl = 'My Custom Range';
-        const ranges = [
-            {
-                label: 'Last 7 days',
-                value: [new Date('12-10-2019'), new Date('12-16-2019')]
-            },
-            {
-                label: 'Next 7 days',
-                value: [new Date('12-16-2019'), new Date('12-22-2019')]
-            }
-        ];
-        const selectedRange: BsCustomDates = {
-            label: 'Next 7 days',
-            value: [new Date('12-14-2019'), new Date('12-25-2019')]
-        };
-
-        const daterangepickerInput = fixture.debugElement.query(By.css('input[bsDaterangepicker]'));
-        fixture.componentInstance.daterangepicker.bsConfig.ranges = ranges;
-        fixture.componentInstance.daterangepicker.bsConfig.customRangeButtonLabel = customRangeBtnLbl;
-        const datepickerContainerInstance = getDaterangepickerContainer(datepicker);
-        datepickerContainerInstance.setRangeOnCalendar(selectedRange);
-        daterangepickerInput.nativeElement.click();
-
-        fixture.detectChanges();
-        // only one active element should be present
-        const activeRangeButton = document.querySelectorAll('.bs-datepicker-predefined-btns button.selected');
-
-        expect(activeRangeButton).toBeTruthy();
-        expect(activeRangeButton.length).toEqual(1);
-        expect(activeRangeButton[0].innerHTML.trim()).toEqual(customRangeBtnLbl);
-    });
-
   it('should not allow to select date behind max value', () => {
     const datepicker = showDatepicker(fixture);
     datepicker.bsConfig.maxDate = new Date();
