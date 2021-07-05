@@ -73,6 +73,18 @@
         cursor: not-allowed;
       }
 
+      &.previous {
+        span {
+          transform: translate(-1px, -1px);
+        }
+      }
+
+      &.next {
+        span {
+          transform: translate(1px, -1px);
+        }
+      }
+
       &.next,
       &.previous {
         border-radius: 50%;

@@ -120,8 +120,7 @@ describe('daterangepicker:', () => {
         fixture.detectChanges();
 
         const rangesButton = document.querySelector('.bs-datepicker-predefined-btns');
-
-        expect(rangesButton.childElementCount).toEqual(ranges.length + 1); // +1 for `custom range` button
+        expect(rangesButton.childElementCount).toEqual(ranges.length);
 
     });
 
@@ -212,7 +211,7 @@ describe('daterangepicker:', () => {
         expect(activeRangeButton[0].innerHTML.trim()).toEqual(customRangeBtnLbl);
     });
 
-    it('should not allow to select date behind max value', () => {
+  it('should not allow to select date behind max value', () => {
     const datepicker = showDatepicker(fixture);
     datepicker.bsConfig.maxDate = new Date();
     datepicker.bsConfig.maxDateRange = 10;
