@@ -2306,7 +2306,7 @@ export const ngdoc: any = {
       },
       {
         "name": "dropup",
-        "defaultValue": "false",
+        "defaultValue": "true",
         "type": "boolean",
         "description": "<p>This attribute indicates that the dropdown should be opened upwards</p>\n"
       },
@@ -3296,7 +3296,7 @@ export const ngdoc: any = {
     "inputs": [
       {
         "name": "align",
-        "defaultValue": "false",
+        "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if <code>true</code> aligns each link to the sides of pager</p>\n"
       },
