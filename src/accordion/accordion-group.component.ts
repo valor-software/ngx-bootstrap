@@ -76,14 +76,9 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
     this.accordion.removeGroup(this);
   }
 
-  toggleOpen(event: Event): void {
-    if (this.checkAccordionPanelToggle(event.target as HTMLElement)) return;
+  toggleOpen(): void {
     if (!this.isDisabled) {
       this.isOpen = !this.isOpen;
     }
-  }
-
-  checkAccordionPanelToggle(target: HTMLElement): boolean {
-    return target && target.classList.contains('avoid-toggle')
   }
 }

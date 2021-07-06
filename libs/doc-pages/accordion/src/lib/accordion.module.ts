@@ -9,6 +9,7 @@ import { DEMO_COMPONENTS } from './demos/index';
 import { routes } from './demo-accordion.routes';
 /* export */
 export { AccordionSectionComponent } from './accordion-section.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ export { AccordionSectionComponent } from './accordion-section.component';
     CommonModule,
     FormsModule,
     DocsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    BsDropdownModule.forRoot(),
   ],
   exports: [AccordionSectionComponent],
   entryComponents: [...DEMO_COMPONENTS]
