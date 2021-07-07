@@ -56,11 +56,11 @@ export class SlideComponent implements OnInit, OnDestroy {
 
   constructor(carousel: CarouselComponent) {
     this.carousel = carousel;
+    this.carousel.addSlide(this);
   }
 
   /** Fires changes in container collection after adding a new slide instance */
   ngOnInit(): void {
-    this.carousel.addSlide(this);
     this.itemWidth = `${100 / this.carousel.itemsPerSlide}%`;
   }
 
