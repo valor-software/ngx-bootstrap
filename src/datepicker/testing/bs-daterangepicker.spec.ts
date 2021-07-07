@@ -184,8 +184,8 @@ describe('daterangepicker:', () => {
 
     const datepickerContainerInstance = getDaterangepickerContainer(datepicker);
 
-    const correctDateStart = new Date(new Date().setDate(new Date().getDate() - 14))
-    const correctDateEnd = new Date(new Date().setDate(new Date().getDate() - 7))
+    const correctDateStart = new Date(new Date().setDate(new Date().getDate() - 14));
+    const correctDateEnd = new Date(new Date().setDate(new Date().getDate() - 7));
     const selectedRange: BsCustomDates = {
       label: '',
       value: [correctDateStart, correctDateEnd]
@@ -198,11 +198,11 @@ describe('daterangepicker:', () => {
     datepickerContainerInstance[`_store`]
       .select(state => state)
       .subscribe(view => {
-        expect(view.maxDate).toEqual(correctDateEnd)
+        expect(view.maxDate).toEqual(correctDateEnd);
       });
 
-    const incorrectCaseStart = new Date(new Date().setDate(new Date().getDate() - 5))
-    const incorrectCaseEnd = new Date(new Date().setDate(new Date().getDate() + 15))
+    const incorrectCaseStart = new Date(new Date().setDate(new Date().getDate() - 5));
+    const incorrectCaseEnd = new Date(new Date().setDate(new Date().getDate() + 15));
     const selectedRange1: BsCustomDates = {
       label: '',
       value: [incorrectCaseStart, incorrectCaseEnd]
@@ -215,8 +215,7 @@ describe('daterangepicker:', () => {
     datepickerContainerInstance[`_store`]
       .select(state => state)
       .subscribe(view => {
-        expect(view.maxDate).not.toEqual(incorrectCaseEnd)
+        expect(view.maxDate).not.toEqual(incorrectCaseEnd);
       });
   });
-
-});
+  });
