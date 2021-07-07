@@ -9,10 +9,5 @@
 export interface Schema {
   project?: string;
   component?: string;
-  ModuleOptions?: string;
-  module?: string;
-  name: string;
-  flat?: boolean;
-  path?: string;
-  skipImport?: boolean;
+  stylesExtension?: string;
 }

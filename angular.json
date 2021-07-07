@@ -1,5 +1,6 @@
 {
   "version": 1,
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
     "defaultCollection": "@nrwl/angular"
   },
@@ -53,11 +54,9 @@
               "apps/ngx-bootstrap-docs/src/assets"
             ],
             "styles": [
-              "src/datepicker/bs-datepicker.scss",
               "apps/ngx-bootstrap-docs/src/assets/css/style.scss",
               "apps/ngx-bootstrap-docs/src/assets/css/prettify-angulario.css"
-            ],
-            "scripts": []
+            ]
           },
           "configurations": {
             "production": {
@@ -1261,15 +1260,15 @@
       }
     },
     "schematics": {
-      "root": "schematics",
-      "sourceRoot": "schematics/src",
+      "root": "src/schematics/src",
+      "sourceRoot": "src/schematics/src",
       "projectType": "library",
       "architect": {
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "schematics/**/*.ts"
+              "src/schematics/**/*.ts"
             ]
           }
         },
@@ -1279,7 +1278,7 @@
             "coverage/schematics"
           ],
           "options": {
-            "jestConfig": "schematics/jest.config.js",
+            "jestConfig": "src/schematics/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -1289,12 +1288,14 @@
             "{options.outputPath}"
           ],
           "options": {
-            "outputPath": "dist/schematics",
-            "tsConfig": "schematics/tsconfig.lib.json",
-            "packageJson": "schematics/package.json",
-            "main": "schematics/src/index.ts",
+            "outputPath": "node_modules/ngx-bootstrap/schematics",
+            "tsConfig": "src/schematics/tsconfig.lib.json",
+            "packageJson": "src/schematics/package.json",
+            "main": "src/schematics/src/ng-add/index.ts",
             "assets": [
-              "schematics/*.md"
+              "src/schematics/*.md",
+              "src/schematics/src/collection.json",
+              { "glob": "schema.json", "input": "src/schematics/src/ng-add", "output": "ng-add" }
             ]
           }
         }

@@ -5,62 +5,49 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
-import { JsonArray } from '@angular-devkit/core';
-import { ProjectDefinition, WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
 import { SchematicsException, Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
 import { addImportToModule } from '@schematics/angular/utility/ast-utils';
 import { Change, InsertChange } from '@schematics/angular/utility/change';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 import { getFileContent } from '@schematics/angular/utility/test';
-import { updateWorkspace } from '@schematics/angular/utility/workspace';
 import * as ts from 'typescript';
 import { getProjectMainFile } from './project-main-file';
+import {
+  BrowserBuilderOptions,
+  TestBuilderOptions,
+  WorkspaceProject,
+  WorkspaceSchema
+} from '@schematics/angular/utility/workspace-models';
+import { getWorkspacePath } from '@nrwl/workspace';
+import { parse } from 'jsonc-parser';
 
-export function addStyleToTarget(project: ProjectDefinition, targetName: string, host: Tree,
-                                 assetPath: string, workspace: WorkspaceDefinition) {
-
-  const targetOptions = getProjectTargetOptions(project, targetName);
-  const styles = (targetOptions.styles as JsonArray | undefined);
-  if (!styles) {
-    targetOptions.styles = [assetPath];
-  } else {
-    const existingStyles = styles.map((s) => typeof s === 'string' ? s : s['input']);
-
-    for (const[, stylePath] of existingStyles.entries()) {
-      // If the given asset is already specified in the styles, we don't need to do anything.
-      if (stylePath === assetPath) {
-        return () => host;
-      }
-    }
-    styles.unshift(assetPath);
-  }
-
-  // host.overwrite('angular.json', JSON.stringify(workspace, null, 2));
-  return updateWorkspace(workspace);
+const enum availableTargetNames {
+  targets = 'targets',
+  architect ='architect'
 }
 
-export function getProjectFromWorkspace(workspace: WorkspaceDefinition, projectName?: string): ProjectDefinition {
-
-  const _projectName = projectName || workspace.extensions.defaultProject?.toString();
-  const project: ProjectDefinition = workspace.projects.get(_projectName);
-
-  if (!project) {
-    throw new Error(`Could not find project in workspace: ${projectName}`);
+export function getProjectTargetOptions(project: WorkspaceProject, buildTarget: string): BrowserBuilderOptions | TestBuilderOptions{
+  if (project?.targets?.get(buildTarget)?.options) {
+    return project.targets.get(buildTarget).options;
   }
 
-  return project;
-}
-
-export function getProjectTargetOptions(project: ProjectDefinition, buildTarget: string) {
-  const targetConfig = project.targets.get(buildTarget);
-  if (targetConfig && targetConfig.options) {
-
-    return targetConfig.options;
+  if (project?.architect?.[buildTarget]?.options) {
+    return project.architect[buildTarget].options;
   }
 
   throw new Error(`Cannot determine project target configuration for: ${buildTarget}.`);
+}
+
+export function getProjectTargetName(project: WorkspaceProject): string {
+  if (project?.targets) {
+    return availableTargetNames.targets;
+  }
+
+  if(project?.architect) {
+    return availableTargetNames.architect;
+  }
+  throw new Error(`Cannot determine target name`);
 }
 
 function sortObjectByKeys(obj: { [key: string]: string }) {
@@ -74,11 +61,9 @@ function sortObjectByKeys(obj: { [key: string]: string }) {
 }
 
 export function addPackageToPackageJson(host: Tree, pkg: string, version: string): Tree {
-
   if (host.exists('package.json')) {
     const sourceText = host.read('package.json')?.toString('utf-8');
     const json = JSON.parse(sourceText);
-
     if (!json.dependencies) {
       json.dependencies = {};
     }
@@ -87,10 +72,8 @@ export function addPackageToPackageJson(host: Tree, pkg: string, version: string
       json.dependencies[pkg] = version;
       json.dependencies = sortObjectByKeys(json.dependencies);
     }
-
     host.overwrite('package.json', JSON.stringify(json, null, 2));
   }
-
   return host;
 }
 
@@ -120,10 +103,9 @@ export function removePackageJsonDependency(tree: Tree, dependencyName: string) 
   tree.overwrite('/package.json', JSON.stringify(packageContent, null, 2));
 }
 
-export function addModuleImportToRootModule(host: Tree, moduleName: string, src: string, project: ProjectDefinition) {
+export function addModuleImportToRootModule(host: Tree, moduleName: string, src: string, project: WorkspaceProject) {
   const modulePath = getAppModulePath(host, getProjectMainFile(project));
   const moduleSource = getSourceFile(host, modulePath);
-
   if (!moduleSource) {
     throw new SchematicsException(`Module not found: ${modulePath}`);
   }
@@ -149,3 +131,29 @@ export function getSourceFile(host: Tree, path: string) {
 
   return ts.createSourceFile(path, content, ts.ScriptTarget.Latest, true);
 }
+
+export function getProjectFromWorkSpace(workspace: WorkspaceSchema, projectName?: string): WorkspaceProject {
+  const finalProjectName = projectName || workspace.defaultProject;
+  if (!finalProjectName) {
+    throw new Error(`Could not find project in workspace: ${projectName}`);
+  }
+
+  const project = workspace.projects[finalProjectName];
+  if (!project) {
+    throw new Error(`Could not find project in workspace: ${projectName}`);
+  }
+
+  return project;
+}
+
+export function getWorkspace (host: Tree) {
+  const path = getWorkspacePath(host);
+  const configBuffer = host.read(path);
+  if (configBuffer === null) {
+    throw new SchematicsException(`Could not find (${path})`);
+  }
+
+  const content = configBuffer.toString();
+  return parse(content);
+}
+

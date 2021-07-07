@@ -3916,6 +3916,20 @@ export const ngdoc: any = {
       }
     ]
   },
+  "Schema": {
+    "fileName": "src/schematics/src/ng-add/schema.ts",
+    "className": "Schema",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "availablePaths": {
+    "fileName": "src/schematics/src/utils/index.ts",
+    "className": "availablePaths",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
   "DraggableItemService": {
     "fileName": "src/sortable/draggable-item.service.ts",
     "className": "DraggableItemService",

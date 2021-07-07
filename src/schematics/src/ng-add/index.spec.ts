@@ -5,22 +5,28 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-
 import { getFileContent } from '@schematics/angular/utility/test';
 import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
 import { Tree } from '@angular-devkit/schematics';
-import { getWorkspace } from '@schematics/angular/utility/workspace';
 
 import {
   createTestApp,
-  getProjectFromWorkspace, getProjectTargetOptions,
-  removePackageJsonDependency
+  getProjectFromWorkSpace, getProjectTargetOptions,
+  removePackageJsonDependency,
+  getWorkspace
 } from '../utils';
 
 import * as path from 'path';
-import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
+import { WorkspaceProject } from '@schematics/angular/utility/workspace-models';
+import { getProjectMainFile } from '../utils/project-main-file';
+import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
+import { checkComponentName } from './index';
 
-export function expectProjectStyleFile(project: ProjectDefinition, filePath: string) {
+const defaultOptions = {
+  component: 'carousel'
+};
+
+export function expectProjectStyleFile(project: WorkspaceProject, filePath: string) {
   expect(getProjectTargetOptions(project, 'build').styles).toContain(filePath);
 }
 
@@ -57,8 +63,21 @@ describe('ng-add schematic', () => {
       .toPromise();
 
     const workspace = await getWorkspace(tree);
-    const project = getProjectFromWorkspace(workspace);
+    const project = getProjectFromWorkSpace(workspace);
 
     expectProjectStyleFile(project, './node_modules/bootstrap/dist/css/bootstrap.min.css');
+  });
+
+  it('should import a specific module', async() => {
+    const options = {...defaultOptions};
+    const tree = await runner
+      .runSchematicAsync('ng-add', options, appTree)
+      .toPromise();
+    const workspace = await getWorkspace(tree);
+    const project = getProjectFromWorkSpace(workspace);
+    const content = tree.readContent(getAppModulePath(tree, getProjectMainFile(project)));
+    expect(checkComponentName(options.component)).toBeTruthy();
+    expect(content).toBeTruthy();
+    expect(content.includes(`import { CarouselModule } from 'ngx-bootstrap/carousel'`)).toBeTruthy();
   });
 });
