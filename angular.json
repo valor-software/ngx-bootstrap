@@ -51,7 +51,8 @@
             "tsConfig": "apps/ngx-bootstrap-docs/tsconfig.app.json",
             "aot": true,
             "assets": [
-              "apps/ngx-bootstrap-docs/src/assets"
+              "apps/ngx-bootstrap-docs/src/assets",
+              "apps/ngx-bootstrap-docs/src/404.html"
             ],
             "styles": [
               "apps/ngx-bootstrap-docs/src/assets/css/style.scss",
