@@ -1,3 +1,24 @@
+# [7.0.0-rc.3](https://github.com/valor-software/ngx-bootstrap/compare/v7.0.0-rc.1...v7.0.0-rc.3) (2021-07-08)
+
+
+### Bug Fixes
+
+* **datepicker:** fix button custom range ([#6148](https://github.com/valor-software/ngx-bootstrap/issues/6148)) ([a3b8a0a](https://github.com/valor-software/ngx-bootstrap/commit/a3b8a0af5ffd9428db6993f40a6954422ec92685))
+* **datepicker:** fix navigation buttons in datepicker styles ([#6171](https://github.com/valor-software/ngx-bootstrap/issues/6171)) ([ec809cc](https://github.com/valor-software/ngx-bootstrap/commit/ec809ccc15f133214ef5fa7ffd3fca568832d8c6))
+* **discover:** add two new companies ([5385279](https://github.com/valor-software/ngx-bootstrap/commit/53852797504818cf91608641af1155b2b68c217a))
+* **gh-pages:** fix 404 gh page ([19fde75](https://github.com/valor-software/ngx-bootstrap/commit/19fde75cd960d6ecf361e64042109f1b56d8f3f7))
+* **gh-pages:** use hash ([0d536a1](https://github.com/valor-software/ngx-bootstrap/commit/0d536a153bfe4ea9a1bbfedae16c31a7c4802793))
+* **routing:** fix github 404 page ([a870a2b](https://github.com/valor-software/ngx-bootstrap/commit/a870a2bc9b62acb30d9f568ad0e2fb03a82a0d37))
+* **routing:** move js into separate files ([8c18fbf](https://github.com/valor-software/ngx-bootstrap/commit/8c18fbf048bc31e8c1ddfe312496f748d647576d))
+* **top-menu:** fixed top logo in documentation ([#6163](https://github.com/valor-software/ngx-bootstrap/issues/6163)) ([76626ee](https://github.com/valor-software/ngx-bootstrap/commit/76626ee37db9b4238310dfe19694e0b609da8d3a))
+
+
+### Features
+
+* **routing:** fix 404 github page ([ea1c07d](https://github.com/valor-software/ngx-bootstrap/commit/ea1c07da9e50f1572922f993deec614972b29db1))
+
+
+
 # [7.0.0-rc.2](https://github.com/valor-software/ngx-bootstrap/compare/v7.0.0-rc.1...v7.0.0-rc.2) (2021-06-11)
 
 
