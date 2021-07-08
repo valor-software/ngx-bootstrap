@@ -1,7 +1,7 @@
 import { BaseComponent } from './base.component';
 
 export class AlertsPo extends BaseComponent {
-  pageUrl = '/alerts';
+  pageUrl = '#/alerts';
   pageTitle = 'Alerts';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/alert';
 
