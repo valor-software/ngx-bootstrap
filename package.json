@@ -21,7 +21,7 @@
     "test": "nx run-many --all --target=test",
     "lint": "nx run-many --all --target=lint",
     "e2e": "ng e2e --with-deps",
-    "postversion": "nx run ngx-bootstrap:version",
+    "version": "nx run ngx-bootstrap:version",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",
