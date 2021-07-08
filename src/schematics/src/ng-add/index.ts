@@ -6,25 +6,33 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { ProjectDefinition, WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
 import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
-
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
-import { getWorkspace } from '@schematics/angular/utility/workspace';
-
-import { addModuleImportToRootModule, addPackageToPackageJson, addStyleToTarget } from '../utils';
+import { addModuleImportToRootModule, addPackageToPackageJson, getProjectFromWorkSpace, getWorkspace } from '../utils';
 import { hasNgModuleImport } from '../utils/ng-module-imports';
 import { getProjectMainFile } from '../utils/project-main-file';
 import { Schema } from './schema';
+import { WorkspaceProject } from '@schematics/angular/utility/workspace-models';
+import { addStyles } from '../utils/addStyles';
+import { getDependencies } from '../utils/getVersions';
 
-const NGX_BOOTSTRAP_VERSION = '^6.2.0';
-const BOOTSTRAP_VERSION = '^4.5.0';
-
-const bootstrapStylePath = `./node_modules/bootstrap/dist/css/bootstrap.min.css`;
-const datePickerStylePath = `./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css`;
 const datepickerComponentName = 'datepicker';
 const bsName = 'ngx-bootstrap';
+const BOOTSTRAP_AVAILABLE_STYLES = {
+  'css': [`./node_modules/bootstrap/dist/css/bootstrap.min.css`],
+  'scss': [`
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+`]
+};
+const DATEPICKER_AVAILABLESTYLES = {
+  'css': [`./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css`],
+  'scss': [`
+/* Importing Datepicker SCSS file. */
+@import "~ngx-bootstrap/datepicker/bs-datepicker";
+`]
+};
 
 const components: { [key: string]: { moduleName: string; link: string; animated?: boolean } } = {
   accordion: { moduleName: 'AccordionModule', link: `${bsName}/accordion`, animated: true },
@@ -50,81 +58,79 @@ export default function addBsToPackage(options: Schema): Rule {
   const componentName = options.component
     ? options.component
     : options['--'] && options['--'][1];
-  const { project } = options;
 
-  return async (tree: Tree, context: SchematicContext) => {
-    const workspace = await getWorkspace(tree);
-    const projectWorkspace = workspace.projects.get(project);
+  return (tree: Tree, context: SchematicContext) => {
+    const workspace = getWorkspace(tree) as any;
+    const projectName = options.project ? options.project : Object.keys(workspace.projects)[0];
+    const projectWorkspace = getProjectFromWorkSpace(workspace, projectName);
 
     addPackageJsonDependencies(tree, context);
-    context.addTask(new NodePackageInstallTask());
-
     if (!componentName || componentName === datepickerComponentName) {
-      insertCommonStyles(projectWorkspace, tree, workspace);
+      insertCommonStyles(projectWorkspace, tree, projectName, options.stylesExtension);
     } else {
-      insertBootstrapStyles(projectWorkspace, tree, workspace);
+      insertBootstrapStyles(projectWorkspace, tree, projectName, options.stylesExtension);
     }
 
+    context.addTask(new NodePackageInstallTask());
     if (componentName) {
       addModuleOfComponent(projectWorkspace, tree, context, componentName);
     }
+
     addAnimationModule(projectWorkspace, tree, context, componentName);
   };
 }
 
-function addModuleOfComponent(project: ProjectDefinition, host: Tree, context: SchematicContext, componentName: string): Rule {
+function addModuleOfComponent(project: WorkspaceProject, host: Tree, context: SchematicContext, componentName: string): Rule {
   if (!project) {
     return;
   }
 
   const appModulePath = getAppModulePath(host, getProjectMainFile(project));
-
   if (componentName && components[componentName]) {
     if (hasNgModuleImport(host, appModulePath, components[componentName].moduleName)) {
       context.logger.warn(`Could not set up ${components[componentName].moduleName} because it already imported.`);
       return;
     }
-
     addModuleImportToRootModule(
       host, `${components[componentName].moduleName}.forRoot()`, components[componentName].link, project
     );
   }
 }
 
-function addPackageJsonDependencies(host: Tree, context: SchematicContext) {
-  const dependencies: { name: string; version: string }[] = [
-    { name: 'bootstrap', version: NGX_BOOTSTRAP_VERSION },
-    { name: 'ngx-bootstrap', version: BOOTSTRAP_VERSION }
-  ];
-
+function addPackageJsonDependencies(host: Tree, context: SchematicContext): Tree {
+  const dependencies = getDependencies(host);
   dependencies.forEach(dependency => {
     addPackageToPackageJson(host, dependency.name, `${dependency.version}`);
     context.logger.log('info', `✅️ Added "${dependency.name}`);
   });
+  return host;
 }
 
-function insertBootstrapStyles(project: ProjectDefinition, host: Tree, workspace: WorkspaceDefinition) {
+function insertBootstrapStyles(project: WorkspaceProject, host: Tree, projectName: string, extension?: string ): Tree {
   if (!project) {
     return;
   }
-  addStyleToTarget(project, 'build', host, bootstrapStylePath, workspace);
-  addStyleToTarget(project, 'test', host, bootstrapStylePath, workspace);
+
+  return addStyles(project, 'build', host, BOOTSTRAP_AVAILABLE_STYLES, projectName, extension);
 }
 
-function insertCommonStyles(project: ProjectDefinition, host: Tree, workspace: WorkspaceDefinition) {
+function insertCommonStyles(project: WorkspaceProject, host: Tree, projectName: string, extension?: string): Tree {
   if (!project) {
     return;
   }
-  addStyleToTarget(project, 'build', host, datePickerStylePath, workspace);
-  addStyleToTarget(project, 'test', host, datePickerStylePath, workspace);
 
-  insertBootstrapStyles(project, host, workspace);
+  insertBootstrapStyles(project, host, projectName, extension);
+  return addStyles(project, 'build', host, DATEPICKER_AVAILABLESTYLES, projectName, extension);
 }
 
-function addAnimationModule(project: ProjectDefinition, host: Tree, context: SchematicContext, componentName: string): Rule {
-  if (!project || !(!componentName || components[componentName].animated)) {
+function addAnimationModule(project: WorkspaceProject, host: Tree, context: SchematicContext, componentName: string): Rule {
+  if (!project || !(!componentName || components[componentName]?.animated)) {
     return;
   }
 
   addModuleImportToRootModule(host, 'BrowserAnimationsModule', '@angular/platform-browser/animations', project);
+}
+
+export function checkComponentName(componentName: string): boolean {
+  return !!components[componentName];
 }

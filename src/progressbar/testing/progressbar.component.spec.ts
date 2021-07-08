@@ -153,7 +153,7 @@ describe('progress bar', () => {
     })
       .createComponent(TestProgressbarComponent);
     fixture.detectChanges();
-  })
+  });
 
   it('check type binding does not override other class names', fakeAsync(() => {
 
