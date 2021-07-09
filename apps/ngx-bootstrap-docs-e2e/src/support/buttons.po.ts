@@ -1,7 +1,7 @@
 import { BaseComponent } from './base.component';
 
 export class ButtonsPo extends BaseComponent {
-  pageUrl = '/buttons';
+  pageUrl = '#/buttons';
   pageTitle = 'Buttons';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/buttons';
 
