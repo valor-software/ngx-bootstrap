@@ -49,6 +49,7 @@
             "main": "apps/ngx-bootstrap-docs/src/main.ts",
             "polyfills": "apps/ngx-bootstrap-docs/src/polyfills.ts",
             "tsConfig": "apps/ngx-bootstrap-docs/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "aot": true,
             "assets": [
               "apps/ngx-bootstrap-docs/src/assets",
@@ -176,7 +177,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/accordion"
+            "node_modules/ngx-bootstrap/accordion/esm2015"
           ],
           "options": {
             "tsConfig": "src/accordion/tsconfig.lib.json",
@@ -218,7 +219,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/alert"
+            "node_modules/ngx-bootstrap/alert/esm2015"
           ],
           "options": {
             "tsConfig": "src/alert/tsconfig.lib.json",
@@ -260,7 +261,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/buttons"
+            "node_modules/ngx-bootstrap/buttons/esm2015"
           ],
           "options": {
             "tsConfig": "src/buttons/tsconfig.lib.json",
@@ -302,7 +303,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/carousel"
+            "node_modules/ngx-bootstrap/carousel/esm2015"
           ],
           "options": {
             "tsConfig": "src/carousel/tsconfig.lib.json",
@@ -344,7 +345,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/chronos"
+            "node_modules/ngx-bootstrap/chronos/esm2015"
           ],
           "options": {
             "tsConfig": "src/chronos/tsconfig.lib.json",
@@ -386,7 +387,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/collapse"
+            "node_modules/ngx-bootstrap/collapse/esm2015"
           ],
           "options": {
             "tsConfig": "src/collapse/tsconfig.lib.json",
@@ -428,7 +429,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/component-loader"
+            "node_modules/ngx-bootstrap/component-loader/esm2015"
           ],
           "options": {
             "tsConfig": "src/component-loader/tsconfig.lib.json",
@@ -470,7 +471,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/datepicker"
+            "node_modules/ngx-bootstrap/datepicker/esm2015"
           ],
           "options": {
             "tsConfig": "src/datepicker/tsconfig.lib.json",
@@ -512,7 +513,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/dropdown"
+            "node_modules/ngx-bootstrap/dropdown/esm2015"
           ],
           "options": {
             "tsConfig": "src/dropdown/tsconfig.lib.json",
@@ -554,7 +555,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/focus-trap"
+            "node_modules/ngx-bootstrap/focus-trap/esm2015"
           ],
           "options": {
             "tsConfig": "src/focus-trap/tsconfig.lib.json",
@@ -596,7 +597,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/locale"
+            "node_modules/ngx-bootstrap/locale/esm2015"
           ],
           "options": {
             "tsConfig": "src/locale/tsconfig.lib.json",
@@ -638,7 +639,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/mini-ngrx"
+            "node_modules/ngx-bootstrap/mini-ngrx/esm2015"
           ],
           "options": {
             "tsConfig": "src/mini-ngrx/tsconfig.lib.json",
@@ -680,7 +681,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/modal"
+            "node_modules/ngx-bootstrap/modal/esm2015"
           ],
           "options": {
             "tsConfig": "src/modal/tsconfig.lib.json",
@@ -722,7 +723,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/pagination"
+            "node_modules/ngx-bootstrap/pagination/esm2015"
           ],
           "options": {
             "tsConfig": "src/pagination/tsconfig.lib.json",
@@ -764,7 +765,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/popover"
+            "node_modules/ngx-bootstrap/popover/esm2015"
           ],
           "options": {
             "tsConfig": "src/popover/tsconfig.lib.json",
@@ -806,7 +807,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/positioning"
+            "node_modules/ngx-bootstrap/positioning/esm2015"
           ],
           "options": {
             "tsConfig": "src/positioning/tsconfig.lib.json",
@@ -848,7 +849,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/progressbar"
+            "node_modules/ngx-bootstrap/progressbar/esm2015"
           ],
           "options": {
             "tsConfig": "src/progressbar/tsconfig.lib.json",
@@ -890,7 +891,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/rating"
+            "node_modules/ngx-bootstrap/rating/esm2015"
           ],
           "options": {
             "tsConfig": "src/rating/tsconfig.lib.json",
@@ -932,7 +933,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/sortable"
+            "node_modules/ngx-bootstrap/sortable/esm2015"
           ],
           "options": {
             "tsConfig": "src/sortable/tsconfig.lib.json",
@@ -974,7 +975,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/tabs"
+            "node_modules/ngx-bootstrap/tabs/esm2015"
           ],
           "options": {
             "tsConfig": "src/tabs/tsconfig.lib.json",
@@ -1016,7 +1017,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/timepicker"
+            "node_modules/ngx-bootstrap/timepicker/esm2015"
           ],
           "options": {
             "tsConfig": "src/timepicker/tsconfig.lib.json",
@@ -1058,7 +1059,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/tooltip"
+            "node_modules/ngx-bootstrap/tooltip/esm2015"
           ],
           "options": {
             "tsConfig": "src/tooltip/tsconfig.lib.json",
@@ -1100,7 +1101,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/typeahead"
+            "node_modules/ngx-bootstrap/typeahead/esm2015"
           ],
           "options": {
             "tsConfig": "src/typeahead/tsconfig.lib.json",
@@ -1142,7 +1143,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/utils"
+            "node_modules/ngx-bootstrap/utils/esm2015"
           ],
           "options": {
             "tsConfig": "src/utils/tsconfig.lib.json",
@@ -1318,7 +1319,7 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": [
-            "node_modules/ngx-bootstrap/accordion"
+            "node_modules/ngx-bootstrap/accordion/esm2015"
           ],
           "options": {
             "tsConfig": "libs/doc-pages/accordion/tsconfig.lib.json",
