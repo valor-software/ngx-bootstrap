@@ -88,7 +88,13 @@
                 }
               ]
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -170,7 +176,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/accordion/esm2015"
+            "node_modules/ngx-bootstrap/accordion"
           ],
           "options": {
             "tsConfig": "src/accordion/tsconfig.lib.json",
@@ -180,7 +186,13 @@
             "production": {
               "tsConfig": "src/accordion/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -212,7 +224,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/alert/esm2015"
+            "node_modules/ngx-bootstrap/alert"
           ],
           "options": {
             "tsConfig": "src/alert/tsconfig.lib.json",
@@ -222,7 +234,13 @@
             "production": {
               "tsConfig": "src/alert/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -254,7 +272,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/buttons/esm2015"
+            "node_modules/ngx-bootstrap/buttons"
           ],
           "options": {
             "tsConfig": "src/buttons/tsconfig.lib.json",
@@ -296,7 +314,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/carousel/esm2015"
+            "node_modules/ngx-bootstrap/carousel"
           ],
           "options": {
             "tsConfig": "src/carousel/tsconfig.lib.json",
@@ -306,7 +324,13 @@
             "production": {
               "tsConfig": "src/carousel/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -338,7 +362,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/chronos/esm2015"
+            "node_modules/ngx-bootstrap/chronos"
           ],
           "options": {
             "tsConfig": "src/chronos/tsconfig.lib.json",
@@ -380,7 +404,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/collapse/esm2015"
+            "node_modules/ngx-bootstrap/collapse"
           ],
           "options": {
             "tsConfig": "src/collapse/tsconfig.lib.json",
@@ -422,7 +446,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/component-loader/esm2015"
+            "node_modules/ngx-bootstrap/component-loader"
           ],
           "options": {
             "tsConfig": "src/component-loader/tsconfig.lib.json",
@@ -432,7 +456,13 @@
             "production": {
               "tsConfig": "src/component-loader/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -464,7 +494,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/datepicker/esm2015"
+            "node_modules/ngx-bootstrap/datepicker"
           ],
           "options": {
             "tsConfig": "src/datepicker/tsconfig.lib.json",
@@ -474,7 +504,13 @@
             "production": {
               "tsConfig": "src/datepicker/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -506,7 +542,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/dropdown/esm2015"
+            "node_modules/ngx-bootstrap/dropdown"
           ],
           "options": {
             "tsConfig": "src/dropdown/tsconfig.lib.json",
@@ -516,7 +552,13 @@
             "production": {
               "tsConfig": "src/dropdown/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -548,7 +590,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/focus-trap/esm2015"
+            "node_modules/ngx-bootstrap/focus-trap"
           ],
           "options": {
             "tsConfig": "src/focus-trap/tsconfig.lib.json",
@@ -590,7 +632,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/locale/esm2015"
+            "node_modules/ngx-bootstrap/locale"
           ],
           "options": {
             "tsConfig": "src/locale/tsconfig.lib.json",
@@ -600,7 +642,13 @@
             "production": {
               "tsConfig": "src/locale/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -632,7 +680,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/mini-ngrx/esm2015"
+            "node_modules/ngx-bootstrap/mini-ngrx"
           ],
           "options": {
             "tsConfig": "src/mini-ngrx/tsconfig.lib.json",
@@ -674,7 +722,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/modal/esm2015"
+            "node_modules/ngx-bootstrap/modal"
           ],
           "options": {
             "tsConfig": "src/modal/tsconfig.lib.json",
@@ -684,7 +732,13 @@
             "production": {
               "tsConfig": "src/modal/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -716,7 +770,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/pagination/esm2015"
+            "node_modules/ngx-bootstrap/pagination"
           ],
           "options": {
             "tsConfig": "src/pagination/tsconfig.lib.json",
@@ -758,7 +812,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/popover/esm2015"
+            "node_modules/ngx-bootstrap/popover"
           ],
           "options": {
             "tsConfig": "src/popover/tsconfig.lib.json",
@@ -768,7 +822,13 @@
             "production": {
               "tsConfig": "src/popover/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -800,7 +860,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/positioning/esm2015"
+            "node_modules/ngx-bootstrap/positioning"
           ],
           "options": {
             "tsConfig": "src/positioning/tsconfig.lib.json",
@@ -842,7 +902,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/progressbar/esm2015"
+            "node_modules/ngx-bootstrap/progressbar"
           ],
           "options": {
             "tsConfig": "src/progressbar/tsconfig.lib.json",
@@ -852,7 +912,13 @@
             "production": {
               "tsConfig": "src/progressbar/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -884,7 +950,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/rating/esm2015"
+            "node_modules/ngx-bootstrap/rating"
           ],
           "options": {
             "tsConfig": "src/rating/tsconfig.lib.json",
@@ -926,7 +992,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/sortable/esm2015"
+            "node_modules/ngx-bootstrap/sortable"
           ],
           "options": {
             "tsConfig": "src/sortable/tsconfig.lib.json",
@@ -968,7 +1034,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/tabs/esm2015"
+            "node_modules/ngx-bootstrap/tabs"
           ],
           "options": {
             "tsConfig": "src/tabs/tsconfig.lib.json",
@@ -1010,7 +1076,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/timepicker/esm2015"
+            "node_modules/ngx-bootstrap/timepicker"
           ],
           "options": {
             "tsConfig": "src/timepicker/tsconfig.lib.json",
@@ -1020,7 +1086,13 @@
             "production": {
               "tsConfig": "src/timepicker/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1052,7 +1124,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/tooltip/esm2015"
+            "node_modules/ngx-bootstrap/tooltip"
           ],
           "options": {
             "tsConfig": "src/tooltip/tsconfig.lib.json",
@@ -1062,7 +1134,13 @@
             "production": {
               "tsConfig": "src/tooltip/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1094,7 +1172,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/typeahead/esm2015"
+            "node_modules/ngx-bootstrap/typeahead"
           ],
           "options": {
             "tsConfig": "src/typeahead/tsconfig.lib.json",
@@ -1104,7 +1182,13 @@
             "production": {
               "tsConfig": "src/typeahead/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1136,7 +1220,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/utils/esm2015"
+            "node_modules/ngx-bootstrap/utils"
           ],
           "options": {
             "tsConfig": "src/utils/tsconfig.lib.json",
@@ -1189,7 +1273,13 @@
           },
           "configurations": {
             "production": {}
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "ng-build": {
           "builder": "@nrwl/angular:package",
@@ -1312,7 +1402,7 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": [
-            "node_modules/ngx-bootstrap/accordion/esm2015"
+            "node_modules/ngx-bootstrap/accordion"
           ],
           "options": {
             "tsConfig": "libs/doc-pages/accordion/tsconfig.lib.json",
@@ -1322,7 +1412,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/accordion/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1361,7 +1457,13 @@
             "production": {
               "tsConfig": "libs/common-docs/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1400,7 +1502,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/alerts/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1439,7 +1547,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/buttons/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1478,7 +1592,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/carousel/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1517,7 +1637,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/collapse/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1556,7 +1682,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/datepicker/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1595,7 +1727,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/dropdown/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1634,7 +1772,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/modal/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1673,7 +1817,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/pagination/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1712,7 +1862,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/popover/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1751,7 +1907,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/progressbar/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1790,7 +1952,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/rating/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1829,7 +1997,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/sortable/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1868,7 +2042,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/tabs/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1907,7 +2087,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/timepicker/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1946,7 +2132,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/tooltip/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1985,7 +2177,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/typeahead/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
