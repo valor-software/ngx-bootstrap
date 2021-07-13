@@ -87,6 +87,21 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "development": {
+              "buildOptimizer": true,
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": false,
+                  "inlineCritical": false
+                },
+                "fonts": true
+              },
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           },
           "dependsOn": [
@@ -106,8 +121,12 @@
             "production": {
               "baseHref": "/ngx-bootstrap/",
               "browserTarget": "ngx-bootstrap-docs:build:production"
+            },
+            "development": {
+              "browserTarget": "ngx-bootstrap-docs:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
