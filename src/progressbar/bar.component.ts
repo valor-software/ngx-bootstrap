@@ -6,7 +6,7 @@ import {
   OnDestroy,
   OnInit,
   ElementRef,
-  Renderer2, SimpleChanges, OnChanges
+  Renderer2, SimpleChanges, OnChanges,
 } from '@angular/core';
 
 import { ProgressbarComponent } from './progressbar.component';
@@ -52,9 +52,9 @@ export class BarComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   striped?: boolean;
-  animate = false;
+  animate? = false;
   percent = 0;
-  progress: ProgressbarComponent;
+  progress?: ProgressbarComponent;
 
   private _prevType?: string;
 
@@ -63,15 +63,23 @@ export class BarComponent implements OnInit, OnDestroy, OnChanges {
     @Host() progress: ProgressbarComponent,
     private renderer: Renderer2
   ) {
-    this.progress = progress;
+    console.log('bar progress', progress);
+    this.progressHosting(progress);
   }
 
   ngOnInit(): void {
-    this.progress.addBar(this);
+    this.progress?.addBar(this);
+  }
+
+  progressHosting(progress: ProgressbarComponent): void {
+    this.progress = progress;
+    this.animate = this.progress._animate;
+    this.striped = this.progress._striped;
+    this.recalculatePercentage();
   }
 
   ngOnDestroy(): void {
-    this.progress.removeBar(this);
+    this.progress?.removeBar(this);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -90,15 +98,17 @@ export class BarComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   recalculatePercentage(): void {
-    this.percent = +((this.value || 0) / this.progress.max * 100).toFixed(2);
+    if (this.progress) {
+      this.percent = +((this.value || 0) / this.progress?.max * 100).toFixed(2);
 
-    const totalPercentage = this.progress.bars
-      .reduce(function (total: number, bar: BarComponent): number {
-        return total + bar.percent;
-      }, 0);
+      const totalPercentage = [ ... this.progress?.bars]
+        .reduce(function (total: number, bar: BarComponent): number {
+          return total + bar.percent;
+        }, 0);
 
-    if (totalPercentage > 100) {
-      this.percent -= totalPercentage - 100;
+      if (totalPercentage > 100) {
+        this.percent -= totalPercentage - 100;
+      }
     }
   }
 
