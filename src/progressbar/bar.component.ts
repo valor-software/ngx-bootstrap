@@ -1,16 +1,14 @@
 import {
   Component,
-  Host,
   HostBinding,
   Input,
   OnDestroy,
-  OnInit,
   ElementRef,
   Renderer2, SimpleChanges, OnChanges,
 } from '@angular/core';
 
-import { ProgressbarComponent } from './progressbar.component';
 import { isBs3 } from 'ngx-bootstrap/utils';
+import { IProgressBarComponent, ProgressbarType } from './progressbar-type.interface';
 
 // todo: number pipe
 // todo: use query from progress?
@@ -30,11 +28,11 @@ import { isBs3 } from 'ngx-bootstrap/utils';
     '[style.height.%]': '"100"'
   }
 })
-export class BarComponent implements OnInit, OnDestroy, OnChanges {
+export class BarComponent implements OnDestroy, OnChanges {
+  @Input() progress?: IProgressBarComponent;
   @Input() max = 100;
   /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
-  @Input() type?: string;
-
+  @Input() type?: ProgressbarType = 'info';
   /** current value of progress bar */
   @Input() value?: number;
 
@@ -51,64 +49,55 @@ export class BarComponent implements OnInit, OnDestroy, OnChanges {
     return isBs3();
   }
 
-  striped?: boolean;
-  animate? = false;
-  percent = 0;
-  progress?: ProgressbarComponent;
+  public striped?: boolean;
+  public animate? = false;
+  public percent = 0;
 
   private _prevType?: string;
 
   constructor(
     private el: ElementRef,
-    @Host() progress: ProgressbarComponent,
     private renderer: Renderer2
-  ) {
-    console.log('bar progress', progress);
-    this.progressHosting(progress);
-  }
-
-  ngOnInit(): void {
-    this.progress?.addBar(this);
-  }
-
-  progressHosting(progress: ProgressbarComponent): void {
-    this.progress = progress;
-    this.animate = this.progress._animate;
-    this.striped = this.progress._striped;
-    this.recalculatePercentage();
-  }
+  ) {}
 
   ngOnDestroy(): void {
     this.progress?.removeBar(this);
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.value) {
-      if (!changes.value.currentValue && changes.value.currentValue !== 0) {
-        return;
-      }
-      this.value = changes.value.currentValue;
+    if (changes.progress) {
+      this.progress = changes.progress.currentValue;
+      this.progress?.addBar(this);
+      this.setHostingValues();
+    }
+
+    if (changes.value || changes.max) {
       this.recalculatePercentage();
     }
 
     if (changes.type) {
-      this.type = changes.type.currentValue;
       this.applyTypeClasses();
     }
   }
 
+  setHostingValues(): void {
+    this.animate = this.progress?._animate;
+    this.striped = this.progress?._striped;
+  }
+
   recalculatePercentage(): void {
-    if (this.progress) {
-      this.percent = +((this.value || 0) / this.progress?.max * 100).toFixed(2);
+    if (!this.progress) {
+      return;
+    };
+    this.percent = +((this.value || 0) / this.progress?._max * 100).toFixed(2);
 
-      const totalPercentage = [ ... this.progress?.bars]
-        .reduce(function (total: number, bar: BarComponent): number {
-          return total + bar.percent;
-        }, 0);
+    const totalPercentage = [ ... this.progress?.bars]
+      .reduce(function (total: number, bar: BarComponent): number {
+        return total + bar.percent;
+      }, 0);
 
-      if (totalPercentage > 100) {
-        this.percent -= totalPercentage - 100;
-      }
+    if (totalPercentage > 100) {
+      this.percent -= totalPercentage - 100;
     }
   }
 

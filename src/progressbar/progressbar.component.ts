@@ -5,12 +5,10 @@ import {
   ViewChildren,
   QueryList,
   ElementRef,
-  AfterViewInit, ContentChildren
+  AfterViewInit,
 } from '@angular/core';
 import { ProgressbarConfig } from './progressbar.config';
-import { BarValue, ProgressbarType } from './progressbar-type.interface';
-import { isBs3 } from 'ngx-bootstrap/utils';
-import { Subscription } from 'rxjs';
+import { BarValue, IProgressBarComponent, ProgressbarType } from './progressbar-type.interface';
 import { BarComponent } from './bar.component';
 
 @Component({
@@ -25,10 +23,9 @@ import { BarComponent } from './bar.component';
   `
   ]
 })
-export class ProgressbarComponent implements AfterViewInit {
+export class ProgressbarComponent implements IProgressBarComponent,  AfterViewInit {
   /** if `true` changing value of progress bar will be animated */
-  @Input()
-  set animate(value: boolean) {
+  @Input() set animate(value: boolean) {
     this._animate = value;
   }
   /** If `true`, striped classes are applied */
@@ -36,7 +33,6 @@ export class ProgressbarComponent implements AfterViewInit {
   set striped(value: boolean) {
     this._striped = value;
   }
-
   /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
   @Input() type?: ProgressbarType;
   /** current value of progress bar. Could be a number or array of objects
@@ -53,17 +49,14 @@ export class ProgressbarComponent implements AfterViewInit {
       this._values = value;
     }
   }
+
   isStacked = false;
   _striped?: boolean;
   _animate = false;
   _max = 100;
-
   _value?: number;
   _values?: BarValue[];
-
-  get isBs3(): boolean {
-    return isBs3();
-  }
+  bars: Set<BarComponent> = new Set();
 
   /** maximum total value of progress element */
   @HostBinding('attr.max')
@@ -77,18 +70,17 @@ export class ProgressbarComponent implements AfterViewInit {
   }
 
   @HostBinding('class.progress') addClass = true;
-
-  bars: Set<BarComponent> = new Set();
   @ViewChildren('barElement')
   public barElements?: QueryList<ElementRef>;
+
   constructor(
     config: ProgressbarConfig
     ) {
     Object.assign(this, config);
   }
 
-  addBar(bar: BarComponent): void {
-    this.bars.add(bar);
+  addBar(value: BarComponent): void {
+    this.bars = new Set([... this.bars, value]);
   }
 
   removeBar(bar: BarComponent): void {
@@ -96,10 +88,11 @@ export class ProgressbarComponent implements AfterViewInit {
       this.bars.delete(bar);
     }
   }
-
+//todo don't understand for what
   ngAfterViewInit(): void {
     this.barElements?.changes.subscribe(res => {
-      this.bars = res;
+      console.log('res', res);
+      // this.bars = res;
     });
   }
 }

@@ -1,6 +1,6 @@
-<bar [type]="type" [value]="_value" [max]="_max" *ngIf="!isStacked">
+<bar *ngIf="!isStacked" [progress]="this" [type]="type" [value]="_value" [max]="_max">
   <ng-content></ng-content>
 </bar>
 <ng-template [ngIf]="isStacked">
-  <bar *ngFor="let item of _values" [type]="item.type" [value]="item.value" [max]="item.max">{{ item.label }}</bar>
+  <bar *ngFor="let item of _values" [type]="item.type" [value]="item.value" [max]="item.max" [progress]="this">{{ item.label }}</bar>
 </ng-template>
