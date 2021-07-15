@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 
@@ -10,6 +11,7 @@ import { BsDropdownDirective } from './bs-dropdown.directive';
 import { BsDropdownState } from './bs-dropdown.state';
 
 @NgModule({
+  imports: [CommonModule],
   declarations: [
     BsDropdownMenuDirective,
     BsDropdownToggleDirective,

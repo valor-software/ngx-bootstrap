@@ -7,6 +7,8 @@ import { BsDropdownState } from './bs-dropdown.state';
 
 import { dropdownAnimation } from './dropdown-animations';
 
+// todo: revert ngClass to [class] when false positive angular-cli issue is fixed
+//          [class.dropdown]="direction === 'down'"-->
 @Component({
   selector: 'bs-dropdown-container',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -16,7 +18,7 @@ import { dropdownAnimation } from './dropdown-animations';
   },
   template: `
     <div [class.dropup]="direction === 'up'"
-         [class.dropdown]="direction === 'down'"
+         [ngClass]="{dropdown: direction === 'down'}"
          [class.show]="isOpen"
          [class.open]="isOpen"><ng-content></ng-content>
     </div>
