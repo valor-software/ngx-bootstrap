@@ -5,7 +5,7 @@ import { ProgressbarConfig } from './progressbar.config';
 @Component({
   selector: 'progressbar',
   templateUrl: './progressbar.component.html',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[class.progress]': 'true',

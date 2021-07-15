@@ -14,7 +14,7 @@ import { ProgressbarType } from './progressbar-type.interface';
 @Component({
   selector: 'bar',
   templateUrl: './bar.component.html',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     role: 'progressbar',
@@ -62,7 +62,7 @@ export class BarComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (changes.value || changes.max) {
       this.percent = 100 * (Number(changes.value.currentValue || 0)
-        / Number(changes.max.currentValue || 100));
+        / Number((changes.max?.currentValue || this.max) || 100));
     }
 
     if (changes.type) {
