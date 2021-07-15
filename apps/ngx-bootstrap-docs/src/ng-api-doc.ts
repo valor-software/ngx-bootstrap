@@ -2291,7 +2291,7 @@ export const ngdoc: any = {
     "fileName": "src/dropdown/bs-dropdown.directive.ts",
     "className": "BsDropdownDirective",
     "description": "",
-    "selector": "[bsDropdown],[dropdown]",
+    "selector": "[bsDropdown]",
     "exportAs": "bs-dropdown",
     "inputs": [
       {
@@ -3763,10 +3763,22 @@ export const ngdoc: any = {
     "selector": "bar",
     "inputs": [
       {
+        "name": "animate",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>if <code>true</code> changing value of progress bar will be animated</p>\n"
+      },
+      {
         "name": "max",
         "defaultValue": "100",
         "type": "number",
-        "description": ""
+        "description": "<p>maximum total value of progress element</p>\n"
+      },
+      {
+        "name": "striped",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>If <code>true</code>, striped classes are applied</p>\n"
       },
       {
         "name": "type",

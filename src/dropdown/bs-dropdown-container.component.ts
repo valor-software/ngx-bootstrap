@@ -1,18 +1,11 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ElementRef,
-  OnDestroy,
-  Renderer2
-} from '@angular/core';
+import { AnimationBuilder, AnimationFactory } from '@angular/animations';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, OnDestroy, Renderer2 } from '@angular/core';
+import { isBs3 } from 'ngx-bootstrap/utils';
+import { Subscription } from 'rxjs';
 
 import { BsDropdownState } from './bs-dropdown.state';
-import { isBs3 } from 'ngx-bootstrap/utils';
 
 import { dropdownAnimation } from './dropdown-animations';
-import { AnimationBuilder, AnimationFactory } from '@angular/animations';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'bs-dropdown-container',
