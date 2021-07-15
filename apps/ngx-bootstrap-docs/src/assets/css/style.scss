@@ -560,7 +560,7 @@ a:hover {
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1090
+    z-index: 1090;
   }
   .header-dropdown {
     z-index: 1090;
@@ -569,10 +569,10 @@ a:hover {
     padding-top: $header-height;
   }
   .modal-backdrop {
-    z-index: 2000
+    z-index: 2000;
   }
   .modal {
-    z-index: 2001
+    z-index: 2001;
   }
   .sidebar {
     position: fixed;
