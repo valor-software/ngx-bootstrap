@@ -1,40 +1,35 @@
-import {
-  Component,
-  HostBinding,
-  Input,
-  ViewChildren,
-  QueryList,
-  ElementRef,
-  AfterViewInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { BarValue, ProgressbarType } from './progressbar-type.interface';
 import { ProgressbarConfig } from './progressbar.config';
-import { BarValue, IProgressBarComponent, ProgressbarType } from './progressbar-type.interface';
-import { BarComponent } from './bar.component';
 
 @Component({
   selector: 'progressbar',
   templateUrl: './progressbar.component.html',
-  styles: [
-    `
+  // changeDetection: ChangeDetectionStrategy.OnPush,
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+  host: {
+    '[class.progress]': 'true',
+    '[attr.max]': 'max'
+  },
+  styles: [`
     :host {
       width: 100%;
       display: flex;
-    }
-  `
-  ]
+    } `]
 })
-export class ProgressbarComponent implements IProgressBarComponent,  AfterViewInit {
+export class ProgressbarComponent {
+  /** maximum total value of progress element */
+  @Input() max = 100;
+
   /** if `true` changing value of progress bar will be animated */
-  @Input() set animate(value: boolean) {
-    this._animate = value;
-  }
+  @Input() animate = false;
+
   /** If `true`, striped classes are applied */
-  @Input()
-  set striped(value: boolean) {
-    this._striped = value;
-  }
+  @Input() striped = false;
+
   /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
   @Input() type?: ProgressbarType;
+
   /** current value of progress bar. Could be a number or array of objects
    * like {"value":15,"type":"info","label":"15 %"}
    */
@@ -51,48 +46,10 @@ export class ProgressbarComponent implements IProgressBarComponent,  AfterViewIn
   }
 
   isStacked = false;
-  _striped?: boolean;
-  _animate = false;
-  _max = 100;
   _value?: number;
   _values?: BarValue[];
-  bars: Set<BarComponent> = new Set();
 
-  /** maximum total value of progress element */
-  @HostBinding('attr.max')
-  @Input()
-  get max(): number {
-    return this._max;
-  }
-
-  set max(v: number) {
-    this._max = v;
-  }
-
-  @HostBinding('class.progress') addClass = true;
-  @ViewChildren('barElement')
-  public barElements?: QueryList<ElementRef>;
-
-  constructor(
-    config: ProgressbarConfig
-    ) {
+  constructor(config: ProgressbarConfig) {
     Object.assign(this, config);
-  }
-
-  addBar(value: BarComponent): void {
-    this.bars = new Set([... this.bars, value]);
-  }
-
-  removeBar(bar: BarComponent): void {
-    if (this.bars?.has(bar)) {
-      this.bars.delete(bar);
-    }
-  }
-//todo don't understand for what
-  ngAfterViewInit(): void {
-    this.barElements?.changes.subscribe(res => {
-      console.log('res', res);
-      // this.bars = res;
-    });
   }
 }

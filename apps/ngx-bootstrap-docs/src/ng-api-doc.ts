@@ -3770,11 +3770,13 @@ export const ngdoc: any = {
       },
       {
         "name": "type",
-        "type": "string",
+        "defaultValue": "info",
+        "type": "ProgressbarType",
         "description": "<p>provide one of the four supported contextual classes: <code>success</code>, <code>info</code>, <code>warning</code>, <code>danger</code></p>\n"
       },
       {
         "name": "value",
+        "defaultValue": "0",
         "type": "number",
         "description": "<p>current value of progress bar</p>\n"
       }
@@ -3798,16 +3800,19 @@ export const ngdoc: any = {
     "inputs": [
       {
         "name": "animate",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>if <code>true</code> changing value of progress bar will be animated</p>\n"
       },
       {
         "name": "max",
+        "defaultValue": "100",
         "type": "number",
         "description": "<p>maximum total value of progress element</p>\n"
       },
       {
         "name": "striped",
+        "defaultValue": "false",
         "type": "boolean",
         "description": "<p>If <code>true</code>, striped classes are applied</p>\n"
       },
