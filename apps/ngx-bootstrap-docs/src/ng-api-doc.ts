@@ -2291,7 +2291,7 @@ export const ngdoc: any = {
     "fileName": "src/dropdown/bs-dropdown.directive.ts",
     "className": "BsDropdownDirective",
     "description": "",
-    "selector": "[bsDropdown],[dropdown]",
+    "selector": "[bsDropdown], [dropdown]",
     "exportAs": "bs-dropdown",
     "inputs": [
       {
