@@ -2291,7 +2291,7 @@ export const ngdoc: any = {
     "fileName": "src/dropdown/bs-dropdown.directive.ts",
     "className": "BsDropdownDirective",
     "description": "",
-    "selector": "[bsDropdown],[dropdown]",
+    "selector": "[bsDropdown], [dropdown]",
     "exportAs": "bs-dropdown",
     "inputs": [
       {
@@ -3924,7 +3924,7 @@ export const ngdoc: any = {
     "properties": []
   },
   "availablePaths": {
-    "fileName": "src/schematics/src/utils/index.ts",
+    "fileName": "src/schematics/src/utils/addStyles.ts",
     "className": "availablePaths",
     "description": "",
     "methods": [],
