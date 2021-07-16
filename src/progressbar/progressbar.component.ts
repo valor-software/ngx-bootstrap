@@ -46,8 +46,8 @@ export class ProgressbarComponent {
   }
 
   isStacked = false;
-  _value?: number;
-  _values?: BarValue[];
+  _value? = 0;
+  _values? = [{value: 0}];
 
   constructor(config: ProgressbarConfig) {
     Object.assign(this, config);
