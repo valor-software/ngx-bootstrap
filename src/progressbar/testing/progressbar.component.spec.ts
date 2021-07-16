@@ -40,7 +40,7 @@ describe('Component: Progress Bar', () => {
   });
 
   it('should work correctly with default values', () => {
-    const tpl = `<progressbar [value]="55"></progressbar>`;
+    const tpl = `<progressbar></progressbar>`;
     TestBed.configureTestingModule({
       declarations: [TestProgressbarComponent],
       imports: [ProgressbarModule.forRoot()]
