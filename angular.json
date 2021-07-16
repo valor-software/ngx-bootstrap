@@ -1225,7 +1225,7 @@
           "builder": "@nrwl/workspace:run-commands",
           "outputs": [],
           "options": {
-            "command": "sass src:node_modules/ngx-bootstrap --source-map"
+            "command": "npx sass src:node_modules/ngx-bootstrap --source-map"
           }
         },
         "docs": {
