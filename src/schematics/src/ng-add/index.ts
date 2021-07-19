@@ -65,7 +65,7 @@ export default function addBsToPackage(options: Schema): Rule {
     const project = workspace.projects.get(projectName);
 
     addPackageJsonDependencies(tree, context);
-    if (!componentName || componentName === datepickerComponentName) {
+    if (!componentName || componentName === datepickerComponentName || !components[componentName]) {
       insertCommonStyles(project, tree, projectName, options.stylesExtension);
     } else {
       insertBootstrapStyles(project, tree, projectName, options.stylesExtension);
