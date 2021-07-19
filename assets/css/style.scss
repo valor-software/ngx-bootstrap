@@ -297,7 +297,8 @@ a:hover {
   &-content {
     padding: 15px 19px 15px 20px;
     overflow: auto;
-    max-height: calc(100vh - 194px); // header + search field + bootstrap buttons field
+    /* header + search field + bootstrap buttons field */
+    max-height: calc(100vh - 194px);
   }
 
   &-list {
@@ -559,7 +560,7 @@ a:hover {
     position: fixed;
     width: 100%;
     top: 0;
-    z-index: 1090; // to overlap most positioned elements in bootstrap
+    z-index: 1090;
   }
   .header-dropdown {
     z-index: 1090;
@@ -568,10 +569,10 @@ a:hover {
     padding-top: $header-height;
   }
   .modal-backdrop {
-    z-index: 2000; // to overlap header :)
+    z-index: 2000;
   }
   .modal {
-    z-index: 2001; // to overlap header :)
+    z-index: 2001;
   }
   .sidebar {
     position: fixed;
@@ -677,7 +678,7 @@ a:hover {
     position: absolute;
     left: 100%;
     width: 100%;
-    height: calc(100vh - 123px); // search and header heights
+    height: calc(100vh - 123px);
     background: #fff;
     z-index: 2;
     transition: left 0.4s;
