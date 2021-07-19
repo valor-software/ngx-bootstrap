@@ -1243,7 +1243,8 @@
             "commands": [
               "ts-node ./scripts/set-version.ts",
               "conventional-changelog --preset angular --infile CHANGELOG.md --same-file --release-count 1",
-              "git commit -a --amend --no-edit"
+              "git add -A",
+              "git commit -am \"chore(changelog): update [skip ci] \""
             ],
             "parallel": false
           },
