@@ -26,7 +26,7 @@ import { DayViewModel } from '../../models';
   template: `{{ day && day.label || '' }}`
 })
 export class BsDatepickerDayDecoratorComponent implements OnInit {
-  @Input() day?: DayViewModel;
+  @Input() day: DayViewModel = { date: new Date(), label: '' };
 
   constructor(
     private _config: BsDatepickerConfig,
