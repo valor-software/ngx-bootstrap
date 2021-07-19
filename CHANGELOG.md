@@ -1,3 +1,29 @@
+# [7.0.0-rc.4](https://github.com/valor-software/ngx-bootstrap/compare/v7.0.0-rc.1...v7.0.0-rc.4) (2021-07-19)
+
+
+### Bug Fixes
+
+* **build:** dropdown selector for ng12 cli build false positive issue ([#6208](https://github.com/valor-software/ngx-bootstrap/issues/6208)) ([95f7244](https://github.com/valor-software/ngx-bootstrap/commit/95f72441b4736bc4b7363026c3ce013e43b35e11))
+* **datepicker:**  ranges and  max date ([#6156](https://github.com/valor-software/ngx-bootstrap/issues/6156)) ([fe2bb28](https://github.com/valor-software/ngx-bootstrap/commit/fe2bb28418a3c6cbef81c45da7fa6f1eb10c6001))
+* **datepicker:** fix button custom range ([#6148](https://github.com/valor-software/ngx-bootstrap/issues/6148)) ([a3b8a0a](https://github.com/valor-software/ngx-bootstrap/commit/a3b8a0af5ffd9428db6993f40a6954422ec92685))
+* **datepicker:** fix navigation buttons in datepicker styles ([#6171](https://github.com/valor-software/ngx-bootstrap/issues/6171)) ([ec809cc](https://github.com/valor-software/ngx-bootstrap/commit/ec809ccc15f133214ef5fa7ffd3fca568832d8c6))
+* **discover:** add two new companies ([5385279](https://github.com/valor-software/ngx-bootstrap/commit/53852797504818cf91608641af1155b2b68c217a))
+* **e2e:** fix e2e tests ([#6200](https://github.com/valor-software/ngx-bootstrap/issues/6200)) ([e68cc3c](https://github.com/valor-software/ngx-bootstrap/commit/e68cc3cabf587ff5c8a48e6b7cfc5bf4d9389a8b))
+* **gh-page:** fix GitHub 404 page ([#6194](https://github.com/valor-software/ngx-bootstrap/issues/6194)) ([976edd3](https://github.com/valor-software/ngx-bootstrap/commit/976edd3d58cb0452989f594ae7d0dc3a564792ce))
+* **gh-page:** fix github 404 page ([#6199](https://github.com/valor-software/ngx-bootstrap/issues/6199)) ([cf29ddc](https://github.com/valor-software/ngx-bootstrap/commit/cf29ddca502efdb21d33988aad549dc9f29461f5))
+* **gh-page:** GitHub 404 page ([#6198](https://github.com/valor-software/ngx-bootstrap/issues/6198)) ([a6f04e6](https://github.com/valor-software/ngx-bootstrap/commit/a6f04e63efed96586627989b2a45c5dd28db07f8))
+* **schematics:** fixed schematics for ngx-bootstrap ([#6167](https://github.com/valor-software/ngx-bootstrap/issues/6167)) ([a51e916](https://github.com/valor-software/ngx-bootstrap/commit/a51e9163e622bfc3ddd23526379a310f16645096))
+* **top-menu:** fixed top logo in documentation ([#6163](https://github.com/valor-software/ngx-bootstrap/issues/6163)) ([76626ee](https://github.com/valor-software/ngx-bootstrap/commit/76626ee37db9b4238310dfe19694e0b609da8d3a))
+
+
+### Features
+
+* **accordion:** using dropdown(ngx-bootstrap) inside an accordion ([#6154](https://github.com/valor-software/ngx-bootstrap/issues/6154)) ([3947950](https://github.com/valor-software/ngx-bootstrap/commit/3947950be4543f0fdaff919d3b7a0b06d07fe51a))
+* **bootstrap:** updated bootstrap 4.0.0 up to 4.5.3 ([#6206](https://github.com/valor-software/ngx-bootstrap/issues/6206)) ([67736e0](https://github.com/valor-software/ngx-bootstrap/commit/67736e09a9810d4beaddffe43af732b19fa5d7ee))
+* **schematics page:** add new page on docs site for schematics ([#6181](https://github.com/valor-software/ngx-bootstrap/issues/6181)) ([52083d4](https://github.com/valor-software/ngx-bootstrap/commit/52083d402da93075c942dbbfbcb33ca796272126))
+
+
+
 # [7.0.0-rc.3](https://github.com/valor-software/ngx-bootstrap/compare/v7.0.0-rc.1...v7.0.0-rc.3) (2021-07-08)
 
 
