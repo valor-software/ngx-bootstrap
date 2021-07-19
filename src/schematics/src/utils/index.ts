@@ -13,11 +13,8 @@ import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 import { getFileContent } from '@schematics/angular/utility/test';
 import * as ts from 'typescript';
 import { getProjectMainFile } from './project-main-file';
-import {
-  WorkspaceProject,
-  WorkspaceSchema
-} from '@schematics/angular/utility/workspace-models';
-import { workspaces,  JsonArray, JsonObject} from '@angular-devkit/core';
+import { WorkspaceProject, WorkspaceSchema } from '@schematics/angular/utility/workspace-models';
+import { JsonArray, JsonObject, workspaces } from '@angular-devkit/core';
 
 
 export function getProjectTargetOptions(project: workspaces.ProjectDefinition, buildTarget: string):  Record<string, string | number | boolean | JsonArray | JsonObject> {

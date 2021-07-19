@@ -5,7 +5,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { workspaces} from '@angular-devkit/core';
+import { workspaces } from '@angular-devkit/core';
 import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
@@ -15,7 +15,8 @@ import { getProjectMainFile } from '../utils/project-main-file';
 import { Schema } from './schema';
 import { addStyles } from '../utils/addStyles';
 import { getDependencies } from '../utils/getVersions';
-import {getWorkspace} from '@schematics/angular/utility/workspace';
+import { getWorkspace } from '@schematics/angular/utility/workspace';
+
 const datepickerComponentName = 'datepicker';
 const bsName = 'ngx-bootstrap';
 const BOOTSTRAP_AVAILABLE_STYLES = {
