@@ -20,12 +20,12 @@
     </div>
   </div>
 </ng-template>
-<div class="panel card" [ngClass]="panelClass" *ngIf="!hideContainer; else showHiddenContainer">
+<div class="panel card" [ngClass]="panelClass" *ngIf="!hideContainer">
   <ng-container *ngTemplateOutlet="acc_inner"></ng-container>
 </div>
-<!--<ng-container *ngIf="hideContainer">-->
-<!--  <ng-container *ngTemplateOutlet="acc_inner"></ng-container>-->
-<!--</ng-container>-->
-<ng-template #showHiddenContainer>
+<ng-container *ngIf="hideContainer">
   <ng-container *ngTemplateOutlet="acc_inner"></ng-container>
-</ng-template>
+</ng-container>
+<!--<ng-template #showHiddenContainer>-->
+<!--  <ng-container *ngTemplateOutlet="acc_inner"></ng-container>-->
+<!--</ng-template>-->
