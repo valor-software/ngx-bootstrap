@@ -1,3 +1,12 @@
+# [7.0.0-rc.5](https://github.com/valor-software/ngx-bootstrap/compare/v7.0.0-rc.4...v7.0.0-rc.5) (2021-07-20)
+
+
+### Bug Fixes
+
+* **schematics:** fix schematics after npm testing ([#6211](https://github.com/valor-software/ngx-bootstrap/issues/6211)) ([92e72bd](https://github.com/valor-software/ngx-bootstrap/commit/92e72bd99bef7d654663a952d15c57e3bd533ac0))
+
+
+
 # [7.0.0-rc.4](https://github.com/valor-software/ngx-bootstrap/compare/v7.0.0-rc.1...v7.0.0-rc.4) (2021-07-19)
 
 
