@@ -22,6 +22,7 @@ import { NgApiDocClassComponent, NgApiDocComponent, NgApiDocConfigComponent, NgA
 import { LandingComponent } from './common/landing/landing.component';
 import { DocumentationComponent } from './common/documentation/documentation.component';
 import { DiscoverComponent } from './common/discover/discover.component';
+import { SchematicsComponent } from './common/schematics/schematics.component';
 
 /* export */
 export {
@@ -50,6 +51,7 @@ export { SearchFilterPipe } from './common/sidebar/search-filter.pipe';
 export { LandingComponent } from './common/landing/landing.component';
 export { DocumentationComponent } from './common/documentation/documentation.component';
 export { DiscoverComponent } from './common/discover/discover.component';
+export { SchematicsComponent } from './common/schematics/schematics.component';
 export { StyleManager } from './theme/style-manager';
 export { ThemeStorage } from './theme/theme-storage';
 export { NgApiDoc } from './api-docs/api-docs.model';
@@ -67,7 +69,8 @@ export { DOCS_TOKENS } from './tokens/docs-routes-token';
     DocsSectionComponent,
     LandingComponent,
     DocumentationComponent,
-    DiscoverComponent
+    DiscoverComponent,
+    SchematicsComponent
   ],
   imports: [
     TabsModule,

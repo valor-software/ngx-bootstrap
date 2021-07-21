@@ -16,7 +16,7 @@ const oldVersionDir = 'gh-pages/old/';
 const versionsFilePath = 'assets/json/versions.json';
 const currentVersionFilePath = 'assets/json/current-version.json';
 
-const demoDistDir = 'dist/static/ngx-bootstrap';
+const demoDistDir = 'dist/apps/ngx-bootstrap';
 const hostname = 'ngx-bootstrap';
 
 (async () => {

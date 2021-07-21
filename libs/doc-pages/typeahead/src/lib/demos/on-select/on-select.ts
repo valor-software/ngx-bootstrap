@@ -10,7 +10,7 @@ import { DataSourceType } from '../interfaces/typeahead.interfaces';
 export class DemoTypeaheadOnSelectComponent {
   selectedValue: string;
   selectedOption: any;
-  previewOption: any = null;
+  previewOption?: any;
   states: DataSourceType[] = [
     { id: 1, name: 'Alabama', region: 'South' },
     { id: 2, name: 'Alaska', region: 'West' },

@@ -19,6 +19,7 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsDatepickerViewMode, DatepickerDateCustomClasses, DatepickerDateTooltipText } from './models';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
+import { checkBsValue } from './utils/bs-calendar-utils';
 
 @Directive({
   selector: '[bsDatepicker]',
@@ -299,7 +300,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
    */
   setConfig(): void {
     this._config = Object.assign({}, this._config, this.bsConfig, {
-      value: this._bsValue,
+      value: checkBsValue(this._bsValue, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
       isDisabled: this.isDisabled,
       minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
       maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,

@@ -36,9 +36,9 @@ export interface ArgumentDesc {
   type: string;
 }
 
-export type InputDesc = PropertyDesc
+export type InputDesc = PropertyDesc;
 
-export type OutputDesc = PropertyDesc
+export type OutputDesc = PropertyDesc;
 
 /**
  * :D
