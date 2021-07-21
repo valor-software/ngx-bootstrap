@@ -22,18 +22,18 @@ export class SidebarComponent implements OnDestroy {
 
   get bsCssFile(): string {
     if (this.currentTheme === 'bs3') {
-      return _bs3Css
+      return _bs3Css;
     }
 
     if (this.currentTheme === 'bs5') {
-      return _bs5Css
+      return _bs5Css;
     }
 
-    return _bs4Css
+    return _bs4Css;
   }
 
   get _bsVersions(): IBsVersion {
-    return getBsVer()
+    return getBsVer();
   }
 
   routes: Routes;

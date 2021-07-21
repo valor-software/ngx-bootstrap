@@ -34,7 +34,7 @@ function _guessBsVersion(): 'bs3' | 'bs4' | 'bs5' {
     return 'bs3';
   }
   if (overflowStyle && overflowStyle === 'hidden') {
-    return 'bs5'
+    return 'bs5';
   }
   return 'bs4';
 }
@@ -84,7 +84,7 @@ export function getBsVer(): IBsVersion {
     isBs3: isBs3(),
     isBs4: isBs4(),
     isBs5: isBs5()
-  }
+  };
 }
 
 export function currentBsVersion(): 'bs3' | 'bs4' | 'bs5' {
