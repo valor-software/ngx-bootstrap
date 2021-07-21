@@ -16,9 +16,9 @@ describe('Component: Alert', () => {
   let context: any;
   const overTemplate = `
     <div class="alert" role="alert" [ngClass]="classes" *ngIf="!closed">
-      <button *ngIf="dismissible" type="button" class="close" (click)="onClose()" (touch)="onClose()">
-        <span aria-hidden="true">&times;</span>
-        <span class="sr-only">Close</span>
+      <button *ngIf="dismissible" type="button" class="close btn-close" (click)="onClose()" (touch)="onClose()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+        <span class="sr-only visually-hidden">Close</span>
       </button>
     </div>
   `;
