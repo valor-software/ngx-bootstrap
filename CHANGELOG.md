@@ -1,3 +1,7 @@
+# [7.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v7.0.0-rc.5...v7.0.0) (2021-07-21)
+
+
+
 # [7.0.0-rc.5](https://github.com/valor-software/ngx-bootstrap/compare/v7.0.0-rc.4...v7.0.0-rc.5) (2021-07-20)
 
 

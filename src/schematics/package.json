@@ -1,5 +1,5 @@
 {
   "name": "schematics",
-  "version": "7.0.0-rc.5",
+  "version": "7.0.0",
   "schematics": "./collection.json"
 }
