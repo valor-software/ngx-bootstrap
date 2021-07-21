@@ -19,11 +19,12 @@ import {
   Component, EventEmitter, Input, NgZone, OnDestroy, Output, AfterViewInit
 } from '@angular/core';
 
-import { isBs3, LinkedList } from 'ngx-bootstrap/utils';
+import { isBs3, LinkedList, getBsVer } from 'ngx-bootstrap/utils';
 import { SlideComponent } from './slide.component';
 import { CarouselConfig } from './carousel.config';
 import { findLastIndex, chunkByNumber } from './utils';
 import { SlideWithIndex, IndexedSlideList } from './models';
+import { IBsVersion } from '@ngx-bootstrap-doc/docs';
 
 export enum Direction {
   UNKNOWN,
@@ -115,6 +116,10 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
 
   get isBs4(): boolean {
     return !isBs3();
+  }
+
+  get _bsVer(): IBsVersion {
+    return getBsVer()
   }
 
   constructor(config: CarouselConfig, private ngZone: NgZone) {

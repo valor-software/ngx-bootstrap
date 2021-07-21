@@ -34,6 +34,9 @@ import { CarouselComponent } from './carousel.component';
       opacity: 0;
       visibility: hidden;
     }
+    :host.carousel-item {
+      margin-right: auto;
+    }
   `]
 })
 export class SlideComponent implements OnInit, OnDestroy {
