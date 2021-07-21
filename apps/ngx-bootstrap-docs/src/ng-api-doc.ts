@@ -5053,5 +5053,19 @@ export const ngdoc: any = {
     "description": "",
     "methods": [],
     "properties": []
+  },
+  "IObjectKeys": {
+    "fileName": "src/utils/theme-provider.ts",
+    "className": "IObjectKeys",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "IBsVersion": {
+    "fileName": "src/utils/theme-provider.ts",
+    "className": "IBsVersion",
+    "description": "",
+    "methods": [],
+    "properties": []
   }
 };

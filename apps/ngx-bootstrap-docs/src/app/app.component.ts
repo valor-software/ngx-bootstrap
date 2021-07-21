@@ -2,7 +2,6 @@ import { DOCUMENT } from '@angular/common';
 import { AfterContentInit, Component, Inject } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, UrlSerializer } from '@angular/router';
 import { PageScrollService } from 'ngx-page-scroll-core';
-import { isBs3 } from 'ngx-bootstrap/utils';
 
 import { Analytics } from '@ngx-bootstrap-doc/docs';
 import { filter } from 'rxjs/operators';
@@ -13,9 +12,6 @@ import { filter } from 'rxjs/operators';
   templateUrl: './app.component.html'
 })
 export class AppComponent implements AfterContentInit {
-  get isBs3(): boolean {
-    return isBs3();
-  }
 
   constructor(
     private route: ActivatedRoute,

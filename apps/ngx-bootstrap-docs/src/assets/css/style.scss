@@ -274,6 +274,7 @@ a:hover {
       font-size: 0.8125rem;
       line-height: 1.25;
       transition: all .15s ease-in-out;
+      border-radius: 0;
 
       &:first-of-type {
         border-radius: .25rem 0 0 .25rem;

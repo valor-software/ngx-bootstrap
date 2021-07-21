@@ -10,8 +10,9 @@
 <div class="mobile-menu">
   <div class="bootstrap-version">
     <span>Bootstrap: </span>
-    <button class="btn" type="button" [class.selected]="isBs3" (click)="installTheme('bs3')">3</button>
-    <button class="btn" type="button" [class.selected]="!isBs3" (click)="installTheme('bs4')">4</button>
+    <button class="btn" type="button" [class.selected]="_bsVersions.isBs3" (click)="installTheme('bs3')">3</button>
+    <button class="btn" type="button" [class.selected]="_bsVersions.isBs4" (click)="installTheme('bs4')">4</button>
+    <button class="btn" type="button" [class.selected]="_bsVersions.isBs5"  (click)="installTheme('bs5')">5</button>
   </div>
   <div class="sidebar-content" *ngIf="routes && routes.length">
     <ul class="sidebar-list">

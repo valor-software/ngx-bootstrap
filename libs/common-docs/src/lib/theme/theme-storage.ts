@@ -7,7 +7,7 @@ export class ThemeStorage {
 
   onThemeUpdate: EventEmitter<string> = new EventEmitter<string>();
 
-  storeTheme(theme: 'bs3' | 'bs4') {
+  storeTheme(theme: 'bs3' | 'bs4' | 'bs5') {
     try {
       window.localStorage[ThemeStorage.storageKey] = theme;
     } catch (e) {
@@ -17,7 +17,7 @@ export class ThemeStorage {
     this.onThemeUpdate.emit(theme);
   }
 
-  getStoredTheme(): 'bs3' | 'bs4' | null {
+  getStoredTheme(): 'bs3' | 'bs4' | 'bs5' |null {
     try {
       return window.localStorage[ThemeStorage.storageKey] || null;
     } catch (e) {
