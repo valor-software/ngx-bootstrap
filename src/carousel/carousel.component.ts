@@ -19,12 +19,11 @@ import {
   Component, EventEmitter, Input, NgZone, OnDestroy, Output, AfterViewInit
 } from '@angular/core';
 
-import { isBs3, LinkedList, getBsVer } from 'ngx-bootstrap/utils';
+import { isBs3, LinkedList, getBsVer, IBsVersion } from 'ngx-bootstrap/utils';
 import { SlideComponent } from './slide.component';
 import { CarouselConfig } from './carousel.config';
 import { findLastIndex, chunkByNumber } from './utils';
 import { SlideWithIndex, IndexedSlideList } from './models';
-import { IBsVersion } from '@ngx-bootstrap-doc/docs';
 
 export enum Direction {
   UNKNOWN,

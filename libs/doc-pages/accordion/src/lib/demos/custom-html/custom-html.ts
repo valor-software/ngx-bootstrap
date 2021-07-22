@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { getBsVer } from 'ngx-bootstrap/utils';
-import { IBsVersion } from '@ngx-bootstrap-doc/docs';
+import { getBsVer, IBsVersion } from 'ngx-bootstrap/utils';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
