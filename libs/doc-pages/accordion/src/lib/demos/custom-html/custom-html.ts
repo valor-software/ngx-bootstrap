@@ -8,6 +8,6 @@ import { getBsVer, IBsVersion } from 'ngx-bootstrap/utils';
 })
 export class DemoAccordionCustomHTMLComponent {
   get _getBsVer(): IBsVersion {
-    return getBsVer()
+    return getBsVer();
   }
 }

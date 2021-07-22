@@ -118,7 +118,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   }
 
   get _bsVer(): IBsVersion {
-    return getBsVer()
+    return getBsVer();
   }
 
   constructor(config: CarouselConfig, private ngZone: NgZone) {
