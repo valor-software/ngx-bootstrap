@@ -160,29 +160,34 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     if (typeof window !== 'undefined') {
       this.classMap = this.elementRef.nativeElement.getAttribute('class') || '';
     }
+
     // watch for maxSize
-/*    this.maxSize =
-      typeof this.maxSize !== 'undefined' ? this.maxSize : this.config?.maxSize || 0;
-    this.rotate =
-      !!(typeof this.rotate !== 'undefined' ? this.rotate : this.config?.rotate);
-    this.boundaryLinks =
-      !!(typeof this.boundaryLinks !== 'undefined'
-        ? this.boundaryLinks
-        : this.config?.boundaryLinks);
-    this.directionLinks =
-      !!(typeof this.directionLinks !== 'undefined'
-        ? this.directionLinks
-        : this.config?.directionLinks);
-    this.pageBtnClass =
-      typeof this.pageBtnClass !== 'undefined'
-        ? this.pageBtnClass
-        : this.config?.pageBtnClass || '';*/
+    if (typeof this.maxSize === 'undefined') {
+      this.maxSize = this.config?.maxSize || 0;
+    }
+
+    if (typeof this.rotate === 'undefined') {
+      this.rotate = !!this.config?.rotate;
+    }
+
+    if (typeof this.boundaryLinks === 'undefined') {
+      this.boundaryLinks = !!this.config?.boundaryLinks;
+    }
+
+
+    if (typeof this.directionLinks === 'undefined') {
+      this.directionLinks = !!this.config?.directionLinks;
+    }
+
+    if (typeof this.pageBtnClass === 'undefined') {
+      this.pageBtnClass = this.config?.pageBtnClass || '';
+    }
 
     // base class
-/*    this.itemsPerPage =
-      typeof this.itemsPerPage !== 'undefined'
-        ? this.itemsPerPage
-        : this.config?.itemsPerPage || 0;*/
+    if (typeof this.itemsPerPage === 'undefined') {
+      this.itemsPerPage = this.config?.itemsPerPage || 0;
+    }
+
     this.totalPages = this.calculateTotalPages();
     // this class
     this.pages = this.getPages(this.page, this.totalPages);

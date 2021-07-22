@@ -3,6 +3,9 @@ export {
   isBs3,
   setTheme,
   getBsVer,
+  currentBsVersion,
+  IBsVersion,
+  bsVerions
 } from './theme-provider';
 export { LinkedList } from './linked-list.class';
 

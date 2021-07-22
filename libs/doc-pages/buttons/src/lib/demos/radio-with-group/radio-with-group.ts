@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 export class DemoButtonsRadioWithGroupComponent {
   radioModel = 'Middle';
   radioModelDisabled = 'Middle';
-  modelGroupDisabled=false
+  modelGroupDisabled=false;
 }

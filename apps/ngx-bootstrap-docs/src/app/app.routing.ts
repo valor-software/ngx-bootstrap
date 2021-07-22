@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { LandingComponent } from '@ngx-bootstrap-doc/docs';
 import { DocumentationComponent } from '@ngx-bootstrap-doc/docs';
 import { DiscoverComponent } from '@ngx-bootstrap-doc/docs';
+import { SchematicsComponent } from '@ngx-bootstrap-doc/docs';
 
 export const routes: Routes = [
   {
@@ -18,6 +19,11 @@ export const routes: Routes = [
     path: 'discover',
     data: ['Discover'],
     component: DiscoverComponent
+  },
+  {
+    path: 'schematics',
+    data: ['Schematics'],
+    component: SchematicsComponent
   },
   {
     path: 'accordion',

@@ -53,7 +53,7 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
       (async () => {
         await Promise.resolve();
         this.isOpenChange.emit(value);
-      })
+      });
     }
   }
 

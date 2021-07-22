@@ -1,0 +1,115 @@
+{
+  "migrations": [
+    {
+      "version": "12.0.0-beta.0",
+      "description": "adjusts the ngcc postinstall command to just leave 'ngcc' in there. This fixes Ivy in Jest tests and Storybooks",
+      "factory": "./src/migrations/update-12-0-0/update-ngcc-postinstall",
+      "package": "@nrwl/angular",
+      "name": "update-ngcc-postinstall"
+    },
+    {
+      "cli": "nx",
+      "version": "12.3.1",
+      "description": "Remove deprecated options and update others according to new defaults. It syncs with the v12 migration of Angular builders.",
+      "factory": "./src/migrations/update-12-3-0/update-webpack-browser-config",
+      "package": "@nrwl/angular",
+      "name": "update-webpack-browser-config"
+    },
+    {
+      "cli": "nx",
+      "version": "12.3.1",
+      "description": "Updates storybook configurations to support webpack 5",
+      "factory": "./src/migrations/update-12-3-0/update-storybook",
+      "package": "@nrwl/angular",
+      "name": "update-storybook"
+    },
+    {
+      "cli": "nx",
+      "version": "12.3.1",
+      "description": "Migrates some rules that have changed in Angular EsLint",
+      "factory": "./src/migrations/update-12-3-0/update-angular-eslint-rules",
+      "package": "@nrwl/angular",
+      "name": "update-angular-eslint-rules"
+    },
+    {
+      "version": "12.0.0-next.0",
+      "factory": "./update-12/update-angular-config",
+      "description": "Remove deprecated options from 'angular.json' that are no longer present in v12.",
+      "package": "@angular/cli",
+      "name": "update-angular-config-v12"
+    },
+    {
+      "version": "12.0.0-next.1",
+      "factory": "./update-12/update-zonejs",
+      "description": "Update 'zone.js' to version 0.11.x. Read more about this here: https://github.com/angular/angular/blob/master/packages/zone.js/CHANGELOG.md#breaking-changes-since-zonejs-v0111",
+      "package": "@angular/cli",
+      "name": "update-zonejs"
+    },
+    {
+      "version": "12.0.0-next.2",
+      "factory": "./update-12/remove-emit-decorator-metadata",
+      "description": "Remove 'emitDecoratorMetadata' TypeScript compiler option. Decorator metadata is no longer needed by Angular. Read more about this here: https://www.typescriptlang.org/docs/handbook/decorators.html#metadata",
+      "package": "@angular/cli",
+      "name": "remove-emit-decorator-metadata"
+    },
+    {
+      "version": "12.0.0-next.4",
+      "factory": "./update-12/update-lazy-module-paths",
+      "description": "Lazy loading syntax migration. Update lazy loading string syntax to use dynamic imports.",
+      "package": "@angular/cli",
+      "name": "lazy-loading-string-syntax"
+    },
+    {
+      "version": "12.0.0-next.7",
+      "factory": "./update-9/update-i18n#updateI18nConfig",
+      "description": "Remove deprecated ViewEngine-based i18n build and extract options. Options present in the configuration will be converted to use non-deprecated options.",
+      "package": "@angular/cli",
+      "name": "remove-deprecated-i18n-options"
+    },
+    {
+      "version": "12.0.0-next.7",
+      "factory": "./update-12/update-web-workers",
+      "description": "Updates Web Worker consumer usage to use the new syntax supported directly by Webpack 5.",
+      "package": "@angular/cli",
+      "name": "update-web-workers-webpack-5"
+    },
+    {
+      "version": "12.0.0-beta",
+      "description": "In Angular version 12, the type of ActivatedRouteSnapshot.fragment is nullable. This migration automatically adds non-null assertions to it.",
+      "factory": "./migrations/activated-route-snapshot-fragment/index",
+      "package": "@angular/core",
+      "name": "migration-v12-activated-route-snapshot-fragment"
+    },
+    {
+      "version": "12.0.0-next.6",
+      "description": "`XhrFactory` has been moved from `@angular/common/http` to `@angular/common`.",
+      "factory": "./migrations/xhr-factory/index",
+      "package": "@angular/core",
+      "name": "migration-v12-xhr-factory"
+    },
+    {
+      "version": "12.1.0-beta.1",
+      "cli": "nx",
+      "description": "Update jest-preset-angular to version 8.4.0",
+      "factory": "./src/migrations/update-12-1-2/update-jest-preset-angular",
+      "package": "@nrwl/jest",
+      "name": "update-jest-preset-angular-8-4-0"
+    },
+    {
+      "version": "12.1.2-beta.1",
+      "cli": "nx",
+      "description": "Replace tsConfig with tsconfig for ts-jest in jest.config.js",
+      "factory": "./src/migrations/update-12-1-2/update-ts-jest",
+      "package": "@nrwl/jest",
+      "name": "update-ts-jest-6-5-5"
+    },
+    {
+      "cli": "nx",
+      "version": "11.5.0-beta.0",
+      "description": "Update project .eslintrc.json files to always use project level tsconfigs",
+      "factory": "./src/migrations/update-11-5-0/always-use-project-level-tsconfigs-with-eslint",
+      "package": "@nrwl/linter",
+      "name": "always-use-project-level-tsconfigs-with-eslint"
+    }
+  ]
+}

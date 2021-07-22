@@ -21,7 +21,7 @@ export { AccordionSectionComponent } from './accordion-section.component';
     CommonModule,
     FormsModule,
     DocsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
   exports: [AccordionSectionComponent],
   entryComponents: [...DEMO_COMPONENTS]

@@ -1,7 +1,7 @@
 import { BaseComponent } from './base.component';
 
 export class PopoverPo extends BaseComponent {
-  pageUrl = '/popover';
+  pageUrl = '#/popover';
   pageTitle = 'Popover';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/popover';
 
@@ -55,7 +55,7 @@ export class PopoverPo extends BaseComponent {
   isPopoverHaveCssItem(baseSelector: string, item: string, cssProperty: string, expectedCssValue: string) {
     cy.get(`${baseSelector} ${this.containerPopover} ${item}`).should('have.css', cssProperty, expectedCssValue);
   }
-  
+
   isPopoverHaveCss(baseSelector: string, cssProperty: string, expectedCssValue: string) {
     cy.get(`${baseSelector} ${this.containerPopover}`).should('have.css', cssProperty, expectedCssValue);
   }

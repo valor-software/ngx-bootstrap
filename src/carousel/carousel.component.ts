@@ -19,11 +19,12 @@ import {
   Component, EventEmitter, Input, NgZone, OnDestroy, Output, AfterViewInit
 } from '@angular/core';
 
-import { isBs3, LinkedList } from 'ngx-bootstrap/utils';
+import { isBs3, LinkedList, getBsVer } from 'ngx-bootstrap/utils';
 import { SlideComponent } from './slide.component';
 import { CarouselConfig } from './carousel.config';
 import { findLastIndex, chunkByNumber } from './utils';
 import { SlideWithIndex, IndexedSlideList } from './models';
+import { IBsVersion } from '@ngx-bootstrap-doc/docs';
 
 export enum Direction {
   UNKNOWN,
@@ -115,6 +116,10 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
 
   get isBs4(): boolean {
     return !isBs3();
+  }
+
+  get _bsVer(): IBsVersion {
+    return getBsVer()
   }
 
   constructor(config: CarouselConfig, private ngZone: NgZone) {
@@ -447,31 +452,32 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       case Direction.NEXT:
         // if this is last slide, not force, looping is disabled
         // and need to going forward - select current slide, as a next
-        if (typeof this._currentActiveSlide !== 'undefined') {
-          if (!this.isLast(this._currentActiveSlide)) {
-            nextSlideIndex = this._currentActiveSlide + 1;
-            break;
-          }
-          nextSlideIndex = !force && this.noWrap ? this._currentActiveSlide : 0;
+        if (typeof this._currentActiveSlide === 'undefined') {
+          nextSlideIndex = 0;
           break;
         }
-        nextSlideIndex = 0;
+        if (!this.isLast(this._currentActiveSlide)) {
+          nextSlideIndex = this._currentActiveSlide + 1;
+          break;
+        }
+        nextSlideIndex = !force && this.noWrap ? this._currentActiveSlide : 0;
         break;
       case Direction.PREV:
         // if this is first slide, not force, looping is disabled
         // and need to going backward - select current slide, as a next
-        if (typeof this._currentActiveSlide !== 'undefined') {
-          if (this._currentActiveSlide > 0) {
-            nextSlideIndex = this._currentActiveSlide - 1;
-            break;
-          }
-          if (!force && this.noWrap) {
-            nextSlideIndex = this._currentActiveSlide;
-            break;
-          }
-          nextSlideIndex = this._slides.length - 1;
+        if (typeof this._currentActiveSlide === 'undefined') {
+          nextSlideIndex = 0;
+          break;
         }
-        nextSlideIndex = 0;
+        if (this._currentActiveSlide > 0) {
+          nextSlideIndex = this._currentActiveSlide - 1;
+          break;
+        }
+        if (!force && this.noWrap) {
+          nextSlideIndex = this._currentActiveSlide;
+          break;
+        }
+        nextSlideIndex = this._slides.length - 1;
         break;
       default:
         throw new Error('Unknown direction');

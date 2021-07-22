@@ -1,15 +1,15 @@
 import { ActivatedRoute, NavigationEnd, Route, Router, Routes } from '@angular/router';
-import { Component, Inject, OnDestroy, Renderer2, Injectable } from '@angular/core';
+import { Component, Inject, OnDestroy, Renderer2 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
-import { setTheme, getBsVer, isBs3 } from 'ngx-bootstrap/utils';
+import { setTheme, getBsVer, currentBsVersion, IBsVersion } from 'ngx-bootstrap/utils';
 import { StyleManager } from '../../theme/style-manager';
 import { ThemeStorage } from '../../theme/theme-storage';
-import { IBsVersion, bsVerions} from '../../models/bsVersions.model';
 import { Subscription } from 'rxjs';
 import { DOCS_TOKENS } from '../../tokens/docs-routes-token';
+
 const _bs3Css = 'assets/css/bootstrap-3.3.7/css/bootstrap.min.css';
-const _bs4Css = 'assets/css/bootstrap-4.0.0/css/bootstrap.min.css';
+const _bs4Css = 'assets/css/bootstrap-4.5.3/css/bootstrap.min.css';
 const _bs5Css = 'assets/css/bootstrap-5.0.1/css/bootstrap.min.css';
 
 @Component({
@@ -20,24 +20,20 @@ const _bs5Css = 'assets/css/bootstrap-5.0.1/css/bootstrap.min.css';
 export class SidebarComponent implements OnDestroy {
   isShown = false;
 
-  /** @deprecated */
-  get isBs3(): boolean {
-    return isBs3();
-  }
-
   get bsCssFile(): string {
-    const bsVer = this._getBsVer;
-    return bsVer.isBs3 ? _bs3Css : bsVer.isBs5 ? _bs5Css : _bs4Css
+    if (this.currentTheme === 'bs3') {
+      return _bs3Css;
+    }
+
+    if (this.currentTheme === 'bs5') {
+      return _bs5Css;
+    }
+
+    return _bs4Css;
   }
 
-  get currentBsVersion(): 'bs3' | 'bs4' | 'bs5' {
-    const bsVer = this._getBsVer;
-    const resVersion = Object.keys(bsVer).find(key => bsVer[key])
-    return bsVerions[resVersion]
-  }
-
-  get _getBsVer (): IBsVersion {
-    return getBsVer()
+  get _bsVersions(): IBsVersion {
+    return getBsVer();
   }
 
   routes: Routes;
@@ -88,7 +84,7 @@ export class SidebarComponent implements OnDestroy {
 
   installTheme(theme: 'bs3' | 'bs4' | 'bs5') {
     setTheme(theme);
-    this.currentTheme = this.currentBsVersion;
+    this.currentTheme = currentBsVersion();
     this.styleManager.setStyle('theme', this.bsCssFile);
     if (this.currentTheme) {
       this.themeStorage.storeTheme(this.currentTheme);

@@ -1,8 +1,8 @@
 import { BaseComponent } from './base.component';
 
 export class LandingPo extends BaseComponent {
-  pageUrl = '/';
-  documentationUrl = '/documentation/';
+  pageUrl = '#/';
+  documentationUrl = '#/documentation/';
 
   mainClass = '.main';
   logoAtHeader = '.logo';

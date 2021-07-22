@@ -66,6 +66,18 @@ export class DiscoverComponent {
       description: 'Pramati - Independent, innovative technology companies focused on\n' +
         'profitable, well-defined markets',
       link: 'https://www.pramati.com/'
+    },
+    {
+      logo: 'https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco/v1484678055/ectxiezxgzm3srv2jkvh.png',
+      name: 'Employes',
+      description: 'Employes is a dutch based payroll-provider that offers a unique modern way to pay employees.\n',
+      link: 'https://app.employes.nl/'
+    },
+    {
+      logo: 'https://easi.net/sites/default/files/styles/gallery_image/public/2019-05/EASI-color.png',
+      name: 'EASI',
+      description: 'EASI is a cloud, security & software provider offering management applications, professional cloud & security solutions and IT infrastructure services.',
+      link: 'https://easi.net/en'
     }
   ];
 }

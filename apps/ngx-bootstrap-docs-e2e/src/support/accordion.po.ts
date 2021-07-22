@@ -2,7 +2,7 @@ import { BaseComponent } from './base.component';
 import Agent = Cypress.Agent;
 
 export class AccordionPo extends BaseComponent {
-  pageUrl = '/accordion';
+  pageUrl = '#/accordion';
   pageTitle = 'Accordion';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/accordion';
   additionalHtml = '.badge';
