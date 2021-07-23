@@ -9,7 +9,7 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 export class DemoDatepickerColorThemingComponent {
   colorTheme = 'theme-green';
 
-  bsConfig: Partial<BsDatepickerConfig>;
+  bsConfig?: Partial<BsDatepickerConfig>;
 
   applyTheme(pop: any) {
     // create new object on each property change
