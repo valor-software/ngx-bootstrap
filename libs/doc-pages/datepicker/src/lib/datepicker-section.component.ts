@@ -26,8 +26,8 @@ export class DatepickerSectionComponent {
         this.componentContent = demoComponentContent;
     }
 
-    if (typeof (Window as any)['PR'] !== 'undefined') {
-      setTimeout(() => (Window as any)['PR']?.prettyPrint(), 10);
+    if (typeof (window as any)['PR'] !== 'undefined') {
+      setTimeout(() => (window as any)['PR']?.prettyPrint(), 10);
     }
   }
 }
