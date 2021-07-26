@@ -3,7 +3,7 @@
 <ng-template #template>
   <div class="modal-header">
     <h4 class="modal-title pull-left">First modal</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef?.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -18,7 +18,7 @@
 <ng-template #templateNested>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Second modal</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef2.hide()">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef2?.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>

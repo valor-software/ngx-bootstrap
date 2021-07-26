@@ -7,12 +7,12 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   templateUrl: './service-interceptor.html'
 })
 export class DemoModalServiceWithInterceptorComponent {
-  bsModalRef: BsModalRef;
+  bsModalRef?: BsModalRef;
 
-  confirmModalRef: BsModalRef;
-  confirmResolve: () => void;
-  confirmReject: () => void;
-  confirmPromise: Promise<void>;
+  confirmModalRef?: BsModalRef;
+  confirmResolve?: () => void;
+  confirmReject?: () => void;
+  confirmPromise?: Promise<void>;
 
   constructor(private modalService: BsModalService) {}
 
@@ -31,13 +31,17 @@ export class DemoModalServiceWithInterceptorComponent {
   }
 
   confirm(): void {
-    this.confirmResolve();
-    this.confirmModalRef.hide();
+    if (this.confirmResolve) {
+      this.confirmResolve();
+    }
+    this.confirmModalRef?.hide();
   }
 
   decline(): void {
-    this.confirmReject();
-    this.confirmModalRef.hide();
+    if (this.confirmReject) {
+      this.confirmReject();
+    }
+    this.confirmModalRef?.hide();
   }
 }
 
