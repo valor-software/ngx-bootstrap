@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class DemoProgressbarDynamicComponent {
   max = 200;
   showWarning?: boolean;
-  dynamic?: number;
+  dynamic = 0;
   type: 'success' | 'info' | 'warning' | 'danger' = 'info';
 
   constructor() {
