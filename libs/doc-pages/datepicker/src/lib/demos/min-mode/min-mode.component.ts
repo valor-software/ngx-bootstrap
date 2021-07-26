@@ -9,7 +9,7 @@ import { BsDatepickerConfig, BsDatepickerViewMode } from 'ngx-bootstrap/datepick
 })
 export class DemoDatepickerMinModeComponent implements OnInit {
   datePickerValue: Date = new Date(2020, 7);
-  dateRangePickerValue?: Date[];
+  dateRangePickerValue?: (Date | undefined)[];
   range1: Date = new Date(2020, 5);
   range2: Date = new Date(2020, 8);
   minMode: BsDatepickerViewMode = 'month';
