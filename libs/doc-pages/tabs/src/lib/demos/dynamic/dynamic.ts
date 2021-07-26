@@ -22,8 +22,6 @@ export class DemoTabsDynamicComponent {
     { title: 'Dynamic Title 3', content: 'Dynamic content 3', removable: true}
   ];
 
-  customClassExperimantal = 'test tes test'
-
   addNewTab(): void {
     const newTabIndex = this.tabs.length + 1;
     this.tabs.push({
