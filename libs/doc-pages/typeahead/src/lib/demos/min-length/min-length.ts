@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './min-length.html'
 })
 export class DemoTypeaheadMinLengthComponent {
-  selected: string;
+  selected?: string;
   states: string[] = [
     'Alabama',
     'Alaska',

@@ -7,7 +7,7 @@ import { DataSourceType } from '../interfaces/typeahead.interfaces';
   templateUrl: './grouping.html'
 })
 export class DemoTypeaheadGroupingComponent {
-  groupSelected: string;
+  groupSelected?: string;
   statesComplex: DataSourceType[] = [
     { id: 1, name: 'Alabama', region: 'South' },
     { id: 2, name: 'Alaska', region: 'West' },
