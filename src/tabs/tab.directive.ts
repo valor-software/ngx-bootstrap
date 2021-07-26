@@ -8,7 +8,7 @@ import {
   OnInit,
   OnDestroy,
   ElementRef,
-  Renderer2, OnChanges
+  Renderer2
 } from '@angular/core';
 import { TabsetComponent } from './tabset.component';
 
