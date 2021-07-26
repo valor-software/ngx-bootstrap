@@ -4,7 +4,7 @@ import { PagesModel } from 'ngx-bootstrap/pagination';
 
 type Roman = {
   [key: string]: number;
-}
+};
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
