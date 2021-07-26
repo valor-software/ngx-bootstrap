@@ -30,7 +30,6 @@ export class TabDirective implements OnInit, OnDestroy {
   }
 
   set customClass(customClass: string | undefined) {
-    if (customClass) {
       if (this.customClass) {
         this.customClass.split(' ').forEach((cssClass: string) => {
           this.renderer.removeClass(this.elementRef.nativeElement, cssClass);
@@ -44,7 +43,6 @@ export class TabDirective implements OnInit, OnDestroy {
           this.renderer.addClass(this.elementRef.nativeElement, cssClass);
         });
       }
-    }
   }
 
   /** tab active state toggle */
