@@ -12,7 +12,7 @@ interface IStack {
   templateUrl: './stacked.html'
 })
 export class DemoProgressbarStackedComponent {
-  type: string;
+  type?: string;
   stacked: IStack[] = [];
 
   constructor() {

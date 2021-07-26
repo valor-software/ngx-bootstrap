@@ -7,9 +7,9 @@ import { Component } from '@angular/core';
 })
 export class DemoProgressbarDynamicComponent {
   max = 200;
-  showWarning: boolean;
-  dynamic: number;
-  type: 'success' | 'info' | 'warning' | 'danger';
+  showWarning?: boolean;
+  dynamic?: number;
+  type: 'success' | 'info' | 'warning' | 'danger' = 'info';
 
   constructor() {
     this.random();
