@@ -10,8 +10,8 @@ export class DemoModalServiceWithInterceptorComponent {
   bsModalRef?: BsModalRef;
 
   confirmModalRef?: BsModalRef;
-  confirmResolve: () => void = ():void => {};
-  confirmReject: () => void = ():void => {};
+  confirmResolve?: () => void;
+  confirmReject?: () => void;
   confirmPromise?: Promise<void>;
 
   constructor(private modalService: BsModalService) {}
@@ -31,12 +31,16 @@ export class DemoModalServiceWithInterceptorComponent {
   }
 
   confirm(): void {
-    this.confirmResolve();
+    if (this.confirmResolve) {
+      this.confirmResolve();
+    }
     this.confirmModalRef?.hide();
   }
 
   decline(): void {
-    this.confirmReject();
+    if (this.confirmReject) {
+      this.confirmReject();
+    }
     this.confirmModalRef?.hide();
   }
 }
