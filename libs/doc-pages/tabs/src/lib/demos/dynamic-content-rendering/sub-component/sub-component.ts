@@ -9,7 +9,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnI
 })
 export class SubComponent implements OnInit, OnDestroy {
   @Input()
-  name: string;
+  name?: string;
 
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output()
