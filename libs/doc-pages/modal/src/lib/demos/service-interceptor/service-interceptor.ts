@@ -10,8 +10,8 @@ export class DemoModalServiceWithInterceptorComponent {
   bsModalRef?: BsModalRef;
 
   confirmModalRef?: BsModalRef;
-  confirmResolve?: () => void;
-  confirmReject?: () => void;
+  confirmResolve: () => void = ():void => {};
+  confirmReject: () => void = ():void => {};
   confirmPromise?: Promise<void>;
 
   constructor(private modalService: BsModalService) {}
@@ -31,16 +31,12 @@ export class DemoModalServiceWithInterceptorComponent {
   }
 
   confirm(): void {
-    if (this.confirmResolve) {
-      this.confirmResolve();
-    }
+    this.confirmResolve();
     this.confirmModalRef?.hide();
   }
 
   decline(): void {
-    if (this.confirmReject) {
-      this.confirmReject();
-    }
+    this.confirmReject();
     this.confirmModalRef?.hide();
   }
 }
@@ -51,13 +47,13 @@ export class DemoModalServiceWithInterceptorComponent {
   template: `
     <div class="modal-header">
       <h4 class="modal-title pull-left">Modal with interceptor</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef?.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">This modal has closing interceptor</div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+      <button type="button" class="btn btn-default" (click)="bsModalRef?.hide()">Close</button>
     </div>
   `
 })

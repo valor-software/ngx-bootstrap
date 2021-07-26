@@ -17,15 +17,11 @@ export class DemoModalServiceConfirmWindowComponent {
 
   confirm(): void {
     this.message = 'Confirmed!';
-    if (this.modalRef) {
-      this.modalRef.hide();
-    }
+    this.modalRef?.hide();
   }
 
   decline(): void {
     this.message = 'Declined!';
-    if (this.modalRef) {
-      this.modalRef.hide();
-    }
+    this.modalRef?.hide();
   }
 }
