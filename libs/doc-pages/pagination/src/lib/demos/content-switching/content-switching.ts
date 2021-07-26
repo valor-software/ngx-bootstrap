@@ -16,7 +16,7 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 })
 export class DemoPaginationContentSwitchingComponent implements OnInit {
   contentArray = new Array(90).fill('');
-  returnedArray: string[];
+  returnedArray?: string[];
 
   ngOnInit(): void {
     this.contentArray = this.contentArray.map((v: string, i: number) => `Content line ${i + 1}`);
