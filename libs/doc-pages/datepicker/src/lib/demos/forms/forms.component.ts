@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './forms.component.html'
 })
 export class DemoDatepickerFormsComponent {
-  datepickerModel: Date;
-  daterangepickerModel: Date[];
+  datepickerModel?: Date;
+  daterangepickerModel?: Date[];
 }
