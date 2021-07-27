@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 
 import { CarouselComponent } from './carousel.component';
+import { multicast } from 'rxjs/operators';
 
 @Component({
   selector: 'slide',
@@ -17,7 +18,8 @@ import { CarouselComponent } from './carousel.component';
   `,
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
-    '[attr.aria-hidden]': '!active'
+    '[attr.aria-hidden]': '!active',
+    '[class.multilist-margin]': 'multilist'
   },
   styles: [`
     :host.carousel-animation {
@@ -33,6 +35,9 @@ import { CarouselComponent } from './carousel.component';
       position: absolute;
       opacity: 0;
       visibility: hidden;
+    }
+    :host.multilist-margin {
+      margin-right: auto;
     }
   `]
 })
@@ -53,7 +58,7 @@ export class SlideComponent implements OnInit, OnDestroy {
 
   /** Link to Parent(container-collection) component */
   protected carousel: CarouselComponent;
-
+  multilist = false;
   constructor(carousel: CarouselComponent) {
     this.carousel = carousel;
   }
@@ -62,6 +67,7 @@ export class SlideComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.carousel.addSlide(this);
     this.itemWidth = `${100 / this.carousel.itemsPerSlide}%`;
+    this.multilist = this.carousel?.itemsPerSlide > 1;
   }
 
   /** Fires changes in container collection after removing of this slide instance */

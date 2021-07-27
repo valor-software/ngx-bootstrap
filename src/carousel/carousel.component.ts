@@ -36,7 +36,12 @@ export enum Direction {
  */
 @Component({
   selector: 'carousel',
-  templateUrl: './carousel.component.html'
+  templateUrl: './carousel.component.html',
+  styles: [`
+    .carousel-control {
+      z-index: 10;
+    }
+  `]
 })
 export class CarouselComponent implements AfterViewInit, OnDestroy {
   /* If `true` — carousel will not cycle continuously and will have hard stops (prevent looping) */
@@ -101,6 +106,24 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
 
   get slides(): SlideComponent[] {
     return this._slides.toArray();
+  }
+
+  get isFirstSlideVisible(): boolean {
+    const indexes = this.getVisibleIndexes();
+    if (!indexes || (indexes instanceof Array && !indexes.length)) {
+      return false;
+    }
+
+    return indexes.includes(0);
+  }
+
+  get isLastSlideVisible(): boolean {
+    const indexes = this.getVisibleIndexes();
+    if (!indexes || (indexes instanceof Array && !indexes.length)) {
+      return false;
+    }
+
+    return indexes.includes(this._slides.length -1)
   }
 
   protected currentInterval?: number;
@@ -577,6 +600,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     if (!this._chunkedSlides) {
       return false;
     }
+
     return this._currentVisibleSlidesIndex === this._chunkedSlides.length - 1;
   }
 
@@ -618,6 +642,9 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       );
 
       this.makeSlidesConsistent(slidesToReorder);
+      if (this.singleSlideOffset) {
+        this._slidesWithIndexes = slidesToReorder;
+      }
 
       this.slideRangeChange.emit(this.getVisibleIndexes());
       return;
@@ -659,7 +686,6 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     this.hideSlides();
 
     this._slidesWithIndexes.forEach(slide => slide.item.active = true);
-
     this.makeSlidesConsistent(this._slidesWithIndexes);
 
     this.slideRangeChange.emit(
@@ -700,7 +726,6 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
           (slide: SlideWithIndex) => slide.item.active = true
         );
       }
-
       this.slideRangeChange.emit(this.getVisibleIndexes());
     }
   }
@@ -710,6 +735,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       return this._chunkedSlides[this._currentVisibleSlidesIndex]
         .map((slide: SlideWithIndex) => slide.index);
     }
+
     if (this._slidesWithIndexes) {
       return this._slidesWithIndexes.map((slide: SlideWithIndex) => slide.index);
     }
