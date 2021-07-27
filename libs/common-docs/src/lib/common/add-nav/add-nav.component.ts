@@ -28,8 +28,4 @@ export class AddNavComponent {
       }
     }
   }
-
-  isArray(obj: any): boolean {
-    return obj instanceof Array;
-  }
 }
