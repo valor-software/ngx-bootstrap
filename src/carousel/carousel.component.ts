@@ -123,7 +123,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       return false;
     }
 
-    return indexes.includes(this._slides.length -1)
+    return indexes.includes(this._slides.length -1);
   }
 
   protected currentInterval?: number;
