@@ -103,7 +103,7 @@ export class NgApiDocComponent {
         if  (input.description) {
           input.descriptionSafeHtml =  this.sanitizer.bypassSecurityTrustHtml(input.description);
         }
-      })
+      });
     }
 
     if (this.apiDocs?.outputs?.length) {
@@ -111,7 +111,7 @@ export class NgApiDocComponent {
         if  (output.description) {
           output.descriptionSafeHtml =  this.sanitizer.bypassSecurityTrustHtml(output.description);
         }
-      })
+      });
     }
 
     if (this.apiDocs?.methods?.length) {
@@ -119,7 +119,7 @@ export class NgApiDocComponent {
         if  (method.description) {
           method.descriptionSafeHtml =  this.sanitizer.bypassSecurityTrustHtml(method.description);
         }
-      })
+      });
     }
   }
 }
