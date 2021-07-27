@@ -9,7 +9,7 @@ import { ContentSection } from '../../models/content-section.model';
   templateUrl: './add-nav.component.html'
 })
 export class AddNavComponent {
-  @Input() componentContent: ContentSection[];
+  @Input() componentContent?: ContentSection[];
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor(@Inject(DOCUMENT) private document: Document){ }
 
@@ -27,5 +27,9 @@ export class AddNavComponent {
         window.scrollTo(0, targetPosY);
       }
     }
+  }
+
+  isArray(obj: any): boolean {
+    return obj instanceof Array;
   }
 }

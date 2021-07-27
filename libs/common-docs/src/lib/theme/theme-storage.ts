@@ -15,6 +15,7 @@ export class ThemeStorage {
     }
 
     this.onThemeUpdate.emit(theme);
+    return;
   }
 
   getStoredTheme(): 'bs3' | 'bs4' | null {
@@ -28,6 +29,7 @@ export class ThemeStorage {
   clearStorage() {
     try {
       window.localStorage.removeItem(ThemeStorage.storageKey);
+      return;
     } catch (e) {
       return null;
     }
