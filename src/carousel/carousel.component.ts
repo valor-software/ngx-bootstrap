@@ -78,7 +78,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       return;
     }
 
-    if (index) {
+    if (index && !isNaN(index)) {
       this.customActiveSlide = index;
     }
 
