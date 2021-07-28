@@ -77,6 +77,11 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     if (this.multilist) {
       return;
     }
+
+    if (index) {
+      this.customActiveSlide = index;
+    }
+
     if (this._slides.length && index !== this._currentActiveSlide) {
       this._select(index);
     }
@@ -135,6 +140,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   protected _currentVisibleSlidesIndex = 0;
   protected isPlaying = false;
   protected destroyed = false;
+  private customActiveSlide?: number;
 
   get isBs4(): boolean {
     return !isBs3();
@@ -155,6 +161,10 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
           this.itemsPerSlide
         );
         this.selectInitialSlides();
+      }
+
+      if (this.customActiveSlide && !this.multilist) {
+        this._select(this.customActiveSlide);
       }
     }, 0);
   }
