@@ -155,22 +155,6 @@ describe('Component: Carousel', () => {
     expect(next.classList).not.toContain('disabled');
   });
 
-  it('should enable next button when last slide is active, noWrap is truthy, multilist is true', () => {
-    // const indicators = element.querySelectorAll('ol.carousel-indicators > li');
-    // indicators[5].click();
-    // fixture.detectChanges();
-    // const next = element.querySelector('a.right');
-    // expect(next.classList).not.toContain('disabled');
-  });
-
-  it('should enable next button when last slide is active, noWrap is truthy, multilist and single offset are true', () => {
-    // const indicators = element.querySelectorAll('ol.carousel-indicators > li');
-    // indicators[5].click();
-    // fixture.detectChanges();
-    // const next = element.querySelector('a.right');
-    // expect(next.classList).not.toContain('disabled');
-  });
-
   it('should change slide on indicator click', () => {
     const indicators = element.querySelectorAll('ol.carousel-indicators > li');
     expectActiveSlides(element, [true, false, false, false, false, false]);
