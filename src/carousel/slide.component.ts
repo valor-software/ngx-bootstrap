@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 
 import { CarouselComponent } from './carousel.component';
-import { multicast } from 'rxjs/operators';
 
 @Component({
   selector: 'slide',
