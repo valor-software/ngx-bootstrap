@@ -191,7 +191,9 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
 
     if (!this.multilist && this._slides.length === 1) {
       this._currentActiveSlide = undefined;
-      this.activeSlide = 0;
+      if (!this.customActiveSlide) {
+        this.activeSlide = 0;
+      }
       this.play();
     }
 
