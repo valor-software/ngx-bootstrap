@@ -14,6 +14,8 @@ import { dropdownAnimation } from './dropdown-animations';
 import { AnimationBuilder, AnimationFactory } from '@angular/animations';
 import { Subscription } from 'rxjs';
 
+// todo: revert ngClass to [class] when false positive angular-cli issue is fixed
+//          [class.dropdown]="direction === 'down'"-->
 @Component({
   selector: 'bs-dropdown-container',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -23,7 +25,7 @@ import { Subscription } from 'rxjs';
   },
   template: `
     <div [class.dropup]="direction === 'up'"
-         [class.dropdown]="direction === 'down'"
+         [ngClass]="{dropdown: direction === 'down'}"
          [class.show]="isOpen"
          [class.open]="isOpen"><ng-content></ng-content>
     </div>

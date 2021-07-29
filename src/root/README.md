@@ -108,7 +108,7 @@ You will need to add bootstrap css:
 - `Bootstrap 4`
 ```
 <!--- index.html -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.3/css/bootstrap.min.css" rel="stylesheet">
 ```
 
 

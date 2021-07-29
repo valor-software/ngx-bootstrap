@@ -164,7 +164,7 @@
           -ms-user-select: none;
         }
 
-        // todo: check first :not(.disabled) usage
+        /* todo: check first :not(.disabled) usage */
         &:not(.disabled):not(.week) span:not(.disabled):not(.is-other-month) {
           cursor: pointer;
         }

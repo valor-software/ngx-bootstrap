@@ -77,7 +77,7 @@ export abstract class BsDatepickerAbstractComponent {
     this._daysCalendarSub.unsubscribe();
     this._daysCalendarSub.add(this._daysCalendar$.subscribe(value => {
       this.multipleCalendars = !!value && value.length > 1;
-    }))
+    }));
   }
 
   get daysCalendar$(): Observable<DaysCalendarViewModel[]|undefined> {

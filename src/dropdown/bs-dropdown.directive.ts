@@ -23,7 +23,7 @@ import { AnimationBuilder, AnimationFactory } from '@angular/animations';
 import { dropdownAnimation } from './dropdown-animations';
 
 @Directive({
-  selector: '[bsDropdown],[dropdown]',
+  selector: '[bsDropdown], [dropdown]',
   exportAs: 'bs-dropdown',
   providers: [BsDropdownState],
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property

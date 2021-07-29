@@ -69,7 +69,8 @@
         "tabs",
         "timepicker",
         "tooltip",
-        "typeahead"
+        "typeahead",
+        "schematics"
       ]
     },
     "ngx-bootstrap-docs-e2e": {

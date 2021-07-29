@@ -1390,4 +1390,4 @@ export const mockFlaggedMonths: DaysCalendarViewModel[] = [{
   hideRightArrow: true,
   disableRightArrow: false,
   disableLeftArrow: false
-}]
+}];
