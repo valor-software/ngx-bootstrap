@@ -16,7 +16,7 @@ function firstWeekOffset(year: number, dow: number, doy: number): number {
   // first-week day local weekday -- which local weekday is fwd
   const fwdlw = (createUTCDate(year, 0, fwd).getUTCDay() - dow + 7) % 7;
 
-  return -fwdlw + fwd - 1;
+  return dow ? -fwdlw + fwd - 1 : -fwdlw + fwd ;
 }
 
 // https://en.wikipedia.org/wiki/ISO_week_date#Calculating_a_date_given_the_year.2C_week_number_and_weekday
@@ -53,6 +53,7 @@ export function dayOfYearFromWeeks(
 export function weekOfYear(date: Date, dow: number, doy: number, isUTC?: boolean): { week: number; year: number } {
   const weekOffset = firstWeekOffset(getFullYear(date, isUTC), dow, doy);
   const week = Math.floor((getDayOfYear(date, isUTC) - weekOffset - 1) / 7) + 1;
+
   let resWeek: number;
   let resYear: number;
 
@@ -66,7 +67,6 @@ export function weekOfYear(date: Date, dow: number, doy: number, isUTC?: boolean
     resYear = getFullYear(date, isUTC);
     resWeek = week;
   }
-
   return {
     week: resWeek,
     year: resYear
