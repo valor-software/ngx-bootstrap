@@ -73,6 +73,18 @@
         cursor: not-allowed;
       }
 
+      &.previous {
+        span {
+          transform: translate(-1px, -1px);
+        }
+      }
+
+      &.next {
+        span {
+          transform: translate(1px, -1px);
+        }
+      }
+
       &.next,
       &.previous {
         border-radius: 50%;
@@ -152,7 +164,7 @@
           -ms-user-select: none;
         }
 
-        // todo: check first :not(.disabled) usage
+        /* todo: check first :not(.disabled) usage */
         &:not(.disabled):not(.week) span:not(.disabled):not(.is-other-month) {
           cursor: pointer;
         }

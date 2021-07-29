@@ -35,7 +35,7 @@ import { BsTimepickerViewComponent } from './themes/bs/bs-timepicker-view.compon
 import { BsYearsCalendarViewComponent } from './themes/bs/bs-years-calendar-view.component';
 
 @NgModule({
-  imports: [CommonModule, TooltipModule.forRoot()],
+  imports: [CommonModule, TooltipModule],
   declarations: [
     BsCalendarLayoutComponent,
     BsCurrentDateViewComponent,

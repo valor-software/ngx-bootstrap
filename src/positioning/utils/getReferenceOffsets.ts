@@ -9,7 +9,7 @@ import { Offsets } from '../models';
 export function getReferenceOffsets(
   target: HTMLElement,
   host: HTMLElement,
-  fixedPosition: boolean = null
+  fixedPosition?: boolean
 ): Offsets {
   const commonOffsetParent = fixedPosition
     ? getFixedPositionOffsetParent(target)

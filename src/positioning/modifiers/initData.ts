@@ -7,15 +7,18 @@ import {
 import { Data, Options } from '../models';
 
 export function initData(
-  targetElement: HTMLElement, hostElement: HTMLElement, position: string, options: Options
-): Data {
+  targetElement: HTMLElement|null, hostElement: HTMLElement|null, position: string, options?: Options
+): Data|undefined {
+
+  if (!targetElement || !hostElement) {
+    return ;
+  }
 
   const hostElPosition = getReferenceOffsets(targetElement, hostElement);
 
   if (!position.match(/^(auto)*\s*(left|right|top|bottom)*$/)
     && !position.match(/^(left|right|top|bottom)*(?: (left|right|top|bottom))?\s*(start|end)*$/)) {
-      /* tslint:disable-next-line: no-parameter-reassignment */
-      position = 'auto';
+            position = 'auto';
     }
 
   const placementAuto = !!position.match(/auto/g);
@@ -47,16 +50,16 @@ export function initData(
   );
 
   return {
-    options,
+    options: options || {modifiers: {}},
     instance: {
       target: targetElement,
       host: hostElement,
-      arrow: null
+      arrow: void 0
     },
     offsets: {
       target: targetOffset,
       host: hostElPosition,
-      arrow: null
+      arrow: void 0
     },
     positionFixed: false,
     placement,
