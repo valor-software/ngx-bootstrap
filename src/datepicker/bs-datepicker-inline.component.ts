@@ -21,6 +21,7 @@ import { BsDatepickerInlineConfig } from './bs-datepicker-inline.config';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { DatepickerDateCustomClasses, DatepickerDateTooltipText } from './models';
 import { BsDatepickerInlineContainerComponent } from './themes/bs/bs-datepicker-inline-container.component';
+import { checkBsValue } from './utils/bs-calendar-utils';
 
 @Directive({
   selector: 'bs-datepicker-inline',
@@ -179,7 +180,7 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
     }
 
     this._config = Object.assign({}, this._config, this.bsConfig, {
-      value: this._bsValue,
+      value: checkBsValue(this._bsValue, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
       isDisabled: this.isDisabled,
       minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
       maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,

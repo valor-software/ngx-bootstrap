@@ -1,41 +1,35 @@
-import { Component, HostBinding, Input } from '@angular/core';
-import { ProgressbarConfig } from './progressbar.config';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { BarValue, ProgressbarType } from './progressbar-type.interface';
-import { isBs3 } from 'ngx-bootstrap/utils';
-import { BarComponent } from './bar.component';
+import { ProgressbarConfig } from './progressbar.config';
 
 @Component({
   selector: 'progressbar',
   templateUrl: './progressbar.component.html',
-  styles: [
-    `
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+  host: {
+    '[class.progress]': 'true',
+    '[attr.max]': 'max'
+  },
+  styles: [`
     :host {
       width: 100%;
       display: flex;
-    }
-  `
-  ]
+    } `]
 })
 export class ProgressbarComponent {
+  /** maximum total value of progress element */
+  @Input() max = 100;
+
   /** if `true` changing value of progress bar will be animated */
-  @Input()
-  set animate(value: boolean) {
-    this._animate = value;
-    this.bars.forEach((b: BarComponent) => {
-      b.animate = value;
-    });
-  }
+  @Input() animate = false;
+
   /** If `true`, striped classes are applied */
-  @Input()
-  set striped(value: boolean) {
-    this._striped = value;
-    this.bars.forEach((b: BarComponent) => {
-      b.striped = value;
-    });
-  }
+  @Input() striped = false;
 
   /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
   @Input() type?: ProgressbarType;
+
   /** current value of progress bar. Could be a number or array of objects
    * like {"value":15,"type":"info","label":"15 %"}
    */
@@ -50,46 +44,12 @@ export class ProgressbarComponent {
       this._values = value;
     }
   }
-  isStacked = false;
-  _striped?: boolean;
-  _animate = false;
-  _max = 100;
 
-  _value?: number;
+  isStacked = false;
+  _value? = 0;
   _values?: BarValue[];
 
-  get isBs3(): boolean {
-    return isBs3();
-  }
-
-  /** maximum total value of progress element */
-  @HostBinding('attr.max')
-  @Input()
-  get max(): number {
-    return this._max;
-  }
-
-  set max(v: number) {
-    this._max = v;
-    this.bars.forEach((bar: BarComponent) => {
-      bar.recalculatePercentage();
-    });
-  }
-
-  @HostBinding('class.progress') addClass = true;
-
-  bars: BarComponent[] = [];
   constructor(config: ProgressbarConfig) {
     Object.assign(this, config);
-  }
-  addBar(bar: BarComponent): void {
-    bar.animate = this._animate;
-    bar.striped = this._striped;
-
-    this.bars.push(bar);
-  }
-
-  removeBar(bar: BarComponent): void {
-    this.bars.splice(this.bars.indexOf(bar), 1);
   }
 }

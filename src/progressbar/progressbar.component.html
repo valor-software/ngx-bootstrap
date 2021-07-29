@@ -1,6 +1,12 @@
-<bar [type]="type" [value]="_value" [max]="_max" *ngIf="!isStacked">
-  <ng-content></ng-content>
-</bar>
-<ng-template [ngIf]="isStacked">
-  <bar *ngFor="let item of _values" [type]="item.type" [value]="item.value" [max]="item.max">{{ item.label }}</bar>
+<ng-container *ngIf="!isStacked then NotStacked else Stacked"></ng-container>
+
+<ng-template #NotStacked>
+  <bar [type]="type" [value]="_value" [max]="max" [animate]="animate" [striped]="striped">
+    <ng-content></ng-content>
+  </bar>
+</ng-template>
+
+<ng-template #Stacked>
+  <bar *ngFor="let item of _values"
+       [type]="item.type" [value]="item.value" [max]="item.max" [animate]="animate" [striped]="striped">{{ item.label }}</bar>
 </ng-template>

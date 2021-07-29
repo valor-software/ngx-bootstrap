@@ -3,7 +3,7 @@ import { isIE } from './isIE';
 function getSize(axis: string, body: HTMLElement, html: HTMLElement, computedStyle?: CSSStyleDeclaration) {
   const _body = body as unknown as Record<string, number>;
   const _html = html as never;
-  const _computedStyle = computedStyle as unknown as Record<string, string>
+  const _computedStyle = computedStyle as unknown as Record<string, string>;
 
   return Math.max(
     _body[`offset${axis}`],

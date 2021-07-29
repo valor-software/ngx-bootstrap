@@ -1,7 +1,7 @@
 import { BaseComponent } from './base.component';
 
 export class TypeaheadPo extends BaseComponent {
-  pageUrl = '/typeahead';
+  pageUrl = '#/typeahead';
   pageTitle = 'Typeahead';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/typeahead';
 

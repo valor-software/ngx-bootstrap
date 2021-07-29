@@ -3,5 +3,9 @@
   "dest": "../../node_modules/ngx-bootstrap/datepicker",
   "lib": {
     "entryFile": "index.ts"
-  }
+  },
+  "assets": [
+    "./utils/scss/*.scss",
+    "./bs-datepicker.scss"
+  ]
 }

@@ -323,4 +323,4 @@ describe('Component: Carousel', () => {
       .then(() => stableAct(() => next.click()))
       .then(() => expectActiveSlides(element, [true, true, true, false, false, false]));
   }));
-})
+});

@@ -6,7 +6,7 @@ import { StyleManager } from '../../theme/style-manager';
 import { ThemeStorage } from '../../theme/theme-storage';
 import { Router } from '@angular/router';
 
-const _bs4Css = 'assets/css/bootstrap-4.0.0/css/bootstrap.min.css';
+const _bs4Css = 'assets/css/bootstrap-4.5.3/css/bootstrap.min.css';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector

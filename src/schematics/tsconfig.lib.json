@@ -4,7 +4,9 @@
     "module": "commonjs",
     "outDir": "../../dist/out-tsc",
     "declaration": true,
-    "types": ["node", "jest"]
+    "target": "es2015",
+    "types": ["node", "jest"],
+    "resolveJsonModule": true
   },
   "exclude": ["**/*.spec.ts"],
   "include": ["**/*.ts"]
