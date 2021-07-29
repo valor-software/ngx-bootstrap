@@ -222,7 +222,7 @@ function calculateReducer(state: BsDatepickerState): BsDatepickerState {
               return calcDaysCalendar(
                 item.month,
                 state.monthViewOptions
-              )
+              );
             }
             return null;
           })

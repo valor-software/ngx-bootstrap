@@ -20,14 +20,14 @@ import { DemoDatepickerMinModeComponent } from './min-mode/min-mode.component';
 import { DemoDatepickerOutsideClickComponent } from './outside-click/outside-click';
 import { DemoDatepickerPlacementComponent } from './placement/placement';
 import { DemoDatepickerReactiveFormsComponent } from './reactive-forms/reactive-forms.component';
-import { DemoDatePickerReturnFocusToInputComponent } from './return-focus-to-input/return-focus-to-input.component'
+import { DemoDatePickerReturnFocusToInputComponent } from './return-focus-to-input/return-focus-to-input.component';
 import {
   DemoDatePickerSelectDatesFromOtherMonthsComponent
 } from './select-dates-from-other-months/select-dates-from-other-months';
 
 import { DemoDatePickerAdaptivePositionComponent } from './adaptive-position/adaptive-position';
 import { DemoDatePickerAnimatedComponent } from './animated/animated';
-import { DemoDatepickerDateCustomClassesComponent } from './date-custom-classes/date-custom-classes'
+import { DemoDatepickerDateCustomClassesComponent } from './date-custom-classes/date-custom-classes';
 import { DemoDatePickerSelectWeekComponent } from './select-week/select-week';
 import { DemoDatePickerSelectWeekRangeComponent } from './select-week-range/select-week-range';
 import { DemoDatepickerTriggersCustomComponent } from './triggers-custom/triggers-custom';

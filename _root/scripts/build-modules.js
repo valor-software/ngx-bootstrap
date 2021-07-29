@@ -23,7 +23,7 @@ async function buildAll() {
   }
 
   await buildPkgJson.buildPkgJson({ src, dist });
-  await execa.shell(`json -I -f ${dist}/package.json -e 'this.schematics="./schematics/collection.json"'`);
+  await execa.shell(`json -I -f ${dist}/package.json -e 'this.schematics="./schematics/src/collection.json"'`);
   cpy(['*.md', 'LICENSE'], dist);
 
 //   await execa.shell(`npm run link`);

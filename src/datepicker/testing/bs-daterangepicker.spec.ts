@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { BsCustomDates } from '../themes/bs/bs-custom-dates-view.component';
 
-
 @Component({
     selector: 'test-cmp',
     template: `<input type="text"
@@ -121,8 +120,7 @@ describe('daterangepicker:', () => {
         fixture.detectChanges();
 
         const rangesButton = document.querySelector('.bs-datepicker-predefined-btns');
-
-        expect(rangesButton.childElementCount).toEqual(ranges.length + 1); // +1 for `custom range` button
+        expect(rangesButton.childElementCount).toEqual(ranges.length);
 
     });
 
@@ -179,40 +177,6 @@ describe('daterangepicker:', () => {
         expect(activeRangeButton[0].innerHTML.trim()).toEqual(ranges[0].label);
     });
 
-    it('should highlight the Custom Range button when dates selected are not in ranges', () => {
-        const datepicker = showDatepicker(fixture);
-        const customRangeBtnLbl = 'My Custom Range';
-        const ranges = [
-            {
-                label: 'Last 7 days',
-                value: [new Date('12-10-2019'), new Date('12-16-2019')]
-            },
-            {
-                label: 'Next 7 days',
-                value: [new Date('12-16-2019'), new Date('12-22-2019')]
-            }
-        ];
-        const selectedRange: BsCustomDates = {
-            label: 'Next 7 days',
-            value: [new Date('12-14-2019'), new Date('12-25-2019')]
-        };
-
-        const daterangepickerInput = fixture.debugElement.query(By.css('input[bsDaterangepicker]'));
-        fixture.componentInstance.daterangepicker.bsConfig.ranges = ranges;
-        fixture.componentInstance.daterangepicker.bsConfig.customRangeButtonLabel = customRangeBtnLbl;
-        const datepickerContainerInstance = getDaterangepickerContainer(datepicker);
-        datepickerContainerInstance.setRangeOnCalendar(selectedRange);
-        daterangepickerInput.nativeElement.click();
-
-        fixture.detectChanges();
-        // only one active element should be present
-        const activeRangeButton = document.querySelectorAll('.bs-datepicker-predefined-btns button.selected');
-
-        expect(activeRangeButton).toBeTruthy();
-        expect(activeRangeButton.length).toEqual(1);
-        expect(activeRangeButton[0].innerHTML.trim()).toEqual(customRangeBtnLbl);
-    });
-
   it('should not allow to select date behind max value', () => {
     const datepicker = showDatepicker(fixture);
     datepicker.bsConfig.maxDate = new Date();
@@ -220,8 +184,8 @@ describe('daterangepicker:', () => {
 
     const datepickerContainerInstance = getDaterangepickerContainer(datepicker);
 
-    const correctDateStart = new Date(new Date().setDate(new Date().getDate() - 14))
-    const correctDateEnd = new Date(new Date().setDate(new Date().getDate() - 7))
+    const correctDateStart = new Date(new Date().setDate(new Date().getDate() - 14));
+    const correctDateEnd = new Date(new Date().setDate(new Date().getDate() - 7));
     const selectedRange: BsCustomDates = {
       label: '',
       value: [correctDateStart, correctDateEnd]
@@ -234,11 +198,11 @@ describe('daterangepicker:', () => {
     datepickerContainerInstance[`_store`]
       .select(state => state)
       .subscribe(view => {
-        expect(view.maxDate).toEqual(correctDateEnd)
+        expect(view.maxDate).toEqual(correctDateEnd);
       });
 
-    const incorrectCaseStart = new Date(new Date().setDate(new Date().getDate() - 5))
-    const incorrectCaseEnd = new Date(new Date().setDate(new Date().getDate() + 15))
+    const incorrectCaseStart = new Date(new Date().setDate(new Date().getDate() - 5));
+    const incorrectCaseEnd = new Date(new Date().setDate(new Date().getDate() + 15));
     const selectedRange1: BsCustomDates = {
       label: '',
       value: [incorrectCaseStart, incorrectCaseEnd]
@@ -251,8 +215,7 @@ describe('daterangepicker:', () => {
     datepickerContainerInstance[`_store`]
       .select(state => state)
       .subscribe(view => {
-        expect(view.maxDate).not.toEqual(incorrectCaseEnd)
+        expect(view.maxDate).not.toEqual(incorrectCaseEnd);
       });
   });
-
-});
+  });

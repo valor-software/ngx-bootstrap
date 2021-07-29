@@ -14,7 +14,7 @@ export class BsModalRef<T = any> {
   /**
    *  Allow user to ID for the modal. Otherwise, a unique number will be given
    */
-  id?: number;
+  id?: number | string;
 
   /**
    * Reference to a component inside the modal. Null if modal's been created with TemplateRef

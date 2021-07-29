@@ -6,15 +6,12 @@
  * found in the LICENSE file at https://angular.io/license
  */
 
-import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
+import { workspaces } from '@angular-devkit/core';
 
 /** Resolves the architect options for the build target of the given project. */
-export function getProjectTargetOptions(project: ProjectDefinition, buildTarget: string) {
-  if (project.targets &&
-    project.targets[buildTarget] &&
-    project.targets[buildTarget].options) {
-
-    return project.targets[buildTarget].options;
+export function getProjectTargetOptions(project: workspaces.ProjectDefinition, buildTarget: string) {
+  if (project?.targets?.get(buildTarget)?.options) {
+    return project.targets.get(buildTarget).options;
   }
 
   throw new Error(`Cannot determine project target configuration for: ${buildTarget}.`);

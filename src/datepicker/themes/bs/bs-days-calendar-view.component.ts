@@ -29,7 +29,6 @@ import { BsDatepickerConfig } from '../../bs-datepicker.config';
         (onNavigate)="navigateTo($event)"
         (onViewMode)="changeViewMode($event)"
       ></bs-datepicker-navigation-view>
-
       <!--days matrix-->
       <table role="grid" class="days weeks">
         <thead>
