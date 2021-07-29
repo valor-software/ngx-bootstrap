@@ -3,8 +3,10 @@
  */
 import { isBrowser } from './isBrowser';
 
-const isIE11 = isBrowser && !!((window as any).MSInputMethodContext && (document as any).documentMode);
-const isIE10 = isBrowser && !!((window as any).MSInputMethodContext && /MSIE 10/.test((navigator as any).userAgent));
+// todo: valorkin fix and drop IE support :evil:
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const isIE11 = isBrowser && !!(window.MSInputMethodContext && (document as any).documentMode);
+const isIE10 = isBrowser && !!(window.MSInputMethodContext && /MSIE 10/.test(navigator.userAgent));
 
 export function isIE(version?: number) {
   if (version === 11) {

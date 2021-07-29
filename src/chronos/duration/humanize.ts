@@ -1,4 +1,3 @@
-// tslint:disable:cyclomatic-complexity
 import { createDuration } from './create';
 import { Locale } from '../locale/locale.class';
 import { Duration } from './constructor';
@@ -52,7 +51,7 @@ export function relativeTime(posNegDuration: Duration, withoutSuffix: boolean, l
 }
 
 // This function allows you to set the rounding function for relative time strings
-export function getSetRelativeTimeRounding(roundingFunction: any): boolean | Function {
+export function getSetRelativeTimeRounding(roundingFunction: any): boolean | ((x: number) => number) {
   if (roundingFunction === undefined) {
     return round;
   }

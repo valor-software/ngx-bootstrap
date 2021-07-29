@@ -13,7 +13,7 @@ export function getFixedPositionOffsetParent(element: HTMLElement): HTMLElement 
 
   let el = element.parentElement;
 
-  while (el && getStyleComputedProperty(el, 'transform') === 'none') {
+  while (el?.parentElement && getStyleComputedProperty(el, 'transform') === 'none') {
     el = el.parentElement;
   }
 

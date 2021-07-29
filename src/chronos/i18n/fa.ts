@@ -38,7 +38,7 @@ var pluralForm = (/**
 function (num) {
     return num === 0 ? 0 : num === 1 ? 1 : num === 2 ? 2 : num % 100 >= 3 && num % 100 <= 10 ? 3 : num % 100 >= 11 ? 4 : 5;
 });
-var ɵ0 = pluralForm;
+var a0 = pluralForm;
 /** @type {?} */
 var plurals = {
     s: ['کمتر از یک ثانیه', 'یک ثانیه', ['دو ثانیه', 'دو ثانیه'], '%d ثانیه', '%d ثانیه', '%d ثانیه'],
@@ -70,7 +70,7 @@ function (u) {
         return ((/** @type {?} */ (str))).replace(/%d/i, num.toString());
     });
 });
-var ɵ1 = pluralize;
+var a1 = pluralize;
 /** @type {?} */
 var months = [
     'ژانویه',
@@ -180,4 +180,4 @@ export var faLocale = {
         doy: 80 // The week that contains March 21th is the first week of the year.
     }
 };
-export { ɵ0, ɵ1 };
+export { a0, a1 };

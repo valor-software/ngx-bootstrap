@@ -107,7 +107,6 @@ function loadLocale(name: string): Locale {
      } catch (e) {}
    }*/
   if (!locales[name]) {
-    // tslint:disable-next-line
     console.error(`Khronos locale error: please load locale "${name}" before using it`);
     // throw new Error(`Khronos locale error: please load locale "${name}" before using it`);
   }

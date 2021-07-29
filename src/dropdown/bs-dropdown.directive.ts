@@ -1,4 +1,3 @@
-// tslint:disable:max-file-line-count
 import {
   Directive,
   ElementRef,
@@ -24,9 +23,10 @@ import { AnimationBuilder, AnimationFactory } from '@angular/animations';
 import { dropdownAnimation } from './dropdown-animations';
 
 @Directive({
-  selector: '[bsDropdown],[dropdown]',
+  selector: '[bsDropdown], [dropdown]',
   exportAs: 'bs-dropdown',
   providers: [BsDropdownState],
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[class.dropup]': 'dropup',
     '[class.open]': 'isOpen',
@@ -37,21 +37,21 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   /**
    * Placement of a popover. Accepts: "top", "bottom", "left", "right"
    */
-  @Input() placement: string;
+  @Input() placement?: string;
   /**
    * Specifies events that should trigger. Supports a space separated list of
    * event names.
    */
-  @Input() triggers: string;
+  @Input() triggers?: string;
   /**
    * A selector specifying the element the popover should be appended to.
    */
-  @Input() container: string;
+  @Input() container?: string;
 
   /**
    * This attribute indicates that the dropdown should be opened upwards
    */
-  @Input() dropup: boolean;
+  @Input() dropup = false;
 
   /**
    * Indicates that dropdown will be closed on item or document click,
@@ -154,8 +154,8 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   // todo: move to component loader
   private _isInlineOpen = false;
 
-  private _inlinedMenu: EmbeddedViewRef<BsDropdownMenuDirective>;
-  private _isDisabled: boolean;
+  private _inlinedMenu?: EmbeddedViewRef<BsDropdownMenuDirective>;
+  private _isDisabled = false;
   private _subscriptions: Subscription[] = [];
   private _isInited = false;
   private _factoryDropDownAnimation: AnimationFactory;
@@ -219,7 +219,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         .pipe(
           filter((value: boolean) => value)
         )
-        .subscribe((value: boolean) => this.hide())
+        .subscribe((/*value: boolean*/) => this.hide())
     );
   }
 
@@ -243,7 +243,9 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
             this._inlinedMenu = this._dropdown._inlineViewRef;
 
             this.addBs4Polyfills();
-            this._renderer.addClass(this._inlinedMenu.rootNodes[0].parentNode, 'open');
+            if (this._inlinedMenu) {
+              this._renderer.addClass(this._inlinedMenu.rootNodes[0].parentNode, 'open');
+            }
 
             this.playAnimation();
           }
@@ -320,9 +322,10 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   }
 
   /** @internal */
-  _contains(event: any): boolean {
+  _contains(event: MouseEvent): boolean {
+    // todo: valorkin fix typings
     return this._elementRef.nativeElement.contains(event.target) ||
-      (this._dropdown.instance && this._dropdown.instance._contains(event.target));
+      (this._dropdown.instance && this._dropdown.instance._contains(event.target as unknown as HTMLElement));
   }
 
   ngOnDestroy(): void {
@@ -344,8 +347,9 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   private playAnimation(): void {
     if (this._state.isAnimated && this._inlinedMenu) {
       setTimeout(() => {
-        this._factoryDropDownAnimation.create(this._inlinedMenu.rootNodes[0])
-          .play();
+        if (this._inlinedMenu) {
+          this._factoryDropDownAnimation.create(this._inlinedMenu.rootNodes[0]).play();
+        }
       });
     }
   }

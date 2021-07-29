@@ -12,13 +12,14 @@ import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsDaterangepickerInlineConfig } from './bs-daterangepicker-inline.config';
 import { BsDaterangepickerInlineContainerComponent } from './themes/bs/bs-daterangepicker-inline-container.component';
 import { DatepickerDateCustomClasses } from './models';
+import { checkBsValue, checkRangesWithMaxDate } from './utils/bs-calendar-utils';
 
 @Directive({
     selector: 'bs-daterangepicker-inline',
     exportAs: 'bsDaterangepickerInline'
 })
 export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnChanges {
-    _bsValue: Date[];
+    _bsValue?: Date[];
     /**
      * Initial value of datepicker
      */
@@ -34,23 +35,23 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
     /**
      * Config object for datepicker
      */
-    @Input() bsConfig: Partial<BsDaterangepickerInlineConfig>;
+    @Input() bsConfig?: Partial<BsDaterangepickerInlineConfig>;
     /**
      * Indicates whether datepicker is enabled or not
      */
-    @Input() isDisabled: boolean;
+    @Input() isDisabled = false;
     /**
      * Minimum date which is available for selection
      */
-    @Input() minDate: Date;
+    @Input() minDate?: Date;
     /**
      * Maximum date which is available for selection
      */
-    @Input() maxDate: Date;
+    @Input() maxDate?: Date;
     /**
      * Date custom classes
      */
-    @Input() dateCustomClasses: DatepickerDateCustomClasses[];
+    @Input() dateCustomClasses?: DatepickerDateCustomClasses[];
     /**
      * Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays
      */
@@ -58,11 +59,11 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
     /**
      * Disable specific dates
      */
-    @Input() datesDisabled: Date[];
+    @Input() datesDisabled?: Date[];
     /**
      * Disable specific dates
      */
-    @Input() datesEnabled: Date[];
+    @Input() datesEnabled?: Date[];
     /**
      * Emits when daterangepicker value has been changed
      */
@@ -70,8 +71,8 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
 
     protected _subs: Subscription[] = [];
 
-    private _datepicker: ComponentLoader<BsDaterangepickerInlineContainerComponent>;
-    private _datepickerRef: ComponentRef<BsDaterangepickerInlineContainerComponent>;
+    private readonly _datepicker: ComponentLoader<BsDaterangepickerInlineContainerComponent>;
+    private _datepickerRef?: ComponentRef<BsDaterangepickerInlineContainerComponent>;
 
     constructor(
       public _config: BsDaterangepickerInlineConfig,
@@ -95,20 +96,24 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
         // if date changes from external source (model -> view)
         this._subs.push(
           this.bsValueChange.subscribe((value: Date[]) => {
-            this._datepickerRef.instance.value = value;
+            if (this._datepickerRef) {
+              this._datepickerRef.instance.value = value;
+            }
           })
         );
 
         // if date changes from picker (view -> model)
+      if (this._datepickerRef) {
         this._subs.push(
           this._datepickerRef.instance.valueChange
             .pipe(
-                filter((range: Date[]) => range && range[0] && !!range[1])
+              filter((range: Date[]) => range && range[0] && !!range[1])
             )
             .subscribe((value: Date[]) => {
               this.bsValue = value;
             })
         );
+      }
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -160,7 +165,7 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
       }
 
       this._config = Object.assign({}, this._config, this.bsConfig, {
-        value: this._bsValue,
+        value: checkBsValue(this._bsValue, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
         isDisabled: this.isDisabled,
         minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
         maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
@@ -168,10 +173,9 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
         dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
         datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
         datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled,
-        ranges: this.bsConfig && this.bsConfig.ranges,
+        ranges: checkRangesWithMaxDate(this.bsConfig && this.bsConfig.ranges, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
         maxDateRange: this.bsConfig && this.bsConfig.maxDateRange
       });
-
 
       this._datepickerRef = this._datepicker
         .provide({provide: BsDatepickerConfig, useValue: this._config})
@@ -180,7 +184,7 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
         .show();
     }
 
-    ngOnDestroy(): any {
+    ngOnDestroy() {
       this._datepicker.dispose();
     }
 }

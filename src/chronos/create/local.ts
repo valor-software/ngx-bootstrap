@@ -1,5 +1,5 @@
 import { createLocalOrUTC } from './from-anything';
-import { DateInput } from '../test/chain';
+import { DateInput } from '../testing/chain';
 import { isDate } from '../utils/type-checks';
 
 export function parseDate(input: DateInput, format?: string | string[],
