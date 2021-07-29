@@ -9,26 +9,23 @@ import { getFileContent } from '@schematics/angular/utility/test';
 import { SchematicTestRunner } from '@angular-devkit/schematics/testing';
 import { Tree } from '@angular-devkit/schematics';
 
-import {
-  createTestApp,
-  getProjectFromWorkSpace, getProjectTargetOptions,
-  removePackageJsonDependency,
-  getWorkspace
-} from '../utils';
+import { createTestApp, getProjectTargetOptions, removePackageJsonDependency } from '../utils';
 
 import * as path from 'path';
-import { WorkspaceProject } from '@schematics/angular/utility/workspace-models';
 import { getProjectMainFile } from '../utils/project-main-file';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 import { checkComponentName } from './index';
+import { getWorkspace } from '@schematics/angular/utility/workspace';
+import { workspaces } from '@angular-devkit/core';
 
 const defaultOptions = {
   component: 'carousel'
 };
 
-export function expectProjectStyleFile(project: WorkspaceProject, filePath: string) {
+export function expectProjectStyleFile(project: workspaces.ProjectDefinition, filePath: string) {
   expect(getProjectTargetOptions(project, 'build').styles).toContain(filePath);
 }
+
 
 describe('ng-add schematic', () => {
   let runner: SchematicTestRunner;
@@ -63,7 +60,8 @@ describe('ng-add schematic', () => {
       .toPromise();
 
     const workspace = await getWorkspace(tree);
-    const project = getProjectFromWorkSpace(workspace);
+    const projectName = workspace.extensions.defaultProject !.toString();
+    const project = workspace.projects.get(projectName);
 
     expectProjectStyleFile(project, './node_modules/bootstrap/dist/css/bootstrap.min.css');
   });
@@ -74,7 +72,8 @@ describe('ng-add schematic', () => {
       .runSchematicAsync('ng-add', options, appTree)
       .toPromise();
     const workspace = await getWorkspace(tree);
-    const project = getProjectFromWorkSpace(workspace);
+    const projectName = workspace.extensions.defaultProject !.toString();
+    const project = workspace.projects.get(projectName);
     const content = tree.readContent(getAppModulePath(tree, getProjectMainFile(project)));
     expect(checkComponentName(options.component)).toBeTruthy();
     expect(content).toBeTruthy();

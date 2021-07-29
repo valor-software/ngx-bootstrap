@@ -20,12 +20,10 @@ describe('Component: Progress Bar', () => {
     });
     fixture = TestBed.createComponent(TestProgressbarComponent);
     component = fixture.componentInstance;
-    component._animate = false;
-    component.bars = [];
-
+    component.animate = false;
     component.animate = true;
 
-    expect(component._animate).toBeTruthy();
+    expect(component.animate).toBeTruthy();
   });
 
   it('check striped setter when _striped is equal to setter\'s argument', () => {
@@ -35,12 +33,10 @@ describe('Component: Progress Bar', () => {
     });
     fixture = TestBed.createComponent(TestProgressbarComponent);
     component = fixture.componentInstance;
-    component._striped = false;
-    component.bars = [];
-
+    component.striped = false;
     component.striped = true;
 
-    expect(component._striped).toBeTruthy();
+    expect(component.striped).toBeTruthy();
   });
 
   it('should work correctly with default values', () => {
@@ -55,8 +51,10 @@ describe('Component: Progress Bar', () => {
     fixture = TestBed.createComponent(TestProgressbarComponent);
     element = fixture.nativeElement;
     fixture.detectChanges();
-    expect(element.classList).toContain('progress');
-    expect(element.getAttribute('max')).toEqual('100');
+    const progressElement = element.querySelector('bar')?.parentElement;
+
+    expect(progressElement?.classList).toContain('progress');
+    expect(progressElement?.getAttribute('max')).toEqual('100');
   });
 
   it('checking appropriate styles after setting up of type', () => {
@@ -72,7 +70,6 @@ describe('Component: Progress Bar', () => {
     element = fixture.nativeElement;
     const context = fixture.debugElement.componentInstance;
     fixture.detectChanges();
-
     const barElement = element.querySelector('bar');
     context.typeValue = 'warning';
     fixture.detectChanges();

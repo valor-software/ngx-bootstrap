@@ -56,8 +56,10 @@ export function flagMonthsCalendar(
   // todo: add check for linked calendars
   monthCalendar.hideLeftArrow =
     !!options.monthIndex && options.monthIndex > 0 && options.monthIndex !== options.displayMonths;
+
   monthCalendar.hideRightArrow =
-    !!options.monthIndex && !!options.displayMonths
+    (!!options.monthIndex || options.monthIndex === 0 )
+    && (!!options.displayMonths || options.displayMonths === 0)
     && options.monthIndex < options.displayMonths
     && options.monthIndex + 1 !== options.displayMonths;
 

@@ -1,12 +1,7 @@
-import {
-  BrowserBuilderOptions,
-  TestBuilderOptions,
-  WorkspaceProject
-} from '@schematics/angular/utility/workspace-models';
 import { Tree } from '@angular-devkit/schematics';
-import { JsonArray } from '@angular-devkit/core';
+import { JsonArray, JsonObject, workspaces } from '@angular-devkit/core';
 import { getProjectStyleFile } from './getVersions';
-import { getProjectTargetName, getProjectTargetOptions } from './index';
+import { getProjectTargetOptions } from './index';
 import path = require('path');
 
 const DEFAULT_STYLE_EXTENSION = 'css';
@@ -15,7 +10,7 @@ interface availablePaths {
   'css': string[];
   'scss': string[];
 }
-export function addStyles(project: WorkspaceProject, targetName: string, host: Tree, availableAssetPaths: availablePaths, projectName: string, extension?: string): Tree {
+export function addStyles(project: workspaces.ProjectDefinition, targetName: string, host: Tree, availableAssetPaths: availablePaths, projectName: string, extension?: string): Tree {
     let targetOptions = getProjectTargetOptions(project, targetName);
     const styles = (targetOptions.styles as JsonArray | undefined);
     if (!styles || (styles instanceof Array && !styles.length)) {
@@ -43,14 +38,14 @@ export function addStyles(project: WorkspaceProject, targetName: string, host: T
     return host;
 }
 
-function addStylesPathsToTargetOptions(targetOptions: BrowserBuilderOptions | TestBuilderOptions, existingStyles: string[], stylePatch: string): BrowserBuilderOptions | TestBuilderOptions {
+function addStylesPathsToTargetOptions(targetOptions: any, existingStyles: string[], stylePatch: string): Record<string, string | number | boolean | JsonArray | JsonObject> {
   if (!existingStyles.some(path => path === stylePatch)) {
-    targetOptions.styles.unshift(stylePatch);
+    targetOptions.styles?.unshift?.(stylePatch);
   }
   return targetOptions;
 }
 
-function addEmptyStyles(targetOptions: BrowserBuilderOptions | TestBuilderOptions, extension: string, availableAssetPaths: availablePaths) {
+function addEmptyStyles(targetOptions: Record<string, string | number | boolean | JsonArray | JsonObject>, extension: string, availableAssetPaths: availablePaths) {
   targetOptions.styles = availableAssetPaths[DEFAULT_STYLE_EXTENSION];
   return targetOptions;
 }
@@ -66,10 +61,16 @@ function addImportToStylesFile(host: Tree, styleFilePath: string, styleFilePatch
   return host;
 }
 
-function setUpdatedTargetOptions(host: Tree, project: WorkspaceProject, targetOptions: BrowserBuilderOptions | TestBuilderOptions, targetName: string, projectName: string): Tree {
+function setUpdatedTargetOptions(host: Tree, project: workspaces.ProjectDefinition, targetOptions: Record<string, string | number | boolean | JsonArray | JsonObject>, targetName: string, projectName: string): Tree {
   if (host.exists('angular.json')) {
     const currentAngular = JSON.parse(host.read('angular.json')!.toString('utf-8'));
-    currentAngular['projects'][projectName][getProjectTargetName(project)][targetName]['options'] = targetOptions;
+    if (currentAngular['projects'][projectName].targets) {
+      currentAngular['projects'][projectName].targets[targetName]['options'] = targetOptions;
+    }
+
+    if (currentAngular['projects'][projectName].architect) {
+      currentAngular['projects'][projectName].architect[targetName]['options'] = targetOptions;
+    }
     host.overwrite('angular.json', JSON.stringify(currentAngular, null, 2));
   }
   return host;

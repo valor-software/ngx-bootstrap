@@ -13,41 +13,15 @@ import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 import { getFileContent } from '@schematics/angular/utility/test';
 import * as ts from 'typescript';
 import { getProjectMainFile } from './project-main-file';
-import {
-  BrowserBuilderOptions,
-  TestBuilderOptions,
-  WorkspaceProject,
-  WorkspaceSchema
-} from '@schematics/angular/utility/workspace-models';
-import { getWorkspacePath } from '@nrwl/workspace';
-import { parse } from 'jsonc-parser';
+import { WorkspaceProject, WorkspaceSchema } from '@schematics/angular/utility/workspace-models';
+import { JsonArray, JsonObject, workspaces } from '@angular-devkit/core';
 
-const enum availableTargetNames {
-  targets = 'targets',
-  architect ='architect'
-}
 
-export function getProjectTargetOptions(project: WorkspaceProject, buildTarget: string): BrowserBuilderOptions | TestBuilderOptions{
+export function getProjectTargetOptions(project: workspaces.ProjectDefinition, buildTarget: string):  Record<string, string | number | boolean | JsonArray | JsonObject> {
   if (project?.targets?.get(buildTarget)?.options) {
     return project.targets.get(buildTarget).options;
   }
-
-  if (project?.architect?.[buildTarget]?.options) {
-    return project.architect[buildTarget].options;
-  }
-
   throw new Error(`Cannot determine project target configuration for: ${buildTarget}.`);
-}
-
-export function getProjectTargetName(project: WorkspaceProject): string {
-  if (project?.targets) {
-    return availableTargetNames.targets;
-  }
-
-  if(project?.architect) {
-    return availableTargetNames.architect;
-  }
-  throw new Error(`Cannot determine target name`);
 }
 
 function sortObjectByKeys(obj: { [key: string]: string }) {
@@ -103,7 +77,7 @@ export function removePackageJsonDependency(tree: Tree, dependencyName: string) 
   tree.overwrite('/package.json', JSON.stringify(packageContent, null, 2));
 }
 
-export function addModuleImportToRootModule(host: Tree, moduleName: string, src: string, project: WorkspaceProject) {
+export function addModuleImportToRootModule(host: Tree, moduleName: string, src: string, project: workspaces.ProjectDefinition) {
   const modulePath = getAppModulePath(host, getProjectMainFile(project));
   const moduleSource = getSourceFile(host, modulePath);
   if (!moduleSource) {
@@ -144,16 +118,5 @@ export function getProjectFromWorkSpace(workspace: WorkspaceSchema, projectName?
   }
 
   return project;
-}
-
-export function getWorkspace (host: Tree) {
-  const path = getWorkspacePath(host);
-  const configBuffer = host.read(path);
-  if (configBuffer === null) {
-    throw new SchematicsException(`Could not find (${path})`);
-  }
-
-  const content = configBuffer.toString();
-  return parse(content);
 }
 
