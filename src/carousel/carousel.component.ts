@@ -51,7 +51,21 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
      works ONLY if singleSlideOffset = FALSE */
   @Input() indicatorsByChunk = false;
   /* If value more then 1 — carousel works in multilist mode */
-  @Input() itemsPerSlide = 1;
+  @Input()
+  set itemsPerSlide(index: number) {
+    this._currentItemPerSlide = index;
+    if (this._currentItemPerSlide > 1 && this.slides?.length) {
+      this._chunkedSlides = chunkByNumber(
+        this.mapSlidesAndIndexes(),
+        this._currentItemPerSlide
+      );
+      this.selectInitialSlides();
+    }
+  }
+
+  get itemsPerSlide(): number {
+    return this._currentItemPerSlide;
+  }
   /* If `true` — carousel shifts by one element. By default carousel shifts by number
      of visible elements (itemsPerSlide field) */
   @Input() singleSlideOffset = false;
@@ -112,7 +126,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   protected _currentVisibleSlidesIndex = 0;
   protected isPlaying = false;
   protected destroyed = false;
-
+  protected _currentItemPerSlide = 1;
   get isBs4(): boolean {
     return !isBs3();
   }
@@ -241,7 +255,10 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
 
   move(direction: Direction, force = false): void {
     const firstVisibleIndex = this.getFirstVisibleIndex();
+    console.log('firstVisible', firstVisibleIndex);
     const lastVisibleIndex = this.getLastVisibleIndex();
+    console.log('lastVisibleIndex', lastVisibleIndex);
+    console.log('direction', direction);
 
     if (this.noWrap) {
       if (
@@ -672,6 +689,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   };
 
   private moveMultilist(direction: Direction): void {
+    console.log('there there there');
     if (this.singleSlideOffset) {
       this.moveSliderByOneItem(direction);
     } else {
