@@ -3,7 +3,7 @@ import {
   HostBinding,
   OnDestroy,
   Input,
-  OnInit, OnChanges, SimpleChanges
+  OnInit
 } from '@angular/core';
 
 import { CarouselComponent } from './carousel.component';

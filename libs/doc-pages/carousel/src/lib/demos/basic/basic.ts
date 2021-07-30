@@ -9,6 +9,6 @@ export class DemoCarouseBasicComponent {
   itemPerSlide = 3;
 
   changeItemPerSlide() {
-    this.itemPerSlide = 2
+    this.itemPerSlide = 2;
   }
 }
