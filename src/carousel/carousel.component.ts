@@ -255,10 +255,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
 
   move(direction: Direction, force = false): void {
     const firstVisibleIndex = this.getFirstVisibleIndex();
-    console.log('firstVisible', firstVisibleIndex);
     const lastVisibleIndex = this.getLastVisibleIndex();
-    console.log('lastVisibleIndex', lastVisibleIndex);
-    console.log('direction', direction);
 
     if (this.noWrap) {
       if (
@@ -689,7 +686,6 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   };
 
   private moveMultilist(direction: Direction): void {
-    console.log('there there there');
     if (this.singleSlideOffset) {
       this.moveSliderByOneItem(direction);
     } else {
