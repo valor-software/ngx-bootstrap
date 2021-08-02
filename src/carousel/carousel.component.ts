@@ -36,12 +36,7 @@ export enum Direction {
  */
 @Component({
   selector: 'carousel',
-  templateUrl: './carousel.component.html',
-  styles: [`
-    .carousel-control {
-      z-index: 10;
-    }
-  `]
+  templateUrl: './carousel.component.html'
 })
 export class CarouselComponent implements AfterViewInit, OnDestroy {
   /* If `true` — carousel will not cycle continuously and will have hard stops (prevent looping) */
@@ -819,5 +814,13 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       clearInterval(this.currentInterval);
       this.currentInterval = void 0;
     }
+  }
+
+  checkDisabledClass(buttonType: 'prev' | 'next'): boolean {
+    if (buttonType === 'prev') {
+      return (this.activeSlide === 0 && this.noWrap && !this.multilist) || (this.isFirstSlideVisible && this.noWrap && this.multilist);
+    }
+
+    return (this.isLast(this.activeSlide) && this.noWrap && !this.multilist) || (this.isLastSlideVisible && this.noWrap && this.multilist);
   }
 }

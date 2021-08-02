@@ -15,14 +15,14 @@
     <ng-content></ng-content>
   </div>
   <a class="left carousel-control carousel-control-prev"
-     [class.disabled]="(activeSlide === 0 && noWrap && !multilist) || (isFirstSlideVisible && noWrap && multilist)"
+     [class.disabled]="checkDisabledClass('prev')"
      (click)="previousSlide()" *ngIf="slides.length > 1"
       tabindex="0" role="button">
     <span class="icon-prev carousel-control-prev-icon" aria-hidden="true"></span>
     <span *ngIf="isBs4" class="sr-only">Previous</span>
   </a>
   <a class="right carousel-control carousel-control-next"
-     [class.disabled]="(isLast(activeSlide) && noWrap && !multilist) || (isLastSlideVisible && noWrap && multilist)"
+     [class.disabled]="checkDisabledClass('next')"
      (click)="nextSlide()" *ngIf="slides.length > 1"
      tabindex="0" role="button">
     <span class="icon-next carousel-control-next-icon" aria-hidden="true"></span>

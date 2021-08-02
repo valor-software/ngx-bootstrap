@@ -38,6 +38,9 @@ import { CarouselComponent } from './carousel.component';
     :host.multilist-margin {
       margin-right: auto;
     }
+    :host.carousel-item {
+      perspective: 1000px
+    }
   `]
 })
 export class SlideComponent implements OnInit, OnDestroy {
