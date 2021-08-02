@@ -39,7 +39,7 @@ import { CarouselComponent } from './carousel.component';
       margin-right: auto;
     }
     :host.carousel-item {
-      perspective: 1000px
+      perspective: 1000px;
     }
   `]
 })
