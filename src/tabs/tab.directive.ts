@@ -20,9 +20,9 @@ export class TabDirective implements OnInit, OnDestroy {
   @HostBinding('attr.id')
   @Input() id?: string;
   /** if true tab can not be activated */
-  @Input() disabled? = false;
+  @Input() disabled = false;
   /** if true tab can be removable, additional button will appear */
-  @Input() removable? = false;
+  @Input() removable = false;
   /** if set, will be added to the tab's class attribute. Multiple classes are supported. */
   @Input()
   get customClass(): string | undefined {
