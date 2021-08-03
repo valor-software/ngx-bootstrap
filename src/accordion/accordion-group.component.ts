@@ -53,9 +53,6 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
       Promise.resolve(null)
       .then(() => {
         this.isOpenChange.emit(value);
-      })
-        .catch((error: Error) => {
-          console.log(error);
       });
     }
   }
