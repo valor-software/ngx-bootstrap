@@ -4322,7 +4322,7 @@ export const ngdoc: any = {
         "description": "<p>emits true if value is a valid date</p>\n"
       },
       {
-        "name": "onChangeMeridian",
+        "name": "changedMeridianValue",
         "description": "<p>emits meridian value </p>\n"
       }
     ],
