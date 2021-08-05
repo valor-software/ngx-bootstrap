@@ -53,20 +53,14 @@ export class CollapseDirective implements AfterViewChecked {
   @Input()
   set display(value: string) {
     this._display = value;
-    if (!this.isAnimated) {
-      this._renderer.setStyle(this._el.nativeElement, 'display', value);
-
-      return;
-    }
-
     if (value === 'none') {
       this.hide();
-
       return;
     }
 
-    this.show();
+    this.isAnimated ? this.toggle() : this.show();
   }
+
   /** turn on/off animation */
   @Input() isAnimated = false;
   /** A flag indicating visibility of content (shown or hidden) */
