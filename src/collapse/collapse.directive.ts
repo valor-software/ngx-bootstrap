@@ -52,13 +52,12 @@ export class CollapseDirective implements AfterViewChecked {
 
   @Input()
   set display(value: string) {
+    this._display = value;
     if (!this.isAnimated) {
       this._renderer.setStyle(this._el.nativeElement, 'display', value);
 
       return;
     }
-
-    this._display = value;
 
     if (value === 'none') {
       this.hide();
