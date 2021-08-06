@@ -16,7 +16,8 @@
       ],
       "parserOptions": {
         "project": [
-          "src/root/tsconfig.*?.json"
+          "src/root/tsconfig.*?.json",
+          "src/root/.storybook/tsconfig.json"
         ]
       },
       "rules": {

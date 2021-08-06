@@ -2969,7 +2969,7 @@ export const ngdoc: any = {
       },
       {
         "name": "id",
-        "type": "number",
+        "type": "string | number",
         "description": "<p>Allow user to ID for the modal. Otherwise, a unique number will be given</p>\n"
       },
       {
@@ -3070,7 +3070,7 @@ export const ngdoc: any = {
       },
       {
         "name": "id",
-        "type": "number",
+        "type": "string | number",
         "description": "<p>Allow user to ID for the modal. Otherwise, a unique number will be given</p>\n"
       },
       {
@@ -4039,6 +4039,103 @@ export const ngdoc: any = {
     "description": "",
     "methods": [],
     "properties": []
+  },
+  "ButtonComponent": {
+    "fileName": "src/stories/button.component.ts",
+    "className": "ButtonComponent",
+    "description": "",
+    "selector": "storybook-button",
+    "inputs": [
+      {
+        "name": "backgroundColor",
+        "type": "string",
+        "description": "<p>What background color to use</p>\n"
+      },
+      {
+        "name": "label",
+        "defaultValue": "Button",
+        "type": "string",
+        "description": "<p>Button contents</p>\n"
+      },
+      {
+        "name": "primary",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>Is this the principal call to action on the page?</p>\n"
+      },
+      {
+        "name": "size",
+        "defaultValue": "medium",
+        "type": "\"small\" | \"medium\" | \"large\"",
+        "description": "<p>How large should the button be?</p>\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "onClick",
+        "description": "<p>Optional click handler</p>\n"
+      }
+    ],
+    "properties": [],
+    "methods": []
+  },
+  "HeaderComponent": {
+    "fileName": "src/stories/header.component.ts",
+    "className": "HeaderComponent",
+    "description": "",
+    "selector": "storybook-header",
+    "inputs": [
+      {
+        "name": "user",
+        "type": "unknown",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "onCreateAccount",
+        "description": ""
+      },
+      {
+        "name": "onLogin",
+        "description": ""
+      },
+      {
+        "name": "onLogout",
+        "description": ""
+      }
+    ],
+    "properties": [],
+    "methods": []
+  },
+  "PageComponent": {
+    "fileName": "src/stories/page.component.ts",
+    "className": "PageComponent",
+    "description": "",
+    "selector": "storybook-page",
+    "inputs": [
+      {
+        "name": "user",
+        "type": "unknown",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "onCreateAccount",
+        "description": ""
+      },
+      {
+        "name": "onLogin",
+        "description": ""
+      },
+      {
+        "name": "onLogout",
+        "description": ""
+      }
+    ],
+    "properties": [],
+    "methods": []
   },
   "NgTranscludeDirective": {
     "fileName": "src/tabs/ng-transclude.directive.ts",

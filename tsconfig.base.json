@@ -21,9 +21,6 @@
       "@ngx-bootstrap-doc/accordion": [
         "libs/doc-pages/accordion/src/index.ts"
       ],
-      "@ngx-bootstrap-doc/docs": [
-        "libs/common-docs/src/index.ts"
-      ],
       "@ngx-bootstrap-doc/alerts": [
         "libs/doc-pages/alerts/src/index.ts"
       ],
@@ -38,6 +35,9 @@
       ],
       "@ngx-bootstrap-doc/datepicker": [
         "libs/doc-pages/datepicker/src/index.ts"
+      ],
+      "@ngx-bootstrap-doc/docs": [
+        "libs/common-docs/src/index.ts"
       ],
       "@ngx-bootstrap-doc/dropdown": [
         "libs/doc-pages/dropdown/src/index.ts"

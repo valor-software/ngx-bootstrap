@@ -19,7 +19,13 @@
   },
   "exclude": [
     "src/test-setup.ts",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "**/*.stories.ts",
+    "**/*.stories.js",
+    "**/*.stories.ts",
+    "**/*.stories.js",
+    "**/*.stories.ts",
+    "**/*.stories.js"
   ],
   "include": [
     "**/*.ts"
