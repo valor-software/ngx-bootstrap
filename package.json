@@ -108,6 +108,7 @@
     "@nrwl/tao": "11.2.12",
     "@nrwl/workspace": "11.2.12",
     "@storybook/addon-essentials": "~6.3.0",
+    "@storybook/addons": "6.3.7",
     "@storybook/angular": "~6.3.0",
     "@storybook/builder-webpack5": "~6.3.0",
     "@storybook/manager-webpack5": "~6.3.0",

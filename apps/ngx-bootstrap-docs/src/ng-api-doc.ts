@@ -46,25 +46,24 @@ export const ngdoc: any = {
     "methods": []
   },
   "AccordionComponent": {
-    "fileName": "src/accordion/accordion.component.ts",
+    "fileName": "src/stories/accordion.component.ts",
     "className": "AccordionComponent",
-    "description": "<p>Displays collapsible content panels for presenting information in a limited amount of space.</p>\n",
-    "selector": "accordion",
+    "description": "",
+    "selector": "storybook-button",
     "inputs": [
       {
         "name": "closeOthers",
         "defaultValue": "false",
         "type": "boolean",
-        "description": "<p>if <code>true</code> expanding one item will close all others</p>\n"
-      },
-      {
-        "name": "isAnimated",
-        "defaultValue": "false",
-        "type": "boolean",
-        "description": "<p>turn on/off animation</p>\n"
+        "description": ""
       }
     ],
-    "outputs": [],
+    "outputs": [
+      {
+        "name": "isOpenChange",
+        "description": ""
+      }
+    ],
     "properties": [],
     "methods": []
   },
@@ -4039,103 +4038,6 @@ export const ngdoc: any = {
     "description": "",
     "methods": [],
     "properties": []
-  },
-  "ButtonComponent": {
-    "fileName": "src/stories/button.component.ts",
-    "className": "ButtonComponent",
-    "description": "",
-    "selector": "storybook-button",
-    "inputs": [
-      {
-        "name": "backgroundColor",
-        "type": "string",
-        "description": "<p>What background color to use</p>\n"
-      },
-      {
-        "name": "label",
-        "defaultValue": "Button",
-        "type": "string",
-        "description": "<p>Button contents</p>\n"
-      },
-      {
-        "name": "primary",
-        "defaultValue": "false",
-        "type": "boolean",
-        "description": "<p>Is this the principal call to action on the page?</p>\n"
-      },
-      {
-        "name": "size",
-        "defaultValue": "medium",
-        "type": "\"small\" | \"medium\" | \"large\"",
-        "description": "<p>How large should the button be?</p>\n"
-      }
-    ],
-    "outputs": [
-      {
-        "name": "onClick",
-        "description": "<p>Optional click handler</p>\n"
-      }
-    ],
-    "properties": [],
-    "methods": []
-  },
-  "HeaderComponent": {
-    "fileName": "src/stories/header.component.ts",
-    "className": "HeaderComponent",
-    "description": "",
-    "selector": "storybook-header",
-    "inputs": [
-      {
-        "name": "user",
-        "type": "unknown",
-        "description": ""
-      }
-    ],
-    "outputs": [
-      {
-        "name": "onCreateAccount",
-        "description": ""
-      },
-      {
-        "name": "onLogin",
-        "description": ""
-      },
-      {
-        "name": "onLogout",
-        "description": ""
-      }
-    ],
-    "properties": [],
-    "methods": []
-  },
-  "PageComponent": {
-    "fileName": "src/stories/page.component.ts",
-    "className": "PageComponent",
-    "description": "",
-    "selector": "storybook-page",
-    "inputs": [
-      {
-        "name": "user",
-        "type": "unknown",
-        "description": ""
-      }
-    ],
-    "outputs": [
-      {
-        "name": "onCreateAccount",
-        "description": ""
-      },
-      {
-        "name": "onLogin",
-        "description": ""
-      },
-      {
-        "name": "onLogout",
-        "description": ""
-      }
-    ],
-    "properties": [],
-    "methods": []
   },
   "NgTranscludeDirective": {
     "fileName": "src/tabs/ng-transclude.directive.ts",
