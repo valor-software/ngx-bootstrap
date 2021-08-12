@@ -1,7 +1,9 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { changeBsVersion } from '../common/changeBsVersion';
 
 @Component({
-  selector: 'storybook-button',
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'accordion-story',
   template: `
     <div [style.width.%]="width">
       <accordion [isAnimated]="true" [closeOthers]="closeOthers">
@@ -39,7 +41,10 @@ export default class AccordionComponent {
   @Input() label?: string;
   @Input() width?: number;
   @Input() customClass?: boolean;
-
+  @Input()
+  set bootstrapVersion(value: 4 | 3 | 5) {
+    changeBsVersion(value);
+  };
   @Output() isOpenChange = new EventEmitter<boolean>();
 }
 

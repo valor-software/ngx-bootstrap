@@ -13,8 +13,14 @@ export default {
     }),
   ],
   argTypes: {
-    isOpenChange: { action: 'isOpenChange' },
-
+    bootstrapVersion: {
+      options: [4, 3],
+      control: { type: 'radio' }
+    },
+    width: {
+      control:{type: 'range', min: 0, max: 100, step: 5}
+    },
+    isOpenChange: { action: 'isOpenChange' }
   }
 } as Meta;
 
@@ -31,6 +37,7 @@ Default.args = {
   isDisabled: false,
   isOpen: true,
   customClass: false,
+  bootstrapVersion: 4
 };
 
 
