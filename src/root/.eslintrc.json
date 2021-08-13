@@ -3,7 +3,7 @@
     "../../.eslintrc.json"
   ],
   "ignorePatterns": [
-    "!**/*"
+    "!**/*", "**/*.spec.ts"
   ],
   "overrides": [
     {
