@@ -79,6 +79,7 @@
     "@scullyio/ng-lib": "1.1.1",
     "@scullyio/scully": "1.1.1",
     "@stackblitz/sdk": "1.5.2",
+    "@storybook/addon-jest": "6.3.7",
     "ngx-page-scroll": "7.0.4",
     "ngx-page-scroll-core": "7.0.4",
     "rxjs": "6.6.3",

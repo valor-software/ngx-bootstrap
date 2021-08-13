@@ -21,10 +21,6 @@
     "src/test-setup.ts",
     "**/*.spec.ts",
     "**/*.stories.ts",
-    "**/*.stories.js",
-    "**/*.stories.ts",
-    "**/*.stories.js",
-    "**/*.stories.ts",
     "**/*.stories.js"
   ],
   "include": [

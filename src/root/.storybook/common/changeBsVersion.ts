@@ -6,6 +6,8 @@ export function changeBsVersion(value: 4 | 3 | 5) {
   node.href = `./assets/css/bootstrap-${bsVersion}/css/bootstrap.min.css`;
   const head = document.head;
   const extraElem = head.getElementsByTagName('link')[0];
-  head.removeChild(extraElem);
+  if (extraElem) {
+    head.removeChild(extraElem);
+  }
   document.head.appendChild(node);
 }

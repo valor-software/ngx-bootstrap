@@ -304,6 +304,12 @@
     "ngx-bootstrap-docs-e2e": {
       "tags": []
     },
+    "ngx-bootstrap-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "ngx-bootstrap"
+      ]
+    },
     "pagination": {
       "tags": [
         "lib"

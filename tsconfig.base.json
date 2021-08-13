@@ -77,6 +77,12 @@
       ],
       "ngx-bootstrap/utils": [
         "src/utils/index.ts"
+      ],
+      "@ngx-bootstrap/alert": [
+        "src/alert/index.ts"
+      ],
+      "@ngx-bootstrap/accordion": [
+        "src/accordion/index.ts"
       ]
     }
   },

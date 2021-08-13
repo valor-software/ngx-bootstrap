@@ -46,24 +46,25 @@ export const ngdoc: any = {
     "methods": []
   },
   "AccordionComponent": {
-    "fileName": "src/stories/accordion.component.ts",
+    "fileName": "src/accordion/accordion.component.ts",
     "className": "AccordionComponent",
-    "description": "",
-    "selector": "storybook-button",
+    "description": "<p>Displays collapsible content panels for presenting information in a limited amount of space.</p>\n",
+    "selector": "accordion",
     "inputs": [
       {
         "name": "closeOthers",
         "defaultValue": "false",
         "type": "boolean",
-        "description": ""
-      }
-    ],
-    "outputs": [
+        "description": "<p>if <code>true</code> expanding one item will close all others</p>\n"
+      },
       {
-        "name": "isOpenChange",
-        "description": ""
+        "name": "isAnimated",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>turn on/off animation</p>\n"
       }
     ],
+    "outputs": [],
     "properties": [],
     "methods": []
   },

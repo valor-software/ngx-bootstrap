@@ -8,7 +8,8 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
       astTransformers: {
         before: ['jest-preset-angular/build/InlineFilesTransformer', 'jest-preset-angular/build/StripStylesTransformer']
-      }
+      },
+      moduleDirectories: ["../../node_modules"]
     }
   },
   coverageDirectory: '../../coverage/src/ngx-bootstrap',
