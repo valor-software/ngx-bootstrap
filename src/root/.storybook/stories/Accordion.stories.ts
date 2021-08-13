@@ -3,14 +3,13 @@ import  AccordionComponent from './accordion.component';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { moduleMetadata } from '@storybook/angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AlertModule } from '../../../alert';
 
 export default {
   title: 'accordion',
   component: AccordionComponent,
   decorators: [
     moduleMetadata({
-    imports: [AccordionModule.forRoot(), BrowserAnimationsModule, AlertModule.forRoot()],
+    imports: [AccordionModule.forRoot(), BrowserAnimationsModule],
     }),
   ],
   argTypes: {
