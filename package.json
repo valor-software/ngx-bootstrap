@@ -43,9 +43,6 @@
     "scully": "scully",
     "scully:serve": "scully serve",
     "prepare": "husky install",
-    "compodoc": "npx compodoc -p tsconfig.doc.json",
-    "docs:json": "compodoc -p ./tsconfig.base.json -e json -d .",
-    "storybook": "npm run docs:json && start-storybook -p 6006",
     "build-storybook": "npm run docs:json && build-storybook"
   },
   "private": true,
@@ -79,7 +76,6 @@
     "@scullyio/ng-lib": "1.1.1",
     "@scullyio/scully": "1.1.1",
     "@stackblitz/sdk": "1.5.2",
-    "@storybook/addon-jest": "6.3.7",
     "ngx-page-scroll": "7.0.4",
     "ngx-page-scroll-core": "7.0.4",
     "rxjs": "6.6.3",

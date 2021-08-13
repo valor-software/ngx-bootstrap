@@ -71,18 +71,6 @@
       ],
       "@ngx-bootstrap-doc/typeahead": [
         "libs/doc-pages/typeahead/src/index.ts"
-      ],
-      "ngx-bootstrap/progressbar": [
-        "src/progressbar/index.ts"
-      ],
-      "ngx-bootstrap/utils": [
-        "src/utils/index.ts"
-      ],
-      "@ngx-bootstrap/alert": [
-        "src/alert/index.ts"
-      ],
-      "@ngx-bootstrap/accordion": [
-        "src/accordion/index.ts"
       ]
     }
   },
