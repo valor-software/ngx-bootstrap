@@ -10,7 +10,7 @@ interface IComponentContent {
   anchor?: string;
   outlet: any;
   description?: string;
-  content: ComponentExample[] | ComponentApi[];
+  content: {anchor: string, title: string}[];
 }
 
 @Component({
@@ -21,7 +21,7 @@ interface IComponentContent {
 export class AddNavComponent implements OnChanges{
   @Input() componentContent?: ContentSection[];
 
-  _componentContent?: IComponentContent[];
+  _componentContent: IComponentContent[] = [];
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor(@Inject(DOCUMENT) private document: Document){ }
 
@@ -38,7 +38,10 @@ export class AddNavComponent implements OnChanges{
         anchor: item.anchor,
         outlet: item.outlet,
         description: item.description,
-        content: Array.isArray(item.content) ? item.content : [],
+        content: Array.isArray(item.content)
+          ? (item.content as {anchor: string, title: string}[])
+            .map((cont) => ({anchor: cont.anchor, title: cont.title}))
+          : []
       };
 
       return result;
