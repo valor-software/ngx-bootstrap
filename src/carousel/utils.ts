@@ -35,3 +35,7 @@ export function chunkByNumber<T>(array: T[], size: number): T[][] {
 
   return out;
 }
+
+export function isNumber(value?: any): value is number {
+  return typeof value === 'number' || Object.prototype.toString.call(value) === '[object Number]';
+}

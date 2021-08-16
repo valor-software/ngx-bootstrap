@@ -22,7 +22,7 @@ import {
 import { isBs3, LinkedList } from 'ngx-bootstrap/utils';
 import { SlideComponent } from './slide.component';
 import { CarouselConfig } from './carousel.config';
-import { findLastIndex, chunkByNumber } from './utils';
+import { findLastIndex, chunkByNumber, isNumber } from './utils';
 import { SlideWithIndex, IndexedSlideList } from './models';
 
 export enum Direction {
@@ -73,7 +73,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       return;
     }
 
-    if (index && !isNaN(index)) {
+    if (index && isNumber(index)) {
       this.customActiveSlide = index;
     }
 
@@ -127,7 +127,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   }
 
   protected currentInterval?: number;
-  protected _currentActiveSlide = 0;
+  protected _currentActiveSlide?: number;
   protected _interval = 5000;
   protected _slides: LinkedList<SlideComponent> = new LinkedList<SlideComponent>();
   protected _chunkedSlides?: SlideWithIndex[][];
@@ -185,7 +185,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     }
 
     if (!this.multilist && this._slides.length === 1) {
-      this._currentActiveSlide = 0;
+      this._currentActiveSlide = undefined;
       if (!this.customActiveSlide) {
         this.activeSlide = 0;
       }
@@ -767,6 +767,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     }
 
     const nextSlide = this._slides.get(index);
+
     if (typeof nextSlide !== 'undefined') {
       this._currentActiveSlide = index;
       nextSlide.active = true;
