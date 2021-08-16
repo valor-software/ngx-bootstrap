@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import sdk from '@stackblitz/sdk';
 
 import { ContentSection } from '../../models/content-section.model';
@@ -19,10 +19,10 @@ export class ExamplesComponent {
   examples: ComponentExample[];
   moduleData: NgxModuleData;
 
-  constructor(public section: ContentSection, private route: ActivatedRoute) {
+  constructor(public section: ContentSection, private route: ActivatedRoute, router: Router) {
     this.examples = section.content as ComponentExample[];
     this.moduleData = this.route.snapshot.data && this.route.snapshot.data[1];
-    this.moduleData.moduleRoute = this.route.snapshot['_routerState'].url;
+    this.moduleData.moduleRoute = router.routerState.snapshot.url;
   }
 
   @HostListener('document:click', ['$event'])
@@ -49,13 +49,17 @@ export class ExamplesComponent {
     }
   }
 
-  openStackBlitzDemo(ts: string, html: string) {
+  openStackBlitzDemo(ts?: string, html?: string) {
+    if (!ts || !html) {
+      return;
+    }
+
     const className = getComponentClassName(ts);
     const tag = getTagName(ts);
     const templateName = getTemplateFileName(ts);
     if (tag && className) {
       const project = {
-        files: {
+        files: <any>{
           'index.html': getIndexHtmlCode(tag, this.moduleData),
           'styles.css': `body {padding: 30px; position: relative}
         ${this.moduleData.moduleRoute === '/sortable' ?

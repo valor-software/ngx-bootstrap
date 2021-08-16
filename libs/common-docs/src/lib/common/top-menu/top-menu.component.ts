@@ -9,9 +9,9 @@ import { NavigationEnd, Router } from '@angular/router';
   templateUrl: './top-menu.component.html'
 })
 export class TopMenuComponent implements AfterViewInit {
-  appUrl: string;
-  appHash: string;
-  currentVersion: string;
+  appUrl?: string;
+  appHash?: string;
+  currentVersion?: string;
   isBrowser: boolean;
 
   previousDocs: {
