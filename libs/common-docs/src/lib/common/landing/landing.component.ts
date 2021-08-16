@@ -14,8 +14,8 @@ const _bs4Css = 'assets/css/bootstrap-4.5.3/css/bootstrap.min.css';
   templateUrl: './landing.component.html'
 })
 export class LandingComponent implements AfterViewInit {
-  currentVersion: string;
-  currentTheme: 'bs3' | 'bs4';
+  currentVersion?: string;
+  currentTheme?: 'bs3' | 'bs4';
 
   constructor(public styleManager: StyleManager,
               private http: HttpClient,

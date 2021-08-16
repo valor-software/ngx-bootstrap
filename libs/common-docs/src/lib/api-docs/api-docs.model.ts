@@ -2,10 +2,13 @@
  * @author ng-team
  * @copyright ng-bootstrap
  */
+import { SafeHtml } from '@angular/platform-browser';
+
 export interface ClassDesc {
   fileName: string;
   className: string;
   description: string;
+  descriptionSafeHtML?: SafeHtml;
   properties: PropertyDesc[];
   methods: MethodDesc[];
 }
@@ -22,11 +25,13 @@ export interface PropertyDesc {
   type: string;
   description: string;
   defaultValue?: string;
+  descriptionSafeHtml?: SafeHtml;
 }
 
 export interface MethodDesc {
   name: string;
   description: string;
+  descriptionSafeHtml?: SafeHtml;
   args: ArgumentDesc[];
   returnType: string;
 }

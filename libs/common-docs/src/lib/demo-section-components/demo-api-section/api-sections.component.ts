@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Injector, ReflectiveInjector } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector } from '@angular/core';
 
 import { ContentSection } from '../../models/content-section.model';
 import { ComponentApi } from '../../models/components-api.model';
@@ -12,18 +12,18 @@ import { ComponentApi } from '../../models/components-api.model';
 export class ApiSectionsComponent {
   apiSectionsContent: ComponentApi[];
 
-  _injectors = new Map<ComponentApi, ReflectiveInjector>();
+  _injectors = new Map<ComponentApi, Injector>();
 
   constructor(public section: ContentSection, private injector: Injector) {
     this.apiSectionsContent = section.content as ComponentApi[];
   }
 
-  sectionInjections(_content: ComponentApi) {
+  sectionInjections(_content: ComponentApi): Injector {
     if (this._injectors.has(_content)) {
-      return this._injectors.get(_content);
+      return this._injectors.get(_content) as Injector;
     }
 
-    const _injector = ReflectiveInjector.resolveAndCreate([{
+    const _injector = Injector.create([{
       provide: ComponentApi,
       useValue: _content
     }], this.injector);
