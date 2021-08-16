@@ -73,7 +73,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       return;
     }
 
-    if (index && isNumber(index)) {
+    if (isNumber(index)) {
       this.customActiveSlide = index;
     }
 
