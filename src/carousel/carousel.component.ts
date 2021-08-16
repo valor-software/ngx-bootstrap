@@ -127,7 +127,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   }
 
   protected currentInterval?: number;
-  protected _currentActiveSlide?: number;
+  protected _currentActiveSlide = 0;
   protected _interval = 5000;
   protected _slides: LinkedList<SlideComponent> = new LinkedList<SlideComponent>();
   protected _chunkedSlides?: SlideWithIndex[][];
@@ -185,7 +185,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     }
 
     if (!this.multilist && this._slides.length === 1) {
-      this._currentActiveSlide = undefined;
+      this._currentActiveSlide = 0;
       if (!this.customActiveSlide) {
         this.activeSlide = 0;
       }
