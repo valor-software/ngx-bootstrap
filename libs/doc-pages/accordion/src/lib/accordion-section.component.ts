@@ -16,5 +16,4 @@ export class AccordionSectionComponent {
   name = 'Accordion';
   src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/accordion';
   componentContent: ContentSection[] = demoComponentContent;
-  // componentContent: any[] = demoComponentContent;
 }

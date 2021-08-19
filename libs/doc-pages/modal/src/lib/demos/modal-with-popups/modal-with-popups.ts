@@ -7,7 +7,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   templateUrl: './modal-with-popups.html'
 })
 export class DemoModalWithPopupsComponent {
-  modalRef: BsModalRef;
+  modalRef?: BsModalRef;
 
   constructor(private modalService: BsModalService) {}
 

@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './multiple-search.html'
 })
 export class DemoTypeaheadMultipleSearchComponent {
-  selected: string;
+  selected?: string;
   states = [
     'Alabama',
     'Alaska',

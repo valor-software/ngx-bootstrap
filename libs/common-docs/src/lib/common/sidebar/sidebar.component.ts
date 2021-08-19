@@ -39,7 +39,8 @@ export class SidebarComponent implements OnDestroy {
   routes: Routes;
   search = { text: '' };
 
-  currentTheme: 'bs3' | 'bs4' | 'bs5';
+
+  currentTheme?: 'bs3' | 'bs4' | 'bs5';
   scrollSubscription: Subscription;
 
   constructor(

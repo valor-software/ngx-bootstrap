@@ -7,7 +7,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   templateUrl: './service-component.html'
 })
 export class DemoModalServiceFromComponent {
-  bsModalRef: BsModalRef;
+  bsModalRef?: BsModalRef;
   constructor(private modalService: BsModalService) {}
 
   openModalWithComponent() {
@@ -49,8 +49,8 @@ export class DemoModalServiceFromComponent {
 })
 
 export class ModalContentComponent implements OnInit {
-  title: string;
-  closeBtnName: string;
+  title?: string;
+  closeBtnName?: string;
   list: any[] = [];
 
   constructor(public bsModalRef: BsModalRef) {}

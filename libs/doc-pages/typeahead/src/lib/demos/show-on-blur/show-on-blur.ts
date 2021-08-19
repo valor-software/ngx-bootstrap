@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class DemoTypeaheadShowOnBlurComponent {
   typeaheadHideResultsOnBlur = false;
-  selected: string;
+  selected?: string;
   states = [
     'Alabama',
     'Alaska',

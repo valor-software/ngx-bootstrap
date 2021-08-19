@@ -1,4 +1,15 @@
 import { Component, Input } from '@angular/core';
+import { ComponentExample } from '../models/components-examples.model';
+import { ComponentApi } from '../models/components-api.model';
+import { ComponentsTopSection } from '../models/components-top-section.model';
+
+interface IContentSection {
+  name?: string;
+  anchor?: string;
+  outlet: any;
+  description?: string;
+  content?: ComponentExample[] | ComponentApi[] | ComponentsTopSection;
+}
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -6,10 +17,10 @@ import { Component, Input } from '@angular/core';
   templateUrl: './demo-section.component.html'
 })
 export class DemoSectionComponent {
-  @Input() name: string;
-  @Input() src: string;
-  @Input() html: string;
-  @Input() ts: string;
+  @Input() name?: string;
+  @Input() src?: string;
+  @Input() html?: string;
+  @Input() ts?: string;
 
-  @Input() componentContent: unknown;
+  @Input() componentContent?: IContentSection[];
 }

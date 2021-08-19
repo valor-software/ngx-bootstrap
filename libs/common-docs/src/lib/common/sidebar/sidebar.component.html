@@ -1,7 +1,8 @@
 <form class="sidebar-search">
-  <input type="text"
-         aria-label="Search in docs" name="search"
-         placeholder="Search..." [value]="search.text" (change)='search.text = $event.target?.value'/>
+  <input  #searchInput
+          type="text"
+          aria-label="Search in docs" name="search"
+          placeholder="Search..." [value]="search.text" (change)='search.text = searchInput.value'/>
 
   <button id="mobile-main-menu" type="button" (click)="toggle()">
     <img src="assets/images/icons/menu-left.svg" alt="left menu">

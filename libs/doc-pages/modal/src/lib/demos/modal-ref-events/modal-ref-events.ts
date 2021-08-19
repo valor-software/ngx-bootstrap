@@ -14,7 +14,7 @@ import { combineLatest, Subscription } from 'rxjs';
   `]
 })
 export class DemoModalRefEventsComponent {
-  modalRef: BsModalRef;
+  modalRef?: BsModalRef;
   subscriptions: Subscription[] = [];
   messages: string[] = [];
 
@@ -25,33 +25,42 @@ export class DemoModalRefEventsComponent {
     this.messages = [];
 
     this.modalRef = this.modalService.show(template);
+    let _combine;
+    if (this.modalRef?.onHide && this.modalRef?.onHidden) {
+        _combine = combineLatest(
+        this.modalRef.onHide,
+        this.modalRef.onHidden
+      ).subscribe(() => this.changeDetection.markForCheck());
+    }
 
-    const _combine = combineLatest(
-      this.modalRef.onHide,
-      this.modalRef.onHidden
-    ).subscribe(() => this.changeDetection.markForCheck());
+      if (this.modalRef?.onHide) {
+        this.subscriptions.push(
+          this.modalRef.onHide.subscribe((reason: string | any) => {
+            if (typeof reason !== 'string') {
+              reason = `onHide(), modalId is : ${reason.id}`;
+            }
+            const _reason = reason ? `, dismissed by ${reason}` : '';
+            this.messages.push(`onHide event has been fired${_reason}`);
+          })
+        );
+      }
 
-    this.subscriptions.push(
-      this.modalRef.onHide.subscribe((reason: string | any) => {
-        if (typeof reason !== 'string') {
-          reason = `onHide(), modalId is : ${reason.id}`;
-        }
-        const _reason = reason ? `, dismissed by ${reason}` : '';
-        this.messages.push(`onHide event has been fired${_reason}`);
-      })
-    );
-    this.subscriptions.push(
-      this.modalRef.onHidden.subscribe((reason: string | any) => {
-        if (typeof reason !== 'string') {
-          reason = `onHide(), modalId is : ${reason.id}`;
-        }
-        const _reason = reason ? `, dismissed by ${reason}` : '';
-        this.messages.push(`onHidden event has been fired${_reason}`);
-        this.unsubscribe();
-      })
-    );
+      if  (this.modalRef?.onHidden) {
+        this.subscriptions.push(
+          this.modalRef.onHidden.subscribe((reason: string | any) => {
+            if (typeof reason !== 'string') {
+              reason = `onHide(), modalId is : ${reason.id}`;
+            }
+            const _reason = reason ? `, dismissed by ${reason}` : '';
+            this.messages.push(`onHidden event has been fired${_reason}`);
+            this.unsubscribe();
+          })
+        );
+      }
 
-    this.subscriptions.push(_combine);
+      if (_combine) {
+        this.subscriptions.push(_combine);
+      }
   }
 
   unsubscribe() {

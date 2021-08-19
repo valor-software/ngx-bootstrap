@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: './checkbox-reactiveforms.html'
 })
 export class DemoButtonsCheckboxReactiveFormsComponent implements OnInit {
-  myForm: FormGroup;
+  myForm?: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {}
 

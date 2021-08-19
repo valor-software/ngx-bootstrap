@@ -49,10 +49,15 @@ export class Analytics {
   /**
    * Sends an event.
    */
-  trackEvent(action: string, category: string): void {
+  trackEvent(action: string, category?: string): void {
     if (!this.enabled) {
       return;
     }
+
+    if (!category) {
+      return;
+    }
+
     if (typeof ga !== 'undefined') {
       ga('send', {
         hitType: 'event',
