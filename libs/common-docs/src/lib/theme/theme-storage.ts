@@ -1,6 +1,6 @@
 // Copyright (c) 2017 Google, Inc.
 import { EventEmitter, Injectable } from '@angular/core';
-import { availableBsVersions } from 'ngx-bootstrap/utils';
+import { AvailableBsVersions } from 'ngx-bootstrap/utils';
 
 @Injectable()
 export class ThemeStorage {
@@ -8,7 +8,7 @@ export class ThemeStorage {
 
   onThemeUpdate: EventEmitter<string> = new EventEmitter<string>();
 
-  storeTheme(theme: availableBsVersions) {
+  storeTheme(theme: AvailableBsVersions) {
     try {
       window.localStorage[ThemeStorage.storageKey] = theme;
     } catch (e) {
@@ -19,7 +19,7 @@ export class ThemeStorage {
     return;
   }
 
-  getStoredTheme(): availableBsVersions |null {
+  getStoredTheme(): AvailableBsVersions |null {
     try {
       return window.localStorage[ThemeStorage.storageKey] || null;
     } catch (e) {
