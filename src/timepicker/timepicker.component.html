@@ -31,7 +31,7 @@
   </tr>
   <tr>
     <!-- hours -->
-    <td class="form-group" [class.has-error]="invalidHours">
+    <td class="form-group mb-3" [class.has-error]="invalidHours">
       <input type="text" [class.is-invalid]="invalidHours"
              class="form-control text-center bs-timepicker-field"
              [placeholder]="hoursPlaceholder"
@@ -46,7 +46,7 @@
     <!-- divider -->
     <td *ngIf="showMinutes">&nbsp;:&nbsp;</td>
     <!-- minutes -->
-    <td class="form-group" *ngIf="showMinutes" [class.has-error]="invalidMinutes">
+    <td class="form-group mb-3" *ngIf="showMinutes" [class.has-error]="invalidMinutes">
       <input type="text" [class.is-invalid]="invalidMinutes"
              class="form-control text-center bs-timepicker-field"
              [placeholder]="minutesPlaceholder"
@@ -62,7 +62,7 @@
     <!-- divider -->
     <td *ngIf="showSeconds">&nbsp;:&nbsp;</td>
     <!-- seconds -->
-    <td class="form-group" *ngIf="showSeconds" [class.has-error]="invalidSeconds">
+    <td class="form-group mb-3" *ngIf="showSeconds" [class.has-error]="invalidSeconds">
       <input type="text" [class.is-invalid]="invalidSeconds"
              class="form-control text-center bs-timepicker-field"
              [placeholder]="secondsPlaceholder"

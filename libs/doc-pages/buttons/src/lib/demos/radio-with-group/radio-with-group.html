@@ -1,5 +1,5 @@
 <pre class="card card-block card-header">{{radioModel || 'null'}}</pre>
-<div class="form-inline">
+<div class="form-inline d-flex align-items-center">
   <div class="btn-group" btnRadioGroup [(ngModel)]="radioModel" [disabled]="modelGroupDisabled">
     <label class="btn btn-success mb-0" btnRadio="Left">Left</label>
     <label class="btn btn-success mb-0" btnRadio="Middle">Middle</label>
@@ -11,7 +11,7 @@
 
 
 <pre class="card card-block card-header">{{radioModelDisabled || 'null'}}</pre>
-<div class="form-inline">
+<div class="form-inline d-flex align-items-center">
   <div class="btn-group" btnRadioGroup [(ngModel)]="radioModelDisabled" disabled>
     <label class="btn btn-success" btnRadio="Left">Left</label>
     <label class="btn btn-success" btnRadio="Middle">Middle</label>
