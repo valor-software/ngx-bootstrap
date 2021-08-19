@@ -1,6 +1,6 @@
 import { window } from './facade/browser';
 
-let guessedVersion: 'bs3' | 'bs4' | 'bs5';
+export type availableBsVersions = 'bs3' | 'bs4' | 'bs5';
 
 interface IObjectKeys {
   [key: string]: boolean;
@@ -18,7 +18,9 @@ export enum bsVerions {
   isBs5 = 'bs5'
 }
 
-function _guessBsVersion(): 'bs3' | 'bs4' | 'bs5' {
+let guessedVersion: availableBsVersions;
+
+function _guessBsVersion(): availableBsVersions {
   if (typeof document === 'undefined') {
     return 'bs4';
   }
@@ -39,7 +41,7 @@ function _guessBsVersion(): 'bs3' | 'bs4' | 'bs5' {
   return 'bs4';
 }
 
-export function setTheme(theme: 'bs3' | 'bs4' | 'bs5'): void {
+export function setTheme(theme: availableBsVersions): void {
   guessedVersion = theme;
 }
 
@@ -87,7 +89,7 @@ export function getBsVer(): IBsVersion {
   };
 }
 
-export function currentBsVersion(): 'bs3' | 'bs4' | 'bs5' {
+export function currentBsVersion(): availableBsVersions {
   const bsVer = getBsVer();
   const resVersion = Object.keys(bsVer).find(key => bsVer[key]);
   return bsVerions[resVersion as keyof typeof bsVerions];

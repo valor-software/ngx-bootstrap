@@ -2969,7 +2969,7 @@ export const ngdoc: any = {
       },
       {
         "name": "id",
-        "type": "number",
+        "type": "string | number",
         "description": "<p>Allow user to ID for the modal. Otherwise, a unique number will be given</p>\n"
       },
       {
@@ -3070,7 +3070,7 @@ export const ngdoc: any = {
       },
       {
         "name": "id",
-        "type": "number",
+        "type": "string | number",
         "description": "<p>Allow user to ID for the modal. Otherwise, a unique number will be given</p>\n"
       },
       {

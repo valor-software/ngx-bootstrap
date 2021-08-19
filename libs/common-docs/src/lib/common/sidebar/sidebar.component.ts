@@ -2,7 +2,7 @@ import { ActivatedRoute, NavigationEnd, Route, Router, Routes } from '@angular/r
 import { Component, Inject, OnDestroy, Renderer2 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
-import { setTheme, getBsVer, currentBsVersion, IBsVersion } from 'ngx-bootstrap/utils';
+import { setTheme, getBsVer, currentBsVersion, IBsVersion, availableBsVersions } from 'ngx-bootstrap/utils';
 import { StyleManager } from '../../theme/style-manager';
 import { ThemeStorage } from '../../theme/theme-storage';
 import { Subscription } from 'rxjs';
@@ -40,7 +40,7 @@ export class SidebarComponent implements OnDestroy {
   search = { text: '' };
 
 
-  currentTheme?: 'bs3' | 'bs4' | 'bs5';
+  currentTheme?: availableBsVersions;
   scrollSubscription: Subscription;
 
   constructor(
@@ -83,7 +83,7 @@ export class SidebarComponent implements OnDestroy {
     }
   }
 
-  installTheme(theme: 'bs3' | 'bs4' | 'bs5') {
+  installTheme(theme: availableBsVersions) {
     setTheme(theme);
     this.currentTheme = currentBsVersion();
     this.styleManager.setStyle('theme', this.bsCssFile);
