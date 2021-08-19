@@ -4,6 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { demoComponentContent, demoComponentContentOld } from './datepicker-section.list';
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
 
+
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'datepicker-section',
@@ -25,8 +26,8 @@ export class DatepickerSectionComponent {
         this.componentContent = demoComponentContent;
     }
 
-    if (typeof window['PR'] !== 'undefined') {
-      setTimeout(() => window['PR'].prettyPrint(), 10);
+    if (typeof (window as any)['PR'] !== 'undefined') {
+      setTimeout(() => (window as any)['PR']?.prettyPrint(), 10);
     }
   }
 }

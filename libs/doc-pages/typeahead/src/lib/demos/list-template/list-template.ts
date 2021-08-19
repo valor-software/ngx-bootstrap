@@ -33,7 +33,7 @@ import { isBs3 } from 'ngx-bootstrap/utils';
 })
 export class DemoTypeaheadListTemplateComponent {
   isBs3 = isBs3();
-  selected: string;
+  selected?: string;
   states: string[] = [
     'Alabama',
     'Alaska',

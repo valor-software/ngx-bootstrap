@@ -7,7 +7,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
   templateUrl: './accessibility.html'
 })
 export class DemoAccessibilityComponent {
-  modalRef: BsModalRef;
+  modalRef?: BsModalRef;
   constructor(private modalService: BsModalService) {}
 
   openModal(template: TemplateRef<any>) {

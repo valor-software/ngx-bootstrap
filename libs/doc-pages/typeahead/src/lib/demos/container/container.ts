@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './container.html'
 })
 export class DemoTypeaheadContainerComponent {
-  selected: string;
+  selected?: string;
   states: string[] = [
     'Alabama',
     'Alaska',

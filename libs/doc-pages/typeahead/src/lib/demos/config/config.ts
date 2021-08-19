@@ -13,7 +13,7 @@ export function getTypeaheadConfig(): TypeaheadConfig {
   providers: [{ provide: TypeaheadConfig, useFactory: getTypeaheadConfig }]
 })
 export class DemoTypeaheadConfigComponent {
-  selected: string;
+  selected?: string;
   states: string[] = [
     'Alabama',
     'Alaska',

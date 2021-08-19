@@ -24,7 +24,7 @@ const CONFIG_SUFFIX_LENGTH = 'Config'.length;
   templateUrl: './api-doc-config.component.html'
 })
 export class NgApiDocConfigComponent {
-  apiDocs: ClassDesc;
+  apiDocs?: ClassDesc;
   directiveName?: string;
   headerAnchor?: string;
   isShowMethods = false;
@@ -37,12 +37,14 @@ export class NgApiDocConfigComponent {
     this.docs = docs;
 
     this.headerAnchor = content.anchor;
-    this.apiDocs = this.docs[content.title];
+    if (content?.title) {
+      this.apiDocs = this.docs[content.title];
+    }
     this.isShowMethods = content.showMethods || this.isShowMethods;
     this.directiveName = content.title?.slice(0, -CONFIG_SUFFIX_LENGTH);
   }
 
   trackSourceClick(): void {
-    this.analytics.trackEvent('Source File View', this.apiDocs.className);
+    this.analytics.trackEvent('Source File View', this.apiDocs?.className);
   }
 }

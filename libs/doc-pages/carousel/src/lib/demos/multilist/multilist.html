@@ -1,7 +1,7 @@
 <carousel [itemsPerSlide]="itemsPerSlide"
           [singleSlideOffset]="singleSlideOffset"
           [noWrap]="!noWrap"
-          [interval]="false"
+          [interval]="0"
           [startFromIndex]="5"
           (slideRangeChange)="onSlideRangeChange($event)">
   <slide *ngFor="let slide of slides; let index=index">
