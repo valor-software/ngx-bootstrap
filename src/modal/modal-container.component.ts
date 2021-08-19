@@ -13,7 +13,7 @@ import {
   TRANSITION_DURATIONS
 } from './modal-options.class';
 import { BsModalService } from './bs-modal.service';
-import { isBs3 } from 'ngx-bootstrap/utils';
+import { document, isBs3 } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'modal-container',
@@ -76,6 +76,8 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
         this.bsModalService.setScrollbar();
       }
       this._renderer.addClass(document.body, CLASS_NAME.OPEN);
+      this._renderer.setStyle(document.body, 'overflow-y', 'hidden');
+
     }
     if (this._element.nativeElement) {
       this._element.nativeElement.focus();
@@ -164,6 +166,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
         this.bsModalService?.getModalsCount() === 1
       ) {
         this._renderer.removeClass(document.body, CLASS_NAME.OPEN);
+        this._renderer.setStyle(document.body, 'overflow-y', '');
       }
       this.bsModalService?.hide(this.config.id);
       this.isModalHiding = false;

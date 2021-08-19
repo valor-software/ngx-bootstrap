@@ -20,6 +20,7 @@ import {
   MODAL_CONFIG_DEFAULT_OVERRIDE
 } from './modal-options.class';
 import { BsModalRef } from './bs-modal-ref.service';
+import { document } from 'ngx-bootstrap/utils';
 
 @Injectable()
 export class BsModalService {
@@ -192,6 +193,7 @@ export class BsModalService {
 
   removeBackdrop(): void {
     this._renderer.removeClass(document.body, CLASS_NAME.OPEN);
+    this._renderer.setStyle(document.body, 'overflow-y', '');
     this._backdropLoader.hide();
     this.backdropRef = void 0;
   }

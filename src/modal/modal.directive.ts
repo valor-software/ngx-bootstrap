@@ -177,6 +177,8 @@ export class ModalDirective implements OnDestroy, OnInit {
       if (document.body.classList.contains(CLASS_NAME.OPEN)) {
         this.isNested = true;
       } else {
+        console.log('there add overflow');
+        this._renderer.setStyle(document.body, 'overflow-y', 'hidden');
         this._renderer.addClass(document.body, CLASS_NAME.OPEN);
       }
     }
@@ -316,6 +318,8 @@ export class ModalDirective implements OnDestroy, OnInit {
     this.showBackdrop(() => {
       if (!this.isNested) {
         if (document && document.body) {
+          console.log('there remove overflow');
+          this._renderer.setStyle(document.body, 'overflow-y', '');
           this._renderer.removeClass(document.body, CLASS_NAME.OPEN);
         }
         this.resetScrollbar();
