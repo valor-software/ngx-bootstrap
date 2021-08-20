@@ -13,15 +13,15 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
   `]
 })
 export class DemoModalEventsComponent {
-  @ViewChild(ModalDirective, { static: false }) modal: ModalDirective;
-  messages: string[];
+  @ViewChild(ModalDirective, { static: false }) modal?: ModalDirective;
+  messages?: string[];
 
   showModal() {
     this.messages = [];
-    this.modal.show();
+    this.modal?.show();
   }
   handler(type: string, $event: ModalDirective) {
-    this.messages.push(
+    this.messages?.push(
       `event ${type} is fired${$event.dismissReason
         ? ', dismissed by ' + $event.dismissReason
         : ''}`

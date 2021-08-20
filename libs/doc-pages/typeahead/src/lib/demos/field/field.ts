@@ -7,7 +7,7 @@ import { DataSourceType } from '../interfaces/typeahead.interfaces';
   templateUrl: './field.html'
 })
 export class DemoTypeaheadFieldComponent {
-  customSelected: string;
+  customSelected?: string;
   statesComplex: DataSourceType[] = [
     { id: 1, name: 'Alabama', region: 'South' },
     { id: 2, name: 'Alaska', region: 'West' },

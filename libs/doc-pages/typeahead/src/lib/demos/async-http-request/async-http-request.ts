@@ -33,14 +33,14 @@ interface GitHubUser {
   templateUrl: './async-http-request.html'
 })
 export class DemoTypeaheadAsyncHttpRequestComponent implements OnInit {
-  search: string;
-  suggestions$: Observable<GitHubUser[]>;
-  errorMessage: string;
+  search?: string;
+  suggestions$?: Observable<GitHubUser[]>;
+  errorMessage?: string;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.suggestions$ = new Observable((observer: Observer<string>) => {
+    this.suggestions$ = new Observable((observer: Observer<string | undefined>) => {
       observer.next(this.search);
     }).pipe(
       switchMap((query: string) => {

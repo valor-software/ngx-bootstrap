@@ -7,7 +7,7 @@ import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
   templateUrl: './on-blur.html'
 })
 export class DemoTypeaheadOnBlurComponent {
-  selected: string;
+  selected?: string;
   optionOnBlur: any;
   states: string[] = [
     'Alabama',

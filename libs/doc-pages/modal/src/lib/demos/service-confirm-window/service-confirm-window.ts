@@ -7,8 +7,8 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   templateUrl: './service-confirm-window.html'
 })
 export class DemoModalServiceConfirmWindowComponent {
-  modalRef: BsModalRef;
-  message: string;
+  modalRef?: BsModalRef;
+  message?: string;
   constructor(private modalService: BsModalService) {}
 
   openModal(template: TemplateRef<any>) {
@@ -17,11 +17,11 @@ export class DemoModalServiceConfirmWindowComponent {
 
   confirm(): void {
     this.message = 'Confirmed!';
-    this.modalRef.hide();
+    this.modalRef?.hide();
   }
 
   decline(): void {
     this.message = 'Declined!';
-    this.modalRef.hide();
+    this.modalRef?.hide();
   }
 }

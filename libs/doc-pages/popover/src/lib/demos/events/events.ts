@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './events.html'
 })
 export class DemoPopoverEventsComponent {
-  message: string;
+  message?: string;
 
   onShown(): void {
     this.message = 'shown';
