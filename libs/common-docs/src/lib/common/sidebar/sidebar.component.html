@@ -2,7 +2,10 @@
   <input  #searchInput
           type="text"
           aria-label="Search in docs" name="search"
-          placeholder="Search..." [value]="search.text" (change)='search.text = searchInput.value'/>
+          placeholder="Search..."
+          [value]="search.text"
+          (keyup)='search.text = searchInput.value'
+          (keypress)='preventReloading($event)'/>
 
   <button id="mobile-main-menu" type="button" (click)="toggle()">
     <img src="assets/images/icons/menu-left.svg" alt="left menu">

@@ -92,6 +92,12 @@ export class SidebarComponent implements OnDestroy {
     }
   }
 
+  preventReloading(event: KeyboardEvent) {
+    if (event.keyCode === 13 || event.key === 'Enter') {
+      event.preventDefault();
+    }
+  }
+
   ngOnDestroy() {
     this.scrollSubscription.unsubscribe();
   }
