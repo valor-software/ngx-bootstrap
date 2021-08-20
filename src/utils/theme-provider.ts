@@ -21,7 +21,7 @@ export enum BsVerions {
 let guessedVersion: AvailableBsVersions;
 
 function _guessBsVersion(): AvailableBsVersions {
-  if (typeof document === 'undefined') {
+  if (typeof window.document === 'undefined') {
     return 'bs4';
   }
   const spanEl = window.document.createElement('span');
@@ -31,7 +31,7 @@ function _guessBsVersion(): AvailableBsVersions {
   window.document.head.appendChild(spanEl);
   const rect = spanEl.getBoundingClientRect();
   const overflowStyle = window.getComputedStyle(spanEl).overflow;
-  document.head.removeChild(spanEl);
+  window.document.head.removeChild(spanEl);
   if (!rect || (rect && rect.top !== 0)) {
     return 'bs3';
   }

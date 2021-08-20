@@ -4,6 +4,7 @@
      (keydown)="keydownPress($event)"
      (focusin)="pauseFocusIn()"
      (focusout)="pauseFocusOut()"
+     [id]="currentId"
      class="carousel slide" tabindex="0">
   <ng-container *ngIf="!_bsVer.isBs5 && showIndicators && slides.length > 1">
     <ol class="carousel-indicators">
@@ -20,7 +21,7 @@
         [class.active]="slide.active === true"
         (click)="selectSlide(i)"
         type="button"
-        data-bs-target=""
+        [attr.data-bs-target]="'#'+currentId"
         [attr.data-bs-slide-to]="i" aria-current="true"
       >
       </button>
@@ -30,15 +31,19 @@
     <ng-content></ng-content>
   </div>
   <a class="left carousel-control carousel-control-prev"
+     *ngIf="slides.length > 1"
      [class.disabled]="activeSlide === 0 && noWrap"
-     (click)="previousSlide()" *ngIf="slides.length > 1"
+     [attr.data-bs-target]="'#'+currentId"
+     (click)="previousSlide()"
       tabindex="0" role="button">
     <span class="icon-prev carousel-control-prev-icon" aria-hidden="true"></span>
     <span *ngIf="isBs4" class="sr-only visually-hidden">Previous</span>
   </a>
   <a class="right carousel-control carousel-control-next"
+     *ngIf="slides.length > 1"
      [class.disabled]="isLast(activeSlide) && noWrap"
-     (click)="nextSlide()" *ngIf="slides.length > 1"
+     [attr.data-bs-target]="'#'+currentId"
+     (click)="nextSlide()"
      tabindex="0" role="button">
     <span class="icon-next carousel-control-next-icon" aria-hidden="true"></span>
     <span class="sr-only visually-hidden">Next</span>

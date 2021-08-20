@@ -112,6 +112,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   protected _currentVisibleSlidesIndex = 0;
   protected isPlaying = false;
   protected destroyed = false;
+  currentId = `${(new Date().getTime() + new Date().getMilliseconds())}${Math.floor(Math.random() * 100)}`;
 
   get isBs4(): boolean {
     return !isBs3();
