@@ -31,6 +31,8 @@ export enum Direction {
   PREV
 }
 
+let _currentId = 1;
+
 /**
  * Base element to create carousel
  */
@@ -112,7 +114,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   protected _currentVisibleSlidesIndex = 0;
   protected isPlaying = false;
   protected destroyed = false;
-  currentId = `${(new Date().getTime() + new Date().getMilliseconds())}${Math.floor(Math.random() * 100)}`;
+  currentId = 0;
 
   get isBs4(): boolean {
     return !isBs3();
@@ -124,6 +126,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
 
   constructor(config: CarouselConfig, private ngZone: NgZone) {
     Object.assign(this, config);
+    this.currentId = _currentId++;
   }
 
   ngAfterViewInit(): void {
