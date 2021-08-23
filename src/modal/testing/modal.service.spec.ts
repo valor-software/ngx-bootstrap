@@ -35,6 +35,11 @@ describe('Modal service', () => {
     modalService = fixture.debugElement.injector.get(BsModalService);
 
     fixture.detectChanges();
+    jest.useFakeTimers();
+  });
+
+  afterEach(() => {
+    jest.useRealTimers();
   });
 
   it('should return random id on spin up a new modal', done => {
@@ -79,5 +84,13 @@ describe('Modal service', () => {
 
     const bsRef = modalService.show(TestModalComponent, { id });
     bsRef.hide();
+  });
+
+  it('should hide modal when hidden shortly after being opened', () => {
+    const bsRef = modalService.show(TestModalComponent);
+    bsRef.hide();
+
+    jest.runAllTimers();
+    expect(modalService.getModalsCount()).toBe(0);
   });
 });

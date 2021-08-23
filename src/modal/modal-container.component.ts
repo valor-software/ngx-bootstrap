@@ -42,6 +42,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   level?: number;
   isAnimated = false;
   bsModalService?: BsModalService;
+  private isModalShowing = false;
   private isModalHiding = false;
   private clickStartedInContent = false;
 
@@ -63,7 +64,12 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       'display',
       'block'
     );
+    this.isModalShowing = true;
     setTimeout(() => {
+      this.isModalShowing = false;
+      if (this.isModalHiding) {
+        return;
+      }
       this.isShown = true;
       this._renderer.addClass(
         this._element.nativeElement,
@@ -135,7 +141,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
 
   hide(): void {
-    if (this.isModalHiding || !this.isShown) {
+    if (this.isModalHiding || (!this.isShown && !this.isModalShowing)) {
       return;
     }
 
