@@ -39,3 +39,40 @@ export interface Options {
   };
   allowedPositions?: string[];
 }
+
+export enum PlacementForBs5 {
+  top = 'top',
+  bottom = 'bottom',
+  left = 'start',
+  right = 'end',
+  auto = 'auto',
+  end = 'end',
+  start = 'start',
+  'top left' = 'top start',
+  'top right' = 'top end',
+  'right top' = 'end top',
+  'right bottom' = 'end bottom',
+  'bottom right' = 'bottom end',
+  'bottom left' = 'bottom start',
+  'left bottom' = 'start bottom',
+  'left top' = 'start top',
+  'top start' = 'top start',
+  'top end' = 'top end',
+  'end top' = 'end top',
+  'end bottom' = 'end bottom',
+  'bottom end' = 'bottom end',
+  'bottom start' = 'bottom start',
+  'start bottom' = 'start bottom',
+  'start top' = 'start top',
+}
+
+export type AvailbleBSPositions = 'top' | 'bottom' | 'left' | 'right' | 'auto' | 'top left' | 'top right' | 'right top' | 'right bottom' | 'bottom right' | 'bottom left' | 'left bottom' | 'left top' | 'start' | 'end' | 'top start' | 'top end' | 'end top' | 'end bottom' | 'bottom end' | 'bottom start' | 'start bottom' | 'start top';
+
+export enum PositioningMap {
+  right = 'right',
+  left = 'left',
+  bottom = 'bottom',
+  top = 'top',
+  start = 'left',
+  end = 'right'
+}

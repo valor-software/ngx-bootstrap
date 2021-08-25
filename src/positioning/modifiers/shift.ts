@@ -1,4 +1,4 @@
-import { Data } from '../models';
+import { Data, PositioningMap } from '../models';
 
 export function shift(data: Data): Data {
   const placement = data.placement;
@@ -20,7 +20,7 @@ export function shift(data: Data): Data {
 
     data.offsets.target = {
       ...target, ...{
-        [side]: (side === shiftVariation ? shiftOffsets.start[side] : shiftOffsets.end[side])
+        [side]: (side === PositioningMap[shiftVariation as keyof typeof PositioningMap]? shiftOffsets.start[side] : shiftOffsets.end[side])
       }
     };
   }

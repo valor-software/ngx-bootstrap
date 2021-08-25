@@ -1,5 +1,5 @@
 import { getClientRect, getOuterSizes, getStyleComputedProperty } from '../utils';
-import { Data } from '../models';
+import { Data, PositioningMap } from '../models';
 
 export function arrow(data: Data) {
   let targetOffsets = data.offsets.target;
@@ -11,7 +11,7 @@ export function arrow(data: Data) {
     return data;
   }
 
-  const isVertical = ['left', 'right'].indexOf(data.placement.split(' ')[0]) !== -1;
+  const isVertical = ['left', 'right', 'start', 'end'].indexOf(data.placement.split(' ')[0]) !== -1;
 
   const len = isVertical ? 'height' : 'width';
   const sideCapitalized = isVertical ? 'Top' : 'Left';
@@ -46,7 +46,7 @@ export function arrow(data: Data) {
   } else {
     const targetBorderRadius = parseFloat(css.borderRadius) || 0;
     const targetSideArrowOffset = Number(targetMarginSide + targetBorderSide + targetBorderRadius);
-    center = side === placementVariation ?
+    center = side === PositioningMap[placementVariation as keyof typeof PositioningMap]?
       Number((data).offsets.host[side]) + targetSideArrowOffset :
       Number((data).offsets.host[side]) + Number(data.offsets.host[len] - targetSideArrowOffset);
   }
@@ -55,8 +55,7 @@ export function arrow(data: Data) {
     center - (targetOffsets[side] ?? 0) - targetMarginSide - targetBorderSide;
 
   // prevent arrowElement from being placed not contiguously to its target
-  sideValue = Math.max(Math.min(targetOffsets[len] - arrowElementSize, sideValue), 0);
-
+  sideValue = Math.max(Math.min(targetOffsets[len] - (arrowElementSize + 5), sideValue), 0);
   data.offsets.arrow = {
     [side]: Math.round(sideValue),
     [altSide]: '' // make sure to unset any eventual altSide value from the DOM node

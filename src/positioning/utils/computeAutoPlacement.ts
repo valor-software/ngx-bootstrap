@@ -3,18 +3,21 @@
  * available space.
  */
 import { getBoundaries } from './getBoundaries';
-import { Offsets } from '../models';
+import { Offsets, PlacementForBs5 } from '../models';
+import { getBsVer } from 'ngx-bootstrap/utils';
 
 function getArea({ width, height }: { width: number, height: number }) {
   return width * height;
 }
+
+const changeablePositioningBs5 = ['left', 'right'];
 
 export function computeAutoPlacement(
   placement: string,
   refRect: Offsets,
   target: HTMLElement,
   host: HTMLElement,
-  allowedPositions = ['top', 'bottom', 'right', 'left'],
+  allowedPositions = getBsVer().isBs5 ? ['top', 'bottom', 'end', 'start'] : ['top', 'bottom', 'right', 'left'],
   boundariesElement = 'viewport',
   padding = 0
 ) {
@@ -66,11 +69,19 @@ export function computeAutoPlacement(
       });
   });
 
-  const computedPlacement: string = filteredAreas.length > 0
+  let computedPlacement: string = filteredAreas.length > 0
     ? filteredAreas[0].key
     : sortedAreas[0].key;
 
-  const variation = placement.split(' ')[1];
+  let variation = placement.split(' ')[1];
+
+  if (getBsVer().isBs5 && changeablePositioningBs5.includes(computedPlacement)) {
+    computedPlacement = PlacementForBs5[computedPlacement as keyof typeof PlacementForBs5];
+  }
+
+  if (getBsVer().isBs5 && changeablePositioningBs5.includes(variation)) {
+    variation = PlacementForBs5[variation as keyof typeof PlacementForBs5];
+  }
 
   // for tooltip on auto position
   target.className = target.className.replace(/bs-tooltip-auto/g, `bs-tooltip-${computedPlacement}`);
