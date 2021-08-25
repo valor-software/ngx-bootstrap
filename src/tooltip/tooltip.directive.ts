@@ -15,10 +15,11 @@ import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipConfig } from './tooltip.config';
 
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
-import { OnChange, warnOnce, parseTriggers, Trigger } from 'ngx-bootstrap/utils';
+import { OnChange, warnOnce, parseTriggers, Trigger, getBsVer } from 'ngx-bootstrap/utils';
 import { PositioningService } from 'ngx-bootstrap/positioning';
 
 import { timer, Subscription } from 'rxjs';
+import { PlacementForBs5, AvailbleBSPositions } from 'ngx-bootstrap/positioning';
 
 let id = 0;
 
@@ -43,7 +44,13 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /**
    * Placement of a tooltip. Accepts: "top", "bottom", "left", "right"
    */
-  @Input() placement = 'top';
+  @Input() set placement(value: AvailbleBSPositions) {
+    if (!getBsVer().isBs5) {
+      this._toolPlacement = value;
+    } else {
+      this._toolPlacement =  PlacementForBs5[value as keyof typeof PlacementForBs5];
+    }
+  };
   /**
    * Specifies events that should trigger. Supports a space separated list of
    * event names.
@@ -105,7 +112,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   @Input('tooltipPlacement')
   set _placement(value: string) {
     warnOnce('tooltipPlacement was deprecated, please use `placement` instead');
-    this.placement = value;
+    this._toolPlacement = value;
   }
 
   /** @deprecated - please use `isOpen` instead */
@@ -199,6 +206,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   @Output()
   tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
+  _toolPlacement = 'top';
   protected _delayTimeoutId?: number;
   protected _tooltipCancelShowFn?: () => void;
 
@@ -303,10 +311,10 @@ export class TooltipDirective implements OnInit, OnDestroy {
       this._tooltip
         .attach(TooltipContainerComponent)
         .to(this.container)
-        .position({attachment: this.placement})
+        .position({attachment: this._toolPlacement})
         .show({
           content: this.tooltip,
-          placement: this.placement,
+          placement: this._toolPlacement,
           containerClass: this.containerClass,
           id: `tooltip-${this.tooltipId}`
         });
