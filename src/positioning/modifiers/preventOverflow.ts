@@ -47,7 +47,7 @@ export function preventOverflow(data: Data) {
       const mainSide = placement === 'right' ? 'left' : 'top';
       let value = data.offsets.target[mainSide];
       // escapeWithReference
-      if ((data.offsets.target[placement] ?? 0) < (boundaries[placement] ?? 0)) {
+      if ((data.offsets.target[placement] ?? 0) > (boundaries[placement] ?? 0)) {
         value = Math.min(
           data.offsets.target[mainSide] ?? 0,
           (boundaries[placement] ?? 0) -
