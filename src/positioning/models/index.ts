@@ -40,6 +40,32 @@ export interface Options {
   allowedPositions?: string[];
 }
 
+export enum MapPlacementInToRL {
+  top = 'top',
+  bottom = 'bottom',
+  left = 'left',
+  right = 'right',
+  auto = 'auto',
+  end = 'right',
+  start = 'left',
+  'top left' = 'top left',
+  'top right' = 'top right',
+  'right top' = 'right top',
+  'right bottom' = 'right bottom',
+  'bottom right' = 'bottom right',
+  'bottom left' = 'bottom left',
+  'left bottom' = 'left bottom',
+  'left top' = 'left top',
+  'top start' = 'top left',
+  'top end' = 'top right',
+  'end top' = 'right top',
+  'end bottom' = 'right bottom',
+  'bottom end' = 'bottom right',
+  'bottom start' = 'bottom left',
+  'start bottom' = 'start bottom',
+  'start top' = 'left top',
+}
+
 export enum PlacementForBs5 {
   top = 'top',
   bottom = 'bottom',
@@ -68,11 +94,3 @@ export enum PlacementForBs5 {
 
 export type AvailbleBSPositions = 'top' | 'bottom' | 'left' | 'right' | 'auto' | 'top left' | 'top right' | 'right top' | 'right bottom' | 'bottom right' | 'bottom left' | 'left bottom' | 'left top' | 'start' | 'end' | 'top start' | 'top end' | 'end top' | 'end bottom' | 'bottom end' | 'bottom start' | 'start bottom' | 'start top';
 
-export enum PositioningMap {
-  right = 'right',
-  left = 'left',
-  bottom = 'bottom',
-  top = 'top',
-  start = 'left',
-  end = 'right'
-}

@@ -1,4 +1,4 @@
 export { positionElements, Positioning } from './ng-positioning';
 export { PositioningService, PositioningOptions } from './positioning.service';
-export { PlacementForBs5, AvailbleBSPositions } from './models';
+export { AvailbleBSPositions, PlacementForBs5 } from './models';
 export { checkMargins } from './utils/checkMargin';

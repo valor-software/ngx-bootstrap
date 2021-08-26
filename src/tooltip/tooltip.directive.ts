@@ -15,11 +15,11 @@ import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipConfig } from './tooltip.config';
 
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
-import { OnChange, warnOnce, parseTriggers, Trigger, getBsVer } from 'ngx-bootstrap/utils';
+import { OnChange, warnOnce, parseTriggers, Trigger } from 'ngx-bootstrap/utils';
 import { PositioningService } from 'ngx-bootstrap/positioning';
 
 import { timer, Subscription } from 'rxjs';
-import { PlacementForBs5, AvailbleBSPositions } from 'ngx-bootstrap/positioning';
+import { AvailbleBSPositions } from 'ngx-bootstrap/positioning';
 
 let id = 0;
 
@@ -44,13 +44,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /**
    * Placement of a tooltip. Accepts: "top", "bottom", "left", "right"
    */
-  @Input() set placement(value: AvailbleBSPositions) {
-    if (!getBsVer().isBs5) {
-      this._toolPlacement = value;
-    } else {
-      this._toolPlacement =  PlacementForBs5[value as keyof typeof PlacementForBs5];
-    }
-  };
+  @Input() placement: AvailbleBSPositions = 'top';
   /**
    * Specifies events that should trigger. Supports a space separated list of
    * event names.
@@ -110,9 +104,9 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /** @deprecated - please use `placement` instead */
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('tooltipPlacement')
-  set _placement(value: string) {
+  set _placement(value: AvailbleBSPositions) {
     warnOnce('tooltipPlacement was deprecated, please use `placement` instead');
-    this._toolPlacement = value;
+    this.placement = value;
   }
 
   /** @deprecated - please use `isOpen` instead */
@@ -206,7 +200,6 @@ export class TooltipDirective implements OnInit, OnDestroy {
   @Output()
   tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  _toolPlacement = 'top';
   protected _delayTimeoutId?: number;
   protected _tooltipCancelShowFn?: () => void;
 
@@ -311,10 +304,10 @@ export class TooltipDirective implements OnInit, OnDestroy {
       this._tooltip
         .attach(TooltipContainerComponent)
         .to(this.container)
-        .position({attachment: this._toolPlacement})
+        .position({attachment: this.placement})
         .show({
           content: this.tooltip,
-          placement: this._toolPlacement,
+          placement: this.placement,
           containerClass: this.containerClass,
           id: `tooltip-${this.tooltipId}`
         });

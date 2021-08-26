@@ -4,8 +4,7 @@ import {
   getTargetOffsets
 } from '../utils';
 
-import { Data, Options, PlacementForBs5 } from '../models';
-import { getBsVer } from 'ngx-bootstrap/utils';
+import { Data, Options } from '../models';
 
 export function initData(
   targetElement: HTMLElement|null, hostElement: HTMLElement|null, position: string, options?: Options
@@ -28,10 +27,6 @@ export function initData(
   let placement = position.match(/auto\s(left|right|top|bottom|start|end)/)
     ? position.split(' ')[1] || 'auto'
     : position;
-
-  if (getBsVer().isBs5) {
-    placement = PlacementForBs5[placement as keyof typeof PlacementForBs5];
-  }
 
   // Normalize placements that have identical main placement and variation ("right right" => "right").
   const matches = placement.match(/^(left|right|top|bottom|start|end)* ?(?!\1)(left|right|top|bottom|start|end)?/);
