@@ -69,7 +69,7 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: ControlValueAccessorModel = {
     }
 
     .bs-timepicker-field {
-      width: 50px;
+      width: 65px;
       padding: .375rem .55rem;
     }
   `],
@@ -118,6 +118,8 @@ export class TimepickerComponent
 
   /** emits true if value is a valid date */
   @Output() isValid = new EventEmitter<boolean>();
+  /** emits true for keys which are invalid */
+  @Output() isInValid = new EventEmitter<{hours: boolean, minutes: boolean, seconds: boolean}>();
 
   // ui variables
   hours = '';
@@ -147,7 +149,7 @@ export class TimepickerComponent
 
   // control value accessor methods
   timepickerSub: Subscription;
-
+  invalidObj = { hours: false, minutes: false, seconds: false };
   constructor(
     _config: TimepickerConfig,
     private _cd: ChangeDetectorRef,
@@ -190,6 +192,9 @@ export class TimepickerComponent
     this.invalidHours = false;
     this.invalidMinutes = false;
     this.invalidSeconds = false;
+    this.invalidObj.hours = false;
+    this.invalidObj.minutes = false;
+    this.invalidObj.seconds = false;
   }
 
   isPM(): boolean {
@@ -237,6 +242,8 @@ export class TimepickerComponent
 
     if (!isValid) {
       this.invalidHours = true;
+      this.invalidObj.hours = true;
+      this.isInValid.emit(this.invalidObj);
       this.isValid.emit(false);
       this.onChange(null);
 
@@ -254,6 +261,8 @@ export class TimepickerComponent
 
     if (!isValid) {
       this.invalidMinutes = true;
+      this.invalidObj.minutes = true;
+      this.isInValid.emit(this.invalidObj);
       this.isValid.emit(false);
       this.onChange(null);
 
@@ -271,6 +280,8 @@ export class TimepickerComponent
 
     if (!isValid) {
       this.invalidSeconds = true;
+      this.invalidObj.seconds = true;
+      this.isInValid.emit(this.invalidObj);
       this.isValid.emit(false);
       this.onChange(null);
 
