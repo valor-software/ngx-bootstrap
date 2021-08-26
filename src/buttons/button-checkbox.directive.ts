@@ -57,7 +57,7 @@ export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
   }
 
   protected get trueValue(): AvailableValues {
-    return this.btnCheckboxTrue !== 'undefined'
+    return typeof this.btnCheckboxTrue !== 'undefined'
       ? this.btnCheckboxTrue
       : true;
   }
