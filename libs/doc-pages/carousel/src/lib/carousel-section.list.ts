@@ -44,123 +44,123 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/basic/basic.html'),
         outlet: DemoCarouseBasicComponent
       },
-      {
-        title: 'Optional captions',
-        anchor: 'captions',
-        description: `<p>Add captions to your slides easily with the <code>.carousel-caption</code>
-          element within any <code>&lt;slide></code>. Place just about any optional HTML within there
-          and it will be automatically aligned and formatted.</p>`,
-        component: require('!!raw-loader!./demos/captions/captions.ts'),
-        html: require('!!raw-loader!./demos/captions/captions.html'),
-        outlet: DemoCarouselCaptionsComponent
-      },
-      {
-        title: 'Configuring defaults',
-        anchor: 'config-defaults',
-        component: require('!!raw-loader!./demos/config/config.ts'),
-        html: require('!!raw-loader!./demos/config/config.html'),
-        outlet: DemoCarouselConfigComponent
-      },
-      {
-        title: 'Dynamic Slides',
-        anchor: 'dynamic-slides',
-        component: require('!!raw-loader!./demos/dynamic/dynamic.ts'),
-        html: require('!!raw-loader!./demos/dynamic/dynamic.html'),
-        outlet: DemoCarouselDynamicComponent
-      },
-      {
-        title: 'Pause on hover',
-        anchor: 'pause-on-hover',
-        description: `<p>If <code>noPause</code> is set to <code>false</code>
-          , carousel autoplay will be stopped when carousel receives hover.</p>`,
-        component: require('!!raw-loader!./demos/pause-on-hover/pause-on-hover.ts'),
-        html: require('!!raw-loader!./demos/pause-on-hover/pause-on-hover.html'),
-        outlet: DemoCarouselPauseOnHoverComponent
-      },
-      {
-        title: 'Pause on focus',
-        anchor: 'pause-on-focus',
-        description: `<p>If <code>pauseOnFocus</code> is set to <code>true</code>
-          , carousel autoplay will be stopped when carousel receives focus.</p>`,
-        component: require('!!raw-loader!./demos/pause-on-focus/pause-on-focus.ts'),
-        html: require('!!raw-loader!./demos/pause-on-focus/pause-on-focus.html'),
-        outlet: DemoCarouselPauseOnFocusComponent
-      },
-      {
-        title: 'Custom content',
-        anchor: 'custom-content',
-        component: require('!!raw-loader!./demos/custom-content/custom-content.ts'),
-        html: require('!!raw-loader!./demos/custom-content/custom-content.html'),
-        outlet: DemoCarouselCustomContentComponent
-      },
-      {
-        title: 'Disable slide looping',
-        anchor: 'disable-looping',
-        component: require('!!raw-loader!./demos/disable-looping/disable-looping.ts'),
-        html: require('!!raw-loader!./demos/disable-looping/disable-looping.html'),
-        outlet: DemoCarouselDisableLoopingComponent
-      },
-      {
-        title: 'Disable indicator',
-        anchor: 'disable-indicator',
-        component: require('!!raw-loader!./demos/disable-indicator/disable-indicator.ts'),
-        html: require('!!raw-loader!./demos/disable-indicator/disable-indicator.html'),
-        outlet: DemoCarouselDisableIndicatorComponent
-      },
-      {
-        title: 'Interval',
-        anchor: 'slides-interval',
-        component: require('!!raw-loader!./demos/interval/interval.ts'),
-        html: require('!!raw-loader!./demos/interval/interval.html'),
-        outlet: DemoCarouselIntervalComponent
-      },
-      {
-        title: 'Slide changed event',
-        anchor: 'slide-changed-event',
-        component: require('!!raw-loader!./demos/slide-changed-event/slide-changed-event.ts'),
-        html: require('!!raw-loader!./demos/slide-changed-event/slide-changed-event.html'),
-        outlet: DemoCarouselSlideChangedEventComponent
-      },
-      {
-        title: 'Multilist',
-        anchor: 'multilist',
-        component: require('!!raw-loader!./demos/multilist/multilist.ts'),
-        html: require('!!raw-loader!./demos/multilist/multilist.html'),
-        outlet: DemoCarouselMultilistComponent
-      },
-      {
-        title: 'Multilist Single Offset',
-        anchor: 'multilist-single-offset',
-        component: require('!!raw-loader!./demos/multilist-single-offset/multilist-single-offset.ts'),
-        html: require('!!raw-loader!./demos/multilist-single-offset/multilist-single-offset.html'),
-        outlet: DemoCarouselMultilistSingleOffsetComponent
-      },
-      {
-        title: 'Multilist Start From Index',
-        anchor: 'multilist-from-index',
-        component: require('!!raw-loader!./demos/multilist-from-index/multilist-from-index.ts'),
-        html: require('!!raw-loader!./demos/multilist-from-index/multilist-from-index.html'),
-        outlet: DemoCarouselMultilistFromIndexComponent
-      },
-      {
-        title: 'Multilist Indicators By Chunk',
-        anchor: 'multilist-indicators-by-chunk',
-        component: require('!!raw-loader!./demos/multilist-indicators-by-chunk/multilist-indicators-by-chunk.ts'),
-        html: require('!!raw-loader!./demos/multilist-indicators-by-chunk/multilist-indicators-by-chunk.html'),
-        outlet: DemoCarouselMultilistIndicatorsByChunkComponent
-      },
-      {
-        title: 'With animation',
-        anchor: 'animated',
-        component: require('!!raw-loader!./demos/animated/animated.ts'),
-        html: require('!!raw-loader!./demos/animated/animated.html'),
-        outlet: DemoCarouseAnimatedComponent
-      },
-      {
-        title: 'Accessibility',
-        anchor: 'accessibility',
-        outlet: DemoAccessibilityComponent
-      }
+      // {
+      //   title: 'Optional captions',
+      //   anchor: 'captions',
+      //   description: `<p>Add captions to your slides easily with the <code>.carousel-caption</code>
+      //     element within any <code>&lt;slide></code>. Place just about any optional HTML within there
+      //     and it will be automatically aligned and formatted.</p>`,
+      //   component: require('!!raw-loader!./demos/captions/captions.ts'),
+      //   html: require('!!raw-loader!./demos/captions/captions.html'),
+      //   outlet: DemoCarouselCaptionsComponent
+      // },
+      // {
+      //   title: 'Configuring defaults',
+      //   anchor: 'config-defaults',
+      //   component: require('!!raw-loader!./demos/config/config.ts'),
+      //   html: require('!!raw-loader!./demos/config/config.html'),
+      //   outlet: DemoCarouselConfigComponent
+      // },
+      // {
+      //   title: 'Dynamic Slides',
+      //   anchor: 'dynamic-slides',
+      //   component: require('!!raw-loader!./demos/dynamic/dynamic.ts'),
+      //   html: require('!!raw-loader!./demos/dynamic/dynamic.html'),
+      //   outlet: DemoCarouselDynamicComponent
+      // },
+      // {
+      //   title: 'Pause on hover',
+      //   anchor: 'pause-on-hover',
+      //   description: `<p>If <code>noPause</code> is set to <code>false</code>
+      //     , carousel autoplay will be stopped when carousel receives hover.</p>`,
+      //   component: require('!!raw-loader!./demos/pause-on-hover/pause-on-hover.ts'),
+      //   html: require('!!raw-loader!./demos/pause-on-hover/pause-on-hover.html'),
+      //   outlet: DemoCarouselPauseOnHoverComponent
+      // },
+      // {
+      //   title: 'Pause on focus',
+      //   anchor: 'pause-on-focus',
+      //   description: `<p>If <code>pauseOnFocus</code> is set to <code>true</code>
+      //     , carousel autoplay will be stopped when carousel receives focus.</p>`,
+      //   component: require('!!raw-loader!./demos/pause-on-focus/pause-on-focus.ts'),
+      //   html: require('!!raw-loader!./demos/pause-on-focus/pause-on-focus.html'),
+      //   outlet: DemoCarouselPauseOnFocusComponent
+      // },
+      // {
+      //   title: 'Custom content',
+      //   anchor: 'custom-content',
+      //   component: require('!!raw-loader!./demos/custom-content/custom-content.ts'),
+      //   html: require('!!raw-loader!./demos/custom-content/custom-content.html'),
+      //   outlet: DemoCarouselCustomContentComponent
+      // },
+      // {
+      //   title: 'Disable slide looping',
+      //   anchor: 'disable-looping',
+      //   component: require('!!raw-loader!./demos/disable-looping/disable-looping.ts'),
+      //   html: require('!!raw-loader!./demos/disable-looping/disable-looping.html'),
+      //   outlet: DemoCarouselDisableLoopingComponent
+      // },
+      // {
+      //   title: 'Disable indicator',
+      //   anchor: 'disable-indicator',
+      //   component: require('!!raw-loader!./demos/disable-indicator/disable-indicator.ts'),
+      //   html: require('!!raw-loader!./demos/disable-indicator/disable-indicator.html'),
+      //   outlet: DemoCarouselDisableIndicatorComponent
+      // },
+      // {
+      //   title: 'Interval',
+      //   anchor: 'slides-interval',
+      //   component: require('!!raw-loader!./demos/interval/interval.ts'),
+      //   html: require('!!raw-loader!./demos/interval/interval.html'),
+      //   outlet: DemoCarouselIntervalComponent
+      // },
+      // {
+      //   title: 'Slide changed event',
+      //   anchor: 'slide-changed-event',
+      //   component: require('!!raw-loader!./demos/slide-changed-event/slide-changed-event.ts'),
+      //   html: require('!!raw-loader!./demos/slide-changed-event/slide-changed-event.html'),
+      //   outlet: DemoCarouselSlideChangedEventComponent
+      // },
+      // {
+      //   title: 'Multilist',
+      //   anchor: 'multilist',
+      //   component: require('!!raw-loader!./demos/multilist/multilist.ts'),
+      //   html: require('!!raw-loader!./demos/multilist/multilist.html'),
+      //   outlet: DemoCarouselMultilistComponent
+      // },
+      // {
+      //   title: 'Multilist Single Offset',
+      //   anchor: 'multilist-single-offset',
+      //   component: require('!!raw-loader!./demos/multilist-single-offset/multilist-single-offset.ts'),
+      //   html: require('!!raw-loader!./demos/multilist-single-offset/multilist-single-offset.html'),
+      //   outlet: DemoCarouselMultilistSingleOffsetComponent
+      // },
+      // {
+      //   title: 'Multilist Start From Index',
+      //   anchor: 'multilist-from-index',
+      //   component: require('!!raw-loader!./demos/multilist-from-index/multilist-from-index.ts'),
+      //   html: require('!!raw-loader!./demos/multilist-from-index/multilist-from-index.html'),
+      //   outlet: DemoCarouselMultilistFromIndexComponent
+      // },
+      // {
+      //   title: 'Multilist Indicators By Chunk',
+      //   anchor: 'multilist-indicators-by-chunk',
+      //   component: require('!!raw-loader!./demos/multilist-indicators-by-chunk/multilist-indicators-by-chunk.ts'),
+      //   html: require('!!raw-loader!./demos/multilist-indicators-by-chunk/multilist-indicators-by-chunk.html'),
+      //   outlet: DemoCarouselMultilistIndicatorsByChunkComponent
+      // },
+      // {
+      //   title: 'With animation',
+      //   anchor: 'animated',
+      //   component: require('!!raw-loader!./demos/animated/animated.ts'),
+      //   html: require('!!raw-loader!./demos/animated/animated.html'),
+      //   outlet: DemoCarouseAnimatedComponent
+      // },
+      // {
+      //   title: 'Accessibility',
+      //   anchor: 'accessibility',
+      //   outlet: DemoAccessibilityComponent
+      // }
     ]
   },
   {

@@ -5,4 +5,10 @@ import { Component } from '@angular/core';
   selector: 'demo-carousel-basic',
   templateUrl: './basic.html'
 })
-export class DemoCarouseBasicComponent {}
+export class DemoCarouseBasicComponent {
+  itemPerSlide = 3;
+
+  changeItemPerSlide() {
+    this.itemPerSlide = 2;
+  }
+}
