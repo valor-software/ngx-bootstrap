@@ -55,8 +55,7 @@ export function arrow(data: Data) {
     center - (targetOffsets[side] ?? 0) - targetMarginSide - targetBorderSide;
 
   // prevent arrowElement from being placed not contiguously to its target
-  sideValue = Math.max(Math.min(targetOffsets[len] - arrowElementSize, sideValue), 0);
-
+  sideValue = Math.max(Math.min(targetOffsets[len] - (arrowElementSize + 5), sideValue), 0);
   data.offsets.arrow = {
     [side]: Math.round(sideValue),
     [altSide]: '' // make sure to unset any eventual altSide value from the DOM node
