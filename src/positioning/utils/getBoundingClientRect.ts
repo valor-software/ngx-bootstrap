@@ -54,7 +54,7 @@ export function getBoundingClientRect(element: HTMLElement): Offsets {
 
   // if an hypothetical scrollbar is detected, we must be sure it's not a `border`
   // we make this check conditional for performance reasons
-  if (horizScrollbar || vertScrollbar) {
+  if ((horizScrollbar || vertScrollbar) && element.clientWidth) {
     const styles = getStyleComputedProperty(element);
     horizScrollbar -= getBordersSize(styles, 'x');
     vertScrollbar -= getBordersSize(styles, 'y');
