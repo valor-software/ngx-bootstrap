@@ -1,3 +1,20 @@
+## [7.0.1](https://github.com/valor-software/ngx-bootstrap/compare/v7.0.0...v7.0.1) (2021-08-26)
+
+
+### Bug Fixes
+
+* **accordion:** fix isOpenChangeevent ([#6254](https://github.com/valor-software/ngx-bootstrap/issues/6254)) ([51808da](https://github.com/valor-software/ngx-bootstrap/commit/51808daf6befeaf0ef7d695e0299cc606f9cfb6f))
+* **documentation:** fix cdn links for bs4 ([#6215](https://github.com/valor-software/ngx-bootstrap/issues/6215)) ([a929485](https://github.com/valor-software/ngx-bootstrap/commit/a929485bf3142e70cfdf2d366aa833ab3a2e00d9))
+* **popover:** add fallback value if parseFloat on css fails ([69f68bd](https://github.com/valor-software/ngx-bootstrap/commit/69f68bdc8d7957b5a2005000f9454c9389914250))
+* **typeahead:** need to check if `_matches` is not undefined in the `blur` handler ([#6028](https://github.com/valor-software/ngx-bootstrap/issues/6028)) ([c0beddb](https://github.com/valor-software/ngx-bootstrap/commit/c0beddba14d5e1caca1dde298e08b390e7f91fd7))
+
+
+### Features
+
+* **modal:** edited id type ([b6bb985](https://github.com/valor-software/ngx-bootstrap/commit/b6bb985beeda9b39130b38bac5fd4472140e04d5))
+
+
+
 # [7.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v6.2.0...v7.0.0) (2021-07-21)
 
 
