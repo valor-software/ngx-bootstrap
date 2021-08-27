@@ -10,14 +10,12 @@ function getArea({ width, height }: { width: number, height: number }) {
   return width * height;
 }
 
-const changeablePositioningBs5 = ['left', 'right'];
-
 export function computeAutoPlacement(
   placement: string,
   refRect: Offsets,
   target: HTMLElement,
   host: HTMLElement,
-  allowedPositions = getBsVer().isBs5 ? ['top', 'bottom', 'end', 'start'] : ['top', 'bottom', 'right', 'left'],
+  allowedPositions = ['top', 'bottom', 'right', 'left'],
   boundariesElement = 'viewport',
   padding = 0
 ) {
@@ -69,22 +67,13 @@ export function computeAutoPlacement(
       });
   });
 
-  let computedPlacement: string = filteredAreas.length > 0
+  const computedPlacement: string = filteredAreas.length > 0
     ? filteredAreas[0].key
     : sortedAreas[0].key;
 
-  let variation = placement.split(' ')[1];
-
-  if (getBsVer().isBs5 && changeablePositioningBs5.includes(computedPlacement)) {
-    computedPlacement = PlacementForBs5[computedPlacement as keyof typeof PlacementForBs5];
-  }
-
-  if (getBsVer().isBs5 && changeablePositioningBs5.includes(variation)) {
-    variation = PlacementForBs5[variation as keyof typeof PlacementForBs5];
-  }
-
+  const variation = placement.split(' ')[1];
   // for tooltip on auto position
-  target.className = target.className.replace(/bs-tooltip-auto/g, `bs-tooltip-${computedPlacement}`);
+  target.className = target.className.replace(/bs-tooltip-auto/g, `bs-tooltip-${getBsVer().isBs5 ? PlacementForBs5[computedPlacement as keyof typeof PlacementForBs5] : computedPlacement}`);
 
   return computedPlacement + (variation ? `-${variation}` : '');
 }

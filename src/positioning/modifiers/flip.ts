@@ -1,4 +1,4 @@
-import { Data, PositioningMap } from '../models';
+import { Data } from '../models';
 import {
   computeAutoPlacement,
   getBoundaries,
@@ -52,13 +52,13 @@ export function flip(data: Data): Data {
 
     // using floor because the host offsets may contain decimals we are not going to consider here
     const overlapsRef =
-      (PositioningMap[placement as keyof typeof PositioningMap] === 'left' &&
+      (placement === 'left' &&
         Math.floor(data.offsets.target.right ?? 0) > Math.floor(data.offsets.host.left ?? 0)) ||
-      (PositioningMap[placement as keyof typeof PositioningMap] === 'right' &&
+      (placement === 'right' &&
         Math.floor(data.offsets.target.left ?? 0) < Math.floor(data.offsets.host.right ?? 0)) ||
-      (PositioningMap[placement as keyof typeof PositioningMap] === 'top' &&
+      (placement === 'top' &&
         Math.floor(data.offsets.target.bottom ?? 0) > Math.floor(data.offsets.host.top ?? 0)) ||
-      (PositioningMap[placement as keyof typeof PositioningMap] === 'bottom' &&
+      (placement === 'bottom' &&
         Math.floor(data.offsets.target.top ?? 0) < Math.floor(data.offsets.host.bottom ?? 0));
 
     const overflowsLeft = Math.floor(data.offsets.target.left ?? 0) < Math.floor(boundaries.left ?? 0);
@@ -67,18 +67,18 @@ export function flip(data: Data): Data {
     const overflowsBottom = Math.floor(data.offsets.target.bottom ?? 0) > Math.floor(boundaries.bottom ?? 0);
 
     const overflowsBoundaries =
-      (PositioningMap[placement as keyof typeof PositioningMap] === 'left' && overflowsLeft) ||
-      (PositioningMap[placement as keyof typeof PositioningMap] === 'right' && overflowsRight) ||
-      (PositioningMap[placement as keyof typeof PositioningMap] === 'top' && overflowsTop) ||
-      (PositioningMap[placement as keyof typeof PositioningMap] === 'bottom' && overflowsBottom);
+      (placement === 'left' && overflowsLeft) ||
+      (placement === 'right' && overflowsRight) ||
+      (placement === 'top' && overflowsTop) ||
+      (placement === 'bottom' && overflowsBottom);
 
     // flip the variation if required
-    const isVertical = ['top', 'bottom'].indexOf(PositioningMap[placement as keyof typeof PositioningMap]) !== -1;
+    const isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
     const flippedVariation =
-      ((isVertical && PositioningMap[variation as keyof typeof PositioningMap]=== 'left' && overflowsLeft) ||
-        (isVertical && PositioningMap[variation as keyof typeof PositioningMap] === 'right' && overflowsRight) ||
-        (!isVertical && PositioningMap[variation as keyof typeof PositioningMap] === 'left' && overflowsTop) ||
-        (!isVertical && PositioningMap[variation as keyof typeof PositioningMap] === 'right' && overflowsBottom));
+      ((isVertical && variation === 'left' && overflowsLeft) ||
+        (isVertical && variation === 'right' && overflowsRight) ||
+        (!isVertical && variation === 'left' && overflowsTop) ||
+        (!isVertical && variation === 'right' && overflowsBottom));
 
     if (overlapsRef || overflowsBoundaries || flippedVariation) {
       if (overlapsRef || overflowsBoundaries) {
@@ -86,7 +86,7 @@ export function flip(data: Data): Data {
       }
 
       if (flippedVariation) {
-        variation = getOppositeVariation(PositioningMap[variation as keyof typeof PositioningMap]);
+        variation = getOppositeVariation(variation);
       }
 
       data.placement = placement + (variation ? ` ${variation}` : '');
