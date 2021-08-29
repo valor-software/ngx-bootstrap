@@ -116,6 +116,9 @@ export class BsDatepickerEffects {
       return this;
     }
 
+    container.selectedTime = this._store.select(state => state.selectedTime)
+      .pipe(filter(times => !!times));
+
     container.daysCalendar$ = this._store.select(state => state.flaggedMonths)
       .pipe(filter(months => !!months));
 

@@ -89,12 +89,27 @@ export function bsDatepickerReducer(state: BsDatepickerState = initialDatepicker
         view: state.view
       };
 
+      const _time = (state.selectedTime || [])[0];
+      if (_time) {
+        newState.selectedDate.setHours(_time.getHours());
+        newState.selectedDate.setMinutes(_time.getMinutes());
+        newState.selectedDate.setSeconds(_time.getSeconds());
+        newState.selectedDate.setMilliseconds(_time.getMilliseconds());
+      }
+
       const mode = state.view.mode;
       const _date = action.payload || state.view.date;
       const date = getViewDate(_date, state.minDate, state.maxDate);
       newState.view = { mode, date };
 
       return Object.assign({}, state, newState);
+    }
+
+    case BsDatepickerActions.SELECT_TIME: {
+      const {date, index} = action.payload;
+      const selectedTime = [...state.selectedTime || []] ;
+      selectedTime[index] = date;
+      return Object.assign({}, state, { selectedTime });
     }
 
     case BsDatepickerActions.SET_OPTIONS: {
@@ -115,11 +130,13 @@ export function bsDatepickerReducer(state: BsDatepickerState = initialDatepicker
         // if new value is array we work with date range
         if (isArray(newState.value)) {
           newState.selectedRange = newState.value;
+          newState.selectedTime = newState.value.map((i: Date) => i);
         }
 
         // if new value is a date -> datepicker
         if (newState.value instanceof Date) {
           newState.selectedDate = newState.value;
+          newState.selectedTime = [newState.value];
         }
 
         // provided value is not supported :)
@@ -139,6 +156,16 @@ export function bsDatepickerReducer(state: BsDatepickerState = initialDatepicker
         selectedRange: action.payload,
         view: state.view
       };
+
+      newState.selectedRange.forEach((dte: Date, index: number) => {
+        const _time = (state.selectedTime || [])[index];
+        if (_time) {
+          dte.setHours(_time.getHours());
+          dte.setMinutes(_time.getMinutes());
+          dte.setSeconds(_time.getSeconds());
+          dte.setMilliseconds(_time.getMilliseconds());
+        }
+      });
 
       const mode = state.view.mode;
       const _date = action.payload && action.payload[0] || state.view.date;

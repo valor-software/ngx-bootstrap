@@ -24,6 +24,8 @@ export class BsDatepickerState
   selectedDate?: Date;
   // daterange picker
   selectedRange?: Date[];
+  // time picker
+  selectedTime?: Date[];
 
   // initial date of calendar, today by default
   view?: BsDatepickerViewState;
@@ -88,6 +90,7 @@ export const initialDatepickerState: BsDatepickerState = Object.assign(
     locale: 'en',
     view: _initialView,
     selectedRange: [],
+    selectedTime: [],
     monthViewOptions: defaultMonthOptions
   }
 );

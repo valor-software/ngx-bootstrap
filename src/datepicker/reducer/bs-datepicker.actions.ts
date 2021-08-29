@@ -31,6 +31,7 @@ export class BsDatepickerActions {
   static readonly SET_DATE_CUSTOM_CLASSES = '[datepicker] set date custom classes';
   static readonly SET_DATE_TOOLTIP_TEXTS = '[datepicker] set date tooltip texts';
   static readonly SET_LOCALE = '[datepicker] set datepicker locale';
+  static readonly SELECT_TIME = '[datepicker] select time';
 
   static readonly SELECT_RANGE = '[daterangepicker] select dates range';
 
@@ -50,6 +51,13 @@ export class BsDatepickerActions {
     return {
       type: BsDatepickerActions.SELECT,
       payload: date
+    };
+  }
+
+  selectTime(date: Date, index: number): Action {
+    return  {
+      type: BsDatepickerActions.SELECT_TIME,
+      payload: { date, index },
     };
   }
 

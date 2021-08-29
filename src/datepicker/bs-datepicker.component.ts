@@ -140,7 +140,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       return;
     }
 
-    if (!this._bsValue && value) {
+    if (!this._bsValue && value && !this._config.withTimepicker) {
       const now = new Date();
 
       value.setMilliseconds(now.getMilliseconds());

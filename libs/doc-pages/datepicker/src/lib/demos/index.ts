@@ -43,6 +43,7 @@ import { DemoDatepickerTodayButtonComponent } from './today-button/today-button'
 import { DemoDatepickerClearButtonComponent } from './clear-button/clear-button';
 import { DemoDatepickerStartViewComponent } from "./start-view/start-view";
 import { DemoDatepickerPreventChangeToNextMonthComponent } from './prevent-change-to-next-month/prevent-change-to-next-month.component';
+import { DemoDatepickerWithTimepickerComponent } from './with-timepicker/with-timepicker';
 
 export const DEMO_COMPONENTS = [
   DatepickerDemoComponent,
@@ -87,5 +88,6 @@ export const DEMO_COMPONENTS = [
   DemoDateRangePickerMaxDateRangeComponent,
   DemoDatepickerPreventChangeToNextMonthComponent,
   DemoDatePickerQuickSelectRangesComponent,
-  DemoDatepickerStartViewComponent
+  DemoDatepickerStartViewComponent,
+  DemoDatepickerWithTimepickerComponent
 ];

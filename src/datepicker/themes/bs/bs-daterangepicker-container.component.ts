@@ -40,6 +40,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   _rangeStack: Date[] = [];
   chosenRange: Date[] = [];
   _subs: Subscription[] = [];
+  isRangePicker = true;
 
   constructor(
     _renderer: Renderer2,
@@ -80,6 +81,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
       });
     this.containerClass = this._config.containerClass;
     this.isOtherMonthsActive = this._config.selectFromOtherMonth;
+    this.withTimepicker = this._config.withTimepicker;
     this._effects?.init(this._store)
       // intial state options
       // todo: fix this, split configs
@@ -108,6 +110,10 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
 
   positionServiceEnable(): void {
     this._positionService.enable();
+  }
+
+  timeSelectHandler(date: Date, index: number): void {
+    this._store.dispatch(this._actions.selectTime(date, index));
   }
 
   daySelectHandler(day: DayViewModel): void {

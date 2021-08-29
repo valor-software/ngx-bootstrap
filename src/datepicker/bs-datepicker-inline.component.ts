@@ -95,7 +95,7 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
       return;
     }
 
-    if (!this._bsValue && value) {
+    if (!this._bsValue && value && !this._config.withTimepicker) {
       const now = new Date();
 
       value.setMilliseconds(now.getMilliseconds());

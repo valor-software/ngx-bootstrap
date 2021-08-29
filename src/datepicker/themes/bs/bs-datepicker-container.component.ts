@@ -35,6 +35,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
 
   valueChange: EventEmitter<Date> = new EventEmitter<Date>();
   animationState = 'void';
+  isRangePicker = false;
 
   _subs: Subscription[] = [];
   constructor(
@@ -81,6 +82,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     this.clearBtnLbl = this._config.clearButtonLabel;
     this.clearPos = this._config.clearPosition;
     this.customRangeBtnLbl = this._config.customRangeButtonLabel;
+    this.withTimepicker = this._config.withTimepicker;
     this._effects?.init(this._store)
       // intial state options
       .setOptions(this._config)
@@ -109,6 +111,10 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
 
   positionServiceEnable(): void {
     this._positionService.enable();
+  }
+
+  timeSelectHandler(date: Date, index: number) {
+    this._store.dispatch(this._actions.selectTime(date, index));
   }
 
   daySelectHandler(day: DayViewModel): void {

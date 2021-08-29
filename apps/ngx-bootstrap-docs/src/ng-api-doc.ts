@@ -1194,6 +1194,12 @@ export const ngdoc: any = {
         "defaultValue": "false",
         "type": "boolean",
         "description": "<p>sets use UTC date time format</p>\n"
+      },
+      {
+        "name": "withTimepicker",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>Shows timepicker under datepicker</p>\n"
       }
     ]
   },
@@ -2969,7 +2975,7 @@ export const ngdoc: any = {
       },
       {
         "name": "id",
-        "type": "number",
+        "type": "string | number",
         "description": "<p>Allow user to ID for the modal. Otherwise, a unique number will be given</p>\n"
       },
       {
@@ -3070,7 +3076,7 @@ export const ngdoc: any = {
       },
       {
         "name": "id",
-        "type": "number",
+        "type": "string | number",
         "description": "<p>Allow user to ID for the modal. Otherwise, a unique number will be given</p>\n"
       },
       {
