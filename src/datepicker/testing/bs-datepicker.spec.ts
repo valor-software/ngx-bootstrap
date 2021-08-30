@@ -268,4 +268,26 @@ describe('datepicker:', () => {
         expect(date).toBe(undefined);
       }).unsubscribe();
   });
+
+  it('should display one timepicker when withTimepicker is true', () => {
+    const datepickerDirective = getDatepickerDirective(fixture);
+    datepickerDirective.bsConfig = {
+      withTimepicker: true
+    };
+    showDatepicker(fixture);
+    const timepickerZone = document.querySelector('.bs-timepicker-in-datepicker-container');
+    const timepickers = document.querySelectorAll('timepicker');
+    expect(timepickerZone).toBeTruthy();
+    expect(timepickers.length).toEqual(1);
+  });
+
+  it('should not display timepicker when withTimepicker is true', () => {
+    const datepickerDirective = getDatepickerDirective(fixture);
+    datepickerDirective.bsConfig = {
+      withTimepicker: false
+    };
+    showDatepicker(fixture);
+    const timepickerZone = document.querySelector('.bs-timepicker-in-datepicker-container');
+    expect(timepickerZone).not.toBeTruthy();
+  });
 });
