@@ -6,7 +6,7 @@
 </a>
 
 <p align="center">
-The best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a> or <a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> Components with <a href="https://angular.io/">Angular</a>
+The best way to quickly integrate <a href="https://getbootstrap.com/docs/5.1">Bootstrap 5</a> <a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> or <a href="https://getbootstrap.com/">Bootstrap 3</a> Components with <a href="https://angular.io/">Angular</a>
 </p>
 
 <p align="center">
@@ -102,10 +102,10 @@ Add component to your page:
 ```
 
 You will need to add bootstrap css:
-- `Bootstrap 3`
+- `Bootstrap 5`
 ```
-<!-- index.html -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<!--- index.html -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 ```
 
 - `Bootstrap 4`
@@ -114,7 +114,11 @@ You will need to add bootstrap css:
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2">
 ```
 
-
+- `Bootstrap 3`
+```
+<!-- index.html -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+```
 
 ### Setting up the bootstrap version manually
 
@@ -152,6 +156,7 @@ Here is the versions compatibility list:
 
 | ngx-bootstrap |    Angular    |  Bootstrap CSS |
 | ------------- | ------------- | -------------- |
+| 7.1.0         | 11.x.x - 12.x.x | 5.x.x 4.x.x or 3.x.x |
 | 7.0.0         | 11.x.x - 12.x.x | 3.x.x or 4.x.x |
 | 6.0.0         | 9.x.x - 10.x.x | 3.x.x or 4.x.x |
 | 5.6.x         | 7.x.x - 9.1.0 | 3.x.x or 4.x.x |
