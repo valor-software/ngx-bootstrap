@@ -3,7 +3,7 @@
  * @copyright Federico Zivolo and contributors
  */
 import { Renderer2 } from '@angular/core';
-import { Data, Offsets, Options } from './models';
+import { Data, Offsets, Options, MapPlacementInToRL } from './models';
 
 import { arrow, flip, initData, preventOverflow, shift } from './modifiers';
 
@@ -27,7 +27,8 @@ export class Positioning {
     options?: Options
   ): Data | undefined {
     const chainOfModifiers = [flip, shift, preventOverflow, arrow];
-    const data = initData(targetElement, hostElement, position, options);
+    const _position = MapPlacementInToRL[position as keyof typeof MapPlacementInToRL];
+    const data = initData(targetElement, hostElement, _position, options);
     if (!data) {
       return;
     }
