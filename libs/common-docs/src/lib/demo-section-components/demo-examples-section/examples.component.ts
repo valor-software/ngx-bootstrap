@@ -9,7 +9,7 @@ import { polyfills } from './stackblitz/polyfills';
 import { getAppModuleCode, NgxModuleData } from './stackblitz/app.module';
 import { getIndexHtmlCode } from './stackblitz/html';
 import { getComponentClassName, getTagName, getTemplateFileName, getCSSCodeDatepickerCustomClass } from './stackblitz/helpers';
-
+import { Utils } from 'ngx-bootstrap/utils';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'examples',
@@ -60,7 +60,7 @@ export class ExamplesComponent {
     if (tag && className) {
       const project = {
         files: <any>{
-          'index.html': getIndexHtmlCode(tag, this.moduleData),
+          'index.html': getIndexHtmlCode(tag, this.moduleData, Utils.stackOverflowConfig()),
           'styles.css': `body {padding: 30px; position: relative}
         ${this.moduleData.moduleRoute === '/sortable' ?
             `.sortable-item {

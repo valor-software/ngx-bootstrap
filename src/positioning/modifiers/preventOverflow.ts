@@ -61,7 +61,7 @@ export function preventOverflow(data: Data) {
 
 
   order.forEach((placement ) => {
-    const side = ['left', 'top'].indexOf(placement) !== -1 ? check['primary'] : check['secondary'];
+    const side = ['left', 'top', 'start'].indexOf(placement) !== -1 ? check['primary'] : check['secondary'];
 
     data.offsets.target = {
       ...data.offsets.target,
