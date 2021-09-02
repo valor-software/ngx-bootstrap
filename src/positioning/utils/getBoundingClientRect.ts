@@ -45,9 +45,9 @@ export function getBoundingClientRect(element: HTMLElement): Offsets {
   // subtract scrollbar size from sizes
   const sizes = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : undefined;
   const width = sizes?.width || element.clientWidth
-    || isNumber(result.right) && isNumber(result.left) && result.right - result.left || 0;
+    || isNumber(rect.right) && isNumber(result.left) && rect.right - result.left || 0;
   const height = sizes?.height || element.clientHeight
-    || isNumber(result.bottom) && isNumber(result.top) && result.bottom - result.top || 0;
+    || isNumber(rect.bottom) && isNumber(result.top) && rect.bottom - result.top || 0;
 
   let horizScrollbar = element.offsetWidth - width;
   let vertScrollbar = element.offsetHeight - height;
