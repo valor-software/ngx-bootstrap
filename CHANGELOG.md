@@ -1,3 +1,12 @@
+# [7.1.0](https://github.com/valor-software/ngx-bootstrap/compare/v7.0.1...v7.1.0) (2021-08-27)
+
+
+### Features
+
+* **core:** added bootstrap5 support ([#6115](https://github.com/valor-software/ngx-bootstrap/issues/6115)) ([29c1e27](https://github.com/valor-software/ngx-bootstrap/commit/29c1e27b19d9dac9773f50e07355bb8d2f03113e))
+
+
+
 ## [7.0.1](https://github.com/valor-software/ngx-bootstrap/compare/v7.0.0...v7.0.1) (2021-08-26)
 
 

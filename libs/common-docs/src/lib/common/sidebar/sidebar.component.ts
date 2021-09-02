@@ -2,15 +2,15 @@ import { ActivatedRoute, NavigationEnd, Route, Router, Routes } from '@angular/r
 import { Component, Inject, OnDestroy, Renderer2 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
-import { isBs3, setTheme } from 'ngx-bootstrap/utils';
+import { setTheme, getBsVer, currentBsVersion, IBsVersion, AvailableBsVersions } from 'ngx-bootstrap/utils';
 import { StyleManager } from '../../theme/style-manager';
 import { ThemeStorage } from '../../theme/theme-storage';
-
 import { Subscription } from 'rxjs';
 import { DOCS_TOKENS } from '../../tokens/docs-routes-token';
 
 const _bs3Css = 'assets/css/bootstrap-3.3.7/css/bootstrap.min.css';
 const _bs4Css = 'assets/css/bootstrap-4.5.3/css/bootstrap.min.css';
+const _bs5Css = 'assets/css/bootstrap-5.1.0/css/bootstrap.min.css';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -20,14 +20,27 @@ const _bs4Css = 'assets/css/bootstrap-4.5.3/css/bootstrap.min.css';
 export class SidebarComponent implements OnDestroy {
   isShown = false;
 
-  get isBs3(): boolean {
-    return isBs3();
+  get bsCssFile(): string {
+    if (this.currentTheme === 'bs3') {
+      return _bs3Css;
+    }
+
+    if (this.currentTheme === 'bs5') {
+      return _bs5Css;
+    }
+
+    return _bs4Css;
+  }
+
+  get _bsVersions(): IBsVersion {
+    return getBsVer();
   }
 
   routes: Routes;
   search = { text: '' };
 
-  currentTheme?: 'bs3' | 'bs4';
+
+  currentTheme?: AvailableBsVersions;
   scrollSubscription: Subscription;
 
   constructor(
@@ -70,13 +83,18 @@ export class SidebarComponent implements OnDestroy {
     }
   }
 
-  installTheme(theme: 'bs3' | 'bs4') {
+  installTheme(theme: AvailableBsVersions) {
     setTheme(theme);
-    this.currentTheme = this.isBs3 ? 'bs3' : 'bs4';
-    this.styleManager.setStyle('theme', this.isBs3 ? _bs3Css : _bs4Css);
-
+    this.currentTheme = currentBsVersion();
+    this.styleManager.setStyle('theme', this.bsCssFile);
     if (this.currentTheme) {
       this.themeStorage.storeTheme(this.currentTheme);
+    }
+  }
+
+  preventReloading(event: KeyboardEvent) {
+    if (event.keyCode === 13 || event.key === 'Enter') {
+      event.preventDefault();
     }
   }
 
@@ -84,3 +102,5 @@ export class SidebarComponent implements OnDestroy {
     this.scrollSubscription.unsubscribe();
   }
 }
+
+

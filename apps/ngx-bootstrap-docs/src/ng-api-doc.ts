@@ -173,13 +173,13 @@ export const ngdoc: any = {
       {
         "name": "btnCheckboxFalse",
         "defaultValue": "false",
-        "type": "boolean",
+        "type": "AvailableValues",
         "description": "<p>Falsy value, will be set to ngModel</p>\n"
       },
       {
         "name": "btnCheckboxTrue",
         "defaultValue": "true",
-        "type": "boolean",
+        "type": "AvailableValues",
         "description": "<p>Truthy value, will be set to ngModel</p>\n"
       }
     ],
@@ -2969,7 +2969,7 @@ export const ngdoc: any = {
       },
       {
         "name": "id",
-        "type": "number",
+        "type": "string | number",
         "description": "<p>Allow user to ID for the modal. Otherwise, a unique number will be given</p>\n"
       },
       {
@@ -3070,7 +3070,7 @@ export const ngdoc: any = {
       },
       {
         "name": "id",
-        "type": "number",
+        "type": "string | number",
         "description": "<p>Allow user to ID for the modal. Otherwise, a unique number will be given</p>\n"
       },
       {
@@ -3523,7 +3523,7 @@ export const ngdoc: any = {
     "inputs": [
       {
         "name": "placement",
-        "type": "string",
+        "type": "AvailbleBSPositions",
         "description": ""
       },
       {
@@ -3616,7 +3616,7 @@ export const ngdoc: any = {
       {
         "name": "placement",
         "defaultValue": "top",
-        "type": "\"top\" | \"bottom\" | \"left\" | \"right\" | \"auto\" | \"top left\" | \"top right\" | \"right top\" | \"right bottom\" | \"bottom right\" | \"bottom left\" | \"left bottom\" | \"left top\"",
+        "type": "AvailbleBSPositions",
         "description": "<p>Placement of a popover. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;</p>\n"
       },
       {
@@ -4573,7 +4573,7 @@ export const ngdoc: any = {
       {
         "name": "placement",
         "defaultValue": "top",
-        "type": "string",
+        "type": "AvailbleBSPositions",
         "description": "<p>Placement of a tooltip. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;</p>\n"
       },
       {
@@ -4625,7 +4625,7 @@ export const ngdoc: any = {
       },
       {
         "name": "tooltipPlacement",
-        "type": "string",
+        "type": "AvailbleBSPositions",
         "description": ""
       },
       {
@@ -5050,6 +5050,20 @@ export const ngdoc: any = {
   "ListNode": {
     "fileName": "src/utils/linked-list.class.ts",
     "className": "ListNode",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "IObjectKeys": {
+    "fileName": "src/utils/theme-provider.ts",
+    "className": "IObjectKeys",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "IBsVersion": {
+    "fileName": "src/utils/theme-provider.ts",
+    "className": "IBsVersion",
     "description": "",
     "methods": [],
     "properties": []

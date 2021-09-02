@@ -29,6 +29,7 @@ export class LandingComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     if (typeof window !== 'undefined') {
+      window.scroll(0,0);
       this.http.get<any>('assets/json/current-version.json').subscribe(data => {
         this.currentVersion = data.version;
       });
