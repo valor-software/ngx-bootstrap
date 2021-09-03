@@ -12,6 +12,7 @@ import {
   setTime,
   createDate,
   padNumber,
+  isOneOfDatesEmpty,
   isHourInputValid,
   isMinuteInputValid,
   isSecondInputValid,
@@ -239,6 +240,16 @@ xdescribe('Runtime coverage. Utils: Timepicker', () => {
     const result = isInputLimitValid(date, max, void 0);
 
     expect(result).toEqual(false);
+  });
+
+  it('isOneOfDatesEmpty method should validate input and return false', () => {
+    const result = isOneOfDatesEmpty('10', '10', '10');
+    expect(result).toEqual(false);
+  });
+
+  it('isOneOfDatesEmpty method should validate input and return true', () => {
+    const result = isOneOfDatesEmpty('', '', '');
+    expect(result).toEqual(true);
   });
 
   it('isInputLimitValid method should validate input according to the min limit and return false', () => {

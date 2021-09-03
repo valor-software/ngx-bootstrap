@@ -4322,8 +4322,8 @@ export const ngdoc: any = {
         "description": "<p>emits true if value is a valid date</p>\n"
       },
       {
-        "name": "changedMeridianValue",
-        "description": "<p>emits meridian value </p>\n"
+        "name": "meridianChange",
+        "description": "<p>emits value of meridian</p>\n"
       }
     ],
     "properties": [],
@@ -4335,6 +4335,12 @@ export const ngdoc: any = {
     "description": "<p>Provides default configuration values for timepicker</p>\n",
     "methods": [],
     "properties": [
+      {
+        "name": "allowEmptyTime",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>if true emptyTime is not marked as invalid</p>\n"
+      },
       {
         "name": "ariaLabelHours",
         "defaultValue": "hours",
