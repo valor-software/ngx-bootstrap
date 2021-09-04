@@ -19,6 +19,7 @@ import { OnChange, warnOnce, parseTriggers, Trigger } from 'ngx-bootstrap/utils'
 import { PositioningService } from 'ngx-bootstrap/positioning';
 
 import { timer, Subscription } from 'rxjs';
+import { AvailbleBSPositions } from 'ngx-bootstrap/positioning';
 
 let id = 0;
 
@@ -43,7 +44,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /**
    * Placement of a tooltip. Accepts: "top", "bottom", "left", "right"
    */
-  @Input() placement = 'top';
+  @Input() placement: AvailbleBSPositions = 'top';
   /**
    * Specifies events that should trigger. Supports a space separated list of
    * event names.
@@ -103,7 +104,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /** @deprecated - please use `placement` instead */
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('tooltipPlacement')
-  set _placement(value: string) {
+  set _placement(value: AvailbleBSPositions) {
     warnOnce('tooltipPlacement was deprecated, please use `placement` instead');
     this.placement = value;
   }

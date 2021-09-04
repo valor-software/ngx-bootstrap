@@ -1,7 +1,7 @@
 <div class="row">
-  <div class="col-xs-12 col-12 col-md-4 col-lg-4 form-group">
+  <div class="col-xs-12 col-12 col-md-4 col-lg-4 form-group mb-3">
     <select
-      class="custom-select form-control"
+      class="custom-select form-control from-select"
       [(ngModel)]="colorTheme" (ngModelChange)="applyTheme(dp);">
       <option value="theme-default">default</option>
       <option value="theme-green">green</option>
@@ -12,8 +12,8 @@
     </select>
   </div>
 
-  <div class="col-xs-12 col-12 col-md-5 col-lg-5 form-group">
-    <div class="form-group">
+  <div class="col-xs-12 col-12 col-md-5 col-lg-5 form-group mb-3">
+    <div class="form-group mb-3">
       <div class="input-group">
         <input type="text" class="form-control" bsDatepicker #dp="bsDatepicker" [bsConfig]="bsConfig">
         <div class="input-group-btn">
