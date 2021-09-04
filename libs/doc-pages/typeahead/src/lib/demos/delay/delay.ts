@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './delay.html'
 })
 export class DemoTypeaheadDelayComponent {
-  selected: string;
+  selected?: string;
   states: string[] = [
     'Alabama',
     'Alaska',

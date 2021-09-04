@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './phrase-delimiters.html'
 })
 export class DemoTypeaheadPhraseDelimitersComponent {
-  selected: string;
+  selected?: string;
   states = [
     'Alabama',
     'Alaska',

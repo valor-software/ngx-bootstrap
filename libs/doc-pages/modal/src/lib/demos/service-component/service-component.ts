@@ -7,7 +7,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   templateUrl: './service-component.html'
 })
 export class DemoModalServiceFromComponent {
-  bsModalRef: BsModalRef;
+  bsModalRef?: BsModalRef;
   constructor(private modalService: BsModalService) {}
 
   openModalWithComponent() {
@@ -33,8 +33,8 @@ export class DemoModalServiceFromComponent {
   template: `
     <div class="modal-header">
       <h4 class="modal-title pull-left">{{title}}</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
-        <span aria-hidden="true">&times;</span>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
       </button>
     </div>
     <div class="modal-body">
@@ -49,8 +49,8 @@ export class DemoModalServiceFromComponent {
 })
 
 export class ModalContentComponent implements OnInit {
-  title: string;
-  closeBtnName: string;
+  title?: string;
+  closeBtnName?: string;
   list: any[] = [];
 
   constructor(public bsModalRef: BsModalRef) {}
