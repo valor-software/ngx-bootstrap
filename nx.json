@@ -189,6 +189,9 @@
     "positioning": {
       "tags": [
         "lib"
+      ],
+      "implicitDependencies": [
+        "utils"
       ]
     },
     "progressbar": {

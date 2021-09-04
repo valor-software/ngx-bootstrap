@@ -25,34 +25,34 @@ export class TabDirective implements OnInit, OnDestroy {
   @Input() removable = false;
   /** if set, will be added to the tab's class attribute. Multiple classes are supported. */
   @Input()
-  get customClass(): string {
+  get customClass(): string | undefined {
     return this._customClass;
   }
 
-  set customClass(customClass: string) {
-    if (this.customClass) {
-      this.customClass.split(' ').forEach((cssClass: string) => {
-        this.renderer.removeClass(this.elementRef.nativeElement, cssClass);
-      });
-    }
+  set customClass(customClass: string | undefined) {
+      if (this.customClass) {
+        this.customClass.split(' ').forEach((cssClass: string) => {
+          this.renderer.removeClass(this.elementRef.nativeElement, cssClass);
+        });
+      }
 
-    this._customClass = customClass ? customClass.trim() : '';
+      this._customClass = customClass ? customClass.trim() : '';
 
-    if (this.customClass) {
-      this.customClass.split(' ').forEach((cssClass: string) => {
-        this.renderer.addClass(this.elementRef.nativeElement, cssClass);
-      });
-    }
+      if (this.customClass) {
+        this.customClass.split(' ').forEach((cssClass: string) => {
+          this.renderer.addClass(this.elementRef.nativeElement, cssClass);
+        });
+      }
   }
 
   /** tab active state toggle */
   @HostBinding('class.active')
   @Input()
-  get active(): boolean {
+  get active(): boolean | undefined {
     return this._active;
   }
 
-  set active(active: boolean) {
+  set active(active: boolean | undefined) {
     if (this._active === active) {
       return;
     }
@@ -90,7 +90,7 @@ export class TabDirective implements OnInit, OnDestroy {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   headingRef?: TemplateRef<any>;
   tabset: TabsetComponent;
-  protected _active = false;
+  protected _active? = false;
   protected _customClass = '';
 
   constructor(

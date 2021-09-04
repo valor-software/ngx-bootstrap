@@ -5,7 +5,7 @@ import {
 import { PopoverConfig } from './popover.config';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { PopoverContainerComponent } from './popover-container.component';
-import { PositioningService } from 'ngx-bootstrap/positioning';
+import { PositioningService, AvailbleBSPositions } from 'ngx-bootstrap/positioning';
 import { timer } from 'rxjs';
 import { parseTriggers, Trigger } from 'ngx-bootstrap/utils';
 
@@ -37,8 +37,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /**
    * Placement of a popover. Accepts: "top", "bottom", "left", "right"
    */
-  @Input() placement: 'top' | 'bottom' | 'left' | 'right' | 'auto' | 'top left' | 'top right' |
-    'right top' | 'right bottom' | 'bottom right' | 'bottom left' | 'left bottom' | 'left top' = 'top';
+  @Input() placement: AvailbleBSPositions = 'top';
   /**
    * Close popover on outside click
    */

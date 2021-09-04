@@ -16,6 +16,8 @@ export const CHECKBOX_CONTROL_VALUE_ACCESSOR: Provider = {
   multi: true
 };
 
+type AvailableValues = boolean | string | number;
+
 /**
  * Add checkbox functionality to any element
  */
@@ -25,15 +27,15 @@ export const CHECKBOX_CONTROL_VALUE_ACCESSOR: Provider = {
 })
 export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
   /** Truthy value, will be set to ngModel */
-  @Input() btnCheckboxTrue = true;
+  @Input() btnCheckboxTrue:AvailableValues = true;
   /** Falsy value, will be set to ngModel */
-  @Input() btnCheckboxFalse = false;
+  @Input() btnCheckboxFalse:AvailableValues = false;
 
   @HostBinding('class.active')
   @HostBinding('attr.aria-pressed')
   state = false;
 
-  protected value?: boolean | string;
+  protected value?: AvailableValues;
   protected isDisabled = false;
 
   protected onChange = Function.prototype;
@@ -54,13 +56,13 @@ export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
     this.toggle(this.trueValue === this.value);
   }
 
-  protected get trueValue(): boolean {
+  protected get trueValue(): AvailableValues {
     return typeof this.btnCheckboxTrue !== 'undefined'
       ? this.btnCheckboxTrue
       : true;
   }
 
-  protected get falseValue(): boolean {
+  protected get falseValue(): AvailableValues {
     return typeof this.btnCheckboxFalse !== 'undefined'
       ? this.btnCheckboxFalse
       : false;

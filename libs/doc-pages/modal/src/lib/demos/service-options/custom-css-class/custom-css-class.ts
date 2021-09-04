@@ -7,7 +7,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   templateUrl: './custom-css-class.html'
 })
 export class DemoModalServiceCustomCSSClassComponent {
-  modalRef: BsModalRef;
+  modalRef?: BsModalRef;
   constructor(private modalService: BsModalService) {}
 
   openModalWithClass(template: TemplateRef<any>) {
