@@ -26,7 +26,7 @@ const BOOTSTRAP_AVAILABLE_STYLES = {
 @import "~bootstrap/scss/bootstrap";
 `]
 };
-const DATEPICKER_AVAILABLESTYLES = {
+const DATEPICKER_AVAILABLE_STYLES = {
   'css': [`./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css`],
   'scss': [`
 /* Importing Datepicker SCSS file. */
@@ -120,7 +120,7 @@ function insertCommonStyles(project: workspaces.ProjectDefinition, host: Tree, p
   }
 
   insertBootstrapStyles(project, host, projectName, extension);
-  return addStyles(project, 'build', host, DATEPICKER_AVAILABLESTYLES, projectName, extension);
+  return addStyles(project, 'build', host, DATEPICKER_AVAILABLE_STYLES, projectName, extension);
 }
 
 function addAnimationModule(project: workspaces.ProjectDefinition, host: Tree, context: SchematicContext, componentName: string): Rule {
