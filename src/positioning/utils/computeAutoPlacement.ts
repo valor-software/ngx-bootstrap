@@ -3,7 +3,8 @@
  * available space.
  */
 import { getBoundaries } from './getBoundaries';
-import { Offsets } from '../models';
+import { Offsets, PlacementForBs5 } from '../models';
+import { getBsVer } from 'ngx-bootstrap/utils';
 
 function getArea({ width, height }: { width: number, height: number }) {
   return width * height;
@@ -71,9 +72,8 @@ export function computeAutoPlacement(
     : sortedAreas[0].key;
 
   const variation = placement.split(' ')[1];
-
   // for tooltip on auto position
-  target.className = target.className.replace(/bs-tooltip-auto/g, `bs-tooltip-${computedPlacement}`);
+  target.className = target.className.replace(/bs-tooltip-auto/g, `bs-tooltip-${getBsVer().isBs5 ? PlacementForBs5[computedPlacement as keyof typeof PlacementForBs5] : computedPlacement}`);
 
   return computedPlacement + (variation ? `-${variation}` : '');
 }

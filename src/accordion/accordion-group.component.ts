@@ -50,8 +50,8 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
         this.accordion.closeOtherPanels(this);
       }
       this._isOpen = value;
-      (async () => {
-        await Promise.resolve();
+      Promise.resolve(null)
+      .then(() => {
         this.isOpenChange.emit(value);
       });
     }

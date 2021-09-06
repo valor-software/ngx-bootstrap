@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './dropup.html'
 })
 export class DemoTypeaheadDropupComponent {
-  selected: string;
+  selected?: string;
   states: string[] = [
     'Alabama',
     'Alaska',

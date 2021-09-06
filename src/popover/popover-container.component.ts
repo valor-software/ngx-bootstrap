@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Input, Component } from '@angular/core';
 import { PopoverConfig } from './popover.config';
-import { isBs3 } from 'ngx-bootstrap/utils';
+import { getBsVer, IBsVersion } from 'ngx-bootstrap/utils';
+import { PlacementForBs5, checkMargins, AvailbleBSPositions } from 'ngx-bootstrap/positioning';
 
 @Component({
   selector: 'popover-container',
@@ -9,9 +10,9 @@ import { isBs3 } from 'ngx-bootstrap/utils';
   host: {
     '[attr.id]': 'popoverId',
     '[class]':
-      '"popover in popover-" + placement + " " + "bs-popover-" + placement + " " + placement + " " + containerClass',
-    '[class.show]': '!isBs3',
-    '[class.bs3]': 'isBs3',
+      '"popover in popover-" + _placement + " " + "bs-popover-" + _placement + " " + _placement + " " + containerClass + checkMarginNecessity()',
+    '[class.show]': '!_bsVersions.isBs3',
+    '[class.bs3]': '_bsVersions.isBs3',
     role: 'tooltip',
     style: 'display:block;'
   },
@@ -40,16 +41,29 @@ import { isBs3 } from 'ngx-bootstrap/utils';
   templateUrl: './popover-container.component.html'
 })
 export class PopoverContainerComponent {
-  @Input() placement?: string;
+  @Input() set placement(value: AvailbleBSPositions) {
+    if (!this._bsVersions.isBs5) {
+      this._placement = value;
+    } else {
+      this._placement =  PlacementForBs5[value as keyof typeof PlacementForBs5];
+    }
+  };
+
   @Input() title?: string;
+
   containerClass?: string;
   popoverId?: string;
+  _placement = 'top';
 
-  get isBs3(): boolean {
-    return isBs3();
+  get _bsVersions(): IBsVersion {
+    return getBsVer();
   }
 
   constructor(config: PopoverConfig) {
     Object.assign(this, config);
+  }
+
+  checkMarginNecessity(): string {
+    return checkMargins(this._placement);
   }
 }

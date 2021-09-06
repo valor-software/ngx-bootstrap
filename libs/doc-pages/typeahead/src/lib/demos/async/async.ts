@@ -9,9 +9,9 @@ import { DataSourceType } from '../interfaces/typeahead.interfaces';
   templateUrl: './async.html'
 })
 export class DemoTypeaheadAsyncComponent {
-  asyncSelected: string;
+  asyncSelected?: string;
   dataSource: Observable<DataSourceType[]>;
-  typeaheadLoading: boolean;
+  typeaheadLoading?: boolean;
   statesComplex: DataSourceType[] = [
     { id: 1, name: 'Alabama', region: 'South' },
     { id: 2, name: 'Alaska', region: 'West' },
