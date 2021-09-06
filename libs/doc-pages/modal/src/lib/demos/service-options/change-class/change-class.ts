@@ -7,7 +7,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   templateUrl: './change-class.html'
 })
 export class DemoModalServiceChangeClassComponent {
-  modalRef: BsModalRef;
+  modalRef?: BsModalRef;
   valueWidth = false;
   constructor(private modalService: BsModalService) {}
 
@@ -21,6 +21,6 @@ export class DemoModalServiceChangeClassComponent {
   setModalClass() {
     this.valueWidth = !this.valueWidth;
     const modalWidth = this.valueWidth ? 'modal-lg' : 'modal-sm';
-    this.modalRef.setClass(modalWidth);
+    this.modalRef?.setClass(modalWidth);
   }
 }

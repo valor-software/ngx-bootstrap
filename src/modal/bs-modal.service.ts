@@ -78,7 +78,7 @@ export class BsModalService {
     return this._showModal<T>(content);
   }
 
-  hide(id?: number) {
+  hide(id?: number | string) {
     if (this.modalsCount === 1 || id == null) {
       this._hideBackdrop();
       this.resetScrollbar();
@@ -164,7 +164,7 @@ export class BsModalService {
     return bsModalRef;
   }
 
-  _hideModal(id?: number): void {
+  _hideModal(id?: number | string): void {
     if (id != null) {
       const indexToRemove = this.loaders.findIndex(loader => loader.instance?.config.id === id);
       const modalLoader = this.loaders[indexToRemove];
@@ -192,6 +192,7 @@ export class BsModalService {
 
   removeBackdrop(): void {
     this._renderer.removeClass(document.body, CLASS_NAME.OPEN);
+    this._renderer.setStyle(document.body, 'overflow-y', '');
     this._backdropLoader.hide();
     this.backdropRef = void 0;
   }
@@ -245,7 +246,7 @@ export class BsModalService {
     this.loaders.push(loader);
   }
 
-  private removeLoaders(id?: number): void {
+  private removeLoaders(id?: number | string): void {
     if (id != null) {
       const indexToRemove = this.loaders.findIndex(loader => loader.instance?.config.id === id);
       if (indexToRemove >= 0) {

@@ -4,6 +4,9 @@
     <button type="button" class="btn btn-primary btn-sm" (click)="addItem()">Add
       Item
     </button>
+    <button type="button" class="btn btn-primary btn-sm ms-3 ml-3" (click)="removeItem()">Remove
+      Item
+    </button>
     <div *ngFor="let item of items">{{item}}</div>
   </accordion-group>
   <accordion-group heading="Content 2">

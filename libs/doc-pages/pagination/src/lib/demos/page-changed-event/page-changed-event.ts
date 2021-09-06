@@ -8,7 +8,7 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 })
 export class DemoPaginationPageChangedComponent {
   currentPage = 4;
-  page: number;
+  page?: number;
 
   pageChanged(event: PageChangedEvent): void {
     this.page = event.page;

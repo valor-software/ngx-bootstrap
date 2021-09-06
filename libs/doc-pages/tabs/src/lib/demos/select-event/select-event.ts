@@ -7,7 +7,7 @@ import { TabDirective } from 'ngx-bootstrap/tabs';
   templateUrl: './select-event.html'
 })
 export class DemoTabsSelectEventComponent {
-  value: string;
+  value?: string;
   onSelect(data: TabDirective): void {
     this.value = data.heading;
   }

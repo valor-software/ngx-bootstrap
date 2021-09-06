@@ -8,7 +8,7 @@ import { DataSourceType } from '../interfaces/typeahead.interfaces';
   templateUrl: './on-select.html'
 })
 export class DemoTypeaheadOnSelectComponent {
-  selectedValue: string;
+  selectedValue?: string;
   selectedOption: any;
   previewOption?: any;
   states: DataSourceType[] = [

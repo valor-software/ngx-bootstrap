@@ -19,7 +19,7 @@ import {
   Component, EventEmitter, Input, NgZone, OnDestroy, Output, AfterViewInit
 } from '@angular/core';
 
-import { isBs3, LinkedList } from 'ngx-bootstrap/utils';
+import { isBs3, LinkedList, getBsVer, IBsVersion } from 'ngx-bootstrap/utils';
 import { SlideComponent } from './slide.component';
 import { CarouselConfig } from './carousel.config';
 import { findLastIndex, chunkByNumber, isNumber } from './utils';
@@ -30,6 +30,8 @@ export enum Direction {
   NEXT,
   PREV
 }
+
+let _currentId = 1;
 
 /**
  * Base element to create carousel
@@ -136,13 +138,19 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   protected isPlaying = false;
   protected destroyed = false;
   private customActiveSlide?: number;
+  currentId = 0;
 
   get isBs4(): boolean {
     return !isBs3();
   }
 
+  get _bsVer(): IBsVersion {
+    return getBsVer();
+  }
+
   constructor(config: CarouselConfig, private ngZone: NgZone) {
     Object.assign(this, config);
+    this.currentId = _currentId++;
   }
 
   ngAfterViewInit(): void {

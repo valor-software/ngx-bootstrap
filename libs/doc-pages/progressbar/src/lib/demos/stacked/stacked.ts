@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
+import { ProgressbarType } from 'ngx-bootstrap/progressbar';
 
 interface IStack {
-  value: number;
-  type: string;
+  type: ProgressbarType;
   label: string;
+  value: number;
+  max: number;
 }
 
 @Component({
@@ -12,7 +14,7 @@ interface IStack {
   templateUrl: './stacked.html'
 })
 export class DemoProgressbarStackedComponent {
-  type: string;
+  type?: string;
   stacked: IStack[] = [];
 
   constructor() {
@@ -27,7 +29,7 @@ export class DemoProgressbarStackedComponent {
     for (let i = 0; i < n; i++) {
       const index = Math.floor(Math.random() * 4);
       const value = Math.floor(Math.random() * 27 + 3);
-      this.stacked.push({
+      this.stacked.push(<IStack>{
         value,
         type: types[index],
         label: value + ' %'

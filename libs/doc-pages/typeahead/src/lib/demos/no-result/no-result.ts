@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './no-result.html'
 })
 export class DemoTypeaheadNoResultComponent {
-  selected: string;
+  selected?: string;
   noResult = false;
   states: string[] = [
     'Alabama',
