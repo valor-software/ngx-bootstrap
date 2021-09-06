@@ -1,6 +1,4 @@
 import { ChangeDetectionStrategy, Component, Injector, ReflectiveInjector } from '@angular/core';
-import { isBs3 } from 'ngx-bootstrap/utils';
-
 import { demoComponentContent } from './progressbar-section.list';
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
 
@@ -34,13 +32,5 @@ export class ProgressbarSectionComponent {
     this._injectors.set(content, _injector);
 
     return _injector;
-  }
-
-  get isBs3(): boolean {
-    if (typeof window['PR'] !== 'undefined') {
-      setTimeout(() => window['PR'].prettyPrint(), 10);
-    }
-
-    return isBs3();
   }
 }

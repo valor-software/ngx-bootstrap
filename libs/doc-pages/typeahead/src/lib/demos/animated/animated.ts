@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './animated.html'
 })
 export class DemoTypeaheadAnimatedComponent {
-  selected: string;
+  selected?: string;
   states: string[] = [
     'Alabama',
     'Alaska',

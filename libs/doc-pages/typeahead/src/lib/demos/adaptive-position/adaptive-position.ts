@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './adaptive-position.html'
 })
 export class DemoTypeaheadAdaptivePositionComponent {
-  selected: string;
+  selected?: string;
   states: string[] = [
     'Alabama',
     'Alaska',

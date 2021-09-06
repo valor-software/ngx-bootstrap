@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './value-change-event.html'
 })
 export class DemoDatepickerValueChangeEventComponent {
-  data: Date;
+  data?: Date;
 
   onValueChange(value: Date): void {
     this.data = value;

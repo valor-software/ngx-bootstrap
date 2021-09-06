@@ -7,7 +7,7 @@ import { AbstractControl, FormControl } from '@angular/forms';
   templateUrl: './custom-validation.html'
 })
 export class DemoTimepickerCustomValidationComponent {
-  myTime: Date;
+  myTime?: Date;
 
   ctrl = new FormControl('', (control: AbstractControl) => {
     const value = control.value;

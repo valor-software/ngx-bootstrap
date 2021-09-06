@@ -7,7 +7,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   templateUrl: './disable-esc-closing.html'
 })
 export class DemoModalServiceDisableEscClosingComponent {
-  modalRef: BsModalRef;
+  modalRef?: BsModalRef;
   config = {
     keyboard: true
   };
