@@ -118,7 +118,7 @@ export class TimepickerComponent
 
   /** emits true if value is a valid date */
   @Output() isValid = new EventEmitter<boolean>();
-  @Output() changedMeridianValue = new EventEmitter<string>();
+  @Output() meridianChange = new EventEmitter<string>();
   // ui variables
   hours = '';
   minutes = '';
@@ -370,7 +370,7 @@ export class TimepickerComponent
       this.minutes = '';
       this.seconds = '';
       this.meridian = this.meridians[0];
-      this.changedMeridianValue.emit(this.meridian);
+      this.meridianChange.emit(this.meridian);
       return;
     }
 
@@ -384,7 +384,7 @@ export class TimepickerComponent
 
     if (this.showMeridian) {
       this.meridian = this.meridians[_hours >= _hoursPerDayHalf ? 1 : 0];
-      this.changedMeridianValue.emit(this.meridian);
+      this.meridianChange.emit(this.meridian);
       _hours = _hours % _hoursPerDayHalf;
       // should be 12 PM, not 00 PM
       if (_hours === 0) {
