@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './latinize.html'
 })
 export class DemoTypeaheadLatinizeComponent {
-  selected: string;
+  selected?: string;
   frenchWords: string[] = [
     'popularisé',
     'français',

@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './scrollable.html'
 })
 export class DemoTypeaheadScrollableComponent {
-  selected: string;
+  selected?: string;
   states: string[] = [
     'Alabama',
     'Alaska',

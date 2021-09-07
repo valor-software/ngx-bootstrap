@@ -14,8 +14,8 @@ const _bs4Css = 'assets/css/bootstrap-4.5.3/css/bootstrap.min.css';
   templateUrl: './landing.component.html'
 })
 export class LandingComponent implements AfterViewInit {
-  currentVersion: string;
-  currentTheme: 'bs3' | 'bs4';
+  currentVersion?: string;
+  currentTheme?: 'bs3' | 'bs4';
 
   constructor(public styleManager: StyleManager,
               private http: HttpClient,
@@ -29,6 +29,7 @@ export class LandingComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     if (typeof window !== 'undefined') {
+      window.scroll(0,0);
       this.http.get<any>('assets/json/current-version.json').subscribe(data => {
         this.currentVersion = data.version;
       });

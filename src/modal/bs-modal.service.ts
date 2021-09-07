@@ -192,6 +192,7 @@ export class BsModalService {
 
   removeBackdrop(): void {
     this._renderer.removeClass(document.body, CLASS_NAME.OPEN);
+    this._renderer.setStyle(document.body, 'overflow-y', '');
     this._backdropLoader.hide();
     this.backdropRef = void 0;
   }

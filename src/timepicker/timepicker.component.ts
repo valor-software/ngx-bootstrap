@@ -69,7 +69,7 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: ControlValueAccessorModel = {
     }
 
     .bs-timepicker-field {
-      width: 50px;
+      width: 65px;
       padding: .375rem .55rem;
     }
   `],
@@ -147,7 +147,6 @@ export class TimepickerComponent
 
   // control value accessor methods
   timepickerSub: Subscription;
-
   constructor(
     _config: TimepickerConfig,
     private _cd: ChangeDetectorRef,

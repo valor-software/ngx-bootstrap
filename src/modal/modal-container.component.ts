@@ -76,6 +76,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
         this.bsModalService.setScrollbar();
       }
       this._renderer.addClass(document.body, CLASS_NAME.OPEN);
+      this._renderer.setStyle(document.body, 'overflow-y', 'hidden');
     }
     if (this._element.nativeElement) {
       this._element.nativeElement.focus();
@@ -164,6 +165,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
         this.bsModalService?.getModalsCount() === 1
       ) {
         this._renderer.removeClass(document.body, CLASS_NAME.OPEN);
+        this._renderer.setStyle(document.body, 'overflow-y', '');
       }
       this.bsModalService?.hide(this.config.id);
       this.isModalHiding = false;

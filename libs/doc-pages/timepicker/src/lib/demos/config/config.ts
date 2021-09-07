@@ -25,5 +25,5 @@ export function getTimepickerConfig(): TimepickerConfig {
   providers: [{ provide: TimepickerConfig, useFactory: getTimepickerConfig }]
 })
 export class DemoTimepickerConfigComponent {
-  mytime: string;
+  mytime?: string;
 }
