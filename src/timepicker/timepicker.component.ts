@@ -118,6 +118,7 @@ export class TimepickerComponent
 
   /** emits true if value is a valid date */
   @Output() isValid = new EventEmitter<boolean>();
+  /** emits value of meridian*/
   @Output() meridianChange = new EventEmitter<string>();
   // ui variables
   hours = '';
