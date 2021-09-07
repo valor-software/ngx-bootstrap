@@ -43,13 +43,13 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   @Input() directionLinks = true;
   // labels
   /** first button text */
-  @Input() firstText = 'First';
+  @Input() firstText?: string;
   /** previous button text */
-  @Input() previousText = 'Previous';
+  @Input() previousText?: string;
   /** next button text */
-  @Input() nextText = 'Next';
+  @Input() nextText?: string;
   /** last button text */
-  @Input() lastText = 'Last';
+  @Input() lastText?: string;
   /** if true current page will in the middle of pages list */
   @Input() rotate = true;
   // css
