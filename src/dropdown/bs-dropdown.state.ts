@@ -8,6 +8,7 @@ export class BsDropdownState {
   autoClose = true;
   insideClick = false;
   isAnimated = false;
+  preventDefaultBehaviour = false;
   isOpenChange = new EventEmitter<boolean>();
   isDisabledChange = new EventEmitter<boolean>();
   toggleClick = new EventEmitter<boolean>();
