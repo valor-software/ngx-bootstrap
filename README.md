@@ -49,7 +49,7 @@ The best way to quickly integrate <a href="https://getbootstrap.com/docs/5.1">Bo
 
 ngx-bootstrap provides Bootstrap components powered by Angular, so you don't need to include original JS components.
 
-Check our [Getting started guide](https://valor-software.com/ngx-bootstrap/#/documentation#getting-started) if it's your first project with Angular Bootstrap.
+Check our Getting started guide if it's your first project with Angular Bootstrap.
 
 ## Usage & Demo
 
