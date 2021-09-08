@@ -30,7 +30,26 @@ describe('datepicker:', () => {
     }
   );
 
-  it('should emit a new Date', () => {
+  describe('onUpdate method', () => {
+    it('should defined activeDate property', () => {
+      component.activeDate = undefined;
+  
+      component.onUpdate(new Date('2021-10-12'));
+  
+      expect(component.activeDate).toBeDefined();
+    });
+
+    it('should call onChange with new Date 2021-10-12', () => {
+      const onChangeSpy = jest.spyOn(component, 'onChange');
+  
+      component.onUpdate(new Date('2021-10-12'));
+  
+      expect(onChangeSpy).toHaveBeenCalledWith(new Date('2021-10-12'));
+    });
+
+  });
+
+  it('should emit selectionDone', () => {
     const selectionDoneEmit = jest.spyOn(component.selectionDone, 'emit');
 
     component.onSelectionDone(new Date);
