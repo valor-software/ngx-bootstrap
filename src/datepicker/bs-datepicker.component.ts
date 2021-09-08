@@ -19,7 +19,7 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsDatepickerViewMode, DatepickerDateCustomClasses, DatepickerDateTooltipText } from './models';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
-import { checkBsValue } from './utils/bs-calendar-utils';
+import { checkBsValue, setCurrentTime } from './utils/bs-calendar-utils';
 
 @Directive({
   selector: '[bsDatepicker]',
@@ -140,13 +140,8 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       return;
     }
 
-    if (!this._bsValue && value) {
-      const now = new Date();
-
-      value.setMilliseconds(now.getMilliseconds());
-      value.setSeconds(now.getSeconds());
-      value.setMinutes(now.getMinutes());
-      value.setHours(now.getHours());
+    if (!this._bsValue && value && this._config.initCurrentTime) {
+      value = setCurrentTime(value);
     }
 
     this._bsValue = value;

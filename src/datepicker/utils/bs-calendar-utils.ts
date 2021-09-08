@@ -109,3 +109,14 @@ function compareDateWithMaxDateHelper <T>(date: T, maxDate: Date): T | Date[] {
   }
   return date;
 }
+
+export function setCurrentTime(value: Date): Date {
+  const now = new Date();
+
+  value.setMilliseconds(now.getMilliseconds());
+  value.setSeconds(now.getSeconds());
+  value.setMinutes(now.getMinutes());
+  value.setHours(now.getHours());
+
+  return value;
+}

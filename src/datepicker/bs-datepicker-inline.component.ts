@@ -21,7 +21,7 @@ import { BsDatepickerInlineConfig } from './bs-datepicker-inline.config';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { DatepickerDateCustomClasses, DatepickerDateTooltipText } from './models';
 import { BsDatepickerInlineContainerComponent } from './themes/bs/bs-datepicker-inline-container.component';
-import { checkBsValue } from './utils/bs-calendar-utils';
+import { checkBsValue, setCurrentTime } from './utils/bs-calendar-utils';
 
 @Directive({
   selector: 'bs-datepicker-inline',
@@ -95,13 +95,8 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
       return;
     }
 
-    if (!this._bsValue && value) {
-      const now = new Date();
-
-      value.setMilliseconds(now.getMilliseconds());
-      value.setSeconds(now.getSeconds());
-      value.setMinutes(now.getMinutes());
-      value.setHours(now.getHours());
+    if (!this._bsValue && value && this._config.initCurrentTime) {
+      value = setCurrentTime(value);
     }
 
     this._bsValue = value;
