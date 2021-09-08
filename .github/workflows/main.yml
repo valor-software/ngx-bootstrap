@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     branches:
-      - development
+    - test-coverage
 
 env:
   NX_BRANCH: ${{ github.event.number }}
