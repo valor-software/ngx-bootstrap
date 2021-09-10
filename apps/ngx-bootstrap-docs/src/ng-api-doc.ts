@@ -2286,10 +2286,10 @@ export const ngdoc: any = {
         "description": "<p>turn on/off animation</p>\n"
       },
       {
-        "name": "preventDefaultBehaviour",
+        "name": "stopOnClickPropogation",
         "defaultValue": "false",
         "type": "boolean",
-        "description": "<p>value true of preventDefaultBehaviour allows event stopPropagation</p>\n"
+        "description": "<p>value true of stopOnClickPropogation allows event stopPropagation</p>\n"
       }
     ]
   },

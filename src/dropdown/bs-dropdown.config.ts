@@ -11,6 +11,6 @@ export class BsDropdownConfig {
   insideClick = false;
   /** turn on/off animation */
   isAnimated = false;
-  /** value true of preventDefaultBehaviour allows event stopPropagation*/
-  preventDefaultBehaviour = false;
+  /** value true of stopOnClickPropogation allows event stopPropagation*/
+  stopOnClickPropogation = false;
 }
