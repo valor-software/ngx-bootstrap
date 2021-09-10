@@ -18,7 +18,7 @@
     "nx": "nx",
     "start": "ng serve",
     "build": "ng build --with-deps",
-    "test": "nx run-many --all --target=test --codeCoverage",
+    "test": "nx run-many --all --target=test",
     "lint": "nx run-many --all --target=lint",
     "e2e": "ng e2e --with-deps",
     "version": "nx run ngx-bootstrap:version",
