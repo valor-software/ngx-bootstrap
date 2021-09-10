@@ -178,6 +178,9 @@ export class BsDaterangepickerDirective
       this._datepickerRef.instance.daysDisabled = this.daysDisabled;
     }
     if (changes.isDisabled) {
+      if (this._elementRef?.nativeElement) {
+        this._elementRef.nativeElement.setAttribute('readonly', this.isDisabled);
+      }
       this._datepickerRef.instance.isDisabled = this.isDisabled;
     }
     if (changes.dateCustomClasses) {

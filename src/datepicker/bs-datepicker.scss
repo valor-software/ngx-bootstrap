@@ -556,6 +556,9 @@ bs-daterangepicker-container {
 /* screen size < 1024px */
 @media (max-width: 768px) {
   .bs-datepicker {
+    width: min-content;
+    justify-content: center;
+
     &-multiple {
       display: flex;
 
