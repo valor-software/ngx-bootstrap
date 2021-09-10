@@ -75,7 +75,10 @@ export class BsDropdownToggleDirective implements OnDestroy {
 
   @HostListener('click', ['$event'])
   onClick(event: MouseEvent): void {
-    event.stopPropagation();
+    if (this._state.stopOnClickPropogation) {
+      event.stopPropagation();
+    }
+
     if (this.isDisabled) {
       return;
     }
