@@ -106,4 +106,12 @@ describe('datepicker:', () => {
 
     expect(component.onChange).toBeDefined();
   });
+
+  it('should define onTouched property', () => {
+    component.onTouched = undefined;
+
+    component.registerOnTouched(() => 0);
+
+    expect(component.onTouched).toBeDefined();
+  });
 });
