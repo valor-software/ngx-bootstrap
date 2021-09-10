@@ -105,6 +105,14 @@ describe('datepicker:', () => {
 
       expect(component._datePicker).toBeFalsy();
     });
+
+    it('should set new Date to activeDate', () => {
+      component.activeDate = undefined;
+
+      component.writeValue('2000-10-10');
+
+      expect(component.activeDate).not.toBe(undefined);
+    });
   });
 
   it('should define onChange property', () => {
