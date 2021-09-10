@@ -208,6 +208,9 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
     }
 
     if (changes.isDisabled) {
+      if (this._elementRef?.nativeElement) {
+        this._elementRef.nativeElement.setAttribute('readonly', this.isDisabled);
+      }
       this._datepickerRef.instance.isDisabled = this.isDisabled;
     }
 
