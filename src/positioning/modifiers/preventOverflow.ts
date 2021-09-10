@@ -46,13 +46,18 @@ export function preventOverflow(data: Data) {
     secondary(placement: keyof Offsets) {
       const mainSide = placement === 'right' ? 'left' : 'top';
       let value = data.offsets.target[mainSide];
+
       // escapeWithReference
-      if ((data.offsets.target[placement] ?? 0) < (boundaries[placement] ?? 0)) {
+      if ((data.offsets.target[placement] ?? 0) < (boundaries[placement] ?? 0) && placement !== 'right') {
         value = Math.min(
           data.offsets.target[mainSide] ?? 0,
-          (boundaries[placement] ?? 0) -
-          (placement === 'right' ? data.offsets.target.width : data.offsets.target.height)
-        );
+          (boundaries[placement] ?? 0) - data.offsets.target.height);
+      }
+
+      if ((data.offsets.target[placement] ?? 0) > (boundaries[placement] ?? 0) && placement === 'right') {
+        value = Math.min(
+          data.offsets.target[mainSide] ?? 0,
+          (boundaries[placement] ?? 0) - data.offsets.target.width);
       }
 
       return { [mainSide]: value };
