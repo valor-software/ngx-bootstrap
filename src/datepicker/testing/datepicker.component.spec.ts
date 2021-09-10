@@ -97,6 +97,14 @@ describe('datepicker:', () => {
 
       expect(selectExpected).toHaveBeenCalled();
     });
+
+    it('should not call _datePicker.select', () => {
+      component._datePicker = undefined;
+
+      component.writeValue(new Date('2023-4-1'));
+
+      expect(component._datePicker).toBeFalsy();
+    });
   });
 
   it('should define onChange property', () => {
