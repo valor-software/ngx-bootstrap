@@ -98,4 +98,12 @@ describe('datepicker:', () => {
       expect(selectExpected).toHaveBeenCalled();
     });
   });
+
+  it('should define onChange property', () => {
+    component.onChange = undefined;
+
+    component.registerOnChange(() => 0);
+
+    expect(component.onChange).toBeDefined();
+  });
 });
