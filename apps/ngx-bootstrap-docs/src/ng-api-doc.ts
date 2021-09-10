@@ -2284,6 +2284,12 @@ export const ngdoc: any = {
         "defaultValue": "false",
         "type": "boolean",
         "description": "<p>turn on/off animation</p>\n"
+      },
+      {
+        "name": "stopOnClickPropogation",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>value true of stopOnClickPropogation allows event stopPropagation</p>\n"
       }
     ]
   },
@@ -4322,8 +4328,8 @@ export const ngdoc: any = {
         "description": "<p>emits true if value is a valid date</p>\n"
       },
       {
-        "name": "changedMeridianValue",
-        "description": "<p>emits meridian value </p>\n"
+        "name": "meridianChange",
+        "description": "<p>emits value of meridian</p>\n"
       }
     ],
     "properties": [],
