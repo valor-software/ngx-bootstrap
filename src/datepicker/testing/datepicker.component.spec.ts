@@ -75,7 +75,7 @@ describe('datepicker:', () => {
     });
 
     it('should do not find the function compare in _datePicker', () => {
-      component._datePicker = undefined;
+      component._datePicker = null;
 
       component.writeValue(undefined);
 
@@ -99,7 +99,7 @@ describe('datepicker:', () => {
     });
 
     it('should not call _datePicker.select', () => {
-      component._datePicker = undefined;
+      component._datePicker = null;
 
       component.writeValue(new Date('2023-4-1'));
 
@@ -107,16 +107,16 @@ describe('datepicker:', () => {
     });
 
     it('should set new Date to activeDate', () => {
-      component.activeDate = undefined;
+      component.activeDate = null;
 
       component.writeValue('2000-10-10');
 
-      expect(component.activeDate).not.toBe(undefined);
+      expect(component.activeDate).toBeDefined();
     });
   });
 
   it('should define onChange property', () => {
-    component.onChange = undefined;
+    component.onChange = null;
 
     component.registerOnChange(() => 0);
 
@@ -124,7 +124,7 @@ describe('datepicker:', () => {
   });
 
   it('should define onTouched property', () => {
-    component.onTouched = undefined;
+    component.onTouched = null;
 
     component.registerOnTouched(() => 0);
 
