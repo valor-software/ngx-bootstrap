@@ -110,7 +110,7 @@ function compareDateWithMaxDateHelper <T>(date: T, maxDate: Date): T | Date[] {
   return date;
 }
 
-export function setCurrentTime(value: Date): Date {
+export function setCurrentTimeOnDateSelect(value: Date): Date {
   const now = new Date();
 
   value.setMilliseconds(now.getMilliseconds());
