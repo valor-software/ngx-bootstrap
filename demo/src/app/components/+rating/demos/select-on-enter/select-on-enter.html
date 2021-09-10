@@ -1,6 +1,0 @@
-<rating [(ngModel)]="rate" [max]="max" [readonly]="isReadonly"
-        (keyup)="confirmSelection($event)"></rating>
-<div class="card">
-  <pre class="card-block card-header" style="margin:15px 0;">Rating: <b>{{rate}}</b>;  Readonly is: <i>{{isReadonly}}</i>;</pre>
-</div>
-<button class="btn btn-primary" (click)="resetStars()">Reset rating and status</button>

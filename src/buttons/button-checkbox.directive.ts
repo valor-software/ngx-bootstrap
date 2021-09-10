@@ -1,4 +1,3 @@
-// tslint:disable:no-use-before-declare
 import {
   Directive,
   forwardRef,
@@ -13,10 +12,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 // TODO: config: activeClass - Class to apply to the checked buttons
 export const CHECKBOX_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-  /* tslint:disable-next-line: no-use-before-declare */
   useExisting: forwardRef(() => ButtonCheckboxDirective),
   multi: true
 };
+
+type AvailableValues = boolean | string | number;
 
 /**
  * Add checkbox functionality to any element
@@ -27,16 +27,16 @@ export const CHECKBOX_CONTROL_VALUE_ACCESSOR: Provider = {
 })
 export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
   /** Truthy value, will be set to ngModel */
-  @Input() btnCheckboxTrue = true;
+  @Input() btnCheckboxTrue:AvailableValues = true;
   /** Falsy value, will be set to ngModel */
-  @Input() btnCheckboxFalse = false;
+  @Input() btnCheckboxFalse:AvailableValues = false;
 
   @HostBinding('class.active')
   @HostBinding('attr.aria-pressed')
   state = false;
 
-  protected value: boolean | string;
-  protected isDisabled: boolean;
+  protected value?: AvailableValues;
+  protected isDisabled = false;
 
   protected onChange = Function.prototype;
   protected onTouched = Function.prototype;
@@ -56,13 +56,13 @@ export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
     this.toggle(this.trueValue === this.value);
   }
 
-  protected get trueValue(): boolean {
+  protected get trueValue(): AvailableValues {
     return typeof this.btnCheckboxTrue !== 'undefined'
       ? this.btnCheckboxTrue
       : true;
   }
 
-  protected get falseValue(): boolean {
+  protected get falseValue(): AvailableValues {
     return typeof this.btnCheckboxFalse !== 'undefined'
       ? this.btnCheckboxFalse
       : false;
@@ -84,11 +84,11 @@ export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
     this.isDisabled = isDisabled;
   }
 
-  registerOnChange(fn: () => {}): void {
+  registerOnChange(fn: () => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: () => {}): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 }

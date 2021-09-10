@@ -1,0 +1,38 @@
+{
+  "name": "ngx-bootstrap",
+  "version": "7.1.1",
+  "description": "Angular Bootstrap",
+  "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
+  "license": "MIT",
+  "schematics": "./schematics/collection.json",
+  "peerDependencies": {
+    "@angular/animations": "^11.0.0 || ^12.0.0",
+    "@angular/core": "^11.0.0 || ^12.0.0",
+    "@angular/common": "^11.0.0 || ^12.0.0",
+    "@angular/forms": "^11.0.0 || ^12.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "tag": "next"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/valor-software/ngx-bootstrap.git"
+  },
+  "bugs": {
+    "url": "https://github.com/valor-software/ngx-bootstrap/issues"
+  },
+  "homepage": "https://github.com/valor-software/ngx-bootstrap#readme",
+  "keywords": [
+    "angular",
+    "bootstap",
+    "ng",
+    "ng2",
+    "angular2",
+    "twitter-bootstrap"
+  ]
+}

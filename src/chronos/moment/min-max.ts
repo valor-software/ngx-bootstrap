@@ -5,8 +5,9 @@
 // first element is an array of moment objects.
 import { isArray, isDateValid } from '../utils/type-checks';
 import { isAfter, isBefore } from '../utils/date-compare';
+import { UnitOfTime } from '../types';
 
-function pickBy(fn: Function, dates: Date[] | Date[][]): Date {
+function pickBy(fn: (date: Date, date2: Date, unit: UnitOfTime) => boolean, dates: Date[] | Date[][]): Date {
   let _dates: Date[];
   const _firstArg = dates[0];
   if (isArray<Date>(_firstArg) && dates.length === 1) {

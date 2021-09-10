@@ -1,0 +1,17 @@
+{
+  "baseUrl": "http://localhost:4200/#/",
+  "projectId": "5mm2dy",
+  "fileServerFolder": ".",
+  "fixturesFolder": "./src/fixtures",
+  "integrationFolder": "./src/full",
+  "modifyObstructiveCode": false,
+  "pluginsFile": "./src/plugins/index",
+  "supportFile": "./src/support/index.ts",
+  "video": true,
+  "parallel": true,
+  "videosFolder": "../../dist/cypress/apps/ngx-bootstrap-docs-e2e/videos",
+  "screenshotsFolder": "../../dist/cypress/apps/ngx-bootstrap-docs-e2e/screenshots",
+  "chromeWebSecurity": false,
+  "responseTimeout": 60000,
+  "pageLoadTimeout": 120000
+}

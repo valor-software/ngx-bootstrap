@@ -1,16 +1,20 @@
 import { isIE } from './isIE';
 
-function getSize(axis: string, body: HTMLElement, html: HTMLElement, computedStyle: CSSStyleDeclaration) {
+function getSize(axis: string, body: HTMLElement, html: HTMLElement, computedStyle?: CSSStyleDeclaration) {
+  const _body = body as unknown as Record<string, number>;
+  const _html = html as never;
+  const _computedStyle = computedStyle as unknown as Record<string, string>;
+
   return Math.max(
-    (body as any)[`offset${axis}`],
-    (body as any)[`scroll${axis}`],
-    (html as any)[`client${axis}`],
-    (html as any)[`offset${axis}`],
-    (html as any)[`scroll${axis}`],
+    _body[`offset${axis}`],
+    _body[`scroll${axis}`],
+    _html[`client${axis}`],
+    _html[`offset${axis}`],
+    _html[`scroll${axis}`],
     isIE(10)
-      ? (parseInt((html as any)[`offset${axis}`], 10) +
-      parseInt(computedStyle[`margin${axis === 'Height' ? 'Top' : 'Left'}` as any], 10) +
-      parseInt(computedStyle[`margin${axis === 'Height' ? 'Bottom' : 'Right'}` as any], 10))
+      ? (parseInt(_html[`offset${axis}`], 10) +
+      parseInt(_computedStyle[`margin${axis === 'Height' ? 'Top' : 'Left'}`], 10) +
+      parseInt(_computedStyle[`margin${axis === 'Height' ? 'Bottom' : 'Right'}`], 10))
     : 0
   );
 }
@@ -18,7 +22,7 @@ function getSize(axis: string, body: HTMLElement, html: HTMLElement, computedSty
 export function getWindowSizes(document: Document) {
   const body = document.body;
   const html = document.documentElement;
-  const computedStyle = isIE(10) && getComputedStyle(html);
+  const computedStyle = isIE(10) ? getComputedStyle(html) : void 0;
 
   return {
     height: getSize('Height', body, html, computedStyle),
