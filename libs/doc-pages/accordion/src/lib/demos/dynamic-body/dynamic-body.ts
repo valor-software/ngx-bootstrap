@@ -11,4 +11,8 @@ export class DemoAccordionDynamicBodyComponent {
   addItem(): void {
     this.items.push(`Item ${this.items.length + 1}`);
   }
+
+  removeItem(): void {
+    this.items = this.items.slice(0, this.items.length - 1);
+  }
 }

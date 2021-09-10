@@ -7,7 +7,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   templateUrl: './scrolling-long-content.html'
 })
 export class DemoModalScrollingLongContentComponent {
-  modalRef: BsModalRef;
+  modalRef?: BsModalRef;
   items: any[];
 
   constructor(private modalService: BsModalService) {

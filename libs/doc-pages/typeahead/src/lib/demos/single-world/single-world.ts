@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class DemoTypeaheadSingleWorldComponent {
   typeaheadSingleWords = true;
-  selected: string;
+  selected?: string;
   states = [
     'Alabama',
     'Alaska',

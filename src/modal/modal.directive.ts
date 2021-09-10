@@ -178,6 +178,7 @@ export class ModalDirective implements OnDestroy, OnInit {
         this.isNested = true;
       } else {
         this._renderer.addClass(document.body, CLASS_NAME.OPEN);
+        this._renderer.setStyle(document.body, 'overflow-y', 'hidden');
       }
     }
 
@@ -317,6 +318,7 @@ export class ModalDirective implements OnDestroy, OnInit {
       if (!this.isNested) {
         if (document && document.body) {
           this._renderer.removeClass(document.body, CLASS_NAME.OPEN);
+          this._renderer.setStyle(document.body, 'overflow-y', '');
         }
         this.resetScrollbar();
       }

@@ -10,10 +10,10 @@ import { switchMap } from 'rxjs/operators';
   templateUrl: './ordering.html'
 })
 export class DemoTypeaheadOrderingComponent implements OnInit {
-  selected1: string;
-  selected2: string;
-  selected3: string;
-  selected4: string;
+  selected1?: string;
+  selected2?: string;
+  selected3?: string;
+  selected4?: string;
   sortConfig1: TypeaheadOrder = {
     direction: 'desc'
   };
@@ -24,7 +24,7 @@ export class DemoTypeaheadOrderingComponent implements OnInit {
     direction: 'asc',
     field: 'city'
   };
-  states$: Observable<string[]>;
+  states$?: Observable<string[]>;
   states: string[] = [
     'New Mexico',
     'New York',

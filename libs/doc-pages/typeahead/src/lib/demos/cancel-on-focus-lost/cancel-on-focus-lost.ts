@@ -16,9 +16,9 @@ export function getTypeaheadConfig(): TypeaheadConfig {
   providers: [{ provide: TypeaheadConfig, useFactory: getTypeaheadConfig }]
 })
 export class DemoTypeaheadCancelRequestOnFocusLostComponent {
-  asyncSelected: string;
-  typeaheadLoading: boolean;
-  typeaheadNoResults: boolean;
+  asyncSelected?: string;
+  typeaheadLoading?: boolean;
+  typeaheadNoResults?: boolean;
   dataSource: Observable<any>;
   statesComplex: DataSourceType[] = [
     { id: 1, name: 'Alabama', region: 'South' },

@@ -5,13 +5,13 @@ import { getOppositePlacement } from './getOppositePlacement';
 import { getOuterSizes } from './getOuterSizes';
 import { Offsets } from '../models';
 
+
 export function getTargetOffsets(
   target: HTMLElement,
   hostOffsets: Offsets,
   position: string
 ): Offsets {
   const placement = position.split(' ')[0];
-
   // Get target node sizes
   const targetRect = getOuterSizes(target);
 

@@ -7,7 +7,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   templateUrl: './disable-animation.html'
 })
 export class DemoModalServiceDisableAnimationComponent {
-  modalRef: BsModalRef;
+  modalRef?: BsModalRef;
   config = {
     animated: true
   };
