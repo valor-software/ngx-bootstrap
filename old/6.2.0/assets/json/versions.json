@@ -73,5 +73,10 @@
     "version": "7.0.1",
     "url": "ngx-bootstrap/old/7.0.1",
     "unprefixedUrl": "old/7.0.1"
+  },
+  {
+    "version": "7.1.0",
+    "url": "ngx-bootstrap/old/7.1.0",
+    "unprefixedUrl": "old/7.1.0"
   }
 ]
