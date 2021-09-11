@@ -1,18 +1,21 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DatePickerComponent } from '../datepicker.component';
+import { DatePickerComponent, DATEPICKER_CONTROL_VALUE_ACCESSOR } from '../datepicker.component';
 
 describe('datepicker:', () => {
   let fixture: ComponentFixture<DatePickerComponent>;
   let component: DatePickerComponent;
 
   beforeEach(
-    waitForAsync(() => TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule],
-      declarations: [DatePickerComponent],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
-    }).compileComponents())
+    waitForAsync(() =>
+      TestBed.configureTestingModule({
+        imports: [BrowserAnimationsModule],
+        declarations: [DatePickerComponent],
+        providers: [DATEPICKER_CONTROL_VALUE_ACCESSOR],
+        schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
+      }).compileComponents()
+    )
   );
 
   beforeEach(() => {
@@ -20,37 +23,34 @@ describe('datepicker:', () => {
     component = fixture.componentInstance;
   });
   /* eslint-disable @typescript-eslint/no-explicit-any */
-  it('should not throw undefined reference error when initializing value before content init hook',
-    () => {
-      expect(() => {
-        fixture.detectChanges();
-      }).not.toThrowError(/^.*undefined.*$/gm);
-    }
-  );
+  it('should not throw undefined reference error when initializing value before content init hook', () => {
+    expect(() => {
+      fixture.detectChanges();
+    }).not.toThrowError(/^.*undefined.*$/gm);
+  });
 
   describe('onUpdate method', () => {
     it('should defined activeDate property', () => {
       component.activeDate = undefined;
-  
+
       component.onUpdate(new Date('2021-10-12'));
-  
+
       expect(component.activeDate).toBeDefined();
     });
 
     it('should call onChange with new Date 2021-10-12', () => {
       const onChangeSpy = jest.spyOn(component, 'onChange');
-  
+
       component.onUpdate(new Date('2021-10-12'));
-  
+
       expect(onChangeSpy).toHaveBeenCalledWith(new Date('2021-10-12'));
     });
-
   });
 
   it('should emit selectionDone - onSelectionDone', () => {
     const selectionDoneEmit = jest.spyOn(component.selectionDone, 'emit');
 
-    component.onSelectionDone(new Date);
+    component.onSelectionDone(new Date());
 
     expect(selectionDoneEmit).toHaveBeenCalled();
   });
@@ -58,14 +58,24 @@ describe('datepicker:', () => {
   it('should emit activeDateChange - onActiveDateChange', () => {
     const activeDateChangeEmit = jest.spyOn(component.activeDateChange, 'emit');
 
-    component.onActiveDateChange(new Date);
+    component.onActiveDateChange(new Date());
 
     expect(activeDateChangeEmit).toHaveBeenCalled();
   });
 
   describe('writeValue', () => {
+    const mockDatePickerCompare = (): jest.SpyInstance => {
+      component._datePicker = { compare: () => 0 } as any;
+      return jest.spyOn(component._datePicker, 'compare').mockReturnValue(0);
+    };
+
+    const mockDatePickerSelect = (): jest.SpyInstance => {
+      component._datePicker = { compare: () => 1, select: () => 0 } as any;
+      return jest.spyOn(component._datePicker, 'select');
+    };
+
     it('should compare activeDate property to be zero', () => {
-      jest.spyOn(component._datePicker, 'compare').mockReturnValue(0);
+      mockDatePickerCompare();
 
       component.writeValue('any value');
 
@@ -89,7 +99,7 @@ describe('datepicker:', () => {
     });
 
     it('should call _datePicker.select', () => {
-      const selectExpected = jest.spyOn(component._datePicker, 'select');
+      const selectExpected = mockDatePickerSelect();
 
       component.writeValue(new Date('2023-4-1'));
 
