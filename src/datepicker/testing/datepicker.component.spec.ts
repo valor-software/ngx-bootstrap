@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatePickerComponent } from '../datepicker.component';
-import { DatepickerModule } from '../datepicker.module';
 
 describe('datepicker:', () => {
   let fixture: ComponentFixture<DatePickerComponent>;
@@ -10,10 +9,7 @@ describe('datepicker:', () => {
   beforeEach(
     waitForAsync(() => TestBed.configureTestingModule({
       declarations: [DatePickerComponent],
-      imports: [
-        DatepickerModule.forRoot(),
-        BrowserAnimationsModule
-      ]
+      imports: [BrowserAnimationsModule]
     }).compileComponents())
   );
 
