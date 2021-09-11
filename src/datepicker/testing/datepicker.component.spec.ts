@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatePickerComponent } from '../datepicker.component';
@@ -8,8 +9,9 @@ describe('datepicker:', () => {
 
   beforeEach(
     waitForAsync(() => TestBed.configureTestingModule({
+      imports: [BrowserAnimationsModule],
       declarations: [DatePickerComponent],
-      imports: [BrowserAnimationsModule]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents())
   );
 
