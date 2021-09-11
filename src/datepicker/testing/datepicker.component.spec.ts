@@ -116,16 +116,12 @@ describe('datepicker:', () => {
   });
 
   it('should define onChange property', () => {
-    component.onChange = null;
-
     component.registerOnChange(() => 0);
 
     expect(component.onChange).toBeDefined();
   });
 
   it('should define onTouched property', () => {
-    component.onTouched = null;
-
     component.registerOnTouched(() => 0);
 
     expect(component.onTouched).toBeDefined();
