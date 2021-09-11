@@ -21,6 +21,7 @@ describe('datepicker:', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DatePickerComponent);
     component = fixture.componentInstance;
+    component.onlyCurrentMonth = false;
   });
   /* eslint-disable @typescript-eslint/no-explicit-any */
   it('should not throw undefined reference error when initializing value before content init hook', () => {
@@ -31,11 +32,9 @@ describe('datepicker:', () => {
 
   describe('onUpdate method', () => {
     it('should defined activeDate property', () => {
-      component.activeDate = undefined;
-
       component.onUpdate(new Date('2021-10-12'));
 
-      expect(component.activeDate).toBeDefined();
+      expect(component.activeDate).toEqual(new Date('2021-10-12'));
     });
 
     it('should call onChange with new Date 2021-10-12', () => {
