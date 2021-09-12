@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { BsDatepickerModule } from '../bs-datepicker.module';
 import { DatePickerComponent, DATEPICKER_CONTROL_VALUE_ACCESSOR } from '../datepicker.component';
 
 describe('datepicker:', () => {
@@ -10,8 +11,7 @@ describe('datepicker:', () => {
   beforeEach(
     waitForAsync(() =>
       TestBed.configureTestingModule({
-        imports: [CommonModule],
-        declarations: [DatePickerComponent],
+        imports: [CommonModule, BsDatepickerModule],
         providers: [DATEPICKER_CONTROL_VALUE_ACCESSOR],
         schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
       }).compileComponents()
