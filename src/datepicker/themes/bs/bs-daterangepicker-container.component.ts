@@ -1,10 +1,20 @@
-import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 
 import { take } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 import { getFullYear, getMonth } from 'ngx-bootstrap/chronos';
 import { PositioningService } from 'ngx-bootstrap/positioning';
+import { TimepickerComponent } from 'ngx-bootstrap/timepicker';
 
 import { BsDatepickerAbstractComponent } from '../../base/bs-datepicker-container';
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
@@ -29,7 +39,7 @@ import { dayInMilliseconds } from '../../reducer/_defaults';
   animations: [datepickerAnimation]
 })
 export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractComponent
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy, AfterViewInit {
   set value(value: Date[]) {
     this._effects?.setRangeValue(value);
   }
@@ -41,6 +51,9 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   chosenRange: Date[] = [];
   _subs: Subscription[] = [];
   isRangePicker = true;
+
+  @ViewChild('startTP') startTimepicker?: TimepickerComponent;
+  @ViewChild('endTP') endTimepicker?: TimepickerComponent;
 
   constructor(
     _renderer: Renderer2,
@@ -102,6 +115,21 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
           this.chosenRange = dateRange || [];
         })
     );
+  }
+
+  ngAfterViewInit(): void {
+    this.selectedTimeSub.add(this.selectedTime?.subscribe((val) => {
+      if (Array.isArray(val) && val.length >= 2) {
+        this.startTimepicker?.writeValue(val[0]);
+        this.endTimepicker?.writeValue(val[1]);
+      }
+    }));
+    this.startTimepicker?.registerOnChange((val) => {
+      this.timeSelectHandler(val, 0);
+    });
+    this.endTimepicker?.registerOnChange((val) => {
+      this.timeSelectHandler(val, 1);
+    });
   }
 
   get isTopPosition(): boolean {
@@ -216,6 +244,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     for (const sub of this._subs) {
       sub.unsubscribe();
     }
+    this.selectedTimeSub.unsubscribe();
     this._effects?.destroy();
   }
 

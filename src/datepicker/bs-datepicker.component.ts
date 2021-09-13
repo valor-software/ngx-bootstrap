@@ -20,6 +20,7 @@ import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsDatepickerViewMode, DatepickerDateCustomClasses, DatepickerDateTooltipText } from './models';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
 import { checkBsValue } from './utils/bs-calendar-utils';
+import { copyTime } from './utils/copy-time-utils';
 
 @Directive({
   selector: '[bsDatepicker]',
@@ -142,11 +143,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
 
     if (!this._bsValue && value && !this._config.withTimepicker) {
       const now = new Date();
-
-      value.setMilliseconds(now.getMilliseconds());
-      value.setSeconds(now.getSeconds());
-      value.setMinutes(now.getMinutes());
-      value.setHours(now.getHours());
+      copyTime(value, now);
     }
 
     this._bsValue = value;

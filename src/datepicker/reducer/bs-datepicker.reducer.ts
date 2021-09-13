@@ -22,6 +22,7 @@ import { formatYearsCalendar, initialYearShift, yearsPerCalendar } from '../engi
 import { flagYearsCalendar } from '../engine/flag-years-calendar';
 import { BsViewNavigationEvent, DatepickerFormatOptions, BsDatepickerViewMode } from '../models';
 import { getYearsCalendarInitialDate } from '../utils/bs-calendar-utils';
+import { copyTime } from '../utils/copy-time-utils';
 
 
 export function bsDatepickerReducer(state: BsDatepickerState = initialDatepickerState,
@@ -89,12 +90,11 @@ export function bsDatepickerReducer(state: BsDatepickerState = initialDatepicker
         view: state.view
       };
 
-      const _time = (state.selectedTime || [])[0];
-      if (_time) {
-        newState.selectedDate.setHours(_time.getHours());
-        newState.selectedDate.setMinutes(_time.getMinutes());
-        newState.selectedDate.setSeconds(_time.getSeconds());
-        newState.selectedDate.setMilliseconds(_time.getMilliseconds());
+      if (Array.isArray(state.selectedTime)) {
+        const _time = state.selectedTime[0];
+        if (_time) {
+          copyTime(newState.selectedDate, _time);
+        }
       }
 
       const mode = state.view.mode;
@@ -107,7 +107,7 @@ export function bsDatepickerReducer(state: BsDatepickerState = initialDatepicker
 
     case BsDatepickerActions.SELECT_TIME: {
       const {date, index} = action.payload;
-      const selectedTime = [...state.selectedTime || []] ;
+      const selectedTime = state.selectedTime ? [...state.selectedTime] : [];
       selectedTime[index] = date;
       return Object.assign({}, state, { selectedTime });
     }
@@ -158,12 +158,11 @@ export function bsDatepickerReducer(state: BsDatepickerState = initialDatepicker
       };
 
       newState.selectedRange.forEach((dte: Date, index: number) => {
-        const _time = (state.selectedTime || [])[index];
-        if (_time) {
-          dte.setHours(_time.getHours());
-          dte.setMinutes(_time.getMinutes());
-          dte.setSeconds(_time.getSeconds());
-          dte.setMilliseconds(_time.getMilliseconds());
+        if (Array.isArray(state.selectedTime)) {
+          const _time = state.selectedTime[index];
+          if (_time) {
+            copyTime(dte, _time);
+          }
         }
       });
 

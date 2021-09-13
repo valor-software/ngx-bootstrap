@@ -3,6 +3,7 @@ import { BsDatepickerModule } from '../bs-datepicker.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsCustomDates } from '../themes/bs/bs-custom-dates-view.component';
 import { checkBsValue, checkRangesWithMaxDate } from '../utils/bs-calendar-utils';
+import { copyTime } from '../utils/copy-time-utils';
 
 const ranges:  BsCustomDates[] = [{
   label: '',
@@ -49,5 +50,15 @@ describe('daterangepicker:', () => {
     const valuesResult = checkBsValue(values, maxDate);
     expect(JSON.stringify(rangeResult)).toEqual(JSON.stringify(ranges));
     expect(JSON.stringify(valuesResult)).toEqual(JSON.stringify(values));
+  });
+
+  it('should update time part of source date', () => {
+    const date = new Date(2019, 1, 1, 12, 30, 59, 999);
+    copyTime(date, new Date(2020, 1, 1, 0, 0, 0, 0));
+    expect(date.getFullYear()).toEqual(2019);
+    expect(date.getHours()).toEqual(0);
+    expect(date.getMinutes()).toEqual(0);
+    expect(date.getSeconds()).toEqual(0);
+    expect(date.getMilliseconds()).toEqual(0);
   });
 });

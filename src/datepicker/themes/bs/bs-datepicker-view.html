@@ -21,15 +21,8 @@
           </bs-days-calendar-view>
         </div>
         <div *ngIf="withTimepicker" class="bs-timepicker-in-datepicker-container">
-          <timepicker
-            [ngModel]="(selectedTime | async)![0]"
-            (ngModelChange)="timeSelectHandler($event, 0)">
-          </timepicker>
-          <timepicker
-            *ngIf="isRangePicker"
-            [ngModel]="(selectedTime | async)![1]"
-            (ngModelChange)="timeSelectHandler($event, 1)">
-          </timepicker>
+          <timepicker #startTP></timepicker>
+          <timepicker #endTP *ngIf="isRangePicker"></timepicker>
         </div>
       </ng-container>
 

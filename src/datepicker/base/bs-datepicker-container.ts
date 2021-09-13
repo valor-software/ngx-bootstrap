@@ -87,7 +87,8 @@ export abstract class BsDatepickerAbstractComponent {
     return this._daysCalendar$;
   }
 
-  selectedTime!: Observable<Date[]|undefined>;
+  selectedTime?: Observable<Date[]|undefined>;
+  selectedTimeSub = new Subscription();
 
   // todo: valorkin fix
   // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-empty-function
