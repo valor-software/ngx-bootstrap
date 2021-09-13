@@ -92,6 +92,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
    */
   @Input() dateTooltipTexts?: DatepickerDateTooltipText[];
   /**
+   * Indicates Time of Date is set to now 
+   */
+  @Input() isTimeForNow = true;
+  /**
    * Emits when datepicker value has been changed
    */
   @Output() bsValueChange: EventEmitter<Date> = new EventEmitter();
@@ -140,7 +144,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       return;
     }
 
-    if (!this._bsValue && value) {
+    if (!this._bsValue && value && isTimeForNow) {
       const now = new Date();
 
       value.setMilliseconds(now.getMilliseconds());
