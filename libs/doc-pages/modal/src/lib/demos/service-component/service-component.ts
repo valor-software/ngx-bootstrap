@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -20,7 +20,7 @@ export class DemoModalServiceFromComponent {
       ],
       title: 'Modal with component'
     };
-    this.bsModalRef = this.modalService.show(ModalContentComponent, {initialState});
+    this.bsModalRef = this.modalService.show(ModalContentComponent, { initialState } as ModalOptions);
     this.bsModalRef.content.closeBtnName = 'Close';
   }
 }
