@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 
 import { PagesModel } from 'ngx-bootstrap/pagination';
 
+type Roman = {
+  [key: string]: number;
+};
+
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-pagination-custom-template',
@@ -10,7 +14,8 @@ import { PagesModel } from 'ngx-bootstrap/pagination';
 export class DemoPaginationCustomTemplateComponent {
 
   convertToRoman(pageInfo: PagesModel): string {
-    const roman = {
+
+    const roman: Roman = {
       M: 1000,
       CM: 900,
       D: 500,
@@ -29,7 +34,7 @@ export class DemoPaginationCustomTemplateComponent {
     let pageNumber = pageInfo.number;
 
     return Object.keys(roman).reduce((acc, symbol) => {
-      const numeralSystem = Math.floor(pageNumber / roman[symbol]);
+      const numeralSystem = Math.floor(pageNumber / roman[symbol as keyof Roman]);
       pageNumber -= numeralSystem * roman[symbol];
 
       return acc + symbol.repeat(numeralSystem);

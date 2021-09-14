@@ -7,17 +7,17 @@ import { BsDaterangepickerDirective, BsDatepickerConfig } from 'ngx-bootstrap/da
   templateUrl: './config-method.html'
 })
 export class DemoDatepickerConfigMethodComponent {
-  @ViewChild('dp', { static: false }) datepicker: BsDaterangepickerDirective;
+  @ViewChild('dp', { static: false }) datepicker?: BsDaterangepickerDirective;
 
-  bsConfig: Partial<BsDatepickerConfig>;
+  bsConfig?: Partial<BsDatepickerConfig>;
   minDate = new Date(2018, 5, 13);
 
   setOptions(): void {
     this.bsConfig = Object.assign({}, { minDate: this.minDate });
-    this.datepicker.setConfig();
+    this.datepicker?.setConfig();
 
     setTimeout(() => {
-      this.datepicker.toggle();
+      this.datepicker?.toggle();
     });
   }
 }

@@ -3,7 +3,7 @@
 </p>
 <carousel [itemsPerSlide]="itemsPerSlide"
           [singleSlideOffset]="singleSlideOffset"
-          [interval]="false"
+          [interval]="0"
           [noWrap]="noWrap">
   <slide *ngFor="let slide of slides; let index=index">
     <img [src]="slide.image" alt="image slide" style="display: block; width: 100%;">

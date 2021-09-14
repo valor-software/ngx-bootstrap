@@ -7,10 +7,10 @@ import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
   templateUrl: './hide-on-scroll.html'
 })
 export class DemoDatepickerHideOnScrollComponent {
-  @ViewChild(BsDatepickerDirective, { static: false }) datepicker: BsDatepickerDirective;
+  @ViewChild(BsDatepickerDirective, { static: false }) datepicker?: BsDatepickerDirective;
 
   @HostListener('window:scroll')
   onScrollEvent() {
-    this.datepicker.hide();
+    this.datepicker?.hide();
   }
 }

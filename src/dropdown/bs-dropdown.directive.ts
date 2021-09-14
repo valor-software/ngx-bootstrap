@@ -173,6 +173,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     this._state.autoClose = this._config.autoClose;
     this._state.insideClick = this._config.insideClick;
     this._state.isAnimated = this._config.isAnimated;
+    this._state.stopOnClickPropogation = this._config.stopOnClickPropogation;
 
     this._factoryDropDownAnimation = _builder.build(dropdownAnimation);
 

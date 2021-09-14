@@ -19,10 +19,10 @@ import {
   Component, EventEmitter, Input, NgZone, OnDestroy, Output, AfterViewInit
 } from '@angular/core';
 
-import { isBs3, LinkedList } from 'ngx-bootstrap/utils';
+import { isBs3, LinkedList, getBsVer, IBsVersion } from 'ngx-bootstrap/utils';
 import { SlideComponent } from './slide.component';
 import { CarouselConfig } from './carousel.config';
-import { findLastIndex, chunkByNumber } from './utils';
+import { findLastIndex, chunkByNumber, isNumber } from './utils';
 import { SlideWithIndex, IndexedSlideList } from './models';
 
 export enum Direction {
@@ -30,6 +30,8 @@ export enum Direction {
   NEXT,
   PREV
 }
+
+let _currentId = 1;
 
 /**
  * Base element to create carousel
@@ -72,6 +74,11 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     if (this.multilist) {
       return;
     }
+
+    if (isNumber(index)) {
+      this.customActiveSlide = index;
+    }
+
     if (this._slides.length && index !== this._currentActiveSlide) {
       this._select(index);
     }
@@ -103,6 +110,24 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     return this._slides.toArray();
   }
 
+  get isFirstSlideVisible(): boolean {
+    const indexes = this.getVisibleIndexes();
+    if (!indexes || (indexes instanceof Array && !indexes.length)) {
+      return false;
+    }
+
+    return indexes.includes(0);
+  }
+
+  get isLastSlideVisible(): boolean {
+    const indexes = this.getVisibleIndexes();
+    if (!indexes || (indexes instanceof Array && !indexes.length)) {
+      return false;
+    }
+
+    return indexes.includes(this._slides.length -1);
+  }
+
   protected currentInterval?: number;
   protected _currentActiveSlide?: number;
   protected _interval = 5000;
@@ -112,13 +137,20 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   protected _currentVisibleSlidesIndex = 0;
   protected isPlaying = false;
   protected destroyed = false;
+  private customActiveSlide?: number;
+  currentId = 0;
 
   get isBs4(): boolean {
     return !isBs3();
   }
 
+  get _bsVer(): IBsVersion {
+    return getBsVer();
+  }
+
   constructor(config: CarouselConfig, private ngZone: NgZone) {
     Object.assign(this, config);
+    this.currentId = _currentId++;
   }
 
   ngAfterViewInit(): void {
@@ -132,6 +164,10 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
           this.itemsPerSlide
         );
         this.selectInitialSlides();
+      }
+
+      if (this.customActiveSlide && !this.multilist) {
+        this._select(this.customActiveSlide);
       }
     }, 0);
   }
@@ -158,7 +194,9 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
 
     if (!this.multilist && this._slides.length === 1) {
       this._currentActiveSlide = undefined;
-      this.activeSlide = 0;
+      if (!this.customActiveSlide) {
+        this.activeSlide = 0;
+      }
       this.play();
     }
 
@@ -577,6 +615,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     if (!this._chunkedSlides) {
       return false;
     }
+
     return this._currentVisibleSlidesIndex === this._chunkedSlides.length - 1;
   }
 
@@ -618,6 +657,9 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       );
 
       this.makeSlidesConsistent(slidesToReorder);
+      if (this.singleSlideOffset) {
+        this._slidesWithIndexes = slidesToReorder;
+      }
 
       this.slideRangeChange.emit(this.getVisibleIndexes());
       return;
@@ -659,7 +701,6 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     this.hideSlides();
 
     this._slidesWithIndexes.forEach(slide => slide.item.active = true);
-
     this.makeSlidesConsistent(this._slidesWithIndexes);
 
     this.slideRangeChange.emit(
@@ -700,7 +741,6 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
           (slide: SlideWithIndex) => slide.item.active = true
         );
       }
-
       this.slideRangeChange.emit(this.getVisibleIndexes());
     }
   }
@@ -710,6 +750,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       return this._chunkedSlides[this._currentVisibleSlidesIndex]
         .map((slide: SlideWithIndex) => slide.index);
     }
+
     if (this._slidesWithIndexes) {
       return this._slidesWithIndexes.map((slide: SlideWithIndex) => slide.index);
     }
@@ -734,6 +775,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     }
 
     const nextSlide = this._slides.get(index);
+
     if (typeof nextSlide !== 'undefined') {
       this._currentActiveSlide = index;
       nextSlide.active = true;
@@ -781,5 +823,13 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       clearInterval(this.currentInterval);
       this.currentInterval = void 0;
     }
+  }
+
+  checkDisabledClass(buttonType: 'prev' | 'next'): boolean {
+    if (buttonType === 'prev') {
+      return (this.activeSlide === 0 && this.noWrap && !this.multilist) || (this.isFirstSlideVisible && this.noWrap && this.multilist);
+    }
+
+    return (this.isLast(this.activeSlide) && this.noWrap && !this.multilist) || (this.isLastSlideVisible && this.noWrap && this.multilist);
   }
 }

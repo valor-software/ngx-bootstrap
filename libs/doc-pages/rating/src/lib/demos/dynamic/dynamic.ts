@@ -11,7 +11,7 @@ export class DemoRatingDynamicComponent {
   isReadonly = false;
 
   overStar: number | undefined;
-  percent: number;
+  percent = 0;
 
   hoveringOver(value: number): void {
     this.overStar = value;

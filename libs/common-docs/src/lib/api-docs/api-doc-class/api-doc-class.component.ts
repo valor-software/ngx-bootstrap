@@ -20,7 +20,7 @@ import { ComponentApi } from '../../models/components-api.model';
 })
 export class NgApiDocClassComponent {
   headerAnchor?: string;
-  apiDocs: ClassDesc;
+  apiDocs?: ClassDesc;
 
   private analytics: Analytics;
   private docs: NgApiDoc;
@@ -30,7 +30,9 @@ export class NgApiDocClassComponent {
     this.analytics = analytics;
 
     this.headerAnchor = content.anchor;
-    this.apiDocs = this.docs[content.title];
+    if (content?.title) {
+      this.apiDocs = this.docs[content.title];
+    }
   }
 
   methodSignature(method: MethodDesc): string {
@@ -38,6 +40,6 @@ export class NgApiDocClassComponent {
   }
 
   trackSourceClick(): void {
-    this.analytics.trackEvent('Source File View', this.apiDocs.className);
+    this.analytics.trackEvent('Source File View', this.apiDocs?.className);
   }
 }
