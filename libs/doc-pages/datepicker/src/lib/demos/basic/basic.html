@@ -12,3 +12,13 @@
            bsDaterangepicker>
   </div>
 </div>
+
+<bs-datepicker-inline
+  [(bsValue)]="value"
+  [bsConfig]="{showWeekNumbers: false}"
+  [minDate]="minDate"
+  [maxDate]="maxDate"
+  (bsValueChange)="onDateChange($event)"
+></bs-datepicker-inline>
+
+<button (click)="changeMaxDate()">click</button>

@@ -36,7 +36,7 @@ export class DemoTypeaheadMinLengthComponent {
     'Montana',
     'Nebraska',
     'Nevada',
-    'New Hampshire',
+    'dNew Hampshire',
     'New Jersey',
     'New Mexico',
     'New York',

@@ -136,6 +136,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
    */
   @Input()
   set bsValue(value: Date | undefined) {
+    console.log('value', value);
     if (this._bsValue && value && this._bsValue.getTime() === value.getTime()) {
       return;
     }
