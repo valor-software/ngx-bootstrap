@@ -31,7 +31,13 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
   /**
    * Config object for datepicker
    */
-  @Input() bsConfig?: Partial<BsDatepickerInlineConfig>;
+  @Input() set bsConfig(value: Partial<BsDatepickerInlineConfig>) {
+    if (value?.initCurrentTime && value?.initCurrentTime !== this._bsConfig?.initCurrentTime && this._bsValue) {
+      this._bsValue = setCurrentTimeOnDateSelect(this._bsValue);
+    }
+
+    this._bsConfig = value;
+  };
   /**
    * Indicates whether datepicker is enabled or not
    */
@@ -67,6 +73,7 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
   protected _subs: Subscription[] = [];
   private readonly _datepicker: ComponentLoader<BsDatepickerInlineContainerComponent>;
   private _datepickerRef?: ComponentRef<BsDatepickerInlineContainerComponent>;
+  _bsConfig?: Partial<BsDatepickerInlineConfig>;
 
   constructor(
     public _config: BsDatepickerInlineConfig,
@@ -95,7 +102,7 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
       return;
     }
 
-    if (!this._bsValue && value && this._config.initCurrentTime) {
+    if (value && this._bsConfig?.initCurrentTime) {
       value = setCurrentTimeOnDateSelect(value);
     }
 
@@ -174,15 +181,16 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
       this._datepicker.hide();
     }
 
-    this._config = Object.assign({}, this._config, this.bsConfig, {
-      value: checkBsValue(this._bsValue, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
+    this._config = Object.assign({}, this._config, this._bsConfig, {
+      value: checkBsValue(this._bsValue, this.maxDate || this._bsConfig && this._bsConfig.maxDate),
       isDisabled: this.isDisabled,
-      minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
-      maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
-      dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
-      dateTooltipTexts: this.dateTooltipTexts || this.bsConfig && this.bsConfig.dateTooltipTexts,
-      datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
-      datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled
+      minDate: this.minDate || this._bsConfig && this._bsConfig.minDate,
+      maxDate: this.maxDate || this._bsConfig && this._bsConfig.maxDate,
+      dateCustomClasses: this.dateCustomClasses || this._bsConfig && this._bsConfig.dateCustomClasses,
+      dateTooltipTexts: this.dateTooltipTexts || this._bsConfig && this._bsConfig.dateTooltipTexts,
+      datesDisabled: this.datesDisabled || this._bsConfig && this._bsConfig.datesDisabled,
+      datesEnabled: this.datesEnabled || this._bsConfig && this._bsConfig.datesEnabled,
+      initCurrentTime: this._bsConfig?.initCurrentTime
     });
 
 

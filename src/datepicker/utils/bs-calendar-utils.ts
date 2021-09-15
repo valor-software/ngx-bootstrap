@@ -111,12 +111,30 @@ function compareDateWithMaxDateHelper <T>(date: T, maxDate: Date): T | Date[] {
 }
 
 export function setCurrentTimeOnDateSelect(value: Date): Date {
-  const now = new Date();
+  if (!value) return value;
 
-  value.setMilliseconds(now.getMilliseconds());
-  value.setSeconds(now.getSeconds());
-  value.setMinutes(now.getMinutes());
-  value.setHours(now.getHours());
+  return setCurrentTimeHelper(value);
+}
 
+export function setDateRangesCurrentTimeOnDateSelect<T>(value: T): T {
+  if (value instanceof Array && !value?.length) return value;
+
+  if (value instanceof Array) {
+    value.map((date) => {
+      if (!date) {
+        return date;
+      }
+      return setCurrentTimeHelper(date);
+    });
+  }
   return value;
+}
+
+function setCurrentTimeHelper(date: Date): Date {
+  const now = new Date();
+  date.setMilliseconds(now.getMilliseconds());
+  date.setSeconds(now.getSeconds());
+  date.setMinutes(now.getMinutes());
+  date.setHours(now.getHours());
+  return date;
 }

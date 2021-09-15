@@ -1086,6 +1086,12 @@ export const ngdoc: any = {
         "description": "<p>Show one months for special cases (only for dateRangePicker)</p>\n<ol>\n<li>maxDate is equal to today&#39;s date</li>\n<li>minDate&#39;s month is equal to maxDate&#39;s month</li>\n</ol>\n"
       },
       {
+        "name": "initCurrentTime",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>Set current hours, minutes, seconds and milliseconds for bsValue</p>\n"
+      },
+      {
         "name": "isAnimated",
         "defaultValue": "false",
         "type": "boolean",
@@ -4322,8 +4328,8 @@ export const ngdoc: any = {
         "description": "<p>emits true if value is a valid date</p>\n"
       },
       {
-        "name": "changedMeridianValue",
-        "description": "<p>emits meridian value </p>\n"
+        "name": "meridianChange",
+        "description": "<p>emits value of meridian</p>\n"
       }
     ],
     "properties": [],

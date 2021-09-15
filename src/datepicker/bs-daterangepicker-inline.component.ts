@@ -12,7 +12,11 @@ import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsDaterangepickerInlineConfig } from './bs-daterangepicker-inline.config';
 import { BsDaterangepickerInlineContainerComponent } from './themes/bs/bs-daterangepicker-inline-container.component';
 import { DatepickerDateCustomClasses } from './models';
-import { checkBsValue, checkRangesWithMaxDate } from './utils/bs-calendar-utils';
+import {
+  checkBsValue,
+  checkRangesWithMaxDate,
+  setDateRangesCurrentTimeOnDateSelect
+} from './utils/bs-calendar-utils';
 
 @Directive({
     selector: 'bs-daterangepicker-inline',
@@ -24,10 +28,15 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
      * Initial value of datepicker
      */
     @Input()
-    set bsValue(value: Date[]) {
+    set bsValue(value: Date[] ) {
       if (this._bsValue === value) {
         return;
       }
+
+      if (value && this.bsConfig?.initCurrentTime) {
+        value = setDateRangesCurrentTimeOnDateSelect(value);
+      }
+
       this._bsValue = value;
       this.bsValueChange.emit(value);
     }
@@ -35,7 +44,13 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
     /**
      * Config object for datepicker
      */
-    @Input() bsConfig?: Partial<BsDaterangepickerInlineConfig>;
+    @Input() set bsConfig(value: Partial<BsDaterangepickerInlineConfig>) {
+      if (value?.initCurrentTime && value?.initCurrentTime !== this._bsConfig?.initCurrentTime && this._bsValue) {
+        this._bsValue = setDateRangesCurrentTimeOnDateSelect(this._bsValue);
+      }
+
+      this._bsConfig = value;
+    };
     /**
      * Indicates whether datepicker is enabled or not
      */
@@ -73,6 +88,7 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
 
     private readonly _datepicker: ComponentLoader<BsDaterangepickerInlineContainerComponent>;
     private _datepickerRef?: ComponentRef<BsDaterangepickerInlineContainerComponent>;
+    _bsConfig?: Partial<BsDaterangepickerInlineConfig>;
 
     constructor(
       public _config: BsDaterangepickerInlineConfig,
@@ -164,17 +180,18 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
         this._datepicker.hide();
       }
 
-      this._config = Object.assign({}, this._config, this.bsConfig, {
-        value: checkBsValue(this._bsValue, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
+      this._config = Object.assign({}, this._config, this._bsConfig, {
+        value: checkBsValue(this._bsValue, this.maxDate || this._bsConfig && this._bsConfig.maxDate),
         isDisabled: this.isDisabled,
-        minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
-        maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
-        daysDisabled: this.daysDisabled || this.bsConfig && this.bsConfig.daysDisabled,
-        dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
-        datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
-        datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled,
-        ranges: checkRangesWithMaxDate(this.bsConfig && this.bsConfig.ranges, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
-        maxDateRange: this.bsConfig && this.bsConfig.maxDateRange
+        minDate: this.minDate || this._bsConfig && this._bsConfig.minDate,
+        maxDate: this.maxDate || this._bsConfig && this._bsConfig.maxDate,
+        daysDisabled: this.daysDisabled || this._bsConfig && this._bsConfig.daysDisabled,
+        dateCustomClasses: this.dateCustomClasses || this._bsConfig && this._bsConfig.dateCustomClasses,
+        datesDisabled: this.datesDisabled || this._bsConfig && this._bsConfig.datesDisabled,
+        datesEnabled: this.datesEnabled || this._bsConfig && this._bsConfig.datesEnabled,
+        ranges: checkRangesWithMaxDate(this._bsConfig && this._bsConfig.ranges, this.maxDate || this._bsConfig && this._bsConfig.maxDate),
+        maxDateRange: this._bsConfig && this._bsConfig.maxDateRange,
+        initCurrentTime: this.bsConfig?.initCurrentTime
       });
 
       this._datepickerRef = this._datepicker

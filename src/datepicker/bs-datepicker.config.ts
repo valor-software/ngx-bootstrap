@@ -177,5 +177,5 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
   /**
    * Set current hours, minutes, seconds and milliseconds for bsValue
    */
-  initCurrentTime = true;
+  initCurrentTime?: boolean;
 }

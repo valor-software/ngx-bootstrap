@@ -11,7 +11,11 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { ComponentLoaderFactory, ComponentLoader } from 'ngx-bootstrap/component-loader';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { DatepickerDateCustomClasses } from './models';
-import { checkBsValue, checkRangesWithMaxDate } from './utils/bs-calendar-utils';
+import {
+  checkBsValue,
+  checkRangesWithMaxDate,
+  setDateRangesCurrentTimeOnDateSelect
+} from './utils/bs-calendar-utils';
 
 @Directive({
   selector: '[bsDaterangepicker]',
@@ -72,6 +76,11 @@ export class BsDaterangepickerDirective
     if (this._bsValue === value) {
       return;
     }
+
+    if (value && this.bsConfig?.initCurrentTime) {
+      value = setDateRangesCurrentTimeOnDateSelect(value);
+    }
+
     this._bsValue = value;
     this.bsValueChange.emit(value);
   }
@@ -80,6 +89,10 @@ export class BsDaterangepickerDirective
    * Config object for daterangepicker
    */
   @Input() set bsConfig(bsConfig: Partial<BsDaterangepickerConfig | undefined>) {
+    if (bsConfig?.initCurrentTime && bsConfig?.initCurrentTime !== this._bsConfig?.initCurrentTime && this._bsValue) {
+      this._bsValue = setDateRangesCurrentTimeOnDateSelect(this._bsValue);
+    }
+
     this._bsConfig = bsConfig;
     this.setConfig();
     this._rangeInputFormat$.next(bsConfig && bsConfig.rangeInputFormat);
@@ -253,7 +266,8 @@ export class BsDaterangepickerDirective
         datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
         datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled,
         ranges: checkRangesWithMaxDate(this.bsConfig && this.bsConfig.ranges, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
-        maxDateRange: this.bsConfig && this.bsConfig.maxDateRange
+        maxDateRange: this.bsConfig && this.bsConfig.maxDateRange,
+        initCurrentTime: this.bsConfig?.initCurrentTime
       }
     );
   }
