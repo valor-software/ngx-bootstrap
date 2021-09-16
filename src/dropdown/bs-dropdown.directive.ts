@@ -371,8 +371,10 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
       const isRightAligned = this._inlinedMenu.rootNodes[0].classList.contains(
         'dropdown-menu-right'
+      ) || this._inlinedMenu.rootNodes[0].classList.contains(
+        'dropdown-menu-end'
       );
-      console.log('check menu', this._inlinedMenu.rootNodes[0]);
+
       this._renderer.setStyle(
         this._inlinedMenu.rootNodes[0],
         'left',
@@ -382,11 +384,6 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         this._inlinedMenu.rootNodes[0],
         'right',
         isRightAligned ? '0' : 'auto'
-      );
-      this._renderer.setStyle(
-        this._inlinedMenu.rootNodes[0],
-        'inset',
-        isRightAligned ? '100% 0 auto auto !important' : ''
       );
     }
   }
