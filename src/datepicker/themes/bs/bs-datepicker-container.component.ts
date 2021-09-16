@@ -30,6 +30,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
   implements OnInit, OnDestroy {
 
   set value(value: Date|undefined) {
+    console.log('main container', value);
     this._effects?.setValue(value);
   }
 
@@ -97,7 +98,10 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         .select((state: any) => state.selectedDate)
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        .subscribe((date: any) => this.valueChange.emit(date))
+        .subscribe((date: any) => {
+          console.log('container change value', date);
+          this.valueChange.emit(date);
+        })
     );
 
     this._store.dispatch(this._actions.changeViewMode(this._config.startView));

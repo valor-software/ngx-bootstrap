@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, OnChanges, OnDestroy, OnInit, Renderer2, SimpleChanges } from '@angular/core';
 import { BsDatepickerContainerComponent } from './bs-datepicker-container.component';
 
 import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';

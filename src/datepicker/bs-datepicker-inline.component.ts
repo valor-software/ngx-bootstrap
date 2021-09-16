@@ -22,6 +22,7 @@ import { BsDatepickerConfig } from './bs-datepicker.config';
 import { DatepickerDateCustomClasses, DatepickerDateTooltipText } from './models';
 import { BsDatepickerInlineContainerComponent } from './themes/bs/bs-datepicker-inline-container.component';
 import { checkBsValue } from './utils/bs-calendar-utils';
+import { BsDatepickerStore } from './reducer/bs-datepicker.store';
 
 @Directive({
   selector: 'bs-datepicker-inline',
@@ -73,7 +74,8 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
     private _elementRef: ElementRef,
     _renderer: Renderer2,
     _viewContainerRef: ViewContainerRef,
-    cis: ComponentLoaderFactory
+    cis: ComponentLoaderFactory,
+    private _store: BsDatepickerStore
   ) {
     // todo: assign only subset of fields
     Object.assign(this, this._config);
@@ -91,6 +93,7 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
    */
   @Input()
   set bsValue(value: Date) {
+    console.log('value there', value);
     if (this._bsValue === value) {
       return;
     }
@@ -119,18 +122,21 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
         }
       })
     );
+    console.log('check datepickerRef', this._datepickerRef);
 
     // if date changes from picker (view -> model)
     if (this._datepickerRef) {
       this._subs.push(
-        this._datepickerRef.instance.valueChange.subscribe((value: Date) => {
-          this.bsValue = value;
+      this._datepickerRef.instance.valueChange.subscribe((value: Date) => {
+        console.log('needed2', value);
+        this.bsValue = value;
         })
       );
     }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    console.log('changes', changes);
     if (!this._datepickerRef || !this._datepickerRef.instance) {
       return;
     }
@@ -179,7 +185,7 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
       this._datepicker.hide();
     }
 
-    this._config = Object.assign({}, this._config, this.bsConfig, {
+    this._config = Object.assign(this._config, this._config, this.bsConfig, {
       value: checkBsValue(this._bsValue, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
       isDisabled: this.isDisabled,
       minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,

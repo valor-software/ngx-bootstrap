@@ -6,4 +6,28 @@
     <bs-daterangepicker-inline [bsValue]="bsInlineRangeValue"></bs-daterangepicker-inline>
   </div>
 </div>
+<div class="container my-3">
+  <div class="row g-3">
+    <div class="col-auto">
+      <bs-datepicker-inline class="inline-datepicker" [datesDisabled]="datesDisabled"
+                            (bsValueChange)="increaseCounter()"></bs-datepicker-inline>
+    </div>
+    <div class="col d-flex flex-column align-items-start justify-content-between">
+      <div>
+        <p>Click dates and watch bsValueChange be fired. Disable dates and observe, no further events fired (disables today).</p>
+        <p>
+          Resetting the dates to an empty list doesn't fix it. The event breaks as soon as you set the property after
+          initialization
+          (it's not broken if the component is created with disabled dates)
+        </p>
+        <div class="d-flex">
+          <button class="btn btn-primary me-2" (click)="disableDates()">Disable dates</button>
+          <button class="btn btn-secondary" (click)="enableDates()">Enable dates</button>
+        </div>
+      </div>
+      <h4>Event-Counter: {{ counter }}</h4>
+    </div>
+  </div>
+</div>
+
 
