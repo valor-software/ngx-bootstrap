@@ -13,3 +13,31 @@
     </li>
   </ul>
 </div>
+
+<h3>Demo Component</h3>
+<div class="btn-group" dropdown placement="bottom right">
+  <button
+    id="button-alignment"
+    dropdownToggle
+    type="button"
+    class="btn btn-primary dropdown-toggle text-right"
+    aria-controls="dropdown-alignment"
+    style="width:400px"
+  >
+    Probematic droopdown <span class="caret"></span>
+  </button>
+  <ul id="dropdown-alignment" *dropdownMenu class="dropdown-menu" [class.dropdown-menu-right]="true" role="menu"
+      aria-labelledby="button-alignment">
+    <li role="menuitem"><a class="dropdown-item" href="#">Action</a></li>
+    <li role="menuitem">
+      <a class="dropdown-item" href="#">Another action</a>
+    </li>
+    <li role="menuitem">
+      <a class="dropdown-item" href="#">Something else here</a>
+    </li>
+    <li class="divider dropdown-divider"></li>
+    <li role="menuitem">
+      <a class="dropdown-item" href="#">Separated link</a>
+    </li>
+  </ul>
+</div>
