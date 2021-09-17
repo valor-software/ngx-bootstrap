@@ -21,6 +21,8 @@ import {
 } from './modal-options.class';
 import { BsModalRef } from './bs-modal-ref.service';
 
+let currentId = 1;
+
 @Injectable()
 export class BsModalService {
   // constructor props
@@ -66,12 +68,11 @@ export class BsModalService {
     this._createLoaders();
 
     // must be different per every show() call
-    const id = config?.id || (new Date()).getUTCMilliseconds();
+    const id = config?.id || currentId++;
     this.config = this.modalDefaultOption ?
       Object.assign({}, modalConfigDefaults, this.modalDefaultOption, config) :
       Object.assign({}, modalConfigDefaults, config);
     this.config.id = id;
-
     this._showBackdrop();
     this.lastDismissReason = void 0;
 
