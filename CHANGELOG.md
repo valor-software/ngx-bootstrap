@@ -1,3 +1,27 @@
+## [7.1.1](https://github.com/valor-software/ngx-bootstrap/compare/v7.1.0...v7.1.1) (2021-09-10)
+
+
+### Bug Fixes
+
+* **carousel:** fixed prev and next buttons with disabled class, margin-right for multilist carousel ([#6241](https://github.com/valor-software/ngx-bootstrap/issues/6241)) ([3a6f7e3](https://github.com/valor-software/ngx-bootstrap/commit/3a6f7e333bfc7b1d939719fa37b86121a9d80570))
+* **collapse:** fix setting display value ([#6257](https://github.com/valor-software/ngx-bootstrap/issues/6257)) ([aaf1240](https://github.com/valor-software/ngx-bootstrap/commit/aaf1240e9254f168aa3a852351490e8245560e78))
+* **datepicker:** fix custom ranges adaptive view ([#6255](https://github.com/valor-software/ngx-bootstrap/issues/6255)) ([f4689aa](https://github.com/valor-software/ngx-bootstrap/commit/f4689aace88fe12a0bf76a5138b427f5d78ca8a2))
+* **datepicker:** fixed isdisabled mode ([#6286](https://github.com/valor-software/ngx-bootstrap/issues/6286)) ([ff7d650](https://github.com/valor-software/ngx-bootstrap/commit/ff7d650c2c9e5024e30aa8422df88f578652f3e0))
+* **pagination:** fixed default values for first, next, previous, last texts ([#6281](https://github.com/valor-software/ngx-bootstrap/issues/6281)) ([9703904](https://github.com/valor-software/ngx-bootstrap/commit/97039049de3c04201cc222f0eca7a98a195481ca))
+* **popover, tooltip:** fix positioning by not accessing always undefi… ([#6271](https://github.com/valor-software/ngx-bootstrap/issues/6271)) ([6c138db](https://github.com/valor-software/ngx-bootstrap/commit/6c138dbeb10d09a90a1502f65bf73b76eac80c28)), closes [#6237](https://github.com/valor-software/ngx-bootstrap/issues/6237)
+* **popover, tooltip:** fixed right position for popover and tooltip ([#6285](https://github.com/valor-software/ngx-bootstrap/issues/6285)) ([0d9d0fc](https://github.com/valor-software/ngx-bootstrap/commit/0d9d0fcb00824d80a7abf6d33f8ea71023b7830a))
+* **progressbar:** fixed max value for stacked progressbar ([0a5812c](https://github.com/valor-software/ngx-bootstrap/commit/0a5812c16984734da547512bc4f4f9b5b5474441))
+* **readme:** delete extra link getting start in readme ([1544a20](https://github.com/valor-software/ngx-bootstrap/commit/1544a20769176d7dacd8751c501a15516b2097a7))
+* **readme:** updated metadata description ([#6273](https://github.com/valor-software/ngx-bootstrap/issues/6273)) ([e3b15db](https://github.com/valor-software/ngx-bootstrap/commit/e3b15db30029b659a727742f240d54d20dd14cea))
+
+
+### Features
+
+* **dropdown:** added option to stop propagation ([#6282](https://github.com/valor-software/ngx-bootstrap/issues/6282)) ([0e78e51](https://github.com/valor-software/ngx-bootstrap/commit/0e78e51620251705b097cac0e4207aedd335e474))
+* **timepicker:** added meredianChange output with current meredian value ([#6256](https://github.com/valor-software/ngx-bootstrap/issues/6256)) ([653e4c4](https://github.com/valor-software/ngx-bootstrap/commit/653e4c4c8af1be1655ac9c35a38440eae58e03c5))
+
+
+
 # [7.1.0](https://github.com/valor-software/ngx-bootstrap/compare/v7.0.1...v7.1.0) (2021-08-27)
 
 

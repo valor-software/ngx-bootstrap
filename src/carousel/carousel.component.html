@@ -32,7 +32,7 @@
   </div>
   <a class="left carousel-control carousel-control-prev"
      *ngIf="slides.length > 1"
-     [class.disabled]="activeSlide === 0 && noWrap"
+     [class.disabled]="checkDisabledClass('prev')"
      [attr.data-bs-target]="'#'+currentId"
      (click)="previousSlide()"
       tabindex="0" role="button">
@@ -41,7 +41,7 @@
   </a>
   <a class="right carousel-control carousel-control-next"
      *ngIf="slides.length > 1"
-     [class.disabled]="isLast(activeSlide) && noWrap"
+     [class.disabled]="checkDisabledClass('next')"
      [attr.data-bs-target]="'#'+currentId"
      (click)="nextSlide()"
      tabindex="0" role="button">

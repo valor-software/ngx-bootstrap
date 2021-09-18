@@ -8,5 +8,5 @@
 
 <ng-template #Stacked>
   <bar *ngFor="let item of _values"
-       [type]="item.type" [value]="item.value" [max]="item.max" [animate]="animate" [striped]="striped">{{ item.label }}</bar>
+       [type]="item.type" [value]="item.value" [max]="item.max || max" [animate]="animate" [striped]="striped">{{ item.label }}</bar>
 </ng-template>
