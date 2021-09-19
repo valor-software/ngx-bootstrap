@@ -1,57 +1,51 @@
-import {
-  Component,
-  EventEmitter,
-  forwardRef,
-  Input,
-  Output,
-  Provider,
-  ViewChild
-} from '@angular/core';
+import { Component, EventEmitter, forwardRef, Input, Output, Provider, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DatePickerInnerComponent } from './datepicker-inner.component';
 import { DatepickerConfig } from './datepicker.config';
 
 export const DATEPICKER_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => DatePickerComponent),
+  useExisting: forwardRef(() => DatePickerComponent),
   multi: true
 };
 
 @Component({
   selector: 'datepicker',
   template: `
-    <datepicker-inner [activeDate]="activeDate"
-                      (update)="onUpdate($event)"
-                      [locale]="config.locale"
-                      [datepickerMode]="datepickerMode"
-                      [initDate]="initDate"
-                      [minDate]="minDate"
-                      [maxDate]="maxDate"
-                      [minMode]="minMode"
-                      [maxMode]="maxMode"
-                      [showWeeks]="showWeeks"
-                      [formatDay]="formatDay"
-                      [formatMonth]="formatMonth"
-                      [formatYear]="formatYear"
-                      [formatDayHeader]="formatDayHeader"
-                      [formatDayTitle]="formatDayTitle"
-                      [formatMonthTitle]="formatMonthTitle"
-                      [startingDay]="startingDay"
-                      [yearRange]="yearRange"
-                      [customClass]="customClass"
-                      [dateDisabled]="dateDisabled"
-                      [dayDisabled]="dayDisabled"
-                      [onlyCurrentMonth]="onlyCurrentMonth"
-                      [shortcutPropagation]="shortcutPropagation"
-                      [monthColLimit]="monthColLimit"
-                      [yearColLimit]="yearColLimit"
-                      (selectionDone)="onSelectionDone($event)"
-                      (activeDateChange)="onActiveDateChange($event)">
+    <datepicker-inner
+      [activeDate]="activeDate"
+      (update)="onUpdate($event)"
+      [locale]="config.locale"
+      [datepickerMode]="datepickerMode"
+      [initDate]="initDate"
+      [minDate]="minDate"
+      [maxDate]="maxDate"
+      [minMode]="minMode"
+      [maxMode]="maxMode"
+      [showWeeks]="showWeeks"
+      [formatDay]="formatDay"
+      [formatMonth]="formatMonth"
+      [formatYear]="formatYear"
+      [formatDayHeader]="formatDayHeader"
+      [formatDayTitle]="formatDayTitle"
+      [formatMonthTitle]="formatMonthTitle"
+      [startingDay]="startingDay"
+      [yearRange]="yearRange"
+      [customClass]="customClass"
+      [dateDisabled]="dateDisabled"
+      [dayDisabled]="dayDisabled"
+      (onlyCurrentMonth)="onlyCurrentMonth"
+      [shortcutPropagation]="shortcutPropagation"
+      [monthColLimit]="monthColLimit"
+      [yearColLimit]="yearColLimit"
+      (selectionDone)="onSelectionDone($event)"
+      (activeDateChange)="onActiveDateChange($event)"
+    >
       <daypicker tabindex="0"></daypicker>
       <monthpicker tabindex="0"></monthpicker>
       <yearpicker tabindex="0"></yearpicker>
     </datepicker-inner>
-    `,
+  `,
   providers: [DATEPICKER_CONTROL_VALUE_ACCESSOR]
 })
 export class DatePickerComponent implements ControlValueAccessor {
@@ -102,11 +96,11 @@ export class DatePickerComponent implements ControlValueAccessor {
 
   /** currently active date */
   @Input()
-  get activeDate(): Date|undefined {
+  get activeDate(): Date | undefined {
     return this._activeDate || this._now;
   }
 
-  set activeDate(value: Date|undefined) {
+  set activeDate(value: Date | undefined) {
     this._activeDate = value;
   }
 
@@ -115,9 +109,7 @@ export class DatePickerComponent implements ControlValueAccessor {
 
   /** callback to invoke when the activeDate is changed. */
   @Output()
-  activeDateChange: EventEmitter<Date> = new EventEmitter<Date>(
-    undefined
-  );
+  activeDateChange: EventEmitter<Date> = new EventEmitter<Date>(undefined);
 
   @ViewChild(DatePickerInnerComponent, { static: true })
   _datePicker?: DatePickerInnerComponent;
