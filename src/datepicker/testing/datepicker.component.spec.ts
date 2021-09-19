@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { BsDatepickerModule } from '../bs-datepicker.module';
 import { DatePickerComponent, DATEPICKER_CONTROL_VALUE_ACCESSOR } from '../datepicker.component';
+import { DatepickerConfig } from '../datepicker.config';
 
 describe('datepicker:', () => {
   let fixture: ComponentFixture<DatePickerComponent>;
@@ -11,8 +11,9 @@ describe('datepicker:', () => {
   beforeEach(
     waitForAsync(() =>
       TestBed.configureTestingModule({
-        imports: [CommonModule, BsDatepickerModule],
-        providers: [DATEPICKER_CONTROL_VALUE_ACCESSOR],
+        imports: [CommonModule],
+        declarations: [DatePickerComponent],
+        providers: [DATEPICKER_CONTROL_VALUE_ACCESSOR, DatepickerConfig],
         schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
       }).compileComponents()
     )
@@ -23,6 +24,11 @@ describe('datepicker:', () => {
     component = fixture.componentInstance;
     component.onlyCurrentMonth = false;
   });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
   /* eslint-disable @typescript-eslint/no-explicit-any */
   it('should not throw undefined reference error when initializing value before content init hook', () => {
     expect(() => {
