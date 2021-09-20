@@ -6,22 +6,37 @@ import { NavigationEnd, Router } from '@angular/router';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'top-menu',
-  templateUrl: './top-menu.component.html'
+  templateUrl: './top-menu.component.html',
 })
 export class TopMenuComponent implements AfterViewInit {
+  shadowRoutes = ['/documentation', '/discover', '/schematics'];
   appUrl?: string;
   appHash?: string;
   currentVersion?: string;
   isBrowser: boolean;
 
-  previousDocs: {
-    url: string;
-    version: string;
-    unprefixedUrl: string;
-  }[] = [];
+  initBoxShadow = false;
 
   isLocalhost = false;
   needPrefix = false;
+
+  previousDocs = [
+    {
+      url: '11111',
+      version: '1111',
+      unprefixedUrl: '1111'
+    },
+    {
+      url: '11111',
+      version: '1111',
+      unprefixedUrl: '1111'
+    },
+    {
+      url: '11111',
+      version: '1111',
+      unprefixedUrl: '1111'
+    }
+  ];
 
   constructor(
     @Inject(PLATFORM_ID) platformId: number,
@@ -60,16 +75,21 @@ export class TopMenuComponent implements AfterViewInit {
 
     const getUrl = (router: Router) => {
       const indexOfHash = router.routerState.snapshot.url.indexOf('#');
-
-      return router.routerState.snapshot.url.slice(0, indexOfHash);
+      return indexOfHash ? router.routerState.snapshot.url : router.routerState.snapshot.url.slice(0, indexOfHash);
     };
 
     let _prev = getUrl(this.router);
     this.router.events.subscribe((event: any) => {
       const _cur = getUrl(this.router);
+      this.initBoxShadow = false;
+      if (this.shadowRoutes.includes(_cur)) {
+        this.initBoxShadow = true;
+      }
+
       if (typeof window !== 'undefined') {
         this.appHash = location.hash === '#/' ? '' : location.hash;
       }
+
       if (event instanceof NavigationEnd && _cur !== _prev) {
         _prev = _cur;
       }

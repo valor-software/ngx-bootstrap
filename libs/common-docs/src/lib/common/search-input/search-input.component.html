@@ -1,0 +1,22 @@
+<form class="sidebar-search icon w-100">
+  <button id="mobile-main-menu" type="button" (click)="toggle()">
+    <img src="assets/images/icons/menu-left.svg" alt="left menu">
+  </button>
+  <div class="input-container">
+    <input  #searchInput
+            type="text"
+            aria-label="Search in docs" name="search"
+            placeholder="Search..."
+            [value]="search.text"
+            (keyup)='search.text = searchInput.value'
+            (keypress)='preventReloading($event)'/>
+  </div>
+</form>
+
+<ul class="sidebar-list menu" *ngIf="search.text && routes.length">
+  <li *ngFor="let route of routes | slice:4 | SearchFilter:search.text"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{exact: true}">
+    <a routerLink="/{{route.path}}">{{route.data[0]}}</a>
+  </li>
+</ul>

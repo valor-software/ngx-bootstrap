@@ -6,7 +6,8 @@ import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { AppFooterComponent } from './common/app-footer/app-footer.component';
 import { AddNavComponent } from './common/add-nav/add-nav.component';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
-import { SearchFilterPipe } from './common/sidebar/search-filter.pipe';
+import { SearchFilterPipe } from './common/search-input/search-filter.pipe';
+import { SearchInputComponent } from './common/search-input/search-input.component';
 
 /* docs */
 import { DemoSectionComponent } from './demo-section/demo-section.component';
@@ -47,7 +48,8 @@ export { ContentSection } from './models/content-section.model';
 export { AppFooterComponent } from './common/app-footer/app-footer.component';
 export { AddNavComponent } from './common/add-nav/add-nav.component';
 export { SidebarComponent } from './common/sidebar/sidebar.component';
-export { SearchFilterPipe } from './common/sidebar/search-filter.pipe';
+export { SearchFilterPipe } from './common/search-input/search-filter.pipe';
+export { SearchInputComponent } from './common/search-input/search-input.component';
 export { LandingComponent } from './common/landing/landing.component';
 export { DocumentationComponent } from './common/documentation/documentation.component';
 export { DiscoverComponent } from './common/discover/discover.component';
@@ -70,7 +72,8 @@ export { DOCS_TOKENS } from './tokens/docs-routes-token';
     LandingComponent,
     DocumentationComponent,
     DiscoverComponent,
-    SchematicsComponent
+    SchematicsComponent,
+    SearchInputComponent
   ],
   imports: [
     TabsModule,
@@ -90,7 +93,8 @@ export { DOCS_TOKENS } from './tokens/docs-routes-token';
     ExamplesComponentModule,
     ApiSectionsComponentModule,
     NgxPageScrollModule,
-    DocsSectionComponent
+    DocsSectionComponent,
+    SearchInputComponent
   ],
   providers: [ContentSection],
   entryComponents: [

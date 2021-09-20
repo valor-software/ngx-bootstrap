@@ -1,16 +1,4 @@
-<form class="sidebar-search">
-  <input  #searchInput
-          type="text"
-          aria-label="Search in docs" name="search"
-          placeholder="Search..."
-          [value]="search.text"
-          (keyup)='search.text = searchInput.value'
-          (keypress)='preventReloading($event)'/>
-
-  <button id="mobile-main-menu" type="button" (click)="toggle()">
-    <img src="assets/images/icons/menu-left.svg" alt="left menu">
-  </button>
-</form>
+<search-input></search-input>
 <div class="mobile-menu">
   <div class="bootstrap-version">
     <span>Bootstrap: </span>
