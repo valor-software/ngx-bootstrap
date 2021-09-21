@@ -371,7 +371,10 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
       const isRightAligned = this._inlinedMenu.rootNodes[0].classList.contains(
         'dropdown-menu-right'
+      ) || this._inlinedMenu.rootNodes[0].classList.contains(
+        'dropdown-menu-end'
       );
+
       this._renderer.setStyle(
         this._inlinedMenu.rootNodes[0],
         'left',
