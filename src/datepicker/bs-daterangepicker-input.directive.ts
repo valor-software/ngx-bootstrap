@@ -211,9 +211,13 @@ export class BsDaterangepickerInputDirective
       let _input: (string | Date)[] = [];
       if (typeof value === 'string') {
         const trimmedSeparator = this._picker._config.rangeSeparator.trim();
-        _input = value
-          .split(trimmedSeparator.length > 0 ? trimmedSeparator : this._picker._config.rangeSeparator)
-          .map(_val => _val.trim());
+        if (value.replace(/[^-]/g, '').length > 1) {
+          _input = value.split(this._picker._config.rangeSeparator);
+        } else {
+          _input = value
+            .split(trimmedSeparator.length > 0 ? trimmedSeparator : this._picker._config.rangeSeparator)
+            .map(_val => _val.trim());
+        }
       }
 
       if (Array.isArray(value)) {
