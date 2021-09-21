@@ -23,7 +23,6 @@ export { ExamplesComponent } from './examples.component';
   exports: [
     ExamplesComponent,
     RouterModule
-  ],
-  providers: []
+  ]
 })
 export class ExamplesComponentModule {}

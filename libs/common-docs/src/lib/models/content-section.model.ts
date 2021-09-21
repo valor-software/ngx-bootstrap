@@ -3,7 +3,7 @@ import { ComponentExample } from './components-examples.model';
 import { ComponentApi } from './components-api.model';
 import { ComponentsTopSection } from './components-top-section.model';
 
-@Injectable()
+@Injectable({providedIn: 'platform'})
 export class ContentSection {
   name?: string;
   anchor?: string;

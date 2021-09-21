@@ -31,7 +31,6 @@ export { SampleBoxComponent } from './sample-box/sample-box.component';
     NgApiDocClassComponent,
     NgApiDocConfigComponent,
     SampleBoxComponent
-  ],
-  providers: [Analytics]
+  ]
 })
 export class NgApiDocModule {}

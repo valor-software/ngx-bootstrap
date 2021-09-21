@@ -2,7 +2,7 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { AvailableBsVersions } from 'ngx-bootstrap/utils';
 
-@Injectable()
+@Injectable({providedIn: 'platform'})
 export class ThemeStorage {
   static storageKey = 'bs-theme-storage-current';
 

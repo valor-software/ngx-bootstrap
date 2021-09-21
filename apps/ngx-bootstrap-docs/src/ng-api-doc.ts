@@ -3452,7 +3452,6 @@ export const ngdoc: any = {
       },
       {
         "name": "firstText",
-        "defaultValue": "First",
         "type": "string",
         "description": "<p>first button text</p>\n"
       },
@@ -3463,7 +3462,6 @@ export const ngdoc: any = {
       },
       {
         "name": "lastText",
-        "defaultValue": "Last",
         "type": "string",
         "description": "<p>last button text</p>\n"
       },
@@ -3474,7 +3472,6 @@ export const ngdoc: any = {
       },
       {
         "name": "nextText",
-        "defaultValue": "Next",
         "type": "string",
         "description": "<p>next button text</p>\n"
       },
@@ -3485,7 +3482,6 @@ export const ngdoc: any = {
       },
       {
         "name": "previousText",
-        "defaultValue": "Previous",
         "type": "string",
         "description": "<p>previous button text</p>\n"
       },

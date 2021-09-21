@@ -23,7 +23,7 @@ import { BsDatepickerActions } from './bs-datepicker.actions';
 import { BsDatepickerStore } from './bs-datepicker.store';
 
 
-@Injectable()
+@Injectable({providedIn: 'platform'})
 export class BsDatepickerEffects {
   viewMode?: Observable<BsDatepickerViewMode>;
   daysCalendar?: Observable<DaysCalendarViewModel[]>;

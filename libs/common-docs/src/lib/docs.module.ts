@@ -1,4 +1,4 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
@@ -24,6 +24,7 @@ import { LandingComponent } from './common/landing/landing.component';
 import { DocumentationComponent } from './common/documentation/documentation.component';
 import { DiscoverComponent } from './common/discover/discover.component';
 import { SchematicsComponent } from './common/schematics/schematics.component';
+import { TopMenuComponent } from './common/top-menu/top-menu.component';
 
 /* export */
 export {
@@ -73,7 +74,8 @@ export { DOCS_TOKENS } from './tokens/docs-routes-token';
     DocumentationComponent,
     DiscoverComponent,
     SchematicsComponent,
-    SearchInputComponent
+    SearchInputComponent,
+    TopMenuComponent
   ],
   imports: [
     TabsModule,
@@ -94,16 +96,16 @@ export { DOCS_TOKENS } from './tokens/docs-routes-token';
     ApiSectionsComponentModule,
     NgxPageScrollModule,
     DocsSectionComponent,
-    SearchInputComponent
+    SearchInputComponent,
+    TopMenuComponent
   ],
-  providers: [ContentSection],
   entryComponents: [
-    DemoTopSectionComponent,
-    ExamplesComponent,
-    ApiSectionsComponent,
-    NgApiDocComponent,
-    NgApiDocClassComponent,
-    NgApiDocConfigComponent
+    // DemoTopSectionComponent,
+    // ExamplesComponent,
+    // ApiSectionsComponent,
+    // NgApiDocComponent,
+    // NgApiDocClassComponent,
+    // NgApiDocConfigComponent
   ]
 })
 export class DocsModule {}

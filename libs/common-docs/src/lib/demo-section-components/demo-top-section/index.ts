@@ -18,7 +18,6 @@ export { DemoTopSectionComponent } from './demo-top-section.component';
   ],
   exports: [
     DemoTopSectionComponent
-  ],
-  providers: []
+  ]
 })
 export class DemoTopSectionComponentModule {}

@@ -21,7 +21,7 @@ import {
 } from './modal-options.class';
 import { BsModalRef } from './bs-modal-ref.service';
 
-@Injectable()
+@Injectable({providedIn: 'platform'})
 export class BsModalService {
   // constructor props
   config: ModalOptions;

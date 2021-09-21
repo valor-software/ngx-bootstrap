@@ -9,19 +9,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
 import { ngdoc } from '../ng-api-doc';
 import { AppComponent } from './app.component';
-import { TopMenuComponent } from '@ngx-bootstrap-doc/docs';
-import { DocsModule } from '@ngx-bootstrap-doc/docs';
-import { NgApiDoc } from '@ngx-bootstrap-doc/docs';
-import { StyleManager } from '@ngx-bootstrap-doc/docs';
-import { ThemeStorage } from '@ngx-bootstrap-doc/docs';
+import { DOCS_TOKENS, DocsModule, NgApiDoc } from '@ngx-bootstrap-doc/docs';
 import { ScullyLibModule } from '@scullyio/ng-lib';
 import { routes } from './app.routing';
-import { DOCS_TOKENS } from '@ngx-bootstrap-doc/docs';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    TopMenuComponent,
+    AppComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -33,7 +27,7 @@ import { DOCS_TOKENS } from '@ngx-bootstrap-doc/docs';
     BsDropdownModule.forRoot(),
     ScullyLibModule
   ],
-  providers: [ThemeStorage, StyleManager,
+  providers: [
     { provide: NgApiDoc, useValue: ngdoc },
     { provide: DOCS_TOKENS, useValue: routes }],
   bootstrap: [AppComponent]
