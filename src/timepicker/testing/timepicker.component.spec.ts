@@ -570,7 +570,7 @@ describe('Component: TimepickerComponent', () => {
     });
 
     it('should can change hours value with the mouse wheel increment', fakeAsync(() => {
-      const methodSpy = spyOn(component, 'changeHours').and.callThrough();
+      const methodSpy = spyOn(component, 'changeTimeOption').and.callThrough();
       component.hourStep = 3;
 
       component.writeValue(testTime(6, 30, 30));
@@ -584,6 +584,7 @@ describe('Component: TimepickerComponent', () => {
       fixture.whenStable().then(() => {
         expect(inputHours.value).toEqual('09');
         expect(methodSpy).toHaveBeenCalledWith(
+          'hours',
           component.hourStep * component.wheelSign(wheelEvent),
           'wheel'
         );
@@ -591,7 +592,7 @@ describe('Component: TimepickerComponent', () => {
     }));
 
     it('should can change minutes value with the mouse wheel increment', fakeAsync(() => {
-      const methodSpy = spyOn(component, 'changeMinutes').and.callThrough();
+      const methodSpy = spyOn(component, 'changeTimeOption').and.callThrough();
       component.minuteStep = 3;
 
       component.writeValue(testTime(6, 30, 30));
@@ -605,6 +606,7 @@ describe('Component: TimepickerComponent', () => {
       fixture.whenStable().then(() => {
         expect(inputMinutes.value).toEqual('33');
         expect(methodSpy).toHaveBeenCalledWith(
+          'minutes',
           component.minuteStep * component.wheelSign(wheelEvent),
           'wheel'
         );
@@ -612,7 +614,7 @@ describe('Component: TimepickerComponent', () => {
     }));
 
     it('should can change seconds value with the mouse wheel increment', fakeAsync(() => {
-      const methodSpy = spyOn(component, 'changeSeconds').and.callThrough();
+      const methodSpy = spyOn(component, 'changeTimeOption').and.callThrough();
 
       component.showSeconds = true;
       component.secondsStep = 3;
@@ -627,6 +629,7 @@ describe('Component: TimepickerComponent', () => {
       fixture.whenStable().then(() => {
         expect(inputSeconds.value).toEqual('33');
         expect(methodSpy).toHaveBeenCalledWith(
+          'seconds',
           component.secondsStep * component.wheelSign(wheelEvent),
           'wheel'
         );
@@ -634,7 +637,7 @@ describe('Component: TimepickerComponent', () => {
     }));
 
     it('should can change hours value with the mouse wheel decrement', fakeAsync(() => {
-      const methodSpy = spyOn(component, 'changeHours').and.callThrough();
+      const methodSpy = spyOn(component, 'changeTimeOption').and.callThrough();
       component.hourStep = 3;
 
       component.writeValue(testTime(6, 30, 30));
@@ -648,6 +651,7 @@ describe('Component: TimepickerComponent', () => {
       fixture.whenStable().then(() => {
         expect(inputHours.value).toEqual('03');
         expect(methodSpy).toHaveBeenCalledWith(
+          'hours',
           component.hourStep * component.wheelSign(wheelEvent),
           'wheel'
         );
@@ -655,7 +659,7 @@ describe('Component: TimepickerComponent', () => {
     }));
 
     it('should can change minutes value with the mouse wheel decrement', fakeAsync(() => {
-      const methodSpy = spyOn(component, 'changeMinutes').and.callThrough();
+      const methodSpy = spyOn(component, 'changeTimeOption').and.callThrough();
       component.minuteStep = 3;
 
       component.writeValue(testTime(6, 30, 30));
@@ -669,6 +673,7 @@ describe('Component: TimepickerComponent', () => {
       fixture.whenStable().then(() => {
         expect(inputMinutes.value).toEqual('27');
         expect(methodSpy).toHaveBeenCalledWith(
+          'minutes',
           component.minuteStep * component.wheelSign(wheelEvent),
           'wheel'
         );
@@ -676,7 +681,7 @@ describe('Component: TimepickerComponent', () => {
     }));
 
     it('should can change seconds value with the mouse wheel decrement', fakeAsync(() => {
-      const methodSpy = spyOn(component, 'changeSeconds').and.callThrough();
+      const methodSpy = spyOn(component, 'changeTimeOption').and.callThrough();
       component.secondsStep = 3;
       component.showSeconds = true;
 
@@ -690,6 +695,7 @@ describe('Component: TimepickerComponent', () => {
       fixture.whenStable().then(() => {
         expect(inputSeconds.value).toEqual('27');
         expect(methodSpy).toHaveBeenCalledWith(
+          'seconds',
           component.secondsStep * component.wheelSign(wheelEvent),
           'wheel'
         );
@@ -697,7 +703,7 @@ describe('Component: TimepickerComponent', () => {
     }));
 
     it('should can not change hours value with the mouse wheel', fakeAsync(() => {
-      const methodSpy = spyOn(component, 'changeHours').and.callThrough();
+      const methodSpy = spyOn(component, 'changeTimeOption').and.callThrough();
       component.hourStep = 3;
       component.mousewheel = false;
 
@@ -712,6 +718,7 @@ describe('Component: TimepickerComponent', () => {
       fixture.whenStable().then(() => {
         expect(inputHours.value).toEqual('06');
         expect(methodSpy).toHaveBeenCalledWith(
+          'hours',
           component.hourStep * component.wheelSign(wheelEvent),
           'wheel'
         );
@@ -719,7 +726,7 @@ describe('Component: TimepickerComponent', () => {
     }));
 
     it('should can not change minutes value with the mouse wheel', fakeAsync(() => {
-      const methodSpy = spyOn(component, 'changeMinutes').and.callThrough();
+      const methodSpy = spyOn(component, 'changeTimeOption').and.callThrough();
       component.minuteStep = 3;
       component.mousewheel = false;
 
@@ -734,6 +741,7 @@ describe('Component: TimepickerComponent', () => {
       fixture.whenStable().then(() => {
         expect(inputMinutes.value).toEqual('30');
         expect(methodSpy).toHaveBeenCalledWith(
+          'minutes',
           component.minuteStep * component.wheelSign(wheelEvent),
           'wheel'
         );
@@ -741,7 +749,7 @@ describe('Component: TimepickerComponent', () => {
     }));
 
     it('should can not change seconds value with the mouse wheel', fakeAsync(() => {
-      const methodSpy = spyOn(component, 'changeSeconds').and.callThrough();
+      const methodSpy = spyOn(component, 'changeTimeOption').and.callThrough();
       component.secondsStep = 3;
       component.mousewheel = false;
 
@@ -756,6 +764,7 @@ describe('Component: TimepickerComponent', () => {
       fixture.whenStable().then(() => {
         expect(inputSeconds.value).toEqual('30');
         expect(methodSpy).toHaveBeenCalledWith(
+          'seconds',
           component.secondsStep * component.wheelSign(wheelEvent),
           'wheel'
         );
@@ -779,7 +788,7 @@ describe('Component: TimepickerComponent', () => {
     });
 
     it('should can change hours value with the arrow keys up', fakeAsync(() => {
-      const methodSpy = spyOn(component, 'changeHours').and.callThrough();
+      const methodSpy = spyOn(component, 'changeTimeOption').and.callThrough();
       component.hourStep = 3;
 
       component.writeValue(testTime(6, 2, 3));
@@ -790,12 +799,12 @@ describe('Component: TimepickerComponent', () => {
 
       fixture.whenStable().then(() => {
         expect(inputHours.value).toEqual('09');
-        expect(methodSpy).toHaveBeenCalledWith(component.hourStep, 'key');
+        expect(methodSpy).toHaveBeenCalledWith('hours',component.hourStep, 'key');
       });
     }));
 
     it('should can change minutes value with the arrow keys up', fakeAsync(() => {
-      const methodSpy = spyOn(component, 'changeMinutes').and.callThrough();
+      const methodSpy = spyOn(component, 'changeTimeOption').and.callThrough();
       component.minuteStep = 3;
 
       component.writeValue(testTime(6, 2, 3));
@@ -806,12 +815,12 @@ describe('Component: TimepickerComponent', () => {
 
       fixture.whenStable().then(() => {
         expect(inputMinutes.value).toEqual('05');
-        expect(methodSpy).toHaveBeenCalledWith(component.minuteStep, 'key');
+        expect(methodSpy).toHaveBeenCalledWith('minutes',component.minuteStep, 'key');
       });
     }));
 
     it('should can change seconds value with the arrow keys up', fakeAsync(() => {
-      const methodSpy = spyOn(component, 'changeSeconds').and.callThrough();
+      const methodSpy = spyOn(component, 'changeTimeOption').and.callThrough();
       component.secondsStep = 3;
 
       component.writeValue(testTime(6, 2, 3));
@@ -823,12 +832,12 @@ describe('Component: TimepickerComponent', () => {
 
       fixture.whenStable().then(() => {
         expect(inputSeconds.value).toEqual('06');
-        expect(methodSpy).toHaveBeenCalledWith(component.secondsStep, 'key');
+        expect(methodSpy).toHaveBeenCalledWith('seconds', component.secondsStep, 'key');
       });
     }));
 
     it('should can not change hours value with the arrow keys down', fakeAsync(() => {
-      const methodSpy = spyOn(component, 'changeHours').and.callThrough();
+      const methodSpy = spyOn(component, 'changeTimeOption').and.callThrough();
       component.hourStep = 3;
 
       component.writeValue(testTime(6, 2, 3));
@@ -839,12 +848,12 @@ describe('Component: TimepickerComponent', () => {
 
       fixture.whenStable().then(() => {
         expect(inputHours.value).toEqual('03');
-        expect(methodSpy).toHaveBeenCalledWith(-component.hourStep, 'key');
+        expect(methodSpy).toHaveBeenCalledWith('hours', -component.hourStep, 'key');
       });
     }));
 
     it('should can not change minutes value with the arrow keys down', fakeAsync(() => {
-      const methodSpy = spyOn(component, 'changeMinutes').and.callThrough();
+      const methodSpy = spyOn(component, 'changeTimeOption').and.callThrough();
       component.minuteStep = 3;
 
       component.writeValue(testTime(6, 2, 3));
@@ -855,12 +864,12 @@ describe('Component: TimepickerComponent', () => {
 
       fixture.whenStable().then(() => {
         expect(inputMinutes.value).toEqual('59');
-        expect(methodSpy).toHaveBeenCalledWith(-component.minuteStep, 'key');
+        expect(methodSpy).toHaveBeenCalledWith('minutes',-component.minuteStep, 'key');
       });
     }));
 
     it('should can not change seconds value with the arrow keys down', fakeAsync(() => {
-      const methodSpy = spyOn(component, 'changeSeconds').and.callThrough();
+      const methodSpy = spyOn(component, 'changeTimeOption').and.callThrough();
       component.showSeconds = true;
       component.secondsStep = 3;
 
@@ -872,12 +881,12 @@ describe('Component: TimepickerComponent', () => {
 
       fixture.whenStable().then(() => {
         expect(inputSeconds.value).toEqual('00');
-        expect(methodSpy).toHaveBeenCalledWith(-component.secondsStep, 'key');
+        expect(methodSpy).toHaveBeenCalledWith('seconds', -component.secondsStep, 'key');
       });
     }));
 
     it('should can not change hours value with the arrow keys', fakeAsync(() => {
-      const methodSpy = spyOn(component, 'changeHours').and.callThrough();
+      const methodSpy = spyOn(component, 'changeTimeOption').and.callThrough();
       component.hourStep = 3;
       component.arrowkeys = false;
 
@@ -889,12 +898,12 @@ describe('Component: TimepickerComponent', () => {
       fixture.detectChanges();
       fixture.whenStable().then(() => {
         expect(inputHours.value).toEqual('06');
-        expect(methodSpy).toHaveBeenCalledWith(component.hourStep, 'key');
+        expect(methodSpy).toHaveBeenCalledWith('hours', component.hourStep, 'key');
       });
     }));
 
     it('should can not change minutes value with the arrow keys', fakeAsync(() => {
-      const methodSpy = spyOn(component, 'changeMinutes').and.callThrough();
+      const methodSpy = spyOn(component, 'changeTimeOption').and.callThrough();
       component.minuteStep = 3;
       component.arrowkeys = false;
 
@@ -906,12 +915,12 @@ describe('Component: TimepickerComponent', () => {
 
       fixture.whenStable().then(() => {
         expect(inputMinutes.value).toEqual('02');
-        expect(methodSpy).toHaveBeenCalledWith(component.minuteStep, 'key');
+        expect(methodSpy).toHaveBeenCalledWith('minutes',component.minuteStep, 'key');
       });
     }));
 
     it('should can not change seconds value with the arrow keys', fakeAsync(() => {
-      const methodSpy = spyOn(component, 'changeSeconds').and.callThrough();
+      const methodSpy = spyOn(component, 'changeTimeOption').and.callThrough();
 
       component.showSeconds = true;
       component.secondsStep = 3;
@@ -925,7 +934,7 @@ describe('Component: TimepickerComponent', () => {
 
       fixture.whenStable().then(() => {
         expect(inputSeconds.value).toEqual('03');
-        expect(methodSpy).toHaveBeenCalledWith(component.secondsStep, 'key');
+        expect(methodSpy).toHaveBeenCalledWith('seconds', component.secondsStep, 'key');
       });
     }));
   });
@@ -971,9 +980,7 @@ describe('Component: TimepickerComponent', () => {
       expect(inputSeconds.value).toBe('12');
 
       const methodSpy = spyOn(component, 'onChange').and.callThrough();
-      component.hours = '99';
-      component.minutes = '99';
-      component.seconds = '99';
+      component.onTimeChanged('99', '99', '99');
       component._updateTime();
       fixture.detectChanges();
 
@@ -998,7 +1005,7 @@ describe('Component: TimepickerComponent', () => {
     it('should clear model if hour limits are invalid', () => {
       const methodSpy = spyOn(component, 'onChange').and.callThrough();
       spyOn(component.isValid, 'emit').and.stub();
-      spyOn(component, 'isValidLimit').and.returnValue(false);
+     // spyOn(component, 'isValidLimit').and.returnValue(false);
 
       inputHours = getInputElements(fixture)[0];
       (inputHours as HTMLInputElement).value = '19';
@@ -1038,7 +1045,7 @@ describe('Component: TimepickerComponent', () => {
     it('should clear model if minute limits are invalid', () => {
       const methodSpy = spyOn(component, 'onChange').and.callThrough();
       spyOn(component.isValid, 'emit').and.stub();
-      spyOn(component, 'isValidLimit').and.returnValue(false);
+      // spyOn(component, 'isValidLimit').and.returnValue(false);
 
       inputMinutes = getInputElements(fixture)[1];
       (inputMinutes as HTMLInputElement).value = '30';
@@ -1077,7 +1084,7 @@ describe('Component: TimepickerComponent', () => {
     it('should clear model if second limits are invalid', () => {
       const methodSpy = spyOn(component, 'onChange').and.callThrough();
       spyOn(component.isValid, 'emit').and.stub();
-      spyOn(component, 'isValidLimit').and.returnValue(false);
+      //  spyOn(component, 'isValidLimit').and.returnValue(false);
 
 
       inputSeconds = getInputElements(fixture)[2];
