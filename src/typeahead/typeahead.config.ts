@@ -22,5 +22,5 @@ export class TypeaheadConfig {
   /**
    * used to choose item on blur event
    */
-  chooseItemOnBlur = false;
+  selectItemOnBlur = false;
 }
