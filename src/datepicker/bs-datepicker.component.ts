@@ -152,24 +152,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
     return this._dateInputFormat$;
   }
 
-  private _bsConfig?: Partial<BsDatepickerConfig>;
-
-  get bsConfig(): Partial<BsDatepickerConfig> | undefined {
-    return this._bsConfig;
-  }
-
   /**
    * Config object for datepicker
    */
-  @Input() set bsConfig(bsConfig: Partial<BsDatepickerConfig>| undefined) {
-    if (bsConfig?.initCurrentTime && bsConfig?.initCurrentTime !== this._bsConfig?.initCurrentTime && this._bsValue) {
-      this._bsValue = setCurrentTimeOnDateSelect(this._bsValue);
-    }
-
-    this._bsConfig = bsConfig;
-    this.setConfig();
-    this._dateInputFormat$.next(bsConfig && bsConfig.dateInputFormat);
-  }
+  @Input() bsConfig?: Partial<BsDatepickerConfig>;
 
   ngOnInit(): void {
     this._datepicker.listen({
@@ -182,6 +168,16 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    if (changes.bsConfig) {
+      if (changes.bsConfig.currentValue?.initCurrentTime && changes.bsConfig.currentValue?.initCurrentTime !== changes.bsConfig.previousValue?.initCurrentTime && this._bsValue) {
+        this._bsValue = setCurrentTimeOnDateSelect(this._bsValue);
+        this.bsValueChange.emit(this._bsValue);
+      }
+
+      this.setConfig();
+      this._dateInputFormat$.next(this.bsConfig && this.bsConfig.dateInputFormat);
+    }
+
     if (!this._datepickerRef || !this._datepickerRef.instance) {
       return;
     }

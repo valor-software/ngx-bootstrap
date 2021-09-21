@@ -30,8 +30,9 @@ import { dayInMilliseconds } from '../../reducer/_defaults';
 })
 export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractComponent
   implements OnInit, OnDestroy {
-  set value(value: Date[]) {
+  set value(value: (Date|undefined)[] | undefined) {
     this._effects?.setRangeValue(value);
+
   }
 
   valueChange = new EventEmitter<Date[]>();

@@ -50,7 +50,7 @@ export class BsDatepickerEffects {
     this._store?.dispatch(this._actions.select(value));
   }
 
-  setRangeValue(value?: Date[]): void {
+  setRangeValue(value?: (Date|undefined)[] | undefined): void {
     this._store?.dispatch(this._actions.selectRange(value));
   }
 
