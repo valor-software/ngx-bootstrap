@@ -1,9 +1,12 @@
+@import "manrope";
 @import "reboot";
 @import "~ngx-bootstrap/datepicker/bs-datepicker";
 /* variables */
 $header-height: 64px;
 $main-bg-color: #152337;
 $light-grey: #B4C5D5;
+$dark-font-color: #28234A;
+$container-width: 1110px;
 
 /* COMMON STYLES */
 html {
@@ -16,6 +19,7 @@ html {
 
 body {
   min-width: 320px;
+  font-family: 'Manrope', Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 h1, h2, h3, h4 {
@@ -117,16 +121,66 @@ form.sidebar-search input::placeholder {
   color: $light-grey
 }
 
+/* LANDING PAGE */
+
+.landing-logo {
+
+  h1 {
+    font-family: 'Manrope bold';
+    font-size: 72px;
+    line-height: 100px;
+    color: $dark-font-color;
+  }
+
+  .container {
+    margin-top: 100px;
+  }
+
+  .logo {
+    margin: 0 auto 25px auto;
+
+    img {
+      height: 375px;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 1200px;
+      height: 1200px;
+      background-color: $main-bg-color;
+      border-radius: 50%;
+      bottom: -1050px;
+      left: calc((#{$container-width} - 1200px)/2);
+      z-index: -1;
+    }
+  }
+
+  .button-box {
+    margin: 30px auto 100px auto;
+    width: 450px;
+
+    .btn {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 30px;
+      padding: 15px 40px;
+      border-radius: 8px;
+
+    }
+  }
+}
+
 /* main */
 .main {
   display: flex;
   flex-wrap: wrap;
   padding-top: $header-height;
 
-  .w-1110 {
-    width: 1110px;
+  .container-width {
+    width: $container-width;
   }
-
 }
 
 /* supporting */
