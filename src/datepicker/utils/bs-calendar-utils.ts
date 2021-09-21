@@ -116,17 +116,16 @@ export function setCurrentTimeOnDateSelect(value?: Date): Date | undefined {
   return setCurrentTimeHelper(value);
 }
 
-export function setDateRangesCurrentTimeOnDateSelect<T>(value: T): T {
-  if (value instanceof Array && !value?.length) return value;
+export function setDateRangesCurrentTimeOnDateSelect(value?: (Date|undefined)[]): (Date|undefined)[] | undefined {
+  if (!value?.length) return value;
 
-  if (value instanceof Array) {
-    value.map((date) => {
-      if (!date) {
-        return date;
-      }
-      return setCurrentTimeHelper(date);
-    });
-  }
+  value.map((date) => {
+    if (!date) {
+      return date;
+    }
+    return setCurrentTimeHelper(date);
+  });
+
   return value;
 }
 
