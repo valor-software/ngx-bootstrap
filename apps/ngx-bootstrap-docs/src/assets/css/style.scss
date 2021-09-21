@@ -123,6 +123,10 @@ form.sidebar-search input::placeholder {
   flex-wrap: wrap;
   padding-top: $header-height;
 
+  .w-1110 {
+    width: 1110px;
+  }
+
 }
 
 /* supporting */
@@ -156,33 +160,33 @@ form.sidebar-search input::placeholder {
 
 }
 /* entry */
-.entry {
-  padding: 75px 0 ;
-
-  .slogan {
-    padding: 30px 0 20px;
-    margin: 0;
-    text-transform: uppercase;
-  }
-
-  .btn-block {
-    margin: 40px 0 20px;
-
-    .btn {
-      min-width: 160px;
-      margin: 0 13px;
-      padding: 12px 10px;
-      cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-  }
-  .version {
-    font-weight: 400;
-    color: #666;
-    margin: 0;
-  }
-}
+//.entry {
+//  padding: 75px 0 ;
+//
+//  .slogan {
+//    padding: 30px 0 20px;
+//    margin: 0;
+//    text-transform: uppercase;
+//  }
+//
+//  .btn-block {
+//    margin: 40px 0 20px;
+//
+//    .btn {
+//      min-width: 160px;
+//      margin: 0 13px;
+//      padding: 12px 10px;
+//      cursor: pointer;
+//      text-transform: uppercase;
+//      letter-spacing: 2px;
+//    }
+//  }
+//  .version {
+//    font-weight: 400;
+//    color: #666;
+//    margin: 0;
+//  }
+//}
 /* advantages */
 .advantages {
   background: #f8f8f8;
@@ -775,19 +779,19 @@ form.sidebar-search input::placeholder {
 }
 /* below 576 */
 @media (max-width: 575px) {
-  .entry {
-    .btn-block {
-      .btn {
-        display: block;
-        width: 300px;
-        margin: 0 auto;
-
-        &:first-child {
-          margin-bottom: 15px;
-        }
-      }
-    }
-  }
+  //.entry {
+  //  .btn-block {
+  //    .btn {
+  //      display: block;
+  //      width: 300px;
+  //      margin: 0 auto;
+  //
+  //      &:first-child {
+  //        margin-bottom: 15px;
+  //      }
+  //    }
+  //  }
+  //}
   .advantages {
     .img-holder,
     .txt-holder {

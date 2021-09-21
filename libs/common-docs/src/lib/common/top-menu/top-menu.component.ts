@@ -9,7 +9,7 @@ import { NavigationEnd, Router } from '@angular/router';
   templateUrl: './top-menu.component.html',
 })
 export class TopMenuComponent implements AfterViewInit {
-  shadowRoutes = ['/documentation', '/discover', '/schematics'];
+  shadowRoutes = ['/documentation', '/discover', '/schematics', '/'];
   appUrl?: string;
   appHash?: string;
   currentVersion?: string;
@@ -81,11 +81,7 @@ export class TopMenuComponent implements AfterViewInit {
     let _prev = getUrl(this.router);
     this.router.events.subscribe((event: any) => {
       const _cur = getUrl(this.router);
-      this.initBoxShadow = false;
-      if (this.shadowRoutes.includes(_cur)) {
-        this.initBoxShadow = true;
-      }
-
+      this.initBoxShadow = this.shadowRoutes.includes(_cur);
       if (typeof window !== 'undefined') {
         this.appHash = location.hash === '#/' ? '' : location.hash;
       }
