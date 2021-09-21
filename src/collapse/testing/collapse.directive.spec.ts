@@ -117,13 +117,6 @@ describe('Directive: Collapse', () => {
     expect(element.offsetHeight).toBe(0);
   });
 
-  it('should change aria-expanded attribute', () => {
-    expect(element.getAttribute('aria-expanded')).toBe('true');
-    context.isCollapsed = true;
-    fixture.detectChanges();
-    expect(element.getAttribute('aria-expanded')).toBe('false');
-  });
-
   it('should change aria-hidden attribute', () => {
     expect(element.getAttribute('aria-hidden')).toBe('false');
     context.isCollapsed = true;
