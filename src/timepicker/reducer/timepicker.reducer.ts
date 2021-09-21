@@ -52,10 +52,6 @@ export function timepickerReducer(state = initialState, action: Action) {
 
       const _newTime = changeTime(state.value, { hour: action.payload.step });
 
-      if ((state.config.max || state.config.min) && !isValidLimit(state.config, _newTime)) {
-          return state;
-      }
-
       return Object.assign({}, state, { value: _newTime });
     }
 
@@ -68,10 +64,6 @@ export function timepickerReducer(state = initialState, action: Action) {
       }
 
       const _newTime = changeTime(state.value, { minute: action.payload.step });
-
-      if ((state.config.max || state.config.min) && !isValidLimit(state.config, _newTime)) {
-        return state;
-      }
 
       return Object.assign({}, state, { value: _newTime });
     }
@@ -87,10 +79,6 @@ export function timepickerReducer(state = initialState, action: Action) {
       const _newTime = changeTime(state.value, {
         seconds: action.payload.step
       });
-
-      if ((state.config.max || state.config.min) && !isValidLimit(state.config, _newTime)) {
-        return state;
-      }
 
       return Object.assign({}, state, { value: _newTime });
     }

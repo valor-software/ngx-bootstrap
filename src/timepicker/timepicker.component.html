@@ -3,24 +3,24 @@
   <tr class="text-center" [hidden]="!showSpinners">
     <!-- increment hours button-->
     <td>
-      <a class="btn btn-link" [class.disabled]="!canIncrementHours || !isEditable"
-         (click)="changeHours(hourStep)"
+      <a class="btn btn-link" [class.disabled]="!canIncrementHours || !isEditable || !arrowkeys"
+         (click)="changeTimeOption('hours', hourStep)"
       ><span class="bs-chevron bs-chevron-up"></span></a>
     </td>
     <!-- divider -->
     <td *ngIf="showMinutes">&nbsp;&nbsp;&nbsp;</td>
     <!-- increment minutes button -->
     <td *ngIf="showMinutes">
-      <a class="btn btn-link" [class.disabled]="!canIncrementMinutes || !isEditable"
-         (click)="changeMinutes(minuteStep)"
-      ><span class="bs-chevron bs-chevron-up"></span></a>
+      <a class="btn btn-link" [class.disabled]="!canIncrementMinutes || !isEditable || !arrowkeys"
+         (click)="changeTimeOption('minutes', minuteStep)">
+      <span class="bs-chevron bs-chevron-up"></span></a>
     </td>
     <!-- divider -->
     <td *ngIf="showSeconds">&nbsp;</td>
     <!-- increment seconds button -->
     <td *ngIf="showSeconds">
-      <a class="btn btn-link" [class.disabled]="!canIncrementSeconds || !isEditable"
-         (click)="changeSeconds(secondsStep)">
+      <a class="btn btn-link" [class.disabled]="!canIncrementSeconds || !isEditable || !arrowkeys"
+         (click)="changeTimeOption('seconds', secondsStep)">
         <span class="bs-chevron bs-chevron-up"></span>
       </a>
     </td>
@@ -31,49 +31,53 @@
   </tr>
   <tr>
     <!-- hours -->
-    <td class="form-group mb-3" [class.has-error]="invalidHours">
-      <input type="text" [class.is-invalid]="invalidHours"
+    <td class="form-group mb-3" [class.has-error]="errors?.hours">
+      <input type="text" [class.is-invalid]="errors?.hours"
              class="form-control text-center bs-timepicker-field"
              [placeholder]="hoursPlaceholder"
              maxlength="2"
+             #hoursRef
              [readonly]="readonlyInput"
              [disabled]="disabled"
              [value]="hours"
-             (wheel)="prevDef($event);changeHours(hourStep * wheelSign($event), 'wheel')"
-             (keydown.ArrowUp)="changeHours(hourStep, 'key')"
-             (keydown.ArrowDown)="changeHours(-hourStep, 'key')"
-             (change)="updateHours($event.target)" [attr.aria-label]="labelHours"></td>
+             (wheel)="prevDef($event);changeTimeOption('hours', hourStep * wheelSign($event), 'wheel')"
+             (keydown.ArrowUp)="changeTimeOption('hours', hourStep, 'key')"
+             (keydown.ArrowDown)="changeTimeOption('hours', -hourStep, 'key')"
+             (change)="onTimeChanged($event.target, minutes, seconds)"
+             [attr.aria-label]="labelHours"></td>
     <!-- divider -->
     <td *ngIf="showMinutes">&nbsp;:&nbsp;</td>
     <!-- minutes -->
-    <td class="form-group mb-3" *ngIf="showMinutes" [class.has-error]="invalidMinutes">
-      <input type="text" [class.is-invalid]="invalidMinutes"
+    <td class="form-group mb-3" *ngIf="showMinutes" [class.has-error]="errors?.minutes">
+      <input type="text" [class.is-invalid]="errors?.minutes"
              class="form-control text-center bs-timepicker-field"
              [placeholder]="minutesPlaceholder"
              maxlength="2"
              [readonly]="readonlyInput"
              [disabled]="disabled"
              [value]="minutes"
-             (wheel)="prevDef($event);changeMinutes(minuteStep * wheelSign($event), 'wheel')"
-             (keydown.ArrowUp)="changeMinutes(minuteStep, 'key')"
-             (keydown.ArrowDown)="changeMinutes(-minuteStep, 'key')"
-             (change)="updateMinutes($event.target)" [attr.aria-label]="labelMinutes">
+             (wheel)="prevDef($event);changeTimeOption('minutes', minuteStep * wheelSign($event), 'wheel')"
+             (keydown.ArrowUp)="changeTimeOption('minutes', minuteStep, 'key')"
+             (keydown.ArrowDown)="changeTimeOption('minutes', -minuteStep, 'key')"
+             (change)="onTimeChanged(hours, $event.target, seconds)"
+             [attr.aria-label]="labelMinutes">
     </td>
     <!-- divider -->
     <td *ngIf="showSeconds">&nbsp;:&nbsp;</td>
     <!-- seconds -->
-    <td class="form-group mb-3" *ngIf="showSeconds" [class.has-error]="invalidSeconds">
-      <input type="text" [class.is-invalid]="invalidSeconds"
+    <td class="form-group mb-3" *ngIf="showSeconds" [class.has-error]="errors?.seconds">
+      <input type="text" [class.is-invalid]="errors?.seconds"
              class="form-control text-center bs-timepicker-field"
              [placeholder]="secondsPlaceholder"
              maxlength="2"
              [readonly]="readonlyInput"
              [disabled]="disabled"
              [value]="seconds"
-             (wheel)="prevDef($event);changeSeconds(secondsStep * wheelSign($event), 'wheel')"
-             (keydown.ArrowUp)="changeSeconds(secondsStep, 'key')"
-             (keydown.ArrowDown)="changeSeconds(-secondsStep, 'key')"
-             (change)="updateSeconds($event.target)" [attr.aria-label]="labelSeconds">
+             (wheel)="prevDef($event);changeTimeOption('seconds', secondsStep * wheelSign($event), 'wheel')"
+             (keydown.ArrowUp)="changeTimeOption('seconds', secondsStep, 'key')"
+             (keydown.ArrowDown)="changeTimeOption('seconds', -secondsStep, 'key')"
+             (change)="onTimeChanged(hours, minutes, $event.target)"
+             [attr.aria-label]="labelSeconds">
     </td>
     <!-- space between -->
     <td *ngIf="showMeridian">&nbsp;&nbsp;&nbsp;</td>
@@ -91,7 +95,7 @@
     <!-- decrement hours button-->
     <td>
       <a class="btn btn-link" [class.disabled]="!canDecrementHours || !isEditable"
-         (click)="changeHours(-hourStep)">
+         (click)="changeTimeOption('hours', -hourStep)">
         <span class="bs-chevron bs-chevron-down"></span>
       </a>
     </td>
@@ -100,7 +104,7 @@
     <!-- decrement minutes button-->
     <td *ngIf="showMinutes">
       <a class="btn btn-link" [class.disabled]="!canDecrementMinutes || !isEditable"
-         (click)="changeMinutes(-minuteStep)">
+         (click)="changeTimeOption('minutes',-minuteStep)">
         <span class="bs-chevron bs-chevron-down"></span>
       </a>
     </td>
@@ -109,7 +113,7 @@
     <!-- decrement seconds button-->
     <td *ngIf="showSeconds">
       <a class="btn btn-link" [class.disabled]="!canDecrementSeconds || !isEditable"
-         (click)="changeSeconds(-secondsStep)">
+         (click)="changeTimeOption('seconds',-secondsStep)">
         <span class="bs-chevron bs-chevron-down"></span>
       </a>
     </td>
