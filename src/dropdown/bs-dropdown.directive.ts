@@ -173,6 +173,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     this._state.autoClose = this._config.autoClose;
     this._state.insideClick = this._config.insideClick;
     this._state.isAnimated = this._config.isAnimated;
+    this._state.stopOnClickPropogation = this._config.stopOnClickPropogation;
 
     this._factoryDropDownAnimation = _builder.build(dropdownAnimation);
 
@@ -370,7 +371,10 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
       const isRightAligned = this._inlinedMenu.rootNodes[0].classList.contains(
         'dropdown-menu-right'
+      ) || this._inlinedMenu.rootNodes[0].classList.contains(
+        'dropdown-menu-end'
       );
+
       this._renderer.setStyle(
         this._inlinedMenu.rootNodes[0],
         'left',
