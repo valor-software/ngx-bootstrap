@@ -10,7 +10,7 @@ import {
   DatepickerDateTooltipText
 } from '../models';
 
-@Injectable()
+@Injectable({providedIn: 'platform'})
 export class BsDatepickerActions {
   static readonly CALCULATE = '[datepicker] calculate dates matrix';
   static readonly FORMAT = '[datepicker] format datepicker values';

@@ -6,7 +6,7 @@ import {
   Time
 } from '../timepicker.models';
 
-@Injectable()
+@Injectable({providedIn: 'platform'})
 export class TimepickerActions {
   static readonly WRITE_VALUE = '[timepicker] write value from ng model';
   static readonly CHANGE_HOURS = '[timepicker] change hours';

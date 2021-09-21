@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { DraggableItem } from './draggable-item';
 
-@Injectable()
+@Injectable({providedIn: 'platform'})
 export class DraggableItemService {
   private draggableItem?: DraggableItem;
 
