@@ -3,7 +3,7 @@ import {
   MonthsCalendarViewModel,
   CalendarCellViewModel
 } from '../models';
-import { isMonthDisabled, isYearDisabled } from '../utils/bs-calendar-utils';
+import { isDisabledDate, isEnabledDate, isMonthDisabled, isYearDisabled } from '../utils/bs-calendar-utils';
 
 export interface FlagMonthCalendarOptions {
   isDisabled: boolean;
@@ -12,6 +12,8 @@ export interface FlagMonthCalendarOptions {
   hoveredMonth: Date;
   selectedDate: Date;
   selectedRange: Date[];
+  datesDisabled: Date[];
+  datesEnabled: Date[];
   displayMonths: number;
   monthIndex: number;
 }
@@ -27,6 +29,8 @@ export function flagMonthsCalendar(
         const isHovered = isSameMonth(month.date, options.hoveredMonth);
         const isDisabled =
           options.isDisabled ||
+          isDisabledDate(month.date, options.datesDisabled) ||
+          isEnabledDate(month.date, options.datesEnabled) ||
           isMonthDisabled(month.date, options.minDate, options.maxDate);
 
         if (!options.selectedDate && options.selectedRange) {

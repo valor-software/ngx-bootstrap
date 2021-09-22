@@ -40,7 +40,7 @@ export class CollapseDirective implements AfterViewChecked {
   // shown
   @HostBinding('class.in')
   @HostBinding('class.show')
-  @HostBinding('attr.aria-expanded')
+
   isExpanded = true;
   collapseNewValue = true;
   // hidden

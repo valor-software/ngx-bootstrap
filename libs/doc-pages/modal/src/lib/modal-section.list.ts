@@ -97,7 +97,7 @@ export const demoComponentContent: ContentSection[] = [
           <code>onHide</code>, <code>onHidden</code>.
           See usage example below.</p>
           <p><code>onHide</code> and <code>onHidden</code> events emit dismiss reason. Possible values are
-          <code>backdrop-click</code>, <code>esc</code> or <code>{id: number}</code> if modal was closed by direct call of
+          <code>backdrop-click</code>, <code>esc</code> or <code>{id: number | string}</code> if modal was closed by direct call of
           <code>hide()</code> method</p>`,
         outlet: DemoModalServiceEventsComponent
       },
@@ -112,7 +112,7 @@ export const demoComponentContent: ContentSection[] = [
           the ModalRef is created.
           See usage example below.</p>
           <p><code>onHide</code> and <code>onHidden</code> events emit dismiss reason. Possible values are
-          <code>backdrop-click</code>, <code>esc</code> or <code>{id: number}</code> if modal was closed by direct call of
+          <code>backdrop-click</code>, <code>esc</code> or <code>{id: number | string}</code> if modal was closed by direct call of
           <code>hide()</code> method</p>`,
         outlet: DemoModalRefEventsComponent
       },
