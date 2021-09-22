@@ -19,8 +19,7 @@ export class CollapsePo extends BaseComponent {
 
   isCollapseExpanded(baseSelector: string, expandedAttrValue: string) {
     cy.get(`${ baseSelector } ${ this.collapseClass }`)
-      .should(expandedAttrValue === 'true' ? 'to.have.class' : 'not.to.have.class', this.showIndicator)
-      .and('to.have.attr', 'aria-expanded', expandedAttrValue);
+      .should(expandedAttrValue === 'true' ? 'to.have.class' : 'not.to.have.class', this.showIndicator);
   }
 
   isCollapseWithInline(baseSelector: string, inline: boolean) {
