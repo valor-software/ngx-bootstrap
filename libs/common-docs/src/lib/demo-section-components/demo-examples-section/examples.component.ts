@@ -58,102 +58,19 @@ export class ExamplesComponent {
     const tag = getTagName(ts);
     const templateName = getTemplateFileName(ts);
     if (tag && className) {
-//       const project = {
-//         files: <any>{
-//           'index.html': getIndexHtmlCode(tag, this.moduleData, Utils.stackOverflowConfig()),
-//           'styles.css': `body {padding: 30px; position: relative}
-//         ${this.moduleData.moduleRoute === '/sortable' ?
-//             `.sortable-item {
-//       padding: 6px 12px;
-//       margin-bottom: 4px;
-//       font-size: 14px;
-//       line-height: 1.4em;
-//       text-align: center;
-//       cursor: grab;
-//       border: 1px solid transparent;
-//       border-radius: 4px;
-//       border-color: #adadad;
-//     }
-//
-//     .sortable-item-active {
-//       background-color: #e6e6e6;
-//       box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
-//     }
-//
-//     .sortable-wrapper {
-//       min-height: 150px;
-//     }` : ''}
-//     ${this.moduleData.moduleRoute === '/accordion' ?
-//             `.card.customClass,
-// .card.customClass .card-header,
-// .panel.customClass {
-//   background-color: #5bc0de;
-//   color: #fff;
-// }
-// .panel.customClass .panel-body {
-//   background-color: #337aa7;
-// }` : ''}`,
-//           '.angular-cli.json': `{"apps": [{"styles": ["styles.css"]}]}`,
-//           'main.ts': main,
-//           'polyfills.ts': polyfills,
-//           'app/app.module.ts': getAppModuleCode(className, this.moduleData),
-//           'app/ngx-bootstrap-demo.component.ts': this.getTs(ts)
-//         },
-//         dependencies: {
-//           '@angular/animations': 'latest',
-//           'web-animations-js': 'latest',
-//           'ngx-bootstrap': 'next'
-//         },
-//         title: 'stackblitz demo',
-//         description: 'stackblitz demo',
-//         template: 'angular-cli'
-//       };
-
-
-
-
-
-
-
       const project = {
         files: <any>{
           'src/index.html': getIndexHtmlCode(tag, this.moduleData, Utils.stackOverflowConfig()),
           'tsconfig.json': this.getTsConfig(),
-          // 'tsconfig.app.json': this.getTsConfigApp(),
           'angular.json': this.getAngularJson(),
           'src/style.scss': '',
-          'src/polyfills.ts': 'import \'zone.js/dist/zone\';  // Included with Angular CLI.\n',
+          'src/polyfills.ts': `import 'zone.js/dist/zone';  // Included with Angular CLI.`,
           'src/main.ts': this.getMainFile(),
-          'src/environments/environment.prod.ts': 'export const environment = {\n' +
-            '  production: true\n' +
-            '};\n',
-          'src/environments/environment.ts': 'export const environment = {\n' +
-            '  production: false\n' +
-            '};\n',
+          'src/environments/environment.prod.ts': this.getEnvProd(),
+          'src/environments/environment.ts': this.getEnvDev(),
           'src/app/app.component.html': 'hi, there!',
-          'src/app/app.component.ts': 'import {Component} from \'@angular/core\';\n' +
-            '\n' +
-            '@Component({\n' +
-            '  selector: \'app-root\',\n' +
-            '  templateUrl: \'./app.component.html\'\n' +
-            '})\n' +
-            'export class AppComponent {}',
-          'src/app/app.module.ts': 'import { NgModule } from \'@angular/core\';\n' +
-            'import { BrowserModule } from \'@angular/platform-browser\';\n' +
-            '\n' +
-            'import { AppComponent } from \'./app.component\';\n' +
-            '\n' +
-            '@NgModule({\n' +
-            '  declarations: [\n' +
-            '    AppComponent\n' +
-            '  ],\n' +
-            '  imports: [\n' +
-            '    BrowserModule\n' +
-            '  ],\n' +
-            '  providers: [],\n' +
-            '  bootstrap: [AppComponent]\n' +
-            '})\n' +
-            'export class AppModule { }\n'
+          'src/app/app.component.ts': this.getAppComponent(),
+          'src/app/app.module.ts': this.getAppModule()
         },
         dependencies: {
           "@angular/animations": "12.1.0",
@@ -205,64 +122,6 @@ export class ExamplesComponent {
 
 
   private getTsConfig(): string {
-    return `
-    {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ]
-  },
-  "angularCompilerOptions": {
-    "enableIvy": true,
-    "fullTemplateTypeCheck": true,
-    "stricTemplates": true,
-    "strictInjectionParameters": true
-  }
-}
-    `;
-  }
-
-  private getTsConfigApp(): string {
-    // return `
-    //   {
-    //     "extends": "./tsconfig.json",
-    //     "compilerOptions": {
-    //       "outDir": "./out-tsc/app",
-    //       "types": []
-    //     },
-    //     "files": [
-    //       "src/main.ts",
-    //       "src/polyfills.ts"
-    //     ],
-    //     "include": [
-    //       "src/**/*.d.ts"
-    //     ],
-    //     "angularCompilerOptions": {
-    //       "enableIvy": true,
-    //       "fullTemplateTypeCheck": true,
-    //       "strictInjectionParameters": true,
-    //       "strictTemplates": true,
-    //       "strictMetadataEmit": true
-    //       "allowEmptyCodegenFiles": true
-    //     }
-    //   }
-    // `;
-
     return `
     {
   "compileOnSave": false,
@@ -351,21 +210,6 @@ export class ExamplesComponent {
   }
 
   private getMainFile(): string {
-    // return `
-    // import { enableProdMode } from '@angular/core';
-    // import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-    //
-    // import { AppModule } from './app/app.module';
-    // import { environment } from './environments/environment';
-    //
-    // if (environment.production) {
-    //   enableProdMode();
-    // }
-    //
-    // platformBrowserDynamic().bootstrapModule(AppModule)
-    //   .catch(err => console.error(err));
-    // `;
-
     return `
 import './polyfills';
 
@@ -383,6 +227,54 @@ platformBrowserDynamic()
     })
     .catch(err => console.error(err));
     `;
+  }
+
+  private getEnvProd(): string {
+    return `
+    export const environment = {
+      production: true
+    };
+    `
+  }
+
+  private getEnvDev(): string {
+    return `
+    export const environment = {
+      production: false
+    };
+    `
+  }
+
+  private getAppComponent(): string {
+    return `
+    import {Component} from '@angular/core';
+
+        @Component({
+           selector: 'app-root',
+           templateUrl: './app.component.html'
+        })
+        export class AppComponent {}
+    `
+  }
+
+  private getAppModule(): string {
+    return `
+    import { NgModule } from '@angular/core'
+    import { BrowserModule } from '@angular/platform-browser';
+    import { AppComponent } from './app.component';
+
+            @NgModule({
+            declarations: [
+               AppComponent
+            ],
+            imports: [
+               BrowserModule
+            ],
+            providers: [],
+            bootstrap: [AppComponent]
+            })
+            export class AppModule { }
+    `
   }
 }
 
