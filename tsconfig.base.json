@@ -80,6 +80,9 @@
       ],
       "ngx-bootstrap/modal": [
         "src/modal/index.ts"
+      ],
+      "ngx-bootstrap/dropdown": [
+        "src/dropdown/index.ts"
       ]
     }
   },

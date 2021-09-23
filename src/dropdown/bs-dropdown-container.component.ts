@@ -60,7 +60,7 @@ export class BsDropdownContainerComponent implements OnDestroy {
       if (dropdown && !isBs3()) {
         this._renderer.addClass(dropdown, 'show');
 
-        if (dropdown.classList.contains('dropdown-menu-right')) {
+        if (dropdown.classList.contains('dropdown-menu-right') || dropdown.classList.contains('dropdown-menu-end')) {
           this._renderer.setStyle(dropdown, 'left', 'auto');
           this._renderer.setStyle(dropdown, 'right', '0');
         }
