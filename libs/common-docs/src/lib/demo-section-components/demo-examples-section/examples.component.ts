@@ -81,6 +81,7 @@ export class ExamplesComponent {
           "@angular/platform-browser": "12.0.5",
           "@angular/platform-browser-dynamic": "12.0.5",
           "@angular/router": "12.0.5",
+          "ngx-bootstrap": "latest",
           "rxjs": "~6.6.0",
           "tslib": "^2.0.0",
           "zone.js": "~0.11.3"
@@ -234,7 +235,7 @@ platformBrowserDynamic()
     export const environment = {
       production: true
     };
-    `
+    `;
   }
 
   private getEnvDev(): string {
@@ -242,7 +243,7 @@ platformBrowserDynamic()
     export const environment = {
       production: false
     };
-    `
+    `;
   }
 
   private getAppComponent(): string {
@@ -254,7 +255,7 @@ platformBrowserDynamic()
            templateUrl: './app.component.html'
         })
         export class AppComponent {}
-    `
+    `;
   }
 
   private getAppModule(): string {
@@ -274,7 +275,7 @@ platformBrowserDynamic()
             bootstrap: [AppComponent]
             })
             export class AppModule { }
-    `
+    `;
   }
 }
 
