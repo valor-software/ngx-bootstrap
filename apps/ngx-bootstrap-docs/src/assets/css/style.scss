@@ -1,61 +1,9 @@
 @import "manrope";
 @import "reboot";
+@import "variables";
+@import "common-styles.scss";
+
 @import "~ngx-bootstrap/datepicker/bs-datepicker";
-/* variables */
-$header-height: 64px;
-$main-bg-color: #152337;
-$light-grey: #B4C5D5;
-$dark-font-color: #28234A;
-$grey-font-color: #18191F;
-$container-width: 1110px;
-$container-width-lg: 1400px;
-
-/* COMMON STYLES */
-html {
-  touch-action: manipulation;
-  -webkit-touch-callout: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-size: inherit;
-}
-
-body {
-  min-width: 320px;
-  font-family: 'Manrope', Roboto, "Helvetica Neue", Arial, sans-serif;
-}
-
-h1, h2, h3, h4 {
-  &:focus {
-    outline: none;
-  }
-}
-
-h1 {
-  font-family: 'Manrope bold';
-  font-size: 72px;
-  line-height: 100px;
-  color: $dark-font-color;
-}
-
-h2 {
-  font-family: 'Manrope bold';
-  font-weight: 800;
-  font-size: 48px;
-  line-height: 64px;
-  color: $dark-font-color;
-}
-
-code {
-  word-break: normal;
-}
-
-a:hover {
-  text-decoration: none;
-}
-
-.hidden {
-  display: none !important;
-}
 
 /* HEADER */
 
@@ -169,7 +117,7 @@ form.sidebar-search input::placeholder {
         background-color: $main-bg-color;
         border-radius: 50%;
         bottom: -1050px;
-        left: calc((#{$container-width} - 1200px)/2);
+        left: calc((1080px - 1200px)/2);
         z-index: -1;
       }
     }
@@ -182,7 +130,12 @@ form.sidebar-search input::placeholder {
   &-counting, &-advantages {
     background: $main-bg-color;
     color: white;
-    padding: 65px 0 0 90px;
+    padding-top: 65px;
+  }
+
+  &-advantages {
+    padding-left: 10px;
+    padding-right: 10px;
   }
 
   &-advantages {
@@ -237,7 +190,6 @@ form.sidebar-search input::placeholder {
 
     .counting-box {
       bottom: -50%;
-      left: 0;
       background-color: transparent;
       left: 50%;
       transform: translateX(-50%);
@@ -268,7 +220,7 @@ form.sidebar-search input::placeholder {
   }
 
   &-additional-inf {
-    padding: 260px 0 50px 0;
+    padding: 260px 10px 50px 10px;
     background-color: white;
 
     .bubble-box {
@@ -283,6 +235,7 @@ form.sidebar-search input::placeholder {
         box-shadow: 0px 4px 92px rgba(232, 251, 255, 0.94), inset -55px 31px 92px rgba(0, 67, 164, 0.13);
 
         img {
+          position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
@@ -311,7 +264,7 @@ form.sidebar-search input::placeholder {
   }
 
   &-supporting {
-    padding: 75px 0 75px 0;
+    padding: 75px 10px 75px 10px;
 
     .text-holder {
       flex: 0 0 50%;
@@ -334,21 +287,11 @@ form.sidebar-search input::placeholder {
 
 }
 
-.container-width {
-  width: $container-width;
-}
-
-.container-width-lg {
-  width: $container-width-lg;
-}
-
 /* main */
 .main {
   display: flex;
   flex-wrap: wrap;
   padding-top: $header-height;
-
-
 
   .button-box {
     width: 450px;
@@ -359,7 +302,6 @@ form.sidebar-search input::placeholder {
       line-height: 30px;
       padding: 15px 40px;
       border-radius: 8px;
-
     }
   }
 
@@ -377,7 +319,6 @@ form.sidebar-search input::placeholder {
 .sponsor-icon {
   margin: -3px 8px 0 0;
 }
-
 .sponsor-link {
   text-transform: uppercase;
   font-size: 14px;
@@ -401,37 +342,7 @@ form.sidebar-search input::placeholder {
     border-bottom: 1px solid #ddd;
   }
   tr:hover {background-color: #dadadd;}
-
 }
-/* entry */
-//.entry {
-//  padding: 75px 0 ;
-//
-//  .slogan {
-//    padding: 30px 0 20px;
-//    margin: 0;
-//    text-transform: uppercase;
-//  }
-//
-//  .btn-block {
-//    margin: 40px 0 20px;
-//
-//    .btn {
-//      min-width: 160px;
-//      margin: 0 13px;
-//      padding: 12px 10px;
-//      cursor: pointer;
-//      text-transform: uppercase;
-//      letter-spacing: 2px;
-//    }
-//  }
-//  .version {
-//    font-weight: 400;
-//    color: #666;
-//    margin: 0;
-//  }
-//}
-/* advantages */
 
 /* sidebar */
 
@@ -679,29 +590,6 @@ form.sidebar-search input::placeholder {
     border-left: 1px solid #dadada;
   }
 }
-/* app-footer */
-//.app-footer {
-//  border-top: 1px solid #dadada;
-//  padding: 30px 30px 41px;
-//
-//  p {
-//    line-height: 1.1;
-//    margin: 0;
-//    padding: 9px 0;
-//    font-size: 1rem;
-//    color: #878787;
-//
-//    a {
-//      color: #262626;
-//      text-decoration: none;
-//
-//      &:hover,
-//      &:focus {
-//        text-decoration: underline;
-//      }
-//    }
-//  }
-//}
 
 footer {
   background-color: $main-bg-color;
@@ -722,16 +610,6 @@ footer {
   }
 }
 
-/* landing-footer */
-//.landing-footer {
-//  .app-footer {
-//    border-top: none;
-//    height: 330px;
-//    padding-top: 120px;
-//    text-align: center;
-//    background: #fff;
-//  }
-//}
 /* specific styles */
 .bd-example {
   position: relative;
@@ -742,8 +620,6 @@ footer {
     clear: both;
   }
 }
-
-/* Specify styling for tooltip contents */
 
 /* Hide arrow */
 .tooltip.customClass.fade{
@@ -809,245 +685,6 @@ footer {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+/*Imported adaptive styles*/
+@import "adaptive";
 
-/*** Media Query ***/
-/* above 768px */
-@media (min-width: 768px) {
-  .header {
-    position: fixed;
-    //width: 100%;
-    top: 0;
-    z-index: 1090;
-  }
-  .header-dropdown {
-    z-index: 1090;
-  }
-
-  .modal-backdrop {
-    z-index: 2000;
-  }
-  .modal {
-    z-index: 2001;
-  }
-  .sidebar {
-    position: fixed;
-    top: $header-height;
-    bottom: 0;
-  }
-
-}
-/* below 1200 */
-@media (max-width: 1199px) {
-  header {
-    justify-content: space-between;
-    .logo, .social-info, .search-container {
-      min-width: auto;
-      width: auto;
-    }
-  }
-
-
-  .add-nav {
-    display: none;
-  }
-  .main-container {
-    flex: 0 0 75%;
-    max-width: 75%;
-    margin-left: 25%;
-  }
-
-  .content {
-    h2[id],
-    h3[id] {
-      .anchor-link {
-        display: inline-block;
-      }
-    }
-  }
-
-  //.advantages {
-  //  .holder {
-  //    padding-left: 5%;
-  //    padding-right: 5%;
-  //  }
-  //}
-  .sidebar {
-    flex: 0 0 25%;
-    max-width: 25%;
-  }
-}
-/* below 992 */
-
-@media (min-width: 992px) {
-  #mobile-main-menu {
-   display: none;
-  }
-}
-
-@media (max-width: 991px) {
-
-  .main {
-    padding-top: 0;
-
-    .content {
-      margin-top: $header-height;
-    }
-  }
-
-  //.advantages {
-  //  .img-holder,
-  //  .txt-holder {
-  //    flex: 0 0 100%;
-  //    max-width: 100%;
-  //  }
-  //}
-
-  .display-lg-none {
-    display: none;
-  }
-
-  .header {
-    padding: 15px;
-  }
-
-  .main-container,
-  .sidebar {
-    flex: 0 0 100%;
-    max-width: 100%;
-  }
-
-  .main-container {
-    margin-left: 0;
-  }
-
-  .sidebar {
-    border-right: none;
-    border-bottom: none;
-    position: relative;
-
-    .sidebar-search {
-      display: flex;
-      flex-flow: row nowrap;
-      justify-content: space-between;
-      background-color: $main-bg-color;
-      padding: 15px;
-    }
-  }
-
-  .isOpenMenu {
-    .mobile-menu {
-      top: 100%;
-      left: 0;
-    }
-  }
-
-  .isOpenMenu {
-    overflow: hidden;
-  }
-  #mobile-main-menu {
-    cursor: pointer;
-    border-color: transparent;
-    background: none;
-    padding: 0;
-    margin-left: 15px;
-  }
-  .mobile-menu {
-    position: absolute;
-    left: 100%;
-    width: 100%;
-    height: calc(100vh - 123px);
-    background: #fff;
-    z-index: 2;
-    transition: left 0.4s;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #dadada;
-  }
-
-
-
-  .main {
-    overflow: hidden;
-  }
-
-  .content {
-    padding: 20px 15px 90px;
-
-    h2[id] {
-      margin-top: 43px;
-    }
-  }
-  .api-doc-component {
-    h3 {
-      word-break: break-all;
-    }
-  }
-
-  .app-footer {
-    padding: 30px 15px;
-  }
-
-
-}
-/* below 768 */
-@media (max-width: 767px) {
-  //
-  //.advantages {
-  //  .holder {
-  //    padding: 30px 0;
-  //  }
-  //}
-
-
-
-
-
-
-}
-/* below 576 */
-@media (max-width: 575px) {
-  //.entry {
-  //  .btn-block {
-  //    .btn {
-  //      display: block;
-  //      width: 300px;
-  //      margin: 0 auto;
-  //
-  //      &:first-child {
-  //        margin-bottom: 15px;
-  //      }
-  //    }
-  //  }
-  //}
-  //.advantages {
-  //  .img-holder,
-  //  .txt-holder {
-  //    padding: 0;
-  //    margin: 0;
-  //    text-align: center;
-  //  }
-  //  .img-holder {
-  //    img {
-  //      margin: 0 auto 10px;
-  //    }
-  //  }
-  //  .holder {
-  //
-  //    .col-12 {
-  //      padding-top: 30px;
-  //      padding-bottom: 30px;
-  //
-  //      &:last-child {
-  //        padding-bottom: 0;
-  //      }
-  //    }
-  //  }
-  //}
-}
-/* below 480 */
-@media (max-width: 479px) {
-  .header {
-    .prev-docs {
-      display: none;
-    }
-  }
-}

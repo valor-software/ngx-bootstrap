@@ -1,15 +1,15 @@
 <header class="header flex-nowrap" [class.box-shadow]="initBoxShadow">
-  <div class="logo col-2">
+  <div class="logo col-xl-2 col-lg-3">
     <a routerLink="['']">
       <img  alt="ngx-bootstrap" src="assets/images/logos/ngx-bootstrap-logo-red.svg">
     </a>
   </div>
 
-  <div class="search-container col-lg-8 display-lg-none">
+  <div class="search-container col-xl-8 col-lg-6 display-lg-none">
     <search-input></search-input>
   </div>
 
-  <div class="social-info col-2">
+  <div class="social-info col-xl-2 col-lg-3">
     <div class="prev-docs" dropdown *ngIf="previousDocs.length" container="body">
       <div dropdownToggle class="dropdown-toggle">
         {{currentVersion ? 'v' + currentVersion : ''}} <span class="caret"></span>

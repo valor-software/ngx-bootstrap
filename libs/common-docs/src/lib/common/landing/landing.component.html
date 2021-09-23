@@ -4,12 +4,17 @@
     <div class="container">
       <div class="row flex-column container-width text-center">
         <h1>Develop better. Faster.</h1>
+        <div class="logo position-relative d-block d-lg-none mt-3">
+          <a href="https://github.com/valor-software/ngx-bootstrap" class="d-flex justify-content-center">
+            <img src="assets/images/logos/ngx-bootstrap-logo.svg" alt="ngx-bootstrap logo">
+          </a>
+        </div>
         <div class="button-box d-flex justify-content-between">
           <a class="btn btn-primary text-white" (click)="scrollToSection()">Get started</a>
           <a class="btn btn-outline-primary" routerLink="/documentation">Documentation</a>
         </div>
       </div>
-      <div class="logo position-relative">
+      <div class="logo position-relative d-none d-lg-block">
         <a href="https://github.com/valor-software/ngx-bootstrap" class="d-flex justify-content-center">
           <img src="assets/images/logos/ngx-bootstrap-logo.svg" alt="ngx-bootstrap logo">
         </a>
@@ -23,7 +28,7 @@
     <div class="container container-width m-auto">
       <h2 class="text-center text-white">Benefits of working with us</h2>
       <div class="row">
-        <div class="col-12 col-sm-6 d-flex">
+        <div class="col-12 col-xl-6 d-flex">
           <div class="img-holder">
             <img src="assets/images/icons/advantages-01.svg" alt="">
           </div>
@@ -33,7 +38,7 @@
           </div>
         </div>
 
-        <div class="col-12 col-sm-6 d-flex flex-wrap">
+        <div class="col-12 col-xl-6 d-flex flex-wrap">
           <div class="img-holder">
             <img src="assets/images/icons/advantages-02.svg" alt="">
           </div>
@@ -45,7 +50,7 @@
       </div>
 
       <div class="row">
-        <div class="col-12 col-sm-6 d-flex flex-wrap">
+        <div class="col-12 col-xl-6 d-flex flex-wrap">
           <div class="img-holder">
             <img src="assets/images/icons/advantages-03.svg" alt="">
           </div>
@@ -54,7 +59,7 @@
             <p>As developers ourselves, we understand the importance of documentation. Well written and continually updated documentation significantly eases up developers life and improves overall software quality. We are doing our best to provide you the most complete and easy to understand documentation out there.</p>
           </div>
         </div>
-        <div class="col-12 col-sm-6 d-flex flex-wrap">
+        <div class="col-12 col-xl-6 d-flex flex-wrap">
           <div class="img-holder">
             <img src="assets/images/icons/advantages-04.svg" alt="">
           </div>
@@ -74,9 +79,9 @@
       <h2 class="text-white">Some count that matters</h2>
       <p>Our achievement in the journey depicted in numbers</p>
       <div class="counting-box row position-absolute d-flex justify-content-between container-width">
-        <div class="counting-item col-12">
+        <div class="counting-item">
           <div class="img-handler position-relative">
-            <img src="assets/images/icons/polygon-bg.svg" alt="">
+            <img src="assets/images/icons/polygon-bg.svg" alt="" class="d-none d-lg-block">
             <div class="text-handler w-100 position-absolute text-center">
               <p>40+</p>
               <p>Happy Clients</p>
@@ -84,9 +89,9 @@
           </div>
         </div>
 
-        <div class="counting-item col-12">
+        <div class="counting-item">
           <div class="img-handler position-relative">
-            <img src="assets/images/icons/polygon-bg.svg" alt="">
+            <img src="assets/images/icons/polygon-bg.svg" alt="" class="d-none d-lg-block">
             <div class="text-handler w-100 position-absolute text-center">
               <p>540+</p>
               <p>Projects Completed</p>
@@ -94,9 +99,9 @@
           </div>
         </div>
 
-        <div class="counting-item col-12">
+        <div class="counting-item">
           <div class="img-handler position-relative">
-            <img src="assets/images/icons/polygon-bg.svg" alt="">
+            <img src="assets/images/icons/polygon-bg.svg" alt="" class="d-none d-lg-block">
             <div class="text-handler w-100 position-absolute text-center">
               <p>300</p>
               <p>Dedicated Members</p>
@@ -104,9 +109,9 @@
           </div>
         </div>
 
-        <div class="counting-item col-12">
+        <div class="counting-item">
           <div class="img-handler position-relative">
-            <img src="assets/images/icons/polygon-bg.svg" alt="">
+            <img src="assets/images/icons/polygon-bg.svg" alt="" class="d-none d-lg-block">
             <div class="text-handler w-100 position-absolute text-center">
               <p>25+</p>
               <p>Awards Won</p>
@@ -120,10 +125,10 @@
 
   <!-- begin additional information block-->
   <section class="landing-additional-inf w-100">
-    <div class="container-width-lg m-auto d-flex justify-content-between">
+    <div class="container-width-lg m-auto d-flex justify-content-between mw-100">
       <div class="bubble-box">
         <div class="bubble position-relative">
-          <img src="assets/images/logos/valor-logo.svg" alt="valor software logo" class="position-absolute">
+          <img src="assets/images/logos/valor-logo.svg" alt="valor software logo">
         </div>
       </div>
       <div class="text-holder">
@@ -137,7 +142,7 @@
 
   <!--begin support block-->
   <section class="landing-supporting w-100">
-    <div class="container-width-lg m-auto d-flex justify-content-between">
+    <div class="container-width-lg m-auto d-flex justify-content-between mw-100">
       <div class="text-holder">
         <h2>Supporting<br>ngx-bootstrap</h2>
         <p>ngx-bootstrap is an Open Source (MIT Licensed) independent project with ongoing development made possible thanks to the support of our awesome backers. If you also would like to show support or simply give back to Open Source community, please consider becoming a partner.
@@ -147,8 +152,8 @@
           <a class="btn btn-outline-primary" target="_blank" href="https://github.com/valor-software/ngx-bootstrap/blob/development/CONTRIBUTING.md">Become a contributor</a>
         </div>
       </div>
-      <div class="img-holder d-flex align-items-center">
-        <img src="assets/images/macbook_page.png" alt="macbook picture with ngx-bootstrap">
+      <div class="img-holder d-flex align-items-center d-none d-lg-block">
+        <img src="assets/images/macbook_page.png" alt="macbook picture with ngx-bootstrap" class="mw-100">
       </div>
       </div>
   </section>
