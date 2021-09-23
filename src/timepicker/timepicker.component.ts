@@ -328,6 +328,7 @@ export class TimepickerComponent
    */
   writeValue(obj?: string | Date): void {
     if (isValidDate(obj)) {
+      this.resetValidation();
       this._store.dispatch(this._timepickerActions.writeValue(parseTime(obj)));
     } else if (obj == null) {
       this._store.dispatch(this._timepickerActions.writeValue());
