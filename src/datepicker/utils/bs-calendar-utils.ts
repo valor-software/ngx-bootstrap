@@ -53,17 +53,25 @@ export function isYearDisabled(date: Date, min?: Date, max?: Date): boolean {
   return minBound || maxBound || false;
 }
 
-export function isDisabledDate(date?: Date, datesDisabled?: Date[]): boolean {
+export function isDisabledDate(date?: Date, datesDisabled?: Date[], unit?: string): boolean {
   if (!datesDisabled  || !isArray(datesDisabled) || !datesDisabled.length) {
     return false;
+  }
+
+  if (unit && unit === 'year') {
+    return datesDisabled.some((dateDisabled: Date) => isSame(date, dateDisabled, 'year'));
   }
 
   return datesDisabled.some((dateDisabled: Date) => isSame(date, dateDisabled, 'date'));
 }
 
-export function isEnabledDate(date?: Date, datesEnabled?: Date[]): boolean {
+export function isEnabledDate(date?: Date, datesEnabled?: Date[], unit?: string): boolean {
   if (!datesEnabled || !isArray(datesEnabled) || !datesEnabled.length) {
     return false;
+  }
+
+  if (unit && unit === 'year') {
+    return !datesEnabled.some((dateDisabled: Date) => isSame(date, dateDisabled, 'year'));
   }
 
   return !datesEnabled.some((enabledDate: Date) => isSame(date, enabledDate, 'date'));
