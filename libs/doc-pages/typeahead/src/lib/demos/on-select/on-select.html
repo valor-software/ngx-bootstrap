@@ -10,7 +10,7 @@
     <div style="float:right;width:160px;"
          class="card card-block card-header mb-3">
         Preview region:
-        <span *ngIf="!previewOption; else noPreviewOption">{{previewOption?.region}}</span>
+        <span *ngIf="previewOption; else noPreviewOption">{{previewOption?.region}}</span>
         <ng-template #noPreviewOption><span>N/A</span></ng-template>
     </div>
 </div>

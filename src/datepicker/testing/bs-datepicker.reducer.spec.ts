@@ -73,4 +73,15 @@ describe('BsDatepickerReducer.', () => {
     expect(reducer.view.mode).toEqual('day');
     expect((reducer.monthsModel.pop().month.toISOString() === state.flaggedMonths[1].month.toISOString())).toBeFalsy();
   });
+
+  it('selectedTime: the second selectedTime should be updated ', () => {
+    const state = initialDatepickerState;
+    const action: Action = {
+      type: BsDatepickerActions.SELECT_TIME,
+      payload: { date: new Date(1630298176000), index: 1 }
+    };
+    const reducer = bsDatepickerReducer(state, action);
+    expect(reducer.selectedTime.length).toEqual(2);
+    expect(reducer.selectedTime[1].getTime()).toEqual(1630298176000);
+  });
 });

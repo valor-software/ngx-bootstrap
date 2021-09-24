@@ -52,6 +52,7 @@ import { DemoDatepickerTodayButtonComponent } from './demos/today-button/today-b
 import { DemoDatepickerClearButtonComponent } from './demos/clear-button/clear-button';
 import { DemoDatepickerStartViewComponent } from "./demos/start-view/start-view";
 import { DemoDatepickerPreventChangeToNextMonthComponent } from './demos/prevent-change-to-next-month/prevent-change-to-next-month.component';
+import { DemoDatepickerWithTimepickerComponent } from './demos/with-timepicker/with-timepicker';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -460,7 +461,15 @@ export const demoComponentContent: ContentSection[] = [
         description: `<p>Max date range after first date selection can be added to Daterangepicker using <code>maxDateRange</code>.</p>
         <p>If you also use <code>maxDate</code> property, you can't select second date, which exceeds value of <code>maxDate</code>.</p>`,
         outlet: DemoDateRangePickerMaxDateRangeComponent
-      }
+      },
+      {
+        title: 'With timepicker',
+        anchor: 'with-timepicker',
+        component: require('!!raw-loader!./demos/with-timepicker/with-timepicker'),
+        html: require('!!raw-loader!./demos/with-timepicker/with-timepicker.html'),
+        description: `You can enable timepicker via <code>withTimepicker</code> config option`,
+        outlet: DemoDatepickerWithTimepickerComponent
+      },
     ]
   },
   {

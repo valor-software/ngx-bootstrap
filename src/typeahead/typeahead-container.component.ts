@@ -197,6 +197,10 @@ export class TypeaheadContainerComponent implements OnDestroy {
     return this.parent ? this.parent.typeaheadItemTemplate : undefined;
   }
 
+  get canSelectItemsOnBlur(): boolean {
+    return !!this.parent?.selectItemOnBlur;
+  }
+
   selectActiveMatch(isActiveItemChanged?: boolean): void {
     if (this._active && this.parent?.typeaheadSelectFirstItem) {
       this.selectMatch(this._active);
@@ -295,7 +299,9 @@ export class TypeaheadContainerComponent implements OnDestroy {
   @HostListener('blur')
   focusLost(): void {
     this.isFocused = false;
-    this.setActive(void 0);
+    if (!this.canSelectItemsOnBlur) {
+      this.setActive(void 0);
+    }
   }
 
   isActive(value: TypeaheadMatch): boolean {

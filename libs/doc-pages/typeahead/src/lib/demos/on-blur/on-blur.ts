@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
+import { TypeaheadMatch, TypeaheadConfig } from 'ngx-bootstrap/typeahead';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-on-blur',
-  templateUrl: './on-blur.html'
+  templateUrl: './on-blur.html',
+  providers: [{ provide: TypeaheadConfig, useValue: { selectItemOnBlur: true, hideResultsOnBlur: true } }]
 })
 export class DemoTypeaheadOnBlurComponent {
   selected?: string;

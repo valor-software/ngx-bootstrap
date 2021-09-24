@@ -8,11 +8,11 @@ export class BsDropdownState {
   autoClose = true;
   insideClick = false;
   isAnimated = false;
-  stopOnClickPropogation = false;
+  stopOnClickPropagation = false;
   isOpenChange = new EventEmitter<boolean>();
   isDisabledChange = new EventEmitter<boolean>();
   toggleClick = new EventEmitter<boolean>();
-
+  counts = 0;
   /**
    * Content to be displayed as popover.
    */
