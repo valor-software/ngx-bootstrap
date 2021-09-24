@@ -3,13 +3,14 @@ import {
   ElementRef,
   EmbeddedViewRef,
   EventEmitter,
+  HostListener,
   Input,
   OnDestroy,
   OnInit,
   Output,
   Renderer2,
   ViewContainerRef
-} from '@angular/core';
+ } from '@angular/core';
 import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { ComponentLoader, ComponentLoaderFactory, BsComponentRef } from 'ngx-bootstrap/component-loader';
@@ -173,7 +174,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     this._state.autoClose = this._config.autoClose;
     this._state.insideClick = this._config.insideClick;
     this._state.isAnimated = this._config.isAnimated;
-    this._state.stopOnClickPropogation = this._config.stopOnClickPropogation;
+    this._state.stopOnClickPropagation = this._config.stopOnClickPropagation;
 
     this._factoryDropDownAnimation = _builder.build(dropdownAnimation);
 
@@ -327,6 +328,37 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     // todo: valorkin fix typings
     return this._elementRef.nativeElement.contains(event.target) ||
       (this._dropdown.instance && this._dropdown.instance._contains(event.target as unknown as HTMLElement));
+  }
+
+  @HostListener('keydown.arrowDown', ['$event'])
+  @HostListener('keydown.arrowUp', ['$event'])
+  navigationClick(event: any): void {
+    const ref = this._elementRef.nativeElement.querySelector('.dropdown-menu');
+
+    if (!ref) {
+      return;
+    }
+
+    const firstActive = this._elementRef.nativeElement.ownerDocument.activeElement;
+    const allRef = ref.querySelectorAll('.dropdown-item');
+    switch (event.keyCode) {
+      case 38:
+        if (this._state.counts > 0) {
+          allRef[--this._state.counts].focus();
+        }
+        break;
+      case 40:
+        if (this._state.counts + 1 < allRef.length) {
+          if (firstActive.classList !== allRef[this._state.counts].classList) {
+            allRef[this._state.counts].focus();
+          } else {
+            allRef[++this._state.counts].focus();
+          }
+        }
+        break;
+      default:
+    }
+    event.preventDefault();
   }
 
   ngOnDestroy(): void {
