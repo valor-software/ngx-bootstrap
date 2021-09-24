@@ -81,6 +81,9 @@
       "ngx-bootstrap/datepicker": [
         "src/datepicker/index.ts"
       ],
+      "ngx-bootstrap/modal": [
+        "src/modal/index.ts"
+      ],
       "ngx-bootstrap/typeahead": [
         "src/typeahead/index.ts"
       ],
