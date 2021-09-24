@@ -141,6 +141,8 @@ ngx-bootstrap/collapse
 
 ngx-bootstrap/component-loader
 
+ngx-bootstrap/datepicker
+
 ngx-bootstrap/dropdown
 
 ngx-bootstrap/focus-trap
