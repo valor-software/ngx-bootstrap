@@ -1193,6 +1193,12 @@ export const ngdoc: any = {
         "defaultValue": "false",
         "type": "boolean",
         "description": "<p>sets use UTC date time format</p>\n"
+      },
+      {
+        "name": "withTimepicker",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>Shows timepicker under datepicker</p>\n"
       }
     ]
   },

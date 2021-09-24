@@ -1,10 +1,20 @@
-import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 
 import { take } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 import { getFullYear, getMonth } from 'ngx-bootstrap/chronos';
 import { PositioningService } from 'ngx-bootstrap/positioning';
+import { TimepickerComponent } from 'ngx-bootstrap/timepicker';
 
 import { BsDatepickerAbstractComponent } from '../../base/bs-datepicker-container';
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
@@ -29,10 +39,10 @@ import { dayInMilliseconds } from '../../reducer/_defaults';
   animations: [datepickerAnimation]
 })
 export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractComponent
-  implements OnInit, OnDestroy {
+  implements OnInit, OnDestroy, AfterViewInit {
+
   set value(value: (Date|undefined)[] | undefined) {
     this._effects?.setRangeValue(value);
-
   }
 
   valueChange = new EventEmitter<Date[]>();
@@ -41,6 +51,10 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   _rangeStack: Date[] = [];
   chosenRange: Date[] = [];
   _subs: Subscription[] = [];
+  isRangePicker = true;
+
+  @ViewChild('startTP') startTimepicker?: TimepickerComponent;
+  @ViewChild('endTP') endTimepicker?: TimepickerComponent;
 
   constructor(
     _renderer: Renderer2,
@@ -81,6 +95,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
       });
     this.containerClass = this._config.containerClass;
     this.isOtherMonthsActive = this._config.selectFromOtherMonth;
+    this.withTimepicker = this._config.withTimepicker;
     this._effects?.init(this._store)
       // intial state options
       // todo: fix this, split configs
@@ -103,12 +118,31 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     );
   }
 
+  ngAfterViewInit(): void {
+    this.selectedTimeSub.add(this.selectedTime?.subscribe((val) => {
+      if (Array.isArray(val) && val.length >= 2) {
+        this.startTimepicker?.writeValue(val[0]);
+        this.endTimepicker?.writeValue(val[1]);
+      }
+    }));
+    this.startTimepicker?.registerOnChange((val) => {
+      this.timeSelectHandler(val, 0);
+    });
+    this.endTimepicker?.registerOnChange((val) => {
+      this.timeSelectHandler(val, 1);
+    });
+  }
+
   get isTopPosition(): boolean {
     return this._element.nativeElement.classList.contains('top');
   }
 
   positionServiceEnable(): void {
     this._positionService.enable();
+  }
+
+  timeSelectHandler(date: Date, index: number): void {
+    this._store.dispatch(this._actions.selectTime(date, index));
   }
 
   daySelectHandler(day: DayViewModel): void {
@@ -211,6 +245,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     for (const sub of this._subs) {
       sub.unsubscribe();
     }
+    this.selectedTimeSub.unsubscribe();
     this._effects?.destroy();
   }
 

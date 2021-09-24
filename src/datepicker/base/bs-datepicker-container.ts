@@ -34,6 +34,9 @@ export abstract class BsDatepickerAbstractComponent {
 
   multipleCalendars?: boolean;
 
+  isRangePicker?: boolean;
+  withTimepicker?: boolean;
+
   set minDate(value: Date|undefined) {
     this._effects?.setMinDate(value);
   }
@@ -84,6 +87,8 @@ export abstract class BsDatepickerAbstractComponent {
     return this._daysCalendar$;
   }
 
+  selectedTime?: Observable<Date[]|undefined>;
+  selectedTimeSub = new Subscription();
 
   // todo: valorkin fix
   // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-empty-function
@@ -103,6 +108,9 @@ export abstract class BsDatepickerAbstractComponent {
 
   // eslint-disable-next-line
   yearHoverHandler(event: CellHoverEvent): void {}
+
+  // eslint-disable-next-line
+  timeSelectHandler(date: Date, index: number): void {}
 
   // eslint-disable-next-line
   daySelectHandler(day: DayViewModel): void {}
