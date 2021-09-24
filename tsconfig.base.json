@@ -78,6 +78,9 @@
       "ngx-bootstrap/utils": [
         "src/utils/index.ts"
       ],
+      "ngx-bootstrap/datepicker": [
+        "src/datepicker/index.ts"
+      ],
       "ngx-bootstrap/modal": [
         "src/modal/index.ts"
       ],

@@ -11,7 +11,11 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { ComponentLoaderFactory, ComponentLoader } from 'ngx-bootstrap/component-loader';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { DatepickerDateCustomClasses } from './models';
-import { checkBsValue, checkRangesWithMaxDate } from './utils/bs-calendar-utils';
+import {
+  checkBsValue,
+  checkRangesWithMaxDate,
+  setDateRangesCurrentTimeOnDateSelect
+} from './utils/bs-calendar-utils';
 
 @Directive({
   selector: '[bsDaterangepicker]',
@@ -72,6 +76,11 @@ export class BsDaterangepickerDirective
     if (this._bsValue === value) {
       return;
     }
+
+    if (value && this.bsConfig?.initCurrentTime) {
+      value = setDateRangesCurrentTimeOnDateSelect(value);
+    }
+
     this._bsValue = value;
     this.bsValueChange.emit(value);
   }
@@ -79,14 +88,7 @@ export class BsDaterangepickerDirective
   /**
    * Config object for daterangepicker
    */
-  @Input() set bsConfig(bsConfig: Partial<BsDaterangepickerConfig | undefined>) {
-    this._bsConfig = bsConfig;
-    this.setConfig();
-    this._rangeInputFormat$.next(bsConfig && bsConfig.rangeInputFormat);
-  }
-  get bsConfig(): Partial<BsDaterangepickerConfig> | undefined {
-    return this._bsConfig;
-  }
+  @Input() bsConfig?: Partial<BsDaterangepickerConfig>;
   /**
    * Indicates whether daterangepicker's content is enabled or not
    */
@@ -128,7 +130,6 @@ export class BsDaterangepickerDirective
   protected _subs: Subscription[] = [];
   private _datepicker: ComponentLoader<BsDaterangepickerContainerComponent>;
   private _datepickerRef?: ComponentRef<BsDaterangepickerContainerComponent>;
-  private _bsConfig?: Partial<BsDaterangepickerConfig>;
   private readonly _rangeInputFormat$ = new Subject<string>();
 
   constructor(public _config: BsDaterangepickerConfig,
@@ -159,6 +160,17 @@ export class BsDaterangepickerDirective
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    if (changes.bsConfig) {
+      if (changes.bsConfig.currentValue?.initCurrentTime && changes.bsConfig.currentValue?.initCurrentTime !== changes.bsConfig.previousValue?.initCurrentTime && this._bsValue) {
+        this._bsValue = setDateRangesCurrentTimeOnDateSelect(this._bsValue);
+        this.bsValueChange.emit(this._bsValue);
+      }
+
+      this.setConfig();
+      this._rangeInputFormat$.next(changes.bsConfig.currentValue && changes.bsConfig.currentValue.rangeInputFormat);
+    }
+
+
     if (!this._datepickerRef || !this._datepickerRef.instance) {
       return;
     }
@@ -256,7 +268,8 @@ export class BsDaterangepickerDirective
         datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
         datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled,
         ranges: checkRangesWithMaxDate(this.bsConfig && this.bsConfig.ranges, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
-        maxDateRange: this.bsConfig && this.bsConfig.maxDateRange
+        maxDateRange: this.bsConfig && this.bsConfig.maxDateRange,
+        initCurrentTime: this.bsConfig?.initCurrentTime
       }
     );
   }
