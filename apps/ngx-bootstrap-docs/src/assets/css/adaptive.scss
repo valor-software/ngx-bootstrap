@@ -301,6 +301,14 @@
       }
     }
   }
+
+  .sidebar {
+    &-search {
+      .hideInput {
+        display: block;
+      }
+    }
+  }
 }
 
 /* below 768 */
@@ -316,6 +324,7 @@
   p, .landing-advantages .txt-holder p {
     font-size: 14px;
   }
+
 }
 
 /* below 576 */

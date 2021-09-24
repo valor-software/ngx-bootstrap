@@ -1,33 +1,82 @@
-<search-input></search-input>
-<div class="mobile-menu">
+<search-input [showInput]="false"></search-input>
+<div class="mobile-menu w-100">
   <div class="bootstrap-version">
-    <span>Bootstrap: </span>
-    <button class="btn" type="button" [class.selected]="_bsVersions.isBs3" (click)="installTheme('bs3')">3</button>
-    <button class="btn" type="button" [class.selected]="_bsVersions.isBs4" (click)="installTheme('bs4')">4</button>
-    <button class="btn" type="button" [class.selected]="_bsVersions.isBs5"  (click)="installTheme('bs5')">5</button>
+    <span *ngIf="menuIsOpened">Bootstrap: </span>
+    <div>
+      <button class="btn" type="button" [class.selected]="_bsVersions.isBs3" (click)="installTheme('bs3')">3</button>
+      <button class="btn" type="button" [class.selected]="_bsVersions.isBs4" (click)="installTheme('bs4')">4</button>
+      <button class="btn" type="button" [class.selected]="_bsVersions.isBs5"  (click)="installTheme('bs5')">5</button>
+    </div>
   </div>
-  <div class="sidebar-content" *ngIf="routes && routes.length">
-    <ul class="sidebar-list">
+  <div class="sidebar-content position-relative w-100" *ngIf="routes && routes.length">
+<!--    <ul class="sidebar-list">-->
+<!--      <li [routerLinkActive]="['active']"-->
+<!--          [routerLinkActiveOptions]="{exact: true}" class="icon">-->
+<!--        <a routerLink="/{{routes[1].path}}">-->
+<!--          <img src="assets/images/icons/icon-folder.svg" alt="sidebar icon">-->
+<!--          <span  >-->
+<!--            {{routes[1].data}}-->
+<!--          </span>-->
+<!--        </a>-->
+<!--      </li>-->
+<!--      <li [routerLinkActive]="['active']"-->
+<!--          [routerLinkActiveOptions]="{exact: true}" class="icon">-->
+<!--        <a routerLink="/{{routes[2].path}}">-->
+<!--          <img src="assets/images/icons/icon-components.svg" alt="sidebar icon">-->
+<!--          <span *ngIf="menuIsOpened">-->
+<!--            {{routes[2].data}}-->
+<!--          </span>-->
+<!--        </a>-->
+<!--      </li>-->
+<!--      <li [routerLinkActive]="['active']"-->
+<!--          [routerLinkActiveOptions]="{exact: true}" class="icon">-->
+<!--        <a routerLink="/{{routes[3].path}}">-->
+<!--          <img src="assets/images/icons/icon-resources.svg" alt="sidebar icon">-->
+<!--          <span *ngIf="menuIsOpened">-->
+<!--            {{routes[3].data}}-->
+<!--          </span>-->
+<!--        </a>-->
+<!--      </li>-->
+<!--    </ul>-->
+
+
+    <ul class="sidebar-list d-flex flex-column">
       <li [routerLinkActive]="['active']"
-          [routerLinkActiveOptions]="{exact: true}">
-        <a routerLink="/{{routes[1].path}}">{{routes[1].data}}</a>
+          [routerLinkActiveOptions]="{exact: true}" class="icon" (click)="toggleSideBar(true)">
+        <div class="sidebar-list-box">
+          <img src="assets/images/icons/icon-folder.svg" alt="sidebar icon">
+          <span *ngIf="menuIsOpened">
+            {{routes[1].data}}
+          </span>
+        </div>
       </li>
       <li [routerLinkActive]="['active']"
-          [routerLinkActiveOptions]="{exact: true}">
-        <a routerLink="/{{routes[2].path}}">{{routes[2].data}}</a>
+          [routerLinkActiveOptions]="{exact: true}" class="icon" (click)="toggleSideBar(true)">
+        <div class="sidebar-list-box">
+          <img src="assets/images/icons/icon-components.svg" alt="sidebar icon">
+          <span *ngIf="menuIsOpened">
+            {{routes[2].data}}
+          </span>
+        </div>
       </li>
       <li [routerLinkActive]="['active']"
-          [routerLinkActiveOptions]="{exact: true}">
-        <a routerLink="/{{routes[3].path}}">{{routes[3].data}}</a>
+          [routerLinkActiveOptions]="{exact: true}" class="icon" (click)="toggleSideBar(true)">
+        <div class="sidebar-list-box">
+          <img src="assets/images/icons/icon-resources.svg" alt="sidebar icon">
+          <span *ngIf="menuIsOpened">
+            {{routes[3].data}}
+          </span>
+        </div>
       </li>
     </ul>
-
-    <h4 class="sidebar-title">Components</h4>
-    <ul class="sidebar-list">
+    <div class="double-arrow position-absolute" (click)="toggleSideBar()" [class.menu-opened]="menuIsOpened"></div>
+    <ul *ngIf="menuIsOpened" class="sidebar-list">
       <li *ngFor="let route of routes | slice:4 | SearchFilter:search.text"
           [routerLinkActive]="['active']"
           [routerLinkActiveOptions]="{exact: true}">
-        <a routerLink="/{{route.path}}">{{route.data[0]}}</a>
+        <div class="sidebar-list-box">
+          <a routerLink="/{{route.path}}">{{route.data[0]}}</a>
+        </div>
       </li>
     </ul>
   </div>

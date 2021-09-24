@@ -2,7 +2,7 @@
   <button id="mobile-main-menu" type="button" (click)="toggle()">
     <img src="assets/images/icons/menu-left.svg" alt="left menu">
   </button>
-  <div class="input-container">
+  <div class="input-container" [class.hideInput]="!showInput">
     <input  #searchInput
             type="text"
             aria-label="Search in docs" name="search"

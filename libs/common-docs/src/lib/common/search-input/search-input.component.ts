@@ -1,5 +1,5 @@
 import { ActivatedRoute, NavigationEnd, Route, Router, Routes } from "@angular/router";
-import { Component, Inject, OnDestroy, Renderer2 } from "@angular/core";
+import { Component, Inject, OnDestroy, Renderer2, Input } from "@angular/core";
 import { DOCUMENT } from '@angular/common';
 import { DOCS_TOKENS } from '../../tokens/docs-routes-token';
 import { Subscription } from "rxjs";
@@ -10,6 +10,7 @@ import { Subscription } from "rxjs";
   templateUrl: './search-input.component.html'
 })
 export class SearchInputComponent implements OnDestroy{
+  @Input() showInput = true;
   isShown = false;
   routes: Routes;
   search = { text: '' };

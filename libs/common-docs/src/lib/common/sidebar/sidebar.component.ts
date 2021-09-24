@@ -14,10 +14,15 @@ const _bs5Css = 'assets/css/bootstrap-5.1.0/css/bootstrap.min.css';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'sidebar',
-  templateUrl: './sidebar.component.html'
+  templateUrl: './sidebar.component.html',
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+  host:{
+    '[class.menuIsOpened]': 'menuIsOpened',
+  }
 })
 export class SidebarComponent {
   isShown = false;
+  menuIsOpened = true;
 
   get bsCssFile(): string {
     if (this.currentTheme === 'bs3') {
@@ -61,6 +66,17 @@ export class SidebarComponent {
     this.styleManager.setStyle('theme', this.bsCssFile);
     if (this.currentTheme) {
       this.themeStorage.storeTheme(this.currentTheme);
+    }
+  }
+
+  toggleSideBar(value?: boolean) {
+    if (typeof value === 'undefined') {
+      this.menuIsOpened = !this.menuIsOpened;
+      return;
+    }
+
+    if (value !== this.menuIsOpened) {
+      this.menuIsOpened = value;
     }
   }
 }

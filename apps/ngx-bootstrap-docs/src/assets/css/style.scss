@@ -1,4 +1,5 @@
 @import "manrope";
+@import "open-sans.css";
 @import "reboot";
 @import "variables";
 @import "common-styles.scss";
@@ -8,7 +9,7 @@
 /* HEADER */
 
 header {
-  padding: 10px 20px;
+  padding: 10px 30px;
   height: $header-height;
   display: flex;
   flex-wrap: nowrap;
@@ -348,14 +349,52 @@ form.sidebar-search input::placeholder {
 
 .sidebar {
   order: 0;
-  flex: 0 0 16.666667%;
-  max-width: 16.666667%;
-  border-right: 1px solid #dadada;
-  border-bottom: 1px solid #dadada;
+  flex: 0 0 10%;
+  max-width: 90px;
+  padding: 25px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #FAFAFC;
+  transition: all ease .2s;
+  font-family: "Open Sans";
+
+  .transition-option {
+    transition: all ease .2s;
+  }
+
+  .hide-element {
+    width: 0;
+    overflow: hidden;
+    position: absolute;
+  }
+
+  .mobile-menu {
+    max-width: 100%;
+  }
+
+  &.menuIsOpened {
+    //flex: 0 0 20%;
+    max-width: 240px;
+    width: 240px;
+    padding: 25px;
+
+    .sidebar-list {
+      align-items: flex-start;
+    }
+
+    //.sidebar-list-box:after {
+    //  transform: rotate(90deg);
+    //}
+  }
 
   &-search {
     position: relative;
     min-width: 100%;
+
+    .hideInput {
+      display: none;
+    }
 
     .input-container {
       width: 100%;
@@ -388,14 +427,19 @@ form.sidebar-search input::placeholder {
   }
 
   .bootstrap-version {
-    padding: 15px 19px 10px 20px;
     display: flex;
     flex-flow: row wrap;
     align-items: center;
-    border-bottom: 1px solid #dadada;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #F2F2F2;
+    justify-content: space-between;
 
     span {
       margin-right: 4px;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 20px;
+      font-family: sans-serif;
     }
 
     .btn {
@@ -403,27 +447,24 @@ form.sidebar-search input::placeholder {
       text-align: center;
       white-space: nowrap;
       vertical-align: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      border: 1px solid transparent;
-      background-color: #dadadd;
-      padding: 6px 8px;
-      font-size: 0.8125rem;
-      line-height: 1.25;
+      border: 1px solid #DBDEDF;
+      font-size: 12px;
+      line-height: 16px;
       transition: all .15s ease-in-out;
       border-radius: 0;
+      padding: 4px 8px;
 
-      &:first-of-type {
-        border-radius: .25rem 0 0 .25rem;
+      &:first-child {
+        border-radius: 2px 0 0 2px;
+        border-right: none;
       }
-      &:last-of-type {
-        border-radius: 0 .25rem .25rem 0;
+      &:last-child {
+        border-radius: 0 2px 2px 0;
+        border-left: none;
       }
 
       &.selected {
-        background-color: #1976d2;
+        background-color: #156DFF;
         color: #fff;
       }
 
@@ -435,10 +476,33 @@ form.sidebar-search input::placeholder {
   }
 
   &-content {
-    padding: 15px 19px 15px 20px;
-    overflow: auto;
-    /* header + search field + bootstrap buttons field */
     max-height: calc(100vh - 194px);
+    min-height: calc(100vh - 194px);
+
+    .double-arrow {
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) rotate(180deg);
+      transition: all ease .3s;
+      cursor: pointer;
+
+      &:before {
+        content: url('../../assets/images/icons/icon-arrow.svg');
+      }
+
+      &:after {
+        content: url('../../assets/images/icons/icon-arrow.svg');
+        left: 3px;
+      }
+
+      &.menu-opened {
+        transform: rotate(-360deg);
+        left: auto;
+        right: 0px;
+      }
+
+    }
+
   }
 
   &-list.menu {
@@ -453,19 +517,53 @@ form.sidebar-search input::placeholder {
     margin: 0;
     padding: 0;
     list-style: none;
+    align-items: center;
+    line-height: 20px;
+    font-size: 14px;
+
+    &-box {
+      display: block;
+      color: #262F56;
+      text-decoration: none;
+      margin: auto;
+      cursor: pointer;
+    }
 
     li {
+      position: relative;
+      margin-top: 30px;
+
       a {
-        display: block;
-        color: #666;
-        padding: 9px 0;
-        line-height: 1;
-        text-decoration: none;
+        color: #393D41;
       }
+
+      &.icon {
+        display: flex;
+        justify-content: space-between;
+        letter-spacing: .1em;
+
+        span {
+          margin-left: 20px;
+          margin-right: 10px;
+        }
+
+        img {
+          width: 24px;
+        }
+
+        &:after {
+          content: url("../../assets/images/icons/icon-arrow.svg");
+          display: inline-block;
+          transform: rotate(-90deg);
+          transition: all ease .2s;
+        }
+
+      }
+
       &:hover,
       &.active {
-        a {
-          color: #1976d2;
+        .sidebar-list-box {
+          font-weight: 700;
           text-decoration: none;
         }
       }
