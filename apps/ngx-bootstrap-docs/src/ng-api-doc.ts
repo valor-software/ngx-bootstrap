@@ -980,13 +980,7 @@ export const ngdoc: any = {
         "description": "<p>Emits an event when the datepicker is shown</p>\n"
       }
     ],
-    "properties": [
-      {
-        "name": "bsConfig",
-        "type": "Partial<BsDatepickerConfig>",
-        "description": "<p>Config object for datepicker</p>\n"
-      }
-    ],
+    "properties": [],
     "methods": [
       {
         "name": "show",
@@ -1087,7 +1081,6 @@ export const ngdoc: any = {
       },
       {
         "name": "initCurrentTime",
-        "defaultValue": "true",
         "type": "boolean",
         "description": "<p>Set current hours, minutes, seconds and milliseconds for bsValue</p>\n"
       },
@@ -1400,13 +1393,7 @@ export const ngdoc: any = {
         "description": "<p>Emits an event when the daterangepicker is shown</p>\n"
       }
     ],
-    "properties": [
-      {
-        "name": "bsConfig",
-        "type": "Partial<BsDaterangepickerConfig>",
-        "description": "<p>Config object for daterangepicker</p>\n"
-      }
-    ],
+    "properties": [],
     "methods": [
       {
         "name": "show",
