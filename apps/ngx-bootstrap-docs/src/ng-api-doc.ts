@@ -3452,7 +3452,6 @@ export const ngdoc: any = {
       },
       {
         "name": "firstText",
-        "defaultValue": "First",
         "type": "string",
         "description": "<p>first button text</p>\n"
       },
@@ -3463,7 +3462,6 @@ export const ngdoc: any = {
       },
       {
         "name": "lastText",
-        "defaultValue": "Last",
         "type": "string",
         "description": "<p>last button text</p>\n"
       },
@@ -3474,7 +3472,6 @@ export const ngdoc: any = {
       },
       {
         "name": "nextText",
-        "defaultValue": "Next",
         "type": "string",
         "description": "<p>next button text</p>\n"
       },
@@ -3485,7 +3482,6 @@ export const ngdoc: any = {
       },
       {
         "name": "previousText",
-        "defaultValue": "Previous",
         "type": "string",
         "description": "<p>previous button text</p>\n"
       },
@@ -4876,6 +4872,12 @@ export const ngdoc: any = {
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>used to choose the first item in typeahead container</p>\n"
+      },
+      {
+        "name": "selectItemOnBlur",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>used to choose item on blur event</p>\n"
       }
     ]
   },
