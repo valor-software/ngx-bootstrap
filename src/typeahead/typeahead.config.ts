@@ -19,4 +19,8 @@ export class TypeaheadConfig {
    * be entered before typeahead kicks-in
    */
   minLength = 1;
+  /**
+   * used to choose item on blur event
+   */
+  selectItemOnBlur = false;
 }

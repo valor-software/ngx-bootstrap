@@ -10,6 +10,7 @@ import { DemoTimepickerCustomValidationComponent } from './demos/custom-validati
 import { DemoTimepickerDynamicComponent } from './demos/dynamic/dynamic';
 import { DemoTimepickerMousewheelComponent } from './demos/mousewheel/mousewheel';
 import { DemoTimepickerArrowkeysComponent } from './demos/arrowkeys/arrowkeys';
+import { DemoTimepickerEmptyDateComponent } from './demos/empty-date/empty-date';
 import { DemoTimepickerConfigComponent } from './demos/config/config';
 import { DemoTimepickerReadonlyComponent } from './demos/readonly/readonly';
 import { DemoTimepickerSpinnersComponent } from './demos/spinners/spinners';
@@ -133,6 +134,13 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/mousewheel/mousewheel'),
         html: require('!!raw-loader!./demos/mousewheel/mousewheel.html'),
         outlet: DemoTimepickerMousewheelComponent
+      },
+      {
+        title: 'Empty date',
+        anchor: 'empty-date',
+        component: require('!!raw-loader!./demos/empty-date/empty-date'),
+        html: require('!!raw-loader!./demos/empty-date/empty-date.html'),
+        outlet: DemoTimepickerEmptyDateComponent
       },
       {
         title: 'Arrow keys',

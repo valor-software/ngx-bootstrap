@@ -90,7 +90,7 @@ export class BsDatepickerActions {
   }
 
   // date range picker
-  selectRange(value?: Date[]): Action {
+  selectRange(value?: (Date|undefined)[] | undefined): Action {
     return {
       type: BsDatepickerActions.SELECT_RANGE,
       payload: value

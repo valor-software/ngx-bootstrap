@@ -174,7 +174,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   isActiveItemChanged = false;
   isFocused = false;
   cancelRequestOnFocusLost = false;
-
+  selectItemOnBlur = false;
   protected keyUpEventEmitter = new EventEmitter<string>();
   protected placement = 'bottom left';
   protected _matches: TypeaheadMatch[] = [];
@@ -209,7 +209,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         typeaheadIsFirstItemActive: config.isFirstItemActive,
         typeaheadMinLength: config.minLength,
         adaptivePosition: config.adaptivePosition,
-        isAnimated: config.isAnimated
+        isAnimated: config.isAnimated,
+        selectItemOnBlur: config.selectItemOnBlur
       }
     );
   }
@@ -325,7 +326,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     if (!this.container && this._matches?.length === 0) {
       this.typeaheadOnBlur.emit(new TypeaheadMatch(
         this.element.nativeElement.value,
-        this.element.nativeElement.value, 
+        this.element.nativeElement.value,
         false));
     }
   }

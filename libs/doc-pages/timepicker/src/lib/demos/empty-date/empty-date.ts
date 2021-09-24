@@ -9,27 +9,16 @@ export function getTimepickerConfig(): TimepickerConfig {
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'demo-timepicker-dynamic',
-  templateUrl: './dynamic.html',
+  selector: 'demo-timepicker-empty-date',
+  templateUrl: './empty-date.html',
   providers: [{ provide: TimepickerConfig, useFactory: getTimepickerConfig }]
 })
-export class DemoTimepickerDynamicComponent {
-  mytime: Date | undefined = new Date();
+export class DemoTimepickerEmptyDateComponent {
+  allowEmptyTime = true;
+  myTime?: Date = new Date();
   isValid?: boolean;
 
-  update(): void {
-    const time = new Date();
-    time.setHours(14);
-    time.setMinutes(0);
-
-    this.mytime = time;
-  }
-
-  changed(): void {
-    console.log(`Time changed to: ${this.mytime}`);
-  }
-
   clear(): void {
-    this.mytime = void 0;
+    this.myTime = void 0;
   }
 }

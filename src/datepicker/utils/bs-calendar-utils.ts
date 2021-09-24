@@ -53,17 +53,25 @@ export function isYearDisabled(date: Date, min?: Date, max?: Date): boolean {
   return minBound || maxBound || false;
 }
 
-export function isDisabledDate(date?: Date, datesDisabled?: Date[]): boolean {
+export function isDisabledDate(date?: Date, datesDisabled?: Date[], unit?: string): boolean {
   if (!datesDisabled  || !isArray(datesDisabled) || !datesDisabled.length) {
     return false;
+  }
+
+  if (unit && unit === 'year') {
+    return datesDisabled.some((dateDisabled: Date) => isSame(date, dateDisabled, 'year'));
   }
 
   return datesDisabled.some((dateDisabled: Date) => isSame(date, dateDisabled, 'date'));
 }
 
-export function isEnabledDate(date?: Date, datesEnabled?: Date[]): boolean {
+export function isEnabledDate(date?: Date, datesEnabled?: Date[], unit?: string): boolean {
   if (!datesEnabled || !isArray(datesEnabled) || !datesEnabled.length) {
     return false;
+  }
+
+  if (unit && unit === 'year') {
+    return !datesEnabled.some((dateDisabled: Date) => isSame(date, dateDisabled, 'year'));
   }
 
   return !datesEnabled.some((enabledDate: Date) => isSame(date, enabledDate, 'date'));
@@ -107,5 +115,33 @@ function compareDateWithMaxDateHelper <T>(date: T, maxDate: Date): T | Date[] {
     });
     return editedValues;
   }
+  return date;
+}
+
+export function setCurrentTimeOnDateSelect(value?: Date): Date | undefined {
+  if (!value) return value;
+
+  return setCurrentTimeHelper(value);
+}
+
+export function setDateRangesCurrentTimeOnDateSelect(value?: (Date|undefined)[]): (Date|undefined)[] | undefined {
+  if (!value?.length) return value;
+
+  value.map((date) => {
+    if (!date) {
+      return date;
+    }
+    return setCurrentTimeHelper(date);
+  });
+
+  return value;
+}
+
+function setCurrentTimeHelper(date: Date): Date {
+  const now = new Date();
+  date.setMilliseconds(now.getMilliseconds());
+  date.setSeconds(now.getSeconds());
+  date.setMinutes(now.getMinutes());
+  date.setHours(now.getHours());
   return date;
 }
