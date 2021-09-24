@@ -15,7 +15,7 @@ export function getTimepickerConfig(): TimepickerConfig {
 })
 export class DemoTimepickerEmptyDateComponent {
   allowEmptyTime = true;
-  myTime: Date | undefined = new Date();
+  myTime?: Date = new Date();
   isValid?: boolean;
 
   clear(): void {
