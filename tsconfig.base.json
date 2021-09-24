@@ -39,8 +39,7 @@
       "@ngx-bootstrap-doc/datepicker": [
         "libs/doc-pages/datepicker/src/index.ts"
       ],
-      "@ngx-bootstrap-doc/
-      ": [
+      "@ngx-bootstrap-doc/": [
         "libs/doc-pages/dropdown/src/index.ts"
       ],
       "@ngx-bootstrap-doc/modal": [
