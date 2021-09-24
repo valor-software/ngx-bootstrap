@@ -78,6 +78,9 @@
       "ngx-bootstrap/utils": [
         "src/utils/index.ts"
       ],
+      "ngx-bootstrap/typeahead": [
+        "src/typeahead/index.ts"
+      ],
       "ngx-bootstrap/dropdown": [
         "src/dropdown/index.ts"
       ]
