@@ -4331,6 +4331,12 @@ export const ngdoc: any = {
     "methods": [],
     "properties": [
       {
+        "name": "allowEmptyTime",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>if true emptyTime is not marked as invalid</p>\n"
+      },
+      {
         "name": "ariaLabelHours",
         "defaultValue": "hours",
         "type": "string",
