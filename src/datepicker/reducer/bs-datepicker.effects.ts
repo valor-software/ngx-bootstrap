@@ -50,7 +50,7 @@ export class BsDatepickerEffects {
     this._store?.dispatch(this._actions.select(value));
   }
 
-  setRangeValue(value?: Date[]): void {
+  setRangeValue(value?: (Date|undefined)[] | undefined): void {
     this._store?.dispatch(this._actions.selectRange(value));
   }
 
@@ -115,6 +115,9 @@ export class BsDatepickerEffects {
     if (!this._store) {
       return this;
     }
+
+    container.selectedTime = this._store.select(state => state.selectedTime)
+      .pipe(filter(times => !!times));
 
     container.daysCalendar$ = this._store.select(state => state.flaggedMonths)
       .pipe(filter(months => !!months));

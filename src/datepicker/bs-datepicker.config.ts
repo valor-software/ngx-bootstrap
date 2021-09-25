@@ -174,4 +174,13 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Label for 'custom range' button
    */
   customRangeButtonLabel = 'Custom Range';
+
+  /**
+   * Shows timepicker under datepicker
+   */
+  withTimepicker = false;
+  /**
+   * Set current hours, minutes, seconds and milliseconds for bsValue
+   */
+  initCurrentTime?: boolean;
 }

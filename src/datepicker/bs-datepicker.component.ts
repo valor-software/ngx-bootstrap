@@ -19,7 +19,8 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsDatepickerViewMode, DatepickerDateCustomClasses, DatepickerDateTooltipText } from './models';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
-import { checkBsValue } from './utils/bs-calendar-utils';
+import { copyTime } from './utils/copy-time-utils';
+import { checkBsValue, setCurrentTimeOnDateSelect } from './utils/bs-calendar-utils';
 
 @Directive({
   selector: '[bsDatepicker]',
@@ -140,13 +141,13 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       return;
     }
 
-    if (!this._bsValue && value) {
+    if (!this._bsValue && value && !this._config.withTimepicker) {
       const now = new Date();
+      copyTime(value, now);
+    }
 
-      value.setMilliseconds(now.getMilliseconds());
-      value.setSeconds(now.getSeconds());
-      value.setMinutes(now.getMinutes());
-      value.setHours(now.getHours());
+    if (value && this.bsConfig?.initCurrentTime) {
+      value = setCurrentTimeOnDateSelect(value);
     }
 
     this._bsValue = value;
@@ -157,20 +158,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
     return this._dateInputFormat$;
   }
 
-  private _bsConfig?: Partial<BsDatepickerConfig>;
-
-  get bsConfig(): Partial<BsDatepickerConfig> | undefined {
-    return this._bsConfig;
-  }
-
   /**
    * Config object for datepicker
    */
-  @Input() set bsConfig(bsConfig: Partial<BsDatepickerConfig>| undefined) {
-    this._bsConfig = bsConfig;
-    this.setConfig();
-    this._dateInputFormat$.next(bsConfig && bsConfig.dateInputFormat);
-  }
+  @Input() bsConfig?: Partial<BsDatepickerConfig>;
 
   ngOnInit(): void {
     this._datepicker.listen({
@@ -183,6 +174,16 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    if (changes.bsConfig) {
+      if (changes.bsConfig.currentValue?.initCurrentTime && changes.bsConfig.currentValue?.initCurrentTime !== changes.bsConfig.previousValue?.initCurrentTime && this._bsValue) {
+        this._bsValue = setCurrentTimeOnDateSelect(this._bsValue);
+        this.bsValueChange.emit(this._bsValue);
+      }
+
+      this.setConfig();
+      this._dateInputFormat$.next(this.bsConfig && this.bsConfig.dateInputFormat);
+    }
+
     if (!this._datepickerRef || !this._datepickerRef.instance) {
       return;
     }
@@ -312,7 +313,8 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       dateTooltipTexts: this.dateTooltipTexts || this.bsConfig && this.bsConfig.dateTooltipTexts,
       datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
       datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled,
-      minMode: this.minMode || this.bsConfig && this.bsConfig.minMode
+      minMode: this.minMode || this.bsConfig && this.bsConfig.minMode,
+      initCurrentTime: this.bsConfig?.initCurrentTime
     });
   }
 

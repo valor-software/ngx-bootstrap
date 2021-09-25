@@ -22,6 +22,7 @@ import { formatYearsCalendar, initialYearShift, yearsPerCalendar } from '../engi
 import { flagYearsCalendar } from '../engine/flag-years-calendar';
 import { BsViewNavigationEvent, DatepickerFormatOptions, BsDatepickerViewMode } from '../models';
 import { getYearsCalendarInitialDate } from '../utils/bs-calendar-utils';
+import { copyTime } from '../utils/copy-time-utils';
 
 
 export function bsDatepickerReducer(state: BsDatepickerState = initialDatepickerState,
@@ -89,12 +90,26 @@ export function bsDatepickerReducer(state: BsDatepickerState = initialDatepicker
         view: state.view
       };
 
+      if (Array.isArray(state.selectedTime)) {
+        const _time = state.selectedTime[0];
+        if (_time) {
+          copyTime(newState.selectedDate, _time);
+        }
+      }
+
       const mode = state.view.mode;
       const _date = action.payload || state.view.date;
       const date = getViewDate(_date, state.minDate, state.maxDate);
       newState.view = { mode, date };
 
       return Object.assign({}, state, newState);
+    }
+
+    case BsDatepickerActions.SELECT_TIME: {
+      const {date, index} = action.payload;
+      const selectedTime = state.selectedTime ? [...state.selectedTime] : [];
+      selectedTime[index] = date;
+      return Object.assign({}, state, { selectedTime });
     }
 
     case BsDatepickerActions.SET_OPTIONS: {
@@ -115,11 +130,13 @@ export function bsDatepickerReducer(state: BsDatepickerState = initialDatepicker
         // if new value is array we work with date range
         if (isArray(newState.value)) {
           newState.selectedRange = newState.value;
+          newState.selectedTime = newState.value.map((i: Date) => i);
         }
 
         // if new value is a date -> datepicker
         if (newState.value instanceof Date) {
           newState.selectedDate = newState.value;
+          newState.selectedTime = [newState.value];
         }
 
         // provided value is not supported :)
@@ -139,6 +156,15 @@ export function bsDatepickerReducer(state: BsDatepickerState = initialDatepicker
         selectedRange: action.payload,
         view: state.view
       };
+
+      newState.selectedRange.forEach((dte: Date, index: number) => {
+        if (Array.isArray(state.selectedTime)) {
+          const _time = state.selectedTime[index];
+          if (_time) {
+            copyTime(dte, _time);
+          }
+        }
+      });
 
       const mode = state.view.mode;
       const _date = action.payload && action.payload[0] || state.view.date;

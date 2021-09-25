@@ -65,6 +65,27 @@ describe('daterangepicker:', () => {
         fixture.detectChanges();
     });
 
+  it('should display timepicker when withTimepicker is true', () => {
+    const directive = getDaterangepickerDirective(fixture);
+    directive.bsConfig = {
+      withTimepicker: true
+    };
+    showDatepicker(fixture);
+    const timepickerZone = document.querySelector('.bs-timepicker-in-datepicker-container');
+    const timepickers = document.querySelectorAll('timepicker');
+    expect(timepickerZone).toBeTruthy();
+    expect(timepickers.length).toEqual(2);
+  });
+
+  it('should hide timepicker when withTimepicker is false', () => {
+    const directive = getDaterangepickerDirective(fixture);
+    directive.bsConfig = {
+      withTimepicker: false
+    };
+    showDatepicker(fixture);
+    const timepickerZone = document.querySelector('.bs-timepicker-in-datepicker-container');
+    expect(timepickerZone).not.toBeTruthy();
+  });
 
     it('should display daterangepicker on show', () => {
         const datepicker = showDatepicker(fixture);

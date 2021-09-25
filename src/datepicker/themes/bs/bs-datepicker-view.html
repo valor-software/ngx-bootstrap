@@ -6,19 +6,25 @@
     <!--calendars-->
     <div class="bs-calendar-container" [ngSwitch]="viewMode | async" role="application">
       <!--days calendar-->
-      <div *ngSwitchCase="'day'" class="bs-media-container">
-        <bs-days-calendar-view
-          *ngFor="let calendar of daysCalendar$ | async"
-          [class.bs-datepicker-multiple]="multipleCalendars"
-          [calendar]="calendar"
-          [options]="options$ | async"
-          (onNavigate)="navigateTo($event)"
-          (onViewMode)="setViewMode($event)"
-          (onHover)="dayHoverHandler($event)"
-          (onHoverWeek)="weekHoverHandler($event)"
-          (onSelect)="daySelectHandler($event)">
-        </bs-days-calendar-view>
-      </div>
+      <ng-container *ngSwitchCase="'day'">
+        <div class="bs-media-container">
+          <bs-days-calendar-view
+            *ngFor="let calendar of daysCalendar$ | async"
+            [class.bs-datepicker-multiple]="multipleCalendars"
+            [calendar]="calendar"
+            [options]="options$ | async"
+            (onNavigate)="navigateTo($event)"
+            (onViewMode)="setViewMode($event)"
+            (onHover)="dayHoverHandler($event)"
+            (onHoverWeek)="weekHoverHandler($event)"
+            (onSelect)="daySelectHandler($event)">
+          </bs-days-calendar-view>
+        </div>
+        <div *ngIf="withTimepicker" class="bs-timepicker-in-datepicker-container">
+          <timepicker #startTP></timepicker>
+          <timepicker #endTP *ngIf="isRangePicker"></timepicker>
+        </div>
+      </ng-container>
 
       <!--months calendar-->
       <div *ngSwitchCase="'month'" class="bs-media-container">
