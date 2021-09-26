@@ -15,7 +15,13 @@ import {
   shiftDate
 } from 'ngx-bootstrap/chronos';
 
-import { isMonthDisabled, isDisabledDate, isEnabledDate } from '../utils/bs-calendar-utils';
+import {
+  isMonthDisabled,
+  isDisabledDate,
+  isEnabledDate,
+  isMonthsDisabled,
+  isYearsDisabled
+} from '../utils/bs-calendar-utils';
 
 export interface FlagDaysCalendarOptions {
   isDisabled: boolean;
@@ -23,6 +29,8 @@ export interface FlagDaysCalendarOptions {
   maxDate: Date;
   daysDisabled: number[];
   datesDisabled: Date[];
+  monthsDisabled: string[];
+  yearsDisabled: string[];
   datesEnabled: Date[];
   hoveredDate: Date;
   selectedDate: Date;
@@ -70,6 +78,8 @@ export function flagDaysCalendar(
         isAfter(day.date, options.maxDate, 'day') ||
         isDisabledDay(day.date, options.daysDisabled) ||
         isDisabledDate(day.date, options.datesDisabled) ||
+        isYearsDisabled(day.date, options.yearsDisabled) ||
+        isMonthsDisabled(day.date, options.monthsDisabled) ||
         isEnabledDate(day.date, options.datesEnabled);
 
       const currentDate = new Date();

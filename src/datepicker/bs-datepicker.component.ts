@@ -80,6 +80,17 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
    * Disable specific dates
    */
   @Input() datesDisabled?: Date[];
+
+  /**
+   * Disable specific months in each year
+   */
+  @Input() monthsDisabled?: string[];
+
+  /**
+   * Disable specific years
+   */
+  @Input() yearsDisabled?: string[];
+
   /**
    * Enable specific dates
    */
@@ -208,6 +219,14 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       this._datepickerRef.instance.datesEnabled = this.datesEnabled;
     }
 
+    if (changes.monthsDisabled) {
+      this._datepickerRef.instance.monthsDisabled = this.monthsDisabled;
+    }
+
+    if (changes.yearsDisabled) {
+      this._datepickerRef.instance.yearsDisabled = this.yearsDisabled;
+    }
+
     if (changes.isDisabled) {
       if (this._elementRef?.nativeElement) {
         this._elementRef.nativeElement.setAttribute('readonly', this.isDisabled);
@@ -313,6 +332,8 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       dateTooltipTexts: this.dateTooltipTexts || this.bsConfig && this.bsConfig.dateTooltipTexts,
       datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
       datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled,
+      monthsDisabled: this.monthsDisabled || this.bsConfig && this.bsConfig.monthsDisabled,
+      yearsDisabled: this.yearsDisabled || this.bsConfig && this.bsConfig.yearsDisabled,
       minMode: this.minMode || this.bsConfig && this.bsConfig.minMode,
       initCurrentTime: this.bsConfig?.initCurrentTime
     });

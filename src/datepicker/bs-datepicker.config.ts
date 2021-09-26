@@ -48,6 +48,8 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays
    */
   daysDisabled?: number[];
+  monthsDisabled?: string[];
+  yearsDisabled?: string[];
   /**
    * Disable specific dates
    */

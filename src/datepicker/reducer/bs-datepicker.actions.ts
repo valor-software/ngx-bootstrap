@@ -26,6 +26,8 @@ export class BsDatepickerActions {
   static readonly SET_MAX_DATE = '[datepicker] set max date';
   static readonly SET_DAYSDISABLED = '[datepicker] set days disabled';
   static readonly SET_DATESDISABLED = '[datepicker] set dates disabled';
+  static readonly SET_MONTHSDISABLED = '[datepicker] set months disabled';
+  static readonly SET_YEARSDISABLED = '[datepicker] set years disabled';
   static readonly SET_DATESENABLED = '[datepicker] set dates enabled';
   static readonly SET_IS_DISABLED = '[datepicker] set is disabled';
   static readonly SET_DATE_CUSTOM_CLASSES = '[datepicker] set date custom classes';
@@ -131,6 +133,21 @@ export class BsDatepickerActions {
       payload: dates
     };
   }
+
+  monthsDisabled(value?: string[]): Action {
+    return {
+      type: BsDatepickerActions.SET_MONTHSDISABLED,
+      payload: value
+    };
+  }
+
+  yearsDisabled(value?: string[]): Action {
+    return {
+      type: BsDatepickerActions.SET_YEARSDISABLED,
+      payload: value
+    };
+  }
+
 
   datesEnabled(dates?: Date[]): Action {
     return {

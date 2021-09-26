@@ -113,6 +113,15 @@ export class BsDaterangepickerDirective
    * Disable specific dates
    */
   @Input() datesDisabled?: Date[];
+  /**
+   * Disable specific months in each year
+   */
+  @Input() monthsDisabled?: string[];
+
+  /**
+   * Disable specific years
+   */
+  @Input() yearsDisabled?: string[];
 
   /**
    * Enable specific dates

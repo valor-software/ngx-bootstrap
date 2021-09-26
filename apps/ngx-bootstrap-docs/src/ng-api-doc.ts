@@ -805,12 +805,12 @@ export const ngdoc: any = {
       {
         "name": "datesDisabled",
         "type": "Date[]",
-        "description": "<p>Enable specific dates</p>\n"
+        "description": "<p>Disable specific dates</p>\n"
       },
       {
         "name": "datesEnabled",
         "type": "Date[]",
-        "description": "<p>Disable specific dates</p>\n"
+        "description": "<p>Enable specific dates</p>\n"
       },
       {
         "name": "dateTooltipTexts",
@@ -832,6 +832,16 @@ export const ngdoc: any = {
         "name": "minDate",
         "type": "Date",
         "description": "<p>Minimum date which is available for selection</p>\n"
+      },
+      {
+        "name": "monthsDisabled",
+        "type": "string[]",
+        "description": "<p>Disable specific months in each year</p>\n"
+      },
+      {
+        "name": "yearsDisabled",
+        "type": "string[]",
+        "description": "<p>Disable specific years</p>\n"
       }
     ],
     "outputs": [
@@ -942,6 +952,11 @@ export const ngdoc: any = {
         "description": "<p>Minimum view mode : day, month, or year</p>\n"
       },
       {
+        "name": "monthsDisabled",
+        "type": "string[]",
+        "description": "<p>Disable specific months in each year</p>\n"
+      },
+      {
         "name": "outsideClick",
         "defaultValue": "true",
         "type": "boolean",
@@ -964,6 +979,11 @@ export const ngdoc: any = {
         "defaultValue": "click",
         "type": "string",
         "description": "<p>Specifies events that should trigger. Supports a space separated list of\nevent names.</p>\n"
+      },
+      {
+        "name": "yearsDisabled",
+        "type": "string[]",
+        "description": "<p>Disable specific years</p>\n"
       }
     ],
     "outputs": [
@@ -1361,6 +1381,11 @@ export const ngdoc: any = {
         "description": "<p>Minimum date which is available for selection</p>\n"
       },
       {
+        "name": "monthsDisabled",
+        "type": "string[]",
+        "description": "<p>Disable specific months in each year</p>\n"
+      },
+      {
         "name": "outsideClick",
         "defaultValue": "true",
         "type": "boolean",
@@ -1383,6 +1408,11 @@ export const ngdoc: any = {
         "defaultValue": "click",
         "type": "string",
         "description": "<p>Specifies events that should trigger. Supports a space separated list of\nevent names.</p>\n"
+      },
+      {
+        "name": "yearsDisabled",
+        "type": "string[]",
+        "description": "<p>Disable specific years</p>\n"
       }
     ],
     "outputs": [

@@ -78,6 +78,18 @@ export class BsDatepickerEffects {
     return this;
   }
 
+  setMonthsDisabled(value?: string[]): BsDatepickerEffects {
+    this._store?.dispatch(this._actions.monthsDisabled(value));
+
+    return this;
+  }
+
+  setYearsDisabled(value?: string[]): BsDatepickerEffects {
+    this._store?.dispatch(this._actions.yearsDisabled(value));
+
+    return this;
+  }
+
   setDatesEnabled(value?: Date[]): BsDatepickerEffects {
     this._store?.dispatch(this._actions.datesEnabled(value));
 

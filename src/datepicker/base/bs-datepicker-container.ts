@@ -51,6 +51,14 @@ export abstract class BsDatepickerAbstractComponent {
     this._effects?.setDatesDisabled(value);
   }
 
+  set monthsDisabled(value: string[]|undefined) {
+    this._effects?.setMonthsDisabled(value);
+  }
+
+  set yearsDisabled(value: string[]|undefined) {
+    this._effects?.setYearsDisabled(value);
+  }
+
   set datesEnabled(value: Date[]|undefined) {
     this._effects?.setDatesEnabled(value);
   }

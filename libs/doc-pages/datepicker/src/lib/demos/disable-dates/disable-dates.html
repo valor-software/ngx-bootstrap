@@ -4,6 +4,8 @@
            placeholder="Datepicker"
            class="form-control"
            bsDatepicker
+           [monthsDisabled]="disabledMonths"
+           [yearsDisabled]="disabledYears"
            [datesDisabled]="disabledDates">
   </div>
   <div class="col-xs-12 col-12 col-md-4 form-group mb-3">
@@ -11,6 +13,8 @@
            placeholder="Daterangepicker"
            class="form-control"
            bsDaterangepicker
+           [monthsDisabled]="disabledMonths"
+           [yearsDisabled]="disabledYears"
            [datesDisabled]="disabledDates">
   </div>
 </div>

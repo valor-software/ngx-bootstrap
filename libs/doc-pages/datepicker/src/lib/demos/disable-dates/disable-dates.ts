@@ -7,7 +7,9 @@ import { Component } from '@angular/core';
 })
 export class DemoDatepickerDatesDisabledComponent {
   disabledDates = [
-    new Date('2020-02-05'),
-    new Date('2020-02-09')
+    new Date('2021-12-05'),
+    new Date('2021-12-09')
   ];
+  disabledMonths = [ '10' ];
+  disabledYears =  ['2023' ];
 }

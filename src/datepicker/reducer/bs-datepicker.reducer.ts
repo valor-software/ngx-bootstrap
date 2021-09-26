@@ -373,6 +373,8 @@ function flagReducer(state: BsDatepickerState): BsDatepickerState {
           maxDate: state.maxDate,
           daysDisabled: state.daysDisabled,
           datesDisabled: state.datesDisabled,
+          monthsDisabled: state.monthsDisabled,
+          yearsDisabled: state.yearsDisabled,
           datesEnabled: state.datesEnabled,
           hoveredDate: state.hoveredDate,
           selectedDate: state.selectedDate,

@@ -65,6 +65,26 @@ export function isDisabledDate(date?: Date, datesDisabled?: Date[], unit?: strin
   return datesDisabled.some((dateDisabled: Date) => isSame(date, dateDisabled, 'date'));
 }
 
+export function isMonthsDisabled(date?: Date, months?: string[]): boolean {
+  if (date && months && months.length > 0) {
+    const month = new Date(date).getMonth() + 1;
+
+    return months.indexOf(month.toString()) > -1;
+  }
+
+  return false;
+}
+
+export function isYearsDisabled(date?: Date, years?: string[]): boolean {
+  if (date && years && years.length > 0) {
+    const year = new Date(date).getFullYear();
+
+    return years.indexOf(year.toString()) > -1;
+  }
+
+  return false;
+}
+
 export function isEnabledDate(date?: Date, datesEnabled?: Date[], unit?: string): boolean {
   if (!datesEnabled || !isArray(datesEnabled) || !datesEnabled.length) {
     return false;

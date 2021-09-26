@@ -54,13 +54,23 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
    */
   @Input() dateTooltipTexts?: DatepickerDateTooltipText[];
   /**
-   * Disable specific dates
+   * Enable specific dates
    */
   @Input() datesEnabled?: Date[];
   /**
-   * Enable specific dates
+   * Disable specific dates
    */
   @Input() datesDisabled?: Date[];
+  /**
+   * Disable specific months in each year
+   */
+  @Input() monthsDisabled?: string[];
+
+  /**
+   * Disable specific years
+   */
+  @Input() yearsDisabled?: string[];
+
   /**
    * Emits when datepicker value has been changed
    */
