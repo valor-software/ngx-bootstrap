@@ -4,9 +4,7 @@ import sdk from '@stackblitz/sdk';
 
 import { ContentSection } from '../../models/content-section.model';
 import { ComponentExample } from '../../models/components-examples.model';
-import { main } from './stackblitz/main';
-import { polyfills } from './stackblitz/polyfills';
-import { getAppModuleCode, NgxModuleData } from './stackblitz/app.module';
+import { NgxModuleData } from './stackblitz/app.module';
 import { getIndexHtmlCode } from './stackblitz/html';
 import { getComponentClassName, getTagName, getTemplateFileName, getCSSCodeDatepickerCustomClass } from './stackblitz/helpers';
 import { Utils } from 'ngx-bootstrap/utils';
@@ -72,30 +70,12 @@ export class ExamplesComponent {
           'src/app/app.component.ts': this.getAppComponent(),
           'src/app/app.module.ts': this.getAppModule()
         },
-        dependencies: {
-          "@angular/animations": "12.1.0",
-          "@angular/common": "12.0.5",
-          "@angular/compiler": "12.0.5",
-          "@angular/core": "12.0.5",
-          "@angular/forms": "12.0.5",
-          "@angular/platform-browser": "12.0.5",
-          "@angular/platform-browser-dynamic": "12.0.5",
-          "@angular/router": "12.0.5",
-          "ngx-bootstrap": "latest",
-          "rxjs": "~6.6.0",
-          "tslib": "^2.0.0",
-          "zone.js": "~0.11.3"
-        },
+        dependencies: this.getDependencies(),
         devDependencies: {
-          "@angular-devkit/build-angular": "~0.1102.13",
-          "@angular/cli": "11.0.4",
-          "@angular/compiler-cli": "11.0.4",
-          "@types/node": "^12.11.1",
-          "codelyzer": "^6.0.0",
-          "protractor": "~7.0.0",
-          "ts-node": "~8.3.0",
-          "tslint": "~6.1.0",
-          "typescript": "~4.1.5"
+          "@angular-devkit/build-angular": "12.2.5",
+          "@angular/cli": "12.2.5",
+          "@angular/compiler-cli": "12.2.5",
+          "typescript": "~4.3.2"
         },
         title: 'stackblitz demo',
         description: 'stackblitz demo',
@@ -124,7 +104,7 @@ export class ExamplesComponent {
 
   private getTsConfig(): string {
     return `
-    {
+{
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
@@ -137,13 +117,8 @@ export class ExamplesComponent {
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ]
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom"]
   },
   "angularCompilerOptions": {
     "enableIvy": true,
@@ -157,56 +132,95 @@ export class ExamplesComponent {
 
   private getAngularJson(): string {
     return `
-    {
-      "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-      "version": 1,
-      "newProjectRoot": "projects",
-      "projects": {
-        "demo": {
-          "projectType": "application",
-          "schematics": {},
-          "root": "",
-          "sourceRoot": "src",
-          "prefix": "app",
-          "architect": {
-            "build": {
-              "builder": "@angular-devkit/build-angular:browser",
-              "options": {
-                "outputPath": "dist",
-                "index": "src/index.html",
-                "main": "src/main.ts",
-                "polyfills": "src/polyfills.ts",
-                "tsConfig": "tsconfig.json",
-                "aot": true,
-                "configurations": {
-                  "development": {
-                    "buildOptimizer": false,
-                    "optimization": false,
-                    "vendorChunk": true,
-                    "extractLicenses": false,
-                    "sourceMap": true,
-                    "namedChunks": true
-                  }
-                },
-                "defaultConfiguration": "production"
-              }
-            },
-            "serve": {
-              "builder": "@angular-devkit/build-angular:dev-server",
-              "options": {
-                "browserTarget": "demo:build"
-              },
-              "configurations": {
-                "production": {
-                  "browserTarget": "demo:build:production"
-                }
-              }
-            }
-          }
+ {
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "demo": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
         }
       },
-      "defaultProject": "demo"
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/demo",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.json",
+            "inlineStyleLanguage": "scss",
+            "styles": [
+              "src/style.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "demo:build:production"
+            },
+            "development": {
+              "browserTarget": "demo:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "demo:build"
+          }
+        }
+      }
     }
+  },
+  "defaultProject": "demo"
+}
     `;
   }
 
@@ -248,14 +262,14 @@ platformBrowserDynamic()
 
   private getAppComponent(): string {
     return `
-    import {Component} from '@angular/core';
+import {Component} from '@angular/core';
 
-        @Component({
-           selector: 'app-root',
-           templateUrl: './app.component.html'
-        })
-        export class AppComponent {}
-    `;
+    @Component({
+       selector: 'app-root',
+       templateUrl: './app.component.html'
+    })
+    export class AppComponent {}
+`;
   }
 
   private getAppModule(): string {
@@ -276,6 +290,22 @@ platformBrowserDynamic()
             })
             export class AppModule { }
     `;
+  }
+
+  private getDependencies(): any {
+    return {
+      "@angular/animations": "12.2.5",
+      "@angular/common": "12.2.5",
+      "@angular/compiler": "12.2.5",
+      "@angular/core": "12.2.5",
+      "@angular/forms": "12.2.5",
+      "@angular/platform-browser": "12.2.5",
+      "@angular/platform-browser-dynamic": "12.2.5",
+      "ngx-bootstrap": "7.1.1",
+      "rxjs": "7.3.0",
+      "tslib": "2.3.1",
+      "zone.js": "0.11.4"
+    };
   }
 }
 
