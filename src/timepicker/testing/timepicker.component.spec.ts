@@ -155,6 +155,14 @@ describe('Component: TimepickerComponent', () => {
       buttonDebugMeridian = getDebugElements(fixture, 'button')[0];
     });
 
+    it('should emit isValid with false when clearing date', () => {
+      spyOn(component.isValid, 'emit').and.stub();
+      fireEvent(inputMinutes, 'change');
+      component.writeValue(testTime());
+      fixture.detectChanges();
+      expect(component.isValid.emit).toHaveBeenCalledWith(true);
+    });
+
     it('should default state showMeridian display AM/PM button', () => {
       expect(buttonMeridian).toBeTruthy();
     });
@@ -295,6 +303,36 @@ describe('Component: TimepickerComponent', () => {
 
       expect(buttonChanges[2]).toHaveCssClass('disabled');
       expect(buttonChanges[3]).toHaveCssClass('disabled');
+    });
+  });
+
+  describe('validate input fields with property of allowEmptyTime', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TimepickerComponent);
+      fixture.detectChanges();
+
+      component = fixture.componentInstance;
+      inputHours = getInputElements(fixture)[0];
+      inputMinutes = getInputElements(fixture)[1];
+      buttonChanges = getElements(fixture, 'a.btn');
+    });
+
+    it('should emit isValid with false when allowEmptyTime is false', () => {
+      component.config.allowEmptyTime = false;
+      spyOn(component.isValid, 'emit').and.stub();
+      fireEvent(inputMinutes, 'change');
+      component.writeValue(testTime());
+      fixture.detectChanges();
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
+    });
+
+    it('should emit isValid with true when allowEmptyTime is true ', () => {
+      component.config.allowEmptyTime = true;
+      spyOn(component.isValid, 'emit').and.stub();
+      fireEvent(inputMinutes, 'change');
+      component.writeValue(testTime());
+      fixture.detectChanges();
+      expect(component.isValid.emit).toHaveBeenCalledWith(true);
     });
   });
 

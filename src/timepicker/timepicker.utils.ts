@@ -206,6 +206,10 @@ export function isInputLimitValid(diff: Time, max?: Date, min?: Date): boolean {
   return true;
 }
 
+export function isOneOfDatesEmpty(hours: string, minutes: string, seconds: string): boolean {
+  return hours.length === 0 || minutes.length === 0 || seconds.length === 0;
+}
+
 export function isInputValid(
   hours: string,
   minutes = '0',

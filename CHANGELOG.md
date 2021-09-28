@@ -1,3 +1,27 @@
+## [7.1.2](https://github.com/valor-software/ngx-bootstrap/compare/v7.1.1...v7.1.2) (2021-09-24)
+
+
+### Bug Fixes
+
+* **aria-expanded:** fixed unnecessary aria-expanded ([#6297](https://github.com/valor-software/ngx-bootstrap/issues/6297)) ([329c7b8](https://github.com/valor-software/ngx-bootstrap/commit/329c7b8333770670ed7bda5c2c8f0b89e9098593))
+* **datepicker:** fix enabledDates/disabledDates property not working in min-mode ([#6290](https://github.com/valor-software/ngx-bootstrap/issues/6290)) ([78c45bc](https://github.com/valor-software/ngx-bootstrap/commit/78c45bcec23baf9fc4fb85093ba19e72d608927b))
+* **datepicker:** fix wrong value for SV and NL locales in daterangepicker ([#6303](https://github.com/valor-software/ngx-bootstrap/issues/6303)) ([2fb60fd](https://github.com/valor-software/ngx-bootstrap/commit/2fb60fd2d86fa3d03a545ec38d90f4d8d98d9bb5))
+* **dropdown:** fixed dropdown right align for bs5 ([#6298](https://github.com/valor-software/ngx-bootstrap/issues/6298)) ([aa279f4](https://github.com/valor-software/ngx-bootstrap/commit/aa279f43c4694056b7ea5b1b04b5e6993934663f))
+* **modal:** fixed modal uniq id ([#6299](https://github.com/valor-software/ngx-bootstrap/issues/6299)) ([be1db58](https://github.com/valor-software/ngx-bootstrap/commit/be1db5857182b7d7848d8ec0446c4dc4935f3cf0))
+* **modals:** fixed modals documentation for ModalOptions ([#6292](https://github.com/valor-software/ngx-bootstrap/issues/6292)) ([0222e4f](https://github.com/valor-software/ngx-bootstrap/commit/0222e4f0e61095bbddc41dedb07fe523acb74862))
+* **timepicker:** fixed reset validation for ngModel ([#6294](https://github.com/valor-software/ngx-bootstrap/issues/6294)) ([d777be6](https://github.com/valor-software/ngx-bootstrap/commit/d777be6bda108598980f4eb94f6e28dec4de4066))
+
+
+### Features
+
+* **datepicker:** add timepicker support ([#6275](https://github.com/valor-software/ngx-bootstrap/issues/6275)) ([e93950b](https://github.com/valor-software/ngx-bootstrap/commit/e93950bd9f3477c99886d2db0a725bf645c66943))
+* **datepicker:** added config param to enable optional current time initialization ([#6288](https://github.com/valor-software/ngx-bootstrap/issues/6288)) ([3d2a0d5](https://github.com/valor-software/ngx-bootstrap/commit/3d2a0d530c74c2840665e58ccf576f86f8b351a8))
+* **dropdown:** add arrow key navigation for dropdown list ([#4156](https://github.com/valor-software/ngx-bootstrap/issues/4156)) ([107f2b2](https://github.com/valor-software/ngx-bootstrap/commit/107f2b2b27a273e41cce382bfa60e40bdc3ee8bd))
+* **timepicker:** add config for allowing empty time ([#6279](https://github.com/valor-software/ngx-bootstrap/issues/6279)) ([3a0757a](https://github.com/valor-software/ngx-bootstrap/commit/3a0757a9b87ca482a6cdce16297648bbc84609a4))
+* **typeahead:** added config option selectItemOnBlur to select item onBlur ([#6295](https://github.com/valor-software/ngx-bootstrap/issues/6295)) ([f36ec96](https://github.com/valor-software/ngx-bootstrap/commit/f36ec964454ceeb9ba58982eff91f0501c322a67))
+
+
+
 ## [7.1.1](https://github.com/valor-software/ngx-bootstrap/compare/v7.1.0...v7.1.1) (2021-09-10)
 
 

@@ -980,13 +980,7 @@ export const ngdoc: any = {
         "description": "<p>Emits an event when the datepicker is shown</p>\n"
       }
     ],
-    "properties": [
-      {
-        "name": "bsConfig",
-        "type": "Partial<BsDatepickerConfig>",
-        "description": "<p>Config object for datepicker</p>\n"
-      }
-    ],
+    "properties": [],
     "methods": [
       {
         "name": "show",
@@ -1084,6 +1078,11 @@ export const ngdoc: any = {
         "name": "displayOneMonthRange",
         "type": "boolean",
         "description": "<p>Show one months for special cases (only for dateRangePicker)</p>\n<ol>\n<li>maxDate is equal to today&#39;s date</li>\n<li>minDate&#39;s month is equal to maxDate&#39;s month</li>\n</ol>\n"
+      },
+      {
+        "name": "initCurrentTime",
+        "type": "boolean",
+        "description": "<p>Set current hours, minutes, seconds and milliseconds for bsValue</p>\n"
       },
       {
         "name": "isAnimated",
@@ -1194,6 +1193,12 @@ export const ngdoc: any = {
         "defaultValue": "false",
         "type": "boolean",
         "description": "<p>sets use UTC date time format</p>\n"
+      },
+      {
+        "name": "withTimepicker",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>Shows timepicker under datepicker</p>\n"
       }
     ]
   },
@@ -1394,13 +1399,7 @@ export const ngdoc: any = {
         "description": "<p>Emits an event when the daterangepicker is shown</p>\n"
       }
     ],
-    "properties": [
-      {
-        "name": "bsConfig",
-        "type": "Partial<BsDaterangepickerConfig>",
-        "description": "<p>Config object for daterangepicker</p>\n"
-      }
-    ],
+    "properties": [],
     "methods": [
       {
         "name": "show",
@@ -2286,10 +2285,10 @@ export const ngdoc: any = {
         "description": "<p>turn on/off animation</p>\n"
       },
       {
-        "name": "stopOnClickPropogation",
+        "name": "stopOnClickPropagation",
         "defaultValue": "false",
         "type": "boolean",
-        "description": "<p>value true of stopOnClickPropogation allows event stopPropagation</p>\n"
+        "description": "<p>value true of stopOnClickPropagation allows event stopPropagation</p>\n"
       }
     ]
   },
@@ -4338,6 +4337,12 @@ export const ngdoc: any = {
     "methods": [],
     "properties": [
       {
+        "name": "allowEmptyTime",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>if true emptyTime is not marked as invalid</p>\n"
+      },
+      {
         "name": "ariaLabelHours",
         "defaultValue": "hours",
         "type": "string",
@@ -4872,6 +4877,12 @@ export const ngdoc: any = {
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>used to choose the first item in typeahead container</p>\n"
+      },
+      {
+        "name": "selectItemOnBlur",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>used to choose item on blur event</p>\n"
       }
     ]
   },

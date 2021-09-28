@@ -4,6 +4,8 @@ import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { PositioningService } from 'ngx-bootstrap/positioning';
 
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { TimepickerActions } from 'ngx-bootstrap/timepicker';
 
 import { BsDatepickerInputDirective } from './bs-datepicker-input.directive';
 import { BsDatepickerDirective } from './bs-datepicker.component';
@@ -35,7 +37,7 @@ import { BsTimepickerViewComponent } from './themes/bs/bs-timepicker-view.compon
 import { BsYearsCalendarViewComponent } from './themes/bs/bs-years-calendar-view.component';
 
 @NgModule({
-  imports: [CommonModule, TooltipModule],
+  imports: [CommonModule, TooltipModule, TimepickerModule],
   declarations: [
     BsCalendarLayoutComponent,
     BsCurrentDateViewComponent,
@@ -86,7 +88,8 @@ export class BsDatepickerModule {
         BsDatepickerStore,
         BsDatepickerActions,
         BsDatepickerEffects,
-        BsLocaleService
+        BsLocaleService,
+        TimepickerActions
       ]
     };
   }
