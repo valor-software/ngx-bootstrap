@@ -1,7 +1,7 @@
 <search-input [showInput]="false"></search-input>
 <div class="mobile-menu sidebar" [class.menuIsOpened]="menuIsOpened" *ngIf="routesStructure && routesStructure['documentation']?.nestedRoutes.length">
   <div class="bootstrap-version transition-option">
-    <span *ngIf="menuIsOpened">Bootstrap: </span>
+    <span [hidden]="!menuIsOpened">Bootstrap: </span>
     <div class="flex-nowrap d-flex">
       <button class="btn" type="button" [class.selected]="_bsVersions.isBs3" (click)="installTheme('bs3')">3</button>
       <button class="btn" type="button" [class.selected]="_bsVersions.isBs4" (click)="installTheme('bs4')">4</button>
@@ -28,8 +28,10 @@
       <ul *ngIf="menuIsOpened && sideBarItemIsOpened" class="sidebar-list">
         <li *ngFor="let route of routesStructure[sideBarItemIsOpened].nestedRoutes"
           [routerLinkActive]="['active']"
-          [routerLinkActiveOptions]="{exact: true}">
-          <div class="sidebar-list-box d-flex flex-column">
+          [routerLinkActiveOptions]="{exact: true}"
+          class="w-100"
+        >
+          <div class="sidebar-list-box d-flex flex-column secondary-items">
             <p *ngIf="route.fragments.length; else elseBlock">{{route.title}}</p>
             <ng-template #elseBlock>
               <a routerLink="/{{route.path}}">{{route.title}}</a>

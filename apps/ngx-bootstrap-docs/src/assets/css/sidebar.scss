@@ -41,21 +41,33 @@
       }
     }
 
-    .sidebar-list li.icon.active:after {
-      transform: rotate(90deg);
-      align-self: end;
+    .sidebar-list-fragment {
+      padding: 15px;
+      min-width: fit-content;
+
+      .sidebar-item {
+        padding-bottom: 10px;
+        &:last-child {
+          padding-bottom: 0;
+        }
+      }
     }
 
-    .sidebar-list .sidebar-list-box::before {
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: block;
-        width: 4px;
-        height: 20px;
-        background-color: #2595FF;
-        border-radius: 2px 0px 0px 2px;
+    .sidebar-list li.icon.active:after {
+      transform: rotate(90deg);
+      //align-self: end;
     }
+
+    //.sidebar-list-box::before {
+    //    position: absolute;
+    //    top: 0;
+    //    left: 0;
+    //    display: block;
+    //    width: 4px;
+    //    height: 20px;
+    //    background-color: #2595FF;
+    //    border-radius: 2px 0px 0px 2px;
+    //}
 
   }
 
@@ -205,6 +217,19 @@
       }
     }
 
+    &-fragment {
+      padding: 15px;
+      display: none;
+      opacity: 0;
+      transition: opacity ease .3s;
+      width: 100%;
+
+      a, p {
+        display: block;
+        width: 100%;
+      }
+    }
+
     &-box {
       display: flex;
       color: #262F56;
@@ -212,6 +237,31 @@
       margin: auto;
       cursor: pointer;
       position: relative;
+
+      &.secondary-items {
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -25px;
+          display: block;
+          width: 4px;
+          height: 20px;
+          background-color: #2595FF;
+          border-radius: 0px 2px 2px 0px;
+          opacity: 0;
+          transition: opacity ease .3s;
+        }
+
+        &:hover {
+          &::before {
+            opacity: 1;
+          }
+        }
+      }
+
+
     }
 
 
@@ -248,23 +298,28 @@
           display: inline-block;
           transform: rotate(-90deg);
           transition: all ease .2s;
-          align-self: center;
+          align-self: baseline;
         }
 
+      }
+
+      a:hover, p:hover {
+        font-weight: 700;
+        text-decoration: none;
       }
 
       &:hover,
       &.active {
-        .sidebar-list-box {
+        .sidebar-list-box:not(.secondary-items) {
           font-weight: 700;
           text-decoration: none;
+        }
 
+        .sidebar-list-fragment {
+          display: block;
+          opacity: 1;
         }
       }
-    }
-
-    &-fragment {
-
     }
   }
 
