@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
 import { ngdoc } from '../ng-api-doc';
 import { AppComponent } from './app.component';
-import { DOCS_TOKENS, DocsModule, NgApiDoc } from '@ngx-bootstrap-doc/docs';
+import { DOCS_TOKENS, DocsModule, NgApiDoc, SIDEBAR_ROUTES, SidebarRoutesStructure } from '@ngx-bootstrap-doc/docs';
 import { ScullyLibModule } from '@scullyio/ng-lib';
 import { routes } from './app.routing';
 
@@ -29,7 +29,8 @@ import { routes } from './app.routing';
   ],
   providers: [
     { provide: NgApiDoc, useValue: ngdoc },
-    { provide: DOCS_TOKENS, useValue: routes }],
+    { provide: DOCS_TOKENS, useValue: routes },
+    { provide: SIDEBAR_ROUTES, useValue: SidebarRoutesStructure }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

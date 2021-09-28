@@ -61,6 +61,7 @@ export { NgApiDoc } from './api-docs/api-docs.model';
 export { TopMenuComponent } from './common/top-menu/top-menu.component';
 export { Analytics } from './api-docs/analytics/analytics';
 export { DOCS_TOKENS } from './tokens/docs-routes-token';
+export { SIDEBAR_ROUTES, SidebarRoutesStructure } from './tokens/docs-sidebar-routes-token';
 
 @NgModule({
   declarations: [
@@ -98,14 +99,6 @@ export { DOCS_TOKENS } from './tokens/docs-routes-token';
     DocsSectionComponent,
     SearchInputComponent,
     TopMenuComponent
-  ],
-  entryComponents: [
-    // DemoTopSectionComponent,
-    // ExamplesComponent,
-    // ApiSectionsComponent,
-    // NgApiDocComponent,
-    // NgApiDocClassComponent,
-    // NgApiDocConfigComponent
   ]
 })
 export class DocsModule {}

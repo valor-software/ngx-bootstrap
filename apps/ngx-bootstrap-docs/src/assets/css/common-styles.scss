@@ -55,3 +55,9 @@ a:hover {
   width: $container-width-lg;
   max-width: 100%;
 }
+
+.hidden {
+  width: 0!important;
+  opacity: 0!important;
+}
+
