@@ -82,6 +82,44 @@ form.sidebar-search input::placeholder {
   color: $light-grey
 }
 
+.sidebar-search {
+
+  position: relative;
+
+  .hideInput {
+    display: none;
+  }
+
+  .input-container {
+    width: 100%;
+    position: relative;
+    margin-left: 8px;
+  }
+
+  input {
+    outline-offset: -2px;
+    -webkit-appearance: none;
+    margin: 0;
+    display: block;
+    width: 100%;
+    padding: 10px 15px 10px 45px;
+    font-size: 1rem;
+    line-height: 1.25;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-radius: .25rem;
+    transition: border-color ease-in-out .15s,
+    box-shadow ease-in-out .15s;
+    position: relative;
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+}
+
 /* LANDING PAGE */
 
 .landing {
@@ -341,10 +379,18 @@ form.sidebar-search input::placeholder {
 }
 
 /* content */
+.menuIsOpened {
+  .main-container {
+    flex: 0 0 calc(100% - 33.35%);
+    max-width: calc(100% - 33.35%);
+    margin-left: 16.67%;
+  }
+}
+
 .main-container {
-  flex: 0 0 66.666667%;
-  max-width: 66.666667%;
-  margin-left: 16.66667%;
+  flex: 0 0 calc(100% - 23%);
+  max-width: calc(100% - 23%);
+  margin-left: 6.25%;
 }
 .content {
   padding: 30px 30px 120px;

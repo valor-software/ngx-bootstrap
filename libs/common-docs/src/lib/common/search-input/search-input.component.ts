@@ -14,7 +14,7 @@ export class SearchInputComponent implements OnDestroy{
   isShown = false;
   routes: Routes;
   search = { text: '' };
-  scrollSubscription: Subscription;
+  // scrollSubscription: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -24,11 +24,11 @@ export class SearchInputComponent implements OnDestroy{
     private renderer: Renderer2
   ) {
     this.routes = _routes.filter((v: Route) => v.path !== '**');
-    this.scrollSubscription = this.router.events.subscribe((event: any) => {
-      if (event instanceof NavigationEnd) {
-        this.toggle(false);
-      }
-    });
+    // this.scrollSubscription = this.router.events.subscribe((event: any) => {
+    //   if (event instanceof NavigationEnd) {
+    //     this.toggle(false);
+    //   }
+    // });
   }
 
   preventReloading(event: KeyboardEvent) {
@@ -37,25 +37,8 @@ export class SearchInputComponent implements OnDestroy{
     }
   }
 
-  toggle(isShown?: boolean): void {
-    this.isShown = typeof isShown === 'undefined' ? !this.isShown : isShown;
-    if (this.document && this.document.body) {
-
-      if (this.isShown) {
-        this.renderer.addClass(this.document.body, 'isOpenMenu');
-      } else {
-        this.renderer.removeClass(this.document.body, 'isOpenMenu');
-      }
-
-      if (this.isShown === false && this.document.documentElement) {
-        this.renderer.setProperty(this.document.documentElement, 'scrollTop', '0');
-        this.renderer.setProperty(this.document.body, 'scrollTop', '0');
-      }
-    }
-  }
-
   ngOnDestroy() {
-    this.scrollSubscription.unsubscribe();
+    // this.scrollSubscription.unsubscribe();
   }
 }
 

@@ -10,7 +10,7 @@ export type SidebarRoutesType = {
   };
 };
 
-type NestedRoute = {
+export type NestedRoute = {
   title: string;
   path?: string;
   isOpened: boolean;

@@ -1,7 +1,4 @@
-<form class="sidebar-search icon w-100">
-  <button id="mobile-main-menu" type="button" (click)="toggle()">
-    <img src="assets/images/icons/menu-left.svg" alt="left menu">
-  </button>
+<form>
   <div class="input-container" [class.hideInput]="!showInput">
     <input  #searchInput
             type="text"
@@ -17,6 +14,6 @@
   <li *ngFor="let route of routes | slice:4 | SearchFilter:search.text"
       [routerLinkActive]="['active']"
       [routerLinkActiveOptions]="{exact: true}">
-    <a routerLink="/{{route.path}}">{{route.data[0]}}</a>
+    <a routerLink="/{{route.path}}" class="text-white">{{route.data[0]}}</a>
   </li>
 </ul>
