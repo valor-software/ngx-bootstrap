@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from '@angular/router';
 import sdk from '@stackblitz/sdk';
 
@@ -21,6 +21,7 @@ export class ExamplesComponent {
 
   constructor(public section: ContentSection, private route: ActivatedRoute, router: Router) {
     this.examples = section.content as ComponentExample[];
+    console.log('section',section);
     this.moduleData = this.route.snapshot.data && this.route.snapshot.data[1];
     this.moduleData.moduleRoute = router.routerState.snapshot.url;
   }
@@ -125,6 +126,30 @@ export class ExamplesComponent {
   private getTs(ts: string): string {
     return this.moduleData.moduleRoute === '/carousel' ?
       ts.replace(/assets/g, 'https://valor-software.com/ngx-bootstrap/assets') : ts;
+  }
+
+  changeContent(name: string) {
+    console.log(name);
+
+    switch (name) {
+      case('api'):
+        console.log(name);
+        // this.componentContent = demoComponentContentOld;
+        break;
+      case('Overview'):
+        console.log(name);
+        // this.componentContent = demoComponentContentOld;
+        break;
+      case('examples'):
+      default:
+        console.log(name);
+      // this.componentContent = demoComponentContent;
+    }
+
+
+    if (typeof (window as any)['PR'] !== 'undefined') {
+      setTimeout(() => (window as any)['PR']?.prettyPrint(), 10);
+    }
   }
 }
 

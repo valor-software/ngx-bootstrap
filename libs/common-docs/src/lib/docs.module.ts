@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
 /* common */
 import { AppFooterComponent } from './common/app-footer/app-footer.component';
@@ -79,13 +78,12 @@ export { SIDEBAR_ROUTES, SidebarRoutesStructure } from './tokens/docs-sidebar-ro
     TopMenuComponent
   ],
   imports: [
-    TabsModule,
     CommonModule,
     NgApiDocModule,
     ExamplesComponentModule,
     ApiSectionsComponentModule,
     DemoTopSectionComponentModule,
-    NgxPageScrollModule,
+    NgxPageScrollModule
   ],
   exports: [
     SearchFilterPipe,

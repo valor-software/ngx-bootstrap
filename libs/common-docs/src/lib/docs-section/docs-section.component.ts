@@ -13,10 +13,10 @@ import { Component, Injector, Input } from '@angular/core';
 })
 export class DocsSectionComponent {
   @Input() content: ContentSection[] | undefined;
-
   _injectors = new Map<ContentSection, Injector>();
 
   constructor(private injector: Injector) {
+    console.log('content', this.content);
   }
 
   sectionInjections(_content: ContentSection): Injector {

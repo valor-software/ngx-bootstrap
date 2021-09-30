@@ -57,6 +57,7 @@ export class SidebarComponent {
     if (innerWidth <= 991) {
       this.menuIsOpened = false;
     }
+
     this.routesStructure = updateNestedRoutes(_routes, sidebarRoutesStructure);
     this.initBodyClass();
     this.scrollSubscription = this.router.events.subscribe((event: any) => {
@@ -153,13 +154,11 @@ export class SidebarComponent {
     if (currentMenuItem) {
       currentMenuItem.isOpened = true;
     }
-
   }
 
   ngOnDestroy() {
     this.scrollSubscription.unsubscribe();
   }
-
 }
 
 
