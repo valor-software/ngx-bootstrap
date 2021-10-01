@@ -7,7 +7,8 @@ import { AddNavComponent } from './common/add-nav/add-nav.component';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { SearchFilterPipe } from './common/search-input/search-filter.pipe';
 import { SearchInputComponent } from './common/search-input/search-input.component';
-
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { BreadCrumbsComponent } from './common/breadCrumbs/breadCrumbs.component';
 /* docs */
 import { DemoSectionComponent } from './demo-section/demo-section.component';
 import { ContentSection } from './models/content-section.model';
@@ -75,7 +76,8 @@ export { SIDEBAR_ROUTES, SidebarRoutesStructure } from './tokens/docs-sidebar-ro
     DiscoverComponent,
     SchematicsComponent,
     SearchInputComponent,
-    TopMenuComponent
+    TopMenuComponent,
+    BreadCrumbsComponent
   ],
   imports: [
     CommonModule,
@@ -83,7 +85,8 @@ export { SIDEBAR_ROUTES, SidebarRoutesStructure } from './tokens/docs-sidebar-ro
     ExamplesComponentModule,
     ApiSectionsComponentModule,
     DemoTopSectionComponentModule,
-    NgxPageScrollModule
+    NgxPageScrollModule,
+    TabsModule.forRoot()
   ],
   exports: [
     SearchFilterPipe,

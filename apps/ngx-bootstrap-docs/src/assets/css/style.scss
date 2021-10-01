@@ -392,17 +392,23 @@ form.sidebar-search input::placeholder {
   max-width: calc(100% - 23%);
   margin-left: 6.25%;
 
-  tabset.example-tabset-box {
-    .nav-tabs .nav-link {
-      border: 0;
-      color: #25282B;
-      transition: all ease .4s;
-    }
-
-    .nav-link.active {
-      border-bottom: 2px solid #2595FF;
-      border-radius: 2px;
-      font-weight: 600;
+  tabset {
+    .nav-tabs {
+      .example-tabset {
+        &.active {
+          .nav-link {
+            font-weight: 600;
+            border-color: #2595FF;
+          }
+        }
+        .nav-link {
+          border: 0;
+          color: #25282B;
+          transition: border-color ease .4s;
+          border-bottom: 2px solid transparent;
+          border-radius: 2px;
+        }
+      }
     }
   }
 }

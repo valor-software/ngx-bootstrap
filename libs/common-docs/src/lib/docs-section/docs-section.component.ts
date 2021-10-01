@@ -5,19 +5,24 @@ import { Component, Injector, Input } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'docs-section',
   template: `
-    <ng-container *ngFor="let section of content">
-      <ng-container *ngComponentOutlet="section.outlet; injector: sectionInjections(section)">
-      </ng-container>
-    </ng-container>
+  <tabset class="example-tabset-box">
+    <tab heading="Overview" [customClass]="'example-tabset'">
+      <ng-container *ngComponentOutlet="content[0].outlet; injector: sectionInjections(content[0])"></ng-container>
+    </tab>
+    <tab heading="Examples" [customClass]="'example-tabset'">
+      <ng-container *ngComponentOutlet="content[1].outlet; injector: sectionInjections(content[1])"></ng-container>
+    </tab>
+    <tab heading="Api" [customClass]="'example-tabset'">
+      <ng-container *ngComponentOutlet="content[2].outlet; injector: sectionInjections(content[2])"></ng-container>
+    </tab>
+  </tabset>
     `
 })
 export class DocsSectionComponent {
   @Input() content: ContentSection[] | undefined;
   _injectors = new Map<ContentSection, Injector>();
 
-  constructor(private injector: Injector) {
-    console.log('content', this.content);
-  }
+  constructor(private injector: Injector) {}
 
   sectionInjections(_content: ContentSection): Injector {
     if (this._injectors.has(_content)) {

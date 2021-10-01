@@ -3,6 +3,7 @@
 
   <section class="main-container transition-option">
     <div class="content">
+      <bread-crumbs></bread-crumbs>
       <div class="content-header">
         <h1 *ngIf="name || src">{{name}}
           <a [href]="src" target="_blank" rel="noopener">
@@ -19,7 +20,7 @@
         </div>
       </div>
     </div>
-    <app-footer></app-footer>
+<!--    <app-footer></app-footer>-->
   </section>
 
   <add-nav *ngIf="componentContent" class="add-nav" [componentContent]="componentContent"></add-nav>
