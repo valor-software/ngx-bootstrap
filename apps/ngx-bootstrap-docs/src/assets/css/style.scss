@@ -347,6 +347,42 @@ form.sidebar-search input::placeholder {
       line-height: 32px;
     }
   }
+
+  .breadCrumbs-box {
+    width: 100%;
+    background: #F8F9FA;
+    border-radius: 4px;
+    padding: 15px 20px;
+    margin-bottom: 40px;
+
+    ul {
+      list-style: none;
+      display: flex;
+
+      li, span {
+        font-size: 16px;
+        line-height: 16px;
+        font-weight: 500;
+        text-transform: capitalize;
+      }
+
+      li:not(.disabled) {
+        cursor: pointer;
+      }
+
+      span, li.disabled {
+        color: #68717A;
+      }
+
+      span {
+        padding: 0 5px;
+      }
+
+      li {
+        color: #7749F8;
+      }
+    }
+  }
 }
 
 /* supporting */

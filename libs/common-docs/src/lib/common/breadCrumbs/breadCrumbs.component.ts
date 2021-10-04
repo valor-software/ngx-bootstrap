@@ -42,6 +42,10 @@ export class BreadCrumbsComponent {
       return;
     }
 
+    if (index >= this.routeArray.length) {
+      return;
+    }
+
     const urls = this.routeArray.slice(0, index);
     this.router.navigate([`/${urls.join('/')}`]);
   }
