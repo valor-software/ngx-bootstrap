@@ -10,26 +10,39 @@ import { Subscription } from "rxjs";
 
 export class BreadCrumbsComponent {
   scrollSubscription: Subscription;
+  routeArray: string[] = [];
+
   constructor(
     private router: Router
   ) {
     this.scrollSubscription = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
-        console.log(event);
         let urls = event.url.split('/');
+        urls = urls.filter(item => item);
         urls = urls.map(item => {
-          const checkParams = item.split('#');
-          if (checkParams.length) {
-            console.log('item', item);
-            console.log('checkParams', checkParams);
-            item = checkParams[0];
-            console.log('item2', item);
+          const checkFragments = item.split('#');
+          if (checkFragments.length && checkFragments[0]) {
+            item = checkFragments[0];
           }
-          console.log('item2', item);
+
           return item;
         });
-        console.log(urls);
+        this.routeArray = urls;
       }
     });
+  }
+
+  navigate(index?: number) {
+    if (index !== undefined) {
+      index++;
+    }
+
+    if (!index) {
+      this.router.navigate(['']);
+      return;
+    }
+
+    const urls = this.routeArray.slice(0, index);
+    this.router.navigate([`/${urls.join('/')}`]);
   }
 }

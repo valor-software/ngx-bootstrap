@@ -1,1 +1,8 @@
-Here
+<div class="breadCrumbs-box">
+  <ul>
+    <li (click)="navigate()">Home</li>
+    <li *ngFor="let path of routeArray;let i = index" (click)="navigate(i)">
+      <span> / </span> {{path}}
+    </li>
+  </ul>
+</div>
