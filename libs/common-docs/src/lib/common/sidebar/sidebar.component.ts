@@ -194,7 +194,11 @@ export class SidebarComponent {
     return this.routesStructure?.[value as keyof SidebarRoutesType];
   }
 
-  getRouteLink(routePath: string, parentRoutePath?: string): string {
+  getRouteLink(routePath?: string, parentRoutePath?: string): string | undefined {
+    if (!routePath) {
+      return;
+    }
+
     if (!parentRoutePath) {
       return  `/${routePath}`;
     }
