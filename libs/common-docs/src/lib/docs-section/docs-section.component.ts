@@ -5,8 +5,8 @@ import { Component, Injector, Input } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'docs-section',
   template: `
-  <tabset class="example-tabset-box">
-    <tab heading="Overview" [customClass]="'example-tabset'">
+  <tabset class="example-tabset-box" *ngIf="content">
+    <tab heading="Overview" [customClass]="'example-tabset'" >
       <ng-container *ngComponentOutlet="content[0].outlet; injector: sectionInjections(content[0])"></ng-container>
     </tab>
     <tab heading="Examples" [customClass]="'example-tabset'">

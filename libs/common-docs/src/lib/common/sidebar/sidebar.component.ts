@@ -1,12 +1,18 @@
 import { ActivatedRoute, Route, NavigationEnd, Router, Routes } from '@angular/router';
-import { Component, Inject, HostBinding, Renderer2, HostListener } from "@angular/core";
+import { Component, Inject, HostBinding, Renderer2 } from "@angular/core";
 import { DOCUMENT } from '@angular/common';
 
 import { setTheme, getBsVer, currentBsVersion, IBsVersion, AvailableBsVersions } from 'ngx-bootstrap/utils';
 import { StyleManager } from '../../theme/style-manager';
 import { ThemeStorage } from '../../theme/theme-storage';
 import { DOCS_TOKENS } from '../../tokens/docs-routes-token';
-import { SIDEBAR_ROUTES, SidebarRoutesType, updateNestedRoutes, NestedRoute } from "../../tokens/docs-sidebar-routes-token";
+import {
+  SIDEBAR_ROUTES,
+  SidebarRoutesType,
+  initNestedRoutes,
+  NestedRouteType,
+  SidebarRouteItemValueType
+} from "../../tokens/docs-sidebar-routes-token";
 import { Subscription } from "rxjs";
 
 const _bs3Css = 'assets/css/bootstrap-3.3.7/css/bootstrap.min.css';
@@ -58,7 +64,7 @@ export class SidebarComponent {
       this.menuIsOpened = false;
     }
 
-    this.routesStructure = updateNestedRoutes(_routes, sidebarRoutesStructure);
+    this.routesStructure = initNestedRoutes(_routes, sidebarRoutesStructure);
     this.initBodyClass();
     this.scrollSubscription = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
@@ -72,10 +78,10 @@ export class SidebarComponent {
     }
   }
 
-  get sideBarItemIsOpened(): void | string {
+  get sideBarItemIsOpened(): void | keyof SidebarRoutesType{
     for(const item in this.routesStructure) {
       if (this.routesStructure[item as keyof SidebarRoutesType].isOpened) {
-        return item;
+        return item as keyof SidebarRoutesType;
       }
     }
   }
@@ -110,11 +116,15 @@ export class SidebarComponent {
     }
   }
 
-  toggoleMenuItem(value: string): void {
+  toggoleMenuItem(event: Event, value: string): void {
+    event.stopPropagation();
     if (this.routesStructure) {
       const key = value.toLowerCase();
       this.resetMenuItems();
       this.routesStructure[key as keyof SidebarRoutesType].isOpened = !this.routesStructure[key as keyof SidebarRoutesType].isOpened;
+      if (this.routesStructure[key as keyof SidebarRoutesType].path) {
+        this.router.navigate([this.routesStructure[key as keyof SidebarRoutesType].path]);
+      }
     }
 
   }
@@ -122,38 +132,74 @@ export class SidebarComponent {
   resetMenuItems() {
     for(const item in this.routesStructure) {
       this.routesStructure[item as keyof SidebarRoutesType].isOpened = false;
+      this.resetSemiMenu(this.routesStructure[item as keyof SidebarRoutesType].nestedRoutes);
     }
   }
 
-  openSemiItemMenu(semiMenu: NestedRoute, nestedRoutes: NestedRoute[]) {
+  openSemiItemMenu(semiMenu: NestedRouteType, nestedRoutes: NestedRouteType[]) {
     this.resetSemiMenu(nestedRoutes);
     semiMenu.isOpened = true;
+    if (semiMenu.path && !semiMenu.fragments?.length) {
+      this.router.navigate([semiMenu.path]);
+    }
   }
 
-  resetSemiMenu(nestedRoutes: NestedRoute[]) {
+  resetSemiMenu(nestedRoutes: NestedRouteType[]) {
     nestedRoutes.forEach(item => {
       item.isOpened = false;
     });
   }
 
-  checkRoutePath(path: string): string {
+  checkRoutePath(path: string): string[] {
     let currentPath = path.split('/');
-    currentPath = currentPath[1].split('#');
-    return currentPath[0];
+    currentPath = currentPath.map(item => {
+      item = item.split('#')[0];
+      return item;
+    });
+    return currentPath.filter(item => item);
   }
 
-  openMenuWithRoutePath(path: string, routes: Routes) {
-    const cyrrentRoute = routes.filter(route => route.path === path);
-    if (!cyrrentRoute?.length || !cyrrentRoute[0].data?.[1].sideBarParentTitle || !this.routesStructure) {
+  openMenuWithRoutePath(path: string[], routes: Routes) {
+    if (!this.routesStructure) {
       return;
     }
 
-    const key = cyrrentRoute[0].data?.[1].sideBarParentTitle;
-    this.routesStructure[key as keyof SidebarRoutesType].isOpened = true;
-    const currentMenuItem = this.routesStructure?.[key as keyof SidebarRoutesType].nestedRoutes.find(route => route.path === path);
+    if (path.length > 1) {
+      this.openMenuWithRoute(path[0], path[1]);
+      return;
+    }
+
+    const currentRoute = routes.filter(route => route.path === path[0]);
+    if (!currentRoute?.length || !currentRoute[0].data?.[1].sideBarParentTitle) {
+      return;
+    }
+
+    const key = currentRoute[0].data?.[1].sideBarParentTitle;
+    this.openMenuWithRoute(key, path[0]);
+  }
+
+  openMenuWithRoute(parentPath: string, routePath: string) {
+    if (!this.routesStructure) {
+      return;
+    }
+
+    this.routesStructure[parentPath as keyof SidebarRoutesType].isOpened = true;
+    const currentMenuItem = this.routesStructure?.[parentPath as keyof SidebarRoutesType].nestedRoutes.find(route => route.path === routePath);
     if (currentMenuItem) {
       currentMenuItem.isOpened = true;
     }
+  }
+
+  getRouteStructureKey(value: string): SidebarRouteItemValueType | undefined {
+    return this.routesStructure?.[value as keyof SidebarRoutesType];
+  }
+
+  getRouteLink(routePath: string, parentRoutePath?: string): string {
+    if (!parentRoutePath) {
+      return  `/${routePath}`;
+    }
+
+    return `/${parentRoutePath}/${routePath}`;
   }
 
   ngOnDestroy() {

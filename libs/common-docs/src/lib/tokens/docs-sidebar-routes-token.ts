@@ -1,16 +1,19 @@
 import { InjectionToken } from "@angular/core";
-import { Routes } from "@angular/router";
+import { Routes, Route } from "@angular/router";
 
 export type SidebarRoutesType = {
-  [key in "documentation" | "components" | "resources" | "themes"]: {
-    nestedRoutes: NestedRoute[];
-    isOpened: boolean;
-    title: string;
-    icon: string;
-  };
+  [key in "documentation" | "components" | "themes"]: SidebarRouteItemValueType;
 };
 
-export type NestedRoute = {
+export type SidebarRouteItemValueType = {
+  nestedRoutes: NestedRouteType[];
+  isOpened: boolean;
+  title: string;
+  icon: string;
+  path?: string;
+};
+
+export type NestedRouteType = {
   title: string;
   path?: string;
   isOpened: boolean;
@@ -31,14 +34,15 @@ export const SidebarRoutesStructure: SidebarRoutesType = {
     nestedRoutes: [],
     isOpened: false,
     title: 'COMPONENTS',
-    icon: 'assets/images/icons/icon-components.svg'
+    icon: 'assets/images/icons/icon-components.svg',
+    path: 'components'
   },
-  resources: {
-    nestedRoutes:[],
-    isOpened: false,
-    title: 'RESOURCES',
-    icon: 'assets/images/icons/icon-resources.svg'
-  },
+  // resources: {
+  //   nestedRoutes:[],
+  //   isOpened: false,
+  //   title: 'RESOURCES',
+  //   icon: 'assets/images/icons/icon-resources.svg'
+  // },
   themes: {
     nestedRoutes:[],
     isOpened: false,
@@ -47,28 +51,40 @@ export const SidebarRoutesStructure: SidebarRoutesType = {
   }
 };
 
-export function updateNestedRoutes(routes: Routes, sideBarMenu: SidebarRoutesType): SidebarRoutesType {
+export function initNestedRoutes(routes: Routes, sideBarMenu: SidebarRoutesType): SidebarRoutesType {
     routes.forEach(item => {
-      const key = item.data?.[1]?.sideBarParentTitle;
-      if (key && sideBarMenu[key as keyof SidebarRoutesType]) {
-        const sideBarItem = sideBarMenu[key as keyof SidebarRoutesType];
-        const nestedItem: NestedRoute = {
-          title: item.data?.[0],
-          path: item.path,
-          isOpened: false,
-          fragments: key === 'components' ? generateFragments() : []
-        };
+      if (item.children?.length) {
+        item.children.forEach(childRoute => {
+          const key = childRoute.data?.[1]?.sideBarParentTitle;
+          initSideBarItem(key, childRoute, sideBarMenu);
+        });
+      }
 
-        if (!SidebarRoutesStructure[key as keyof SidebarRoutesType].nestedRoutes.filter( menuItem => menuItem.title === nestedItem.title).length) {
-          sideBarItem.nestedRoutes.push(nestedItem);
-        }
+      if (!item.children?.length) {
+        const key = item.data?.[1]?.sideBarParentTitle;
+        initSideBarItem(key, item, sideBarMenu);
       }
     });
-
   return sideBarMenu;
 }
 
-function generateFragments(): {title: string, path: string}[] {
+function initSideBarItem(key: string, route: Route, sideBarMenu: SidebarRoutesType) {
+  if (key && sideBarMenu[key as keyof SidebarRoutesType]) {
+    const sideBarItem = sideBarMenu[key as keyof SidebarRoutesType];
+    const nestedItem: NestedRouteType = {
+      title: route.data?.[0],
+      path: route.path,
+      isOpened: false,
+      fragments: key === 'components' ? initFragments() : []
+    };
+
+    if (!SidebarRoutesStructure[key as keyof SidebarRoutesType].nestedRoutes.filter( menuItem => menuItem.title === nestedItem.title).length) {
+      sideBarItem.nestedRoutes.push(nestedItem);
+    }
+  }
+}
+
+function initFragments(): {title: string, path: string}[] {
   return [
     {
       title: 'Overview',
