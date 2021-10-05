@@ -412,7 +412,7 @@ export class TimepickerComponent
 
     const _hoursPerDayHalf = 12;
     let _hours = getHours(_value, this.useUtc);
-    let _minutes = getMinutes(_value, this.useUtc);
+    const _minutes = getMinutes(_value, this.useUtc);
 
     if (this.showMeridian) {
       this.meridian = this.meridians[_hours >= _hoursPerDayHalf ? 1 : 0];
