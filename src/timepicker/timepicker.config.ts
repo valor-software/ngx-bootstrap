@@ -47,4 +47,6 @@ export class TimepickerConfig {
   ariaLabelMinutes = 'minutes';
   /** seconds aria label */
   ariaLabelSeconds = 'seconds';
+  /** if true displays utc time instead of client time */
+  useUtc = false;
 }

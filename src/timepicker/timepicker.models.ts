@@ -36,6 +36,7 @@ export interface TimepickerComponentState {
   showSeconds: boolean;
 
   meridians: string[];
+  useUtc: boolean;
 }
 
 export type TimeChangeSource = 'wheel' | 'key' | '';

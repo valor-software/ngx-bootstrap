@@ -36,7 +36,8 @@ describe('Util: Timepicker-controls', () => {
       showSpinners: true,
       showMeridian: true,
       showSeconds: false,
-      meridians: ['AM', 'PM']
+      meridians: ['AM', 'PM'],
+      useUtc: false
     };
 
     controls = {

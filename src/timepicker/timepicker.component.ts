@@ -10,6 +10,7 @@ import {
   Output,
   ViewEncapsulation
 } from '@angular/core';
+import { getHours, getMinutes } from 'ngx-bootstrap/chronos';
 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -120,6 +121,8 @@ export class TimepickerComponent
   @Output() isValid = new EventEmitter<boolean>();
   /** emits value of meridian*/
   @Output() meridianChange = new EventEmitter<string>();
+  /** if true displays utc time instead of client time */
+  @Input() useUtc = false;
   // ui variables
   hours = '';
   minutes = '';
@@ -408,7 +411,8 @@ export class TimepickerComponent
     }
 
     const _hoursPerDayHalf = 12;
-    let _hours = _value.getHours();
+    let _hours = getHours(_value, this.useUtc);
+    let _minutes = getMinutes(_value, this.useUtc);
 
     if (this.showMeridian) {
       this.meridian = this.meridians[_hours >= _hoursPerDayHalf ? 1 : 0];
@@ -421,7 +425,7 @@ export class TimepickerComponent
     }
 
     this.hours = padNumber(_hours);
-    this.minutes = padNumber(_value.getMinutes());
+    this.minutes = padNumber(_minutes);
     this.seconds = padNumber(_value.getUTCSeconds());
   }
 }

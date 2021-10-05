@@ -113,7 +113,9 @@ export function timepickerReducer(state = initialState, action: Action) {
         controls: _newControlsState
       };
 
-      if (state.config.showMeridian !== _newState.config.showMeridian) {
+      if (state.config.showMeridian !== _newState.config.showMeridian ||
+        state.config.useUtc !== _newState.config.useUtc
+      ) {
         if (state.value) {
           _newState.value = new Date(state.value);
         }
