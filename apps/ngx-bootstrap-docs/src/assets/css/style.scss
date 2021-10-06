@@ -4,7 +4,7 @@
 /* HEADER */
 
 header {
-  padding: 10px 30px;
+  padding: 10px 50px 10px 30px;
   height: $header-height;
   display: flex;
   flex-wrap: nowrap;
@@ -64,27 +64,29 @@ header {
 }
 
 /* SEARCH INPUT */
-form.sidebar-search.icon .input-container::after {
-  content: " ";
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 15px;
-  width: 20px;
-  height: 20px;
-  background-image: url('../images/icons/search.svg');
-  background-repeat: no-repeat;
-  background-position: center center;
-  transform: translateY(-50%);
-}
-
-form.sidebar-search input::placeholder {
-  color: $light-grey
-}
 
 .sidebar-search {
-
   position: relative;
+  min-width: 66.67%;
+
+  &.icon .input-container::after, .icon .input-container::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    width: 20px;
+    height: 20px;
+    background-image: url('../images/icons/search.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    transform: translateY(-50%);
+  }
+
+  input::placeholder {
+    color: $light-grey
+  }
+
 
   .hideInput {
     display: none;
@@ -93,7 +95,6 @@ form.sidebar-search input::placeholder {
   .input-container {
     width: 100%;
     position: relative;
-    margin-left: 8px;
   }
 
   input {
@@ -116,6 +117,23 @@ form.sidebar-search input::placeholder {
 
     &:focus-visible {
       outline: none;
+    }
+  }
+
+
+  .sidebar-list {
+    &.menu {
+      width: 100%;
+      background-color: $main-bg-color;
+      color: white;
+      top: 54px;
+      border-radius: 0 0 2px 2px;
+      align-items: flex-start;
+    }
+
+    li {
+      margin-top: 0;
+      padding: 10px 15px;
     }
   }
 }
@@ -416,17 +434,26 @@ form.sidebar-search input::placeholder {
 
 /* content */
 .menuIsOpened {
-  .main-container {
-    flex: 0 0 calc(100% - 33.35%);
-    max-width: calc(100% - 33.35%);
+  .main-container, bread-crumbs {
+    flex: 0 0 calc(100% - 16.67%);
+    max-width: calc(100% - 16.67%);
     margin-left: 16.67%;
   }
 }
 
-.main-container {
-  flex: 0 0 calc(100% - 23%);
-  max-width: calc(100% - 23%);
+bread-crumbs, .main-container {
+  flex: 0 0 calc(100% - 6.25%);
+  max-width: calc(100% - 6.25%);
   margin-left: 6.25%;
+  padding: 20px 35px 20px 0px;
+}
+
+.main-container {
+  //.content-header {
+  //  flex: 0 0 calc(100% - 16.67%);
+  //  max-width: calc(100% - 16.67%);
+  //  margin-right: 16.67%;
+  //}
 
   tabset {
     .nav-tabs {
@@ -447,9 +474,17 @@ form.sidebar-search input::placeholder {
       }
     }
   }
+
+  .content-box {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 .content {
-  padding: 30px 30px 120px;
+  //padding: 30px 30px 120px;
+  width: calc(100% - 16.67%);
+  max-width: calc(100% - 16.67%);
+  margin-right: 30px;
 
   h2[id] {
     margin-top: 58px;
@@ -519,13 +554,17 @@ form.sidebar-search input::placeholder {
   flex: 0 0 16.666667%;
   max-width: 16.666667%;
   padding-right: 5px;
-  position: fixed;
+  //position: fixed;
   top: 84px;
   left: 83.33%;
   right: 0;
   max-height: calc(100vh - 104px);
   overflow: auto;
   direction: rtl;
+
+  & > ul {
+    border-left: 1px solid #F3F4F4;
+  }
 
   ul {
     margin: 0;
@@ -550,8 +589,84 @@ form.sidebar-search input::placeholder {
     }
   }
 
-  & > ul {
-    border-left: 1px solid #dadada;
+  //& > ul {
+  //  border-left: 1px solid #dadada;
+  //}
+}
+
+// COMPONENTS PAGE //
+
+.pills {
+
+  &-box {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 35px;
+  }
+
+  &-item {
+    color: #393D41;
+    border-radius: 16px;
+    cursor: pointer;
+    margin-right: 15px;
+    margin-bottom: 25px;
+    padding: 3px 0;
+    transition: all ease .2s;
+
+    &:hover {
+      color: white;
+      padding: 3px 8px;
+      background-color: #084298;
+    }
+
+    p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 17px;
+    }
+  }
+}
+
+.components {
+
+  &-box {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &-item {
+    padding-left: 0;
+    margin-bottom: 30px;
+  }
+
+  &-item-container {
+    max-width: 265px;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    //margin: 0 auto;
+
+    &:hover {
+      box-shadow: 0 8px 35px rgba(0, 0, 0, .16);
+    }
+  }
+
+  &-img-box {
+    border-radius: 8px 8px 0 0;
+  }
+
+  &-text-box {
+    padding: 25px 0;
+    background-color: rgba(233, 236, 239, 0.2);
+    //border-radius: 0px 0px 8px 8px;
+
+    p {
+      font-weight: bold;
+      font-size: 20px;
+      line-height: 24px;
+      color: #393D41;
+      margin: 0 auto;
+    }
   }
 }
 

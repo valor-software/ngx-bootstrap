@@ -132,6 +132,10 @@
   #mobile-main-menu {
     display: none;
   }
+
+  .sidebar-search {
+    min-width: 50%;
+  }
 }
 
 @media (max-width: 991px) {
@@ -207,9 +211,9 @@
         height: auto;
       }
 
-      .sidebar-list.scroll-list {
-        max-height: calc(100vh - 360px);
-      }
+      //.sidebar-list.scroll-list {
+      //  max-height: calc(100vh - 360px);
+      //}
 
       //.sidebar-list, .sidebar.menuIsOpened .bootstrap-version {
       //  padding: 10px 15px;
@@ -227,7 +231,7 @@
   }
 
   .sidebar-list li {
-    margin-top: 15px;
+    margin-top: 16px;
   }
 
   .sidebar-list-box.secondary-items::before {

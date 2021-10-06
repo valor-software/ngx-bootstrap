@@ -24,6 +24,16 @@ h1 {
   font-size: 72px;
   line-height: 100px;
   color: $dark-font-color;
+
+  &.small {
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 29px;
+  }
+
+  &.black {
+    color: black;
+  }
 }
 
 h2 {
@@ -63,5 +73,23 @@ a:hover {
 
 .transition-option {
   transition: all ease .2s;
+}
+
+.scroll-list, .add-nav {
+
+  &::-webkit-scrollbar {
+    width: 1px;
+    height: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #B4C5D5;
+    border-radius: 10%;
+    border: 0px solid transparent;
+  }
 }
 

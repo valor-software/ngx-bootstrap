@@ -32,6 +32,7 @@ export class AddNavComponent implements OnChanges{
   }
 
   mapComponentContent(component: ContentSection[]): IComponentContent[] {
+    console.log(component);
     return component?.map(item => {
       const result = {
         name: item.name,

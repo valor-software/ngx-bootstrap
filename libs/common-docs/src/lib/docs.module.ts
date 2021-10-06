@@ -9,6 +9,7 @@ import { SearchFilterPipe } from './common/search-input/search-filter.pipe';
 import { SearchInputComponent } from './common/search-input/search-input.component';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { BreadCrumbsComponent } from './common/breadCrumbs/breadCrumbs.component';
+import { ComponentsPageComponent } from './common/components-page/components-page.component';
 /* docs */
 import { DemoSectionComponent } from './demo-section/demo-section.component';
 import { ContentSection } from './models/content-section.model';
@@ -62,6 +63,7 @@ export { TopMenuComponent } from './common/top-menu/top-menu.component';
 export { Analytics } from './api-docs/analytics/analytics';
 export { DOCS_TOKENS } from './tokens/docs-routes-token';
 export { SIDEBAR_ROUTES, SidebarRoutesStructure } from './tokens/docs-sidebar-routes-token';
+export { ComponentsPageComponent } from './common/components-page/components-page.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +79,8 @@ export { SIDEBAR_ROUTES, SidebarRoutesStructure } from './tokens/docs-sidebar-ro
     SchematicsComponent,
     SearchInputComponent,
     TopMenuComponent,
-    BreadCrumbsComponent
+    BreadCrumbsComponent,
+    ComponentsPageComponent
   ],
   imports: [
     CommonModule,

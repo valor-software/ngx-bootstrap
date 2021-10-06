@@ -13,7 +13,8 @@
 <ul class="sidebar-list menu" *ngIf="search.text && routes.length">
   <li *ngFor="let route of routes | slice:4 | SearchFilter:search.text"
       [routerLinkActive]="['active']"
-      [routerLinkActiveOptions]="{exact: true}">
-    <a routerLink="/{{route.path}}" class="text-white">{{route.data[0]}}</a>
+      [routerLinkActiveOptions]="{exact: true}"
+      class="w-100">
+    <a routerLink="/{{route.path}}" class="text-white d-block w-100">{{route.data[0]}}</a>
   </li>
 </ul>

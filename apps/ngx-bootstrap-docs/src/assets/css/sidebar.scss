@@ -18,8 +18,6 @@
   max-height: calc(100vh - 64px);
   min-height: calc(100vh - 64px);
 
-
-
   .hideText {
     opacity: 0;
     width: 0;
@@ -171,23 +169,8 @@
     padding: 0px 8px;
 
     &.scroll-list {
-      max-height: calc(100vh - 370px);
+      max-height: calc(100vh - 335px);
       overflow-y: auto;
-
-      &::-webkit-scrollbar {
-        width: 5px;
-        height: 20px;
-      }
-
-      &::-webkit-scrollbar-track {
-        background: transparent;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background-color: #DBDEDF;
-        border-radius: 10%;
-        border: 0px solid transparent;
-      }
     }
 
     &-fragment {
