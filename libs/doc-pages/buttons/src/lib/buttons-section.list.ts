@@ -19,6 +19,7 @@ export const demoComponentContent: ContentSection[] = [
   {
     name: 'Overview',
     anchor: 'overview',
+    tabName: 'overview',
     outlet: ExamplesComponent,
     content: [
       {
@@ -45,7 +46,7 @@ export const demoComponentContent: ContentSection[] = [
       },
       {
         title: 'Checkbox with Reactive Forms',
-        anchor: 'checkbox-reactiveforms"',
+        anchor: 'checkbox-reactiveforms',
         description: `<p>Checkbox buttons with ReactiveForms</p>`,
         component: require('!!raw-loader!./demos/checkbox-reactiveforms/checkbox-reactiveforms.ts'),
         html: require('!!raw-loader!./demos/checkbox-reactiveforms/checkbox-reactiveforms.html'),
@@ -109,6 +110,7 @@ Individual buttons or the whole group can be marked as disabled.
   {
     name: 'API Reference',
     anchor: 'api-reference',
+    tabName: 'api',
     outlet: ApiSectionsComponent,
     importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> &#45;&#45;component <span class="pln">buttons</span>',
     content: [
@@ -132,6 +134,7 @@ Individual buttons or the whole group can be marked as disabled.
   {
     name: 'Examples',
     anchor: 'examples',
+    tabName: 'examples',
     outlet: ExamplesComponent,
     content: [
       {

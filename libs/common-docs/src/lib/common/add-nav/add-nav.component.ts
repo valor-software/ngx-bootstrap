@@ -14,12 +14,16 @@ import { DOCUMENT } from '@angular/common';
 import { ContentSection } from '../../models/content-section.model';
 import { ComponentExample } from '../../models/components-examples.model';
 import { ComponentApi } from '../../models/components-api.model';
+import { ActivatedRoute, Router, UrlSegment } from "@angular/router";
 
 interface IComponentContent {
-  name?: string;
-  anchor?: string;
-  outlet: any;
-  description?: string;
+  // name?: string;
+  // anchor?: string;
+  // outlet: any;
+  // description?: string;
+  // content: {anchor: string, title: string}[];
+  parentRouteTitle: string;
+  name?: 'overview' | 'api' | 'examples';
   content: {anchor: string, title: string}[];
 }
 
@@ -55,15 +59,39 @@ export class AddNavComponent implements OnChanges, AfterViewInit{
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private _renderer: Renderer2,
-    ){ }
+    private router: Router
+  ){
+
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes?.componentContent) {
       this._componentContent = this.mapComponentContent(changes.componentContent.currentValue);
+      console.log(this._componentContent);
     }
   }
 
   mapComponentContent(component: ContentSection[]): IComponentContent[] {
+    const parentRoute: string = this.router.parseUrl(this.router.url).root.children.primary.segments[0].path;
+    const activeParam: string = this.router.parseUrl(this.router.url).queryParams?.tab;
+    console.log(activeParam);
+    // const components =  component?.map(item => {
+    //   if (item.tabName === activeParam) {
+    //     const result: IComponentContent = {
+    //       name: item.tabName,
+    //       parentRouteTitle: parentRoute,
+    //       content: Array.isArray(item.content)
+    //         ? (item.content as {anchor: string, title: string}[])
+    //           .map((cont) => ({anchor: cont.anchor, title: cont.title}))
+    //         : []
+    //     };
+    //     return result;
+    //   }
+    //   return;
+    // });
+    // return components || [];
+
+
     return component?.map(item => {
       const result = {
         name: item.name,

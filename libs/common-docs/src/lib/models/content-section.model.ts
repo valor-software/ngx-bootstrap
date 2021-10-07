@@ -11,4 +11,5 @@ export class ContentSection {
   description?: string;
   content?: ComponentExample[] | ComponentApi[] | ComponentsTopSection;
   importInfo?: string;
+  tabName?: 'overview' | 'api' | 'examples';
 }
