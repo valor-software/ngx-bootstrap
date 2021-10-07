@@ -1,6 +1,9 @@
 <ng-container *ngIf="section">
   <h2 [id]="section.anchor">{{ section.name }}</h2>
-
+  <!--  <pre class="prettyprint lang-bash prettyprinted">
+  <span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> &#45;&#45;component <span class="pln">buttons</span>
+  </pre>-->
+  <pre *ngIf="section.importInfo" class="prettyprint lang-bash prettyprinted" [innerHTML]="section.importInfo"></pre>
   <ng-container *ngFor="let item of apiSectionsContent">
     <ng-container *ngComponentOutlet="item.outlet; injector: sectionInjections(item)">
     </ng-container>

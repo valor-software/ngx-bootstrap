@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavigationEnd, Router } from "@angular/router";
+import { Component, OnDestroy } from "@angular/core";
+import { NavigationEnd, Router, UrlSegment } from "@angular/router";
 import { Subscription } from "rxjs";
 
 @Component({
@@ -8,31 +8,29 @@ import { Subscription } from "rxjs";
   templateUrl: 'breadCrumbs.component.html'
 })
 
-export class BreadCrumbsComponent {
+export class BreadCrumbsComponent implements OnDestroy{
   scrollSubscription: Subscription;
-  routeArray: string[] = [];
+  routeArray?: string[];
 
   constructor(
     private router: Router
   ) {
     this.scrollSubscription = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
-        let urls = event.url.split('/');
-        urls = urls.filter(item => item);
-        urls = urls.map(item => {
-          const checkFragments = item.split('#');
-          if (checkFragments.length && checkFragments[0]) {
-            item = checkFragments[0];
-          }
-
-          return item;
+        this.routeArray = [];
+        const tree:  UrlSegment[] = this.router.parseUrl(event.url).root.children.primary.segments;
+        tree.map(segment => {
+            this.routeArray?.push(segment.path);
         });
-        this.routeArray = urls;
       }
     });
   }
 
   navigate(index?: number) {
+    if (!this.routeArray) {
+      return;
+    }
+
     if (index !== undefined) {
       index++;
     }
@@ -48,5 +46,9 @@ export class BreadCrumbsComponent {
 
     const urls = this.routeArray.slice(0, index);
     this.router.navigate([`/${urls.join('/')}`]);
+  }
+
+  ngOnDestroy() {
+    this.scrollSubscription.unsubscribe();
   }
 }

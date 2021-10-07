@@ -10,4 +10,5 @@ export class ContentSection {
   outlet: any;
   description?: string;
   content?: ComponentExample[] | ComponentApi[] | ComponentsTopSection;
+  importInfo?: string;
 }

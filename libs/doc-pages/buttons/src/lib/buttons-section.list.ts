@@ -17,16 +17,8 @@ import { NgApiDocComponent } from '@ngx-bootstrap-doc/docs';
 
 export const demoComponentContent: ContentSection[] = [
   {
-    name: 'Usage',
-    anchor: 'usage',
-    outlet: DemoTopSectionComponent,
-    content: {
-      doc: require('!!raw-loader!./docs/usage.md')
-    }
-  },
-  {
-    name: 'Examples',
-    anchor: 'examples',
+    name: 'Overview',
+    anchor: 'overview',
     outlet: ExamplesComponent,
     content: [
       {
@@ -118,6 +110,7 @@ Individual buttons or the whole group can be marked as disabled.
     name: 'API Reference',
     anchor: 'api-reference',
     outlet: ApiSectionsComponent,
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> &#45;&#45;component <span class="pln">buttons</span>',
     content: [
       {
         title: 'ButtonCheckboxDirective',
@@ -133,6 +126,78 @@ Individual buttons or the whole group can be marked as disabled.
         title: 'ButtonRadioGroupDirective',
         anchor: 'button-radio-group-directive',
         outlet: NgApiDocComponent
+      }
+    ]
+  },
+  {
+    name: 'Examples',
+    anchor: 'examples',
+    outlet: ExamplesComponent,
+    content: [
+      {
+        title: 'Basic',
+        anchor: 'basic',
+        outlet: DemoButtonsBasicComponent
+      },
+      {
+        title: 'Checkbox',
+        anchor: 'checkbox',
+        description: `<p>Checkbox-like buttons set with variable states</p>`,
+        outlet: DemoButtonsCheckboxComponent
+      },
+      {
+        title: 'Custom checkbox value',
+        anchor: 'custom-checkbox-value',
+        outlet: DemoButtonsCustomCheckboxValueComponent
+      },
+      {
+        title: 'Checkbox with Reactive Forms',
+        anchor: 'checkbox-reactiveforms"',
+        description: `<p>Checkbox buttons with ReactiveForms</p>`,
+        outlet: DemoButtonsCheckboxReactiveFormsComponent
+      },
+      {
+        title: 'Radio with radio group',
+        anchor: 'radio-button-with-group',
+        description: `<p>Radio buttons with checked/unchecked states. Radio buttons used together with a <code>btnRadioGroup</code> can be
+used in template driven and reactive forms.
+They follow the <a href="https://www.w3.org/TR/wai-aria-practices-1.1/#radiobutton">W3C WAI-AIRA design pattern for radio groups</a>.
+Meaning
+<ul>
+<li>The Radio Group is inserted in the tab-order of the page by automatically adding a tabindex attribute</li>
+<li>The selected radio element can be changed with the arrow keys if the focus is in the group</li>
+<li>The role of the group is set to "radiogroup" and the aria-checked attributes are added according to the state</li>
+</ul>
+Individual buttons or the whole group can be marked as disabled.
+</p>`,
+        outlet: DemoButtonsRadioWithGroupComponent
+      },
+      {
+        title: 'Radio without explicit group',
+        anchor: 'radio-button',
+        description: `<p> The second method to create a radio button group is to use the same <code>ngModel</code> binding with several buttons.
+ This works only for template driven forms and is not generally advised. But there are use cases were this might be useful, e.g. in tables.
+ In terms of accessibility the buttons in the group can not be selected with the arrow keys, but individually reached by using the tab key
+ and then be toggled by using the space key. You can check out the demo below.</p>`,
+        outlet: DemoButtonsRadioComponent
+      },
+      {
+        title: 'Uncheckable Radio',
+        anchor: 'uncheckable-radio-button',
+        outlet: DemoButtonsUncheckableRadioComponent
+      },
+      {
+        title: 'Radio with Reactive Forms',
+        anchor: 'radio-reactiveforms',
+        description: `<p>Radio buttons with ReactiveForms. Example below shows how to use radio buttons with reactive
+ forms. Please be aware that for reactive forms it's required to use <code>btnRadioGroup</code> directive along with
+ <code>btnRadio</code>'s</p>`,
+        outlet: DemoButtonsRadioReactiveFormsComponent
+      },
+      {
+        title: 'Disabled Buttons',
+        anchor: 'disabled-buttons',
+        outlet: DemoButtonsDisabledComponent
       }
     ]
   }

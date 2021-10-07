@@ -1,7 +1,7 @@
 <div class="section bd-example"><ng-content></ng-content></div>
 <div class="section">
   <div class="item">
-    <tabset>
+    <tabset *ngIf="html || ts || spec || style">
       <tab heading="template" *ngIf="html">
         <pre class="prettyprint linenums lang-html">{{html}}</pre>
       </tab>

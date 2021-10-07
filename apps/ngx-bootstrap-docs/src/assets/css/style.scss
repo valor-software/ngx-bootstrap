@@ -482,9 +482,22 @@ bread-crumbs, .main-container {
 }
 .content {
   //padding: 30px 30px 120px;
-  width: calc(100% - 16.67%);
-  max-width: calc(100% - 16.67%);
+  width: calc(100% - 20%);
+  max-width: calc(100% - 20%);
   margin-right: 30px;
+
+  //.prettyprint {
+  //  margin-bottom: 0;
+  //}
+
+  ng-sample-box, example-section {
+    position: relative;
+  }
+
+
+  .example-section {
+    padding-bottom: 60px;
+  }
 
   h2[id] {
     margin-top: 58px;
@@ -503,7 +516,7 @@ bread-crumbs, .main-container {
 
   ng-sample-box {
     .section {
-      margin-bottom: 60px;
+      //margin-bottom: 60px;
 
       &.bd-example {
         margin-bottom: 10px;
@@ -554,8 +567,8 @@ bread-crumbs, .main-container {
   flex: 0 0 16.666667%;
   max-width: 16.666667%;
   padding-right: 5px;
-  //position: fixed;
-  top: 84px;
+  position: fixed;
+  top: 160px;
   left: 83.33%;
   right: 0;
   max-height: calc(100vh - 104px);
@@ -574,6 +587,19 @@ bread-crumbs, .main-container {
     direction: ltr;
 
     li {
+      position: relative;
+      &.active {
+        &:before {
+          content: "";
+          display: block;
+          width: 2px;
+          background-color: #2595FF;
+          position: absolute;
+          height: 100%;
+          left: -20px;
+        }
+      }
+
       a {
         word-break: break-all;
         word-break: break-word;

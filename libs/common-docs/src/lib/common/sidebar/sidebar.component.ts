@@ -1,4 +1,4 @@
-import { ActivatedRoute, Route, NavigationEnd, Router, Routes } from '@angular/router';
+import { ActivatedRoute, Route, NavigationEnd, Router, Routes, UrlTree } from '@angular/router';
 import { Component, Inject, HostBinding, Renderer2 } from "@angular/core";
 import { DOCUMENT } from '@angular/common';
 
@@ -195,6 +195,9 @@ export class SidebarComponent {
   }
 
   getRouteLink(routePath?: string, parentRoutePath?: string): string | undefined {
+    // const tree = this.router.createUrlTree([`/${routePath}`], {queryParams: {tab: queryParams}});
+    // this.router.navigate([tree]);
+    // return this.router.createUrlTree([`./${routePath}`], {queryParams: {tab: queryParams}, relativeTo: this.activatedRoute, replaceUrl: true});
     if (!routePath) {
       return;
     }

@@ -45,7 +45,7 @@
             <p (click)="openSemiItemMenu(route, routesStructure[sideBarItemIsOpened].nestedRoutes)">{{route.title}}</p>
             <div class="sidebar-list sidebar-list-fragment" [class.show]="route.isOpened" *ngIf="route.fragments.length">
               <div class="sidebar-item sidebar-item-fragment" *ngFor="let item of route.fragments">
-                <a [routerLink]="getRouteLink(route.path, routesStructure[sideBarItemIsOpened].path)">{{item.title}}</a>
+                <a [routerLink]="[getRouteLink(route.path, routesStructure[sideBarItemIsOpened].path)]" [queryParams]="{tab: item.path}">{{item.title}} {{item.path}}</a>
               </div>
             </div>
           </div>
