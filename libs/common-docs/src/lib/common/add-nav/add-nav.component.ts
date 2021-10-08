@@ -4,7 +4,7 @@ import {
   HostListener,
   Inject,
   Input,
-  OnChanges,
+  OnChanges, OnDestroy,
   QueryList, Renderer2,
   SimpleChanges,
   ViewChildren
@@ -14,7 +14,8 @@ import { DOCUMENT } from '@angular/common';
 import { ContentSection } from '../../models/content-section.model';
 import { ComponentExample } from '../../models/components-examples.model';
 import { ComponentApi } from '../../models/components-api.model';
-import { ActivatedRoute, Router, UrlSegment } from "@angular/router";
+import { ActivatedRoute, NavigationEnd, Router, UrlSegment } from "@angular/router";
+import { Subscription } from "rxjs";
 
 interface IComponentContent {
   // name?: string;
@@ -23,7 +24,7 @@ interface IComponentContent {
   // description?: string;
   // content: {anchor: string, title: string}[];
   parentRouteTitle: string;
-  name?: 'overview' | 'api' | 'examples';
+  name?: string;
   content: {anchor: string, title: string}[];
 }
 
@@ -32,8 +33,10 @@ interface IComponentContent {
   selector: 'add-nav',
   templateUrl: './add-nav.component.html'
 })
-export class AddNavComponent implements OnChanges, AfterViewInit{
+export class AddNavComponent implements OnChanges, AfterViewInit, OnDestroy{
   @Input() componentContent?: ContentSection[];
+  scrollSubscription: Subscription;
+  currentRouteParam?: string;
   @ViewChildren('scrollElement')
   private scrollElementsList?: QueryList<ElementRef>;
 
@@ -61,56 +64,37 @@ export class AddNavComponent implements OnChanges, AfterViewInit{
     private _renderer: Renderer2,
     private router: Router
   ){
-
+    this.scrollSubscription = this.router.events.subscribe((event: any) => {
+      if (event instanceof NavigationEnd) {
+        this.currentRouteParam = this.router.parseUrl(event.url).queryParams.tab;
+      }
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes?.componentContent) {
+      this.currentRouteParam = this.router.parseUrl(this.router.url).queryParams.tab;
       this._componentContent = this.mapComponentContent(changes.componentContent.currentValue);
-      console.log(this._componentContent);
     }
   }
 
   mapComponentContent(component: ContentSection[]): IComponentContent[] {
     const parentRoute: string = this.router.parseUrl(this.router.url).root.children.primary.segments[0].path;
-    const activeParam: string = this.router.parseUrl(this.router.url).queryParams?.tab;
-    console.log(activeParam);
-    // const components =  component?.map(item => {
-    //   if (item.tabName === activeParam) {
-    //     const result: IComponentContent = {
-    //       name: item.tabName,
-    //       parentRouteTitle: parentRoute,
-    //       content: Array.isArray(item.content)
-    //         ? (item.content as {anchor: string, title: string}[])
-    //           .map((cont) => ({anchor: cont.anchor, title: cont.title}))
-    //         : []
-    //     };
-    //     return result;
-    //   }
-    //   return;
-    // });
-    // return components || [];
-
-
     return component?.map(item => {
-      const result = {
-        name: item.name,
-        anchor: item.anchor,
-        outlet: item.outlet,
-        description: item.description,
+      const result: IComponentContent = {
+        name: item.tabName,
+        parentRouteTitle: parentRoute,
         content: Array.isArray(item.content)
           ? (item.content as {anchor: string, title: string}[])
             .map((cont) => ({anchor: cont.anchor, title: cont.title}))
           : []
       };
-
       return result;
     });
   }
 
   goToSection(event: Event): void {
     const item: HTMLElement = event.target as HTMLElement;
-
     if (item.dataset.anchor) {
       const anchor: string = item.dataset.anchor;
       const target: HTMLElement | null = this.document.getElementById(anchor);
@@ -145,5 +129,9 @@ export class AddNavComponent implements OnChanges, AfterViewInit{
       });
     });
 
+  }
+
+  ngOnDestroy() {
+    this.scrollSubscription.unsubscribe();
   }
 }

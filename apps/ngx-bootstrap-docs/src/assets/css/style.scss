@@ -572,16 +572,24 @@ bread-crumbs, .main-container {
   left: 83.33%;
   right: 0;
   max-height: calc(100vh - 104px);
-  overflow: auto;
-  direction: rtl;
+  overflow-y: auto;
+  padding-left: 20px;
+  //direction: rtl;
+
+  & > a {
+    line-height: 20px;
+    color: #6E7880;
+    cursor: pointer;
+    padding-bottom: 10px;
+  }
 
   & > ul {
-    border-left: 1px solid #F3F4F4;
+    //border-left: 1px solid #F3F4F4;
   }
 
   ul {
     margin: 0;
-    padding: 0 0 0 20px;
+    padding: 0;
     font-size: 14px;
     list-style: none;
     direction: ltr;
@@ -598,6 +606,10 @@ bread-crumbs, .main-container {
           height: 100%;
           left: -20px;
         }
+
+        a {
+          font-weight: bold;
+        }
       }
 
       a {
@@ -605,11 +617,11 @@ bread-crumbs, .main-container {
         word-break: break-word;
         display: block;
         padding: 5px 0;
-        line-height: 1.2;
-        color: #666;
+        line-height: 20px;
+        color: #393D41;
 
         &:hover {
-          color: #1976d2;
+          font-weight: bold;
         }
       }
     }

@@ -1,9 +1,15 @@
-<!--<ul *ngIf="_componentContent" (click)="goToSection($event)">-->
-<!--  <li *ngFor="let item of _componentContent">-->
-<!--    <a routerLink="." [fragment]="item.anchor" [attr.data-anchor]="item.anchor">{{ item.name }}</a>-->
-<!--    <ul *ngIf="item?.content && item.content?.length">-->
-<!--      <li *ngFor="let subItem of item.content">-->
-<!--        <a routerLink="." [fragment]="subItem.anchor" [attr.data-anchor]="subItem.anchor" #scrollElement>{{ subItem.title }}</a>-->
-<!--    </ul>-->
-<!--  </li>-->
-<!--</ul>-->
+<div class="add-nav add-nav-container" *ngIf="_componentContent" (click)="goToSection($event)">
+  <ng-container *ngFor="let item of _componentContent">
+    <ng-container *ngIf="item.name === currentRouteParam">
+      <a routerLink="/{{item.parentRouteTitle}}">{{ item.parentRouteTitle }}</a>
+      <ul *ngIf="item?.content && item.content?.length">
+        <li *ngFor="let subItem of item.content">
+          <a routerLink="." [fragment]="subItem.anchor" [attr.data-anchor]="subItem.anchor" #scrollElement>{{ subItem.title }}</a>
+      </ul>
+    </ng-container>
+  </ng-container>
+</div>
+
+
+
+

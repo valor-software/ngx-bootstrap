@@ -36,14 +36,17 @@ export class DocsSectionComponent implements OnDestroy {
     this.scrollSubscription = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
         const params = this.router.parseUrl(event.url).queryParams;
-        if (params?.tab) {
-          this.initActiveTab(params.tab.toString());
-        }
+        this.initActiveTab(params.tab?.toString());
       }
     });
   }
 
-  initActiveTab(activeTab: string) {
+  initActiveTab(activeTab?: string) {
+    if (!activeTab) {
+      this.overview = true;
+      this.onSelect('overview');
+      return;
+    }
     this[activeTab as 'overview' | 'api' | 'examples'] = true;
   }
 
