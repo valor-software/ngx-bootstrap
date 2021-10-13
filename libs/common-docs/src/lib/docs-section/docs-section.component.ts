@@ -54,7 +54,9 @@ export class DocsSectionComponent implements OnDestroy {
   }
 
   onSelect(tabName: string) {
+    this.resetTabs();
     this.router.navigate([], {queryParams: {tab: tabName}});
+    this[tabName as 'overview' | 'api' | 'examples'] = true;
   }
 
   sectionInjections(_content: ContentSection): Injector {
@@ -70,6 +72,12 @@ export class DocsSectionComponent implements OnDestroy {
     this._injectors.set(_content, _injector);
 
     return _injector;
+  }
+
+  resetTabs() {
+    this.overview = false;
+    this.api = false;
+    this.examples = false;
   }
 
   ngOnDestroy() {

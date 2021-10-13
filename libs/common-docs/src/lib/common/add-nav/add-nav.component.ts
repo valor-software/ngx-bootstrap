@@ -4,7 +4,7 @@ import {
   HostListener,
   Inject,
   Input,
-  OnChanges, OnDestroy,
+  OnChanges,
   QueryList, Renderer2,
   SimpleChanges,
   ViewChildren, ViewChild
@@ -12,8 +12,7 @@ import {
 import { DOCUMENT } from '@angular/common';
 
 import { ContentSection } from '../../models/content-section.model';
-import { ActivatedRoute, NavigationEnd, Router, UrlSegment } from "@angular/router";
-import { Subscription } from "rxjs";
+import { Router } from "@angular/router";
 
 interface IComponentContent {
   parentRouteTitle: string;
@@ -26,10 +25,8 @@ interface IComponentContent {
   selector: 'add-nav',
   templateUrl: './add-nav.component.html'
 })
-export class AddNavComponent implements OnChanges, AfterViewInit, OnDestroy{
+export class AddNavComponent implements OnChanges, AfterViewInit {
   @Input() componentContent?: ContentSection;
-  // scrollSubscription: Subscription;
-  currentRouteParam?: string;
 
   @ViewChildren('scrollElement')
   private scrollElementsList?: QueryList<ElementRef>;
@@ -39,8 +36,8 @@ export class AddNavComponent implements OnChanges, AfterViewInit, OnDestroy{
 
   _componentContent?: IComponentContent;
 
-  @HostListener('window:scroll', ['$event'])
-  onScrollEvent(event: Event) {
+  @HostListener('window:scroll')
+  onScrollEvent() {
     if (this.addNavContainer) {
       if (!this.addNavContainer.nativeElement.getAttribute('data-position')) {
         setTimeout(() => {
@@ -70,13 +67,7 @@ export class AddNavComponent implements OnChanges, AfterViewInit, OnDestroy{
     @Inject(DOCUMENT) private document: Document,
     private _renderer: Renderer2,
     private router: Router
-  ){
-    // this.scrollSubscription = this.router.events.subscribe((event: any) => {
-    //   if (event instanceof NavigationEnd) {
-    //     this.currentRouteParam = this.router.parseUrl(event.url).queryParams.tab;
-    //   }
-    // });
-  }
+  ){}
 
   initMenu() {
     const attributeValue = this.addNavContainer?.nativeElement.getAttribute('data-position');
@@ -142,9 +133,5 @@ export class AddNavComponent implements OnChanges, AfterViewInit, OnDestroy{
       });
     },100);
 
-  }
-
-  ngOnDestroy() {
-    // this.scrollSubscription.unsubscribe();
   }
 }
