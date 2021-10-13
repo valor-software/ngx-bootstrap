@@ -3,7 +3,7 @@
   <section class="main-container transition-option">
     <bread-crumbs></bread-crumbs>
     <div class="content-box">
-      <div class="content">
+      <div class="content w-100">
         <div class="content-header">
           <h1 *ngIf="name || src">{{name}}
             <a [href]="src" target="_blank" rel="noopener">
@@ -20,7 +20,7 @@
           </div>
         </div>
       </div>
-      <add-nav *ngIf="componentContent" class="add-nav" [componentContent]="componentContent"></add-nav>
+<!--      <add-nav *ngIf="componentContent" class="add-nav" [componentContent]="componentContent"></add-nav>-->
     </div>
   </section>
 </main>

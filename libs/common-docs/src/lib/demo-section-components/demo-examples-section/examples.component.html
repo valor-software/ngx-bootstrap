@@ -5,7 +5,7 @@
   </h2>
   <p *ngIf="section.description" [innerHTML]="section.description"></p>
 
-  <div *ngFor="let item of examples">
+  <div class="example-section" *ngFor="let item of examples" #example>
     <h3 *ngIf="item.title" [attr.id]="item.anchor">
       {{ item.title }}
       <a *ngIf="item.title !== 'Accessibility'"

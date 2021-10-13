@@ -1,15 +1,23 @@
-import { Component, Inject, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  AfterViewInit,
+  Component, ElementRef,
+  HostListener,
+  Inject,
+  Input,
+  OnChanges, OnDestroy,
+  QueryList, Renderer2,
+  SimpleChanges,
+  ViewChildren, ViewChild
+} from "@angular/core";
 import { DOCUMENT } from '@angular/common';
 
 import { ContentSection } from '../../models/content-section.model';
-import { ComponentExample } from '../../models/components-examples.model';
-import { ComponentApi } from '../../models/components-api.model';
+import { ActivatedRoute, NavigationEnd, Router, UrlSegment } from "@angular/router";
+import { Subscription } from "rxjs";
 
 interface IComponentContent {
+  parentRouteTitle: string;
   name?: string;
-  anchor?: string;
-  outlet: any;
-  description?: string;
   content: {anchor: string, title: string}[];
 }
 
@@ -18,12 +26,73 @@ interface IComponentContent {
   selector: 'add-nav',
   templateUrl: './add-nav.component.html'
 })
-export class AddNavComponent implements OnChanges{
-  @Input() componentContent?: ContentSection[];
+export class AddNavComponent implements OnChanges, AfterViewInit, OnDestroy{
+  @Input() componentContent?: ContentSection;
+  // scrollSubscription: Subscription;
+  currentRouteParam?: string;
 
-  _componentContent: IComponentContent[] = [];
+  @ViewChildren('scrollElement')
+  private scrollElementsList?: QueryList<ElementRef>;
+
+  @ViewChild('container')
+  private addNavContainer?: ElementRef;
+
+  _componentContent?: IComponentContent;
+
+  @HostListener('window:scroll', ['$event'])
+  onScrollEvent(event: Event) {
+    if (this.addNavContainer) {
+      if (!this.addNavContainer.nativeElement.getAttribute('data-position')) {
+        setTimeout(() => {
+          this._renderer.setAttribute(this.addNavContainer?.nativeElement, 'data-position', (this.addNavContainer?.nativeElement.offsetTop - 64).toString());
+        }, 100);
+      }
+
+      this.initMenu();
+    }
+
+    if (this.scrollElementsList?.length) {
+      this.scrollElementsList.map(item => {
+        const min = item.nativeElement.getAttribute('data-min-scroll-value');
+        const max = item.nativeElement.getAttribute('data-max-scroll-value');
+        const position = window.pageYOffset;
+        if (position >= min && position <= max) {
+          this._renderer.addClass(item.nativeElement.parentElement, 'active');
+        } else {
+          this._renderer.removeClass(item.nativeElement.parentElement, 'active');
+        }
+      });
+    }
+  };
+
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  constructor(@Inject(DOCUMENT) private document: Document){ }
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private _renderer: Renderer2,
+    private router: Router
+  ){
+    // this.scrollSubscription = this.router.events.subscribe((event: any) => {
+    //   if (event instanceof NavigationEnd) {
+    //     this.currentRouteParam = this.router.parseUrl(event.url).queryParams.tab;
+    //   }
+    // });
+  }
+
+  initMenu() {
+    const attributeValue = this.addNavContainer?.nativeElement.getAttribute('data-position');
+    const elementOffsetTop = this.addNavContainer?.nativeElement.offsetTop - 64; // 64 - height of the header
+    if (!attributeValue && elementOffsetTop <= window.pageYOffset) {
+      this._renderer.addClass(this.addNavContainer?.nativeElement, 'fixed');
+    } else {
+      this._renderer.removeClass(this.addNavContainer?.nativeElement, 'fixed');
+    }
+
+    if (attributeValue && attributeValue <= window.pageYOffset) {
+      this._renderer.addClass(this.addNavContainer?.nativeElement, 'fixed');
+    } else {
+      this._renderer.removeClass(this.addNavContainer?.nativeElement, 'fixed');
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes?.componentContent) {
@@ -31,27 +100,20 @@ export class AddNavComponent implements OnChanges{
     }
   }
 
-  mapComponentContent(component: ContentSection[]): IComponentContent[] {
-    console.log(component);
-    return component?.map(item => {
-      const result = {
-        name: item.name,
-        anchor: item.anchor,
-        outlet: item.outlet,
-        description: item.description,
-        content: Array.isArray(item.content)
-          ? (item.content as {anchor: string, title: string}[])
+  mapComponentContent(component: ContentSection): IComponentContent {
+    const parentRoute: string = this.router.parseUrl(this.router.url).root.children.primary.segments[0].path;
+    return {
+        name: component.tabName,
+        parentRouteTitle: parentRoute,
+        content: Array.isArray(component.content)
+          ? (component.content as {anchor: string, title: string}[])
             .map((cont) => ({anchor: cont.anchor, title: cont.title}))
           : []
       };
-
-      return result;
-    });
   }
 
   goToSection(event: Event): void {
     const item: HTMLElement = event.target as HTMLElement;
-
     if (item.dataset.anchor) {
       const anchor: string = item.dataset.anchor;
       const target: HTMLElement | null = this.document.getElementById(anchor);
@@ -59,9 +121,30 @@ export class AddNavComponent implements OnChanges{
 
       if (target && header) {
         const targetPosY: number = target.offsetTop - header.offsetHeight - 6;
-
         window.scrollTo(0, targetPosY);
       }
     }
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      const header: number = this.document.querySelector('header')?.offsetHeight || 0;
+      this.scrollElementsList?.map(item => {
+        const id = item.nativeElement.getAttribute('data-anchor');
+        const target: HTMLElement | null = this.document.getElementById(id);
+        if (target) {
+          const targetPosY: number = target.offsetTop - header - 6;
+          const parentHeight = (<HTMLElement>target.parentElement).getBoundingClientRect().height - 6 || 0;
+          this._renderer.setAttribute(item.nativeElement, 'data-max-scroll-value', (targetPosY + parentHeight).toString());
+          this._renderer.setAttribute(item.nativeElement, 'data-min-scroll-value', (targetPosY).toString());
+        }
+        return item;
+      });
+    },100);
+
+  }
+
+  ngOnDestroy() {
+    // this.scrollSubscription.unsubscribe();
   }
 }
