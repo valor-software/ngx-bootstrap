@@ -7,7 +7,7 @@
 /* sidebar */
 
 .sidebar {
-  width: 90px;
+  width: $sidebar-width-closed;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,7 +52,7 @@
   }
 
   &.menuIsOpened {
-    width: 240px;
+    width: $sidebar-width-opened;
 
     .sidebar-list, .bootstrap-version {
       align-items: flex-start;
@@ -62,7 +62,7 @@
     .sidebar-list {
       padding-bottom: 15px;
       padding-top: 0;
-      min-width: 240px;
+      min-width: $sidebar-width-opened;
 
       &:first-child {
         padding-bottom: 25px;

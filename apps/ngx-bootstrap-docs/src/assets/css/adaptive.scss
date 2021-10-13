@@ -44,13 +44,16 @@
   .add-nav {
     display: none;
   }
-  .main-container {
-    flex: 0 0 75%;
-    max-width: 75%;
-    margin-left: 25%;
-  }
+  //.main-container {
+  //  flex: 0 0 75%;
+  //  max-width: 75%;
+  //  margin-left: 25%;
+  //}
 
   .content {
+    width: 100%;
+    max-width: 100%;
+
     h2[id],
     h3[id] {
       .anchor-link {
@@ -180,6 +183,11 @@
 
   .main-container {
     margin-left: 0;
+  }
+
+  .content {
+    width: 100%;
+    max-width: 100%;
   }
 
   .sidebar {

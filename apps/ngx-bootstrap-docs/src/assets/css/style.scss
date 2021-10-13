@@ -435,17 +435,17 @@ header {
 /* content */
 .menuIsOpened {
   .main-container, bread-crumbs {
-    flex: 0 0 calc(100% - 16.67%);
-    max-width: calc(100% - 16.67%);
-    margin-left: 16.67%;
+    flex: 0 0 calc(100% - #{$sidebar-width-opened});
+    max-width: calc(100% - #{$sidebar-width-opened});
+    margin-left: $sidebar-width-opened;
   }
 }
 
 bread-crumbs, .main-container {
-  flex: 0 0 calc(100% - 6.25%);
-  max-width: calc(100% - 6.25%);
-  margin-left: 6.25%;
-  padding: 20px 35px 20px 0px;
+  flex: 0 0 calc(100% - #{$sidebar-width-closed});
+  max-width: calc(100% - #{$sidebar-width-closed});
+  margin-left: $sidebar-width-closed;
+  //padding: 20px 35px 20px 0px;
 }
 
 .main-container {
@@ -482,9 +482,9 @@ bread-crumbs, .main-container {
 }
 .content {
   //padding: 30px 30px 120px;
-  width: calc(100% - 16.67%);
-  max-width: calc(100% - 16.67%);
-  margin-right: 30px;
+  width: calc(100% - #{$add-nav-width});
+  max-width: calc(100% - #{$add-nav-width});
+  //margin-right: 30px;
 
   h2[id] {
     margin-top: 58px;
@@ -551,8 +551,8 @@ bread-crumbs, .main-container {
 }
 /* add-nav */
 .add-nav {
-  flex: 0 0 16.666667%;
-  max-width: 16.666667%;
+  flex: 0 0 130px;
+  max-width: 130px;
   padding-right: 5px;
   //position: fixed;
   top: 84px;
