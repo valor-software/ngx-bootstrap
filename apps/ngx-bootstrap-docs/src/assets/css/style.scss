@@ -445,7 +445,7 @@ header {
   flex: 0 0 calc(100% - #{$sidebar-width-closed});
   max-width: calc(100% - #{$sidebar-width-closed});
   margin-left: $sidebar-width-closed;
-  padding: 25px 65px 25px 25px;
+  padding: 25px;
   //padding: 20px 35px 20px 0px;
 }
 
@@ -506,6 +506,7 @@ header {
     display: flex;
     justify-content: space-between;
     padding-left: 30px;
+    padding-right: 30px;
   }
 }
 
