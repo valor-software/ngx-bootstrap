@@ -19,33 +19,80 @@ h1, h2, h3, h4 {
   }
 }
 
+p {
+  font-family: 'Open Sans';
+}
+
 h1 {
-  font-family: 'Manrope bold';
-  font-size: 72px;
-  line-height: 100px;
-  color: $dark-font-color;
+  font-family: 'Open Sans';
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 36px;
+  color: black;
+  margin-bottom: 15px;
 
-  &.small {
-    font-weight: 800;
-    font-size: 24px;
-    line-height: 29px;
-  }
 
-  &.black {
-    color: black;
+  //&.small {
+  //  font-weight: 800;
+  //  font-size: 24px;
+  //  line-height: 29px;
+  //}
+
+  img {
+    width: 20px;
   }
 }
 
 h2 {
-  font-family: 'Manrope bold';
-  font-weight: 800;
-  font-size: 48px;
-  line-height: 64px;
-  color: $dark-font-color;
+  font-family: 'Open Sans';
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 32px;
+  color: black;
+}
+
+h3 {
+  font-family: 'Open Sans';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+
+  a {
+    color: black;
+  }
+}
+
+.landing {
+  h1 {
+    font-family: 'Manrope bold';
+    font-size: 72px;
+    line-height: 100px;
+    color: $dark-font-color;
+  }
+
+  h2 {
+    font-family: 'Manrope bold';
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 64px;
+    color: $dark-font-color;
+  }
+}
+
+.item {
+  & > p {
+    display: inline;
+    margin: 0;
+    font-family: 'Open Sans';
+    font-size: 14px;
+    line-height: 20px;
+    color: #393D41;
+  }
 }
 
 code {
   word-break: normal;
+  color: #FE5AAB;
 }
 
 a:hover {

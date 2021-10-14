@@ -473,7 +473,33 @@ header {
           border-radius: 2px;
         }
       }
+
+      .code-tab {
+        //border-radius: 4px 4px 0 0;
+        //border: 1px solid #DEE2E6;
+        //border-bottom: none;
+
+        &.active {
+          border: none;
+
+          .nav-link {
+            color: #6C757D;
+            border-color: #dee2e6 #dee2e6 #fff;
+          }
+        }
+
+        .nav-link {
+          font-size: 14px;
+          line-height: 21px;
+          font-weight: 500;
+          color: #7749F8;
+          border-radius: 4px 4px 0 0;
+          border-color: #DEE2E6;
+        }
+      }
     }
+
+
   }
 
   .content-box {
@@ -486,6 +512,14 @@ header {
 docs-section {
   display: flex;
   justify-content: space-between;
+  margin-top: 40px;
+}
+
+.example-section > p, .api-doc-component > p {
+  font-size: 14px;
+  line-height: 20px;
+  color: #393D41;
+  margin-bottom: 0;
 }
 
 .content {
@@ -500,21 +534,17 @@ docs-section {
 
 
   .example-section {
-    padding-bottom: 60px;
+    margin-top: 40px;
   }
 
-  h2[id] {
-    margin-top: 58px;
-  }
+  //h2[id] {
+  //  margin-top: 58px;
+  //}
   h2[id],
   h3[id] {
+
     .anchor-link {
-      display: none;
-    }
-    &:hover {
-      .anchor-link {
-        display: inline-block;
-      }
+      color: #2595FF;
     }
   }
 
@@ -523,15 +553,7 @@ docs-section {
       //margin-bottom: 60px;
 
       &.bd-example {
-        margin-bottom: 10px;
-      }
-    }
-
-    .tab-content {
-      .prettyprint {
-        border-top: none;
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
+        margin: 15px 0;
       }
     }
   }
@@ -542,9 +564,10 @@ docs-section {
   }
 }
 .api-doc-component {
-  > h3 {
+  & > h3 {
     margin-top: 20px;
   }
+
   .table {
     td {
       padding: 1rem;
@@ -614,6 +637,10 @@ docs-section {
 tabset {
   width: 100%;
   max-width: calc(100% - #{$add-nav-width + 50px});
+
+  h2 {
+    margin: 15px 0;
+  }
 }
 
 /* add-nav */
@@ -628,23 +655,29 @@ tabset {
   max-height: calc(100vh - 104px);
   overflow-y: auto;
   overflow-x: hidden;
-  padding-left: 20px;
+  position: sticky;
+  top: 70px;
   margin-top: 35px;
   transition: all ease .3s;
   //direction: rtl;
 
   .add-nav-container {
+    font-family: "Open Sans";
+    padding-left: 20px;
+    border-left: 1px solid #F3F4F4;
+
     & > a {
       line-height: 20px;
       color: #6E7880;
       cursor: pointer;
+      font-size: 11px;
       padding-bottom: 10px;
     }
 
-    &.fixed {
-      position: fixed;
-      top: 70px;
-    }
+    //&.fixed {
+    //  position: fixed;
+    //  top: 70px;
+    //}
   }
 
   & > ul {

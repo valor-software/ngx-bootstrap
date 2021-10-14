@@ -1,21 +1,23 @@
 <ng-container *ngIf="section">
-  <h2 [attr.id]="section.anchor">
-    {{ section.name }}
-    <a class="anchor-link" routerLink="." [fragment]="section.anchor">#</a>
-  </h2>
+<!--  <h2 [attr.id]="section.anchor">-->
+<!--    {{ section.name }}-->
+<!--    <a class="anchor-link" routerLink="." [fragment]="section.anchor">#</a>-->
+<!--  </h2>-->
   <p *ngIf="section.description" [innerHTML]="section.description"></p>
 
   <div class="example-section" *ngFor="let item of examples" #example>
-    <h3 *ngIf="item.title" [attr.id]="item.anchor">
+    <h3 *ngIf="item.title" [attr.id]="item.anchor" class="d-flex justify-content-between">
       {{ item.title }}
-      <a *ngIf="item.title !== 'Accessibility'"
-         title="Open this demo in StackBlitz"
-         href="#"
-         class="stackblitz-link"
-         (click)="openStackBlitzDemo(item?.component?.default, item?.html?.default)">
-        <img src="assets/images/stackblitz.png" alt="" width="20">
-      </a >
-      <a class="anchor-link" routerLink="." [fragment]="item.anchor">#</a>
+      <p class="m-0">
+        <a *ngIf="item.title !== 'Accessibility'"
+           title="Open this demo in StackBlitz"
+           href="#"
+           class="stackblitz-link"
+           (click)="openStackBlitzDemo(item?.component?.default, item?.html?.default)">
+          <img src="assets/images/stackblitz.png" alt="" width="20">
+        </a >
+        <a class="anchor-link" routerLink="." [fragment]="item.anchor">#</a>
+      </p>
     </h3>
     <p *ngIf="item.description" [innerHTML]="item.description"></p>
     <ng-sample-box [ts]="item?.component?.default" [html]="item?.html?.default" [style]="item.style ">
