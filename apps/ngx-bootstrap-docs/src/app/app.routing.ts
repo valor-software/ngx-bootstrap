@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { LandingComponent, ComponentsPageComponent, DocumentationComponent, DiscoverComponent, SchematicsComponent } from '@ngx-bootstrap-doc/docs';
+import { LandingComponent, ComponentsPageComponent, DocumentationComponent, DiscoverComponent, SchematicsComponent, ConstructionPageComponent } from '@ngx-bootstrap-doc/docs';
 
 export const routes: Routes = [
   {
@@ -21,6 +21,11 @@ export const routes: Routes = [
     path: 'schematics',
     data: ['Schematics', {sideBarParentTitle: 'documentation'}],
     component: SchematicsComponent
+  },
+  {
+    path: 'themes',
+    data: ['Themes'],
+    component: ConstructionPageComponent
   },
   {
     path: 'components',

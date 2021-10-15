@@ -170,7 +170,7 @@ export class SidebarComponent {
     }
 
     const currentRoute = routes.filter(route => route.path === path[0]);
-    if (!currentRoute?.length || (!currentRoute[0].data?.[1].sideBarParentTitle && !currentRoute[0].children?.length)) {
+    if (!currentRoute?.length || (!currentRoute[0].data?.[1]?.sideBarParentTitle && !currentRoute[0].children?.length)) {
       return;
     }
     const key = currentRoute[0].children?.length ? currentRoute[0].path : currentRoute[0].data?.[1]?.sideBarParentTitle;

@@ -181,11 +181,16 @@
   }
 
   .main-container,
-  .sidebar.menuIsOpened {
+  .sidebar.menuIsOpened, .bg-container {
     flex: 0 0 100%;
     max-width: 100%;
     width: 100%;
     min-height: calc(100vh - 62px);
+  }
+
+  .bg-container {
+    height: calc(100vh - 62px);
+    margin: 62px 0 0 0;
   }
 
   .main-container {

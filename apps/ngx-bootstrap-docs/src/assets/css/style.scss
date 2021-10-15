@@ -434,19 +434,36 @@ header {
 
 /* content */
 .menuIsOpened {
-  .main-container {
+  .bg-container, .main-container {
     flex: 0 0 calc(100% - #{$sidebar-width-opened});
     max-width: calc(100% - #{$sidebar-width-opened});
     margin-left: $sidebar-width-opened;
   }
 }
 
-.main-container {
+.bg-container, .main-container {
   flex: 0 0 calc(100% - #{$sidebar-width-closed});
   max-width: calc(100% - #{$sidebar-width-closed});
   margin-left: $sidebar-width-closed;
-  padding: 25px;
-  //padding: 20px 35px 20px 0px;
+}
+
+.bg-container {
+  width: 100%;
+  height: calc(100vh - #{$header-height});
+  background: url('../images/construction-bg.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  transition: all ease .3s;
+
+  p {
+    position: absolute;
+    top: 100px;
+    left: 30px;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 36px;
+  }
 }
 
 .main-container {
@@ -455,6 +472,7 @@ header {
   //  max-width: calc(100% - 16.67%);
   //  margin-right: 16.67%;
   //}
+  padding: 25px;
 
   tabset {
     .nav-tabs {

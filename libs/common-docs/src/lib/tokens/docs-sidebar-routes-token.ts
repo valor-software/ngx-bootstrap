@@ -42,7 +42,8 @@ export const SidebarRoutesStructure: SidebarRoutesType = {
     nestedRoutes:[],
     isOpened: false,
     title: 'THEMES',
-    icon: 'assets/images/icons/icon-theme.svg'
+    icon: 'assets/images/icons/icon-theme.svg',
+    path: 'themes'
   }
 };
 
