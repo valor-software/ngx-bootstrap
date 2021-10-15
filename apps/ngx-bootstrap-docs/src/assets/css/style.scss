@@ -516,8 +516,6 @@ header {
         }
       }
     }
-
-
   }
 
   .content-box {
@@ -525,6 +523,76 @@ header {
     justify-content: space-between;
     padding-left: 30px;
     padding-right: 30px;
+  }
+
+  .themes-box {
+    margin-top: 40px;
+
+    .theme-item {
+      width: 100%;
+      max-width: 1100px;
+      margin-bottom: 25px;
+
+      &.blue {
+        background-color: #EEF7FF;
+        border: 1px solid #ABCDFF;
+      }
+
+      &.pink {
+        background-color: #FFF4FE;
+        border: 1px solid #FDABFF;
+      }
+
+      &.yellow {
+        background-color: #FDFFF1;
+        border: 1px solid #FFDDAB;
+      }
+
+      .info-box {
+        padding: 12px 12px 12px 30px;
+
+        button:last-child {
+          color: #156DFF;
+          border: 1px solid #156DFF;
+          padding: 8px 15px;
+          border-radius: 8px;
+        }
+
+        button:first-child {
+          background-color: #069EA8;
+          border-radius: 8px;
+          padding: 8px 12px;
+          font-weight: 600;
+          font-size: 12px;
+          line-height: 15px;
+          color: white;
+          border: none;
+        }
+
+
+
+        p {
+          color: #393D41;
+          font-size: 16px;
+          line-height: 28px;
+        }
+
+        & p:first-of-type {
+          font-weight: 600;
+          font-size: 24px;
+          line-height: 29px;
+          color: #152337;
+        }
+
+        p.price {
+          font-size: 20px;
+          line-height: 24px;
+          color: #152337;
+        }
+      }
+
+    }
+
   }
 }
 

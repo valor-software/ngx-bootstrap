@@ -1,5 +1,12 @@
 import { Routes } from '@angular/router';
-import { LandingComponent, ComponentsPageComponent, DocumentationComponent, DiscoverComponent, SchematicsComponent, ConstructionPageComponent } from '@ngx-bootstrap-doc/docs';
+import {
+  LandingComponent,
+  ComponentsPageComponent,
+  DocumentationComponent,
+  DiscoverComponent,
+  SchematicsComponent,
+  ThemesComponent
+} from "@ngx-bootstrap-doc/docs";
 
 export const routes: Routes = [
   {
@@ -25,7 +32,7 @@ export const routes: Routes = [
   {
     path: 'themes',
     data: ['Themes'],
-    component: ConstructionPageComponent
+    component: ThemesComponent
   },
   {
     path: 'components',

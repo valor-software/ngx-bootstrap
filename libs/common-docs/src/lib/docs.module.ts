@@ -11,7 +11,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { BreadCrumbsComponent } from './common/breadCrumbs/breadCrumbs.component';
 import { ComponentsPageComponent } from './common/components-page/components-page.component';
 import { ConstructionPageComponent } from './common/construction-page/construction-page.component';
-
+import { ThemesComponent } from './common/themes/themes.component';
 /* docs */
 import { DemoSectionComponent } from './demo-section/demo-section.component';
 import { ContentSection } from './models/content-section.model';
@@ -67,6 +67,7 @@ export { DOCS_TOKENS } from './tokens/docs-routes-token';
 export { SIDEBAR_ROUTES, SidebarRoutesStructure } from './tokens/docs-sidebar-routes-token';
 export { ComponentsPageComponent } from './common/components-page/components-page.component';
 export { ConstructionPageComponent } from './common/construction-page/construction-page.component';
+export { ThemesComponent } from './common/themes/themes.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ export { ConstructionPageComponent } from './common/construction-page/constructi
     TopMenuComponent,
     BreadCrumbsComponent,
     ComponentsPageComponent,
-    ConstructionPageComponent
+    ConstructionPageComponent,
+    ThemesComponent
   ],
   imports: [
     CommonModule,
