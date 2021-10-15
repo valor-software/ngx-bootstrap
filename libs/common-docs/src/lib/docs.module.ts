@@ -10,6 +10,7 @@ import { SearchInputComponent } from './common/search-input/search-input.compone
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { BreadCrumbsComponent } from './common/breadCrumbs/breadCrumbs.component';
 import { ComponentsPageComponent } from './common/components-page/components-page.component';
+import { ConstructionPageComponent } from './common/construction-page/construction-page.component';
 /* docs */
 import { DemoSectionComponent } from './demo-section/demo-section.component';
 import { ContentSection } from './models/content-section.model';
@@ -80,7 +81,8 @@ export { ComponentsPageComponent } from './common/components-page/components-pag
     SearchInputComponent,
     TopMenuComponent,
     BreadCrumbsComponent,
-    ComponentsPageComponent
+    ComponentsPageComponent,
+    ConstructionPageComponent
   ],
   imports: [
     CommonModule,
