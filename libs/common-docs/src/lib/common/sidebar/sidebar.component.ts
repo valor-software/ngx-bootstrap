@@ -1,4 +1,4 @@
-import { ActivatedRoute, Route, NavigationEnd, Router, Routes, UrlTree } from '@angular/router';
+import { ActivatedRoute, Route, NavigationEnd, Router, Routes, UrlTree, UrlSegment } from "@angular/router";
 import { Component, Inject, HostBinding, Renderer2 } from "@angular/core";
 import { DOCUMENT } from '@angular/common';
 
@@ -151,12 +151,12 @@ export class SidebarComponent {
   }
 
   checkRoutePath(path: string): string[] {
-    let currentPath = path.split('/');
-    currentPath = currentPath.map(item => {
-      item = item.split('#')[0];
-      return item;
+    const tree: UrlSegment[] = this.router.parseUrl(this.router.url).root.children.primary.segments;
+    const result = new Set<string>();
+    tree.map(segment => {
+      result.add(segment.path);
     });
-    return currentPath.filter(item => item);
+    return [...result];
   }
 
   openMenuWithRoutePath(path: string[], routes: Routes) {
@@ -170,11 +170,10 @@ export class SidebarComponent {
     }
 
     const currentRoute = routes.filter(route => route.path === path[0]);
-    if (!currentRoute?.length || !currentRoute[0].data?.[1].sideBarParentTitle) {
+    if (!currentRoute?.length || (!currentRoute[0].data?.[1].sideBarParentTitle && !currentRoute[0].children?.length)) {
       return;
     }
-
-    const key = currentRoute[0].data?.[1].sideBarParentTitle;
+    const key = currentRoute[0].children?.length ? currentRoute[0].path : currentRoute[0].data?.[1]?.sideBarParentTitle;
     this.openMenuWithRoute(key, path[0]);
   }
 
@@ -186,8 +185,12 @@ export class SidebarComponent {
     this.routesStructure[parentPath as keyof SidebarRoutesType].isOpened = true;
     const currentMenuItem = this.routesStructure?.[parentPath as keyof SidebarRoutesType].nestedRoutes.find(route => route.path === routePath);
     if (currentMenuItem) {
+      const params = this.router.parseUrl(this.router.url).queryParams;
       currentMenuItem.isOpened = true;
-    }
+      currentMenuItem.fragments.forEach((item: {title: string, path: string, isOpened: boolean}) => {
+        item.isOpened = item.path === params.tab ? true : false;
+      });
+   }
   }
 
   getRouteStructureKey(value: string): SidebarRouteItemValueType | undefined {
@@ -195,9 +198,6 @@ export class SidebarComponent {
   }
 
   getRouteLink(routePath?: string, parentRoutePath?: string): string | undefined {
-    // const tree = this.router.createUrlTree([`/${routePath}`], {queryParams: {tab: queryParams}});
-    // this.router.navigate([tree]);
-    // return this.router.createUrlTree([`./${routePath}`], {queryParams: {tab: queryParams}, relativeTo: this.activatedRoute, replaceUrl: true});
     if (!routePath) {
       return;
     }

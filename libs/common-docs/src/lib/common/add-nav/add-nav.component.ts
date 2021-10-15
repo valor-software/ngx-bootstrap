@@ -27,31 +27,17 @@ interface IComponentContent {
 })
 export class AddNavComponent implements OnChanges, AfterViewInit {
   @Input() componentContent?: ContentSection;
-
   @ViewChildren('scrollElement')
   private scrollElementsList?: QueryList<ElementRef>;
-
-  // @ViewChild('container')
-  // private addNavContainer?: ElementRef;
-
   _componentContent?: IComponentContent;
 
   @HostListener('window:scroll')
   onScrollEvent() {
-    // if (this.addNavContainer) {
-    //   if (!this.addNavContainer.nativeElement.getAttribute('data-position')) {
-    //       this._renderer.setAttribute(this.addNavContainer?.nativeElement, 'data-position', (this.addNavContainer?.nativeElement.offsetTop - 64).toString());
-    //   }
-    //
-    //   this.initMenu();
-    // }
-
     if (this.scrollElementsList?.length) {
       this.scrollElementsList.map(item => {
         const min = item.nativeElement.getAttribute('data-min-scroll-value');
         const max = item.nativeElement.getAttribute('data-max-scroll-value');
         const position = window.pageYOffset;
-        // console.log(position, min, max);
         if (position >= min && position <= max) {
           this._renderer.addClass(item.nativeElement.parentElement, 'active');
         } else {
@@ -67,22 +53,6 @@ export class AddNavComponent implements OnChanges, AfterViewInit {
     private _renderer: Renderer2,
     private router: Router
   ){}
-
-  // initMenu() {
-  //   const attributeValue = this.addNavContainer?.nativeElement.getAttribute('data-position');
-  //   const elementOffsetTop = this.addNavContainer?.nativeElement.offsetTop - 64; // 64 - height of the header
-  //   if (!attributeValue && elementOffsetTop <= window.pageYOffset) {
-  //     this._renderer.addClass(this.addNavContainer?.nativeElement, 'fixed');
-  //   } else {
-  //     this._renderer.removeClass(this.addNavContainer?.nativeElement, 'fixed');
-  //   }
-  //
-  //   if (attributeValue && attributeValue <= window.pageYOffset) {
-  //     this._renderer.addClass(this.addNavContainer?.nativeElement, 'fixed');
-  //   } else {
-  //     this._renderer.removeClass(this.addNavContainer?.nativeElement, 'fixed');
-  //   }
-  // }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes?.componentContent) {

@@ -75,6 +75,14 @@
 
       .sidebar-item {
         padding-bottom: 10px;
+
+        &.active {
+          a {
+            font-weight: 700;
+            text-decoration: none;
+          }
+        }
+
         &:last-child {
           padding-bottom: 0;
         }

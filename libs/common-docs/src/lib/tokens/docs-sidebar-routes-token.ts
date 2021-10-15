@@ -20,6 +20,7 @@ export type NestedRouteType = {
   fragments: {
     title: string;
     path: string;
+    isOpened: boolean;
   }[] | [];
 };
 
@@ -37,12 +38,6 @@ export const SidebarRoutesStructure: SidebarRoutesType = {
     icon: 'assets/images/icons/icon-components.svg',
     path: 'components'
   },
-  // resources: {
-  //   nestedRoutes:[],
-  //   isOpened: false,
-  //   title: 'RESOURCES',
-  //   icon: 'assets/images/icons/icon-resources.svg'
-  // },
   themes: {
     nestedRoutes:[],
     isOpened: false,
@@ -84,19 +79,22 @@ function initSideBarItem(key: string, route: Route, sideBarMenu: SidebarRoutesTy
   }
 }
 
-function initFragments(): {title: string, path: string}[] {
+function initFragments(): {title: string, path: string, isOpened: boolean}[] {
   return [
     {
       title: 'Overview',
-      path: 'overview'
+      path: 'overview',
+      isOpened: false
     },
     {
       title: 'API',
-      path: 'api'
+      path: 'api',
+      isOpened: false
     },
     {
       title: 'Examples',
-      path: 'example'
+      path: 'examples',
+      isOpened: false
     }
   ];
 }

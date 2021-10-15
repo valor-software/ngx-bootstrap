@@ -45,12 +45,16 @@ export class DocsSectionComponent implements OnDestroy {
   }
 
   initActiveTab(activeTab?: string) {
-    if (!activeTab) {
+    if (!activeTab || !this.checkActiveTab(activeTab)) {
       this.overview = true;
       this.onSelect('overview');
       return;
     }
     this[activeTab as 'overview' | 'api' | 'examples'] = true;
+  }
+
+  checkActiveTab(activeTab: string): boolean {
+    return activeTab === 'overview' || activeTab === 'api' || activeTab === 'examples';
   }
 
   onSelect(tabName: string) {
