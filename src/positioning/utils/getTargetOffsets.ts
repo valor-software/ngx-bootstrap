@@ -5,13 +5,13 @@ import { getOppositePlacement } from './getOppositePlacement';
 import { getOuterSizes } from './getOuterSizes';
 import { Offsets } from '../models';
 
+
 export function getTargetOffsets(
   target: HTMLElement,
   hostOffsets: Offsets,
   position: string
 ): Offsets {
   const placement = position.split(' ')[0];
-
   // Get target node sizes
   const targetRect = getOuterSizes(target);
 
@@ -28,14 +28,14 @@ export function getTargetOffsets(
   const measurement = isHoriz ? 'height' : 'width';
   const secondaryMeasurement = !isHoriz ? 'height' : 'width';
 
-  (targetOffsets as any)[mainSide] =
-    hostOffsets[mainSide] +
+  targetOffsets[mainSide as keyof typeof targetOffsets] =
+    (hostOffsets[mainSide] ?? 0) +
     hostOffsets[measurement] / 2 -
     targetRect[measurement] / 2;
 
-  (targetOffsets as any)[secondarySide] = placement === secondarySide
-    ? hostOffsets[secondarySide] - targetRect[secondaryMeasurement]
-    : (hostOffsets as any)[getOppositePlacement(secondarySide)];
+  targetOffsets[secondarySide as keyof typeof targetOffsets] = placement === secondarySide
+    ? (hostOffsets[secondarySide] ?? 0)- targetRect[secondaryMeasurement]
+    : hostOffsets[getOppositePlacement(secondarySide) as keyof typeof hostOffsets] ?? 0;
 
   return targetOffsets;
 }

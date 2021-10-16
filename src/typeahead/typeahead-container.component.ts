@@ -1,4 +1,3 @@
-// tslint:disable:max-file-line-count max-line-length
 import {
   ChangeDetectorRef,
   Component,
@@ -29,6 +28,7 @@ let nextWindowId = 0;
 @Component({
   selector: 'typeahead-container',
   templateUrl: './typeahead-container.component.html',
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     class: 'dropdown open bottom',
     '[class.dropdown-menu]': 'isBs4',
@@ -54,21 +54,21 @@ let nextWindowId = 0;
 })
 
 export class TypeaheadContainerComponent implements OnDestroy {
-   // tslint:disable-next-line: no-output-rename
+  // eslint-disable-next-line @angular-eslint/no-output-rename
   @Output('activeChange') activeChangeEvent = new EventEmitter();
 
-  parent: TypeaheadDirective;
-  query: string[] | string;
+  parent?: TypeaheadDirective;
+  query?: string[] | string;
   isFocused = false;
-  top: string;
-  left: string;
-  display: string;
-  placement: string;
-  dropup: boolean;
-  guiHeight: string;
-  needScrollbar: boolean;
-  animationState: string;
-  positionServiceSubscription: Subscription;
+  top?: string;
+  left?: string;
+  display?: string;
+  placemen?: string;
+  dropup?: boolean;
+  guiHeight?: string;
+  needScrollbar?: boolean;
+  animationState?: string;
+  positionServiceSubscription = new Subscription();
   height = 0;
   popupId = `ngb-typeahead-${nextWindowId++}`;
 
@@ -77,24 +77,21 @@ export class TypeaheadContainerComponent implements OnDestroy {
   }
 
   get typeaheadTemplateMethods(): TypeaheadTemplateMethods {
-    /* tslint:disable:no-this-assignment */
-    const _that = this;
-
     return {
-      selectMatch: this.selectMatch.bind(_that),
-      selectActive: this.selectActive.bind(_that),
-      isActive: this.isActive.bind(_that)
+      selectMatch: this.selectMatch.bind(this),
+      selectActive: this.selectActive.bind(this),
+      isActive: this.isActive.bind(this)
     };
   }
 
-  protected _active: TypeaheadMatch;
+  protected _active?: TypeaheadMatch;
   protected _matches: TypeaheadMatch[] = [];
 
   @ViewChild('ulElement', { static: false })
-  private ulElement: ElementRef;
+  private ulElement?: ElementRef;
 
   @ViewChildren('liElements')
-  private liElements: QueryList<ElementRef>;
+  private liElements?: QueryList<ElementRef>;
 
   constructor(
     private positionService: PositioningService,
@@ -103,7 +100,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
     private changeDetectorRef: ChangeDetectorRef
   ) {
     this.renderer.setAttribute(this.element.nativeElement, 'id', this.popupId);
-    this.positionServiceSubscription = this.positionService.event$.subscribe(
+    this.positionServiceSubscription.add(this.positionService.event$?.subscribe(
       () => {
         if (this.isAnimated) {
           this.animationState = this.isTopPosition ? 'animated-up' : 'animated-down';
@@ -115,14 +112,14 @@ export class TypeaheadContainerComponent implements OnDestroy {
         this.animationState = 'unanimated';
         this.changeDetectorRef.detectChanges();
       }
-    );
+    ));
   }
 
-  get active(): TypeaheadMatch {
+  get active(): TypeaheadMatch | undefined {
     return this._active;
   }
 
-  set active(active: TypeaheadMatch) {
+  set active(active: TypeaheadMatch | undefined) {
     this._active = active;
     this.activeChanged();
   }
@@ -148,15 +145,15 @@ export class TypeaheadContainerComponent implements OnDestroy {
     }
 
     if (this.typeaheadIsFirstItemActive && this._matches.length > 0) {
-      this.active = this._matches[0];
+      this.setActive(this._matches[0]);
 
-      if (this._active.isHeader()) {
+      if (this._active?.isHeader()) {
         this.nextActiveMatch();
       }
     }
 
     if (this._active && !this.typeaheadIsFirstItemActive) {
-      const concurrency = this._matches.find(match => match.value === this._active.value);
+      const concurrency = this._matches.find(match => match.value === this._active?.value);
 
       if (concurrency) {
         this.selectActive(concurrency);
@@ -164,7 +161,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
         return;
       }
 
-      this.active = null;
+      this.active = void 0;
     }
   }
 
@@ -172,8 +169,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
     return this.element.nativeElement.classList.contains('top');
   }
 
-  // tslint:disable-next-line:no-any
-  get optionsListTemplate(): TemplateRef<TypeaheadOptionListContext> {
+  get optionsListTemplate(): TemplateRef<TypeaheadOptionListContext> | undefined {
     return this.parent ? this.parent.optionsListTemplate : undefined;
   }
 
@@ -196,33 +192,42 @@ export class TypeaheadContainerComponent implements OnDestroy {
   get typeaheadIsFirstItemActive(): boolean {
     return this.parent ? this.parent.typeaheadIsFirstItemActive : true;
   }
-  // tslint:disable-next-line:no-any
-  get itemTemplate(): TemplateRef<TypeaheadOptionItemContext> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  get itemTemplate(): TemplateRef<TypeaheadOptionItemContext> | undefined {
     return this.parent ? this.parent.typeaheadItemTemplate : undefined;
   }
 
+  get canSelectItemsOnBlur(): boolean {
+    return !!this.parent?.selectItemOnBlur;
+  }
+
   selectActiveMatch(isActiveItemChanged?: boolean): void {
-    if (this._active && this.parent.typeaheadSelectFirstItem) {
+    if (this._active && this.parent?.typeaheadSelectFirstItem) {
       this.selectMatch(this._active);
     }
 
-    if (!this.parent.typeaheadSelectFirstItem && isActiveItemChanged) {
+    if (!this.parent?.typeaheadSelectFirstItem && isActiveItemChanged) {
       this.selectMatch(this._active);
     }
   }
 
   activeChanged(): void {
+    if (!this._active) {
+      return;
+    }
     const index = this.matches.indexOf(this._active);
     this.activeChangeEvent.emit(`${this.popupId}-${index}`);
   }
 
   prevActiveMatch(): void {
+    if (!this._active) {
+      return;
+    }
 
     const index = this.matches.indexOf(this._active);
-
-    this.active = this.matches[
+    this.setActive(this.matches[
       index - 1 < 0 ? this.matches.length - 1 : index - 1
-    ];
+      ]);
 
     if (this._active.isHeader()) {
       this.prevActiveMatch();
@@ -234,14 +239,12 @@ export class TypeaheadContainerComponent implements OnDestroy {
   }
 
   nextActiveMatch(): void {
-    const index = this.matches.indexOf(this._active);
-
-    this.active = this.matches[
+    const index = this._active ? this.matches.indexOf(this._active) : -1;
+    this.setActive(this.matches[
       index + 1 > this.matches.length - 1 ? 0 : index + 1
-    ];
+      ]);
 
-
-    if (this._active.isHeader()) {
+    if (this._active?.isHeader()) {
       this.nextActiveMatch();
     }
 
@@ -252,7 +255,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
 
   selectActive(value: TypeaheadMatch): void {
     this.isFocused = true;
-    this.active = value;
+    this.setActive(value);
   }
 
   highlight(match: TypeaheadMatch, query: string[] | string): string {
@@ -296,19 +299,22 @@ export class TypeaheadContainerComponent implements OnDestroy {
   @HostListener('blur')
   focusLost(): void {
     this.isFocused = false;
+    if (!this.canSelectItemsOnBlur) {
+      this.setActive(void 0);
+    }
   }
 
   isActive(value: TypeaheadMatch): boolean {
     return this.active === value;
   }
 
-  selectMatch(value: TypeaheadMatch, e: Event = void 0): boolean {
-    if (e) {
-      e.stopPropagation();
-      e.preventDefault();
+  selectMatch(value?: TypeaheadMatch, event?: Event): boolean {
+    if (event) {
+      event.stopPropagation();
+      event.preventDefault();
     }
-    this.parent.changeModel(value);
-    setTimeout(() => this.parent.typeaheadOnSelect.emit(value), 0);
+    this.parent?.changeModel(value);
+    setTimeout(() => this.parent?.typeaheadOnSelect.emit(value), 0);
 
     return false;
   }
@@ -318,7 +324,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
       this.ulElement = this.element;
     }
 
-    if (this.liElements.first) {
+    if (this.liElements?.first) {
       const ulStyles = Utils.getStyles(this.ulElement.nativeElement);
       const liStyles = Utils.getStyles(this.liElements.first.nativeElement);
       const ulPaddingBottom = parseFloat((ulStyles['padding-bottom'] ? ulStyles['padding-bottom'] : '')
@@ -340,7 +346,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
 
       return;
     }
-    if (this.liElements) {
+    if (this.liElements && this.ulElement) {
       const liElement = this.liElements.toArray()[index - 1];
       if (liElement && !this.isScrolledIntoView(liElement.nativeElement)) {
         this.ulElement.nativeElement.scrollTop = liElement.nativeElement.offsetTop;
@@ -354,7 +360,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
 
       return;
     }
-    if (this.liElements) {
+    if (this.liElements && this.ulElement) {
       const liElement = this.liElements.toArray()[index + 1];
       if (liElement && !this.isScrolledIntoView(liElement.nativeElement)) {
         this.ulElement.nativeElement.scrollTop =
@@ -369,8 +375,19 @@ export class TypeaheadContainerComponent implements OnDestroy {
     this.positionServiceSubscription.unsubscribe();
   }
 
+  protected setActive(value?: TypeaheadMatch): void {
+    this._active = value;
+    let preview;
+    if (!(this._active == null || this._active.isHeader())) {
+      preview = value;
+    }
+    this.parent?.typeaheadOnPreview.emit(preview);
+  }
 
-  private isScrolledIntoView = function (elem: HTMLElement) {
+  private isScrolledIntoView(elem: HTMLElement): boolean {
+    if (!this.ulElement) {
+      return false;
+    }
     const containerViewTop: number = this.ulElement.nativeElement.scrollTop;
     const containerViewBottom = containerViewTop + Number(this.ulElement.nativeElement.offsetHeight);
     const elemTop = elem.offsetTop;
@@ -380,10 +397,16 @@ export class TypeaheadContainerComponent implements OnDestroy {
   };
 
   private scrollToBottom(): void {
+    if (!this.ulElement?.nativeElement) {
+      return;
+    }
     this.ulElement.nativeElement.scrollTop = this.ulElement.nativeElement.scrollHeight;
   }
 
   private scrollToTop(): void {
+    if (!this.ulElement?.nativeElement) {
+      return;
+    }
     this.ulElement.nativeElement.scrollTop = 0;
   }
 }

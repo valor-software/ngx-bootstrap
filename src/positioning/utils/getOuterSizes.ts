@@ -1,11 +1,14 @@
 /**
  * Get the outer sizes of the given element (offset size + margins)
  */
-export function getOuterSizes(element: any) {
+import { Offsets } from '../models';
+
+const parse = (value?: string, def = 0) => value ? parseFloat(value) : def;
+export function getOuterSizes(element: HTMLElement): Offsets {
   const window = element.ownerDocument.defaultView;
-  const styles = window.getComputedStyle(element);
-  const x = parseFloat(styles.marginTop || 0) + parseFloat(styles.marginBottom || 0);
-  const y = parseFloat(styles.marginLeft || 0) + parseFloat(styles.marginRight || 0);
+  const styles = window?.getComputedStyle(element);
+  const x = parse(styles?.marginTop) + parse(styles?.marginBottom);
+  const y = parse(styles?.marginLeft) + parse(styles?.marginRight);
 
   return {
     width: Number(element.offsetWidth) + y,

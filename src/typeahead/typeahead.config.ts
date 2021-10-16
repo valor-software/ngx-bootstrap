@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 
 /** Default values provider for typeahead */
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class TypeaheadConfig {
   /** sets use adaptive position */
   adaptivePosition = false;
@@ -21,4 +19,8 @@ export class TypeaheadConfig {
    * be entered before typeahead kicks-in
    */
   minLength = 1;
+  /**
+   * used to choose item on blur event
+   */
+  selectItemOnBlur = false;
 }

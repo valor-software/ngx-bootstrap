@@ -48,20 +48,19 @@ export class TabsetComponent implements OnDestroy {
     this._isKeysAllowed = value;
   }
 
-
   @HostBinding('class.tab-container') clazz = true;
 
   tabs: TabDirective[] = [];
   classMap: { [key: string]: boolean } = {};
 
   /** aria label for tab list */
-  ariaLabel: string;
+  ariaLabel = 'Tabs';
 
-  protected isDestroyed: boolean;
-  protected _vertical: boolean;
-  protected _justified: boolean;
-  protected _type: string;
-  protected _isKeysAllowed: boolean;
+  protected isDestroyed = false;
+  protected _vertical = false;
+  protected _justified = false;
+  protected _type = 'tabs';
+  protected _isKeysAllowed = true;
 
   constructor(
     config: TabsetConfig,
@@ -77,7 +76,7 @@ export class TabsetComponent implements OnDestroy {
 
   addTab(tab: TabDirective): void {
     this.tabs.push(tab);
-    tab.active = this.tabs.length === 1 && typeof tab.active === 'undefined';
+    tab.active = this.tabs.length === 1 && !tab.active;
   }
 
   removeTab(
@@ -105,15 +104,12 @@ export class TabsetComponent implements OnDestroy {
     }
   }
 
-  /* tslint:disable-next-line: cyclomatic-complexity */
-  keyNavActions(event: KeyboardEvent, index: number) {
+    keyNavActions(event: KeyboardEvent, index: number) {
     if (!this.isKeysAllowed) {
       return;
     }
     const list: HTMLElement[] = Array.from(this.elementRef.nativeElement.querySelectorAll('.nav-link'));
     // const activeElList = list.filter((el: HTMLElement) => !el.classList.contains('disabled'));
-
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === 13 || event.key === 'Enter' || event.keyCode === 32 || event.key === 'Space') {
       event.preventDefault();
       const currentTab = list[(index) % list.length];
@@ -122,9 +118,8 @@ export class TabsetComponent implements OnDestroy {
       return;
     }
 
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === 39 || event.key === 'RightArrow') {
-      let nextTab: any;
+      let nextTab: HTMLElement;
       let shift = 1;
 
       do {
@@ -138,9 +133,8 @@ export class TabsetComponent implements OnDestroy {
       return;
     }
 
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === 37 || event.key === 'LeftArrow') {
-      let previousTab: any;
+      let previousTab: HTMLElement;
       let shift = 1;
       let i = index;
 
@@ -161,11 +155,10 @@ export class TabsetComponent implements OnDestroy {
       return;
     }
 
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === 36 || event.key === 'Home') {
       event.preventDefault();
 
-      let firstTab: any;
+      let firstTab: HTMLElement;
       let shift = 0;
 
       do {
@@ -179,11 +172,10 @@ export class TabsetComponent implements OnDestroy {
       return;
     }
 
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === 35 || event.key === 'End') {
       event.preventDefault();
 
-      let lastTab: any;
+      let lastTab: HTMLElement;
       let shift = 1;
       let i = index;
 
@@ -204,7 +196,6 @@ export class TabsetComponent implements OnDestroy {
       return;
     }
 
-    // tslint:disable-next-line:deprecation
     if (event.keyCode === 46 || event.key === 'Delete') {
       if (this.tabs[index].removable) {
         this.removeTab(this.tabs[index]);

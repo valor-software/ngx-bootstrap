@@ -1,0 +1,5 @@
+{
+  "name": "schematics",
+  "version": "7.1.2",
+  "schematics": "./collection.json"
+}

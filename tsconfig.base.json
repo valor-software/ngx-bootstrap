@@ -1,0 +1,99 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": [
+      "es2017",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ngx-bootstrap-doc/accordion": [
+        "libs/doc-pages/accordion/src/index.ts"
+      ],
+      "@ngx-bootstrap-doc/docs": [
+        "libs/common-docs/src/index.ts"
+      ],
+      "@ngx-bootstrap-doc/alerts": [
+        "libs/doc-pages/alerts/src/index.ts"
+      ],
+      "@ngx-bootstrap-doc/buttons": [
+        "libs/doc-pages/buttons/src/index.ts"
+      ],
+      "@ngx-bootstrap-doc/carousel": [
+        "libs/doc-pages/carousel/src/index.ts"
+      ],
+      "@ngx-bootstrap-doc/collapse": [
+        "libs/doc-pages/collapse/src/index.ts"
+      ],
+      "@ngx-bootstrap-doc/datepicker": [
+        "libs/doc-pages/datepicker/src/index.ts"
+      ],
+      "@ngx-bootstrap-doc/dropdown": [
+        "libs/doc-pages/dropdown/src/index.ts"
+      ],
+      "@ngx-bootstrap-doc/modal": [
+        "libs/doc-pages/modal/src/index.ts"
+      ],
+      "@ngx-bootstrap-doc/pagination": [
+        "libs/doc-pages/pagination/src/index.ts"
+      ],
+      "@ngx-bootstrap-doc/popover": [
+        "libs/doc-pages/popover/src/index.ts"
+      ],
+      "@ngx-bootstrap-doc/progressbar": [
+        "libs/doc-pages/progressbar/src/index.ts"
+      ],
+      "@ngx-bootstrap-doc/rating": [
+        "libs/doc-pages/rating/src/index.ts"
+      ],
+      "@ngx-bootstrap-doc/sortable": [
+        "libs/doc-pages/sortable/src/index.ts"
+      ],
+      "@ngx-bootstrap-doc/tabs": [
+        "libs/doc-pages/tabs/src/index.ts"
+      ],
+      "@ngx-bootstrap-doc/timepicker": [
+        "libs/doc-pages/timepicker/src/index.ts"
+      ],
+      "@ngx-bootstrap-doc/tooltip": [
+        "libs/doc-pages/tooltip/src/index.ts"
+      ],
+      "@ngx-bootstrap-doc/typeahead": [
+        "libs/doc-pages/typeahead/src/index.ts"
+      ],
+      "ngx-bootstrap/progressbar": [
+        "src/progressbar/index.ts"
+      ],
+      "ngx-bootstrap/utils": [
+        "src/utils/index.ts"
+      ],
+      "ngx-bootstrap/datepicker": [
+        "src/datepicker/index.ts"
+      ],
+      "ngx-bootstrap/modal": [
+        "src/modal/index.ts"
+      ],
+      "ngx-bootstrap/typeahead": [
+        "src/typeahead/index.ts"
+      ],
+      "ngx-bootstrap/dropdown": [
+        "src/dropdown/index.ts"
+      ]
+    }
+  },
+  "exclude": [
+    "node_modules/!(ngx-bootstrap)",
+    "tmp"
+  ]
+}

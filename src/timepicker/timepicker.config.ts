@@ -19,6 +19,8 @@ export class TimepickerConfig {
   readonlyInput = false;
   /** if true hours and minutes fields will be disabled */
   disabled = false;
+  /** if true emptyTime is not marked as invalid */
+  allowEmptyTime = false;
   /** if true scroll inside hours and minutes inputs will change time */
   mousewheel = true;
   /** if true the values of hours and minutes can be changed using the up/down arrow keys on the keyboard */
@@ -30,9 +32,9 @@ export class TimepickerConfig {
   /** show minutes in timepicker */
   showMinutes = true;
   /** minimum time user can select */
-  min: Date;
+  min?: Date;
   /** maximum time user can select */
-  max: Date;
+  max?: Date;
   /** placeholder for hours field in timepicker */
   hoursPlaceholder = 'HH';
   /** placeholder for minutes field in timepicker */

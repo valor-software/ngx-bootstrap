@@ -15,17 +15,18 @@ import { BsDropdownDirective } from './bs-dropdown.directive';
 @Directive({
   selector: '[bsDropdownToggle],[dropdownToggle]',
   exportAs: 'bs-dropdown-toggle',
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[attr.aria-haspopup]': 'true'
   }
 })
 export class BsDropdownToggleDirective implements OnDestroy {
-  @HostBinding('attr.disabled') isDisabled: boolean = null;
-  @HostBinding('attr.aria-expanded') isOpen: boolean;
+  @HostBinding('attr.disabled') isDisabled: undefined | true;
+  @HostBinding('attr.aria-expanded') isOpen = false;
 
   private _subscriptions: Subscription[] = [];
-  private _documentClickListener: Function;
-  private _escKeyUpListener: Function;
+  private _documentClickListener?: () => void;
+  private _escKeyUpListener?: () => void;
 
   constructor(
     private _changeDetectorRef: ChangeDetectorRef,
@@ -41,7 +42,7 @@ export class BsDropdownToggleDirective implements OnDestroy {
           this.isOpen = value;
 
           if (value) {
-            this._documentClickListener = this._renderer.listen('document', 'click', (event: any) => {
+            this._documentClickListener = this._renderer.listen('document', 'click', (event: MouseEvent) => {
               if (this._state.autoClose && event.button !== 2 &&
                 !this._element.nativeElement.contains(event.target) &&
                 !(this._state.insideClick && this._dropdown._contains(event))
@@ -58,8 +59,8 @@ export class BsDropdownToggleDirective implements OnDestroy {
               }
             });
           } else {
-            this._documentClickListener();
-            this._escKeyUpListener();
+            this._documentClickListener && this._documentClickListener();
+            this._escKeyUpListener && this._escKeyUpListener();
           }
         }
       )
@@ -67,14 +68,17 @@ export class BsDropdownToggleDirective implements OnDestroy {
 
     // populate disabled state
     this._subscriptions.push(
-      this._state.isDisabledChange.subscribe(
-        (value: boolean) => (this.isDisabled = value || null)
-      )
+      this._state.isDisabledChange
+        .subscribe((value: boolean) => this.isDisabled = value || void 0)
     );
   }
 
-  @HostListener('click', [])
-  onClick(): void {
+  @HostListener('click', ['$event'])
+  onClick(event: MouseEvent): void {
+    if (this._state.stopOnClickPropagation) {
+      event.stopPropagation();
+    }
+
     if (this.isDisabled) {
       return;
     }

@@ -1,4 +1,3 @@
-/* tslint:disable:max-file-line-count */
 import {
   ChangeDetectorRef,
   Directive,
@@ -14,24 +13,26 @@ import {
   ViewContainerRef
 } from '@angular/core';
 import { NgControl } from '@angular/forms';
-
-import { from, Subscription, isObservable, Observable } from 'rxjs';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
-import { debounceTime, filter, mergeMap, switchMap, toArray, tap } from 'rxjs/operators';
+
+import { EMPTY, from, isObservable, Observable, Subscription } from 'rxjs';
+import { debounceTime, filter, mergeMap, switchMap, tap, toArray } from 'rxjs/operators';
+import { TypeaheadOptionItemContext, TypeaheadOptionListContext } from './models';
 
 import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadMatch } from './typeahead-match.class';
-import { TypeaheadConfig } from './typeahead.config';
-import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
 import { TypeaheadOrder } from './typeahead-order.class';
-import { TypeaheadOptionItemContext, TypeaheadOptionListContext } from './models';
+import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
+import { TypeaheadConfig } from './typeahead.config';
 
-type TypeaheadOption = string | {[key in string | number]: any};
-type Typeahead = TypeaheadOption[] | Observable<TypeaheadOption[]>;
+// eslint-disable-next-line
+type TypeaheadOption = string | Record<string | number, any>;
+type TypeaheadOptionArr = TypeaheadOption[] | Observable<TypeaheadOption[]>;
 
 @Directive({
   selector: '[typeahead]',
   exportAs: 'bs-typeahead',
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[attr.aria-activedescendant]': 'activeDescendant',
     '[attr.aria-owns]': 'isOpen ? this._container.popupId : null',
@@ -43,39 +44,39 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /** options source, can be Array of strings, objects or
    * an Observable for external matching process
    */
-  @Input() typeahead: Typeahead;
+  @Input() typeahead?: TypeaheadOptionArr;
   /** minimal no of characters that needs to be entered before
    * typeahead kicks-in. When set to 0, typeahead shows on focus with full
    * list of options (limited as normal by typeaheadOptionsLimit)
    */
-  @Input() typeaheadMinLength: number = void 0;
+  @Input() typeaheadMinLength = 1;
   /** sets use adaptive position */
-  @Input() adaptivePosition: boolean;
+  @Input() adaptivePosition = false;
   /** turn on/off animation */
   @Input() isAnimated = false;
   /** minimal wait time after last character typed before typeahead kicks-in */
-  @Input() typeaheadWaitMs: number;
+  @Input() typeaheadWaitMs = 0;
   /** maximum length of options items list. The default value is 20 */
-  @Input() typeaheadOptionsLimit: number;
+  @Input() typeaheadOptionsLimit?: number;
   /** when options source is an array of objects, the name of field
    * that contains the options value, we use array item as option in case
    * of this field is missing. Supports nested properties and methods.
    */
-  @Input() typeaheadOptionField: string;
+  @Input() typeaheadOptionField?: string;
   /** when options source is an array of objects, the name of field that
    * contains the group value, matches are grouped by this field when set.
    */
-  @Input() typeaheadGroupField: string;
+  @Input() typeaheadGroupField?: string;
   /** Used to specify a custom order of matches. When options source is an array of objects
    * a field for sorting has to be set up. In case of options source is an array of string,
    * a field for sorting is absent. The ordering direction could be changed to ascending or descending.
    */
-  @Input() typeaheadOrderBy: TypeaheadOrder;
+  @Input() typeaheadOrderBy?: TypeaheadOrder;
   /** should be used only in case of typeahead attribute is Observable of array.
    * If true - loading of options will be async, otherwise - sync.
    * true make sense if options array is large.
    */
-  @Input() typeaheadAsync: boolean = void 0;
+  @Input() typeaheadAsync?: boolean;
   /** match latin symbols.
    * If true the word súper would match super and vice versa.
    */
@@ -95,7 +96,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
    * are different from typeaheadMultipleSearchDelimiters to avoid conflict in determining
    * when to delimit multiple searches and when a single word.
    */
-  @Input() typeaheadMultipleSearch: boolean = void 0;
+  @Input() typeaheadMultipleSearch?: boolean;
   /** should be used only in case typeaheadMultipleSearch attribute is true.
    * Sets the multiple search delimiter to know when to start a new search. Defaults to comma.
    * If space needs to be used, then explicitly set typeaheadWordDelimiters to something else than space
@@ -111,17 +112,17 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /** used to specify a custom item template.
    * Template variables exposed are called item and index;
    */
-  @Input() typeaheadItemTemplate: TemplateRef<TypeaheadOptionItemContext>;
+  @Input() typeaheadItemTemplate?: TemplateRef<TypeaheadOptionItemContext>;
   /** used to specify a custom options list template.
    * Template variables: matches, itemTemplate, query
    */
-  @Input() optionsListTemplate: TemplateRef<TypeaheadOptionListContext>;
+  @Input() optionsListTemplate?: TemplateRef<TypeaheadOptionListContext>;
   /** specifies if typeahead is scrollable  */
   @Input() typeaheadScrollable = false;
   /** specifies number of options to show in scroll view  */
   @Input() typeaheadOptionsInScrollableView = 5;
   /** used to hide result on blur */
-  @Input() typeaheadHideResultsOnBlur: boolean;
+  @Input() typeaheadHideResultsOnBlur?: boolean;
   /** fired when an options list was opened and the user clicked Tab
    * If a value equal true, it will be chosen first or active item in the list
    * If value equal false, it will be chosen an active item in the list or nothing
@@ -137,15 +138,17 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
    * in case of matches are not detected
    */
   @Output() typeaheadNoResults = new EventEmitter<boolean>();
-  /** fired when option was selected, return object with data of this option */
+  /** fired when option was selected, return object with data of this option. */
   @Output() typeaheadOnSelect = new EventEmitter<TypeaheadMatch>();
+  /** fired when option was previewed, return object with data of this option. */
+  @Output() typeaheadOnPreview = new EventEmitter<TypeaheadMatch>();
   /** fired when blur event occurs. returns the active item */
   @Output() typeaheadOnBlur = new EventEmitter<TypeaheadMatch>();
 
   /**
    * A selector specifying the element the typeahead should be appended to.
    */
-  @Input() container: string;
+  @Input() container?: string;
 
   /** This attribute indicates that the dropdown should be opened upwards */
   @Input() dropup = false;
@@ -164,23 +167,22 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /**  if false don't focus the input element the typeahead directive is associated with on selection */
     // @Input() protected typeaheadFocusOnSelect:boolean;
 
-  activeDescendant: string;
+  activeDescendant?: string;
   isOpen = false;
   list = 'list';
-  _container: TypeaheadContainerComponent;
+  _container?: TypeaheadContainerComponent;
   isActiveItemChanged = false;
   isFocused = false;
   cancelRequestOnFocusLost = false;
-
-  // tslint:disable-next-line:no-any
-  protected keyUpEventEmitter: EventEmitter<string> = new EventEmitter();
-  protected _matches: TypeaheadMatch[] = [];
+  selectItemOnBlur = false;
+  protected keyUpEventEmitter = new EventEmitter<string>();
   protected placement = 'bottom left';
+  protected _matches: TypeaheadMatch[] = [];
 
   private _typeahead: ComponentLoader<TypeaheadContainerComponent>;
   private _subscriptions: Subscription[] = [];
-  private _outsideClickListener: Function;
-  private _allEnteredValue: string;
+  private _allEnteredValue?: string;
+  private _outsideClickListener: () => void = () => void 0;
 
   constructor(
     cis: ComponentLoaderFactory,
@@ -207,9 +209,14 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         typeaheadIsFirstItemActive: config.isFirstItemActive,
         typeaheadMinLength: config.minLength,
         adaptivePosition: config.adaptivePosition,
-        isAnimated: config.isAnimated
+        isAnimated: config.isAnimated,
+        selectItemOnBlur: config.selectItemOnBlur
       }
     );
+  }
+
+  get matches(): TypeaheadMatch[] {
+    return this._matches;
   }
 
   ngOnInit(): void {
@@ -217,8 +224,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
     this.typeaheadMinLength =
       this.typeaheadMinLength === void 0 ? 1 : this.typeaheadMinLength;
-
-    this.typeaheadWaitMs = this.typeaheadWaitMs || 0;
 
     // async should be false in case of array
     if (this.typeaheadAsync === undefined && !(isObservable(this.typeahead))) {
@@ -239,7 +244,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   @HostListener('input', ['$event'])
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onInput(e: any): void {
     // For `<input>`s, use the `value` property. For others that don't have a
     // `value` (such as `<span contenteditable="true">`), use either
@@ -251,6 +256,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         : e.target.textContent !== undefined
         ? e.target.textContent
         : e.target.innerText;
+
     if (value != null && value.trim().length >= this.typeaheadMinLength) {
       this.typeaheadLoading.emit(true);
       this.keyUpEventEmitter.emit(e.target.value);
@@ -265,7 +271,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   onChange(event: KeyboardEvent): void {
     if (this._container) {
       // esc
-      /* tslint:disable-next-line: deprecation */
       if (event.keyCode === 27 || event.key === 'Escape') {
         this.hide();
 
@@ -273,7 +278,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       }
 
       // up
-      /* tslint:disable-next-line: deprecation */
       if (event.keyCode === 38 || event.key === 'ArrowUp') {
         this.isActiveItemChanged = true;
         this._container.prevActiveMatch();
@@ -282,7 +286,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       }
 
       // down
-      /* tslint:disable-next-line: deprecation */
       if (event.keyCode === 40 || event.key === 'ArrowDown') {
         this.isActiveItemChanged = true;
         this._container.nextActiveMatch();
@@ -291,7 +294,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       }
 
       // enter
-      /* tslint:disable-next-line: deprecation */
       if (event.keyCode === 13 || event.key === 'Enter') {
         this._container.selectActiveMatch();
 
@@ -321,11 +323,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       this.typeaheadOnBlur.emit(this._container.active);
     }
 
-    if (!this.container && this._matches.length === 0) {
-    this.typeaheadOnBlur.emit(new TypeaheadMatch(
-      this.element.nativeElement.value,
-      this.element.nativeElement.value,
-      false));
+    if (!this.container && this._matches?.length === 0) {
+      this.typeaheadOnBlur.emit(new TypeaheadMatch(
+        this.element.nativeElement.value,
+        this.element.nativeElement.value,
+        false));
     }
   }
 
@@ -336,12 +338,10 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       return;
     }
 
-    /* tslint:disable-next-line: deprecation */
     if (event.keyCode === 9 || event.key === 'Tab') {
       this.onBlur();
     }
 
-    /* tslint:disable-next-line: deprecation */
     if (event.keyCode === 9 || event.key === 'Tab' || event.keyCode === 13 || event.key === 'Enter') {
       event.preventDefault();
       if (this.typeaheadSelectFirstItem) {
@@ -358,9 +358,12 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
   }
 
-  changeModel(match: TypeaheadMatch): void {
+  changeModel(match?: TypeaheadMatch): void {
+    if (!match) {
+      return;
+    }
     let valueStr: string;
-    if (this.typeaheadMultipleSearch) {
+    if (this.typeaheadMultipleSearch && this._allEnteredValue) {
       const tokens = this._allEnteredValue.split(new RegExp(`([${this.typeaheadMultipleSearchDelimiters}]+)`));
       this._allEnteredValue = tokens.slice(0, tokens.length - 1).concat(match.value).join('');
       valueStr = this._allEnteredValue;
@@ -368,20 +371,16 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       valueStr = match.value;
     }
     this.ngControl.viewToModelUpdate(valueStr);
-    (this.ngControl.control).setValue(valueStr);
+    this.ngControl.control?.setValue(valueStr);
     this.changeDetection.markForCheck();
     this.hide();
-  }
-
-  get matches(): TypeaheadMatch[] {
-    return this._matches;
   }
 
   show(): void {
     this._typeahead
       .attach(TypeaheadContainerComponent)
       .to(this.container)
-      .position({attachment: `${this.dropup ? 'top' : 'bottom'} left`})
+      .position({ attachment: `${this.dropup ? 'top' : 'bottom'} left` })
       .show({
         typeaheadRef: this,
         placement: this.placement,
@@ -389,15 +388,20 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         dropup: this.dropup
       });
 
-    this._outsideClickListener = this.renderer.listen('document', 'click', (e: MouseEvent) => {
-      if (this.typeaheadMinLength === 0 && this.element.nativeElement.contains(e.target)) {
-        return undefined;
-      }
-      if (!this.typeaheadHideResultsOnBlur || this.element.nativeElement.contains(e.target)) {
-        return undefined;
-      }
-      this.onOutsideClick();
-    });
+    this._outsideClickListener = this.renderer
+      .listen('document', 'click', (event: MouseEvent) => {
+        if (this.typeaheadMinLength === 0 && this.element.nativeElement.contains(event.target)) {
+          return;
+        }
+        if (!this.typeaheadHideResultsOnBlur || this.element.nativeElement.contains(event.target)) {
+          return;
+        }
+        this.onOutsideClick();
+      });
+
+    if (!this._typeahead.instance || !this.ngControl.control) {
+      return;
+    }
 
     this._container = this._typeahead.instance;
     this._container.parent = this;
@@ -425,10 +429,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     if (this._typeahead.isShown) {
       this._typeahead.hide();
       this._outsideClickListener();
-      this._container = null;
+      this._container = void 0;
       this.isOpen = false;
       this.changeDetection.markForCheck();
     }
+    this.typeaheadOnPreview.emit();
   }
 
   onOutsideClick(): void {
@@ -450,12 +455,15 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       this.keyUpEventEmitter
         .pipe(
           debounceTime<string>(this.typeaheadWaitMs),
-          tap(value => {
-            this._allEnteredValue = value;
-          }),
-          switchMap(() => this.typeahead)
+          tap(value => this._allEnteredValue = value),
+          switchMap(() => {
+            if (!this.typeahead) {
+              return EMPTY;
+            }
+            return this.typeahead;
+          })
         )
-        .subscribe((matches: TypeaheadOption[]) => {
+        .subscribe((matches) => {
           this.finalizeAsyncCall(matches);
         })
     );
@@ -470,10 +478,16 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
             this._allEnteredValue = value;
             const normalizedQuery = this.normalizeQuery(value);
 
-            return from(this.typeahead)
+            if (!this.typeahead) {
+              return EMPTY;
+            }
+
+            const typeahead = isObservable(this.typeahead) ? this.typeahead : from(this.typeahead);
+
+            return typeahead
               .pipe(
                 filter((option: TypeaheadOption) => {
-                  return option && this.testMatch(this.normalizeOption(option), normalizedQuery);
+                  return !!option && this.testMatch(this.normalizeOption(option), normalizedQuery);
                 }),
                 toArray()
               );
@@ -521,8 +535,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       // multiple searches
       query = tokenize(
         query as string,
-        null,
-        null,
+        void 0,
+        void 0,
         this.typeaheadMultipleSearchDelimiters
       );
     }
@@ -560,7 +574,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     return match.indexOf(test) >= 0;
   }
 
-  protected finalizeAsyncCall(matches: TypeaheadOption[]): void {
+  protected finalizeAsyncCall(matches?: TypeaheadOption | TypeaheadOption[]): void {
     this.prepareMatches(matches || []);
 
     this.typeaheadLoading.emit(false);
@@ -576,7 +590,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       return;
     }
 
-    if (this._container) {
+    if (this._container && this.ngControl.control) {
       // fix: remove usage of ngControl internals
       const _controlValue = (this.typeaheadLatinize
         ? latinize(this.ngControl.control.value)
@@ -592,7 +606,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
   }
 
-  protected prepareMatches(options: TypeaheadOption[]): void {
+  protected prepareMatches(options: TypeaheadOption | TypeaheadOption[]): void {
     const limited = options.slice(0, this.typeaheadOptionsLimit);
     const sorted = !this.typeaheadOrderBy ? limited : this.orderMatches(limited);
 
@@ -601,7 +615,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
       // extract all group names
       const groups = sorted
-        .map((option: TypeaheadMatch) =>
+        .map((option: TypeaheadOption) =>
           getValueFromObject(option, this.typeaheadGroupField)
         )
         .filter((v: string, i: number, a: string[]) => a.indexOf(v) === i);
@@ -628,7 +642,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       this._matches = matches;
     } else {
       this._matches = sorted.map(
-        // tslint:disable-next-line:no-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (option: any) =>
           new TypeaheadMatch(
             option,
@@ -647,16 +661,14 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       && this.typeaheadOrderBy !== undefined
       && typeof this.typeaheadOrderBy === 'object'
       && Object.keys(this.typeaheadOrderBy).length === 0) {
-      // tslint:disable-next-line:no-console
       console.error('Field and direction properties for typeaheadOrderBy have to be set according to documentation!');
 
       return options;
     }
 
-    const { field, direction } = this.typeaheadOrderBy;
+    const { field, direction } = (this.typeaheadOrderBy || {});
 
     if (!direction || !(direction === 'asc' || direction === 'desc')) {
-      // tslint:disable-next-line:no-console
       console.error('typeaheadOrderBy direction has to equal "asc" or "desc". Please follow the documentation.');
 
       return options;
@@ -667,7 +679,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
 
     if (!field || typeof field !== 'string') {
-      // tslint:disable-next-line:no-console
       console.error('typeaheadOrderBy field has to set according to the documentation.');
 
       return options;
@@ -696,12 +707,12 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   protected checkDelimitersConflict(): void {
     if (this.typeaheadMultipleSearch && this.typeaheadSingleWords
       && (this.haveCommonCharacters(`${this.typeaheadPhraseDelimiters}${this.typeaheadWordDelimiters}`,
-    this.typeaheadMultipleSearchDelimiters))) {
-        throw new Error(`Delimiters used in typeaheadMultipleSearchDelimiters must be different
+        this.typeaheadMultipleSearchDelimiters))) {
+      throw new Error(`Delimiters used in typeaheadMultipleSearchDelimiters must be different
           from delimiters used in typeaheadWordDelimiters (current value: ${this.typeaheadWordDelimiters}) and
           typeaheadPhraseDelimiters (current value: ${this.typeaheadPhraseDelimiters}).
           Please refer to the documentation`);
-      }
+    }
   }
 
   protected haveCommonCharacters(str1: string, str2: string) {

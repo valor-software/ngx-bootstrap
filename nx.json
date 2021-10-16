@@ -1,0 +1,388 @@
+{
+  "npmScope": "ngx-bootstrap-base",
+  "affected": {
+    "defaultBase": "development"
+  },
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "cloud": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "test",
+          "lint",
+          "e2e"
+        ],
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
+      }
+    },
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "ngx-bootstrap-docs": {
+      "tags": [],
+      "implicitDependencies": [
+        "ngx-bootstrap"
+      ]
+    },
+    "ngx-bootstrap": {
+      "tags": [],
+      "implicitDependencies": [
+        "accordion",
+        "alert",
+        "buttons",
+        "carousel",
+        "chronos",
+        "collapse",
+        "datepicker",
+        "dropdown",
+        "focus-trap",
+        "locale",
+        "modal",
+        "pagination",
+        "popover",
+        "progressbar",
+        "rating",
+        "sortable",
+        "tabs",
+        "timepicker",
+        "tooltip",
+        "typeahead",
+        "schematics"
+      ]
+    },
+    "ngx-bootstrap-docs-e2e": {
+      "tags": []
+    },
+    "accordion": {
+      "tags": [
+        "lib"
+      ],
+      "implicitDependencies": [
+        "utils",
+        "collapse"
+      ]
+    },
+    "alert": {
+      "tags": [
+        "lib"
+      ],
+      "implicitDependencies": [
+        "utils"
+      ]
+    },
+    "buttons": {
+      "tags": [
+        "lib"
+      ]
+    },
+    "carousel": {
+      "tags": [
+        "lib"
+      ],
+      "implicitDependencies": [
+        "utils"
+      ]
+    },
+    "chronos": {
+      "tags": [
+        "lib"
+      ]
+    },
+    "collapse": {
+      "tags": [
+        "lib"
+      ]
+    },
+    "component-loader": {
+      "tags": [
+        "lib"
+      ],
+      "implicitDependencies": [
+        "utils",
+        "positioning"
+      ]
+    },
+    "datepicker": {
+      "tags": [
+        "lib"
+      ],
+      "implicitDependencies": [
+        "mini-ngrx",
+        "chronos",
+        "tooltip"
+      ]
+    },
+    "dropdown": {
+      "tags": [
+        "lib"
+      ],
+      "implicitDependencies": [
+        "positioning",
+        "component-loader"
+      ]
+    },
+    "focus-trap": {
+      "tags": [
+        "lib"
+      ]
+    },
+    "locale": {
+      "tags": [
+        "lib"
+      ],
+      "implicitDependencies": [
+        "chronos"
+      ]
+    },
+    "mini-ngrx": {
+      "tags": [
+        "lib"
+      ]
+    },
+    "modal": {
+      "tags": [
+        "lib"
+      ],
+      "implicitDependencies": [
+        "positioning",
+        "focus-trap",
+        "component-loader"
+      ]
+    },
+    "pagination": {
+      "tags": [
+        "lib"
+      ]
+    },
+    "popover": {
+      "tags": [
+        "lib"
+      ],
+      "implicitDependencies": [
+        "positioning",
+        "component-loader"
+      ]
+    },
+    "positioning": {
+      "tags": [
+        "lib"
+      ],
+      "implicitDependencies": [
+        "utils"
+      ]
+    },
+    "progressbar": {
+      "tags": [
+        "lib"
+      ],
+      "implicitDependencies": [
+        "utils"
+      ]
+    },
+    "rating": {
+      "tags": [
+        "lib"
+      ]
+    },
+    "sortable": {
+      "tags": [
+        "lib"
+      ]
+    },
+    "tabs": {
+      "tags": [
+        "lib"
+      ]
+    },
+    "timepicker": {
+      "tags": [
+        "lib"
+      ],
+      "implicitDependencies": [
+        "mini-ngrx"
+      ]
+    },
+    "tooltip": {
+      "tags": [
+        "lib"
+      ],
+      "implicitDependencies": [
+        "positioning",
+        "component-loader"
+      ]
+    },
+    "typeahead": {
+      "tags": [
+        "lib"
+      ],
+      "implicitDependencies": [
+        "positioning",
+        "component-loader"
+      ]
+    },
+    "utils": {
+      "tags": [
+        "lib"
+      ]
+    },
+    "schematics": {
+      "tags": [
+        "schematics"
+      ]
+    },
+    "doc-pages-accordion": {
+      "tags": [],
+      "implicitDependencies": [
+        "accordion",
+        "common-docs",
+        "collapse"
+      ]
+    },
+    "common-docs": {
+      "tags": [],
+      "implicitDependencies": [
+        "utils",
+        "tabs"
+      ]
+    },
+    "doc-pages-alerts": {
+      "tags": [],
+      "implicitDependencies": [
+        "alert"
+      ]
+    },
+    "doc-pages-buttons": {
+      "tags": [],
+      "implicitDependencies": [
+        "buttons"
+      ]
+    },
+    "doc-pages-carousel": {
+      "tags": [],
+      "implicitDependencies": [
+        "carousel"
+      ]
+    },
+    "doc-pages-collapse": {
+      "tags": [],
+      "implicitDependencies": [
+        "collapse"
+      ]
+    },
+    "doc-pages-datepicker": {
+      "tags": [],
+      "implicitDependencies": [
+        "datepicker",
+        "chronos",
+        "mini-ngrx",
+        "tooltip",
+        "positioning",
+        "component-loader",
+        "locale"
+      ]
+    },
+    "doc-pages-dropdown": {
+      "tags": [],
+      "implicitDependencies": [
+        "dropdown",
+        "positioning",
+        "component-loader"
+      ]
+    },
+    "doc-pages-modal": {
+      "tags": [],
+      "implicitDependencies": [
+        "modal",
+        "positioning",
+        "focus-trap",
+        "component-loader",
+        "popover",
+        "tooltip"
+      ]
+    },
+    "doc-pages-pagination": {
+      "tags": [],
+      "implicitDependencies": [
+        "pagination"
+      ]
+    },
+    "doc-pages-popover": {
+      "tags": [],
+      "implicitDependencies": [
+        "popover",
+        "positioning",
+        "component-loader"
+      ]
+    },
+    "doc-pages-progressbar": {
+      "tags": [],
+      "implicitDependencies": [
+        "progressbar"
+      ]
+    },
+    "doc-pages-rating": {
+      "tags": [],
+      "implicitDependencies": [
+        "rating"
+      ]
+    },
+    "doc-pages-sortable": {
+      "tags": [],
+      "implicitDependencies": [
+        "sortable"
+      ]
+    },
+    "doc-pages-tabs": {
+      "tags": [],
+      "implicitDependencies": [
+        "tabs"
+      ]
+    },
+    "doc-pages-timepicker": {
+      "tags": [],
+      "implicitDependencies": [
+        "timepicker",
+        "mini-ngrx"
+      ]
+    },
+    "doc-pages-tooltip": {
+      "tags": [],
+      "implicitDependencies": [
+        "tooltip",
+        "positioning",
+        "component-loader"
+      ]
+    },
+    "doc-pages-typeahead": {
+      "tags": [],
+      "implicitDependencies": [
+        "typeahead",
+        "positioning",
+        "component-loader"
+      ]
+    }
+  }
+}
