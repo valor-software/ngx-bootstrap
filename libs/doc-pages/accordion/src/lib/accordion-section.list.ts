@@ -25,16 +25,9 @@ import { DemoAccordionDynamicBodyComponent } from './demos/dynamic-body/dynamic-
 
 export const demoComponentContent: ContentSection[] = [
   {
-    name: 'Usage',
-    anchor: 'usage',
-    outlet: DemoTopSectionComponent,
-    content: {
-      doc: require('!!raw-loader!./docs/usage.md')
-    }
-  },
-  {
-    name: 'Examples',
-    anchor: 'examples',
+    name: 'Overview',
+    anchor: 'overview',
+    tabName: 'overview',
     outlet: ExamplesComponent,
     content: [
       {
@@ -130,6 +123,9 @@ export const demoComponentContent: ContentSection[] = [
   {
     name: 'API Reference',
     anchor: 'api-reference',
+    tabName: 'api',
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> &#45;&#45;component <span class="pln">accordion</span>',
+    usage: require('!!raw-loader!./docs/usage.md'),
     outlet: ApiSectionsComponent,
     content: [
       {
@@ -146,6 +142,74 @@ export const demoComponentContent: ContentSection[] = [
         title: 'AccordionConfig',
         anchor: 'AccordionConfig',
         outlet: NgApiDocConfigComponent
+      }
+    ]
+  },
+  {
+    name: 'Examples',
+    anchor: 'examples',
+    tabName: 'examples',
+    outlet: ExamplesComponent,
+    content: [
+      {
+        title: 'Basic',
+        anchor: 'basic-accordion-ex',
+        outlet: DemoAccordionBasicComponent
+      },
+      {
+        title: 'With animation',
+        anchor: 'animated-accordion-ex',
+        outlet: DemoAccordionAnimatedComponent
+      },
+      {
+        title: 'Group opening event',
+        anchor: 'open-event-ex',
+        outlet: DemoAccordionOpenEventComponent
+      },
+      {
+        title: 'Custom HTML',
+        anchor: 'custom-html-ex',
+        outlet: DemoAccordionCustomHTMLComponent
+      },
+      {
+        title: 'Disabled',
+        anchor: 'disabled-ex',
+        outlet: DemoAccordionDisabledComponent
+      },
+      {
+        title: 'Initially opened',
+        anchor: 'opened-ex',
+        outlet: DemoAccordionOpenedComponent
+      },
+      {
+        title: 'Dynamic accordion',
+        anchor: 'dynamic-accordion-ex',
+        outlet: DemoAccordionDynamicComponent
+      },
+      {
+        title: 'Dynamic body content',
+        anchor: 'dynamic-body-ex',
+        outlet: DemoAccordionDynamicBodyComponent
+      },
+      {
+        title: 'Manual toggle',
+        anchor: 'manual-toggle-ex',
+        outlet: DemoAccordionManualToggleComponent
+      },
+      {
+        title: 'Open only one at a time',
+        anchor: 'one-time-ex',
+        outlet: DemoAccordionOneAtATimeComponent
+      },
+      {
+        title: 'Styling',
+        anchor: 'styling-ex',
+        outlet: DemoAccordionStylingComponent
+      },
+      {
+        title: 'Configuring defaults',
+        anchor: 'config-ex',
+        outlet: DemoAccordionConfigComponent
       }
     ]
   }

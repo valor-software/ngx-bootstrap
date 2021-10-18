@@ -1,8 +1,4 @@
 <ng-container *ngIf="section">
-<!--  <h2 [attr.id]="section.anchor">-->
-<!--    {{ section.name }}-->
-<!--    <a class="anchor-link" routerLink="." [fragment]="section.anchor">#</a>-->
-<!--  </h2>-->
   <p *ngIf="section.description" [innerHTML]="section.description"></p>
 
   <div class="example-section" *ngFor="let item of examples" #example>
@@ -16,7 +12,7 @@
            (click)="openStackBlitzDemo(item?.component?.default, item?.html?.default)">
           <img src="assets/images/stackblitz.png" alt="" width="20">
         </a >
-        <a class="anchor-link" routerLink="." [fragment]="item.anchor">#</a>
+        <a class="anchor-link d-inline-block" routerLink="." [fragment]="item.anchor">#</a>
       </p>
     </h3>
     <p *ngIf="item.description" [innerHTML]="item.description"></p>

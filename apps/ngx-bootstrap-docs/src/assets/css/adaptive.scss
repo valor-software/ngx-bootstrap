@@ -199,6 +199,7 @@
 
     .content-box {
       padding-left: 0;
+      padding-right: 0;
     }
   }
 
@@ -402,6 +403,15 @@
   .double-arrow {
     display: none;
   }
+
+  .common-header {
+    margin-top: 75px;
+    flex-direction: column-reverse;
+
+    .links-box {
+      justify-content: flex-end;
+    }
+  }
 }
 
 /* below 768 */
@@ -456,6 +466,14 @@
 
     .btn {
       padding: 10px;
+    }
+  }
+
+  .common-header {
+    margin-top: 85px;
+
+    .links-box {
+      justify-content: center;
     }
   }
 }

@@ -72,7 +72,7 @@ Individual buttons or the whole group can be marked as disabled.
       },
       {
         title: 'Radio without explicit group',
-        anchor: 'radio-button',
+        anchor: 'radio-button-explicit-group',
         description: ` The second method to create a radio button group is to use the same <code>ngModel</code> binding with several buttons.
  This works only for template driven forms and is not generally advised. But there are use cases were this might be useful, e.g. in tables.
  In terms of accessibility the buttons in the group can not be selected with the arrow keys, but individually reached by using the tab key
@@ -112,6 +112,7 @@ Individual buttons or the whole group can be marked as disabled.
     anchor: 'api-reference',
     tabName: 'api',
     outlet: ApiSectionsComponent,
+    usage: require('!!raw-loader!./docs/usage.md'),
     importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> &#45;&#45;component <span class="pln">buttons</span>',
     content: [
       {
@@ -164,7 +165,7 @@ Individual buttons or the whole group can be marked as disabled.
       },
       {
         title: 'Radio without explicit group',
-        anchor: 'radio-button-ex',
+        anchor: 'radio-button-explicit-group-ex',
         outlet: DemoButtonsRadioComponent
       },
       {

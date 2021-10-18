@@ -63,6 +63,67 @@ header {
   }
 }
 
+
+/*COMMON HEADER FOR STATIC PAGES*/
+.common-header {
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  color: $dark-font-color;
+  line-height: 20px;
+  margin-bottom: 15px;
+
+  .title-box {
+    width: 100%;
+
+    h1 {
+      margin: 0 auto;
+      text-align: center;
+      font-weight: bold;
+      font-size: 24px;
+      padding-bottom: 25px;
+    }
+
+    p {
+      font-size: 16px;
+    }
+  }
+
+  .links-box {
+    a {
+      position: relative;
+      font-weight: 600;
+      min-width: fit-content;
+
+      &:first-child {
+        margin-right: 30px;
+      }
+
+      i.arrow-link {
+        top: 0;
+        right: -10px;
+        position: absolute;
+        display: block;
+        width: 6.5px;
+        height: 6.5px;
+        border-top: 1px solid #007bff;
+        border-right: 1px solid #007bff;
+
+        &:after {
+          content: "";
+          top: 0;
+          right: 0;
+          position: absolute;
+          display: block;
+          height: 8.2px;
+          border-right: 1px solid #007bff;
+          transform: rotate(45deg) translate(-2.5px, 1px);
+        }
+      }
+    }
+  }
+}
+
 /* SEARCH INPUT */
 
 .sidebar-search {
@@ -467,11 +528,6 @@ header {
 }
 
 .main-container {
-  //.content-header {
-  //  flex: 0 0 calc(100% - 16.67%);
-  //  max-width: calc(100% - 16.67%);
-  //  margin-right: 16.67%;
-  //}
   padding: 25px;
 
   tabset {
@@ -493,10 +549,6 @@ header {
       }
 
       .code-tab {
-        //border-radius: 4px 4px 0 0;
-        //border: 1px solid #DEE2E6;
-        //border-bottom: none;
-
         &.active {
           border: none;
 
@@ -569,8 +621,6 @@ header {
           border: none;
         }
 
-
-
         p {
           color: #393D41;
           font-size: 16px;
@@ -610,35 +660,31 @@ docs-section {
 }
 
 .content {
-  //padding: 30px 30px 120px;
-  //width: 70%;
-  //min-width: 800px;
-  //margin-right: 30px;
-
   ng-sample-box, example-section {
     position: relative;
   }
-
 
   .example-section {
     margin-top: 40px;
   }
 
-  //h2[id] {
-  //  margin-top: 58px;
-  //}
   h2[id],
   h3[id] {
 
     .anchor-link {
+      display: none;
       color: #2595FF;
+    }
+
+    &:hover {
+      .anchor-link {
+        display: inline-block;
+      }
     }
   }
 
   ng-sample-box {
     .section {
-      //margin-bottom: 60px;
-
       &.bd-example {
         margin: 15px 0;
       }
@@ -676,50 +722,6 @@ docs-section {
 .panel-body {
   padding: 15px;
 }
-/* add-nav */
-//.add-nav {
-//  flex: 0 0 130px;
-//  max-width: 130px;
-//  padding-right: 5px;
-//  //position: fixed;
-//  top: 84px;
-//  left: 83.33%;
-//  right: 0;
-//  max-height: calc(100vh - 104px);
-//  overflow: auto;
-//  direction: rtl;
-//
-//  & > ul {
-//    border-left: 1px solid #F3F4F4;
-//  }
-//
-//  ul {
-//    margin: 0;
-//    padding: 0 0 0 20px;
-//    font-size: 14px;
-//    list-style: none;
-//    direction: ltr;
-//
-//    li {
-//      a {
-//        word-break: break-all;
-//        word-break: break-word;
-//        display: block;
-//        padding: 5px 0;
-//        line-height: 1.2;
-//        color: #666;
-//
-//        &:hover {
-//          color: #1976d2;
-//        }
-//      }
-//    }
-//  }
-//
-//  //& > ul {
-//  //  border-left: 1px solid #dadada;
-//  //}
-//}
 
 tabset {
   width: 100%;
@@ -732,12 +734,9 @@ tabset {
 
 /* add-nav */
 .add-nav {
-  //flex: 0 0 $add-nav-width;
-  //position: fixed;
   width: 100%;
   max-width: 220px;
   padding-right: 5px;
-  /* top: 200px; */
   right: 0;
   max-height: calc(100vh - 104px);
   overflow-y: auto;
@@ -746,7 +745,6 @@ tabset {
   top: 70px;
   margin-top: 35px;
   transition: all ease .3s;
-  //direction: rtl;
 
   .add-nav-container {
     font-family: "Open Sans";
@@ -760,15 +758,6 @@ tabset {
       font-size: 11px;
       padding-bottom: 10px;
     }
-
-    //&.fixed {
-    //  position: fixed;
-    //  top: 70px;
-    //}
-  }
-
-  & > ul {
-    //border-left: 1px solid #F3F4F4;
   }
 
   ul {
@@ -797,7 +786,6 @@ tabset {
       }
 
       a {
-        //word-break: break-all;
         word-break: break-word;
         display: block;
         padding: 5px 0;
@@ -812,7 +800,7 @@ tabset {
   }
 }
 
-// COMPONENTS PAGE //
+/* COMPONENTS PAGE */
 
 .pills {
 
@@ -846,7 +834,6 @@ tabset {
 }
 
 .components {
-
   &-box {
     display: flex;
     flex-wrap: wrap;
@@ -862,7 +849,6 @@ tabset {
     cursor: pointer;
     border-radius: 8px;
     overflow: hidden;
-    //margin: 0 auto;
 
     &:hover {
       box-shadow: 0 8px 35px rgba(0, 0, 0, .16);
@@ -876,7 +862,6 @@ tabset {
   &-text-box {
     padding: 25px 0;
     background-color: rgba(233, 236, 239, 0.2);
-    //border-radius: 0px 0px 8px 8px;
 
     p {
       font-weight: bold;

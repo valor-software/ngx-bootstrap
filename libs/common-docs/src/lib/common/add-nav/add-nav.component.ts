@@ -1,4 +1,5 @@
 import {
+  AfterViewChecked,
   AfterViewInit,
   Component, ElementRef,
   HostListener,
@@ -7,7 +8,7 @@ import {
   OnChanges,
   QueryList, Renderer2,
   SimpleChanges,
-  ViewChildren, ViewChild
+  ViewChildren
 } from "@angular/core";
 import { DOCUMENT } from '@angular/common';
 
@@ -25,7 +26,7 @@ interface IComponentContent {
   selector: 'add-nav',
   templateUrl: './add-nav.component.html'
 })
-export class AddNavComponent implements OnChanges, AfterViewInit {
+export class AddNavComponent implements OnChanges, AfterViewChecked {
   @Input() componentContent?: ContentSection;
   @ViewChildren('scrollElement')
   private scrollElementsList?: QueryList<ElementRef>;
@@ -57,9 +58,11 @@ export class AddNavComponent implements OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges) {
     if (changes?.componentContent) {
       this._componentContent = this.mapComponentContent(changes.componentContent.currentValue);
-      setTimeout(()=> {
-        this.setScrollAttributes();
-      }, 100);
+      if (!changes?.componentContent.firstChange) {
+        setTimeout(()=> {
+          this.setScrollAttributes();
+        }, 100);
+      }
     }
   }
 
@@ -82,10 +85,12 @@ export class AddNavComponent implements OnChanges, AfterViewInit {
       const target: HTMLElement | null = this.document.getElementById(anchor);
       const header: HTMLElement | null = this.document.getElementById('header');
 
-      if (target && header) {
-        const targetPosY: number = target.offsetTop - header.offsetHeight - 6;
-        window.scrollTo(0, targetPosY);
-      }
+      setTimeout(() => {
+        if (target && header) {
+          const targetPosY: number = target.offsetTop - header.offsetHeight - 6;
+          window.scrollTo(0, targetPosY);
+        }
+      }, 100);
     }
   }
 
@@ -95,8 +100,8 @@ export class AddNavComponent implements OnChanges, AfterViewInit {
       const id = item.nativeElement.getAttribute('data-anchor');
       const target: HTMLElement | null = this.document.getElementById(id);
       if (target) {
-        const targetPosY: number = target.offsetTop - header - 6;
-        const parentHeight = (<HTMLElement>target.parentElement).getBoundingClientRect().height - 6 || 0;
+        const targetPosY: number = target.offsetTop - header - 10;
+        const parentHeight = (<HTMLElement>target.parentElement).getBoundingClientRect().height + 6 || 0;
         this._renderer.setAttribute(item.nativeElement, 'data-max-scroll-value', (targetPosY + parentHeight).toString());
         this._renderer.setAttribute(item.nativeElement, 'data-min-scroll-value', (targetPosY).toString());
       }
@@ -104,10 +109,7 @@ export class AddNavComponent implements OnChanges, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {
-    setTimeout(() => {
+  ngAfterViewChecked() {
       this.setScrollAttributes();
-    },100);
-
   }
 }
