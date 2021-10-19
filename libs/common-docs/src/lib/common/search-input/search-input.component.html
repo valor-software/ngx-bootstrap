@@ -11,10 +11,14 @@
 </form>
 
 <ul class="sidebar-list menu" *ngIf="search.text && routes.length">
-  <li *ngFor="let route of routes | slice:4 | SearchFilter:search.text"
-      [routerLinkActive]="['active']"
-      [routerLinkActiveOptions]="{exact: true}"
-      class="w-100">
-    <a routerLink="/{{route.path}}" class="text-white d-block w-100">{{route.data[0]}}</a>
-  </li>
+  <ng-container *ngFor="let route of routes | slice:4 | SearchFilter:search.text">
+    <li *ngIf="route.path"
+        [routerLinkActive]="['active']"
+        [routerLinkActiveOptions]="{exact: true}"
+        class="w-100"
+        (click)="search.text = ''"
+    >
+      <a [routerLink]="getRouteLink(route.path)" class="text-white d-block w-100">{{route.data[0]}}</a>
+    </li>
+  </ng-container>
 </ul>

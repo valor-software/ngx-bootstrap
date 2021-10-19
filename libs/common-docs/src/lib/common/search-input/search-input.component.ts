@@ -28,6 +28,11 @@ export class SearchInputComponent {
       event.preventDefault();
     }
   }
+
+  getRouteLink(path: string): string | void{
+    const result = this.routes.find(item => item.path === path);
+    return result ? `/${path}` : `/components/${path}`;
+  }
 }
 
 

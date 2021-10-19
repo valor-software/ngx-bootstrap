@@ -30,7 +30,7 @@ export class SidebarComponent {
   routesStructure?: SidebarRoutesType;
   objectKeys = Object.keys;
   routeSubscription: Subscription;
-  @HostBinding('class.menuIsOpened') menuIsOpened = true;
+  @HostBinding('class.menuIsOpened') menuIsOpened = false;
 
   get bsCssFile(): string {
     if (this.currentTheme === 'bs3') {
@@ -63,11 +63,11 @@ export class SidebarComponent {
     if (innerWidth <= 991) {
       this.menuIsOpened = false;
     }
-
     this.routesStructure = initNestedRoutes(_routes, sidebarRoutesStructure);
     this.initBodyClass();
     this.routeSubscription = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
+        this.resetMenuItems();
         this.openMenuWithRoutePath(this.checkRoutePath(event.url), _routes);
       }
     });
@@ -96,7 +96,6 @@ export class SidebarComponent {
   }
 
   toggleSideBar(value?: boolean) {
-    this.resetMenuItems();
     if (typeof value === 'undefined') {
       this.menuIsOpened = !this.menuIsOpened;
     }

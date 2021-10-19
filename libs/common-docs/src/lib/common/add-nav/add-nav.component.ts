@@ -33,18 +33,7 @@ export class AddNavComponent implements OnChanges, AfterViewChecked {
 
   @HostListener('window:scroll')
   onScrollEvent() {
-    if (this.scrollElementsList?.length) {
-      this.scrollElementsList.map(item => {
-        const min = item.nativeElement.getAttribute('data-min-scroll-value');
-        const max = item.nativeElement.getAttribute('data-max-scroll-value');
-        const position = window.pageYOffset;
-        if (position >= min && position <= max) {
-          this._renderer.addClass(item.nativeElement.parentElement, 'active');
-        } else {
-          this._renderer.removeClass(item.nativeElement.parentElement, 'active');
-        }
-      });
-    }
+    this.initActiveMenuTab();
   };
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -90,6 +79,21 @@ export class AddNavComponent implements OnChanges, AfterViewChecked {
     }
   }
 
+  initActiveMenuTab() {
+    if (this.scrollElementsList?.length) {
+      this.scrollElementsList.map(item => {
+        const min = item.nativeElement.getAttribute('data-min-scroll-value');
+        const max = item.nativeElement.getAttribute('data-max-scroll-value');
+        const position = window.pageYOffset;
+        if (position >= min && position <= max) {
+          this._renderer.addClass(item.nativeElement.parentElement, 'active');
+        } else {
+          this._renderer.removeClass(item.nativeElement.parentElement, 'active');
+        }
+      });
+    }
+  }
+
   setScrollAttributes() {
     const header: number = this.document.querySelector('header')?.offsetHeight || 0;
     this.scrollElementsList?.map(item => {
@@ -107,5 +111,6 @@ export class AddNavComponent implements OnChanges, AfterViewChecked {
 
   ngAfterViewChecked() {
       this.setScrollAttributes();
+      this.initActiveMenuTab();
   }
 }
