@@ -34,7 +34,7 @@ import { Subscription } from "rxjs";
 export class DocsSectionComponent implements OnDestroy {
   @Input() content: ContentSection[] | undefined;
   _injectors = new Map<ContentSection, Injector>();
-  scrollSubscription: Subscription;
+  routeSubscription: Subscription;
   overview = false;
   api = false;
   examples = false;
@@ -45,7 +45,7 @@ export class DocsSectionComponent implements OnDestroy {
     private router: Router,
     private changeDetection: ChangeDetectorRef
   ) {
-    this.scrollSubscription = this.router.events.subscribe((event: any) => {
+    this.routeSubscription = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
         const params = this.router.parseUrl(event.url).queryParams;
         this.initActiveTab(params.tab?.toString());
@@ -95,6 +95,6 @@ export class DocsSectionComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.scrollSubscription.unsubscribe();
+    this.routeSubscription.unsubscribe();
   }
 }

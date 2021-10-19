@@ -9,13 +9,13 @@ import { Subscription } from "rxjs";
 })
 
 export class BreadCrumbsComponent implements OnDestroy{
-  scrollSubscription: Subscription;
+  routeSubscription: Subscription;
   routeArray?: string[];
 
   constructor(
     private router: Router
   ) {
-    this.scrollSubscription = this.router.events.subscribe((event: any) => {
+    this.routeSubscription = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
         this.routeArray = [];
         const tree:  UrlSegment[] = this.router.parseUrl(event.url).root.children.primary.segments;
@@ -27,19 +27,12 @@ export class BreadCrumbsComponent implements OnDestroy{
   }
 
   navigate(index?: number) {
-    if (!this.routeArray) {
-      return;
-    }
-
-    if (index !== undefined) {
-      index++;
-    }
-
-    if (!index) {
+    if (!this.routeArray || !index && index !== 0) {
       this.router.navigate(['']);
       return;
     }
 
+    index++;
     if (index >= this.routeArray.length) {
       return;
     }
@@ -49,6 +42,6 @@ export class BreadCrumbsComponent implements OnDestroy{
   }
 
   ngOnDestroy() {
-    this.scrollSubscription.unsubscribe();
+    this.routeSubscription.unsubscribe();
   }
 }

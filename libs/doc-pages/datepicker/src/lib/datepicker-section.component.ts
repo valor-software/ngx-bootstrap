@@ -15,19 +15,4 @@ export class DatepickerSectionComponent {
   name = 'Datepicker';
   src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/datepicker';
   componentContent: ContentSection[] = demoComponentContent;
-
-  // changeContent(name: string) {
-  //   switch (name) {
-  //     case('old'):
-  //       this.componentContent = demoComponentContentOld;
-  //       break;
-  //     case('new'):
-  //     default:
-  //       this.componentContent = demoComponentContent;
-  //   }
-  //
-  //   if (typeof (window as any)['PR'] !== 'undefined') {
-  //     setTimeout(() => (window as any)['PR']?.prettyPrint(), 10);
-  //   }
-  // }
 }

@@ -14,6 +14,7 @@ body {
 }
 
 h1, h2, h3, h4 {
+
   &:focus {
     outline: none;
   }
@@ -30,13 +31,6 @@ h1 {
   line-height: 36px;
   color: black;
   margin-bottom: 15px;
-
-
-  //&.small {
-  //  font-weight: 800;
-  //  font-size: 24px;
-  //  line-height: 29px;
-  //}
 
   img {
     width: 20px;
@@ -63,6 +57,7 @@ h3 {
 }
 
 .landing {
+
   h1 {
     font-family: 'Manrope bold';
     font-size: 72px;
@@ -80,6 +75,7 @@ h3 {
 }
 
 .item {
+
   & > p {
     display: inline;
     margin: 0;

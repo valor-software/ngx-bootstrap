@@ -1,6 +1,5 @@
 import {
   AfterViewChecked,
-  AfterViewInit,
   Component, ElementRef,
   HostListener,
   Inject,
@@ -59,9 +58,7 @@ export class AddNavComponent implements OnChanges, AfterViewChecked {
     if (changes?.componentContent) {
       this._componentContent = this.mapComponentContent(changes.componentContent.currentValue);
       if (!changes?.componentContent.firstChange) {
-        setTimeout(()=> {
-          this.setScrollAttributes();
-        }, 100);
+        this.setScrollAttributes();
       }
     }
   }
@@ -84,13 +81,12 @@ export class AddNavComponent implements OnChanges, AfterViewChecked {
       const anchor: string = item.dataset.anchor;
       const target: HTMLElement | null = this.document.getElementById(anchor);
       const header: HTMLElement | null = this.document.getElementById('header');
-
-      setTimeout(() => {
-        if (target && header) {
-          const targetPosY: number = target.offsetTop - header.offsetHeight - 6;
-          window.scrollTo(0, targetPosY);
-        }
-      }, 100);
+      if (target && header) {
+        setTimeout(() => {
+            const targetPosY: number = target.offsetTop - header.offsetHeight - 6;
+            window.scrollTo(0, targetPosY);
+        }, 100);
+      }
     }
   }
 

@@ -15,5 +15,4 @@ export class ComponentsPageComponent {
   ) {
     this.componentsArray = _routes.find(route => route.path === "components")?.children?.filter(route => route.path);
   }
-
 }

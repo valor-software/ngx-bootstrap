@@ -54,10 +54,6 @@ header {
 
       li:not(:last-child) {
         margin-right: 15px;
-
-        //&:last-child {
-        //  margin-right: 0;
-        //}
       }
     }
   }
@@ -145,7 +141,6 @@ header {
     color: $light-grey
   }
 
-
   .hideInput {
     display: none;
   }
@@ -178,8 +173,8 @@ header {
     }
   }
 
-
   .sidebar-list {
+
     &.menu {
       width: 100%;
       background-color: $main-bg-color;
@@ -393,7 +388,6 @@ header {
       max-width: 595px;
     }
   }
-
 }
 
 /* main */
@@ -464,6 +458,7 @@ header {
 .sponsor-icon {
   margin: -3px 8px 0 0;
 }
+
 .sponsor-link {
   text-transform: uppercase;
   font-size: 14px;
@@ -471,26 +466,33 @@ header {
   letter-spacing: 0.4px;
   color: #555555;
 }
+
 .sponsor-link:hover {
   color: #0056b3;
 }
+
 .content-supporting {
   max-width: 700px;
   margin: 0 auto;
 }
+
 .compatibility {
+
   table, th, td {
     text-align: left;
   }
+
   th, td {
     padding: 8px;
     border-bottom: 1px solid #ddd;
   }
+
   tr:hover {background-color: #dadadd;}
 }
 
 /* content */
 .menuIsOpened {
+
   .bg-container, .main-container {
     flex: 0 0 calc(100% - #{$sidebar-width-opened});
     max-width: calc(100% - #{$sidebar-width-opened});
@@ -527,14 +529,19 @@ header {
   padding: 25px;
 
   tabset {
+
     .nav-tabs {
+
       .example-tabset {
+
         &.active {
+
           .nav-link {
             font-weight: 600;
             border-color: #2595FF;
           }
         }
+
         .nav-link {
           border: 0;
           color: #25282B;
@@ -545,6 +552,7 @@ header {
       }
 
       .code-tab {
+
         &.active {
           border: none;
 
@@ -656,6 +664,7 @@ docs-section {
 }
 
 .content {
+
   ng-sample-box, example-section {
     position: relative;
   }
@@ -673,6 +682,7 @@ docs-section {
     }
 
     &:hover {
+
       .anchor-link {
         display: inline-block;
       }
@@ -680,7 +690,9 @@ docs-section {
   }
 
   ng-sample-box {
+
     .section {
+
       &.bd-example {
         margin: 15px 0;
       }
@@ -693,11 +705,13 @@ docs-section {
   }
 }
 .api-doc-component {
+
   & > h3 {
     margin-top: 20px;
   }
 
   .table {
+
     td {
       padding: 1rem;
 
@@ -706,6 +720,7 @@ docs-section {
       }
     }
   }
+
   .table-b {
     overflow-x: auto;
   }
@@ -766,6 +781,7 @@ tabset {
     li {
       position: relative;
       &.active {
+
         &:before {
           content: "";
           width: 2px;
@@ -829,6 +845,7 @@ tabset {
 }
 
 .components {
+
   &-box {
     display: flex;
     flex-wrap: wrap;
@@ -877,7 +894,9 @@ footer {
   }
 
   .footer {
+
     &-text {
+
       p {
         margin: 0;
         font-weight: 400;
@@ -902,12 +921,15 @@ footer {
 .tooltip.customClass.fade{
   transition: opacity 1s;
 }
+
 .tooltip.customClass {
+
   .tooltip-inner {
     color: #880000;
     background-color: #ffff66;
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
   }
+
   .tooltip-arrow,
   .arrow:before {
     border-top-color: #ffff75;
@@ -917,16 +939,19 @@ footer {
 
 /* Specify styling for popover contents */
 .popover {
+
   &.customClass,
   &.customClass .popover-content {
     background: #94bada;
   }
 }
+
 .popover.customClass.top > .arrow:after {
   border-top-color: #94bada;
 }
 
 .nav-item {
+
   &.customClass {
     float: right;
 
@@ -946,9 +971,11 @@ footer {
   background-color: #5bc0de;
   color: #fff;
 }
+
 .panel.customClass .panel-body {
   background-color: #337aa7;
 }
+
 .code-preview {
   display: block;
   padding: 10px;
@@ -962,9 +989,6 @@ footer {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
-
-
-
 
 /*Imported adaptive styles*/
 @import "adaptive";

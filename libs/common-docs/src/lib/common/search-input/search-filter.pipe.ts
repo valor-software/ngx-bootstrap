@@ -19,13 +19,11 @@ export class SearchFilterPipe implements PipeTransform {
       if (item.children?.length) {
         item.children.forEach((childItem: Route) => {
           if (childItem.data?.[0]?.toLowerCase().indexOf(text.toLowerCase()) !== -1) {
-            console.log('childItem', childItem, text);
             newItems.push(childItem);
           }
         });
       }
     });
-    console.log('newItems', newItems);
     return newItems;
   }
 }

@@ -29,7 +29,7 @@ export class SidebarComponent {
 
   routesStructure?: SidebarRoutesType;
   objectKeys = Object.keys;
-  scrollSubscription: Subscription;
+  routeSubscription: Subscription;
   @HostBinding('class.menuIsOpened') menuIsOpened = true;
 
   get bsCssFile(): string {
@@ -66,7 +66,7 @@ export class SidebarComponent {
 
     this.routesStructure = initNestedRoutes(_routes, sidebarRoutesStructure);
     this.initBodyClass();
-    this.scrollSubscription = this.router.events.subscribe((event: any) => {
+    this.routeSubscription = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
         this.openMenuWithRoutePath(this.checkRoutePath(event.url), _routes);
       }
@@ -210,7 +210,7 @@ export class SidebarComponent {
   }
 
   ngOnDestroy() {
-    this.scrollSubscription.unsubscribe();
+    this.routeSubscription.unsubscribe();
   }
 }
 
