@@ -52,12 +52,12 @@ header {
       margin: 0;
       padding: 0;
 
-      li {
+      li:not(:last-child) {
         margin-right: 15px;
 
-        &:last-child {
-          margin-right: 0;
-        }
+        //&:last-child {
+        //  margin-right: 0;
+        //}
       }
     }
   }
@@ -103,7 +103,6 @@ header {
         top: 0;
         right: -10px;
         position: absolute;
-        display: block;
         width: 6.5px;
         height: 6.5px;
         border-top: 1px solid #007bff;
@@ -114,7 +113,6 @@ header {
           top: 0;
           right: 0;
           position: absolute;
-          display: block;
           height: 8.2px;
           border-right: 1px solid #007bff;
           transform: rotate(45deg) translate(-2.5px, 1px);
@@ -132,7 +130,6 @@ header {
 
   &.icon .input-container::after, .icon .input-container::after {
     content: " ";
-    display: block;
     position: absolute;
     top: 50%;
     left: 15px;
@@ -223,7 +220,6 @@ header {
 
       &::after {
         content: "";
-        display: block;
         position: absolute;
         width: 1200px;
         height: 1200px;
@@ -275,7 +271,7 @@ header {
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%); //  TRY TO CHANGE IT
       }
     }
 
@@ -351,7 +347,7 @@ header {
           position: absolute;
           top: 50%;
           left: 50%;
-          transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);//  TRY TO CHANGE IT
         }
       }
     }
@@ -772,7 +768,6 @@ tabset {
       &.active {
         &:before {
           content: "";
-          display: block;
           width: 2px;
           background-color: #2595FF;
           position: absolute;

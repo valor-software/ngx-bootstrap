@@ -5,7 +5,7 @@ import {
   DocumentationComponent,
   DiscoverComponent,
   SchematicsComponent,
-  ThemesComponent
+  ConstructionPageComponent
 } from "@ngx-bootstrap-doc/docs";
 
 export const routes: Routes = [
@@ -32,7 +32,7 @@ export const routes: Routes = [
   {
     path: 'themes',
     data: ['Themes'],
-    component: ThemesComponent
+    component: ConstructionPageComponent
   },
   {
     path: 'components',

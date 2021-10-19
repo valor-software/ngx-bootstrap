@@ -4,7 +4,7 @@
   <div class="example-section" *ngFor="let item of examples" #example>
     <h3 *ngIf="item.title" [attr.id]="item.anchor" class="d-flex justify-content-between">
       {{ item.title }}
-      <p class="m-0">
+      <p *ngIf="item?.component" class="m-0">
         <a *ngIf="item.title !== 'Accessibility'"
            title="Open this demo in StackBlitz"
            href="#"

@@ -470,7 +470,7 @@ export const demoComponentContent: ContentSection[] = [
     anchor: 'api-reference',
     tabName: 'api',
     usage: require('!!raw-loader!./docs/usage.md'),
-    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> &#45;&#45;component <span class="pln">datepicker</span>',
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">datepicker</span>',
     outlet: ApiSectionsComponent,
     content: [
       {
@@ -715,39 +715,39 @@ export const demoComponentContent: ContentSection[] = [
   }
 ];
 
-export const demoComponentContentOld: ContentSection[] = [
-  {
-    name: 'Usage',
-    anchor: 'usage',
-    outlet: DemoTopSectionComponent,
-    content: {
-      doc: require('!!raw-loader!./docs/usageOld.md')
-    }
-  },
-  {
-    name: 'Examples',
-    anchor: 'examples-old',
-    outlet: ExamplesComponent,
-    content: [
-      {
-        title: 'Basic',
-        anchor: 'basic-old',
-        component: require('!!raw-loader!./demos/datepicker-demo.component.ts'),
-        html: require('!!raw-loader!./demos/datepicker-demo.component.html'),
-        outlet: DatepickerDemoComponent
-      }
-    ]
-  },
-  {
-    name: 'API Reference',
-    anchor: 'api-reference',
-    outlet: ApiSectionsComponent,
-    content: [
-      {
-        title: 'DatePickerComponent',
-        anchor: 'datepicker-component',
-        outlet: NgApiDocComponent
-      }
-    ]
-  }
-];
+// export const demoComponentContentOld: ContentSection[] = [
+//   {
+//     name: 'Usage',
+//     anchor: 'usage',
+//     outlet: DemoTopSectionComponent,
+//     content: {
+//       doc: require('!!raw-loader!./docs/usageOld.md')
+//     }
+//   },
+//   {
+//     name: 'Examples',
+//     anchor: 'examples-old',
+//     outlet: ExamplesComponent,
+//     content: [
+//       {
+//         title: 'Basic',
+//         anchor: 'basic-old',
+//         component: require('!!raw-loader!./demos/datepicker-demo.component.ts'),
+//         html: require('!!raw-loader!./demos/datepicker-demo.component.html'),
+//         outlet: DatepickerDemoComponent
+//       }
+//     ]
+//   },
+//   {
+//     name: 'API Reference',
+//     anchor: 'api-reference',
+//     outlet: ApiSectionsComponent,
+//     content: [
+//       {
+//         title: 'DatePickerComponent',
+//         anchor: 'datepicker-component',
+//         outlet: NgApiDocComponent
+//       }
+//     ]
+//   }
+// ];

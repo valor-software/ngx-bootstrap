@@ -70,7 +70,7 @@ export const demoComponentContent: ContentSection[] = [
     anchor: 'api-reference',
     tabName: 'api',
     usage: require('!!raw-loader!./docs/usage.md'),
-    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> &#45;&#45;component <span class="pln">collapse</span>',
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">collapse</span>',
     outlet: ApiSectionsComponent,
     content: [
       {
@@ -110,11 +110,6 @@ export const demoComponentContent: ContentSection[] = [
         title: 'Inline display',
         anchor: 'inline-display-ex',
         outlet: InlineDisplayDemoComponent
-      },
-      {
-        title: 'Accessibility',
-        anchor: 'accessibility-ex',
-        outlet: DemoAccessibilityComponent
       }
     ]
   }

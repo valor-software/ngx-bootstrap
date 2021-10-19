@@ -121,7 +121,7 @@ export const demoComponentContent: ContentSection[] = [
     anchor: 'api-reference',
     tabName: 'api',
     usage: require('!!raw-loader!./docs/usage.md'),
-    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> &#45;&#45;component <span class="pln">alerts</span>',
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">alerts</span>',
     outlet: ApiSectionsComponent,
     content: [
       {

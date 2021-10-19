@@ -1,5 +1,13 @@
 import { ContentSection } from '../models/content-section.model';
-import { Component, Injector, Input, OnDestroy } from "@angular/core";
+import {
+  AfterContentChecked,
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  Injector,
+  Input,
+  OnDestroy
+} from "@angular/core";
 import { ActivatedRoute, NavigationEnd, Router, UrlSegment } from "@angular/router";
 import { Subscription } from "rxjs";
 
@@ -34,7 +42,8 @@ export class DocsSectionComponent implements OnDestroy {
   constructor(
     private injector: Injector,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private changeDetection: ChangeDetectorRef
   ) {
     this.scrollSubscription = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
@@ -51,6 +60,7 @@ export class DocsSectionComponent implements OnDestroy {
       return;
     }
     this[activeTab as 'overview' | 'api' | 'examples'] = true;
+    this.changeDetection.detectChanges();
   }
 
   checkActiveTab(activeTab: string): boolean {

@@ -122,7 +122,7 @@ a:hover {
   transition: all ease .2s;
 }
 
-.scroll-list {
+.scroll-list, add-nav {
 
   &::-webkit-scrollbar {
     width: 1px;
@@ -138,5 +138,9 @@ a:hover {
     border-radius: 10%;
     border: 0px solid transparent;
   }
+}
+
+examples > p {
+  margin-top: 10px;
 }
 

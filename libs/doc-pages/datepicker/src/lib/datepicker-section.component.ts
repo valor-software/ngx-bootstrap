@@ -1,7 +1,7 @@
 // https://api.jqueryui.com/datepicker/
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { demoComponentContent, demoComponentContentOld } from './datepicker-section.list';
+import { demoComponentContent } from './datepicker-section.list';
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
 
 

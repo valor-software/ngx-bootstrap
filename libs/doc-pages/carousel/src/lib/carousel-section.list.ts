@@ -161,7 +161,7 @@ export const demoComponentContent: ContentSection[] = [
     anchor: 'api-reference',
     tabName: 'api',
     usage: require('!!raw-loader!./docs/usage.md'),
-    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> &#45;&#45;component <span class="pln">carousel</span>',
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">carousel</span>',
     outlet: ApiSectionsComponent,
     content: [
       {
@@ -266,11 +266,6 @@ export const demoComponentContent: ContentSection[] = [
         title: 'With animation',
         anchor: 'animated-ex',
         outlet: DemoCarouseAnimatedComponent
-      },
-      {
-        title: 'Accessibility',
-        anchor: 'accessibility-ex',
-        outlet: DemoAccessibilityComponent
       }
     ]
   }

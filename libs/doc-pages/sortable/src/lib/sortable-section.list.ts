@@ -12,16 +12,9 @@ import { DemoAccessibilityComponent } from './demos/accessibility/accessibility'
 
 export const demoComponentContent: ContentSection[] = [
   {
-    name: 'Usage',
-    anchor: 'usage',
-    outlet: DemoTopSectionComponent,
-    content: {
-      doc: require('!!raw-loader!./docs/usage.md')
-    }
-  },
-  {
-    name: 'Examples',
-    anchor: 'examples',
+    name: 'Overview',
+    anchor: 'overview',
+    tabName: 'overview',
     outlet: ExamplesComponent,
     content: [
       {
@@ -53,14 +46,40 @@ export const demoComponentContent: ContentSection[] = [
     ]
   },
   {
-    name: 'API Reference',
+    name: 'Installation',
     anchor: 'api-reference',
+    tabName: 'api',
     outlet: ApiSectionsComponent,
+    usage: require('!!raw-loader!./docs/usage.md'),
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">sortable</span>',
     content: [
       {
         title: 'SortableComponent',
         anchor: 'sortable-component',
         outlet: NgApiDocComponent
+      }
+    ]
+  },
+  {
+    name: 'Examples',
+    anchor: 'examples',
+    tabName: 'examples',
+    outlet: ExamplesComponent,
+    content: [
+      {
+        title: 'Basic',
+        anchor: 'basic-ex',
+        outlet: DemoBasicComponent
+      },
+      {
+        title: 'Complex data model',
+        anchor: 'complexDatamodel-ex',
+        outlet: ComplexDatamodelDemoComponent
+      },
+      {
+        title: 'Custom item template',
+        anchor: 'itemTemplate-ex',
+        outlet: CustomItemTemplateDemoComponent
       }
     ]
   }

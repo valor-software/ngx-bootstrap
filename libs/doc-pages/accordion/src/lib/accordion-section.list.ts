@@ -124,7 +124,7 @@ export const demoComponentContent: ContentSection[] = [
     name: 'API Reference',
     anchor: 'api-reference',
     tabName: 'api',
-    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> &#45;&#45;component <span class="pln">accordion</span>',
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">accordion</span>',
     usage: require('!!raw-loader!./docs/usage.md'),
     outlet: ApiSectionsComponent,
     content: [
