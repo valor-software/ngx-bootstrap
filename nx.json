@@ -265,7 +265,8 @@
       "tags": [],
       "implicitDependencies": [
         "utils",
-        "tabs"
+        "tabs",
+        "dropdown"
       ]
     },
     "doc-pages-alerts": {

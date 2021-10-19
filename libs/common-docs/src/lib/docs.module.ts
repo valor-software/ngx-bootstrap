@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxPageScrollModule } from 'ngx-page-scroll';
+import { BsDropdownModule } from "ngx-bootstrap/dropdown";
+import { TabsModule } from 'ngx-bootstrap/tabs';
+
 /* common */
 import { AppFooterComponent } from './common/app-footer/app-footer.component';
 import { AddNavComponent } from './common/add-nav/add-nav.component';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { SearchFilterPipe } from './common/search-input/search-filter.pipe';
 import { SearchInputComponent } from './common/search-input/search-input.component';
-import { TabsModule } from 'ngx-bootstrap/tabs';
 import { BreadCrumbsComponent } from './common/breadCrumbs/breadCrumbs.component';
 import { ComponentsPageComponent } from './common/components-page/components-page.component';
 import { ConstructionPageComponent } from './common/construction-page/construction-page.component';
@@ -95,7 +97,8 @@ export { ThemesComponent } from './common/themes/themes.component';
     ApiSectionsComponentModule,
     DemoTopSectionComponentModule,
     NgxPageScrollModule,
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
   exports: [
     SearchFilterPipe,

@@ -19,30 +19,11 @@ export class TopMenuComponent implements AfterViewInit, OnDestroy {
   isLocalhost = false;
   needPrefix = false;
   routeSubscription?: Subscription;
-
-  // previousDocs: {
-  //   url: string;
-  //   version: string;
-  //   unprefixedUrl: string;
-  // }[] = [];
-
-  previousDocs = [
-    {
-      url: '11111',
-      version: '1111',
-      unprefixedUrl: '1111'
-    },
-    {
-      url: '11111',
-      version: '1111',
-      unprefixedUrl: '1111'
-    },
-    {
-      url: '11111',
-      version: '1111',
-      unprefixedUrl: '1111'
-    }
-  ];
+  previousDocs: {
+    url: string;
+    version: string;
+    unprefixedUrl: string;
+  }[] = [];
 
   constructor(
     @Inject(PLATFORM_ID) platformId: number,
