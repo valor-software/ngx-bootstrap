@@ -372,13 +372,13 @@ export class DatePickerInnerComponent implements OnInit, OnChanges {
     }
 
     const minDate = Number(this.minDate && this.compare(date, this.minDate));
-    if (!isNaN(minDate)) {
-      return minDate < 0;
+    if (!isNaN(minDate) && minDate < 0) {
+      return true;
     }
 
     const maxDate = Number(this.maxDate && this.compare(date, this.maxDate));
-    if (!isNaN(maxDate)) {
-      return maxDate > 0;
+    if (!isNaN(maxDate) && maxDate > 0) {
+      return true;
     }
 
     return false;
