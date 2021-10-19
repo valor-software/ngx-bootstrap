@@ -93,7 +93,8 @@
     }
   }
 
-  .main .button-box .btn, .landing-additional-inf .text-holder button {
+  .main .button-box .btn, .landing-additional-inf .text-holder button,
+  .main .button-box .btn, .landing-additional-inf .text-holder a.btn{
     font-size: 16px;
   }
 
@@ -447,7 +448,8 @@
     }
   }
 
-  .landing-additional-inf .text-holder button {
+  .landing-additional-inf .text-holder button,
+  .landing-additional-inf .text-holder a.btn {
     padding: 10px 20px;
   }
 }
