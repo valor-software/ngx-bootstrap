@@ -10,7 +10,6 @@ import { DemoAlertStylingLocalComponent } from './demos/styling-local/styling-lo
 import { DemoAlertConfigComponent } from './demos/config/config';
 
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 

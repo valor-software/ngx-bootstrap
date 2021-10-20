@@ -9,7 +9,6 @@ import { DemoButtonsCustomCheckboxValueComponent } from './demos/custom-checkbox
 import { DemoButtonsRadioWithGroupComponent } from './demos/radio-with-group/radio-with-group';
 
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 

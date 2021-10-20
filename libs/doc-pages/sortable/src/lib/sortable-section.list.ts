@@ -3,7 +3,6 @@ import { ComplexDatamodelDemoComponent } from './demos/complex-datamodel/complex
 import { CustomItemTemplateDemoComponent } from './demos/custom-item-template/custom-item-template';
 
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 

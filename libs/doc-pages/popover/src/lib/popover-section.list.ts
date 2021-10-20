@@ -19,7 +19,6 @@ import { DemoPopoverTriggersManualComponent } from './demos/triggers-manual/trig
 import { DemoPopoverCornerPlacementComponent } from './demos/corner-placement/corner-placement';
 
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 

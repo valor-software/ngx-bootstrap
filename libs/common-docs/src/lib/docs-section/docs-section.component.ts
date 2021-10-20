@@ -1,15 +1,16 @@
 import { ContentSection } from '../models/content-section.model';
 import {
-  AfterContentChecked,
-  AfterViewInit,
   ChangeDetectorRef,
   Component,
   Injector,
   Input,
   OnDestroy
 } from "@angular/core";
-import { ActivatedRoute, NavigationEnd, Router, UrlSegment } from "@angular/router";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import { Subscription } from "rxjs";
+
+const availableTabsPaths = ['overview', 'api', 'examples'] as const;
+type AvailableTabsPathsType = (typeof availableTabsPaths)[number];
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -54,12 +55,14 @@ export class DocsSectionComponent implements OnDestroy {
   }
 
   initActiveTab(activeTab?: string) {
+    this.resetTabs();
     if (!activeTab || !this.checkActiveTab(activeTab)) {
       this.overview = true;
       this.onSelect('overview');
       return;
     }
-    this[activeTab as 'overview' | 'api' | 'examples'] = true;
+
+    this[activeTab as AvailableTabsPathsType] = true;
     this.changeDetection.detectChanges();
   }
 
@@ -70,7 +73,7 @@ export class DocsSectionComponent implements OnDestroy {
   onSelect(tabName: string) {
     this.resetTabs();
     this.router.navigate([], {queryParams: {tab: tabName}});
-    this[tabName as 'overview' | 'api' | 'examples'] = true;
+    this[tabName as AvailableTabsPathsType] = true;
   }
 
   sectionInjections(_content: ContentSection): Injector {
@@ -82,9 +85,7 @@ export class DocsSectionComponent implements OnDestroy {
       provide: ContentSection,
       useValue: _content
     }], this.injector);
-
     this._injectors.set(_content, _injector);
-
     return _injector;
   }
 

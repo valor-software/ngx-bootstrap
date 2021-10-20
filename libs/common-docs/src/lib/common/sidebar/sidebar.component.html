@@ -19,7 +19,7 @@
         <li *ngFor="let route of objectKeys(routesStructure)"
             [class.active]="getRouteStructureKey(route)?.isOpened"
             [class.icon]="getRouteStructureKey(route)?.nestedRoutes?.length && menuIsOpened"
-            (click)="toggleSideBar(true); toggoleMenuItem($event, route)"
+            (click)="toggleSideBar(true); toggleMenuItem($event, route)"
             class="sidebar-item-main "
         >
           <div class="sidebar-list-box">

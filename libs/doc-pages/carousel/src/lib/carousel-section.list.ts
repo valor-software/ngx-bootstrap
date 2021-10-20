@@ -15,7 +15,6 @@ import { DemoCarouselMultilistIndicatorsByChunkComponent } from './demos/multili
 import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
 
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 

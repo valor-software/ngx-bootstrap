@@ -30,7 +30,7 @@ export class SidebarComponent {
   routesStructure?: SidebarRoutesType;
   objectKeys = Object.keys;
   routeSubscription: Subscription;
-  @HostBinding('class.menuIsOpened') menuIsOpened = false;
+  @HostBinding('class.menuIsOpened') menuIsOpened = true;
 
   get bsCssFile(): string {
     if (this.currentTheme === 'bs3') {
@@ -115,7 +115,7 @@ export class SidebarComponent {
     }
   }
 
-  toggoleMenuItem(event: Event, value: string): void {
+  toggleMenuItem(event: Event, value: string): void {
     event.stopPropagation();
     if (this.routesStructure) {
       const key = value.toLowerCase();

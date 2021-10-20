@@ -4,7 +4,6 @@ import { CollapseDemoComponent } from './demos/basic/basic';
 import { CollapseDemoEventsComponent } from './demos/events/events';
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
 import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { InlineDisplayDemoComponent } from './demos/inline-display/inline-display';
 import { ToggleManualDemoComponent } from './demos/toggle-manual/toggle-manual';

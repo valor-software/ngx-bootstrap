@@ -19,7 +19,6 @@ import { DemoAccessibilityComponent } from './demos/accessibility/accessibility'
 import { DemoDropdownInsideClickComponent } from './demos/inside-click/inside-click';
 
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 

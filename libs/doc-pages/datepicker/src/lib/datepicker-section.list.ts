@@ -35,7 +35,6 @@ import { DemoDatepickerTriggersCustomComponent } from './demos/triggers-custom/t
 import { DemoDatepickerTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
 import { DemoDatepickerValueChangeEventComponent } from './demos/value-change-event/value-change-event';
 import { DemoDatePickerVisibilityEventsComponent } from './demos/visibility-events/visibility-events';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 
 import {

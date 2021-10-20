@@ -19,7 +19,6 @@ import { DemoAccessibilityComponent } from './demos/accessibility/accessibility'
 import { DemoModalWithPopupsComponent } from './demos/modal-with-popups/modal-with-popups';
 
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 

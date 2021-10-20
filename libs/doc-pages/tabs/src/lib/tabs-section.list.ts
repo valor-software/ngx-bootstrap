@@ -13,7 +13,6 @@ import { DemoAccessibilityComponent } from './demos/accessibility/accessibility'
 import { DynamicContentRenderingComponent } from './demos/dynamic-content-rendering/dynamic-content-rendering';
 import { DemoDisabledKeyNavigationsComponent } from './demos/disabled-key-navigations/disabled-key-navigations';
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 

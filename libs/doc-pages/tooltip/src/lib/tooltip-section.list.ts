@@ -14,7 +14,6 @@ import { DemoTooltipTriggersCustomComponent } from './demos/triggers-custom/trig
 import { DemoTooltipTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
 
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 

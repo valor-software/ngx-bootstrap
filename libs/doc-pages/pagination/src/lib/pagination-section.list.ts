@@ -11,7 +11,6 @@ import { DemoPaginationCustomLinksContentComponent } from './demos/custom-links-
 import { DemoPaginationContentSwitchingComponent } from './demos/content-switching/content-switching';
 
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 

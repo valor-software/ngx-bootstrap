@@ -1,6 +1,5 @@
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { DemoTypeaheadAdaptivePositionComponent } from './demos/adaptive-position/adaptive-position';
 import { DemoTypeaheadAnimatedComponent } from './demos/animated/animated';
 import { DemoTypeaheadBasicComponent } from './demos/basic/basic';
