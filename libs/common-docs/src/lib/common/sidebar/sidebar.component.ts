@@ -172,6 +172,7 @@ export class SidebarComponent {
     if (!currentRoute?.length || (!currentRoute[0].data?.[1]?.sideBarParentTitle && !currentRoute[0].children?.length)) {
       return;
     }
+
     const key = currentRoute[0].children?.length ? currentRoute[0].path : currentRoute[0].data?.[1]?.sideBarParentTitle;
     this.openMenuWithRoute(key, path[0]);
   }

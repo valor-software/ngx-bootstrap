@@ -1,7 +1,7 @@
 import { BaseComponent } from './base.component';
 
 export class CarouselPo extends BaseComponent {
-  pageUrl = '#/carousel';
+  pageUrl = '#/components/carousel';
   pageTitle = 'Carousel';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/carousel';
 
@@ -39,7 +39,7 @@ export class CarouselPo extends BaseComponent {
   }
 
   clickOnCtrl(baseSelector: string, ctrlType: string) {
-    cy.get(`${baseSelector} ${ctrlType === 'left' ? this.leftControl : this.rightControl}`).click();
+    cy.get(`${baseSelector}`).first().find(`${ctrlType === 'left' ? this.leftControl : this.rightControl}`).click();
   }
 
   isCarouselHaveIndicatorsItemsCtrls(baseSelector: string) {

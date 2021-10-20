@@ -1,5 +1,5 @@
 <header id="header" class="header flex-nowrap" [class.box-shadow]="initBoxShadow">
-  <div class="logo col-xl-2 col-lg-3">
+  <div class="logo col-xl-2 col-lg-3" data-cypress="logoAtHeader">
     <a routerLink="['']">
       <img  alt="ngx-bootstrap" src="assets/images/logos/ngx-bootstrap-logo-red.svg">
     </a>
@@ -20,7 +20,7 @@
         </li>
       </ul>
     </div>
-    <ul>
+    <ul data-cypress="infoButtons">
       <li>
         <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/tagged/ngx-bootstrap">
           <img src="assets/images/icons/stackoverflow.svg" alt="stackoverflow">

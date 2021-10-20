@@ -5,17 +5,18 @@ export class LandingPo extends BaseComponent {
   documentationUrl = '#/documentation/';
 
   mainClass = '.main';
-  logoAtHeader = '.logo';
-  logoAtContent = '.content-logo';
-  headerSelector = '.header';
+  logoAtHeader = '[data-cypress="logoAtHeader"]';
+  // logoAtContent = '.content-logo';
+  // headerSelector = '[data-cypress="headerSelector"]';
+  headerSelector = '#header';
   stackOverBtn = 'a[href*= "stackoverflow"]';
-  gitHbBtn = '.header-list a[href*= "github"]';
-  slackNgxBtn = '.header-list a[href*= "slack"]';
-  infoButtons = '.header-list';
-  sloganBs = '.slogan';
-  descriptionBs = '.descr';
-  versionBs = '.version';
-  advantagesBs = '.advantages';
+  gitHbBtn = '[data-cypress="infoButtons"] a[href*= "github"]';
+  slackNgxBtn = '[data-cypress="infoButtons"] a[href*= "slack"]';
+  infoButtons = '[data-cypress="infoButtons"]';
+  sloganBs = '[data-cypress="sloganBs"]';
+  // descriptionBs = '.descr';
+  // versionBs = '.version';
+  advantagesBs = '[data-cypress="advantagesBs"]';
   navBtn = '.btn';
   mobileMenu = '.mobile-menu';
   mobileMenuBtn = '#mobile-main-menu';
