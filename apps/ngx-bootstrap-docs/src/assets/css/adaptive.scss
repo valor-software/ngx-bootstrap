@@ -373,6 +373,12 @@
       justify-content: flex-end;
     }
   }
+
+  .components-item {
+    display: flex;
+    justify-content: center;
+    padding: 0 10px;
+  }
 }
 
 /* below 768 */
