@@ -28,12 +28,12 @@ export class PaginationPo extends BaseComponent {
   };
 
   isActivePositionEqual(baseSelector: string, positionNumber: string) {
-    cy.get(`${baseSelector} ${this.classActive}`).invoke('text')
+    cy.get(`${baseSelector}`).first().find(`${this.classActive}`).invoke('text')
       .should(linkTxt => expect(linkTxt).to.equal(positionNumber));
   }
 
   isPagerDisabled(baseSelector: string, pagerName: string, disabled: boolean) {
-    cy.get(`${baseSelector} ${this.getPagerSelector(pagerName)}`)
+    cy.get(`${baseSelector}`).first().find(`${this.getPagerSelector(pagerName)}`)
       .should(disabled ? 'to.have.class' : 'not.to.have.class', 'disabled').invoke('text');
   }
 
