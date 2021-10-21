@@ -6,7 +6,7 @@ import {
   Input,
   OnDestroy
 } from "@angular/core";
-import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { ActivatedRoute, NavigationEnd, Router, NavigationExtras } from "@angular/router";
 import { Subscription } from "rxjs";
 
 const availableTabsPaths = ['overview', 'api', 'examples'] as const;
@@ -72,7 +72,8 @@ export class DocsSectionComponent implements OnDestroy {
 
   onSelect(tabName: string) {
     this.resetTabs();
-    this.router.navigate([], {queryParams: {tab: tabName}});
+    const extras: NavigationExtras = {queryParams: {tab: tabName}, fragment: this.router.parseUrl(this.router.url).fragment || undefined};
+    this.router.navigate([], extras);
     this[tabName as AvailableTabsPathsType] = true;
   }
 

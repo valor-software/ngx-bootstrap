@@ -1,5 +1,5 @@
 import {
-  AfterViewChecked,
+  AfterViewChecked, AfterViewInit,
   Component, ElementRef,
   HostListener,
   Inject,
@@ -10,10 +10,8 @@ import {
   ViewChildren
 } from "@angular/core";
 import { DOCUMENT } from '@angular/common';
-
 import { ContentSection } from '../../models/content-section.model';
 import { Router } from "@angular/router";
-
 interface IComponentContent {
   parentRouteTitle: string;
   name?: string;
@@ -25,7 +23,7 @@ interface IComponentContent {
   selector: 'add-nav',
   templateUrl: './add-nav.component.html'
 })
-export class AddNavComponent implements OnChanges, AfterViewChecked {
+export class AddNavComponent implements OnChanges, AfterViewChecked, AfterViewInit {
   @Input() componentContent?: ContentSection;
   @ViewChildren('scrollElement')
   private scrollElementsList?: QueryList<ElementRef>;
@@ -40,7 +38,7 @@ export class AddNavComponent implements OnChanges, AfterViewChecked {
   constructor(
     @Inject(DOCUMENT) private document: Document,
     private _renderer: Renderer2,
-    private router: Router
+    private router: Router,
   ){}
 
   ngOnChanges(changes: SimpleChanges) {
@@ -67,15 +65,22 @@ export class AddNavComponent implements OnChanges, AfterViewChecked {
   goToSection(event: Event): void {
     const item: HTMLElement = event.target as HTMLElement;
     if (item.dataset.anchor) {
-      const anchor: string = item.dataset.anchor;
-      const target: HTMLElement | null = this.document.getElementById(anchor);
-      const header: HTMLElement | null = this.document.getElementById('header');
-      if (target && header) {
-        setTimeout(() => {
-            const targetPosY: number = target.offsetTop - header.offsetHeight - 6;
-            window.scrollTo(0, targetPosY);
-        }, 100);
-      }
+      this.goToSectionWIthAnchor(item.dataset.anchor);
+    }
+  }
+
+  goToSectionWIthAnchor(anchor?: string | null) {
+    if (!anchor) {
+      return;
+    }
+
+    const target: HTMLElement | null = this.document.getElementById(anchor);
+    const header: HTMLElement | null = this.document.getElementById('header');
+    if (target && header) {
+      setTimeout(() => {
+        const targetPosY: number = target.offsetTop - header.offsetHeight - 6;
+        window.scrollTo(0, targetPosY);
+      }, 100);
     }
   }
 
@@ -109,8 +114,11 @@ export class AddNavComponent implements OnChanges, AfterViewChecked {
     });
   }
 
+  ngAfterViewInit() {
+    this.goToSectionWIthAnchor(this.router.parseUrl(this.router.url).fragment);
+  }
+
   ngAfterViewChecked() {
-      this.setScrollAttributes();
-      this.initActiveMenuTab();
+    this.setScrollAttributes();
   }
 }

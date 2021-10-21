@@ -39,6 +39,8 @@ export class AppComponent implements AfterContentInit {
       const hash = this.route.snapshot.fragment;
       if (hash) {
         this.pageScrollService.scroll({ document: this.document, scrollTarget: `#${hash}` });
+      } else {
+        window.scroll(0, 0);
       }
     };
 
