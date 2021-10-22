@@ -17,10 +17,6 @@ import { ThemesComponent } from './common/themes/themes.component';
 /* docs */
 import { DemoSectionComponent } from './demo-section/demo-section.component';
 import { ContentSection } from './models/content-section.model';
-// import {
-//   DemoTopSectionComponent,
-//   DemoTopSectionComponentModule
-// } from './demo-section-components/demo-top-section/index';
 import { ExamplesComponent, ExamplesComponentModule } from './demo-section-components/demo-examples-section/index';
 import { ApiSectionsComponent, ApiSectionsComponentModule } from './demo-section-components/demo-api-section/index';
 import { DocsSectionComponent } from './docs-section/docs-section.component';
@@ -47,7 +43,6 @@ export {
   ApiSectionsComponentModule
 } from './demo-section-components/demo-api-section/index';
 export { DemoSectionComponent } from './demo-section/demo-section.component';
-// export { DemoTopSectionComponent } from './demo-section-components/demo-top-section/index';
 export { DocsSectionComponent } from './docs-section/docs-section.component';
 export { SampleBoxComponent } from './api-docs/sample-box/sample-box.component';
 export { ContentSection } from './models/content-section.model';
@@ -95,7 +90,6 @@ export { ThemesComponent } from './common/themes/themes.component';
     NgApiDocModule,
     ExamplesComponentModule,
     ApiSectionsComponentModule,
-    // DemoTopSectionComponentModule,
     NgxPageScrollModule,
     TabsModule.forRoot(),
     BsDropdownModule.forRoot()
