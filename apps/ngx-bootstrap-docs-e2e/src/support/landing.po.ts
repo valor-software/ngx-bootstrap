@@ -37,7 +37,7 @@ export class LandingPo extends BaseComponent {
   }
 
   isSearchResultCorrect(searchResult: string) {
-    cy.get('.sidebar-list').eq(1)
+    cy.get('[data-cypress="search-result"]').eq(0)
       .should('have.descendants', 'li').find('a').invoke('text')
       .should('contain', searchResult);
   }
