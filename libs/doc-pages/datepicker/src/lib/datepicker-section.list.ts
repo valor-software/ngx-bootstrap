@@ -1,6 +1,5 @@
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DatepickerDemoComponent } from './demos/datepicker-demo.component';
 import { DemoDatepickerBasicComponent } from './demos/basic/basic';
 import { DemoDatepickerByIsOpenPropComponent } from './demos/trigger-by-isopen-property/trigger-by-isopen-property';
 import { DemoDatepickerChangeLocaleComponent } from './demos/change-locale/change-locale';
@@ -496,43 +495,6 @@ export const demoComponentContent: ContentSection[] = [
         title: 'BsDatepickerConfig',
         anchor: 'bs-datepicker-config',
         outlet: NgApiDocConfigComponent
-      }
-    ]
-  }
-];
-
-export const demoComponentContentOld: ContentSection[] = [
-  {
-    name: 'Usage',
-    anchor: 'usage',
-    outlet: DemoTopSectionComponent,
-    content: {
-      doc: require('!!raw-loader!./docs/usageOld.md')
-    }
-  },
-  {
-    name: 'Examples',
-    anchor: 'examples-old',
-    outlet: ExamplesComponent,
-    content: [
-      {
-        title: 'Basic',
-        anchor: 'basic-old',
-        component: require('!!raw-loader!./demos/datepicker-demo.component.ts'),
-        html: require('!!raw-loader!./demos/datepicker-demo.component.html'),
-        outlet: DatepickerDemoComponent
-      }
-    ]
-  },
-  {
-    name: 'API Reference',
-    anchor: 'api-reference',
-    outlet: ApiSectionsComponent,
-    content: [
-      {
-        title: 'DatePickerComponent',
-        anchor: 'datepicker-component',
-        outlet: NgApiDocComponent
       }
     ]
   }
