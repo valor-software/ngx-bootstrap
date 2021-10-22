@@ -1,8 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { AfterContentInit, Component, Inject } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, UrlSerializer } from '@angular/router';
-import { PageScrollService } from 'ngx-page-scroll-core';
-
 import { Analytics } from '@ngx-bootstrap-doc/docs';
 import { filter } from 'rxjs/operators';
 
@@ -16,7 +14,6 @@ export class AppComponent implements AfterContentInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private pageScrollService: PageScrollService,
     private urlSerializer: UrlSerializer,
     private analytics: Analytics,
     @Inject(DOCUMENT) private document: any
@@ -38,9 +35,16 @@ export class AppComponent implements AfterContentInit {
 
       const hash = this.route.snapshot.fragment;
       if (hash) {
-        this.pageScrollService.scroll({ document: this.document, scrollTarget: `#${hash}` });
+        const target: HTMLElement | null = this.document.getElementById(hash);
+        const header: HTMLElement | null = this.document.getElementById('header');
+        if (target && header) {
+          setTimeout(() => {
+            const targetPosY: number = target.offsetTop - header.offsetHeight - 6;
+            window.scrollTo({top: targetPosY, behavior: 'smooth'});
+          }, 100);
+        }
       } else {
-        window.scroll(0, 0);
+        window.scrollTo({top: 0, behavior: 'smooth'});
       }
     };
 

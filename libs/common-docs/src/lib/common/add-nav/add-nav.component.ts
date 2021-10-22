@@ -79,7 +79,7 @@ export class AddNavComponent implements OnChanges, AfterViewChecked, AfterViewIn
     if (target && header) {
       setTimeout(() => {
         const targetPosY: number = target.offsetTop - header.offsetHeight - 6;
-        window.scrollTo(0, targetPosY);
+        window.scrollTo({top: targetPosY, behavior: 'smooth'});
       }, 100);
     }
   }
