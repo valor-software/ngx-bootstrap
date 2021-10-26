@@ -1,36 +1,7 @@
 {
   "version": 1,
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
     "defaultCollection": "@nrwl/angular"
-  },
-  "schematics": {
-    "@nrwl/angular": {
-      "application": {
-        "linter": "eslint"
-      },
-      "library": {
-        "linter": "eslint"
-      },
-      "storybook-configuration": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/angular:application": {
-      "style": "scss",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/angular:library": {
-      "style": "scss",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "strict": true
-    },
-    "@nrwl/angular:component": {
-      "style": "scss"
-    }
   },
   "defaultProject": "ngx-bootstrap-docs",
   "projects": {
@@ -85,7 +56,11 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "outputPath": "dist/apps/ngx-bootstrap",
+              "index": "apps/ngx-bootstrap-docs/src/index.html",
+              "main": "apps/ngx-bootstrap-docs/src/main.ts",
+              "tsConfig": "apps/ngx-bootstrap-docs/tsconfig.app.json"
             }
           }
         },
