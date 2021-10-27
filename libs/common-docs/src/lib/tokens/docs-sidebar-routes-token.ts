@@ -29,7 +29,8 @@ export const SidebarRoutesStructure: SidebarRoutesType = {
     nestedRoutes:[],
     isOpened: false,
     title: 'DOCUMENTATION',
-    icon: 'assets/images/icons/icon-folder.svg'
+    icon: 'assets/images/icons/icon-folder.svg',
+    path: 'documentation'
   },
   components: {
     nestedRoutes: [],
@@ -69,7 +70,7 @@ function initSideBarItem(key: string, route: Route, sideBarMenu: SidebarRoutesTy
     const sideBarItem = sideBarMenu[key as keyof SidebarRoutesType];
     const nestedItem: NestedRouteType = {
       title: route.data?.[0],
-      path: route.path,
+      path: route.data?.[1]?.parentRoute ? `/${route.data?.[1]?.parentRoute}/${route.path}` : route.path,
       isOpened: false,
       fragments: key === 'components' ? initFragments() : []
     };

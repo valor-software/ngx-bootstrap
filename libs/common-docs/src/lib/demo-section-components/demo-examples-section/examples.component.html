@@ -4,15 +4,18 @@
   <div class="example-section" *ngFor="let item of examples" #example>
     <h3 *ngIf="item.title" [attr.id]="item.anchor" class="d-flex justify-content-between">
       {{ item.title }}
-      <p *ngIf="item?.component" class="m-0">
-        <a *ngIf="item.title !== 'Accessibility'"
+      <p *ngIf="item?.component || tabName === 'examples'" class="m-0">
+        <a *ngIf="item.title !== 'Accessibility' && tabName !== 'examples'"
            title="Open this demo in StackBlitz"
            href="#"
            class="stackblitz-link"
            (click)="openStackBlitzDemo(item?.component?.default, item?.html?.default)">
           <img src="assets/images/stackblitz.png" alt="" width="20">
-        </a >
-        <a class="anchor-link d-inline-block" routerLink="." [fragment]="item.anchor">#</a>
+        </a>
+        <a *ngIf="tabName !== 'examples'" class="anchor-link d-inline-block" routerLink="." [fragment]="item.anchor">#</a>
+        <a *ngIf="item.title !== 'Accessibility' && tabName === 'examples'" [queryParams]="{tab: 'overview'}" routerLink="." [fragment]="initFragment(item.anchor)">
+          <img src="assets/images/icons/icon-code.svg" alt="" width="20">
+        </a>
       </p>
     </h3>
     <p *ngIf="item.description" [innerHTML]="item.description"></p>

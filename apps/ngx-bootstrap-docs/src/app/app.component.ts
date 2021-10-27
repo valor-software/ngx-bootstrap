@@ -10,6 +10,7 @@ import { filter } from 'rxjs/operators';
   templateUrl: './app.component.html'
 })
 export class AppComponent implements AfterContentInit {
+  showSidebar = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,6 +28,7 @@ export class AppComponent implements AfterContentInit {
     let _prev = getUrl(this.router);
     const justDoIt = (): void => {
       const _cur = getUrl(this.router);
+      this.showSidebar = !!getUrl(this.router);
       if (typeof PR !== 'undefined' && _prev !== _cur) {
         _prev = _cur;
         // google code-prettify
