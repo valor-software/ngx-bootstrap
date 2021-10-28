@@ -7,12 +7,12 @@ import { StyleManager } from '../../theme/style-manager';
 import { ThemeStorage } from '../../theme/theme-storage';
 import { DOCS_TOKENS } from '../../tokens/docs-routes-token';
 import {
-  SIDEBAR_ROUTES,
   SidebarRoutesType,
-  initNestedRoutes,
   NestedRouteType,
   SidebarRouteItemValueType
-} from "../../tokens/docs-sidebar-routes-token";
+} from "../../models/sidebar-routes.model";
+import { SIDEBAR_ROUTES } from '../../tokens/docs-sidebar-routes-token';
+import { initNestedRoutes } from './helpers/sidebar-helpers';
 import { Subscription } from "rxjs";
 
 const _bs3Css = 'assets/css/bootstrap-3.3.7/css/bootstrap.min.css';

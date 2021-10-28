@@ -10,8 +10,8 @@ import { getAppModuleCode, NgxModuleData } from './stackblitz/app.module';
 import { getIndexHtmlCode } from './stackblitz/html';
 import { getComponentClassName, getTagName, getTemplateFileName, getCSSCodeDatepickerCustomClass } from './stackblitz/helpers';
 import { Utils } from 'ngx-bootstrap/utils';
-import { SidebarRoutesType } from "../../tokens/docs-sidebar-routes-token";
 import { Subscription } from "rxjs";
+import { AvailableTabsNames } from "../../models/common.models";
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'examples',
@@ -20,7 +20,7 @@ import { Subscription } from "rxjs";
 export class ExamplesComponent {
   examples: ComponentExample[];
   moduleData: NgxModuleData;
-  tabName?: keyof SidebarRoutesType;
+  tabName?: AvailableTabsNames;
   routeSubscription: Subscription;
 
   constructor(public section: ContentSection, private route: ActivatedRoute, router: Router) {
