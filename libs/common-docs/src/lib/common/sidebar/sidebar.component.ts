@@ -15,7 +15,6 @@ import { SIDEBAR_ROUTES } from '../../tokens/docs-sidebar-routes-token';
 import { initNestedRoutes } from './helpers/sidebar-helpers';
 import { Subscription } from "rxjs";
 
-const _bs3Css = 'assets/css/bootstrap-3.3.7/css/bootstrap.min.css';
 const _bs4Css = 'assets/css/bootstrap-4.5.3/css/bootstrap.min.css';
 const _bs5Css = 'assets/css/bootstrap-5.1.0/css/bootstrap.min.css';
 
@@ -33,10 +32,6 @@ export class SidebarComponent {
   @HostBinding('class.menuIsOpened') menuIsOpened = true;
 
   get bsCssFile(): string {
-    if (this.currentTheme === 'bs3') {
-      return _bs3Css;
-    }
-
     if (this.currentTheme === 'bs5') {
       return _bs5Css;
     }
@@ -74,7 +69,7 @@ export class SidebarComponent {
     const themeFromUrl = this.activatedRoute.snapshot.queryParams._bsVersion;
     const currentTheme = themeFromUrl || this.themeStorage.getStoredTheme();
     if (currentTheme) {
-      this.installTheme(currentTheme);
+      this.installTheme(currentTheme === 'bs3' ? 'bs4' : currentTheme);
     }
   }
 

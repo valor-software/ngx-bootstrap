@@ -9,7 +9,6 @@
     <div class="bootstrap-version transition-option">
       <span class="transition-option" [class.hideText]="!menuIsOpened">Bootstrap: </span>
       <div class="flex-nowrap d-flex">
-        <button class="btn" type="button" [class.selected]="_bsVersions.isBs3" (click)="installTheme('bs3')">3</button>
         <button class="btn" type="button" [class.selected]="_bsVersions.isBs4" (click)="installTheme('bs4')">4</button>
         <button class="btn" type="button" [class.selected]="_bsVersions.isBs5"  (click)="installTheme('bs5')">5</button>
       </div>
