@@ -1,7 +1,7 @@
 <ng-container *ngIf="section">
   <p *ngIf="section.description" [innerHTML]="section.description"></p>
 
-  <div class="example-section" *ngFor="let item of examples" #example>
+  <div class="example-section" *ngFor="let item of examples">
     <h3 *ngIf="item.title" [attr.id]="item.anchor" class="d-flex justify-content-between">
       {{ item.title }}
       <p *ngIf="item?.component || tabName === 'examples'" class="m-0">
