@@ -41,7 +41,8 @@ export class AppComponent implements AfterContentInit {
         const header: HTMLElement | null = this.document.getElementById('header');
         if (target && header) {
           setTimeout(() => {
-            const targetPosY: number = target.offsetTop - header.offsetHeight - 6;
+            const sidebar: HTMLElement | null = this.document.getElementById('sidebar');
+            const targetPosY: number =  innerWidth <= 991 ? target.offsetTop - header.offsetHeight - 6 - (sidebar?.offsetHeight || 0) : target.offsetTop - header.offsetHeight - 6;
             window.scrollTo({top: targetPosY, behavior: 'smooth'});
           }, 100);
         }
