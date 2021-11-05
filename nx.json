@@ -132,7 +132,8 @@
       "implicitDependencies": [
         "mini-ngrx",
         "chronos",
-        "tooltip"
+        "tooltip",
+        "timepicker"
       ]
     },
     "dropdown": {
