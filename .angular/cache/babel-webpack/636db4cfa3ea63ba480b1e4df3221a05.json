@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { RatingSectionComponent } from './rating-section.component';\nexport const routes = [{\n  path: '',\n  component: RatingSectionComponent\n}];","map":null,"metadata":{},"sourceType":"module"}

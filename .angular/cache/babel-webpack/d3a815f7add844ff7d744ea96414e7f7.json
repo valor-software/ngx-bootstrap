@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { formatDate } from 'ngx-bootstrap/chronos';\nexport class DateFormatter {\n  format(date, format, locale) {\n    return formatDate(date, format, locale);\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

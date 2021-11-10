@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { TimepickerSectionComponent } from './timepicker-section.component';\nexport const routes = [{\n  path: '',\n  component: TimepickerSectionComponent\n}];","map":null,"metadata":{},"sourceType":"module"}

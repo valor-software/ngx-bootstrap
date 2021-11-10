@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { PaginationSectionComponent } from './pagination-section.component';\nexport const routes = [{\n  path: '',\n  component: PaginationSectionComponent\n}];","map":null,"metadata":{},"sourceType":"module"}

@@ -1,1 +1,0 @@
-{"ast":null,"code":"export const defaultMonthOptions = {\n  width: 7,\n  height: 6\n};\nexport const dayInMilliseconds = 24 * 60 * 60 * 1000;","map":null,"metadata":{},"sourceType":"module"}

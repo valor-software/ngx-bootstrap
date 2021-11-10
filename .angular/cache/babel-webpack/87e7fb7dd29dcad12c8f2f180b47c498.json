@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { ModalSectionComponent } from './modal-section.component';\nexport const routes = [{\n  path: '',\n  component: ModalSectionComponent\n}];","map":null,"metadata":{},"sourceType":"module"}

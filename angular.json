@@ -97,16 +97,6 @@
               "apps/ngx-bootstrap-docs/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/ngx-bootstrap-docs"
-          ],
-          "options": {
-            "jestConfig": "apps/ngx-bootstrap-docs/jest.config.js",
-            "passWithNoTests": true
-          }
         }
       }
     },
@@ -1296,16 +1286,6 @@
             ]
           }
         },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/src/root"
-          ],
-          "options": {
-            "jestConfig": "src/root/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
         "build-sass": {
           "builder": "@nrwl/workspace:run-commands",
           "outputs": [],
@@ -1381,16 +1361,6 @@
             ]
           }
         },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/schematics"
-          ],
-          "options": {
-            "jestConfig": "src/schematics/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
         "build": {
           "builder": "@nrwl/node:package",
           "outputs": [
@@ -1445,16 +1415,6 @@
               "libs/doc-pages/accordion/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/accordion"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/accordion/jest.config.js",
-            "passWithNoTests": true
-          }
         }
       },
       "implicitDependencies": ["accordion", "common-docs", "collapse"]
@@ -1490,16 +1450,6 @@
               "libs/common-docs/src/**/*.ts",
               "libs/common-docs/src/**/*.html"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/common-docs"
-          ],
-          "options": {
-            "jestConfig": "libs/common-docs/jest.config.js",
-            "passWithNoTests": true
           }
         }
       },
@@ -1537,16 +1487,6 @@
               "libs/doc-pages/alerts/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/alerts"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/alerts/jest.config.js",
-            "passWithNoTests": true
-          }
         }
       },
       "implicitDependencies": ["alert"]
@@ -1582,16 +1522,6 @@
               "libs/doc-pages/buttons/src/**/*.ts",
               "libs/doc-pages/buttons/src/**/*.html"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/buttons"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/buttons/jest.config.js",
-            "passWithNoTests": true
           }
         }
       },
@@ -1629,16 +1559,6 @@
               "libs/doc-pages/carousel/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/carousel"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/carousel/jest.config.js",
-            "passWithNoTests": true
-          }
         }
       },
       "implicitDependencies": ["carousel"]
@@ -1674,16 +1594,6 @@
               "libs/doc-pages/collapse/src/**/*.ts",
               "libs/doc-pages/collapse/src/**/*.html"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/collapse"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/collapse/jest.config.js",
-            "passWithNoTests": true
           }
         }
       },
@@ -1721,16 +1631,6 @@
               "libs/doc-pages/datepicker/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/datepicker"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/datepicker/jest.config.js",
-            "passWithNoTests": true
-          }
         }
       },
       "implicitDependencies": ["datepicker", "chronos", "mini-ngrx", "tooltip", "positioning", "component-loader", "locale"]
@@ -1766,16 +1666,6 @@
               "libs/doc-pages/dropdown/src/**/*.ts",
               "libs/doc-pages/dropdown/src/**/*.html"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/dropdown"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/dropdown/jest.config.js",
-            "passWithNoTests": true
           }
         }
       },
@@ -1813,16 +1703,6 @@
               "libs/doc-pages/modal/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/modal"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/modal/jest.config.js",
-            "passWithNoTests": true
-          }
         }
       },
       "implicitDependencies": ["modal", "positioning", "component-loader", "focus-trap", "popover", "tooltip"]
@@ -1858,16 +1738,6 @@
               "libs/doc-pages/pagination/src/**/*.ts",
               "libs/doc-pages/pagination/src/**/*.html"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/pagination"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/pagination/jest.config.js",
-            "passWithNoTests": true
           }
         }
       },
@@ -1905,16 +1775,6 @@
               "libs/doc-pages/popover/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/popover"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/popover/jest.config.js",
-            "passWithNoTests": true
-          }
         }
       },
       "implicitDependencies": ["popover", "positioning", "component-loader"]
@@ -1950,16 +1810,6 @@
               "libs/doc-pages/progressbar/src/**/*.ts",
               "libs/doc-pages/progressbar/src/**/*.html"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/progressbar"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/progressbar/jest.config.js",
-            "passWithNoTests": true
           }
         }
       },
@@ -1997,16 +1847,6 @@
               "libs/doc-pages/rating/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/rating"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/rating/jest.config.js",
-            "passWithNoTests": true
-          }
         }
       },
       "implicitDependencies": ["rating"]
@@ -2042,16 +1882,6 @@
               "libs/doc-pages/sortable/src/**/*.ts",
               "libs/doc-pages/sortable/src/**/*.html"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/sortable"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/sortable/jest.config.js",
-            "passWithNoTests": true
           }
         }
       },
@@ -2089,16 +1919,6 @@
               "libs/doc-pages/tabs/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/tabs"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/tabs/jest.config.js",
-            "passWithNoTests": true
-          }
         }
       },
       "implicitDependencies": ["tabs"]
@@ -2134,16 +1954,6 @@
               "libs/doc-pages/timepicker/src/**/*.ts",
               "libs/doc-pages/timepicker/src/**/*.html"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/timepicker"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/timepicker/jest.config.js",
-            "passWithNoTests": true
           }
         }
       },
@@ -2181,16 +1991,6 @@
               "libs/doc-pages/tooltip/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/tooltip"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/tooltip/jest.config.js",
-            "passWithNoTests": true
-          }
         }
       },
       "implicitDependencies": ["tooltip", "positioning", "component-loader"]
@@ -2226,16 +2026,6 @@
               "libs/doc-pages/typeahead/src/**/*.ts",
               "libs/doc-pages/typeahead/src/**/*.html"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/typeahead"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/typeahead/jest.config.js",
-            "passWithNoTests": true
           }
         }
       },

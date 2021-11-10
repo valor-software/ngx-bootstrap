@@ -1,1 +1,0 @@
-{"ast":null,"code":"export class TypeaheadOptions {\n  constructor(options) {\n    this.placement = options.placement;\n    this.animation = options.animation;\n    this.typeaheadRef = options.typeaheadRef;\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

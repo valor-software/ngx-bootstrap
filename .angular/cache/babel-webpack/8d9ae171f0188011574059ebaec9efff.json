@@ -1,1 +1,0 @@
-{"ast":null,"code":"export function canSwitchMode(mode, minMode) {\n  return minMode ? mode >= minMode : true;\n}","map":null,"metadata":{},"sourceType":"module"}

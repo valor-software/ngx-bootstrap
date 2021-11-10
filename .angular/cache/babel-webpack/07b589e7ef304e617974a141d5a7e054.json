@@ -1,1 +1,0 @@
-{"ast":null,"code":"export function copyTime(sourceDate, time) {\n  sourceDate.setHours(time.getHours());\n  sourceDate.setMinutes(time.getMinutes());\n  sourceDate.setSeconds(time.getSeconds());\n  sourceDate.setMilliseconds(time.getMilliseconds());\n}","map":null,"metadata":{},"sourceType":"module"}

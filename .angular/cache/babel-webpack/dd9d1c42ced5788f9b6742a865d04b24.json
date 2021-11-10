@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { CollapseSectionComponent } from './collapse-section.component';\nexport const routes = [{\n  path: '',\n  component: CollapseSectionComponent\n}];","map":null,"metadata":{},"sourceType":"module"}

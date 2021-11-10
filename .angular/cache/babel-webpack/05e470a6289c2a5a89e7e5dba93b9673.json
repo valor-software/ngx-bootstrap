@@ -1,1 +1,0 @@
-{"ast":null,"code":"import { TooltipSectionComponent } from './tooltip-section.component';\nexport const routes = [{\n  path: '',\n  component: TooltipSectionComponent\n}];","map":null,"metadata":{},"sourceType":"module"}

@@ -1,1 +1,0 @@
-{"ast":null,"code":"/**\r\n * @copyright Valor Software\r\n * @copyright Angular ng-bootstrap team\r\n */\nexport class Trigger {\n  constructor(open, close) {\n    this.open = open;\n    this.close = close || open;\n  }\n\n  isManual() {\n    return this.open === 'manual' || this.close === 'manual';\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}
