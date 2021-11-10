@@ -74,7 +74,6 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "baseHref": "/ngx-bootstrap/",
             "browserTarget": "ngx-bootstrap-docs:build"
           },
           "configurations": {

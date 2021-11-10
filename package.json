@@ -73,6 +73,7 @@
     "@schematics/angular": "next",
     "@stackblitz/sdk": "1.5.2",
     "ajv": "8.6.3",
+    "raw-loader": "4.0.2",
     "rxjs": "7.4.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
