@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { SortableSectionComponent } from './sortable-section.component';\nexport const routes = [{\n  path: '',\n  component: SortableSectionComponent\n}];","map":null,"metadata":{},"sourceType":"module"}

@@ -1,0 +1,1 @@
+{"ast":null,"code":"/**\r\n * :D\r\n */\nexport class NgApiDoc {}\nexport function signature(method) {\n  const args = method.args.map(arg => `${arg.name}: ${arg.type}`).join(', ');\n  return `${method.name}(${args})`;\n}","map":null,"metadata":{},"sourceType":"module"}

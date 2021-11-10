@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { CarouselSectionComponent } from './carousel-section.component';\nexport const routes = [{\n  path: '',\n  component: CarouselSectionComponent\n}];","map":null,"metadata":{},"sourceType":"module"}

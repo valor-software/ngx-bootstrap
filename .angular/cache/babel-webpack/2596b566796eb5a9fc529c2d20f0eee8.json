@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class ModalBackdropOptions {\n  constructor(options) {\n    this.animate = true;\n    Object.assign(this, options);\n  }\n\n}","map":null,"metadata":{},"sourceType":"module"}

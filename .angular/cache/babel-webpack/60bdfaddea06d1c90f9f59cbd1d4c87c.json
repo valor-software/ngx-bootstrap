@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { animate, style } from '@angular/animations';\nexport const DROPDOWN_ANIMATION_TIMING = '220ms cubic-bezier(0, 0, 0.2, 1)';\nexport const dropdownAnimation = [style({\n  height: 0,\n  overflow: 'hidden'\n}), animate(DROPDOWN_ANIMATION_TIMING, style({\n  height: '*',\n  overflow: 'hidden'\n}))];","map":null,"metadata":{},"sourceType":"module"}

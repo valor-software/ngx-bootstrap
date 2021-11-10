@@ -8,7 +8,8 @@ import { TimepickerStore } from './reducer/timepicker.store';
 @NgModule({
   imports: [CommonModule],
   declarations: [TimepickerComponent],
-  exports: [TimepickerComponent]
+  exports: [TimepickerComponent],
+  providers:[TimepickerStore]
 })
 export class TimepickerModule {
   static forRoot(): ModuleWithProviders<TimepickerModule> {

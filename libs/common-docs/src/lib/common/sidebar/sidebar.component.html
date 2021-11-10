@@ -5,7 +5,7 @@
     </button>
     <search-input [showInput]="false" class="w-100"></search-input>
   </div>
-  <div class="mobile-menu" [class.menuIsOpened]="menuIsOpened" *ngIf="routesStructure && routesStructure['documentation']?.nestedRoutes?.length">
+  <div class="mobile-menu" [class.menuIsOpened]="menuIsOpened" *ngIf="routesStructure && routesStructure?.['documentation']?.nestedRoutes?.length">
     <div class="bootstrap-version transition-option">
       <span class="transition-option" [class.hideText]="!menuIsOpened">Bootstrap: </span>
       <div class="flex-nowrap d-flex">
@@ -36,16 +36,16 @@
         </li>
       </ul>
       <ul *ngIf="menuIsOpened && sideBarItemIsOpened" class="sidebar-list scroll-list">
-        <li *ngFor="let route of routesStructure[sideBarItemIsOpened].nestedRoutes"
+        <li *ngFor="let route of routesStructure?.[sideBarItemIsOpened]?.nestedRoutes"
             [routerLinkActive]="['active']"
             [routerLinkActiveOptions]="{exact: true}"
             class="w-100"
         >
           <div class="sidebar-list-box d-flex flex-column secondary-items" [class.show]="route.isOpened">
-            <p (click)="openSemiItemMenu(route, routesStructure[sideBarItemIsOpened].nestedRoutes)">{{route.title}}</p>
+            <p (click)="openSemiItemMenu(route, routesStructure?.[sideBarItemIsOpened]?.nestedRoutes)">{{route.title}}</p>
             <div class="sidebar-list sidebar-list-fragment" [class.show]="route.isOpened" *ngIf="route.fragments.length">
               <div class="sidebar-item sidebar-item-fragment" *ngFor="let item of route.fragments" [class.active]="item.isOpened">
-                <a [routerLink]="[getRouteLink(route.path, routesStructure[sideBarItemIsOpened].path)]" [queryParams]="{tab: item.path}">{{item.title}}</a>
+                <a [routerLink]="[getRouteLink(route.path, routesStructure?.[sideBarItemIsOpened]?.path)]" [queryParams]="{tab: item.path}">{{item.title}}</a>
               </div>
             </div>
           </div>

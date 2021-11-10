@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { ButtonsSectionComponent } from './buttons-section.component';\nexport const routes = [{\n  path: '',\n  component: ButtonsSectionComponent\n}];","map":null,"metadata":{},"sourceType":"module"}

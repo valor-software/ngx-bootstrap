@@ -71,7 +71,7 @@ export class SidebarComponent {
         this.openMenuWithRoutePath(this.checkRoutePath(event.url), _routes);
       }
     });
-    const themeFromUrl = this.activatedRoute.snapshot.queryParams._bsVersion;
+    const themeFromUrl = this.activatedRoute.snapshot.queryParams["_bsVersion"];
     const currentTheme = themeFromUrl || this.themeStorage.getStoredTheme();
     if (currentTheme) {
       this.installTheme(currentTheme);
@@ -135,7 +135,11 @@ export class SidebarComponent {
     }
   }
 
-  openSemiItemMenu(semiMenu: NestedRouteType, nestedRoutes: NestedRouteType[]) {
+  openSemiItemMenu(semiMenu: NestedRouteType, nestedRoutes?: NestedRouteType[]) {
+    if (!nestedRoutes) {
+      return;
+    }
+
     this.resetSemiMenu(nestedRoutes);
     semiMenu.isOpened = true;
     if (semiMenu.path && !semiMenu.fragments?.length) {
@@ -150,7 +154,7 @@ export class SidebarComponent {
   }
 
   checkRoutePath(path: string): string[] {
-    const tree: UrlSegment[] = this.router.parseUrl(this.router.url).root.children.primary.segments;
+    const tree: UrlSegment[] = this.router.parseUrl(this.router.url).root.children["primary"].segments;
     const result = new Set<string>();
     tree.map(segment => {
       result.add(segment.path);
@@ -188,7 +192,7 @@ export class SidebarComponent {
       const params = this.router.parseUrl(this.router.url).queryParams;
       currentMenuItem.isOpened = true;
       currentMenuItem.fragments.forEach((item: {title: string, path: string, isOpened: boolean}) => {
-        item.isOpened = item.path === params.tab ? true : false;
+        item.isOpened = item.path === params["tab"];
       });
    }
   }

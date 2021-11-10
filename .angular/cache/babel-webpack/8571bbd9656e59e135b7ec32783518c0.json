@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { InjectionToken } from '@angular/core';\nexport const DOCS_TOKENS = new InjectionToken('root routes');","map":null,"metadata":{},"sourceType":"module"}
