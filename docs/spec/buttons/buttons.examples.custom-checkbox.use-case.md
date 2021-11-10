@@ -11,7 +11,8 @@ Main success scenario:
 1. User opens Buttons demo page
 2. User clicks on Custom checkbox value sub-menu
 3. User see 1 clickable button with text: "Single Toggle" and "1" in the custom checkbox value field
-4. Button should be active by default
+4. Button should be active by default with aria-pressed= "false"
+5. When user clicks on it, button become active and aria-pressed chenged to "true". In custom checkbox value should be "1"
 5. When user clicks on it, button become inactive and custom checkbox value should be "0"
 
 Variations:
