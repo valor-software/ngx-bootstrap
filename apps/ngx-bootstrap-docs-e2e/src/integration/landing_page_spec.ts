@@ -85,8 +85,8 @@ describe('Landing Page testing suite', () => {
   });
 
   describe('Load Bootstrap version', () => {
-    it('the 3rd version is ', () => {
-      const bsVersion = 3;
+    it('the 5th version is ', () => {
+      const bsVersion = 5;
       landing.visitNGXBootstrapWithBsVersion(bsVersion);
       landing.isBootstrapVersion(bsVersion);
     });

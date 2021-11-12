@@ -159,7 +159,7 @@ export class SidebarComponent {
   checkRoutePath(): string[] {
     const tree: UrlSegment[] = this.router.parseUrl(this.router.url).root?.children?.["primary"]?.segments;
     const result = new Set<string>();
-    tree.map(segment => {
+    tree?.map(segment => {
       result.add(segment.path);
     });
     return [...result];
