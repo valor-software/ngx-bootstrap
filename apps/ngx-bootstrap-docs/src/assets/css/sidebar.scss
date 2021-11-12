@@ -9,14 +9,15 @@
 .sidebar {
   width: $sidebar-width-closed;
   display: flex;
+  top: $header-height;
   flex-direction: column;
   align-items: center;
   background-color: #FAFAFC;
   transition: all ease .2s;
   font-family: "Open Sans";
   position: fixed;
-  max-height: calc(100vh - 64px);
-  min-height: calc(100vh - 64px);
+  max-height: calc(100vh - #{$header-height});
+  min-height: calc(100vh - #{$header-height});
 
   .hideText {
     opacity: 0;
@@ -66,6 +67,7 @@
 
       &:first-child {
         padding-bottom: 25px;
+        border-bottom: 1px solid #e2e2e2;
       }
     }
 
@@ -98,7 +100,7 @@
   .bootstrap-version {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #F2F2F2;
+    border-bottom: 1px solid #e2e2e2;
     justify-content: space-between;
     flex-wrap: nowrap;
     width: 100%;

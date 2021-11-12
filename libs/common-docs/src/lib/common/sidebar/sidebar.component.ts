@@ -1,4 +1,4 @@
-import { ActivatedRoute, Route, NavigationEnd, Router, Routes, UrlTree, UrlSegment } from "@angular/router";
+import { ActivatedRoute, NavigationEnd, Router, Routes, UrlSegment } from "@angular/router";
 import { Component, Inject, HostBinding, Renderer2 } from "@angular/core";
 import { DOCUMENT } from '@angular/common';
 
@@ -7,15 +7,14 @@ import { StyleManager } from '../../theme/style-manager';
 import { ThemeStorage } from '../../theme/theme-storage';
 import { DOCS_TOKENS } from '../../tokens/docs-routes-token';
 import {
-  SIDEBAR_ROUTES,
   SidebarRoutesType,
-  initNestedRoutes,
   NestedRouteType,
   SidebarRouteItemValueType
-} from "../../tokens/docs-sidebar-routes-token";
+} from "../../models/sidebar-routes.model";
+import { SIDEBAR_ROUTES } from '../../tokens/docs-sidebar-routes-token';
+import { initNestedRoutes } from './helpers/sidebar-helpers';
 import { Subscription } from "rxjs";
 
-const _bs3Css = 'assets/css/bootstrap-3.3.7/css/bootstrap.min.css';
 const _bs4Css = 'assets/css/bootstrap-4.5.3/css/bootstrap.min.css';
 const _bs5Css = 'assets/css/bootstrap-5.1.0/css/bootstrap.min.css';
 
@@ -33,10 +32,6 @@ export class SidebarComponent {
   @HostBinding('class.menuIsOpened') menuIsOpened = true;
 
   get bsCssFile(): string {
-    if (this.currentTheme === 'bs3') {
-      return _bs3Css;
-    }
-
     if (this.currentTheme === 'bs5') {
       return _bs5Css;
     }
@@ -65,16 +60,16 @@ export class SidebarComponent {
     }
     this.routesStructure = initNestedRoutes(_routes, sidebarRoutesStructure);
     this.initBodyClass();
+    this.firstMenuIniting(_routes);
     this.routeSubscription = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
-        this.resetMenuItems();
-        this.openMenuWithRoutePath(this.checkRoutePath(event.url), _routes);
+        this.firstMenuIniting(_routes);
       }
     });
-    const themeFromUrl = this.activatedRoute.snapshot.queryParams["_bsVersion"];
+    const themeFromUrl = this.activatedRoute.snapshot.queryParams._bsVersion;
     const currentTheme = themeFromUrl || this.themeStorage.getStoredTheme();
     if (currentTheme) {
-      this.installTheme(currentTheme);
+      this.installTheme(currentTheme === 'bs3' ? 'bs4' : currentTheme);
     }
   }
 
@@ -84,6 +79,11 @@ export class SidebarComponent {
         return item as keyof SidebarRoutesType;
       }
     }
+  }
+
+  firstMenuIniting(routes: Routes) {
+    this.resetMenuItems();
+    this.openMenuWithRoutePath(this.checkRoutePath(), routes);
   }
 
   installTheme(theme: AvailableBsVersions) {
@@ -125,7 +125,6 @@ export class SidebarComponent {
         this.router.navigate([this.routesStructure[key as keyof SidebarRoutesType].path]);
       }
     }
-
   }
 
   resetMenuItems() {
@@ -135,15 +134,19 @@ export class SidebarComponent {
     }
   }
 
-  openSemiItemMenu(semiMenu: NestedRouteType, nestedRoutes?: NestedRouteType[]) {
-    if (!nestedRoutes) {
-      return;
-    }
-
+  openSemiItemMenu(semiMenu: NestedRouteType, nestedRoutes: NestedRouteType[]) {
     this.resetSemiMenu(nestedRoutes);
     semiMenu.isOpened = true;
-    if (semiMenu.path && !semiMenu.fragments?.length) {
+    if (semiMenu.path) {
       this.router.navigate([semiMenu.path]);
+      this.closeAdaptiveMenu();
+    }
+  }
+
+  closeAdaptiveMenu() {
+    if (innerWidth <= 991) {
+      this.menuIsOpened = false;
+      this.toggleSideBar(false);
     }
   }
 
@@ -153,8 +156,8 @@ export class SidebarComponent {
     });
   }
 
-  checkRoutePath(path: string): string[] {
-    const tree: UrlSegment[] = this.router.parseUrl(this.router.url).root.children["primary"].segments;
+  checkRoutePath(): string[] {
+    const tree: UrlSegment[] = this.router.parseUrl(this.router.url).root?.children?.primary?.segments;
     const result = new Set<string>();
     tree.map(segment => {
       result.add(segment.path);
@@ -168,7 +171,7 @@ export class SidebarComponent {
     }
 
     if (path.length > 1) {
-      this.openMenuWithRoute(path[0], path[1]);
+      this.openMenuWithRoute(`/${path[0]}/${path[1]}`, path[0]);
       return;
     }
 
@@ -178,39 +181,33 @@ export class SidebarComponent {
     }
 
     const key = currentRoute[0].children?.length ? currentRoute[0].path : currentRoute[0].data?.[1]?.sideBarParentTitle;
-    this.openMenuWithRoute(key, path[0]);
+    this.openMenuWithRoute(path[0], key);
   }
 
-  openMenuWithRoute(parentPath: string, routePath: string) {
+  openMenuWithRoute(routePath: string, parentPath: string) {
     if (!this.routesStructure) {
       return;
     }
 
     this.routesStructure[parentPath as keyof SidebarRoutesType].isOpened = true;
     const currentMenuItem = this.routesStructure?.[parentPath as keyof SidebarRoutesType].nestedRoutes.find(route => route.path === routePath);
-    if (currentMenuItem) {
-      const params = this.router.parseUrl(this.router.url).queryParams;
-      currentMenuItem.isOpened = true;
-      currentMenuItem.fragments.forEach((item: {title: string, path: string, isOpened: boolean}) => {
-        item.isOpened = item.path === params["tab"];
-      });
-   }
+    this.setMenuProperties(currentMenuItem);
+  }
+
+  setMenuProperties(currentMenuItem?: NestedRouteType) {
+    if (!currentMenuItem) {
+      return;
+    }
+
+    const params = this.router.parseUrl(this.router.url).queryParams;
+    currentMenuItem.isOpened = true;
+    currentMenuItem.fragments.forEach((item: {title: string, path: string, isOpened: boolean}) => {
+      item.isOpened = item.path === params.tab ? true : false;
+    });
   }
 
   getRouteStructureKey(value: string): SidebarRouteItemValueType | undefined {
     return this.routesStructure?.[value as keyof SidebarRoutesType];
-  }
-
-  getRouteLink(routePath?: string, parentRoutePath?: string): string | undefined {
-    if (!routePath) {
-      return;
-    }
-
-    if (!parentRoutePath) {
-      return  `/${routePath}`;
-    }
-
-    return `/${parentRoutePath}/${routePath}`;
   }
 
   ngOnDestroy() {
