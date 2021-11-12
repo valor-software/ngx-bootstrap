@@ -18,7 +18,7 @@
     "nx": "nx",
     "start": "ng serve",
     "build": "ng build",
-    "test": "nx run-many --all --target=test",
+    "test": "nx run-many --all --target=test --detectOpenHandles",
     "lint": "nx run-many --all --target=lint",
     "e2e": "ng e2e",
     "version": "nx run ngx-bootstrap:version",

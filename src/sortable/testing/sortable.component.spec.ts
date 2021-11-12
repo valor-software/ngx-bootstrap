@@ -118,12 +118,12 @@ xdescribe('Component: Sortable', () => {
     let item: SortableItem;
     let event: DragEvent;
     let draggableItem: DraggableItem;
-    let spyOnChanged: jasmine.Spy;
+    let jest.spyOnChanged: jasmine.Spy;
     let spyGetItem: jasmine.Spy;
     let spyCaptureItem: jasmine.Spy;
     let sort1ZoneNumber: number;
     let spyPreventDefault: jasmine.Spy;
-    let spyOnDrop: jasmine.Spy;
+    let jest.spyOnDrop: jasmine.Spy;
 
     beforeEach(
       inject([DraggableItemService], (service: DraggableItemService) => {
@@ -136,19 +136,19 @@ xdescribe('Component: Sortable', () => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         sort1ZoneNumber = (sort1 as any).currentZoneIndex;
         draggableItem = getDraggableItem(item, event, sort1ZoneNumber);
-        spyOnChanged = spyOn(sort1, 'onChanged');
-        spyGetItem = spyOn(transfer, 'getItem').and.returnValue(draggableItem);
-        spyCaptureItem = spyOn(transfer, 'captureItem').and.returnValue(
+        jest.spyOnChanged = jest.spyOn(sort1, 'onChanged');
+        spyGetItem = jest.spyOn(transfer, 'getItem').and.returnValue(draggableItem);
+        spyCaptureItem = jest.spyOn(transfer, 'captureItem').and.returnValue(
           draggableItem
         );
-        spyPreventDefault = spyOn(event, 'preventDefault');
-        spyOnDrop = spyOn(sort1, 'onDrop').and.callThrough();
+        spyPreventDefault = jest.spyOn(event, 'preventDefault');
+        jest.spyOnDrop = jest.spyOn(sort1, 'onDrop').and.callThrough();
       })
     );
 
     it('should pass dragged item to transfer', () => {
       // arrange
-      const spy = spyOn(transfer, 'dragStart');
+      const spy = jest.spyOn(transfer, 'dragStart');
       // act
       sort1.onItemDragstart(event, item, 0);
       // assert
@@ -197,7 +197,7 @@ xdescribe('Component: Sortable', () => {
       // act
       sort1.onDrop(draggableItem);
       // assert
-      expect(spyOnChanged).toHaveBeenCalledWith([
+      expect(jest.spyOnChanged).toHaveBeenCalledWith([
         HEROES[1],
         HEROES[2],
         HEROES[3]
@@ -209,7 +209,7 @@ xdescribe('Component: Sortable', () => {
       // act
       sort1.onDrop(draggableItem);
       // assert
-      expect(spyOnChanged).not.toHaveBeenCalled();
+      expect(jest.spyOnChanged).not.toHaveBeenCalled();
     });
 
     it('should fire onChanged when drag over item', () => {
@@ -217,7 +217,7 @@ xdescribe('Component: Sortable', () => {
       // act
       sort1.onItemDragover(event, 1);
       // assert
-      expect(spyOnChanged).toHaveBeenCalled();
+      expect(jest.spyOnChanged).toHaveBeenCalled();
     });
 
     it('should swap first and second item', () => {
@@ -225,7 +225,7 @@ xdescribe('Component: Sortable', () => {
       // act
       sort1.onItemDragover(event, 1);
       // assert
-      expect(spyOnChanged).toHaveBeenCalledWith([
+      expect(jest.spyOnChanged).toHaveBeenCalledWith([
         HEROES[1],
         HEROES[0],
         HEROES[2],
@@ -238,7 +238,7 @@ xdescribe('Component: Sortable', () => {
       // act
       sort1.onItemDragover(event, 0);
       // assert
-      expect(spyOnChanged).toHaveBeenCalledWith(HEROES);
+      expect(jest.spyOnChanged).toHaveBeenCalledWith(HEROES);
     });
 
     it('should move first item to the end', () => {
@@ -246,7 +246,7 @@ xdescribe('Component: Sortable', () => {
       // act
       sort1.onItemDragover(event, 3);
       // assert
-      expect(spyOnChanged).toHaveBeenCalledWith([
+      expect(jest.spyOnChanged).toHaveBeenCalledWith([
         HEROES[1],
         HEROES[2],
         HEROES[3],
@@ -262,7 +262,7 @@ xdescribe('Component: Sortable', () => {
       // act
       sort1.onItemDragover(event, 0);
       // assert
-      expect(spyOnChanged).toHaveBeenCalledWith([
+      expect(jest.spyOnChanged).toHaveBeenCalledWith([
         HEROES[3],
         HEROES[0],
         HEROES[1],
@@ -276,7 +276,7 @@ xdescribe('Component: Sortable', () => {
       // act
       sort1.onItemDragover(event, 0);
       // assert
-      expect(spyOnChanged).toHaveBeenCalledWith([HEROES[0]]);
+      expect(jest.spyOnChanged).toHaveBeenCalledWith([HEROES[0]]);
     });
 
     it('should insert a new item', () => {
@@ -286,7 +286,7 @@ xdescribe('Component: Sortable', () => {
       // act
       sort1.onItemDragover(event, 0);
       // assert
-      expect(spyOnChanged).toHaveBeenCalledWith(['new', ...HEROES]);
+      expect(jest.spyOnChanged).toHaveBeenCalledWith(['new', ...HEROES]);
     });
 
     it('should call onDrop when item is over an another container', done => {
@@ -300,7 +300,7 @@ xdescribe('Component: Sortable', () => {
       transfer
         .onCaptureItem()
         .subscribe(() => {
-          expect(spyOnDrop).toHaveBeenCalledWith(capturedItem);
+          expect(jest.spyOnDrop).toHaveBeenCalledWith(capturedItem);
           done();
         });
     });
@@ -316,7 +316,7 @@ xdescribe('Component: Sortable', () => {
         transfer
           .onCaptureItem()
           .subscribe(() => {
-              expect(spyOnChanged).toHaveBeenCalledWith([
+              expect(jest.spyOnChanged).toHaveBeenCalledWith([
                 HEROES[1],
                 HEROES[2],
                 HEROES[3]
@@ -338,7 +338,7 @@ xdescribe('Component: Sortable', () => {
         transfer
           .onCaptureItem()
           .subscribe(() => {
-            expect(spyOnChanged).toHaveBeenCalledWith([...HEROES]);
+            expect(jest.spyOnChanged).toHaveBeenCalledWith([...HEROES]);
             done();
           });
       }

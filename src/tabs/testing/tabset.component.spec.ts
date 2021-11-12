@@ -94,9 +94,9 @@ describe('Component: Tabs', () => {
   //     .then((f: ComponentFixture<any>) => {
   //       fixture = f;
   //       context = fixture.componentInstance;
-  //       spyOn(context, '_select');
-  //       spyOn(context, '_deselect');
-  //       spyOn(context, '_removed');
+  //       jest.spyOn(context, '_select');
+  //       jest.spyOn(context, '_deselect');
+  //       jest.spyOn(context, '_removed');
   //       element = fixture.nativeElement;
   //       fixture.detectChanges();
   //     });
@@ -110,9 +110,9 @@ describe('Component: Tabs', () => {
     TestBed.overrideComponent(TestTabsetComponent, { set: { template: html } });
     fixture = TestBed.createComponent(TestTabsetComponent);
     context = fixture.componentInstance;
-    spyOn(context, '_select');
-    spyOn(context, '_deselect');
-    spyOn(context, '_removed');
+    jest.spyOn(context, '_select');
+    jest.spyOn(context, '_deselect');
+    jest.spyOn(context, '_removed');
     element = fixture.nativeElement;
     fixture.detectChanges();
   });

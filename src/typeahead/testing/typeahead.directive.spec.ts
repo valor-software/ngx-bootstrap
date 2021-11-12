@@ -290,7 +290,7 @@ describe('Directive: Typeahead', () => {
       dispatchTouchEvent(inputElement, 'input');
       tick();
 
-      spyOn(fixture.componentInstance, 'onBlurEvent').and.callFake(param => {
+      jest.spyOn(fixture.componentInstance, 'onBlurEvent').and.callFake(param => {
         expect(param.item.id).toBe(1);
       });
       directive.onBlur();
