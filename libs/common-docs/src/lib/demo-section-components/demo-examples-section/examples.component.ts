@@ -27,10 +27,10 @@ export class ExamplesComponent {
     this.examples = section.content as ComponentExample[];
     this.moduleData = this.route.snapshot.data && this.route.snapshot.data[1];
     this.moduleData.moduleRoute = router.routerState.snapshot.url;
-    this.tabName = router.parseUrl(router.url).queryParams?.tab;
+    this.tabName = router.parseUrl(router.url).queryParams?.["tab"];
     this.routeSubscription = router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
-        this.tabName = router.parseUrl(router.url).queryParams?.tab;
+        this.tabName = router.parseUrl(router.url).queryParams?.["tab"];
       }
     });
   }
