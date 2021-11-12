@@ -66,7 +66,7 @@ export class SidebarComponent {
         this.firstMenuIniting(_routes);
       }
     });
-    const themeFromUrl = this.activatedRoute.snapshot.queryParams._bsVersion;
+    const themeFromUrl = this.activatedRoute.snapshot.queryParams["_bsVersion"];
     const currentTheme = themeFromUrl || this.themeStorage.getStoredTheme();
     if (currentTheme) {
       this.installTheme(currentTheme === 'bs3' ? 'bs4' : currentTheme);
@@ -157,7 +157,7 @@ export class SidebarComponent {
   }
 
   checkRoutePath(): string[] {
-    const tree: UrlSegment[] = this.router.parseUrl(this.router.url).root?.children?.primary?.segments;
+    const tree: UrlSegment[] = this.router.parseUrl(this.router.url).root?.children?.["primary"]?.segments;
     const result = new Set<string>();
     tree.map(segment => {
       result.add(segment.path);
@@ -202,7 +202,7 @@ export class SidebarComponent {
     const params = this.router.parseUrl(this.router.url).queryParams;
     currentMenuItem.isOpened = true;
     currentMenuItem.fragments.forEach((item: {title: string, path: string, isOpened: boolean}) => {
-      item.isOpened = item.path === params.tab ? true : false;
+      item.isOpened = item.path === params["tab"];
     });
   }
 
