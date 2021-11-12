@@ -12,7 +12,7 @@ Main success scenario:
 2. User click on Component level styling sub-menu
 3. User see 1 alert with specific style, which differs from default
 4. Src of component should contain this style
-5. Alert template should contain alert type = 'md-local' and should not contain this style
+5. Alert template should not contain this style
 
 Variations:
 -----------

@@ -10,7 +10,7 @@ Main success scenario:
 ----------------------
 1. User open Alerts demo page
 2. User click on Link color sub-menu
-3. User see 4 alerts with types: success, info, warning, danger and each alert have clickable link with class = 'alert alert-success ng-star-inserte(info warning)
+3. User see 4 alerts with types: success, info, warning, danger and each alert have clickable link with class alert-link
 
 Variations:
 -----------
