@@ -230,7 +230,7 @@ describe('Component: Tabs', () => {
 
     expect(context._deselect).toHaveBeenCalled();
     expect(context._select).toHaveBeenCalledWith(
-      jasmine.objectContaining({
+      expect.objectContaining({
         heading: 'tab1'
       })
     );
@@ -245,7 +245,7 @@ describe('Component: Tabs', () => {
     fixture.detectChanges();
 
     expect(context._removed).toHaveBeenCalledWith(
-      jasmine.objectContaining({
+      expect.objectContaining({
         heading: 'tab3'
       })
     );
