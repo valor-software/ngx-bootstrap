@@ -33,8 +33,7 @@ const controls: TimepickerComponentState = {
   showSpinners: false,
   showMeridian: true,
   showSeconds: true,
-  meridians: ['AM', 'PM'],
-  useUtc: false
+  meridians: ['AM', 'PM']
 };
 
 function testTime(hours?: number, minutes?: number, seconds?: number): Date {

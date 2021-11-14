@@ -1,9 +1,3 @@
-<timepicker [(ngModel)]="myTime" [useUtc]="useUtc"></timepicker>
-
-<div class="row my-3">
-  <div class="col-xs-6 col-6 col-md-4">
-    <button type="button" class="btn btn-info" (click)="useUtc = !useUtc">useUtc: {{useUtc}}</button>
-  </div>
-</div>
+<timepicker [(ngModel)]="myTime"></timepicker>
 
 <pre class="alert alert-info">Time is: {{myTime}}</pre>

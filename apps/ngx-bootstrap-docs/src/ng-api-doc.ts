@@ -4315,12 +4315,6 @@ export const ngdoc: any = {
         "defaultValue": "true",
         "type": "boolean",
         "description": "<p>if true spinner arrows above and below the inputs will be shown</p>\n"
-      },
-      {
-        "name": "useUtc",
-        "defaultValue": "false",
-        "type": "boolean",
-        "description": "<p>if true displays utc time instead of client time</p>\n"
       }
     ],
     "outputs": [

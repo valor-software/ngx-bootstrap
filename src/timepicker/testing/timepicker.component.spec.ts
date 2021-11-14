@@ -1180,7 +1180,7 @@ describe('Component: TimepickerComponent', () => {
 
     it('should show utc values instead of client values', () => {
       const time = testTime(12, 0, 0);
-      component.useUtc = true;
+      component.config.useUtc = true;
       component.writeValue(time);
       fixture.detectChanges();
       expect(inputHours.value).toBe(padNumber(time.getUTCHours()));
