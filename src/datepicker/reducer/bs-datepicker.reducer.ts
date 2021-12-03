@@ -92,7 +92,7 @@ export function bsDatepickerReducer(state: BsDatepickerState = initialDatepicker
 
       if (Array.isArray(state.selectedTime)) {
         const _time = state.selectedTime[0];
-        if (_time) {
+        if (newState.selectedDate && _time) {
           copyTime(newState.selectedDate, _time);
         }
       }
