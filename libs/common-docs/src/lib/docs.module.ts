@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NgxPageScrollModule } from 'ngx-page-scroll';
 import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 import { TabsModule } from 'ngx-bootstrap/tabs';
 
@@ -66,6 +65,7 @@ export { SidebarRoutesStructure } from './models/sidebar-routes.model';
 export { ComponentsPageComponent } from './common/components-page/components-page.component';
 export { ConstructionPageComponent } from './common/construction-page/construction-page.component';
 export { ThemesComponent } from './common/themes/themes.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -91,9 +91,9 @@ export { ThemesComponent } from './common/themes/themes.component';
     NgApiDocModule,
     ExamplesComponentModule,
     ApiSectionsComponentModule,
-    NgxPageScrollModule,
     TabsModule.forRoot(),
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
+    RouterModule
   ],
   exports: [
     SearchFilterPipe,
@@ -103,7 +103,6 @@ export { ThemesComponent } from './common/themes/themes.component';
     DemoSectionComponent,
     ExamplesComponentModule,
     ApiSectionsComponentModule,
-    NgxPageScrollModule,
     DocsSectionComponent,
     SearchInputComponent,
     TopMenuComponent

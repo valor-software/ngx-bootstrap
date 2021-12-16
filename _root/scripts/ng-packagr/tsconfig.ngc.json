@@ -1,6 +1,6 @@
 {
   "angularCompilerOptions": {
-    "enableIvy": false,
+    "compilationMode": "partial",
     "disableExpressionLowering": true,
     "annotateForClosureCompiler": true,
     "skipTemplateCodegen": true,

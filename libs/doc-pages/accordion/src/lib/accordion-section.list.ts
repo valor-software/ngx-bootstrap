@@ -21,7 +21,6 @@ import {
 import { DemoAccordionOpenedComponent } from './demos/opened/opened';
 import { DemoAccordionDynamicBodyComponent } from './demos/dynamic-body/dynamic-body';
 
-
 export const demoComponentContent: ContentSection[] = [
   {
     name: 'Overview',

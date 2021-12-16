@@ -42,16 +42,16 @@ export class AddNavComponent implements OnChanges, AfterViewChecked, AfterViewIn
   ){}
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes?.componentContent) {
-      this._componentContent = this.mapComponentContent(changes.componentContent.currentValue);
-      if (!changes?.componentContent.firstChange) {
+    if (changes?.["componentContent"]) {
+      this._componentContent = this.mapComponentContent(changes["componentContent"].currentValue);
+      if (!changes?.["componentContent"].firstChange) {
         this.setScrollAttributes();
       }
     }
   }
 
   mapComponentContent(component: ContentSection): IComponentContent {
-    const parentRoute: string = this.router.parseUrl(this.router.url).root.children.primary.segments[0].path;
+    const parentRoute: string = this.router.parseUrl(this.router.url).root.children["primary"].segments[0].path;
     return {
         name: component.tabName,
         parentRouteTitle: parentRoute,
@@ -64,8 +64,8 @@ export class AddNavComponent implements OnChanges, AfterViewChecked, AfterViewIn
 
   goToSection(event: Event): void {
     const item: HTMLElement = event.target as HTMLElement;
-    if (item.dataset.anchor) {
-      this.goToSectionWIthAnchor(item.dataset.anchor);
+    if (item.dataset["anchor"]) {
+      this.goToSectionWIthAnchor(item.dataset["anchor"]);
     }
   }
 

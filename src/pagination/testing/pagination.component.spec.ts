@@ -22,6 +22,10 @@ describe('Component: Pagination:', () => {
     fixture.detectChanges();
   });
 
+  afterAll(async () => {
+    await new Promise<void>(resolve => setTimeout(() => resolve(), 500)); // avoid jest open handle error
+  });
+
   it('checking of working with default values', () => {
     const listItems = element.querySelectorAll('li');
     const links = element.querySelectorAll('a');

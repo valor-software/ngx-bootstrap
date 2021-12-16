@@ -1,6 +1,7 @@
 import { getBoundingClientRect } from '../utils/getBoundingClientRect';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { resolve } from "@angular-devkit/core";
 
 @Component({
   selector: 'test-cmp',
@@ -65,6 +66,10 @@ describe('getBoundingClientRect', () => {
           borderRightWidth: "0px",
         } as CSSStyleDeclaration;
       }));
+  });
+
+  afterAll(async () => {
+    await new Promise<void>(resolve => setTimeout(() => resolve(), 500)); // avoid jest open handle error
   });
 
   it('calculates bounds rect correctly',
