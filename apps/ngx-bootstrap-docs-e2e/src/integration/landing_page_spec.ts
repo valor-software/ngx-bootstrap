@@ -19,7 +19,7 @@ describe('Landing Page testing suite', () => {
     });
 
     it('footer contains links to ng-team, contributors, MIT license, Creative Commons, original Bootstrap', () => {
-      const footerLinks = [
+      const footerLinks: string[] = [
         // landing.teamUrl,
         // landing.contributorsUrl,
         // landing.mitLicenseUrl,

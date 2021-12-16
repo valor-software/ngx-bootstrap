@@ -73,7 +73,7 @@ export class CarouselPo extends BaseComponent {
     cy.get(`${baseSelector} ${this.carouselClass} div`).eq(slideIndex).trigger('mouseenter');
   }
 
-  mouseLeave(baseSelector: string) {
+  override mouseLeave(baseSelector: string) {
     cy.get(`${baseSelector} ${this.carouselClass}`).trigger('mouseleave');
   }
 
