@@ -149,7 +149,7 @@ export class LinkedList<T> {
 
   pop(): T | undefined {
     if (this.length === 0) {
-      return;
+      return undefined;
     }
     const last = this.tail;
     this.remove(this.length - 1);
