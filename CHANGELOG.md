@@ -1,3 +1,12 @@
+# [8.0.0-RC.0](https://github.com/valor-software/ngx-bootstrap/compare/v7.1.2...v8.0.0-RC.0) (2021-12-16)
+
+
+### Features
+
+* **documentation:** Documentation UI update ([#6305](https://github.com/valor-software/ngx-bootstrap/issues/6305)) ([bd81f14](https://github.com/valor-software/ngx-bootstrap/commit/bd81f14ca80fbdd5a845f828496f2ebe1efa4981)), closes [#6364](https://github.com/valor-software/ngx-bootstrap/issues/6364)
+
+
+
 ## [7.1.2](https://github.com/valor-software/ngx-bootstrap/compare/v7.1.1...v7.1.2) (2021-09-24)
 
 
