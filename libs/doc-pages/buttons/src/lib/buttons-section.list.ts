@@ -9,7 +9,6 @@ import { DemoButtonsCustomCheckboxValueComponent } from './demos/custom-checkbox
 import { DemoButtonsRadioWithGroupComponent } from './demos/radio-with-group/radio-with-group';
 
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 
@@ -17,16 +16,9 @@ import { NgApiDocComponent } from '@ngx-bootstrap-doc/docs';
 
 export const demoComponentContent: ContentSection[] = [
   {
-    name: 'Usage',
-    anchor: 'usage',
-    outlet: DemoTopSectionComponent,
-    content: {
-      doc: require('!!raw-loader!./docs/usage.md')
-    }
-  },
-  {
-    name: 'Examples',
-    anchor: 'examples',
+    name: 'Overview',
+    anchor: 'overview',
+    tabName: 'overview',
     outlet: ExamplesComponent,
     content: [
       {
@@ -39,7 +31,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Checkbox',
         anchor: 'checkbox',
-        description: `<p>Checkbox-like buttons set with variable states</p>`,
+        description: `Checkbox-like buttons set with variable states`,
         component: require('!!raw-loader!./demos/checkbox/checkbox.ts'),
         html: require('!!raw-loader!./demos/checkbox/checkbox.html'),
         outlet: DemoButtonsCheckboxComponent
@@ -53,8 +45,8 @@ export const demoComponentContent: ContentSection[] = [
       },
       {
         title: 'Checkbox with Reactive Forms',
-        anchor: 'checkbox-reactiveforms"',
-        description: `<p>Checkbox buttons with ReactiveForms</p>`,
+        anchor: 'checkbox-reactiveforms',
+        description: `Checkbox buttons with ReactiveForms`,
         component: require('!!raw-loader!./demos/checkbox-reactiveforms/checkbox-reactiveforms.ts'),
         html: require('!!raw-loader!./demos/checkbox-reactiveforms/checkbox-reactiveforms.html'),
         outlet: DemoButtonsCheckboxReactiveFormsComponent
@@ -62,7 +54,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Radio with radio group',
         anchor: 'radio-button-with-group',
-        description: `<p>Radio buttons with checked/unchecked states. Radio buttons used together with a <code>btnRadioGroup</code> can be
+        description: `Radio buttons with checked/unchecked states. Radio buttons used together with a <code>btnRadioGroup</code> can be
 used in template driven and reactive forms.
 They follow the <a href="https://www.w3.org/TR/wai-aria-practices-1.1/#radiobutton">W3C WAI-AIRA design pattern for radio groups</a>.
 Meaning
@@ -72,18 +64,18 @@ Meaning
 <li>The role of the group is set to "radiogroup" and the aria-checked attributes are added according to the state</li>
 </ul>
 Individual buttons or the whole group can be marked as disabled.
-</p>`,
+`,
         component: require('!!raw-loader!./demos/radio-with-group/radio-with-group.ts'),
         html: require('!!raw-loader!./demos/radio-with-group/radio-with-group.html'),
         outlet: DemoButtonsRadioWithGroupComponent
       },
       {
         title: 'Radio without explicit group',
-        anchor: 'radio-button',
-        description: `<p> The second method to create a radio button group is to use the same <code>ngModel</code> binding with several buttons.
+        anchor: 'radio-button-explicit-group',
+        description: ` The second method to create a radio button group is to use the same <code>ngModel</code> binding with several buttons.
  This works only for template driven forms and is not generally advised. But there are use cases were this might be useful, e.g. in tables.
  In terms of accessibility the buttons in the group can not be selected with the arrow keys, but individually reached by using the tab key
- and then be toggled by using the space key. You can check out the demo below.</p>`,
+ and then be toggled by using the space key. You can check out the demo below.`,
         component: require('!!raw-loader!./demos/radio/radio.ts'),
         html: require('!!raw-loader!./demos/radio/radio.html'),
         outlet: DemoButtonsRadioComponent
@@ -98,9 +90,9 @@ Individual buttons or the whole group can be marked as disabled.
       {
         title: 'Radio with Reactive Forms',
         anchor: 'radio-reactiveforms',
-        description: `<p>Radio buttons with ReactiveForms. Example below shows how to use radio buttons with reactive
+        description: `Radio buttons with ReactiveForms. Example below shows how to use radio buttons with reactive
  forms. Please be aware that for reactive forms it's required to use <code>btnRadioGroup</code> directive along with
- <code>btnRadio</code>'s</p>`,
+ <code>btnRadio</code>'s`,
         component: require('!!raw-loader!./demos/radio-reactiveforms/radio-reactiveforms.ts'),
         html: require('!!raw-loader!./demos/radio-reactiveforms/radio-reactiveforms.html'),
         outlet: DemoButtonsRadioReactiveFormsComponent
@@ -115,9 +107,12 @@ Individual buttons or the whole group can be marked as disabled.
     ]
   },
   {
-    name: 'API Reference',
+    name: 'Installation',
     anchor: 'api-reference',
+    tabName: 'api',
     outlet: ApiSectionsComponent,
+    usage: require('!!raw-loader!./docs/usage.md'),
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> &#45;&#45;component <span class="pln">buttons</span>',
     content: [
       {
         title: 'ButtonCheckboxDirective',
@@ -133,6 +128,59 @@ Individual buttons or the whole group can be marked as disabled.
         title: 'ButtonRadioGroupDirective',
         anchor: 'button-radio-group-directive',
         outlet: NgApiDocComponent
+      }
+    ]
+  },
+  {
+    name: 'Examples',
+    anchor: 'examples',
+    tabName: 'examples',
+    outlet: ExamplesComponent,
+    content: [
+      {
+        title: 'Basic',
+        anchor: 'basic-ex',
+        outlet: DemoButtonsBasicComponent
+      },
+      {
+        title: 'Checkbox',
+        anchor: 'checkbox-ex',
+        outlet: DemoButtonsCheckboxComponent
+      },
+      {
+        title: 'Custom checkbox value',
+        anchor: 'custom-checkbox-value-ex',
+        outlet: DemoButtonsCustomCheckboxValueComponent
+      },
+      {
+        title: 'Checkbox with Reactive Forms',
+        anchor: 'checkbox-reactiveforms-ex',
+        outlet: DemoButtonsCheckboxReactiveFormsComponent
+      },
+      {
+        title: 'Radio with radio group',
+        anchor: 'radio-button-with-group-ex',
+        outlet: DemoButtonsRadioWithGroupComponent
+      },
+      {
+        title: 'Radio without explicit group',
+        anchor: 'radio-button-explicit-group-ex',
+        outlet: DemoButtonsRadioComponent
+      },
+      {
+        title: 'Uncheckable Radio',
+        anchor: 'uncheckable-radio-button-ex',
+        outlet: DemoButtonsUncheckableRadioComponent
+      },
+      {
+        title: 'Radio with Reactive Forms',
+        anchor: 'radio-reactiveforms-ex',
+        outlet: DemoButtonsRadioReactiveFormsComponent
+      },
+      {
+        title: 'Disabled Buttons',
+        anchor: 'disabled-buttons-ex',
+        outlet: DemoButtonsDisabledComponent
       }
     ]
   }

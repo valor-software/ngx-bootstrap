@@ -1,17 +1,17 @@
 <div class="section bd-example"><ng-content></ng-content></div>
 <div class="section">
   <div class="item">
-    <tabset>
-      <tab heading="template" *ngIf="html">
+    <tabset *ngIf="html || ts || spec || style">
+      <tab heading="template" [customClass]="'code-tab'" *ngIf="html">
         <pre class="prettyprint linenums lang-html">{{html}}</pre>
       </tab>
-      <tab heading="component" *ngIf="ts">
+      <tab heading="component" [customClass]="'code-tab'" *ngIf="ts">
         <pre class="prettyprint linenums lang-js">{{ts}}</pre>
       </tab>
-      <tab heading="tests" *ngIf="spec">
+      <tab heading="tests" [customClass]="'code-tab'" *ngIf="spec">
         <pre class="prettyprint linenums lang-js">{{spec}}</pre>
       </tab>
-      <tab heading="style" *ngIf="style">
+      <tab heading="style" [customClass]="'code-tab'" *ngIf="style">
         <pre class="prettyprint linenums lang-css">{{style}}</pre>
       </tab>
     </tabset>

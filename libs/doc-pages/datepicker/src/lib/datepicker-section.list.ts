@@ -35,7 +35,6 @@ import { DemoDatepickerTriggersCustomComponent } from './demos/triggers-custom/t
 import { DemoDatepickerTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
 import { DemoDatepickerValueChangeEventComponent } from './demos/value-change-event/value-change-event';
 import { DemoDatePickerVisibilityEventsComponent } from './demos/visibility-events/visibility-events';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 
 import {
@@ -56,16 +55,9 @@ import { DemoDatepickerWithTimepickerComponent } from './demos/with-timepicker/w
 
 export const demoComponentContent: ContentSection[] = [
   {
-    name: 'Usage',
-    anchor: 'usage',
-    outlet: DemoTopSectionComponent,
-    content: {
-      doc: require('!!raw-loader!./docs/usage.md')
-    }
-  },
-  {
-    name: 'Examples',
-    anchor: 'examples',
+    name: 'Overview',
+    anchor: 'overview',
+    tabName: 'overview',
     outlet: ExamplesComponent,
     content: [
       {
@@ -473,8 +465,11 @@ export const demoComponentContent: ContentSection[] = [
     ]
   },
   {
-    name: 'API Reference',
+    name: 'Installation',
     anchor: 'api-reference',
+    tabName: 'api',
+    usage: require('!!raw-loader!./docs/usage.md'),
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">datepicker</span>',
     outlet: ApiSectionsComponent,
     content: [
       {
@@ -498,42 +493,223 @@ export const demoComponentContent: ContentSection[] = [
         outlet: NgApiDocConfigComponent
       }
     ]
-  }
-];
-
-export const demoComponentContentOld: ContentSection[] = [
-  {
-    name: 'Usage',
-    anchor: 'usage',
-    outlet: DemoTopSectionComponent,
-    content: {
-      doc: require('!!raw-loader!./docs/usageOld.md')
-    }
   },
   {
     name: 'Examples',
-    anchor: 'examples-old',
+    anchor: 'examples',
+    tabName: 'examples',
     outlet: ExamplesComponent,
     content: [
       {
         title: 'Basic',
-        anchor: 'basic-old',
-        component: require('!!raw-loader!./demos/datepicker-demo.component.ts'),
-        html: require('!!raw-loader!./demos/datepicker-demo.component.html'),
-        outlet: DatepickerDemoComponent
-      }
-    ]
-  },
-  {
-    name: 'API Reference',
-    anchor: 'api-reference',
-    outlet: ApiSectionsComponent,
-    content: [
+        anchor: 'basic-ex',
+        outlet: DemoDatepickerBasicComponent
+      },
       {
-        title: 'DatePickerComponent',
-        anchor: 'datepicker-component',
-        outlet: NgApiDocComponent
-      }
+        title: 'Inline',
+        anchor: 'inline-datepicker-ex',
+        outlet: DemoDatepickerInlineComponent
+      },
+      {
+        title: 'With animation',
+        anchor: 'animated-ex',
+        outlet: DemoDatePickerAnimatedComponent
+      },
+      {
+        title: 'Adaptive position',
+        anchor: 'adaptive-position-ex',
+        outlet: DemoDatePickerAdaptivePositionComponent
+      },
+      {
+        title: 'Initial state',
+        anchor: 'date-initial-state-ex',
+        outlet: DemoDatepickerDateInitialStateComponent
+      },
+      {
+        title: 'Custom date format',
+        anchor: 'format-ex',
+        outlet: DemoDatePickerCustomFormatComponent
+      },
+      {
+        title: 'Hide on scroll',
+        anchor: 'hide-on-scroll-ex',
+        outlet: DemoDatepickerHideOnScrollComponent
+      },
+      {
+        title: 'Themes',
+        anchor: 'themes-ex',
+        outlet: DemoDatepickerColorThemingComponent
+      },
+      {
+        title: 'Locales',
+        anchor: 'locales-ex',
+        outlet: DemoDatepickerChangeLocaleComponent
+      },
+      {
+        title: 'Min-max',
+        anchor: 'min-max-ex',
+        outlet: DemoDatepickerMinMaxComponent
+      },
+      {
+        title: 'Days disabled',
+        anchor: 'days-disabled-ex',
+        outlet: DemoDatepickerDaysDisabledComponent
+      },
+      {
+        title: 'Dates disabled',
+        anchor: 'dates-disabled-ex',
+        outlet: DemoDatepickerDatesDisabledComponent
+      },
+      {
+        title: 'Dates enabled',
+        anchor: 'dates-enabled-ex',
+        outlet: DemoDatepickerDatesEnabledComponent
+      },
+      {
+        title: 'Display one month',
+        anchor: 'display-one-month-ex',
+        outlet: DemoDateRangePickerDisplayOneMonth
+      },
+      {
+        title: 'Min-mode',
+        anchor: 'min-mode-ex',
+        outlet: DemoDatepickerMinModeComponent
+      },
+      {
+        title: 'Disabled',
+        anchor: 'disabled-datepicker-ex',
+        outlet: DemoDatepickerDisabledComponent
+      },
+      {
+        title: 'Custom today class',
+        anchor: 'today-class-ex',
+        outlet: DemoDatepickerCustomTodayClassComponent
+      },
+      {
+        title: 'Forms',
+        anchor: 'forms-ex',
+        outlet: DemoDatepickerFormsComponent
+      },
+      {
+        title: 'Reactive forms',
+        anchor: 'reactive-forms-ex',
+        outlet: DemoDatepickerReactiveFormsComponent
+      },
+      {
+        title: 'Return focus to input',
+        anchor: 'return-focus-to-input-ex',
+        outlet: DemoDatePickerReturnFocusToInputComponent
+      },
+      {
+        title: 'Manual triggering',
+        anchor: 'triggers-manual-ex',
+        outlet: DemoDatepickerTriggersManualComponent
+      },
+      {
+        title: 'Placement',
+        anchor: 'placement-ex',
+        outlet: DemoDatepickerPlacementComponent
+      },
+      {
+        title: 'Config method',
+        anchor: 'config-method-ex',
+        outlet: DemoDatepickerConfigMethodComponent
+      },
+      {
+        title: 'Visibility Events',
+        anchor: 'visibility-events-ex',
+        outlet: DemoDatePickerVisibilityEventsComponent
+      },
+      {
+        title: 'Value change event',
+        anchor: 'value-change-event-ex',
+        outlet: DemoDatepickerValueChangeEventComponent
+      },
+      {
+        title: 'Config properties',
+        anchor: 'config-object-ex',
+        outlet: DemoDatePickerConfigObjectComponent
+      },
+      {
+        title: 'Select dates from other month',
+        anchor: 'select-dates-from-other-month-ex',
+        outlet: DemoDatePickerSelectDatesFromOtherMonthsComponent
+      },
+      {
+        title: 'Select week',
+        anchor: 'select-week-ex',
+        outlet: DemoDatePickerSelectWeekComponent
+      },
+      {
+        title: 'Select week range',
+        anchor: 'select-week-range-ex',
+        outlet: DemoDatePickerSelectWeekRangeComponent
+      },
+      {
+        title: 'Outside click',
+        anchor: 'outside-click-ex',
+        outlet: DemoDatepickerOutsideClickComponent
+      },
+      {
+        title: 'Trigger by isOpen property',
+        anchor: 'trigger-by-isopen-property-ex',
+        outlet: DemoDatepickerByIsOpenPropComponent
+      },
+      {
+        title: 'Custom triggers',
+        anchor: 'triggers-custom-ex',
+        outlet: DemoDatepickerTriggersCustomComponent
+      },
+      {
+        title: 'Date custom classes',
+        anchor: 'date-custom-classes-ex',
+        outlet: DemoDatepickerDateCustomClassesComponent
+      },
+      {
+        title: 'Tooltip for selected dates',
+        anchor: 'tooltip-for-selected-dates-ex',
+        outlet: DemoDatePickerTooltipToSelectedDates
+      },
+      {
+        title: 'Quick select ranges',
+        anchor: 'quick-select-ranges-ex',
+        outlet: DemoDatePickerQuickSelectRangesComponent
+      },
+      {
+        title: 'Prevent change to next month',
+        anchor: 'prevent-change-to-next-month-ex',
+        outlet: DemoDatepickerPreventChangeToNextMonthComponent
+      },
+      {
+        title: 'Previous month in Daterangepicker',
+        anchor: 'daterangepicker-previous-month-ex',
+        outlet: DemoDateRangePickerShowPreviousMonth
+      },
+      {
+        title: 'Show Today Button',
+        anchor: 'datepicker-show-today-button-ex',
+        outlet: DemoDatepickerTodayButtonComponent,
+      },
+      {
+        title: 'Show Clear Button',
+        anchor: 'datepicker-show-clear-button-ex',
+        outlet: DemoDatepickerClearButtonComponent
+      },
+      {
+        title: 'Start view',
+        anchor: 'start-view-ex',
+        outlet: DemoDatepickerStartViewComponent
+      },
+      {
+        title: 'Max Date Range in Daterangepicker',
+        anchor: 'daterangepicker-max-date-range-ex',
+        outlet: DemoDateRangePickerMaxDateRangeComponent
+      },
+      {
+        title: 'With timepicker',
+        anchor: 'with-timepicker-ex',
+        outlet: DemoDatepickerWithTimepickerComponent
+      },
     ]
   }
 ];

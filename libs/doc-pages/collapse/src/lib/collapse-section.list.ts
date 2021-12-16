@@ -4,7 +4,6 @@ import { CollapseDemoComponent } from './demos/basic/basic';
 import { CollapseDemoEventsComponent } from './demos/events/events';
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
 import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { InlineDisplayDemoComponent } from './demos/inline-display/inline-display';
 import { ToggleManualDemoComponent } from './demos/toggle-manual/toggle-manual';
@@ -13,16 +12,9 @@ import { NgApiDocComponent } from '@ngx-bootstrap-doc/docs';
 
 export const demoComponentContent: ContentSection[] = [
   {
-    name: 'Usage',
-    anchor: 'usage',
-    outlet: DemoTopSectionComponent,
-    content: {
-      doc: require('!!raw-loader!./docs/usage.md')
-    }
-  },
-  {
-    name: 'Examples',
-    anchor: 'examples',
+    name: 'Overview',
+    anchor: 'overview',
+    tabName: 'overview',
     outlet: ExamplesComponent,
     content: [
       {
@@ -73,14 +65,50 @@ export const demoComponentContent: ContentSection[] = [
     ]
   },
   {
-    name: 'API Reference',
+    name: 'Installation',
     anchor: 'api-reference',
+    tabName: 'api',
+    usage: require('!!raw-loader!./docs/usage.md'),
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">collapse</span>',
     outlet: ApiSectionsComponent,
     content: [
       {
         title: 'CollapseDirective',
         anchor: 'collapse-directive',
         outlet: NgApiDocComponent
+      }
+    ]
+  },
+  {
+    name: 'Examples',
+    anchor: 'examples',
+    tabName: 'examples',
+    outlet: ExamplesComponent,
+    content: [
+      {
+        title: 'Basic',
+        anchor: 'basic-ex',
+        outlet: CollapseDemoComponent
+      },
+      {
+        title: 'With animation',
+        anchor: 'animated-ex',
+        outlet: CollapseDemoAnimatedComponent
+      },
+      {
+        title: 'Events',
+        anchor: 'events-ex',
+        outlet: CollapseDemoEventsComponent
+      },
+      {
+        title: 'Manual toggle',
+        anchor: 'manual-toggle-ex',
+        outlet: ToggleManualDemoComponent
+      },
+      {
+        title: 'Inline display',
+        anchor: 'inline-display-ex',
+        outlet: InlineDisplayDemoComponent
       }
     ]
   }

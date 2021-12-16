@@ -15,7 +15,7 @@ declare const ga: any;
  * unless the app is deployed on ng-bootstrap.github.io. This avoids sending
  * events and page views during development.
  */
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class Analytics {
   private enabled: boolean;
   private location: Location;

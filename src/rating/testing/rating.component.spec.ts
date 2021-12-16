@@ -36,6 +36,10 @@ describe('Component: Rating. Init:', () => {
     fixture.detectChanges();
   });
 
+  afterAll(async () => {
+    await new Promise<void>(resolve => setTimeout(() => resolve(), 500)); // avoid jest open handle error
+  });
+
   it('checking of working with default values', () => {
     const items = element.querySelectorAll('.sr-only');
 

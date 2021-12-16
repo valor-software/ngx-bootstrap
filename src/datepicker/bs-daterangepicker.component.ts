@@ -160,42 +160,42 @@ export class BsDaterangepickerDirective
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.bsConfig) {
-      if (changes.bsConfig.currentValue?.initCurrentTime && changes.bsConfig.currentValue?.initCurrentTime !== changes.bsConfig.previousValue?.initCurrentTime && this._bsValue) {
+    if (changes["bsConfig"]) {
+      if (changes["bsConfig"].currentValue?.initCurrentTime && changes["bsConfig"].currentValue?.initCurrentTime !== changes["bsConfig"].previousValue?.initCurrentTime && this._bsValue) {
         this._bsValue = setDateRangesCurrentTimeOnDateSelect(this._bsValue);
         this.bsValueChange.emit(this._bsValue);
       }
 
       this.setConfig();
-      this._rangeInputFormat$.next(changes.bsConfig.currentValue && changes.bsConfig.currentValue.rangeInputFormat);
+      this._rangeInputFormat$.next(changes["bsConfig"].currentValue && changes["bsConfig"].currentValue.rangeInputFormat);
     }
 
 
     if (!this._datepickerRef || !this._datepickerRef.instance) {
       return;
     }
-    if (changes.minDate) {
+    if (changes["minDate"]) {
       this._datepickerRef.instance.minDate = this.minDate;
     }
-    if (changes.maxDate) {
+    if (changes["maxDate"]) {
       this._datepickerRef.instance.maxDate = this.maxDate;
     }
-    if (changes.datesDisabled) {
+    if (changes["datesDisabled"]) {
       this._datepickerRef.instance.datesDisabled = this.datesDisabled;
     }
-    if (changes.datesEnabled) {
+    if (changes["datesEnabled"]) {
       this._datepickerRef.instance.datesEnabled = this.datesEnabled;
     }
-    if (changes.daysDisabled) {
+    if (changes["daysDisabled"]) {
       this._datepickerRef.instance.daysDisabled = this.daysDisabled;
     }
-    if (changes.isDisabled) {
+    if (changes["isDisabled"]) {
       if (this._elementRef?.nativeElement) {
         this._elementRef.nativeElement.setAttribute('readonly', this.isDisabled);
       }
       this._datepickerRef.instance.isDisabled = this.isDisabled;
     }
-    if (changes.dateCustomClasses) {
+    if (changes["dateCustomClasses"]) {
       this._datepickerRef.instance.dateCustomClasses = this.dateCustomClasses;
     }
   }
@@ -307,7 +307,7 @@ export class BsDaterangepickerDirective
     this._datepicker.dispose();
     this.isOpen$.next(false);
     if (this.isDestroy$) {
-      this.isDestroy$.next();
+      this.isDestroy$.next(null);
       this.isDestroy$.complete();
     }
   }

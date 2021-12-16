@@ -1,36 +1,7 @@
 {
   "version": 1,
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
     "defaultCollection": "@nrwl/angular"
-  },
-  "schematics": {
-    "@nrwl/angular": {
-      "application": {
-        "linter": "eslint"
-      },
-      "library": {
-        "linter": "eslint"
-      },
-      "storybook-configuration": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/angular:application": {
-      "style": "scss",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/angular:library": {
-      "style": "scss",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "strict": true
-    },
-    "@nrwl/angular:component": {
-      "style": "scss"
-    }
   },
   "defaultProject": "ngx-bootstrap-docs",
   "projects": {
@@ -85,14 +56,24 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "outputPath": "dist/apps/ngx-bootstrap",
+              "index": "apps/ngx-bootstrap-docs/src/index.html",
+              "main": "apps/ngx-bootstrap-docs/src/main.ts",
+              "tsConfig": "apps/ngx-bootstrap-docs/tsconfig.app.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ],
+          "implicitDependencies": ["ngx-bootstrap"]
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "baseHref": "/ngx-bootstrap/",
             "browserTarget": "ngx-bootstrap-docs:build"
           },
           "configurations": {
@@ -115,16 +96,6 @@
               "apps/ngx-bootstrap-docs/src/**/*.ts",
               "apps/ngx-bootstrap-docs/src/**/*.html"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/ngx-bootstrap-docs"
-          ],
-          "options": {
-            "jestConfig": "apps/ngx-bootstrap-docs/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
@@ -179,7 +150,13 @@
             "production": {
               "tsConfig": "src/accordion/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -200,7 +177,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "implicitDependencies": ["utils", "collapse"]
     },
     "alert": {
       "projectType": "library",
@@ -221,7 +199,13 @@
             "production": {
               "tsConfig": "src/alert/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -242,7 +226,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "implicitDependencies": ["utils"]
     },
     "buttons": {
       "projectType": "library",
@@ -305,7 +290,13 @@
             "production": {
               "tsConfig": "src/carousel/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -326,7 +317,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "implicitDependencies": ["utils"]
     },
     "chronos": {
       "projectType": "library",
@@ -431,7 +423,13 @@
             "production": {
               "tsConfig": "src/component-loader/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -452,7 +450,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "implicitDependencies": ["utils", "positioning"]
     },
     "datepicker": {
       "projectType": "library",
@@ -473,7 +472,13 @@
             "production": {
               "tsConfig": "src/datepicker/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -494,7 +499,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "implicitDependencies": ["mini-ngrx", "chronos", "tooltip"]
     },
     "dropdown": {
       "projectType": "library",
@@ -515,7 +521,13 @@
             "production": {
               "tsConfig": "src/dropdown/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -536,7 +548,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "implicitDependencies": ["positioning", "component-loader"]
     },
     "focus-trap": {
       "projectType": "library",
@@ -599,7 +612,13 @@
             "production": {
               "tsConfig": "src/locale/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -620,7 +639,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "implicitDependencies": ["chronos"]
     },
     "mini-ngrx": {
       "projectType": "library",
@@ -683,7 +703,13 @@
             "production": {
               "tsConfig": "src/modal/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -704,7 +730,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "implicitDependencies": ["positioning", "focus-trap", "component-loader"]
     },
     "pagination": {
       "projectType": "library",
@@ -767,7 +794,13 @@
             "production": {
               "tsConfig": "src/popover/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -788,7 +821,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "implicitDependencies": ["positioning", "component-loader"]
     },
     "positioning": {
       "projectType": "library",
@@ -809,7 +843,13 @@
             "production": {
               "tsConfig": "src/positioning/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -830,7 +870,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "implicitDependencies": ["utils"]
     },
     "progressbar": {
       "projectType": "library",
@@ -851,7 +892,13 @@
             "production": {
               "tsConfig": "src/progressbar/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -872,7 +919,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "implicitDependencies": ["utils"]
     },
     "rating": {
       "projectType": "library",
@@ -1019,7 +1067,13 @@
             "production": {
               "tsConfig": "src/timepicker/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1040,7 +1094,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "implicitDependencies": ["mini-ngrx"]
     },
     "tooltip": {
       "projectType": "library",
@@ -1061,7 +1116,13 @@
             "production": {
               "tsConfig": "src/tooltip/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1082,7 +1143,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "implicitDependencies": ["positioning", "component-loader"]
     },
     "typeahead": {
       "projectType": "library",
@@ -1103,7 +1165,13 @@
             "production": {
               "tsConfig": "src/typeahead/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1124,7 +1192,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "implicitDependencies": ["positioning", "component-loader"]
     },
     "utils": {
       "projectType": "library",
@@ -1188,7 +1257,13 @@
           },
           "configurations": {
             "production": {}
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "ng-build": {
           "builder": "@nrwl/angular:package",
@@ -1209,16 +1284,6 @@
               "src/root/**/*.ts",
               "src/root/**/*.html"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/src/root"
-          ],
-          "options": {
-            "jestConfig": "src/root/jest.config.js",
-            "passWithNoTests": true
           }
         },
         "build-sass": {
@@ -1259,7 +1324,29 @@
             "command": "webpack-bundle-analyzer dist/apps/ngx-bootstrap-docs/stats.json"
           }
         }
-      }
+      },
+      "implicitDependencies": [
+        "accordion",
+        "alert",
+        "buttons",
+        "carousel",
+        "chronos",
+        "collapse",
+        "datepicker",
+        "dropdown",
+        "focus-trap",
+        "locale",
+        "modal",
+        "pagination",
+        "popover",
+        "progressbar",
+        "rating",
+        "sortable",
+        "tabs",
+        "timepicker",
+        "tooltip",
+        "typeahead",
+        "schematics"]
     },
     "schematics": {
       "root": "src/schematics/src",
@@ -1272,16 +1359,6 @@
             "lintFilePatterns": [
               "src/schematics/**/*.ts"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/schematics"
-          ],
-          "options": {
-            "jestConfig": "src/schematics/jest.config.js",
-            "passWithNoTests": true
           }
         },
         "build": {
@@ -1322,7 +1399,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/accordion/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1332,18 +1415,9 @@
               "libs/doc-pages/accordion/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/accordion"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/accordion/jest.config.js",
-            "passWithNoTests": true
-          }
         }
-      }
+      },
+      "implicitDependencies": ["accordion", "common-docs", "collapse"]
     },
     "common-docs": {
       "projectType": "library",
@@ -1361,7 +1435,13 @@
             "production": {
               "tsConfig": "libs/common-docs/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1371,18 +1451,9 @@
               "libs/common-docs/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/common-docs"
-          ],
-          "options": {
-            "jestConfig": "libs/common-docs/jest.config.js",
-            "passWithNoTests": true
-          }
         }
-      }
+      },
+      "implicitDependencies": ["utils", "tabs"]
     },
     "doc-pages-alerts": {
       "projectType": "library",
@@ -1400,7 +1471,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/alerts/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1410,18 +1487,9 @@
               "libs/doc-pages/alerts/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/alerts"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/alerts/jest.config.js",
-            "passWithNoTests": true
-          }
         }
-      }
+      },
+      "implicitDependencies": ["alert"]
     },
     "doc-pages-buttons": {
       "projectType": "library",
@@ -1439,7 +1507,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/buttons/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1449,18 +1523,9 @@
               "libs/doc-pages/buttons/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/buttons"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/buttons/jest.config.js",
-            "passWithNoTests": true
-          }
         }
-      }
+      },
+      "implicitDependencies": ["buttons"]
     },
     "doc-pages-carousel": {
       "projectType": "library",
@@ -1478,7 +1543,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/carousel/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1488,18 +1559,9 @@
               "libs/doc-pages/carousel/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/carousel"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/carousel/jest.config.js",
-            "passWithNoTests": true
-          }
         }
-      }
+      },
+      "implicitDependencies": ["carousel"]
     },
     "doc-pages-collapse": {
       "projectType": "library",
@@ -1517,7 +1579,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/collapse/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1527,18 +1595,9 @@
               "libs/doc-pages/collapse/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/collapse"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/collapse/jest.config.js",
-            "passWithNoTests": true
-          }
         }
-      }
+      },
+      "implicitDependencies": ["collapse"]
     },
     "doc-pages-datepicker": {
       "projectType": "library",
@@ -1556,7 +1615,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/datepicker/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1566,18 +1631,9 @@
               "libs/doc-pages/datepicker/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/datepicker"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/datepicker/jest.config.js",
-            "passWithNoTests": true
-          }
         }
-      }
+      },
+      "implicitDependencies": ["datepicker", "chronos", "mini-ngrx", "tooltip", "positioning", "component-loader", "locale"]
     },
     "doc-pages-dropdown": {
       "projectType": "library",
@@ -1595,7 +1651,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/dropdown/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1605,18 +1667,9 @@
               "libs/doc-pages/dropdown/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/dropdown"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/dropdown/jest.config.js",
-            "passWithNoTests": true
-          }
         }
-      }
+      },
+      "implicitDependencies": ["dropdown", "positioning", "component-loader"]
     },
     "doc-pages-modal": {
       "projectType": "library",
@@ -1634,7 +1687,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/modal/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1644,18 +1703,9 @@
               "libs/doc-pages/modal/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/modal"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/modal/jest.config.js",
-            "passWithNoTests": true
-          }
         }
-      }
+      },
+      "implicitDependencies": ["modal", "positioning", "component-loader", "focus-trap", "popover", "tooltip"]
     },
     "doc-pages-pagination": {
       "projectType": "library",
@@ -1673,7 +1723,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/pagination/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1683,18 +1739,9 @@
               "libs/doc-pages/pagination/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/pagination"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/pagination/jest.config.js",
-            "passWithNoTests": true
-          }
         }
-      }
+      },
+      "implicitDependencies": ["pagination"]
     },
     "doc-pages-popover": {
       "projectType": "library",
@@ -1712,7 +1759,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/popover/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1722,18 +1775,9 @@
               "libs/doc-pages/popover/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/popover"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/popover/jest.config.js",
-            "passWithNoTests": true
-          }
         }
-      }
+      },
+      "implicitDependencies": ["popover", "positioning", "component-loader"]
     },
     "doc-pages-progressbar": {
       "projectType": "library",
@@ -1751,7 +1795,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/progressbar/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1761,18 +1811,9 @@
               "libs/doc-pages/progressbar/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/progressbar"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/progressbar/jest.config.js",
-            "passWithNoTests": true
-          }
         }
-      }
+      },
+      "implicitDependencies": ["progressbar"]
     },
     "doc-pages-rating": {
       "projectType": "library",
@@ -1790,7 +1831,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/rating/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1800,18 +1847,9 @@
               "libs/doc-pages/rating/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/rating"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/rating/jest.config.js",
-            "passWithNoTests": true
-          }
         }
-      }
+      },
+      "implicitDependencies": ["rating"]
     },
     "doc-pages-sortable": {
       "projectType": "library",
@@ -1829,7 +1867,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/sortable/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1839,18 +1883,9 @@
               "libs/doc-pages/sortable/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/sortable"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/sortable/jest.config.js",
-            "passWithNoTests": true
-          }
         }
-      }
+      },
+      "implicitDependencies": ["sortable"]
     },
     "doc-pages-tabs": {
       "projectType": "library",
@@ -1868,7 +1903,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/tabs/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1878,18 +1919,9 @@
               "libs/doc-pages/tabs/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/tabs"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/tabs/jest.config.js",
-            "passWithNoTests": true
-          }
         }
-      }
+      },
+      "implicitDependencies": ["tabs"]
     },
     "doc-pages-timepicker": {
       "projectType": "library",
@@ -1907,7 +1939,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/timepicker/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1917,18 +1955,9 @@
               "libs/doc-pages/timepicker/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/timepicker"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/timepicker/jest.config.js",
-            "passWithNoTests": true
-          }
         }
-      }
+      },
+      "implicitDependencies": ["timepicker", "mini-ngrx"]
     },
     "doc-pages-tooltip": {
       "projectType": "library",
@@ -1946,7 +1975,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/tooltip/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1956,18 +1991,9 @@
               "libs/doc-pages/tooltip/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/tooltip"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/tooltip/jest.config.js",
-            "passWithNoTests": true
-          }
         }
-      }
+      },
+      "implicitDependencies": ["tooltip", "positioning", "component-loader"]
     },
     "doc-pages-typeahead": {
       "projectType": "library",
@@ -1985,7 +2011,13 @@
             "production": {
               "tsConfig": "libs/doc-pages/typeahead/tsconfig.lib.prod.json"
             }
-          }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -1995,18 +2027,9 @@
               "libs/doc-pages/typeahead/src/**/*.html"
             ]
           }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/typeahead"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/typeahead/jest.config.js",
-            "passWithNoTests": true
-          }
         }
-      }
+      },
+      "implicitDependencies": ["typeahead", "positioning", "component-loader"]
     }
   }
 }

@@ -1,8 +1,10 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { BaseComponent } from './base.component';
 import * as globalLocales from 'ngx-bootstrap/locale';
+import * as moment from 'moment';
 
 export class DatepickerPo extends BaseComponent {
-  pageUrl = '#/datepicker';
+  pageUrl = '#/components/datepicker';
   pageTitle = 'Datepicker';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/datepicker';
 
@@ -110,9 +112,9 @@ export class DatepickerPo extends BaseComponent {
   }
 
   isQuickSelectLastDaysApplied(datepicker: string, countOfBtn: number, baseSelector = 'body') {
-    const todayDate = Cypress.moment().format('L');
-    const previousDate = Cypress.moment().subtract(7, 'days').calendar();
-    const nextDate = Cypress.moment().add(7, 'days').calendar();
+    const todayDate = moment().format('L');
+    const previousDate = moment().subtract(7, 'days').calendar();
+    const nextDate = moment().add(7, 'days').calendar();
 
     this.clickOnQuickRangeBtn(countOfBtn);
     cy.get(`${baseSelector} ${datepicker} ${this.daterangepickerInput}`)
@@ -379,9 +381,11 @@ export class DatepickerPo extends BaseComponent {
     const appropriateContainer =
       this.getAppropriateContainer(baseSelector === 'body' ? 'datepicker' : 'datepickerInline');
 
-    if (itemText === undefined) {
+    if (itemText === undefined && typeof itemIndex === 'number') {
       cy.get(`${baseSelector}>${appropriateContainer} ${bodyView} td`).eq(itemIndex).click();
-    } else {
+      return;
+    }
+    if (typeof itemText === 'string') {
       cy.get(`${baseSelector}>${appropriateContainer} ${bodyView}`)
         .find(`td`)
         .not('.week')
@@ -392,11 +396,13 @@ export class DatepickerPo extends BaseComponent {
   }
 
   clickOnDatepickerWeekItem(itemIndex?: number, itemText?: string) {
-    if (itemText === undefined) {
+    if (itemText === undefined && typeof itemIndex === 'number') {
       cy.get(`body>${this.datepickerContainer} .week`)
         .eq(itemIndex)
         .click();
-    } else {
+      return;
+    }
+    if (typeof itemText === 'string'){
       cy.get(`body>${this.datepickerContainer} .week`)
         .contains(itemText)
         .click();
@@ -410,7 +416,7 @@ export class DatepickerPo extends BaseComponent {
                                   itemText?: string) {
     const bodyView = this.getBodyParams(mode).bodyView;
 
-    if (itemText === undefined) {
+    if (itemText === undefined && typeof itemIndex === 'number') {
       cy.get(`${baseSelector}>${this.daterangepickerContainer} ${bodyView}`)
         .eq(pickerIndex)
         .find(`td`)
@@ -418,7 +424,10 @@ export class DatepickerPo extends BaseComponent {
         .find('span')
         .not('[class*="is-other-month"]')
         .eq(itemIndex).click();
-    } else {
+      return;
+    }
+
+    if (typeof itemText === 'string') {
       cy.get(`${baseSelector}>${this.daterangepickerContainer} ${bodyView}`)
         .eq(pickerIndex)
         .find(`td`)
@@ -468,7 +477,7 @@ export class DatepickerPo extends BaseComponent {
   }
 
   isMonthLocaleAppropriate(expectedLocale: string, pickerType = 'datepicker', baseSelector = 'body') {
-    let actualMonthArr;
+    let actualMonthArr: typeof globalLocales.hiLocale.months;
     switch (expectedLocale) {
       case 'hi' :
         actualMonthArr = globalLocales.hiLocale.months;
@@ -499,7 +508,7 @@ export class DatepickerPo extends BaseComponent {
     }
 
     if (actualMonthArr) {
-      actualMonthArr = Array.isArray(actualMonthArr) ? actualMonthArr : actualMonthArr.standalone;
+      actualMonthArr = Array.isArray(actualMonthArr) ? actualMonthArr : (actualMonthArr as any).standalone;
     }
 
     cy.get(`${baseSelector}>${
@@ -507,7 +516,7 @@ export class DatepickerPo extends BaseComponent {
       .eq(0)
       .each((month, monthIndex) => {
       expect(month.text().toLowerCase()).to.contains(
-        actualMonthArr ? actualMonthArr[monthIndex].toLowerCase() :
+        actualMonthArr ? (actualMonthArr as any)[monthIndex].toLowerCase() :
           new Date(2017, monthIndex)
             .toLocaleDateString(expectedLocale, { month: 'long' })
             .toLowerCase());
@@ -523,7 +532,7 @@ export class DatepickerPo extends BaseComponent {
         Object.values(globalLocales).forEach(globalLocale => {
           if (globalLocale === expectedLocale) {
             expect(weekday.text().toLowerCase())
-              .to.contains(globalLocale.weekdaysShort[globalLocale.week.dow + weekdayIndex]);
+              .to.contains((globalLocale?.weekdaysShort as any)[(globalLocale?.week?.dow ?? 0) + weekdayIndex]);
           }
         });
       });
@@ -639,9 +648,13 @@ export class DatepickerPo extends BaseComponent {
         indexInput ? index = indexInput : index = 0;
         cy.get('@Datepicker').then(datepicker => {
           cy.get('@InputsArray').eq(index).then(input => {
+            // @ts-ignore
             expect(input.offset().left).to.lessThan(datepicker.offset().left);
+            // @ts-ignore
             expect(input.offset().top).to.greaterThan(datepicker.offset().top);
+            // @ts-ignore
             expect(Math.round((input.offset().top + (input.height() + inputMarginHeight) / 2) / 10) * 10)
+              // @ts-ignore
               .to.equal(Math.round((datepicker.offset().top + datepicker.height() / 2) / 10) * 10);
           });
         });
@@ -651,9 +664,13 @@ export class DatepickerPo extends BaseComponent {
         indexInput ? index = indexInput : index = 1;
         cy.get('@Datepicker').then(datepicker => {
           cy.get('@InputsArray').eq(index).then(input => {
+            // @ts-ignore
             expect(input.offset().left).to.greaterThan(datepicker.offset().left);
+            // @ts-ignore
             expect(input.offset().top).to.greaterThan(datepicker.offset().top);
+            // @ts-ignore
             expect(Math.round((input.offset().left + (input.width() + inputMarginWidth) / 2) / 10) * 10)
+              // @ts-ignore
               .to.equal(Math.round((datepicker.offset().left + datepicker.width() / 2) / 10) * 10);
           });
         });
@@ -663,9 +680,13 @@ export class DatepickerPo extends BaseComponent {
         indexInput ? index = indexInput : index = 2;
         cy.get('@Datepicker').then(datepicker => {
           cy.get('@InputsArray').eq(index).then(input => {
+            // @ts-ignore
             expect(input.offset().left).to.greaterThan(datepicker.offset().left);
+            // @ts-ignore
             expect(input.offset().top).to.lessThan(datepicker.offset().top);
+            // @ts-ignore
             expect(Math.round((input.offset().left + (input.width() + inputMarginWidth) / 2) / 10) * 10)
+              // @ts-ignore
               .to.equal(Math.round((datepicker.offset().left + datepicker.width() / 2) / 10) * 10);
           });
         });
@@ -675,15 +696,19 @@ export class DatepickerPo extends BaseComponent {
         indexInput ? index = indexInput : index = 3;
         cy.get('@Datepicker').then(datepicker => {
           cy.get('@InputsArray').eq(index).then(input => {
+            // @ts-ignore
             expect(input.offset().left).to.greaterThan(datepicker.offset().left);
+            // @ts-ignore
             expect(input.offset().top).to.greaterThan(datepicker.offset().top);
+            // @ts-ignore
             expect(Math.round((input.offset().top + (input.height() + inputMarginHeight) / 2) / 10) * 10)
+              // @ts-ignore
               .to.equal(Math.round((datepicker.offset().top + datepicker.height() / 2) / 10) * 10);
           });
         });
         break;
       default:
-        index = undefined;
+        index = NaN;
     }
   }
 

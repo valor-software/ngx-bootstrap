@@ -143,6 +143,10 @@ describe('Directive: Buttons', () => {
     })
   );
 
+  afterAll(async () => {
+    await new Promise<void>(resolve => setTimeout(() => resolve(), 500)); // avoid jest open handle error
+  });
+
   describe('checkbox', () => {
     afterEach(() => {
       fixture.destroy();
