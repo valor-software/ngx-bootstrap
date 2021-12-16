@@ -1,6 +1,6 @@
 {
   "name": "ngx-bootstrap-base",
-  "version": "7.1.2",
+  "version": "8.0.0-0",
   "license": "MIT",
   "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
   "schematics": "./schematics/src/collection.json",
@@ -99,6 +99,7 @@
     "@nrwl/tao": "13.3.6",
     "@nrwl/workspace": "13.3.6",
     "@types/fs-extra": "9.0.13",
+    "@types/glob": "7.2.0",
     "@types/jest": "27.0.3",
     "@types/moment": "2.13.0",
     "@types/node": "17.0.0",
