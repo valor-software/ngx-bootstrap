@@ -20,11 +20,8 @@ env:
   CACHE_NODE_MODULES_PATH: |
     ~/.npm
     node_modules
-    dist/ngx-bootstrap
 
-  CACHE_DIST_PATH: |
-    dist
-    dist/ngx-bootstrap
+  CACHE_DIST_PATH: dist
 
 jobs:
   # one run
@@ -64,7 +61,9 @@ jobs:
         with:
           path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
-      - run: npx ng build --runner cloud --prod --with-deps
+      - run: |
+          npx nx build ngx-bootstrap --runner cloud --configuration production
+          npx nx build --runner cloud --configuration production
 
 
   # run unit tests
@@ -153,7 +152,7 @@ jobs:
 
       - name: smoke e2e local
         if: ${{ !needs.firebase_preview.outputs.output_url }}
-        run: npx nx run ngx-bootstrap-docs-e2e:e2e --prod --runner cloud --record --group smoke -- --parallel
+        run: npx nx run ngx-bootstrap-docs-e2e:e2e --configuration production --runner cloud --record --group smoke -- --parallel
 
   e2e_full:
     name: e2e full
@@ -190,4 +189,4 @@ jobs:
       - name: full e2e on local
         if: ${{ !needs.firebase_preview.outputs.output_url }}
         continue-on-error: true
-        run: npx nx run ngx-bootstrap-docs-e2e:e2e --prod --runner cloud --cypressConfig ./apps/ngx-bootstrap-docs-e2e/cypress-full.json --record --group full -- --parallel
+        run: npx nx run ngx-bootstrap-docs-e2e:e2e --configuration production --runner cloud --cypressConfig ./apps/ngx-bootstrap-docs-e2e/cypress-full.json --record --group full -- --parallel

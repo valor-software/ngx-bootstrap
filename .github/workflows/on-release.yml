@@ -47,11 +47,11 @@ jobs:
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
       - uses: actions/cache@v2.1.4
         with:
-          path: |
-            dist
-            dist/ngx-bootstrap
+          path: dist
           key: dist-${{ github.run_id }}
-      - run: npx ng build --runner cloud --prod --with-deps
+      - run: |
+          npx nx build ngx-bootstrap --runner cloud --configuration production
+          npx ng build --runner cloud --configuration production
 
   # update release notes in github
   update_release_draft:
@@ -116,9 +116,7 @@ jobs:
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
       - uses: actions/cache@v2.1.4
         with:
-          path: |
-            dist
-            dist/ngx-bootstrap
+          path: dist
           key: dist-${{ github.run_id }}
       - uses: JS-DevTools/npm-publish@v1
         with:
