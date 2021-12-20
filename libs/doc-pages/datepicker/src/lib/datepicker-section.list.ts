@@ -73,7 +73,7 @@ export const demoComponentContent: ContentSection[] = [
             <li>Load it from CDN. Add <code>&lt;link rel="stylesheet"
               href="https://unpkg.com/ngx-bootstrap/datepicker/bs-datepicker.css"&gt;</code> to your
               <code>index.html</code></li>
-            <li>Load it from <code>node_modules/ngx-bootstrap/datepicker/bs-datepicker.css</code> via package bundler
+            <li>Load it from <code>dist/ngx-bootstrap/datepicker/bs-datepicker.css</code> via package bundler
               like Angular CLI, if you're using one.
             </li>
           </ul>

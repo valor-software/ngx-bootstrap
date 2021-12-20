@@ -20,11 +20,11 @@ env:
   CACHE_NODE_MODULES_PATH: |
     ~/.npm
     node_modules
-    node_modules/ngx-bootstrap
+    dist/ngx-bootstrap
 
   CACHE_DIST_PATH: |
     dist
-    node_modules/ngx-bootstrap
+    dist/ngx-bootstrap
 
 jobs:
   # one run

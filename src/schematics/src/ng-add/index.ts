@@ -27,7 +27,7 @@ const BOOTSTRAP_AVAILABLE_STYLES = {
 `]
 };
 const DATEPICKER_AVAILABLESTYLES = {
-  'css': [`./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css`],
+  'css': [`./dist/ngx-bootstrap/datepicker/bs-datepicker.css`],
   'scss': [`
 /* Importing Datepicker SCSS file. */
 @import "~ngx-bootstrap/datepicker/bs-datepicker";

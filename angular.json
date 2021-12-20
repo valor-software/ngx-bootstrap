@@ -28,7 +28,12 @@
             "styles": [
               "apps/ngx-bootstrap-docs/src/assets/css/style.scss",
               "apps/ngx-bootstrap-docs/src/assets/css/prettify-angulario.css"
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/datepicker"
+              ]
+            }
           },
           "configurations": {
             "production": {
@@ -140,7 +145,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/accordion"
+            "dist/ngx-bootstrap/accordion"
           ],
           "options": {
             "tsConfig": "src/accordion/tsconfig.lib.json",
@@ -189,7 +194,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/alert"
+            "dist/ngx-bootstrap/alert"
           ],
           "options": {
             "tsConfig": "src/alert/tsconfig.lib.json",
@@ -238,7 +243,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/buttons"
+            "dist/ngx-bootstrap/buttons"
           ],
           "options": {
             "tsConfig": "src/buttons/tsconfig.lib.json",
@@ -280,7 +285,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/carousel"
+            "dist/ngx-bootstrap/carousel"
           ],
           "options": {
             "tsConfig": "src/carousel/tsconfig.lib.json",
@@ -329,7 +334,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/chronos"
+            "dist/ngx-bootstrap/chronos"
           ],
           "options": {
             "tsConfig": "src/chronos/tsconfig.lib.json",
@@ -371,7 +376,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/collapse"
+            "dist/ngx-bootstrap/collapse"
           ],
           "options": {
             "tsConfig": "src/collapse/tsconfig.lib.json",
@@ -413,7 +418,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/component-loader"
+            "dist/ngx-bootstrap/component-loader"
           ],
           "options": {
             "tsConfig": "src/component-loader/tsconfig.lib.json",
@@ -462,7 +467,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/datepicker"
+            "dist/ngx-bootstrap/datepicker"
           ],
           "options": {
             "tsConfig": "src/datepicker/tsconfig.lib.json",
@@ -511,7 +516,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/dropdown"
+            "dist/ngx-bootstrap/dropdown"
           ],
           "options": {
             "tsConfig": "src/dropdown/tsconfig.lib.json",
@@ -560,7 +565,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/focus-trap"
+            "dist/ngx-bootstrap/focus-trap"
           ],
           "options": {
             "tsConfig": "src/focus-trap/tsconfig.lib.json",
@@ -602,7 +607,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/locale"
+            "dist/ngx-bootstrap/locale"
           ],
           "options": {
             "tsConfig": "src/locale/tsconfig.lib.json",
@@ -651,7 +656,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/mini-ngrx"
+            "dist/ngx-bootstrap/mini-ngrx"
           ],
           "options": {
             "tsConfig": "src/mini-ngrx/tsconfig.lib.json",
@@ -693,7 +698,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/modal"
+            "dist/ngx-bootstrap/modal"
           ],
           "options": {
             "tsConfig": "src/modal/tsconfig.lib.json",
@@ -742,7 +747,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/pagination"
+            "dist/ngx-bootstrap/pagination"
           ],
           "options": {
             "tsConfig": "src/pagination/tsconfig.lib.json",
@@ -784,7 +789,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/popover"
+            "dist/ngx-bootstrap/popover"
           ],
           "options": {
             "tsConfig": "src/popover/tsconfig.lib.json",
@@ -833,7 +838,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/positioning"
+            "dist/ngx-bootstrap/positioning"
           ],
           "options": {
             "tsConfig": "src/positioning/tsconfig.lib.json",
@@ -882,7 +887,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/progressbar"
+            "dist/ngx-bootstrap/progressbar"
           ],
           "options": {
             "tsConfig": "src/progressbar/tsconfig.lib.json",
@@ -931,7 +936,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/rating"
+            "dist/ngx-bootstrap/rating"
           ],
           "options": {
             "tsConfig": "src/rating/tsconfig.lib.json",
@@ -973,7 +978,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/sortable"
+            "dist/ngx-bootstrap/sortable"
           ],
           "options": {
             "tsConfig": "src/sortable/tsconfig.lib.json",
@@ -1015,7 +1020,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/tabs"
+            "dist/ngx-bootstrap/tabs"
           ],
           "options": {
             "tsConfig": "src/tabs/tsconfig.lib.json",
@@ -1057,7 +1062,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/timepicker"
+            "dist/ngx-bootstrap/timepicker"
           ],
           "options": {
             "tsConfig": "src/timepicker/tsconfig.lib.json",
@@ -1106,7 +1111,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/tooltip"
+            "dist/ngx-bootstrap/tooltip"
           ],
           "options": {
             "tsConfig": "src/tooltip/tsconfig.lib.json",
@@ -1155,7 +1160,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/typeahead"
+            "dist/ngx-bootstrap/typeahead"
           ],
           "options": {
             "tsConfig": "src/typeahead/tsconfig.lib.json",
@@ -1204,7 +1209,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "node_modules/ngx-bootstrap/utils"
+            "dist/ngx-bootstrap/utils"
           ],
           "options": {
             "tsConfig": "src/utils/tsconfig.lib.json",
@@ -1246,7 +1251,7 @@
         "build": {
           "builder": "@nrwl/workspace:run-commands",
           "outputs": [
-            "node_modules/ngx-bootstrap"
+            "dist/ngx-bootstrap"
           ],
           "options": {
             "commands": [
@@ -1290,7 +1295,7 @@
           "builder": "@nrwl/workspace:run-commands",
           "outputs": [],
           "options": {
-            "command": "npx sass src:node_modules/ngx-bootstrap --source-map"
+            "command": "npx sass src:dist/ngx-bootstrap --source-map"
           }
         },
         "docs": {
@@ -1367,7 +1372,7 @@
             "{options.outputPath}"
           ],
           "options": {
-            "outputPath": "node_modules/ngx-bootstrap/schematics",
+            "outputPath": "dist/ngx-bootstrap/schematics",
             "tsConfig": "src/schematics/tsconfig.lib.json",
             "packageJson": "src/schematics/package.json",
             "main": "src/schematics/src/ng-add/index.ts",
@@ -1389,7 +1394,7 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": [
-            "node_modules/ngx-bootstrap/accordion"
+            "dist/ngx-bootstrap/accordion"
           ],
           "options": {
             "tsConfig": "libs/doc-pages/accordion/tsconfig.lib.json",
