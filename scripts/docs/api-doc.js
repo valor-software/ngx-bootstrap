@@ -1,7 +1,7 @@
 'use strict';
 
 const ts = require('typescript');
-const marked = require('marked');
+const { marked } = require('marked');
 
 const renderer = new marked.Renderer();
 renderer.link = (href, title, text) => (`<a href=\"${href}\" target="_blank" title=\"${title}\">${text}</a>`);

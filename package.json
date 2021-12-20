@@ -118,6 +118,7 @@
     "jest": "27.2.3",
     "jest-createspyobj": "2.0.0",
     "jest-preset-angular": "11.0.1",
+    "marked": "4.0.8",
     "moment": "2.29.1",
     "ng-packagr": "13.1.2",
     "postcss": "8.4.5",
