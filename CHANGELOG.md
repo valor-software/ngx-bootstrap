@@ -1,3 +1,12 @@
+# [8.0.0-RC.2](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.1...v8.0.0-RC.2) (2021-12-20)
+
+
+### Bug Fixes
+
+* **build:** change build folder structure in order to work properly with nx 13 ([8bfbfa5](https://github.com/valor-software/ngx-bootstrap/commit/8bfbfa568f7eeac718438885c3003ea1c1d6f563))
+
+
+
 # [8.0.0-RC.1](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.0...v8.0.0-RC.1) (2021-12-20)
 
 
