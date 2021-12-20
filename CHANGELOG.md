@@ -1,3 +1,12 @@
+# [8.0.0-RC.1](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.0...v8.0.0-RC.1) (2021-12-20)
+
+
+### Bug Fixes
+
+* **build:** fix api docs api generation ([c275900](https://github.com/valor-software/ngx-bootstrap/commit/c275900ae7151eb56b2ab3308f278be47b2c15e8))
+
+
+
 # [8.0.0-RC.0](https://github.com/valor-software/ngx-bootstrap/compare/v7.1.2...v8.0.0-RC.0) (2021-12-16)
 
 
