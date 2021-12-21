@@ -66,15 +66,16 @@
               "index": "apps/ngx-bootstrap-docs/src/index.html",
               "main": "apps/ngx-bootstrap-docs/src/main.ts",
               "tsConfig": "apps/ngx-bootstrap-docs/tsconfig.app.json"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "dependencies"
-            }
-          ],
-          "implicitDependencies": ["ngx-bootstrap"]
+          }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -85,6 +86,9 @@
             "production": {
               "baseHref": "/ngx-bootstrap/",
               "browserTarget": "ngx-bootstrap-docs:build:production"
+            },
+            "development": {
+              "browserTarget": "ngx-bootstrap-docs:build:development"
             }
           }
         },
@@ -103,7 +107,8 @@
             ]
           }
         }
-      }
+      },
+      "implicitDependencies": ["ngx-bootstrap"]
     },
     "ngx-bootstrap-docs-e2e": {
       "root": "apps/ngx-bootstrap-docs-e2e",
@@ -134,7 +139,8 @@
             ]
           }
         }
-      }
+      },
+      "implicitDependencies": ["ngx-bootstrap-docs"]
     },
     "accordion": {
       "projectType": "library",
@@ -182,8 +188,7 @@
             "passWithNoTests": true
           }
         }
-      },
-      "implicitDependencies": ["utils", "collapse"]
+      }
     },
     "alert": {
       "projectType": "library",
@@ -231,8 +236,7 @@
             "passWithNoTests": true
           }
         }
-      },
-      "implicitDependencies": ["utils"]
+      }
     },
     "buttons": {
       "projectType": "library",
@@ -322,8 +326,7 @@
             "passWithNoTests": true
           }
         }
-      },
-      "implicitDependencies": ["utils"]
+      }
     },
     "chronos": {
       "projectType": "library",
@@ -455,8 +458,7 @@
             "passWithNoTests": true
           }
         }
-      },
-      "implicitDependencies": ["utils", "positioning"]
+      }
     },
     "datepicker": {
       "projectType": "library",
@@ -504,8 +506,7 @@
             "passWithNoTests": true
           }
         }
-      },
-      "implicitDependencies": ["mini-ngrx", "chronos", "tooltip"]
+      }
     },
     "dropdown": {
       "projectType": "library",
@@ -553,8 +554,7 @@
             "passWithNoTests": true
           }
         }
-      },
-      "implicitDependencies": ["positioning", "component-loader"]
+      }
     },
     "focus-trap": {
       "projectType": "library",
@@ -644,8 +644,7 @@
             "passWithNoTests": true
           }
         }
-      },
-      "implicitDependencies": ["chronos"]
+      }
     },
     "mini-ngrx": {
       "projectType": "library",
@@ -735,8 +734,7 @@
             "passWithNoTests": true
           }
         }
-      },
-      "implicitDependencies": ["positioning", "focus-trap", "component-loader"]
+      }
     },
     "pagination": {
       "projectType": "library",
@@ -826,8 +824,7 @@
             "passWithNoTests": true
           }
         }
-      },
-      "implicitDependencies": ["positioning", "component-loader"]
+      }
     },
     "positioning": {
       "projectType": "library",
@@ -875,8 +872,7 @@
             "passWithNoTests": true
           }
         }
-      },
-      "implicitDependencies": ["utils"]
+      }
     },
     "progressbar": {
       "projectType": "library",
@@ -924,8 +920,7 @@
             "passWithNoTests": true
           }
         }
-      },
-      "implicitDependencies": ["utils"]
+      }
     },
     "rating": {
       "projectType": "library",
@@ -1099,8 +1094,7 @@
             "passWithNoTests": true
           }
         }
-      },
-      "implicitDependencies": ["mini-ngrx"]
+      }
     },
     "tooltip": {
       "projectType": "library",
@@ -1148,8 +1142,7 @@
             "passWithNoTests": true
           }
         }
-      },
-      "implicitDependencies": ["positioning", "component-loader"]
+      }
     },
     "typeahead": {
       "projectType": "library",
@@ -1197,8 +1190,7 @@
             "passWithNoTests": true
           }
         }
-      },
-      "implicitDependencies": ["positioning", "component-loader"]
+      }
     },
     "utils": {
       "projectType": "library",
@@ -1421,8 +1413,7 @@
             ]
           }
         }
-      },
-      "implicitDependencies": ["accordion", "common-docs", "collapse"]
+      }
     },
     "common-docs": {
       "projectType": "library",
@@ -1457,8 +1448,7 @@
             ]
           }
         }
-      },
-      "implicitDependencies": ["utils", "tabs"]
+      }
     },
     "doc-pages-alerts": {
       "projectType": "library",
@@ -1493,8 +1483,7 @@
             ]
           }
         }
-      },
-      "implicitDependencies": ["alert"]
+      }
     },
     "doc-pages-buttons": {
       "projectType": "library",
@@ -1529,8 +1518,7 @@
             ]
           }
         }
-      },
-      "implicitDependencies": ["buttons"]
+      }
     },
     "doc-pages-carousel": {
       "projectType": "library",
@@ -1565,8 +1553,7 @@
             ]
           }
         }
-      },
-      "implicitDependencies": ["carousel"]
+      }
     },
     "doc-pages-collapse": {
       "projectType": "library",
@@ -1601,8 +1588,7 @@
             ]
           }
         }
-      },
-      "implicitDependencies": ["collapse"]
+      }
     },
     "doc-pages-datepicker": {
       "projectType": "library",
@@ -1637,8 +1623,7 @@
             ]
           }
         }
-      },
-      "implicitDependencies": ["datepicker", "chronos", "mini-ngrx", "tooltip", "positioning", "component-loader", "locale"]
+      }
     },
     "doc-pages-dropdown": {
       "projectType": "library",
@@ -1673,8 +1658,7 @@
             ]
           }
         }
-      },
-      "implicitDependencies": ["dropdown", "positioning", "component-loader"]
+      }
     },
     "doc-pages-modal": {
       "projectType": "library",
@@ -1709,8 +1693,7 @@
             ]
           }
         }
-      },
-      "implicitDependencies": ["modal", "positioning", "component-loader", "focus-trap", "popover", "tooltip"]
+      }
     },
     "doc-pages-pagination": {
       "projectType": "library",
@@ -1745,8 +1728,7 @@
             ]
           }
         }
-      },
-      "implicitDependencies": ["pagination"]
+      }
     },
     "doc-pages-popover": {
       "projectType": "library",
@@ -1781,8 +1763,7 @@
             ]
           }
         }
-      },
-      "implicitDependencies": ["popover", "positioning", "component-loader"]
+      }
     },
     "doc-pages-progressbar": {
       "projectType": "library",
@@ -1817,8 +1798,7 @@
             ]
           }
         }
-      },
-      "implicitDependencies": ["progressbar"]
+      }
     },
     "doc-pages-rating": {
       "projectType": "library",
@@ -1853,8 +1833,7 @@
             ]
           }
         }
-      },
-      "implicitDependencies": ["rating"]
+      }
     },
     "doc-pages-sortable": {
       "projectType": "library",
@@ -1889,8 +1868,7 @@
             ]
           }
         }
-      },
-      "implicitDependencies": ["sortable"]
+      }
     },
     "doc-pages-tabs": {
       "projectType": "library",
@@ -1925,8 +1903,7 @@
             ]
           }
         }
-      },
-      "implicitDependencies": ["tabs"]
+      }
     },
     "doc-pages-timepicker": {
       "projectType": "library",
@@ -1961,8 +1938,7 @@
             ]
           }
         }
-      },
-      "implicitDependencies": ["timepicker", "mini-ngrx"]
+      }
     },
     "doc-pages-tooltip": {
       "projectType": "library",
@@ -1997,8 +1973,7 @@
             ]
           }
         }
-      },
-      "implicitDependencies": ["tooltip", "positioning", "component-loader"]
+      }
     },
     "doc-pages-typeahead": {
       "projectType": "library",
@@ -2033,8 +2008,7 @@
             ]
           }
         }
-      },
-      "implicitDependencies": ["typeahead", "positioning", "component-loader"]
+      }
     }
   }
 }
