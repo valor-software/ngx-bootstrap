@@ -26,7 +26,7 @@ export function getOffsetRectRelativeToArbitraryNode(
     parentRect.left = Math.max(parentRect.left ?? 0, 0);
   }
 
-  let offsets: Offsets = getClientRect({
+  const offsets: Offsets = getClientRect({
     top: (childrenRect.top ?? 0) - (parentRect.top ?? 0) - borderTopWidth,
     left: (childrenRect.left ?? 0) - (parentRect.left ?? 0) - borderLeftWidth,
     width: childrenRect.width,
@@ -60,13 +60,6 @@ export function getOffsetRectRelativeToArbitraryNode(
     // Attach marginTop and marginLeft because in some circumstances we may need them
     offsets.marginTop = marginTop;
     offsets.marginLeft = marginLeft;
-  }
-
-  if (!fixedPosition
-      ? parent.contains(scrollParent)
-      : parent === scrollParent && scrollParent.nodeName !== 'BODY'
-  ) {
-    offsets = includeScroll(offsets, parent);
   }
 
   return offsets;

@@ -66,6 +66,14 @@
               "index": "apps/ngx-bootstrap-docs/src/index.html",
               "main": "apps/ngx-bootstrap-docs/src/main.ts",
               "tsConfig": "apps/ngx-bootstrap-docs/tsconfig.app.json"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
           }
         },
@@ -78,6 +86,9 @@
             "production": {
               "baseHref": "/ngx-bootstrap/",
               "browserTarget": "ngx-bootstrap-docs:build:production"
+            },
+            "development": {
+              "browserTarget": "ngx-bootstrap-docs:build:development"
             }
           }
         },
