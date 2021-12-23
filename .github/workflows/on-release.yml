@@ -82,9 +82,7 @@ jobs:
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
       - uses: actions/cache@v2.1.4
         with:
-          path: |
-            dist
-            dist/ngx-bootstrap
+          path: dist
           key: dist-${{ github.run_id }}
 
       #      - run: npm run scully
