@@ -96,6 +96,10 @@ describe('Component: Carousel', () => {
     fixture.detectChanges();
   });
 
+  afterAll(async () => {
+    await new Promise<void>(resolve => setTimeout(() => resolve(), 500)); // avoid jest open handle error
+  });
+
   it('should set first slide as active by default', () => {
     expectActiveSlides(element, [true, false, false, false, false, false],fixture.componentInstance._bsVer);
   });

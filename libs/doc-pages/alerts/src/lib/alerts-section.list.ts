@@ -10,7 +10,6 @@ import { DemoAlertStylingLocalComponent } from './demos/styling-local/styling-lo
 import { DemoAlertConfigComponent } from './demos/config/config';
 
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 
@@ -21,16 +20,9 @@ import {
 
 export const demoComponentContent: ContentSection[] = [
   {
-    name: 'Usage',
-    anchor: 'usage',
-    outlet: DemoTopSectionComponent,
-    content: {
-      doc: require('!!raw-loader!./docs/usage.md')
-    }
-  },
-  {
-    name: 'Examples',
-    anchor: 'examples',
+    name: 'Overview',
+    anchor: 'overview',
+    tabName: 'overview',
     outlet: ExamplesComponent,
     content: [
       {
@@ -124,8 +116,11 @@ export const demoComponentContent: ContentSection[] = [
     ]
   },
   {
-    name: 'API Reference',
+    name: 'Installation',
     anchor: 'api-reference',
+    tabName: 'api',
+    usage: require('!!raw-loader!./docs/usage.md'),
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">alerts</span>',
     outlet: ApiSectionsComponent,
     content: [
       {
@@ -137,6 +132,64 @@ export const demoComponentContent: ContentSection[] = [
         title: 'AlertConfig',
         anchor: 'alert-config',
         outlet: NgApiDocConfigComponent
+      }
+    ]
+  },
+  {
+    name: 'Examples',
+    anchor: 'examples',
+    tabName: 'examples',
+    outlet: ExamplesComponent,
+    content: [
+      {
+        title: 'Basic',
+        anchor: 'basic-ex',
+        outlet: DemoAlertBasicComponent
+      },
+      {
+        title: 'Link color',
+        anchor: 'link-color-ex',
+        outlet: DemoAlertLinkComponent
+      },
+      {
+        title: 'Additional content',
+        anchor: 'additional-content-ex',
+        outlet: DemoAlertContentComponent
+      },
+      {
+        title: 'Dismissing',
+        anchor: 'dismissing-ex',
+        outlet: DemoAlertDismissComponent
+      },
+      {
+        title: 'Dynamic html',
+        anchor: 'dynamic-html-ex',
+        outlet: DemoAlertDynamicHtmlComponent
+      },
+      {
+        title: 'Dynamic content',
+        anchor: 'dynamic-content-ex',
+        outlet: DemoAlertDynamicContentComponent
+      },
+      {
+        title: 'Dismiss on timeout',
+        anchor: 'dismiss-on-timeout-ex',
+        outlet: DemoAlertTimeoutComponent
+      },
+      {
+        title: 'Global styling',
+        anchor: 'global-styling-ex',
+        outlet: DemoAlertStylingGlobalComponent
+      },
+      {
+        title: 'Component level styling',
+        anchor: 'local-styling-ex',
+        outlet: DemoAlertStylingLocalComponent
+      },
+      {
+        title: 'Configuring defaults',
+        anchor: 'configuration-ex',
+        outlet: DemoAlertConfigComponent
       }
     ]
   }

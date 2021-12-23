@@ -60,12 +60,12 @@ export class BarComponent implements OnChanges {
   ) {}
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.value || changes.max) {
-      this.percent = 100 * (Number(changes.value.currentValue || 0)
-        / Number((changes.max?.currentValue || this.max) || 100));
+    if (changes["value"] || changes["max"]) {
+      this.percent = 100 * (Number(changes["value"].currentValue || 0)
+        / Number((changes["max"]?.currentValue || this.max) || 100));
     }
 
-    if (changes.type) {
+    if (changes["type"]) {
       this.applyTypeClasses();
     }
   }

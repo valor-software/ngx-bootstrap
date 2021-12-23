@@ -5,7 +5,6 @@ import { DemoRatingSelectOnEnterComponent } from './demos/select-on-enter/select
 import { DemoRatingConfigComponent } from './demos/config/config';
 
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 
@@ -13,16 +12,9 @@ import { NgApiDocComponent, NgApiDocConfigComponent } from '@ngx-bootstrap-doc/d
 
 export const demoComponentContent: ContentSection[] = [
   {
-    name: 'Usage',
-    anchor: 'usage',
-    outlet: DemoTopSectionComponent,
-    content: {
-      doc: require('!!raw-loader!./docs/usage.md')
-    }
-  },
-  {
-    name: 'Examples',
-    anchor: 'examples',
+    name: 'Overview',
+    anchor: 'overview',
+    tabName: 'overview',
     outlet: ExamplesComponent,
     content: [
       {
@@ -65,8 +57,11 @@ export const demoComponentContent: ContentSection[] = [
     ]
   },
   {
-    name: 'API Reference',
+    name: 'Installation',
     anchor: 'api-reference',
+    tabName: 'api',
+    usage: require('!!raw-loader!./docs/usage.md'),
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">rating</span>',
     outlet: ApiSectionsComponent,
     content: [
       {
@@ -78,6 +73,39 @@ export const demoComponentContent: ContentSection[] = [
         title: 'RatingConfig',
         anchor: 'rating-config',
         outlet: NgApiDocConfigComponent
+      }
+    ]
+  },
+  {
+    name: 'Examples',
+    anchor: 'examples',
+    tabName: 'examples',
+    outlet: ExamplesComponent,
+    content: [
+      {
+        title: 'Basic rating',
+        anchor: 'rating-basic-ex',
+        outlet: DemoRatingBasicComponent
+      },
+      {
+        title: 'Dynamic rating',
+        anchor: 'rating-dynamic-ex',
+        outlet: DemoRatingDynamicComponent
+      },
+      {
+        title: 'Custom icons',
+        anchor: 'rating-custom-ex',
+        outlet: DemoRatingCustomComponent
+      },
+      {
+        title: 'Select on enter',
+        anchor: 'select-on-enter-ex',
+        outlet: DemoRatingSelectOnEnterComponent
+      },
+      {
+        title: 'Configuring defaults',
+        anchor: 'demo-rating-config-ex',
+        outlet: DemoRatingConfigComponent
       }
     ]
   }

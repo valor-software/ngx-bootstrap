@@ -9,6 +9,10 @@ import { ProgressbarComponent, ProgressbarModule } from '../index';
 class TestProgressbarComponent extends ProgressbarComponent {}
 
 describe('Component: Progress Bar', () => {
+  afterAll(async () => {
+    await new Promise<void>(resolve => setTimeout(() => resolve(), 500)); // avoid jest open handle error
+  });
+
   let fixture: ComponentFixture<TestProgressbarComponent>;
   let element: HTMLElement;
   let component: ProgressbarComponent;

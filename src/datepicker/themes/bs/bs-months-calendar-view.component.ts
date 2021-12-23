@@ -58,6 +58,6 @@ export class BsMonthCalendarViewComponent {
   }
 
   changeViewMode(event: BsDatepickerViewMode): void {
-    this.onViewMode.emit(event);
+    this.onViewMode.emit(event as BsDatepickerViewMode);
   }
 }

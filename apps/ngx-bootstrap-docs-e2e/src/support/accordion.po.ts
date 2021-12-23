@@ -2,7 +2,7 @@ import { BaseComponent } from './base.component';
 import Agent = Cypress.Agent;
 
 export class AccordionPo extends BaseComponent {
-  pageUrl = '#/accordion';
+  pageUrl = '#/components/accordion';
   pageTitle = 'Accordion';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/accordion';
   additionalHtml = '.badge';
@@ -22,7 +22,7 @@ export class AccordionPo extends BaseComponent {
   };
 
   isAccordionLengthEqual(baseSelector: string, expectedLength: number) {
-    cy.get(`${baseSelector} accordion-group`).should('to.have.length', expectedLength);
+    cy.get(`${baseSelector}`).first().find('accordion-group').should('to.have.length', expectedLength);
   }
 
   isAccordionItemExpanded(baseSelector: string, itemIndex: number, expanded: boolean) {

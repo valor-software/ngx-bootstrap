@@ -4,7 +4,6 @@ import { DemoProgressbarStackedComponent } from './demos/stacked/stacked';
 import { DemoProgressbarConfigComponent } from './demos/config/config';
 
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 
@@ -15,16 +14,9 @@ import {
 
 export const demoComponentContent: ContentSection[] = [
   {
-    name: 'Usage',
-    anchor: 'usage',
-    outlet: DemoTopSectionComponent,
-    content: {
-      doc: require('!!raw-loader!./docs/usage.md')
-    }
-  },
-  {
-    name: 'Examples',
-    anchor: 'examples',
+    name: 'Overview',
+    anchor: 'overview',
+    tabName: 'overview',
     outlet: ExamplesComponent,
     content: [
       {
@@ -58,9 +50,12 @@ export const demoComponentContent: ContentSection[] = [
     ]
   },
   {
-    name: 'API Reference',
+    name: 'Installation',
     anchor: 'api-reference',
+    tabName: 'api',
     outlet: ApiSectionsComponent,
+    usage: require('!!raw-loader!./docs/usage.md'),
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">progressbar</span>',
     content: [
       {
         title: 'ProgressbarComponent',
@@ -71,6 +66,34 @@ export const demoComponentContent: ContentSection[] = [
         title: 'ProgressbarConfig',
         anchor: 'progress-config',
         outlet: NgApiDocConfigComponent
+      }
+    ]
+  },
+  {
+    name: 'Examples',
+    anchor: 'examples',
+    tabName: 'examples',
+    outlet: ExamplesComponent,
+    content: [
+      {
+        title: 'Static',
+        anchor: 'bs3-static-ex',
+        outlet: DemoProgressbarStaticComponent
+      },
+      {
+        title: 'Dynamic',
+        anchor: 'bs3-dynamic-ex',
+        outlet: DemoProgressbarDynamicComponent
+      },
+      {
+        title: 'Stacked',
+        anchor: 'bs3-stacked-ex',
+        outlet: DemoProgressbarStackedComponent
+      },
+      {
+        title: 'Configuring defaults',
+        anchor: 'bs3-config-ex',
+        outlet: DemoProgressbarConfigComponent
       }
     ]
   }

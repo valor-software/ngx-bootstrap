@@ -70,9 +70,9 @@ export class TooltipContainerComponent implements AfterViewInit {
     }
     this.classMap[`tooltip-${this.placement}`] = true;
 
-    this.classMap.in = true;
+    this.classMap["in"] = true;
     if (this.animation) {
-      this.classMap.fade = true;
+      this.classMap["fade"] = true;
     }
 
     if (this.containerClass) {

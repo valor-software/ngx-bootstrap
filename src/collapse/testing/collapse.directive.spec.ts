@@ -40,6 +40,10 @@ describe('Directive: Collapse', () => {
     element = fixture.nativeElement.querySelector('.collapse');
   });
 
+  afterAll(async () => {
+    await new Promise<void>(resolve => setTimeout(() => resolve(), 500)); // avoid jest open handle error
+  });
+
   it('should have collapse class', () => {
     const div = fixture.nativeElement.querySelector('div');
     expect(div.classList).toContain('collapse');
