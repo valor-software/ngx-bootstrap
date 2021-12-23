@@ -6,12 +6,12 @@ import { Component } from '@angular/core';
   templateUrl: './styling-local.html',
   styles: [
     `
-      :host >>> .tooltip-inner {
+      :host .tooltip-inner {
         background-color: #009688;
         color: #fff;
       }
-      :host >>> .tooltip.top .tooltip-arrow:before,
-      :host >>> .tooltip.top .tooltip-arrow {
+      :host .tooltip.top .tooltip-arrow:before,
+      :host .tooltip.top .tooltip-arrow {
         border-top-color: #009688;
       }
     `

@@ -1,3 +1,43 @@
+# [8.0.0-RC.2](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.1...v8.0.0-RC.2) (2021-12-23)
+
+
+
+# [8.0.0-RC.1](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.2...v8.0.0-RC.1) (2021-12-23)
+
+
+### Features
+
+* **documentation:** updated  use-cases ([#6360](https://github.com/valor-software/ngx-bootstrap/issues/6360)) ([fa365cf](https://github.com/valor-software/ngx-bootstrap/commit/fa365cf1bd7e56a0b4824b586c997a86ce5b4307)), closes [#6359](https://github.com/valor-software/ngx-bootstrap/issues/6359)
+
+
+
+# [8.0.0-RC.2](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.1...v8.0.0-RC.2) (2021-12-20)
+
+
+### Bug Fixes
+
+* **build:** change build folder structure in order to work properly with nx 13 ([8bfbfa5](https://github.com/valor-software/ngx-bootstrap/commit/8bfbfa568f7eeac718438885c3003ea1c1d6f563))
+
+
+
+# [8.0.0-RC.1](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.0...v8.0.0-RC.1) (2021-12-20)
+
+
+### Bug Fixes
+
+* **build:** fix api docs api generation ([c275900](https://github.com/valor-software/ngx-bootstrap/commit/c275900ae7151eb56b2ab3308f278be47b2c15e8))
+
+
+
+# [8.0.0-RC.0](https://github.com/valor-software/ngx-bootstrap/compare/v7.1.2...v8.0.0-RC.0) (2021-12-16)
+
+
+### Features
+
+* **documentation:** Documentation UI update ([#6305](https://github.com/valor-software/ngx-bootstrap/issues/6305)) ([bd81f14](https://github.com/valor-software/ngx-bootstrap/commit/bd81f14ca80fbdd5a845f828496f2ebe1efa4981)), closes [#6364](https://github.com/valor-software/ngx-bootstrap/issues/6364)
+
+
+
 ## [7.1.2](https://github.com/valor-software/ngx-bootstrap/compare/v7.1.1...v7.1.2) (2021-09-24)
 
 

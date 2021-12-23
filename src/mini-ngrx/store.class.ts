@@ -19,12 +19,13 @@ export class MiniStore<T> extends Observable<T> implements Observer<Action> {
   }
 
   select<R>(pathOrMapFn: (state: T) => R): Observable<R> {
-        const mapped$: Observable<R> = this.source.pipe(map(pathOrMapFn));
-
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const mapped$: Observable<R> = this.source?.pipe(map(pathOrMapFn)) || new Observable().pipe(map(pathOrMapFn));
     return mapped$.pipe(distinctUntilChanged());
   }
 
-  lift<R>(operator: Operator<T, R>): MiniStore<R> {
+  override lift<R>(operator: Operator<T, R>): MiniStore<R> {
     const store = new MiniStore<R>(this._dispatcher, this._reducer, this);
         store.operator = operator;
 

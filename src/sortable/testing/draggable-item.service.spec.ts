@@ -40,7 +40,7 @@ describe('Service: DraggableItem', () => {
   it('should fire onCapture if item was captured by another zone', () => {
     // arrange
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const spy = spyOn<any>(transfer.onCaptureItem(), 'next');
+    const spy = jest.spyOn(transfer.onCaptureItem(), 'next');
 
     // act
     transfer.captureItem(2, 0);
@@ -52,7 +52,7 @@ describe('Service: DraggableItem', () => {
   it('should NOT fire onCapture if item was captured by the same zone', () => {
     // arrange
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const spy = spyOn<any>(transfer.onCaptureItem(), 'next');
+    const spy = jest.spyOn(transfer.onCaptureItem(), 'next');
 
     // act
     transfer.captureItem(1, 0);

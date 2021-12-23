@@ -44,7 +44,7 @@ export function arrow(data: Data) {
   if (!placementVariation) {
     center = Number((data).offsets.host[side]) + Number(data.offsets.host[len] / 2 - arrowElementSize / 2);
   } else {
-    const targetBorderRadius = parseFloat(css.borderRadius) || 0;
+    const targetBorderRadius = parseFloat(css["borderRadius"]) || 0;
     const targetSideArrowOffset = Number(targetMarginSide + targetBorderSide + targetBorderRadius);
     center = side === placementVariation ?
       Number((data).offsets.host[side]) + targetSideArrowOffset :

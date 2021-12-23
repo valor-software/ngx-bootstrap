@@ -6,12 +6,12 @@
   width: auto;
   overflow: auto;
   position: relative;
-  padding: 0;
   font-size: 13px;
   line-height: 24px;
   margin-bottom: 24px;
-  border-radius: 4px;
-  padding: 16px 32px
+  border-radius: 0 0 4px 4px;
+  padding: 16px 32px;
+  border-top: none;
 }
 
 .prettyprint.linenums,.prettyprint[class^="linenums:"],.prettyprint[class*=" linenums:"] {
@@ -29,7 +29,7 @@
 }
 
 .prettyprint ol {
-  background: #F5F6F7;
+  background: #FAFAFC;
   padding: 16px 32px 16px 56px;
   margin: 0;
   overflow: auto;
@@ -78,16 +78,16 @@
 }
 
 .prettyprint .typ,.prettyprint .tag {
-  color: #D43669
+  color: #FE5AAB
 }
 
 .prettyprint .str,.prettyprint .atv {
-  color: #647f11
+  color: #538460;
 }
 
 .prettyprint .atn {
   /*color: #647f11*/
-  color: #31708f
+  color: #506eac;
 }
 
 .prettyprint .com {

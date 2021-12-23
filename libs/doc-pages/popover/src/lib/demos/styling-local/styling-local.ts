@@ -6,11 +6,11 @@ import { Component } from '@angular/core';
   templateUrl: './styling-local.html',
   styles: [
     `
-:host >>> .popover {
+:host .popover {
   background-color: #009688;
   color: #fff;
 }
-:host >>> .popover>.arrow:after {
+:host .popover>.arrow:after {
   border-top-color: #009688;
 }
   `

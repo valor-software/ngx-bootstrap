@@ -11,7 +11,6 @@ import { ComponentApi } from '../../models/components-api.model';
 })
 export class ApiSectionsComponent {
   apiSectionsContent: ComponentApi[];
-
   _injectors = new Map<ComponentApi, Injector>();
 
   constructor(public section: ContentSection, private injector: Injector) {

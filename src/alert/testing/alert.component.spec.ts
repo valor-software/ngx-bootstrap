@@ -36,6 +36,10 @@ describe('Component: Alert', () => {
     fixture.detectChanges();
   });
 
+  afterAll(async () => {
+    await new Promise<void>(resolve => setTimeout(() => resolve(), 500)); // avoid jest open handle error
+  });
+
   it('should have a default type alert-warning', () => {
     context.ngOnInit();
     expect(context.type).toEqual(`warning`);
