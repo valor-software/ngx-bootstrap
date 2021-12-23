@@ -1,5 +1,3 @@
-import { isIE } from './isIE';
-
 function getSize(axis: string, body: HTMLElement, html: HTMLElement, computedStyle?: CSSStyleDeclaration) {
   const _body = body as unknown as Record<string, number>;
   const _html = html as never;
@@ -11,18 +9,14 @@ function getSize(axis: string, body: HTMLElement, html: HTMLElement, computedSty
     _html[`client${axis}`],
     _html[`offset${axis}`],
     _html[`scroll${axis}`],
-    isIE(10)
-      ? (parseInt(_html[`offset${axis}`], 10) +
-      parseInt(_computedStyle[`margin${axis === 'Height' ? 'Top' : 'Left'}`], 10) +
-      parseInt(_computedStyle[`margin${axis === 'Height' ? 'Bottom' : 'Right'}`], 10))
-    : 0
+    0
   );
 }
 
 export function getWindowSizes(document: Document) {
   const body = document.body;
   const html = document.documentElement;
-  const computedStyle = isIE(10) ? getComputedStyle(html) : void 0;
+  const computedStyle = void 0;
 
   return {
     height: getSize('Height', body, html, computedStyle),

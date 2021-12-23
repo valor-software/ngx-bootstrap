@@ -37,7 +37,7 @@ describe('BsDropdownContainerComponent tests', () => {
   xit('should be call isOpenChange method', () => {
     const tempVal = window.__theme;
     window.__theme = 'bs4';
-    // const spy = spyOn((component as any).cd, 'detectChanges');
+    // const spy = jest.spyOn((component as any).cd, 'detectChanges');
 
     stateSubject.next(true);
     fixture.detectChanges();

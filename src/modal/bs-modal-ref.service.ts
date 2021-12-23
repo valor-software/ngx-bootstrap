@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
-@Injectable()
+@Injectable({providedIn: 'platform'})
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class BsModalRef<T = any> {
   /**

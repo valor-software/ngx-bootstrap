@@ -13,7 +13,6 @@ import { DemoAccessibilityComponent } from './demos/accessibility/accessibility'
 import { DynamicContentRenderingComponent } from './demos/dynamic-content-rendering/dynamic-content-rendering';
 import { DemoDisabledKeyNavigationsComponent } from './demos/disabled-key-navigations/disabled-key-navigations';
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 
@@ -24,16 +23,9 @@ import {
 
 export const demoComponentContent: ContentSection[] = [
   {
-    name: 'Usage',
-    anchor: 'usage',
-    outlet: DemoTopSectionComponent,
-    content: {
-      doc: require('!!raw-loader!./docs/usage.md')
-    }
-  },
-  {
-    name: 'Examples',
-    anchor: 'examples',
+    name: 'Overview',
+    anchor: 'overview',
+    tabName: 'overview',
     outlet: ExamplesComponent,
     content: [
       {
@@ -137,9 +129,12 @@ export const demoComponentContent: ContentSection[] = [
     ]
   },
   {
-    name: 'API Reference',
+    name: 'Installation',
     anchor: 'api-reference',
+    tabName: 'api',
     outlet: ApiSectionsComponent,
+    usage: require('!!raw-loader!./docs/usage.md'),
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">tabs</span>',
     content: [
       {
         title: 'TabsetComponent',
@@ -160,6 +155,84 @@ export const demoComponentContent: ContentSection[] = [
         title: 'TabsetConfig',
         anchor: 'tabset-config',
         outlet: NgApiDocConfigComponent
+      }
+    ]
+  },
+  {
+    name: 'Examples',
+    anchor: 'examples',
+    tabName: 'examples',
+    outlet: ExamplesComponent,
+    content: [
+      {
+        title: 'Basic',
+        anchor: 'basic-ex',
+        outlet: DemoTabsBasicComponent
+      },
+      {
+        title: 'Manual selection',
+        anchor: 'tabs-manual-select-ex',
+        outlet: DemoTabsManualSelectionComponent
+      },
+      {
+        title: 'Disabled tabs',
+        anchor: 'disabled-ex',
+        outlet: DemoTabsDisabledComponent
+      },
+      {
+        title: 'Dynamic tabs',
+        anchor: 'tabs-dynamic-ex',
+        outlet: DemoTabsDynamicComponent
+      },
+      {
+        title: 'Pills',
+        anchor: 'tabs-Pills-ex',
+        outlet: DemoTabsPillsComponent
+      },
+      {
+        title: 'Vertical Pills',
+        anchor: 'tabs-vertical-pills-ex',
+        outlet: DemoTabsVerticalPillsComponent
+      },
+      {
+        title: 'Justified',
+        anchor: 'tabs-justified-ex',
+        outlet: DemoTabsJustifiedComponent
+      },
+      {
+        title: 'Custom class',
+        anchor: 'tabs-custom-class-ex',
+        outlet: DemoTabsCustomClassComponent
+      },
+      {
+        title: 'Select event',
+        anchor: 'select-event-ex',
+        outlet: DemoTabsSelectEventComponent
+      },
+      {
+        title: 'Configuring defaults',
+        anchor: 'tabs-config-defaults-ex',
+        outlet: DemoTabsConfigComponent
+      },
+      {
+        title: 'Custom template',
+        anchor: 'tabs-custom-template-ex',
+        outlet: DemoTabsCustomComponent
+      },
+      {
+        title: 'Dynamic content rendering',
+        anchor: 'dynamic-content-rendering-ex',
+        outlet: DynamicContentRenderingComponent
+      },
+      {
+        title: 'Accessibility',
+        anchor: 'accessibility-ex',
+        outlet: DemoAccessibilityComponent
+      },
+      {
+        title: 'Disable key navigations',
+        anchor: 'disable-key-navigations-ex',
+        outlet: DemoDisabledKeyNavigationsComponent
       }
     ]
   }

@@ -19,7 +19,6 @@ import { DemoPopoverTriggersManualComponent } from './demos/triggers-manual/trig
 import { DemoPopoverCornerPlacementComponent } from './demos/corner-placement/corner-placement';
 
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 
@@ -30,16 +29,9 @@ import {
 
 export const demoComponentContent: ContentSection[] = [
   {
-    name: 'Usage',
-    anchor: 'usage',
-    outlet: DemoTopSectionComponent,
-    content: {
-      doc: require('!!raw-loader!./docs/usage.md')
-    }
-  },
-  {
-    name: 'Examples',
-    anchor: 'examples',
+    name: 'Overview',
+    anchor: 'overview',
+    tabName: 'overview',
     outlet: ExamplesComponent,
     content: [
       {
@@ -203,8 +195,11 @@ export const demoComponentContent: ContentSection[] = [
     ]
   },
   {
-    name: 'API Reference',
+    name: 'Installation',
     anchor: 'api-reference',
+    tabName: 'api',
+    usage: require('!!raw-loader!./docs/usage.md'),
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">popover</span>',
     outlet: ApiSectionsComponent,
     content: [
       {
@@ -216,6 +211,109 @@ export const demoComponentContent: ContentSection[] = [
         title: 'PopoverConfig',
         anchor: 'popover-config',
         outlet: NgApiDocConfigComponent
+      }
+    ]
+  },
+  {
+    name: 'Examples',
+    anchor: 'examples',
+    tabName: 'examples',
+    outlet: ExamplesComponent,
+    content: [
+      {
+        title: 'Basic',
+        anchor: 'basic-ex',
+        outlet: DemoPopoverBasicComponent
+      },
+      {
+        title: 'Placement',
+        anchor: 'placement-ex',
+        outlet: DemoPopoverPlacementComponent
+      },
+      {
+        title: 'Corner placement',
+        anchor: 'corner-placement-ex',
+        outlet: DemoPopoverCornerPlacementComponent
+      },
+      {
+        title: 'Disable adaptive position',
+        anchor: 'adaptive-position-ex',
+        outlet: DemoPopoverAdaptivePositionComponent
+      },
+      {
+        title: 'Dismiss on next click',
+        anchor: 'popover-dismiss-ex',
+        outlet: DemoPopoverDismissComponent
+      },
+      {
+        title: 'Dynamic content',
+        anchor: 'dynamic-content-ex',
+        outlet: DemoPopoverDynamicComponent
+      },
+      {
+        title: 'Custom content template',
+        anchor: 'custom-content-template-ex',
+        outlet: DemoPopoverCustomContentComponent
+      },
+      {
+        title: 'Dynamic Html',
+        anchor: 'dynamic-html-ex',
+        outlet: DemoPopoverDynamicHtmlComponent
+      },
+      {
+        title: 'Append to body',
+        anchor: 'container-body-ex',
+        outlet: DemoPopoverContainerComponent
+      },
+      {
+        title: 'Visibility events',
+        anchor: 'events-ex',
+        outlet: DemoPopoverEventsComponent
+      },
+      {
+        title: 'Configuring defaults',
+        anchor: 'config-defaults-ex',
+        outlet: DemoPopoverConfigComponent
+      },
+      {
+        title: 'Outside click',
+        anchor: 'outside-click-ex',
+        outlet: DemoPopoverOutsideClickComponent
+      },
+      {
+        title: 'Custom triggers',
+        anchor: 'triggers-custom-ex',
+        outlet: DemoPopoverTriggersCustomComponent
+      },
+      {
+        title: 'Manual triggering',
+        anchor: 'triggers-manual-ex',
+        outlet: DemoPopoverTriggersManualComponent
+      },
+      {
+        title: 'Trigger by isOpen property',
+        anchor: 'trigger-by-isopen-property-ex',
+        outlet: DemoPopoverByIsOpenPropComponent
+      },
+      {
+        title: 'Component level styling',
+        anchor: 'styling-local-ex',
+        outlet: DemoPopoverStylingLocalComponent
+      },
+      {
+        title: 'Custom class',
+        anchor: 'popover-custom-class-ex',
+        outlet: DemoPopoverClassComponent
+      },
+      {
+        title: 'Popover context',
+        anchor: 'popover-context-ex',
+        outlet: DemoPopoverContextComponent
+      },
+      {
+        title: 'Popover with delay',
+        anchor: 'popover-delay-ex',
+        outlet: DemoPopoverDelayComponent
       }
     ]
   }

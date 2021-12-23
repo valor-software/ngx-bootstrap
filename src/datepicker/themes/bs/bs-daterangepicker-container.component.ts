@@ -49,9 +49,9 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   animationState = 'void';
 
   _rangeStack: Date[] = [];
-  chosenRange: Date[] = [];
+  override chosenRange: Date[] = [];
   _subs: Subscription[] = [];
-  isRangePicker = true;
+  override isRangePicker = true;
 
   @ViewChild('startTP') startTimepicker?: TimepickerComponent;
   @ViewChild('endTP') endTimepicker?: TimepickerComponent;
@@ -141,11 +141,11 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     this._positionService.enable();
   }
 
-  timeSelectHandler(date: Date, index: number): void {
+  override timeSelectHandler(date: Date, index: number): void {
     this._store.dispatch(this._actions.selectTime(date, index));
   }
 
-  daySelectHandler(day: DayViewModel): void {
+  override daySelectHandler(day: DayViewModel): void {
     if (!day) {
       return;
     }
@@ -157,7 +157,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     this.rangesProcessing(day);
   }
 
-  monthSelectHandler(day: CalendarCellViewModel): void {
+  override monthSelectHandler(day: CalendarCellViewModel): void {
     if (!day || day.isDisabled) {
       return;
     }
@@ -183,7 +183,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     this.rangesProcessing(day);
   }
 
-  yearSelectHandler(day: CalendarCellViewModel): void {
+  override yearSelectHandler(day: CalendarCellViewModel): void {
     if (!day || day.isDisabled) {
       return;
     }
@@ -249,7 +249,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     this._effects?.destroy();
   }
 
-  setRangeOnCalendar(dates: BsCustomDates): void {
+  override setRangeOnCalendar(dates: BsCustomDates): void {
     if (dates) {
       this._rangeStack = dates.value instanceof Date ? [dates.value] : dates.value;
     }

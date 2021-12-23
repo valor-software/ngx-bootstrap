@@ -11,7 +11,6 @@ import { DemoPaginationCustomLinksContentComponent } from './demos/custom-links-
 import { DemoPaginationContentSwitchingComponent } from './demos/content-switching/content-switching';
 
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 
@@ -25,18 +24,11 @@ import { DemoPaginationCustomTemplateComponent } from './demos/custom-template/c
 
 export const demoComponentContent: ContentSection[] = [
   {
-    name: 'Usage',
-    anchor: 'usage',
-    outlet: DemoTopSectionComponent,
-    content: {
-      doc: require('!!raw-loader!./docs/usage.md')
-    }
-  },
-  {
-    name: 'Examples',
-    anchor: 'examples',
+    name: 'Overview',
+    anchor: 'overview',
+    tabName: 'overview',
     outlet: ExamplesComponent,
-    description: `<p>On small screens bootstrap4 pagination can be cropped</p>`,
+    description: `On small screens bootstrap4 pagination can be cropped`,
     content: [
       {
         title: 'Basic',
@@ -159,9 +151,12 @@ export const demoComponentContent: ContentSection[] = [
     ]
   },
   {
-    name: 'API Reference',
+    name: 'Installation',
     anchor: 'api-reference',
+    tabName: 'api',
     outlet: ApiSectionsComponent,
+    usage: require('!!raw-loader!./docs/usage.md'),
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">pagination</span>',
     content: [
       {
         title: 'PaginationComponent',
@@ -192,6 +187,81 @@ export const demoComponentContent: ContentSection[] = [
         title: 'PagesModel',
         anchor: 'pagination-models',
         outlet: NgApiDocConfigComponent
+      }
+    ]
+  },
+  {
+    name: 'Examples',
+    anchor: 'examples',
+    tabName: 'examples',
+    outlet: ExamplesComponent,
+    description: `<p>On small screens bootstrap4 pagination can be cropped</p>`,
+    content: [
+      {
+        title: 'Basic',
+        anchor: 'basic-ex',
+        outlet: DemoPaginationBasicComponent
+      },
+      {
+        title: 'Manual switching page',
+        anchor: 'manual-switching-ex',
+        outlet: DemoPaginationManualSwitchingComponent
+      },
+      {
+        title: 'Page changed event',
+        anchor: 'page-changed-event-ex',
+        outlet: DemoPaginationPageChangedComponent
+      },
+      {
+        title: 'Pages count changed event',
+        anchor: 'pages-count-changed-ex',
+        outlet: DemoPaginationPagesCountChangedComponent
+      },
+      {
+        title: 'Boundary links',
+        anchor: 'boundary-links-ex',
+        outlet: DemoPaginationBoundaryLinksComponent
+      },
+      {
+        title: 'Direction links',
+        anchor: 'direction-links-ex',
+        outlet: DemoPaginationDirectionLinksComponent
+      },
+      {
+        title: 'Custom links content',
+        anchor: 'custom-links-content-ex',
+        outlet: DemoPaginationCustomLinksContentComponent
+      },
+      {
+        title: 'Disabled',
+        anchor: 'pagination-disabled-ex',
+        outlet: DemoPaginationDisabledComponent
+      },
+      {
+        title: 'Limits',
+        anchor: 'pagination-limit-ex',
+        outlet: DemoPaginationLimitComponent
+      },
+      {
+
+        title: 'Centering the active page link',
+        anchor: 'pagination-rotate-ex',
+        outlet: DemoPaginationRotateComponent
+      },
+      {
+        title: 'Content switching',
+        anchor: 'content-switching-ex',
+        outlet: DemoPaginationContentSwitchingComponent
+      },
+      {
+        title: 'Pager',
+        anchor: 'pagination-pager-ex',
+        outlet: DemoPaginationPagerComponent
+      },
+      {
+        title: 'Custom Template',
+        anchor: 'custom-template-ex',
+        outlet: DemoPaginationCustomTemplateComponent
       }
     ]
   }
