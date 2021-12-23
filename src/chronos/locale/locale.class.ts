@@ -162,7 +162,7 @@ export class Locale {
   }
 
   calendar(key: string, date: Date, now: Date): string {
-    const output = this._calendar[key] || this._calendar.sameElse;
+    const output = this._calendar[key] || this._calendar["sameElse"];
 
     return isFunction(output) ? output.call(null, date, now) : output;
   }

@@ -1,7 +1,7 @@
 import { Injectable, StaticProvider, InjectionToken } from '@angular/core';
 import { ClassName, CloseInterceptorFn, DismissReasons, Selector, TransitionDurations } from './models';
 
-@Injectable()
+@Injectable({providedIn: 'platform'})
 export class ModalOptions<T = Record<string, unknown>> {
   /**
    *  Allow user to ID for the modal. Otherwise, a unique number will be given

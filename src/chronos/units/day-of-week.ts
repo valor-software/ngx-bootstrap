@@ -89,7 +89,7 @@ export function initDayOfWeek() {
       const weekday = config._locale.weekdaysParse(input, token, config._strict);
       // if we didn't get a weekday name, mark the date as invalid
       if (weekday != null) {
-        week.d = weekday;
+        week["d"] = weekday;
       } else {
         getParsingFlags(config).invalidWeekday = !!input;
       }

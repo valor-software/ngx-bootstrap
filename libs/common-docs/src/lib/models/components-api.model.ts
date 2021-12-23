@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-@Injectable()
+@Injectable({providedIn: 'platform'})
 export class ComponentApi {
   title?: string;
   anchor?: string;

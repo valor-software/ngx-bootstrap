@@ -1,14 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { ComponentExample } from '../models/components-examples.model';
 import { ComponentApi } from '../models/components-api.model';
-import { ComponentsTopSection } from '../models/components-top-section.model';
 
 interface IContentSection {
   name?: string;
   anchor?: string;
   outlet: any;
   description?: string;
-  content?: ComponentExample[] | ComponentApi[] | ComponentsTopSection;
+  content?: ComponentExample[] | ComponentApi[];
 }
 
 @Component({

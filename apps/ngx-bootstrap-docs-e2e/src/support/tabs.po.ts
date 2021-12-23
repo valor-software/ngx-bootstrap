@@ -1,7 +1,7 @@
 import { BaseComponent } from './base.component';
 
 export class TabsPo extends BaseComponent {
-  pageUrl = '#/tabs';
+  pageUrl = '#/components/tabs';
   pageTitle = 'Tabs';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/tabs';
 
@@ -22,38 +22,38 @@ export class TabsPo extends BaseComponent {
 
   isTabTitleTxtContain(basicSelector: string, expectedTxt: string, tabIndex?: number) {
     if (tabIndex === undefined) {
-      cy.get(`${basicSelector} .nav-item`).each((tabTitle, index) => {
+      cy.get(`${basicSelector}`).first().find(`.nav-item`).each((tabTitle, index) => {
         expect(tabTitle.text()).to.contains(expectedTxt);
         expect(tabTitle.text()).to.contains(index === 0 ? '' : index);
       });
     } else {
-      cy.get(`${basicSelector} .nav-item`).eq(tabIndex).invoke('text').should('to.contains', expectedTxt);
+      cy.get(`${basicSelector}`).first().find(`.nav-item`).eq(tabIndex).invoke('text').should('to.contains', expectedTxt);
     }
   }
 
   isTabContentContain(basicSelector: string, expectedTxt: string, tabIndex?: number) {
     if (tabIndex === undefined) {
-      cy.get(`${basicSelector} tab`).each((tabContent, index) => {
+      cy.get(`${basicSelector}`).first().find(`tab`).each((tabContent, index) => {
         expect(tabContent.text()).to.contains(expectedTxt);
         expect(tabContent.text()).to.contains(index === 0 ? '' : index);
       });
     } else {
-      cy.get(`${basicSelector} tab`).eq(tabIndex).invoke('text').should('to.contains', expectedTxt);
+      cy.get(`${basicSelector}`).first().find(`tab`).eq(tabIndex).invoke('text').should('to.contains', expectedTxt);
     }
   }
 
   isAppropriateTabActive(basicSelector: string, tabIndex: number) {
-    cy.get(`${basicSelector} tab`).eq(tabIndex).should('to.have.class', 'active');
-    cy.get(`${basicSelector} .nav-item`).eq(tabIndex).should('to.have.class', 'active');
+    cy.get(`${basicSelector}`).first().find(`tab`).eq(tabIndex).should('to.have.class', 'active');
+    cy.get(`${basicSelector}`).first().find(` .nav-item`).eq(tabIndex).should('to.have.class', 'active');
   }
 
   isTabsLengthEqual(basicSelector: string, expectedLength: number) {
-    cy.get(`${basicSelector} tab`).should('to.have.length', expectedLength);
-    cy.get(`${basicSelector} .nav-item`).should('to.have.length', expectedLength);
+    cy.get(`${basicSelector}`).first().find(` tab`).should('to.have.length', expectedLength);
+    cy.get(`${basicSelector}`).first().find(` .nav-item`).should('to.have.length', expectedLength);
   }
 
   clickOnTab(basicSelector: string, tabIndex: number) {
-    cy.get(`${basicSelector} .nav-item`).eq(tabIndex).click();
+    cy.get(`${basicSelector}`).first().find(` .nav-item`).eq(tabIndex).click();
   }
 
   isTabDisabled(basicSelector: string, tabIndex: number, isDisabled = true) {
