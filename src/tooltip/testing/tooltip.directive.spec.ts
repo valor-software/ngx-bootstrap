@@ -51,6 +51,10 @@ describe('Directives: Tooltips', () => {
     fixture.detectChanges();
   });
 
+  afterAll(async () => {
+    await new Promise<void>(resolve => setTimeout(() => resolve(), 500)); // avoid jest open handle error
+  });
+
   it('tooltip should not be displayed until user does not any actions', () => {
     const element: HTMLElement = fixture.debugElement.nativeElement;
     expect(element.querySelector('.tooltip-inner')).toBeNull();

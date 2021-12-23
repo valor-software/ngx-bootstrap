@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   templateUrl: './styling-local.html',
   styles: [
     `
-  :host >>> .alert-md-local {
+  :host .alert-md-local {
     background-color: #009688;
     border-color: #00695C;
     color: #fff;

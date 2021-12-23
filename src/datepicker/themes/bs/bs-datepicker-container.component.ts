@@ -45,7 +45,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
 
   valueChange: EventEmitter<Date> = new EventEmitter<Date>();
   animationState = 'void';
-  isRangePicker = false;
+  override isRangePicker = false;
 
   _subs: Subscription[] = [];
 
@@ -108,12 +108,9 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     // todo: move it somewhere else
     // on selected date change
     this._subs.push(
-      this._store
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        .select((state: any) => state.selectedDate)
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        .subscribe((date: any) => this.valueChange.emit(date))
+      this._store.select((state: any) => state.selectedDate).subscribe((date: any) => this.valueChange.emit(date))
     );
+
 
     this._store.dispatch(this._actions.changeViewMode(this._config.startView));
   }
@@ -124,7 +121,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
         this.startTimepicker?.writeValue(val[0]);
       }
     }));
-    this.startTimepicker?.registerOnChange((val) => {
+    this.startTimepicker?.registerOnChange((val: any) => {
       this.timeSelectHandler(val, 0);
     });
   }
@@ -137,11 +134,11 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     this._positionService.enable();
   }
 
-  timeSelectHandler(date: Date, index: number) {
+  override timeSelectHandler(date: Date, index: number) {
     this._store.dispatch(this._actions.selectTime(date, index));
   }
 
-  daySelectHandler(day: DayViewModel): void {
+  override daySelectHandler(day: DayViewModel): void {
     if (!day) {
      return;
     }
@@ -155,7 +152,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     this._store.dispatch(this._actions.select(day.date));
   }
 
-  monthSelectHandler(day: CalendarCellViewModel): void {
+  override monthSelectHandler(day: CalendarCellViewModel): void {
     if (!day || day.isDisabled) {
       return;
     }
@@ -171,7 +168,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     );
   }
 
-  yearSelectHandler(day: CalendarCellViewModel): void {
+  override yearSelectHandler(day: CalendarCellViewModel): void {
     if (!day || day.isDisabled) {
       return;
     }
@@ -186,11 +183,11 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     );
   }
 
-  setToday(): void {
+  override setToday(): void {
     this._store.dispatch(this._actions.select(new Date()));
   }
 
-  clearDate(): void {
+  override clearDate(): void {
     this._store.dispatch(this._actions.select(undefined));
   }
 

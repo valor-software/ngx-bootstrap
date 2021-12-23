@@ -126,8 +126,8 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-      if (changes.bsConfig) {
-        if (changes.bsConfig.currentValue.initCurrentTime && changes.bsConfig.currentValue.initCurrentTime !== changes.bsConfig.previousValue.initCurrentTime && this._bsValue) {
+      if (changes["bsConfig"]) {
+        if (changes["bsConfig"].currentValue.initCurrentTime && changes["bsConfig"].currentValue.initCurrentTime !== changes["bsConfig"].previousValue.initCurrentTime && this._bsValue) {
           this._bsValue = setDateRangesCurrentTimeOnDateSelect(this._bsValue);
           this.bsValueChange.emit(this._bsValue);
         }
@@ -137,32 +137,32 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
         return;
       }
 
-      if (changes.minDate) {
+      if (changes["minDate"]) {
         this._datepickerRef.instance.minDate = this.minDate;
       }
 
-      if (changes.maxDate) {
+      if (changes["maxDate"]) {
         this._datepickerRef.instance.maxDate = this.maxDate;
       }
 
-      if (changes.datesEnabled) {
+      if (changes["datesEnabled"]) {
         this._datepickerRef.instance.datesEnabled = this.datesEnabled;
         this._datepickerRef.instance.value = this._bsValue;
       }
 
-      if (changes.datesDisabled) {
+      if (changes["datesDisabled"]) {
         this._datepickerRef.instance.datesDisabled = this.datesDisabled;
       }
 
-      if (changes.daysDisabled) {
+      if (changes["daysDisabled"]) {
         this._datepickerRef.instance.daysDisabled = this.daysDisabled;
       }
 
-      if (changes.isDisabled) {
+      if (changes["isDisabled"]) {
         this._datepickerRef.instance.isDisabled = this.isDisabled;
       }
 
-      if (changes.dateCustomClasses) {
+      if (changes["dateCustomClasses"]) {
         this._datepickerRef.instance.dateCustomClasses = this.dateCustomClasses;
       }
 

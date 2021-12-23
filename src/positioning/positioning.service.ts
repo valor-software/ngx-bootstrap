@@ -107,7 +107,7 @@ export class PositioningService {
   }
 
   calcPosition(): void {
-    this.update$$.next();
+    this.update$$.next(null);
   }
 
   deletePositionElement(elRef: ElementRef): void {

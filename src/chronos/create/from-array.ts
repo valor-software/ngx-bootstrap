@@ -90,7 +90,7 @@ export function configFromArray(config: DateParsingConfig): DateParsingConfig {
   }
 
   // check for mismatching day of week
-  if (config._w && typeof config._w.d !== 'undefined' && config._w.d !== expectedWeekday) {
+  if (config._w && typeof config._w["d"] !== 'undefined' && config._w["d"] !== expectedWeekday) {
     getParsingFlags(config).weekdayMismatch = true;
   }
 
@@ -101,7 +101,7 @@ function dayOfYearFromWeekInfo(config: DateParsingConfig): DateParsingConfig {
   let weekYear, week, weekday, dow, doy, temp, weekdayOverflow;
 
   const w = config._w;
-  if (w.GG != null || w.W != null || w.E != null) {
+  if (w["GG"] != null || w["W"] != null || w["E"] != null) {
     dow = 1;
     doy = 4;
 
@@ -109,9 +109,9 @@ function dayOfYearFromWeekInfo(config: DateParsingConfig): DateParsingConfig {
     // how we interpret now (local, utc, fixed offset). So create
     // a now version of current config (take local/utc/offset flags, and
     // create now).
-    weekYear = defaults(w.GG, config._a[YEAR], weekOfYear(new Date(), 1, 4).year);
-    week = defaults(w.W, 1);
-    weekday = defaults(w.E, 1);
+    weekYear = defaults(w["GG"], config._a[YEAR], weekOfYear(new Date(), 1, 4).year);
+    week = defaults(w["W"], 1);
+    weekday = defaults(w["E"], 1);
     if (weekday < 1 || weekday > 7) {
       weekdayOverflow = true;
     }
@@ -121,21 +121,21 @@ function dayOfYearFromWeekInfo(config: DateParsingConfig): DateParsingConfig {
 
     const curWeek = weekOfYear(new Date(), dow, doy);
 
-    weekYear = defaults(w.gg, config._a[YEAR], curWeek.year);
+    weekYear = defaults(w["gg"], config._a[YEAR], curWeek.year);
 
     // Default to current week.
-    week = defaults(w.w, curWeek.week);
+    week = defaults(w["w"], curWeek.week);
 
-    if (w.d != null) {
+    if (w["d"] != null) {
       // weekday -- low day numbers are considered next week
-      weekday = w.d;
+      weekday = w["d"];
       if (weekday < 0 || weekday > 6) {
         weekdayOverflow = true;
       }
-    } else if (w.e != null) {
+    } else if (w["e"] != null) {
       // local weekday -- counting starts from beginning of week
-      weekday = w.e + dow;
-      if (w.e < 0 || w.e > 6) {
+      weekday = w["e"] + dow;
+      if (w["e"] < 0 || w["e"] > 6) {
         weekdayOverflow = true;
       }
     } else {

@@ -1,5 +1,5 @@
-import { Component, HostListener } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, HostListener } from "@angular/core";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import sdk from '@stackblitz/sdk';
 
 import { ContentSection } from '../../models/content-section.model';
@@ -10,6 +10,8 @@ import { getAppModuleCode, NgxModuleData } from './stackblitz/app.module';
 import { getIndexHtmlCode } from './stackblitz/html';
 import { getComponentClassName, getTagName, getTemplateFileName, getCSSCodeDatepickerCustomClass } from './stackblitz/helpers';
 import { Utils } from 'ngx-bootstrap/utils';
+import { Subscription } from "rxjs";
+import { AvailableTabsNames } from "../../models/common.models";
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'examples',
@@ -18,11 +20,19 @@ import { Utils } from 'ngx-bootstrap/utils';
 export class ExamplesComponent {
   examples: ComponentExample[];
   moduleData: NgxModuleData;
+  tabName?: AvailableTabsNames;
+  routeSubscription: Subscription;
 
   constructor(public section: ContentSection, private route: ActivatedRoute, router: Router) {
     this.examples = section.content as ComponentExample[];
     this.moduleData = this.route.snapshot.data && this.route.snapshot.data[1];
     this.moduleData.moduleRoute = router.routerState.snapshot.url;
+    this.tabName = router.parseUrl(router.url).queryParams?.["tab"];
+    this.routeSubscription = router.events.subscribe((event: any) => {
+      if (event instanceof NavigationEnd) {
+        this.tabName = router.parseUrl(router.url).queryParams?.["tab"];
+      }
+    });
   }
 
   @HostListener('document:click', ['$event'])
@@ -115,6 +125,11 @@ export class ExamplesComponent {
 
       sdk.openProject(project);
     }
+  }
+
+  initFragment(anchor: string) {
+    const spAnchor =  anchor.split('-');
+    return spAnchor.slice(0, spAnchor.length -1).join('-');
   }
 
   private getHtml(html: string): string {

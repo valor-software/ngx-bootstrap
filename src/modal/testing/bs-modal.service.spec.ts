@@ -23,11 +23,11 @@ describe('Service: BsModal', () => {
       'instance',
       'to'
     ]);
-    componentLoader.attach.mockReturnValue(componentLoader);
-    componentLoader.hide.mockReturnValue(componentLoader);
-    componentLoader.provide.mockReturnValue(componentLoader);
-    componentLoader.to.mockReturnValue(componentLoader);
-    componentLoader.instance.mockReturnValue(componentLoader);
+    componentLoader["attach"].mockReturnValue(componentLoader);
+    componentLoader["hide"].mockReturnValue(componentLoader);
+    componentLoader["provide"].mockReturnValue(componentLoader);
+    componentLoader["to"].mockReturnValue(componentLoader);
+    componentLoader["instance"].mockReturnValue(componentLoader);
 
     Object.defineProperties(componentLoader, {
       onBeforeShow: {value: EMPTY},
@@ -54,9 +54,9 @@ describe('Service: BsModal', () => {
       ]
     });
 
-    mockComponentLoader.show.mockImplementation(mockShow);
+    mockComponentLoader["show"].mockImplementation(mockShow);
     // mockComponentLoader.show.and.callFake(mockShow);
-    mockComponentLoaderFactory.createLoader.mockImplementation(mockCreateLoader);
+    mockComponentLoaderFactory["createLoader"].mockImplementation(mockCreateLoader);
     // mockComponentLoaderFactory.createLoader.and.callFake(mockCreateLoader);
 
     bsModalService = TestBed.inject(BsModalService);
@@ -93,7 +93,7 @@ describe('Service: BsModal', () => {
 
       bsModalService.show(content, options);
 
-      expect(mockComponentLoader.provide).toHaveBeenCalledWith(provider);
+      expect(mockComponentLoader["provide"]).toHaveBeenCalledWith(provider);
     });
   });
 });

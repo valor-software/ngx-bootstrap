@@ -1,8 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { AfterContentInit, Component, Inject } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, UrlSerializer } from '@angular/router';
-import { PageScrollService } from 'ngx-page-scroll-core';
-
 import { Analytics } from '@ngx-bootstrap-doc/docs';
 import { filter } from 'rxjs/operators';
 
@@ -12,11 +10,11 @@ import { filter } from 'rxjs/operators';
   templateUrl: './app.component.html'
 })
 export class AppComponent implements AfterContentInit {
+  showSidebar = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private pageScrollService: PageScrollService,
     private urlSerializer: UrlSerializer,
     private analytics: Analytics,
     @Inject(DOCUMENT) private document: any
@@ -30,6 +28,7 @@ export class AppComponent implements AfterContentInit {
     let _prev = getUrl(this.router);
     const justDoIt = (): void => {
       const _cur = getUrl(this.router);
+      this.showSidebar = !!getUrl(this.router);
       if (typeof PR !== 'undefined' && _prev !== _cur) {
         _prev = _cur;
         // google code-prettify
@@ -38,7 +37,17 @@ export class AppComponent implements AfterContentInit {
 
       const hash = this.route.snapshot.fragment;
       if (hash) {
-        this.pageScrollService.scroll({ document: this.document, scrollTarget: `#${hash}` });
+        const target: HTMLElement | null = this.document.getElementById(hash);
+        const header: HTMLElement | null = this.document.getElementById('header');
+        if (target && header) {
+          setTimeout(() => {
+            const sidebar: HTMLElement | null = this.document.getElementById('sidebar');
+            const targetPosY: number =  innerWidth <= 991 ? target.offsetTop - header.offsetHeight - 6 - (sidebar?.offsetHeight || 0) : target.offsetTop - header.offsetHeight - 6;
+            window.scrollTo({top: targetPosY, behavior: 'smooth'});
+          }, 100);
+        }
+      } else {
+        window.scrollTo({top: 0, behavior: 'smooth'});
       }
     };
 

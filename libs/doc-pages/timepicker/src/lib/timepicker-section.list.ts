@@ -16,7 +16,6 @@ import { DemoTimepickerReadonlyComponent } from './demos/readonly/readonly';
 import { DemoTimepickerSpinnersComponent } from './demos/spinners/spinners';
 
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 
@@ -29,16 +28,9 @@ import { DemoTimepickerFormComponent } from './demos/form/form';
 
 export const demoComponentContent: ContentSection[] = [
   {
-    name: 'Usage',
-    anchor: 'usage',
-    outlet: DemoTopSectionComponent,
-    content: {
-      doc: require('!!raw-loader!./docs/usage.md')
-    }
-  },
-  {
-    name: 'Examples',
-    anchor: 'examples',
+    name: 'Overview',
+    anchor: 'overview',
+    tabName: 'overview',
     outlet: ExamplesComponent,
     content: [
       {
@@ -173,9 +165,12 @@ export const demoComponentContent: ContentSection[] = [
     ]
   },
   {
-    name: 'API Reference',
+    name: 'Installation',
     anchor: 'api-reference',
+    tabName: 'api',
     outlet: ApiSectionsComponent,
+    usage: require('!!raw-loader!./docs/usage.md'),
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">timepicker</span>',
     content: [
       {
         title: 'TimepickerComponent',
@@ -186,6 +181,104 @@ export const demoComponentContent: ContentSection[] = [
         title: 'TimepickerConfig',
         anchor: 'timepicker-config',
         outlet: NgApiDocConfigComponent
+      }
+    ]
+  },
+  {
+    name: 'Examples',
+    anchor: 'examples',
+    tabName: 'examples',
+    outlet: ExamplesComponent,
+    content: [
+      {
+        title: 'Basic',
+        anchor: 'basic-ex',
+        outlet: DemoTimepickerBasicComponent
+      },
+      {
+        title: 'Form',
+        anchor: 'form-ex',
+        outlet: DemoTimepickerFormComponent
+      },
+      {
+        title: 'Meridian',
+        anchor: 'meridian-ex',
+        outlet: DemoTimepickerMeridianComponent
+      },
+      {
+        title: 'Custom meridian',
+        anchor: 'custom-meridian-ex',
+        outlet: DemoTimepickerCustomMeridianComponent
+      },
+      {
+        title: 'Min - Max',
+        anchor: 'min-max-ex',
+        outlet: DemoTimepickerMinMaxComponent
+      },
+      {
+        title: 'Toggle minutes/seconds',
+        anchor: 'toggleMinutesSeconds-ex',
+        outlet: DemoTimepickerToggleMinutesSecondsComponent
+      },
+      {
+        title: 'Disabled',
+        anchor: 'disabled-ex',
+        outlet: DemoTimepickerDisabledComponent
+      },
+      {
+        title: 'Readonly',
+        anchor: 'readonly-ex',
+        outlet: DemoTimepickerReadonlyComponent
+      },
+      {
+        title: 'Custom steps',
+        anchor: 'custom-ex',
+        outlet: DemoTimepickerCustomComponent
+      },
+      {
+        title: 'Custom validation',
+        anchor: 'custom-validation-ex',
+        outlet: DemoTimepickerCustomValidationComponent
+      },
+      {
+        title: 'Custom validation with isValid event',
+        anchor: 'isvalid-ex',
+        outlet: DemoTimepickerIsValidComponent
+      },
+      {
+        title: 'Dynamic',
+        anchor: 'dynamic-ex',
+        outlet: DemoTimepickerDynamicComponent
+      },
+      {
+        title: 'Mouse wheel',
+        anchor: 'mouse-wheel-ex',
+        outlet: DemoTimepickerMousewheelComponent
+      },
+      {
+        title: 'Empty date',
+        anchor: 'empty-date-ex',
+        outlet: DemoTimepickerEmptyDateComponent
+      },
+      {
+        title: 'Arrow keys',
+        anchor: 'arrow keys-ex',
+        outlet: DemoTimepickerArrowkeysComponent
+      },
+      {
+        title: 'Spinners',
+        anchor: 'spinners-ex',
+        outlet: DemoTimepickerSpinnersComponent
+      },
+      {
+        title: 'Placeholder',
+        anchor: 'placeholder-ex',
+        outlet: DemoTimepickerPlaceholderComponent
+      },
+      {
+        title: 'Configuring defaults',
+        anchor: 'config-defaults-ex',
+        outlet: DemoTimepickerConfigComponent
       }
     ]
   }

@@ -19,7 +19,6 @@ import { DemoAccessibilityComponent } from './demos/accessibility/accessibility'
 import { DemoModalWithPopupsComponent } from './demos/modal-with-popups/modal-with-popups';
 
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 
@@ -34,25 +33,21 @@ import { DemoModalServiceWithInterceptorComponent } from './demos/service-interc
 
 export const demoComponentContent: ContentSection[] = [
   {
-    name: 'Usage',
-    anchor: 'usage',
-    outlet: DemoTopSectionComponent,
-    content: {
-      doc: require('!!raw-loader!./docs/usage.md')
-    }
-  },
-  {
-    name: 'Service examples',
-    anchor: 'service-section',
+    name: 'Overview',
+    anchor: 'overview',
+    tabName: 'overview',
     outlet: ExamplesComponent,
-    description: `
-      <p>Open a modal from service.</p>
+    content: [
+      {
+        title: 'Service examples',
+        anchor: 'service-section',
+        description: `<p>Open a modal from service.</p>
       <p>To be able to open modals from service, inject <code>BsModalService</code> to your constructor.<br>Then, call
       <code>.show()</code> method of modal service. Pass a <code>TemplateRef</code> or a component as a first argument and
       config as a second (optionally). <br> <code>.show()</code> method returns an instance of <code>BsModalRef</code>
       class with <code>.hide()</code> method and <code>content</code> property where you'll find a component
-      which you've passed to service.</p>`,
-    content: [
+      which you've passed to service.</p>`
+      },
       {
         title: 'Template',
         anchor: 'service-template',
@@ -181,15 +176,12 @@ export const demoComponentContent: ContentSection[] = [
         description: `<p>When opening a modal with a component, you can provide an interceptor which will be triggered
           whenever the modal try to close, allowing you to block the disappearance of a modal.</p>`,
         outlet: DemoModalServiceWithInterceptorComponent
-      }
-    ]
-  },
-  {
-    name: 'Directive examples',
-    anchor: 'directive-section',
-    outlet: ExamplesComponent,
-    description: `<p>Also you can use directive instead of service. See the demos below </p>`,
-    content: [
+      },
+      {
+        title: 'Directive examples',
+        anchor: 'directive-section',
+        description: `<p>Also you can use directive instead of service. See the demos below </p>`
+      },
       {
         title: 'Static modal',
         anchor: 'directive-static',
@@ -271,9 +263,12 @@ export const demoComponentContent: ContentSection[] = [
     ]
   },
   {
-    name: 'API Reference',
+    name: 'Installation',
     anchor: 'api-reference',
+    tabName: 'api',
     outlet: ApiSectionsComponent,
+    usage: require('!!raw-loader!./docs/usage.md'),
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">modals</span>',
     content: [
       {
         title: 'ModalDirective',
@@ -299,6 +294,114 @@ export const demoComponentContent: ContentSection[] = [
         title: 'ModalOptions',
         anchor: 'modal-options',
         outlet: NgApiDocConfigComponent
+      }
+    ]
+  },
+  {
+    name: 'Examples',
+    anchor: 'examples',
+    tabName: 'examples',
+    outlet: ExamplesComponent,
+    content: [
+      {
+        title: 'Template',
+        anchor: 'service-template-ex',
+        outlet: DemoModalServiceStaticComponent
+      },
+      {
+        title: 'Component',
+        anchor: 'service-component-ex',
+        outlet: DemoModalServiceFromComponent
+      },
+      {
+        title: 'Nested',
+        anchor: 'service-nested-ex',
+        outlet: DemoModalServiceNestedComponent
+      },
+      {
+        title: 'Scrolling long content',
+        anchor: 'scrolling-long-content-ex',
+        outlet: DemoModalScrollingLongContentComponent
+      },
+      {
+        title: 'Events',
+        anchor: 'service-events-ex',
+        outlet: DemoModalServiceEventsComponent
+      },
+      {
+        title: 'ModalRef Events',
+        anchor: 'modal-ref-events-ex',
+        outlet: DemoModalRefEventsComponent
+      },
+      {
+        title: 'Confirm Window',
+        anchor: 'confirm-window-ex',
+        outlet: DemoModalServiceConfirmWindowComponent
+      },
+      {
+        title: 'Сustom css class',
+        anchor: 'service-custom-css-class-ex',
+        outlet: DemoModalServiceCustomCSSClassComponent
+      },
+      {
+        title: 'Animation option',
+        anchor: 'service-disable-animation-ex',
+        outlet: DemoModalServiceDisableAnimationComponent
+      },
+      {
+        title: 'Esc closing option',
+        anchor: 'service-disable-esc-closing-ex',
+        outlet: DemoModalServiceDisableEscClosingComponent
+      },
+      {
+        title: 'Modal window with tooltip and popover',
+        anchor: 'modal-with-popups-ex',
+        outlet: DemoModalWithPopupsComponent
+      },
+      {
+        title: 'Backdrop options',
+        anchor: 'service-disable-backdrop-ex',
+        outlet: DemoModalServiceDisableBackdropComponent
+      },
+      {
+        title: 'Change class',
+        anchor: 'change-class-ex',
+        outlet: DemoModalServiceChangeClassComponent
+      },
+      {
+        title: 'Close interceptor',
+        anchor: 'service-with-interceptor-ex',
+        outlet: DemoModalServiceWithInterceptorComponent
+      },
+      {
+        title: 'Static modal',
+        anchor: 'directive-static-ex',
+        outlet: DemoModalStaticComponent
+      },
+      {
+        title: 'Optional sizes',
+        anchor: 'directive-sizes-ex',
+        outlet: DemoModalSizesComponent
+      },
+      {
+        title: 'Child modal',
+        anchor: 'directive-child-ex',
+        outlet: DemoModalChildComponent
+      },
+      {
+        title: 'Nested modals',
+        anchor: 'directive-nested-ex',
+        outlet: DemoModalNestedComponent
+      },
+      {
+        title: 'Modal events',
+        anchor: 'directive-events-ex',
+        outlet: DemoModalEventsComponent
+      },
+      {
+        title: 'Auto shown modal',
+        anchor: 'directive-auto-shown-ex',
+        outlet: DemoAutoShownModalComponent
       }
     ]
   }

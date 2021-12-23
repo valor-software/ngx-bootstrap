@@ -4,9 +4,7 @@
 import { getStyleComputedProperty } from './getStyleComputedProperty';
 import { getBordersSize } from './getBordersSize';
 import { getWindowSizes } from './getWindowSizes';
-import { getScroll } from './getScroll';
 import { getClientRect } from './getClientRect';
-import { isIE } from './isIE';
 import { Offsets } from '../models';
 import { isNumber } from './isNumeric';
 
@@ -16,20 +14,20 @@ export function getBoundingClientRect(element: HTMLElement): Offsets {
   // IE10 10 FIX: Please, don't ask, the element isn't
   // considered in DOM in some circumstances...
   // This isn't reproducible in IE10 compatibility mode of IE11
-  try {
-    if (isIE(10)) {
-      const scrollTop = getScroll(element, 'top');
-      const scrollLeft = getScroll(element, 'left');
-      if (rect && isNumber(rect.top) && isNumber(rect.left) && isNumber(rect.bottom) && isNumber(rect.right)) {
-        rect.top += scrollTop;
-        rect.left += scrollLeft;
-        rect.bottom += scrollTop;
-        rect.right += scrollLeft;
-      }
-    }
-  } catch (e) {
-    return rect;
-  }
+  // try {
+  //   if (isIE(10)) {
+  //     const scrollTop = getScroll(element, 'top');
+  //     const scrollLeft = getScroll(element, 'left');
+  //     if (rect && isNumber(rect.top) && isNumber(rect.left) && isNumber(rect.bottom) && isNumber(rect.right)) {
+  //       rect.top += scrollTop;
+  //       rect.left += scrollLeft;
+  //       rect.bottom += scrollTop;
+  //       rect.right += scrollLeft;
+  //     }
+  //   }
+  // } catch (e) {
+  //   return rect;
+  // }
 
   if (!(rect && isNumber(rect.top) && isNumber(rect.left) && isNumber(rect.bottom) && isNumber(rect.right))) {
     return rect;
