@@ -41,7 +41,6 @@ locales.forEach((locale: LocaleData) => {
     ...DEMO_COMPONENTS
   ],
   imports: [
-    DatepickerModule.forRoot(),
     BsDatepickerModule.forRoot(),
     TabsModule.forRoot(),
     CommonModule,
