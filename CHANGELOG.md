@@ -1,3 +1,7 @@
+# [8.0.0-RC.2](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.1...v8.0.0-RC.2) (2021-12-23)
+
+
+
 # [8.0.0-RC.1](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.2...v8.0.0-RC.1) (2021-12-23)
 
 
