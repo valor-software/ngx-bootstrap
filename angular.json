@@ -84,7 +84,6 @@
           },
           "configurations": {
             "production": {
-              "baseHref": "/ngx-bootstrap/",
               "browserTarget": "ngx-bootstrap-docs:build:production"
             },
             "development": {
