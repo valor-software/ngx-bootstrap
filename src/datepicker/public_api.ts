@@ -14,12 +14,5 @@ export { BsDaterangepickerConfig } from './bs-daterangepicker.config';
 export { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
 export { BsDaterangepickerDirective } from './bs-daterangepicker.component';
 export { BsLocaleService } from './bs-locale.service';
-export { DateFormatter } from './date-formatter';
-export { DatePickerComponent } from './datepicker.component';
-export { DatepickerConfig } from './datepicker.config';
-export { DatePickerInnerComponent } from './datepicker-inner.component';
-export { DayPickerComponent } from './daypicker.component';
-export { MonthPickerComponent } from './monthpicker.component';
-export { YearPickerComponent } from './yearpicker.component';
+
 export { BsDatepickerModule } from './bs-datepicker.module';
-export { DatepickerModule } from './datepicker.module';

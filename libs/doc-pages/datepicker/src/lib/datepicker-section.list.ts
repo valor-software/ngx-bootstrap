@@ -1,6 +1,5 @@
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DatepickerDemoComponent } from './demos/datepicker-demo.component';
 import { DemoDatepickerBasicComponent } from './demos/basic/basic';
 import { DemoDatepickerByIsOpenPropComponent } from './demos/trigger-by-isopen-property/trigger-by-isopen-property';
 import { DemoDatepickerChangeLocaleComponent } from './demos/change-locale/change-locale';
