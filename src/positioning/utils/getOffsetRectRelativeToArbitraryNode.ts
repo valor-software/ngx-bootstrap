@@ -3,7 +3,6 @@ import { getClientRect } from './getClientRect';
 import { getScrollParent } from './getScrollParent';
 import { getStyleComputedProperty } from './getStyleComputedProperty';
 import { includeScroll } from './includeScroll';
-import { isIE as runIsIE } from './isIE';
 import { Offsets } from '../models';
 import { isNumber } from './isNumeric';
 
@@ -12,7 +11,6 @@ export function getOffsetRectRelativeToArbitraryNode(
   parent: HTMLElement,
   fixedPosition = false
 ): Offsets {
-  const isIE10 = runIsIE(10);
   const isHTML = parent.nodeName === 'HTML';
   const childrenRect = getBoundingClientRect(children);
   const parentRect = getBoundingClientRect(parent);
@@ -28,7 +26,7 @@ export function getOffsetRectRelativeToArbitraryNode(
     parentRect.left = Math.max(parentRect.left ?? 0, 0);
   }
 
-  let offsets: Offsets = getClientRect({
+  const offsets: Offsets = getClientRect({
     top: (childrenRect.top ?? 0) - (parentRect.top ?? 0) - borderTopWidth,
     left: (childrenRect.left ?? 0) - (parentRect.left ?? 0) - borderLeftWidth,
     width: childrenRect.width,
@@ -42,7 +40,7 @@ export function getOffsetRectRelativeToArbitraryNode(
   // we do this only on HTML because it's the only element that behaves
   // differently when margins are applied to it. The margins are included in
   // the box of the documentElement, in the other cases not.
-  if (!isIE10 && isHTML) {
+  if (isHTML) {
     const marginTop = parseFloat(styles.marginTop);
     const marginLeft = parseFloat(styles.marginLeft);
 
@@ -62,14 +60,6 @@ export function getOffsetRectRelativeToArbitraryNode(
     // Attach marginTop and marginLeft because in some circumstances we may need them
     offsets.marginTop = marginTop;
     offsets.marginLeft = marginLeft;
-  }
-
-  if (
-    isIE10 && !fixedPosition
-      ? parent.contains(scrollParent)
-      : parent === scrollParent && scrollParent.nodeName !== 'BODY'
-  ) {
-    offsets = includeScroll(offsets, parent);
   }
 
   return offsets;

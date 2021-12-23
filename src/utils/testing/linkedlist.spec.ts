@@ -13,6 +13,10 @@ describe('Linked List. Base functions.', () => {
     list.add('5');
   });
 
+  afterAll(async () => {
+    await new Promise<void>(resolve => setTimeout(() => resolve(), 500)); // avoid jest open handle error
+  });
+
   it('List length must available', () => {
     expect(list.length).toEqual(5);
   });

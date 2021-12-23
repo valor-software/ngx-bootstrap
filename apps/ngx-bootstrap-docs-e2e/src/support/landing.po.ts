@@ -5,17 +5,14 @@ export class LandingPo extends BaseComponent {
   documentationUrl = '#/documentation/';
 
   mainClass = '.main';
-  logoAtHeader = '.logo';
-  logoAtContent = '.content-logo';
-  headerSelector = '.header';
+  logoAtHeader = '[data-cypress="logoAtHeader"]';
+  headerSelector = '#header';
   stackOverBtn = 'a[href*= "stackoverflow"]';
-  gitHbBtn = '.header-list a[href*= "github"]';
-  slackNgxBtn = '.header-list a[href*= "slack"]';
-  infoButtons = '.header-list';
-  sloganBs = '.slogan';
-  descriptionBs = '.descr';
-  versionBs = '.version';
-  advantagesBs = '.advantages';
+  gitHbBtn = '[data-cypress="infoButtons"] a[href*= "github"]';
+  slackNgxBtn = '[data-cypress="infoButtons"] a[href*= "slack"]';
+  infoButtons = '[data-cypress="infoButtons"]';
+  sloganBs = '[data-cypress="sloganBs"]';
+  advantagesBs = '[data-cypress="advantagesBs"]';
   navBtn = '.btn';
   mobileMenu = '.mobile-menu';
   mobileMenuBtn = '#mobile-main-menu';
@@ -25,7 +22,6 @@ export class LandingPo extends BaseComponent {
   githubUrl = 'https://github.com/valor-software/ngx-bootstrap';
   slackUrl = 'https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWVjZGU2MjI4MTVhMGVlMTc2OWRiMzA0NzBhNDU5YzQ0MDM3MWI5NzJjZTUzNzIxZmNjYmFlMjU2MzE0YmY0NWY';
 
-  teamUrl = 'https://github.com/valor-software';
   contributorsUrl = 'https://github.com/valor-software/ngx-bootstrap/graphs/contributors';
   mitLicenseUrl = 'https://github.com/valor-software/ngx-bootstrap/blob/development/LICENSE';
   crCommonsUrl = 'https://creativecommons.org/licenses/by/3.0/';
@@ -41,8 +37,8 @@ export class LandingPo extends BaseComponent {
   }
 
   isSearchResultCorrect(searchResult: string) {
-    cy.get('.sidebar-list').eq(1)
-      .should('have.descendants', 'li').invoke('text')
+    cy.get('[data-cypress="search-result"]').eq(0)
+      .should('have.descendants', 'li').find('a').invoke('text')
       .should('contain', searchResult);
   }
 

@@ -1,6 +1,5 @@
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { DemoTypeaheadAdaptivePositionComponent } from './demos/adaptive-position/adaptive-position';
 import { DemoTypeaheadAnimatedComponent } from './demos/animated/animated';
 import { DemoTypeaheadBasicComponent } from './demos/basic/basic';
@@ -36,16 +35,9 @@ import { DemoTypeaheadMultipleSearchComponent } from './demos/multiple-search/mu
 
 export const demoComponentContent: ContentSection[] = [
   {
-    name: 'Usage',
-    anchor: 'usage',
-    outlet: DemoTopSectionComponent,
-    content: {
-      doc: require('!!raw-loader!./docs/usage.md')
-    }
-  },
-  {
-    name: 'Examples',
-    anchor: 'examples',
+    name: 'Overview',
+    anchor: 'overview',
+    tabName: 'overview',
     outlet: ExamplesComponent,
     content: [
       {
@@ -330,9 +322,12 @@ export const demoComponentContent: ContentSection[] = [
     ]
   },
   {
-    name: 'API Reference',
+    name: 'Installation',
     anchor: 'api-reference',
+    tabName: 'api',
     outlet: ApiSectionsComponent,
+    usage: require('!!raw-loader!./docs/usage.md'),
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">typeahead</span>',
     content: [
       {
         title: 'TypeaheadDirective',
@@ -359,6 +354,159 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'typeahead-template method',
         outlet: NgApiDocConfigComponent,
         showMethods: true
+      }
+    ]
+  },
+  {
+    name: 'Examples',
+    anchor: 'examples',
+    tabName: 'examples',
+    outlet: ExamplesComponent,
+    content: [
+      {
+        title: 'Basic array',
+        anchor: 'Basic-array-ex',
+        outlet: DemoTypeaheadBasicComponent
+      },
+      {
+        title: 'With animation',
+        anchor: 'animated-ex',
+        outlet: DemoTypeaheadAnimatedComponent
+      },
+      {
+        title: 'Adaptive position',
+        anchor: 'adaptive-position-ex',
+        outlet: DemoTypeaheadAdaptivePositionComponent
+      },
+      {
+        title: 'Item template',
+        anchor: 'item-template-ex',
+        outlet: DemoTypeaheadItemTemplateComponent
+      },
+      {
+        title: 'List template',
+        anchor: 'list-template-ex',
+        outlet: DemoTypeaheadListTemplateComponent
+      },
+      {
+        title: 'Option field',
+        anchor: 'option-field-ex',
+        outlet: DemoTypeaheadFieldComponent
+      },
+      {
+        title: 'Async data',
+        anchor: 'async-data-ex',
+        outlet: DemoTypeaheadAsyncComponent
+      },
+      {
+        title: 'Async using http request',
+        anchor: 'async-http-request-ex',
+        outlet: DemoTypeaheadAsyncHttpRequestComponent
+      },
+      {
+        title: 'Cancel on focus lost',
+        anchor: 'cancel-on-focus-lost-ex',
+        outlet: DemoTypeaheadCancelRequestOnFocusLostComponent
+      },
+      {
+        title: 'With delay',
+        anchor: 'delay-ex',
+        outlet: DemoTypeaheadDelayComponent
+      },
+      {
+        title: 'Template-driven forms',
+        anchor: 'forms-ex',
+        outlet: DemoTypeaheadFormComponent
+      },
+      {
+        title: 'Reactive forms',
+        anchor: 'reactive-forms-ex',
+        outlet: DemoTypeaheadReactiveFormComponent
+      },
+      {
+        title: 'Grouping results',
+        anchor: 'grouping-results-ex',
+        outlet: DemoTypeaheadGroupingComponent
+      },
+      {
+        title: 'Ignore spaces and order',
+        anchor: 'single-world-ex',
+        outlet: DemoTypeaheadSingleWorldComponent
+      },
+      {
+        title: 'Phrase delimiters',
+        anchor: 'phrase-delimiters-ex',
+        outlet: DemoTypeaheadPhraseDelimitersComponent
+      },
+      {
+        title: 'Dropup',
+        anchor: 'dropup-ex',
+        outlet: DemoTypeaheadDropupComponent
+      },
+      {
+        title: 'On blur',
+        anchor: 'on-blur-ex',
+        outlet: DemoTypeaheadOnBlurComponent
+      },
+      {
+        title: 'Append to body',
+        anchor: 'container-ex',
+        outlet: DemoTypeaheadContainerComponent
+      },
+      {
+        title: 'No result',
+        anchor: 'no-result-ex',
+        outlet: DemoTypeaheadNoResultComponent
+      },
+      {
+        title: 'Scrollable',
+        anchor: 'scrollable-ex',
+        outlet: DemoTypeaheadScrollableComponent
+      },
+      {
+        title: 'Latinize',
+        anchor: 'latinize-ex',
+        outlet: DemoTypeaheadLatinizeComponent
+      },
+      {
+        title: 'On select / On preview',
+        anchor: 'on-select-ex',
+        outlet: DemoTypeaheadOnSelectComponent
+      },
+      {
+        title: 'Min length',
+        anchor: 'min-length-ex',
+        outlet: DemoTypeaheadMinLengthComponent
+      },
+      {
+        title: 'Show results on blur',
+        anchor: 'show-on-blur-ex',
+        outlet: DemoTypeaheadShowOnBlurComponent
+      },
+      {
+        title: 'Configuring defaults',
+        anchor: 'configuration-ex',
+        outlet: DemoTypeaheadConfigComponent
+      },
+      {
+        title: 'Is first item active',
+        anchor: 'first-item-active-ex',
+        outlet: DemoTypeaheadFirstItemActiveComponent
+      },
+      {
+        title: 'Selected first item',
+        anchor: 'selected-first-item-ex',
+        outlet: DemotypeaheadSelectFirstItemComponent
+      },
+      {
+        title: 'Order results',
+        anchor: 'typeahead-ordering-ex',
+        outlet: DemoTypeaheadOrderingComponent
+      },
+      {
+        title: 'Multiple search',
+        anchor: 'multiple-search-ex',
+        outlet: DemoTypeaheadMultipleSearchComponent
       }
     ]
   }

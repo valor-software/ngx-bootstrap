@@ -364,7 +364,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
     }
 
     if (this._tooltip.instance?.classMap) {
-      this._tooltip.instance.classMap.in = false;
+      this._tooltip.instance.classMap["in"] = false;
     }
 
     setTimeout(() => {

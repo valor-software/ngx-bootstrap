@@ -121,7 +121,7 @@ describe('datepicker:', () => {
 
   it('should hide on esc', waitForAsync(() => {
     const datepicker = showDatepicker(fixture);
-    const spy = spyOn(datepicker, 'hide');
+    const spy = jest.spyOn(datepicker, 'hide');
     const renderer = fixture.componentRef.injector.get<Renderer2>(Renderer2);
 
     registerEscClick(renderer, {
