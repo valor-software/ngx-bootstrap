@@ -1,3 +1,12 @@
+# [8.0.0-RC.1](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.2...v8.0.0-RC.1) (2021-12-23)
+
+
+### Features
+
+* **documentation:** updated  use-cases ([#6360](https://github.com/valor-software/ngx-bootstrap/issues/6360)) ([fa365cf](https://github.com/valor-software/ngx-bootstrap/commit/fa365cf1bd7e56a0b4824b586c997a86ce5b4307)), closes [#6359](https://github.com/valor-software/ngx-bootstrap/issues/6359)
+
+
+
 # [8.0.0-RC.2](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.1...v8.0.0-RC.2) (2021-12-20)
 
 
