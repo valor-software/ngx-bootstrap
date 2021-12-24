@@ -1,23 +1,26 @@
-<header id="header" class="header">
-  <h1 class="logo" >
+<header id="header" class="header flex-nowrap" [class.box-shadow]="initBoxShadow">
+  <div class="logo col-xl-2 col-lg-3" data-cypress="logoAtHeader">
     <a routerLink="['']">
-      <img alt="ngx-bootstrap" src="assets/images/logos/header-logo.svg">
+      <img  alt="ngx-bootstrap" src="assets/images/logos/ngx-bootstrap-logo-red.svg">
     </a>
-  </h1>
+  </div>
 
-  <div class="header-info">
+  <div class="sidebar-search col-xl-8 col-lg-6 display-lg-none">
+    <search-input class="w-100 icon"></search-input>
+  </div>
+
+  <div class="social-info col-xl-2 col-lg-3">
     <div class="prev-docs" dropdown *ngIf="previousDocs.length" container="body">
       <div dropdownToggle class="dropdown-toggle">
         {{currentVersion ? 'v' + currentVersion : ''}} <span class="caret"></span>
       </div>
-      <ul *dropdownMenu class="dropdown-menu header-dropdown" role="menu" style="margin-top: 25px; left: -50px">
+      <ul *dropdownMenu class="dropdown-menu header-dropdown" role="menu" style="margin-top: 20px;">
         <li role="menuitem" *ngFor="let item of previousDocs">
           <a class="dropdown-item" [href]="appUrl + (needPrefix ? item.url : item.unprefixedUrl) + (appHash ? '/' + appHash : '')">{{item.version}}</a>
         </li>
       </ul>
     </div>
-
-    <ul class="header-list">
+    <ul data-cypress="infoButtons">
       <li>
         <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/tagged/ngx-bootstrap">
           <img src="assets/images/icons/stackoverflow.svg" alt="stackoverflow">

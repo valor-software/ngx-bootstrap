@@ -15,7 +15,6 @@ import { DemoCarouselMultilistIndicatorsByChunkComponent } from './demos/multili
 import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
 
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 
@@ -25,16 +24,9 @@ import { DemoCarouseAnimatedComponent } from './demos/animated/animated';
 
 export const demoComponentContent: ContentSection[] = [
   {
-    name: 'Usage',
-    anchor: 'usage',
-    outlet: DemoTopSectionComponent,
-    content: {
-      doc: require('!!raw-loader!./docs/usage.md')
-    }
-  },
-  {
-    name: 'Examples',
-    anchor: 'examples',
+    name: 'Overview',
+    anchor: 'overview',
+    tabName: 'overview',
     outlet: ExamplesComponent,
     content: [
       {
@@ -164,8 +156,11 @@ export const demoComponentContent: ContentSection[] = [
     ]
   },
   {
-    name: 'API Reference',
+    name: 'Installation',
     anchor: 'api-reference',
+    tabName: 'api',
+    usage: require('!!raw-loader!./docs/usage.md'),
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">carousel</span>',
     outlet: ApiSectionsComponent,
     content: [
       {
@@ -182,6 +177,94 @@ export const demoComponentContent: ContentSection[] = [
         title: 'CarouselConfig',
         anchor: 'carousel-config',
         outlet: NgApiDocConfigComponent
+      }
+    ]
+  },
+  {
+    name: 'Examples',
+    anchor: 'examples',
+    tabName: 'examples',
+    outlet: ExamplesComponent,
+    content: [
+      {
+        title: 'Basic',
+        anchor: 'basic-ex',
+        outlet: DemoCarouseBasicComponent
+      },
+      {
+        title: 'Optional captions',
+        anchor: 'captions-ex',
+        outlet: DemoCarouselCaptionsComponent
+      },
+      {
+        title: 'Configuring defaults',
+        anchor: 'config-defaults-ex',
+        outlet: DemoCarouselConfigComponent
+      },
+      {
+        title: 'Dynamic Slides',
+        anchor: 'dynamic-slides-ex',
+        outlet: DemoCarouselDynamicComponent
+      },
+      {
+        title: 'Pause on hover',
+        anchor: 'pause-on-hover-ex',
+        outlet: DemoCarouselPauseOnHoverComponent
+      },
+      {
+        title: 'Pause on focus',
+        anchor: 'pause-on-focus-ex',
+        outlet: DemoCarouselPauseOnFocusComponent
+      },
+      {
+        title: 'Custom content',
+        anchor: 'custom-content-ex',
+        outlet: DemoCarouselCustomContentComponent
+      },
+      {
+        title: 'Disable slide looping',
+        anchor: 'disable-looping-ex',
+        outlet: DemoCarouselDisableLoopingComponent
+      },
+      {
+        title: 'Disable indicator',
+        anchor: 'disable-indicator-ex',
+        outlet: DemoCarouselDisableIndicatorComponent
+      },
+      {
+        title: 'Interval',
+        anchor: 'slides-interval-ex',
+        outlet: DemoCarouselIntervalComponent
+      },
+      {
+        title: 'Slide changed event',
+        anchor: 'slide-changed-event-ex',
+        outlet: DemoCarouselSlideChangedEventComponent
+      },
+      {
+        title: 'Multilist',
+        anchor: 'multilist-ex',
+        outlet: DemoCarouselMultilistComponent
+      },
+      {
+        title: 'Multilist Single Offset',
+        anchor: 'multilist-single-offset-ex',
+        outlet: DemoCarouselMultilistSingleOffsetComponent
+      },
+      {
+        title: 'Multilist Start From Index',
+        anchor: 'multilist-from-index-ex',
+        outlet: DemoCarouselMultilistFromIndexComponent
+      },
+      {
+        title: 'Multilist Indicators By Chunk',
+        anchor: 'multilist-indicators-by-chunk-ex',
+        outlet: DemoCarouselMultilistIndicatorsByChunkComponent
+      },
+      {
+        title: 'With animation',
+        anchor: 'animated-ex',
+        outlet: DemoCarouseAnimatedComponent
       }
     ]
   }

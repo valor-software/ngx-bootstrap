@@ -1,5 +1,5 @@
 import 'zone.js/dist/long-stack-trace-zone';
-import 'zone.js/dist/zone-testing';
+import 'zone.js/testing';
 import { getTestBed } from '@angular/core/testing';
 import {
   BrowserDynamicTestingModule,

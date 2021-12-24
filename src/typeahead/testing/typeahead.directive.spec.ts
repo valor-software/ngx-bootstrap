@@ -47,6 +47,10 @@ class TestTypeaheadComponent {
 }
 
 describe('Directive: Typeahead', () => {
+  afterAll(async () => {
+    await new Promise<void>(resolve => setTimeout(() => resolve(), 500)); // avoid jest open handle error
+  });
+
   let fixture: ComponentFixture<TestTypeaheadComponent>;
   let component: TestTypeaheadComponent;
   let directive: TypeaheadDirective;
@@ -290,8 +294,9 @@ describe('Directive: Typeahead', () => {
       dispatchTouchEvent(inputElement, 'input');
       tick();
 
-      spyOn(fixture.componentInstance, 'onBlurEvent').and.callFake(param => {
+      jest.spyOn(fixture.componentInstance, 'onBlurEvent').mockImplementation((param: TypeaheadMatch) => {
         expect(param.item.id).toBe(1);
+        return param;
       });
       directive.onBlur();
       expect(directive._container?.isFocused).toBeFalsy();

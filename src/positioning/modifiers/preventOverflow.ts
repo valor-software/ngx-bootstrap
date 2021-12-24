@@ -2,7 +2,6 @@ import { getBoundaries, isModifierEnabled } from '../utils';
 import { Data, Offsets } from '../models';
 
 export function preventOverflow(data: Data) {
-
   if (!isModifierEnabled(data.options, 'preventOverflow')) {
     return data;
   }
@@ -44,35 +43,30 @@ export function preventOverflow(data: Data) {
       return { [placement]: value };
     },
     secondary(placement: keyof Offsets) {
-      const mainSide = placement === 'right' ? 'left' : 'top';
+      const isPlacementHorizontal = placement === 'right';
+      const mainSide = isPlacementHorizontal ? 'left' : 'top';
+      const measurement = isPlacementHorizontal ? 'width' : 'height';
       let value = data.offsets.target[mainSide];
 
       // escapeWithReference
-      if ((data.offsets.target[placement] ?? 0) < (boundaries[placement] ?? 0) && placement !== 'right') {
+      if ((data.offsets.target[placement] ?? 0) > (boundaries[placement] ?? 0)) {
         value = Math.min(
           data.offsets.target[mainSide] ?? 0,
-          (boundaries[placement] ?? 0) - data.offsets.target.height);
-      }
-
-      if ((data.offsets.target[placement] ?? 0) > (boundaries[placement] ?? 0) && placement === 'right') {
-        value = Math.min(
-          data.offsets.target[mainSide] ?? 0,
-          (boundaries[placement] ?? 0) - data.offsets.target.width);
+          (boundaries[placement] ?? 0) - data.offsets.target[measurement]
+        );
       }
 
       return { [mainSide]: value };
     }
   };
 
-
-  order.forEach((placement ) => {
+  order.forEach((placement) => {
     const side = ['left', 'top', 'start'].indexOf(placement) !== -1 ? check['primary'] : check['secondary'];
 
     data.offsets.target = {
       ...data.offsets.target,
       ...side(placement as keyof Offsets)
     };
-
   });
 
   return data;

@@ -6,5 +6,5 @@ import { BsDatepickerConfig } from './bs-datepicker.config';
 })
 export class BsDaterangepickerConfig extends BsDatepickerConfig {
   // DatepickerRenderOptions
-  displayMonths = 2;
+  override displayMonths = 2;
 }

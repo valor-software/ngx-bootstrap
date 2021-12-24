@@ -19,7 +19,6 @@ import { DemoAccessibilityComponent } from './demos/accessibility/accessibility'
 import { DemoDropdownInsideClickComponent } from './demos/inside-click/inside-click';
 
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 
@@ -33,16 +32,9 @@ import { DemoDropdownAnimatedComponent } from './demos/animated/animated';
 
 export const demoComponentContent: ContentSection[] = [
   {
-    name: 'Usage',
-    anchor: 'usage',
-    outlet: DemoTopSectionComponent,
-    content: {
-      doc: require('!!raw-loader!./docs/usage.md')
-    }
-  },
-  {
-    name: 'Examples',
-    anchor: 'examples',
+    name: 'Overview',
+    anchor: 'overview',
+    tabName: 'overview',
     outlet: ExamplesComponent,
     description: `<p>Wrap the dropdown’s toggle (your button or link) and the dropdown menu within
       <code>dropdown</code>. Dropdowns can be triggered from <code> &lt;a&gt;</code> or <code> &lt;button&gt;</code>
@@ -226,9 +218,12 @@ export const demoComponentContent: ContentSection[] = [
     ]
   },
   {
-    name: 'API Reference',
+    name: 'Installation',
     anchor: 'api-reference',
+    tabName: 'api',
     outlet: ApiSectionsComponent,
+    usage: require('!!raw-loader!./docs/usage.md'),
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">dropdowns</span>',
     content: [
       {
         title: 'BsDropdownDirective',
@@ -259,6 +254,109 @@ export const demoComponentContent: ContentSection[] = [
         title: 'BsDropdownConfig',
         anchor: 'dropdown-config',
         outlet: NgApiDocConfigComponent
+      }
+    ]
+  },
+  {
+    name: 'Examples',
+    anchor: 'examples',
+    tabName: 'examples',
+    outlet: ExamplesComponent,
+    content: [
+      {
+        title: 'Basic',
+        anchor: 'basic-ex',
+        outlet: DemoDropdownBasicComponent
+      },
+      {
+        title: 'With animation',
+        anchor: 'animated-ex',
+        outlet: DemoDropdownAnimatedComponent
+      },
+      {
+        title: 'Trigger by tag <a>',
+        anchor: 'anchor-trigger-ex',
+        outlet: DemoDropdownAnchorTriggerComponent
+      },
+      {
+        title: 'Split button dropdowns',
+        anchor: 'split-button-ex',
+        outlet: DemoDropdownSplitComponent
+      },
+      {
+        title: 'Manual triggering',
+        anchor: 'triggers-manual-ex',
+        outlet: DemoDropdownTriggersManualComponent
+      },
+      {
+        title: 'Trigger by isOpen property',
+        anchor: 'trigger-by-isopen-property-ex',
+        outlet: DemoDropdownByIsOpenPropComponent
+      },
+      {
+        title: 'Disabled menu',
+        anchor: 'disabled-menu-ex',
+        outlet: DemoDropdownDisabledComponent
+      },
+      {
+        title: 'Mark item as disabled',
+        anchor: 'disabled-item-ex',
+        outlet: DemoDropdownDisabledItemComponent
+      },
+      {
+        title: 'Menu alignment',
+        anchor: 'menu-alignment-ex',
+        outlet: DemoDropdownAlignmentComponent
+      },
+      {
+        title: 'Inside click',
+        anchor: 'inside-click-ex',
+        outlet: DemoDropdownInsideClickComponent
+      },
+      {
+        title: 'Nested dropdowns (experimental)',
+        anchor: 'nested-dropdowns-ex',
+        outlet: DemoNestedDropdownsComponent
+      },
+      {
+        title: 'Append to body',
+        anchor: 'container-ex',
+        outlet: DemoDropdownContainerComponent
+      },
+      {
+        title: 'Dropup variation',
+        anchor: 'dropup-ex',
+        outlet: DemoDropdownDropupComponent
+      },
+      {
+        title: 'Menu dividers',
+        anchor: 'menu-dividers-ex',
+        outlet: DemoDropdownMenuDividersComponent
+      },
+      {
+        title: 'Custom html',
+        anchor: 'custom-html-ex',
+        outlet: DemoDropdownCustomHtmlComponent
+      },
+      {
+        title: 'Configuring defaults',
+        anchor: 'config-defaults-ex',
+        outlet: DemoDropdownConfigComponent
+      },
+      {
+        title: 'Visibility Events',
+        anchor: 'visibility-events-ex',
+        outlet: DemoDropdownVisibilityEventsComponent
+      },
+      {
+        title: 'State change event',
+        anchor: 'state-change-event-ex',
+        outlet: DemoDropdownStateChangeEventComponent
+      },
+      {
+        title: 'Auto close',
+        anchor: 'autoclose-ex',
+        outlet: DemoDropdownAutoCloseComponent
       }
     ]
   }

@@ -9,6 +9,7 @@ import {
   SortableItem,
   SortableModule
 } from '../index';
+import { SpyObject } from "@ngneat/spectator";
 
 const HEROES: string[] = ['Windstorm', 'Bombasto', 'Magneta', 'Tornado'];
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -118,12 +119,12 @@ xdescribe('Component: Sortable', () => {
     let item: SortableItem;
     let event: DragEvent;
     let draggableItem: DraggableItem;
-    let spyOnChanged: jasmine.Spy;
-    let spyGetItem: jasmine.Spy;
-    let spyCaptureItem: jasmine.Spy;
+    let spyOnChanged: SpyObject<any>;
+    let spyGetItem: SpyObject<any>;
+    let spyCaptureItem: SpyObject<any>;
     let sort1ZoneNumber: number;
-    let spyPreventDefault: jasmine.Spy;
-    let spyOnDrop: jasmine.Spy;
+    let spyPreventDefault: SpyObject<any>;
+    let spyOnDrop: SpyObject<any>;
 
     beforeEach(
       inject([DraggableItemService], (service: DraggableItemService) => {
@@ -136,19 +137,19 @@ xdescribe('Component: Sortable', () => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         sort1ZoneNumber = (sort1 as any).currentZoneIndex;
         draggableItem = getDraggableItem(item, event, sort1ZoneNumber);
-        spyOnChanged = spyOn(sort1, 'onChanged');
-        spyGetItem = spyOn(transfer, 'getItem').and.returnValue(draggableItem);
-        spyCaptureItem = spyOn(transfer, 'captureItem').and.returnValue(
+        spyOnChanged = jest.spyOn(sort1, 'onChanged');
+        spyGetItem = jest.spyOn(transfer, 'getItem').mockReturnValue(draggableItem);
+        spyCaptureItem = jest.spyOn(transfer, 'captureItem').mockReturnValue(
           draggableItem
         );
-        spyPreventDefault = spyOn(event, 'preventDefault');
-        spyOnDrop = spyOn(sort1, 'onDrop').and.callThrough();
+        spyPreventDefault = jest.spyOn(event, 'preventDefault');
+        spyOnDrop = jest.spyOn(sort1, 'onDrop').mockImplementation();
       })
     );
 
     it('should pass dragged item to transfer', () => {
       // arrange
-      const spy = spyOn(transfer, 'dragStart');
+      const spy = jest.spyOn(transfer, 'dragStart');
       // act
       sort1.onItemDragstart(event, item, 0);
       // assert

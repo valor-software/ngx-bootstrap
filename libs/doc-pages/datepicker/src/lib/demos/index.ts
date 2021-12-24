@@ -1,4 +1,3 @@
-import { DatepickerDemoComponent } from './datepicker-demo.component';
 import { DemoDatepickerBasicComponent } from './basic/basic';
 import { DemoDatepickerByIsOpenPropComponent } from './trigger-by-isopen-property/trigger-by-isopen-property';
 import { DemoDatepickerChangeLocaleComponent } from './change-locale/change-locale';
@@ -46,7 +45,6 @@ import { DemoDatepickerPreventChangeToNextMonthComponent } from './prevent-chang
 import { DemoDatepickerWithTimepickerComponent } from './with-timepicker/with-timepicker';
 
 export const DEMO_COMPONENTS = [
-  DatepickerDemoComponent,
   DemoDatePickerAdaptivePositionComponent,
   DemoDatePickerAnimatedComponent,
   DemoDatepickerBasicComponent,
