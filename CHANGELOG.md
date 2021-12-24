@@ -1,3 +1,19 @@
+# [8.0.0-RC.3](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.2...v8.0.0-RC.3) (2021-12-24)
+
+
+### Bug Fixes
+
+* **core:** updated peer deps and added license mentions of secondary entry points (fixes [#6371](https://github.com/valor-software/ngx-bootstrap/issues/6371)) ([dfb957f](https://github.com/valor-software/ngx-bootstrap/commit/dfb957f382b51ea99890354b58c35345cca7158f))
+* **popover:** added a space between containerClass and checkMarginNecessity() ([#6352](https://github.com/valor-software/ngx-bootstrap/issues/6352)) ([757292b](https://github.com/valor-software/ngx-bootstrap/commit/757292b301ce47ce1802bde560c7498efbee4b61))
+
+
+### Features
+
+* **datepicker:** add Spanish (Puerto Rico) [es-pr] locale ([#6374](https://github.com/valor-software/ngx-bootstrap/issues/6374)) ([13a4b92](https://github.com/valor-software/ngx-bootstrap/commit/13a4b92133746b36a93e54e680391e60b1273aa5))
+* **datepicker:** BREAKING CHANGE dropped old version of datepicker ([#6391](https://github.com/valor-software/ngx-bootstrap/issues/6391)) ([85f56bb](https://github.com/valor-software/ngx-bootstrap/commit/85f56bb08ae865d89e26fa6a01cf558a3693bc62))
+
+
+
 # [8.0.0-RC.2](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.1...v8.0.0-RC.2) (2021-12-23)
 
 
