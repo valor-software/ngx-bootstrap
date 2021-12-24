@@ -1,5 +1,7 @@
 {
   "name": "schematics",
   "version": "8.0.0-RC.2",
-  "schematics": "./collection.json"
+  "schematics": "./collection.json",
+  "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
+  "license": "MIT"
 }

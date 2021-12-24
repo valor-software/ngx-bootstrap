@@ -1,4 +1,6 @@
 {
   "name": "ngx-bootstrap/tabs",
-  "version": "8.0.0-RC.2"
+  "version": "8.0.0-RC.2",
+  "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
+  "license": "MIT"
 }
