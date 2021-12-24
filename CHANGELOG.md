@@ -1,3 +1,12 @@
+# [8.0.0-RC.4](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.3...v8.0.0-RC.4) (2021-12-24)
+
+
+### Bug Fixes
+
+* **build:** add manual exports for root package ([136a85e](https://github.com/valor-software/ngx-bootstrap/commit/136a85e05b78cd6104a6a96d58388782dcc731bb))
+
+
+
 # [8.0.0-RC.3](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.2...v8.0.0-RC.3) (2021-12-24)
 
 
