@@ -90,6 +90,10 @@ describe('Component: Accordion', () => {
     fixture.detectChanges();
   });
 
+  afterAll(async () => {
+    await new Promise<void>(resolve => setTimeout(() => resolve(), 500)); // avoid jest open handle error
+  });
+
   it('should have no open panels', () => {
     expectOpenPanels(element, [false, false, false]);
   });

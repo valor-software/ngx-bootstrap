@@ -10,7 +10,7 @@ import { PlacementForBs5, checkMargins, AvailbleBSPositions } from 'ngx-bootstra
   host: {
     '[attr.id]': 'popoverId',
     '[class]':
-      '"popover in popover-" + _placement + " " + "bs-popover-" + _placement + " " + _placement + " " + containerClass + checkMarginNecessity()',
+      '"popover in popover-" + _placement + " " + "bs-popover-" + _placement + " " + _placement + " " + containerClass + " " + checkMarginNecessity()',
     '[class.show]': '!_bsVersions.isBs3',
     '[class.bs3]': '_bsVersions.isBs3',
     role: 'tooltip',

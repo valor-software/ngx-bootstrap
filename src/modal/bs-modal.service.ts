@@ -23,7 +23,7 @@ import { BsModalRef } from './bs-modal-ref.service';
 
 let currentId = 1;
 
-@Injectable()
+@Injectable({providedIn: 'platform'})
 export class BsModalService {
   // constructor props
   config: ModalOptions;

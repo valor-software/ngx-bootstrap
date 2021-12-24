@@ -2,14 +2,13 @@
  * Returns the offset parent of the given element
  */
 import { getStyleComputedProperty } from './getStyleComputedProperty';
-import { isIE } from './isIE';
 
 export function getOffsetParent(element: HTMLElement): HTMLElement {
   if (!element) {
     return document.documentElement;
   }
 
-  const noOffsetParent = isIE(10) ? document.body : null;
+  const noOffsetParent = null;
 
   // NOTE: 1 DOM access here
   let offsetParent = element?.offsetParent;

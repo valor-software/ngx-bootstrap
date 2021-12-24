@@ -792,7 +792,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     const interval = +this.interval;
     if (!isNaN(interval) && interval > 0) {
       this.currentInterval = this.ngZone.runOutsideAngular<number>(() => {
-        return setInterval(() => {
+        return window.setInterval(() => {
           const nInterval = +this.interval;
           this.ngZone.run(() => {
             if (

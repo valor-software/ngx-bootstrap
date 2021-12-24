@@ -150,7 +150,7 @@ export class TimepickerComponent
   config: TimepickerConfig;
 
   // control value accessor methods
-  timepickerSub: Subscription;
+  timepickerSub?: Subscription;
   constructor(
     _config: TimepickerConfig,
     private _cd: ChangeDetectorRef,
@@ -159,9 +159,7 @@ export class TimepickerComponent
   ) {
     this.config = _config;
     Object.assign(this, this.config);
-
-    this.timepickerSub = _store
-      .select(state => state.value)
+    this.timepickerSub = _store.select(state => state.value)
       .subscribe((value: Date | undefined) => {
         // update UI values if date changed
         this._renderTime(value);
@@ -172,8 +170,7 @@ export class TimepickerComponent
         );
       });
 
-    _store
-      .select(state => state.controls)
+    _store.select(state => state.controls)
       .subscribe((controlsState: TimepickerControls) => {
         const isTimepickerInputValid = isInputValid(this.hours, this.minutes, this.seconds, this.isPM());
         const isValid = this.config.allowEmptyTime?
@@ -390,7 +387,7 @@ export class TimepickerComponent
   }
 
   ngOnDestroy(): void {
-    this.timepickerSub.unsubscribe();
+    this.timepickerSub?.unsubscribe();
   }
 
   private _renderTime(value?: string | Date): void {

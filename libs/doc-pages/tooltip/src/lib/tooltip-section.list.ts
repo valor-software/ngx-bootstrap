@@ -14,7 +14,6 @@ import { DemoTooltipTriggersCustomComponent } from './demos/triggers-custom/trig
 import { DemoTooltipTriggersManualComponent } from './demos/triggers-manual/triggers-manual';
 
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
-import { DemoTopSectionComponent } from '@ngx-bootstrap-doc/docs';
 import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
 import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 
@@ -25,16 +24,9 @@ import {
 
 export const demoComponentContent: ContentSection[] = [
   {
-    name: 'Usage',
-    anchor: 'usage',
-    outlet: DemoTopSectionComponent,
-    content: {
-      doc: require('!!raw-loader!./docs/usage.md')
-    }
-  },
-  {
-    name: 'Examples',
-    anchor: 'examples',
+    name: 'Overview',
+    anchor: 'overview',
+    tabName: 'overview',
     outlet: ExamplesComponent,
     content: [
       {
@@ -158,9 +150,12 @@ export const demoComponentContent: ContentSection[] = [
     ]
   },
   {
-    name: 'API Reference',
+    name: 'Installation',
     anchor: 'api-reference',
+    tabName: 'api',
     outlet: ApiSectionsComponent,
+    usage: require('!!raw-loader!./docs/usage.md'),
+    importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">tooltip</span>',
     content: [
       {
         title: 'TooltipDirective',
@@ -171,6 +166,84 @@ export const demoComponentContent: ContentSection[] = [
         title: 'TooltipConfig',
         anchor: 'tooltip-config',
         outlet: NgApiDocConfigComponent
+      }
+    ]
+  },
+  {
+    name: 'Examples',
+    anchor: 'examples',
+    tabName: 'examples',
+    outlet: ExamplesComponent,
+    content: [
+      {
+        title: 'Basic',
+        anchor: 'basic-ex',
+        outlet: DemoTooltipBasicComponent
+      },
+      {
+        title: 'Placement',
+        anchor: 'placement-ex',
+        outlet: DemoTooltipPlacementComponent
+      },
+      {
+        title: 'Disable adaptive position',
+        anchor: 'adaptive-position-ex',
+        outlet: DemoTooltipAdaptivePositionComponent
+      },
+      {
+        title: 'Dismiss on next click',
+        anchor: 'dismiss-ex',
+        outlet: DemoTooltipDismissComponent
+      },
+      {
+        title: 'Dynamic Content',
+        anchor: 'dynamic-content-ex',
+        outlet: DemoTooltipDynamicComponent
+      },
+      {
+        title: 'Custom content template',
+        anchor: 'custom-content-template-ex',
+        outlet: DemoTooltipCustomContentComponent
+      },
+      {
+        title: 'Dynamic Html',
+        anchor: 'dynamic-html-ex',
+        outlet: DemoTooltipDynamicHtmlComponent
+      },
+      {
+        title: 'Append to body',
+        anchor: 'append-to-body-ex',
+        outlet: DemoTooltipContainerComponent
+      },
+      {
+        title: 'Configuring defaults',
+        anchor: 'config-defaults-ex',
+        outlet: DemoTooltipConfigComponent
+      },
+      {
+        title: 'Custom triggers',
+        anchor: 'triggers-custom-ex',
+        outlet: DemoTooltipTriggersCustomComponent
+      },
+      {
+        title: 'Manual triggering',
+        anchor: 'triggers-manual-ex',
+        outlet: DemoTooltipTriggersManualComponent
+      },
+      {
+        title: 'Component level styling',
+        anchor: 'styling-local-ex',
+        outlet: DemoTooltipStylingLocalComponent
+      },
+      {
+        title: 'Custom class',
+        anchor: 'custom-class-ex',
+        outlet: DemoTooltipClassComponent
+      },
+      {
+        title: 'Tooltip with delay',
+        anchor: 'tooltip-delay-ex',
+        outlet: DemoTooltipDelayComponent
       }
     ]
   }

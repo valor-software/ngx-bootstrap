@@ -99,7 +99,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
   protected _subs: Subscription[] = [];
   private _datepicker: ComponentLoader<BsDatepickerContainerComponent>;
   private _datepickerRef?: ComponentRef<BsDatepickerContainerComponent>;
-  private readonly _dateInputFormat$ = new Subject<string>();
+  private readonly _dateInputFormat$ = new Subject<string | undefined>();
 
   constructor(public _config: BsDatepickerConfig,
               private  _elementRef: ElementRef,
@@ -154,7 +154,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
     this.bsValueChange.emit(value);
   }
 
-  get dateInputFormat$(): Observable<string> {
+  get dateInputFormat$(): Observable<string | undefined> {
     return this._dateInputFormat$;
   }
 
@@ -174,8 +174,8 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.bsConfig) {
-      if (changes.bsConfig.currentValue?.initCurrentTime && changes.bsConfig.currentValue?.initCurrentTime !== changes.bsConfig.previousValue?.initCurrentTime && this._bsValue) {
+    if (changes["bsConfig"]) {
+      if (changes["bsConfig"].currentValue?.initCurrentTime && changes["bsConfig"].currentValue?.initCurrentTime !== changes["bsConfig"].previousValue?.initCurrentTime && this._bsValue) {
         this._bsValue = setCurrentTimeOnDateSelect(this._bsValue);
         this.bsValueChange.emit(this._bsValue);
       }
@@ -188,38 +188,38 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       return;
     }
 
-    if (changes.minDate) {
+    if (changes["minDate"]) {
       this._datepickerRef.instance.minDate = this.minDate;
     }
 
-    if (changes.maxDate) {
+    if (changes["maxDate"]) {
       this._datepickerRef.instance.maxDate = this.maxDate;
     }
 
-    if (changes.daysDisabled) {
+    if (changes["daysDisabled"]) {
       this._datepickerRef.instance.daysDisabled = this.daysDisabled;
     }
 
-    if (changes.datesDisabled) {
+    if (changes["datesDisabled"]) {
       this._datepickerRef.instance.datesDisabled = this.datesDisabled;
     }
 
-    if (changes.datesEnabled) {
+    if (changes["datesEnabled"]) {
       this._datepickerRef.instance.datesEnabled = this.datesEnabled;
     }
 
-    if (changes.isDisabled) {
+    if (changes["isDisabled"]) {
       if (this._elementRef?.nativeElement) {
         this._elementRef.nativeElement.setAttribute('readonly', this.isDisabled);
       }
       this._datepickerRef.instance.isDisabled = this.isDisabled;
     }
 
-    if (changes.dateCustomClasses) {
+    if (changes["dateCustomClasses"]) {
       this._datepickerRef.instance.dateCustomClasses = this.dateCustomClasses;
     }
 
-    if (changes.dateTooltipTexts) {
+    if (changes["dateTooltipTexts"]) {
       this._datepickerRef.instance.dateTooltipTexts = this.dateTooltipTexts;
     }
   }
@@ -322,7 +322,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
     this._datepicker.dispose();
     this.isOpen$.next(false);
     if (this.isDestroy$) {
-      this.isDestroy$.next();
+      this.isDestroy$.next(null);
       this.isDestroy$.complete();
     }
   }

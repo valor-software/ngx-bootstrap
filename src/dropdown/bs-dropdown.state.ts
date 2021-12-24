@@ -2,7 +2,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { BsComponentRef } from 'ngx-bootstrap/component-loader';
 import { BsDropdownMenuDirective } from './bs-dropdown-menu.directive';
 
-@Injectable()
+@Injectable({providedIn: 'platform'})
 export class BsDropdownState {
   direction: 'down' | 'up' = 'down';
   autoClose = true;

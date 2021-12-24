@@ -71,6 +71,10 @@ describe('Directive: Dropdown', () => {
     fixture.detectChanges();
   }));
 
+  afterAll(async () => {
+    await new Promise<void>(resolve => setTimeout(() => resolve(), 500)); // avoid jest open handle error
+  });
+
   it('should be closed by default', () => {
     const dropdown = element.querySelector('[dropdown]');
     expect(dropdown?.classList).not.toContain('open');

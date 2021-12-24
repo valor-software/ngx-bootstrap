@@ -20,7 +20,6 @@ export { ApiSectionsComponent } from './api-sections.component';
   ],
   exports: [
     ApiSectionsComponent
-  ],
-  providers: []
+  ]
 })
 export class ApiSectionsComponentModule {}
