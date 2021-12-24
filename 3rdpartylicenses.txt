@@ -101,14 +101,19 @@ THE SOFTWARE.
 
 
 ngx-bootstrap/accordion
+MIT
 
 ngx-bootstrap/alert
+MIT
 
 ngx-bootstrap/buttons
+MIT
 
 ngx-bootstrap/carousel
+MIT
 
 ngx-bootstrap/chronos
+MIT
 The MIT License (MIT)
 
 Copyright (c) Valor Software
@@ -139,18 +144,25 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 
 ngx-bootstrap/collapse
+MIT
 
 ngx-bootstrap/component-loader
+MIT
 
 ngx-bootstrap/datepicker
+MIT
 
 ngx-bootstrap/dropdown
+MIT
 
 ngx-bootstrap/focus-trap
+MIT
 
 ngx-bootstrap/locale
+MIT
 
 ngx-bootstrap/mini-ngrx
+MIT
 The MIT License (MIT)
 
 Copyright (c) 2015 ngrx
@@ -175,28 +187,40 @@ SOFTWARE.
 
 
 ngx-bootstrap/modal
+MIT
 
 ngx-bootstrap/pagination
+MIT
 
 ngx-bootstrap/popover
+MIT
 
 ngx-bootstrap/positioning
+MIT
 
 ngx-bootstrap/progressbar
+MIT
 
 ngx-bootstrap/rating
+MIT
 
 ngx-bootstrap/sortable
+MIT
 
 ngx-bootstrap/tabs
+MIT
 
 ngx-bootstrap/timepicker
+MIT
 
 ngx-bootstrap/tooltip
+MIT
 
 ngx-bootstrap/typeahead
+MIT
 
 ngx-bootstrap/utils
+MIT
 
 rxjs
 Apache-2.0
