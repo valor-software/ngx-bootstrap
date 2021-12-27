@@ -30,78 +30,13 @@
     "unprefixedUrl": "old/5.6.0"
   },
   {
-    "version": "6.1.0",
-    "url": "ngx-bootstrap/old/6.1.0",
-    "unprefixedUrl": "old/6.1.0"
-  },
-  {
     "version": "6.2.0",
     "url": "ngx-bootstrap/old/6.2.0",
     "unprefixedUrl": "old/6.2.0"
   },
   {
-    "version": "7.0.0",
-    "url": "ngx-bootstrap/old/7.0.0",
-    "unprefixedUrl": "old/7.0.0"
-  },
-  {
-    "version": "7.0.0-rc.1",
-    "url": "ngx-bootstrap/old/7.0.0-rc.1",
-    "unprefixedUrl": "old/7.0.0-rc.1"
-  },
-  {
-    "version": "7.0.0-rc.2",
-    "url": "ngx-bootstrap/old/7.0.0-rc.2",
-    "unprefixedUrl": "old/7.0.0-rc.2"
-  },
-  {
-    "version": "7.0.0-rc.3",
-    "url": "ngx-bootstrap/old/7.0.0-rc.3",
-    "unprefixedUrl": "old/7.0.0-rc.3"
-  },
-  {
-    "version": "7.0.0-rc.4",
-    "url": "ngx-bootstrap/old/7.0.0-rc.4",
-    "unprefixedUrl": "old/7.0.0-rc.4"
-  },
-  {
-    "version": "7.0.0-rc.5",
-    "url": "ngx-bootstrap/old/7.0.0-rc.5",
-    "unprefixedUrl": "old/7.0.0-rc.5"
-  },
-  {
-    "version": "7.0.1",
-    "url": "ngx-bootstrap/old/7.0.1",
-    "unprefixedUrl": "old/7.0.1"
-  },
-  {
-    "version": "7.1.0",
-    "url": "ngx-bootstrap/old/7.1.0",
-    "unprefixedUrl": "old/7.1.0"
-  },
-  {
-    "version": "7.1.1",
-    "url": "ngx-bootstrap/old/7.1.1",
-    "unprefixedUrl": "old/7.1.1"
-  },
-  {
     "version": "7.1.2",
     "url": "ngx-bootstrap/old/7.1.2",
     "unprefixedUrl": "old/7.1.2"
-  },
-  {
-    "version": "8.0.0-RC.0",
-    "url": "ngx-bootstrap/old/8.0.0-RC.0",
-    "unprefixedUrl": "old/8.0.0-RC.0"
-  },
-  {
-    "version": "8.0.0-RC.2",
-    "url": "ngx-bootstrap/old/8.0.0-RC.2",
-    "unprefixedUrl": "old/8.0.0-RC.2"
-  },
-  {
-    "version": "8.0.0-RC.3",
-    "url": "ngx-bootstrap/old/8.0.0-RC.3",
-    "unprefixedUrl": "old/8.0.0-RC.3"
   }
 ]
