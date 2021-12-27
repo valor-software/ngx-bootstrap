@@ -1,6 +1,6 @@
 {
   "name": "schematics",
-  "version": "8.0.0-RC.4",
+  "version": "8.0.0-RC.5",
   "schematics": "./collection.json",
   "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
   "license": "MIT"

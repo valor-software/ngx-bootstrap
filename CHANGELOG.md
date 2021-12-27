@@ -1,3 +1,17 @@
+# [8.0.0-RC.5](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.4...v8.0.0-RC.5) (2021-12-27)
+
+
+### Bug Fixes
+
+* **component-loader:** don't remove elemenent if component is detached fix [#6358](https://github.com/valor-software/ngx-bootstrap/issues/6358) ([425db25](https://github.com/valor-software/ngx-bootstrap/commit/425db25796b504d1a2967dc6a45c860821f79799))
+
+
+### Features
+
+* **schematics:** change Bootstrap version to 5 ([cf39d34](https://github.com/valor-software/ngx-bootstrap/commit/cf39d348f34318ce403edad3de1f751cd8a90165))
+
+
+
 # [8.0.0-RC.4](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.3...v8.0.0-RC.4) (2021-12-24)
 
 
