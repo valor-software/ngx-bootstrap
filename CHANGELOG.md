@@ -1,3 +1,13 @@
+# [8.0.0-RC.6](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.5...v8.0.0-RC.6) (2022-01-11)
+
+
+### Bug Fixes
+
+* **datepicker:** fixed enabled/diabled dates ([#6355](https://github.com/valor-software/ngx-bootstrap/issues/6355)) ([f247b18](https://github.com/valor-software/ngx-bootstrap/commit/f247b187d67eb664dc44b759acde2595a20cf69c))
+* **typeahead:** fixed exports of typeahead lib ([#6402](https://github.com/valor-software/ngx-bootstrap/issues/6402)) ([fbe749c](https://github.com/valor-software/ngx-bootstrap/commit/fbe749cbae3914178ea80d4e3e1506ca308b7815))
+
+
+
 # [8.0.0-RC.5](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.4...v8.0.0-RC.5) (2021-12-27)
 
 
