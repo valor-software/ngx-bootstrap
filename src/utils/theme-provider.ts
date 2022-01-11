@@ -27,18 +27,22 @@ function _guessBsVersion(): AvailableBsVersions {
   const spanEl = window.document.createElement('span');
   spanEl.innerText = 'testing bs version';
   spanEl.classList.add('d-none');
-  spanEl.classList.add('visually-hidden');
+  spanEl.classList.add('pl-1');
   window.document.head.appendChild(spanEl);
   const rect = spanEl.getBoundingClientRect();
-  const overflowStyle = window.getComputedStyle(spanEl).overflow;
-  window.document.head.removeChild(spanEl);
+  const checkPadding = window.getComputedStyle(spanEl).paddingLeft;
   if (!rect || (rect && rect.top !== 0)) {
+    window.document.head.removeChild(spanEl);
     return 'bs3';
   }
-  if (overflowStyle && overflowStyle === 'hidden') {
-    return 'bs5';
+
+  if (checkPadding && parseFloat(checkPadding)) {
+    window.document.head.removeChild(spanEl);
+    return 'bs4';
   }
-  return 'bs4';
+
+  window.document.head.removeChild(spanEl);
+  return 'bs5';
 }
 
 export function setTheme(theme: AvailableBsVersions): void {
