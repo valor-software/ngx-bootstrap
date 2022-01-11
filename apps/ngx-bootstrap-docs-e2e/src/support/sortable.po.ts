@@ -35,7 +35,8 @@ export class SortablePo extends BaseComponent {
     const dragEvent = {
       dataTransfer: {
         setData: Function.prototype
-      }
+      },
+     force: true
     };
 
     cy.get(`${baseSelector} bs-sortable`)
@@ -56,10 +57,10 @@ export class SortablePo extends BaseComponent {
       .trigger('dragstart', dragEvent);
 
     cy.get('@ItemTo')
-      .trigger('dragover');
+      .trigger('dragover', { force: true });
 
     cy.get('@SortableTo')
-      .trigger('drop');
+      .trigger('drop', { force: true });
   }
 
   isSortableItemsWithIndexes(baseSelector: string, sortableIndex: number, existIndexes: boolean) {

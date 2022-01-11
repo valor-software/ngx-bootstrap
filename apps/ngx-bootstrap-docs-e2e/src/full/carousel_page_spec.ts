@@ -217,7 +217,7 @@ describe('Carousel page testing suite', () => {
       carousel.clearInputAndSendKeys(intervalSlides, newInterval);
       carousel.isInputHaveAttrs(intervalSlides, [{ attr: 'type', value: 'number' }]);
       carousel.isCarouselItemActive(intervalSlides, 0);
-      cy.tick(4000);
+      cy.tick(6000);
       carousel.isCarouselItemActive(intervalSlides, 1);
     });
 

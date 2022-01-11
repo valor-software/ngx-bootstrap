@@ -26,20 +26,18 @@ export class CarouselPo extends BaseComponent {
   };
 
   isClickActivatedCarouselItem(baseSelector: string, itemIndex: number) {
-    cy.get(`${baseSelector} ${this.carouselClass} ${this.indicatorClass} li `)
-      .eq(itemIndex)
+    cy.get(`${baseSelector} ${this.carouselClass} ${this.indicatorClass} button `).eq(itemIndex)
       .click({ force: true })
       .should('have.class', 'active');
   }
 
   isCarouselItemActive(baseSelector: string, itemIndex: number) {
-    cy.get(`${baseSelector} ${this.carouselClass} ${this.indicatorClass} li `)
-      .eq(itemIndex)
+    cy.get(`${baseSelector} ${this.carouselClass} ${this.indicatorClass} button `).eq(itemIndex)
       .should('have.class', 'active');
   }
 
   clickOnCtrl(baseSelector: string, ctrlType: string) {
-    cy.get(`${baseSelector}`).first().find(`${ctrlType === 'left' ? this.leftControl : this.rightControl}`).click();
+    cy.get(`${baseSelector}`).first().find(`${ctrlType === 'left' ? this.leftControl : this.rightControl}`).click({force: true});
   }
 
   isCarouselHaveIndicatorsItemsCtrls(baseSelector: string) {
@@ -60,7 +58,7 @@ export class CarouselPo extends BaseComponent {
   }
 
   isSlidesCountEqual(baseSelector: string, expectedCount: number) {
-    cy.get(`${baseSelector} ${this.indicatorClass} li`)
+    cy.get(`${baseSelector} ${this.indicatorClass} button`)
       .should('to.have.length', expectedCount);
   }
 

@@ -18,11 +18,11 @@ export abstract class BaseComponent {
   }
 
   clickOnDemoMenu(subMenu: string) {
-    cy.get('add-nav').contains('a', subMenu).click();
+    cy.get('add-nav').contains('a', subMenu).click({ force: true });
   }
 
   clickByText(baseSelector: string, text: string) {
-    cy.get(baseSelector).contains(text).click();
+    cy.get(baseSelector).contains(text).click({ force: true });
   }
 
   dblClickByText(parent: string, text: string) {
@@ -45,7 +45,7 @@ export abstract class BaseComponent {
   }
 
   clickOnBtn(baseSelector: string, buttonIndex?: number) {
-    cy.get(`${ baseSelector } button`).eq(buttonIndex ? buttonIndex : 0).click();
+    cy.get(`${ baseSelector } button`).eq(buttonIndex ? buttonIndex : 0).click({ force: true });
   }
 
   dblClickOnBtn(baseSelector: string, buttonIndex?: number) {
@@ -53,7 +53,7 @@ export abstract class BaseComponent {
   }
 
   clickOnInput(baseSelector: string, inputIndex?: number) {
-    cy.get(`${ baseSelector } input`).eq(inputIndex ? inputIndex : 0).click();
+    cy.get(`${ baseSelector } input`).eq(inputIndex ? inputIndex : 0).click({ force: true });
   }
 
   dblClickOnInput(baseSelector: string, inputIndex?: number) {
@@ -97,11 +97,11 @@ export abstract class BaseComponent {
   }
 
   clearInputAndSendKeys(baseSelector: string, dataToSend: string, inputIndex = 0) {
-    cy.get(`${baseSelector} input`).eq(inputIndex).clear().type(dataToSend);
+    cy.get(`${baseSelector} input`).eq(inputIndex).clear({ force: true }).type(dataToSend);
   }
 
   clearInput(baseSelector: string, inputIndex = 0) {
-    cy.get(`${baseSelector} input`).eq(inputIndex).clear();
+    cy.get(`${baseSelector} input`).eq(inputIndex).clear({ force: true });
   }
 
   clickEnterOnInput(baseSelector: string, inputIndex = 0) {

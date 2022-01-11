@@ -70,8 +70,9 @@ export class TimepickerPo extends BaseComponent {
 
   triggerEventOnInput(baseSelector: string, event: string, inputIndex = 0, params?: Partial<TriggerOptions & ObjectLike>) {
     if (!params) {
-      cy.get(`${baseSelector} input`).eq(inputIndex).trigger(event);
+      cy.get(`${baseSelector} input`).eq(inputIndex).trigger(event, { force: true });
     } else {
+      params.force = true;
       cy.get(`${baseSelector} input`).eq(inputIndex).trigger(event, params);
     }
   }
