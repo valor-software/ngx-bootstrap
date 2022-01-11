@@ -1,6 +1,6 @@
 {
   "name": "ngx-bootstrap",
-  "version": "8.0.0-RC.4",
+  "version": "8.0.0-RC.8",
   "description": "Angular Bootstrap",
   "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
   "license": "MIT",
@@ -193,12 +193,12 @@
       "default": "./tooltip/fesm2020/ngx-bootstrap-tooltip.mjs"
     },
     "./typeahead": {
-      "types": "./ngx-bootstrap-typeahead.d.ts",
-      "esm2020": "./esm2020/ngx-bootstrap-typeahead.mjs",
-      "es2020": "./fesm2020/ngx-bootstrap-typeahead.mjs",
-      "es2015": "./fesm2015/ngx-bootstrap-typeahead.mjs",
-      "node": "./fesm2015/ngx-bootstrap-typeahead.mjs",
-      "default": "./fesm2020/ngx-bootstrap-typeahead.mjs"
+      "types": "./typeahead/ngx-bootstrap-typeahead.d.ts",
+      "esm2020": "./typeahead/esm2020/ngx-bootstrap-typeahead.mjs",
+      "es2020": "./typeahead/fesm2020/ngx-bootstrap-typeahead.mjs",
+      "es2015": "./typeahead/fesm2015/ngx-bootstrap-typeahead.mjs",
+      "node": "./typeahead/fesm2015/ngx-bootstrap-typeahead.mjs",
+      "default": "./typeahead/fesm2020/ngx-bootstrap-typeahead.mjs"
     },
     "./utils": {
       "types": "./utils/ngx-bootstrap-utils.d.ts",

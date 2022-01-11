@@ -215,19 +215,16 @@ export class ComponentLoader<T> {
     this.onBeforeHide.emit(this._componentRef.instance);
 
     const componentEl = this._componentRef.location.nativeElement;
-    componentEl.parentNode.removeChild(componentEl);
-    if (this._contentRef?.componentRef) {
-      this._contentRef.componentRef.destroy();
-    }
+    componentEl.parentNode?.removeChild(componentEl);
+
+    this._contentRef?.componentRef?.destroy();
 
     if (this._viewContainerRef && this._contentRef?.viewRef) {
       this._viewContainerRef.remove(
         this._viewContainerRef.indexOf(this._contentRef.viewRef)
       );
     }
-    if (this._contentRef?.viewRef) {
-      this._contentRef.viewRef.destroy();
-    }
+    this._contentRef?.viewRef?.destroy();
 
     this._contentRef = void 0;
     this._componentRef = void 0;

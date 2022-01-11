@@ -1,3 +1,47 @@
+# [8.0.0-RC.8](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.5...v8.0.0-RC.8) (2022-01-11)
+
+
+### Bug Fixes
+
+* **datepicker:** fixed enabled/diabled dates ([#6355](https://github.com/valor-software/ngx-bootstrap/issues/6355)) ([f247b18](https://github.com/valor-software/ngx-bootstrap/commit/f247b187d67eb664dc44b759acde2595a20cf69c))
+* **typeahead:** fixed exports of typeahead lib ([#6402](https://github.com/valor-software/ngx-bootstrap/issues/6402)) ([fbe749c](https://github.com/valor-software/ngx-bootstrap/commit/fbe749cbae3914178ea80d4e3e1506ca308b7815))
+
+
+
+# [8.0.0-RC.7](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.5...v8.0.0-RC.7) (2022-01-11)
+
+
+### Bug Fixes
+
+* **datepicker:** fixed enabled/diabled dates ([#6355](https://github.com/valor-software/ngx-bootstrap/issues/6355)) ([f247b18](https://github.com/valor-software/ngx-bootstrap/commit/f247b187d67eb664dc44b759acde2595a20cf69c))
+* **typeahead:** fixed exports of typeahead lib ([#6402](https://github.com/valor-software/ngx-bootstrap/issues/6402)) ([fbe749c](https://github.com/valor-software/ngx-bootstrap/commit/fbe749cbae3914178ea80d4e3e1506ca308b7815))
+
+
+
+# [8.0.0-RC.6](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.5...v8.0.0-RC.6) (2022-01-11)
+
+
+### Bug Fixes
+
+* **datepicker:** fixed enabled/diabled dates ([#6355](https://github.com/valor-software/ngx-bootstrap/issues/6355)) ([f247b18](https://github.com/valor-software/ngx-bootstrap/commit/f247b187d67eb664dc44b759acde2595a20cf69c))
+* **typeahead:** fixed exports of typeahead lib ([#6402](https://github.com/valor-software/ngx-bootstrap/issues/6402)) ([fbe749c](https://github.com/valor-software/ngx-bootstrap/commit/fbe749cbae3914178ea80d4e3e1506ca308b7815))
+
+
+
+# [8.0.0-RC.5](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.4...v8.0.0-RC.5) (2021-12-27)
+
+
+### Bug Fixes
+
+* **component-loader:** don't remove elemenent if component is detached fix [#6358](https://github.com/valor-software/ngx-bootstrap/issues/6358) ([425db25](https://github.com/valor-software/ngx-bootstrap/commit/425db25796b504d1a2967dc6a45c860821f79799))
+
+
+### Features
+
+* **schematics:** change Bootstrap version to 5 ([cf39d34](https://github.com/valor-software/ngx-bootstrap/commit/cf39d348f34318ce403edad3de1f751cd8a90165))
+
+
+
 # [8.0.0-RC.4](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.3...v8.0.0-RC.4) (2021-12-24)
 
 
