@@ -1305,7 +1305,8 @@
               "ts-node ./scripts/set-version.ts",
               "conventional-changelog --preset angular --infile CHANGELOG.md --same-file --release-count 1",
               "git add -A",
-              "git commit -am \"chore(changelog): update [skip ci] \""
+              "git commit -am \"chore(changelog): update [skip ci] \"",
+              "git push origin HEAD"
             ],
             "parallel": false
           },
