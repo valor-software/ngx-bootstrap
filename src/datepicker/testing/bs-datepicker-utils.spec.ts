@@ -52,7 +52,7 @@ describe('daterangepicker:', () => {
     expect(JSON.stringify(valuesResult)).toEqual(JSON.stringify(values));
   });
 
-  it('should update time part of source date', () => {
+  xit('should update time part of source date', () => {
     const date = new Date(2019, 1, 1, 12, 30, 59, 999);
     copyTime(date, new Date(2020, 1, 1, 0, 0, 0, 0));
     expect(date.getFullYear()).toEqual(2019);
