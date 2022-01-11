@@ -136,8 +136,8 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
   unsubscribeSubscriptions() {
     if (this._subs?.length) {
       this._subs.map(sub => sub.unsubscribe());
+      this._subs.length = 0;
     }
-    this._subs = [];
   }
 
   ngOnChanges(changes: SimpleChanges): void {

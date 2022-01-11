@@ -325,6 +325,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
   unsubscribeSubscriptions() {
     if (this._subs?.length) {
       this._subs.map(sub => sub.unsubscribe());
+      this._subs.length = 0;
     }
   }
 

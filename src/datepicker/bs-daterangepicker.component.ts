@@ -310,6 +310,7 @@ export class BsDaterangepickerDirective
   unsubscribeSubscriptions() {
     if (this._subs?.length) {
       this._subs.map(sub => sub.unsubscribe());
+      this._subs.length = 0;
     }
   }
 
