@@ -61,7 +61,7 @@ export class BarComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes["value"] || changes["max"]) {
-      this.percent = 100 * (Number(changes["value"].currentValue || 0)
+      this.percent = 100 * (Number(changes["value"]?.currentValue || this.value)
         / Number((changes["max"]?.currentValue || this.max) || 100));
     }
 
