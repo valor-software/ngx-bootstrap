@@ -109,7 +109,7 @@ export abstract class BaseComponent {
   }
 
   pressEsc() {
-    cy.get(`body input`).type('{esc}', );
+    cy.get(`body input`).type('{esc}');
   }
 
   isDemoContainsTxt(baseSelector: string, expectedTxt: string, expectedTxtOther?: string) {

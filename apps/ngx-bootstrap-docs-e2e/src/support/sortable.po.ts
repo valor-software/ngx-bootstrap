@@ -35,8 +35,7 @@ export class SortablePo extends BaseComponent {
     const dragEvent = {
       dataTransfer: {
         setData: Function.prototype
-      },
-     force: true
+      }
     };
 
     cy.get(`${baseSelector} bs-sortable`)
