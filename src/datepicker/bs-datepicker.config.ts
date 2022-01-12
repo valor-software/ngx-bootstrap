@@ -183,4 +183,8 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Set current hours, minutes, seconds and milliseconds for bsValue
    */
   initCurrentTime?: boolean;
+  /**
+   * Set allowed positions of container.
+   */
+  allowedPositions = ['top', 'bottom'];
 }
