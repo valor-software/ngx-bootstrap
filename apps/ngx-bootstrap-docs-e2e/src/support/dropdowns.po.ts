@@ -76,7 +76,7 @@ export class DropdownsPo extends BaseComponent {
       .eq(dropdownIndex)
       .find('*[role*="menuitem"]')
       .eq(itemIndex)
-      .click({ force: true });
+      .click();
   }
 
   isItemHave(baseSelector: string, itemIndex = 0, expectedClass: string) {

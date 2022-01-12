@@ -21,14 +21,14 @@ describe('Carousel page testing suite', () => {
       carousel.isClickActivatedCarouselItem(basic, 2);
     });
 
-    it('when user click on left/right arrow - previous/next slide shown', () => {
+    it('when user click on left/right arrow - previous/next slide shown', { scrollBehavior: 'center' },  () => {
       carousel.clickOnCtrl(basic, 'left');
       carousel.isCarouselItemActive(basic, 2);
       carousel.clickOnCtrl(basic, 'right');
       carousel.isCarouselItemActive(basic, 0);
     });
 
-    it('when user do nothing more than 5 sec - next slide automatically shown', () => {
+    it('when user do nothing more than 5 sec - next slide automatically shown', { scrollBehavior: 'center' },  () => {
       carousel.scrollToMenu('Basic');
       carousel.isCarouselItemActive(basic, 0);
       cy.tick(6000);

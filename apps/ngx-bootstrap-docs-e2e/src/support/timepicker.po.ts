@@ -65,14 +65,13 @@ export class TimepickerPo extends BaseComponent {
     cy.get(`${baseSelector} timepicker`)
       .find(arrowType === 'up' ? '.bs-chevron-up' : '.bs-chevron-down')
       .eq(arrowIndex)
-      .click({ force: true });
+      .click();
   }
 
   triggerEventOnInput(baseSelector: string, event: string, inputIndex = 0, params?: Partial<TriggerOptions & ObjectLike>) {
     if (!params) {
-      cy.get(`${baseSelector} input`).eq(inputIndex).trigger(event, { force: true });
+      cy.get(`${baseSelector} input`).eq(inputIndex).trigger(event);
     } else {
-      params.force = true;
       cy.get(`${baseSelector} input`).eq(inputIndex).trigger(event, params);
     }
   }

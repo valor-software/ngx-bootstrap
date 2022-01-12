@@ -57,10 +57,10 @@ export class SortablePo extends BaseComponent {
       .trigger('dragstart', dragEvent);
 
     cy.get('@ItemTo')
-      .trigger('dragover', { force: true });
+      .trigger('dragover');
 
     cy.get('@SortableTo')
-      .trigger('drop', { force: true });
+      .trigger('drop');
   }
 
   isSortableItemsWithIndexes(baseSelector: string, sortableIndex: number, existIndexes: boolean) {

@@ -10,13 +10,13 @@ describe('Popover demo page testing suite', () => {
 
     const basicPopover = popover.exampleDemosArr.basic;
 
-    it('when user clicks on "Live demo", then popover-container shown', () => {
+    it('when user clicks on "Live demo", then popover-container shown', { scrollBehavior: 'center' }, () => {
       popover.clickOnBtn(basicPopover);
       popover.isPopoverAppears(basicPopover);
       popover.isPopoverVisible(basicPopover);
     });
 
-    it('when user clicks on "Live demo" again, then popover-container disappeared', () => {
+    it('when user clicks on "Live demo" again, then popover-container disappeared', { scrollBehavior: 'center' }, () => {
       popover.clickOnBtn(basicPopover);
       popover.clickOnBtn(basicPopover);
       popover.isPopoverDismiss(basicPopover);

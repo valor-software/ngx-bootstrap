@@ -33,7 +33,7 @@ describe('Landing Page testing suite', () => {
   });
 
   describe('Navigation buttons', () => {
-    it('Get started button redirects to Getting Started page', () => {
+    it('Get started button redirects to Getting Started page', { scrollBehavior: 'center' }, () => {
       const buttonText = 'Get started';
       const searchedUrl = '/documentation';
 
@@ -41,7 +41,7 @@ describe('Landing Page testing suite', () => {
       landing.isUrlExist(searchedUrl);
     });
 
-    it('Documentation button is enabled and contains link to documentation', () => {
+    it('Documentation button is enabled and contains link to documentation', { scrollBehavior: 'center' }, () => {
       const buttonText = 'Documentation';
       const searchedUrl = '/documentation';
 

@@ -18,11 +18,11 @@ export abstract class BaseComponent {
   }
 
   clickOnDemoMenu(subMenu: string) {
-    cy.get('add-nav').contains('a', subMenu).click({ force: true });
+    cy.get('add-nav').contains('a', subMenu).click();
   }
 
   clickByText(baseSelector: string, text: string) {
-    cy.get(baseSelector).contains(text).click({ force: true });
+    cy.get(baseSelector).contains(text).click();
   }
 
   dblClickByText(parent: string, text: string) {
@@ -45,7 +45,7 @@ export abstract class BaseComponent {
   }
 
   clickOnBtn(baseSelector: string, buttonIndex?: number) {
-    cy.get(`${ baseSelector } button`).eq(buttonIndex ? buttonIndex : 0).click({ force: true });
+    cy.get(`${ baseSelector } button`).eq(buttonIndex ? buttonIndex : 0).click();
   }
 
   dblClickOnBtn(baseSelector: string, buttonIndex?: number) {
@@ -53,7 +53,7 @@ export abstract class BaseComponent {
   }
 
   clickOnInput(baseSelector: string, inputIndex?: number) {
-    cy.get(`${ baseSelector } input`).eq(inputIndex ? inputIndex : 0).click({ force: true });
+    cy.get(`${ baseSelector } input`).eq(inputIndex ? inputIndex : 0).click();
   }
 
   dblClickOnInput(baseSelector: string, inputIndex?: number) {
@@ -97,11 +97,11 @@ export abstract class BaseComponent {
   }
 
   clearInputAndSendKeys(baseSelector: string, dataToSend: string, inputIndex = 0) {
-    cy.get(`${baseSelector} input`).eq(inputIndex).clear({ force: true }).type(dataToSend);
+    cy.get(`${baseSelector} input`).eq(inputIndex).clear().type(dataToSend);
   }
 
   clearInput(baseSelector: string, inputIndex = 0) {
-    cy.get(`${baseSelector} input`).eq(inputIndex).clear({ force: true });
+    cy.get(`${baseSelector} input`).eq(inputIndex).clear();
   }
 
   clickEnterOnInput(baseSelector: string, inputIndex = 0) {
@@ -109,7 +109,7 @@ export abstract class BaseComponent {
   }
 
   pressEsc() {
-    cy.get(`body input`).type('{esc}', { force: true });
+    cy.get(`body input`).type('{esc}', );
   }
 
   isDemoContainsTxt(baseSelector: string, expectedTxt: string, expectedTxtOther?: string) {

@@ -17,7 +17,7 @@ describe('Tabs demo page spec', () => {
       tabs.isTabsLengthEqual(basic, 3);
     });
 
-    xit('when user clicks on the 2d tab, it chosen with appropriate content, and same behaviour with 3, 1', () => {
+    it('when user clicks on the 2d tab, it chosen with appropriate content, and same behaviour with 3, 1', { scrollBehavior: 'center' }, () => {
       tabs.clickOnTab(basic, 1);
       tabs.isAppropriateTabActive(basic, 1);
       tabs.clickOnTab(basic, 2);

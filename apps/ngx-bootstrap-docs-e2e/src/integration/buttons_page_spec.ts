@@ -8,7 +8,7 @@ describe('Buttons page testing suite', () => {
   describe('Basic', () => {
     const basicBtn = buttons.exampleDemosArr.basic;
 
-    it('example contains only enabled button with text on it', () => {
+    it('example contains only enabled button with text on it', { scrollBehavior: 'center' }, () => {
       buttons.isButtonEnabled(basicBtn, 'Single Button');
       buttons.clickOnBtn(basicBtn);
       buttons.isBtnTxtEqual(basicBtn, ' Single Button\n');

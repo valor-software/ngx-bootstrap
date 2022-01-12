@@ -53,7 +53,7 @@ export class TabsPo extends BaseComponent {
   }
 
   clickOnTab(basicSelector: string, tabIndex: number) {
-    cy.get(`${basicSelector}`).first().find(` .nav-item`).eq(tabIndex).click({ force: true });
+    cy.get(`${basicSelector}`).first().find(` .nav-item`).eq(tabIndex).click();
   }
 
   isTabDisabled(basicSelector: string, tabIndex: number, isDisabled = true) {
@@ -66,7 +66,7 @@ export class TabsPo extends BaseComponent {
   }
 
   clickOnRemoveTabIcon(basicSelector: string, tabIndex: number) {
-    cy.get(`${basicSelector} .nav-link`).eq(tabIndex).get('.bs-remove-tab').click({ force: true });
+    cy.get(`${basicSelector} .nav-link`).eq(tabIndex).get('.bs-remove-tab').click();
   }
 
   isTabsetHaveType(basicSelector: string, expectedType: string) {

@@ -63,15 +63,15 @@ export class PaginationPo extends BaseComponent {
   }
 
   clickOnPage(baseSelector: string, pageNumber: string) {
-    cy.contains(`${baseSelector} li`, pageNumber).click({ force: true });
+    cy.contains(`${baseSelector} li`, pageNumber).click();
   }
 
   clickOnPager(baseSelector: string, pagerName: string) {
-    cy.get(`${baseSelector} ${this.getPagerSelector(pagerName)}`).click({ force: true });
+    cy.get(`${baseSelector} ${this.getPagerSelector(pagerName)}`).click();
   }
 
   clickOnPaginationBtn(baseSelector: string, btnName: string) {
-    cy.contains(`${baseSelector} button`, btnName).click({ force: true });
+    cy.contains(`${baseSelector} button`, btnName).click();
   }
 
   isPaginationLengthEqual(baseSelector: string, expectedLength: number) {

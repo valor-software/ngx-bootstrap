@@ -27,7 +27,7 @@ export class CarouselPo extends BaseComponent {
 
   isClickActivatedCarouselItem(baseSelector: string, itemIndex: number) {
     cy.get(`${baseSelector} ${this.carouselClass} ${this.indicatorClass} button `).eq(itemIndex)
-      .click({ force: true })
+      .click()
       .should('have.class', 'active');
   }
 
@@ -37,7 +37,7 @@ export class CarouselPo extends BaseComponent {
   }
 
   clickOnCtrl(baseSelector: string, ctrlType: string) {
-    cy.get(`${baseSelector}`).first().find(`${ctrlType === 'left' ? this.leftControl : this.rightControl}`).click({force: true});
+    cy.get(`${baseSelector}`).first().find(`${ctrlType === 'left' ? this.leftControl : this.rightControl}`).click();
   }
 
   isCarouselHaveIndicatorsItemsCtrls(baseSelector: string) {

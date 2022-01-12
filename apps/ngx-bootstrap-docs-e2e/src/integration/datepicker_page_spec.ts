@@ -1,6 +1,6 @@
 import { DatepickerPo } from '../support/datepicker.po';
 
-describe('Datepicker demo page testing suite', () => {
+describe('Datepicker demo page testing suite', { scrollBehavior: 'center' }, () => {
   const datepicker = new DatepickerPo();
   const currentMonthNum: number = new Date().getMonth();
   const prevMonthStr: string = datepicker.monthNames[currentMonthNum === 0 ? 11 : currentMonthNum - 1];
@@ -12,12 +12,12 @@ describe('Datepicker demo page testing suite', () => {
 
   beforeEach(() => datepicker.navigateTo());
 
-  describe('Basic datepicker', () => {
+  describe('Basic datepicker', { scrollBehavior: 'center' }, () => {
     const basic = datepicker.exampleDemosArr.basic;
 
     beforeEach(() => datepicker.scrollToMenu('Basic'));
 
-    it('example contains 2 inputs: Datepicker and Daterangepicker with appropriate placeholders', () => {
+    it('example contains 2 inputs: Datepicker and Daterangepicker with appropriate placeholders', { scrollBehavior: 'center' }, () => {
       datepicker.isInputHaveAttrs(basic, [
         { attr: 'placeholder', value: 'Datepicker' },
         { attr: 'type', value: 'text' }], 0);
@@ -27,13 +27,13 @@ describe('Datepicker demo page testing suite', () => {
         { attr: 'type', value: 'text' }], 1);
     });
 
-    it('when user clicks on "Datepicker" input, container with 2 arrows: "‹", "›" opened, no one date selected', () => {
+    it('when user clicks on "Datepicker" input, container with 2 arrows: "‹", "›" opened, no one date selected', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDatepickerInput(basic);
       datepicker.isSelectedDateExist('datepicker', false);
       datepicker.isDatepickerNavigationFullyActiveAndCorrect('date');
     });
 
-    it('when user clicks on "‹" - previous month shown, when user clicks on "›" - next month shown', () => {
+    it('when user clicks on "‹" - previous month shown, when user clicks on "›" - next month shown', { scrollBehavior: 'center' }, () => {
       const currentMonth = new Date().getMonth();
       datepicker.clickOnDatepickerInput(basic);
       datepicker.clickOnNavigation('body', '<');
@@ -47,7 +47,7 @@ describe('Datepicker demo page testing suite', () => {
       datepicker.isVisibleMonthOrYearEqual(datepicker.monthNames[currentMonth + 1]);
     });
 
-    it('when user clicks on month, then full table with 12 months shown with year in head block', () => {
+    it('when user clicks on month, then full table with 12 months shown with year in head block', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDatepickerInput(basic);
       datepicker.clickOnNavigation('body', 'month');
       datepicker.isDatepickerNavigationFullyActiveAndCorrect('month');
@@ -55,7 +55,7 @@ describe('Datepicker demo page testing suite', () => {
       datepicker.isDatePickerTriggerCorrect('month');
     });
 
-    it('when user clicks on month and "‹" button - previous year in head block shown', () => {
+    it('when user clicks on month and "‹" button - previous year in head block shown', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDatepickerInput(basic);
       datepicker.clickOnNavigation('body', 'month');
       datepicker.clickOnNavigation('body', '<');
@@ -63,7 +63,7 @@ describe('Datepicker demo page testing suite', () => {
       datepicker.isVisibleMonthOrYearEqual((new Date().getFullYear() - 1).toString());
     });
 
-    it('when user clicks on month and "›" button - next year in head block shown', () => {
+    it('when user clicks on month and "›" button - next year in head block shown', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDatepickerInput(basic);
       datepicker.clickOnNavigation('body', 'month');
       datepicker.clickOnNavigation('body', '>');
@@ -71,7 +71,7 @@ describe('Datepicker demo page testing suite', () => {
       datepicker.isVisibleMonthOrYearEqual((new Date().getFullYear() + 1).toString());
     });
 
-    it('when user clicks on month and then on any month - this month shown in head block, dates mode', () => {
+    it('when user clicks on month and then on any month - this month shown in head block, dates mode', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDatepickerInput(basic);
       datepicker.clickOnNavigation('body', 'month');
       datepicker.clickOnDatepickerTableItem('month', 'body', 5);
@@ -79,7 +79,7 @@ describe('Datepicker demo page testing suite', () => {
       datepicker.isVisibleMonthOrYearEqual(datepicker.monthNames[5]);
     });
 
-    it('when user clicks on year, then table with 16 years shown with year interval in head block', () => {
+    it('when user clicks on year, then table with 16 years shown with year interval in head block', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDatepickerInput(basic);
       datepicker.clickOnNavigation('body', 'year');
       datepicker.isDatepickerNavigationFullyActiveAndCorrect('year');
@@ -87,7 +87,7 @@ describe('Datepicker demo page testing suite', () => {
       datepicker.isDatePickerTriggerCorrect('year');
     });
 
-    it('when user clicks on year and "‹" button - interval with previous 16 years shown', () => {
+    it('when user clicks on year and "‹" button - interval with previous 16 years shown', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDatepickerInput(basic);
       datepicker.clickOnNavigation('body', 'year');
       datepicker.clickOnNavigation('body', '<');
@@ -96,7 +96,7 @@ describe('Datepicker demo page testing suite', () => {
         `${(new Date().getFullYear() - 7 - 16)} - ${(new Date().getFullYear() + 8 - 16)}`);
     });
 
-    it('when user clicks on year and "›" button - interval with next 16 years shown', () => {
+    it('when user clicks on year and "›" button - interval with next 16 years shown', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDatepickerInput(basic);
       datepicker.clickOnNavigation('body', 'year');
       datepicker.clickOnNavigation('body', '>');
@@ -105,7 +105,7 @@ describe('Datepicker demo page testing suite', () => {
         `${(new Date().getFullYear() - 7 + 16)} - ${(new Date().getFullYear() + 8 + 16)}`);
     });
 
-    it('when user clicks on year and any year - then it shown in head block and table with 12 months shown', () => {
+    it('when user clicks on year and any year - then it shown in head block and table with 12 months shown', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDatepickerInput(basic);
       datepicker.clickOnNavigation('body', 'year');
       datepicker.clickOnDatepickerTableItem('year', 'body', 2);
@@ -113,7 +113,7 @@ describe('Datepicker demo page testing suite', () => {
       datepicker.isVisibleMonthOrYearEqual(`${(new Date().getFullYear() - 7 + 2)}`);
     });
 
-    it('when user clicks on year and any year - then it shown in head block and table with 12 months shown', () => {
+    it('when user clicks on year and any year - then it shown in head block and table with 12 months shown', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDatepickerInput(basic);
       datepicker.clickOnNavigation('body', 'year');
       datepicker.clickOnDatepickerTableItem('year', 'body', 2);
@@ -121,7 +121,7 @@ describe('Datepicker demo page testing suite', () => {
       datepicker.isVisibleMonthOrYearEqual(`${(new Date().getFullYear() - 7 + 2)}`);
     });
 
-    it('when user clicks on: year mode => year => any month - then this month, year shown with dates mode', () => {
+    it('when user clicks on: year mode => year => any month - then this month, year shown with dates mode', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDatepickerInput(basic);
       datepicker.clickOnNavigation('body', 'year');
       datepicker.clickOnDatepickerTableItem('year', 'body', 0);
@@ -131,7 +131,7 @@ describe('Datepicker demo page testing suite', () => {
         'date', 'body', datepicker.monthNames[0], (new Date().getFullYear() - 7).toString());
     });
 
-    xit('when user clicks on any date - then this date appeared in the input in format "mm/dd/yyyy"', () => {
+    it('when user clicks on any date - then this date appeared in the input in format "mm/dd/yyyy"',  () => {
       const chosenDate = new Date(`${new Date().getMonth() + 1}/10/${new Date().getFullYear()}`);
       datepicker.clickOnDatepickerInput(basic);
       datepicker.clickOnDatepickerTableItem('date', 'body', undefined, '10');
@@ -139,14 +139,14 @@ describe('Datepicker demo page testing suite', () => {
         .toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })}`);
     });
 
-    xit('when user choose date and click on "Datepicker" again, container opened and chosen date selected', () => {
+    it('when user choose date and click on "Datepicker" again, container opened and chosen date selected',  () => {
       datepicker.clickOnDatepickerInput(basic);
       datepicker.clickOnDatepickerTableItem('date', 'body', undefined, '10');
       datepicker.clickOnDatepickerInput(basic);
       datepicker.isSelectedDateExist('datepicker', true, 'body', '10');
     });
 
-    it('when user clears input, add date in format "mm.dd.yyyy", click "Enter" - it converted to "mm/dd/yyyy"', () => {
+    it('when user clears input, add date in format "mm.dd.yyyy", click "Enter" - it converted to "mm/dd/yyyy"', { scrollBehavior: 'center' }, () => {
       datepicker.clearInputAndSendKeys(basic, '05.10.2015', 0);
       datepicker.clickEnterOnInput(basic);
       datepicker.isInputValueEqual(basic, '05/10/2015');
@@ -155,7 +155,7 @@ describe('Datepicker demo page testing suite', () => {
       datepicker.isDatepickerNavigationFullyActiveAndCorrect('date', 'body', datepicker.monthNames[4], '2015');
     });
 
-    it('when user clears input and add there date in bad format, click "Enter" - "Invalid date" shown', () => {
+    it('when user clears input and add there date in bad format, click "Enter" - "Invalid date" shown', { scrollBehavior: 'center' }, () => {
       datepicker.clearInputAndSendKeys(basic, '20,10,2015', 0);
       datepicker.clickEnterOnInput(basic);
       datepicker.isInputValueEqual(basic, 'Invalid date', 0);
@@ -163,7 +163,7 @@ describe('Datepicker demo page testing suite', () => {
       datepicker.isSelectedDateExist('datepicker', false);
     });
 
-    it('when user clears input, add date in format "mmddyyyy", click "Enter" - date converted "mm/dd/yyyy"', () => {
+    it('when user clears input, add date in format "mmddyyyy", click "Enter" - date converted "mm/dd/yyyy"', { scrollBehavior: 'center' }, () => {
       datepicker.clearInputAndSendKeys(basic, '05102015', 0);
       datepicker.clickEnterOnInput(basic);
       datepicker.isInputValueEqual(basic, '05/10/2015');
@@ -173,13 +173,13 @@ describe('Datepicker demo page testing suite', () => {
     });
   });
 
-  describe('Basic daterangepicker', () => {
+  describe('Basic daterangepicker', { scrollBehavior: 'center' }, () => {
     const basic = datepicker.exampleDemosArr.basic;
 
     beforeEach(() => datepicker.scrollToMenu('Basic'));
 
-    xit(`when user clicks on "Daterangepicker" input after datepicker, 2d container opened and 1t closed
-      range contains 2 calendar blocks, 2 arrows: "‹/›", shown interval from current month/year and next`, () => {
+    it(`when user clicks on "Daterangepicker" input after datepicker, 2d container opened and 1t closed
+      range contains 2 calendar blocks, 2 arrows: "‹/›", shown interval from current month/year and next`,  () => {
       datepicker.clickOnDatepickerInput(basic);
       datepicker.clickOnDatepickerTableItem('date', 'body', 0, '15');
       datepicker.isInputValueEqual(basic,
@@ -191,21 +191,21 @@ describe('Datepicker demo page testing suite', () => {
       datepicker.isDatepickerOpened(false);
     });
 
-    it('when user clicks on "‹" - shown interval, which started from previous month', () => {
+    it('when user clicks on "‹" - shown interval, which started from previous month', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDaterangepickerInput(basic);
       datepicker.clickOnDateRangePickerNavigation('<');
       datepicker.isDateRangepickerNavigationFullyActiveAndCorrect(
         'date', 'body', prevMonthStr, currentMonthNum === 0 ? prevYearStr : currentYearStr);
     });
 
-    it('when user clicks on "›" - shown interval, which started from next month', () => {
+    it('when user clicks on "›" - shown interval, which started from next month', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDaterangepickerInput(basic);
       datepicker.clickOnDateRangePickerNavigation('>');
       datepicker.isDateRangepickerNavigationFullyActiveAndCorrect(
         'date', 'body', nextMonthStr, currentMonthNum === 11 ? nextYearStr : currentYearStr);
     });
 
-    it('when user clicks on month, 2 tables with 12 months in each shown with years(current, next) in head', () => {
+    it('when user clicks on month, 2 tables with 12 months in each shown with years(current, next) in head', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDaterangepickerInput(basic);
       datepicker.clickOnDateRangePickerNavigation('month-left');
       datepicker.isDateRangepickerNavigationFullyActiveAndCorrect('month');
@@ -213,7 +213,7 @@ describe('Datepicker demo page testing suite', () => {
       datepicker.isDaterangePickerTriggerCorrect('month');
     });
 
-    it('when user clicks on month and "‹" button - interval, started from previous year in head block shown', () => {
+    it('when user clicks on month and "‹" button - interval, started from previous year in head block shown', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDaterangepickerInput(basic);
       datepicker.clickOnDateRangePickerNavigation('month-left');
       datepicker.clickOnDateRangePickerNavigation('<');
@@ -221,7 +221,7 @@ describe('Datepicker demo page testing suite', () => {
       datepicker.isVisibleDateRangePickerMonthOrYearEqual(prevYearStr, currentYearStr);
     });
 
-    it('when user clicks on month and "›" button - interval, started from next year in head block shown', () => {
+    it('when user clicks on month and "›" button - interval, started from next year in head block shown', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDaterangepickerInput(basic);
       datepicker.clickOnDateRangePickerNavigation('month-left');
       datepicker.clickOnDateRangePickerNavigation('>');
@@ -229,7 +229,7 @@ describe('Datepicker demo page testing suite', () => {
       datepicker.isVisibleDateRangePickerMonthOrYearEqual(nextYearStr, (currentYearNum + 2).toString());
     });
 
-    it('when user clicks on month and any month - then tables with dates shown and in head chosen month', () => {
+    it('when user clicks on month and any month - then tables with dates shown and in head chosen month', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDaterangepickerInput(basic);
       datepicker.clickOnDateRangePickerNavigation('month-right');
       datepicker.clickOnDaterangePickerTableItem('month', 0, 'body', undefined, 'January');
@@ -237,7 +237,7 @@ describe('Datepicker demo page testing suite', () => {
       datepicker.isVisibleDateRangePickerMonthOrYearEqual('January', 'February');
     });
 
-    it('when user clicks on year, then 2 tables with 16 years in each shown with year interval in head block', () => {
+    it('when user clicks on year, then 2 tables with 16 years in each shown with year interval in head block', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDaterangepickerInput(basic);
       datepicker.clickOnDateRangePickerNavigation('year-left');
       datepicker.isDaterangePickerBodyExistAndCorrect('year');
@@ -246,7 +246,7 @@ describe('Datepicker demo page testing suite', () => {
       datepicker.isDaterangePickerTriggerCorrect('year');
     });
 
-    it('when user clicks on year and "‹" button - interval with previous 16 years shown in each table', () => {
+    it('when user clicks on year and "‹" button - interval with previous 16 years shown in each table', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDaterangepickerInput(basic);
       datepicker.clickOnDateRangePickerNavigation('year-left');
       datepicker.clickOnDateRangePickerNavigation('<');
@@ -255,7 +255,7 @@ describe('Datepicker demo page testing suite', () => {
         `${currentYearNum - 23} - ${currentYearNum - 8}`, `${currentYearNum - 7} - ${currentYearNum + 8}`);
     });
 
-    it('when user clicks on year and "›" button - interval with next 16 years shown in each table', () => {
+    it('when user clicks on year and "›" button - interval with next 16 years shown in each table', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDaterangepickerInput(basic);
       datepicker.clickOnDateRangePickerNavigation('year-right');
       datepicker.clickOnDateRangePickerNavigation('>');
@@ -264,7 +264,7 @@ describe('Datepicker demo page testing suite', () => {
         `${currentYearNum + 9} - ${currentYearNum + 24}`, `${currentYearNum + 25} - ${currentYearNum + 40}`);
     });
 
-    it('when user clicks on year and year from the left table - then it shown in head, tables with 12 months', () => {
+    it('when user clicks on year and year from the left table - then it shown in head, tables with 12 months', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDaterangepickerInput(basic);
       datepicker.clickOnDateRangePickerNavigation('year-left');
       datepicker.clickOnDaterangePickerTableItem('year', 0, 'body', 4);
@@ -273,7 +273,7 @@ describe('Datepicker demo page testing suite', () => {
         `${currentYearNum - 7 + 4}`, `${currentYearNum - 7 + 5}`);
     });
 
-    it('when user clicks on year and year from the right table - then it shown in head, tables with 12 months', () => {
+    it('when user clicks on year and year from the right table - then it shown in head, tables with 12 months', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDaterangepickerInput(basic);
       datepicker.clickOnDateRangePickerNavigation('year-left');
       datepicker.clickOnDaterangePickerTableItem('year', 1, 'body', 9);
@@ -282,7 +282,7 @@ describe('Datepicker demo page testing suite', () => {
         `${currentYearNum + 9 + 9}`, `${currentYearNum + 9 + 10}`);
     });
 
-    it('when user clicks on year and year from the right table - then it shown in head, tables with 12 months', () => {
+    it('when user clicks on year and year from the right table - then it shown in head, tables with 12 months', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDaterangepickerInput(basic);
       datepicker.clickOnDateRangePickerNavigation('year-left');
       datepicker.clickOnDaterangePickerTableItem('year', 1, 'body', 9);
@@ -291,7 +291,7 @@ describe('Datepicker demo page testing suite', () => {
         `${currentYearNum + 9 + 9}`, `${currentYearNum + 9 + 10}`);
     });
 
-    it('when user clicks on year and year and any month from the left - month, year shown in head, dates mode', () => {
+    it('when user clicks on year and year and any month from the left - month, year shown in head, dates mode', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDaterangepickerInput(basic);
       datepicker.clickOnDateRangePickerNavigation('year-left');
       datepicker.clickOnDaterangePickerTableItem('year', 0, 'body', 0);
@@ -301,7 +301,7 @@ describe('Datepicker demo page testing suite', () => {
         datepicker.monthNames[0], datepicker.monthNames[1]);
     });
 
-    it('when user clicks on year and year and any month from the right - month, year shown in head, dates mode', () => {
+    it('when user clicks on year and year and any month from the right - month, year shown in head, dates mode', { scrollBehavior: 'center' }, () => {
       datepicker.clickOnDaterangepickerInput(basic);
       datepicker.clickOnDateRangePickerNavigation('year-right');
       datepicker.clickOnDaterangePickerTableItem('year', 1, 'body', 2);
@@ -311,7 +311,7 @@ describe('Datepicker demo page testing suite', () => {
         datepicker.monthNames[2], datepicker.monthNames[3]);
     });
 
-    xit('when user clicks on any date - it selected, click on later date, interval shown mm/dd/yyyy-mm/dd/yyyy', () => {
+    it('when user clicks on any date - it selected, click on later date, interval shown mm/dd/yyyy-mm/dd/yyyy',  () => {
       const dateLeft = new Date(`${currentMonthNum + 1}/01/${currentYearStr}`)
         .toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
       const dateRight = new Date(`${currentMonthNum + 1}/15/${currentYearStr}`)
@@ -323,7 +323,7 @@ describe('Datepicker demo page testing suite', () => {
       datepicker.isInputValueEqual(basic, `${dateLeft} - ${dateRight}`, 1);
     });
 
-    xit('when user chose an interval, clicks on Daterangepicker again, container opened, date interval selected', () => {
+    it('when user chose an interval, clicks on Daterangepicker again, container opened, date interval selected',  () => {
       const dateLeft = new Date(`${currentMonthNum + 1}/01/${currentYearStr}`)
         .toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
       const dateRight = new Date(`${currentMonthNum + 1}/18/${currentYearStr}`)
@@ -337,21 +337,21 @@ describe('Datepicker demo page testing suite', () => {
       datepicker.isSelectedDateExist('daterangepicker', true, 'body', '18');
     });
 
-    xit('when user clears input, add interval in format mm.dd.yyyy, click "Enter" - it converted to mm/dd/yyyy', () => {
+    it('when user clears input, add interval in format mm.dd.yyyy, click "Enter" - it converted to mm/dd/yyyy',  () => {
       datepicker.clickOnDaterangepickerInput(basic);
       datepicker.clearInputAndSendKeys(basic, '12.12.2012 - 12.13.2012', 1);
       datepicker.clickEnterOnInput(basic);
       datepicker.isInputValueEqual(basic, `12/12/2012 - 12/13/2012`, 1);
     });
 
-    xit('when user clears input and add there date interval in bad format, click "Enter" - nothing happens', () => {
+    it('when user clears input and add there date interval in bad format, click "Enter" - nothing happens',  () => {
       datepicker.clickOnDaterangepickerInput(basic);
       datepicker.clearInputAndSendKeys(basic, '2122012 - 2132012', 1);
       datepicker.clickEnterOnInput(basic);
       datepicker.isInputValueEqual(basic, '', 1);
     });
 
-    xit('when user clears input, add date interval in "mmddyyyy", click Enter - date converted to "mm/dd/yyyy"', () => {
+    it('when user clears input, add date interval in "mmddyyyy", click Enter - date converted to "mm/dd/yyyy"',  () => {
       datepicker.clickOnDaterangepickerInput(basic);
       datepicker.clearInputAndSendKeys(basic, '12122012 - 12142012', 1);
       datepicker.clickEnterOnInput(basic);

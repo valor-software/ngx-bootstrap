@@ -25,7 +25,7 @@ describe('Typeahead demo page testing suite', () => {
       typeahead.isInputValueEqual(basicDemo, noMatchText);
     });
 
-    it('When a user starts typing the dropdown with matches is shown. click on an item auto-fills typeahead container',
+    it('When a user starts typing the dropdown with matches is shown. click on an item auto-fills typeahead container', { scrollBehavior: 'center' },
       () => {
         typeahead.clearInputAndSendKeys(basicDemo, stateForCheck);
         typeahead.isElementVisible(basicDemo, typeahead.activeDropdown);

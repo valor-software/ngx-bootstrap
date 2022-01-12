@@ -8,7 +8,7 @@ describe('Collapse demo page testing suite', () => {
   describe('Basic', () => {
     const basic = collapse.exampleDemosArr.basic;
 
-    it('contains toggler and content, that can be collapsed', () => {
+    it('contains toggler and content, that can be collapsed', { scrollBehavior: 'center' }, () => {
       const toglerText = 'Toggle collapse';
       collapse.isCollapseExpanded(basic, 'true');
 

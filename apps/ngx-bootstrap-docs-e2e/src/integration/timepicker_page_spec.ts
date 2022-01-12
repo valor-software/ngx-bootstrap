@@ -21,7 +21,7 @@ describe('Timepicker demo page testing suite', () => {
     describe('Hours', () => {
       beforeEach(() => timepicker.scrollToMenu('Basic'));
 
-      it(`when user clicks on arrow up above the hour, then number in the input increased at 1, alert changed`, () => {
+      it(`when user clicks on arrow up above the hour, then number in the input increased at 1, alert changed`, { scrollBehavior: 'center' }, () => {
         const hourToSet = 2;
         const minToSet = 12;
         timepicker.setTimeInInputs(basic, hourToSet, minToSet);
@@ -30,7 +30,7 @@ describe('Timepicker demo page testing suite', () => {
         timepicker.isAlertContains(basic, `${timepicker.getHoursIn24Format(hourToSet + 1)}`);
       });
 
-      it(`when user clicks on arrow down under the hour, then number in input decreased at 1, alert changed`, () => {
+      it(`when user clicks on arrow down under the hour, then number in input decreased at 1, alert changed`, { scrollBehavior: 'center' }, () => {
         const hourToSet = 4;
         const minToSet = 18;
         timepicker.setTimeInInputs(basic, hourToSet, minToSet);
@@ -39,7 +39,7 @@ describe('Timepicker demo page testing suite', () => {
         timepicker.isAlertContains(basic, `${timepicker.getHoursIn24Format(hourToSet - 1)}`);
       });
 
-      it(`when user send valid (1-12) number to input and click outside, then number saved and alert changed`, () => {
+      it(`when user send valid (1-12) number to input and click outside, then number saved and alert changed`, { scrollBehavior: 'center' }, () => {
         const expectedHour = 3;
         timepicker.clearInputAndSendKeys(basic, `${expectedHour}`, 0);
         timepicker.triggerEventOnInput(basic, 'change');
@@ -48,7 +48,7 @@ describe('Timepicker demo page testing suite', () => {
       });
 
       it(`when user send invalid number or string to input and click outside,
-    then the red border appeared in input and danger alert shown "Time is: " info`, () => {
+    then the red border appeared in input and danger alert shown "Time is: " info`, { scrollBehavior: 'center' }, () => {
         const expectedHour = '99';
         timepicker.clearInputAndSendKeys(basic, expectedHour, 0);
         timepicker.triggerEventOnInput(basic, 'change');
@@ -59,7 +59,7 @@ describe('Timepicker demo page testing suite', () => {
     });
 
     describe('Minutes', () => {
-      it(`when user clicks on arrow up above minute, then number in the input increased at 5, alert changed`, () => {
+      it(`when user clicks on arrow up above minute, then number in the input increased at 5, alert changed`, { scrollBehavior: 'center' }, () => {
         const hourToSet = 4;
         const minToSet = 18;
         timepicker.setTimeInInputs(basic, hourToSet, minToSet);
@@ -68,7 +68,7 @@ describe('Timepicker demo page testing suite', () => {
         timepicker.isAlertContains(basic, `${minToSet + 5}`);
       });
 
-      it(`when user clicks on arrow down under the minute, then number in input decreased at 5, alert changed`, () => {
+      it(`when user clicks on arrow down under the minute, then number in input decreased at 5, alert changed`, { scrollBehavior: 'center' }, () => {
         const hourToSet = 4;
         const minToSet = 38;
         timepicker.setTimeInInputs(basic, hourToSet, minToSet);
@@ -77,7 +77,7 @@ describe('Timepicker demo page testing suite', () => {
         timepicker.isAlertContains(basic, `${minToSet - 5}`);
       });
 
-      it(`when user send valid (00-60) number to input and click outside, then number saved and alert changed`, () => {
+      it(`when user send valid (00-60) number to input and click outside, then number saved and alert changed`, { scrollBehavior: 'center' }, () => {
         const expectedMinute = '18';
         timepicker.clearInputAndSendKeys(basic, expectedMinute, 1);
         timepicker.triggerEventOnInput(basic, 'change', 1);
@@ -85,7 +85,7 @@ describe('Timepicker demo page testing suite', () => {
         timepicker.isAlertContains(basic, expectedMinute);
       });
 
-      it(`when user send invalid data to input, then the red border appeared in input and danger alert shown`, () => {
+      it(`when user send invalid data to input, then the red border appeared in input and danger alert shown`, { scrollBehavior: 'center' }, () => {
         const expectedMinuteStr = 'as';
         timepicker.clearInputAndSendKeys(basic, expectedMinuteStr, 1);
         timepicker.triggerEventOnInput(basic, 'change', 1);
@@ -102,7 +102,7 @@ describe('Timepicker demo page testing suite', () => {
     });
 
     describe('AM/PM', () => {
-      it('when user clicks on "PM"("AM"), then it changed to "AM"("PM") and time converted appropriate', () => {
+      it('when user clicks on "PM"("AM"), then it changed to "AM"("PM") and time converted appropriate', { scrollBehavior: 'center' }, () => {
         const currentHours = new Date().getHours();
         timepicker.getMeridianValue(basic).then(firstMeridian => {
           timepicker.clickOnBtn(basic);

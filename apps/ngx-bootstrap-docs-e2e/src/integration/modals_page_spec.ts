@@ -17,7 +17,7 @@ describe('Modals demo page testing suite', () => {
     });
 
     it(`when user clicks on the button "Create modal with component" then modal is opened and
-      backdrop is enabled`, () => {
+      backdrop is enabled`, { scrollBehavior: 'center' }, () => {
       modals.clickByText(templateDemo, btnText);
       modals.isModalVisible(modals.modalContainer, true);
       modals.isBackdropExist(true);
@@ -31,7 +31,7 @@ describe('Modals demo page testing suite', () => {
       modals.isBackdropExist(false);
     });
 
-    it('when user clicks on backdrop then the modal is closed', () => {
+    it('when user clicks on backdrop then the modal is closed', { scrollBehavior: 'center' },  () => {
       modals.clickByText(templateDemo, btnText);
       modals.clickOnBackdrop();
       modals.isModalVisible(modals.modalContainer, true);
@@ -45,7 +45,7 @@ describe('Modals demo page testing suite', () => {
       modals.isBackdropExist(false);
     });
 
-    it('when user starts to click on body then release click on backdrop then the modal is not closed', () => {
+    it('when user starts to click on body then release click on backdrop then the modal is not closed', { scrollBehavior: 'center' }, () => {
       modals.clickByText(templateDemo, btnText);
       modals.startClickOnModalReleaseOnBackdrop(modals.modalContainer);
       modals.isModalVisible(modals.modalContainerVisible, true);
