@@ -226,6 +226,10 @@ export class BsDaterangepickerDirective
       .position({ attachment: this.placement })
       .show({ placement: this.placement });
 
+    this.initSubscribes();
+  }
+
+  initSubscribes() {
     // if date changes from external source (model -> view)
     this._subs.push(
       this.bsValueChange.subscribe((value: Date[]) => {
@@ -303,6 +307,13 @@ export class BsDaterangepickerDirective
     this.show();
   }
 
+  unsubscribeSubscriptions() {
+    if (this._subs?.length) {
+      this._subs.map(sub => sub.unsubscribe());
+      this._subs.length = 0;
+    }
+  }
+
   ngOnDestroy(): void {
     this._datepicker.dispose();
     this.isOpen$.next(false);
@@ -310,5 +321,7 @@ export class BsDaterangepickerDirective
       this.isDestroy$.next(null);
       this.isDestroy$.complete();
     }
+
+    this.unsubscribeSubscriptions();
   }
 }

@@ -156,8 +156,7 @@ export function bsDatepickerReducer(state: BsDatepickerState = initialDatepicker
         selectedRange: action.payload,
         view: state.view
       };
-
-      newState.selectedRange.forEach((dte: Date, index: number) => {
+      newState.selectedRange?.forEach((dte: Date, index: number) => {
         if (Array.isArray(state.selectedTime)) {
           const _time = state.selectedTime[index];
           if (_time) {
