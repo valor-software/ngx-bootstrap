@@ -4,8 +4,7 @@ import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { PositioningService } from 'ngx-bootstrap/positioning';
 
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { TimepickerModule } from 'ngx-bootstrap/timepicker';
-import { TimepickerActions } from 'ngx-bootstrap/timepicker';
+import { TimepickerModule, TimepickerActions } from 'ngx-bootstrap/timepicker';
 
 import { BsDatepickerInputDirective } from './bs-datepicker-input.directive';
 import { BsDatepickerDirective } from './bs-datepicker.component';
