@@ -18,17 +18,17 @@ export class CollapsePo extends BaseComponent {
   };
 
   isCollapseExpanded(baseSelector: string, expandedAttrValue: string) {
-    cy.get(`${ baseSelector }`).first().find(`${ this.collapseClass }`).should(expandedAttrValue === 'true' ? 'to.have.class' : 'not.to.have.class', this.showIndicator);
+    cy.get(`tab[heading="Overview"] ${ baseSelector } ${ this.collapseClass }`).should(expandedAttrValue === 'true' ? 'to.have.class' : 'not.to.have.class', this.showIndicator);
   }
 
   isCollapseWithInline(baseSelector: string, inline: boolean) {
-    cy.get(`${ baseSelector } ${ this.collapseClass }`)
+    cy.get(`tab[heading="Overview"] ${ baseSelector } ${ this.collapseClass }`)
       .should('to.have.attr', 'style', inline ? 'display: inline-block;' : 'display: none;');
 
   }
 
   isCollapseInfoEqual(baseSelector: string, expectedText: string) {
-    cy.get(`${ baseSelector } ${ this.infoClass }`).invoke('text')
+    cy.get(`tab[heading="Overview"] ${ baseSelector } ${ this.infoClass }`).invoke('text')
       .should(infoTxt => expect(infoTxt).to.equal(expectedText));
   }
 }

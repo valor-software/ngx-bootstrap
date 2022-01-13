@@ -28,22 +28,22 @@ export class PaginationPo extends BaseComponent {
   };
 
   isActivePositionEqual(baseSelector: string, positionNumber: string) {
-    cy.get(`${baseSelector}`).first().find(`${this.classActive}`).invoke('text')
+    cy.get(`tab[heading="Overview"] ${baseSelector}`).first().find(`${this.classActive}`).invoke('text')
       .should(linkTxt => expect(linkTxt).to.equal(positionNumber));
   }
 
   isPagerDisabled(baseSelector: string, pagerName: string, disabled: boolean) {
-    cy.get(`${baseSelector}`).first().find(`${this.getPagerSelector(pagerName)}`)
+    cy.get(`tab[heading="Overview"] ${baseSelector}`).first().find(`${this.getPagerSelector(pagerName)}`)
       .should(disabled ? 'to.have.class' : 'not.to.have.class', 'disabled').invoke('text');
   }
 
   isPagerExist(baseSelector: string, pagerName: string, existence: boolean) {
-    cy.get(`${baseSelector}`)
+    cy.get(`tab[heading="Overview"] ${baseSelector}`)
       .should(existence ? 'to.have.descendants' : 'not.to.have.descendants', this.getPagerSelector(pagerName));
   }
 
   isPagerTxtEqual(baseSelector: string, pagerName: string, expectedTxt: string) {
-    cy.get(`${baseSelector} ${this.getPagerSelector(pagerName)}`).invoke('text')
+    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.getPagerSelector(pagerName)}`).invoke('text')
       .should(pagerTxt => expect(pagerTxt).to.equal(expectedTxt));
   }
 
@@ -67,7 +67,7 @@ export class PaginationPo extends BaseComponent {
   }
 
   clickOnPager(baseSelector: string, pagerName: string) {
-    cy.get(`${baseSelector} ${this.getPagerSelector(pagerName)}`).click();
+    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.getPagerSelector(pagerName)}`).click();
   }
 
   clickOnPaginationBtn(baseSelector: string, btnName: string) {
@@ -75,11 +75,11 @@ export class PaginationPo extends BaseComponent {
   }
 
   isPaginationLengthEqual(baseSelector: string, expectedLength: number) {
-    cy.get(`${baseSelector} ${this.classPaginationPage}`).should('have.length', expectedLength);
+    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.classPaginationPage}`).should('have.length', expectedLength);
   }
 
   isActivePageCentered(baseSelector: string, isCentered: boolean) {
-    cy.get(`${baseSelector} ${this.classPaginationPage}`).as('pagination').its('length').then(paginationlength => {
+    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.classPaginationPage}`).as('pagination').its('length').then(paginationlength => {
       cy.get('@pagination').each((element, index) => {
         if (element.hasClass('active')) {
           isCentered ? expect(index + 1).to.equal(Math.round(paginationlength / 2)) :
@@ -90,7 +90,7 @@ export class PaginationPo extends BaseComponent {
   }
 
   isPaginationContentUpdated(baseSelector: string) {
-    cy.get(`${baseSelector} ${this.classPaginationPage}`).each((element, index) => {
+    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.classPaginationPage}`).each((element, index) => {
       if (element.hasClass('active')) {
         cy.get(`${baseSelector} .content-wrapper`).invoke('text').then(contentTxt => {
           let i = 0;

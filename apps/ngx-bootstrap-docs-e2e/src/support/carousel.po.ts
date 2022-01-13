@@ -32,7 +32,7 @@ export class CarouselPo extends BaseComponent {
   }
 
   isCarouselItemActive(baseSelector: string, itemIndex: number) {
-    cy.get(`${baseSelector} ${this.carouselClass} ${this.indicatorClass} button `).eq(itemIndex)
+    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.carouselClass} ${this.indicatorClass} li `).eq(itemIndex)
       .should('have.class', 'active');
   }
 
@@ -58,12 +58,12 @@ export class CarouselPo extends BaseComponent {
   }
 
   isSlidesCountEqual(baseSelector: string, expectedCount: number) {
-    cy.get(`${baseSelector} ${this.indicatorClass} button`)
+    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.indicatorClass} li`)
       .should('to.have.length', expectedCount);
   }
 
   isCardTxtEqual(baseSelector: string, expectedTxt: string) {
-    cy.get(`${baseSelector} .card.card-block`).invoke('text')
+    cy.get(`tab[heading="Overview"] ${baseSelector} .card.card-block`).invoke('text')
       .should(blockTxt => expect(blockTxt).to.equal(expectedTxt));
   }
 
@@ -72,11 +72,11 @@ export class CarouselPo extends BaseComponent {
   }
 
   override mouseLeave(baseSelector: string) {
-    cy.get(`${baseSelector} ${this.carouselClass}`).trigger('mouseleave');
+    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.carouselClass}`).trigger('mouseleave');
   }
 
   isCarouselIndicatorDisabled(baseSelector: string, disabled: boolean) {
-    cy.get(`${baseSelector} ${this.carouselClass}`)
+    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.carouselClass}`)
       .should(disabled ? 'to.not.have.descendants' : 'to.have.descendants', this.indicatorClass)
       .and('to.have.descendants', this.itemClass);
   }

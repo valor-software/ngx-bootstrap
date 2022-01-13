@@ -9,7 +9,7 @@ describe('Dropdowns demo page testing suite', () => {
     const triggerTag = dropdowns.exampleDemosArr.triggerByTag;
 
     it(`example contains clickable link as a dropdown, when user clicks on it, then dropdown opened with 3 items,
-    when user clicks on any item, then dropdown closes`, () => {
+    when user clicks on any item, then dropdown closes`, { scrollBehavior: 'center' }, () => {
       dropdowns.isDropdownExpanded(triggerTag, 'a', false);
       dropdowns.clickByText(triggerTag, 'Click me for a dropdown');
       dropdowns.isDropdownExpanded(triggerTag, 'a', true);
@@ -23,7 +23,7 @@ describe('Dropdowns demo page testing suite', () => {
     const splitBtn = dropdowns.exampleDemosArr.splitButton;
 
     it(`example contains dropdown, which consist of 2 buttons: with text and with caret, not expanded
-    when user clicks on text, nothing happens`, () => {
+    when user clicks on text, nothing happens`, { scrollBehavior: 'center' }, () => {
       dropdowns.isBtnTxtEqual(splitBtn, 'Action', 0);
       dropdowns.isBtnTxtEqual(splitBtn, 'Split button!', 1);
       dropdowns.isDropdownExpanded(splitBtn, 'button', false);
@@ -32,7 +32,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on caret, then dropdown opened and there are 4 items, 1 of them is separated
-    when user clicks on any item, then dropdown closes`, () => {
+    when user clicks on any item, then dropdown closes`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(splitBtn, 1);
       dropdowns.isDropdownExpanded(splitBtn, 'button', true);
       dropdowns.isDropdownItemsLengthEqual(splitBtn, 4);
@@ -54,7 +54,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on "Button dropdown", then dropdown opened and there are 3 items
-    when user clicks on "Button dropdown" again, then dropdown closes`, () => {
+    when user clicks on "Button dropdown" again, then dropdown closes`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(manualTrigger);
       dropdowns.isDropdownExpanded(manualTrigger, 'button', true);
       dropdowns.isDropdownItemsLengthEqual(manualTrigger, 3);
@@ -63,7 +63,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on "Toggle", then dropdown opened and there are 3 items
-    when user clicks on "Toggle" again, then dropdown closes`, () => {
+    when user clicks on "Toggle" again, then dropdown closes`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickByText(manualTrigger, 'Toggle');
       dropdowns.isDropdownExpanded(manualTrigger, 'button', true);
       dropdowns.isDropdownItemsLengthEqual(manualTrigger, 3);
@@ -72,7 +72,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on "Show", then dropdown opened and there are 3 items
-    when user clicks on "Show" again, nothing happens`, () => {
+    when user clicks on "Show" again, nothing happens`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickByText(manualTrigger, 'Show');
       dropdowns.isDropdownExpanded(manualTrigger, 'button', true);
       dropdowns.isDropdownItemsLengthEqual(manualTrigger, 3);
@@ -81,7 +81,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on "Show" and then on any item, nothing happens
-    when user clicks on "Hide", then dropdown closes`, () => {
+    when user clicks on "Hide", then dropdown closes`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickByText(manualTrigger, 'Show');
       dropdowns.isDropdownExpanded(manualTrigger, 'button', true);
       dropdowns.clickOnDropdownItem(manualTrigger);
@@ -101,7 +101,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on "Button dropdown", then dropdown opened and there are 3 items, when user clicks on any item,
-    nothing happens, after clicks on "Toggle" - dropdown closed`, () => {
+    nothing happens, after clicks on "Toggle" - dropdown closed`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickByText(triggerByIsOpen, 'Button dropdown');
       dropdowns.isDropdownExpanded(triggerByIsOpen, 'button', true);
       dropdowns.isDropdownItemsLengthEqual(triggerByIsOpen, 3);
@@ -112,7 +112,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on "Toggle" again, then dropdown opened and there are 3 items
-    when user clicks on "Toggle" again, then dropdown closed again`, () => {
+    when user clicks on "Toggle" again, then dropdown closed again`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickByText(triggerByIsOpen, 'Toggle');
       dropdowns.isDropdownExpanded(triggerByIsOpen, 'button', true);
       dropdowns.isDropdownItemsLengthEqual(triggerByIsOpen, 3);
@@ -131,7 +131,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on "Button dropdown", then dropdown opened and there are 4 items, 1 of them is separated
-    when user clicks on any item, dropdown closes`, () => {
+    when user clicks on any item, dropdown closes`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickByText(disabledMenu, 'Button dropdown');
       dropdowns.isDropdownExpanded(disabledMenu, 'button', true);
       dropdowns.isDropdownItemsLengthEqual(disabledMenu, 4);
@@ -141,7 +141,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on "Enable/Disable", then "Button dropdown" disabled and user can't click on it
-    when user clicks on "Enable/Disable" again, then "Button dropdown" active again`, () => {
+    when user clicks on "Enable/Disable" again, then "Button dropdown" active again`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickByText(disabledMenu, 'Enable/Disable');
       dropdowns.isDropdownDisabled(disabledMenu, true);
       dropdowns.clickByText(disabledMenu, 'Enable/Disable');
@@ -149,7 +149,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on "Button dropdown" again, then dropdown opened and there are 4 items
-    when user clicks on any item, dropdown closes`, () => {
+    when user clicks on any item, dropdown closes`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickByText(disabledMenu, 'Enable/Disable');
       dropdowns.clickByText(disabledMenu, 'Enable/Disable');
       dropdowns.isDropdownDisabled(disabledMenu, false);
@@ -170,7 +170,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on "Button dropdown", then dropdown opened and there are 3 items, first is disabled,
-    and other is enabled when user clicks on the first item, nothing happens`, () => {
+    and other is enabled when user clicks on the first item, nothing happens`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(disabledItem, 0);
       dropdowns.isDropdownExpanded(disabledItem, 'button', true);
       dropdowns.isDropdownItemsLengthEqual(disabledItem, 3);
@@ -183,7 +183,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on the second item, then dropdown closes
-    when user clicks on "Button dropdown" again, then dropdown opened in the same state`, () => {
+    when user clicks on "Button dropdown" again, then dropdown opened in the same state`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(disabledItem, 0);
       dropdowns.clickOnDropdownItem(disabledItem, 1);
       dropdowns.isDropdownExpanded(disabledItem, 'button', false);
@@ -195,7 +195,7 @@ describe('Dropdowns demo page testing suite', () => {
       dropdowns.isDropdownItemDisabled(disabledItem, 2, false);
     });
 
-    it(`when user clicks on the third item, then dropdown closes`, () => {
+    it(`when user clicks on the third item, then dropdown closes`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(disabledItem, 0);
       dropdowns.clickOnDropdownItem(disabledItem, 2);
       dropdowns.isDropdownExpanded(disabledItem, 'button', false);
@@ -211,7 +211,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on this button, then dropdown opened and there are 4 items, one of them is separated
-    opened dropdown should be aligned to the right, when user clicks on any - dropdown closes`, () => {
+    opened dropdown should be aligned to the right, when user clicks on any - dropdown closes`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(menuAlignment, 0);
       dropdowns.isDropdownExpanded(menuAlignment, 'button', true);
       dropdowns.isDropdownItemsLengthEqual(menuAlignment, 4);
@@ -232,7 +232,7 @@ describe('Dropdowns demo page testing suite', () => {
 
     it(`when user clicks on it, then dropdown opened and there are 4 items with 1 separator
     when user clicks on any item, then nothing happens, dropdown still opened
-    when user clicks on button again, dropdown closed`, () => {
+    when user clicks on button again, dropdown closed`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(insideClick, 0);
       dropdowns.isDropdownExpanded(insideClick, 'button', true);
       dropdowns.isDropdownItemsLengthEqual(insideClick, 4);
@@ -253,7 +253,7 @@ describe('Dropdowns demo page testing suite', () => {
       dropdowns.isDropdownExpanded(nestedDropdown, 'button', false);
     });
 
-    it(`when user clicks on this button, then dropdown opened and there are 5 items, one of them is separated`, () => {
+    it(`when user clicks on this button, then dropdown opened and there are 5 items, one of them is separated`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(nestedDropdown, 0);
       dropdowns.isDropdownExpanded(nestedDropdown, 'button', true);
       dropdowns.isDropdownItemsLengthEqual(appendedToBodyDropdown, 5);
@@ -261,7 +261,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user move mouse to the first item with caret, then nested dropdown opened with 3 items inside
-    when user move mouse to 2d item with caret, then nested dropdown opened with 3 items inside`, () => {
+    when user move mouse to 2d item with caret, then nested dropdown opened with 3 items inside`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(nestedDropdown, 0);
       dropdowns.mouseOver(`${appendedToBodyDropdown} .dropdown-toggle`);
       dropdowns.isDropdownExpanded(appendedToBodyDropdown, '.show', true, 1);
@@ -271,7 +271,7 @@ describe('Dropdowns demo page testing suite', () => {
       dropdowns.isDropdownItemsLengthEqual(appendedToBodyDropdown, 3, 2, true);
     });
 
-    it(`when user clicks on any item, then dropdown closes`, () => {
+    it(`when user clicks on any item, then dropdown closes`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(nestedDropdown, 0);
       dropdowns.clickOnDropdownItem(appendedToBodyDropdown, 4);
       dropdowns.isDropdownExpanded(nestedDropdown, 'button', true);
@@ -292,7 +292,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on this button, then dropdown opened and there are 4 items, one of them is separated
-    when user clicks on any item, then dropdown closes`, () => {
+    when user clicks on any item, then dropdown closes`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(appendToBody, 0);
       dropdowns.isDropdownExpanded(appendToBody, 'button', true);
       dropdowns.isDropdownItemsLengthEqual(appendedToBodyDropdown, 4);
@@ -313,7 +313,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on this button, then dropdown opened to top and there are 4 items, one of them is separated
-    when user clicks on any item, then dropdown closes`, () => {
+    when user clicks on any item, then dropdown closes`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(dropup, 0);
       dropdowns.isDropdownExpanded(dropup, 'button', true);
       dropdowns.isDropdownContentAligned(dropup, 'top');
@@ -335,7 +335,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on this button, then dropdown opened to top and there are 4 items, one of them is separated
-    when user clicks on any item, then dropdown closes`, () => {
+    when user clicks on any item, then dropdown closes`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(menuDividers, 0);
       dropdowns.isDropdownExpanded(menuDividers, 'button', true);
       dropdowns.isDropdownItemsLengthEqual(menuDividers, 4);
@@ -354,7 +354,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on this button, then dropdown opened and there are 3 items
-    latest item in dropdown should have specific class`, () => {
+    latest item in dropdown should have specific class`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(customHtml, 0);
       dropdowns.isDropdownExpanded(customHtml, 'button', true);
       dropdowns.isDropdownItemsLengthEqual(customHtml, 3);
@@ -374,7 +374,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on "Button dropdown", then dropdown opened and there are 3 items
-    after click on any item, nothing happens, after click on btn again, dropdown closes`, () => {
+    after click on any item, nothing happens, after click on btn again, dropdown closes`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(configDefaults, 0);
       dropdowns.isDropdownExpanded(configDefaults, 'button', true);
       dropdowns.isDropdownItemsLengthEqual(configDefaults, 3);
@@ -395,7 +395,7 @@ describe('Dropdowns demo page testing suite', () => {
 
     it(`when user clicks on "Button dropdown", then dropdown opened, there are 3 items,
     card "Event onShown is fired" should be shown,
-    after clicks on any item, dropdown closed and card "Event onHidden is fired" is shown`, () => {
+    after clicks on any item, dropdown closed and card "Event onHidden is fired" is shown`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(visibilityEvents, 0);
       dropdowns.isDropdownExpanded(visibilityEvents, 'button', true);
       dropdowns.isDropdownItemsLengthEqual(visibilityEvents, 3);
@@ -404,7 +404,7 @@ describe('Dropdowns demo page testing suite', () => {
       dropdowns.isPreviewExist(visibilityEvents, 'Event onHidden is fired', 1);
     });
 
-    it(`when user clicks on "Button dropdown" again, dropdown opened, card "Event onHidden is fired" is hidden`, () => {
+    it(`when user clicks on "Button dropdown" again, dropdown opened, card "Event onHidden is fired" is hidden`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(visibilityEvents, 0);
       dropdowns.clickOnDropdownItem(visibilityEvents, 2);
       dropdowns.clickOnBtn(visibilityEvents, 0);
@@ -424,7 +424,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on "Button dropdown", then dropdown opened with 3 items, "The dropdown is opened" shown
-    when user clicks on any item, then dropdown closed, "The dropdown is closed" is shown`, () => {
+    when user clicks on any item, then dropdown closed, "The dropdown is closed" is shown`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(stateChangeEvent, 0);
       dropdowns.isDropdownExpanded(stateChangeEvent, 'button', true);
       dropdowns.isDropdownItemsLengthEqual(stateChangeEvent, 3);
@@ -435,7 +435,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on btn again, then dropdown opened, card "The dropdown is opened" is shown
-    when user clicks on btn again, then dropdown closed, card "The dropdown is closed" is shown`, () => {
+    when user clicks on btn again, then dropdown closed, card "The dropdown is closed" is shown`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(stateChangeEvent, 0);
       dropdowns.clickOnDropdownItem(stateChangeEvent, 2);
       dropdowns.clickOnBtn(stateChangeEvent, 0);
@@ -458,7 +458,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on the first "Button dropdown", then dropdown opened and there are 3 items inside
-    when user press "ESC", then this dropdown closes`, () => {
+    when user press "ESC", then this dropdown closes`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(autoClose, 0);
       dropdowns.isDropdownExpanded(autoClose, 'button', true, 0);
       dropdowns.isDropdownItemsLengthEqual(autoClose, 3);
@@ -467,7 +467,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on the first "Button dropdown", then dropdown opened and there are 3 items inside
-    when user clicks outside dropdown, then this dropdown closes`, () => {
+    when user clicks outside dropdown, then this dropdown closes`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(autoClose, 0);
       dropdowns.isDropdownExpanded(autoClose, 'button', true, 0);
       dropdowns.isDropdownItemsLengthEqual(autoClose, 3);
@@ -476,7 +476,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on the second "Button dropdown", then dropdown opened and there are 3 items inside
-    when user press "ESC", nothing happens`, () => {
+    when user press "ESC", nothing happens`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(autoClose, 1);
       dropdowns.isDropdownExpanded(autoClose, 'button', true, 1);
       dropdowns.isDropdownItemsLengthEqual(autoClose, 3);
@@ -485,7 +485,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on the second "Button dropdown", then dropdown opened and there are 3 items inside
-    when user clicks outside dropdown, nothing happens`, () => {
+    when user clicks outside dropdown, nothing happens`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(autoClose, 1);
       dropdowns.isDropdownExpanded(autoClose, 'button', true, 1);
       dropdowns.isDropdownItemsLengthEqual(autoClose, 3);
@@ -493,7 +493,7 @@ describe('Dropdowns demo page testing suite', () => {
       dropdowns.isDropdownExpanded(autoClose, 'button', true, 1);
     });
 
-    it(`when user clicks on the second "Button dropdown" again, then dropdown closed`, () => {
+    it(`when user clicks on the second "Button dropdown" again, then dropdown closed`, { scrollBehavior: 'center' }, () => {
       dropdowns.clickOnBtn(autoClose, 1);
       dropdowns.isDropdownExpanded(autoClose, 'button', true, 1);
       dropdowns.clickOnBtn(autoClose, 1);

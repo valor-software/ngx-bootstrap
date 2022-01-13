@@ -21,6 +21,7 @@ export class ModalsPo extends BaseComponent {
   modalPopup = '.popover-content';
   modalTooltip = 'bs-tooltip-container';
   modalBtnX = '.show .close';
+  modalCloseBtn = '.show .close';
   modalDirectBtnX = '.show .modal-header';
   openedNestedModals = `${'demo-modal-nested'} ${'.show'}`;
 
@@ -77,7 +78,7 @@ export class ModalsPo extends BaseComponent {
   }
 
   clickOnModal(baseSelector: string) {
-    cy.get(`${baseSelector} .modal`).click();
+    cy.get(`${baseSelector} .modal`).click({multiple: true, force: true});
   }
 
   clickOnModalCorner(position: PositionType) {
@@ -122,6 +123,14 @@ export class ModalsPo extends BaseComponent {
   }
 
   pressEscOnModal(baseSelector: string) {
-    cy.get(`${baseSelector} ${'.modal'}`).type('{esc}');
+    cy.get(`${baseSelector} ${'.modal'}`).first().type('{esc}');
+  }
+
+  clickCloseBtn(baseSelector: string) {
+    cy.get(`${baseSelector} ${this.modalCloseBtn}`).click();
+  }
+
+  pressEscModal() {
+    cy.get('body input').type('{esc}');
   }
 }

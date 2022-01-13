@@ -16,17 +16,17 @@ describe('Modals demo page testing suite: Directive examples', () => {
     });
 
     it(`when user clicks on "Static modal" button then modal is opened. after click on backdrop the modal
-       stays opened`, () => {
+       stays opened`, { scrollBehavior: 'center' }, () => {
       modals.clickByText(staticModalDemo, btnText);
       modals.isModalVisible(modals.modalDialog, true);
       modals.clickOnBackdrop();
       modals.isModalVisible(modals.modalDialog, true);
     });
 
-    it('when user clicks on the cross button then the modal is closed', () => {
+    it('when user clicks on the cross button then the modal is closed', { scrollBehavior: 'center' }, () => {
       modals.clickByText(staticModalDemo, btnText);
       modals.isModalVisible(modals.modalDialog, true);
-      modals.clickByText(modals.modalBtnX, btnX);
+      modals.clickCloseBtn(staticModalDemo);
       modals.isModalEnabled(modals.modalDialog, false);
     });
   });
@@ -45,13 +45,13 @@ describe('Modals demo page testing suite: Directive examples', () => {
       modals.isButtonExist(sizeDemo, btnSmallModal, 2);
     });
 
-    it('when user clicks on the "Large modal" button then large modal is opened', () => {
+    it('when user clicks on the "Large modal" button then large modal is opened', { scrollBehavior: 'center' }, () => {
       modals.clickByText(sizeDemo, btnLargeModal);
       modals.isModalVisible(modals.modalDialog, true, 1);
       modals.isModalWindowWidthEqual(modals.modalDialog, width800px, 1);
     });
 
-    it('when user clicks on the "Small modal" button then large modal is opened', () => {
+    it('when user clicks on the "Small modal" button then large modal is opened', { scrollBehavior: 'center' }, () => {
       modals.clickOnBtn(sizeDemo, 2);
       modals.isModalVisible(modals.modalDialog, true, 2);
       modals.isModalWindowWidthEqual(modals.modalDialog, width300px, 2);
@@ -68,7 +68,7 @@ describe('Modals demo page testing suite: Directive examples', () => {
       modals.isButtonExist(childModalDemo, btnText);
     });
 
-    it('when user clicks on the "Open child modal" button then modal is opened from the parent component',
+    it('when user clicks on the "Open child modal" button then modal is opened from the parent component', { scrollBehavior: 'center' },
       () => {
         modals.clickByText(childModalDemo, btnText);
         modals.isModalVisible(modals.modalDialog, true, 3);
@@ -92,7 +92,7 @@ describe('Modals demo page testing suite: Directive examples', () => {
     });
 
     it(`when user clicks on "Open parent modal" button then modal is opened. it has title "First modal" and
-    the button "Open second modal"`, () => {
+    the button "Open second modal"`, { scrollBehavior: 'center' }, () => {
       modals.clickByText(nestedModalsDemo, btnText);
       modals.isDirectModalVisible(nestedModalsDemo, true);
       modals.isItemTextContains(nestedModalsDemo, modals.modalTitle, firstModalTitle);
@@ -100,14 +100,14 @@ describe('Modals demo page testing suite: Directive examples', () => {
     });
 
     it(`when user clicks on "Open second modal" button then the 2nd modal is opened. it has title "Second modal" and
-    the button "Open third modal"`, () => {
+    the button "Open third modal"`, { scrollBehavior: 'center' }, () => {
       modals.clickByText(nestedModalsDemo, btnText);
       modals.clickByText(modals.modalBody, btnOpen2nd);
       modals.isItemTextContains(nestedModalsDemo, modals.modalTitle, secondModalTitle, 1);
       modals.isButtonExist(modals.modalBody, btnOpen3rd, 1);
     });
 
-    it('when user clicks on "Open third modal" button then the 3rd modal is opened', () => {
+    it('when user clicks on "Open third modal" button then the 3rd modal is opened', { scrollBehavior: 'center' }, () => {
       modals.clickByText(nestedModalsDemo, btnText);
       modals.clickByText(modals.modalBody, btnOpen2nd);
       modals.clickByText(modals.modalBody, btnOpen3rd);
@@ -115,7 +115,7 @@ describe('Modals demo page testing suite: Directive examples', () => {
     });
 
     it(`when user closes the third modal then the second is visible, and when user closes the second modal
-      then the first is visible`, () => {
+      then the first is visible`, { scrollBehavior: 'center' }, () => {
       modals.clickByText(nestedModalsDemo, btnText);
       modals.clickByText(modals.modalBtn, btnOpen2nd);
       modals.clickByText(modals.modalBody, btnOpen3rd);
@@ -145,7 +145,7 @@ describe('Modals demo page testing suite: Directive examples', () => {
     });
 
     it(`when user clicks on "Open a modal" button then modal is opened then should be two messages
-      "event onShow is fired" and "event onShown is fired"`, () => {
+      "event onShow is fired" and "event onShown is fired"`, { scrollBehavior: 'center' }, () => {
       modals.clickByText(eventsModalsDemo, btnText);
       modals.isDirectModalVisible(eventsModalsDemo, true);
       modals.isDemoContainsTxt(eventsModalsDemo, eventOnShowFired);
@@ -153,15 +153,15 @@ describe('Modals demo page testing suite: Directive examples', () => {
     });
 
     it(`when user closes modal by click on the cross then should be messages "event onHide is fired"
-      and "event onHidden is fired"`, () => {
+      and "event onHidden is fired"`, { scrollBehavior: 'center' }, () => {
       modals.clickByText(eventsModalsDemo, btnText);
-      modals.clickByText(modals.modalBtnX, btnX);
+      modals.clickCloseBtn(eventsModalsDemo);
       modals.isDemoContainsTxt(eventsModalsDemo, eventOnHide);
       modals.isDemoContainsTxt(eventsModalsDemo, eventOnHidden);
     });
 
     it(`when user user closes modal by click outside the modal window then should be messages
-      "event onHidden is fired" and "onHidden event has been fired"`, () => {
+      "event onHidden is fired" and "onHidden event has been fired"`, { scrollBehavior: 'center' }, () => {
       modals.clickByText(eventsModalsDemo, btnText);
       modals.isModalVisible(eventsModalsDemo, true);
       modals.clickOnModal(eventsModalsDemo);
@@ -170,7 +170,7 @@ describe('Modals demo page testing suite: Directive examples', () => {
     });
 
     it(`when user closes modal by pressing ESC button then modal is closed and should be messages
-      "event onHide is fired, dismissed by esc" and "event onHidden is fired, dismissed by esc"`, () => {
+      "event onHide is fired, dismissed by esc" and "event onHidden is fired, dismissed by esc"`, { scrollBehavior: 'center' }, () => {
       const modalText = 'Just another modal';
       modals.clickByText(eventsModalsDemo, btnText);
       modals.isDirectModalVisible(eventsModalsDemo, true);
@@ -194,16 +194,16 @@ describe('Modals demo page testing suite: Directive examples', () => {
       modals.isButtonExist(autoDemo, btnText);
     });
 
-    it(`when user clicks on the "Render auto-shown modal" button, then modal is opened, it appeared in the DOM`,
+    it(`when user clicks on the "Render auto-shown modal" button, then modal is opened, it appeared in the DOM`, { scrollBehavior: 'center' },
       () => {
         modals.clickByText(autoDemo, btnText);
         modals.isDirectModalVisible(autoDemo, true);
       });
 
-    it(`when user closes the modal then modal is removed from the DOM`,
+    it(`when user closes the modal then modal is removed from the DOM`, { scrollBehavior: 'center' },
       () => {
         modals.clickByText(autoDemo, btnText);
-        modals.clickByText(modals.modalBtnX, btnX);
+        modals.clickCloseBtn(autoDemo);
         modals.isModalEnabled(autoDemo, false);
       });
   });

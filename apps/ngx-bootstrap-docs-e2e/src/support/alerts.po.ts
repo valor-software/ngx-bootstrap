@@ -22,8 +22,12 @@ export class AlertsPo extends BaseComponent {
   };
 
   isAlertVisible(baseSelector: string, alertType: string, exist = true) {
-    cy.get(`${baseSelector} ${this.getAlertClass(alertType)}`)
+    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.getAlertClass(alertType)}`)
       .should(exist ? 'be.visible' : 'not.exist');
+  }
+
+  IsButtonDisappeared(baseSelector: string, buttonName: string) {
+    cy.get(`tab[heading="Overview"] ${baseSelector}`).contains(buttonName).should('not.exist');
   }
 
   isAlertHaveLink(baseSelector: string, alertType: string) {
@@ -38,7 +42,7 @@ export class AlertsPo extends BaseComponent {
   }
 
   isAlertLengthEqual(baseSelector: string, expectedLength: number) {
-    cy.get(`${baseSelector} alert`)
+    cy.get(`tab[heading="Overview"] ${baseSelector} alert`)
       .should('to.have.length', expectedLength);
   }
 

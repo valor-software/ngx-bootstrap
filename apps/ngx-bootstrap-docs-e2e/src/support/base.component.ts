@@ -30,7 +30,7 @@ export abstract class BaseComponent {
   }
 
   isBtnTxtEqual(baseSelector: string, expectedBtnTxt: string, buttonIndex?: number) {
-    cy.get(`${ baseSelector } button`).eq(buttonIndex ? buttonIndex : 0).invoke('text')
+    cy.get(`tab[heading="Overview"] ${ baseSelector } button`).eq(buttonIndex ? buttonIndex : 0).invoke('text')
       .should(btnTxt => expect(btnTxt.trim()).to.equal(expectedBtnTxt.trim()));
   }
 
@@ -45,7 +45,7 @@ export abstract class BaseComponent {
   }
 
   clickOnBtn(baseSelector: string, buttonIndex?: number) {
-    cy.get(`${ baseSelector } button`).eq(buttonIndex ? buttonIndex : 0).click();
+    cy.get(`tab[heading="Overview"] ${ baseSelector } button`).eq(buttonIndex ? buttonIndex : 0).click();
   }
 
   dblClickOnBtn(baseSelector: string, buttonIndex?: number) {
@@ -109,7 +109,7 @@ export abstract class BaseComponent {
   }
 
   pressEsc() {
-    cy.get(`body input`).type('{esc}');
+    cy.get(`body`).find('input').first().type('{esc}');
   }
 
   isDemoContainsTxt(baseSelector: string, expectedTxt: string, expectedTxtOther?: string) {
@@ -157,7 +157,7 @@ export abstract class BaseComponent {
         .check();
     } else {
       cy.get(`${baseSelector} input[type="checkbox"]`)
-        .uncheck();
+        .uncheck({force:true});
     }
   }
 

@@ -51,7 +51,7 @@ describe('Alerts page testing suite', () => {
       alerts.isBtnTxtEqual(dismissing, 'Reset', 4);
     });
 
-    it(`when user click on close button, then alert disappeared`, () => {
+    it(`when user click on close button, then alert disappeared`, { scrollBehavior: 'center' }, () => {
       alerts.clickOnBtn(dismissing, 2);
       alerts.isAlertVisible(dismissing, 'danger', false);
       alerts.clickOnBtn(dismissing, 1);
@@ -60,7 +60,7 @@ describe('Alerts page testing suite', () => {
       alerts.isAlertVisible(dismissing, 'success', false);
     });
 
-    it(`when user click "Reset" - then alerts back to default (3 alert with close buttons)`, () => {
+    it(`when user click "Reset" - then alerts back to default (3 alert with close buttons)`, { scrollBehavior: 'center' }, () => {
       alerts.clickOnBtn(dismissing, 2);
       alerts.clickOnBtn(dismissing, 1);
       alerts.clickOnBtn(dismissing, 0);
@@ -73,17 +73,17 @@ describe('Alerts page testing suite', () => {
       alerts.isButtonExist(dismissing, '×Close', 2);
     });
 
-    it(`when user click "Toggle dismissible", then close buttons disappeared`, () => {
+    it(`when user click "Toggle dismissible", then close buttons disappeared`, { scrollBehavior: 'center' }, () => {
       alerts.clickOnBtn(dismissing, 3);
       alerts.isAlertVisible(dismissing, 'success');
       alerts.isAlertVisible(dismissing, 'info');
       alerts.isAlertVisible(dismissing, 'danger');
-      alerts.isButtonExist(dismissing, '×Close', 0, false);
-      alerts.isButtonExist(dismissing, '×Close', 1, false);
-      alerts.isButtonExist(dismissing, '×Close', 2, false);
+      alerts.IsButtonDisappeared(dismissing, '×Close');
+      alerts.IsButtonDisappeared(dismissing, '×Close');
+      alerts.IsButtonDisappeared(dismissing, '×Close');
     });
 
-    it(`when user click "Toggle dismissible" again, then close buttons appeared`, () => {
+    it(`when user click "Toggle dismissible" again, then close buttons appeared`, { scrollBehavior: 'center' }, () => {
       alerts.dblClickOnBtn(dismissing, 3);
       alerts.isAlertVisible(dismissing, 'success');
       alerts.isAlertVisible(dismissing, 'info');
@@ -119,7 +119,7 @@ describe('Alerts page testing suite', () => {
     });
 
     it(`when user click on this button, alert content changed, after click on it 2d, content changed again,
-                   when click on it 3d, then button changed to "Reset" and after click on it - content form 1t`, () => {
+                   when click on it 3d, then button changed to "Reset" and after click on it - content form 1t`, { scrollBehavior: 'center' }, () => {
       alerts.isAlertTextContains(dynamicContent, 'success', 'You successfully read this important alert');
       alerts.clickOnBtn(dynamicContent);
       alerts.isAlertVisible(dynamicContent, 'success');
@@ -143,14 +143,14 @@ describe('Alerts page testing suite', () => {
       alerts.isAlertVisible(dismissTimeout, 'success', false);
     });
 
-    it('when user click on "Add more" button, then info alert shown', () => {
+    it('when user click on "Add more" button, then info alert shown', { scrollBehavior: 'center' }, () => {
       cy.tick(6000);
       alerts.isAlertVisible(dismissTimeout, 'success', false);
       alerts.clickOnBtn(dismissTimeout);
       alerts.isAlertVisible(dismissTimeout, 'info');
     });
 
-    it('when user in a short time (up to 5 sec) click on button a few times, then a few alerts shown', () => {
+    it('when user in a short time (up to 5 sec) click on button a few times, then a few alerts shown', { scrollBehavior: 'center' }, () => {
       alerts.clickOnBtn(dismissTimeout);
       alerts.clickOnBtn(dismissTimeout);
       alerts.clickOnBtn(dismissTimeout);
@@ -177,7 +177,7 @@ describe('Alerts page testing suite', () => {
     const componentStyling = alerts.exampleDemosArr.componentStyling;
 
     it(`example contains 1 alert with specific style, which differs from default,
-                   src of component should contain this style`, () => {
+                   src of component should contain this style`, { scrollBehavior: 'center' }, () => {
       alerts.scrollToMenu('Component level styling');
       alerts.isAlertVisible(componentStyling, 'local');
       alerts.isAlertHaveCss(componentStyling, 'background-color', 'rgb(0, 150, 136)');
