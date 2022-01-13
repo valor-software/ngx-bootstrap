@@ -111,8 +111,11 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
 
   ngOnInit(): void {
     this.setConfig();
+    this.initSubscribes();
+  }
 
-    // if date changes from external source (model -> view)
+  initSubscribes() {
+    this.unsubscribeSubscriptions();
     this._subs.push(
       this.bsValueChange.subscribe((value: Date) => {
         if (this._datepickerRef) {
@@ -121,13 +124,19 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
       })
     );
 
-    // if date changes from picker (view -> model)
     if (this._datepickerRef) {
       this._subs.push(
         this._datepickerRef.instance.valueChange.subscribe((value: Date) => {
           this.bsValue = value;
         })
       );
+    }
+  }
+
+  unsubscribeSubscriptions() {
+    if (this._subs?.length) {
+      this._subs.map(sub => sub.unsubscribe());
+      this._subs.length = 0;
     }
   }
 
@@ -201,9 +210,12 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
       .attach(BsDatepickerInlineContainerComponent)
       .to(this._elementRef)
       .show();
+
+    this.initSubscribes();
   }
 
   ngOnDestroy() {
     this._datepicker.dispose();
+    this.unsubscribeSubscriptions();
   }
 }
