@@ -224,6 +224,27 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
     }
   }
 
+  initSubscribes() {
+    // if date changes from external source (model -> view)
+    this._subs.push(
+      this.bsValueChange.subscribe((value: Date) => {
+        if (this._datepickerRef) {
+          this._datepickerRef.instance.value = value;
+        }
+      })
+    );
+
+    // if date changes from picker (view -> model)
+    if (this._datepickerRef) {
+      this._subs.push(
+        this._datepickerRef.instance.valueChange.subscribe((value: Date) => {
+          this.bsValue = value;
+          this.hide();
+        })
+      );
+    }
+  }
+
   ngAfterViewInit(): void {
     this.isOpen$.pipe(
       filter(isOpen => isOpen !== this.isOpen),
@@ -250,24 +271,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       .position({ attachment: this.placement })
       .show({ placement: this.placement });
 
-    // if date changes from external source (model -> view)
-    this._subs.push(
-      this.bsValueChange.subscribe((value: Date) => {
-        if (this._datepickerRef) {
-          this._datepickerRef.instance.value = value;
-        }
-      })
-    );
-
-    // if date changes from picker (view -> model)
-    if (this._datepickerRef) {
-      this._subs.push(
-        this._datepickerRef.instance.valueChange.subscribe((value: Date) => {
-          this.bsValue = value;
-          this.hide();
-        })
-      );
-    }
+    this.initSubscribes();
   }
 
   /**
@@ -318,6 +322,13 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
     });
   }
 
+  unsubscribeSubscriptions() {
+    if (this._subs?.length) {
+      this._subs.map(sub => sub.unsubscribe());
+      this._subs.length = 0;
+    }
+  }
+
   ngOnDestroy(): void {
     this._datepicker.dispose();
     this.isOpen$.next(false);
@@ -325,5 +336,6 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       this.isDestroy$.next(null);
       this.isDestroy$.complete();
     }
+    this.unsubscribeSubscriptions();
   }
 }
