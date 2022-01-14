@@ -1,130 +1,46 @@
 # [8.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.9...v8.0.0) (2022-01-14)
 
+Most notable changes for v8 release:
+- added support for **Angular v13**, while still compatible with Angular v12, if your application is compiled in ivy mode
+- in v7.1 we have added a support for **Bootstrap 5** and in v8 it has become the default, you are able to continue use **Bootstrap 4** if needed
+- support for **Bootstrap 3** has been discontinued, however it may still be usable with v8, there are no guarantees it will work as expected, and is not suggested
+- the old datepicker which was deprecated since v6 version was removed for good, please use `BsDatepicker`
+- and last but not least, hopefully you are enjoying the new look of our documentation
 
+Like, Subscribe, Stay tuned ;)
 
-# [8.0.0-RC.9](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.8...v8.0.0-RC.9) (2022-01-14)
+Regards, @valorkin
+
+### BREAKING CHANGES
+
+* **datepicker:** dropped old version of datepicker ([#6391](https://github.com/valor-software/ngx-bootstrap/issues/6391)) ([85f56bb](https://github.com/valor-software/ngx-bootstrap/commit/85f56bb08ae865d89e26fa6a01cf558a3693bc62))
+
+* **bootstrap:** bs5 set as default ([#6405](https://github.com/valor-software/ngx-bootstrap/issues/6405)) ([7849793](https://github.com/valor-software/ngx-bootstrap/commit/78497930c8f9e42ce91ae546b7d5560369781184))
 
 
 ### Bug Fixes
 
-* **datepicker:** fiexed error while cleaning input for daterangepicker ([#6407](https://github.com/valor-software/ngx-bootstrap/issues/6407)) ([fc5f05c](https://github.com/valor-software/ngx-bootstrap/commit/fc5f05c4adbe44157b212b0e9c5598c2b95d0a80))
+* **datepicker:** fixed error while cleaning input for daterangepicker ([#6407](https://github.com/valor-software/ngx-bootstrap/issues/6407)) ([fc5f05c](https://github.com/valor-software/ngx-bootstrap/commit/fc5f05c4adbe44157b212b0e9c5598c2b95d0a80))
 * **datepicker:** fixed clear button in datepicker ([#6338](https://github.com/valor-software/ngx-bootstrap/issues/6338)) ([12e050f](https://github.com/valor-software/ngx-bootstrap/commit/12e050fab9b002169051a363a9fe2dc22edbdecc))
 * **datepicker:** fixed inline datepicker subscriptions ([#6339](https://github.com/valor-software/ngx-bootstrap/issues/6339)) ([2e85bac](https://github.com/valor-software/ngx-bootstrap/commit/2e85bac1c5f77a6ca61f9fce7a75a67a42c1b609))
+* **datepicker:** fixed enabled/diabled dates ([#6355](https://github.com/valor-software/ngx-bootstrap/issues/6355)) ([f247b18](https://github.com/valor-software/ngx-bootstrap/commit/f247b187d67eb664dc44b759acde2595a20cf69c))
 * **progressbar:** fixed error Cannot read properties of undefined (reading 'currentValue') ([#6409](https://github.com/valor-software/ngx-bootstrap/issues/6409)) ([df7bdba](https://github.com/valor-software/ngx-bootstrap/commit/df7bdba9f0c23be4024d9ff7524094122ffadba2))
-
-
-### Features
-
-* **bs:** bs5 set as default ([#6405](https://github.com/valor-software/ngx-bootstrap/issues/6405)) ([7849793](https://github.com/valor-software/ngx-bootstrap/commit/78497930c8f9e42ce91ae546b7d5560369781184))
-* **datepicker:** prevent overflow if adaptivePosition is set to true ([#6408](https://github.com/valor-software/ngx-bootstrap/issues/6408)) ([a43f6c2](https://github.com/valor-software/ngx-bootstrap/commit/a43f6c25c977e43a04162d1cd16937c06a595184))
-
-
-
-# [8.0.0-RC.8](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.5...v8.0.0-RC.8) (2022-01-11)
-
-
-### Bug Fixes
-
-* **datepicker:** fixed enabled/diabled dates ([#6355](https://github.com/valor-software/ngx-bootstrap/issues/6355)) ([f247b18](https://github.com/valor-software/ngx-bootstrap/commit/f247b187d67eb664dc44b759acde2595a20cf69c))
 * **typeahead:** fixed exports of typeahead lib ([#6402](https://github.com/valor-software/ngx-bootstrap/issues/6402)) ([fbe749c](https://github.com/valor-software/ngx-bootstrap/commit/fbe749cbae3914178ea80d4e3e1506ca308b7815))
-
-
-
-# [8.0.0-RC.7](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.5...v8.0.0-RC.7) (2022-01-11)
-
-
-### Bug Fixes
-
-* **datepicker:** fixed enabled/diabled dates ([#6355](https://github.com/valor-software/ngx-bootstrap/issues/6355)) ([f247b18](https://github.com/valor-software/ngx-bootstrap/commit/f247b187d67eb664dc44b759acde2595a20cf69c))
-* **typeahead:** fixed exports of typeahead lib ([#6402](https://github.com/valor-software/ngx-bootstrap/issues/6402)) ([fbe749c](https://github.com/valor-software/ngx-bootstrap/commit/fbe749cbae3914178ea80d4e3e1506ca308b7815))
-
-
-
-# [8.0.0-RC.6](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.5...v8.0.0-RC.6) (2022-01-11)
-
-
-### Bug Fixes
-
-* **datepicker:** fixed enabled/diabled dates ([#6355](https://github.com/valor-software/ngx-bootstrap/issues/6355)) ([f247b18](https://github.com/valor-software/ngx-bootstrap/commit/f247b187d67eb664dc44b759acde2595a20cf69c))
-* **typeahead:** fixed exports of typeahead lib ([#6402](https://github.com/valor-software/ngx-bootstrap/issues/6402)) ([fbe749c](https://github.com/valor-software/ngx-bootstrap/commit/fbe749cbae3914178ea80d4e3e1506ca308b7815))
-
-
-
-# [8.0.0-RC.5](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.4...v8.0.0-RC.5) (2021-12-27)
-
-
-### Bug Fixes
-
 * **component-loader:** don't remove elemenent if component is detached fix [#6358](https://github.com/valor-software/ngx-bootstrap/issues/6358) ([425db25](https://github.com/valor-software/ngx-bootstrap/commit/425db25796b504d1a2967dc6a45c860821f79799))
-
-
-### Features
-
-* **schematics:** change Bootstrap version to 5 ([cf39d34](https://github.com/valor-software/ngx-bootstrap/commit/cf39d348f34318ce403edad3de1f751cd8a90165))
-
-
-
-# [8.0.0-RC.4](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.3...v8.0.0-RC.4) (2021-12-24)
-
-
-### Bug Fixes
-
 * **build:** add manual exports for root package ([136a85e](https://github.com/valor-software/ngx-bootstrap/commit/136a85e05b78cd6104a6a96d58388782dcc731bb))
-
-
-
-# [8.0.0-RC.3](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.2...v8.0.0-RC.3) (2021-12-24)
-
-
-### Bug Fixes
-
 * **core:** updated peer deps and added license mentions of secondary entry points (fixes [#6371](https://github.com/valor-software/ngx-bootstrap/issues/6371)) ([dfb957f](https://github.com/valor-software/ngx-bootstrap/commit/dfb957f382b51ea99890354b58c35345cca7158f))
 * **popover:** added a space between containerClass and checkMarginNecessity() ([#6352](https://github.com/valor-software/ngx-bootstrap/issues/6352)) ([757292b](https://github.com/valor-software/ngx-bootstrap/commit/757292b301ce47ce1802bde560c7498efbee4b61))
-
-
-### Features
-
-* **datepicker:** add Spanish (Puerto Rico) [es-pr] locale ([#6374](https://github.com/valor-software/ngx-bootstrap/issues/6374)) ([13a4b92](https://github.com/valor-software/ngx-bootstrap/commit/13a4b92133746b36a93e54e680391e60b1273aa5))
-* **datepicker:** BREAKING CHANGE dropped old version of datepicker ([#6391](https://github.com/valor-software/ngx-bootstrap/issues/6391)) ([85f56bb](https://github.com/valor-software/ngx-bootstrap/commit/85f56bb08ae865d89e26fa6a01cf558a3693bc62))
-
-
-
-# [8.0.0-RC.2](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.1...v8.0.0-RC.2) (2021-12-23)
-
-
-
-# [8.0.0-RC.1](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.2...v8.0.0-RC.1) (2021-12-23)
-
-
-### Features
-
-* **documentation:** updated  use-cases ([#6360](https://github.com/valor-software/ngx-bootstrap/issues/6360)) ([fa365cf](https://github.com/valor-software/ngx-bootstrap/commit/fa365cf1bd7e56a0b4824b586c997a86ce5b4307)), closes [#6359](https://github.com/valor-software/ngx-bootstrap/issues/6359)
-
-
-
-# [8.0.0-RC.2](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.1...v8.0.0-RC.2) (2021-12-20)
-
-
-### Bug Fixes
-
 * **build:** change build folder structure in order to work properly with nx 13 ([8bfbfa5](https://github.com/valor-software/ngx-bootstrap/commit/8bfbfa568f7eeac718438885c3003ea1c1d6f563))
-
-
-
-# [8.0.0-RC.1](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.0...v8.0.0-RC.1) (2021-12-20)
-
-
-### Bug Fixes
-
 * **build:** fix api docs api generation ([c275900](https://github.com/valor-software/ngx-bootstrap/commit/c275900ae7151eb56b2ab3308f278be47b2c15e8))
 
 
-
-# [8.0.0-RC.0](https://github.com/valor-software/ngx-bootstrap/compare/v7.1.2...v8.0.0-RC.0) (2021-12-16)
-
-
 ### Features
 
+* **datepicker:** prevent overflow if adaptivePosition is set to true ([#6408](https://github.com/valor-software/ngx-bootstrap/issues/6408)) ([a43f6c2](https://github.com/valor-software/ngx-bootstrap/commit/a43f6c25c977e43a04162d1cd16937c06a595184))
+* **schematics:** change Bootstrap version to 5 ([cf39d34](https://github.com/valor-software/ngx-bootstrap/commit/cf39d348f34318ce403edad3de1f751cd8a90165))
+* **datepicker:** add Spanish (Puerto Rico) [es-pr] locale ([#6374](https://github.com/valor-software/ngx-bootstrap/issues/6374)) ([13a4b92](https://github.com/valor-software/ngx-bootstrap/commit/13a4b92133746b36a93e54e680391e60b1273aa5))
+* **datepicker:** BREAKING CHANGE dropped old version of datepicker ([#6391](https://github.com/valor-software/ngx-bootstrap/issues/6391)) ([85f56bb](https://github.com/valor-software/ngx-bootstrap/commit/85f56bb08ae865d89e26fa6a01cf558a3693bc62))
+* **documentation:** updated  use-cases ([#6360](https://github.com/valor-software/ngx-bootstrap/issues/6360)) ([fa365cf](https://github.com/valor-software/ngx-bootstrap/commit/fa365cf1bd7e56a0b4824b586c997a86ce5b4307)), closes [#6359](https://github.com/valor-software/ngx-bootstrap/issues/6359)
 * **documentation:** Documentation UI update ([#6305](https://github.com/valor-software/ngx-bootstrap/issues/6305)) ([bd81f14](https://github.com/valor-software/ngx-bootstrap/commit/bd81f14ca80fbdd5a845f828496f2ebe1efa4981)), closes [#6364](https://github.com/valor-software/ngx-bootstrap/issues/6364)
 
 
