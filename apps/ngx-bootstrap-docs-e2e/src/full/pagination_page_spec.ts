@@ -17,7 +17,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isButtonExist(manualSwitchingPage, 'Set current page to: 3');
     });
 
-    it('when user click on "Set current page to: 3", 3rd is active, previous page is inactive', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Set current page to: 3", 3rd is active, previous page is inactive', () => {
       pagination.clickOnPaginationBtn(manualSwitchingPage, 'Set current page to: 3');
       pagination.isActivePositionEqual(manualSwitchingPage, '3');
       pagination.isPageActive(manualSwitchingPage, '4', false);
@@ -38,7 +38,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isPreviewExist(pageChangedEvent, 'Page changed to: 4\n');
     });
 
-    it('when user click on 1st page, "Page changed to: 1" shown', { scrollBehavior: 'center' }, () => {
+    it('when user click on 1st page, "Page changed to: 1" shown', () => {
       pagination.clickOnPage(pageChangedEvent, '1');
       pagination.isActivePositionEqual(pageChangedEvent, '1');
       pagination.isPagerDisabled(pageChangedEvent, 'Previous', true);
@@ -46,7 +46,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isPreviewExist(pageChangedEvent, 'Page changed to: 1\n');
     });
 
-    it('when user click on "Next" button, "Page changed to: 2" shown', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Next" button, "Page changed to: 2" shown', () => {
       pagination.clickOnPage(pageChangedEvent, '1');
       pagination.clickOnPager(pageChangedEvent, 'Next');
       pagination.isPagerDisabled(pageChangedEvent, 'Previous', false);
@@ -55,7 +55,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isActivePositionEqual(pageChangedEvent, '2');
     });
 
-    it('when user click on "Previous" button, "Page changed to: 1" shown', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Previous" button, "Page changed to: 1" shown', () => {
       pagination.clickOnPage(pageChangedEvent, '1');
       pagination.clickOnPager(pageChangedEvent, 'Next');
       pagination.clickOnPager(pageChangedEvent, 'Previous');
@@ -78,7 +78,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isPreviewExist(pagesCountChangedEvent, 'The selected page no: 4/9');
     });
 
-    it('when user click on 1st page, should shown event message "The selected page no: 1/9"', { scrollBehavior: 'center' }, () => {
+    it('when user click on 1st page, should shown event message "The selected page no: 1/9"', () => {
       pagination.clickOnPage(pagesCountChangedEvent, '1');
       pagination.isPagerDisabled(pagesCountChangedEvent, 'Previous', true);
       pagination.isPagerDisabled(pagesCountChangedEvent, 'Next', false);
@@ -86,7 +86,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isActivePositionEqual(pagesCountChangedEvent, '1');
     });
 
-    it('when user click on "Next" button, "The selected page no: 2/9" shown', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Next" button, "The selected page no: 2/9" shown', () => {
       pagination.clickOnPage(pagesCountChangedEvent, '1');
       pagination.clickOnPager(pagesCountChangedEvent, 'Next');
       pagination.isPagerDisabled(pagesCountChangedEvent, 'Previous', false);
@@ -95,7 +95,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isActivePositionEqual(pagesCountChangedEvent, '2');
     });
 
-    it('when user click on "Previous" button, "The selected page no: 1/9" shown', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Previous" button, "The selected page no: 1/9" shown', () => {
       pagination.clickOnPage(pagesCountChangedEvent, '1');
       pagination.clickOnPager(pagesCountChangedEvent, 'Next');
       pagination.clickOnPager(pagesCountChangedEvent, 'Previous');
@@ -120,7 +120,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isButtonExist(boundaryLinks, 'Hide/show boundary links');
     });
 
-    it('when user click on "Last", 6 - active, 1 - inactive, "Next/Last"-disabled, "First/Previous"-enabled', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Last", 6 - active, 1 - inactive, "Next/Last"-disabled, "First/Previous"-enabled', () => {
       pagination.clickOnPager(boundaryLinks, 'Last');
       pagination.isActivePositionEqual(boundaryLinks, '6');
       pagination.isPageActive(boundaryLinks, '1', false);
@@ -130,7 +130,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isPagerDisabled(boundaryLinks, 'Last', true);
     });
 
-    it('when user click on First, 1 - active, 6 - inactive, "Next/Last"- enabled, First/Previous - disabled', { scrollBehavior: 'center' }, () => {
+    it('when user click on First, 1 - active, 6 - inactive, "Next/Last"- enabled, First/Previous - disabled', () => {
       pagination.clickOnPager(boundaryLinks, 'Last');
       pagination.clickOnPager(boundaryLinks, 'First');
       pagination.isActivePositionEqual(boundaryLinks, '1');
@@ -141,7 +141,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isPagerDisabled(boundaryLinks, 'Last', false);
     });
 
-    it('when user click on "Hide/show boundary links", "First" and "Last" buttons are disappeared', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Hide/show boundary links", "First" and "Last" buttons are disappeared', () => {
       pagination.clickOnPaginationBtn(boundaryLinks, 'Hide/show boundary links');
       pagination.isPagerExist(boundaryLinks, 'First', false);
       pagination.isPagerExist(boundaryLinks, 'Last', false);
@@ -149,7 +149,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isPagerExist(boundaryLinks, 'Next', true);
     });
 
-    it('when user click on "Hide/show boundary links" again, "First" and "Last" buttons are appeared', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Hide/show boundary links" again, "First" and "Last" buttons are appeared', () => {
       pagination.clickOnPaginationBtn(boundaryLinks, 'Hide/show boundary links');
       pagination.clickOnPaginationBtn(boundaryLinks, 'Hide/show boundary links');
       pagination.isPagerExist(boundaryLinks, 'First', true);
@@ -172,14 +172,14 @@ describe('Pagination demo page testing suite', () => {
       pagination.isButtonExist(directionLinks, 'Hide/show direction links');
     });
 
-    it('when user clicks on "Hide/show direction links", then "Previous/Next" are disappeared', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on "Hide/show direction links", then "Previous/Next" are disappeared', () => {
       pagination.isActivePositionEqual(directionLinks, '1');
       pagination.clickOnPaginationBtn(directionLinks, 'Hide/show direction links');
       pagination.isPagerExist(directionLinks, 'Previous', false);
       pagination.isPagerExist(directionLinks, 'Next', false);
     });
 
-    it('when user clicks on "Hide/show direction links" again, then "Previous/Next" buttons are appeared', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on "Hide/show direction links" again, then "Previous/Next" buttons are appeared', () => {
       pagination.clickOnPaginationBtn(directionLinks, 'Hide/show direction links');
       pagination.clickOnPaginationBtn(directionLinks, 'Hide/show direction links');
       pagination.isPagerExist(directionLinks, 'Previous', true);
@@ -200,7 +200,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isPagerTxtEqual(customLinksContent, 'Last', '»');
     });
 
-    it('when user click on "Last", "Next/Last" - disabled, 8th page is active, "First/Previous" - enabled', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Last", "Next/Last" - disabled, 8th page is active, "First/Previous" - enabled', () => {
       pagination.clickOnPager(customLinksContent, 'Last');
       pagination.isPagerDisabled(customLinksContent, 'Next', true);
       pagination.isPagerDisabled(customLinksContent, 'Last', true);
@@ -209,7 +209,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isActivePositionEqual(customLinksContent, '8');
     });
 
-    it('when user click on "First", "Next/Last" - enabled, 1st is active, "First/Previous" - disabled', { scrollBehavior: 'center' }, () => {
+    it('when user click on "First", "Next/Last" - enabled, 1st is active, "First/Previous" - disabled', () => {
       pagination.clickOnPager(customLinksContent, 'Last');
       pagination.clickOnPager(customLinksContent, 'First');
       pagination.isPagerDisabled(customLinksContent, 'Next', false);
@@ -219,13 +219,13 @@ describe('Pagination demo page testing suite', () => {
       pagination.isActivePositionEqual(customLinksContent, '1');
     });
 
-    it('when user click on "Next", next page is active', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Next", next page is active', () => {
       pagination.isActivePositionEqual(customLinksContent, '1');
       pagination.clickOnPager(customLinksContent, 'Next');
       pagination.isActivePositionEqual(customLinksContent, '2');
     });
 
-    it('when user click on "Previous", previous page is active', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Previous", previous page is active', () => {
       pagination.isActivePositionEqual(customLinksContent, '1');
       pagination.clickOnPage(customLinksContent, '5');
       pagination.clickOnPager(customLinksContent, 'Previous');
@@ -249,7 +249,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isPageDisabled(disabled, '7', false);
     });
 
-    it('when user clicks on "Toggle state" button, then pagination panel is disabled', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on "Toggle state" button, then pagination panel is disabled', () => {
       pagination.clickOnPaginationBtn(disabled, 'Toggle state');
       pagination.isPagerDisabled(disabled, 'Previous', true);
       pagination.isPagerDisabled(disabled, 'Next', true);
@@ -259,7 +259,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isPageDisabled(disabled, '7', true);
     });
 
-    it('when user clicks on "Toggle state" button again, then pagination panel is enabled', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on "Toggle state" button again, then pagination panel is enabled', () => {
       pagination.clickOnPaginationBtn(disabled, 'Toggle state');
       pagination.clickOnPaginationBtn(disabled, 'Toggle state');
       pagination.isPagerDisabled(disabled, 'Previous', true);
@@ -282,7 +282,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isPaginationLengthEqual(limits, 5);
     });
 
-    it('when user clicks on 5th page, then active page - 5 and it centered, maximum count of pages - 5', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on 5th page, then active page - 5 and it centered, maximum count of pages - 5', () => {
       pagination.clickOnPage(limits, '5');
       pagination.isActivePositionEqual(limits, '5');
       pagination.isPagerDisabled(limits, 'Previous', false);
@@ -291,7 +291,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isActivePageCentered(limits, true);
     });
 
-    it('when user clicks on 5th and "Next" button, then active page - 6 and it centered, maximum count - 5', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on 5th and "Next" button, then active page - 6 and it centered, maximum count - 5', () => {
       pagination.clickOnPage(limits, '5');
       pagination.clickOnPager(limits, 'Next');
       pagination.isActivePositionEqual(limits, '6');
@@ -301,7 +301,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isActivePageCentered(limits, true);
     });
 
-    it('when user clicks on 5th and "Previous", then active page - 4 and it centered, maximum count - 5', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on 5th and "Previous", then active page - 4 and it centered, maximum count - 5', () => {
       pagination.clickOnPage(limits, '5');
       pagination.clickOnPager(limits, 'Previous');
       pagination.isActivePositionEqual(limits, '4');
@@ -325,7 +325,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isButtonExist(centeringPageLink, 'Current page link center is ON');
     });
 
-    it('when user clicks on 5th, then active page - 5 and it centered, maximum count of pages - 5', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on 5th, then active page - 5 and it centered, maximum count of pages - 5', () => {
       pagination.clickOnPage(centeringPageLink, '5');
       pagination.isPaginationLengthEqual(centeringPageLink, 5);
       pagination.isActivePositionEqual(centeringPageLink, '5');
@@ -334,7 +334,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isActivePageCentered(centeringPageLink, true);
     });
 
-    it('when user clicks on 5th and "Next", then active page - 6 and it centered, maximum count of pages - 5', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on 5th and "Next", then active page - 6 and it centered, maximum count of pages - 5', () => {
       pagination.clickOnPage(centeringPageLink, '5');
       pagination.clickOnPager(centeringPageLink, 'Next');
       pagination.isPaginationLengthEqual(centeringPageLink, 5);
@@ -345,7 +345,7 @@ describe('Pagination demo page testing suite', () => {
 
     });
 
-    it('when user clicks on 5th and "Previous", then active page - 4 and it centered, maximum count - 5', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on 5th and "Previous", then active page - 4 and it centered, maximum count - 5', () => {
       pagination.clickOnPage(centeringPageLink, '5');
       pagination.clickOnPager(centeringPageLink, 'Previous');
       pagination.isPaginationLengthEqual(centeringPageLink, 5);
@@ -355,7 +355,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isActivePageCentered(centeringPageLink, true);
     });
 
-    it('when user clicks on 6, "Toggle centering" and "Next", then "last/first" - appeared, like "..."', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on 6, "Toggle centering" and "Next", then "last/first" - appeared, like "..."', () => {
       pagination.clickOnPage(centeringPageLink, '5');
       pagination.clickOnPage(centeringPageLink, '6');
       pagination.clickOnPaginationBtn(centeringPageLink, 'Current page link center is ON');
@@ -381,7 +381,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isPaginationContentUpdated(contentSwitching);
     });
 
-    it('when user click on "Next" button, pagination content changed', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Next" button, pagination content changed', () => {
       pagination.clickOnPager(contentSwitching, 'Next');
       pagination.isPaginationLengthEqual(contentSwitching, 9);
       pagination.isActivePositionEqual(contentSwitching, '2');
@@ -390,7 +390,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isPaginationContentUpdated(contentSwitching);
     });
 
-    it('when user click on "Previous" button, pagination content changed', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Previous" button, pagination content changed', () => {
       pagination.clickOnPager(contentSwitching, 'Next');
       pagination.clickOnPager(contentSwitching, 'Previous');
       pagination.isPaginationLengthEqual(contentSwitching, 9);
@@ -400,7 +400,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isPaginationContentUpdated(contentSwitching);
     });
 
-    it('when user click on any page, pagination content changed', { scrollBehavior: 'center' }, () => {
+    it('when user click on any page, pagination content changed', () => {
       pagination.clickOnPage(contentSwitching, '5');
       pagination.isPaginationLengthEqual(contentSwitching, 9);
       pagination.isActivePositionEqual(contentSwitching, '5');
@@ -423,7 +423,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isPagerDisabled(pager, 'Next', false);
     });
 
-    it('when user clicks on latest, then "Next" - disabled, "Previous"- enabled, 1st - inactive, last - active', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on latest, then "Next" - disabled, "Previous"- enabled, 1st - inactive, last - active', () => {
       cy.viewport(1440, 900);
       pagination.clickOnDemoMenu('Pager');
       pagination.clickOnPage(pager, '7');
@@ -433,7 +433,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isPageActive(pager, '1', false);
     });
 
-    it('when user clicks on first, then "Next" - enabled, "Previous"- disabled, 1st - active, last - inactive', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on first, then "Next" - enabled, "Previous"- disabled, 1st - active, last - inactive', () => {
       cy.viewport(1440, 900);
       pagination.clickOnDemoMenu('Pager');
       pagination.clickOnPage(pager, '1');
@@ -443,7 +443,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.isPageActive(pager, '7', false);
     });
 
-    it('when user clicks on 2, then "Next/Previous"- enabled, 2d - active', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on 2, then "Next/Previous"- enabled, 2d - active', () => {
       cy.viewport(1440, 900);
       pagination.clickOnDemoMenu('Pager');
       pagination.clickOnPage(pager, '2');

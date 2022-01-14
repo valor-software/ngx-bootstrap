@@ -16,10 +16,12 @@ export class CarouselPo extends BaseComponent {
     optionalCaptions: 'tab[heading="Overview"] demo-carousel-captions',
     configuringDefaults: 'tab[heading="Overview"] demo-carousel-config',
     dynamicSlides: 'tab[heading="Overview"] demo-carousel-dynamic',
+    dynamicSlidesControlBtns: 'tab[heading="Overview"] demo-carousel-dynamic > div',
     pauseOnHover: 'tab[heading="Overview"] demo-carousel-pause-on-hover',
     customContent: 'tab[heading="Overview"] demo-carousel-custom-content',
-    disableLooping: 'tab[heading="Overview"]demo-carousel-disable-looping',
+    disableLooping: 'tab[heading="Overview"] demo-carousel-disable-looping',
     disableIndicator: 'tab[heading="Overview"] demo-carousel-disable-indicator',
+    controlBtnDisableIndicator: 'tab[heading="Overview"] demo-carousel-disable-indicator > div',
     interval: 'tab[heading="Overview"] demo-carousel-interval',
     slideChangedEvent: 'tab[heading="Overview"] demo-carousel-slide-changed-event',
     accessibility: 'tab[heading="Overview"] demo-accessibility'
@@ -58,7 +60,7 @@ export class CarouselPo extends BaseComponent {
   }
 
   isSlidesCountEqual(baseSelector: string, expectedCount: number) {
-    cy.get(`${baseSelector} ${this.indicatorClass} li`)
+    cy.get(`${baseSelector} ${this.indicatorClass} button`)
       .should('to.have.length', expectedCount);
   }
 

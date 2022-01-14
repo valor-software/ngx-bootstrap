@@ -15,7 +15,7 @@ describe('Datepicker demo testing suite: Config method', () => {
   });
 
   it(`when user clicks on Datepicker input, container opens, user able to click on any date,
-                 when user clicks on 8 may 2018 - then this date appear in the input`, { scrollBehavior: 'center' }, () => {
+                 when user clicks on 8 may 2018 - then this date appear in the input`, () => {
     datepicker.clearInputAndSendKeys(configMethod, '05/08/2018');
     datepicker.clickEnterOnInput(configMethod);
     datepicker.isDatepickerOpened(false);
@@ -25,7 +25,7 @@ describe('Datepicker demo testing suite: Config method', () => {
   });
 
   it(`when user clicks on "Set min date" button, then container opens,
-                 when user try to click on any date before 13 of June 2018, nothing happens`, { scrollBehavior: 'center' }, () => {
+                 when user try to click on any date before 13 of June 2018, nothing happens`, () => {
     datepicker.clickOnDatepickerInput(configMethod);
     datepicker.clearInputAndSendKeys(configMethod, '05/08/2018');
     datepicker.clickEnterOnInput(configMethod);
@@ -38,7 +38,7 @@ describe('Datepicker demo testing suite: Config method', () => {
   });
 
   it(`when user clicks on "Set min date" button, then container opens,
-                 when user click on date after 13 of June 2018 - then this date chosen and appear in the input`, { scrollBehavior: 'center' }, () => {
+                 when user click on date after 13 of June 2018 - then this date chosen and appear in the input`, () => {
     datepicker.clickOnDatepickerInput(configMethod);
     datepicker.clearInputAndSendKeys(configMethod, '05/09/2018');
     datepicker.clickEnterOnInput(configMethod);

@@ -21,7 +21,7 @@ describe('Rating demo page testing suite', () => {
     });
 
     it(`when user move mouse to any other star, then text in card changed,
-    when user clicks on any star (different from selected), then card info updated with this new number`, { scrollBehavior: 'center' }, () => {
+    when user clicks on any star (different from selected), then card info updated with this new number`, () => {
       rating.mouseMoveToRatingIcon(dynamic, 9);
       rating.isPreviewExist(dynamic, 'Rate: 7;  Readonly is: false;  Hovering over: 9', 0);
       rating.mouseMoveToRatingIcon(dynamic, 2);
@@ -35,7 +35,7 @@ describe('Rating demo page testing suite', () => {
     });
 
     it(`when user clicks "Clear", then all stars become unselected, text: "Rate: 0;  Readonly is: false;
-    Hovering over: none", when user clicks on any star, then rating and card text updated again`, { scrollBehavior: 'center' }, () => {
+    Hovering over: none", when user clicks on any star, then rating and card text updated again`, () => {
       rating.mouseMoveToRatingIcon(dynamic, 9);
       rating.isPreviewExist(dynamic, 'Rate: 7;  Readonly is: false;  Hovering over: 9', 0);
       rating.addRatingMark(dynamic, 0, 5);
@@ -49,7 +49,7 @@ describe('Rating demo page testing suite', () => {
     });
 
     it(`when user clicks on "Toggle Readonly", then text contain "Readonly is: true", button "Clear" became unclickable
-    when user clicks on any star in the rating, nothing happens`, { scrollBehavior: 'center' }, () => {
+    when user clicks on any star in the rating, nothing happens`, () => {
       rating.clickOnBtn(dynamic, 0);
       rating.isPreviewExist(dynamic, 'Rate: 0;  Readonly is: false;  Hovering over: none', 0);
       rating.clickOnBtn(dynamic, 1);
@@ -60,7 +60,7 @@ describe('Rating demo page testing suite', () => {
     });
 
     it(`when user clicks on "Toggle Readonly" again, then "Clear" became clickable, text became "Readonly is: false",
-    when user clicks on any star, then rating and card text updated again`, { scrollBehavior: 'center' }, () => {
+    when user clicks on any star, then rating and card text updated again`, () => {
       rating.clickOnBtn(dynamic, 1);
       rating.clickOnBtn(dynamic, 1);
       rating.isBtnDisabled(dynamic, false, 0);
@@ -88,7 +88,7 @@ describe('Rating demo page testing suite', () => {
       rating.isPreviewExist(customIcons, 'Rate: 2', 1);
     });
 
-    it(`when user change mark to bigger in each rating, then rating updated and text near it - also`, { scrollBehavior: 'center' }, () => {
+    it(`when user change mark to bigger in each rating, then rating updated and text near it - also`, () => {
       rating.addRatingMark(customIcons, 0, 8);
       rating.addRatingMark(customIcons, 1, 9);
       rating.isRatingCurrentEqual(customIcons, 8, 0);
@@ -97,7 +97,7 @@ describe('Rating demo page testing suite', () => {
       rating.isPreviewExist(customIcons, 'Rate: 9', 1);
     });
 
-    it(`when user change mark to lesser in each rating, then rating updated and text near it - also`, { scrollBehavior: 'center' }, () => {
+    it(`when user change mark to lesser in each rating, then rating updated and text near it - also`, () => {
       rating.addRatingMark(customIcons, 0, 3);
       rating.addRatingMark(customIcons, 1, 1);
       rating.isRatingCurrentEqual(customIcons, 3, 0);
@@ -121,14 +121,14 @@ describe('Rating demo page testing suite', () => {
       rating.isBtnTxtEqual(selectOnEnter, 'Reset rating and status');
     });
 
-    it(`when user change the mark, then rating changed with appropriate info in the card`, { scrollBehavior: 'center' }, () => {
+    it(`when user change the mark, then rating changed with appropriate info in the card`, () => {
       rating.addRatingMark(selectOnEnter, 0, 9);
       rating.isRatingCurrentEqual(selectOnEnter, 9);
       rating.isPreviewExist(selectOnEnter, 'Rating: 9');
     });
 
     it(`when user focus on the rating, then after press "right arrow" on the keyboard, rating value increased at 1
-    when user press "left arrow" on the keyboard, rating value decreased at 1`, { scrollBehavior: 'center' }, () => {
+    when user press "left arrow" on the keyboard, rating value decreased at 1`, () => {
       rating.focusOnRating(selectOnEnter);
       rating.pressKeyboardBtn(selectOnEnter, 'leftarrow');
       rating.isPreviewExist(selectOnEnter, 'Rating: 6');
@@ -145,7 +145,7 @@ describe('Rating demo page testing suite', () => {
     });
 
     it(`when user press "Enter" on the keyboard, then rating saved this state and card info updated with
-    "Rating: N;  Readonly is: true;", after click on any item - nothing happens`, { scrollBehavior: 'center' }, () => {
+    "Rating: N;  Readonly is: true;", after click on any item - nothing happens`, () => {
       rating.focusOnRating(selectOnEnter);
       rating.pressKeyboardBtn(selectOnEnter, 'leftarrow');
       rating.pressKeyboardBtn(selectOnEnter, 'enter');
@@ -157,7 +157,7 @@ describe('Rating demo page testing suite', () => {
     });
 
     it(`when user clicks on "Reset rating and status", then all stars become unselected, text become
-    "Rating: 0;  Readonly is: false;", when user change the mark, then rating changed with appropriate info`, { scrollBehavior: 'center' }, () => {
+    "Rating: 0;  Readonly is: false;", when user change the mark, then rating changed with appropriate info`, () => {
       rating.focusOnRating(selectOnEnter);
       rating.pressKeyboardBtn(selectOnEnter, 'leftarrow');
       rating.pressKeyboardBtn(selectOnEnter, 'enter');

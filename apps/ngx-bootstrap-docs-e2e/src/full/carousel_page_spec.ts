@@ -17,13 +17,13 @@ describe('Carousel page testing suite', () => {
       carousel.isEachSlideHave(optCaptions, ['.item', '.carousel-caption', 'h3']);
     });
 
-    it('when user click on indicator item - appropriate slide shown', { scrollBehavior: 'center' }, () => {
+    it('when user click on indicator item - appropriate slide shown', () => {
       carousel.isClickActivatedCarouselItem(optCaptions, 1);
       carousel.isClickActivatedCarouselItem(optCaptions, 0);
       carousel.isClickActivatedCarouselItem(optCaptions, 2);
     });
 
-    it('when user click on left/right arrow - previous/next slide shown', { scrollBehavior: 'center' }, () => {
+    it('when user click on left/right arrow - previous/next slide shown', () => {
       carousel.scrollToMenu('Optional captions');
       carousel.clickOnCtrl(optCaptions, 'left');
       carousel.isCarouselItemActive(optCaptions, 2);
@@ -48,7 +48,7 @@ describe('Carousel page testing suite', () => {
       carousel.isEachSlideHave(confDefaults, ['.item', '.carousel-caption', 'h3']);
     });
 
-    it('when user click on indicator item - appropriate slide shown', { scrollBehavior: 'center' }, () => {
+    it('when user click on indicator item - appropriate slide shown', () => {
       carousel.isClickActivatedCarouselItem(confDefaults, 1);
       carousel.isClickActivatedCarouselItem(confDefaults, 0);
       carousel.isClickActivatedCarouselItem(confDefaults, 2);
@@ -64,6 +64,7 @@ describe('Carousel page testing suite', () => {
 
   describe('Dynamic Slides ', () => {
     const dynamicSlides = carousel.exampleDemosArr.dynamicSlides;
+    const dynamicSlidesControlBtns = carousel.exampleDemosArr.dynamicSlidesControlBtns;
 
     it('example contains slides, indicators, left and right controls and captions', () => {
       carousel.scrollToMenu('Dynamic Slides');
@@ -73,37 +74,37 @@ describe('Carousel page testing suite', () => {
 
     it('example contains 3 additional buttons: "Add Slide", "Remove Current", "Remove #3"', () => {
       carousel.scrollToMenu('Dynamic Slides');
-      carousel.isBtnTxtEqual(dynamicSlides, 'Add Slide ', 0);
-      carousel.isBtnTxtEqual(dynamicSlides, 'Remove Current ', 1);
-      carousel.isBtnTxtEqual(dynamicSlides, 'Remove #3 ', 2);
+      carousel.isBtnTxtEqual(dynamicSlidesControlBtns, 'Add Slide ', 0);
+      carousel.isBtnTxtEqual(dynamicSlidesControlBtns, 'Remove Current ', 1);
+      carousel.isBtnTxtEqual(dynamicSlidesControlBtns, 'Remove #3 ', 2);
     });
 
-    it('when user click on "Add Slide", then amount of slides increased at 1 with header and info', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Add Slide", then amount of slides increased at 1 with header and info', () => {
       carousel.scrollToMenu('Dynamic Slides');
       carousel.isSlidesCountEqual(dynamicSlides, 4);
-      carousel.clickOnBtn(dynamicSlides, 0);
+      carousel.clickOnBtn(dynamicSlidesControlBtns, 0);
       carousel.isSlidesCountEqual(dynamicSlides, 5);
-      carousel.clickOnBtn(dynamicSlides, 0);
+      carousel.clickOnBtn(dynamicSlidesControlBtns, 0);
       carousel.isSlidesCountEqual(dynamicSlides, 6);
     });
 
-    it('when user click on "Remove Current", then amount of slides decreased at 1 and current slide deleted', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Remove Current", then amount of slides decreased at 1 and current slide deleted', () => {
       carousel.scrollToMenu('Dynamic Slides');
       carousel.isSlidesCountEqual(dynamicSlides, 4);
-      carousel.clickOnBtn(dynamicSlides, 1);
+      carousel.clickOnBtn(dynamicSlidesControlBtns, 1);
       carousel.isSlidesCountEqual(dynamicSlides, 3);
-      carousel.clickOnBtn(dynamicSlides, 1);
+      carousel.clickOnBtn(dynamicSlidesControlBtns, 1);
       carousel.isSlidesCountEqual(dynamicSlides, 2);
     });
 
-    it('when user click on "Remove #3" - then third slide deleted', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Remove #3" - then third slide deleted', () => {
       carousel.scrollToMenu('Dynamic Slides');
       carousel.isSlidesCountEqual(dynamicSlides, 4);
-      carousel.clickOnBtn(dynamicSlides, 2);
+      carousel.clickOnBtn(dynamicSlidesControlBtns, 2);
       carousel.isSlidesCountEqual(dynamicSlides, 3);
-      carousel.clickOnBtn(dynamicSlides, 2);
+      carousel.clickOnBtn(dynamicSlidesControlBtns, 2);
       carousel.isSlidesCountEqual(dynamicSlides, 2);
-      carousel.clickOnBtn(dynamicSlides, 2);
+      carousel.clickOnBtn(dynamicSlidesControlBtns, 2);
       carousel.isSlidesCountEqual(dynamicSlides, 2);
     });
 
@@ -164,7 +165,7 @@ describe('Carousel page testing suite', () => {
       carousel.isLabelTxtEqual(disableLoopingSlides, 'Disable Slide Looping');
     });
 
-    it('when user click on checkbox "Disable Slide Looping", then no one slide should be shown after latest', { scrollBehavior: 'center' }, () => {
+    it('when user click on checkbox "Disable Slide Looping", then no one slide should be shown after latest', () => {
       carousel.scrollToMenu('Disable slide looping');
       carousel.isClickActivatedCarouselItem(disableLoopingSlides, 2);
       carousel.clickOnInput(disableLoopingSlides);
@@ -172,7 +173,7 @@ describe('Carousel page testing suite', () => {
       carousel.isCarouselItemActive(disableLoopingSlides, 2);
     });
 
-    it('when user uncheck "Disable slide looping", then slides continue changing after 5 sec', { scrollBehavior: 'center' }, () => {
+    it('when user uncheck "Disable slide looping", then slides continue changing after 5 sec', () => {
       carousel.scrollToMenu('Disable slide looping');
       carousel.isClickActivatedCarouselItem(disableLoopingSlides, 2);
       carousel.dblClickOnInput(disableLoopingSlides);
@@ -183,18 +184,19 @@ describe('Carousel page testing suite', () => {
 
   describe('Disable indicator ', () => {
     const disableIndicatorSlides = carousel.exampleDemosArr.disableIndicator;
+    const controlBtnDisableIndicator = carousel.exampleDemosArr.controlBtnDisableIndicator;
 
     it('example contains slides, indicators, left and right controls and "Enable/Disable" button', () => {
       carousel.scrollToMenu('Disable indicator');
       carousel.isCarouselHaveIndicatorsItemsCtrls(disableIndicatorSlides);
-      carousel.isBtnTxtEqual(disableIndicatorSlides, 'Enable/Disable Indicator ');
+      carousel.isBtnTxtEqual(controlBtnDisableIndicator, 'Enable/Disable Indicator ');
     });
-    it('when user click on "Enable/Disable Indicator" - indicator disappeared', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Enable/Disable Indicator" - indicator disappeared', () => {
       carousel.scrollToMenu('Disable indicator');
-      carousel.clickOnBtn(disableIndicatorSlides);
+      carousel.clickOnBtn(controlBtnDisableIndicator);
       carousel.isCarouselIndicatorDisabled(disableIndicatorSlides, true);
     });
-    it('when user click on "Enable/Disable Indicator" again - indicator appeared', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Enable/Disable Indicator" again - indicator appeared', () => {
       carousel.scrollToMenu('Disable indicator');
       carousel.dblClickOnBtn(disableIndicatorSlides);
       carousel.isCarouselIndicatorDisabled(disableIndicatorSlides, false);
@@ -211,17 +213,17 @@ describe('Carousel page testing suite', () => {
         [{ attr: 'type', value: 'number' }]);
     });
 
-    it('when user change the interval in input to any positive value - then slides change after added interval', { scrollBehavior: 'center' }, () => {
+    it('when user change the interval in input to any positive value - then slides change after added interval', () => {
       carousel.scrollToMenu('Interval');
       const newInterval = '3000';
       carousel.clearInputAndSendKeys(intervalSlides, newInterval);
       carousel.isInputHaveAttrs(intervalSlides, [{ attr: 'type', value: 'number' }]);
       carousel.isCarouselItemActive(intervalSlides, 0);
-      cy.tick(6000);
+      cy.tick(4000);
       carousel.isCarouselItemActive(intervalSlides, 1);
     });
 
-    it('When user change the interval in input to "0" - then slider stopped', { scrollBehavior: 'center' }, () => {
+    it('When user change the interval in input to "0" - then slider stopped', () => {
       carousel.scrollToMenu('Interval');
       const newInterval = '0';
       carousel.clearInputAndSendKeys(intervalSlides, newInterval);
@@ -231,7 +233,7 @@ describe('Carousel page testing suite', () => {
       carousel.isCarouselItemActive(intervalSlides, 0);
     });
 
-    it('When user change the interval in input to any negative value - then carousel stopped', { scrollBehavior: 'center' }, () => {
+    it('When user change the interval in input to any negative value - then carousel stopped', () => {
       carousel.scrollToMenu('Interval');
       const newInterval = '-100';
       carousel.clearInputAndSendKeys(intervalSlides, newInterval);
@@ -251,26 +253,26 @@ describe('Carousel page testing suite', () => {
       carousel.isCardTxtEqual(changedEventSlides, 'Slide has been switched: 0');
     });
 
-    it('when user click on left arrow - info changed to "Slide has been switched: 2"', { scrollBehavior: 'center' }, () => {
+    it('when user click on left arrow - info changed to "Slide has been switched: 2"', () => {
       carousel.scrollToMenu('Slide changed event');
       carousel.clickOnCtrl(changedEventSlides, 'left');
       carousel.isCardTxtEqual(changedEventSlides, 'Slide has been switched: 2');
     });
 
-    it('when user click on left arrow again - info changed to "Slide has been switched: 1"', { scrollBehavior: 'center' }, () => {
+    it('when user click on left arrow again - info changed to "Slide has been switched: 1"', () => {
       carousel.scrollToMenu('Slide changed event');
       carousel.clickOnCtrl(changedEventSlides, 'left');
       carousel.clickOnCtrl(changedEventSlides, 'left');
       carousel.isCardTxtEqual(changedEventSlides, 'Slide has been switched: 1');
     });
 
-    it('when user click on right arrow - info changed to "Slide has been switched: 1"', { scrollBehavior: 'center' }, () => {
+    it('when user click on right arrow - info changed to "Slide has been switched: 1"', () => {
       carousel.scrollToMenu('Slide changed event');
       carousel.clickOnCtrl(changedEventSlides, 'right');
       carousel.isCardTxtEqual(changedEventSlides, 'Slide has been switched: 1');
     });
 
-    it('when user click on right arrow again - info changed to "Slide has been switched: 2"', { scrollBehavior: 'center' }, () => {
+    it('when user click on right arrow again - info changed to "Slide has been switched: 2"', () => {
       carousel.scrollToMenu('Slide changed event');
       carousel.clickOnCtrl(changedEventSlides, 'right');
       carousel.clickOnCtrl(changedEventSlides, 'right');

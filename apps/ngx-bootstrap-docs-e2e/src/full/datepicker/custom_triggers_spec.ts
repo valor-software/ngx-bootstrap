@@ -20,7 +20,7 @@ describe('Datepicker demo testing suite: Custom triggers', () => {
   });
 
   it(`when user move mouse to the first Datepicker input, then datepicker opens,
-                 when user chose any date, then it appear in the first input field in format "mm/dd/yyyy"`, { scrollBehavior: 'center' }, () => {
+                 when user chose any date, then it appear in the first input field in format "mm/dd/yyyy"`, () => {
     const chosenDate = new Date(`${new Date().getMonth() + 1}/10/${new Date().getFullYear()}`);
     datepicker.mouseMove(`${customTriggers} input`, 0);
     datepicker.isDatepickerOpened(true);
@@ -30,7 +30,7 @@ describe('Datepicker demo testing suite: Custom triggers', () => {
   });
 
   it(`when user click in the first DateRangepicker input, it's activated , daterangepicker not shown
-                 when user press any key, then daterangepicker-container shown and user can chose any interval`, { scrollBehavior: 'center' }, () => {
+                 when user press any key, then daterangepicker-container shown and user can chose any interval`, () => {
     datepicker.clickOnDaterangepickerInput(customTriggers, 0);
     datepicker.isDaterangepickerOpened(false);
     datepicker.clickEnterOnInput(customTriggers, 1);
@@ -39,7 +39,7 @@ describe('Datepicker demo testing suite: Custom triggers', () => {
   });
 
   it(`when user chose interval, then bs-daterangepicker-container disappeared
-                 and this interval shown in appropriate input in format "mm/dd/yyyy" - "mm/dd/yyyy"`, { scrollBehavior: 'center' }, () => {
+                 and this interval shown in appropriate input in format "mm/dd/yyyy" - "mm/dd/yyyy"`, () => {
     const dateLeft = new Date(`${currentMonthNum + 1}/01/${currentYear}`)
       .toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
     const dateRight = new Date(`${currentMonthNum + 1}/15/${currentYear}`)
@@ -53,7 +53,7 @@ describe('Datepicker demo testing suite: Custom triggers', () => {
 });
 
   it(`when user click in the second DateRangepicker input, it's activated and bs-daterangepicker not shown
-                 when user press any key, then bs-daterangepicker-container still not shown`, { scrollBehavior: 'center' }, () => {
+                 when user press any key, then bs-daterangepicker-container still not shown`, () => {
     datepicker.clickOnDaterangepickerInput(customTriggers, 1);
     datepicker.isDaterangepickerOpened(false);
     datepicker.clickEnterOnInput(customTriggers, 2);
@@ -61,7 +61,7 @@ describe('Datepicker demo testing suite: Custom triggers', () => {
   });
 
   it(`when user click twice on input, then bs-daterangepicker shown, when user chose interval, then
-                 bs-daterangepicker disappeared and this interval shown in input "mm/dd/yyyy" - "mm/dd/yyyy"`, { scrollBehavior: 'center' }, () => {
+                 bs-daterangepicker disappeared and this interval shown in input "mm/dd/yyyy" - "mm/dd/yyyy"`, () => {
     const dateLeft = new Date(`${currentMonthNum + 1}/01/${currentYear}`)
       .toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
     const dateRight = new Date(`${currentMonthNum + 1}/15/${currentYear}`)

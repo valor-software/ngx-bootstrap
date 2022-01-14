@@ -33,7 +33,7 @@ describe('Datepicker demo testing suite: Custom date format', () => {
       `${newDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }).toLowerCase().split('')[1]}`, 2);
   });
 
-  it('when user click on the first "Date Picker" btn, chose other date - it chosen, appear in "YYYY-MM-DD"', { scrollBehavior: 'center' }, () => {
+  it('when user click on the first "Date Picker" btn, chose other date - it chosen, appear in "YYYY-MM-DD"', () => {
     const dayToChose = currentDay === 15 ? '16' : '15';
     datepicker.clickOnBtn(customFormat, 0);
     datepicker.clickOnDatepickerTableItem('date', 'body', undefined, dayToChose);
@@ -41,7 +41,7 @@ describe('Datepicker demo testing suite: Custom date format', () => {
       new Date(`${currentYearNum}-${currentMonthNum + 1}-${Number(dayToChose)}`).toLocaleDateString('Lt'), 0);
   });
 
-  it('when user click on the second "Date Picker" btn, chose other date - it chosen, appear in "MM/DD/YYYY"', { scrollBehavior: 'center' }, () => {
+  it('when user click on the second "Date Picker" btn, chose other date - it chosen, appear in "MM/DD/YYYY"', () => {
     const dayToChose = currentDay === 15 ? '16' : '15';
     const monthToChose = currentMonthNum + 1 < 10 ? `0${currentMonthNum + 1}` : currentMonthNum + 1;
     datepicker.clickOnBtn(customFormat, 1);
@@ -49,7 +49,7 @@ describe('Datepicker demo testing suite: Custom date format', () => {
     datepicker.isInputValueEqual(customFormat, `${monthToChose}/${dayToChose}/${currentYearNum}`, 1);
   });
 
-  it('when user click on the third "Date Picker" btn, chose other date - it chosen, MMMM Do YYYY,h:mm:ss a', { scrollBehavior: 'center' }, () => {
+  it('when user click on the third "Date Picker" btn, chose other date - it chosen, MMMM Do YYYY,h:mm:ss a', () => {
     const dayToChose = currentDay === 15 ? '16' : '15';
     datepicker.clickOnBtn(customFormat, 2);
     datepicker.clickOnDatepickerTableItem('date', 'body', undefined, dayToChose);

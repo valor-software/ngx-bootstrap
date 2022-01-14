@@ -13,7 +13,7 @@ describe('Collapse demo page testing suite', () => {
       collapse.isCollapseInfoEqual(events, 'Event: expanded');
     });
 
-    it('when user clicks on "Toggle collapse", then "Some content" disappear and user see "Event: collapsed"', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on "Toggle collapse", then "Some content" disappear and user see "Event: collapsed"', () => {
       const toglerText = 'Toggle collapse';
       collapse.clickByText(events, toglerText);
       collapse.isCollapseExpanded(events, 'false');
@@ -21,7 +21,7 @@ describe('Collapse demo page testing suite', () => {
 
     });
 
-    it('when user clicks on "Toggle collapse" again, then "Some content" and "Event: expanded" appear', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on "Toggle collapse" again, then "Some content" and "Event: expanded" appear', () => {
       const toglerText = 'Toggle collapse';
       collapse.dblClickByText(events, toglerText);
       collapse.isCollapseExpanded(events, 'true');
@@ -43,7 +43,7 @@ describe('Collapse demo page testing suite', () => {
 
     });
 
-    it('when user clicks on "Hide content", then collapse disappear, on "Show content" - "Some content" appear', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on "Hide content", then collapse disappear, on "Show content" - "Some content" appear', () => {
       collapse.clickOnBtn(manualToggle, 1);
       collapse.isCollapseExpanded(manualToggle, 'false');
 
@@ -66,7 +66,7 @@ describe('Collapse demo page testing suite', () => {
 
     });
 
-    it('when user clicks on "Inline-block", then collapse appear with inline-block, on "None" - without inline', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on "Inline-block", then collapse appear with inline-block, on "None" - without inline', () => {
       collapse.clickOnBtn(inlineDisplay, 0);
       collapse.isCollapseExpanded(inlineDisplay, 'true');
       collapse.isCollapseWithInline(inlineDisplay, true);

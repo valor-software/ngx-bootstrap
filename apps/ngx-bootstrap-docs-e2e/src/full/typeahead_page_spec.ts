@@ -21,14 +21,14 @@ describe('Typeahead demo page testing suite', () => {
     });
 
     it(`when user starts to type a name of a State a drop-down with matches is shown.
-    the list contains a template "This is: "_matched state_" index: _index #". `, { scrollBehavior: 'center' },
+    the list contains a template "This is: "_matched state_" index: _index #". `,
       () => {
         typeahead.clearInputAndSendKeys(itemTempl, textToInput);
         typeahead.isElementVisible(itemTempl, typeahead.activeDropdown);
         typeahead.isElemTextContain(itemTempl, typeahead.activeDropdown, checkTemplate);
       });
 
-    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State', { scrollBehavior: 'center' },
+    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State',
       () => {
         typeahead.clearInputAndSendKeys(itemTempl, stateForCheck);
         typeahead.isPreviewExist(itemTempl, stateForCheck);
@@ -49,12 +49,12 @@ describe('Typeahead demo page testing suite', () => {
       typeahead.isElementVisible(optFiled, typeahead.inputSelector);
     });
 
-    it('when user starts to type a name of a State a drop-down with matches is shown.', { scrollBehavior: 'center' }, () => {
+    it('when user starts to type a name of a State a drop-down with matches is shown.', () => {
       typeahead.clearInputAndSendKeys(optFiled, stateForCheck);
       typeahead.isElementVisible(optFiled, typeahead.activeDropdown);
     });
 
-    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State', { scrollBehavior: 'center' },
+    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State',
       () => {
         typeahead.clearInputAndSendKeys(optFiled, stateForCheck);
         typeahead.clickByText(typeahead.activeDropdown, stateForCheck);
@@ -78,14 +78,14 @@ describe('Typeahead demo page testing suite', () => {
       typeahead.isInputHaveAttrs(asyncData, [{ attr: 'placeholder', value: 'Locations loaded via observable' }]);
     });
 
-    it('when user starts to type a name of a State a drop-down with matches is shown, only 20 matches are shown', { scrollBehavior: 'center' },
+    it('when user starts to type a name of a State a drop-down with matches is shown, only 20 matches are shown',
       () => {
         typeahead.clearInputAndSendKeys(asyncData, 'a');
         typeahead.isElementVisible(asyncData, typeahead.activeDropdown);
         typeahead.isDropdownHasNItems(typeahead.dropdownBtn, 20);
       });
 
-    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State', { scrollBehavior: 'center' },
+    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State',
       () => {
         typeahead.clearInputAndSendKeys(asyncData, stateForCheck);
         typeahead.clickByText(typeahead.activeDropdown, stateForCheck);
@@ -110,7 +110,7 @@ describe('Typeahead demo page testing suite', () => {
     });
 
     it(`the dropdown is shown with delay to 1000ms. when user clicks on any item in typeahead drop-down,
-    then typeahead container auto-fills with a selected State`, { scrollBehavior: 'center' }, () => {
+    then typeahead container auto-fills with a selected State`, () => {
       cy.clock();
       typeahead.clearInputAndSendKeys(withDelay, stateForCheck);
       cy.tick(timeDelay);
@@ -144,13 +144,13 @@ describe('Typeahead demo page testing suite', () => {
         typeahead.isElementVisible(tempDriven, typeahead.inputSelector, 1);
       });
 
-    it('when user starts typing if there are any matches then a drop-down with a list of States matches is shown.', { scrollBehavior: 'center' },
+    it('when user starts typing if there are any matches then a drop-down with a list of States matches is shown.',
       () => {
         typeahead.clearInputAndSendKeys(tempDriven, stateForCheck, 1);
         typeahead.isElementVisible(tempDriven, typeahead.activeDropdown);
       });
 
-    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State', { scrollBehavior: 'center' },
+    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State',
       () => {
         typeahead.clearInputAndSendKeys(tempDriven, stateForCheck, 1);
         typeahead.clickEnterOnInput(tempDriven, 1);
@@ -173,14 +173,14 @@ describe('Typeahead demo page testing suite', () => {
       typeahead.isInputHaveAttrs(reactive, [{ attr: 'placeholder', value: 'Typeahead inside a form' }]);
     });
 
-    it('when user places mouse cursor in the "Model" then a drop-down with the first 7 States is shown.', { scrollBehavior: 'center' },
+    it('when user places mouse cursor in the "Model" then a drop-down with the first 7 States is shown.',
       () => {
         typeahead.clickOnInput(reactive);
         typeahead.isElementVisible(reactive, typeahead.activeDropdown);
         typeahead.isDropdownHasNItems(typeahead.dropdownBtn, 7);
       });
 
-    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State', { scrollBehavior: 'center' },
+    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State',
       () => {
         typeahead.clearInputAndSendKeys(reactive, stateForCheck);
         typeahead.clickByText(typeahead.activeDropdown, stateForCheck);
@@ -204,12 +204,12 @@ describe('Typeahead demo page testing suite', () => {
     });
 
     it(`when user starts typing then a drop-down with a list of States matches is shown. All shown States
-      are grouped by region (4 regions are shown)`, { scrollBehavior: 'center' }, () => {
+      are grouped by region (4 regions are shown)`, () => {
       typeahead.clearInputAndSendKeys(groupResult, textToInput);
       typeahead.isDropdownHasNItems(typeahead.dropdownHeader, 4);
     });
 
-    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State', { scrollBehavior: 'center' },
+    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State',
       () => {
         typeahead.clearInputAndSendKeys(groupResult, stateForCheck);
         typeahead.clickByText(typeahead.activeDropdown, stateForCheck);
@@ -239,21 +239,21 @@ describe('Typeahead demo page testing suite', () => {
     });
 
     it(`when user starts typing then order of typed symbols and spaces between them is ignored if there are any
-      matches then a drop-down with a list of States matches is shown`, { scrollBehavior: 'center' }, () => {
+      matches then a drop-down with a list of States matches is shown`, () => {
       typeahead.clearInputAndSendKeys(ignoreSpace, textToInput);
       typeahead.isElementVisible(ignoreSpace, typeahead.activeDropdown);
       typeahead.isElemTextContain(ignoreSpace, typeahead.dropdownBtn, stateForCheck);
     });
 
     it(`when user sets the "typeaheadSingleWords = false" by clicking on the button "Toggle
-      typeaheadSingleWords" then order of typed symbols and spaces between them will NOT be ignored`, { scrollBehavior: 'center' }, () => {
+      typeaheadSingleWords" then order of typed symbols and spaces between them will NOT be ignored`, () => {
       typeahead.clickOnBtn(ignoreSpace);
       typeahead.isPreviewExist(ignoreSpace, formTemplateFalse);
       typeahead.clearInputAndSendKeys(ignoreSpace, textToInput);
       typeahead.isDropdownNotExist(ignoreSpace);
     });
 
-    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State', { scrollBehavior: 'center' },
+    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State',
       () => {
         typeahead.clearInputAndSendKeys(ignoreSpace, stateForCheck);
         typeahead.clickByText(typeahead.activeDropdown, stateForCheck);
@@ -276,18 +276,18 @@ describe('Typeahead demo page testing suite', () => {
       typeahead.isPreviewExist(phraseDelimiters, formTemplate);
     });
 
-    it('When user uses "&" and type "&york new&" or ",york new," then no drop-down with the match would be shown', { scrollBehavior: 'center' },
+    it('When user uses "&" and type "&york new&" or ",york new," then no drop-down with the match would be shown',
       () => {
         typeahead.clearInputAndSendKeys(phraseDelimiters, textWithDelimiters);
         typeahead.isDropdownNotExist(phraseDelimiters);
       });
 
-    it('when user starts to type "york new" without delimiters then a drop-down with the match is shown', { scrollBehavior: 'center' }, () => {
+    it('when user starts to type "york new" without delimiters then a drop-down with the match is shown', () => {
       typeahead.clearInputAndSendKeys(phraseDelimiters, textToInput);
       typeahead.isElementVisible(phraseDelimiters, typeahead.activeDropdown);
     });
 
-    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State', { scrollBehavior: 'center' },
+    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State',
       () => {
         typeahead.clearInputAndSendKeys(phraseDelimiters, stateForCheck);
         typeahead.clickByText(typeahead.activeDropdown, stateForCheck);
@@ -344,13 +344,13 @@ describe('Typeahead demo page testing suite', () => {
       typeahead.isPreviewExist(dropUp, formTemplate);
     });
 
-    it('when user starts typing if there are any matches then a drop-up with a list of States matches is shown', { scrollBehavior: 'center' }, () => {
+    it('when user starts typing if there are any matches then a drop-up with a list of States matches is shown', () => {
       typeahead.clearInputAndSendKeys(dropUp, textToInput);
       typeahead.isElementVisible(dropUp, typeahead.activeDropdown);
       // typeahead.isDropUpPlacementCorrect(dropUp, 'top'); TODO: can't check - the DropUp is shown lower then the input
     });
 
-    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State', { scrollBehavior: 'center' },
+    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State',
       () => {
         typeahead.clearInputAndSendKeys(dropUp, stateForCheck);
         typeahead.clickByText(typeahead.activeDropdown, stateForCheck);
@@ -377,7 +377,7 @@ describe('Typeahead demo page testing suite', () => {
         typeahead.isElementVisible(onBlur, typeahead.inputSelector);
       });
 
-    it('clicking anywhere outside auto-fills "Option on blur" with the first option from the matches list', { scrollBehavior: 'center' }, () => {
+    it('clicking anywhere outside auto-fills "Option on blur" with the first option from the matches list', () => {
       typeahead.clearInputAndSendKeys(onBlur, textToInput);
       typeahead.isElementVisible(onBlur, typeahead.activeDropdown);
       typeahead.clickByText(onBlur, 'Option on blur:');
@@ -390,7 +390,7 @@ describe('Typeahead demo page testing suite', () => {
       typeahead.isInputValueEqual(onBlur, anotherTextToInput);
     });
 
-    it('when user clicks on any option then typeahead container auto-fills with a selected State', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on any option then typeahead container auto-fills with a selected State', () => {
       typeahead.clearInputAndSendKeys(onBlur, stateForCheck);
       typeahead.clickByText(typeahead.activeDropdown, stateForCheck);
       typeahead.isPreviewExist(onBlur, stateForCheck);
@@ -411,14 +411,14 @@ describe('Typeahead demo page testing suite', () => {
       typeahead.isElementVisible(appendToBody, typeahead.inputSelector);
     });
 
-    it('when a user starts to type then order of typed symbols and spaces between them are ignored', { scrollBehavior: 'center' }, () => {
+    it('when a user starts to type then order of typed symbols and spaces between them are ignored', () => {
       typeahead.clearInputAndSendKeys(appendToBody, textToInput);
       typeahead.isElementVisible('body', typeahead.activeDropdown);
       typeahead.isElemTextContain(typeahead.activeDropdown, typeahead.dropdownItem, anotherStateForCheck, 1);
       typeahead.isElemTextContain(typeahead.activeDropdown, typeahead.dropdownItem, stateForCheck, 2);
     });
 
-    it('When user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State', { scrollBehavior: 'center' },
+    it('When user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State',
       () => {
         typeahead.clearInputAndSendKeys(appendToBody, stateForCheck);
         typeahead.clickByText(typeahead.activeDropdown, stateForCheck);
@@ -441,7 +441,7 @@ describe('Typeahead demo page testing suite', () => {
       typeahead.isElementVisible(noResult, typeahead.inputSelector);
     });
 
-    it('when user starts to type and if there are no matches found than an error message "No Results Found" is shown', { scrollBehavior: 'center' },
+    it('when user starts to type and if there are no matches found than an error message "No Results Found" is shown',
       () => {
         typeahead.clearInputAndSendKeys(noResult, textToInput);
         typeahead.isDropdownNotExist(noResult);
@@ -449,7 +449,7 @@ describe('Typeahead demo page testing suite', () => {
       });
 
     it(`if there are any matches the drop-down is shown. when user clicks on any item then typeahead container
-  auto-fills with a selected State`, { scrollBehavior: 'center' }, () => {
+  auto-fills with a selected State`, () => {
       typeahead.clearInputAndSendKeys(noResult, stateForCheck);
       typeahead.clickByText(typeahead.activeDropdown, stateForCheck);
       typeahead.isPreviewExist(noResult, stateForCheck);
@@ -472,14 +472,14 @@ describe('Typeahead demo page testing suite', () => {
     });
 
     it(`when there are any matches then a drop-down with a list of States matches is shown. user is able to scroll
-      down/up to see the matches list`, { scrollBehavior: 'center' }, () => {
+      down/up to see the matches list`, () => {
       typeahead.clearInputAndSendKeys(scrollable, textToInput);
       typeahead.isElementVisible(scrollable, typeahead.activeDropdown);
       typeahead.isDropdownScrollable(stateForCheck);
       typeahead.isDropdownScrollable(anotherStateForCheck);
     });
 
-    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State', { scrollBehavior: 'center' },
+    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State',
       () => {
         typeahead.clearInputAndSendKeys(scrollable, stateForCheck);
         typeahead.clickByText(typeahead.activeDropdown, stateForCheck);
@@ -502,7 +502,7 @@ describe('Typeahead demo page testing suite', () => {
       typeahead.isElementVisible(latinize, typeahead.inputSelector);
     });
 
-    it('when user starts to type and there are any matches then a drop-down with a list of matches is shown', { scrollBehavior: 'center' }, () => {
+    it('when user starts to type and there are any matches then a drop-down with a list of matches is shown', () => {
       typeahead.clearInputAndSendKeys(latinize, textToInput);
       typeahead.isElementVisible(latinize, typeahead.activeDropdown);
       typeahead.clearInputAndSendKeys(latinize, nonLatinToInput);
@@ -510,7 +510,7 @@ describe('Typeahead demo page testing suite', () => {
     });
 
     it(`when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected
-      french word`, { scrollBehavior: 'center' }, () => {
+      french word`, () => {
       typeahead.clearInputAndSendKeys(latinize, stateForCheck);
       typeahead.clickByText(typeahead.activeDropdown, stateForCheck);
       typeahead.isPreviewExist(latinize, stateForCheck);
@@ -535,14 +535,14 @@ describe('Typeahead demo page testing suite', () => {
       typeahead.isPreviewExist(onSelect, formTemplateSelect, 1);
     });
 
-    it('when user starts to type and there are any matches then a drop-down with a list of States matches is shown', { scrollBehavior: 'center' },
+    it('when user starts to type and there are any matches then a drop-down with a list of States matches is shown',
       () => {
         typeahead.clearInputAndSendKeys(onSelect, stateForCheck);
         typeahead.isElementVisible(onSelect, typeahead.activeDropdown);
       });
 
     it(`when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected
-      State and "Selected option" is filled with info about selected object: "id", "name" and "region"`, { scrollBehavior: 'center' }, () => {
+      State and "Selected option" is filled with info about selected object: "id", "name" and "region"`, () => {
       typeahead.clearInputAndSendKeys(onSelect, stateForCheck);
       typeahead.clickByText(typeahead.activeDropdown, stateForCheck);
       typeahead.isPreviewExist(onSelect, stateForCheck);
@@ -569,14 +569,14 @@ describe('Typeahead demo page testing suite', () => {
       typeahead.isElemTextContain(resultOnBlur, typeahead.btnSelector, toggleBtnText);
     });
 
-    it('when user clicks outside the input then drop-down stays opened', { scrollBehavior: 'center' }, () => {
+    it('when user clicks outside the input then drop-down stays opened', () => {
       typeahead.clearInputAndSendKeys(resultOnBlur, textToInput);
       typeahead.clickOutside(`${resultOnBlur} input`);
       typeahead.isElementVisible(resultOnBlur, typeahead.activeDropdown);
     });
 
     it(`when user clicks on the button and sees typeahead card with "typeaheadHideResultsOnBlur: false Model:" text'
-      was changed to TRUE If user clicks anywhere outside the input than the drop-down closes`, { scrollBehavior: 'center' }, () => {
+      was changed to TRUE If user clicks anywhere outside the input than the drop-down closes`, () => {
       typeahead.clickOnBtn(resultOnBlur);
       typeahead.isPreviewExist(resultOnBlur, formTemplateTrue);
       typeahead.clearInputAndSendKeys(resultOnBlur, textToInput);
@@ -584,7 +584,7 @@ describe('Typeahead demo page testing suite', () => {
       typeahead.isDropdownNotEnabled(resultOnBlur);
     });
 
-    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State', { scrollBehavior: 'center' },
+    it('when user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected State',
       () => {
         typeahead.clearInputAndSendKeys(resultOnBlur, stateForCheck);
         typeahead.clickByText(typeahead.activeDropdown, stateForCheck);
@@ -603,13 +603,13 @@ describe('Typeahead demo page testing suite', () => {
       typeahead.isElementVisible(configDefaults, typeahead.inputSelector);
     });
 
-    it('when user starts typing if there are any matches then a drop-down with a list of States matches is shown', { scrollBehavior: 'center' },
+    it('when user starts typing if there are any matches then a drop-down with a list of States matches is shown',
       () => {
       typeahead.clearInputAndSendKeys(configDefaults, stateForCheck);
       typeahead.isElementVisible(configDefaults, typeahead.activeDropdown);
     });
 
-    it('When user clicks on any item in typeahead drop-down, then input stays filled with a selected State', { scrollBehavior: 'center' }, () => {
+    it('When user clicks on any item in typeahead drop-down, then input stays filled with a selected State', () => {
       typeahead.clearInputAndSendKeys(configDefaults, stateForCheck);
       typeahead.clickByText(typeahead.activeDropdown, stateForCheck);
       typeahead.isInputValueEqual(configDefaults, stateForCheck);
@@ -630,7 +630,7 @@ describe('Typeahead demo page testing suite', () => {
     });
 
     it(`when user starts to type a list with matches is shown. when user presses the TAB button then the dropdown
-      closes and typeahead card stays not filled`, { scrollBehavior: 'center' }, () => {
+      closes and typeahead card stays not filled`, () => {
       typeahead.clearInputAndSendKeys(selectedFirst, textToInput);
       typeahead.isElementVisible(selectedFirst, typeahead.activeDropdown);
       // TODO: can't make an assertion. cypress doesn't emulates TAB: https://github.com/cypress-io/cypress/issues/299
@@ -638,7 +638,7 @@ describe('Typeahead demo page testing suite', () => {
     });
 
     it('When user clicks on any item in typeahead drop-down, then typeahead container auto-fills with a selected' +
-      'State and "Selected option" is filled with info about selected object: "id", "name" and "region"', { scrollBehavior: 'center' }, () => {
+      'State and "Selected option" is filled with info about selected object: "id", "name" and "region"', () => {
       typeahead.clearInputAndSendKeys(selectedFirst, stateForCheck);
       typeahead.clickByText(typeahead.activeDropdown, stateForCheck);
       typeahead.isInputValueEqual(selectedFirst, stateForCheck);

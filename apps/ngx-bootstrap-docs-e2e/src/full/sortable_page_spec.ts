@@ -23,7 +23,7 @@ describe('Sortable demo page testing suite', () => {
     });
 
     it(`when user moves item from the first sortable component to another,
-    then this item appeared in the second component and model changed appropriate`, { scrollBehavior: 'center' }, () => {
+    then this item appeared in the second component and model changed appropriate`, () => {
       sortable.moveSortableItem(complexData, 0, 1, 1, 1);
       sortable.isSortableLengthEqual(complexData, 0, 2);
       sortable.isSortableLengthEqual(complexData, 1, 4);
@@ -32,7 +32,7 @@ describe('Sortable demo page testing suite', () => {
     });
 
     it(`when user moved all items from the first sortable component,
-    then text "Drag here" shown and model is empty`, { scrollBehavior: 'center' }, () => {
+    then text "Drag here" shown and model is empty`, () => {
       sortable.moveSortableItem(complexData, 0, 2, 1, 1);
       sortable.moveSortableItem(complexData, 0, 1, 1, 1);
       sortable.moveSortableItem(complexData, 0, 0, 1, 1);
@@ -48,7 +48,7 @@ describe('Sortable demo page testing suite', () => {
     });
 
     it(`when user moved all items from the second sortable component to the first,
-    then text "Drag here" shown and second model is empty and first contains all 6 items`, { scrollBehavior: 'center' }, () => {
+    then text "Drag here" shown and second model is empty and first contains all 6 items`, () => {
       sortable.moveSortableItem(complexData, 1, 2, 0, 1);
       sortable.moveSortableItem(complexData, 1, 1, 0, 1);
       sortable.moveSortableItem(complexData, 1, 0, 0, 1);
@@ -86,7 +86,7 @@ describe('Sortable demo page testing suite', () => {
     });
 
     it(`when user moves item from the first sortable to another, then this item appeared in the second without index,
-    model changed appropriate, items inside first sortable should be recounted and with appropriate indexes`, { scrollBehavior: 'center' }, () => {
+    model changed appropriate, items inside first sortable should be recounted and with appropriate indexes`, () => {
       sortable.moveSortableItem(customItem, 0, 2, 1, 1);
       sortable.isSortableLengthEqual(customItem, 0, 3);
       sortable.isSortableLengthEqual(customItem, 1, 3);
@@ -100,7 +100,7 @@ describe('Sortable demo page testing suite', () => {
     });
 
     it(`when user moved items from the second sortable to the first, then this item appeared in the 1st with index,
-    model changed appropriate, items inside second sortable component should stay without indexes`, { scrollBehavior: 'center' }, () => {
+    model changed appropriate, items inside second sortable component should stay without indexes`, () => {
       sortable.moveSortableItem(customItem, 1, 1, 0, 1);
       sortable.isSortableLengthEqual(customItem, 0, 5);
       sortable.isSortableLengthEqual(customItem, 1, 1);

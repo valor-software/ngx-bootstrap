@@ -16,7 +16,7 @@ describe('Datepicker demo testing suite: Disabled', () => {
   });
 
   it(`when user clicks on Datepicker input, then container opened
-                 when user clicks on any date, then this date chosen and shown in format "mm/dd/yyyy"`, { scrollBehavior: 'center' }, () => {
+                 when user clicks on any date, then this date chosen and shown in format "mm/dd/yyyy"`, () => {
     datepicker.clickOnDatepickerInput(disabled, 0);
     datepicker.isDatepickerOpened(true);
     const chosenDate = new Date(`${new Date().getMonth() + 1}/10/${new Date().getFullYear()}`);
@@ -26,7 +26,7 @@ describe('Datepicker demo testing suite: Disabled', () => {
   });
 
   it(`when user clicks on "Toggle disabling" and clicks on Datepicker input, then user unable to chose any date
-                 when user clicks on any date, month or year - nothing happens`, { scrollBehavior: 'center' }, () => {
+                 when user clicks on any date, month or year - nothing happens`, () => {
     datepicker.clickOnBtn(disabled);
     datepicker.clickOnDatepickerInput(disabled, 0);
     datepicker.isDatepickerOpened(true);
@@ -36,7 +36,7 @@ describe('Datepicker demo testing suite: Disabled', () => {
   });
 
   it(`when user clicks on "Toggle disabling" again, clicks on Datepicker, user able to chose date
-                 when user clicks on any date, it chosen and shown in the input field in format "mm/dd/yyyy"`, { scrollBehavior: 'center' }, () => {
+                 when user clicks on any date, it chosen and shown in the input field in format "mm/dd/yyyy"`, () => {
     datepicker.dblClickOnBtn(disabled);
     datepicker.clickOnDatepickerInput(disabled, 0);
     datepicker.isDatepickerOpened(true);
@@ -47,7 +47,7 @@ describe('Datepicker demo testing suite: Disabled', () => {
   });
 
   it(`when user clicks on Daterangepicker input, then container opened and user can chose any date
-                 when user chose any interval, it chosen and shown in format "mm/dd/yyyy" - "mm/dd/yyyy"`, { scrollBehavior: 'center' }, () => {
+                 when user chose any interval, it chosen and shown in format "mm/dd/yyyy" - "mm/dd/yyyy"`, () => {
     datepicker.clickOnDaterangepickerInput(disabled);
     datepicker.isDaterangepickerOpened(true);
     const dateLeft = new Date(`${new Date().getMonth() + 1}/01/${new Date().getFullYear()}`)
@@ -61,7 +61,7 @@ describe('Datepicker demo testing suite: Disabled', () => {
   });
 
   it(`when user clicks on "Toggle disabling", clicks on Daterangepicker, then user unable to chose any date
-                 when user clicks on any date, month or year - nothing happens`, { scrollBehavior: 'center' }, () => {
+                 when user clicks on any date, month or year - nothing happens`, () => {
     datepicker.clickOnBtn(disabled);
     datepicker.clickOnDaterangepickerInput(disabled);
     datepicker.isDaterangepickerOpened(true);
@@ -71,7 +71,7 @@ describe('Datepicker demo testing suite: Disabled', () => {
   });
 
   it(`when user clicks on "Toggle disabling" again, clicks on Daterangepicker, he able to chose another interval
-                 when user chose any other interval, it chosen and shown in format "mm/dd/yyyy" - "mm/dd/yyyy"`, { scrollBehavior: 'center' }, () => {
+                 when user chose any other interval, it chosen and shown in format "mm/dd/yyyy" - "mm/dd/yyyy"`, () => {
     datepicker.dblClickOnBtn(disabled);
     datepicker.clickOnDaterangepickerInput(disabled);
     datepicker.isDaterangepickerOpened(true);

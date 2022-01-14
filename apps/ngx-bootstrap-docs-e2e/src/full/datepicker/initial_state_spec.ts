@@ -29,13 +29,13 @@ describe('Datepicker demo testing suite: Initial state', () => {
       daySevenAfterCurrent.toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })}`, 1);
   });
 
-  it('when user clicks on "Date Picker" button, bs-datepicker-container opened and current date selected', { scrollBehavior: 'center' }, () => {
+  it('when user clicks on "Date Picker" button, bs-datepicker-container opened and current date selected', () => {
     datepicker.clickOnBtn(initialState, 0);
     datepicker.isDatepickerOpened(true);
     datepicker.isSelectedDateExist('datepicker', true, 'body', `${currentDay}`);
   });
 
-  it('when user clicks on other date, that date selected and shown in input', { scrollBehavior: 'center' }, () => {
+  it('when user clicks on other date, that date selected and shown in input', () => {
     const dayToChose = currentDay === 15 ? '16' : '15';
     const monthToChose = currentMonthNum + 1 < 10 ? `0${currentMonthNum + 1}` : currentMonthNum + 1;
     datepicker.clickOnBtn(initialState, 0);
@@ -46,14 +46,14 @@ describe('Datepicker demo testing suite: Initial state', () => {
     datepicker.isSelectedDateExist('datepicker', true, 'body', `${dayToChose}`);
   });
 
-  it('when user clicks on "Date Range Picker", bs-daterangepicker-container opened with interval selected', { scrollBehavior: 'center' }, () => {
+  it('when user clicks on "Date Range Picker", bs-daterangepicker-container opened with interval selected', () => {
     datepicker.clickOnBtn(initialState, 1);
     datepicker.isDaterangepickerOpened(true);
     datepicker.isSelectedDateExist('daterangepicker', true, 'body', `${currentDay}`);
     datepicker.isSelectedDateExist('daterangepicker', true, 'body', `${daySevenAfterCurrent.getDate()}`);
   });
 
-  it('when user chose another interval, that interval selected and shown in input', { scrollBehavior: 'center' }, () => {
+  it('when user chose another interval, that interval selected and shown in input', () => {
     const dayToChose = currentDay === 15 ? '16' : '15';
     const nextDayToChose = `${Number(dayToChose) + 1}`;
     const monthToChose = currentMonthNum + 1 < 10 ? `0${currentMonthNum + 1}` : currentMonthNum + 1;

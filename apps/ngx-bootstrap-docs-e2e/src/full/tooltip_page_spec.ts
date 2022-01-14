@@ -26,20 +26,20 @@ describe('Tooltip demo page testing suite', () => {
   describe('Dismiss tooltip', () => {
     const dismissDemo = tooltip.exampleDemosArr.dismiss;
 
-    it('when user clicks on "Dismissible tooltip", then tooltip-container shown', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on "Dismissible tooltip", then tooltip-container shown', () => {
       tooltip.clickOnBtn(dismissDemo);
       tooltip.isTooltipAppears(dismissDemo);
       tooltip.isTooltipVisible(dismissDemo);
     });
 
-    it('when user clicks on "Dismissible tooltip" again, then nothing happens', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on "Dismissible tooltip" again, then nothing happens', () => {
       tooltip.clickOnBtn(dismissDemo);
       tooltip.clickOnBtn(dismissDemo);
       tooltip.isTooltipAppears(dismissDemo);
       tooltip.isTooltipVisible(dismissDemo);
     });
 
-    it('when user clicks the another placement, then tooltip-container disappeared', { scrollBehavior: 'center' }, () => {
+    it('when user clicks the another placement, then tooltip-container disappeared', () => {
       tooltip.clickOnBtn(dismissDemo);
       tooltip.clickToAnotherPlacement(dismissDemo);
       tooltip.isTooltipDismiss(dismissDemo);
@@ -128,44 +128,44 @@ describe('Tooltip demo page testing suite', () => {
   describe('Custom triggers', () => {
     const customTriggersTooltip = tooltip.exampleDemosArr.customTriggersTooltip;
 
-    it('when user move mouse to "Hover over me!", then tooltip-container shown', { scrollBehavior: 'center' }, () => {
+    it('when user move mouse to "Hover over me!", then tooltip-container shown', () => {
       tooltip.hoverOnBtn(customTriggersTooltip);
       tooltip.isTooltipAppears(customTriggersTooltip);
       tooltip.isTooltipVisible(customTriggersTooltip);
     });
 
-    it('when user move mouse out of the "Hover over me!", nothing happens', { scrollBehavior: 'center' }, () => {
+    it('when user move mouse out of the "Hover over me!", nothing happens', () => {
       tooltip.hoverOnBtn(customTriggersTooltip);
       tooltip.mouseLeave(customTriggersTooltip);
       tooltip.isTooltipAppears(customTriggersTooltip);
       tooltip.isTooltipVisible(customTriggersTooltip);
     });
 
-    it('when user clicks on "Hover over me!", then tooltip-container disappeared', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on "Hover over me!", then tooltip-container disappeared', () => {
       tooltip.hoverOnBtn(customTriggersTooltip);
       tooltip.clickOnBtn(customTriggersTooltip);
       tooltip.isTooltipDismiss(customTriggersTooltip);
     });
 
-    it('when user hover on "Click on me!", nothing happens', { scrollBehavior: 'center' }, () => {
+    it('when user hover on "Click on me!", nothing happens', () => {
       tooltip.hoverOnBtn(customTriggersTooltip, 1);
       tooltip.isTooltipDismiss(customTriggersTooltip);
     });
 
-    it('when user clicks on "Click on me!", then tooltip-container shown', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on "Click on me!", then tooltip-container shown', () => {
       tooltip.clickOnBtn(customTriggersTooltip, 1);
       tooltip.isTooltipAppears(customTriggersTooltip);
       tooltip.isTooltipVisible(customTriggersTooltip);
     });
 
-    it('when user move mouse out of the "Click on me!", nothing happens', { scrollBehavior: 'center' }, () => {
+    it('when user move mouse out of the "Click on me!", nothing happens', () => {
       tooltip.clickOnBtn(customTriggersTooltip, 1);
       tooltip.focusToAnotherPlacement('Custom triggers');
       tooltip.isTooltipAppears(customTriggersTooltip);
       tooltip.isTooltipVisible(customTriggersTooltip);
     });
 
-    it('when user clicks on "Click on me!", then tooltip-container disappeared', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on "Click on me!", then tooltip-container disappeared', () => {
       tooltip.clickOnBtn(customTriggersTooltip, 1);
       tooltip.clickOnBtn(customTriggersTooltip, 1);
       tooltip.isTooltipDismiss(customTriggersTooltip);
@@ -175,25 +175,25 @@ describe('Tooltip demo page testing suite', () => {
   describe('Manual triggering', () => {
     const manualTriggeringTooltip = tooltip.exampleDemosArr.manualTriggeringTooltip;
 
-    it('when user clicks on "Show", then tooltip-container appear  above the text', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on "Show", then tooltip-container appear  above the text', () => {
       tooltip.clickOnBtn(manualTriggeringTooltip, 0);
       tooltip.isTooltipAppears(manualTriggeringTooltip);
       tooltip.isTooltipVisible(manualTriggeringTooltip);
     });
 
-    it('when user clicks on "Hide", then tooltip-container disappeared', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on "Hide", then tooltip-container disappeared', () => {
       tooltip.clickOnBtn(manualTriggeringTooltip, 0);
       tooltip.clickOnBtn(manualTriggeringTooltip, 1);
       tooltip.isTooltipDismiss(manualTriggeringTooltip);
     });
 
-    it('when user clicks on "Toggle", then tooltip-container appear', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on "Toggle", then tooltip-container appear', () => {
       tooltip.clickOnBtn(manualTriggeringTooltip, 2);
       tooltip.isTooltipAppears(manualTriggeringTooltip);
       tooltip.isTooltipVisible(manualTriggeringTooltip);
     });
 
-    it('when user clicks on "Toggle" again, then tooltip-container disappeared', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on "Toggle" again, then tooltip-container disappeared', () => {
       tooltip.clickOnBtn(manualTriggeringTooltip, 2);
       tooltip.clickOnBtn(manualTriggeringTooltip, 2);
       tooltip.isTooltipDismiss(manualTriggeringTooltip);

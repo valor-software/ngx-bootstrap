@@ -18,7 +18,7 @@ describe('Buttons page testing suite', () => {
       buttons.isBtnOutputSelected(checkboxDemo, 2, false);
     });
 
-    it('when user clicks on the Left button it became active and after user clicks again - inactive', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on the Left button it became active and after user clicks again - inactive', () => {
       buttons.isButtonVisible(checkboxDemo, 'Left', buttons.buttonGroupSelector);
       buttons.clickByText(checkboxDemo, 'Left');
       buttons.isBtnOutputSelected(checkboxDemo, 0, true);
@@ -26,7 +26,7 @@ describe('Buttons page testing suite', () => {
       buttons.isBtnOutputSelected(checkboxDemo, 0, false);
     });
 
-    it('when user clicks on the Middle button it became inactive and after user clicks again - active', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on the Middle button it became inactive and after user clicks again - active', () => {
       buttons.isButtonVisible(checkboxDemo, 'Middle', buttons.buttonGroupSelector);
       buttons.clickByText(checkboxDemo, 'Middle');
       buttons.isBtnOutputSelected(checkboxDemo, 1, false);
@@ -34,7 +34,7 @@ describe('Buttons page testing suite', () => {
       buttons.isBtnOutputSelected(checkboxDemo, 1, true);
     });
 
-    it('when user clicks on the Right button it became active and after user clicks again - inactive', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on the Right button it became active and after user clicks again - inactive', () => {
       buttons.isButtonVisible(checkboxDemo, 'Right', buttons.buttonGroupSelector);
       buttons.clickByText(checkboxDemo, 'Right');
       buttons.isBtnOutputSelected(checkboxDemo, 2, true);
@@ -51,7 +51,7 @@ describe('Buttons page testing suite', () => {
       buttons.isPreviewExist(customCheckboxVal, '1');
     });
 
-    it('when user clicks on it, btn become inactive and custom checkbox value should be "0"', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on it, btn become inactive and custom checkbox value should be "0"', () => {
       buttons.isButtonEnabled(customCheckboxVal, 'Single Toggle');
       buttons.isPreviewExist(customCheckboxVal, '1');
       buttons.clickOnBtn(customCheckboxVal);
@@ -68,7 +68,7 @@ describe('Buttons page testing suite', () => {
       buttons.isButtonVisible(checkboxWithForm, 'Middle', buttonGroupSelector);
     });
 
-    it('when user clicks on the Left button it became active and after user clicks again - inactive', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on the Left button it became active and after user clicks again - inactive', () => {
       buttons.isButtonVisible(checkboxWithForm, 'Left', buttons.buttonGroupSelector);
       buttons.isBtnOutputSelected(checkboxWithForm, 0, false);
       buttons.clickByText(checkboxWithForm, 'Left');
@@ -77,7 +77,7 @@ describe('Buttons page testing suite', () => {
       buttons.isBtnOutputSelected(checkboxWithForm, 0, false);
     });
 
-    it('when user clicks on the Middle button it becomes inactive and after user clicks again - active', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on the Middle button it becomes inactive and after user clicks again - active', () => {
       buttons.isButtonVisible(checkboxWithForm, 'Middle', buttons.buttonGroupSelector);
       buttons.isBtnOutputSelected(checkboxWithForm, 1, true);
       buttons.clickByText(checkboxWithForm, 'Middle');
@@ -87,7 +87,7 @@ describe('Buttons page testing suite', () => {
 
     });
 
-    it('when user clicks on the Right button it became active and after user clicks again - inactive', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on the Right button it became active and after user clicks again - inactive', () => {
       buttons.isButtonVisible(checkboxWithForm, 'Right', buttons.buttonGroupSelector);
       buttons.isBtnOutputSelected(checkboxWithForm, 2, false);
       buttons.clickByText(checkboxWithForm, 'Right');
@@ -117,7 +117,7 @@ describe('Buttons page testing suite', () => {
       buttons.isPreviewExist(radioCheck, 'Middle');
     });
 
-    it('when user clicks on Left btn, it become active and other btns become inactive', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on Left btn, it become active and other btns become inactive', () => {
       buttons.clickByText(radioCheck, 'Left');
       buttons.isButtonClassActive(radioCheck , 'Left', 'active', buttonGroupSelector);
       buttons.isButtonClassActive(radioCheck, 'Left', 'active', btnRadioGroup);
@@ -128,7 +128,7 @@ describe('Buttons page testing suite', () => {
       buttons.isButtonHaveNoClass(radioCheck, 'Right', 'active', btnRadioGroup);
     });
 
-    it('when user clicks on Right btn, it become active and other btns become inactive', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on Right btn, it become active and other btns become inactive', () => {
       buttons.clickByText(radioCheck, 'Right');
       buttons.isButtonClassActive(radioCheck , 'Right', 'active', buttonGroupSelector);
       buttons.isButtonClassActive(radioCheck, 'Right', 'active', btnRadioGroup);
@@ -150,7 +150,7 @@ describe('Buttons page testing suite', () => {
       buttons.isButtonHaveNoClass(radioUncheck, 'Right', 'active', buttonGroupSelector);
     });
 
-    it('when user clicks on Left btn, it become active and other btns become inactive', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on Left btn, it become active and other btns become inactive', () => {
       buttons.clickByText(radioUncheck, 'Left');
       buttons.isButtonClassActive(radioUncheck , 'Left', 'active', buttonGroupSelector);
       buttons.isPreviewExist(radioUncheck, 'Left');
@@ -158,7 +158,7 @@ describe('Buttons page testing suite', () => {
       buttons.isButtonHaveNoClass(radioUncheck, 'Right', 'active', buttonGroupSelector);
     });
 
-    it('when user clicks on Right btn, it become active and other btns become inactive', { scrollBehavior: 'center' }, () => {
+    it('when user clicks on Right btn, it become active and other btns become inactive', () => {
       buttons.clickByText(radioUncheck, 'Right');
       buttons.isButtonClassActive(radioUncheck , 'Right', 'active', buttonGroupSelector);
       buttons.isPreviewExist(radioUncheck, 'Right');
@@ -181,13 +181,13 @@ describe('Buttons page testing suite', () => {
       buttons.isButtonClassActive(radioWithForm, 'C', 'active', buttonGroupSelector);
     });
 
-    it('when user click on "A" btn, it has class "active"', { scrollBehavior: 'center' }, () => {
+    it('when user click on "A" btn, it has class "active"', () => {
       buttons.clickByText(radioWithForm, 'A');
       buttons.isPreviewExist(radioWithForm, '"radio": "A"');
       buttons.isButtonClassActive(radioWithForm, 'A', 'active', buttonGroupSelector);
     });
 
-    it('when user click on "B" btn, it becomes class "active"', { scrollBehavior: 'center' }, () => {
+    it('when user click on "B" btn, it becomes class "active"', () => {
       buttons.clickByText(radioWithForm, 'B');
       buttons.isPreviewExist(radioWithForm, '"radio": "B"');
       buttons.isButtonClassActive(radioWithForm, 'B', 'active', buttonGroupSelector);
