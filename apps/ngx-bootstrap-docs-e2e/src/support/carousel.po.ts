@@ -32,7 +32,7 @@ export class CarouselPo extends BaseComponent {
   }
 
   isCarouselItemActive(baseSelector: string, itemIndex: number) {
-    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.carouselClass} ${this.indicatorClass} li `).eq(itemIndex)
+    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.carouselClass} ${this.indicatorClass} button `).eq(itemIndex)
       .should('have.class', 'active');
   }
 
