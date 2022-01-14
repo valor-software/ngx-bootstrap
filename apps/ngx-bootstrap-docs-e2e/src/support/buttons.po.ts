@@ -16,15 +16,15 @@ export class ButtonsPo extends BaseComponent {
   btnRadioGroup = '[btnradiogroup]';
 
   exampleDemosArr = {
-    basic: 'demo-buttons-basic',
-    checkbox: 'demo-buttons-checkbox',
-    customCheckboxVal: 'demo-custom-checkbox-value',
-    checkboxWithForms: 'demo-buttons-checkbox-reactiveforms',
-    radioUnckeckable: 'demo-buttons-radio-uncheckable',
-    radioBtn: 'demo-buttons-radio',
-    radioBtnWithGroup: 'demo-buttons-radio-with-group',
-    radioBtnWithForms: 'demo-buttons-radio-reactiveforms',
-    disabled: 'demo-buttons-disabled'
+    basic: 'tab[heading="Overview"] demo-buttons-basic',
+    checkbox: 'tab[heading="Overview"] demo-buttons-checkbox',
+    customCheckboxVal: 'tab[heading="Overview"] demo-custom-checkbox-value',
+    checkboxWithForms: 'tab[heading="Overview"] demo-buttons-checkbox-reactiveforms',
+    radioUnckeckable: 'tab[heading="Overview"] demo-buttons-radio-uncheckable',
+    radioBtn: 'tab[heading="Overview"] demo-buttons-radio',
+    radioBtnWithGroup: 'tab[heading="Overview"] demo-buttons-radio-with-group',
+    radioBtnWithForms: 'tab[heading="Overview"] demo-buttons-radio-reactiveforms',
+    disabled: 'tab[heading="Overview"] demo-buttons-disabled'
   };
 
   isButtonVisible(baseSelector: string, buttonName: string, btnSelector: string) {

@@ -8,17 +8,17 @@ export class AccordionPo extends BaseComponent {
   additionalHtml = '.badge';
 
   exampleDemosArr = {
-    basic: 'demo-accordion-basic',
-    openEvent: 'demo-accordion-open-event',
-    customHtml: 'demo-accordion-custom-html',
-    disabled: 'demo-accordion-disabled',
-    initiallyOpened: 'demo-accordion-opened',
-    dynamicAccordion: 'demo-accordion-dynamic',
-    dynamicBody: 'demo-accordion-dynamic-body',
-    manualToggle: 'demo-accordion-manual-toggle',
-    oneAtATime: 'demo-accordion-one-time',
-    styling: 'demo-accordion-styling',
-    config: 'demo-accordion-config'
+    basic: 'tab[heading="Overview"] demo-accordion-basic',
+    openEvent: 'tab[heading="Overview"] demo-accordion-open-event',
+    customHtml: 'tab[heading="Overview"] demo-accordion-custom-html',
+    disabled: 'tab[heading="Overview"] demo-accordion-disabled',
+    initiallyOpened: 'tab[heading="Overview"] demo-accordion-opened',
+    dynamicAccordion: 'tab[heading="Overview"] demo-accordion-dynamic',
+    dynamicBody: 'tab[heading="Overview"] demo-accordion-dynamic-body',
+    manualToggle: 'tab[heading="Overview"] demo-accordion-manual-toggle',
+    oneAtATime: 'tab[heading="Overview"] demo-accordion-one-time',
+    styling: 'tab[heading="Overview"] demo-accordion-styling',
+    config: 'tab[heading="Overview"] demo-accordion-config'
   };
 
   isAccordionLengthEqual(baseSelector: string, expectedLength: number) {

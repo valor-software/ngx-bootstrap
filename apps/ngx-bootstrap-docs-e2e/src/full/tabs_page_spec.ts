@@ -214,7 +214,7 @@ describe('Tabs demo page spec', () => {
       },
       inactive: {
         backgroundColor: 'rgb(80, 255, 80)',
-        color: 'rgb(0, 123, 255)'
+        color: 'rgb(13, 110, 253)'
       }
     };
 
@@ -323,7 +323,7 @@ describe('Tabs demo page spec', () => {
       },
       inactive: {
         backgroundColor: 'rgba(0, 0, 0, 0)',
-        color: 'rgb(0, 123, 255)'
+        color: 'rgb(13, 110, 253)'
       }
     };
 

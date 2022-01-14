@@ -68,7 +68,7 @@ describe('Collapse demo page testing suite', () => {
 
     it('when user clicks on "Inline-block", then collapse appear with inline-block, on "None" - without inline', () => {
       collapse.clickOnBtn(inlineDisplay, 0);
-      collapse.isCollapseExpanded(inlineDisplay, 'false');
+      collapse.isCollapseExpanded(inlineDisplay, 'true');
       collapse.isCollapseWithInline(inlineDisplay, true);
 
       collapse.clickOnBtn(inlineDisplay, 1);

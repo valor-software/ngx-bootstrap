@@ -109,7 +109,7 @@ export abstract class BaseComponent {
   }
 
   pressEsc() {
-    cy.get(`body input`).type('{esc}', { force: true });
+    cy.get(`body`).find('input').first().type('{esc}');
   }
 
   isDemoContainsTxt(baseSelector: string, expectedTxt: string, expectedTxtOther?: string) {
@@ -157,7 +157,7 @@ export abstract class BaseComponent {
         .check();
     } else {
       cy.get(`${baseSelector} input[type="checkbox"]`)
-        .uncheck();
+        .uncheck({force:true});
     }
   }
 

@@ -13,18 +13,18 @@ export class PaginationPo extends BaseComponent {
   classPaginationPage = '.pagination-page';
 
   exampleDemosArr = {
-    basic: 'demo-pagination-basic',
-    manualSwitchingPage: 'demo-pagination-manual-switching',
-    pageChangedEvent: 'demo-pagination-page-changed-event',
-    pagesCountChangedEvent: 'demo-pagination-pages-count-changed',
-    boundaryLinks: 'demo-pagination-boundary-links',
-    directionLinks: 'demo-pagination-direction-links',
-    customLinksContent: 'demo-pagination-custom-links-content',
-    disabled: 'demo-pagination-disabled',
-    limits: 'demo-pagination-limit',
-    centeringPageLink: 'demo-pagination-rotate',
-    contentSwitching: 'demo-pagination-content-switching',
-    pager: 'demo-pagination-pager'
+    basic: 'tab[heading="Overview"] demo-pagination-basic',
+    manualSwitchingPage: 'tab[heading="Overview"] demo-pagination-manual-switching',
+    pageChangedEvent: 'tab[heading="Overview"] demo-pagination-page-changed-event',
+    pagesCountChangedEvent: 'tab[heading="Overview"] demo-pagination-pages-count-changed',
+    boundaryLinks: 'tab[heading="Overview"] demo-pagination-boundary-links',
+    directionLinks: 'tab[heading="Overview"] demo-pagination-direction-links',
+    customLinksContent: 'tab[heading="Overview"] demo-pagination-custom-links-content',
+    disabled: 'tab[heading="Overview"] demo-pagination-disabled',
+    limits: 'tab[heading="Overview"] demo-pagination-limit',
+    centeringPageLink: 'tab[heading="Overview"] demo-pagination-rotate',
+    contentSwitching: 'tab[heading="Overview"] demo-pagination-content-switching',
+    pager: 'tab[heading="Overview"] demo-pagination-pager'
   };
 
   isActivePositionEqual(baseSelector: string, positionNumber: string) {

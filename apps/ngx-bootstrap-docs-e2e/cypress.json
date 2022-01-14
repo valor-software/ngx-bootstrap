@@ -13,5 +13,6 @@
   "screenshotsFolder": "../../dist/cypress/apps/ngx-bootstrap-docs-e2e/screenshots",
   "chromeWebSecurity": false,
   "responseTimeout": 60000,
-  "pageLoadTimeout": 120000
+  "pageLoadTimeout": 120000,
+  "scrollBehavior": "center"
 }

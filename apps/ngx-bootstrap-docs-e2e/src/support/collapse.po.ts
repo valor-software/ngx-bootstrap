@@ -10,15 +10,15 @@ export class CollapsePo extends BaseComponent {
   infoClass = '.col-md-9';
 
   exampleDemosArr = {
-    basic: 'collapse-demo',
-    events: 'collapse-demo-events',
-    manualToggle: 'toggle-manual-demo',
-    inlineDisplay: 'inline-display-demo',
-    accessibility: 'demo-accessibility'
+    basic: 'tab[heading="Overview"] collapse-demo',
+    events: 'tab[heading="Overview"] collapse-demo-events',
+    manualToggle: 'tab[heading="Overview"] toggle-manual-demo',
+    inlineDisplay: 'tab[heading="Overview"] inline-display-demo',
+    accessibility: 'tab[heading="Overview"] demo-accessibility'
   };
 
   isCollapseExpanded(baseSelector: string, expandedAttrValue: string) {
-    cy.get(`${ baseSelector }`).first().find(`${ this.collapseClass }`).should(expandedAttrValue === 'true' ? 'to.have.class' : 'not.to.have.class', this.showIndicator);
+    cy.get(`${ baseSelector } ${ this.collapseClass }`).should(expandedAttrValue === 'true' ? 'to.have.class' : 'not.to.have.class', this.showIndicator);
   }
 
   isCollapseWithInline(baseSelector: string, inline: boolean) {

@@ -26,7 +26,7 @@ describe('Modals demo page testing suite: Directive examples', () => {
     it('when user clicks on the cross button then the modal is closed', () => {
       modals.clickByText(staticModalDemo, btnText);
       modals.isModalVisible(modals.modalDialog, true);
-      modals.clickByText(modals.modalBtnX, btnX);
+      modals.clickCloseBtn(staticModalDemo);
       modals.isModalEnabled(modals.modalDialog, false);
     });
   });
@@ -155,7 +155,7 @@ describe('Modals demo page testing suite: Directive examples', () => {
     it(`when user closes modal by click on the cross then should be messages "event onHide is fired"
       and "event onHidden is fired"`, () => {
       modals.clickByText(eventsModalsDemo, btnText);
-      modals.clickByText(modals.modalBtnX, btnX);
+      modals.clickCloseBtn(eventsModalsDemo);
       modals.isDemoContainsTxt(eventsModalsDemo, eventOnHide);
       modals.isDemoContainsTxt(eventsModalsDemo, eventOnHidden);
     });
@@ -203,7 +203,7 @@ describe('Modals demo page testing suite: Directive examples', () => {
     it(`when user closes the modal then modal is removed from the DOM`,
       () => {
         modals.clickByText(autoDemo, btnText);
-        modals.clickByText(modals.modalBtnX, btnX);
+        modals.clickCloseBtn(autoDemo);
         modals.isModalEnabled(autoDemo, false);
       });
   });

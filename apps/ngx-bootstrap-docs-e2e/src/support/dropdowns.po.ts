@@ -9,25 +9,25 @@ export class DropdownsPo extends BaseComponent {
   showIndicator = 'show';
 
   exampleDemosArr = {
-    basic: 'demo-dropdown-basic',
-    triggerByTag: 'demo-dropdown-anchor-trigger',
-    splitButton: 'demo-dropdown-split',
-    manualTrigger: 'demo-dropdown-triggers-manual',
-    triggerByIsOpen: 'demo-dropdown-trigger-by-isopen',
-    disabledMenu: 'demo-dropdown-disabled',
-    disabledItem: 'demo-dropdown-disabled-item',
-    alignment: 'demo-dropdown-alignment',
-    insideClick: 'demo-dropdown-inside-click',
-    nestedDropdown: 'demo-nested-dropdowns',
-    appendToBody: 'demo-dropdown-container',
-    dropup: 'demo-dropdown-dropup',
-    menuDividers: 'demo-dropdown-menu-dividers',
-    customHtml: 'demo-dropdown-custom-html',
-    configDefaults: 'demo-dropdown-config',
-    visibilityEvents: 'demo-dropdown-visibility-events',
-    stateChangeEvent: 'demo-dropdown-state-change-event',
-    autoClose: 'demo-dropdown-autoclose',
-    accessibility: 'demo-accessibility'
+    basic: 'tab[heading="Overview"] demo-dropdown-basic',
+    triggerByTag: 'tab[heading="Overview"] demo-dropdown-anchor-trigger',
+    splitButton: 'tab[heading="Overview"] demo-dropdown-split',
+    manualTrigger: 'tab[heading="Overview"] demo-dropdown-triggers-manual',
+    triggerByIsOpen: 'tab[heading="Overview"] demo-dropdown-trigger-by-isopen',
+    disabledMenu: 'tab[heading="Overview"] demo-dropdown-disabled',
+    disabledItem: 'tab[heading="Overview"] demo-dropdown-disabled-item',
+    alignment: 'tab[heading="Overview"] demo-dropdown-alignment',
+    insideClick: 'tab[heading="Overview"] demo-dropdown-inside-click',
+    nestedDropdown: 'tab[heading="Overview"] demo-nested-dropdowns',
+    appendToBody: 'tab[heading="Overview"] demo-dropdown-container',
+    dropup: 'tab[heading="Overview"] demo-dropdown-dropup',
+    menuDividers: 'tab[heading="Overview"] demo-dropdown-menu-dividers',
+    customHtml: 'tab[heading="Overview"] demo-dropdown-custom-html',
+    configDefaults: 'tab[heading="Overview"] demo-dropdown-config',
+    visibilityEvents: 'tab[heading="Overview"] demo-dropdown-visibility-events',
+    stateChangeEvent: 'tab[heading="Overview"] demo-dropdown-state-change-event',
+    autoClose: 'tab[heading="Overview"] demo-dropdown-autoclose',
+    accessibility: 'tab[heading="Overview"] demo-accessibility'
   };
 
   isDropdownExpanded(baseSelector: string, dropdownType: string, expanded: boolean, dropdownIndex = 0) {

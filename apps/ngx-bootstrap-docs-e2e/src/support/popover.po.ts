@@ -10,23 +10,23 @@ export class PopoverPo extends BaseComponent {
   dynamicHtmlBtn = 'span.btn.btn-danger';
 
   exampleDemosArr = {
-    basic: 'demo-popover-basic',
-    placement: 'demo-popover-placement',
-    dismiss: 'demo-popover-dismiss',
-    dynamic: 'demo-popover-dynamic',
-    customContent: 'demo-popover-custom-content',
-    dynamicHtml: 'demo-popover-dynamic-html',
-    appendToBody: 'demo-popover-container',
-    visibilityEvents: 'demo-popover-events',
-    configuringDefaults: 'demo-popover-config',
-    outsideClick: 'demo-popover-outside-click',
-    customTriggers: 'demo-popover-triggers-custom',
-    manualTriggering: 'demo-popover-triggers-manual',
-    triggerIsOpen: 'demo-popover-trigger-by-isopen',
-    componentLevelStyling: 'demo-popover-styling-local',
-    customClass: 'demo-popover-class',
-    popoverContext: 'demo-popover-context',
-    delayPopover: 'demo-popover-delay'
+    basic: 'tab[heading="Overview"] demo-popover-basic',
+    placement: 'tab[heading="Overview"] demo-popover-placement',
+    dismiss: 'tab[heading="Overview"] demo-popover-dismiss',
+    dynamic: 'tab[heading="Overview"] demo-popover-dynamic',
+    customContent: 'tab[heading="Overview"] demo-popover-custom-content',
+    dynamicHtml: 'tab[heading="Overview"] demo-popover-dynamic-html',
+    appendToBody: 'tab[heading="Overview"] demo-popover-container',
+    visibilityEvents: 'tab[heading="Overview"] demo-popover-events',
+    configuringDefaults: 'tab[heading="Overview"] demo-popover-config',
+    outsideClick: 'tab[heading="Overview"] demo-popover-outside-click',
+    customTriggers: 'tab[heading="Overview"] demo-popover-triggers-custom',
+    manualTriggering: 'tab[heading="Overview"] demo-popover-triggers-manual',
+    triggerIsOpen: 'tab[heading="Overview"] demo-popover-trigger-by-isopen',
+    componentLevelStyling: 'tab[heading="Overview"] demo-popover-styling-local',
+    customClass: 'tab[heading="Overview"] demo-popover-class',
+    popoverContext: 'tab[heading="Overview"] demo-popover-context',
+    delayPopover: 'tab[heading="Overview"] demo-popover-delay'
   };
 
   isPopoverPlacementCorrect(baseSelector: string, placement: string) {

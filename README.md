@@ -154,17 +154,18 @@ npm start
 The only two dependencies are [Angular](https://angular.io) and [Bootstrap](https://getbootstrap.com) CSS.
 Here is the versions compatibility list:
 
-| ngx-bootstrap |    Angular    |  Bootstrap CSS |
-| ------------- | ------------- | -------------- |
-| 7.1.0         | 11.x.x - 12.x.x | 5.x.x 4.x.x or 3.x.x |
-| 7.0.0         | 11.x.x - 12.x.x | 3.x.x or 4.x.x |
-| 6.0.0         | 9.x.x - 10.x.x | 3.x.x or 4.x.x |
-| 5.6.x         | 7.x.x - 9.1.0 | 3.x.x or 4.x.x |
-| 5.0.0 - 5.6.0 | 7.x.x - 8.x.x | 3.x.x or 4.x.x |
-| 4.x.x         | 6.x.x - 7.x.x | 3.x.x or 4.x.x |
-| 3.x.x         | 6.x.x - 7.x.x | 3.x.x or 4.x.x |
-| 2.x.x         | 2.x.x - 4.x.x | 3.x.x or 4.x.x |
-| 1.x.x         |     2.x.x     | 3.x.x or 4.x.x |
+| ngx-bootstrap | Angular         | Bootstrap CSS           |
+|---------------|-----------------|-------------------------|
+| 8.0.0         | 12.x.x - 13.x.x | 5.x.x or 4.x.x or 3.x.x |
+| 7.1.0         | 11.x.x - 12.x.x | 5.x.x or 4.x.x or 3.x.x |
+| 7.0.0         | 11.x.x - 12.x.x | 3.x.x or 4.x.x          |
+| 6.0.0         | 9.x.x - 10.x.x  | 3.x.x or 4.x.x          |
+| 5.6.x         | 7.x.x - 9.1.0   | 3.x.x or 4.x.x          |
+| 5.0.0 - 5.6.0 | 7.x.x - 8.x.x   | 3.x.x or 4.x.x          |
+| 4.x.x         | 6.x.x - 7.x.x   | 3.x.x or 4.x.x          |
+| 3.x.x         | 6.x.x - 7.x.x   | 3.x.x or 4.x.x          |
+| 2.x.x         | 2.x.x - 4.x.x   | 3.x.x or 4.x.x          |
+| 1.x.x         | 2.x.x           | 3.x.x or 4.x.x          |
 
 
 ## Troubleshooting

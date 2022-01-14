@@ -78,9 +78,9 @@ describe('Alerts page testing suite', () => {
       alerts.isAlertVisible(dismissing, 'success');
       alerts.isAlertVisible(dismissing, 'info');
       alerts.isAlertVisible(dismissing, 'danger');
-      alerts.isButtonExist(dismissing, '×Close', 0, false);
-      alerts.isButtonExist(dismissing, '×Close', 1, false);
-      alerts.isButtonExist(dismissing, '×Close', 2, false);
+      alerts.IsButtonDisappeared(dismissing, '×Close');
+      alerts.IsButtonDisappeared(dismissing, '×Close');
+      alerts.IsButtonDisappeared(dismissing, '×Close');
     });
 
     it(`when user click "Toggle dismissible" again, then close buttons appeared`, () => {
