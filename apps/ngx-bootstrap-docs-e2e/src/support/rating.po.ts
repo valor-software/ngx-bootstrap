@@ -58,11 +58,11 @@ export class RatingPo extends BaseComponent {
   }
 
   focusOnRating(baseSelector: string) {
-    cy.get(`${baseSelector} ${this.tagRating}>span`)
+    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.tagRating}>span`)
       .click();
   }
 
   pressKeyboardBtn(baseSelector: string, btnName: string) {
-    cy.get(`${baseSelector} ${this.tagRating}>span`).type(`{${btnName}}`);
+    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.tagRating}>span`).type(`{${btnName}}`);
   }
 }

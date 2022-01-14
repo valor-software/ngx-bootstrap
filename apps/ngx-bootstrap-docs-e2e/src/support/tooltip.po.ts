@@ -48,7 +48,7 @@ export class TooltipPo extends BaseComponent {
   }
 
   clickToAnotherPlacement(baseSelector: string) {
-    cy.get(`${baseSelector}`).parent().click('topRight');
+    cy.get(`tab[heading="Overview"] ${baseSelector}`).parent().click('topRight');
   }
 
   focusToAnotherPlacement(demoName: string) {

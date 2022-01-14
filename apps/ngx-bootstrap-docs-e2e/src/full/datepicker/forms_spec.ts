@@ -15,7 +15,7 @@ describe('Datepicker demo testing suite: Forms', () => {
     datepicker.isCodePreviewExist(forms, '', true, 0);
   });
 
-  it(`when user chose any date from Datepicker, then in preview block date is shown in default JS format`, () => {
+  it(`when user chose any date from Datepicker, then in preview block date is shown in default JS format`, { scrollBehavior: 'center' }, () => {
     const newDate = new Date();
     datepicker.clickOnDatepickerInput(forms);
     datepicker.clickOnDatepickerTableItem('date', 'body', undefined, `${newDate.getDate()}`);
@@ -24,7 +24,7 @@ describe('Datepicker demo testing suite: Forms', () => {
     datepicker.isCodePreviewExist(forms, `${newDate.toDateString()}`, true, 0);
   });
 
-  it(`when user chose any interval from Daterangepicker, then interval shown in default JS format in preview`, () => {
+  it(`when user chose any interval from Daterangepicker, then interval shown in default JS format in preview`, { scrollBehavior: 'center' }, () => {
     const newDate = new Date();
     const dateLeft = new Date(`${newDate.getMonth() + 1}/01/${newDate.getFullYear()}`);
     const dateRight = new Date(`${newDate.getMonth() + 1}/15/${newDate.getFullYear()}`);

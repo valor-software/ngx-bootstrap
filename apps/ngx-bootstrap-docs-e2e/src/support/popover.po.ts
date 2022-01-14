@@ -30,7 +30,7 @@ export class PopoverPo extends BaseComponent {
   };
 
   isPopoverPlacementCorrect(baseSelector: string, placement: string) {
-    cy.get(`${baseSelector} ${this.containerPopover}`).then(popover => {
+    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.containerPopover}`).then(popover => {
       expect(popover).to.be.visible;
       expect(popover.attr('class')).to.contains(placement);
     });
@@ -45,7 +45,7 @@ export class PopoverPo extends BaseComponent {
   }
 
   clickToAnotherPlacement(baseSelector: string) {
-    cy.get(`${baseSelector}`).closest('.section.bd-example').click('topRight');
+    cy.get(`tab[heading="Overview"] ${baseSelector}`).closest('.section.bd-example').click('topRight');
   }
 
   isPopoverDismiss(baseSelector: string) {

@@ -14,14 +14,14 @@ describe('Datepicker demo testing suite: Custom today class', () => {
   });
 
   it(`when user clicks on the DatePicker input then container opened and no one date selected by default
-                 current today date have specific class name "custom-today-class"`, () => {
+                 current today date have specific class name "custom-today-class"`, { scrollBehavior: 'center' }, () => {
     datepicker.clickOnDatepickerInput(customToday);
     datepicker.isDatepickerOpened(true);
     datepicker.isSelectedDateExist('datepicker', false, 'body');
     datepicker.isTodayHaveClass('custom-today-class');
   });
 
-  it(`when user chose any date, then this date chosen and shown in the input`, () => {
+  it(`when user chose any date, then this date chosen and shown in the input`, { scrollBehavior: 'center' }, () => {
     const chosenDate = new Date(`${new Date().getMonth() + 1}/10/${new Date().getFullYear()}`);
     datepicker.clickOnDatepickerInput(customToday);
     datepicker.clickOnDatepickerTableItem('date', 'body', undefined, '10');
@@ -30,7 +30,7 @@ describe('Datepicker demo testing suite: Custom today class', () => {
   });
 
   it(`when user clicks on input again, then 1t date selected and current with custom-today-class
-                 when user chose today and click on input again, then current selected with custom-today-class`, () => {
+                 when user chose today and click on input again, then current selected with custom-today-class`, { scrollBehavior: 'center' }, () => {
     // const chosenDate = new Date(`${new Date().getMonth() + 1}/10/${new Date().getFullYear()}`);
     datepicker.clickOnDatepickerInput(customToday);
     datepicker.clickOnDatepickerTableItem('date', 'body', undefined, '10');

@@ -66,7 +66,7 @@ export class TabsPo extends BaseComponent {
   }
 
   clickOnRemoveTabIcon(basicSelector: string, tabIndex: number) {
-    cy.get(`${basicSelector} .nav-link`).eq(tabIndex).get('.bs-remove-tab').click();
+    cy.get(`tab[heading="Overview"] ${basicSelector} .nav-link`).eq(tabIndex).get('.bs-remove-tab').click();
   }
 
   isTabsetHaveType(basicSelector: string, expectedType: string) {

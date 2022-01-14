@@ -20,7 +20,7 @@ describe('Datepicker demo testing suite: Locales', () => {
       datepicker.isButtonExist(locales, 'Date Range Picker', 1);
     });
 
-    it(`when user clicks on "Date Picker" btn, container opened with all info in English (month, days)`, () => {
+    it(`when user clicks on "Date Picker" btn, container opened with all info in English (month, days)`, { scrollBehavior: 'center' }, () => {
       datepicker.clickOnBtn(locales, 0);
       datepicker.isDatepickerOpened(true);
       datepicker.clickOnNavigation('body', 'month');
@@ -29,7 +29,7 @@ describe('Datepicker demo testing suite: Locales', () => {
       datepicker.isWeekdayLocaleAppropriate('en');
     });
 
-    it(`when user clicks on "Date Range Picker" button, container opened in English (month, days)`, () => {
+    it(`when user clicks on "Date Range Picker" button, container opened in English (month, days)`, { scrollBehavior: 'center' }, () => {
       datepicker.clickOnBtn(locales, 1);
       datepicker.isDaterangepickerOpened(true);
       datepicker.clickOnDateRangePickerNavigation('month-left');
@@ -48,7 +48,7 @@ describe('Datepicker demo testing suite: Locales', () => {
     Object.values(globalLocales).forEach(globalLocale => {
       const currentLocale = globalLocale.abbr;
       if (currentLocale !== undefined) {
-        it(`when user chose locale ${currentLocale} for "Datepicker", container shown in appropriate language`, () => {
+        it(`when user chose locale ${currentLocale} for "Datepicker", container shown in appropriate language`, { scrollBehavior: 'center' }, () => {
           datepicker.selectOne(locales, currentLocale, 0);
           datepicker.isDatepickerOpened(true);
           datepicker.clickOnNavigation('body', 'month');
@@ -71,7 +71,7 @@ describe('Datepicker demo testing suite: Locales', () => {
     Object.values(globalLocales).forEach(globalLocale => {
       const currentLocale = globalLocale.abbr;
       if (currentLocale !== undefined) {
-        it(`when user chose locale ${currentLocale} for "Daterangepicker", container shown in this language`, () => {
+        it(`when user chose locale ${currentLocale} for "Daterangepicker", container shown in this language`, { scrollBehavior: 'center' }, () => {
           datepicker.selectOne(locales, currentLocale, 1);
           datepicker.isDaterangepickerOpened(true);
           datepicker.clickOnDateRangePickerNavigation('month-left');

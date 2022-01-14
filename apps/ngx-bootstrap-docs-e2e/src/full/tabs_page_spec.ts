@@ -19,7 +19,7 @@ describe('Tabs demo page spec', () => {
       tabs.isButtonExist(manualSelection, 'Select third tab', 1);
     });
 
-    it('when user clicks on "Select 2d tab/Select 3d tab", then this tab chosen with appropriate content', () => {
+    it('when user clicks on "Select 2d tab/Select 3d tab", then this tab chosen with appropriate content', { scrollBehavior: 'center' }, () => {
       tabs.clickOnBtn(manualSelection, 0);
       tabs.isAppropriateTabActive(manualSelection, 1);
       tabs.isTabContentContain(manualSelection, 'Static content');
@@ -29,7 +29,7 @@ describe('Tabs demo page spec', () => {
       tabs.isTabContentContain(manualSelection, 'Static content');
     });
 
-    it('when user clicks on the latest tab, then this tab chosen with appropriate content inside', () => {
+    it('when user clicks on the latest tab, then this tab chosen with appropriate content inside', { scrollBehavior: 'center' }, () => {
       tabs.clickOnTab(manualSelection, 3);
       tabs.isAppropriateTabActive(manualSelection, 3);
       tabs.isTabContentContain(manualSelection, 'Static content');
@@ -49,13 +49,13 @@ describe('Tabs demo page spec', () => {
       tabs.isTabContentContain(disabledTabs, 'Static content');
     });
 
-    it('when user clicks on "Enable/Disable third tab", then 3d - not clickable, after click - nothing happens', () => {
+    it('when user clicks on "Enable/Disable third tab", then 3d - not clickable, after click - nothing happens', { scrollBehavior: 'center' }, () => {
       tabs.clickOnBtn(disabledTabs);
       tabs.isTabDisabled(disabledTabs, 2, true);
       tabs.isAppropriateTabActive(disabledTabs, 0);
     });
 
-    it('when user clicks "Enable/Disable third tab" again, then 3d-clickable, when click-opened with content', () => {
+    it('when user clicks "Enable/Disable third tab" again, then 3d-clickable, when click-opened with content', { scrollBehavior: 'center' }, () => {
       tabs.dblClickOnBtn(disabledTabs);
       tabs.isTabDisabled(disabledTabs, 2, false);
       tabs.clickOnTab(disabledTabs, 2);
@@ -78,14 +78,14 @@ describe('Tabs demo page spec', () => {
       tabs.isTabContentContain(dynamicTabs, 'Static content', 0);
     });
 
-    it('when user clicks on any other tabs, then that tab chosen with appropriate content inside', () => {
+    it('when user clicks on any other tabs, then that tab chosen with appropriate content inside', { scrollBehavior: 'center' }, () => {
       tabs.clickOnTab(dynamicTabs, 2);
       tabs.isAppropriateTabActive(dynamicTabs, 2);
       tabs.isTabTitleTxtContain(dynamicTabs, 'Dynamic Title', 2);
       tabs.isTabContentContain(dynamicTabs, 'Dynamic content', 2);
     });
 
-    it('when user clicks "Add new tab", amount of tabs increased, tab appeared with index, content, close icon', () => {
+    it('when user clicks "Add new tab", amount of tabs increased, tab appeared with index, content, close icon', { scrollBehavior: 'center' }, () => {
       tabs.clickOnBtn(dynamicTabs, 0);
       tabs.isTabsLengthEqual(dynamicTabs, 5);
       tabs.isTabTitleTxtContain(dynamicTabs, 'Dynamic Title', 4);
@@ -93,7 +93,7 @@ describe('Tabs demo page spec', () => {
       tabs.isRemoveIconExist(dynamicTabs, 4);
     });
 
-    it('when user clicks "Add new tab" again, amount of tabs increased, tab appeared with index, content, icon', () => {
+    it('when user clicks "Add new tab" again, amount of tabs increased, tab appeared with index, content, icon', { scrollBehavior: 'center' }, () => {
       tabs.clickOnBtn(dynamicTabs, 0);
       tabs.clickOnBtn(dynamicTabs, 0);
       tabs.isTabsLengthEqual(dynamicTabs, 6);
@@ -108,19 +108,19 @@ describe('Tabs demo page spec', () => {
       tabs.isTabsLengthEqual(dynamicTabs, 3);
     });
 
-    it('when user clicks on "Remove all tabs", then all dynamic tabs removed with whole content', () => {
+    it('when user clicks on "Remove all tabs", then all dynamic tabs removed with whole content', { scrollBehavior: 'center' }, () => {
       tabs.clickOnBtn(dynamicTabs, 1);
       tabs.isTabsLengthEqual(dynamicTabs, 1);
     });
 
-    it('when user clicks "Remove all tabs", then all dynamic tabs removed, static visible', () => {
+    it('when user clicks "Remove all tabs", then all dynamic tabs removed, static visible', { scrollBehavior: 'center' }, () => {
       tabs.clickOnBtn(dynamicTabs, 1);
       tabs.isTabsLengthEqual(dynamicTabs, 1);
       tabs.isTabTitleTxtContain(dynamicTabs, 'Static title');
       tabs.isTabContentContain(dynamicTabs, 'Static content');
     });
 
-    it('when user clicks "Add new tab" again, amount of tabs increased, tab appeared with index, content, icon', () => {
+    it('when user clicks "Add new tab" again, amount of tabs increased, tab appeared with index, content, icon', { scrollBehavior: 'center' }, () => {
       tabs.clickOnBtn(dynamicTabs, 1);
       tabs.clickOnBtn(dynamicTabs, 0);
       tabs.isTabsLengthEqual(dynamicTabs, 2);
@@ -145,7 +145,7 @@ describe('Tabs demo page spec', () => {
       tabs.isTabsetHaveType(pills, 'pills');
     });
 
-    it('when user clicks on the second pill, it become chosen and there is content inside: "Pills content 2"', () => {
+    it('when user clicks on the second pill, it become chosen and there is content inside: "Pills content 2"', { scrollBehavior: 'center' }, () => {
       tabs.clickOnTab(pills, 1);
       tabs.isAppropriateTabActive(pills, 1);
       tabs.isTabsetHaveType(pills, 'pills');
@@ -167,7 +167,7 @@ describe('Tabs demo page spec', () => {
       tabs.isTabsetHaveType(verticalPills, 'pills');
     });
 
-    it('when user clicks 2d pill, it become chosen with content, template src contain vertical="true"', () => {
+    it('when user clicks 2d pill, it become chosen with content, template src contain vertical="true"', { scrollBehavior: 'center' }, () => {
       tabs.clickOnTab(verticalPills, 1);
       tabs.isAppropriateTabActive(verticalPills, 1);
       tabs.isTabsetHaveType(verticalPills, 'pills');
@@ -192,13 +192,13 @@ describe('Tabs demo page spec', () => {
       tabs.isTabsJustified(justified);
     });
 
-    it('when user clicks second tab, it become chosen and there is content: "Short Labeled Justified content"', () => {
+    it('when user clicks second tab, it become chosen and there is content: "Short Labeled Justified content"', { scrollBehavior: 'center' }, () => {
       tabs.clickOnTab(justified, 1);
       tabs.isAppropriateTabActive(justified, 1);
       tabs.isTabContentContain(justified, 'Short Labeled Justified content', 1);
     });
 
-    it('when user clicks third tab, it become chosen, there is content:"Long Labeled Justified content"', () => {
+    it('when user clicks third tab, it become chosen, there is content:"Long Labeled Justified content"', { scrollBehavior: 'center' }, () => {
       tabs.clickOnTab(justified, 2);
       tabs.isAppropriateTabActive(justified, 2);
       tabs.isTabContentContain(justified, 'Long Labeled Justified content', 2);
@@ -214,7 +214,7 @@ describe('Tabs demo page spec', () => {
       },
       inactive: {
         backgroundColor: 'rgb(80, 255, 80)',
-        color: 'rgb(0, 123, 255)'
+        color: 'rgb(13, 110, 253)'
       }
     };
 
@@ -237,7 +237,7 @@ describe('Tabs demo page spec', () => {
       tabs.isTabHaveCustomCSS(customClass, 2, 'color', customStyles.inactive.color);
     });
 
-    it('when user clicks on the 2d tab, it become chosen with content inside: "Dynamic content 1"', () => {
+    it('when user clicks on the 2d tab, it become chosen with content inside: "Dynamic content 1"', { scrollBehavior: 'center' }, () => {
       tabs.clickOnTab(customClass, 1);
       tabs.isAppropriateTabActive(customClass, 1);
       tabs.isTabContentContain(customClass, 'Dynamic content 1', 1);
@@ -245,7 +245,7 @@ describe('Tabs demo page spec', () => {
       tabs.isTabHaveCustomCSS(customClass, 1, 'background-color', customStyles.active.backgroundColor);
     });
 
-    it('when user clicks on the 2d tab, it become chosen with content inside: "Dynamic content 1"', () => {
+    it('when user clicks on the 2d tab, it become chosen with content inside: "Dynamic content 1"', { scrollBehavior: 'center' }, () => {
       tabs.clickOnTab(customClass, 1);
       tabs.isAppropriateTabActive(customClass, 1);
       tabs.isTabContentContain(customClass, 'Dynamic content 1', 1);
@@ -253,7 +253,7 @@ describe('Tabs demo page spec', () => {
       tabs.isTabHaveCustomCSS(customClass, 1, 'background-color', customStyles.active.backgroundColor);
     });
 
-    it('when user clicks on the third tab, it become chosen and there is content inside: "Dynamic content 2"', () => {
+    it('when user clicks on the third tab, it become chosen and there is content inside: "Dynamic content 2"', { scrollBehavior: 'center' }, () => {
       tabs.clickOnTab(customClass, 2);
       tabs.isAppropriateTabActive(customClass, 2);
       tabs.isTabContentContain(customClass, 'Dynamic content 2', 2);
@@ -276,14 +276,14 @@ describe('Tabs demo page spec', () => {
       tabs.isTabContentContain(selectEvent, 'Title 2', 1);
     });
 
-    it('when user clicks on the 2d tab, it chosen with long content inside, shown "Event select is fired...', () => {
+    it('when user clicks on the 2d tab, it chosen with long content inside, shown "Event select is fired...', { scrollBehavior: 'center' }, () => {
       tabs.clickOnTab(selectEvent, 1);
       tabs.isAppropriateTabActive(selectEvent, 1);
       tabs.isTabContentContain(selectEvent, 'Title 2', 1);
       tabs.isPreviewExist(selectEvent, 'Event select is fired. The heading of the selected tab is: Second tab');
     });
 
-    it('when user clicks on the 1t tab, it chosen with long content inside, shown "Event select is fired...', () => {
+    it('when user clicks on the 1t tab, it chosen with long content inside, shown "Event select is fired...', { scrollBehavior: 'center' }, () => {
       tabs.clickOnTab(selectEvent, 1);
       tabs.clickOnTab(selectEvent, 0);
       tabs.isAppropriateTabActive(selectEvent, 0);
@@ -305,7 +305,7 @@ describe('Tabs demo page spec', () => {
       tabs.isTabContentContain(configDefaults, 'Config content 1', 0);
     });
 
-    it('when user clicks on the 2d pill, it become chosen with content "Config content 2", cmp with pills type', () => {
+    it('when user clicks on the 2d pill, it become chosen with content "Config content 2", cmp with pills type', { scrollBehavior: 'center' }, () => {
       tabs.clickOnTab(configDefaults, 1);
       tabs.isAppropriateTabActive(configDefaults, 1);
       tabs.isTabTitleTxtContain(configDefaults, 'Config 2', 1);
@@ -323,7 +323,7 @@ describe('Tabs demo page spec', () => {
       },
       inactive: {
         backgroundColor: 'rgba(0, 0, 0, 0)',
-        color: 'rgb(0, 123, 255)'
+        color: 'rgb(13, 110, 253)'
       }
     };
 
@@ -338,7 +338,7 @@ describe('Tabs demo page spec', () => {
       tabs.isTabContentContain(customTemplate, 'Tab 1', 0);
     });
 
-    it('when user clicks on the 2nd tab, it chosen with content "Ive got an HTML...", tab with custom style', () => {
+    it('when user clicks on the 2nd tab, it chosen with content "Ive got an HTML...", tab with custom style', { scrollBehavior: 'center' }, () => {
       tabs.clickOnTab(customTemplate, 1);
       tabs.isAppropriateTabActive(customTemplate, 1);
       tabs.isTabHaveCustomCSS(customTemplate, 1, 'color', staticStyles.active.color);
@@ -349,7 +349,7 @@ describe('Tabs demo page spec', () => {
       tabs.isTabContentContain(customTemplate, 'I\'ve got an HTML heading. Pretty cool!', 1);
     });
 
-    it('when user clicks 3d tab, it become chosen with "Tab with html tags in heading", template has tags i, b', () => {
+    it('when user clicks 3d tab, it become chosen with "Tab with html tags in heading", template has tags i, b', { scrollBehavior: 'center' }, () => {
       tabs.clickOnTab(customTemplate, 2);
       tabs.isAppropriateTabActive(customTemplate, 2);
       tabs.isTabHaveCustomCSS(customTemplate, 2, 'color', staticStyles.active.color);

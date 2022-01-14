@@ -17,13 +17,13 @@ describe('Datepicker demo testing suite: Config properties', () => {
     datepicker.isTemplateSrcContain('Config properties', `containerClass: 'theme-red'`);
   });
 
-  it(`when user clicks on Datepicker input, bs-datepicker-container opens in style "theme-red"`, () => {
+  it(`when user clicks on Datepicker input, bs-datepicker-container opens in style "theme-red"`, { scrollBehavior: 'center' }, () => {
     datepicker.clickOnDatepickerInput(configProperties);
     datepicker.isDatepickerOpened(true);
     datepicker.isDatepickerStyleCorrect('red');
   });
 
-  it(`when user chose any date, then container disappeared and date shown in format "DD-MM-YYYY"`, () => {
+  it(`when user chose any date, then container disappeared and date shown in format "DD-MM-YYYY"`, { scrollBehavior: 'center' }, () => {
     const chosenDate = new Date(`${new Date().getMonth() + 1}/10/${new Date().getFullYear()}`);
     datepicker.clickOnDatepickerInput(configProperties);
     datepicker.clickOnDatepickerTableItem('date', 'body', undefined, '10');

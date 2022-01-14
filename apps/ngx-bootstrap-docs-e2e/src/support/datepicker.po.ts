@@ -306,7 +306,7 @@ export class DatepickerPo extends BaseComponent {
         break;
 
       case '>' :
-        cy.get(`${baseSelector}>${appropriateContainer} ${this.datepickerNavView} .next`).click();
+        cy.get(`tab[heading="Overview"] ${baseSelector}>${appropriateContainer} ${this.datepickerNavView} .next`).click();
         break;
 
       case 'month' :
