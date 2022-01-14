@@ -12,7 +12,7 @@ export class CarouselPo extends BaseComponent {
   rightControl = '.icon-next';
 
   exampleDemosArr = {
-    basic: 'tab[heading="Overview"]demo-carousel-basic',
+    basic: 'tab[heading="Overview"] demo-carousel-basic',
     optionalCaptions: 'tab[heading="Overview"] demo-carousel-captions',
     configuringDefaults: 'tab[heading="Overview"] demo-carousel-config',
     dynamicSlides: 'tab[heading="Overview"] demo-carousel-dynamic',
