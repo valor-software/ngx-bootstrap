@@ -6,18 +6,18 @@ export class TabsPo extends BaseComponent {
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/tabs';
 
   exampleDemosArr = {
-    basic: 'demo-tabs-basic',
-    manualSelection: 'demo-tabs-manual-selection',
-    disabled: 'demo-tabs-disabled',
-    dynamic: 'demo-tabs-dynamic',
-    pills: 'demo-tabs-pills',
-    verticalPills: 'demo-tabs-vertical-pills',
-    justified: 'demo-tabs-justified',
-    customClass: 'demo-tabs-custom-class',
-    selectEvent: 'demo-tabs-select-event',
-    config: 'demo-tabs-config',
-    customTemplate: 'demo-tabs-custom-template',
-    accessibility: 'demo-accessibility'
+    basic: 'tab[heading="Overview"] demo-tabs-basic',
+    manualSelection: 'tab[heading="Overview"] demo-tabs-manual-selection',
+    disabled: 'tab[heading="Overview"] demo-tabs-disabled',
+    dynamic: 'tab[heading="Overview"] demo-tabs-dynamic',
+    pills: 'tab[heading="Overview"] demo-tabs-pills',
+    verticalPills: 'tab[heading="Overview"] demo-tabs-vertical-pills',
+    justified: 'tab[heading="Overview"] demo-tabs-justified',
+    customClass: 'tab[heading="Overview"] demo-tabs-custom-class',
+    selectEvent: 'tab[heading="Overview"] demo-tabs-select-event',
+    config: 'tab[heading="Overview"] demo-tabs-config',
+    customTemplate: 'tab[heading="Overview"] demo-tabs-custom-template',
+    accessibility: 'tab[heading="Overview"] demo-accessibility'
   };
 
   isTabTitleTxtContain(basicSelector: string, expectedTxt: string, tabIndex?: number) {
@@ -66,7 +66,7 @@ export class TabsPo extends BaseComponent {
   }
 
   clickOnRemoveTabIcon(basicSelector: string, tabIndex: number) {
-    cy.get(`tab[heading="Overview"] ${basicSelector} .nav-link`).eq(tabIndex).get('.bs-remove-tab').click();
+    cy.get(`${basicSelector} .nav-link`).eq(tabIndex).get('.bs-remove-tab').click();
   }
 
   isTabsetHaveType(basicSelector: string, expectedType: string) {

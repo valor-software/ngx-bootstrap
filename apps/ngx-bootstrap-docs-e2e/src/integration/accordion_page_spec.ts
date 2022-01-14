@@ -20,7 +20,7 @@ describe('Accordion page testing suite', () => {
       accordion.isItemContentVisible(basic, 3, false);
     });
 
-    it('when user click on each item, then any content inside shown', { scrollBehavior: 'center' }, () => {
+    it('when user click on each item, then any content inside shown', () => {
       accordion.clickOnAccordionGroup(basic, 0);
       accordion.isAccordionItemExpanded(basic, 0, true);
       accordion.isItemContentVisible(basic, 0, true);
@@ -35,7 +35,7 @@ describe('Accordion page testing suite', () => {
       accordion.isItemContentVisible(basic, 3, true);
     });
 
-    it('when user double click on each item, content closed', { scrollBehavior: 'center' },  () => {
+    it('when user double click on each item, content closed',   () => {
       accordion.clickOnAccordionGroup(basic, 0);
       accordion.clickOnAccordionGroup(basic, 0);
       accordion.isAccordionItemExpanded(basic, 0, false);

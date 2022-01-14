@@ -24,33 +24,33 @@ export class DatepickerPo extends BaseComponent {
 
 
   exampleDemosArr = {
-    basic: 'demo-datepicker-basic',
-    initialState: 'demo-datepicker-date-initial-state',
-    customFormat: 'demo-date-picker-custom-format',
-    hideOnScroll: 'demo-date-picker-hide-on-scroll',
-    themes: 'demo-datepicker-color-theming',
-    locales: 'demo-datepicker-change-locale',
-    minMax: 'demo-datepicker-min-max',
-    daysDisabled: 'demo-datepicker-daysdisabled',
-    minMode: 'demo-datepicker-min-mode',
-    disabled: 'demo-datepicker-disabled',
-    forms: 'demo-datepicker-forms',
-    reactiveForms: 'demo-datepicker-reactive-forms',
-    manualTrigger: 'demo-datepicker-triggers-manual',
-    placement: 'demo-datepicker-placement',
-    configMethod: 'demo-datepicker-config-method',
-    visibilityEvents: 'demo-datepicker-visibility-events',
-    valueChangeEvent: 'demo-datepicker-value-change-event',
-    configProperties: 'demo-datepicker-config-object',
-    selectFromOtherMonth: 'demo-datepicker-select-dates-from-other-months',
-    outsideClick: 'demo-datepicker-outside-click',
-    triggerByIsOpen: 'demo-datepicker-trigger-by-isopen',
-    customTriggers: 'demo-datepicker-triggers-custom',
-    selectWeek: 'demo-datepicker-select-week',
-    inlineDatepicker: 'bs-datepicker-inline',
-    customTodayClass: 'demo-datepicker-custom-today-class',
-    quickSelectRange: 'demo-datepicker-quick-select-ranges',
-    maxDateRange: 'demo-datepicker-max-date-range'
+    basic: 'tab[heading="Overview"] demo-datepicker-basic',
+    initialState: 'tab[heading="Overview"] demo-datepicker-date-initial-state',
+    customFormat: 'tab[heading="Overview"] demo-date-picker-custom-format',
+    hideOnScroll: 'tab[heading="Overview"] demo-date-picker-hide-on-scroll',
+    themes: 'tab[heading="Overview"] demo-datepicker-color-theming',
+    locales: 'tab[heading="Overview"] demo-datepicker-change-locale',
+    minMax: 'tab[heading="Overview"] demo-datepicker-min-max',
+    daysDisabled: 'tab[heading="Overview"] demo-datepicker-daysdisabled',
+    minMode: 'tab[heading="Overview"] demo-datepicker-min-mode',
+    disabled: 'tab[heading="Overview"] demo-datepicker-disabled',
+    forms: 'tab[heading="Overview"] demo-datepicker-forms',
+    reactiveForms: 'tab[heading="Overview"] demo-datepicker-reactive-forms',
+    manualTrigger: 'tab[heading="Overview"] demo-datepicker-triggers-manual',
+    placement: 'tab[heading="Overview"] demo-datepicker-placement',
+    configMethod: 'tab[heading="Overview"] demo-datepicker-config-method',
+    visibilityEvents: 'tab[heading="Overview"] demo-datepicker-visibility-events',
+    valueChangeEvent: 'tab[heading="Overview"] demo-datepicker-value-change-event',
+    configProperties: 'tab[heading="Overview"] demo-datepicker-config-object',
+    selectFromOtherMonth: 'tab[heading="Overview"] demo-datepicker-select-dates-from-other-months',
+    outsideClick: 'tab[heading="Overview"] demo-datepicker-outside-click',
+    triggerByIsOpen: 'tab[heading="Overview"] demo-datepicker-trigger-by-isopen',
+    customTriggers: 'tab[heading="Overview"] demo-datepicker-triggers-custom',
+    selectWeek: 'tab[heading="Overview"] demo-datepicker-select-week',
+    inlineDatepicker: 'tab[heading="Overview"] bs-datepicker-inline',
+    customTodayClass: 'tab[heading="Overview"] demo-datepicker-custom-today-class',
+    quickSelectRange: 'tab[heading="Overview"] demo-datepicker-quick-select-ranges',
+    maxDateRange: 'tab[heading="Overview"] demo-datepicker-max-date-range'
   };
 
   clickOnDatepickerInput(baseSelector: string, datepickerIndex = 0) {
@@ -306,7 +306,7 @@ export class DatepickerPo extends BaseComponent {
         break;
 
       case '>' :
-        cy.get(`tab[heading="Overview"] ${baseSelector}>${appropriateContainer} ${this.datepickerNavView} .next`).click();
+        cy.get(`${baseSelector}>${appropriateContainer} ${this.datepickerNavView} .next`).click();
         break;
 
       case 'month' :

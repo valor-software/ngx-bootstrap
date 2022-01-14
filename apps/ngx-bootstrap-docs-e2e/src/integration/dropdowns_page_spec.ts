@@ -17,7 +17,7 @@ describe('Dropdowns demo page testing suite', () => {
     });
 
     it(`when user clicks on "Button dropdown", then dropdown opened and there are 4 items, 1 of them is separated
-                   when user clicks on any item, then dropdown closes`, { scrollBehavior: 'center' },  () => {
+                   when user clicks on any item, then dropdown closes`,   () => {
       dropdowns.clickOnBtn(basic);
       dropdowns.isDropdownExpanded(basic, 'button', true);
       dropdowns.isDropdownItemsLengthEqual(basic, 4);

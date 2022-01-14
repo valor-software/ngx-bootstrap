@@ -4,14 +4,13 @@ export class RatingPo extends BaseComponent {
   pageUrl = '#/components/rating';
   pageTitle = 'Rating';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/rating';
-
   tagRating = 'rating';
 
   exampleDemosArr = {
-    basic: 'demo-rating-basic',
-    dynamic: 'demo-rating-dynamic',
-    customIcons: 'demo-rating-custom',
-    selectOnEnter: 'demo-select-on-enter'
+    basic: 'tab[heading="Overview"] demo-rating-basic',
+    dynamic: 'tab[heading="Overview"] demo-rating-dynamic',
+    customIcons: 'tab[heading="Overview"] demo-rating-custom',
+    selectOnEnter: 'tab[heading="Overview"] demo-select-on-enter'
   };
 
   isRatingVisible(baseSelector: string, ratingIndex = 0) {
@@ -58,11 +57,11 @@ export class RatingPo extends BaseComponent {
   }
 
   focusOnRating(baseSelector: string) {
-    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.tagRating}>span`)
+    cy.get(`${baseSelector} ${this.tagRating}>span`)
       .click();
   }
 
   pressKeyboardBtn(baseSelector: string, btnName: string) {
-    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.tagRating}>span`).type(`{${btnName}}`);
+    cy.get(`${baseSelector} ${this.tagRating}>span`).type(`{${btnName}}`);
   }
 }

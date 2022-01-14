@@ -13,37 +13,37 @@ export class PaginationPo extends BaseComponent {
   classPaginationPage = '.pagination-page';
 
   exampleDemosArr = {
-    basic: 'demo-pagination-basic',
-    manualSwitchingPage: 'demo-pagination-manual-switching',
-    pageChangedEvent: 'demo-pagination-page-changed-event',
-    pagesCountChangedEvent: 'demo-pagination-pages-count-changed',
-    boundaryLinks: 'demo-pagination-boundary-links',
-    directionLinks: 'demo-pagination-direction-links',
-    customLinksContent: 'demo-pagination-custom-links-content',
-    disabled: 'demo-pagination-disabled',
-    limits: 'demo-pagination-limit',
-    centeringPageLink: 'demo-pagination-rotate',
-    contentSwitching: 'demo-pagination-content-switching',
-    pager: 'demo-pagination-pager'
+    basic: 'tab[heading="Overview"] demo-pagination-basic',
+    manualSwitchingPage: 'tab[heading="Overview"] demo-pagination-manual-switching',
+    pageChangedEvent: 'tab[heading="Overview"] demo-pagination-page-changed-event',
+    pagesCountChangedEvent: 'tab[heading="Overview"] demo-pagination-pages-count-changed',
+    boundaryLinks: 'tab[heading="Overview"] demo-pagination-boundary-links',
+    directionLinks: 'tab[heading="Overview"] demo-pagination-direction-links',
+    customLinksContent: 'tab[heading="Overview"] demo-pagination-custom-links-content',
+    disabled: 'tab[heading="Overview"] demo-pagination-disabled',
+    limits: 'tab[heading="Overview"] demo-pagination-limit',
+    centeringPageLink: 'tab[heading="Overview"] demo-pagination-rotate',
+    contentSwitching: 'tab[heading="Overview"] demo-pagination-content-switching',
+    pager: 'tab[heading="Overview"] demo-pagination-pager'
   };
 
   isActivePositionEqual(baseSelector: string, positionNumber: string) {
-    cy.get(`tab[heading="Overview"] ${baseSelector}`).first().find(`${this.classActive}`).invoke('text')
+    cy.get(`${baseSelector}`).first().find(`${this.classActive}`).invoke('text')
       .should(linkTxt => expect(linkTxt).to.equal(positionNumber));
   }
 
   isPagerDisabled(baseSelector: string, pagerName: string, disabled: boolean) {
-    cy.get(`tab[heading="Overview"] ${baseSelector}`).first().find(`${this.getPagerSelector(pagerName)}`)
+    cy.get(`${baseSelector}`).first().find(`${this.getPagerSelector(pagerName)}`)
       .should(disabled ? 'to.have.class' : 'not.to.have.class', 'disabled').invoke('text');
   }
 
   isPagerExist(baseSelector: string, pagerName: string, existence: boolean) {
-    cy.get(`tab[heading="Overview"] ${baseSelector}`)
+    cy.get(`${baseSelector}`)
       .should(existence ? 'to.have.descendants' : 'not.to.have.descendants', this.getPagerSelector(pagerName));
   }
 
   isPagerTxtEqual(baseSelector: string, pagerName: string, expectedTxt: string) {
-    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.getPagerSelector(pagerName)}`).invoke('text')
+    cy.get(`${baseSelector} ${this.getPagerSelector(pagerName)}`).invoke('text')
       .should(pagerTxt => expect(pagerTxt).to.equal(expectedTxt));
   }
 
@@ -67,7 +67,7 @@ export class PaginationPo extends BaseComponent {
   }
 
   clickOnPager(baseSelector: string, pagerName: string) {
-    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.getPagerSelector(pagerName)}`).click();
+    cy.get(`${baseSelector} ${this.getPagerSelector(pagerName)}`).click();
   }
 
   clickOnPaginationBtn(baseSelector: string, btnName: string) {
@@ -75,11 +75,11 @@ export class PaginationPo extends BaseComponent {
   }
 
   isPaginationLengthEqual(baseSelector: string, expectedLength: number) {
-    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.classPaginationPage}`).should('have.length', expectedLength);
+    cy.get(`${baseSelector} ${this.classPaginationPage}`).should('have.length', expectedLength);
   }
 
   isActivePageCentered(baseSelector: string, isCentered: boolean) {
-    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.classPaginationPage}`).as('pagination').its('length').then(paginationlength => {
+    cy.get(`${baseSelector} ${this.classPaginationPage}`).as('pagination').its('length').then(paginationlength => {
       cy.get('@pagination').each((element, index) => {
         if (element.hasClass('active')) {
           isCentered ? expect(index + 1).to.equal(Math.round(paginationlength / 2)) :
@@ -90,7 +90,7 @@ export class PaginationPo extends BaseComponent {
   }
 
   isPaginationContentUpdated(baseSelector: string) {
-    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.classPaginationPage}`).each((element, index) => {
+    cy.get(`${baseSelector} ${this.classPaginationPage}`).each((element, index) => {
       if (element.hasClass('active')) {
         cy.get(`${baseSelector} .content-wrapper`).invoke('text').then(contentTxt => {
           let i = 0;

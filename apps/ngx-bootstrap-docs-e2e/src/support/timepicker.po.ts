@@ -8,23 +8,23 @@ export class TimepickerPo extends BaseComponent {
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/timepicker';
 
   exampleDemosArr = {
-    basic: 'demo-timepicker-basic',
-    form: 'demo-timepicker-form',
-    meridian: 'demo-timepicker-meridian',
-    customMeridian: 'demo-timepicker-custom-meridian',
-    minMax: 'demo-timepicker-min-max',
-    toggleMinSec: 'demo-timepicker-seconds',
-    disabled: 'demo-timepicker-disabled',
-    readonly: 'demo-timepicker-readonly',
-    customSteps: 'demo-timepicker-custom',
-    customValidation: 'demo-timepicker-custom-validation',
-    isValidEvent: 'demo-timepicker-isvalid',
-    dynamic: 'demo-timepicker-dynamic',
-    allowEmptyTime: 'demo-timepicker-empty-time',
-    mousewheel: 'demo-timepicker-mousewheel',
-    arrowKeys: 'demo-timepicker-arrowkeys',
-    spinners: 'demo-timepicker-spinners',
-    configDefaults: 'demo-timepicker-config'
+    basic: 'tab[heading="Overview"] demo-timepicker-basic',
+    form: 'tab[heading="Overview"] demo-timepicker-form',
+    meridian: 'tab[heading="Overview"] demo-timepicker-meridian',
+    customMeridian: 'tab[heading="Overview"] demo-timepicker-custom-meridian',
+    minMax: 'tab[heading="Overview"] demo-timepicker-min-max',
+    toggleMinSec: 'tab[heading="Overview"] demo-timepicker-seconds',
+    disabled: 'tab[heading="Overview"] demo-timepicker-disabled',
+    readonly: 'tab[heading="Overview"] demo-timepicker-readonly',
+    customSteps: 'tab[heading="Overview"] demo-timepicker-custom',
+    customValidation: 'tab[heading="Overview"] demo-timepicker-custom-validation',
+    isValidEvent: 'tab[heading="Overview"] demo-timepicker-isvalid',
+    dynamic: 'tab[heading="Overview"] demo-timepicker-dynamic',
+    allowEmptyTime: 'tab[heading="Overview"] demo-timepicker-empty-time',
+    mousewheel: 'tab[heading="Overview"] demo-timepicker-mousewheel',
+    arrowKeys: 'tab[heading="Overview"] demo-timepicker-arrowkeys',
+    spinners: 'tab[heading="Overview"] demo-timepicker-spinners',
+    configDefaults: 'tab[heading="Overview"] demo-timepicker-config'
   };
 
   isTimepickerVisible(baseSelector: string) {

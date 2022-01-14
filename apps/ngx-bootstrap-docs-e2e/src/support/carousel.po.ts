@@ -12,17 +12,17 @@ export class CarouselPo extends BaseComponent {
   rightControl = '.icon-next';
 
   exampleDemosArr = {
-    basic: 'demo-carousel-basic',
-    optionalCaptions: 'demo-carousel-captions',
-    configuringDefaults: 'demo-carousel-config',
-    dynamicSlides: 'demo-carousel-dynamic',
-    pauseOnHover: 'demo-carousel-pause-on-hover',
-    customContent: 'demo-carousel-custom-content',
-    disableLooping: 'demo-carousel-disable-looping',
-    disableIndicator: 'demo-carousel-disable-indicator',
-    interval: 'demo-carousel-interval',
-    slideChangedEvent: 'demo-carousel-slide-changed-event',
-    accessibility: 'demo-accessibility'
+    basic: 'tab[heading="Overview"]demo-carousel-basic',
+    optionalCaptions: 'tab[heading="Overview"] demo-carousel-captions',
+    configuringDefaults: 'tab[heading="Overview"] demo-carousel-config',
+    dynamicSlides: 'tab[heading="Overview"] demo-carousel-dynamic',
+    pauseOnHover: 'tab[heading="Overview"] demo-carousel-pause-on-hover',
+    customContent: 'tab[heading="Overview"] demo-carousel-custom-content',
+    disableLooping: 'tab[heading="Overview"]demo-carousel-disable-looping',
+    disableIndicator: 'tab[heading="Overview"] demo-carousel-disable-indicator',
+    interval: 'tab[heading="Overview"] demo-carousel-interval',
+    slideChangedEvent: 'tab[heading="Overview"] demo-carousel-slide-changed-event',
+    accessibility: 'tab[heading="Overview"] demo-accessibility'
   };
 
   isClickActivatedCarouselItem(baseSelector: string, itemIndex: number) {
@@ -32,7 +32,7 @@ export class CarouselPo extends BaseComponent {
   }
 
   isCarouselItemActive(baseSelector: string, itemIndex: number) {
-    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.carouselClass} ${this.indicatorClass} button `).eq(itemIndex)
+    cy.get(`${baseSelector} ${this.carouselClass} ${this.indicatorClass} button `).eq(itemIndex)
       .should('have.class', 'active');
   }
 
@@ -58,12 +58,12 @@ export class CarouselPo extends BaseComponent {
   }
 
   isSlidesCountEqual(baseSelector: string, expectedCount: number) {
-    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.indicatorClass} li`)
+    cy.get(`${baseSelector} ${this.indicatorClass} li`)
       .should('to.have.length', expectedCount);
   }
 
   isCardTxtEqual(baseSelector: string, expectedTxt: string) {
-    cy.get(`tab[heading="Overview"] ${baseSelector} .card.card-block`).invoke('text')
+    cy.get(`${baseSelector} .card.card-block`).invoke('text')
       .should(blockTxt => expect(blockTxt).to.equal(expectedTxt));
   }
 
@@ -72,11 +72,11 @@ export class CarouselPo extends BaseComponent {
   }
 
   override mouseLeave(baseSelector: string) {
-    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.carouselClass}`).trigger('mouseleave');
+    cy.get(`${baseSelector} ${this.carouselClass}`).trigger('mouseleave');
   }
 
   isCarouselIndicatorDisabled(baseSelector: string, disabled: boolean) {
-    cy.get(`tab[heading="Overview"] ${baseSelector} ${this.carouselClass}`)
+    cy.get(`${baseSelector} ${this.carouselClass}`)
       .should(disabled ? 'to.not.have.descendants' : 'to.have.descendants', this.indicatorClass)
       .and('to.have.descendants', this.itemClass);
   }

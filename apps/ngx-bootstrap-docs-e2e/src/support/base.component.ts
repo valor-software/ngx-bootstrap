@@ -30,7 +30,7 @@ export abstract class BaseComponent {
   }
 
   isBtnTxtEqual(baseSelector: string, expectedBtnTxt: string, buttonIndex?: number) {
-    cy.get(`tab[heading="Overview"] ${ baseSelector } button`).eq(buttonIndex ? buttonIndex : 0).invoke('text')
+    cy.get(`${ baseSelector } button`).eq(buttonIndex ? buttonIndex : 0).invoke('text')
       .should(btnTxt => expect(btnTxt.trim()).to.equal(expectedBtnTxt.trim()));
   }
 
@@ -45,7 +45,7 @@ export abstract class BaseComponent {
   }
 
   clickOnBtn(baseSelector: string, buttonIndex?: number) {
-    cy.get(`tab[heading="Overview"] ${ baseSelector } button`).eq(buttonIndex ? buttonIndex : 0).click();
+    cy.get(`${ baseSelector } button`).eq(buttonIndex ? buttonIndex : 0).click();
   }
 
   dblClickOnBtn(baseSelector: string, buttonIndex?: number) {

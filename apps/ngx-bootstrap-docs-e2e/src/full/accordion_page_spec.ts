@@ -21,7 +21,7 @@ describe('Accordion page testing suite', () => {
     });
 
     it(`when user click on item without event listener, item opened, in the browser console - nothing happens
-                   after click on item again, it closes and in the browser console - nothing happens`, { scrollBehavior: 'center' }, () => {
+                   after click on item again, it closes and in the browser console - nothing happens`, () => {
       accordion.createBrowserLogSpy().then(consoleSpy => {
         accordion.clickOnAccordionGroup(groupOpenEvent, 0);
         accordion.isAccordionItemExpanded(groupOpenEvent, 0, true);
@@ -34,7 +34,7 @@ describe('Accordion page testing suite', () => {
       });
     });
 
-    it(`when user click on item with event listener, it opens and in the console - "Accordion has been opened"`, { scrollBehavior: 'center' }, () => {
+    it(`when user click on item with event listener, it opens and in the console - "Accordion has been opened"`, () => {
       const openLog = 'Accordion has been opened';
       accordion.createBrowserLogSpy().then(consoleSpy => {
         accordion.isConsoleLogCalled(consoleSpy, false);
@@ -45,7 +45,7 @@ describe('Accordion page testing suite', () => {
       });
     });
 
-    it(`when user click on item again, it closes and in the console - "Accordion has been closed"`, { scrollBehavior: 'center' }, () => {
+    it(`when user click on item again, it closes and in the console - "Accordion has been closed"`, () => {
       const closeLog = 'Accordion has been closed';
       accordion.clickOnAccordionGroup(groupOpenEvent, 1);
       accordion.isAccordionItemExpanded(groupOpenEvent, 1, true);
@@ -76,7 +76,7 @@ describe('Accordion page testing suite', () => {
     });
 
     it(`when user click on the first item, it is opened and content shown
-                   after second click on item it is closed`, { scrollBehavior: 'center' }, () => {
+                   after second click on item it is closed`, () => {
       accordion.clickOnAccordionGroup(customHTML, 0);
       accordion.isAccordionItemExpanded(customHTML, 0, true);
       accordion.isAccordionItemExpanded(customHTML, 1, false);
@@ -87,7 +87,7 @@ describe('Accordion page testing suite', () => {
     });
 
     it(`when user click on the second item, it is opened and there is a span with "And some HTML here"
-                   after second click on item it is closed`, { scrollBehavior: 'center' }, () => {
+                   after second click on item it is closed`, () => {
       accordion.clickOnAccordionGroup(customHTML, 1);
       accordion.isAccordionItemExpanded(customHTML, 1, true);
       accordion.isAccordionItemExpanded(customHTML, 0, false);
@@ -115,14 +115,14 @@ describe('Accordion page testing suite', () => {
       accordion.isBtnTxtEqual(disabled, ' Enable / Disable first panel ');
     });
 
-    it('when user click on "Enable/Disable first panel" button then the first item is not clickable', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Enable/Disable first panel" button then the first item is not clickable', () => {
       accordion.clickOnBtn(disabled);
       accordion.clickOnAccordionGroup(disabled, 0);
       accordion.isAccordionItemExpanded(disabled, 0, false);
     });
 
     it(`when user click on "Enable/Disable first panel" second time
-                   and click on first item, then item opened and user see content`, { scrollBehavior: 'center' }, () => {
+                   and click on first item, then item opened and user see content`, () => {
       accordion.clickOnBtn(disabled);
       accordion.clickOnBtn(disabled);
       accordion.clickOnAccordionGroup(disabled, 0);
@@ -130,7 +130,7 @@ describe('Accordion page testing suite', () => {
       accordion.isItemContentVisible(disabled, 0, true);
     });
 
-    it('when user click on "Enable/Disable first panel" third time then the first item is not clickable again', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Enable/Disable first panel" third time then the first item is not clickable again', () => {
       accordion.clickOnBtn(disabled);
       accordion.clickOnBtn(disabled);
       accordion.clickOnBtn(disabled);
@@ -139,7 +139,7 @@ describe('Accordion page testing suite', () => {
       accordion.isItemContentVisible(disabled, 0, false);
     });
 
-    it('when user click on 2d and 3d item, they open and content inside shown', { scrollBehavior: 'center' }, () => {
+    it('when user click on 2d and 3d item, they open and content inside shown', () => {
       accordion.clickOnAccordionGroup(disabled, 1);
       accordion.clickOnAccordionGroup(disabled, 2);
       accordion.isAccordionItemExpanded(disabled, 1, true);
@@ -164,13 +164,13 @@ describe('Accordion page testing suite', () => {
       accordion.isItemContentVisible(initiallyOpened, 2, false);
     });
 
-    it('when user click on 2d item, it should be closed', { scrollBehavior: 'center' }, () => {
+    it('when user click on 2d item, it should be closed', () => {
       accordion.clickOnAccordionGroup(initiallyOpened, 1);
       accordion.isAccordionItemExpanded(initiallyOpened, 1, false);
       accordion.isItemContentVisible(initiallyOpened, 1, false);
     });
 
-    it('when user click on 1t or 3d item, it should be opened', { scrollBehavior: 'center' }, () => {
+    it('when user click on 1t or 3d item, it should be opened', () => {
       accordion.clickOnAccordionGroup(initiallyOpened, 0);
       accordion.clickOnAccordionGroup(initiallyOpened, 2);
       accordion.isAccordionItemExpanded(initiallyOpened, 0, true);
@@ -179,7 +179,7 @@ describe('Accordion page testing suite', () => {
       accordion.isItemContentVisible(initiallyOpened, 2, true);
     });
 
-    it('when user click on 2d item, it should be closed, after reload page, it become expanded', { scrollBehavior: 'center' }, () => {
+    it('when user click on 2d item, it should be closed, after reload page, it become expanded', () => {
       accordion.clickOnAccordionGroup(initiallyOpened, 1);
       accordion.isAccordionItemExpanded(initiallyOpened, 1, false);
       accordion.isItemContentVisible(initiallyOpened, 1, false);
@@ -203,7 +203,7 @@ describe('Accordion page testing suite', () => {
       accordion.isBtnTxtEqual(dynamicAccordion, ' Add Group Item ');
     });
 
-    it(`when user click on each item, it opens and content inside shown`, { scrollBehavior: 'center' }, () => {
+    it(`when user click on each item, it opens and content inside shown`, () => {
       accordion.clickOnAccordionGroup(dynamicAccordion, 0);
       accordion.clickOnAccordionGroup(dynamicAccordion, 1);
       accordion.isAccordionItemExpanded(dynamicAccordion, 0, true);
@@ -213,7 +213,7 @@ describe('Accordion page testing suite', () => {
     });
 
     it(`when user click on "Add Group Item" button then new item added,
-                   when user click on just added new item, then shown content inside`, { scrollBehavior: 'center' }, () => {
+                   when user click on just added new item, then shown content inside`, () => {
       accordion.clickOnBtn(dynamicAccordion);
       accordion.isAccordionLengthEqual(dynamicAccordion, 3);
       accordion.isAccordionItemExpanded(dynamicAccordion, 2, false);
@@ -224,7 +224,7 @@ describe('Accordion page testing suite', () => {
     });
 
     it(`when user click on "Add Group Item" N times, the amount of items increased on N
-                   when user reload page, amount of items in Accordion dynamic block should be 2`, { scrollBehavior: 'center' }, () => {
+                   when user reload page, amount of items in Accordion dynamic block should be 2`, () => {
       accordion.clickOnBtn(dynamicAccordion);
       accordion.clickOnBtn(dynamicAccordion);
       accordion.clickOnBtn(dynamicAccordion);
@@ -251,7 +251,7 @@ describe('Accordion page testing suite', () => {
       accordion.isItemContentVisible(dynamicBody, 2, false);
     });
 
-    it(`when user click on 1st item, then user see "Add Item" button, there is 3 div-blocks`, { scrollBehavior: 'center' }, () => {
+    it(`when user click on 1st item, then user see "Add Item" button, there is 3 div-blocks`, () => {
       accordion.clickOnAccordionGroup(dynamicBody, 0);
       accordion.isAccordionItemExpanded(dynamicBody, 0, true);
       accordion.isItemContentVisible(dynamicBody, 0, true);
@@ -260,7 +260,7 @@ describe('Accordion page testing suite', () => {
     });
 
     it(`when user click on "Add Item" button, amount of div-blocks inside should be increased to 4,
-                   when click on "Add Item" again, amount of div-blocks inside should be increased to 5`, { scrollBehavior: 'center' }, () => {
+                   when click on "Add Item" again, amount of div-blocks inside should be increased to 5`, () => {
       accordion.clickOnAccordionGroup(dynamicBody, 0);
       accordion.clickOnBtn(dynamicBody, 1);
       accordion.isAccordionItemContain(dynamicBody, itemBody, 0, 'Item 1Item 2Item 3Item 4', true);
@@ -271,7 +271,7 @@ describe('Accordion page testing suite', () => {
     });
 
     it(`when user click on "Add Item" button a few times, and then reload page,
-                   then amount of items should back to default (3 items and 3 div-blocks inside first item)`, { scrollBehavior: 'center' }, () => {
+                   then amount of items should back to default (3 items and 3 div-blocks inside first item)`, () => {
       accordion.clickOnAccordionGroup(dynamicBody, 0);
       accordion.clickOnBtn(dynamicBody, 1);
       accordion.clickOnBtn(dynamicBody, 1);
@@ -301,13 +301,13 @@ describe('Accordion page testing suite', () => {
       accordion.isBtnTxtEqual(manualToggle, 'Toggle last panel ');
     });
 
-    it('when user click on "Toggle last panel" button, then last item closed and user see content inside', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Toggle last panel" button, then last item closed and user see content inside', () => {
       accordion.clickOnBtn(manualToggle);
       accordion.isAccordionItemExpanded(manualToggle, 2, false);
       accordion.isItemContentVisible(manualToggle, 2, false);
     });
 
-    it('when user click on "Toggle last panel" button second time, then last item opened again', { scrollBehavior: 'center' }, () => {
+    it('when user click on "Toggle last panel" button second time, then last item opened again', () => {
       accordion.clickOnBtn(manualToggle);
       accordion.clickOnBtn(manualToggle);
       accordion.isAccordionItemExpanded(manualToggle, 2, true);
@@ -332,7 +332,7 @@ describe('Accordion page testing suite', () => {
     });
 
     it(`when user click on 1st item, it opened, when user click on 2d item, it opened and 1st is closed
-                   when user click on 3d item, it opened and 2d is closed`, { scrollBehavior: 'center' }, () => {
+                   when user click on 3d item, it opened and 2d is closed`, () => {
       accordion.clickOnAccordionGroup(oneAtATime, 0);
       accordion.isAccordionItemExpanded(oneAtATime, 0, true);
       accordion.isAccordionItemExpanded(oneAtATime, 1, false);
@@ -347,7 +347,7 @@ describe('Accordion page testing suite', () => {
       accordion.isItemContentVisible(oneAtATime, 2, true);
     });
 
-    it(`when user uncheck the check-box, then after click on each item, it stay opened`, { scrollBehavior: 'center' }, () => {
+    it(`when user uncheck the check-box, then after click on each item, it stay opened`, () => {
       accordion.clickCheckbox(oneAtATime, false);
       accordion.clickOnAccordionGroup(oneAtATime, 0);
       accordion.clickOnAccordionGroup(oneAtATime, 1);
