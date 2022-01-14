@@ -1,3 +1,21 @@
+# [8.0.0-RC.9](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.8...v8.0.0-RC.9) (2022-01-14)
+
+
+### Bug Fixes
+
+* **datepicker:** fiexed error while cleaning input for daterangepicker ([#6407](https://github.com/valor-software/ngx-bootstrap/issues/6407)) ([fc5f05c](https://github.com/valor-software/ngx-bootstrap/commit/fc5f05c4adbe44157b212b0e9c5598c2b95d0a80))
+* **datepicker:** fixed clear button in datepicker ([#6338](https://github.com/valor-software/ngx-bootstrap/issues/6338)) ([12e050f](https://github.com/valor-software/ngx-bootstrap/commit/12e050fab9b002169051a363a9fe2dc22edbdecc))
+* **datepicker:** fixed inline datepicker subscriptions ([#6339](https://github.com/valor-software/ngx-bootstrap/issues/6339)) ([2e85bac](https://github.com/valor-software/ngx-bootstrap/commit/2e85bac1c5f77a6ca61f9fce7a75a67a42c1b609))
+* **progressbar:** fixed error Cannot read properties of undefined (reading 'currentValue') ([#6409](https://github.com/valor-software/ngx-bootstrap/issues/6409)) ([df7bdba](https://github.com/valor-software/ngx-bootstrap/commit/df7bdba9f0c23be4024d9ff7524094122ffadba2))
+
+
+### Features
+
+* **bs:** bs5 set as default ([#6405](https://github.com/valor-software/ngx-bootstrap/issues/6405)) ([7849793](https://github.com/valor-software/ngx-bootstrap/commit/78497930c8f9e42ce91ae546b7d5560369781184))
+* **datepicker:** prevent overflow if adaptivePosition is set to true ([#6408](https://github.com/valor-software/ngx-bootstrap/issues/6408)) ([a43f6c2](https://github.com/valor-software/ngx-bootstrap/commit/a43f6c25c977e43a04162d1cd16937c06a595184))
+
+
+
 # [8.0.0-RC.8](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.5...v8.0.0-RC.8) (2022-01-11)
 
 
