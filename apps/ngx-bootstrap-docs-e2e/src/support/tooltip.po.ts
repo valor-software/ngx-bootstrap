@@ -9,19 +9,19 @@ export class TooltipPo extends BaseComponent {
   body = 'body';
 
   exampleDemosArr = {
-    basic: 'demo-tooltip-basic',
-    placement: 'demo-tooltip-placement',
-    dismiss: 'demo-tooltip-dismiss',
-    dynamicTooltip: 'demo-tooltip-dynamic',
-    customContentTemplate: 'demo-tooltip-custom-content',
-    dynamicHtml: 'demo-tooltip-dynamic-html',
-    appendToBody: 'demo-tooltip-container',
-    configuringDefaults: 'demo-tooltip-config',
-    customTriggersTooltip: 'demo-tooltip-triggers-custom',
-    manualTriggeringTooltip: 'demo-tooltip-triggers-manual',
-    componentLevelStyling: 'demo-tooltip-styling-local',
-    customClass: 'demo-tooltip-class',
-    delayTooltip: 'demo-tooltip-delay'
+    basic: 'tab[heading="Overview"] demo-tooltip-basic',
+    placement: 'tab[heading="Overview"] demo-tooltip-placement',
+    dismiss: 'tab[heading="Overview"] demo-tooltip-dismiss',
+    dynamicTooltip: 'tab[heading="Overview"] demo-tooltip-dynamic',
+    customContentTemplate: 'tab[heading="Overview"] demo-tooltip-custom-content',
+    dynamicHtml: 'tab[heading="Overview"] demo-tooltip-dynamic-html',
+    appendToBody: 'tab[heading="Overview"] demo-tooltip-container',
+    configuringDefaults: 'tab[heading="Overview"] demo-tooltip-config',
+    customTriggersTooltip: 'tab[heading="Overview"] demo-tooltip-triggers-custom',
+    manualTriggeringTooltip: 'tab[heading="Overview"] demo-tooltip-triggers-manual',
+    componentLevelStyling: 'tab[heading="Overview"] demo-tooltip-styling-local',
+    customClass: 'tab[heading="Overview"] demo-tooltip-class',
+    delayTooltip: 'tab[heading="Overview"] demo-tooltip-delay'
   };
 
   isTooltipPlacementCorrect(baseSelector: string, placement: string) {

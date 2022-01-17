@@ -163,7 +163,7 @@ describe('Modals demo page testing suite: Service examples', () => {
     it(`when user closes modal by click on the cross then should be messages "onHide event has been fired"
       and "onHidden event has been fired"`, () => {
       modals.clickByText(eventsDemo, btnText);
-      modals.clickByText(modals.modalBtnX, btnX);
+      modals.clickCloseBtn(`modal-container .modal-header`);
       modals.isModalEnabled(modals.modalContainer, false);
       modals.isDemoContainsTxt(eventsDemo, demoOnHideFired);
       modals.isDemoContainsTxt(eventsDemo, demoOnHideFired);
@@ -256,7 +256,7 @@ describe('Modals demo page testing suite: Service examples', () => {
 
     it('when user clicks on the cross button then the modal is closed', () => {
       modals.clickByText(customCSSDemo, btnText);
-      modals.clickByText(modals.modalBtnX, btnX);
+      modals.clickCloseBtn(customCSSDemo);
       modals.isModalEnabled(modals.modalContainer, false);
     });
   });
@@ -293,7 +293,7 @@ describe('Modals demo page testing suite: Service examples', () => {
 
     it('when user clicks on the cross button then the modal is closed', () => {
       modals.clickByText(animationDemo, btnText);
-      modals.clickByText(modals.modalBtnX, btnX);
+      modals.clickCloseBtn(animationDemo);
       modals.isModalEnabled(modals.modalContainer, false);
     });
   });
@@ -315,7 +315,7 @@ describe('Modals demo page testing suite: Service examples', () => {
       ESC button then modal stays opened`, () => {
       modals.clickByText(escapeDemo, btnDisable);
       modals.clickByText(escapeDemo, btnText);
-      modals.pressEsc();
+      modals.pressEscModal();
       modals.isModalVisible(modals.modalContainer, true);
     });
 
@@ -328,7 +328,7 @@ describe('Modals demo page testing suite: Service examples', () => {
     it(`after that click on "Open modal" button, modal popup is opened. when user press ESC button then modal
       is closed`, () => {
       modals.clickByText(escapeDemo, btnText);
-      modals.pressEsc();
+      modals.pressEscModal();
       modals.isModalEnabled(modals.modalContainer, false);
     });
   });

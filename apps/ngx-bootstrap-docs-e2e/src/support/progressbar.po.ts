@@ -10,10 +10,10 @@ export class ProgressbarPo extends BaseComponent {
   tagBar = 'bar';
 
   exampleDemosArr = {
-    static: 'demo-progressbar-static',
-    dynamic: 'demo-progressbar-dynamic',
-    stacked: 'demo-progressbar-stacked',
-    config: 'demo-progressbar-config'
+    static: 'tab[heading="Overview"] demo-progressbar-static',
+    dynamic: 'tab[heading="Overview"] demo-progressbar-dynamic',
+    stacked: 'tab[heading="Overview"] demo-progressbar-stacked',
+    config: 'tab[heading="Overview"] demo-progressbar-config'
   };
 
   isProgressbarHaveAttrs(baseSelector: string, attributes: AttrObj[], progressBarIndex = 0) {

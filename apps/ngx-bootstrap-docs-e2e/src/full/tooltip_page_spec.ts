@@ -13,11 +13,11 @@ describe('Tooltip demo page testing suite', () => {
       tooltip.focusOnBtn(placementDemo, 0);
       tooltip.isTooltipPlacementCorrect(placementDemo, 'top');
       tooltip.focusOnBtn(placementDemo, 1);
-      tooltip.isTooltipPlacementCorrect(placementDemo, 'right');
+      tooltip.isTooltipPlacementCorrect(placementDemo, 'end');
       tooltip.focusOnBtn(placementDemo, 2);
-      tooltip.isTooltipPlacementCorrect(placementDemo, 'right');
+      tooltip.isTooltipPlacementCorrect(placementDemo, 'auto');
       tooltip.focusOnBtn(placementDemo, 3);
-      tooltip.isTooltipPlacementCorrect(placementDemo, 'left');
+      tooltip.isTooltipPlacementCorrect(placementDemo, 'start');
       tooltip.focusOnBtn(placementDemo, 4);
       tooltip.isTooltipPlacementCorrect(placementDemo, 'bottom');
     });

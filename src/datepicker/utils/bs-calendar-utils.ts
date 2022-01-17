@@ -53,28 +53,24 @@ export function isYearDisabled(date: Date, min?: Date, max?: Date): boolean {
   return minBound || maxBound || false;
 }
 
-export function isDisabledDate(date?: Date, datesDisabled?: Date[], unit?: string): boolean {
+export function isDisabledDate(date?: Date, datesDisabled?: Date[], unit?: 'year' | 'date' | 'month'): boolean {
   if (!datesDisabled  || !isArray(datesDisabled) || !datesDisabled.length) {
     return false;
   }
 
-  if (unit && unit === 'year') {
+  if (unit && unit === 'year' && !datesDisabled[0].getDate()) {
     return datesDisabled.some((dateDisabled: Date) => isSame(date, dateDisabled, 'year'));
   }
 
   return datesDisabled.some((dateDisabled: Date) => isSame(date, dateDisabled, 'date'));
 }
 
-export function isEnabledDate(date?: Date, datesEnabled?: Date[], unit?: string): boolean {
+export function isEnabledDate(date?: Date, datesEnabled?: Date[], unit?: 'year' | 'date' | 'month'): boolean {
   if (!datesEnabled || !isArray(datesEnabled) || !datesEnabled.length) {
     return false;
   }
 
-  if (unit && unit === 'year') {
-    return !datesEnabled.some((dateDisabled: Date) => isSame(date, dateDisabled, 'year'));
-  }
-
-  return !datesEnabled.some((enabledDate: Date) => isSame(date, enabledDate, 'date'));
+  return !datesEnabled.some((enabledDate: Date) => isSame(date, enabledDate, unit || 'date'));
 }
 
 export function getYearsCalendarInitialDate(state: BsDatepickerState, calendarIndex = 0): Date | undefined {

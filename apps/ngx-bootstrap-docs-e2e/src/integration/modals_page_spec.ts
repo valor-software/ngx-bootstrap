@@ -31,7 +31,7 @@ describe('Modals demo page testing suite', () => {
       modals.isBackdropExist(false);
     });
 
-    it('when user clicks on backdrop then the modal is closed', () => {
+    it('when user clicks on backdrop then the modal is closed',   () => {
       modals.clickByText(templateDemo, btnText);
       modals.clickOnBackdrop();
       modals.isModalVisible(modals.modalContainer, true);

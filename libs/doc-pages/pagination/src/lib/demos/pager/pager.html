@@ -13,6 +13,7 @@
   <div class="col-xs-12 col-12">
     <pager
       [totalItems]="totalItems"
+      [align]="true"
       [(ngModel)]="currentPage"
       (pageChanged)="pageChanged($event)"
       pageBtnClass="btn"

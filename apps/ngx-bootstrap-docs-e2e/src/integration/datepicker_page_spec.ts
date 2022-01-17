@@ -131,7 +131,7 @@ describe('Datepicker demo page testing suite', () => {
         'date', 'body', datepicker.monthNames[0], (new Date().getFullYear() - 7).toString());
     });
 
-    it('when user clicks on any date - then this date appeared in the input in format "mm/dd/yyyy"', () => {
+    it('when user clicks on any date - then this date appeared in the input in format "mm/dd/yyyy"',  () => {
       const chosenDate = new Date(`${new Date().getMonth() + 1}/10/${new Date().getFullYear()}`);
       datepicker.clickOnDatepickerInput(basic);
       datepicker.clickOnDatepickerTableItem('date', 'body', undefined, '10');
@@ -139,7 +139,7 @@ describe('Datepicker demo page testing suite', () => {
         .toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' })}`);
     });
 
-    it('when user chose date and click on "Datepicker" again, container opened and chosen date selected', () => {
+    it('when user choose date and click on "Datepicker" again, container opened and chosen date selected',  () => {
       datepicker.clickOnDatepickerInput(basic);
       datepicker.clickOnDatepickerTableItem('date', 'body', undefined, '10');
       datepicker.clickOnDatepickerInput(basic);
@@ -179,7 +179,7 @@ describe('Datepicker demo page testing suite', () => {
     beforeEach(() => datepicker.scrollToMenu('Basic'));
 
     it(`when user clicks on "Daterangepicker" input after datepicker, 2d container opened and 1t closed
-      range contains 2 calendar blocks, 2 arrows: "‹/›", shown interval from current month/year and next`, () => {
+      range contains 2 calendar blocks, 2 arrows: "‹/›", shown interval from current month/year and next`,  () => {
       datepicker.clickOnDatepickerInput(basic);
       datepicker.clickOnDatepickerTableItem('date', 'body', 0, '15');
       datepicker.isInputValueEqual(basic,
@@ -311,7 +311,7 @@ describe('Datepicker demo page testing suite', () => {
         datepicker.monthNames[2], datepicker.monthNames[3]);
     });
 
-    it('when user clicks on any date - it selected, click on later date, interval shown mm/dd/yyyy-mm/dd/yyyy', () => {
+    it('when user clicks on any date - it selected, click on later date, interval shown mm/dd/yyyy-mm/dd/yyyy',  () => {
       const dateLeft = new Date(`${currentMonthNum + 1}/01/${currentYearStr}`)
         .toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
       const dateRight = new Date(`${currentMonthNum + 1}/15/${currentYearStr}`)
@@ -323,7 +323,7 @@ describe('Datepicker demo page testing suite', () => {
       datepicker.isInputValueEqual(basic, `${dateLeft} - ${dateRight}`, 1);
     });
 
-    it('when user chose an interval, clicks on Daterangepicker again, container opened, date interval selected', () => {
+    it('when user chose an interval, clicks on Daterangepicker again, container opened, date interval selected',  () => {
       const dateLeft = new Date(`${currentMonthNum + 1}/01/${currentYearStr}`)
         .toLocaleDateString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
       const dateRight = new Date(`${currentMonthNum + 1}/18/${currentYearStr}`)
@@ -337,21 +337,21 @@ describe('Datepicker demo page testing suite', () => {
       datepicker.isSelectedDateExist('daterangepicker', true, 'body', '18');
     });
 
-    it('when user clears input, add interval in format mm.dd.yyyy, click "Enter" - it converted to mm/dd/yyyy', () => {
+    it('when user clears input, add interval in format mm.dd.yyyy, click "Enter" - it converted to mm/dd/yyyy',  () => {
       datepicker.clickOnDaterangepickerInput(basic);
       datepicker.clearInputAndSendKeys(basic, '12.12.2012 - 12.13.2012', 1);
       datepicker.clickEnterOnInput(basic);
       datepicker.isInputValueEqual(basic, `12/12/2012 - 12/13/2012`, 1);
     });
 
-    it('when user clears input and add there date interval in bad format, click "Enter" - nothing happens', () => {
+    it('when user clears input and add there date interval in bad format, click "Enter" - nothing happens',  () => {
       datepicker.clickOnDaterangepickerInput(basic);
       datepicker.clearInputAndSendKeys(basic, '2122012 - 2132012', 1);
       datepicker.clickEnterOnInput(basic);
       datepicker.isInputValueEqual(basic, '', 1);
     });
 
-    it('when user clears input, add date interval in "mmddyyyy", click Enter - date converted to "mm/dd/yyyy"', () => {
+    it('when user clears input, add date interval in "mmddyyyy", click Enter - date converted to "mm/dd/yyyy"',  () => {
       datepicker.clickOnDaterangepickerInput(basic);
       datepicker.clearInputAndSendKeys(basic, '12122012 - 12142012', 1);
       datepicker.clickEnterOnInput(basic);

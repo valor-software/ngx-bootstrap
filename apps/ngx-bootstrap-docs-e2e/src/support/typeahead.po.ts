@@ -16,27 +16,27 @@ export class TypeaheadPo extends BaseComponent {
   noResultAlert = '.alert-danger';
 
   exampleDemosArr = {
-    basic: 'demo-typeahead-basic',
-    itemTemplate: 'demo-typeahead-item-template',
-    optionField: 'demo-typeahead-field',
-    asyncData: 'demo-typeahead-async',
-    withDelay: 'demo-typeahead-delay',
-    templateDriven: 'demo-typeahead-form',
-    reactiveForms: 'demo-typeahead-reactive-form',
-    groupingResults: 'demo-typeahead-grouping',
-    ignoreSpaceAndOrder: 'demo-typeahead-single-world',
-    delimiters: 'demo-typeahead-phrase-delimiters',
-    multipleSearch: 'demo-typeahead-multiple-search',
-    dropUp: 'demo-typeahead-dropup',
-    onBlur: 'demo-typeahead-on-blur',
-    appendToBody: 'demo-typeahead-container',
-    noResult: 'demo-typeahead-no-result',
-    scrollable: 'demo-typeahead-scrollable',
-    latinize: 'demo-typeahead-latinize',
-    onSelect: 'demo-typeahead-on-select',
-    resultOnBlur: 'demo-typeahead-show-on-blur',
-    configDefaults: 'demo-typeahead-config',
-    selectFirstItem: 'demo-selected-first-item'
+    basic: 'tab[heading="Overview"] demo-typeahead-basic',
+    itemTemplate: 'tab[heading="Overview"] demo-typeahead-item-template',
+    optionField: 'tab[heading="Overview"] demo-typeahead-field',
+    asyncData: 'tab[heading="Overview"] demo-typeahead-async',
+    withDelay: 'tab[heading="Overview"] demo-typeahead-delay',
+    templateDriven: 'tab[heading="Overview"] demo-typeahead-form',
+    reactiveForms: 'tab[heading="Overview"] demo-typeahead-reactive-form',
+    groupingResults: 'tab[heading="Overview"] demo-typeahead-grouping',
+    ignoreSpaceAndOrder: 'tab[heading="Overview"] demo-typeahead-single-world',
+    delimiters: 'tab[heading="Overview"] demo-typeahead-phrase-delimiters',
+    multipleSearch: 'tab[heading="Overview"] demo-typeahead-multiple-search',
+    dropUp: 'tab[heading="Overview"] demo-typeahead-dropup',
+    onBlur: 'tab[heading="Overview"] demo-typeahead-on-blur',
+    appendToBody: 'tab[heading="Overview"] demo-typeahead-container',
+    noResult: 'tab[heading="Overview"] demo-typeahead-no-result',
+    scrollable: 'tab[heading="Overview"] demo-typeahead-scrollable',
+    latinize: 'tab[heading="Overview"] demo-typeahead-latinize',
+    onSelect: 'tab[heading="Overview"] demo-typeahead-on-select',
+    resultOnBlur: 'tab[heading="Overview"] demo-typeahead-show-on-blur',
+    configDefaults: 'tab[heading="Overview"] demo-typeahead-config',
+    selectFirstItem: 'tab[heading="Overview"] demo-selected-first-item'
   };
 
   isDropdownNotEnabled(baseSelector: string) {

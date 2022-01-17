@@ -418,6 +418,7 @@ describe('Pagination demo page testing suite', () => {
       pagination.clickOnDemoMenu('Pager');
       pagination.isPaginationLengthEqual(pager, 7);
       pagination.isActivePositionEqual(pager, '4');
+      console.log('!!!!!!!!!!!!', pager);
       pagination.isPagerDisabled(pager, 'Previous', false);
       pagination.isPagerDisabled(pager, 'Next', false);
     });

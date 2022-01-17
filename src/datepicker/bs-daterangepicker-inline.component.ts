@@ -101,28 +101,7 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
 
     ngOnInit(): void {
         this.setConfig();
-
-        // if date changes from external source (model -> view)
-        this._subs.push(
-          this.bsValueChange.subscribe((value: Date[]) => {
-            if (this._datepickerRef) {
-              this._datepickerRef.instance.value = value;
-            }
-          })
-        );
-
-        // if date changes from picker (view -> model)
-      if (this._datepickerRef) {
-        this._subs.push(
-          this._datepickerRef.instance.valueChange
-            .pipe(
-              filter((range: Date[]) => range && range[0] && !!range[1])
-            )
-            .subscribe((value: Date[]) => {
-              this.bsValue = value;
-            })
-        );
-      }
+        this.initSubscribes();
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -196,9 +175,44 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
         .attach(BsDaterangepickerInlineContainerComponent)
         .to(this._elementRef)
         .show();
+
+      this.initSubscribes();
     }
+
+  initSubscribes() {
+    this.unsubscribeSubscriptions();
+    // if date changes from external source (model -> view)
+    this._subs.push(
+      this.bsValueChange.subscribe((value: Date[]) => {
+        if (this._datepickerRef) {
+          this._datepickerRef.instance.value = value;
+        }
+      })
+    );
+
+    // if date changes from picker (view -> model)
+    if (this._datepickerRef) {
+      this._subs.push(
+        this._datepickerRef.instance.valueChange
+          .pipe(
+            filter((range: Date[]) => range && range[0] && !!range[1])
+          )
+          .subscribe((value: Date[]) => {
+            this.bsValue = value;
+          })
+      );
+    }
+  }
+
+  unsubscribeSubscriptions() {
+    if (this._subs?.length) {
+      this._subs.map(sub => sub.unsubscribe());
+      this._subs.length = 0;
+    }
+  }
 
     ngOnDestroy() {
       this._datepicker.dispose();
+      this.unsubscribeSubscriptions();
     }
 }

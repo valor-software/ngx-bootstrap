@@ -30,7 +30,7 @@ export function flagMonthsCalendar(
         const isDisabled =
           options.isDisabled ||
           isDisabledDate(month.date, options.datesDisabled) ||
-          isEnabledDate(month.date, options.datesEnabled) ||
+          isEnabledDate(month.date, options.datesEnabled, 'month') ||
           isMonthDisabled(month.date, options.minDate, options.maxDate);
 
         if (!options.selectedDate && options.selectedRange) {

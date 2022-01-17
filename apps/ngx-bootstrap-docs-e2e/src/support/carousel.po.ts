@@ -12,29 +12,29 @@ export class CarouselPo extends BaseComponent {
   rightControl = '.icon-next';
 
   exampleDemosArr = {
-    basic: 'demo-carousel-basic',
-    optionalCaptions: 'demo-carousel-captions',
-    configuringDefaults: 'demo-carousel-config',
-    dynamicSlides: 'demo-carousel-dynamic',
-    pauseOnHover: 'demo-carousel-pause-on-hover',
-    customContent: 'demo-carousel-custom-content',
-    disableLooping: 'demo-carousel-disable-looping',
-    disableIndicator: 'demo-carousel-disable-indicator',
-    interval: 'demo-carousel-interval',
-    slideChangedEvent: 'demo-carousel-slide-changed-event',
-    accessibility: 'demo-accessibility'
+    basic: 'tab[heading="Overview"] demo-carousel-basic',
+    optionalCaptions: 'tab[heading="Overview"] demo-carousel-captions',
+    configuringDefaults: 'tab[heading="Overview"] demo-carousel-config',
+    dynamicSlides: 'tab[heading="Overview"] demo-carousel-dynamic',
+    dynamicSlidesControlBtns: 'tab[heading="Overview"] demo-carousel-dynamic > div',
+    pauseOnHover: 'tab[heading="Overview"] demo-carousel-pause-on-hover',
+    customContent: 'tab[heading="Overview"] demo-carousel-custom-content',
+    disableLooping: 'tab[heading="Overview"] demo-carousel-disable-looping',
+    disableIndicator: 'tab[heading="Overview"] demo-carousel-disable-indicator',
+    controlBtnDisableIndicator: 'tab[heading="Overview"] demo-carousel-disable-indicator > div',
+    interval: 'tab[heading="Overview"] demo-carousel-interval',
+    slideChangedEvent: 'tab[heading="Overview"] demo-carousel-slide-changed-event',
+    accessibility: 'tab[heading="Overview"] demo-accessibility'
   };
 
   isClickActivatedCarouselItem(baseSelector: string, itemIndex: number) {
-    cy.get(`${baseSelector} ${this.carouselClass} ${this.indicatorClass} li `)
-      .eq(itemIndex)
-      .click({ force: true })
+    cy.get(`${baseSelector} ${this.carouselClass} ${this.indicatorClass} button `).eq(itemIndex)
+      .click()
       .should('have.class', 'active');
   }
 
   isCarouselItemActive(baseSelector: string, itemIndex: number) {
-    cy.get(`${baseSelector} ${this.carouselClass} ${this.indicatorClass} li `)
-      .eq(itemIndex)
+    cy.get(`${baseSelector} ${this.carouselClass} ${this.indicatorClass} button `).eq(itemIndex)
       .should('have.class', 'active');
   }
 
@@ -60,7 +60,7 @@ export class CarouselPo extends BaseComponent {
   }
 
   isSlidesCountEqual(baseSelector: string, expectedCount: number) {
-    cy.get(`${baseSelector} ${this.indicatorClass} li`)
+    cy.get(`${baseSelector} ${this.indicatorClass} button`)
       .should('to.have.length', expectedCount);
   }
 

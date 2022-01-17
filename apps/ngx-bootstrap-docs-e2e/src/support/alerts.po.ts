@@ -9,21 +9,25 @@ export class AlertsPo extends BaseComponent {
   heading = '.alert-heading';
 
   exampleDemosArr = {
-    basic: 'demo-alert-basic',
-    link: 'demo-alert-link',
-    content: 'demo-alert-content',
-    dismissing: 'demo-alert-dismiss',
-    dynamicHtml: 'demo-alert-dynamic-html',
-    dynamicContent: 'demo-alert-content-html',
-    dismissTimeout: 'demo-alert-timeout',
-    globalStyling: 'demo-alert-styling-global',
-    componentStyling: 'demo-alert-styling-local',
-    config: 'demo-alert-config'
+    basic: 'tab[heading="Overview"] demo-alert-basic',
+    link: 'tab[heading="Overview"] demo-alert-link',
+    content: 'tab[heading="Overview"] demo-alert-content',
+    dismissing: 'tab[heading="Overview"] demo-alert-dismiss',
+    dynamicHtml: 'tab[heading="Overview"] demo-alert-dynamic-html',
+    dynamicContent: 'tab[heading="Overview"] demo-alert-content-html',
+    dismissTimeout: 'tab[heading="Overview"] demo-alert-timeout',
+    globalStyling: 'tab[heading="Overview"] demo-alert-styling-global',
+    componentStyling: 'tab[heading="Overview"] demo-alert-styling-local',
+    config: 'tab[heading="Overview"] demo-alert-config'
   };
 
   isAlertVisible(baseSelector: string, alertType: string, exist = true) {
     cy.get(`${baseSelector} ${this.getAlertClass(alertType)}`)
       .should(exist ? 'be.visible' : 'not.exist');
+  }
+
+  IsButtonDisappeared(baseSelector: string, buttonName: string) {
+    cy.get(`${baseSelector}`).contains(buttonName).should('not.exist');
   }
 
   isAlertHaveLink(baseSelector: string, alertType: string) {

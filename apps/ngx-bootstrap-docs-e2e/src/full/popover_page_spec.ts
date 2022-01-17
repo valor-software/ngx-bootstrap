@@ -16,16 +16,16 @@ describe('Popover demo page testing suite', () => {
 // TODO need to have possibility to disable CY scrolling
 //  https://docs.cypress.io/guides/core-concepts/interacting-with-elements.html#Scrolling
 //  https://github.com/cypress-io/cypress/issues/871
-      popover.isPopoverPlacementCorrect(placementDemo, 'bottom'); // TODO should be top
+      popover.isPopoverPlacementCorrect(placementDemo, 'top'); // TODO should be top
       popover.clickOnBtn(placementDemo, 0);
       popover.clickOnBtn(placementDemo, 1);
-      popover.isPopoverPlacementCorrect(placementDemo, 'right');
+      popover.isPopoverPlacementCorrect(placementDemo, 'end');
       popover.clickOnBtn(placementDemo, 1);
       popover.clickOnBtn(placementDemo, 2);
       popover.isPopoverPlacementCorrect(placementDemo, 'auto');
       popover.clickOnBtn(placementDemo, 2);
       popover.clickOnBtn(placementDemo, 3);
-      popover.isPopoverPlacementCorrect(placementDemo, 'left');
+      popover.isPopoverPlacementCorrect(placementDemo, 'start');
       popover.clickOnBtn(placementDemo, 3);
       popover.clickOnBtn(placementDemo, 4);
       popover.isPopoverPlacementCorrect(placementDemo, 'bottom');
@@ -98,7 +98,7 @@ describe('Popover demo page testing suite', () => {
       popover.clickOnBtn(dymanicHtml);
       popover.isPopoverAppears(dymanicHtml);
       popover.isPopoverVisible(dymanicHtml);
-      popover.isPopoverHaveCssItem(dymanicHtml, popover.dynamicHtmlBtn, 'background-color', 'rgb(220, 53, 69)');
+      popover.isPopoverHaveCssItem(dymanicHtml, popover.dynamicHtmlBtn, 'background-color',  'rgb(220, 53, 69)');
     });
 
     it('when user clicks on "Show me popover with html" again, then popover-container disappeared', () => {

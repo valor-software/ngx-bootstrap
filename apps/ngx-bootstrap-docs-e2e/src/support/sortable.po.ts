@@ -6,10 +6,10 @@ export class SortablePo extends BaseComponent {
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/blob/development/src/sortable';
 
   exampleDemosArr = {
-    basic: 'basic-demo',
-    complexData: 'complex-datamodel-demo',
-    customItem: 'custom-item-template-demo',
-    accessibility: 'demo-accessibility'
+    basic: 'tab[heading="Overview"] basic-demo',
+    complexData: 'tab[heading="Overview"] complex-datamodel-demo',
+    customItem: 'tab[heading="Overview"] custom-item-template-demo',
+    accessibility: 'tab[heading="Overview"] demo-accessibility'
   };
 
   isSortableLengthEqual(baseSelector: string, sortableIndex: number, expectedLength: number) {
