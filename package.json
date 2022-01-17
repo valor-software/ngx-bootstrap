@@ -74,6 +74,7 @@
     "@schematics/angular": "13.1.2",
     "@stackblitz/sdk": "1.5.3",
     "ajv": "8.6.3",
+    "angular-instantsearch": "4.0.1",
     "raw-loader": "4.0.2",
     "rxjs": "7.4.0",
     "tslib": "^2.3.0",

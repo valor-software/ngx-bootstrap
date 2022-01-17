@@ -25,6 +25,7 @@ import { DocumentationComponent } from './common/documentation/documentation.com
 import { DiscoverComponent } from './common/discover/discover.component';
 import { SchematicsComponent } from './common/schematics/schematics.component';
 import { TopMenuComponent } from './common/top-menu/top-menu.component';
+import { NgAisModule } from 'angular-instantsearch';
 
 /* export */
 export {
@@ -93,7 +94,8 @@ import { RouterModule } from '@angular/router';
     ApiSectionsComponentModule,
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
-    RouterModule
+    RouterModule,
+    NgAisModule.forRoot()
   ],
   exports: [
     SearchFilterPipe,
