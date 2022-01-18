@@ -19,7 +19,6 @@ import { BsDropdownConfig } from './bs-dropdown.config';
 import { BsDropdownContainerComponent } from './bs-dropdown-container.component';
 import { BsDropdownState } from './bs-dropdown.state';
 import { BsDropdownMenuDirective } from './index';
-import { isBs3 } from 'ngx-bootstrap/utils';
 import { AnimationBuilder, AnimationFactory } from '@angular/animations';
 import { dropdownAnimation } from './dropdown-animations';
 
@@ -31,7 +30,7 @@ import { dropdownAnimation } from './dropdown-animations';
   host: {
     '[class.dropup]': 'dropup',
     '[class.open]': 'isOpen',
-    '[class.show]': 'isOpen && isBs4'
+    '[class.show]': 'isOpen'
   }
 })
 export class BsDropdownDirective implements OnInit, OnDestroy {
@@ -142,9 +141,9 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
    */
   @Output() onHidden: EventEmitter<boolean>;
 
-  get isBs4(): boolean {
-    return !isBs3();
-  }
+  // get isBs4(): boolean {
+  //   return !isBs3();
+  // }
 
   private _dropdown: ComponentLoader<BsDropdownContainerComponent>;
 
@@ -370,11 +369,9 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   }
 
   private addBs4Polyfills(): void {
-    if (!isBs3()) {
-      this.addShowClass();
-      this.checkRightAlignment();
-      this.addDropupStyles();
-    }
+    this.addShowClass();
+    this.checkRightAlignment();
+    this.addDropupStyles();
   }
 
   private playAnimation(): void {

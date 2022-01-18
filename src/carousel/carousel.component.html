@@ -30,22 +30,25 @@
   <div class="carousel-inner" [ngStyle]="{'display': multilist ? 'flex' : 'block'}">
     <ng-content></ng-content>
   </div>
-  <a class="left carousel-control carousel-control-prev"
-     *ngIf="slides.length > 1"
-     [class.disabled]="checkDisabledClass('prev')"
-     [attr.data-bs-target]="'#'+currentId"
-     (click)="previousSlide()"
-      tabindex="0" role="button">
-    <span class="icon-prev carousel-control-prev-icon" aria-hidden="true"></span>
-    <span *ngIf="isBs4" class="sr-only visually-hidden">Previous</span>
-  </a>
-  <a class="right carousel-control carousel-control-next"
-     *ngIf="slides.length > 1"
-     [class.disabled]="checkDisabledClass('next')"
-     [attr.data-bs-target]="'#'+currentId"
-     (click)="nextSlide()"
-     tabindex="0" role="button">
-    <span class="icon-next carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only visually-hidden">Next</span>
-  </a>
+    <a class="left carousel-control carousel-control-prev"
+       href="javascript:void(0);"
+       [class.disabled]="checkDisabledClass('prev')"
+       [attr.data-bs-target]="'#'+currentId"
+       *ngIf="slides.length > 1"
+       (click)="previousSlide()"
+       tabindex="0" role="button">
+      <span class="icon-prev carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only visually-hidden">Previous</span>
+    </a>
+
+    <a class="right carousel-control carousel-control-next"
+       href="javascript:void(0);"
+       *ngIf="slides.length > 1"
+       (click)="nextSlide()"
+       [class.disabled]="checkDisabledClass('next')"
+       [attr.data-bs-target]="'#'+currentId"
+       tabindex="0" role="button">
+      <span class="icon-next carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only visually-hidden">Next</span>
+    </a>
 </div>

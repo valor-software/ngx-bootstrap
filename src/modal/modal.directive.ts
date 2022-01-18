@@ -7,7 +7,7 @@ import {
   OnDestroy, OnInit, Output, Renderer2, ViewContainerRef, Optional, Inject
 } from '@angular/core';
 
-import { document, window, isBs3, Utils } from 'ngx-bootstrap/utils';
+import { document, window, Utils } from 'ngx-bootstrap/utils';
 import { ModalBackdropComponent } from './modal-backdrop.component';
 import {
   CLASS_NAME, DISMISS_REASONS, modalConfigDefaults, ModalOptions, MODAL_CONFIG_DEFAULT_OVERRIDE
@@ -222,9 +222,7 @@ export class ModalDirective implements OnDestroy, OnInit {
 
     this._isShown = false;
     this._renderer.removeClass(this._element.nativeElement, CLASS_NAME.IN);
-    if (!isBs3()) {
-      this._renderer.removeClass(this._element.nativeElement, CLASS_NAME.SHOW);
-    }
+    this._renderer.removeClass(this._element.nativeElement, CLASS_NAME.SHOW);
     // this._addClassIn = false;
 
     if (this._config.animated) {
@@ -284,9 +282,7 @@ export class ModalDirective implements OnDestroy, OnInit {
 
     // this._addClassIn = true;
     this._renderer.addClass(this._element.nativeElement, CLASS_NAME.IN);
-    if (!isBs3()) {
-      this._renderer.addClass(this._element.nativeElement, CLASS_NAME.SHOW);
-    }
+    this._renderer.addClass(this._element.nativeElement, CLASS_NAME.SHOW);
 
     const transitionComplete = () => {
       if (this._config.focus) {

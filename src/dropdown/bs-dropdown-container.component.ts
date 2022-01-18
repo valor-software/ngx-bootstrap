@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 
 import { BsDropdownState } from './bs-dropdown.state';
-import { isBs3 } from 'ngx-bootstrap/utils';
 
 import { dropdownAnimation } from './dropdown-animations';
 import { AnimationBuilder, AnimationFactory } from '@angular/animations';
@@ -57,7 +56,7 @@ export class BsDropdownContainerComponent implements OnDestroy {
 
       this._renderer.addClass(this._element.nativeElement.querySelector('div'), 'open');
 
-      if (dropdown && !isBs3()) {
+      if (dropdown) {
         this._renderer.addClass(dropdown, 'show');
 
         if (dropdown.classList.contains('dropdown-menu-right') || dropdown.classList.contains('dropdown-menu-end')) {
