@@ -95,7 +95,7 @@ import { RouterModule } from '@angular/router';
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
     RouterModule,
-    NgAisModule.forRoot()
+    NgAisModule
   ],
   exports: [
     SearchFilterPipe,

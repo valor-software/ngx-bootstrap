@@ -3,6 +3,7 @@ import { AfterContentInit, Component, Inject } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, UrlSerializer } from '@angular/router';
 import { Analytics } from '@ngx-bootstrap-doc/docs';
 import { filter } from 'rxjs/operators';
+import algoliasearch from "algoliasearch/lite";
 
 
 @Component({
@@ -11,6 +12,11 @@ import { filter } from 'rxjs/operators';
 })
 export class AppComponent implements AfterContentInit {
   showSidebar = false;
+  config = {
+    searchClient: algoliasearch('HYPJ62ELGP', '64b81b76c05cb5bf0259b21526c7a916'),
+    indexName: 'instant_search',
+    routing: true,
+  };
 
   constructor(
     private route: ActivatedRoute,

@@ -25,6 +25,7 @@ export class TopMenuComponent implements AfterViewInit, OnDestroy {
     unprefixedUrl: string;
   }[] = [];
 
+
   constructor(
     @Inject(PLATFORM_ID) platformId: number,
     private http: HttpClient,
@@ -77,6 +78,34 @@ export class TopMenuComponent implements AfterViewInit, OnDestroy {
         _prev = _cur;
       }
     });
+  }
+
+  onKeyUp = (event: any) => {
+    if (event.key !== 'Escape') {
+      return;
+    }
+    this.closeFilters();
+  };
+
+  onClick = (event: any) => {
+    // if (event.target !== this.header) {
+    //   return;
+    // }
+    // this.closeFilters();
+  };
+
+  public openFilters() {
+    document.body.classList.add('filtering');
+    window.scrollTo(0, 0);
+    window.addEventListener('keyup', this.onKeyUp);
+    window.addEventListener('click', this.onClick);
+  }
+
+  public closeFilters() {
+    document.body.classList.remove('filtering');
+    // this.resultsContainer?.scrollIntoView();
+    window.removeEventListener('keyup', this.onKeyUp);
+    window.removeEventListener('click', this.onClick);
   }
 
   ngOnDestroy() {

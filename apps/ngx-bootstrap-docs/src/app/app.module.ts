@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { DOCS_TOKENS, DocsModule, NgApiDoc, SIDEBAR_ROUTES, SidebarRoutesStructure } from '@ngx-bootstrap-doc/docs';
 // import { ScullyLibModule } from '@scullyio/ng-lib';
 import { routes } from './app.routing';
+import { NgAisModule } from "angular-instantsearch";
 
 @NgModule({
   declarations: [
@@ -22,8 +23,9 @@ import { routes } from './app.routing';
     HttpClientModule,
     RouterModule.forRoot(routes, { useHash: environment.useHash }),
     // NgxPageScrollModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule.forRoot(),
     // ScullyLibModule
+    NgAisModule.forRoot()
   ],
   providers: [
     { provide: NgApiDoc, useValue: ngdoc },
