@@ -8,8 +8,7 @@ import { ConfigModel, PagerModel } from './models';
   providedIn: 'root'
 })
 export class PaginationConfig {
-  main: ConfigModel = {
-    maxSize: void 0,
+  main: Partial<ConfigModel> = {
     itemsPerPage: 10,
     boundaryLinks: false,
     directionLinks: true,

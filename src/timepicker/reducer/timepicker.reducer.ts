@@ -14,14 +14,14 @@ import {
 import { changeTime, setTime, isValidLimit } from '../timepicker.utils';
 import { TimepickerActions } from './timepicker.actions';
 
-export class TimepickerState {
-  value: Date;
+export interface TimepickerState {
+  value?: Date;
   config: TimepickerComponentState;
   controls: TimepickerControls;
 }
 
 export const initialState: TimepickerState = {
-  value: null,
+  value: void 0,
   config: new TimepickerConfig(),
   controls: {
     canIncrementHours: true,
@@ -36,7 +36,6 @@ export const initialState: TimepickerState = {
   }
 };
 
-// tslint:disable-next-line:cyclomatic-complexity
 export function timepickerReducer(state = initialState, action: Action) {
   switch (action.type) {
     case TimepickerActions.WRITE_VALUE: {

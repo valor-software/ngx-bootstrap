@@ -30,7 +30,11 @@ export function formatYearsCalendar(
   return {
     years: yearsMatrix,
     monthTitle: '',
-    yearTitle
+    yearTitle,
+    hideLeftArrow: false,
+    hideRightArrow: false,
+    disableLeftArrow: false,
+    disableRightArrow: false
   };
 }
 

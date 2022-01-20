@@ -1,5 +1,3 @@
-// tslint:disable:comment-format
-
 import { LocaleData } from '../locale/locale.class';
 
 //! moment.js locale configuration

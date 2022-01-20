@@ -1,0 +1,288 @@
+sudo: false
+language: node_js
+node_js: "12"
+
+services:
+  - xvfb
+
+notifications:
+  email: false
+
+git:
+  depth: 3
+  submodules: false
+
+env:
+  global:
+    - MOZ_HEADLESS=1
+    - SAUCE_USERNAME_PR=valorkinpr
+    - SAUCE_ACCESS_KEY_PR=e0a97bd3-4b74-4408-89bf-cce1b44a8bf1
+    - BROWSER_PROVIDER_READY_FILE=/tmp/sauce-connect-ready
+    - LOGS_DIR=/tmp/logs
+    - CYPRESS_RECORD_KEY=4aa7a1c0-3a4f-444e-b324-6fc305a543a8
+    - NPM_AUTH_TOKEN_CI_PR=$(./scripts/ci/npm-ci-key.sh)
+
+#     testing cypress smoke
+testSmokeCy: &testSmokeCy
+  script:
+  - ng serve --prod &
+  - $(npm bin)/wait-on http-get://localhost:4200/#
+  - npm run cy:run:smoke -- --record --parallel --group smoke-tests
+    # after all tests finish running we need
+  # to kill all background jobs (like "npm start &")
+  - kill $(jobs -p) || true
+
+testPostDeploy: &testPostDeploy
+  script: CYPRESS_baseUrl=$BASE_URL npm run cy:run:all -- --record --parallel --group $GROUP_NAME --ci-build-id PostDeploy-$GROUP_NAME-$TRAVIS_BUILD_ID
+
+stages:
+- name: "Publish to ngx-bootstrap-ci"
+  if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v\d+
+- name: "Deploy to firebase preview channel"
+  if: branch = development AND type = pull_request
+- name: Testing
+  if: ( branch = development AND type = push ) OR type = pull_request OR tag =~ ^v\d+
+- name: deploy
+  if: branch = development AND type = push OR tag =~ ^v\d+
+- name: publish
+  if: tag =~ ^v\d+
+- name: "Post deploy testing"
+  if:  branch = development AND type = push OR tag =~ ^v\d+
+
+before_install:
+- export NG_CLI_ANALYTICS=ci
+- rm -rf node_modules/ngx-bootstrap
+- sudo apt-get install libgconf-2-4
+- npm install tslint
+
+install:
+- npm ci
+- if [[ "$NGV" == "latest" ]]; then  ./scripts/ci/npm-ng-latest.sh; fi
+- if [[ "$NGV" == "next" ]]; then  ./scripts/ci/npm-ng-next.sh; fi
+- npm i ngx-bootstrap-ci@$TRAVIS_COMMIT
+- npm run ci:rename-pkg
+- if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export SAUCE_USERNAME=$SAUCE_USERNAME_PR; export SAUCE_ACCESS_KEY=$SAUCE_ACCESS_KEY_PR; export NPM_AUTH_TOKEN_CI=$NPM_AUTH_TOKEN_CI_PR; fi
+
+jobs:
+  fast_finish: true
+  allow_failures:
+  - env: NGV=next
+  - name: sauce-tests
+  - name: "Cypress Applitools Snapshot tests"
+  - name: "Cypress suit run on SSR 1thread"
+  - name: "Cypress suit run on SSR 2thread"
+  - name: "Cypress suit run on SSR 3thread"
+  include:
+  # precache npm and apt dependencies
+  #    - stage: precache
+  #      install: npm ci
+  #      script: true
+  #      addons:
+  #        chrome: stable
+  #        apt:
+  #          sources:
+  #          - ubuntu-toolchain-r-testing
+  #          # required by node-gyp to build some packages
+  #          packages:
+  #          - g++-4.8
+  # run in parallel
+  - stage: "Publish to ngx-bootstrap-ci"
+    install: true
+    script:
+    - npm ci
+    - npm run build
+    - npm run ci:update-pkg
+    - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then export NPM_AUTH_TOKEN_CI=$NPM_AUTH_TOKEN_CI_PR; fi
+    - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
+    - cd dist
+    - npm publish --tag $TRAVIS_COMMIT
+    skip_cleanup: true
+    on:
+      all_branches: true
+  - stage: Testing
+    #   lint code
+    script: npm run lint-src
+    name: "Lint"
+    install: true
+  #   testing
+  - script: npm run testing-coverage
+    name: "Test with current Angular version"
+    after_success: ./node_modules/.bin/codecov
+  - script: ng testing && tsc -p schematics/tsconfig.json && npm run testing:schematics
+    name: "Test with latest Angular version"
+    env: NGV=latest
+  - script: ng testing && tsc -p schematics/tsconfig.json && npm run testing:schematics
+    name: "Test with next Angular version"
+    env: NGV=next
+  - script:
+    name: "Cypress Smoke Tests 1t thread"
+    <<: *testSmokeCy
+  - script:
+    name: "Cypress Smoke Tests 2d thread"
+    <<: *testSmokeCy
+  - script: npm run demo.ng-build
+    name: "Check prod build with current Angular version"
+  - script: npm run demo.ng-build
+    name: "Check prod build with latest Angular version"
+    env: NGV=latest
+  - script: npm run demo.ng-build
+    name: "Check prod build with next Angular version"
+    env: NGV=next
+  - script: npm run testing-cross
+    name: sauce-tests
+    env: SAUCE=true
+    addons:
+      sauce_connect:
+        username: $SAUCE_USERNAME_PR
+        access_key: $SAUCE_ACCESS_KEY_PR
+    before_script:
+    - mkdir -p $LOGS_DIR
+    after_script:
+    - cd node_modules/ngx-bootstrap
+    - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
+    - if [[ "$TRAVIS_PULL_REQUEST" != false ]]; then npm unpublish --tag $TRAVIS_COMMIT --force; fi
+
+  - stage: "Deploy to firebase preview channel"
+    skip_cleanup: true
+    provider: firebase
+    project: ngx-bootstrap-demo
+    before_script:
+      - sudo apt-get install jq
+      - npm install firebase-tools -g
+      - npm run demo.ng-build
+    script: bash scripts/firebase/deploy-to-preview-channel.sh
+
+  - &surge
+    stage: deploy
+    script:
+    - if [[ "$NGV" == "latest"  ||  "$NGV" == "next"  ]]; then npm run demo.build:latest; fi
+    - if [[ "$NGV" != "latest"  &&  "$NGV" != "next" ]]; then npm run demo.build; fi
+    deploy:
+      provider: surge
+      project: ./gh-pages/
+      domain: ngx-bootstrap.surge.sh
+      on: development
+  - <<: *surge
+    env: NGV=latest
+    deploy:
+      provider: surge
+      project: ./gh-pages/
+      domain: ngx-bootstrap-latest.surge.sh
+      on: development
+  - <<: *surge
+    env: NGV=next
+    deploy:
+      provider: surge
+      project: ./gh-pages/
+      domain: ngx-bootstrap-next.surge.sh
+      on: development
+  # deploy to ngx-universal.herokuapp.com/
+  - stage: deploy
+    script: npm run build:ssr
+    before_deploy:
+    - cd ./demo/dist
+    deploy:
+      provider: heroku
+      api_key: $HEROKU_API_KEY
+      skip_cleanup: true
+      app: ngx-universal
+      on: development
+
+  # publish to gh pages and npm
+  - stage: publish
+    script: npm run demo.build
+    after_deploy: npm run flow.github-release
+    deploy:
+      provider: pages
+      local_dir: gh-pages
+      skip_cleanup: true
+      github_token: $GITHUB_TOKEN
+      app: ngx-universal
+      on:
+        tags: true
+  - stage: publish
+    script: npm run build
+    before_deploy: "cd dist"
+    deploy:
+      provider: npm
+      email: "valorkin@gmail.com"
+      api_key: $NPM_AUTH_TOKEN
+      tag: next
+      skip_cleanup: true
+      on:
+        tags: true
+
+  #     testing cypress full for herokuapp
+  - stage: "post deploy testing"
+    #      name: "Run cypress to check SSR"
+    #      env: URL=https://ngx-universal.herokuapp.com/#
+    script:
+    name: "Cypress suit run on SSR 1thread"
+    env:
+    - GROUP_NAME=SSR
+    - BASE_URL=https://ngx-universal.herokuapp.com/#/
+    <<: *testPostDeploy
+  - script:
+    name: "Cypress suit run on SSR 2thread"
+    env:
+    - GROUP_NAME=SSR
+    - BASE_URL=https://ngx-universal.herokuapp.com/#/
+    <<: *testPostDeploy
+  - script:
+    name: "Cypress suit run on SSR 3thread"
+    env:
+    - GROUP_NAME=SSR
+    - BASE_URL=https://ngx-universal.herokuapp.com/#/
+    <<: *testPostDeploy
+  #     testing cypress full for gh-pages
+  - script:
+    name: "Cypress with @latest angular 1thread"
+    env:
+    - GROUP_NAME=ng-latest
+    - BASE_URL=http://ngx-bootstrap-latest.surge.sh/#/
+    <<: *testPostDeploy
+  - script:
+    name: "Cypress with @latest angular 2thread"
+    env:
+    - GROUP_NAME=ng-latest
+    - BASE_URL=http://ngx-bootstrap-latest.surge.sh/#/
+    <<: *testPostDeploy
+  - script:
+    name: "Cypress with @latest angular 3thread"
+    env:
+    - GROUP_NAME=ng-latest
+    - BASE_URL=http://ngx-bootstrap-latest.surge.sh/#/
+    after_script:
+    - cd node_modules/ngx-bootstrap
+    - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
+    - if: branch = development; then npm unpublish --tag $TRAVIS_COMMIT --force; fi
+    <<: *testPostDeploy
+  - script:
+    name: "Cypress on gh-pages after deploy 1thread"
+    if: tag =~ ^v\d+
+    env:
+    - GROUP_NAME=production
+    - BASE_URL=https://valor-software.com/ngx-bootstrap/#/
+    <<: *testPostDeploy
+  - script:
+    name: "Cypress on gh-pages after deploy 2thread"
+    if: tag =~ ^v\d+
+    env:
+    - GROUP_NAME=production
+    - BASE_URL=https://valor-software.com/ngx-bootstrap/#/
+    <<: *testPostDeploy
+  - script: APPLITOOLS_API_KEY=Nls100t102uNgLhLpblVUdA3tP104MQQS9VUYgHQ5tYOUuIxU110 CYPRESS_baseUrl=https://valor-software.com/ngx-bootstrap/#/ npm run cy:run:snapshot
+    name: "Cypress Applitools Snapshot tests"
+    if: tag =~ ^v\d+
+    after_script:
+    - cd node_modules/ngx-bootstrap
+    - npm config set '//registry.npmjs.org/:_authToken' $NPM_AUTH_TOKEN_CI
+    - npm unpublish --tag $TRAVIS_COMMIT --force
+
+cache:
+  apt: true
+  npm: true
+  directories:
+  - node_modules
+  - ~/.npm
+  - ~/.cache

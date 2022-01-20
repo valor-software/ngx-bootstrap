@@ -11,6 +11,11 @@ import { filter, takeUntil } from 'rxjs/operators';
 import { ComponentLoaderFactory, ComponentLoader } from 'ngx-bootstrap/component-loader';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { DatepickerDateCustomClasses } from './models';
+import {
+  checkBsValue,
+  checkRangesWithMaxDate,
+  setDateRangesCurrentTimeOnDateSelect
+} from './utils/bs-calendar-utils';
 
 @Directive({
   selector: '[bsDaterangepicker]',
@@ -53,26 +58,29 @@ export class BsDaterangepickerDirective
   /**
    * Emits an event when the daterangepicker is shown
    */
-  /* tslint:disable-next-line: no-any*/
-  @Output() onShown: EventEmitter<any>;
+  @Output() onShown: EventEmitter<unknown>;
   /**
    * Emits an event when the daterangepicker is hidden
    */
-  /* tslint:disable-next-line: no-any*/
-  @Output() onHidden: EventEmitter<any>;
+  @Output() onHidden: EventEmitter<unknown>;
 
-  _bsValue: Date[];
+  _bsValue?: (Date|undefined)[];
   isOpen$: BehaviorSubject<boolean>;
-  isDestroy$: Subject<void>;
+  isDestroy$ = new Subject();
 
   /**
    * Initial value of daterangepicker
    */
   @Input()
-  set bsValue(value: Date[]) {
+  set bsValue(value: (Date|undefined)[] | undefined) {
     if (this._bsValue === value) {
       return;
     }
+
+    if (value && this.bsConfig?.initCurrentTime) {
+      value = setDateRangesCurrentTimeOnDateSelect(value);
+    }
+
     this._bsValue = value;
     this.bsValueChange.emit(value);
   }
@@ -80,30 +88,23 @@ export class BsDaterangepickerDirective
   /**
    * Config object for daterangepicker
    */
-  @Input() set bsConfig(bsConfig: Partial<BsDaterangepickerConfig>) {
-    this._bsConfig = bsConfig;
-    this.setConfig();
-    this._rangeInputFormat$.next(bsConfig && bsConfig.rangeInputFormat);
-  }
-  get bsConfig(): Partial<BsDaterangepickerConfig> {
-    return this._bsConfig;
-  }
+  @Input() bsConfig?: Partial<BsDaterangepickerConfig>;
   /**
    * Indicates whether daterangepicker's content is enabled or not
    */
-  @Input() isDisabled: boolean;
+  @Input() isDisabled = false;
   /**
    * Minimum date which is available for selection
    */
-  @Input() minDate: Date;
+  @Input() minDate?: Date;
   /**
    * Maximum date which is available for selection
    */
-  @Input() maxDate: Date;
+  @Input() maxDate?: Date;
   /**
    * Date custom classes
    */
-  @Input() dateCustomClasses: DatepickerDateCustomClasses[];
+  @Input() dateCustomClasses?: DatepickerDateCustomClasses[];
   /**
    * Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays
    */
@@ -111,16 +112,16 @@ export class BsDaterangepickerDirective
   /**
    * Disable specific dates
    */
-  @Input() datesDisabled: Date[];
+  @Input() datesDisabled?: Date[];
 
   /**
    * Enable specific dates
    */
-  @Input() datesEnabled: Date[];
+  @Input() datesEnabled?: Date[];
   /**
    * Emits when daterangepicker value has been changed
    */
-  @Output() bsValueChange: EventEmitter<Date[]> = new EventEmitter();
+  @Output() bsValueChange = new EventEmitter<((Date|undefined)[]|undefined)>();
 
   get rangeInputFormat$(): Observable<string> {
     return this._rangeInputFormat$;
@@ -128,8 +129,7 @@ export class BsDaterangepickerDirective
 
   protected _subs: Subscription[] = [];
   private _datepicker: ComponentLoader<BsDaterangepickerContainerComponent>;
-  private _datepickerRef: ComponentRef<BsDaterangepickerContainerComponent>;
-  private _bsConfig: Partial<BsDaterangepickerConfig>;
+  private _datepickerRef?: ComponentRef<BsDaterangepickerContainerComponent>;
   private readonly _rangeInputFormat$ = new Subject<string>();
 
   constructor(public _config: BsDaterangepickerConfig,
@@ -160,28 +160,42 @@ export class BsDaterangepickerDirective
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    if (changes["bsConfig"]) {
+      if (changes["bsConfig"].currentValue?.initCurrentTime && changes["bsConfig"].currentValue?.initCurrentTime !== changes["bsConfig"].previousValue?.initCurrentTime && this._bsValue) {
+        this._bsValue = setDateRangesCurrentTimeOnDateSelect(this._bsValue);
+        this.bsValueChange.emit(this._bsValue);
+      }
+
+      this.setConfig();
+      this._rangeInputFormat$.next(changes["bsConfig"].currentValue && changes["bsConfig"].currentValue.rangeInputFormat);
+    }
+
+
     if (!this._datepickerRef || !this._datepickerRef.instance) {
       return;
     }
-    if (changes.minDate) {
+    if (changes["minDate"]) {
       this._datepickerRef.instance.minDate = this.minDate;
     }
-    if (changes.maxDate) {
+    if (changes["maxDate"]) {
       this._datepickerRef.instance.maxDate = this.maxDate;
     }
-    if (changes.datesDisabled) {
+    if (changes["datesDisabled"]) {
       this._datepickerRef.instance.datesDisabled = this.datesDisabled;
     }
-    if (changes.datesEnabled) {
+    if (changes["datesEnabled"]) {
       this._datepickerRef.instance.datesEnabled = this.datesEnabled;
     }
-    if (changes.daysDisabled) {
+    if (changes["daysDisabled"]) {
       this._datepickerRef.instance.daysDisabled = this.daysDisabled;
     }
-    if (changes.isDisabled) {
+    if (changes["isDisabled"]) {
+      if (this._elementRef?.nativeElement) {
+        this._elementRef.nativeElement.setAttribute('readonly', this.isDisabled);
+      }
       this._datepickerRef.instance.isDisabled = this.isDisabled;
     }
-    if (changes.dateCustomClasses) {
+    if (changes["dateCustomClasses"]) {
       this._datepickerRef.instance.dateCustomClasses = this.dateCustomClasses;
     }
   }
@@ -212,24 +226,32 @@ export class BsDaterangepickerDirective
       .position({ attachment: this.placement })
       .show({ placement: this.placement });
 
+    this.initSubscribes();
+  }
+
+  initSubscribes() {
     // if date changes from external source (model -> view)
     this._subs.push(
       this.bsValueChange.subscribe((value: Date[]) => {
-        this._datepickerRef.instance.value = value;
+        if (this._datepickerRef) {
+          this._datepickerRef.instance.value = value;
+        }
       })
     );
 
     // if date changes from picker (view -> model)
-    this._subs.push(
-      this._datepickerRef.instance.valueChange
-        .pipe(
-          filter((range: Date[]) => range && range[0] && !!range[1])
-        )
-        .subscribe((value: Date[]) => {
-          this.bsValue = value;
-          this.hide();
-        })
-    );
+    if (this._datepickerRef) {
+      this._subs.push(
+        this._datepickerRef.instance.valueChange
+          .pipe(
+            filter((range: Date[]) => range && range[0] && !!range[1])
+          )
+          .subscribe((value: Date[]) => {
+            this.bsValue = value;
+            this.hide();
+          })
+      );
+    }
   }
 
   /**
@@ -241,7 +263,7 @@ export class BsDaterangepickerDirective
       this._config,
       this.bsConfig,
       {
-        value: this._bsValue,
+        value: checkBsValue(this._bsValue, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
         isDisabled: this.isDisabled,
         minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
         maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
@@ -249,8 +271,9 @@ export class BsDaterangepickerDirective
         dateCustomClasses: this.dateCustomClasses || this.bsConfig && this.bsConfig.dateCustomClasses,
         datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
         datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled,
-        ranges: this.bsConfig && this.bsConfig.ranges,
-        maxDateRange: this.bsConfig && this.bsConfig.maxDateRange
+        ranges: checkRangesWithMaxDate(this.bsConfig && this.bsConfig.ranges, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
+        maxDateRange: this.bsConfig && this.bsConfig.maxDateRange,
+        initCurrentTime: this.bsConfig?.initCurrentTime
       }
     );
   }
@@ -284,12 +307,21 @@ export class BsDaterangepickerDirective
     this.show();
   }
 
+  unsubscribeSubscriptions() {
+    if (this._subs?.length) {
+      this._subs.map(sub => sub.unsubscribe());
+      this._subs.length = 0;
+    }
+  }
+
   ngOnDestroy(): void {
     this._datepicker.dispose();
     this.isOpen$.next(false);
     if (this.isDestroy$) {
-      this.isDestroy$.next();
+      this.isDestroy$.next(null);
       this.isDestroy$.complete();
     }
+
+    this.unsubscribeSubscriptions();
   }
 }

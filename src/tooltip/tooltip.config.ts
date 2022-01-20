@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 
 /** Default values provider for tooltip */
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class TooltipConfig {
   /** sets disable adaptive position */
   adaptivePosition = true;
@@ -12,7 +10,7 @@ export class TooltipConfig {
   /** array of event names which triggers tooltip opening */
   triggers = 'hover focus';
   /** a selector specifying the element the tooltip should be appended to. */
-  container: string;
+  container?: string;
   /** delay before showing the tooltip */
   delay = 0;
 }

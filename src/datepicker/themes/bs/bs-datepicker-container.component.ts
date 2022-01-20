@@ -1,10 +1,20 @@
-import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  OnDestroy,
+  OnInit,
+  Renderer2,
+  ViewChild
+} from '@angular/core';
 
 import { take } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 import { getFullYear, getMonth } from 'ngx-bootstrap/chronos';
 import { PositioningService } from 'ngx-bootstrap/positioning';
+import { TimepickerComponent } from 'ngx-bootstrap/timepicker';
 
 import { datepickerAnimation } from '../../datepicker-animations';
 import { BsDatepickerAbstractComponent } from '../../base/bs-datepicker-container';
@@ -27,16 +37,20 @@ import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
   animations: [datepickerAnimation]
 })
 export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponent
-  implements OnInit, OnDestroy {
+  implements OnInit, AfterViewInit, OnDestroy {
 
-  set value(value: Date) {
-    this._effects.setValue(value);
+  set value(value: Date|undefined) {
+    this._effects?.setValue(value);
   }
 
   valueChange: EventEmitter<Date> = new EventEmitter<Date>();
   animationState = 'void';
+  override isRangePicker = false;
 
   _subs: Subscription[] = [];
+
+  @ViewChild('startTP') startTimepicker?: TimepickerComponent;
+
   constructor(
     _renderer: Renderer2,
     private _config: BsDatepickerConfig,
@@ -55,14 +69,18 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
 
   ngOnInit(): void {
     this._positionService.setOptions({
-      modifiers: { flip: { enabled: this._config.adaptivePosition } },
-      allowedPositions: ['top', 'bottom']
+      modifiers: {
+        flip: {
+          enabled: this._config.adaptivePosition
+        },
+        preventOverflow: {
+          enabled: this._config.adaptivePosition
+        }
+      },
+      allowedPositions: this._config.allowedPositions
     });
 
-    this._positionService.event$
-      .pipe(
-        take(1)
-      )
+    this._positionService.event$?.pipe(take(1))
       .subscribe(() => {
         this._positionService.disable();
 
@@ -84,8 +102,8 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     this.clearBtnLbl = this._config.clearButtonLabel;
     this.clearPos = this._config.clearPosition;
     this.customRangeBtnLbl = this._config.customRangeButtonLabel;
-    this._effects
-      .init(this._store)
+    this.withTimepicker = this._config.withTimepicker;
+    this._effects?.init(this._store)
       // intial state options
       .setOptions(this._config)
       // data binding view --> model
@@ -97,14 +115,22 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     // todo: move it somewhere else
     // on selected date change
     this._subs.push(
-      this._store
-        /* tslint:disable-next-line: no-any */
-        .select((state: any) => state.selectedDate)
-        /* tslint:disable-next-line: no-any */
-        .subscribe((date: any) => this.valueChange.emit(date))
+      this._store.select((state: any) => state.selectedDate).subscribe((date: any) => this.valueChange.emit(date))
     );
 
+
     this._store.dispatch(this._actions.changeViewMode(this._config.startView));
+  }
+
+  ngAfterViewInit(): void {
+    this.selectedTimeSub.add(this.selectedTime?.subscribe((val) => {
+      if (Array.isArray(val) && val.length >= 1) {
+        this.startTimepicker?.writeValue(val[0]);
+      }
+    }));
+    this.startTimepicker?.registerOnChange((val: any) => {
+      this.timeSelectHandler(val, 0);
+    });
   }
 
   get isTopPosition(): boolean {
@@ -115,7 +141,11 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     this._positionService.enable();
   }
 
-  daySelectHandler(day: DayViewModel): void {
+  override timeSelectHandler(date: Date, index: number) {
+    this._store.dispatch(this._actions.selectTime(date, index));
+  }
+
+  override daySelectHandler(day: DayViewModel): void {
     if (!day) {
      return;
     }
@@ -129,7 +159,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     this._store.dispatch(this._actions.select(day.date));
   }
 
-  monthSelectHandler(day: CalendarCellViewModel): void {
+  override monthSelectHandler(day: CalendarCellViewModel): void {
     if (!day || day.isDisabled) {
       return;
     }
@@ -145,7 +175,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     );
   }
 
-  yearSelectHandler(day: CalendarCellViewModel): void {
+  override yearSelectHandler(day: CalendarCellViewModel): void {
     if (!day || day.isDisabled) {
       return;
     }
@@ -160,11 +190,11 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     );
   }
 
-  setToday(): void {
+  override setToday(): void {
     this._store.dispatch(this._actions.select(new Date()));
   }
 
-  clearDate(): void {
+  override clearDate(): void {
     this._store.dispatch(this._actions.select(undefined));
   }
 
@@ -172,6 +202,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     for (const sub of this._subs) {
       sub.unsubscribe();
     }
-    this._effects.destroy();
+    this.selectedTimeSub.unsubscribe();
+    this._effects?.destroy();
   }
 }

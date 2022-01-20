@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { Action, MiniStore, MiniState } from 'ngx-bootstrap/mini-ngrx';
 
-@Injectable()
+@Injectable({providedIn: 'platform'})
 export class TimepickerStore extends MiniStore<TimepickerState> {
   constructor() {
     const _dispatcher = new BehaviorSubject<Action>({

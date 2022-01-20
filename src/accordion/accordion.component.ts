@@ -6,6 +6,7 @@ import { AccordionConfig } from './accordion.config';
 @Component({
   selector: 'accordion',
   template: `<ng-content></ng-content>`,
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[attr.aria-multiselectable]': 'closeOthers',
     role: 'tablist',
@@ -17,7 +18,7 @@ export class AccordionComponent {
   /** turn on/off animation */
   @Input() isAnimated = false;
   /** if `true` expanding one item will close all others */
-  @Input() closeOthers: boolean;
+  @Input() closeOthers = false;
 
   protected groups: AccordionPanelComponent[] = [];
 

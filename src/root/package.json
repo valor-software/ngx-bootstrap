@@ -1,0 +1,233 @@
+{
+  "name": "ngx-bootstrap",
+  "version": "8.0.0",
+  "description": "Angular Bootstrap",
+  "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
+  "license": "MIT",
+  "schematics": "./schematics/collection.json",
+  "peerDependencies": {
+    "@angular/animations": "^13.0.0",
+    "@angular/core": "^13.0.0",
+    "@angular/common": "^13.0.0",
+    "@angular/forms": "^13.0.0",
+    "rxjs": "^6.5.3 || ^7.4.0"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
+  },
+  "exports": {
+    "./accordion": {
+      "types": "./accordion/ngx-bootstrap-accordion.d.ts",
+      "esm2020": "./accordion/esm2020/ngx-bootstrap-accordion.mjs",
+      "es2020": "./accordion/fesm2020/ngx-bootstrap-accordion.mjs",
+      "es2015": "./accordion/fesm2015/ngx-bootstrap-accordion.mjs",
+      "node": "./accordion/fesm2015/ngx-bootstrap-accordion.mjs",
+      "default": "./accordion/fesm2020/ngx-bootstrap-accordion.mjs"
+    },
+    "./alert": {
+      "types": "./alert/ngx-bootstrap-alert.d.ts",
+      "esm2020": "./alert/esm2020/ngx-bootstrap-alert.mjs",
+      "es2020": "./alert/fesm2020/ngx-bootstrap-alert.mjs",
+      "es2015": "./alert/fesm2015/ngx-bootstrap-alert.mjs",
+      "node": "./alert/fesm2015/ngx-bootstrap-alert.mjs",
+      "default": "./alert/fesm2020/ngx-bootstrap-alert.mjs"
+    },
+    "./buttons": {
+      "types": "./buttons/ngx-bootstrap-buttons.d.ts",
+      "esm2020": "./buttons/esm2020/ngx-bootstrap-buttons.mjs",
+      "es2020": "./buttons/fesm2020/ngx-bootstrap-buttons.mjs",
+      "es2015": "./buttons/fesm2015/ngx-bootstrap-buttons.mjs",
+      "node": "./buttons/fesm2015/ngx-bootstrap-buttons.mjs",
+      "default": "./buttons/fesm2020/ngx-bootstrap-buttons.mjs"
+    },
+    "./carousel": {
+      "types": "./carousel/ngx-bootstrap-carousel.d.ts",
+      "esm2020": "./carousel/esm2020/ngx-bootstrap-carousel.mjs",
+      "es2020": "./carousel/fesm2020/ngx-bootstrap-carousel.mjs",
+      "es2015": "./carousel/fesm2015/ngx-bootstrap-carousel.mjs",
+      "node": "./carousel/fesm2015/ngx-bootstrap-carousel.mjs",
+      "default": "./carousel/fesm2020/ngx-bootstrap-carousel.mjs"
+    },
+    "./chronos": {
+      "types": "./chronos/ngx-bootstrap-chronos.d.ts",
+      "esm2020": "./chronos/esm2020/ngx-bootstrap-chronos.mjs",
+      "es2020": "./chronos/fesm2020/ngx-bootstrap-chronos.mjs",
+      "es2015": "./chronos/fesm2015/ngx-bootstrap-chronos.mjs",
+      "node": "./chronos/fesm2015/ngx-bootstrap-chronos.mjs",
+      "default": "./chronos/fesm2020/ngx-bootstrap-chronos.mjs"
+    },
+    "./collapse": {
+      "types": "./collapse/ngx-bootstrap-collapse.d.ts",
+      "esm2020": "./collapse/esm2020/ngx-bootstrap-collapse.mjs",
+      "es2020": "./collapse/fesm2020/ngx-bootstrap-collapse.mjs",
+      "es2015": "./collapse/fesm2015/ngx-bootstrap-collapse.mjs",
+      "node": "./collapse/fesm2015/ngx-bootstrap-collapse.mjs",
+      "default": "./collapse/fesm2020/ngx-bootstrap-collapse.mjs"
+    },
+    "./component-loader": {
+      "types": "./component-loader/ngx-bootstrap-component-loader.d.ts",
+      "esm2020": "./component-loader/esm2020/ngx-bootstrap-component-loader.mjs",
+      "es2020": "./component-loader/fesm2020/ngx-bootstrap-component-loader.mjs",
+      "es2015": "./component-loader/fesm2015/ngx-bootstrap-component-loader.mjs",
+      "node": "./component-loader/fesm2015/ngx-bootstrap-component-loader.mjs",
+      "default": "./component-loader/fesm2020/ngx-bootstrap-component-loader.mjs"
+    },
+    "./datepicker": {
+      "types": "./datepicker/ngx-bootstrap-datepicker.d.ts",
+      "esm2020": "./datepicker/esm2020/ngx-bootstrap-datepicker.mjs",
+      "es2020": "./datepicker/fesm2020/ngx-bootstrap-datepicker.mjs",
+      "es2015": "./datepicker/fesm2015/ngx-bootstrap-datepicker.mjs",
+      "node": "./datepicker/fesm2015/ngx-bootstrap-datepicker.mjs",
+      "default": "./datepicker/fesm2020/ngx-bootstrap-datepicker.mjs"
+    },
+    "./dropdown": {
+      "types": "./dropdown/ngx-bootstrap-dropdown.d.ts",
+      "esm2020": "./dropdown/esm2020/ngx-bootstrap-dropdown.mjs",
+      "es2020": "./dropdown/fesm2020/ngx-bootstrap-dropdown.mjs",
+      "es2015": "./dropdown/fesm2015/ngx-bootstrap-dropdown.mjs",
+      "node": "./dropdown/fesm2015/ngx-bootstrap-dropdown.mjs",
+      "default": "./dropdown/fesm2020/ngx-bootstrap-dropdown.mjs"
+    },
+    "./focus-trap": {
+      "types": "./focus-trap/ngx-bootstrap-focus-trap.d.ts",
+      "esm2020": "./focus-trap/esm2020/ngx-bootstrap-focus-trap.mjs",
+      "es2020": "./focus-trap/fesm2020/ngx-bootstrap-focus-trap.mjs",
+      "es2015": "./focus-trap/fesm2015/ngx-bootstrap-focus-trap.mjs",
+      "node": "./focus-trap/fesm2015/ngx-bootstrap-focus-trap.mjs",
+      "default": "./focus-trap/fesm2020/ngx-bootstrap-focus-trap.mjs"
+    },
+    "./locale": {
+      "types": "./locale/ngx-bootstrap-locale.d.ts",
+      "esm2020": "./locale/esm2020/ngx-bootstrap-locale.mjs",
+      "es2020": "./locale/fesm2020/ngx-bootstrap-locale.mjs",
+      "es2015": "./locale/fesm2015/ngx-bootstrap-locale.mjs",
+      "node": "./locale/fesm2015/ngx-bootstrap-locale.mjs",
+      "default": "./locale/fesm2020/ngx-bootstrap-locale.mjs"
+    },
+    "./mini-ngrx": {
+      "types": "./mini-ngrx/ngx-bootstrap-mini-ngrx.d.ts",
+      "esm2020": "./mini-ngrx/esm2020/ngx-bootstrap-mini-ngrx.mjs",
+      "es2020": "./mini-ngrx/fesm2020/ngx-bootstrap-mini-ngrx.mjs",
+      "es2015": "./mini-ngrx/fesm2015/ngx-bootstrap-mini-ngrx.mjs",
+      "node": "./mini-ngrx/fesm2015/ngx-bootstrap-mini-ngrx.mjs",
+      "default": "./mini-ngrx/fesm2020/ngx-bootstrap-mini-ngrx.mjs"
+    },
+    "./modal": {
+      "types": "./modal/ngx-bootstrap-modal.d.ts",
+      "esm2020": "./modal/esm2020/ngx-bootstrap-modal.mjs",
+      "es2020": "./modal/fesm2020/ngx-bootstrap-modal.mjs",
+      "es2015": "./modal/fesm2015/ngx-bootstrap-modal.mjs",
+      "node": "./modal/fesm2015/ngx-bootstrap-modal.mjs",
+      "default": "./modal/fesm2020/ngx-bootstrap-modal.mjs"
+    },
+    "./pagination": {
+      "types": "./pagination/ngx-bootstrap-pagination.d.ts",
+      "esm2020": "./pagination/esm2020/ngx-bootstrap-pagination.mjs",
+      "es2020": "./pagination/fesm2020/ngx-bootstrap-pagination.mjs",
+      "es2015": "./pagination/fesm2015/ngx-bootstrap-pagination.mjs",
+      "node": "./pagination/fesm2015/ngx-bootstrap-pagination.mjs",
+      "default": "./pagination/fesm2020/ngx-bootstrap-pagination.mjs"
+    },
+    "./popover": {
+      "types": "./popover/ngx-bootstrap-popover.d.ts",
+      "esm2020": "./popover/esm2020/ngx-bootstrap-popover.mjs",
+      "es2020": "./popover/fesm2020/ngx-bootstrap-popover.mjs",
+      "es2015": "./popover/fesm2015/ngx-bootstrap-popover.mjs",
+      "node": "./popover/fesm2015/ngx-bootstrap-popover.mjs",
+      "default": "./popover/fesm2020/ngx-bootstrap-popover.mjs"
+    },
+    "./positioning": {
+      "types": "./positioning/ngx-bootstrap-positioning.d.ts",
+      "esm2020": "./positioning/esm2020/ngx-bootstrap-positioning.mjs",
+      "es2020": "./positioning/fesm2020/ngx-bootstrap-positioning.mjs",
+      "es2015": "./positioning/fesm2015/ngx-bootstrap-positioning.mjs",
+      "node": "./positioning/fesm2015/ngx-bootstrap-positioning.mjs",
+      "default": "./positioning/fesm2020/ngx-bootstrap-positioning.mjs"
+    },
+    "./progressbar": {
+      "types": "./progressbar/ngx-bootstrap-progressbar.d.ts",
+      "esm2020": "./progressbar/esm2020/ngx-bootstrap-progressbar.mjs",
+      "es2020": "./progressbar/fesm2020/ngx-bootstrap-progressbar.mjs",
+      "es2015": "./progressbar/fesm2015/ngx-bootstrap-progressbar.mjs",
+      "node": "./progressbar/fesm2015/ngx-bootstrap-progressbar.mjs",
+      "default": "./progressbar/fesm2020/ngx-bootstrap-progressbar.mjs"
+    },
+    "./rating": {
+      "types": "./rating/ngx-bootstrap-rating.d.ts",
+      "esm2020": "./rating/esm2020/ngx-bootstrap-rating.mjs",
+      "es2020": "./rating/fesm2020/ngx-bootstrap-rating.mjs",
+      "es2015": "./rating/fesm2015/ngx-bootstrap-rating.mjs",
+      "node": "./rating/fesm2015/ngx-bootstrap-rating.mjs",
+      "default": "./rating/fesm2020/ngx-bootstrap-rating.mjs"
+    },
+    "./sortable": {
+      "types": "./sortable/ngx-bootstrap-sortable.d.ts",
+      "esm2020": "./sortable/esm2020/ngx-bootstrap-sortable.mjs",
+      "es2020": "./sortable/fesm2020/ngx-bootstrap-sortable.mjs",
+      "es2015": "./sortable/fesm2015/ngx-bootstrap-sortable.mjs",
+      "node": "./sortable/fesm2015/ngx-bootstrap-sortable.mjs",
+      "default": "./sortable/fesm2020/ngx-bootstrap-sortable.mjs"
+    },
+    "./tabs": {
+      "types": "./tabs/ngx-bootstrap-tabs.d.ts",
+      "esm2020": "./tabs/esm2020/ngx-bootstrap-tabs.mjs",
+      "es2020": "./tabs/fesm2020/ngx-bootstrap-tabs.mjs",
+      "es2015": "./tabs/fesm2015/ngx-bootstrap-tabs.mjs",
+      "node": "./tabs/fesm2015/ngx-bootstrap-tabs.mjs",
+      "default": "./tabs/fesm2020/ngx-bootstrap-tabs.mjs"
+    },
+    "./timepicker": {
+      "types": "./timepicker/ngx-bootstrap-timepicker.d.ts",
+      "esm2020": "./timepicker/esm2020/ngx-bootstrap-timepicker.mjs",
+      "es2020": "./timepicker/fesm2020/ngx-bootstrap-timepicker.mjs",
+      "es2015": "./timepicker/fesm2015/ngx-bootstrap-timepicker.mjs",
+      "node": "./timepicker/fesm2015/ngx-bootstrap-timepicker.mjs",
+      "default": "./timepicker/fesm2020/ngx-bootstrap-timepicker.mjs"
+    },
+    "./tooltip": {
+      "types": "./tooltip/ngx-bootstrap-tooltip.d.ts",
+      "esm2020": "./tooltip/esm2020/ngx-bootstrap-tooltip.mjs",
+      "es2020": "./tooltip/fesm2020/ngx-bootstrap-tooltip.mjs",
+      "es2015": "./tooltip/fesm2015/ngx-bootstrap-tooltip.mjs",
+      "node": "./tooltip/fesm2015/ngx-bootstrap-tooltip.mjs",
+      "default": "./tooltip/fesm2020/ngx-bootstrap-tooltip.mjs"
+    },
+    "./typeahead": {
+      "types": "./typeahead/ngx-bootstrap-typeahead.d.ts",
+      "esm2020": "./typeahead/esm2020/ngx-bootstrap-typeahead.mjs",
+      "es2020": "./typeahead/fesm2020/ngx-bootstrap-typeahead.mjs",
+      "es2015": "./typeahead/fesm2015/ngx-bootstrap-typeahead.mjs",
+      "node": "./typeahead/fesm2015/ngx-bootstrap-typeahead.mjs",
+      "default": "./typeahead/fesm2020/ngx-bootstrap-typeahead.mjs"
+    },
+    "./utils": {
+      "types": "./utils/ngx-bootstrap-utils.d.ts",
+      "esm2020": "./utils/esm2020/ngx-bootstrap-utils.mjs",
+      "es2020": "./utils/fesm2020/ngx-bootstrap-utils.mjs",
+      "es2015": "./utils/fesm2015/ngx-bootstrap-utils.mjs",
+      "node": "./utils/fesm2015/ngx-bootstrap-utils.mjs",
+      "default": "./utils/fesm2020/ngx-bootstrap-utils.mjs"
+    }
+  },
+  "sideEffects": false,
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "tag": "next"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/valor-software/ngx-bootstrap.git"
+  },
+  "bugs": {
+    "url": "https://github.com/valor-software/ngx-bootstrap/issues"
+  },
+  "homepage": "https://github.com/valor-software/ngx-bootstrap#readme",
+  "keywords": [
+    "angular",
+    "bootstap",
+    "ng",
+    "ng2",
+    "angular2",
+    "twitter-bootstrap"
+  ]
+}

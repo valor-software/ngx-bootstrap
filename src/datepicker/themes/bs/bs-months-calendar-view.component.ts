@@ -20,7 +20,7 @@ import {
 
       <table role="grid" class="months">
         <tbody>
-        <tr *ngFor="let row of calendar.months">
+        <tr *ngFor="let row of calendar?.months">
           <td *ngFor="let month of row" role="gridcell"
               (click)="viewMonth(month)"
               (mouseenter)="hoverMonth(month, true)"
@@ -36,7 +36,7 @@ import {
   `
 })
 export class BsMonthCalendarViewComponent {
-  @Input() calendar: MonthsCalendarViewModel;
+  @Input() calendar!: MonthsCalendarViewModel;
 
   @Output() onNavigate = new EventEmitter<BsNavigationEvent>();
   @Output() onViewMode = new EventEmitter<BsDatepickerViewMode>();
@@ -58,6 +58,6 @@ export class BsMonthCalendarViewComponent {
   }
 
   changeViewMode(event: BsDatepickerViewMode): void {
-    this.onViewMode.emit(event);
+    this.onViewMode.emit(event as BsDatepickerViewMode);
   }
 }

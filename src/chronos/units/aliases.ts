@@ -27,8 +27,8 @@ export function normalizeUnits(units: string | string[]): string {
   return isString(units) ? aliases[units] || aliases[units.toLowerCase()] : undefined;
 }
 
-export function normalizeObjectUnits(inputObject: { [key: string]: number }): DateObject {
-  const normalizedInput: { [key: string]: number } = {};
+export function normalizeObjectUnits(inputObject: Record<string, unknown>): DateObject {
+  const normalizedInput: Record<string, unknown> = {};
   let normalizedProp;
   let prop;
 
@@ -41,5 +41,5 @@ export function normalizeObjectUnits(inputObject: { [key: string]: number }): Da
     }
   }
 
-  return normalizedInput as any;
+  return normalizedInput;
 }

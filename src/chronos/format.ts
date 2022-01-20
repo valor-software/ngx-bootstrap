@@ -10,7 +10,7 @@ import { Locale } from './locale/locale.class';
 import { getLocale } from './locale/locales';
 import { isDateValid } from './utils/type-checks';
 
-export function formatDate(date: Date, format: string, locale?: string, isUTC?: boolean, offset = 0): string {
+export function formatDate(date: Date, format?: string, locale?: string, isUTC?: boolean, offset = 0): string {
   const _locale = getLocale(locale || 'en');
   if (!_locale) {
     throw new Error(

@@ -13,8 +13,8 @@ export function getViewportOffsetRectRelativeToArtbitraryNode(element: HTMLEleme
   const scrollLeft = !excludeScroll ? getScroll(html, 'left') : 0;
 
   const offset = {
-    top: scrollTop - Number(relativeOffset.top) + Number(relativeOffset.marginTop),
-    left: scrollLeft - Number(relativeOffset.left) + Number(relativeOffset.marginLeft),
+    top: scrollTop - Number(relativeOffset?.top) + Number(relativeOffset?.marginTop),
+    left: scrollLeft - Number(relativeOffset?.left) + Number(relativeOffset?.marginLeft),
     width,
     height
   };

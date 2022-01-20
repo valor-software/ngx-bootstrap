@@ -71,6 +71,7 @@ Before you submit your Pull Request (PR) consider the following guidelines:
 
 * Search [GitHub](https://github.com/valor-software/ngx-bootstrap/pulls) for an open or closed PR
   that relates to your submission. You don't want to duplicate effort.
+* Create a fork from ngx-bootstrap repository as it is described in [GitHub docs](https://docs.github.com/en/get-started/quickstart/fork-a-repo#forking-a-repository)
 * To build lib for development, follow [this manual](https://github.com/valor-software/ngx-bootstrap#how-to-build-lib-for-development)
 * Make your changes in a new git branch:
 

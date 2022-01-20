@@ -1,6 +1,6 @@
 import { isSameYear, shiftDate } from 'ngx-bootstrap/chronos';
 import { YearsCalendarViewModel, CalendarCellViewModel } from '../models';
-import { isYearDisabled } from '../utils/bs-calendar-utils';
+import { isDisabledDate, isEnabledDate, isYearDisabled } from '../utils/bs-calendar-utils';
 
 export interface FlagYearsCalendarOptions {
   isDisabled: boolean;
@@ -9,13 +9,15 @@ export interface FlagYearsCalendarOptions {
   hoveredYear: Date;
   selectedDate: Date;
   selectedRange: Date[];
+  datesDisabled: Date[];
+  datesEnabled: Date[];
   displayMonths: number;
   yearIndex: number;
 }
 
 export function flagYearsCalendar(
   yearsCalendar: YearsCalendarViewModel,
-  options: FlagYearsCalendarOptions
+  options: Partial<FlagYearsCalendarOptions>
 ): YearsCalendarViewModel {
   yearsCalendar.years.forEach(
     (years: CalendarCellViewModel[], rowIndex: number) => {
@@ -24,6 +26,8 @@ export function flagYearsCalendar(
         const isHovered = isSameYear(year.date, options.hoveredYear);
         const isDisabled =
           options.isDisabled ||
+          isDisabledDate(year.date, options.datesDisabled, 'year') ||
+          isEnabledDate(year.date, options.datesEnabled, 'year') ||
           isYearDisabled(year.date, options.minDate, options.maxDate);
 
         if (!options.selectedDate && options.selectedRange) {
@@ -49,8 +53,9 @@ export function flagYearsCalendar(
 
   // todo: add check for linked calendars
   yearsCalendar.hideLeftArrow =
-    options.yearIndex > 0 && options.yearIndex !== options.displayMonths;
+    !!options.yearIndex && options.yearIndex > 0 && options.yearIndex !== options.displayMonths;
   yearsCalendar.hideRightArrow =
+    !!options.yearIndex && !!options.displayMonths &&
     options.yearIndex < options.displayMonths &&
     options.yearIndex + 1 !== options.displayMonths;
 

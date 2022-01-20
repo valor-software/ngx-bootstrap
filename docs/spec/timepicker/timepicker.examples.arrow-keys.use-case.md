@@ -13,7 +13,7 @@ Main success scenario:
 3. User sees timepicker component with hour, minute inputs, clickable button "AM"("PM") and info alert with current date and time
 4. User sees clickable button "Enable / Disable keyboard arrow keys"
 5. When user activates hours input and click keyboard arrow up key, then time number increases with appropriate changes in info alert
-6. When user clicks keyboard arrow down key, then time number decreases with approproate changes in info alert
+6. When user clicks keyboard arrow down key, then time number decreases with appropriate changes in info alert
 7. When user activates minutes input and click keyboard arrow up key, then time number increases with appropriate changes in info alert
 8. When user clicks keyboard arrow down key, then time number decreases with appropriate changes in info alert
 9. When user clicks on "Enable / Disable keyboard arrow keys" button, visually nothing changed

@@ -39,7 +39,7 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
   /**
    * Default date custom classes for all date/range pickers
    */
-  dateCustomClasses: DatepickerDateCustomClasses[];
+  dateCustomClasses?: DatepickerDateCustomClasses[];
   /**
    * Default tooltip text for all date/range pickers
    */
@@ -81,6 +81,11 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Shows previous and current month, instead of current and next (dateRangePicker only)
    */
   showPreviousMonth?: boolean;
+
+  /**
+   * Prevents change to next month for right calendar in two calendars view (dateRangePicker only)
+   */
+  preventChangeToNextMonth?: boolean;
 
   /**
    * Add class to current day
@@ -169,4 +174,17 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Label for 'custom range' button
    */
   customRangeButtonLabel = 'Custom Range';
+
+  /**
+   * Shows timepicker under datepicker
+   */
+  withTimepicker = false;
+  /**
+   * Set current hours, minutes, seconds and milliseconds for bsValue
+   */
+  initCurrentTime?: boolean;
+  /**
+   * Set allowed positions of container.
+   */
+  allowedPositions = ['top', 'bottom'];
 }

@@ -1,4 +1,3 @@
-// tslint:disable: switch-default
 import { TimeUnit, UnitOfTime } from '../types';
 import {
   setDate, setFullDate, setHours, setMilliseconds, setMinutes, setMonth, setSeconds,

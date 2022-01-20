@@ -34,7 +34,11 @@ export function isValidLimit(controls: TimepickerComponentState, newDate: Date):
   return true;
 }
 
-export function toNumber(value: string | number): number {
+export function toNumber(value?: string | number): number {
+  if (typeof value === 'undefined') {
+    return NaN;
+  }
+
   if (typeof value === 'number') {
     return value;
   }
@@ -47,7 +51,7 @@ export function isNumber(value: string | number): value is number {
 }
 
 export function parseHours(
-  value: string | number,
+  value?: string | number,
   isPM = false
 ): number {
   const hour = toNumber(value);
@@ -62,7 +66,7 @@ export function parseHours(
   return hour;
 }
 
-export function parseMinutes(value: string | number): number {
+export function parseMinutes(value?: string | number): number {
   const minute = toNumber(value);
   if (isNaN(minute) || minute < 0 || minute > minutesPerHour) {
     return NaN;
@@ -71,7 +75,7 @@ export function parseMinutes(value: string | number): number {
   return minute;
 }
 
-export function parseSeconds(value: string | number): number {
+export function parseSeconds(value?: string | number): number {
   const seconds = toNumber(value);
   if (isNaN(seconds) || seconds < 0 || seconds > secondsPerMinute) {
     return NaN;
@@ -80,7 +84,7 @@ export function parseSeconds(value: string | number): number {
   return seconds;
 }
 
-export function parseTime(value: string | Date): Date {
+export function parseTime(value?: string | Date): Date | undefined {
   if (typeof value === 'string') {
     return new Date(value);
   }
@@ -88,9 +92,13 @@ export function parseTime(value: string | Date): Date {
   return value;
 }
 
-export function changeTime(value: Date, diff: Time): Date {
+export function changeTime(value?: Date, diff?: Time): Date {
   if (!value) {
     return changeTime(createDate(new Date(), 0, 0, 0), diff);
+  }
+
+  if (!diff) {
+    return value;
   }
 
   let hour = value.getHours();
@@ -112,7 +120,7 @@ export function changeTime(value: Date, diff: Time): Date {
   return createDate(value, hour, minutes, seconds);
 }
 
-export function setTime(value: Date, opts: Time): Date {
+export function setTime(value: Date | undefined, opts: Time): Date | undefined {
   let hour = parseHours(opts.hour);
   const minute = parseMinutes(opts.minute);
   const seconds = parseSeconds(opts.seconds) || 0;
@@ -180,8 +188,12 @@ export function isSecondInputValid(seconds: string): boolean {
   return !isNaN(parseSeconds(seconds));
 }
 
-export function isInputLimitValid(diff: Time, max: Date, min: Date): boolean {
+export function isInputLimitValid(diff: Time, max?: Date, min?: Date): boolean {
   const newDate = setTime(new Date(), diff);
+
+  if (!newDate) {
+    return false;
+  }
 
   if (max && newDate > max) {
     return false;
@@ -192,6 +204,10 @@ export function isInputLimitValid(diff: Time, max: Date, min: Date): boolean {
   }
 
   return true;
+}
+
+export function isOneOfDatesEmpty(hours: string, minutes: string, seconds: string): boolean {
+  return hours.length === 0 || minutes.length === 0 || seconds.length === 0;
 }
 
 export function isInputValid(

@@ -1,6 +1,6 @@
 import { Locale } from '../locale/locale.class';
 import { DateArray, DateObject, WeekParsing } from '../types';
-import { DateInput } from '../test/chain';
+import { DateInput } from '../testing/chain';
 
 export interface DateParsingConfig {
   /** date value */

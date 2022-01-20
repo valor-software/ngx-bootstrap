@@ -1,4 +1,3 @@
-// tslint:disable:no-bitwise max-line-length
 // FORMATTING
 
 import { addFormatToken } from '../format/format';

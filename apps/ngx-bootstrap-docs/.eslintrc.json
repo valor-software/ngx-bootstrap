@@ -1,0 +1,42 @@
+{
+  "extends": ["../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "extends": [
+        "plugin:@nrwl/nx/angular",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "parserOptions": {
+        "project": ["apps/ngx-bootstrap-docs/tsconfig.*?.json"]
+      },
+      "rules": {
+        "@angular-eslint/directive-selector": [
+          "off",
+          {
+            "type": "attribute",
+            "prefix": "ngx-bootstrap-base",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "off",
+          {
+            "type": "element",
+            "prefix": "ngx-bootstrap-base",
+            "style": "kebab-case"
+          }
+        ],
+        "@typescript-eslint/no-explicit-any": 0,
+        "@angular-eslint/component-class-suffix": 0,
+        "@angular-eslint/no-output-on-prefix": 0
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@nrwl/nx/angular-template"],
+      "rules": {}
+    }
+  ]
+}

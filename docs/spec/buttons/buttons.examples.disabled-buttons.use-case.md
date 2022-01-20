@@ -10,8 +10,8 @@ Main success scenario:
 ----------------------
 1. User opens Buttons demo page
 2. User clicks on Disabled Buttons sub-menu
-3. User see 2 buttons: "Button", "Enable/Disable" and able to click on each
-4. By default, "Button" is enabled
+3. User see 2 buttonss: primary button "Button" and warning button "Enable/Disable"
+4. By default, "Button" is enabled and user is able to click on each
 5. When user clicks on "Enable/Disable", "Button" become disabled and unclickable
 6. When user clicks on "Enable/Disable" second time, "Button" become enabled and clickable
 

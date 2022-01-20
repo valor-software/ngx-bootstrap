@@ -21,7 +21,7 @@ import {
 
       <table role="grid" class="years">
         <tbody>
-        <tr *ngFor="let row of calendar.years">
+        <tr *ngFor="let row of calendar?.years">
           <td *ngFor="let year of row" role="gridcell"
               (click)="viewYear(year)"
               (mouseenter)="hoverYear(year, true)"
@@ -37,7 +37,7 @@ import {
   `
 })
 export class BsYearsCalendarViewComponent {
-  @Input() calendar: YearsCalendarViewModel;
+  @Input() calendar!: YearsCalendarViewModel;
 
   @Output() onNavigate = new EventEmitter<BsNavigationEvent>();
   @Output() onViewMode = new EventEmitter<BsDatepickerViewMode>();

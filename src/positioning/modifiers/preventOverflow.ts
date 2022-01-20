@@ -1,14 +1,13 @@
 import { getBoundaries, isModifierEnabled } from '../utils';
-import { Data } from '../models';
+import { Data, Offsets } from '../models';
 
 export function preventOverflow(data: Data) {
-
   if (!isModifierEnabled(data.options, 'preventOverflow')) {
     return data;
   }
 
   // NOTE: DOM access here
-  // resets the targetOffsets's position so that the document size can be calculated excluding
+  // resets the target Offsets's position so that the document size can be calculated excluding
   // the size of the targetOffsets element itself
   const transformProp = 'transform';
   const targetStyles = data.instance.target.style; // assignment to help minification
@@ -21,7 +20,7 @@ export function preventOverflow(data: Data) {
     data.instance.target,
     data.instance.host,
     0, // padding
-    data.options.modifiers.preventOverflow.boundariesElement || 'scrollParent',
+    data.options.modifiers.preventOverflow?.boundariesElement || 'scrollParent',
     false // positionFixed
   );
 
@@ -34,28 +33,26 @@ export function preventOverflow(data: Data) {
   const order = ['left', 'right', 'top', 'bottom'];
 
   const check = {
-    primary(placement: string) {
-      let value = (data as any).offsets.target[placement];
-      if (
-        (data as any).offsets.target[placement] < boundaries[placement] &&
-        !false // options.escapeWithReference
-      ) {
-        value = Math.max((data as any).offsets.target[placement], boundaries[placement]);
+    primary(placement: keyof Offsets) {
+      let value = data.offsets.target[placement];
+      // options.escapeWithReference
+      if ((data.offsets.target[placement] ?? 0) < (boundaries[placement] ?? 0)) {
+        value = Math.max(data.offsets.target[placement] ?? 0, boundaries[placement] ?? 0);
       }
 
       return { [placement]: value };
     },
-    secondary(placement: string) {
-      const mainSide = placement === 'right' ? 'left' : 'top';
+    secondary(placement: keyof Offsets) {
+      const isPlacementHorizontal = placement === 'right';
+      const mainSide = isPlacementHorizontal ? 'left' : 'top';
+      const measurement = isPlacementHorizontal ? 'width' : 'height';
       let value = data.offsets.target[mainSide];
-      if (
-        (data as any).offsets.target[placement] > boundaries[placement] &&
-        !false // escapeWithReference
-      ) {
+
+      // escapeWithReference
+      if ((data.offsets.target[placement] ?? 0) > (boundaries[placement] ?? 0)) {
         value = Math.min(
-          data.offsets.target[mainSide],
-          boundaries[placement] -
-          (placement === 'right' ? data.offsets.target.width : data.offsets.target.height)
+          data.offsets.target[mainSide] ?? 0,
+          (boundaries[placement] ?? 0) - data.offsets.target[measurement]
         );
       }
 
@@ -63,19 +60,13 @@ export function preventOverflow(data: Data) {
     }
   };
 
-  let side: string;
-
-  order.forEach(placement => {
-    side = ['left', 'top']
-      .indexOf(placement) !== -1
-      ? 'primary'
-      : 'secondary';
+  order.forEach((placement) => {
+    const side = ['left', 'top', 'start'].indexOf(placement) !== -1 ? check['primary'] : check['secondary'];
 
     data.offsets.target = {
       ...data.offsets.target,
-      ...(check as any)[side](placement)
+      ...side(placement as keyof Offsets)
     };
-
   });
 
   return data;

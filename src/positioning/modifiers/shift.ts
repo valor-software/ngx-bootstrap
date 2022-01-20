@@ -14,13 +14,13 @@ export function shift(data: Data): Data {
     const shiftOffsets = {
       start: { [side]: host[side] },
       end: {
-        [side]: host[side] + host[measurement] - target[measurement]
+        [side]: (host[side] ?? 0) + host[measurement] - target[measurement]
       }
     };
 
     data.offsets.target = {
       ...target, ...{
-        [side]: (side === shiftVariation ? (shiftOffsets as any).start[side] : (shiftOffsets as any).end[side])
+        [side]: (side === shiftVariation ? shiftOffsets.start[side] : shiftOffsets.end[side])
       }
     };
   }

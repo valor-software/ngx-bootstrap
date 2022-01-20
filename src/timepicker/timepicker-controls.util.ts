@@ -115,10 +115,7 @@ export function getControlsValue(
   };
 }
 
-export function timepickerControls(
-  value: Date,
-  state: TimepickerComponentState
-): TimepickerControls {
+export function timepickerControls(value: Date | undefined, state: TimepickerComponentState): TimepickerControls {
   const hoursPerDay = 24;
   const hoursPerDayHalf = 12;
   const { min, max, hourStep, minuteStep, secondsStep, showSeconds } = state;

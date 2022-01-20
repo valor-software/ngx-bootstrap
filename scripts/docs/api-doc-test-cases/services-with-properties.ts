@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 /**
  * Service defining default values for progress bars
  */
-@Injectable()
+@Injectable({providedIn: 'platform'})
 export class ProgressbarConfig {
 
   /**

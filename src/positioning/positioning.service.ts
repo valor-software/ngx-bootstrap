@@ -41,12 +41,12 @@ export interface PositioningOptions {
 }
 
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class PositioningService {
-  private options: Options;
+  private options?: Options;
   private update$$ = new Subject<null>();
   private positionElements = new Map();
-  private triggerEvent$: Observable<number|Event>;
+  private triggerEvent$?: Observable<number|Event|null>;
   private isDisabled = false;
 
   constructor(
@@ -60,8 +60,7 @@ export class PositioningService {
         this.triggerEvent$ = merge(
           fromEvent(window, 'scroll', { passive: true }),
           fromEvent(window, 'resize', { passive: true }),
-          /* tslint:disable-next-line: deprecation */
-          of(0, animationFrameScheduler),
+                    of(0, animationFrameScheduler),
           this.update$$
         );
 
@@ -71,7 +70,7 @@ export class PositioningService {
           }
 
           this.positionElements
-          /* tslint:disable-next-line: no-any */
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
             .forEach((positionElement: any) => {
               positionElements(
                 _getHtmlElement(positionElement.target),
@@ -91,7 +90,7 @@ export class PositioningService {
     this.addPositionElement(options);
   }
 
-  get event$(): Observable<number|Event> {
+  get event$(): Observable<number|Event|null>|undefined {
     return this.triggerEvent$;
   }
 
@@ -108,7 +107,7 @@ export class PositioningService {
   }
 
   calcPosition(): void {
-    this.update$$.next();
+    this.update$$.next(null);
   }
 
   deletePositionElement(elRef: ElementRef): void {
@@ -120,7 +119,7 @@ export class PositioningService {
   }
 }
 
-function _getHtmlElement(element: HTMLElement | ElementRef | string): HTMLElement {
+function _getHtmlElement(element?: HTMLElement | ElementRef | string): HTMLElement | null {
   // it means that we got a selector
   if (typeof element === 'string') {
     return document.querySelector(element);
@@ -130,5 +129,5 @@ function _getHtmlElement(element: HTMLElement | ElementRef | string): HTMLElemen
     return element.nativeElement;
   }
 
-  return element;
+  return element ?? null;
 }

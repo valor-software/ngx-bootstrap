@@ -15,48 +15,47 @@ export function arrow(data: Data) {
 
   const len = isVertical ? 'height' : 'width';
   const sideCapitalized = isVertical ? 'Top' : 'Left';
-  const side = sideCapitalized.toLowerCase();
+  const side = sideCapitalized.toLowerCase() as keyof typeof targetOffsets;
   const altSide = isVertical ? 'left' : 'top';
   const opSide = isVertical ? 'bottom' : 'right';
   const arrowElementSize = getOuterSizes(arrowElement)[len];
   const placementVariation = data.placement.split(' ')[1];
 
   // top/left side
-  if (data.offsets.host[opSide] - arrowElementSize < (targetOffsets as any)[side]) {
-    (targetOffsets as any)[side] -=
-      (targetOffsets as any)[side] - (data.offsets.host[opSide] - arrowElementSize);
+  if ((data.offsets.host[opSide] ?? 0) - arrowElementSize < (targetOffsets[side] ?? 0)) {
+    (targetOffsets)[side] -=
+      (targetOffsets[side] ?? 0) - ((data.offsets.host[opSide] ?? 0) - arrowElementSize);
   }
   // bottom/right side
-  if (Number((data as any).offsets.host[side]) + Number(arrowElementSize) > (targetOffsets as any)[opSide]) {
-    (targetOffsets as any)[side] +=
-      Number((data as any).offsets.host[side]) + Number(arrowElementSize) - Number((targetOffsets as any)[opSide]);
+  if (Number((data).offsets.host[side]) + Number(arrowElementSize) > (targetOffsets[opSide] ?? 0)) {
+    (targetOffsets)[side] +=
+      Number((data).offsets.host[side]) + Number(arrowElementSize) - Number((targetOffsets)[opSide]);
   }
   targetOffsets = getClientRect(targetOffsets);
 
   // Compute the sideValue using the updated target offsets
   // take target margin in account because we don't have this info available
-  const css = getStyleComputedProperty(data.instance.target);
-  const targetMarginSide = parseFloat(css[`margin${sideCapitalized}`]);
-  const targetBorderSide = parseFloat(css[`border${sideCapitalized}Width`]);
+  const css = getStyleComputedProperty(data.instance.target) as unknown as Record<string, string>;
+  const targetMarginSide = parseFloat(css[`margin${sideCapitalized}`]) || 0;
+  const targetBorderSide = parseFloat(css[`border${sideCapitalized}Width`]) || 0;
 
   // compute center of the target
   let center: number;
   if (!placementVariation) {
-    center = Number((data as any).offsets.host[side]) + Number(data.offsets.host[len] / 2 - arrowElementSize / 2);
+    center = Number((data).offsets.host[side]) + Number(data.offsets.host[len] / 2 - arrowElementSize / 2);
   } else {
-    const targetBorderRadius = parseFloat(css.borderRadius);
+    const targetBorderRadius = parseFloat(css["borderRadius"]) || 0;
     const targetSideArrowOffset = Number(targetMarginSide + targetBorderSide + targetBorderRadius);
     center = side === placementVariation ?
-      Number((data as any).offsets.host[side]) + targetSideArrowOffset :
-      Number((data as any).offsets.host[side]) + Number(data.offsets.host[len] - targetSideArrowOffset);
+      Number((data).offsets.host[side]) + targetSideArrowOffset :
+      Number((data).offsets.host[side]) + Number(data.offsets.host[len] - targetSideArrowOffset);
   }
 
   let sideValue =
-    center - (targetOffsets as any)[side] - targetMarginSide - targetBorderSide;
+    center - (targetOffsets[side] ?? 0) - targetMarginSide - targetBorderSide;
 
   // prevent arrowElement from being placed not contiguously to its target
-  sideValue = Math.max(Math.min(targetOffsets[len] - arrowElementSize, sideValue), 0);
-
+  sideValue = Math.max(Math.min(targetOffsets[len] - (arrowElementSize + 5), sideValue), 0);
   data.offsets.arrow = {
     [side]: Math.round(sideValue),
     [altSide]: '' // make sure to unset any eventual altSide value from the DOM node

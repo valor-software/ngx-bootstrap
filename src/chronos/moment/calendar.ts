@@ -6,7 +6,7 @@ import { startOf } from '../utils/start-end-of';
 import { formatDate } from '../format';
 import { getLocale } from '../locale/locales';
 import { Locale } from '../locale/locale.class';
-import { DateInput } from '../test/chain';
+import { DateInput } from '../testing/chain';
 import { DateParsingConfig } from '../create/parsing.types';
 
 export type CalendarSpecVal = string | ((m?: DateInput, now?: Date) => string);

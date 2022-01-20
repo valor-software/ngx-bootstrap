@@ -1,0 +1,122 @@
+name: on-release
+on:
+  push:
+    tags:
+      - v*
+
+env:
+  NX_BRANCH: ${{ github.event.number }}
+  NX_RUN_GROUP: ${{ github.run_id }}
+  NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
+  MOZ_HEADLESS: 1
+  CONVENTIONAL_GITHUB_RELEASER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+jobs:
+  # one run
+  one_run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.9.0
+        with:
+          access_token: ${{ secrets.GITHUB_TOKEN }}
+
+  # install dependencies
+  install:
+    runs-on: ubuntu-latest
+    needs: one_run
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - uses: actions/cache@v2.1.4
+        id: cache
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+      - run: npm ci
+        if: steps.cache.outputs.cache-hit != 'true'
+
+  # build ngx-bootstrap
+  build:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - uses: actions/cache@v2.1.4
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+      - uses: actions/cache@v2.1.4
+        with:
+          path: dist
+          key: dist-${{ github.run_id }}
+      - run: |
+          npx nx build ngx-bootstrap --runner cloud --configuration production
+          npx ng build --runner cloud --configuration production
+
+  # update release notes in github
+  update_release_draft:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - uses: actions/cache@v2.1.4
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+      - run: npx conventional-github-releaser -p angular
+
+  # update gh_pages
+  gh_pages_deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.3.4
+        with:
+          ref: 'gh-pages'
+          path: 'gh-pages'
+
+      - uses: actions/cache@v2.1.4
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+      - uses: actions/cache@v2.1.4
+        with:
+          path: dist
+          key: dist-${{ github.run_id }}
+
+      #      - run: npm run scully
+      - run: npx ts-node ./scripts/gh-pages-predeploy.ts
+      - run: |
+          cd gh-pages
+          git config user.email gh-actions-${GITHUB_ACTOR}@github.com
+          git config user.name $GITHUB_ACTOR
+          git add -A
+          git commit -am "ci: gh-pages update"
+        continue-on-error: true
+      - name: push to gh-pages
+        uses: ad-m/github-push-action@v0.6.0
+        continue-on-error: true
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: 'gh-pages'
+          directory: 'gh-pages'
+
+  # publish to npm
+  npm_publish:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - uses: actions/cache@v2.1.4
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+      - uses: actions/cache@v2.1.4
+        with:
+          path: dist
+          key: dist-${{ github.run_id }}
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          package: "dist/ngx-bootstrap/package.json"
+          token: ${{ secrets.NPM_TOKEN }}

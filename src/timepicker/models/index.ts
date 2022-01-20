@@ -3,7 +3,7 @@ import { ControlValueAccessor } from '@angular/forms';
 
 export interface ControlValueAccessorModel {
   provide: InjectionToken<ControlValueAccessor>;
-  // tslint:disable-next-line:no-any
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   useExisting: Type<any>;
   multi: boolean;
 }

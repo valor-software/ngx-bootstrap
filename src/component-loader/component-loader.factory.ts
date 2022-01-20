@@ -5,7 +5,7 @@ import {
 import { ComponentLoader } from './component-loader.class';
 import { PositioningService } from 'ngx-bootstrap/positioning';
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ComponentLoaderFactory {
   constructor(private _componentFactoryResolver: ComponentFactoryResolver,
               private _ngZone: NgZone,
@@ -19,9 +19,9 @@ export class ComponentLoaderFactory {
    * @param _viewContainerRef
    * @param _renderer
    */
-  createLoader<T>(_elementRef: ElementRef,
-                  _viewContainerRef: ViewContainerRef,
-                  _renderer: Renderer2): ComponentLoader<T> {
+  createLoader<T>(_elementRef?: ElementRef,
+                  _viewContainerRef?: ViewContainerRef,
+                  _renderer?: Renderer2): ComponentLoader<T> {
     return new ComponentLoader<T>(
       _viewContainerRef,
       _renderer,

@@ -9,17 +9,10 @@ export { BsDaterangepickerInlineContainerComponent } from './themes/bs/bs-datera
 export { BsDaterangepickerInlineDirective } from './bs-daterangepicker-inline.component';
 export { BsDatepickerInputDirective } from './bs-datepicker-input.directive';
 export { BsDaterangepickerInputDirective } from './bs-daterangepicker-input.directive';
-export { BsDatepickerModule } from './bs-datepicker.module';
 export { BsDatepickerViewMode, DatepickerDateCustomClasses, DatepickerDateTooltipText } from './models';
 export { BsDaterangepickerConfig } from './bs-daterangepicker.config';
 export { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
 export { BsDaterangepickerDirective } from './bs-daterangepicker.component';
 export { BsLocaleService } from './bs-locale.service';
-export { DateFormatter } from './date-formatter';
-export { DatePickerComponent } from './datepicker.component';
-export { DatepickerConfig } from './datepicker.config';
-export { DatePickerInnerComponent } from './datepicker-inner.component';
-export { DatepickerModule } from './datepicker.module';
-export { DayPickerComponent } from './daypicker.component';
-export { MonthPickerComponent } from './monthpicker.component';
-export { YearPickerComponent } from './yearpicker.component';
+
+export { BsDatepickerModule } from './bs-datepicker.module';

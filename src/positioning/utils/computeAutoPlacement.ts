@@ -3,9 +3,10 @@
  * available space.
  */
 import { getBoundaries } from './getBoundaries';
-import { Offsets } from '../models';
+import { Offsets, PlacementForBs5 } from '../models';
+import { getBsVer } from 'ngx-bootstrap/utils';
 
-function getArea({ width, height }: { [key: string]: number }) {
+function getArea({ width, height }: { width: number; height: number }) {
   return width * height;
 }
 
@@ -14,7 +15,7 @@ export function computeAutoPlacement(
   refRect: Offsets,
   target: HTMLElement,
   host: HTMLElement,
-  allowedPositions: any[] = ['top', 'bottom', 'right', 'left'],
+  allowedPositions = ['top', 'bottom', 'right', 'left'],
   boundariesElement = 'viewport',
   padding = 0
 ) {
@@ -24,55 +25,54 @@ export function computeAutoPlacement(
 
   const boundaries = getBoundaries(target, host, padding, boundariesElement);
 
-  const rects: any = {
+  type Rects = { top: Offsets; right: Offsets; bottom: Offsets; left: Offsets };
+  const rects: Rects = {
     top: {
-      width: boundaries.width,
-      height: refRect.top - boundaries.top
+      width: boundaries?.width ?? 0,
+      height: (refRect?.top ?? 0) - (boundaries?.top ?? 0)
     },
     right: {
-      width: boundaries.right - refRect.right,
-      height: boundaries.height
+      width: (boundaries?.right ?? 0) - (refRect?.right ?? 0),
+      height: boundaries?.height ?? 0
     },
     bottom: {
-      width: boundaries.width,
-      height: boundaries.bottom - refRect.bottom
+      width: boundaries?.width ?? 0,
+      height: (boundaries?.bottom ?? 0) - (refRect?.bottom ?? 0)
     },
     left: {
-      width: refRect.left - boundaries.left,
-      height: boundaries.height
+      width: (refRect.left ?? 0) - (boundaries?.left ?? 0),
+      height: boundaries?.height ?? 0
     }
   };
 
   const sortedAreas = Object.keys(rects)
-    .map(key => ({
-      key,
-      ...rects[key],
-      area: getArea(rects[key])
+    .map((key) => ({
+      position: key,
+      ...rects[key as keyof Rects],
+      area: getArea(rects[key as keyof Rects] as { width: number; height: number })
     }))
     .sort((a, b) => b.area - a.area);
 
-  let filteredAreas: any[] = sortedAreas.filter(
-    ({ width, height }) => {
-      return width >= target.clientWidth
-        && height >= target.clientHeight;
-    }
-  );
-
-  filteredAreas = filteredAreas.filter((position: any) => {
-    return allowedPositions
-      .some((allowedPosition: string) => {
-        return allowedPosition === position.key;
-      });
+  let filteredAreas = sortedAreas.filter(({ width, height }) => {
+    return width >= target.clientWidth && height >= target.clientHeight;
   });
 
-  const computedPlacement: string = filteredAreas.length > 0
-    ? filteredAreas[0].key
-    : sortedAreas[0].key;
+  filteredAreas = filteredAreas.filter(({ position }) => {
+    return allowedPositions.some((allowedPosition: string) => {
+      return allowedPosition === position;
+    });
+  });
+
+  const computedPlacement: string = filteredAreas.length > 0 ? filteredAreas[0].position : sortedAreas[0].position;
 
   const variation = placement.split(' ')[1];
-
   // for tooltip on auto position
-  target.className = target.className.replace(/bs-tooltip-auto/g, `bs-tooltip-${computedPlacement}`);
+  target.className = target.className.replace(
+    /bs-tooltip-auto/g,
+    `bs-tooltip-${
+      getBsVer().isBs5 ? PlacementForBs5[computedPlacement as keyof typeof PlacementForBs5] : computedPlacement
+    }`
+  );
 
   return computedPlacement + (variation ? `-${variation}` : '');
 }

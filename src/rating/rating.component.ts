@@ -1,19 +1,22 @@
 import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
+  forwardRef,
   HostListener,
   Input,
   OnInit,
   Output,
-  forwardRef, TemplateRef, ChangeDetectionStrategy, ChangeDetectorRef
+  Provider,
+  TemplateRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { AccessorContent, RatingResults } from './models';
+import { RatingResults } from './models';
 import { RatingConfig } from './rating.config';
 
-export const RATING_CONTROL_VALUE_ACCESSOR: AccessorContent = {
+export const RATING_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-  /* tslint:disable-next-line: no-use-before-declare */
   useExisting: forwardRef(() => RatingComponent),
   multi: true
 };
@@ -28,48 +31,43 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   /** number of icons */
   @Input() max = 5;
   /** if true will not react on any user events */
-  @Input() readonly: boolean;
+  @Input() readonly = false;
   /** array of icons titles, default: (["one", "two", "three", "four", "five"]) */
-  @Input() titles: string[];
+  @Input() titles: string[] = [];
   /** custom template for icons */
-  // tslint:disable-next-line:no-any
-  @Input() customTemplate: TemplateRef<any>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  @Input() customTemplate?: TemplateRef<any>;
   /** fired when icon selected, $event:number equals to selected rating */
-  @Output() onHover: EventEmitter<number> = new EventEmitter();
+  @Output() onHover = new EventEmitter<number>();
   /** fired when icon selected, $event:number equals to previous rating value */
-  @Output() onLeave: EventEmitter<number> = new EventEmitter();
+  @Output() onLeave = new EventEmitter<number>();
 
-  // tslint:disable-next-line:no-any
-  onChange: any = Function.prototype;
-  // tslint:disable-next-line:no-any
-  onTouched: any = Function.prototype;
+  onChange = Function.prototype;
+  onTouched = Function.prototype;
   /** aria label for rating */
-  ariaLabel: string;
-  range: RatingResults[];
-  value: number;
-  protected preValue: number;
+  ariaLabel = 'rating';
+  range: RatingResults[] = [];
+  value = 0;
+  protected preValue?: number;
 
-  constructor(private changeDetection: ChangeDetectorRef,
-              config: RatingConfig) {
+  constructor(private changeDetection: ChangeDetectorRef, config: RatingConfig) {
     Object.assign(this, config);
   }
 
   @HostListener('keydown', ['$event'])
   onKeydown(event: KeyboardEvent): void {
-    /* tslint:disable-next-line: deprecation */
     if ([37, 38, 39, 40].indexOf(event.which) === -1) {
       return;
     }
 
     event.preventDefault();
     event.stopPropagation();
-    /* tslint:disable-next-line: deprecation */
     const sign = event.which === 38 || event.which === 39 ? 1 : -1;
     this.rate(this.value + sign);
   }
 
   ngOnInit(): void {
-    this.max = typeof this.max !== 'undefined' ? this.max : 5;
+    this.max = this.max || 5;
     this.titles =
       typeof this.titles !== 'undefined' && this.titles.length > 0
         ? this.titles
@@ -101,21 +99,24 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
   }
 
   reset(): void {
-    this.value = Math.round(this.preValue);
-    this.changeDetection.markForCheck();
-    this.onLeave.emit(this.value);
+    if (typeof this.preValue === 'number') {
+      this.value = Math.round(this.preValue);
+      this.changeDetection.markForCheck();
+      this.onLeave.emit(this.value);
+    }
   }
 
-  registerOnChange(fn: (_: number) => {}): void {
+  registerOnChange(fn: (_: number) => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: () => {}): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
   rate(value: number): void {
-    if (!this.readonly && value >= 0 && value <= this.range.length) {
+    if (!this.readonly && this.range
+      && value >= 0 && value <= this.range.length) {
       this.writeValue(value);
       this.onChange(value);
     }
@@ -123,11 +124,12 @@ export class RatingComponent implements ControlValueAccessor, OnInit {
 
   protected buildTemplateObjects(max: number): RatingResults[] {
     const result: RatingResults[] = [];
+
     for (let i = 0; i < max; i++) {
       result.push({
-          index: i,
-          title: this.titles[i] || i + 1
-        });
+        index: i,
+        title: this.titles[i] || i + 1
+      });
     }
 
     return result;

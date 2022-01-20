@@ -1,4 +1,4 @@
-export class TypeaheadOrder {
+export interface TypeaheadOrder {
   /** field for sorting */
   field?: string;
   /** ordering direction, could be 'asc' or 'desc' */

@@ -5,5 +5,5 @@ import { Component, Input } from '@angular/core';
   template: `<div class="current-timedate"><span>{{ title }}</span></div>`
 })
 export class BsCurrentDateViewComponent {
-  @Input() title: string;
+  @Input() title?: string;
 }

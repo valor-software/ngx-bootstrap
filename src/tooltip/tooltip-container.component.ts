@@ -4,17 +4,18 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { TooltipConfig } from './tooltip.config';
-import { isBs3 } from 'ngx-bootstrap/utils';
+import { getBsVer, IBsVersion } from 'ngx-bootstrap/utils';
+import { PlacementForBs5 } from 'ngx-bootstrap/positioning';
 
 @Component({
   selector: 'bs-tooltip-container',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  // tslint:disable-next-line
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[class]':
       '"tooltip in tooltip-" + placement + " " + "bs-tooltip-" + placement + " " + placement + " " + containerClass',
-    '[class.show]': '!isBs3',
-    '[class.bs3]': 'isBs3',
+    '[class.show]': '!_bsVersions.isBs3',
+    '[class.bs3]': '_bsVersions.isBs3',
     '[attr.id]': 'this.id',
     role: 'tooltip'
   },
@@ -44,14 +45,14 @@ import { isBs3 } from 'ngx-bootstrap/utils';
     `
 })
 export class TooltipContainerComponent implements AfterViewInit {
-  classMap: { [key: string]: boolean };
-  placement: string;
-  containerClass: string;
-  animation: boolean;
-  id: string;
+  classMap?: { [key: string]: boolean };
+  placement?: string;
+  containerClass?: string;
+  animation?: boolean;
+  id?: string;
 
-  get isBs3(): boolean {
-    return isBs3();
+  get _bsVersions(): IBsVersion {
+    return getBsVer();
   }
 
   constructor(config: TooltipConfig) {
@@ -60,12 +61,18 @@ export class TooltipContainerComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.classMap = { in: false, fade: false };
-    this.classMap[this.placement] = true;
+    if (this.placement) {
+      if (this._bsVersions.isBs5) {
+        this.placement =  PlacementForBs5[this.placement as keyof typeof PlacementForBs5];
+      }
+
+      this.classMap[this.placement] = true;
+    }
     this.classMap[`tooltip-${this.placement}`] = true;
 
-    this.classMap.in = true;
+    this.classMap["in"] = true;
     if (this.animation) {
-      this.classMap.fade = true;
+      this.classMap["fade"] = true;
     }
 
     if (this.containerClass) {

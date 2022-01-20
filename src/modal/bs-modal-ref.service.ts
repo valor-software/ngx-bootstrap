@@ -1,34 +1,32 @@
 import { Injectable, EventEmitter } from '@angular/core';
 
-@Injectable()
-// tslint:disable-next-line:no-any
+@Injectable({providedIn: 'platform'})
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class BsModalRef<T = any> {
+  /**
+   * Event that is fired when the modal behind the ref starts hiding
+   */
+  onHide?: EventEmitter<unknown>;
+  /**
+   * Event that is fired when the modal behind the ref finishes hiding
+   */
+  onHidden?: EventEmitter<unknown>;
   /**
    *  Allow user to ID for the modal. Otherwise, a unique number will be given
    */
-  id: number;
+  id?: number | string;
 
   /**
    * Reference to a component inside the modal. Null if modal's been created with TemplateRef
    */
-  content?: T | null;
+  content?: T;
 
   /**
    * Hides the modal
    */
-  hide: () => void = Function;
+  hide: () => void = () => void 0;
   /**
    * Sets new class to modal window
    */
-  setClass: (newClass: string) => void = Function;
-  /**
-   * Event that is fired when the modal behind the ref starts hiding
-   */
-  // tslint:disable-next-line:no-any
-  onHide: EventEmitter<any>;
-  /**
-   * Event that is fired when the modal behind the ref finishes hiding
-   */
-  // tslint:disable-next-line:no-any
-  onHidden: EventEmitter<any>;
+  setClass: (newClass: string) => void = () => void 0;
 }

@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "ngx-bootstrap-ng-add",
+  "title": "Ngx-bootstrap ng-add schematic",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The name of the project.",
+      "$default": {
+        "$source": "projectName"
+      }
+    },
+    "component": {
+      "type": "string",
+      "description": "The name of the module which you need. Available values: accordion, alerts, buttons, carousel, collapse, datepicker, dropdowns, modals, pagination, popover, progressbar, rating, sortable, tabs, timepicker, tooltip, typeahead"
+    },
+    "stylesExtension": {
+      "type": "string",
+      "description": "Style extensions which you can choose for project. Available values: css, scss"
+    }
+  },
+  "required": []
+}
