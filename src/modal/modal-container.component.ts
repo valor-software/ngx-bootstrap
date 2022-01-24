@@ -91,6 +91,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   @HostListener('click', ['$event'])
   onClickStop(event: MouseEvent): void {
     const clickedInBackdrop = event.target === this._element.nativeElement && !this.clickStartedInContent;
+    console.log(clickedInBackdrop);
     if (
       this.config.ignoreBackdropClick ||
       this.config.backdrop === 'static' ||

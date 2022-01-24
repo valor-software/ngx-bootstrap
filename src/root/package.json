@@ -120,6 +120,14 @@
       "node": "./modal/fesm2015/ngx-bootstrap-modal.mjs",
       "default": "./modal/fesm2020/ngx-bootstrap-modal.mjs"
     },
+    "./offcanvas": {
+      "types": "./offcanvas/ngx-bootstrap-offcanvas.d.ts",
+      "esm2020": "./offcanvas/esm2020/ngx-bootstrap-offcanvas.mjs",
+      "es2020": "./offcanvas/fesm2020/ngx-bootstrap-offcanvas.mjs",
+      "es2015": "./offcanvas/fesm2015/ngx-bootstrap-offcanvas.mjs",
+      "node": "./offcanvas/fesm2015/ngx-bootstrap-offcanvas.mjs",
+      "default": "./offcanvas/fesm2020/ngx-bootstrap-offcanvas.mjs"
+    },
     "./pagination": {
       "types": "./pagination/ngx-bootstrap-pagination.d.ts",
       "esm2020": "./pagination/esm2020/ngx-bootstrap-pagination.mjs",

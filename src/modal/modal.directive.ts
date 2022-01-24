@@ -105,6 +105,7 @@ export class ModalDirective implements OnDestroy, OnInit {
   @HostListener('mouseup', ['$event'])
   onClickStop(event: MouseEvent): void {
     const clickedInBackdrop = event.target === this._element.nativeElement && !this.clickStartedInContent;
+
     if (
       this.config.ignoreBackdropClick ||
       this.config.backdrop === 'static' ||

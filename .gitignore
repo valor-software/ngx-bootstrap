@@ -50,3 +50,5 @@ scully.log
 /schematics/**/*.js
 /schematics/**/*.js.map
 /schematics/**/*.d.ts
+
+.angular

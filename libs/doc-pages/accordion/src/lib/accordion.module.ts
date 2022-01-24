@@ -7,6 +7,7 @@ import { DocsModule } from '@ngx-bootstrap-doc/docs';
 import { AccordionSectionComponent } from './accordion-section.component';
 import { DEMO_COMPONENTS } from './demos/index';
 import { routes } from './demo-accordion.routes';
+import { OffcanvasModule } from 'ngx-bootstrap/offcanvas';
 /* export */
 export { AccordionSectionComponent } from './accordion-section.component';
 
@@ -22,6 +23,7 @@ export { AccordionSectionComponent } from './accordion-section.component';
     FormsModule,
     DocsModule,
     RouterModule.forChild(routes),
+    OffcanvasModule
   ],
   exports: [AccordionSectionComponent],
   entryComponents: [...DEMO_COMPONENTS]
