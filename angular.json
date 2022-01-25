@@ -685,6 +685,52 @@
         }
       }
     },
+    "doc-pages-offcanvas": {
+      "projectType": "library",
+      "root": "libs/doc-pages/offcanvas",
+      "sourceRoot": "libs/doc-pages/offcanvas/src",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": [
+            "dist/libs/doc-pages/offcanvas"
+          ],
+          "options": {
+            "project": "libs/doc-pages/offcanvas/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/doc-pages/offcanvas/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/doc-pages/offcanvas/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/doc-pages/offcanvas"
+          ],
+          "options": {
+            "jestConfig": "libs/doc-pages/offcanvas/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/doc-pages/offcanvas/src/**/*.ts",
+              "libs/doc-pages/offcanvas/src/**/*.html"
+            ]
+          }
+        }
+      },
+      "tags": []
+    },
     "doc-pages-pagination": {
       "projectType": "library",
       "root": "libs/doc-pages/pagination",
@@ -1480,6 +1526,54 @@
         "ngx-bootstrap-docs"
       ]
     },
+    "offcanvas": {
+      "projectType": "library",
+      "root": "src/offcanvas",
+      "sourceRoot": "src/offcanvas",
+      "prefix": "ngx-bootstrap-base",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": [
+            "dist/ngx-bootstrap/offcanvas"
+          ],
+          "options": {
+            "tsConfig": "src/offcanvas/tsconfig.lib.json",
+            "project": "src/offcanvas/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "src/offcanvas/tsconfig.lib.prod.json"
+            }
+          },
+          "dependsOn": [
+            {
+              "target": "build",
+              "projects": "dependencies"
+            }
+          ]
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/src/offcanvas"
+          ],
+          "options": {
+            "jestConfig": "src/offcanvas/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "src/offcanvas/**/*.ts",
+              "src/offcanvas/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "pagination": {
       "projectType": "library",
       "root": "src/pagination",
@@ -1782,54 +1876,6 @@
           "options": {
             "jestConfig": "src/sortable/jest.config.js",
             "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "offcanvas": {
-      "projectType": "library",
-      "root": "src/offcanvas",
-      "sourceRoot": "src/offcanvas",
-      "prefix": "ngx-bootstrap-base",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/ngx-bootstrap/offcanvas"
-          ],
-          "options": {
-            "tsConfig": "src/offcanvas/tsconfig.lib.json",
-            "project": "src/offcanvas/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "src/offcanvas/tsconfig.lib.prod.json"
-            }
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "dependencies"
-            }
-          ]
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/src/offcanvas"
-          ],
-          "options": {
-            "jestConfig": "src/offcanvas/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "src/offcanvas/**/*.ts",
-              "src/offcanvas/**/*.html"
-            ]
           }
         }
       }

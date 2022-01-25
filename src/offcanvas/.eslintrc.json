@@ -8,7 +8,7 @@
         "plugin:@nrwl/nx/angular",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
-      "parserOptions": { "project": ["src/accordion/tsconfig.*?.json"] },
+      "parserOptions": { "project": ["src/offcanvas/tsconfig.*?.json"] },
       "rules": {
       }
     },

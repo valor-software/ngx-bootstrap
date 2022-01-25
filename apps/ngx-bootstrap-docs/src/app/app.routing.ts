@@ -7,6 +7,7 @@ import {
   SchematicsComponent,
   ConstructionPageComponent
 } from "@ngx-bootstrap-doc/docs";
+import { DemoOffcanvasModule } from "@ngx-bootstrap-doc/offcanvas";
 
 export const routes: Routes = [
   {
@@ -127,6 +128,11 @@ export const routes: Routes = [
         path: 'typeahead',
         data: ['Typeahead', {moduleName: 'TypeaheadModule', moduleFolder: 'typeahead', sideBarParentTitle: 'components', parentRoute: 'components'}],
         loadChildren: () => import('@ngx-bootstrap-doc/typeahead').then(m => m.DemoTypeaheadModule)
+      },
+      {
+        path: 'offcanvas',
+        data: ['Offcanvas', {moduleName: 'OffcanvasModule', moduleFolder: 'offcanvas', sideBarParentTitle: 'components', parentRoute: 'components'}],
+        loadChildren: () => import('@ngx-bootstrap-doc/offcanvas').then(m => m.DemoOffcanvasModule)
       }
     ]},
   {

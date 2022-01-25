@@ -17,7 +17,7 @@ const POSITION_CLASSNAME = {
   end: 'offcanvas-end',
   top: 'offcanvas-top',
   bottom: 'offcanvas-bottom'
-}
+};
 
 
 @Component({
@@ -49,6 +49,9 @@ const POSITION_CLASSNAME = {
   `
 })
 export class OffcanvasContainerComponent {
+  _config?: typeof OffcanvasConfig;
+  _isOpen?: boolean;
+
   @ViewChild(OffcanvasDirective, {static: false}) private directive?: OffcanvasDirective;
 
   @Input() set config(value: OffcanvasConfigType | Partial<OffcanvasConfigType> ) {
@@ -64,10 +67,7 @@ export class OffcanvasContainerComponent {
     if (this._isOpen && nodeName === BACKDROP_NODE_NAME) {
       this.hide();
     }
-
   }
-  _config?: typeof OffcanvasConfig;
-  _isOpen?: boolean;
 
   get bsVer(): IBsVersion {
     return getBsVer();
@@ -90,7 +90,6 @@ export class OffcanvasContainerComponent {
       this._config = Object.assign(OffcanvasConfig);
     }
     id++;
-    console.log(this._config);
   }
 
   hide() {

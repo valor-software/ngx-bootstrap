@@ -3,7 +3,7 @@ export type OffcanvasConfigType = {
   placement: AvailablePlacement;
   headerTitle: string;
   backdrop: boolean;
-}
+};
 
 export const OffcanvasConfig: OffcanvasConfigType = {
   /** default placement of element is left side */
@@ -12,4 +12,4 @@ export const OffcanvasConfig: OffcanvasConfigType = {
   headerTitle: '',
   /** in default config backdrop is available */
   backdrop: true
-}
+};

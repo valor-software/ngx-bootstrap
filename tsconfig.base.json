@@ -50,6 +50,9 @@
       "@ngx-bootstrap-doc/modal": [
         "libs/doc-pages/modal/src/index.ts"
       ],
+      "@ngx-bootstrap-doc/offcanvas": [
+        "libs/doc-pages/offcanvas/src/index.ts"
+      ],
       "@ngx-bootstrap-doc/pagination": [
         "libs/doc-pages/pagination/src/index.ts"
       ],

@@ -1,0 +1,17 @@
+<button class="btn btn-primary" (click)="setPlacement('start'); start.show()">Left position</button>
+<button class="btn btn-primary" (click)="setPlacement('end'); end.show()">Right position</button>
+<button class="btn btn-primary" (click)="setPlacement('top'); top.show()">Top position</button>
+<button class="btn btn-primary" (click)="setPlacement('bottom'); bottom.show()">Bottom position</button>
+
+<offcanvas #start [config]="config">
+  <p>Some content</p>
+</offcanvas>
+<offcanvas #end [config]="config">
+  <p>Some content</p>
+</offcanvas>
+<offcanvas #top [config]="config">
+  <p>Some content</p>
+</offcanvas>
+<offcanvas #bottom [config]="config">
+  <p>Some content</p>
+</offcanvas>
