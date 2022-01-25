@@ -1,0 +1,6 @@
+<button class="btn btn-primary mb-3" (click)="element.show()">Show element</button>
+<pre>is Element opened: {{triggeredEvent}}</pre>
+
+<offcanvas #element (isOpened)="triggerEvent($event)">
+  <p>Some content</p>
+</offcanvas>

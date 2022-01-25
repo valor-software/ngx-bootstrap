@@ -5,6 +5,9 @@ import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
 import { BasicComponent } from "./demos/basic/basic.component";
 import { HeaderTitleComponent } from "./demos/header-title/header-title.component";
 import { DifferentPositionComponent } from "./demos/different-position/differrent-position.component";
+import { BackdropComponent } from "./demos/backdrop/backdrop.component";
+import { TriggerEventComponent } from "./demos/trigger-event/trigger-event.component";
+
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -36,6 +39,22 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/different-position/differrent-position.component.ts'),
         html: require('!!raw-loader!./demos/different-position/different-position.component.html'),
         outlet: DifferentPositionComponent
+      },
+      {
+        title: 'Backdrop',
+        anchor: 'backdrop',
+        description: `<p>TEXT TEXT TEXT</p>`,
+        component: require('!!raw-loader!./demos/backdrop/backdrop.component.ts'),
+        html: require('!!raw-loader!./demos/backdrop/backdrop.component.html'),
+        outlet: BackdropComponent
+      },
+      {
+        title: 'Events',
+        anchor: 'events',
+        description: `<p>TEXT TEXT TEXT</p>`,
+        component: require('!!raw-loader!./demos/trigger-event/trigger-event.component.ts'),
+        html: require('!!raw-loader!./demos/trigger-event/trigger-event.component.html'),
+        outlet: TriggerEventComponent
       },
     ]
   },

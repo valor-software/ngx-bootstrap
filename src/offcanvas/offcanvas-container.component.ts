@@ -4,13 +4,12 @@ import {
   Input,
   Output,
   EventEmitter,
-  HostListener
+  HostListener, OnInit, ChangeDetectionStrategy
 } from "@angular/core";
 import { OffcanvasDirective } from "./offcanvas.directive";
 import { getBsVer, IBsVersion } from 'ngx-bootstrap/utils';
 import { OffcanvasConfig, OffcanvasConfigType } from "./offcanvas.config";
 
-const BACKDROP_NODE_NAME = 'OFFCANVAS-BACKDROP';
 let id = 0;
 const POSITION_CLASSNAME = {
   start: 'offcanvas-start',
@@ -22,86 +21,58 @@ const POSITION_CLASSNAME = {
 
 @Component({
   selector: 'offcanvas',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <ng-container *ngIf="!bsVer.isBs5">
-      <p>Element is available only for bootstrap 5</p>
-    </ng-container>
-
-    <ng-container *ngIf="bsVer.isBs5">
       <div
         [className]="positionClass + ' offcanvas'"
-        offcanvas
-        [config]="_config"
         data-bs-scroll="false"
-        [attr.data-bs-backdrop]="_config.backdrop"
+        [offcanvas]="_config"
+        (isOpened)="isOpened.emit($event)"
+        [attr.data-bs-backdrop]="_config?.backdrop"
         tabindex="-1"
-        [id]="id"
+        [id]="idNum"
       >
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" [id]="id">{{_config.headerTitle}}</h5>
+          <h5 class="offcanvas-title" [id]="idNum">{{_config?.headerTitle}}</h5>
           <button (click)="hide()" type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
           <ng-content></ng-content>
         </div>
       </div>
-    </ng-container>
   `
 })
 export class OffcanvasContainerComponent {
   _config?: typeof OffcanvasConfig;
-  _isOpen?: boolean;
+  id = id++;
 
-  @ViewChild(OffcanvasDirective, {static: false}) private directive?: OffcanvasDirective;
+  @ViewChild(OffcanvasDirective, {static: false}) public directive?: OffcanvasDirective;
 
   @Input() set config(value: OffcanvasConfigType | Partial<OffcanvasConfigType> ) {
     this._config = this.assignConfig(value);
   }
 
-  @Output() isOpen: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() isOpened: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  @HostListener('body:click', ['$event'])
-  onClickStop(event: Event): void {
-    const nodeName = (event.target as HTMLElement).nodeName;
-
-    if (this._isOpen && nodeName === BACKDROP_NODE_NAME) {
-      this.hide();
-    }
-  }
-
-  get bsVer(): IBsVersion {
-    return getBsVer();
-  }
-
-  get id(): number {
-    return id;
+  get idNum(): number {
+    return this.id || 0;
   }
 
   get positionClass(): string {
-    if (!this._config?.placement) {
+    if (!this.directive?._config?.placement) {
       return POSITION_CLASSNAME.start;
     }
-    return POSITION_CLASSNAME[this._config?.placement];
-  }
-
-  constructor(
-  ) {
-    if (!this._config) {
-      this._config = Object.assign(OffcanvasConfig);
-    }
-    id++;
+    return POSITION_CLASSNAME[this.directive._config?.placement];
   }
 
   hide() {
-    this._isOpen = false;
     this.directive?.hide();
-    this.isOpen.emit(false);
+    this.isOpened.emit(false);
   }
 
   show() {
-    this._isOpen = true;
     this.directive?.show();
-    this.isOpen.emit(true);
+    this.isOpened.emit(true);
   }
 
   assignConfig(value: OffcanvasConfigType | Partial<OffcanvasConfigType>): OffcanvasConfigType {
