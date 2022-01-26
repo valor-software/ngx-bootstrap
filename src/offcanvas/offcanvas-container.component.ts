@@ -45,7 +45,7 @@ const POSITION_CLASSNAME = {
 export class OffcanvasContainerComponent {
   _config?: typeof OffcanvasConfig;
   id = id++;
-
+//test authentification
   @ViewChild(OffcanvasDirective, {static: false}) public directive?: OffcanvasDirective;
 
   @Input() set config(value: OffcanvasConfigType | Partial<OffcanvasConfigType> ) {
