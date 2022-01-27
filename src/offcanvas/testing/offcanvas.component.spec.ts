@@ -40,7 +40,7 @@ const html = `
 `;
 
 function checkClassContain(queryClass: string, expectClass: string, notContain?: boolean) {
-  let classList = document.body.querySelector(queryClass)?.classList;
+  const classList = document.body.querySelector(queryClass)?.classList;
   if (notContain) {
     expect(classList).not.toContain(expectClass);
   }

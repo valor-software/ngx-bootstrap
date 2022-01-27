@@ -14,8 +14,9 @@ export class OffcanvasDirective {
   delayValue = 300; // it is necessary for showing several elements
   _config?: OffcanvasConfigType;
 
-  @Input() set config(value: OffcanvasConfigType) {
+  @Input() set config(value: OffcanvasConfigType | undefined) {
     if (!value) {
+      this.config = Object.assign({}, OffcanvasConfig);
       return;
     }
 
@@ -28,11 +29,7 @@ export class OffcanvasDirective {
     private el: ElementRef,
     private renderer: Renderer2,
     private backdropService: BackdropService
-  ) {
-    if (!this._config) {
-      this.config = Object.assign({}, OffcanvasConfig);
-    }
-  }
+  ) {}
 
   @HostListener('transitionend')
   transitionend() {

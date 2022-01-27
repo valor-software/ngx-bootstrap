@@ -48,6 +48,7 @@ export class OffcanvasContainerComponent {
 
   @Input() set config(value: OffcanvasConfigType | Partial<OffcanvasConfigType> ) {
     if (!value) {
+      this._config = this.assignConfig(OffcanvasConfig);
       return;
     }
 
