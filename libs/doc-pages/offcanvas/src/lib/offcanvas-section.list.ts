@@ -7,6 +7,8 @@ import { HeaderTitleComponent } from "./demos/header-title/header-title.componen
 import { DifferentPositionComponent } from "./demos/different-position/differrent-position.component";
 import { BackdropComponent } from "./demos/backdrop/backdrop.component";
 import { TriggerEventComponent } from "./demos/trigger-event/trigger-event.component";
+import { BackdropScrollingComponent } from "./demos/backdropScrolling/backdropScrolling.component";
+import { WaysToUseComponent } from "./demos/ways-to-use/ways-to-use.component";
 
 
 export const demoComponentContent: ContentSection[] = [
@@ -56,6 +58,22 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/trigger-event/trigger-event.component.html'),
         outlet: TriggerEventComponent
       },
+      {
+        title: 'Enable backdrop scrolling',
+        anchor: 'backdropScrolling',
+        description: `<p>TEXT TEXT TEXT</p>`,
+        component: require('!!raw-loader!./demos/backdropScrolling/backdropScrolling.component.ts'),
+        html: require('!!raw-loader!./demos/backdropScrolling/backdropScrolling.component.html'),
+        outlet: BackdropScrollingComponent
+      },
+      {
+        title: 'Ways to use',
+        anchor: 'use-ways',
+        description: `<p>TEXT TEXT TEXT</p>`,
+        component: require('!!raw-loader!./demos/ways-to-use/ways-to-use.component.ts'),
+        html: require('!!raw-loader!./demos/ways-to-use/ways-to-use.component.html'),
+        outlet: WaysToUseComponent
+      }
     ]
   },
   {

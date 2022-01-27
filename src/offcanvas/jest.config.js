@@ -1,14 +1,14 @@
 module.exports = {
   displayName: 'offcanvas',
-  preset: '../../../jest.preset.js',
-  setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  preset: '../../jest.preset.js',
+  setupFilesAfterEnv: ['<rootDir>/testing/test-setup.ts'],
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
       stringifyContentPathRegex: '\\.(html|svg)$'
     }
   },
-  coverageDirectory: '../../../coverage/libs/src/offcanvas',
+  coverageDirectory: '../../coverage/libs/src/offcanvas',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular'
   },

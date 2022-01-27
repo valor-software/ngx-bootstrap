@@ -1,0 +1,7 @@
+<button class="btn btn-primary mb-3" (click)="toggleBackdropScrolling()">Enable/Disable Backdrop scrolling</button>
+<pre>Backdrop scrolling is set to: {{config.backdropScrolling}}</pre>
+<button class="btn btn-primary" (click)="element.show()">Show element</button>
+
+<offcanvas #element [config]="config">
+  <p>Some content</p>
+</offcanvas>

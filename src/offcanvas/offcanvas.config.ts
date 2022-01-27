@@ -1,8 +1,9 @@
-type AvailablePlacement = 'start' | 'end' | 'top' | 'bottom';
+export type AvailablePlacement = 'start' | 'end' | 'top' | 'bottom';
 export type OffcanvasConfigType = {
   placement: AvailablePlacement;
   headerTitle: string;
   backdrop: boolean;
+  backdropScrolling: boolean;
 };
 
 export const OffcanvasConfig: OffcanvasConfigType = {
@@ -10,6 +11,8 @@ export const OffcanvasConfig: OffcanvasConfigType = {
   placement: 'start',
   /** default headerTitle is empty */
   headerTitle: '',
-  /** in default config backdrop is available */
-  backdrop: true
+  /** in default configuration backdrop is available */
+  backdrop: true,
+  /** in default configuration backdrop scrolling is enabled */
+  backdropScrolling: true
 };

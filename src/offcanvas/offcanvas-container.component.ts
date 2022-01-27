@@ -4,10 +4,9 @@ import {
   Input,
   Output,
   EventEmitter,
-  HostListener, OnInit, ChangeDetectionStrategy
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { OffcanvasDirective } from "./offcanvas.directive";
-import { getBsVer, IBsVersion } from 'ngx-bootstrap/utils';
 import { OffcanvasConfig, OffcanvasConfigType } from "./offcanvas.config";
 
 let id = 0;
@@ -18,15 +17,15 @@ const POSITION_CLASSNAME = {
   bottom: 'offcanvas-bottom'
 };
 
-
 @Component({
   selector: 'offcanvas',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
       <div
         [className]="positionClass + ' offcanvas'"
-        data-bs-scroll="false"
-        [offcanvas]="_config"
+        [attr.data-bs-scroll]="_config?.backdropScrolling"
+        offcanvas
+        [config]="_config"
         (isOpened)="isOpened.emit($event)"
         [attr.data-bs-backdrop]="_config?.backdrop"
         tabindex="-1"
@@ -49,6 +48,10 @@ export class OffcanvasContainerComponent {
   @ViewChild(OffcanvasDirective, {static: false}) public directive?: OffcanvasDirective;
 
   @Input() set config(value: OffcanvasConfigType | Partial<OffcanvasConfigType> ) {
+    if (!value) {
+      return;
+    }
+
     this._config = this.assignConfig(value);
   }
 
@@ -62,6 +65,7 @@ export class OffcanvasContainerComponent {
     if (!this.directive?._config?.placement) {
       return POSITION_CLASSNAME.start;
     }
+
     return POSITION_CLASSNAME[this.directive._config?.placement];
   }
 
@@ -76,6 +80,6 @@ export class OffcanvasContainerComponent {
   }
 
   assignConfig(value: OffcanvasConfigType | Partial<OffcanvasConfigType>): OffcanvasConfigType {
-    return Object.assign(OffcanvasConfig, value);
+    return Object.assign({}, OffcanvasConfig, value);
   }
 }
