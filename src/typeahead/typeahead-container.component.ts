@@ -71,10 +71,6 @@ export class TypeaheadContainerComponent implements OnDestroy {
   height = 0;
   popupId = `ngb-typeahead-${nextWindowId++}`;
 
-  // get isBs4(): boolean {
-  //   return !isBs3();
-  // }
-
   get typeaheadTemplateMethods(): TypeaheadTemplateMethods {
     return {
       selectMatch: this.selectMatch.bind(this),

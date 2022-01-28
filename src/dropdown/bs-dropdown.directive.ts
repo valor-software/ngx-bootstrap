@@ -141,10 +141,6 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
    */
   @Output() onHidden: EventEmitter<boolean>;
 
-  // get isBs4(): boolean {
-  //   return !isBs3();
-  // }
-
   private _dropdown: ComponentLoader<BsDropdownContainerComponent>;
 
   private get _showInline(): boolean {
