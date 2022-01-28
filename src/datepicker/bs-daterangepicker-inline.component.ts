@@ -17,6 +17,7 @@ import {
   checkRangesWithMaxDate,
   setDateRangesCurrentTimeOnDateSelect
 } from './utils/bs-calendar-utils';
+import { BsDatepickerViewState } from './reducer/bs-datepicker.state';
 
 @Directive({
     selector: 'bs-daterangepicker-inline',
@@ -73,6 +74,10 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
      * Disable specific dates
      */
     @Input() datesEnabled?: Date[];
+    /**
+     * Emits when datepicker view has been changed
+     */
+    @Output() bsViewChange: EventEmitter<BsDatepickerViewState> = new EventEmitter();
     /**
      * Emits when daterangepicker value has been changed
      */
@@ -200,6 +205,11 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
           .subscribe((value: Date[]) => {
             this.bsValue = value;
           })
+      );
+      this._subs.push(
+        this._datepickerRef.instance.viewChange.subscribe((view: BsDatepickerViewState) => {
+          this.bsViewChange.emit(view);
+        })
       );
     }
   }

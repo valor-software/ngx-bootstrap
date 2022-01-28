@@ -41,7 +41,7 @@ import { dayInMilliseconds } from '../../reducer/_defaults';
 export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractComponent
   implements OnInit, OnDestroy, AfterViewInit {
 
-  set value(value: (Date|undefined)[] | undefined) {
+  set value(value: (Date | undefined)[] | undefined) {
     this._effects?.setRangeValue(value);
   }
 
@@ -122,6 +122,11 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
           this.valueChange.emit(dateRange);
           this.chosenRange = dateRange || [];
         })
+    );
+    this._subs.push(
+      this._store
+        .select(state => state.view)
+        .subscribe(view => this.viewChange.emit(view))
     );
   }
 
@@ -226,7 +231,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
       this._rangeStack =
         day.date >= this._rangeStack[0]
           ? [this._rangeStack[0], day.date]
-          :  [day.date];
+          : [day.date];
     }
 
     if (this._config.maxDateRange) {
@@ -268,7 +273,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
 
     if (this._config.maxDate) {
       const maxDateValueInMilliseconds = this._config.maxDate.getTime();
-      const maxDateRangeInMilliseconds = currentSelection.getTime() + ((this._config.maxDateRange || 0) * dayInMilliseconds );
+      const maxDateRangeInMilliseconds = currentSelection.getTime() + ((this._config.maxDateRange || 0) * dayInMilliseconds);
       maxDateRange = maxDateRangeInMilliseconds > maxDateValueInMilliseconds ?
         new Date(this._config.maxDate) :
         new Date(maxDateRangeInMilliseconds);

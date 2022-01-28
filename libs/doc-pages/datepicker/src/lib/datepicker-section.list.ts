@@ -51,6 +51,7 @@ import { DemoDatepickerClearButtonComponent } from './demos/clear-button/clear-b
 import { DemoDatepickerStartViewComponent } from "./demos/start-view/start-view";
 import { DemoDatepickerPreventChangeToNextMonthComponent } from './demos/prevent-change-to-next-month/prevent-change-to-next-month.component';
 import { DemoDatepickerWithTimepickerComponent } from './demos/with-timepicker/with-timepicker';
+import { DemoDatepickerViewChangeEventComponent } from './demos/view-change-event/view-change-event';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -319,6 +320,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/value-change-event/value-change-event.html'),
         description: `<p>You can subscribe to datepicker's value change event (<code>bsValueChange</code>).</p>`,
         outlet: DemoDatepickerValueChangeEventComponent
+      },
+      {
+        title: 'View change event',
+        anchor: 'view-change-event',
+        component: require('!!raw-loader!./demos/view-change-event/view-change-event.ts'),
+        html: require('!!raw-loader!./demos/view-change-event/view-change-event.html'),
+        description: `<p>You can subscribe to datepicker's view change event (<code>bsViewChange</code>).</p>`,
+        outlet: DemoDatepickerViewChangeEventComponent
       },
       {
         title: 'Config properties',
@@ -623,6 +632,11 @@ export const demoComponentContent: ContentSection[] = [
         title: 'Value change event',
         anchor: 'value-change-event-ex',
         outlet: DemoDatepickerValueChangeEventComponent
+      },
+      {
+        title: 'View change event',
+        anchor: 'view-change-event-ex',
+        outlet: DemoDatepickerViewChangeEventComponent
       },
       {
         title: 'Config properties',

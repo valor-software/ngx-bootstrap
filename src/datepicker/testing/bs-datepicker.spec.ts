@@ -5,9 +5,9 @@ import { dispatchKeyboardEvent } from '@ngneat/spectator';
 import { registerEscClick } from 'ngx-bootstrap/utils';
 import { BsDatepickerDirective } from '../bs-datepicker.component';
 import { BsDatepickerConfig } from '../bs-datepicker.config';
-
 import { BsDatepickerModule } from '../bs-datepicker.module';
-import { BsDatepickerViewMode, CalendarCellViewModel, WeekViewModel } from '../models';
+import { BsDatepickerViewMode, BsNavigationDirection, BsNavigationEvent, CalendarCellViewModel, WeekViewModel } from '../models';
+import { BsDatepickerViewState } from '../reducer/bs-datepicker.state';
 import { BsDatepickerContainerComponent } from '../themes/bs/bs-datepicker-container.component';
 
 @Component({
@@ -27,12 +27,19 @@ class TestComponent {
 
 type TestFixture = ComponentFixture<TestComponent>;
 
-function getDatepickerDirective(fixture: TestFixture): BsDatepickerDirective {
-  return fixture.componentInstance.datepicker;
+function getDatepickerDirective(fixture: TestFixture, date?: Date): BsDatepickerDirective {
+  const datepicker = fixture.componentInstance.datepicker;
+
+  if (date) {
+    datepicker.bsValue = date;
+    fixture.detectChanges();
+  }
+
+  return datepicker;
 }
 
-function showDatepicker(fixture: TestFixture): BsDatepickerDirective {
-  const datepicker = getDatepickerDirective(fixture);
+function showDatepicker(fixture: TestFixture, date?: Date): BsDatepickerDirective {
+  const datepicker = getDatepickerDirective(fixture, date);
   datepicker.show();
   fixture.detectChanges();
 
@@ -55,12 +62,12 @@ describe('datepicker:', () => {
   let fixture: TestFixture;
   beforeEach(
     waitForAsync(() => TestBed.configureTestingModule({
-        declarations: [TestComponent],
-        imports: [
-          BsDatepickerModule.forRoot(),
-          BrowserAnimationsModule
-        ]
-      }).compileComponents()
+      declarations: [TestComponent],
+      imports: [
+        BsDatepickerModule.forRoot(),
+        BrowserAnimationsModule
+      ]
+    }).compileComponents()
     ));
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
@@ -289,5 +296,54 @@ describe('datepicker:', () => {
     showDatepicker(fixture);
     const timepickerZone = document.querySelector('.bs-timepicker-in-datepicker-container');
     expect(timepickerZone).not.toBeTruthy();
+  });
+
+  describe('should emit bsViewChange', () => {
+    const initialDate = new Date(2022, 0, 1);
+    const parameters: { description: string, navigationEvent: BsNavigationEvent, expectedEmit: BsDatepickerViewState }[] = [
+      {
+        description: 'when user navigates one month upwards',
+        navigationEvent: { step: { month: 1 }, direction: BsNavigationDirection.UP },
+        expectedEmit: { date: new Date(2022, 1, 1), mode: 'day' }
+      },
+      {
+        description: 'when user navigates one month downwards',
+        navigationEvent: { step: { month: -1 }, direction: BsNavigationDirection.DOWN },
+        // navigating down one month from january 2022 should result in december 2021
+        expectedEmit: { date: new Date(2021, 11, 1), mode: 'day' }
+      },
+      {
+        description: 'when user navigates one year upwards',
+        navigationEvent: { step: { year: 1 }, direction: BsNavigationDirection.UP },
+        expectedEmit: { date: new Date(2023, 0, 1), mode: 'day' }
+      },
+      {
+        description: 'when user navigates one year downwards',
+        navigationEvent: { step: { year: -1 }, direction: BsNavigationDirection.DOWN },
+        expectedEmit: { date: new Date(2021, 0, 1), mode: 'day' }
+      }
+    ];
+
+    parameters.forEach(parameter => {
+      it(parameter.description, () => {
+        const datepicker = showDatepicker(fixture, initialDate);
+        const datepickerContainerInstance = getDatepickerContainer(datepicker);
+        const spy = jest.spyOn(datepicker.bsViewChange, 'emit');
+
+        datepickerContainerInstance.navigateTo(parameter.navigationEvent);
+        fixture.detectChanges();
+        expect(spy).toHaveBeenCalledWith(parameter.expectedEmit);
+      });
+    });
+  });
+
+  it('should emit bsViewChange when user changes the viewmode inside the datepicker', () => {
+    const datepicker = showDatepicker(fixture, new Date(2022, 0, 1));
+    const datepickerContainerInstance = getDatepickerContainer(datepicker);
+    const spy = jest.spyOn(datepicker.bsViewChange, 'emit');
+
+    datepickerContainerInstance.setViewMode('month');
+    fixture.detectChanges();
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 });

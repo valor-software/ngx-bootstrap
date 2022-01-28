@@ -21,6 +21,7 @@ import { BsDatepickerViewMode, DatepickerDateCustomClasses, DatepickerDateToolti
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
 import { copyTime } from './utils/copy-time-utils';
 import { checkBsValue, setCurrentTimeOnDateSelect } from './utils/bs-calendar-utils';
+import { BsDatepickerViewState } from './reducer/bs-datepicker.state';
 
 @Directive({
   selector: '[bsDatepicker]',
@@ -93,6 +94,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
    */
   @Input() dateTooltipTexts?: DatepickerDateTooltipText[];
   /**
+   * Emits when datepicker view has been changed
+   */
+  @Output() bsViewChange: EventEmitter<BsDatepickerViewState> = new EventEmitter();
+  /**
    * Emits when datepicker value has been changed
    */
   @Output() bsValueChange: EventEmitter<Date> = new EventEmitter();
@@ -102,10 +107,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
   private readonly _dateInputFormat$ = new Subject<string | undefined>();
 
   constructor(public _config: BsDatepickerConfig,
-              private  _elementRef: ElementRef,
-              private  _renderer: Renderer2,
-              _viewContainerRef: ViewContainerRef,
-              cis: ComponentLoaderFactory) {
+    private _elementRef: ElementRef,
+    private _renderer: Renderer2,
+    _viewContainerRef: ViewContainerRef,
+    cis: ComponentLoaderFactory) {
     // todo: assign only subset of fields
     Object.assign(this, this._config);
     this._datepicker = cis.createLoader<BsDatepickerContainerComponent>(
@@ -240,6 +245,11 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
         this._datepickerRef.instance.valueChange.subscribe((value: Date) => {
           this.bsValue = value;
           this.hide();
+        })
+      );
+      this._subs.push(
+        this._datepickerRef.instance.viewChange.subscribe((view: BsDatepickerViewState) => {
+          this.bsViewChange.emit(view);
         })
       );
     }

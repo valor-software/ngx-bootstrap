@@ -16,6 +16,8 @@ import {
   WeekViewModel,
   YearsCalendarViewModel
 } from '../models';
+import { EventEmitter } from '@angular/core';
+import { BsDatepickerViewState } from '../reducer/bs-datepicker.state';
 
 export abstract class BsDatepickerAbstractComponent {
   containerClass = '';
@@ -36,6 +38,8 @@ export abstract class BsDatepickerAbstractComponent {
 
   isRangePicker?: boolean;
   withTimepicker?: boolean;
+
+  viewChange: EventEmitter<BsDatepickerViewState> = new EventEmitter<BsDatepickerViewState>();
 
   set minDate(value: Date|undefined) {
     this._effects?.setMinDate(value);

@@ -1,4 +1,5 @@
-import { AfterViewInit, ComponentRef,
+import {
+  AfterViewInit, ComponentRef,
   Directive, ElementRef, EventEmitter,
   Input, OnChanges, OnDestroy, OnInit,
   Output, Renderer2, SimpleChanges,
@@ -16,6 +17,7 @@ import {
   checkRangesWithMaxDate,
   setDateRangesCurrentTimeOnDateSelect
 } from './utils/bs-calendar-utils';
+import { BsDatepickerViewState } from './reducer/bs-datepicker.state';
 
 @Directive({
   selector: '[bsDaterangepicker]',
@@ -64,7 +66,7 @@ export class BsDaterangepickerDirective
    */
   @Output() onHidden: EventEmitter<unknown>;
 
-  _bsValue?: (Date|undefined)[];
+  _bsValue?: (Date | undefined)[];
   isOpen$: BehaviorSubject<boolean>;
   isDestroy$ = new Subject();
 
@@ -72,7 +74,7 @@ export class BsDaterangepickerDirective
    * Initial value of daterangepicker
    */
   @Input()
-  set bsValue(value: (Date|undefined)[] | undefined) {
+  set bsValue(value: (Date | undefined)[] | undefined) {
     if (this._bsValue === value) {
       return;
     }
@@ -119,9 +121,13 @@ export class BsDaterangepickerDirective
    */
   @Input() datesEnabled?: Date[];
   /**
+  * Emits when datepicker view has been changed
+  */
+  @Output() bsViewChange: EventEmitter<BsDatepickerViewState> = new EventEmitter();
+  /**
    * Emits when daterangepicker value has been changed
    */
-  @Output() bsValueChange = new EventEmitter<((Date|undefined)[]|undefined)>();
+  @Output() bsValueChange = new EventEmitter<((Date | undefined)[] | undefined)>();
 
   get rangeInputFormat$(): Observable<string> {
     return this._rangeInputFormat$;
@@ -133,10 +139,10 @@ export class BsDaterangepickerDirective
   private readonly _rangeInputFormat$ = new Subject<string>();
 
   constructor(public _config: BsDaterangepickerConfig,
-              private  _elementRef: ElementRef,
-              private  _renderer: Renderer2,
-              _viewContainerRef: ViewContainerRef,
-              cis: ComponentLoaderFactory) {
+    private _elementRef: ElementRef,
+    private _renderer: Renderer2,
+    _viewContainerRef: ViewContainerRef,
+    cis: ComponentLoaderFactory) {
     this._datepicker = cis.createLoader<BsDaterangepickerContainerComponent>(
       _elementRef,
       _viewContainerRef,
@@ -250,6 +256,11 @@ export class BsDaterangepickerDirective
             this.bsValue = value;
             this.hide();
           })
+      );
+      this._subs.push(
+        this._datepickerRef.instance.viewChange.subscribe((view: BsDatepickerViewState) => {
+          this.bsViewChange.emit(view);
+        })
       );
     }
   }

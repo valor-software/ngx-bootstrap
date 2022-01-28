@@ -23,6 +23,7 @@ import { DatepickerDateCustomClasses, DatepickerDateTooltipText } from './models
 import { BsDatepickerInlineContainerComponent } from './themes/bs/bs-datepicker-inline-container.component';
 import { copyTime } from './utils/copy-time-utils';
 import { checkBsValue, setCurrentTimeOnDateSelect } from './utils/bs-calendar-utils';
+import { BsDatepickerViewState } from './reducer/bs-datepicker.state';
 
 @Directive({
   selector: 'bs-datepicker-inline',
@@ -62,6 +63,10 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
    */
   @Input() datesDisabled?: Date[];
   /**
+   * Emits when datepicker view has been changed
+   */
+  @Output() bsViewChange: EventEmitter<BsDatepickerViewState> = new EventEmitter();
+  /**
    * Emits when datepicker value has been changed
    */
   @Output() bsValueChange: EventEmitter<Date> = new EventEmitter();
@@ -96,14 +101,14 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
       return;
     }
 
-     if (!this._bsValue && value && !this._config.withTimepicker) {
-       const now = new Date();
-       copyTime(value, now);
-     }
+    if (!this._bsValue && value && !this._config.withTimepicker) {
+      const now = new Date();
+      copyTime(value, now);
+    }
 
     if (value && this.bsConfig?.initCurrentTime) {
       value = setCurrentTimeOnDateSelect(value);
-     }
+    }
 
     this._bsValue = value;
     this.bsValueChange.emit(value);
@@ -128,6 +133,11 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
       this._subs.push(
         this._datepickerRef.instance.valueChange.subscribe((value: Date) => {
           this.bsValue = value;
+        })
+      );
+      this._subs.push(
+        this._datepickerRef.instance.viewChange.subscribe((view: BsDatepickerViewState) => {
+          this.bsViewChange.emit(view);
         })
       );
     }
