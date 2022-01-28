@@ -19,7 +19,7 @@ export class OffcanvasPo extends BaseComponent {
     headerElement: '.offcanvas-header'
   };
 
-  checkClass(baseSelector: string, classValue: string, not: boolean = false) {
+  checkClass(baseSelector: string, classValue: string, not = false) {
     if (!not) {
       cy.get(`${baseSelector}`).should('to.have.class', classValue);
       return;

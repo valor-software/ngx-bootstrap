@@ -56,7 +56,7 @@ describe('Offcanvas page testing suite', () => {
       end: 1,
       top: 2,
       bottom: 3
-    }
+    };
 
     const availablePosition = Object.keys(POSITION_CLASSNAME);
 
