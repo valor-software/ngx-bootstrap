@@ -1021,6 +1021,11 @@ export const ngdoc: any = {
         "description": "<p>sets use adaptive position</p>\n"
       },
       {
+        "name": "allowedPositions",
+        "type": "string[]",
+        "description": "<p>Set allowed positions of container.</p>\n"
+      },
+      {
         "name": "clearButtonLabel",
         "defaultValue": "Clear",
         "type": "string",
@@ -2902,6 +2907,66 @@ export const ngdoc: any = {
     "description": "",
     "methods": [],
     "properties": []
+  },
+  "BackdropService": {
+    "fileName": "src/offcanvas/backdrop.service.ts",
+    "className": "BackdropService",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
+  "OffcanvasBackdropComponent": {
+    "fileName": "src/offcanvas/offcanvas-backdrop.ts",
+    "className": "OffcanvasBackdropComponent",
+    "description": "<p>This component will be added as background layout for modals if enabled</p>\n",
+    "selector": "offcanvas-backdrop",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "OffcanvasContainerComponent": {
+    "fileName": "src/offcanvas/offcanvas-container.component.ts",
+    "className": "OffcanvasContainerComponent",
+    "description": "",
+    "selector": "offcanvas",
+    "inputs": [
+      {
+        "name": "config",
+        "type": "OffcanvasConfigType | Partial<OffcanvasConfigType>",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "isOpened",
+        "description": ""
+      }
+    ],
+    "properties": [],
+    "methods": []
+  },
+  "OffcanvasDirective": {
+    "fileName": "src/offcanvas/offcanvas.directive.ts",
+    "className": "OffcanvasDirective",
+    "description": "",
+    "selector": "[offcanvas]",
+    "exportAs": "offcanvas",
+    "inputs": [
+      {
+        "name": "config",
+        "type": "OffcanvasConfigType",
+        "description": ""
+      }
+    ],
+    "outputs": [
+      {
+        "name": "isOpened",
+        "description": ""
+      }
+    ],
+    "properties": [],
+    "methods": []
   },
   "ConfigModel": {
     "fileName": "src/pagination/models/index.ts",

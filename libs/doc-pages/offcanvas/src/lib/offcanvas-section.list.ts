@@ -9,7 +9,10 @@ import { BackdropComponent } from "./demos/backdrop/backdrop.component";
 import { TriggerEventComponent } from "./demos/trigger-event/trigger-event.component";
 import { BackdropScrollingComponent } from "./demos/backdropScrolling/backdropScrolling.component";
 import { WaysToUseComponent } from "./demos/ways-to-use/ways-to-use.component";
-
+import {
+  NgApiDocComponent,
+  NgApiDocConfigComponent
+} from '@ngx-bootstrap-doc/docs';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -84,12 +87,26 @@ export const demoComponentContent: ContentSection[] = [
     usage: require('!!raw-loader!./docs/usage.md'),
     importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">offcanvas</span>',
     content: [
-      // {
-      //   title: 'ModalDirective',
-      //   anchor: 'modal-directive',
-      //   outlet: NgApiDocComponent
-      // },
-
+      {
+        title: 'OffcanvasDirective',
+        anchor: 'OffcanvasDirective',
+        outlet: NgApiDocComponent
+      },
+      {
+        title: 'OffcanvasBackdropComponent',
+        anchor: 'OffcanvasBackdropComponent',
+        outlet: NgApiDocComponent
+      },
+      {
+        title: 'OffcanvasContainerComponent',
+        anchor: 'OffcanvasContainerComponent',
+        outlet: NgApiDocComponent
+      },
+      {
+        title: 'OffcanvasConfig',
+        anchor: 'OffcanvasConfig',
+        outlet: NgApiDocConfigComponent
+      }
     ]
   },
   {
@@ -98,12 +115,41 @@ export const demoComponentContent: ContentSection[] = [
     tabName: 'examples',
     outlet: ExamplesComponent,
     content: [
-      // {
-      //   title: 'Template',
-      //   anchor: 'service-template-ex',
-      //   outlet: DemoModalServiceStaticComponent
-      // },
-
+      {
+        title: 'Basic',
+        anchor: 'basic-section',
+        outlet: BasicComponent
+      },
+      {
+        title: 'Header title',
+        anchor: 'header-title',
+        outlet: HeaderTitleComponent
+      },
+      {
+        title: 'Different position',
+        anchor: 'different-position',
+        outlet: DifferentPositionComponent
+      },
+      {
+        title: 'Backdrop',
+        anchor: 'backdrop',
+        outlet: BackdropComponent
+      },
+      {
+        title: 'Events',
+        anchor: 'events',
+        outlet: TriggerEventComponent
+      },
+      {
+        title: 'Enable backdrop scrolling',
+        anchor: 'backdropScrolling',
+        outlet: BackdropScrollingComponent
+      },
+      {
+        title: 'Ways to use',
+        anchor: 'use-ways',
+        outlet: WaysToUseComponent
+      }
     ]
   }
 ];
