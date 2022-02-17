@@ -264,13 +264,18 @@ export class TypeaheadContainerComponent implements OnDestroy {
       ? latinize(itemStr)
       : itemStr).toLowerCase();
     let startIdx: number;
-    let tokenLen: number;
+    let tokenLen = 0;
     // Replaces the capture string with the same string inside of a "strong" tag
     if (typeof query === 'object') {
       const queryLen: number = query.length;
+      let indexOfTrimmedMatch:number;
       for (let i = 0; i < queryLen; i += 1) {
         // query[i] is already latinized and lower case
-        startIdx = itemStrHelper.indexOf(query[i]);
+        // When user type empty string as query, it always taking first index(0) instead of space after the query word.
+        // as result it adding the html markup, so to solve this issue we are trimming the match and find the index.
+        // If it is valid index adding token lenth to it
+        indexOfTrimmedMatch =  itemStrHelper.trim().indexOf(query[i]);
+        startIdx = query[i].trim() ? itemStrHelper.indexOf(query[i]) :  indexOfTrimmedMatch >= 0 ?  indexOfTrimmedMatch + tokenLen : -1;
         tokenLen = query[i].length;
         if (startIdx >= 0 && tokenLen > 0) {
           itemStr =
