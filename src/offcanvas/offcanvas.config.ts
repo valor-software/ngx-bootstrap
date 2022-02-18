@@ -1,18 +1,24 @@
+import { Injectable } from "@angular/core";
+
 export type AvailablePlacement = 'start' | 'end' | 'top' | 'bottom';
 export type OffcanvasConfigType = {
-  placement: AvailablePlacement;
+  placement: Partial<AvailablePlacement>;
   headerTitle: string;
   backdrop: boolean;
   backdropScrolling: boolean;
 };
 
-export const OffcanvasConfig: OffcanvasConfigType = {
+/** Default offcanvas configuration */
+@Injectable({
+  providedIn: 'root'
+})
+export class OffcanvasConfig implements OffcanvasConfigType{
   /** default placement of element is left side */
-  placement: 'start',
+  placement: Partial<AvailablePlacement> = 'start';
   /** default headerTitle is empty */
-  headerTitle: '',
+  headerTitle =  '';
   /** in default configuration backdrop is available */
-  backdrop: true,
+  backdrop = true;
   /** in default configuration backdrop scrolling is enabled */
-  backdropScrolling: true
+  backdropScrolling = true;
 };

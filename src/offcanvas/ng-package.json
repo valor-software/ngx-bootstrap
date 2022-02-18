@@ -3,5 +3,8 @@
   "dest": "../../dist/ngx-bootstrap/offcanvas",
   "lib": {
     "entryFile": "index.ts"
-  }
+  },
+  "assets": [
+    "./offcanvas.scss"
+  ]
 }

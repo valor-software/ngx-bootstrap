@@ -7,8 +7,6 @@ import { OffcanvasSectionComponent } from "./offcanvas.component";
 import { DEMO_COMPONENTS } from "./demos/index";
 import { OffcanvasModule } from 'ngx-bootstrap/offcanvas';
 
-
-
 @NgModule({
   declarations: [
     OffcanvasSectionComponent,

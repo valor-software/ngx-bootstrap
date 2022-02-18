@@ -28,7 +28,7 @@ let id = 0;
   exportAs: 'bs-tooltip'
 })
 export class TooltipDirective implements OnInit, OnDestroy {
-  tooltipId = id++;
+  tooltipId = `tooltip-${id++}`;
   /** sets disable adaptive position */
   @Input() adaptivePosition = true;
   /**

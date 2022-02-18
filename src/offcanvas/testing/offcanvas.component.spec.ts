@@ -1,17 +1,23 @@
 import { Component, ViewChild } from "@angular/core";
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OffcanvasContainerComponent, OffcanvasModule } from "../index";
 import { AvailablePlacement, OffcanvasConfig, OffcanvasConfigType } from "../offcanvas.config";
+import { BackdropService } from "ngx-bootstrap/component-loader";
 
 @Component({
   selector: 'offcanvas-test',
   template: ''
 })
 class TestOffcanvasComponent {
-  config: OffcanvasConfigType = Object.assign({}, OffcanvasConfig, {headerTitle: 'header Title', backdropScrolling: false, backdrop: false});
+  config?: OffcanvasConfigType;
   @ViewChild('element', {static: false}) public offcanvas?: OffcanvasContainerComponent;
 
+  constructor(
+    private offCanvasConfig: OffcanvasConfig
+  ) {
+    this.config = Object.assign({}, this.offCanvasConfig, {headerTitle: 'header Title', backdropScrolling: false, backdrop: false});
+  }
   showElement() {
     this.offcanvas?.show();
   }
@@ -63,7 +69,8 @@ describe('Component: Offcanvas', () => {
       imports: [
         OffcanvasModule,
         BrowserAnimationsModule
-      ]
+      ],
+      providers: [BackdropService]
     });
     TestBed.overrideComponent(TestOffcanvasComponent, {
       set: { template: html }
@@ -123,13 +130,13 @@ describe('Component: Offcanvas', () => {
 
   it('should toggle backdrop', () => {
     showElement();
-    expect(document.body.querySelector('offcanvas-backdrop')).toBeFalsy();
+    expect(document.body.querySelector('.offcanvas-backdrop')).toBeFalsy();
     closeElement();
     fixture.componentInstance.switchBackDrop(true);
     fixture.detectChanges();
     showElement();
-    expect(document.body.querySelector('offcanvas-backdrop')).toBeTruthy();
-    checkClassContain('offcanvas-backdrop', 'show');
+    expect(document.body.querySelector('.offcanvas-backdrop')).toBeTruthy();
+    checkClassContain('.offcanvas-backdrop', 'show');
   });
 
   it('should toggle backdrop scrolling', () => {

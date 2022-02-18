@@ -1,5 +1,4 @@
 import {
-  ComponentRef,
   Injectable,
   TemplateRef,
   EventEmitter,
@@ -9,8 +8,7 @@ import {
   Optional
 } from '@angular/core';
 
-import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
-import { ModalBackdropComponent } from './modal-backdrop.component';
+import { ComponentLoader, ComponentLoaderFactory, BackdropService } from 'ngx-bootstrap/component-loader';
 import { ModalContainerComponent } from './modal-container.component';
 import {
   CLASS_NAME,
@@ -38,8 +36,6 @@ export class BsModalService {
 
   protected scrollbarWidth = 0;
 
-  protected backdropRef?: ComponentRef<ModalBackdropComponent>;
-  private _backdropLoader: ComponentLoader<ModalBackdropComponent>;
   private modalsCount = 0;
   private lastDismissReason?: string;
 
@@ -50,8 +46,9 @@ export class BsModalService {
   constructor(
     rendererFactory: RendererFactory2,
     private clf: ComponentLoaderFactory,
-    @Optional() @Inject(MODAL_CONFIG_DEFAULT_OVERRIDE) private modalDefaultOption: ModalOptions) {
-    this._backdropLoader = this.clf.createLoader<ModalBackdropComponent>();
+    @Optional() @Inject(MODAL_CONFIG_DEFAULT_OVERRIDE) private modalDefaultOption: ModalOptions,
+    private backDropServ: BackdropService
+    ) {
     this._renderer = rendererFactory.createRenderer(null, null);
     this.config = modalDefaultOption ?
       (Object.assign({}, modalConfigDefaults, modalDefaultOption)) :
@@ -94,29 +91,17 @@ export class BsModalService {
   _showBackdrop(): void {
     const isBackdropEnabled =
       this.config.backdrop === true || this.config.backdrop === 'static';
-    const isBackdropInDOM =
-      !this.backdropRef || !this.backdropRef.instance.isShown;
 
     if (this.modalsCount === 1) {
-      this.removeBackdrop();
-
-      if (isBackdropEnabled && isBackdropInDOM) {
-        this._backdropLoader
-          .attach(ModalBackdropComponent)
-          .to('body')
-          .show({ isAnimated: this.config.animated });
-        this.backdropRef = this._backdropLoader._componentRef;
-      }
+      this.backDropServ.removeBackdrop();
+    }
+    if (isBackdropEnabled) {
+      this.backDropServ._showBackdrop(this.config.animated || false, 'BACKDROP');
     }
   }
 
   _hideBackdrop(): void {
-    if (!this.backdropRef) {
-      return;
-    }
-    this.backdropRef.instance.isShown = false;
-    const duration = this.config.animated ? TRANSITION_DURATIONS.BACKDROP : 0;
-    setTimeout(() => this.removeBackdrop(), duration);
+    this.backDropServ._hideBackdrop(this.config.animated || false);
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   _showModal<T>(content: any): BsModalRef<T> {
@@ -189,13 +174,6 @@ export class BsModalService {
 
   setDismissReason(reason: string) {
     this.lastDismissReason = reason;
-  }
-
-  removeBackdrop(): void {
-    this._renderer.removeClass(document.body, CLASS_NAME.OPEN);
-    this._renderer.setStyle(document.body, 'overflow-y', '');
-    this._backdropLoader.hide();
-    this.backdropRef = void 0;
   }
 
   /** Checks if the body is overflowing and sets scrollbar width */

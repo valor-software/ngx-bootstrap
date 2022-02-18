@@ -711,7 +711,7 @@
               "tsConfig": "libs/doc-pages/offcanvas/tsconfig.lib.json"
             }
           },
-          "defaultConfiguration": "production"
+          "defaultConfiguration": "development"
         },
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -1415,7 +1415,8 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/datepicker"
+                "src/datepicker",
+                "src/offcanvas"
               ]
             }
           },
@@ -1429,7 +1430,7 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
+              "sourceMap": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,

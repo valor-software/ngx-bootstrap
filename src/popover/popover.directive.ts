@@ -17,7 +17,7 @@ let id = 0;
 @Directive({selector: '[popover]', exportAs: 'bs-popover'})
 export class PopoverDirective implements OnInit, OnDestroy {
   /** unique id popover - use for aria-describedby */
-  popoverId = id++;
+  popoverId = `popover-${id++}`;
   /** sets disable adaptive position */
   @Input() adaptivePosition = true;
   /**
