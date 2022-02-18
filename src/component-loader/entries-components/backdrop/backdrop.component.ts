@@ -1,14 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2, HostListener, HostBinding } from "@angular/core";
 import { Utils } from "ngx-bootstrap/utils";
 import { Subject } from "rxjs";
-
-const CLASS_NAME = {
-  BACKDROP: 'modal-backdrop',
-  OFFCANVAS: 'offcanvas-backdrop',
-  OPEN: 'modal-open',
-  FADE: 'fade',
-  SHOW: 'show'
-};
+import { CLASS_NAME } from "./backdrop.models";
 
 /** This component will be added as background layout for modals if enabled */
 @Component({
@@ -53,8 +46,7 @@ export class BackdropComponent implements OnInit {
   protected _isShown = false;
 
   @HostListener('click')
-  onClickStop(event: Event): void {
-    console.log('backdrop clicked', event);
+  onClickStop(): void {
     this.backdropIsClicked.next();
   }
 

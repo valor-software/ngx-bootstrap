@@ -710,8 +710,7 @@
             "development": {
               "tsConfig": "libs/doc-pages/offcanvas/tsconfig.lib.json"
             }
-          },
-          "defaultConfiguration": "development"
+          }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -1430,7 +1429,7 @@
               ],
               "optimization": true,
               "outputHashing": "all",
-              "sourceMap": true,
+              "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,

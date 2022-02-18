@@ -1,10 +1,11 @@
 import {
   Directive, HostListener,
-  Renderer2, ElementRef, Input, EventEmitter, Output,
+  Renderer2, ElementRef, Input, EventEmitter, Output, Inject
 } from "@angular/core";
 import { BackdropService } from "ngx-bootstrap/component-loader";
 import { OffcanvasConfig, OffcanvasConfigType } from "./offcanvas.config";
 import { Subscription } from "rxjs";
+import { DOCUMENT } from "@angular/common";
 
 const BACKDROP_NODE_NAME = 'OFFCANVAS-BACKDROP';
 
@@ -29,7 +30,8 @@ export class OffcanvasDirective {
     private el: ElementRef,
     private renderer: Renderer2,
     private offcanvasConfig: OffcanvasConfig,
-    private backdropServ: BackdropService
+    private backdropServ: BackdropService,
+    @Inject(DOCUMENT) private document: Document
 ) {}
 
   @HostListener('transitionend')
@@ -49,6 +51,10 @@ export class OffcanvasDirective {
   }
 
   public show() {
+    if (this.checkOffcanvasCounts()) {
+      return;
+    }
+
     this.isOpen = true;
     if (this._config?.backdrop) {
       this.backdropServ._showBackdrop(true, 'OFFCANVAS');
@@ -59,9 +65,17 @@ export class OffcanvasDirective {
     }
 
     setTimeout(() => {
+      if (this.checkOffcanvasCounts()) {
+        this.isOpen = false;
+        if (!this._config?.backdropScrolling) {
+          this.renderer.removeStyle(document.body, 'overflow');
+        }
+        return;
+      }
+
+      this.isOpened.emit(true);
       this.el.nativeElement.style.visibility = 'visible';
       this.renderer.addClass(this.el.nativeElement, 'show');
-      this.isOpened.emit(true);
       if (this._config?.backdrop) {
         this.sub = this.backdropServ.backDropIsCLicked.subscribe(() => {
           this.hide();
@@ -89,5 +103,9 @@ export class OffcanvasDirective {
 
   setConfig(value: Partial<OffcanvasConfigType>) {
       this._config = Object.assign({}, this.offcanvasConfig, value);
+  }
+
+  checkOffcanvasCounts() {
+    return !!this.document.body.querySelectorAll('.offcanvas.show').length;
   }
 }

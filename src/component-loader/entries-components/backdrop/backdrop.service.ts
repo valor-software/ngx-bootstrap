@@ -9,14 +9,8 @@ import { ComponentLoader } from '../../component-loader.class';
 import { ComponentLoaderFactory } from '../../component-loader.factory';
 import { BackdropComponent } from "./backdrop.component";
 import { Subject, Subscription } from "rxjs";
+import { CLASS_NAME, AVAILABLE_CLASS_TYPE, backdrop_duration } from './backdrop.models';
 
-const CLASS_NAME = {
-  BACKDROP: 'modal-backdrop',
-  OFFCANVAS: 'offcanvas-backdrop',
-  OPEN: 'modal-open',
-  FADE: 'fade',
-  SHOW: 'show'
-};
 
 @Injectable({providedIn: 'platform'})
 export class BackdropService {
@@ -33,7 +27,7 @@ export class BackdropService {
     this._renderer = rendererFactory.createRenderer(null, null);
   }
 
-  _showBackdrop(isAnimated: boolean, className: 'OFFCANVAS' | 'BACKDROP' = 'BACKDROP'): void {
+  _showBackdrop(isAnimated: boolean, className: AVAILABLE_CLASS_TYPE = 'BACKDROP'): void {
     const isBackdropInDOM =
       !this.backdropRef || !this.backdropRef.instance.isShown;
 
@@ -49,7 +43,6 @@ export class BackdropService {
           this.backDropIsCLicked.next();
         });
       }
-
     }
   }
 
@@ -57,11 +50,11 @@ export class BackdropService {
     if (!this.backdropRef) {
       return;
     }
+
     this.backdropRef.instance.isShown = false;
-    const duration = isAnimated ? 150 : 0;
+    const duration = isAnimated ? backdrop_duration : 0;
     setTimeout(() => this.removeBackdrop(), duration);
   }
-
 
   removeBackdrop(): void {
     this._renderer.removeClass(document.body, CLASS_NAME.OPEN);
