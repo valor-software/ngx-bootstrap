@@ -15,7 +15,7 @@ export class OffcanvasPo extends BaseComponent {
     triggerEvent: 'tab[heading="Overview"] trigger-event',
     waysToUse: 'tab[heading="Overview"] use-ways',
     offcanvasElement: '.offcanvas',
-    backdropElement: 'offcanvas-backdrop',
+    backdropElement: '.offcanvas-backdrop',
     headerElement: '.offcanvas-header'
   };
 
