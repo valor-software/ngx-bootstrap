@@ -16,6 +16,7 @@ export class OffcanvasDirective {
   delayValue = 300;
   _config?: OffcanvasConfigType;
   sub?: Subscription;
+  /** allows to set offcanvas configuration via element property */
   @Input() set config(value: OffcanvasConfigType | undefined) {
     if (!value) {
       return;
@@ -24,6 +25,7 @@ export class OffcanvasDirective {
     this.setConfig(value);
   };
 
+  /** Emits when the opened state changes */
   @Output() isOpened: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(

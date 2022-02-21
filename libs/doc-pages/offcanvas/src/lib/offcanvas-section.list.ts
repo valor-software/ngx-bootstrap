@@ -24,7 +24,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Basic',
         anchor: 'basic-section',
-        description: `<p>TEXT TEXT TEXT</p>`,
+        description: `<p>Offcanvas element with basic configuration. Backdrop is switched on, header title is empty and backdrop scrolling is available.</p>`,
         component: require('!!raw-loader!./demos/basic/basic.component.ts'),
         html: require('!!raw-loader!./demos/basic/basic.component.html'),
         outlet: BasicComponent
@@ -32,7 +32,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Header title',
         anchor: 'header-title',
-        description: `<p>TEXT TEXT TEXT</p>`,
+        description: `<p>It is available to set a header title with configuration object. You should use for it <code>headerTitle</code> property in configuration object.</p>`,
         component: require('!!raw-loader!./demos/header-title/header-title.component.ts'),
         html: require('!!raw-loader!./demos/header-title/header-title.component.html'),
         outlet: HeaderTitleComponent
@@ -40,7 +40,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Different position',
         anchor: 'different-position',
-        description: `<p>TEXT TEXT TEXT</p>`,
+        description: `<p><code>placement</code> property allows setting four placement positions: top, left, right, bottom.</p>`,
         component: require('!!raw-loader!./demos/different-position/differrent-position.component.ts'),
         html: require('!!raw-loader!./demos/different-position/different-position.component.html'),
         outlet: DifferentPositionComponent
@@ -48,7 +48,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Backdrop',
         anchor: 'backdrop',
-        description: `<p>TEXT TEXT TEXT</p>`,
+        description: `<p>Backdrop can be switched on/off</p>`,
         component: require('!!raw-loader!./demos/backdrop/backdrop.component.ts'),
         html: require('!!raw-loader!./demos/backdrop/backdrop.component.html'),
         outlet: BackdropComponent
@@ -56,7 +56,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Events',
         anchor: 'events',
-        description: `<p>TEXT TEXT TEXT</p>`,
+        description: `<p>Module emits event <code>isOpened</code>. It is triggered when element opens/closes</p>`,
         component: require('!!raw-loader!./demos/trigger-event/trigger-event.component.ts'),
         html: require('!!raw-loader!./demos/trigger-event/trigger-event.component.html'),
         outlet: TriggerEventComponent
@@ -64,7 +64,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Enable backdrop scrolling',
         anchor: 'backdropScrolling',
-        description: `<p>TEXT TEXT TEXT</p>`,
+        description: `<p>Backdrop scrolling can be switched on/off when offcanvas element is opened</p>`,
         component: require('!!raw-loader!./demos/backdropScrolling/backdropScrolling.component.ts'),
         html: require('!!raw-loader!./demos/backdropScrolling/backdropScrolling.component.html'),
         outlet: BackdropScrollingComponent
@@ -72,7 +72,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Ways to use',
         anchor: 'use-ways',
-        description: `<p>TEXT TEXT TEXT</p>`,
+        description: `<p>Offcanva element is useable from both <code>.ts</code> and <code>.html</code> files</p>`,
         component: require('!!raw-loader!./demos/ways-to-use/ways-to-use.component.ts'),
         html: require('!!raw-loader!./demos/ways-to-use/ways-to-use.component.html'),
         outlet: WaysToUseComponent
@@ -87,11 +87,6 @@ export const demoComponentContent: ContentSection[] = [
     usage: require('!!raw-loader!./docs/usage.md'),
     importInfo: '<span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">offcanvas</span>',
     content: [
-      {
-        title: 'OffcanvasDirective',
-        anchor: 'OffcanvasDirective',
-        outlet: NgApiDocComponent
-      },
       {
         title: 'OffcanvasBackdropComponent',
         anchor: 'OffcanvasBackdropComponent',

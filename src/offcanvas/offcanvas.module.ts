@@ -17,5 +17,4 @@ import { ComponentLoaderFactory, BackdropService } from "ngx-bootstrap/component
   providers:[BackdropService, ComponentLoaderFactory, BackdropService]
 })
 export class OffcanvasModule {
-
 }

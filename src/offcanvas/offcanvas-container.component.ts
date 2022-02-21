@@ -46,7 +46,7 @@ export class OffcanvasContainerComponent {
   id = `offcanvas-${id++}`;
   idLabel = `offcanvasLabel-${id++}`;
   @ViewChild(OffcanvasDirective, {static: false}) public offcanvasDirective?: OffcanvasDirective;
-
+  /** allows to set offcanvas configuration via element property */
   @Input() set config(value: OffcanvasConfigType | Partial<OffcanvasConfigType> ) {
     if (!value) {
       return;
@@ -54,7 +54,7 @@ export class OffcanvasContainerComponent {
 
     this.setConfig(value);
   }
-
+  /** Emits when the opened state changes */
   @Output() isOpened: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   get positionClass(): string {
