@@ -54,7 +54,7 @@ export class OffcanvasContainerComponent {
 
     this.setConfig(value);
   }
-  /** Emits when the opened state changes */
+  /** Emits event when the opened state changes */
   @Output() isOpened: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   get positionClass(): string {
