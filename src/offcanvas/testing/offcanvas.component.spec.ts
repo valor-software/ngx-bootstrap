@@ -111,21 +111,33 @@ describe('Component: Offcanvas', () => {
   });
 
   it('should have placement class according the placement configuration', async () => {
-    const POSITION_CLASSNAME = {
-      start: 'offcanvas-start',
-      end: 'offcanvas-end',
-      top: 'offcanvas-top',
-      bottom: 'offcanvas-bottom'
-    };
-    const placementArray: AvailablePlacement[] = ['start', 'top', 'end', 'bottom'];
-    for (const key of placementArray) {
-      fixture.componentInstance.changeElementPlacement(key);
-      fixture.detectChanges();
-      showElement();
-      await new Promise((r) => setTimeout(r, 500));
-      fixture.detectChanges();
-      checkClassContain('.offcanvas', POSITION_CLASSNAME[key]);
-    }
+    fixture.componentInstance.changeElementPlacement('top');
+    fixture.detectChanges();
+    showElement();
+    await new Promise((r) => setTimeout(r, 300));
+    fixture.detectChanges();
+    checkClassContain('.offcanvas', 'offcanvas-top');
+
+    fixture.componentInstance.changeElementPlacement('start');
+    fixture.detectChanges();
+    showElement();
+    await new Promise((r) => setTimeout(r, 300));
+    fixture.detectChanges();
+    checkClassContain('.offcanvas', 'offcanvas-start');
+
+    fixture.componentInstance.changeElementPlacement('end');
+    fixture.detectChanges();
+    showElement();
+    await new Promise((r) => setTimeout(r, 300));
+    fixture.detectChanges();
+    checkClassContain('.offcanvas', 'offcanvas-end');
+
+    fixture.componentInstance.changeElementPlacement('bottom');
+    fixture.detectChanges();
+    showElement();
+    await new Promise((r) => setTimeout(r, 300));
+    fixture.detectChanges();
+    checkClassContain('.offcanvas', 'offcanvas-bottom');
   });
 
   it('should toggle backdrop', () => {
