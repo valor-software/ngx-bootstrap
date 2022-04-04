@@ -221,9 +221,7 @@ export class ModalDirective implements OnDestroy, OnInit {
     window.clearTimeout(this.timerRmBackDrop);
 
     this._isShown = false;
-    this._renderer.removeClass(this._element.nativeElement, CLASS_NAME.IN);
     this._renderer.removeClass(this._element.nativeElement, CLASS_NAME.SHOW);
-    // this._addClassIn = false;
 
     if (this._config.animated) {
       this.timerHideModal = window.setTimeout(
@@ -280,8 +278,6 @@ export class ModalDirective implements OnDestroy, OnInit {
       Utils.reflow(this._element.nativeElement);
     }
 
-    // this._addClassIn = true;
-    this._renderer.addClass(this._element.nativeElement, CLASS_NAME.IN);
     this._renderer.addClass(this._element.nativeElement, CLASS_NAME.SHOW);
 
     const transitionComplete = () => {

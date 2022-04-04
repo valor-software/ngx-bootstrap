@@ -29,17 +29,6 @@ export class ModalBackdropComponent implements OnInit {
     if (value) {
       this.renderer.addClass(
         this.element.nativeElement,
-        `${CLASS_NAME.IN}`
-      );
-    } else {
-      this.renderer.removeClass(
-        this.element.nativeElement,
-        `${CLASS_NAME.IN}`
-      );
-    }
-    if (value) {
-      this.renderer.addClass(
-        this.element.nativeElement,
         `${CLASS_NAME.SHOW}`
       );
     } else {
