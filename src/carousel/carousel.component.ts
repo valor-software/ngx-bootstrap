@@ -140,10 +140,6 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   private customActiveSlide?: number;
   currentId = 0;
 
-  // get isBs4(): boolean {
-  //   return !isBs3();
-  // }
-
   get _bsVer(): IBsVersion {
     return getBsVer();
   }
