@@ -3404,6 +3404,11 @@ export const ngdoc: any = {
         "defaultValue": "click",
         "type": "string",
         "description": "<p>Specifies events that should trigger. Supports a space separated list of\nevent names.</p>\n"
+      },
+      {
+        "name": "boundariesElement",
+        "type": "\"viewport\" | \"scrollParent\" | \"window\"",
+        "description": ""
       }
     ],
     "outputs": [

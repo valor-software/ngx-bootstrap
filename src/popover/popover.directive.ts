@@ -20,6 +20,8 @@ export class PopoverDirective implements OnInit, OnDestroy {
   popoverId = `popover-${id++}`;
   /** sets disable adaptive position */
   @Input() adaptivePosition = true;
+
+  @Input() boundariesElement?: ('viewport' | 'scrollParent' | 'window');
   /**
    * Content to be displayed as popover.
    */
@@ -159,7 +161,8 @@ export class PopoverDirective implements OnInit, OnDestroy {
           enabled: this.adaptivePosition
         },
         preventOverflow: {
-          enabled: this.adaptivePosition
+          enabled: this.adaptivePosition,
+          boundariesElement: this.boundariesElement || 'scrollParent' 
         }
       }
     });

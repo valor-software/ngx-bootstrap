@@ -18,9 +18,11 @@ import { DemoPopoverStylingLocalComponent } from './styling-local/styling-local'
 import { DemoPopoverTriggersCustomComponent } from './triggers-custom/triggers-custom';
 import { DemoPopoverTriggersManualComponent } from './triggers-manual/triggers-manual';
 import { DemoPopoverCornerPlacementComponent } from './corner-placement/corner-placement';
+import { DemoAdaptivePositionOverflowBoundaryComponent } from './adaptive-position-overflow-boundary/adaptive-position-overflow-boundary';
 
 export const DEMO_COMPONENTS = [
   DemoPopoverAdaptivePositionComponent,
+  DemoAdaptivePositionOverflowBoundaryComponent,
   DemoPopoverBasicComponent,
   DemoPopoverByIsOpenPropComponent,
   DemoPopoverClassComponent,
