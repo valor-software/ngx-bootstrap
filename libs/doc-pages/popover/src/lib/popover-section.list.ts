@@ -26,6 +26,7 @@ import {
   NgApiDocComponent,
   NgApiDocConfigComponent
 } from '@ngx-bootstrap-doc/docs';
+import { DemoAdaptivePositionOverflowBoundaryComponent } from './demos/adaptive-position-overflow-boundary/adaptive-position-overflow-boundary';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -72,6 +73,16 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/adaptive-position/adaptive-position.ts'),
         html: require('!!raw-loader!./demos/adaptive-position/adaptive-position.html'),
         outlet: DemoPopoverAdaptivePositionComponent
+      },
+      {
+        title: 'Adaptive position with overflow boundary',
+        anchor: 'adaptive-position-overflow-boundary',
+        description: `
+          <p>You can control the popover boundaries via <code>boundariesElement</code> input or config option.   <code>boundariesElement</code> property of a popover can contain boundaries namely <code>viewport, scrollParent, window</code>.</p>
+        `,
+        component: require('!!raw-loader!./demos/adaptive-position-overflow-boundary/adaptive-position-overflow-boundary.ts'),
+        html: require('!!raw-loader!./demos/adaptive-position-overflow-boundary/adaptive-position-overflow-boundary.html'),
+        outlet: DemoAdaptivePositionOverflowBoundaryComponent
       },
       {
         title: 'Dismiss on next click',
@@ -239,6 +250,11 @@ export const demoComponentContent: ContentSection[] = [
         title: 'Disable adaptive position',
         anchor: 'adaptive-position-ex',
         outlet: DemoPopoverAdaptivePositionComponent
+      },
+      {
+        title: 'Adaptive position with overflow boundary',
+        anchor: 'adaptive-position-overflow-boundary-ex',
+        outlet: DemoAdaptivePositionOverflowBoundaryComponent
       },
       {
         title: 'Dismiss on next click',
