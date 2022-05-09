@@ -5,6 +5,28 @@ import { Analytics } from '@ngx-bootstrap-doc/docs';
 import { filter } from 'rxjs/operators';
 import algoliasearch from "algoliasearch/lite";
 
+const algoliaClient = algoliasearch(
+  'HYPJ62ELGP',
+  '64b81b76c05cb5bf0259b21526c7a916'
+);
+
+const searchClient = {
+  ...algoliaClient,
+  search(requests) {
+    if (requests.every(({ params }) => !params.query || params.query?.length <= 2)) {
+      return Promise.resolve({
+        results: requests.map(() => ({
+          hits: [],
+          nbHits: 0,
+          nbPages: 0,
+          page: 0,
+          processingTimeMS: 0,
+        })),
+      });
+    }
+    return algoliaClient.search(requests);
+  },
+};
 
 @Component({
   selector: 'bs-demo',
@@ -13,9 +35,9 @@ import algoliasearch from "algoliasearch/lite";
 export class AppComponent implements AfterContentInit {
   showSidebar = false;
   config = {
-    searchClient: algoliasearch('HYPJ62ELGP', '64b81b76c05cb5bf0259b21526c7a916'),
-    indexName: 'instant_search',
-    routing: true,
+    searchClient,
+    indexName: 'components',
+    routing: true
   };
 
   constructor(

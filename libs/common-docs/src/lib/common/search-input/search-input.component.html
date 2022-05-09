@@ -1,24 +1,87 @@
-<form>
-  <div class="input-container" [class.hideInput]="!showInput">
-    <input  #searchInput
-            type="text"
-            aria-label="Search in docs" name="search"
-            placeholder="Search..."
-            [value]="search.text"
-            (keyup)='search.text = searchInput.value'
-            (keypress)='preventReloading($event)'/>
-  </div>
-</form>
+<!--<form>-->
+<!--  <div class="input-container" [class.hideInput]="!showInput">-->
+<!--    <input  #searchInput-->
+<!--            type="text"-->
+<!--            aria-label="Search in docs" name="search"-->
+<!--            placeholder="Search..."-->
+<!--            [value]="search.text"-->
+<!--            (keyup)='search.text = searchInput.value'-->
+<!--            (keypress)='preventReloading($event)'/>-->
+<!--  </div>-->
+<!--</form>-->
 
-<ul class="sidebar-list menu" *ngIf="search.text && routes.length" data-cypress="search-result">
-  <ng-container *ngFor="let route of routes | slice:4 | SearchFilter:search.text">
-    <li *ngIf="route.path"
-        [routerLinkActive]="['active']"
-        [routerLinkActiveOptions]="{exact: true}"
-        class="w-100"
-        (click)="search.text = ''"
+<!--<ul class="sidebar-list menu" *ngIf="search.text && routes.length" data-cypress="search-result">-->
+<!--  <ng-container *ngFor="let route of routes | slice:4 | SearchFilter:search.text">-->
+<!--    <li *ngIf="route.path"-->
+<!--        [routerLinkActive]="['active']"-->
+<!--        [routerLinkActiveOptions]="{exact: true}"-->
+<!--        class="w-100"-->
+<!--        (click)="search.text = ''"-->
+<!--    >-->
+<!--      <a [routerLink]="getRouteLink(route.path)" class="text-white d-block w-100">{{route.data[0]}}</a>-->
+<!--    </li>-->
+<!--  </ng-container>-->
+<!--</ul>-->
+<div [class.hideInput]="!showInput">
+  <ais-search-box placeholder="Search"></ais-search-box>
+</div>
+
+<app-refinement-setter
+  attribute="name"
+  refinement=""
+>
+  <ng-template
+    let-refine="refine"
+    let-isRefined="isRefined"
+  >
+    <button
+      (click)="refine()"
     >
-      <a [routerLink]="getRouteLink(route.path)" class="text-white d-block w-100">{{route.data[0]}}</a>
-    </li>
-  </ng-container>
-</ul>
+      Samsung!! {{isRefined ? 'refined' : 'not refined'}}
+    </button>
+  </ng-template>
+</app-refinement-setter>
+
+
+<ais-hits>
+  <ng-template let-hits="hits" let-results="results">
+    <div *ngIf="hits.length === 0 && results?.query && results?.query.length > 0">
+      😢 Nothing found for
+      <strong>{{results?.query}}</strong>.
+    </div>
+    <ol class="ais-Hits-list" *ngIf="results?.query && results?.query.length > 0">
+      <li class="ais-Hits-item" *ngFor="let item of hits" (click)="getRouteLink(item.route)">
+        <article class="hit">
+          <div class="hit-info-container">
+            <p class="text-white d-block w-100">
+              <ais-highlight
+                attribute="name"
+                [hit]="item"
+              ></ais-highlight>
+            </p>
+            <p *ngIf="item.description" class="small">
+              {{item.description}}
+            </p>
+            <p class="text-grey small">
+              <ais-highlight
+                attribute="innerItems"
+                [hit]="item"
+              ></ais-highlight>
+            </p>
+          </div>
+        </article>
+      </li>
+
+
+<!--      <li *ngIf="route.path"-->
+<!--          [routerLinkActive]="['active']"-->
+<!--          [routerLinkActiveOptions]="{exact: true}"-->
+<!--          class="w-100"-->
+<!--          (click)="search.text = ''"-->
+<!--      >-->
+<!--        <a [routerLink]="getRouteLink(route.path)" class="text-white d-block w-100">{{route.data[0]}}</a>-->
+<!--      </li>-->
+
+    </ol>
+  </ng-template>
+</ais-hits>

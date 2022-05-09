@@ -7,7 +7,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AppFooterComponent } from './common/app-footer/app-footer.component';
 import { AddNavComponent } from './common/add-nav/add-nav.component';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
-import { SearchFilterPipe } from './common/search-input/search-filter.pipe';
+// import { SearchFilterPipe } from './common/search-input/search-filter.pipe';
 import { SearchInputComponent } from './common/search-input/search-input.component';
 import { BreadCrumbsComponent } from './common/breadCrumbs/breadCrumbs.component';
 import { ComponentsPageComponent } from './common/components-page/components-page.component';
@@ -49,7 +49,7 @@ export { ContentSection } from './models/content-section.model';
 export { AppFooterComponent } from './common/app-footer/app-footer.component';
 export { AddNavComponent } from './common/add-nav/add-nav.component';
 export { SidebarComponent } from './common/sidebar/sidebar.component';
-export { SearchFilterPipe } from './common/search-input/search-filter.pipe';
+// export { SearchFilterPipe } from './common/search-input/search-filter.pipe';
 export { SearchInputComponent } from './common/search-input/search-input.component';
 export { LandingComponent } from './common/landing/landing.component';
 export { DocumentationComponent } from './common/documentation/documentation.component';
@@ -73,7 +73,7 @@ import { RouterModule } from '@angular/router';
     DemoSectionComponent,
     SidebarComponent,
     AppFooterComponent,
-    SearchFilterPipe,
+    // SearchFilterPipe,
     AddNavComponent,
     DocsSectionComponent,
     LandingComponent,
@@ -98,7 +98,7 @@ import { RouterModule } from '@angular/router';
     NgAisModule
   ],
   exports: [
-    SearchFilterPipe,
+    // SearchFilterPipe,
     SidebarComponent,
     AppFooterComponent,
     AddNavComponent,

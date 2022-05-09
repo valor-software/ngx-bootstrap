@@ -24,7 +24,7 @@ export class TopMenuComponent implements AfterViewInit, OnDestroy {
     version: string;
     unprefixedUrl: string;
   }[] = [];
-
+  results?: any;
 
   constructor(
     @Inject(PLATFORM_ID) platformId: number,

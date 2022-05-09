@@ -1,16 +1,11 @@
-
-
 <ais-instantsearch [config]="config">
   <ais-configure
     [searchParameters]="{
-      attributesToSnippet: ['description:3'],
-      snippetEllipsisText: '…',
-      removeWordsIfNoResults: 'allOptional'
+      attributesToSnippet: ['description:3']
     }"
   >
   </ais-configure>
   <top-menu></top-menu>
   <sidebar id="sidebar" *ngIf="showSidebar" class="sidebar"></sidebar>
   <router-outlet></router-outlet>
-
 </ais-instantsearch>

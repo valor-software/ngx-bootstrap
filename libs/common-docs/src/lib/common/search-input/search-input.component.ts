@@ -29,9 +29,10 @@ export class SearchInputComponent {
     }
   }
 
-  getRouteLink(path: string): string {
+  getRouteLink(path: string) {
     const result = this.routes.find(item => item.path === path);
-    return result ? `/${path}` : `/components/${path}`;
+    console.log(result ? `/${path}` : `/components/${path}`);
+    this.router.navigate([result ? `/${path}` : `/components/${path}`]);
   }
 }
 
