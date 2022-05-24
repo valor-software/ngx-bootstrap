@@ -49,7 +49,6 @@ export { ContentSection } from './models/content-section.model';
 export { AppFooterComponent } from './common/app-footer/app-footer.component';
 export { AddNavComponent } from './common/add-nav/add-nav.component';
 export { SidebarComponent } from './common/sidebar/sidebar.component';
-// export { SearchFilterPipe } from './common/search-input/search-filter.pipe';
 export { SearchInputComponent } from './common/search-input/search-input.component';
 export { LandingComponent } from './common/landing/landing.component';
 export { DocumentationComponent } from './common/documentation/documentation.component';
@@ -85,7 +84,7 @@ import { RouterModule } from '@angular/router';
     BreadCrumbsComponent,
     ComponentsPageComponent,
     ConstructionPageComponent,
-    ThemesComponent
+    ThemesComponent,
   ],
   imports: [
     CommonModule,
@@ -98,7 +97,6 @@ import { RouterModule } from '@angular/router';
     NgAisModule
   ],
   exports: [
-    // SearchFilterPipe,
     SidebarComponent,
     AppFooterComponent,
     AddNavComponent,
