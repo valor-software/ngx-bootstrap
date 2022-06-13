@@ -149,7 +149,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     return getBsVer();
   }
 
-  constructor(config: CarouselConfig, private ngZone: NgZone, @Inject(PLATFORM_ID) public platformId: Object) {
+  constructor(config: CarouselConfig, private ngZone: NgZone, @Inject(PLATFORM_ID) public platformId: number) {
     Object.assign(this, config);
     this.currentId = _currentId++;
   }
