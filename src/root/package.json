@@ -80,6 +80,9 @@
       "node": "./datepicker/fesm2015/ngx-bootstrap-datepicker.mjs",
       "default": "./datepicker/fesm2020/ngx-bootstrap-datepicker.mjs"
     },
+    "./datepicker/bs-datepicker.css": {
+      "style": "./datepicker/bs-datepicker.css"
+    },
     "./dropdown": {
       "types": "./dropdown/ngx-bootstrap-dropdown.d.ts",
       "esm2020": "./dropdown/esm2020/ngx-bootstrap-dropdown.mjs",
