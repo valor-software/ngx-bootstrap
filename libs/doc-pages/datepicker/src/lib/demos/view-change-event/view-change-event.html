@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-xs-12 col-12 col-sm-6 col-md-4 form-group mb-3">
+    <div class="mb-3 card card-block card-header" *ngIf="view">
+        <div class="mb-2"><code>$event.date</code>: {{view.date | date}}</div>
+        <div><code>$event.mode</code>: {{view.mode}}</div>
+    </div>
+    <input class="form-control"
+           placeholder="Datepicker"
+           bsDatepicker
+           (bsViewChange)="onViewChange($event)">
+  </div>
+</div>

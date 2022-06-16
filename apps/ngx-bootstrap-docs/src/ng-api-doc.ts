@@ -838,6 +838,10 @@ export const ngdoc: any = {
       {
         "name": "bsValueChange",
         "description": "<p>Emits when datepicker value has been changed</p>\n"
+      },
+      {
+        "name": "bsViewChange",
+        "description": "<p>Emits when datepicker view has been changed</p>\n"
       }
     ],
     "properties": [],
@@ -970,6 +974,10 @@ export const ngdoc: any = {
       {
         "name": "bsValueChange",
         "description": "<p>Emits when datepicker value has been changed</p>\n"
+      },
+      {
+        "name": "bsViewChange",
+        "description": "<p>Emits when datepicker view has been changed</p>\n"
       },
       {
         "name": "onHidden",
@@ -1389,6 +1397,10 @@ export const ngdoc: any = {
       {
         "name": "bsValueChange",
         "description": "<p>Emits when daterangepicker value has been changed</p>\n"
+      },
+      {
+        "name": "bsViewChange",
+        "description": "<p>Emits when datepicker view has been changed</p>\n"
       },
       {
         "name": "onHidden",

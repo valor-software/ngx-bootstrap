@@ -23,6 +23,7 @@ import { CalendarCellViewModel, DayViewModel } from '../../models';
 import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
 import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
+import { BsDatepickerState } from '../../reducer/bs-datepicker.state';
 
 @Component({
   selector: 'bs-datepicker-container',
@@ -39,7 +40,7 @@ import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
 export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponent
   implements OnInit, AfterViewInit, OnDestroy {
 
-  set value(value: Date|undefined) {
+  set value(value: Date | undefined) {
     this._effects?.setValue(value);
   }
 
@@ -115,9 +116,11 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     // todo: move it somewhere else
     // on selected date change
     this._subs.push(
-      this._store.select((state: any) => state.selectedDate).subscribe((date: any) => this.valueChange.emit(date))
+      this._store.select((state: BsDatepickerState) => state.selectedDate).subscribe((date: any) => this.valueChange.emit(date))
     );
-
+    this._subs.push(
+      this._store.select((state: BsDatepickerState) => state.view).subscribe((view) => this.viewChange.emit(view))
+    );
 
     this._store.dispatch(this._actions.changeViewMode(this._config.startView));
   }
@@ -147,7 +150,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
 
   override daySelectHandler(day: DayViewModel): void {
     if (!day) {
-     return;
+      return;
     }
 
     const isDisabled = this.isOtherMonthsActive ? day.isDisabled : (day.isOtherMonth || day.isDisabled);

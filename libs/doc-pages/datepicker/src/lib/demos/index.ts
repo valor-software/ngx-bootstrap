@@ -32,6 +32,7 @@ import { DemoDatePickerSelectWeekRangeComponent } from './select-week-range/sele
 import { DemoDatepickerTriggersCustomComponent } from './triggers-custom/triggers-custom';
 import { DemoDatepickerTriggersManualComponent } from './triggers-manual/triggers-manual';
 import { DemoDatepickerValueChangeEventComponent } from './value-change-event/value-change-event';
+import { DemoDatepickerViewChangeEventComponent } from './view-change-event/view-change-event';
 import { DemoDatePickerVisibilityEventsComponent } from './visibility-events/visibility-events';
 import { DemoDatePickerQuickSelectRangesComponent } from './quick-select-ranges/quick-select-ranges';
 import { DemoDateRangePickerShowPreviousMonth } from './daterangepicker-show-previous-month/show-previous-month';
@@ -77,6 +78,7 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerTriggersCustomComponent,
   DemoDatepickerTriggersManualComponent,
   DemoDatepickerValueChangeEventComponent,
+  DemoDatepickerViewChangeEventComponent,
   DemoDateRangePickerShowPreviousMonth,
   DemoDateRangePickerDisplayOneMonth,
   DemoDatePickerVisibilityEventsComponent,
