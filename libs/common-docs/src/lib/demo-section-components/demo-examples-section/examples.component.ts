@@ -4,9 +4,7 @@ import sdk from '@stackblitz/sdk';
 
 import { ContentSection } from '../../models/content-section.model';
 import { ComponentExample } from '../../models/components-examples.model';
-import { main } from './stackblitz/main';
-import { polyfills } from './stackblitz/polyfills';
-import { getAppModuleCode, NgxModuleData } from './stackblitz/app.module';
+import { NgxModuleData } from './stackblitz/app.module';
 import { getIndexHtmlCode } from './stackblitz/html';
 import { getComponentClassName, getTagName, getTemplateFileName, getCSSCodeDatepickerCustomClass } from './stackblitz/helpers';
 import { Utils } from 'ngx-bootstrap/utils';
@@ -70,58 +68,34 @@ export class ExamplesComponent {
     if (tag && className) {
       const project = {
         files: <any>{
-          'index.html': getIndexHtmlCode(tag, this.moduleData, Utils.stackOverflowConfig()),
-          'styles.css': `body {padding: 30px; position: relative}
-        ${this.moduleData.moduleRoute === '/sortable' ?
-            `.sortable-item {
-      padding: 6px 12px;
-      margin-bottom: 4px;
-      font-size: 14px;
-      line-height: 1.4em;
-      text-align: center;
-      cursor: grab;
-      border: 1px solid transparent;
-      border-radius: 4px;
-      border-color: #adadad;
-    }
-
-    .sortable-item-active {
-      background-color: #e6e6e6;
-      box-shadow: inset 0 3px 5px rgba(0,0,0,.125);
-    }
-
-    .sortable-wrapper {
-      min-height: 150px;
-    }` : ''}
-    ${this.moduleData.moduleRoute === '/accordion' ?
-            `.card.customClass,
-.card.customClass .card-header,
-.panel.customClass {
-  background-color: #5bc0de;
-  color: #fff;
-}
-.panel.customClass .panel-body {
-  background-color: #337aa7;
-}` : ''}`,
-          '.angular-cli.json': `{"apps": [{"styles": ["styles.css"]}]}`,
-          'main.ts': main,
-          'polyfills.ts': polyfills,
-          'app/app.module.ts': getAppModuleCode(className, this.moduleData),
-          'app/ngx-bootstrap-demo.component.ts': this.getTs(ts)
+          'src/index.html': getIndexHtmlCode(tag, this.moduleData, Utils.stackOverflowConfig()),
+          'tsconfig.json': this.getTsConfig(),
+          'angular.json': this.getAngularJson(),
+          'src/style.scss': '',
+          'src/polyfills.ts': `import 'zone.js/dist/zone';  // Included with Angular CLI.`,
+          'src/main.ts': this.getMainFile(),
+          'src/environments/environment.prod.ts': this.getEnvProd(),
+          'src/environments/environment.ts': this.getEnvDev(),
+          'src/app/app.component.html': 'hi, there!',
+          'src/app/app.component.ts': this.getAppComponent(),
+          'src/app/app.module.ts': this.getAppModule()
         },
-        dependencies: {
-          '@angular/animations': 'latest',
-          'web-animations-js': 'latest',
-          'ngx-bootstrap': 'next'
+        dependencies: this.getDependencies(),
+        devDependencies: {
+          "@angular-devkit/build-angular": "12.2.5",
+          "@angular/cli": "12.2.5",
+          "@angular/compiler-cli": "12.2.5",
+          "typescript": "~4.3.2"
         },
         title: 'stackblitz demo',
         description: 'stackblitz demo',
         template: 'angular-cli'
       };
+
       if (className === 'DemoDatepickerDateCustomClassesComponent') {
-        project.files['app/date-custom-classes.scss'] = getCSSCodeDatepickerCustomClass();
+        project.files['src/app/date-custom-classes.scss'] = getCSSCodeDatepickerCustomClass();
       }
-      project.files[`app/${templateName}`] = this.getHtml(html);
+      project.files[`src/app/${templateName}`] = this.getHtml(html);
 
       sdk.openProject(project);
     }
@@ -141,5 +115,214 @@ export class ExamplesComponent {
     return this.moduleData.moduleRoute === '/carousel' ?
       ts.replace(/assets/g, 'https://valor-software.com/ngx-bootstrap/assets') : ts;
   }
+
+
+  private getTsConfig(): string {
+    return `
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom"]
+  },
+  "angularCompilerOptions": {
+    "enableIvy": true,
+    "fullTemplateTypeCheck": true,
+    "stricTemplates": true,
+    "strictInjectionParameters": true
+  }
 }
+    `;
+  }
+
+  private getAngularJson(): string {
+    return `
+ {
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "demo": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/demo",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.json",
+            "inlineStyleLanguage": "scss",
+            "styles": [
+              "src/style.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "demo:build:production"
+            },
+            "development": {
+              "browserTarget": "demo:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "demo:build"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "demo"
+}
+    `;
+  }
+
+  private getMainFile(): string {
+    return `
+import './polyfills';
+
+import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+
+import {AppModule} from './app/app.module';
+
+platformBrowserDynamic()
+    .bootstrapModule(AppModule)
+    .then(ref => {
+      if (window['ngRef']) {
+        window['ngRef'].destroy();
+      }
+      window['ngRef'] = ref;
+    })
+    .catch(err => console.error(err));
+    `;
+  }
+
+  private getEnvProd(): string {
+    return `
+    export const environment = {
+      production: true
+    };
+    `;
+  }
+
+  private getEnvDev(): string {
+    return `
+    export const environment = {
+      production: false
+    };
+    `;
+  }
+
+  private getAppComponent(): string {
+    return `
+import {Component} from '@angular/core';
+
+    @Component({
+       selector: 'app-root',
+       templateUrl: './app.component.html'
+    })
+    export class AppComponent {}
+`;
+  }
+
+  private getAppModule(): string {
+    return `
+    import { NgModule } from '@angular/core'
+    import { BrowserModule } from '@angular/platform-browser';
+    import { AppComponent } from './app.component';
+
+            @NgModule({
+            declarations: [
+               AppComponent
+            ],
+            imports: [
+               BrowserModule
+            ],
+            providers: [],
+            bootstrap: [AppComponent]
+            })
+            export class AppModule { }
+    `;
+  }
+
+  private getDependencies(): any {
+    return {
+      "@angular/animations": "12.2.5",
+      "@angular/common": "12.2.5",
+      "@angular/compiler": "12.2.5",
+      "@angular/core": "12.2.5",
+      "@angular/forms": "12.2.5",
+      "@angular/platform-browser": "12.2.5",
+      "@angular/platform-browser-dynamic": "12.2.5",
+      "ngx-bootstrap": "7.1.1",
+      "rxjs": "7.3.0",
+      "tslib": "2.3.1",
+      "zone.js": "0.11.4"
+    };
+  }
+}
+
+
 
