@@ -1,5 +1,5 @@
 {
-  "baseUrl": "http://localhost:4200/#/",
+  "baseUrl": "http://127.0.0.1/#/",
   "projectId": "5mm2dy",
   "fileServerFolder": ".",
   "fixturesFolder": "./src/fixtures",
