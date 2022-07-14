@@ -1,13 +1,13 @@
 # [8.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.9...v8.0.0) (2022-01-14)
 
 Most notable changes for v8 release:
-- added support for **Angular v13**, while still compatible with Angular v12, if your application is compiled in ivy mode
-- in v7.1 we have added a support for **Bootstrap 5** and in v8 it has become the default, you are able to continue use **Bootstrap 4** if needed
-- support for **Bootstrap 3** has been discontinued, however it may still be usable with v8, there are no guarantees it will work as expected, and is not suggested
-- the old datepicker which was deprecated since v6 version was removed for good, please use `BsDatepicker`
-- and last but not least, hopefully you are enjoying the new look of our documentation
+- Added support for **Angular v13**. Bootstrap is still compatible with Angular v12, if your application is compiled in Ivy-renderer mode;
+- In v7.1 we have added a support for **Bootstrap 5** and in v8 it has become the default, you are able to continue use **Bootstrap 4** if needed;
+- Support for **Bootstrap 3** has been discontinued, however it may still be usable with v8, there are no guarantees it will work as expected, and is not suggested
+- The old datepicker which was deprecated since v6 version was removed for good, please use `BsDatepicker`
+- And last but not least, hopefully you are enjoying the new look of our documentation 💝
 
-Like, Subscribe, Stay tuned ;)
+Like, subscribe, and stay tuned ;)
 
 Regards, @valorkin
 
