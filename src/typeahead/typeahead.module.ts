@@ -7,10 +7,9 @@ import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { PositioningService } from 'ngx-bootstrap/positioning';
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [TypeaheadContainerComponent, TypeaheadDirective],
-  exports: [TypeaheadContainerComponent, TypeaheadDirective],
-  entryComponents: [TypeaheadContainerComponent]
+    imports: [CommonModule],
+    declarations: [TypeaheadContainerComponent, TypeaheadDirective],
+    exports: [TypeaheadContainerComponent, TypeaheadDirective]
 })
 export class TypeaheadModule {
   static forRoot(): ModuleWithProviders<TypeaheadModule> {

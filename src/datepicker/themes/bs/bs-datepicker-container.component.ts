@@ -112,12 +112,24 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
       .setEventHandlers(this)
       .registerDatepickerSideEffects();
 
+    let currentDate: Date;
     // todo: move it somewhere else
     // on selected date change
     this._subs.push(
-      this._store.select((state: any) => state.selectedDate).subscribe((date: any) => this.valueChange.emit(date))
+      this._store.select((state: any) => state.selectedDate).subscribe((date: any) => {
+        currentDate = date;
+        this.valueChange.emit(date);
+      })
     );
+    this._subs.push(
+      this._store.select((state: any) => state.selectedTime).subscribe((time: any) => {
+        if (!time[0] || !(time[0] instanceof Date) || time[0] === currentDate) {
+          return;
+        }
 
+          this.valueChange.emit(time[0]);
+      })
+    );
 
     this._store.dispatch(this._actions.changeViewMode(this._config.startView));
   }

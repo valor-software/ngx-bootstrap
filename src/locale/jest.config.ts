@@ -1,14 +1,15 @@
-module.exports = {
-  displayName: 'pagination',
+/* eslint-disable */
+export default {
+  displayName: 'locale',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/testing/test-setup.ts'],
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
       stringifyContentPathRegex: '\\.(html|svg)$'
-    },
+    }
   },
-  coverageDirectory: '../../coverage/src/pagination',
+  coverageDirectory: '../../coverage/src/locale',
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',

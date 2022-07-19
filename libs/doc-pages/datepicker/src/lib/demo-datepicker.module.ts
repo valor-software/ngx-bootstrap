@@ -36,20 +36,19 @@ locales.forEach((locale: LocaleData) => {
 });
 
 @NgModule({
-  declarations: [
-    DatepickerSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
-  imports: [
-    BsDatepickerModule.forRoot(),
-    TabsModule.forRoot(),
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    DocsModule,
-    RouterModule.forChild(routes)
-  ],
-  exports: [DatepickerSectionComponent],
-  entryComponents: [...DEMO_COMPONENTS]
+    declarations: [
+        DatepickerSectionComponent,
+        ...DEMO_COMPONENTS
+    ],
+    imports: [
+        BsDatepickerModule.forRoot(),
+        TabsModule.forRoot(),
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DocsModule,
+        RouterModule.forChild(routes)
+    ],
+    exports: [DatepickerSectionComponent]
 })
 export class DemoDatepickerModule {}

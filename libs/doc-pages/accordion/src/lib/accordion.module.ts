@@ -12,19 +12,18 @@ export { AccordionSectionComponent } from './accordion-section.component';
 
 
 @NgModule({
-  declarations: [
-    AccordionSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
-  imports: [
-    AccordionModule.forRoot(),
-    CommonModule,
-    FormsModule,
-    DocsModule,
-    RouterModule.forChild(routes),
-  ],
-  exports: [AccordionSectionComponent],
-  entryComponents: [...DEMO_COMPONENTS]
+    declarations: [
+        AccordionSectionComponent,
+        ...DEMO_COMPONENTS
+    ],
+    imports: [
+        AccordionModule.forRoot(),
+        CommonModule,
+        FormsModule,
+        DocsModule,
+        RouterModule.forChild(routes),
+    ],
+    exports: [AccordionSectionComponent]
 })
 export class DemoAccordionModule {
   static routes: Routes = routes;

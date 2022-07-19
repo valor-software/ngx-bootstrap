@@ -12,19 +12,18 @@ export { ButtonsSectionComponent } from './buttons-section.component';
 
 
 @NgModule({
-  declarations: [
-    ButtonsSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    CommonModule,
-    DocsModule,
-    RouterModule.forChild(routes),
-    ButtonsModule.forRoot()
-  ],
-  exports: [ButtonsSectionComponent],
-  entryComponents: [...DEMO_COMPONENTS]
+    declarations: [
+        ButtonsSectionComponent,
+        ...DEMO_COMPONENTS
+    ],
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        CommonModule,
+        DocsModule,
+        RouterModule.forChild(routes),
+        ButtonsModule.forRoot()
+    ],
+    exports: [ButtonsSectionComponent]
 })
 export class DemoButtonsModule {}

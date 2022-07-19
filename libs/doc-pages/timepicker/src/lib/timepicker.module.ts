@@ -12,19 +12,18 @@ import { routes } from './demo-timepicker.routes';
 export { TimepickerSectionComponent } from './timepicker-section.component';
 
 @NgModule({
-  declarations: [
-    TimepickerSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    DocsModule,
-    TimepickerModule.forRoot(),
-    RouterModule.forChild(routes)
-  ],
-  exports: [TimepickerSectionComponent],
-  entryComponents: [...DEMO_COMPONENTS]
+    declarations: [
+        TimepickerSectionComponent,
+        ...DEMO_COMPONENTS
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DocsModule,
+        TimepickerModule.forRoot(),
+        RouterModule.forChild(routes)
+    ],
+    exports: [TimepickerSectionComponent]
 })
 export class DemoTimepickerModule {}
