@@ -43,5 +43,10 @@
     "version": "8.0.0",
     "url": "ngx-bootstrap/old/8.0.0",
     "unprefixedUrl": "old/8.0.0"
+  },
+  {
+    "version": "9.0.0-RC.1",
+    "url": "ngx-bootstrap/old/9.0.0-RC.1",
+    "unprefixedUrl": "old/9.0.0-RC.1"
   }
 ]
