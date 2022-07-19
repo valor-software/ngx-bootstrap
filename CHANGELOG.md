@@ -1,3 +1,12 @@
+# [9.0.0-RC.2](https://github.com/valor-software/ngx-bootstrap/compare/v9.0.0-RC.1...v9.0.0-RC.2) (2022-07-19)
+
+
+### Features
+
+* **ci:** change cypress run command ([#6485](https://github.com/valor-software/ngx-bootstrap/issues/6485)) ([9cd16f5](https://github.com/valor-software/ngx-bootstrap/commit/9cd16f55d3cac15ebe1db49e7905a4dce264354c))
+
+
+
 # [9.0.0-RC.1](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0...v9.0.0-RC.1) (2022-07-19)
 
 
