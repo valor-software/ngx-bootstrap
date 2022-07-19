@@ -75,6 +75,9 @@ export class ExamplesComponent {
     const templateName = getTemplateFileName(ts);
     if (tag && className) {
       const project: Project = {
+        template: 'angular-cli',
+        title: `ngx-bootstrap stackblitz demo `,
+        description: 'stackblitz demo',
         files: {
           'index.html': getIndexHtmlCode(tag, this.moduleData, Utils.stackOverflowConfig()),
           'styles.css': `body {padding: 30px; position: relative}
@@ -120,9 +123,7 @@ export class ExamplesComponent {
           'web-animations-js': 'latest',
           'ngx-bootstrap': 'next'
         },
-        title: 'stackblitz demo',
-        description: 'stackblitz demo',
-        template: 'angular-cli'
+
       };
       if (className === 'DemoDatepickerDateCustomClassesComponent') {
         project.files['app/date-custom-classes.scss'] = getCSSCodeDatepickerCustomClass();
