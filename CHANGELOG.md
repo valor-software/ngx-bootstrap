@@ -1,3 +1,22 @@
+# [9.0.0-RC.1](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0...v9.0.0-RC.1) (2022-07-19)
+
+
+### Bug Fixes
+
+* add bs-datepicker.css file to package.json exports ([#6451](https://github.com/valor-software/ngx-bootstrap/issues/6451)) ([2bae2bf](https://github.com/valor-software/ngx-bootstrap/commit/2bae2bfb6a4bd6738b230f2d3265c23f702424ac)), closes [#6449](https://github.com/valor-software/ngx-bootstrap/issues/6449)
+* **carousel:** add client side check before calling window to prevent reference error in angular ssr ([#6474](https://github.com/valor-software/ngx-bootstrap/issues/6474)) ([f6e6b78](https://github.com/valor-software/ngx-bootstrap/commit/f6e6b78ad6819ff5a876247c3abefbf5ddbec177))
+* **component-loader:** inject Document for SSR compatibility ([#6466](https://github.com/valor-software/ngx-bootstrap/issues/6466)) ([#6470](https://github.com/valor-software/ngx-bootstrap/issues/6470)) ([05fd932](https://github.com/valor-software/ngx-bootstrap/commit/05fd932b0b967a99c0e5fab40d521fdef4cd4cf6))
+* **documentation:** updated section Custom checkbox value ([#6415](https://github.com/valor-software/ngx-bootstrap/issues/6415)) ([58a6e00](https://github.com/valor-software/ngx-bootstrap/commit/58a6e007a78bbb780e7afc464d04ef1bbb1d6321))
+* **popover:** Popover position fix with scrollable div when adaptive position was enabled ([#6423](https://github.com/valor-software/ngx-bootstrap/issues/6423)) ([3e818fd](https://github.com/valor-software/ngx-bootstrap/commit/3e818fdffb77ab3d88e9ea1b27d448bed9437343))
+* **schematics:** fixed datepicker style path for schematics ([#6445](https://github.com/valor-software/ngx-bootstrap/issues/6445)) ([6be9fc4](https://github.com/valor-software/ngx-bootstrap/commit/6be9fc4d0214aa641f0a0c46c12efb3b65e0278c))
+
+
+### Features
+
+* **chore:** updates for angular 14 ([#6477](https://github.com/valor-software/ngx-bootstrap/issues/6477)) ([0e8ba61](https://github.com/valor-software/ngx-bootstrap/commit/0e8ba61a4004db6c8b6fe9cc069841fed4564755))
+
+
+
 # [8.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v8.0.0-RC.9...v8.0.0) (2022-01-14)
 
 Most notable changes for v8 release:
