@@ -1,6 +1,6 @@
 {
   "name": "ngx-bootstrap/dropdown",
-  "version": "9.0.0-RC.2",
+  "version": "9.0.0",
   "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
   "license": "MIT"
 }

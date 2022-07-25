@@ -1,6 +1,6 @@
 {
   "name": "ngx-bootstrap",
-  "version": "9.0.0-RC.2",
+  "version": "9.0.0",
   "description": "Angular Bootstrap",
   "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
   "license": "MIT",
