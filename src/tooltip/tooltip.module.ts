@@ -6,10 +6,9 @@ import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { PositioningService } from 'ngx-bootstrap/positioning';
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [TooltipDirective, TooltipContainerComponent],
-  exports: [TooltipDirective],
-  entryComponents: [TooltipContainerComponent]
+    imports: [CommonModule],
+    declarations: [TooltipDirective, TooltipContainerComponent],
+    exports: [TooltipDirective]
 })
 export class TooltipModule {
   static forRoot(): ModuleWithProviders<TooltipModule> {

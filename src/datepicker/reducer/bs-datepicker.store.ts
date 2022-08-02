@@ -4,7 +4,7 @@ import { BsDatepickerState, initialDatepickerState } from './bs-datepicker.state
 import { BehaviorSubject } from 'rxjs';
 import { bsDatepickerReducer } from './bs-datepicker.reducer';
 
-@Injectable()
+@Injectable({providedIn: 'platform'})
 export class BsDatepickerStore extends MiniStore<BsDatepickerState> {
   constructor() {
     const _dispatcher = new BehaviorSubject<Action>({

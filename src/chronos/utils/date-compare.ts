@@ -2,8 +2,8 @@ import { UnitOfTime } from '../types';
 import { endOf, startOf } from './start-end-of';
 
 export function isAfter(
-  date1: Date,
-  date2: Date,
+  date1?: Date,
+  date2?: Date,
   units: UnitOfTime = 'milliseconds'
 ): boolean {
   if (!date1 || !date2) {
@@ -18,8 +18,8 @@ export function isAfter(
 }
 
 export function isBefore(
-  date1: Date,
-  date2: Date,
+  date1?: Date,
+  date2?: Date,
   units: UnitOfTime = 'milliseconds'
 ): boolean {
   if (!date1 || !date2) {
@@ -33,8 +33,8 @@ export function isBefore(
   return endOf(date1, units).valueOf() < date2.valueOf();
 }
 
-export function isDisabledDay(date: Date, daysDisabled: number[]): boolean {
-  if (daysDisabled === undefined || !daysDisabled || !daysDisabled.length) {
+export function isDisabledDay(date?: Date, daysDisabled?: number[]): boolean {
+  if (typeof daysDisabled === 'undefined' || !daysDisabled || !daysDisabled.length) {
     return false;
   }
 
@@ -61,8 +61,8 @@ export function isBetween(
 }
 
 export function isSame(
-  date1: Date,
-  date2: Date,
+  date1?: Date,
+  date2?: Date,
   units: UnitOfTime = 'milliseconds'
 ): boolean {
   if (!date1 || !date2) {

@@ -3,7 +3,7 @@ import {Injectable, TemplateRef} from '@angular/core';
 /**
  * A service to open modals
  */
-@Injectable()
+@Injectable({providedIn: 'platform'})
 export class ModalService {
 
   /**

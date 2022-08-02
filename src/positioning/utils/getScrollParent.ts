@@ -4,6 +4,8 @@
 import { getStyleComputedProperty } from './getStyleComputedProperty';
 import { getParentNode } from './getParentNode';
 
+// todo: valorkin fix
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getScrollParent(element: any): any {
   // Return body, `getScroll` will take care to get the correct `scrollTop` from it
   if (!element) {

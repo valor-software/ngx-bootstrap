@@ -5,7 +5,7 @@
       [attr.aria-valuenow]="value">
   <ng-template #star let-value="value" let-index="index">{{ index < value ? '&#9733;' : '&#9734;' }}</ng-template>
   <ng-template ngFor let-r [ngForOf]="range" let-index="index">
-    <span class="sr-only">({{ index < value ? '*' : ' ' }})</span>
+    <span class="sr-only visually-hidden">({{ index < value ? '*' : ' ' }})</span>
     <span class="bs-rating-star"
           (mouseenter)="enter(index + 1)"
           (click)="rate(index + 1)"

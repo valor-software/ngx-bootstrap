@@ -26,15 +26,13 @@ export function configFromArray(config: DateParsingConfig): DateParsingConfig {
   const input = [];
   let i;
   let date;
-  let currentDate;
-  let expectedWeekday;
   let yearToUse;
 
   if (config._d) {
     return config;
   }
 
-  currentDate = currentDateArray(config);
+  const currentDate = currentDateArray(config);
 
   // compute day of the year from weeks and weekdays
   if (config._w && config._a[DATE] == null && config._a[MONTH] == null) {
@@ -77,8 +75,9 @@ export function configFromArray(config: DateParsingConfig): DateParsingConfig {
     config._a[HOUR] = 0;
   }
 
+  // eslint-disable-next-line prefer-spread
   config._d = (config._useUTC ? createUTCDate : createDate).apply(null, input);
-  expectedWeekday = config._useUTC ? config._d.getUTCDay() : config._d.getDay();
+  const expectedWeekday = config._useUTC ? config._d.getUTCDay() : config._d.getDay();
 
   // Apply timezone offset from input. The actual utcOffset can be changed
   // with parseZone.
@@ -91,7 +90,7 @@ export function configFromArray(config: DateParsingConfig): DateParsingConfig {
   }
 
   // check for mismatching day of week
-  if (config._w && typeof config._w.d !== 'undefined' && config._w.d !== expectedWeekday) {
+  if (config._w && typeof config._w["d"] !== 'undefined' && config._w["d"] !== expectedWeekday) {
     getParsingFlags(config).weekdayMismatch = true;
   }
 
@@ -99,10 +98,10 @@ export function configFromArray(config: DateParsingConfig): DateParsingConfig {
 }
 
 function dayOfYearFromWeekInfo(config: DateParsingConfig): DateParsingConfig {
-  let w, weekYear, week, weekday, dow, doy, temp, weekdayOverflow;
+  let weekYear, week, weekday, dow, doy, temp, weekdayOverflow;
 
-  w = config._w;
-  if (w.GG != null || w.W != null || w.E != null) {
+  const w = config._w;
+  if (w["GG"] != null || w["W"] != null || w["E"] != null) {
     dow = 1;
     doy = 4;
 
@@ -110,9 +109,9 @@ function dayOfYearFromWeekInfo(config: DateParsingConfig): DateParsingConfig {
     // how we interpret now (local, utc, fixed offset). So create
     // a now version of current config (take local/utc/offset flags, and
     // create now).
-    weekYear = defaults(w.GG, config._a[YEAR], weekOfYear(new Date(), 1, 4).year);
-    week = defaults(w.W, 1);
-    weekday = defaults(w.E, 1);
+    weekYear = defaults(w["GG"], config._a[YEAR], weekOfYear(new Date(), 1, 4).year);
+    week = defaults(w["W"], 1);
+    weekday = defaults(w["E"], 1);
     if (weekday < 1 || weekday > 7) {
       weekdayOverflow = true;
     }
@@ -122,25 +121,25 @@ function dayOfYearFromWeekInfo(config: DateParsingConfig): DateParsingConfig {
 
     const curWeek = weekOfYear(new Date(), dow, doy);
 
-    weekYear = defaults(w.gg, config._a[YEAR], curWeek.year);
+    weekYear = defaults(w["gg"], config._a[YEAR], curWeek.year);
 
     // Default to current week.
-    week = defaults(w.w, curWeek.week);
+    week = defaults(w["w"], curWeek.week);
 
-    if (w.d != null) {
+    if (w["d"] != null) {
       // weekday -- low day numbers are considered next week
-      weekday = w.d;
+      weekday = w["d"];
       if (weekday < 0 || weekday > 6) {
         weekdayOverflow = true;
       }
-    } else if (w.e != null) {
-      // local weekday -- counting starts from begining of week
-      weekday = w.e + dow;
-      if (w.e < 0 || w.e > 6) {
+    } else if (w["e"] != null) {
+      // local weekday -- counting starts from beginning of week
+      weekday = w["e"] + dow;
+      if (w["e"] < 0 || w["e"] > 6) {
         weekdayOverflow = true;
       }
     } else {
-      // default to begining of week
+      // default to beginning of week
       weekday = dow;
     }
   }

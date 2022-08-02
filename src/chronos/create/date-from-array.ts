@@ -1,6 +1,6 @@
-export function createUTCDate(y?: number,
-                              m?: number,
-                              d?: number): Date {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function createUTCDate(y?: number, m?: number, d?: number): Date {
+  // eslint-disable-next-line prefer-rest-params
   const date = new Date(Date.UTC.apply(null, arguments));
 
   // the Date.UTC function remaps years 0-99 to 1900-1999

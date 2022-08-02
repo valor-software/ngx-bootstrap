@@ -23,6 +23,7 @@ import {
 @Directive({
   selector: '[collapse]',
   exportAs: 'bs-collapse',
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[class.collapse]': 'true'
   }
@@ -39,7 +40,7 @@ export class CollapseDirective implements AfterViewChecked {
   // shown
   @HostBinding('class.in')
   @HostBinding('class.show')
-  @HostBinding('attr.aria-expanded')
+
   isExpanded = true;
   collapseNewValue = true;
   // hidden
@@ -51,22 +52,15 @@ export class CollapseDirective implements AfterViewChecked {
 
   @Input()
   set display(value: string) {
-    if (!this.isAnimated) {
-      this._renderer.setStyle(this._el.nativeElement, 'display', value);
-
-      return;
-    }
-
     this._display = value;
-
     if (value === 'none') {
       this.hide();
-
       return;
     }
 
-    this.show();
+    this.isAnimated ? this.toggle() : this.show();
   }
+
   /** turn on/off animation */
   @Input() isAnimated = false;
   /** A flag indicating visibility of content (shown or hidden) */
@@ -84,14 +78,15 @@ export class CollapseDirective implements AfterViewChecked {
   }
 
   private _display = 'block';
-  private _factoryCollapseAnimation: AnimationFactory;
-  private _factoryExpandAnimation: AnimationFactory;
-  private _isAnimationDone: boolean;
-  private _player: AnimationPlayer;
+  private _isAnimationDone?: boolean;
+  private _player?: AnimationPlayer;
   private _stylesLoaded = false;
 
   private _COLLAPSE_ACTION_NAME = 'collapse';
   private _EXPAND_ACTION_NAME = 'expand';
+
+  private readonly _factoryCollapseAnimation: AnimationFactory;
+  private readonly _factoryExpandAnimation: AnimationFactory;
 
   constructor(
     private _el: ElementRef,
@@ -181,12 +176,12 @@ export class CollapseDirective implements AfterViewChecked {
       : this._factoryCollapseAnimation;
 
     if (this._player) {
-      this._player.destroy();
+      this._player.reset();
     }
 
     this._player = factoryAnimation.create(this._el.nativeElement);
     this._player.play();
 
-    return (callback: () => void) => this._player.onDone(callback);
+    return (callback: () => void) => this._player?.onDone(callback);
   }
 }

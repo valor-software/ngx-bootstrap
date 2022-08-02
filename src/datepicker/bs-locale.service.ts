@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
-@Injectable()
+@Injectable({providedIn: 'platform'})
 export class BsLocaleService {
   private _defaultLocale = 'en';
   private _locale = new BehaviorSubject<string>(this._defaultLocale);

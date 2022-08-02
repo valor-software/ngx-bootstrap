@@ -24,7 +24,7 @@ export class AlertComponent implements OnInit {
   /** If set, displays an inline "Close" button */
   @OnChange()   @Input()   dismissible = false;
   /** Number in milliseconds, after which alert will be closed */
-  @Input() dismissOnTimeout: number | string;
+  @Input() dismissOnTimeout?: number | string;
 
   /** Is alert visible */
   @Input() isOpen = true;
@@ -42,7 +42,7 @@ export class AlertComponent implements OnInit {
 
   constructor(_config: AlertConfig, private changeDetection: ChangeDetectorRef) {
     Object.assign(this, _config);
-    this.dismissibleChange.subscribe((dismissible: boolean) => {
+    this.dismissibleChange.subscribe((/*dismissible: boolean*/) => {
       this.classes = this.dismissible ? 'alert-dismissible' : '';
       this.changeDetection.markForCheck();
     });

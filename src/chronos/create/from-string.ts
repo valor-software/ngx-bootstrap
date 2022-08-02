@@ -1,4 +1,3 @@
-// tslint:disable-next-line
 import { defaultLocaleMonthsShort, defaultLocaleWeekdaysShort } from '../locale/locale.class';
 import { DateArray } from '../types';
 import { DateParsingConfig } from './parsing.types';
@@ -10,9 +9,7 @@ import { getParsingFlags } from './parsing-flags';
 
 // iso 8601 regex
 // 0000-00-00 0000-W00 or 0000-W00-0 + T + 00 or 00:00 or 00:00:00 or 00:00:00.000 + +00:00 or +0000 or +00)
-// tslint:disable-next-line
 const extendedIsoRegex = /^\s*((?:[+-]\d{6}|\d{4})-(?:\d\d-\d\d|W\d\d-\d|W\d\d|\d\d\d|\d\d))(?:(T| )(\d\d(?::\d\d(?::\d\d(?:[.,]\d+)?)?)?)([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?$/;
-// tslint:disable-next-line
 const basicIsoRegex = /^\s*((?:[+-]\d{6}|\d{4})(?:\d\d\d\d|W\d\d\d|W\d\d|\d\d\d|\d\d))(?:(T| )(\d\d(?:\d\d(?:\d\d(?:[.,]\d+)?)?)?)([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?$/;
 
 const tzRegex = /Z|[+-]\d\d(?::?\d\d)?/;
@@ -61,7 +58,6 @@ const obsOffsets: { [key: string]: number } = {
 };
 
 // RFC 2822 regex: For details see https://tools.ietf.org/html/rfc2822#section-3.3
-// tslint:disable-next-line
 const rfc2822 = /^(?:(Mon|Tue|Wed|Thu|Fri|Sat|Sun),?\s)?(\d{1,2})\s(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s(\d{2,4})\s(\d\d):(\d\d)(?::(\d\d))?\s(?:(UT|GMT|[ECMP][SD]T)|([Zz])|([+-]\d{4}))$/;
 
 // date from iso format
@@ -139,7 +135,6 @@ export function configFromISO(config: DateParsingConfig): DateParsingConfig {
   return configFromStringAndFormat(config);
 }
 
-// tslint:disable-next-line
 function extractFromRFC2822Strings(yearStr: string, monthStr: string, dayStr: string, hourStr: string, minuteStr: string, secondStr: string): DateArray {
   const result = [
     untruncateYear(yearStr),

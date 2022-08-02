@@ -10,9 +10,10 @@ Main success scenario:
 ----------------------
 1. User opens Buttons demo page
 2. User clicks on Custom checkbox value sub-menu
-3. User see 1 clickable button with text: "Single Toggle" and "1" in the custom checkbox value field
-4. Button should be active by default
-5. When user clicks on it, button become inactive and custom checkbox value should be "0"
+3. User see 1 clickable button with text: "Single Toggle" and "1" putted in the custom checkbox value field above it
+4. Button should be active by default with aria-pressed= "false"
+5. When user clicks on the Single Toggle button, it becomes active and aria-pressed changed to "true". In the custom checkbox value shown "1"
+5. When user clicks on it again, the Single Toggle button becomes inactive with aria-pressed= "false", and the custom checkbox value changed to "0"
 
 Variations:
 -----------

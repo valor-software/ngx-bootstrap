@@ -1,0 +1,8 @@
+{
+  "baseUrl": "https://ngx-bootstrap-demo--pr1-nx-workspace-4ht65xrm.web.app/#",
+  "video": false,
+  "projectId": "5mm2dy",
+  "responseTimeout": 60000,
+  "pageLoadTimeout": 120000,
+  "ignoreTestFiles": ["**/plugins/**.js", "**/support/**", "**/tsconfig.json"]
+}

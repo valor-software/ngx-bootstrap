@@ -43,6 +43,7 @@ export { deLocale } from './i18n/de';
 export { enGbLocale } from './i18n/en-gb';
 export { esDoLocale } from './i18n/es-do';
 export { esLocale } from './i18n/es';
+export { esPrLocale } from './i18n/es-pr';
 export { esUsLocale } from './i18n/es-us';
 export { etLocale } from './i18n/et';
 export { fiLocale } from './i18n/fi';

@@ -1,14 +1,16 @@
 /**
  * Computed the boundaries limits and return them
  */
-import { getScrollParent } from './getScrollParent';
-import { getParentNode } from './getParentNode';
+import { Offsets } from '../models';
 import { findCommonOffsetParent } from './findCommonOffsetParent';
+import { getFixedPositionOffsetParent } from './getFixedPositionOffsetParent';
 import { getOffsetRectRelativeToArbitraryNode } from './getOffsetRectRelativeToArbitraryNode';
+import { getParentNode } from './getParentNode';
+import { getScrollParent } from './getScrollParent';
 import { getViewportOffsetRectRelativeToArtbitraryNode } from './getViewportOffsetRectRelativeToArtbitraryNode';
 import { getWindowSizes } from './getWindowSizes';
 import { isFixed } from './isFixed';
-import { getFixedPositionOffsetParent } from './getFixedPositionOffsetParent';
+import { isNumber } from './isNumeric';
 
 export function getBoundaries(
   target: HTMLElement,
@@ -16,10 +18,10 @@ export function getBoundaries(
   padding = 0,
   boundariesElement: string,
   fixedPosition = false
-) {
+): Partial<Offsets> {
   // NOTE: 1 DOM access here
 
-  let boundaries: any = { top: 0, left: 0 };
+  let boundaries: Partial<Offsets> = { top: 0, left: 0 };
   const offsetParent = fixedPosition ? getFixedPositionOffsetParent(target) : findCommonOffsetParent(target, host);
 
   // Handle viewport case
@@ -46,23 +48,39 @@ export function getBoundaries(
     );
 
     // In case of HTML, we need a different computation
-    if (boundariesNode.nodeName === 'HTML' && !isFixed(offsetParent)) {
+    if (offsets && boundariesNode.nodeName === 'HTML' && !isFixed(offsetParent)) {
       const { height, width } = getWindowSizes(target.ownerDocument);
-      boundaries.top += offsets.top - offsets.marginTop;
-      boundaries.bottom = Number(height) + Number(offsets.top);
-      boundaries.left += offsets.left - offsets.marginLeft;
-      boundaries.right = Number(width) + Number(offsets.left);
-    } else {
+      if (isNumber(boundaries.top) && isNumber(offsets.top) && isNumber(offsets.marginTop)) {
+        boundaries.top += offsets.top - offsets.marginTop;
+      }
+      if (isNumber(boundaries.top)) {
+        boundaries.bottom = Number(height) + Number(offsets.top);
+      }
+      if (isNumber(boundaries.left) && isNumber(offsets.left) && isNumber(offsets.marginLeft)) {
+        boundaries.left += offsets.left - offsets.marginLeft;
+      }
+      if (isNumber(boundaries.top)) {
+        boundaries.right = Number(width) + Number(offsets.left);
+      }
+    } else if (offsets) {
       // for all the other DOM elements, this one is good
       boundaries = offsets;
     }
   }
 
   // Add paddings
-  boundaries.left += padding;
-  boundaries.top += padding;
-  boundaries.right -= padding;
-  boundaries.bottom -= padding;
+  if (isNumber(boundaries.left)) {
+    boundaries.left += padding;
+  }
+  if (isNumber(boundaries.top)) {
+    boundaries.top += padding;
+  }
+  if (isNumber(boundaries.right)) {
+    boundaries.right -= padding;
+  }
+  if (isNumber(boundaries.bottom)) {
+    boundaries.bottom -= padding;
+  }
 
   return boundaries;
 }

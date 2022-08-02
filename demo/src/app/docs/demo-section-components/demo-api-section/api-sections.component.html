@@ -1,8 +1,0 @@
-<ng-container *ngIf="section">
-  <h2 [id]="section.anchor">{{ section.name }}</h2>
-
-  <ng-container *ngFor="let item of apiSectionsContent">
-    <ng-container *ngComponentOutlet="item.outlet; injector: sectionInjections(item)">
-    </ng-container>
-  </ng-container>
-</ng-container>

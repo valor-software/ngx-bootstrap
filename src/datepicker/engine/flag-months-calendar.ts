@@ -3,7 +3,7 @@ import {
   MonthsCalendarViewModel,
   CalendarCellViewModel
 } from '../models';
-import { isMonthDisabled, isYearDisabled } from '../utils/bs-calendar-utils';
+import { isDisabledDate, isEnabledDate, isMonthDisabled, isYearDisabled } from '../utils/bs-calendar-utils';
 
 export interface FlagMonthCalendarOptions {
   isDisabled: boolean;
@@ -12,13 +12,15 @@ export interface FlagMonthCalendarOptions {
   hoveredMonth: Date;
   selectedDate: Date;
   selectedRange: Date[];
+  datesDisabled: Date[];
+  datesEnabled: Date[];
   displayMonths: number;
   monthIndex: number;
 }
 
 export function flagMonthsCalendar(
   monthCalendar: MonthsCalendarViewModel,
-  options: FlagMonthCalendarOptions
+  options: Partial<FlagMonthCalendarOptions>
 ): MonthsCalendarViewModel {
   monthCalendar.months.forEach(
     (months: CalendarCellViewModel[], rowIndex: number) => {
@@ -27,6 +29,8 @@ export function flagMonthsCalendar(
         const isHovered = isSameMonth(month.date, options.hoveredMonth);
         const isDisabled =
           options.isDisabled ||
+          isDisabledDate(month.date, options.datesDisabled) ||
+          isEnabledDate(month.date, options.datesEnabled, 'month') ||
           isMonthDisabled(month.date, options.minDate, options.maxDate);
 
         if (!options.selectedDate && options.selectedRange) {
@@ -55,10 +59,13 @@ export function flagMonthsCalendar(
 
   // todo: add check for linked calendars
   monthCalendar.hideLeftArrow =
-    options.monthIndex > 0 && options.monthIndex !== options.displayMonths;
+    !!options.monthIndex && options.monthIndex > 0 && options.monthIndex !== options.displayMonths;
+
   monthCalendar.hideRightArrow =
-    options.monthIndex < options.displayMonths &&
-    options.monthIndex + 1 !== options.displayMonths;
+    (!!options.monthIndex || options.monthIndex === 0 )
+    && (!!options.displayMonths || options.displayMonths === 0)
+    && options.monthIndex < options.displayMonths
+    && options.monthIndex + 1 !== options.displayMonths;
 
   monthCalendar.disableLeftArrow = isYearDisabled(
     shiftDate(monthCalendar.months[0][0].date, { year: -1 }),

@@ -24,3 +24,5 @@ export interface DismissReasons {
   ESC: string;
   BACK: string;
 }
+
+export type CloseInterceptorFn = () => Promise<void>;

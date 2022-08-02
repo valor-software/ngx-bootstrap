@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class AccordionConfig {
   /** Whether the other panels should be closed when a panel is opened */
-  closeOthers: Boolean = false;
+  closeOthers = false;
   /** turn on/off animation */
-  isAnimated: Boolean = false;
+  isAnimated = false;
 }

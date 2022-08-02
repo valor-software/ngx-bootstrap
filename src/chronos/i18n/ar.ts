@@ -1,5 +1,3 @@
-// tslint:disable:comment-format binary-expression-operand-order max-line-length
-
 //! moment.js locale configuration
 //! locale : Arabic [ar]
 //! author : Abdel Said: https://github.com/abdelsaid

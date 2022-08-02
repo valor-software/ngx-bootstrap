@@ -1,12 +1,12 @@
 import { Injectable, StaticProvider, InjectionToken } from '@angular/core';
-import { ClassName, DismissReasons, Selector, TransitionDurations } from './models';
+import { ClassName, CloseInterceptorFn, DismissReasons, Selector, TransitionDurations } from './models';
 
-@Injectable()
-export class ModalOptions<T = Object> {
+@Injectable({providedIn: 'platform'})
+export class ModalOptions<T = Record<string, unknown>> {
   /**
    *  Allow user to ID for the modal. Otherwise, a unique number will be given
    */
-  id?: number;
+  id?: number | string;
   /**
    *  Includes a modal-backdrop element. Alternatively,
    *  specify static for a backdrop which doesn't close the modal on click.
@@ -39,6 +39,10 @@ export class ModalOptions<T = Object> {
    */
   initialState?: Partial<T>;
   /**
+   * Function to intercept the closure
+   */
+  closeInterceptor?: CloseInterceptorFn;
+  /**
    * Modal providers
    */
   providers?: StaticProvider[];
@@ -60,7 +64,8 @@ export const modalConfigDefaults: ModalOptions = {
   ignoreBackdropClick: false,
   class: '',
   animated: true,
-  initialState: {}
+  initialState: {},
+  closeInterceptor: void 0
 };
 
 export const MODAL_CONFIG_DEFAULT_OVERRIDE: InjectionToken<ModalOptions> =

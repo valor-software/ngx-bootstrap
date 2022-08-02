@@ -14,19 +14,21 @@ Main success scenario:
 
 ###### Datepicker
 4. When user clicks on "Datepicker" input, bs-datepicker-container opened and no one date selected
-5. User see Datepicker container with 2 arrows: "‹" and "›"
-6. When user clicks on "‹" - previous month shown
-7. When user clicks on "›" - next month shown
-8. By default, Datepicker show current year and current month in head block
-9. When user clicks on month, then full table with 12 months shown with year in head block
-10. When user clicks on year, then table with 16 years shown with year interval in head block
-11. When user clicks on any date - then this date appeared in the input in format "mm/dd/yyyy"
-12. When user clicks on "Datepicker" input again, bs-datepicker-container opened and chosen date selected
+5. User see Datepicker container with 2 arrows in the bs-datepicker-head block: left "<" and right ">"
+6. By default, Datepicker show current year and current month in head block
+7. When the user clicks on the left arrow "<" - then the previous month name with current year shown in the bs-datepicker-head block and the previous month's calendar shown in the bs-datepicker-body block
+8. When user clicks on the right arrow ">" after that twice - then the next month name with current year number shown in the the bs-datepicker-head block, and next month's calendar shown in the bs-datepicker-body block
+9. When the user clicks on the month name in the bs-datepicker-head block, the current year number is displayed in the bs-datepicker-head block, and the full table with 12 months is displayed in the bs-datepicker-body block 
+10. When the user clicks a year in the bs-datepicker-head block, a 16-year interval appears in the bs-datepicker-head block, and the bs-datepicker-body displays the complete table with that 16 year period
+11. When user clicks on any year, next clicks on any month name and next click on the any date in the bs-datepicker-body - then selected date appears in the input in the format "mm/dd/yyyy"
+12. When user clicks on "Datepicker" input again, bs-datepicker-container opened and chosen date selected in the month calendar
 13. When user clears input and add there date in format "mm.dd.yyyy", click "Enter" - date converted to "mm/dd/yyyy"
+14. When user clears input and add there date in format "mm-dd-yyyy", click "Enter" - date converted to "mm/dd/yyyy"
+15. When user clicks on "Datepicker" input again, bs-datepicker-container opened and chosen date selected
 
 ###### Daterangepicker
-14. When user clicks on "Daterangepicker" input, bs-dateragdepicker-container opened and bs-datepicker-container closed
-15. By default, user see 2 bs-days-calendar-view blocks
+14. Daterangepicker bs-datepicker-container opens with animation and with no one date selected, and Datepicker bs-datepicker-container closes
+15. By default, user see 2 bs-days-calendar-view blocks in the bs-datepicker-container
 16. User see Daterangepicker container with 2 arrows: "‹" and "›"
 17. When user clicks on "‹" - shown interval, which started from previous month
 18. When user clicks on "›" - shown interval, which started from next month

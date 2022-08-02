@@ -34,19 +34,23 @@ export function formatDaysCalendar(daysCalendar: DaysCalendarModel,
         weekIndex,
         dayIndex
       }))
-    }))
+    })),
+    hideLeftArrow: false,
+    hideRightArrow: false,
+    disableLeftArrow: false,
+    disableRightArrow: false
   };
 }
 
 export function getWeekNumbers(daysMatrix: Date[][],
-                               format: string,
-                               locale: string): string[] {
+                               format?: string,
+                               locale?: string): string[] {
   return daysMatrix.map(
     (days: Date[]) => (days[0] ? formatDate(days[0], format, locale) : '')
   );
 }
 
-export function getShiftedWeekdays(locale: string): string[] {
+export function getShiftedWeekdays(locale?: string): string[] {
   const _locale = getLocale(locale);
   const weekdays = _locale.weekdaysShort() as string[];
   const firstDayOfWeek = _locale.firstDayOfWeek();

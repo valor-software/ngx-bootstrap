@@ -30,6 +30,10 @@ export function formatMonthsCalendar(
       viewDate,
       formatOptions.yearTitle,
       formatOptions.locale
-    )
+    ),
+    hideRightArrow: false,
+    hideLeftArrow: false,
+    disableRightArrow: false,
+    disableLeftArrow: false
   };
 }

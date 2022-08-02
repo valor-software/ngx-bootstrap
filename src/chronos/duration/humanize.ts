@@ -1,4 +1,3 @@
-// tslint:disable:cyclomatic-complexity
 import { createDuration } from './create';
 import { Locale } from '../locale/locale.class';
 import { Duration } from './constructor';
@@ -30,16 +29,16 @@ export function relativeTime(posNegDuration: Duration, withoutSuffix: boolean, l
   const years = round(duration.as('y'));
 
   const a: [string] | [string, number] =
-    seconds <= thresholds.ss && ['s', seconds] ||
-    seconds < thresholds.s && ['ss', seconds] ||
+    seconds <= thresholds["ss"] && ['s', seconds] ||
+    seconds < thresholds["s"] && ['ss', seconds] ||
     minutes <= 1 && ['m'] ||
-    minutes < thresholds.m && ['mm', minutes] ||
+    minutes < thresholds["m"] && ['mm', minutes] ||
     hours <= 1 && ['h'] ||
-    hours < thresholds.h && ['hh', hours] ||
+    hours < thresholds["h"] && ['hh', hours] ||
     days <= 1 && ['d'] ||
-    days < thresholds.d && ['dd', days] ||
+    days < thresholds["d"] && ['dd', days] ||
     months <= 1 && ['M'] ||
-    months < thresholds.M && ['MM', months] ||
+    months < thresholds["M"] && ['MM', months] ||
     years <= 1 && ['y'] || ['yy', years];
 
   const b: [string, number | string, boolean, boolean, Locale] =
@@ -52,7 +51,7 @@ export function relativeTime(posNegDuration: Duration, withoutSuffix: boolean, l
 }
 
 // This function allows you to set the rounding function for relative time strings
-export function getSetRelativeTimeRounding(roundingFunction: any): boolean | Function {
+export function getSetRelativeTimeRounding(roundingFunction: any): boolean | ((x: number) => number) {
   if (roundingFunction === undefined) {
     return round;
   }
@@ -75,7 +74,7 @@ export function getSetRelativeTimeThreshold(threshold: string, limit: number): b
   }
   thresholds[threshold] = limit;
   if (threshold === 's') {
-    thresholds.ss = limit - 1;
+    thresholds["ss"] = limit - 1;
   }
 
   return true;

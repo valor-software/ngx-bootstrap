@@ -29,13 +29,12 @@ import { BsDatepickerConfig } from '../../bs-datepicker.config';
         (onNavigate)="navigateTo($event)"
         (onViewMode)="changeViewMode($event)"
       ></bs-datepicker-navigation-view>
-
       <!--days matrix-->
       <table role="grid" class="days weeks">
         <thead>
         <tr>
           <!--if show weeks-->
-          <th *ngIf="options.showWeekNumbers"></th>
+          <th *ngIf="options && options.showWeekNumbers"></th>
           <th *ngFor="let weekday of calendar.weekdays; let i = index"
               aria-label="weekday">{{ calendar.weekdays[i] }}
           </th>
@@ -43,7 +42,7 @@ import { BsDatepickerConfig } from '../../bs-datepicker.config';
         </thead>
         <tbody>
         <tr *ngFor="let week of calendar.weeks; let i = index">
-          <td class="week" [class.active-week]="isWeekHovered"  *ngIf="options.showWeekNumbers">
+          <td class="week" [class.active-week]="isWeekHovered"  *ngIf="options && options.showWeekNumbers">
             <span *ngIf="isiOS" (click)="selectWeek(week)">{{ calendar.weekNumbers[i] }}</span>
             <span *ngIf="!isiOS"
                 (click)="selectWeek(week)"
@@ -79,8 +78,8 @@ import { BsDatepickerConfig } from '../../bs-datepicker.config';
   `
 })
 export class BsDaysCalendarViewComponent  {
-  @Input() calendar: DaysCalendarViewModel;
-  @Input() options: DatepickerRenderOptions;
+  @Input() calendar!: DaysCalendarViewModel;
+  @Input() options?: DatepickerRenderOptions | null;
 
   @Output() onNavigate = new EventEmitter<BsNavigationEvent>();
   @Output() onViewMode = new EventEmitter<BsDatepickerViewMode>();
@@ -89,9 +88,9 @@ export class BsDaysCalendarViewComponent  {
   @Output() onHover = new EventEmitter<CellHoverEvent>();
   @Output() onHoverWeek = new EventEmitter<WeekViewModel>();
 
-  isWeekHovered: boolean;
+  isWeekHovered?: boolean;
   isiOS: boolean;
-  isShowTooltip: boolean;
+  isShowTooltip?: boolean;
 
   constructor(private _config: BsDatepickerConfig) {
     this.isiOS = (/iPad|iPhone|iPod/.test(navigator.platform) ||

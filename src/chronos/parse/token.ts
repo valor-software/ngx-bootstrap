@@ -1,4 +1,3 @@
-// tslint:disable:max-line-length
 import { hasOwnProp, isArray, isFunction, isNumber, isString, toInt } from '../utils/type-checks';
 import { DateParsingConfig } from '../create/parsing.types';
 import { DateArray, DateParseTokenFn } from '../types';

@@ -1,10 +1,10 @@
 // user and model input should handle parsing and validating input values
+import { getFirstDayOfMonth } from 'ngx-bootstrap/chronos';
 // should accept some options
 // todo: split out formatting
 import { DaysCalendarModel, MonthViewOptions } from '../models';
-import { getFirstDayOfMonth } from 'ngx-bootstrap/chronos';
 import { getStartingDayOfCalendar } from '../utils/bs-calendar-utils';
-import { createMatrix } from '../utils/matrix-utils';
+import { createMatrix, MatrixOptions } from '../utils/matrix-utils';
 
 export function calcDaysCalendar(
   startingDate: Date,
@@ -13,9 +13,10 @@ export function calcDaysCalendar(
   const firstDay = getFirstDayOfMonth(startingDate);
   const initialDate = getStartingDayOfCalendar(firstDay, options);
 
-  const matrixOptions = {
-    width: options.width,
-    height: options.height,
+  // todo test
+  const matrixOptions: MatrixOptions = {
+    width: options.width || 0,
+    height: options.height || 0,
     initialDate,
     shift: { day: 1 }
   };

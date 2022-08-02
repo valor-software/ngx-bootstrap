@@ -5,7 +5,7 @@ export function latinize(str: string): string {
     return '';
   }
 
-  return str.replace(/[^A-Za-z0-9\[\] ]/g, function (a: string): string {
+  return str.replace(/[^A-Za-z0-9[\] ]/g, function(a: string): string {
     return latinMap[a] || a;
   });
 }
@@ -17,10 +17,9 @@ export function escapeRegexp(queryToEscape: string): string {
   return queryToEscape.replace(/([.?*+^$[\]\\(){}|-])/g, '\\$1');
 }
 
-/* tslint:disable */
 export function tokenize(str: string,
-  wordRegexDelimiters = ' ',
-  phraseRegexDelimiters = '', delimitersForMultipleSearch?: string): Array<string> {
+                         wordRegexDelimiters = ' ',
+                         phraseRegexDelimiters = '', delimitersForMultipleSearch?: string): Array<string> {
 
   let result: string[] = [];
   if (!delimitersForMultipleSearch) {
@@ -43,9 +42,8 @@ export function tokenize(str: string,
 
 function tokenizeWordsAndPhrases(str: string, wordRegexDelimiters: string, phraseRegexDelimiters: string): Array<string> {
   const result: string[] = [];
-  /* tslint:enable */
   const regexStr = `(?:[${phraseRegexDelimiters}])([^${phraseRegexDelimiters}]+)` +
-  `(?:[${phraseRegexDelimiters}])|([^${wordRegexDelimiters}]+)`;
+    `(?:[${phraseRegexDelimiters}])|([^${wordRegexDelimiters}]+)`;
   const preTokenized: string[] = str.split(new RegExp(regexStr, 'g'));
   const preTokenizedLength: number = preTokenized.length;
   let token: string;
@@ -61,8 +59,8 @@ function tokenizeWordsAndPhrases(str: string, wordRegexDelimiters: string, phras
   return result;
 }
 
-// tslint:disable-next-line:no-any
-export function getValueFromObject(object: any, option: string): string {
+// eslint-disable-next-line
+export function getValueFromObject(object: string | Record<string | number, any>, option?: string): string {
   if (!option || typeof object !== 'object') {
     return object.toString();
   }
@@ -70,7 +68,7 @@ export function getValueFromObject(object: any, option: string): string {
   if (option.endsWith('()')) {
     const functionName = option.slice(0, option.length - 2);
 
-    return object[functionName]().toString();
+    return (object[functionName] as () => string)().toString();
   }
 
   const properties: string = option
@@ -79,12 +77,15 @@ export function getValueFromObject(object: any, option: string): string {
   const propertiesArray: string[] = properties.split('.');
 
   for (const property of propertiesArray) {
-    if (property in object) {
-      // tslint:disable-next-line
+    if (property in (object as Record<string, unknown>)) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       object = object[property];
     }
   }
-  if (!object) {return ''; }
+  if (!object) {
+    return '';
+  }
 
   return object.toString();
 }

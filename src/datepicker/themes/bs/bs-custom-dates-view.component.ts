@@ -16,31 +16,17 @@ export interface BsCustomDates {
         [class.selected]="range.value === selectedRange">
         {{ range.label }}
       </button>
-      <button
-        type="button"
-        class="btn"
-        (click)="selectFromRanges(customRange)"
-        [class.selected]="!checkRange()">
-        {{customRangeLabel}}
-      </button>
     </div>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BsCustomDatesViewComponent {
-  @Input() ranges: BsCustomDates[];
-  @Input() selectedRange: Date[];
-  @Input() customRangeLabel: string;
+  @Input() ranges?: BsCustomDates[];
+  @Input() selectedRange?: Date[];
+  @Input() customRangeLabel?: string;
   @Output() onSelect = new EventEmitter<BsCustomDates>();
 
-  customRange: any = null;
-
-  selectFromRanges(range: BsCustomDates) {
+  selectFromRanges(range?: BsCustomDates) {
     this.onSelect.emit(range);
   }
-
-  checkRange() {
-    return this.ranges ? this.ranges.filter(range => range.value === this.selectedRange).length > 0 : false;
-  }
-
 }

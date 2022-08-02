@@ -6,6 +6,8 @@ export class TypeaheadOptions {
   typeaheadRef: TypeaheadDirective;
 
   constructor(options: TypeaheadOptions) {
-    Object.assign(this, options);
+    this.placement = options.placement;
+    this.animation = options.animation;
+    this.typeaheadRef = options.typeaheadRef;
   }
 }

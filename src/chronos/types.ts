@@ -1,4 +1,3 @@
-// tslint:disable:max-line-length
 import { Locale } from './locale/locale.class';
 import { DateParsingConfig } from './create/parsing.types';
 
