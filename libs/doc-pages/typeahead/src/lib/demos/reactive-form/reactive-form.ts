@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -7,9 +7,9 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './reactive-form.html'
 })
 export class DemoTypeaheadReactiveFormComponent {
-  stateCtrl = new FormControl();
+  stateCtrl = new UntypedFormControl();
 
-  myForm = new FormGroup({
+  myForm = new UntypedFormGroup({
     state: this.stateCtrl
   });
 

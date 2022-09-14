@@ -148,11 +148,11 @@ jobs:
       # these containers will load balance all found tests among themselves
       - name: smoke e2e on firebase
         if: ${{ needs.firebase_preview.outputs.output_url }}
-        run: npx nx run ngx-bootstrap-docs-e2e:e2e -c firebase --runner cloud --record --group smoke --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/ -- --parallel
+        run: npx nx run ngx-bootstrap-docs-e2e:e2e -- --configuration firebase --runner cloud --record --group smoke --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/ --parallel
 
       - name: smoke e2e local
         if: ${{ !needs.firebase_preview.outputs.output_url }}
-        run: npx nx run ngx-bootstrap-docs-e2e:e2e --configuration production --runner cloud --record --group smoke -- --parallel
+        run: npx nx run ngx-bootstrap-docs-e2e:e2e -- --configuration production --runner cloud --record --group smoke --parallel
 
   e2e_full:
     name: e2e full
@@ -184,9 +184,9 @@ jobs:
       - name: full e2e on firebase
         if: ${{ needs.firebase_preview.outputs.output_url }}
         continue-on-error: true
-        run: npx nx run ngx-bootstrap-docs-e2e:e2e -c firebase --runner cloud --cypressConfig ./apps/ngx-bootstrap-docs-e2e/cypress-full.json --record --group full --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/ -- --parallel
+        run: npx nx run ngx-bootstrap-docs-e2e:e2e -- --configuration firebase --runner cloud --cypressConfig ./apps/ngx-bootstrap-docs-e2e/cypress-full.json --record --group full --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/ --parallel
 
       - name: full e2e on local
         if: ${{ !needs.firebase_preview.outputs.output_url }}
         continue-on-error: true
-        run: npx nx run ngx-bootstrap-docs-e2e:e2e --configuration production --runner cloud --cypressConfig ./apps/ngx-bootstrap-docs-e2e/cypress-full.json --record --group full -- --parallel
+        run: npx nx run ngx-bootstrap-docs-e2e:e2e -- --configuration production --runner cloud --cypressConfig ./apps/ngx-bootstrap-docs-e2e/cypress-full.json --record --group full --parallel

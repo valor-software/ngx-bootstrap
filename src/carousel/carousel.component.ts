@@ -16,8 +16,9 @@
  */
 
 import {
-  Component, EventEmitter, Input, NgZone, OnDestroy, Output, AfterViewInit
+  Component, EventEmitter, Input, NgZone, OnDestroy, Output, AfterViewInit, Inject, PLATFORM_ID
 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 import { LinkedList, getBsVer, IBsVersion } from 'ngx-bootstrap/utils';
 import { SlideComponent } from './slide.component';
@@ -144,7 +145,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     return getBsVer();
   }
 
-  constructor(config: CarouselConfig, private ngZone: NgZone) {
+  constructor(config: CarouselConfig, private ngZone: NgZone, @Inject(PLATFORM_ID) public platformId: number) {
     Object.assign(this, config);
     this.currentId = _currentId++;
   }
@@ -786,7 +787,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   private restartTimer() {
     this.resetTimer();
     const interval = +this.interval;
-    if (!isNaN(interval) && interval > 0) {
+    if (!isNaN(interval) && interval > 0 && isPlatformBrowser(this.platformId)) {
       this.currentInterval = this.ngZone.runOutsideAngular<number>(() => {
         return window.setInterval(() => {
           const nInterval = +this.interval;
