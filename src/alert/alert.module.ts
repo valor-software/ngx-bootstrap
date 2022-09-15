@@ -3,10 +3,9 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { AlertComponent } from './alert.component';
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [AlertComponent],
-  exports: [AlertComponent],
-  entryComponents: [AlertComponent]
+    imports: [CommonModule],
+    declarations: [AlertComponent],
+    exports: [AlertComponent]
 })
 export class AlertModule {
   static forRoot(): ModuleWithProviders<AlertModule> {

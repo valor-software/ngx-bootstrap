@@ -281,7 +281,32 @@ describe('datepicker:', () => {
     expect(timepickers.length).toEqual(1);
   });
 
-  it('should not display timepicker when withTimepicker is true', () => {
+  it('should display one timepicker when withTimepicker is true', () => {
+    const datepickerDirective = getDatepickerDirective(fixture);
+    datepickerDirective.bsConfig = {
+      withTimepicker: true
+    };
+    const currentDate = new Date();
+    const updatedDate = new Date(new Date().setMinutes(currentDate.getMinutes() + 5));
+    const datepicker = showDatepicker(fixture);
+    const datepickerContainerInstance = getDatepickerContainer(datepicker);
+    fixture.detectChanges();
+
+    datepickerContainerInstance.valueChange.emit(currentDate);
+    datepickerContainerInstance.timeSelectHandler(currentDate, 0);
+    fixture.detectChanges();
+
+    datepickerContainerInstance.valueChange.emit(updatedDate);
+    datepickerContainerInstance.timeSelectHandler(updatedDate, 0);
+
+    datepickerContainerInstance[`_store`]
+      .select(state => state.selectedTime)
+      .subscribe(view => {
+        expect(view[0].getMinutes()).toEqual(updatedDate.getMinutes());
+      });
+  });
+
+  it('should not display timepicker when withTimepicker is false', () => {
     const datepickerDirective = getDatepickerDirective(fixture);
     datepickerDirective.bsConfig = {
       withTimepicker: false

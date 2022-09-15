@@ -2,11 +2,13 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../../dist/out-tsc",
-    "target": "es2015",
+    "target": "es2020",
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
-    "types": ["node"],
+    "types": [
+      "node"
+    ],
     "lib": [
       "dom",
       "es2018"

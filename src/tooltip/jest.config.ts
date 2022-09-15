@@ -1,14 +1,15 @@
-module.exports = {
-  displayName: 'focus-trap',
+/* eslint-disable */
+export default {
+  displayName: 'tooltip',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/testing/test-setup.ts'],
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
       stringifyContentPathRegex: '\\.(html|svg)$'
-    },
+    }
   },
-  coverageDirectory: '../../coverage/src/focus-trap',
+  coverageDirectory: '../../coverage/src/tooltip',
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',

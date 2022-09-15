@@ -26,9 +26,6 @@
       "@ngx-bootstrap-doc/accordion": [
         "libs/doc-pages/accordion/src/index.ts"
       ],
-      "@ngx-bootstrap-doc/docs": [
-        "libs/common-docs/src/index.ts"
-      ],
       "@ngx-bootstrap-doc/alerts": [
         "libs/doc-pages/alerts/src/index.ts"
       ],
@@ -43,6 +40,9 @@
       ],
       "@ngx-bootstrap-doc/datepicker": [
         "libs/doc-pages/datepicker/src/index.ts"
+      ],
+      "@ngx-bootstrap-doc/docs": [
+        "libs/common-docs/src/index.ts"
       ],
       "@ngx-bootstrap-doc/dropdown": [
         "libs/doc-pages/dropdown/src/index.ts"
@@ -77,30 +77,78 @@
       "@ngx-bootstrap-doc/typeahead": [
         "libs/doc-pages/typeahead/src/index.ts"
       ],
-      "ngx-bootstrap/accordion": ["src/accordion/index.ts"],
-      "ngx-bootstrap/alert": ["src/alert/index.ts"],
-      "ngx-bootstrap/buttons": ["src/buttons/index.ts"],
-      "ngx-bootstrap/carousel": ["src/carousel/index.ts"],
-      "ngx-bootstrap/chronos": ["src/chronos/index.ts"],
-      "ngx-bootstrap/collapse": ["src/collapse/index.ts"],
-      "ngx-bootstrap/component-loader": ["src/component-loader/index.ts"],
-      "ngx-bootstrap/datepicker": ["src/datepicker/index.ts"],
-      "ngx-bootstrap/dropdown": ["src/dropdown/index.ts"],
-      "ngx-bootstrap/focus-trap": ["src/focus-trap/index.ts"],
-      "ngx-bootstrap/locale": ["src/locale/index.ts"],
-      "ngx-bootstrap/mini-ngrx": ["src/mini-ngrx/index.ts"],
-      "ngx-bootstrap/modal": ["src/modal/index.ts"],
-      "ngx-bootstrap/pagination": ["src/pagination/index.ts"],
-      "ngx-bootstrap/popover": ["src/popover/index.ts"],
-      "ngx-bootstrap/positioning": ["src/positioning/index.ts"],
-      "ngx-bootstrap/progressbar": ["src/progressbar/index.ts"],
-      "ngx-bootstrap/rating": ["src/rating/index.ts"],
-      "ngx-bootstrap/sortable": ["src/sortable/index.ts"],
-      "ngx-bootstrap/tabs": ["src/tabs/index.ts"],
-      "ngx-bootstrap/timepicker": ["src/timepicker/index.ts"],
-      "ngx-bootstrap/tooltip": ["src/tooltip/index.ts"],
-      "ngx-bootstrap/typeahead": ["src/typeahead/index.ts"],
-      "ngx-bootstrap/utils": ["src/utils/index.ts"]
+      "ngx-bootstrap/accordion": [
+        "src/accordion/index.ts"
+      ],
+      "ngx-bootstrap/alert": [
+        "src/alert/index.ts"
+      ],
+      "ngx-bootstrap/buttons": [
+        "src/buttons/index.ts"
+      ],
+      "ngx-bootstrap/carousel": [
+        "src/carousel/index.ts"
+      ],
+      "ngx-bootstrap/chronos": [
+        "src/chronos/index.ts"
+      ],
+      "ngx-bootstrap/collapse": [
+        "src/collapse/index.ts"
+      ],
+      "ngx-bootstrap/component-loader": [
+        "src/component-loader/index.ts"
+      ],
+      "ngx-bootstrap/datepicker": [
+        "src/datepicker/index.ts"
+      ],
+      "ngx-bootstrap/dropdown": [
+        "src/dropdown/index.ts"
+      ],
+      "ngx-bootstrap/focus-trap": [
+        "src/focus-trap/index.ts"
+      ],
+      "ngx-bootstrap/locale": [
+        "src/locale/index.ts"
+      ],
+      "ngx-bootstrap/mini-ngrx": [
+        "src/mini-ngrx/index.ts"
+      ],
+      "ngx-bootstrap/modal": [
+        "src/modal/index.ts"
+      ],
+      "ngx-bootstrap/pagination": [
+        "src/pagination/index.ts"
+      ],
+      "ngx-bootstrap/popover": [
+        "src/popover/index.ts"
+      ],
+      "ngx-bootstrap/positioning": [
+        "src/positioning/index.ts"
+      ],
+      "ngx-bootstrap/progressbar": [
+        "src/progressbar/index.ts"
+      ],
+      "ngx-bootstrap/rating": [
+        "src/rating/index.ts"
+      ],
+      "ngx-bootstrap/sortable": [
+        "src/sortable/index.ts"
+      ],
+      "ngx-bootstrap/tabs": [
+        "src/tabs/index.ts"
+      ],
+      "ngx-bootstrap/timepicker": [
+        "src/timepicker/index.ts"
+      ],
+      "ngx-bootstrap/tooltip": [
+        "src/tooltip/index.ts"
+      ],
+      "ngx-bootstrap/typeahead": [
+        "src/typeahead/index.ts"
+      ],
+      "ngx-bootstrap/utils": [
+        "src/utils/index.ts"
+      ]
     }
   },
   "angularCompilerOptions": {

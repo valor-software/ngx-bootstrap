@@ -1,14 +1,15 @@
-module.exports = {
-  displayName: 'carousel',
+/* eslint-disable */
+export default {
+  displayName: 'datepicker',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/testing/test-setup.ts'],
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
       stringifyContentPathRegex: '\\.(html|svg)$'
-    },
+    }
   },
-  coverageDirectory: '../../coverage/src/carousel',
+  coverageDirectory: '../../coverage/src/datepicker',
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',

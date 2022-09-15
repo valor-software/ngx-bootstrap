@@ -29,7 +29,7 @@
       }
     },
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "nx/tasks-runners/default",
       "options": {
         "cacheableOperations": [
           "build",
@@ -39,9 +39,6 @@
         ]
       }
     }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/angular"
   },
   "generators": {
     "@nrwl/angular": {
@@ -62,7 +59,6 @@
       "e2eTestRunner": "cypress"
     },
     "@nrwl/angular:library": {
-      "style": "scss",
       "linter": "eslint",
       "unitTestRunner": "jest",
       "strict": true
@@ -71,5 +67,9 @@
       "style": "scss"
     }
   },
-  "defaultProject": "ngx-bootstrap-docs"
+  "defaultProject": "ngx-bootstrap-docs",
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  }
 }

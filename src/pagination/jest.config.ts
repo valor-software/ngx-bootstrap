@@ -1,14 +1,15 @@
-module.exports = {
-  displayName: 'chronos',
+/* eslint-disable */
+export default {
+  displayName: 'pagination',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/testing/test-setup.ts'],
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
       stringifyContentPathRegex: '\\.(html|svg)$'
-    },
+    }
   },
-  coverageDirectory: '../../coverage/src/chronos',
+  coverageDirectory: '../../coverage/src/pagination',
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',
