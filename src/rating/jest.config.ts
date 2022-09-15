@@ -1,14 +1,15 @@
-module.exports = {
-  displayName: 'tooltip',
+/* eslint-disable */
+export default {
+  displayName: 'rating',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/testing/test-setup.ts'],
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
       stringifyContentPathRegex: '\\.(html|svg)$'
-    },
+    }
   },
-  coverageDirectory: '../../coverage/src/tooltip',
+  coverageDirectory: '../../coverage/src/rating',
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',

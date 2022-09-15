@@ -112,15 +112,32 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
       // set event handlers
       .setEventHandlers(this)
       .registerDatepickerSideEffects();
-
+    let currentDate: Date[] | undefined;
     // todo: move it somewhere else
     // on selected date change
     this._subs.push(
       this._store
         .select(state => state.selectedRange)
         .subscribe(dateRange => {
+          currentDate = dateRange;
           this.valueChange.emit(dateRange);
           this.chosenRange = dateRange || [];
+        })
+    );
+
+    this._subs.push(
+      this._store
+        .select(state => state.selectedTime)
+        .subscribe((time:any) => {
+          if ((!time[0] || !time[1]) ||
+             (!(time[0] instanceof Date) || !(time[1] instanceof Date)) ||
+             (currentDate && (time[0] === currentDate[0] && time[1] === currentDate[1]))
+          ) {
+            return;
+          }
+
+          this.valueChange.emit(time);
+          this.chosenRange = time || [];
         })
     );
   }

@@ -73,4 +73,38 @@ describe('daterangepicker inline:', () => {
         }
       });
   });
+
+  it('should update time when time is changed in timepicker', () => {
+    const directive = getDaterangepickerInlineDirective(fixture);
+    directive.bsConfig = {
+      withTimepicker: true
+    };
+    const currentDate = new Date();
+    const ranges = [
+      {
+        label: '',
+        value: [currentDate, new Date(new Date().setDate(currentDate.getDate() + 7))]
+      },
+      {
+        label: '',
+        value: [new Date(new Date().setMinutes(currentDate.getMinutes() + 5)), new Date(new Date().setDate(currentDate.getDate() + 7))]
+      }
+    ];
+    const datepickerContainerInstance = getDatepickerInlineContainer(directive);
+    datepickerContainerInstance.setRangeOnCalendar(ranges[0]);
+
+    fixture.detectChanges();
+    datepickerContainerInstance.valueChange.emit(ranges[1].value);
+    datepickerContainerInstance.chosenRange = ranges[1].value || [];
+    datepickerContainerInstance.timeSelectHandler(ranges[1].value[0], 0);
+    datepickerContainerInstance.timeSelectHandler(ranges[1].value[1], 1);
+    fixture.detectChanges();
+
+    datepickerContainerInstance[`_store`]
+      .select(state => state.selectedTime)
+      .subscribe(view => {
+        expect(view[0].getMinutes()).toEqual(ranges[1].value[0].getMinutes());
+        expect(view[1].getMinutes()).toEqual(ranges[1].value[1].getMinutes());
+      });
+  });
 });

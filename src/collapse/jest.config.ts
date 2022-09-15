@@ -1,14 +1,15 @@
-module.exports = {
-  displayName: 'datepicker',
+/* eslint-disable */
+export default {
+  displayName: 'collapse',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/testing/test-setup.ts'],
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
       stringifyContentPathRegex: '\\.(html|svg)$'
-    },
+    }
   },
-  coverageDirectory: '../../coverage/src/datepicker',
+  coverageDirectory: '../../coverage/src/collapse',
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',
