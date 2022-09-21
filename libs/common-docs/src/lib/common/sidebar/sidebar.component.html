@@ -27,7 +27,7 @@
               {{getRouteStructureKey(route)?.title}}
             </span>
             <ng-template #elseBlock>
-              <a [class.hideText]="!menuIsOpened" [class.m-0]="!menuIsOpened" class="transition-option">
+              <a [class.hideText]="!menuIsOpened" [class.m-0]="!menuIsOpened" href="javascript:void(0);" class="transition-option">
                 {{getRouteStructureKey(route)?.title}}
               </a>
             </ng-template>

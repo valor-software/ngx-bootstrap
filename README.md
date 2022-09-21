@@ -6,11 +6,13 @@
 </a>
 
 <p align="center">
+The best way to quickly integrate <a href="https://getbootstrap.com/docs/5.1">Bootstrap 5</a> <a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> Components with <a href="https://angular.io/">Angular</a>
 The best way to quickly integrate <a href="https://getbootstrap.com/docs/5.1">Bootstrap 5</a>, 
 <a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> components with <a href="https://angular.io/">Angular</a>
 <br/>
 <br/>
 <i><strong>Note: </strong>ngx-bootstrap for <a href="https://getbootstrap.com/docs/3.3/">Bootstrap 3</a> is still available but is no longer maintained or updated.</i>
+development
 </p>
 
 <p align="center">
@@ -124,12 +126,6 @@ This can be done with the css file directly in the index.html, or alternatively 
 ```
 <!--- index.html -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2">
-```
-
-- `Bootstrap 3` <strong>Note: </strong>ngx-bootstrap for Bootstrap 3 is still available but is no longer maintained or updated.
-```
-<!-- index.html -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 ```
 
 ### Setting up the bootstrap version manually
