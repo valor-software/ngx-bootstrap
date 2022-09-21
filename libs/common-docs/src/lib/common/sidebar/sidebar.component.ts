@@ -69,7 +69,7 @@ export class SidebarComponent {
     const themeFromUrl = this.activatedRoute.snapshot.queryParams["_bsVersion"];
     const currentTheme = themeFromUrl || this.themeStorage.getStoredTheme();
     if (currentTheme) {
-      this.installTheme(currentTheme === 'bs3' ? 'bs4' : currentTheme);
+      this.installTheme(currentTheme);
     }
   }
 

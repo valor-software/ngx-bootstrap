@@ -10,7 +10,6 @@ import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/te
 import { addImportToModule } from '@schematics/angular/utility/ast-utils';
 import { Change, InsertChange } from '@schematics/angular/utility/change';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
-import { getFileContent } from '@schematics/angular/utility/test';
 import * as ts from 'typescript';
 import { getProjectMainFile } from './project-main-file';
 import { WorkspaceProject, WorkspaceSchema } from '@schematics/angular/utility/workspace-models';
@@ -72,9 +71,16 @@ export async function createTestApp(runner: SchematicTestRunner, appOptions = {}
 }
 
 export function removePackageJsonDependency(tree: Tree, dependencyName: string) {
-  const packageContent = JSON.parse(getFileContent(tree, '/package.json'));
-  delete packageContent.dependencies[dependencyName];
-  tree.overwrite('/package.json', JSON.stringify(packageContent, null, 2));
+  if (tree.exists('package.json')) {
+    const packageContent = tree.read('/package.json') !.toString('utf-8');
+    const json = JSON.parse(packageContent);
+    delete json.dependencies[dependencyName];
+    tree.overwrite('/package.json', JSON.stringify(packageContent, null, 2));
+  }
+
+  if (!tree.exists('package.json')) {
+    throw new SchematicsException(`there is no package json`);
+  }
 }
 
 export function addModuleImportToRootModule(host: Tree, moduleName: string, src: string, project: workspaces.ProjectDefinition) {

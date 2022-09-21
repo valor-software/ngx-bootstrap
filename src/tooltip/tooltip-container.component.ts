@@ -13,9 +13,7 @@ import { PlacementForBs5 } from 'ngx-bootstrap/positioning';
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[class]':
-      '"tooltip in tooltip-" + placement + " " + "bs-tooltip-" + placement + " " + placement + " " + containerClass',
-    '[class.show]': '!_bsVersions.isBs3',
-    '[class.bs3]': '_bsVersions.isBs3',
+      '"show tooltip in tooltip-" + placement + " " + "bs-tooltip-" + placement + " " + placement + " " + containerClass',
     '[attr.id]': 'this.id',
     role: 'tooltip'
   },
