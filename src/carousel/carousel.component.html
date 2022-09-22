@@ -4,7 +4,7 @@
      (keydown)="keydownPress($event)"
      (focusin)="pauseFocusIn()"
      (focusout)="pauseFocusOut()"
-     [id]="currentId"
+     [id]="'carousel' + currentId"
      class="carousel slide" tabindex="0">
   <ng-container *ngIf="!_bsVer.isBs5 && showIndicators && slides.length > 1">
     <ol class="carousel-indicators">
@@ -21,7 +21,7 @@
         [class.active]="slide.active === true"
         (click)="selectSlide(i)"
         type="button"
-        [attr.data-bs-target]="'#'+currentId"
+        [attr.data-bs-target]="'#carousel' + currentId"
         [attr.data-bs-slide-to]="i" aria-current="true"
       >
       </button>
@@ -30,25 +30,25 @@
   <div class="carousel-inner" [ngStyle]="{'display': multilist ? 'flex' : 'block'}">
     <ng-content></ng-content>
   </div>
-    <a class="left carousel-control carousel-control-prev"
-       href="javascript:void(0);"
-       [class.disabled]="checkDisabledClass('prev')"
-       [attr.data-bs-target]="'#'+currentId"
-       *ngIf="slides.length > 1"
-       (click)="previousSlide()"
-       tabindex="0" role="button">
-      <span class="icon-prev carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only visually-hidden">Previous</span>
-    </a>
+  <a class="left carousel-control carousel-control-prev"
+     href="javascript:void(0);"
+     [class.disabled]="checkDisabledClass('prev')"
+     [attr.data-bs-target]="'#carousel' + currentId"
+     *ngIf="slides.length > 1"
+     (click)="previousSlide()"
+     tabindex="0" role="button">
+    <span class="icon-prev carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only visually-hidden">Previous</span>
+  </a>
 
-    <a class="right carousel-control carousel-control-next"
-       href="javascript:void(0);"
-       *ngIf="slides.length > 1"
-       (click)="nextSlide()"
-       [class.disabled]="checkDisabledClass('next')"
-       [attr.data-bs-target]="'#'+currentId"
-       tabindex="0" role="button">
-      <span class="icon-next carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only visually-hidden">Next</span>
-    </a>
+  <a class="right carousel-control carousel-control-next"
+     href="javascript:void(0);"
+     *ngIf="slides.length > 1"
+     (click)="nextSlide()"
+     [class.disabled]="checkDisabledClass('next')"
+     [attr.data-bs-target]="'#carousel' + currentId"
+     tabindex="0" role="button">
+    <span class="icon-next carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only visually-hidden">Next</span>
+  </a>
 </div>
