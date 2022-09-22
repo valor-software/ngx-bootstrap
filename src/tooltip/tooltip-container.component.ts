@@ -19,6 +19,9 @@ import { PlacementForBs5 } from 'ngx-bootstrap/positioning';
   },
   styles: [
     `
+    :host {
+      position: absolute;
+    }
     :host.tooltip {
       display: block;
       pointer-events: none;
