@@ -1,11 +1,8 @@
 {
   "version": 1,
-  "cli": {
-    "defaultCollection": "@nrwl/angular"
-  },
-  "defaultProject": "ngx-bootstrap-docs",
   "projects": {
     "accordion": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/accordion",
       "sourceRoot": "src/accordion",
@@ -47,13 +44,14 @@
             "coverage/src/accordion"
           ],
           "options": {
-            "jestConfig": "src/accordion/jest.config.js",
+            "jestConfig": "src/accordion/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "alert": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/alert",
       "sourceRoot": "src/alert",
@@ -95,13 +93,14 @@
             "coverage/src/alert"
           ],
           "options": {
-            "jestConfig": "src/alert/jest.config.js",
+            "jestConfig": "src/alert/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "buttons": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/buttons",
       "sourceRoot": "src/buttons",
@@ -137,13 +136,14 @@
             "coverage/src/buttons"
           ],
           "options": {
-            "jestConfig": "src/buttons/jest.config.js",
+            "jestConfig": "src/buttons/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "carousel": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/carousel",
       "sourceRoot": "src/carousel/src",
@@ -185,13 +185,14 @@
             "coverage/src/carousel"
           ],
           "options": {
-            "jestConfig": "src/carousel/jest.config.js",
+            "jestConfig": "src/carousel/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "chronos": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/chronos",
       "sourceRoot": "src/chronos",
@@ -227,13 +228,14 @@
             "coverage/src/chronos"
           ],
           "options": {
-            "jestConfig": "src/chronos/jest.config.js",
+            "jestConfig": "src/chronos/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "collapse": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/collapse",
       "sourceRoot": "src/collapse",
@@ -269,13 +271,14 @@
             "coverage/src/collapse"
           ],
           "options": {
-            "jestConfig": "src/collapse/jest.config.js",
+            "jestConfig": "src/collapse/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "common-docs": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/common-docs",
       "sourceRoot": "libs/common-docs/src",
@@ -311,6 +314,7 @@
       }
     },
     "component-loader": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/component-loader",
       "sourceRoot": "src/component-loader",
@@ -352,13 +356,14 @@
             "coverage/src/component-loader"
           ],
           "options": {
-            "jestConfig": "src/component-loader/jest.config.js",
+            "jestConfig": "src/component-loader/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "datepicker": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/datepicker",
       "sourceRoot": "src/datepicker",
@@ -400,13 +405,14 @@
             "coverage/src/datepicker"
           ],
           "options": {
-            "jestConfig": "src/datepicker/jest.config.js",
+            "jestConfig": "src/datepicker/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "doc-pages-accordion": {
+      "$schema": "../../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/doc-pages/accordion",
       "sourceRoot": "libs/doc-pages/accordion/src",
@@ -445,6 +451,7 @@
       }
     },
     "doc-pages-alerts": {
+      "$schema": "../../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/doc-pages/alerts",
       "sourceRoot": "libs/doc-pages/alerts/src",
@@ -480,6 +487,7 @@
       }
     },
     "doc-pages-buttons": {
+      "$schema": "../../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/doc-pages/buttons",
       "sourceRoot": "libs/doc-pages/buttons/src",
@@ -515,6 +523,7 @@
       }
     },
     "doc-pages-carousel": {
+      "$schema": "../../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/doc-pages/carousel",
       "sourceRoot": "libs/doc-pages/carousel/src",
@@ -550,6 +559,7 @@
       }
     },
     "doc-pages-collapse": {
+      "$schema": "../../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/doc-pages/collapse",
       "sourceRoot": "libs/doc-pages/collapse/src",
@@ -585,6 +595,7 @@
       }
     },
     "doc-pages-datepicker": {
+      "$schema": "../../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/doc-pages/datepicker",
       "sourceRoot": "libs/doc-pages/datepicker/src",
@@ -620,6 +631,7 @@
       }
     },
     "doc-pages-dropdown": {
+      "$schema": "../../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/doc-pages/dropdown",
       "sourceRoot": "libs/doc-pages/dropdown/src",
@@ -655,6 +667,7 @@
       }
     },
     "doc-pages-modal": {
+      "$schema": "../../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/doc-pages/modal",
       "sourceRoot": "libs/doc-pages/modal/src",
@@ -689,52 +702,8 @@
         }
       }
     },
-    "doc-pages-offcanvas": {
-      "projectType": "library",
-      "root": "libs/doc-pages/offcanvas",
-      "sourceRoot": "libs/doc-pages/offcanvas/src",
-      "prefix": "ngx-bootstrap-base",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": [
-            "dist/libs/doc-pages/offcanvas"
-          ],
-          "options": {
-            "project": "libs/doc-pages/offcanvas/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/doc-pages/offcanvas/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/doc-pages/offcanvas/tsconfig.lib.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/doc-pages/offcanvas"
-          ],
-          "options": {
-            "jestConfig": "libs/doc-pages/offcanvas/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/doc-pages/offcanvas/src/**/*.ts",
-              "libs/doc-pages/offcanvas/src/**/*.html"
-            ]
-          }
-        }
-      },
-      "tags": []
-    },
     "doc-pages-pagination": {
+      "$schema": "../../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/doc-pages/pagination",
       "sourceRoot": "libs/doc-pages/pagination/src",
@@ -770,6 +739,7 @@
       }
     },
     "doc-pages-popover": {
+      "$schema": "../../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/doc-pages/popover",
       "sourceRoot": "libs/doc-pages/popover/src",
@@ -805,6 +775,7 @@
       }
     },
     "doc-pages-progressbar": {
+      "$schema": "../../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/doc-pages/progressbar",
       "sourceRoot": "libs/doc-pages/progressbar/src",
@@ -840,6 +811,7 @@
       }
     },
     "doc-pages-rating": {
+      "$schema": "../../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/doc-pages/rating",
       "sourceRoot": "libs/doc-pages/rating/src",
@@ -875,6 +847,7 @@
       }
     },
     "doc-pages-sortable": {
+      "$schema": "../../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/doc-pages/sortable",
       "sourceRoot": "libs/doc-pages/sortable/src",
@@ -910,6 +883,7 @@
       }
     },
     "doc-pages-tabs": {
+      "$schema": "../../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/doc-pages/tabs",
       "sourceRoot": "libs/doc-pages/tabs/src",
@@ -945,6 +919,7 @@
       }
     },
     "doc-pages-timepicker": {
+      "$schema": "../../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/doc-pages/timepicker",
       "sourceRoot": "libs/doc-pages/timepicker/src",
@@ -980,6 +955,7 @@
       }
     },
     "doc-pages-tooltip": {
+      "$schema": "../../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/doc-pages/tooltip",
       "sourceRoot": "libs/doc-pages/tooltip/src",
@@ -1015,6 +991,7 @@
       }
     },
     "doc-pages-typeahead": {
+      "$schema": "../../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "libs/doc-pages/typeahead",
       "sourceRoot": "libs/doc-pages/typeahead/src",
@@ -1050,6 +1027,7 @@
       }
     },
     "dropdown": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/dropdown",
       "sourceRoot": "src/dropdown",
@@ -1091,13 +1069,14 @@
             "coverage/src/dropdown"
           ],
           "options": {
-            "jestConfig": "src/dropdown/jest.config.js",
+            "jestConfig": "src/dropdown/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "focus-trap": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/focus-trap",
       "sourceRoot": "src/focus-trap",
@@ -1133,13 +1112,14 @@
             "coverage/src/focus-trap"
           ],
           "options": {
-            "jestConfig": "src/focus-trap/jest.config.js",
+            "jestConfig": "src/focus-trap/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "locale": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/locale",
       "sourceRoot": "src/locale",
@@ -1181,13 +1161,14 @@
             "coverage/src/locale"
           ],
           "options": {
-            "jestConfig": "src/locale/jest.config.js",
+            "jestConfig": "src/locale/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "mini-ngrx": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/mini-ngrx",
       "sourceRoot": "src/mini-ngrx",
@@ -1223,13 +1204,14 @@
             "coverage/src/mini-ngrx"
           ],
           "options": {
-            "jestConfig": "src/mini-ngrx/jest.config.js",
+            "jestConfig": "src/mini-ngrx/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "modal": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/modal",
       "sourceRoot": "src/modal",
@@ -1271,13 +1253,14 @@
             "coverage/src/modal"
           ],
           "options": {
-            "jestConfig": "src/modal/jest.config.js",
+            "jestConfig": "src/modal/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "ngx-bootstrap": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/root",
       "sourceRoot": "src/root",
@@ -1375,7 +1358,6 @@
         "focus-trap",
         "locale",
         "modal",
-        "offcanvas",
         "pagination",
         "popover",
         "progressbar",
@@ -1389,6 +1371,7 @@
       ]
     },
     "ngx-bootstrap-docs": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "application",
       "root": "apps/ngx-bootstrap-docs",
       "sourceRoot": "apps/ngx-bootstrap-docs/src",
@@ -1414,8 +1397,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/datepicker",
-                "src/offcanvas"
+                "src/datepicker"
               ]
             }
           },
@@ -1496,6 +1478,7 @@
       ]
     },
     "ngx-bootstrap-docs-e2e": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "root": "apps/ngx-bootstrap-docs-e2e",
       "sourceRoot": "apps/ngx-bootstrap-docs-e2e/src",
       "projectType": "application",
@@ -1529,55 +1512,8 @@
         "ngx-bootstrap-docs"
       ]
     },
-    "offcanvas": {
-      "projectType": "library",
-      "root": "src/offcanvas",
-      "sourceRoot": "src/offcanvas",
-      "prefix": "ngx-bootstrap-base",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/ngx-bootstrap/offcanvas"
-          ],
-          "options": {
-            "tsConfig": "src/offcanvas/tsconfig.lib.json",
-            "project": "src/offcanvas/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "src/offcanvas/tsconfig.lib.prod.json"
-            }
-          },
-          "dependsOn": [
-            {
-              "target": "build",
-              "projects": "dependencies"
-            }
-          ]
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/src/offcanvas"
-          ],
-          "options": {
-            "jestConfig": "src/offcanvas/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "src/offcanvas/**/*.ts",
-              "src/offcanvas/**/*.html"
-            ]
-          }
-        }
-      }
-    },
     "pagination": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/pagination",
       "sourceRoot": "src/pagination",
@@ -1613,13 +1549,14 @@
             "coverage/src/pagination"
           ],
           "options": {
-            "jestConfig": "src/pagination/jest.config.js",
+            "jestConfig": "src/pagination/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "popover": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/popover",
       "sourceRoot": "src/popover",
@@ -1661,13 +1598,14 @@
             "coverage/src/popover"
           ],
           "options": {
-            "jestConfig": "src/popover/jest.config.js",
+            "jestConfig": "src/popover/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "positioning": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/positioning",
       "sourceRoot": "src/positioning",
@@ -1709,13 +1647,14 @@
             "coverage/src/positioning"
           ],
           "options": {
-            "jestConfig": "src/positioning/jest.config.js",
+            "jestConfig": "src/positioning/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "progressbar": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/progressbar",
       "sourceRoot": "src/progressbar",
@@ -1757,13 +1696,14 @@
             "coverage/src/progressbar"
           ],
           "options": {
-            "jestConfig": "src/progressbar/jest.config.js",
+            "jestConfig": "src/progressbar/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "rating": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/rating",
       "sourceRoot": "src/rating",
@@ -1799,13 +1739,14 @@
             "coverage/src/rating"
           ],
           "options": {
-            "jestConfig": "src/rating/jest.config.js",
+            "jestConfig": "src/rating/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "schematics": {
+      "$schema": "../../../node_modules/nx/schemas/project-schema.json",
       "root": "src/schematics/src",
       "sourceRoot": "src/schematics/src",
       "projectType": "library",
@@ -1819,7 +1760,7 @@
           }
         },
         "build": {
-          "builder": "@nrwl/node:package",
+          "builder": "@nrwl/js:tsc",
           "outputs": [
             "{options.outputPath}"
           ],
@@ -1842,6 +1783,7 @@
       }
     },
     "sortable": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/sortable",
       "sourceRoot": "src/sortable",
@@ -1877,13 +1819,14 @@
             "coverage/src/sortable"
           ],
           "options": {
-            "jestConfig": "src/sortable/jest.config.js",
+            "jestConfig": "src/sortable/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "tabs": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/tabs",
       "sourceRoot": "src/tabs",
@@ -1919,13 +1862,14 @@
             "coverage/src/tabs"
           ],
           "options": {
-            "jestConfig": "src/tabs/jest.config.js",
+            "jestConfig": "src/tabs/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "timepicker": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/timepicker",
       "sourceRoot": "src/timepicker",
@@ -1967,13 +1911,14 @@
             "coverage/src/timepicker"
           ],
           "options": {
-            "jestConfig": "src/timepicker/jest.config.js",
+            "jestConfig": "src/timepicker/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "tooltip": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/tooltip",
       "sourceRoot": "src/tooltip",
@@ -2015,13 +1960,14 @@
             "coverage/src/tooltip"
           ],
           "options": {
-            "jestConfig": "src/tooltip/jest.config.js",
+            "jestConfig": "src/tooltip/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "typeahead": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/typeahead",
       "sourceRoot": "src/typeahead",
@@ -2063,13 +2009,14 @@
             "coverage/src/typeahead"
           ],
           "options": {
-            "jestConfig": "src/typeahead/jest.config.js",
+            "jestConfig": "src/typeahead/jest.config.ts",
             "passWithNoTests": true
           }
         }
       }
     },
     "utils": {
+      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "projectType": "library",
       "root": "src/utils",
       "sourceRoot": "src/utils",
@@ -2105,7 +2052,7 @@
             "coverage/src/utils"
           ],
           "options": {
-            "jestConfig": "src/utils/jest.config.js",
+            "jestConfig": "src/utils/jest.config.ts",
             "passWithNoTests": true
           }
         }

@@ -78,7 +78,8 @@ export class ComponentLoader<T> {
     private _componentFactoryResolver: ComponentFactoryResolver,
     private _ngZone: NgZone,
     private _applicationRef: ApplicationRef,
-    private _posService: PositioningService
+    private _posService: PositioningService,
+    private _document: Document,
   ) {
   }
 
@@ -163,9 +164,9 @@ export class ComponentLoader<T> {
         );
       }
 
-      if (typeof this.container === 'string' && typeof document !== 'undefined') {
-        const selectedElement = document.querySelector(this.container) ||
-          document.querySelector(this.containerDefaultSelector);
+      if (typeof this.container === 'string' && typeof this._document !== 'undefined') {
+        const selectedElement = this._document.querySelector(this.container) ||
+          this._document.querySelector(this.containerDefaultSelector);
 
         if (!selectedElement) {
           return;
@@ -407,6 +408,8 @@ export class ComponentLoader<T> {
       });
 
       const componentRef = contentCmptFactory.create(modalContentInjector);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       Object.assign(componentRef.instance, initialState);
       this._applicationRef.attachView(componentRef.hostView);
 

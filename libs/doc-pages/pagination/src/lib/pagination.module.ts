@@ -12,18 +12,17 @@ import { routes } from './demo-pagination.routes';
 export { PaginationSectionComponent } from './pagination-section.component';
 
 @NgModule({
-  declarations: [
-    PaginationSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
-  imports: [
-    PaginationModule.forRoot(),
-    CommonModule,
-    FormsModule,
-    DocsModule,
-    RouterModule.forChild(routes)
-  ],
-  exports: [PaginationSectionComponent],
-  entryComponents: [...DEMO_COMPONENTS]
+    declarations: [
+        PaginationSectionComponent,
+        ...DEMO_COMPONENTS
+    ],
+    imports: [
+        PaginationModule.forRoot(),
+        CommonModule,
+        FormsModule,
+        DocsModule,
+        RouterModule.forChild(routes)
+    ],
+    exports: [PaginationSectionComponent]
 })
 export class DemoPaginationModule {}

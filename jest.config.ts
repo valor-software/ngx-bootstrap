@@ -1,6 +1,6 @@
 const { getJestProjects } = require('@nrwl/jest');
 
-module.exports = {
+export default {
   setupFilesAfterEnv: ['<rootDir>/scripts/jest/toHaveCssClass.ts'],
-  projects: getJestProjects(),
+  projects: getJestProjects()
 };

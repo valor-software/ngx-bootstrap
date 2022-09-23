@@ -4,10 +4,17 @@
     "strict": false,
     "outDir": "../../dist/out-tsc",
     "module": "commonjs",
-    "types": ["jest", "node"]
+    "types": [
+      "jest",
+      "node"
+    ]
   },
   "files": [
     "testing/test-setup.ts"
   ],
-  "include": ["**/*.spec.ts", "**/*.d.ts"]
+  "include": [
+    "**/*.spec.ts",
+    "**/*.d.ts",
+    "jest.config.ts"
+  ]
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -7,9 +7,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: './checkbox-reactiveforms.html'
 })
 export class DemoButtonsCheckboxReactiveFormsComponent implements OnInit {
-  myForm?: FormGroup;
+  myForm?: UntypedFormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: UntypedFormBuilder) {}
 
   ngOnInit() {
     this.myForm = this.formBuilder.group({

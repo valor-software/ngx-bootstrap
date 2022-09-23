@@ -190,6 +190,12 @@
     }
   }
 
+  app-footer {
+    margin-left: 0;
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+
   .content {
     width: 100%;
     max-width: 100%;

@@ -1,15 +1,15 @@
-module.exports = {
-  displayName: 'alert',
-  coverageReporters: ["lcov"],
+/* eslint-disable */
+export default {
+  displayName: 'focus-trap',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/testing/test-setup.ts'],
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
       stringifyContentPathRegex: '\\.(html|svg)$'
-    },
+    }
   },
-  coverageDirectory: '../../coverage/src/alert',
+  coverageDirectory: '../../coverage/src/focus-trap',
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',

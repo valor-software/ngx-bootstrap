@@ -1,9 +1,10 @@
 import {
-  ApplicationRef, ComponentFactoryResolver, ElementRef, Injectable, Injector,
+  ApplicationRef, ComponentFactoryResolver, ElementRef, Inject, Injectable, Injector,
   NgZone, Renderer2, ViewContainerRef
 } from '@angular/core';
 import { ComponentLoader } from './component-loader.class';
 import { PositioningService } from 'ngx-bootstrap/positioning';
+import { DOCUMENT } from '@angular/common';
 
 @Injectable({providedIn: 'root'})
 export class ComponentLoaderFactory {
@@ -11,7 +12,9 @@ export class ComponentLoaderFactory {
               private _ngZone: NgZone,
               private _injector: Injector,
               private _posService: PositioningService,
-              private _applicationRef: ApplicationRef) {}
+              private _applicationRef: ApplicationRef,
+              @Inject(DOCUMENT) private _document: Document
+  ) {}
 
   /**
    *
@@ -21,7 +24,8 @@ export class ComponentLoaderFactory {
    */
   createLoader<T>(_elementRef?: ElementRef,
                   _viewContainerRef?: ViewContainerRef,
-                  _renderer?: Renderer2): ComponentLoader<T> {
+                  _renderer?: Renderer2,
+  ): ComponentLoader<T> {
     return new ComponentLoader<T>(
       _viewContainerRef,
       _renderer,
@@ -30,7 +34,8 @@ export class ComponentLoaderFactory {
       this._componentFactoryResolver,
       this._ngZone,
       this._applicationRef,
-      this._posService
+      this._posService,
+      this._document
     );
   }
 }
