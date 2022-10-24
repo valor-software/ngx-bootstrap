@@ -135,7 +135,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
 
   hide(): void {
-    if (this.isModalHiding || !this.isShown) {
+    if (this.isModalHiding) {
       return;
     }
 
