@@ -115,8 +115,8 @@ export function listenToTriggersV2(renderer: Renderer2,
     const showFn = useToggle ? options.toggle : options.show;
 
     if (!useToggle && trigger.close && options.hide) {
-      const _hide = renderer.listen(target, trigger.close, options.hide);
-      _registerHide.push(() => _hide);
+      const _hide = () => renderer.listen(target, trigger.close, options.hide);
+      _registerHide.push(_hide);
     }
 
     if (showFn) {
