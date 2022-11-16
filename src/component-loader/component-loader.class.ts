@@ -228,6 +228,7 @@ export class ComponentLoader<T> {
     this._contentRef?.viewRef?.destroy();
 
     this._contentRef = void 0;
+    this._componentRef.destroy();
     this._componentRef = void 0;
     this._removeGlobalListener();
 
