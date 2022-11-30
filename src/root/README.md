@@ -6,7 +6,7 @@
 </a>
 
 <p align="center">
-Best way to quickly integrate <a href="https://getbootstrap.com/">Bootstrap 3</a> or <a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> Components with <a href="https://angular.io/">Angular</a>
+Best way to quickly integrate <a href="https://getbootstrap.com/docs/5.1/getting-started/introduction/">Bootstrap 5</a> or <a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> Components with <a href="https://angular.io/">Angular</a>
 </p>
 
 <p align="center">
@@ -99,10 +99,10 @@ Add component to your page:
 ```
 
 You will need to add bootstrap css:
-- `Bootstrap 3`
+- `Bootstrap 5`
 ```
-<!-- index.html -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<!--- index.html -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 ```
 
 - `Bootstrap 4`

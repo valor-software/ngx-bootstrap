@@ -134,7 +134,7 @@ export class BsModalService {
       .provide({ provide: BsModalRef, useValue: bsModalRef })
       .attach(ModalContainerComponent)
       .to('body');
-    bsModalRef.hide = () => modalContainerRef.instance?.hide();
+    bsModalRef.hide = () => this.hide(bsModalRef.id);
     bsModalRef.setClass = (newClass: string) => {
       if (modalContainerRef.instance) {
         modalContainerRef.instance.config.class = newClass;

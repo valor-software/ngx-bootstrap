@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -9,11 +9,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class DemoDatePickerCustomFormatComponent {
   currentDate = new Date();
 
-  form = new FormGroup({
-    dateYMD: new FormControl(new Date()),
-    dateFull: new FormControl(new Date()),
-    dateMDY: new FormControl(new Date()),
-    dateRange: new FormControl([
+  form = new UntypedFormGroup({
+    dateYMD: new UntypedFormControl(new Date()),
+    dateFull: new UntypedFormControl(new Date()),
+    dateMDY: new UntypedFormControl(new Date()),
+    dateRange: new UntypedFormControl([
       new Date(),
       new Date(this.currentDate.setDate(this.currentDate.getDate() + 7))
     ])

@@ -494,14 +494,14 @@ header {
 /* content */
 .menuIsOpened {
 
-  .bg-container, .main-container {
+  .bg-container, .main-container, app-footer {
     flex: 0 0 calc(100% - #{$sidebar-width-opened});
     max-width: calc(100% - #{$sidebar-width-opened});
     margin-left: $sidebar-width-opened;
   }
 }
 
-.bg-container, .main-container {
+.bg-container, .main-container, app-footer {
   flex: 0 0 calc(100% - #{$sidebar-width-closed});
   max-width: calc(100% - #{$sidebar-width-closed});
   margin-left: $sidebar-width-closed;

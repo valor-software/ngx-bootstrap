@@ -52,7 +52,7 @@ export class DemoModalServiceWithInterceptorComponent {
     <div class="modal-header">
       <h4 class="modal-title pull-left">Modal with interceptor</h4>
       <button type="button" class="close btn-close pull-right" aria-label="Close" (click)="bsModalRef?.hide()">
-        <span aria-hidden="true">&times;</span>
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
       </button>
     </div>
     <div class="modal-body">This modal has closing interceptor</div>
