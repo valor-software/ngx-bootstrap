@@ -107,6 +107,7 @@ export class OffcanvasDirective {
       this._config = Object.assign({}, this.offcanvasConfig, value);
   }
 
+
   checkOffcanvasCounts() {
     return !!this.document.body.querySelectorAll('.offcanvas.show').length;
   }
