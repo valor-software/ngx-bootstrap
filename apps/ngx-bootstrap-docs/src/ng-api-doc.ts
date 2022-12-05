@@ -773,6 +773,23 @@ export const ngdoc: any = {
     "methods": [],
     "properties": []
   },
+  "BackdropComponent": {
+    "fileName": "src/component-loader/entries-components/backdrop/backdrop.component.ts",
+    "className": "BackdropComponent",
+    "description": "<p>This component will be added as background layout for modals if enabled</p>\n",
+    "selector": "bs-modal-backdrop",
+    "inputs": [],
+    "outputs": [],
+    "properties": [],
+    "methods": []
+  },
+  "BackdropService": {
+    "fileName": "src/component-loader/entries-components/backdrop/backdrop.service.ts",
+    "className": "BackdropService",
+    "description": "",
+    "methods": [],
+    "properties": []
+  },
   "ListenOptions": {
     "fileName": "src/utils/triggers.ts",
     "className": "ListenOptions",
@@ -1019,6 +1036,11 @@ export const ngdoc: any = {
         "defaultValue": "false",
         "type": "boolean",
         "description": "<p>sets use adaptive position</p>\n"
+      },
+      {
+        "name": "allowedPositions",
+        "type": "string[]",
+        "description": "<p>Set allowed positions of container.</p>\n"
       },
       {
         "name": "clearButtonLabel",
@@ -2695,16 +2717,6 @@ export const ngdoc: any = {
     ],
     "properties": []
   },
-  "ModalBackdropComponent": {
-    "fileName": "src/modal/modal-backdrop.component.ts",
-    "className": "ModalBackdropComponent",
-    "description": "<p>This component will be added as background layout for modals if enabled</p>\n",
-    "selector": "bs-modal-backdrop",
-    "inputs": [],
-    "outputs": [],
-    "properties": [],
-    "methods": []
-  },
   "ModalContainerComponent": {
     "fileName": "src/modal/modal-container.component.ts",
     "className": "ModalContainerComponent",
@@ -2902,6 +2914,80 @@ export const ngdoc: any = {
     "description": "",
     "methods": [],
     "properties": []
+  },
+  "OffcanvasContainerComponent": {
+    "fileName": "src/offcanvas/offcanvas-container.component.ts",
+    "className": "OffcanvasContainerComponent",
+    "description": "",
+    "selector": "offcanvas",
+    "inputs": [
+      {
+        "name": "config",
+        "type": "OffcanvasConfigType | Partial<OffcanvasConfigType>",
+        "description": "<p>allows to set offcanvas configuration via element property</p>\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "isOpened",
+        "description": "<p>Emits event when the opened state changes</p>\n"
+      }
+    ],
+    "properties": [],
+    "methods": []
+  },
+  "OffcanvasConfig": {
+    "fileName": "src/offcanvas/offcanvas.config.ts",
+    "className": "OffcanvasConfig",
+    "description": "<p>Default offcanvas configuration</p>\n",
+    "methods": [],
+    "properties": [
+      {
+        "name": "backdrop",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>in default configuration backdrop is available</p>\n"
+      },
+      {
+        "name": "backdropScrolling",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>in default configuration backdrop scrolling is enabled</p>\n"
+      },
+      {
+        "name": "headerTitle",
+        "type": "string",
+        "description": "<p>default headerTitle is empty</p>\n"
+      },
+      {
+        "name": "placement",
+        "defaultValue": "start",
+        "type": "Partial<AvailablePlacement>",
+        "description": "<p>default placement of element is left side</p>\n"
+      }
+    ]
+  },
+  "OffcanvasDirective": {
+    "fileName": "src/offcanvas/offcanvas.directive.ts",
+    "className": "OffcanvasDirective",
+    "description": "",
+    "selector": "[offcanvas]",
+    "exportAs": "offcanvas",
+    "inputs": [
+      {
+        "name": "config",
+        "type": "OffcanvasConfigType",
+        "description": "<p>allows to set offcanvas configuration via element property</p>\n"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "isOpened",
+        "description": "<p>Emits when the opened state changes</p>\n"
+      }
+    ],
+    "properties": [],
+    "methods": []
   },
   "ConfigModel": {
     "fileName": "src/pagination/models/index.ts",
@@ -3338,7 +3424,7 @@ export const ngdoc: any = {
     "properties": [
       {
         "name": "popoverId",
-        "type": "number",
+        "type": "string",
         "description": "<p>unique id popover - use for aria-describedby</p>\n"
       }
     ],

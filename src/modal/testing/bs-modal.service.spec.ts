@@ -1,6 +1,6 @@
 import { StaticProvider } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
+import { BackdropService, ComponentLoaderFactory } from "ngx-bootstrap/component-loader";
 import { EMPTY } from 'rxjs';
 import { createSpyObj } from 'jest-createspyobj';
 
@@ -50,7 +50,8 @@ describe('Service: BsModal', () => {
     TestBed.configureTestingModule({
       providers: [
         { provide: ComponentLoaderFactory, useValue: mockComponentLoaderFactory },
-        BsModalService
+        BsModalService,
+        BackdropService
       ]
     });
 

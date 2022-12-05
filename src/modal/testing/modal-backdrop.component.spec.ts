@@ -1,14 +1,15 @@
-import { ModalBackdropComponent } from '../index';
+import { BackdropComponent, BackdropService } from "ngx-bootstrap/component-loader";
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 describe('ModalBackdropComponent tests', () => {
-  let fixture: ComponentFixture<ModalBackdropComponent>;
-  let component: ModalBackdropComponent;
+  let fixture: ComponentFixture<BackdropComponent>;
+  let component: BackdropComponent;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ModalBackdropComponent]
+      declarations: [BackdropComponent],
+      providers: [BackdropService]
     });
-    fixture = TestBed.createComponent(ModalBackdropComponent);
+    fixture = TestBed.createComponent(BackdropComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

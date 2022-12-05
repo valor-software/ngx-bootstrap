@@ -1,0 +1,8 @@
+<button class="btn btn-primary mr-3 me-3" (click)="setPlacement('start'); element.show()">Left position</button>
+<button class="btn btn-primary mr-3 me-3" (click)="setPlacement('end'); element.show()">Right position</button>
+<button class="btn btn-primary mr-3 me-3" (click)="setPlacement('top'); element.show()">Top position</button>
+<button class="btn btn-primary mr-3 me-3" (click)="setPlacement('bottom'); element.show()">Bottom position</button>
+
+<offcanvas #element [config]="config">
+  <p>Some content</p>
+</offcanvas>

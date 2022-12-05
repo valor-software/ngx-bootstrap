@@ -3,16 +3,15 @@
 // todo: original modal had resize events
 
 import {
-  ComponentRef, Directive, ElementRef, EventEmitter, HostListener, Input,
+  Directive, ElementRef, EventEmitter, HostListener, Input,
   OnDestroy, OnInit, Output, Renderer2, ViewContainerRef, Optional, Inject
 } from '@angular/core';
 
 import { document, window, Utils } from 'ngx-bootstrap/utils';
-import { ModalBackdropComponent } from './modal-backdrop.component';
 import {
   CLASS_NAME, DISMISS_REASONS, modalConfigDefaults, ModalOptions, MODAL_CONFIG_DEFAULT_OVERRIDE
 } from './modal-options.class';
-import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
+import { ComponentLoaderFactory, BackdropService } from 'ngx-bootstrap/component-loader';
 import { CloseInterceptorFn } from './models';
 
 const TRANSITION_DURATION = 300;
@@ -76,10 +75,6 @@ export class ModalDirective implements OnDestroy, OnInit {
   protected timerHideModal = 0;
   protected timerRmBackDrop = 0;
 
-  // reference to backdrop component
-  protected backdrop?: ComponentRef<ModalBackdropComponent>;
-  private _backdrop: ComponentLoader<ModalBackdropComponent>;
-
   private isNested = false;
   private clickStartedInContent = false;
 
@@ -88,12 +83,9 @@ export class ModalDirective implements OnDestroy, OnInit {
     _viewContainerRef: ViewContainerRef,
     private _renderer: Renderer2,
     clf: ComponentLoaderFactory,
-    @Optional() @Inject(MODAL_CONFIG_DEFAULT_OVERRIDE) modalDefaultOption: ModalOptions) {
-    this._backdrop = clf.createLoader<ModalBackdropComponent>(
-      _element,
-      _viewContainerRef,
-      _renderer
-    );
+    @Optional() @Inject(MODAL_CONFIG_DEFAULT_OVERRIDE) modalDefaultOption: ModalOptions,
+    private backdropServ: BackdropService
+  ) {
     this._config = modalDefaultOption || modalConfigDefaults;
   }
 
@@ -105,6 +97,7 @@ export class ModalDirective implements OnDestroy, OnInit {
   @HostListener('mouseup', ['$event'])
   onClickStop(event: MouseEvent): void {
     const clickedInBackdrop = event.target === this._element.nativeElement && !this.clickStartedInContent;
+
     if (
       this.config.ignoreBackdropClick ||
       this.config.backdrop === 'static' ||
@@ -138,7 +131,8 @@ export class ModalDirective implements OnDestroy, OnInit {
     if (this._isShown) {
       this._isShown = false;
       this.hideModal();
-      this._backdrop.dispose();
+      this.backdropServ._hideBackdrop(!!this.config.animated);
+      // this._backdrop.dispose();
     }
   }
 
@@ -326,15 +320,10 @@ export class ModalDirective implements OnDestroy, OnInit {
   protected showBackdrop(callback?: () => void): void {
     if (
       this._isShown &&
-      this.config.backdrop &&
-      (!this.backdrop || !this.backdrop.instance.isShown)
+      this.config.backdrop
     ) {
       this.removeBackdrop();
-      this._backdrop
-        .attach(ModalBackdropComponent)
-        .to('body')
-        .show({ isAnimated: this._config.animated });
-      this.backdrop = this._backdrop._componentRef;
+      this.backdropServ._showBackdrop(!!this.config.animated, 'BACKDROP');
 
       if (!callback) {
         return;
@@ -347,8 +336,8 @@ export class ModalDirective implements OnDestroy, OnInit {
       }
 
       setTimeout(callback, BACKDROP_TRANSITION_DURATION);
-    } else if (!this._isShown && this.backdrop) {
-      this.backdrop.instance.isShown = false;
+    } else if (!this._isShown) {
+      // this.backdrop.instance.isShown = false;
 
       const callbackRemove = () => {
         this.removeBackdrop();
@@ -357,7 +346,7 @@ export class ModalDirective implements OnDestroy, OnInit {
         }
       };
 
-      if (this.backdrop.instance.isAnimated) {
+      if (this.config.animated) {
         this.timerRmBackDrop = window.setTimeout(
           callbackRemove,
           BACKDROP_TRANSITION_DURATION
@@ -372,7 +361,7 @@ export class ModalDirective implements OnDestroy, OnInit {
 
   /** @internal */
   protected removeBackdrop(): void {
-    this._backdrop.hide();
+    this.backdropServ._hideBackdrop(!!this.config.animated);
   }
 
   /** Events tricks */

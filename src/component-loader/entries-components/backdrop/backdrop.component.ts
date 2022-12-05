@@ -1,17 +1,17 @@
-import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
-
-import { CLASS_NAME } from './modal-options.class';
-import { Utils } from 'ngx-bootstrap/utils';
-
+import { Component, ElementRef, OnInit, Renderer2, HostListener, HostBinding } from "@angular/core";
+import { Utils } from "ngx-bootstrap/utils";
+import { Subject } from "rxjs";
+import { CLASS_NAME } from "./backdrop.models";
 
 /** This component will be added as background layout for modals if enabled */
 @Component({
   selector: 'bs-modal-backdrop',
-  template: ' ',
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: { class: CLASS_NAME.BACKDROP }
+  template: ' '
 })
-export class ModalBackdropComponent implements OnInit {
+export class BackdropComponent implements OnInit {
+  public backdropIsClicked = new Subject<void>();
+  @HostBinding('class') className = CLASS_NAME.BACKDROP;
+
   get isAnimated(): boolean {
     return this._isAnimated;
   }
@@ -44,6 +44,11 @@ export class ModalBackdropComponent implements OnInit {
 
   protected _isAnimated = false;
   protected _isShown = false;
+
+  @HostListener('click')
+  onClickStop(): void {
+    this.backdropIsClicked.next();
+  }
 
   constructor(element: ElementRef, renderer: Renderer2) {
     this.element = element;
