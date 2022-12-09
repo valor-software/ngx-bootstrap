@@ -6,12 +6,11 @@
 * **carousel:** changed carousel id ([#6512](https://github.com/valor-software/ngx-bootstrap/issues/6512)) ([0380c3c](https://github.com/valor-software/ngx-bootstrap/commit/0380c3c420225e2f0e84d8ae07808f7c0879df95))
 * **docs:** fixed schematics page ([cff1e91](https://github.com/valor-software/ngx-bootstrap/commit/cff1e91842ff50582aef04b80f784f7cf73cea21))
 * **modal:** hide works even if show hasn't finished ([#6518](https://github.com/valor-software/ngx-bootstrap/issues/6518)) ([8f0807e](https://github.com/valor-software/ngx-bootstrap/commit/8f0807eaaa089e46df381a009781427300eaa5e0))
-* **schematics:** fixed schematics for version 9.0.0 ([#6508](https://github.com/valor-software/ngx-bootstrap/issues/6508)) ([fb636dd](https://github.com/valor-software/ngx-bootstrap/commit/fb636dd305f532cc4405364327696f5f247c8886))
+* **schematics:** fixed schematics ([#6508](https://github.com/valor-software/ngx-bootstrap/issues/6508)) ([fb636dd](https://github.com/valor-software/ngx-bootstrap/commit/fb636dd305f532cc4405364327696f5f247c8886))
 
 
 ### Features
 
-* **bootstrap 3:** BREAKING CHANGE dropped bootstrap 3 ([#6417](https://github.com/valor-software/ngx-bootstrap/issues/6417)) ([fd8a296](https://github.com/valor-software/ngx-bootstrap/commit/fd8a29669e2cea3232706ee73ad15c2992411f7f))
 * **button:** allow any type for the value binding of the btnRadio directive ([#6446](https://github.com/valor-software/ngx-bootstrap/issues/6446)) ([1c41c6c](https://github.com/valor-software/ngx-bootstrap/commit/1c41c6ccf819b4d9c9489e1fd834ef9b8263ca73))
 * **doc:** added information regarding v10.0.0 ([#6513](https://github.com/valor-software/ngx-bootstrap/issues/6513)) ([e373248](https://github.com/valor-software/ngx-bootstrap/commit/e3732488154c811e50ff2bf215ce8386dea8f36c))
 * **doc:** doc updates for version 9.0.0 ([#6506](https://github.com/valor-software/ngx-bootstrap/issues/6506)) ([7c79ca7](https://github.com/valor-software/ngx-bootstrap/commit/7c79ca7df803392f97b7838af49c5c1f6794ba06))
@@ -20,7 +19,8 @@
 
 ### BREAKING CHANGES
 
-* **bootstrap 3:** dropped bootstrap 3 support
+* * **bootstrap 3:** BREAKING CHANGE dropped bootstrap 3 ([#6417](https://github.com/valor-software/ngx-bootstrap/issues/6417)) ([fd8a296](https://github.com/valor-software/ngx-bootstrap/commit/fd8a29669e2cea3232706ee73ad15c2992411f7f))
+
 
 
 
