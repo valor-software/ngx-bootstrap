@@ -11,7 +11,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/accordion"
+            "{workspaceRoot}/dist/ngx-bootstrap/accordion"
           ],
           "options": {
             "tsConfig": "src/accordion/tsconfig.lib.json",
@@ -41,7 +41,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/accordion"
+            "{workspaceRoot}/coverage/src/accordion"
           ],
           "options": {
             "jestConfig": "src/accordion/jest.config.ts",
@@ -60,7 +60,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/alert"
+            "{workspaceRoot}/dist/ngx-bootstrap/alert"
           ],
           "options": {
             "tsConfig": "src/alert/tsconfig.lib.json",
@@ -90,7 +90,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/alert"
+            "{workspaceRoot}/coverage/src/alert"
           ],
           "options": {
             "jestConfig": "src/alert/jest.config.ts",
@@ -109,7 +109,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/buttons"
+            "{workspaceRoot}/dist/ngx-bootstrap/buttons"
           ],
           "options": {
             "tsConfig": "src/buttons/tsconfig.lib.json",
@@ -133,7 +133,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/buttons"
+            "{workspaceRoot}/coverage/src/buttons"
           ],
           "options": {
             "jestConfig": "src/buttons/jest.config.ts",
@@ -152,7 +152,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/carousel"
+            "{workspaceRoot}/dist/ngx-bootstrap/carousel"
           ],
           "options": {
             "tsConfig": "src/carousel/tsconfig.lib.json",
@@ -182,7 +182,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/carousel"
+            "{workspaceRoot}/coverage/src/carousel"
           ],
           "options": {
             "jestConfig": "src/carousel/jest.config.ts",
@@ -201,7 +201,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/chronos"
+            "{workspaceRoot}/dist/ngx-bootstrap/chronos"
           ],
           "options": {
             "tsConfig": "src/chronos/tsconfig.lib.json",
@@ -225,7 +225,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/chronos"
+            "{workspaceRoot}/coverage/src/chronos"
           ],
           "options": {
             "jestConfig": "src/chronos/jest.config.ts",
@@ -244,7 +244,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/collapse"
+            "{workspaceRoot}/dist/ngx-bootstrap/collapse"
           ],
           "options": {
             "tsConfig": "src/collapse/tsconfig.lib.json",
@@ -268,7 +268,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/collapse"
+            "{workspaceRoot}/coverage/src/collapse"
           ],
           "options": {
             "jestConfig": "src/collapse/jest.config.ts",
@@ -323,7 +323,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/component-loader"
+            "{workspaceRoot}/dist/ngx-bootstrap/component-loader"
           ],
           "options": {
             "tsConfig": "src/component-loader/tsconfig.lib.json",
@@ -353,7 +353,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/component-loader"
+            "{workspaceRoot}/coverage/src/component-loader"
           ],
           "options": {
             "jestConfig": "src/component-loader/jest.config.ts",
@@ -372,7 +372,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/datepicker"
+            "{workspaceRoot}/dist/ngx-bootstrap/datepicker"
           ],
           "options": {
             "tsConfig": "src/datepicker/tsconfig.lib.json",
@@ -402,7 +402,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/datepicker"
+            "{workspaceRoot}/coverage/src/datepicker"
           ],
           "options": {
             "jestConfig": "src/datepicker/jest.config.ts",
@@ -421,7 +421,7 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": [
-            "dist/ngx-bootstrap/accordion"
+            "{workspaceRoot}/dist/ngx-bootstrap/accordion"
           ],
           "options": {
             "tsConfig": "libs/doc-pages/accordion/tsconfig.lib.json",
@@ -1036,7 +1036,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/dropdown"
+            "{workspaceRoot}/dist/ngx-bootstrap/dropdown"
           ],
           "options": {
             "tsConfig": "src/dropdown/tsconfig.lib.json",
@@ -1066,7 +1066,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/dropdown"
+            "{workspaceRoot}/coverage/src/dropdown"
           ],
           "options": {
             "jestConfig": "src/dropdown/jest.config.ts",
@@ -1085,7 +1085,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/focus-trap"
+            "{workspaceRoot}/dist/ngx-bootstrap/focus-trap"
           ],
           "options": {
             "tsConfig": "src/focus-trap/tsconfig.lib.json",
@@ -1109,7 +1109,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/focus-trap"
+            "{workspaceRoot}/coverage/src/focus-trap"
           ],
           "options": {
             "jestConfig": "src/focus-trap/jest.config.ts",
@@ -1128,7 +1128,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/locale"
+            "{workspaceRoot}/dist/ngx-bootstrap/locale"
           ],
           "options": {
             "tsConfig": "src/locale/tsconfig.lib.json",
@@ -1158,7 +1158,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/locale"
+            "{workspaceRoot}/coverage/src/locale"
           ],
           "options": {
             "jestConfig": "src/locale/jest.config.ts",
@@ -1177,7 +1177,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/mini-ngrx"
+            "{workspaceRoot}/dist/ngx-bootstrap/mini-ngrx"
           ],
           "options": {
             "tsConfig": "src/mini-ngrx/tsconfig.lib.json",
@@ -1201,7 +1201,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/mini-ngrx"
+            "{workspaceRoot}/coverage/src/mini-ngrx"
           ],
           "options": {
             "jestConfig": "src/mini-ngrx/jest.config.ts",
@@ -1220,7 +1220,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/modal"
+            "{workspaceRoot}/dist/ngx-bootstrap/modal"
           ],
           "options": {
             "tsConfig": "src/modal/tsconfig.lib.json",
@@ -1250,7 +1250,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/modal"
+            "{workspaceRoot}/coverage/src/modal"
           ],
           "options": {
             "jestConfig": "src/modal/jest.config.ts",
@@ -1267,9 +1267,9 @@
       "prefix": "ngx-bootstrap-base",
       "architect": {
         "build": {
-          "builder": "@nrwl/workspace:run-commands",
+          "builder": "nx:run-commands",
           "outputs": [
-            "dist/ngx-bootstrap"
+            "{workspaceRoot}/dist/ngx-bootstrap"
           ],
           "options": {
             "commands": [
@@ -1310,21 +1310,21 @@
           }
         },
         "build-sass": {
-          "builder": "@nrwl/workspace:run-commands",
+          "builder": "nx:run-commands",
           "outputs": [],
           "options": {
             "command": "npx sass src:dist/ngx-bootstrap --source-map"
           }
         },
         "docs": {
-          "builder": "@nrwl/workspace:run-commands",
+          "builder": "nx:run-commands",
           "outputs": [],
           "options": {
             "command": "node ./scripts/docs/get-doc.js"
           }
         },
         "version": {
-          "builder": "@nrwl/workspace:run-commands",
+          "builder": "nx:run-commands",
           "outputs": [],
           "options": {
             "commands": [
@@ -1339,7 +1339,7 @@
           }
         },
         "stats": {
-          "builder": "@nrwl/workspace:run-commands",
+          "builder": "nx:run-commands",
           "outputs": [],
           "options": {
             "command": "webpack-bundle-analyzer dist/apps/ngx-bootstrap-docs/stats.json"
@@ -1522,7 +1522,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/pagination"
+            "{workspaceRoot}/dist/ngx-bootstrap/pagination"
           ],
           "options": {
             "tsConfig": "src/pagination/tsconfig.lib.json",
@@ -1546,7 +1546,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/pagination"
+            "{workspaceRoot}/coverage/src/pagination"
           ],
           "options": {
             "jestConfig": "src/pagination/jest.config.ts",
@@ -1565,7 +1565,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/popover"
+            "{workspaceRoot}/dist/ngx-bootstrap/popover"
           ],
           "options": {
             "tsConfig": "src/popover/tsconfig.lib.json",
@@ -1595,7 +1595,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/popover"
+            "{workspaceRoot}/coverage/src/popover"
           ],
           "options": {
             "jestConfig": "src/popover/jest.config.ts",
@@ -1614,7 +1614,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/positioning"
+            "{workspaceRoot}/dist/ngx-bootstrap/positioning"
           ],
           "options": {
             "tsConfig": "src/positioning/tsconfig.lib.json",
@@ -1644,7 +1644,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/positioning"
+            "{workspaceRoot}/coverage/src/positioning"
           ],
           "options": {
             "jestConfig": "src/positioning/jest.config.ts",
@@ -1663,7 +1663,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/progressbar"
+            "{workspaceRoot}/dist/ngx-bootstrap/progressbar"
           ],
           "options": {
             "tsConfig": "src/progressbar/tsconfig.lib.json",
@@ -1693,7 +1693,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/progressbar"
+            "{workspaceRoot}/coverage/src/progressbar"
           ],
           "options": {
             "jestConfig": "src/progressbar/jest.config.ts",
@@ -1712,7 +1712,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/rating"
+            "{workspaceRoot}/dist/ngx-bootstrap/rating"
           ],
           "options": {
             "tsConfig": "src/rating/tsconfig.lib.json",
@@ -1736,7 +1736,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/rating"
+            "{workspaceRoot}/coverage/src/rating"
           ],
           "options": {
             "jestConfig": "src/rating/jest.config.ts",
@@ -1792,7 +1792,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/sortable"
+            "{workspaceRoot}/dist/ngx-bootstrap/sortable"
           ],
           "options": {
             "tsConfig": "src/sortable/tsconfig.lib.json",
@@ -1816,7 +1816,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/sortable"
+            "{workspaceRoot}/coverage/src/sortable"
           ],
           "options": {
             "jestConfig": "src/sortable/jest.config.ts",
@@ -1835,7 +1835,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/tabs"
+            "{workspaceRoot}/dist/ngx-bootstrap/tabs"
           ],
           "options": {
             "tsConfig": "src/tabs/tsconfig.lib.json",
@@ -1859,7 +1859,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/tabs"
+            "{workspaceRoot}/coverage/src/tabs"
           ],
           "options": {
             "jestConfig": "src/tabs/jest.config.ts",
@@ -1878,7 +1878,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/timepicker"
+            "{workspaceRoot}/dist/ngx-bootstrap/timepicker"
           ],
           "options": {
             "tsConfig": "src/timepicker/tsconfig.lib.json",
@@ -1908,7 +1908,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/timepicker"
+            "{workspaceRoot}/coverage/src/timepicker"
           ],
           "options": {
             "jestConfig": "src/timepicker/jest.config.ts",
@@ -1927,7 +1927,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/tooltip"
+            "{workspaceRoot}/dist/ngx-bootstrap/tooltip"
           ],
           "options": {
             "tsConfig": "src/tooltip/tsconfig.lib.json",
@@ -1957,7 +1957,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/tooltip"
+            "{workspaceRoot}/coverage/src/tooltip"
           ],
           "options": {
             "jestConfig": "src/tooltip/jest.config.ts",
@@ -1976,7 +1976,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/typeahead"
+            "{workspaceRoot}/dist/ngx-bootstrap/typeahead"
           ],
           "options": {
             "tsConfig": "src/typeahead/tsconfig.lib.json",
@@ -2006,7 +2006,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/typeahead"
+            "{workspaceRoot}/coverage/src/typeahead"
           ],
           "options": {
             "jestConfig": "src/typeahead/jest.config.ts",
@@ -2025,7 +2025,7 @@
         "build": {
           "builder": "@nrwl/angular:package",
           "outputs": [
-            "dist/ngx-bootstrap/utils"
+            "{workspaceRoot}/dist/ngx-bootstrap/utils"
           ],
           "options": {
             "tsConfig": "src/utils/tsconfig.lib.json",
@@ -2049,7 +2049,7 @@
         "test": {
           "builder": "@nrwl/jest:jest",
           "outputs": [
-            "coverage/src/utils"
+            "{workspaceRoot}/coverage/src/utils"
           ],
           "options": {
             "jestConfig": "src/utils/jest.config.ts",
