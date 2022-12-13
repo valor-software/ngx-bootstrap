@@ -17,6 +17,9 @@ import {
   setDateRangesCurrentTimeOnDateSelect
 } from './utils/bs-calendar-utils';
 
+export let previousDate: (Date | undefined)[] | undefined;
+
+
 @Directive({
   selector: '[bsDaterangepicker]',
   exportAs: 'bsDaterangepicker'
@@ -80,7 +83,7 @@ export class BsDaterangepickerDirective
     if (value && this.bsConfig?.initCurrentTime) {
       value = setDateRangesCurrentTimeOnDateSelect(value);
     }
-
+    this.initPreviousValue();
     this._bsValue = value;
     this.bsValueChange.emit(value);
   }
@@ -156,12 +159,14 @@ export class BsDaterangepickerDirective
       triggers: this.triggers,
       show: () => this.show()
     });
+    this.initPreviousValue();
     this.setConfig();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes["bsConfig"]) {
       if (changes["bsConfig"].currentValue?.initCurrentTime && changes["bsConfig"].currentValue?.initCurrentTime !== changes["bsConfig"].previousValue?.initCurrentTime && this._bsValue) {
+        this.initPreviousValue();
         this._bsValue = setDateRangesCurrentTimeOnDateSelect(this._bsValue);
         this.bsValueChange.emit(this._bsValue);
       }
@@ -247,11 +252,38 @@ export class BsDaterangepickerDirective
             filter((range: Date[]) => range && range[0] && !!range[1])
           )
           .subscribe((value: Date[]) => {
+            this.initPreviousValue();
             this.bsValue = value;
+            if (this.keepDatepickerModalOpened()) {
+              return;
+            }
+
             this.hide();
           })
       );
     }
+  }
+
+  initPreviousValue() {
+    previousDate = this._bsValue;
+  }
+
+  keepDatepickerModalOpened(): boolean {
+    if (!previousDate || !this.bsConfig?.keepDatepickerOpened || !this._config.withTimepicker) {
+      return false;
+    }
+
+    return this.isDateSame();
+  }
+
+  isDateSame(): boolean {
+    return ((this._bsValue?.[0]?.getDate() === previousDate?.[0]?.getDate())
+      && (this._bsValue?.[0]?.getMonth() === previousDate?.[0]?.getMonth())
+      && (this._bsValue?.[0]?.getFullYear() === previousDate?.[0]?.getFullYear())
+      && (this._bsValue?.[1]?.getDate() === previousDate?.[1]?.getDate())
+      && (this._bsValue?.[1]?.getMonth() === previousDate?.[1]?.getMonth())
+      && (this._bsValue?.[1]?.getFullYear() === previousDate?.[1]?.getFullYear())
+    );
   }
 
   /**
@@ -273,7 +305,8 @@ export class BsDaterangepickerDirective
         datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled,
         ranges: checkRangesWithMaxDate(this.bsConfig && this.bsConfig.ranges, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
         maxDateRange: this.bsConfig && this.bsConfig.maxDateRange,
-        initCurrentTime: this.bsConfig?.initCurrentTime
+        initCurrentTime: this.bsConfig?.initCurrentTime,
+        keepDatepickerOpened: this.bsConfig?.keepDatepickerOpened
       }
     );
   }

@@ -22,6 +22,8 @@ import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-contai
 import { copyTime } from './utils/copy-time-utils';
 import { checkBsValue, setCurrentTimeOnDateSelect } from './utils/bs-calendar-utils';
 
+export let previousDate: Date | Date[] | undefined;
+
 @Directive({
   selector: '[bsDatepicker]',
   exportAs: 'bsDatepicker'
@@ -150,6 +152,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       value = setCurrentTimeOnDateSelect(value);
     }
 
+    this.initPreviousValue();
     this._bsValue = value;
     this.bsValueChange.emit(value);
   }
@@ -171,11 +174,17 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       show: () => this.show()
     });
     this.setConfig();
+    this.initPreviousValue();
+  }
+
+  initPreviousValue() {
+    previousDate = this._bsValue;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes["bsConfig"]) {
       if (changes["bsConfig"].currentValue?.initCurrentTime && changes["bsConfig"].currentValue?.initCurrentTime !== changes["bsConfig"].previousValue?.initCurrentTime && this._bsValue) {
+        this.initPreviousValue();
         this._bsValue = setCurrentTimeOnDateSelect(this._bsValue);
         this.bsValueChange.emit(this._bsValue);
       }
@@ -238,11 +247,31 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
     if (this._datepickerRef) {
       this._subs.push(
         this._datepickerRef.instance.valueChange.subscribe((value: Date) => {
+          this.initPreviousValue();
           this.bsValue = value;
+          if (this.keepDatepickerModalOpened()) {
+            return;
+          }
+
           this.hide();
         })
       );
     }
+  }
+
+  keepDatepickerModalOpened(): boolean {
+    if (!previousDate || !this.bsConfig?.keepDatepickerOpened || !this._config.withTimepicker) {
+      return false;
+    }
+
+    return this.isDateSame();
+  }
+
+  isDateSame(): boolean {
+    return (previousDate instanceof Date
+      && (this._bsValue?.getDate() === previousDate?.getDate())
+      && (this._bsValue?.getMonth() === previousDate?.getMonth())
+      && (this._bsValue?.getFullYear() === previousDate?.getFullYear()));
   }
 
   ngAfterViewInit(): void {
@@ -318,7 +347,8 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
       datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled,
       minMode: this.minMode || this.bsConfig && this.bsConfig.minMode,
-      initCurrentTime: this.bsConfig?.initCurrentTime
+      initCurrentTime: this.bsConfig?.initCurrentTime,
+      keepDatepickerOpened: this.bsConfig?.keepDatepickerOpened
     });
   }
 
