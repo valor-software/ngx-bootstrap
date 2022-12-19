@@ -47,9 +47,9 @@
   <div class="container">
     <div class="row">
       <div class="col-xl-6 col-md-12 col-sm-12 col-xs-12 company-card" *ngFor="let company of companies">
-        <a class="company-info-wrapper" href="{{company.link}}" target="_blank">
-          <div class="logo-name">
-            <img src="{{company.logo}}" alt="{{company.name}} logo">
+        <a class="company-info-wrapper overflow-hidden" href="{{company.link}}" target="_blank">
+          <div [class.overflow-hidden]="company.scale" class="logo-name">
+            <img [class.img-scale]="company.scale" src="{{company.logo}}" alt="{{company.name}} logo">
           </div>
           <div class="company-description">{{company.description}}</div>
         </a>

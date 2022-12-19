@@ -18,7 +18,7 @@
  * BROWSER POLYFILLS
  */
 
-import 'core-js/es/reflect';
+// import 'core-js/es/reflect';
 import 'zone.js';
 // import 'classlist-polyfill';
 // import 'web-animations-js';
