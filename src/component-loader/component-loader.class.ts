@@ -26,7 +26,7 @@ import { Subscription } from 'rxjs';
 import { ContentRef } from './content-ref.class';
 import { ListenOptions } from './listen-options.model';
 
-export class ComponentLoader<T> {
+export class ComponentLoader<T extends object> {
   onBeforeShow = new EventEmitter();
   onShown = new EventEmitter();
   onBeforeHide = new EventEmitter();
