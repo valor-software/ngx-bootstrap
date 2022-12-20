@@ -19,7 +19,8 @@ import { BsDatepickerViewMode, BsNavigationDirection, NavigationViewModel } from
 
       <button class="current"
             type="button"
-            (click)="view('month')"
+              (click)="view('month')"
+              [disabled]="isDisabled"
       ><span>{{ calendar.monthTitle }}</span>
       </button>
     </ng-container>
@@ -27,7 +28,12 @@ import { BsDatepickerViewMode, BsNavigationDirection, NavigationViewModel } from
     &#8203;  <!-- zero-width space needed for correct alignment
                   with preserveWhitespaces: false in Angular -->
 
-    <button class="current" (click)="view('year')" type="button">
+    <button
+      class="current"
+      (click)="view('year')"
+      type="button"
+      [disabled]="isDisabled"
+    >
       <span>{{ calendar.yearTitle }}</span>
     </button>
 
@@ -44,6 +50,7 @@ import { BsDatepickerViewMode, BsNavigationDirection, NavigationViewModel } from
 })
 export class BsDatepickerNavigationViewComponent {
   @Input() calendar!: NavigationViewModel;
+  @Input() isDisabled = false;
 
   @Output() onNavigate = new EventEmitter<BsNavigationDirection>();
   @Output() onViewMode = new EventEmitter<BsDatepickerViewMode>();
@@ -55,6 +62,10 @@ export class BsDatepickerNavigationViewComponent {
   }
 
   view(viewMode: BsDatepickerViewMode): void {
+    if (this.isDisabled) {
+      return;
+    }
+
     this.onViewMode.emit(viewMode);
   }
 }

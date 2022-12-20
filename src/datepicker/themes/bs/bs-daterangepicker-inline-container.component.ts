@@ -1,4 +1,4 @@
-import { OnInit, OnDestroy, ElementRef, Component, Renderer2 } from '@angular/core';
+import {OnInit, OnDestroy, ElementRef, Component, Renderer2, HostBinding} from '@angular/core';
 import { BsDaterangepickerContainerComponent } from './bs-daterangepicker-container.component';
 
 import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
@@ -20,6 +20,13 @@ import { datepickerAnimation } from '../../datepicker-animations';
 })
 export class BsDaterangepickerInlineContainerComponent extends BsDaterangepickerContainerComponent
   implements OnInit, OnDestroy {
+  @HostBinding ('attr.disabled') get disabledValue () {
+    return this.isDatePickerDisabled ? '' : null;
+  }
+
+  @HostBinding ('attr.readonly') get readonlyValue () {
+    return this.isDatePickerDisabled ? '' : null;
+  }
 
   constructor(
     _renderer: Renderer2,

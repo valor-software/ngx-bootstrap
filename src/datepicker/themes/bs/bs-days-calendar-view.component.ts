@@ -26,6 +26,7 @@ import { BsDatepickerConfig } from '../../bs-datepicker.config';
     <bs-calendar-layout>
       <bs-datepicker-navigation-view
         [calendar]="calendar"
+        [isDisabled]="isDisabled"
         (onNavigate)="navigateTo($event)"
         (onViewMode)="changeViewMode($event)"
       ></bs-datepicker-navigation-view>
@@ -80,6 +81,7 @@ import { BsDatepickerConfig } from '../../bs-datepicker.config';
 export class BsDaysCalendarViewComponent  {
   @Input() calendar!: DaysCalendarViewModel;
   @Input() options?: DatepickerRenderOptions | null;
+  @Input() isDisabled?: boolean;
 
   @Output() onNavigate = new EventEmitter<BsNavigationEvent>();
   @Output() onViewMode = new EventEmitter<BsDatepickerViewMode>();

@@ -3,7 +3,7 @@ import {
   ComponentRef,
   Directive,
   ElementRef,
-  EventEmitter,
+  EventEmitter, HostBinding,
   Input,
   OnChanges,
   OnDestroy,
@@ -96,6 +96,11 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
    * Emits when datepicker value has been changed
    */
   @Output() bsValueChange: EventEmitter<Date> = new EventEmitter();
+
+  @HostBinding ('attr.readonly') get readonlyValue () {
+    return this.isDisabled ? '' : null;
+  }
+
   protected _subs: Subscription[] = [];
   private _datepicker: ComponentLoader<BsDatepickerContainerComponent>;
   private _datepickerRef?: ComponentRef<BsDatepickerContainerComponent>;
@@ -209,9 +214,6 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
     }
 
     if (changes["isDisabled"]) {
-      if (this._elementRef?.nativeElement) {
-        this._elementRef.nativeElement.setAttribute('readonly', this.isDisabled);
-      }
       this._datepickerRef.instance.isDisabled = this.isDisabled;
     }
 
