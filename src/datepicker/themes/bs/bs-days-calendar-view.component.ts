@@ -26,7 +26,7 @@ import { BsDatepickerConfig } from '../../bs-datepicker.config';
     <bs-calendar-layout>
       <bs-datepicker-navigation-view
         [calendar]="calendar"
-        [isDisabled]="isDisabled"
+        [isDisabled]="!!isDisabled"
         (onNavigate)="navigateTo($event)"
         (onViewMode)="changeViewMode($event)"
       ></bs-datepicker-navigation-view>
