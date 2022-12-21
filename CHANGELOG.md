@@ -1,3 +1,36 @@
+# [10.2.0](https://github.com/valor-software/ngx-bootstrap/compare/v9.0.0...v10.2.0) (2022-12-21)
+
+
+### Bug Fixes
+
+* **carousel:** changed carousel id ([#6512](https://github.com/valor-software/ngx-bootstrap/issues/6512)) ([0380c3c](https://github.com/valor-software/ngx-bootstrap/commit/0380c3c420225e2f0e84d8ae07808f7c0879df95))
+* **datepicker:** fixed disabled state on datepickers ([#6540](https://github.com/valor-software/ngx-bootstrap/issues/6540)) ([818e889](https://github.com/valor-software/ngx-bootstrap/commit/818e889bc8f12267a3daf8cf3a13248b50f56d66))
+* **docs:** added target attribute for docs links ([#6542](https://github.com/valor-software/ngx-bootstrap/issues/6542)) ([d72b7df](https://github.com/valor-software/ngx-bootstrap/commit/d72b7dfb7d21e8f4a6c64334ceee3ffbc3dcce4c))
+* **docs:** fixed logos on users docs page ([#6532](https://github.com/valor-software/ngx-bootstrap/issues/6532)) ([9af5c56](https://github.com/valor-software/ngx-bootstrap/commit/9af5c56e343b64cf75622e1516be391017292b09))
+* **docs:** fixed schematics page ([cff1e91](https://github.com/valor-software/ngx-bootstrap/commit/cff1e91842ff50582aef04b80f784f7cf73cea21))
+* **docs:** hide themes route ([#6541](https://github.com/valor-software/ngx-bootstrap/issues/6541)) ([7d2f845](https://github.com/valor-software/ngx-bootstrap/commit/7d2f8451db26a937bb7067ac636fbbaef7ac302c))
+* **modal:** hide works even if show hasn't finished ([#6518](https://github.com/valor-software/ngx-bootstrap/issues/6518)) ([8f0807e](https://github.com/valor-software/ngx-bootstrap/commit/8f0807eaaa089e46df381a009781427300eaa5e0))
+* **schematics:** fixed schematics for version 9.0.0 ([#6508](https://github.com/valor-software/ngx-bootstrap/issues/6508)) ([fb636dd](https://github.com/valor-software/ngx-bootstrap/commit/fb636dd305f532cc4405364327696f5f247c8886))
+
+
+### Features
+
+* **bootstrap 3:** BREAKING CHANGE dropped bootstrap 3 ([#6417](https://github.com/valor-software/ngx-bootstrap/issues/6417)) ([fd8a296](https://github.com/valor-software/ngx-bootstrap/commit/fd8a29669e2cea3232706ee73ad15c2992411f7f))
+* **button:** allow any type for the value binding of the btnRadio directive ([#6446](https://github.com/valor-software/ngx-bootstrap/issues/6446)) ([1c41c6c](https://github.com/valor-software/ngx-bootstrap/commit/1c41c6ccf819b4d9c9489e1fd834ef9b8263ca73))
+* **chore:** added information regarding new versions ([#6533](https://github.com/valor-software/ngx-bootstrap/issues/6533)) ([7e085f9](https://github.com/valor-software/ngx-bootstrap/commit/7e085f99e2726b3bf29b97a794bf5255803b218d))
+* **chore:** updated angular up to angular 15 ([dc03fcf](https://github.com/valor-software/ngx-bootstrap/commit/dc03fcfe6a5f3dab9eedd13f0bd432166aaba8af))
+* **datepicker:** added new config property to keep datepicker opened if only time is changed ([#6537](https://github.com/valor-software/ngx-bootstrap/issues/6537)) ([b9c9f8d](https://github.com/valor-software/ngx-bootstrap/commit/b9c9f8de5011df94ffbc0c5edefcc5a16c85b563))
+* **doc:** added information regarding v10.0.0 ([#6513](https://github.com/valor-software/ngx-bootstrap/issues/6513)) ([e373248](https://github.com/valor-software/ngx-bootstrap/commit/e3732488154c811e50ff2bf215ce8386dea8f36c))
+* **doc:** doc updates for version 9.0.0 ([#6506](https://github.com/valor-software/ngx-bootstrap/issues/6506)) ([7c79ca7](https://github.com/valor-software/ngx-bootstrap/commit/7c79ca7df803392f97b7838af49c5c1f6794ba06))
+* **footer:** added footer for all pages ([#6443](https://github.com/valor-software/ngx-bootstrap/issues/6443)) ([af8be81](https://github.com/valor-software/ngx-bootstrap/commit/af8be8116a50729cddd0f724245c4fb9ff832133))
+
+
+### BREAKING CHANGES
+
+* **bootstrap 3:** dropped bootstrap 3 support
+
+
+
 # [10.1.0](https://github.com/valor-software/ngx-bootstrap/compare/v9.0.0...v10.1.0) (2022-12-13)
 
 
