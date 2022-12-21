@@ -29,11 +29,12 @@ export const routes: Routes = [
     data: ['Schematics', {sideBarParentTitle: 'documentation'}],
     component: SchematicsComponent
   },
-  {
-    path: 'themes',
-    data: ['Themes'],
-    component: ConstructionPageComponent
-  },
+  // hidden while themes are not implemented
+  // {
+  //   path: 'themes',
+  //   data: ['Themes'],
+  //   component: ConstructionPageComponent
+  // },
   {
     path: 'components',
     children: [
