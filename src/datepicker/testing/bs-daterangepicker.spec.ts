@@ -122,7 +122,60 @@ describe('daterangepicker:', () => {
       });
   });
 
-    it('should display daterangepicker on show', () => {
+  it('should hide only if properties withtimepicker and keepDatepickerOpened are set to true and only time is changed. Properties are true', () => {
+    const directive = getDaterangepickerDirective(fixture);
+    const datepicker = showDatepicker(fixture);
+    directive.bsConfig = {
+      withTimepicker: true,
+      keepDatepickerOpened: true
+    };
+    const currentDate = new Date();
+    const ranges = [
+      {
+        label: '',
+        value: [currentDate, new Date(new Date().setDate(currentDate.getDate() + 7))]
+      },
+      {
+        label: '',
+        value: [new Date(new Date().setMinutes(currentDate.getMinutes() + 5)), new Date(new Date().setDate(currentDate.getDate() + 7))]
+      },
+      {
+        label: '',
+        value: [new Date(new Date().setMinutes(currentDate.getMinutes() + 5)), new Date(new Date().setMinutes(currentDate.getMinutes() + 1))]
+      }
+    ];
+
+    //datepicker shouldn't close, because needed properties are true and only was changed
+    const datepickerRef = document.querySelector('bs-daterangepicker-container');
+    const datepickerContainerInstance = getDaterangepickerContainer(datepicker);
+    datepickerContainerInstance.setRangeOnCalendar(ranges[0]);
+    datepickerContainerInstance.valueChange.emit(ranges[0].value);
+    datepickerContainerInstance.chosenRange = ranges[0].value || [];
+    fixture.detectChanges();
+    expect(datepickerRef).not.toBeNull();
+
+    //datepicker shouldn't close, because needed properties are true and only was changed
+    const datepicker2 = showDatepicker(fixture);
+    const datepickerContainerInstance2 = getDaterangepickerContainer(datepicker2);
+    datepickerContainerInstance2.setRangeOnCalendar(ranges[1]);
+    datepickerContainerInstance2.valueChange.emit(ranges[1].value);
+    datepickerContainerInstance2.chosenRange = ranges[1].value || [];
+    fixture.detectChanges();
+    const datepickerRef2 = document.querySelector('bs-daterangepicker-container');
+    expect(datepickerRef2).not.toBeNull();
+
+    //datepicker should close, because needed properties are true but date was changed
+    const datepicker3 = showDatepicker(fixture);
+    const datepickerContainerInstance3 = getDaterangepickerContainer(datepicker3);
+    datepickerContainerInstance3.setRangeOnCalendar(ranges[2]);
+    datepickerContainerInstance3.valueChange.emit(ranges[2].value);
+    datepickerContainerInstance3.chosenRange = ranges[2].value || [];
+    fixture.detectChanges();
+    const datepickerRef3 = document.querySelector('bs-daterangepicker-container');
+    expect(datepickerRef3).toBeNull();
+  });
+
+  it('should display daterangepicker on show', () => {
         const datepicker = showDatepicker(fixture);
         expect(getDaterangepickerContainer(datepicker)).toBeDefined();
     });

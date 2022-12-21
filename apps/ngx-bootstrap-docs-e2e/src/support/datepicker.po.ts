@@ -50,7 +50,9 @@ export class DatepickerPo extends BaseComponent {
     inlineDatepicker: 'tab[heading="Overview"] bs-datepicker-inline',
     customTodayClass: 'tab[heading="Overview"] demo-datepicker-custom-today-class',
     quickSelectRange: 'tab[heading="Overview"] demo-datepicker-quick-select-ranges',
-    maxDateRange: 'tab[heading="Overview"] demo-datepicker-max-date-range'
+    maxDateRange: 'tab[heading="Overview"] demo-datepicker-max-date-range',
+    withTimepicker: 'tab[heading="Overview"] demo-datepicker-with-timepicker',
+    closeBehavior: 'tab[heading="Overview"] datepicker-close-behavior'
   };
 
   clickOnDatepickerInput(baseSelector: string, datepickerIndex = 0) {
