@@ -1,5 +1,6 @@
-import { AfterViewInit, ComponentRef,
-  Directive, ElementRef, EventEmitter,
+import {
+  AfterViewInit, ComponentRef,
+  Directive, ElementRef, EventEmitter, HostBinding,
   Input, OnChanges, OnDestroy, OnInit,
   Output, Renderer2, SimpleChanges,
   ViewContainerRef
@@ -123,6 +124,10 @@ export class BsDaterangepickerDirective
    */
   @Output() bsValueChange = new EventEmitter<((Date|undefined)[]|undefined)>();
 
+  @HostBinding ('attr.readonly') get isDatepickerReadonly() {
+    return this.isDisabled ? '' : null;
+  }
+
   get rangeInputFormat$(): Observable<string> {
     return this._rangeInputFormat$;
   }
@@ -190,9 +195,6 @@ export class BsDaterangepickerDirective
       this._datepickerRef.instance.daysDisabled = this.daysDisabled;
     }
     if (changes["isDisabled"]) {
-      if (this._elementRef?.nativeElement) {
-        this._elementRef.nativeElement.setAttribute('readonly', this.isDisabled);
-      }
       this._datepickerRef.instance.isDisabled = this.isDisabled;
     }
     if (changes["dateCustomClasses"]) {
