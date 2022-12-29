@@ -1,0 +1,32 @@
+{
+  "name": "ngx-bootstrap",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "cd packages/ngx-bootstrap-docs && npm run start"
+  },
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "@builder.io/qwik": "0.16.1",
+    "@builder.io/qwik-city": "0.0.128",
+    "@nrwl/js": "15.4.0",
+    "@nrwl/nx-cloud": "latest",
+    "@nrwl/workspace": "15.4.0",
+    "@types/eslint": "8.4.10",
+    "@types/node": "^18.11.16",
+    "@types/node-fetch": "latest",
+    "@typescript-eslint/eslint-plugin": "5.46.1",
+    "@typescript-eslint/parser": "5.46.1",
+    "eslint": "8.30.0",
+    "eslint-plugin-qwik": "0.16.1",
+    "node-fetch": "3.3.0",
+    "nx": "15.4.0",
+    "prettier": "^2.6.2",
+    "sass": "^1.57.1",
+    "typescript": "~4.8.2",
+    "undici": "5.14.0",
+    "vite": "4.0.1",
+    "vite-tsconfig-paths": "3.5.0"
+  }
+}

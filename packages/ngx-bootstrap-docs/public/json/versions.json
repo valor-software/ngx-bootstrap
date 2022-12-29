@@ -1,0 +1,22 @@
+[
+  {
+    "url": "123",
+    "version": "1.0.0",
+    "unprefixedUrl": "1234"
+  },
+  {
+    "url": "123",
+    "version": "2.0.0",
+    "unprefixedUrl": "1234"
+  },
+  {
+    "url": "123",
+    "version": "3.0.0",
+    "unprefixedUrl": "1234"
+  },
+  {
+    "url": "123",
+    "version": "4.0.0",
+    "unprefixedUrl": "1234"
+  }
+]
