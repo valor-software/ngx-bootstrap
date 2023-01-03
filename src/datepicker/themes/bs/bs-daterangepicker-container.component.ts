@@ -2,7 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  EventEmitter,
+  EventEmitter, HostBinding,
   OnDestroy,
   OnInit,
   Renderer2,
@@ -55,6 +55,18 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
 
   @ViewChild('startTP') startTimepicker?: TimepickerComponent;
   @ViewChild('endTP') endTimepicker?: TimepickerComponent;
+
+  get isDatePickerDisabled(): boolean {
+    return !!this._config.isDisabled;
+  }
+
+  @HostBinding ('attr.disabled') get isDatepickerDisabled() {
+    return this.isDatePickerDisabled ? '' : null;
+  }
+
+  @HostBinding ('attr.readonly') get isDatepickerReadonly() {
+    return this.isDatePickerDisabled ? '' : null;
+  }
 
   constructor(
     _renderer: Renderer2,
