@@ -22,18 +22,11 @@ import { PlacementForBs5 } from 'ngx-bootstrap/positioning';
     :host.tooltip {
       display: block;
       pointer-events: none;
+      position: absolute;
     }
-    :host.bs3.tooltip.top>.arrow {
-      margin-left: -2px;
-    }
-    :host.bs3.tooltip.bottom {
-      margin-top: 0px;
-    }
-    :host.bs3.bs-tooltip-left, :host.bs3.bs-tooltip-right{
-      margin: 0px;
-    }
-    :host.bs3.bs-tooltip-right .arrow, :host.bs3.bs-tooltip-left .arrow {
-      margin: .3rem 0;
+
+    :host.tooltip .tooltip-arrow {
+      position: absolute;
     }
   `
   ],
