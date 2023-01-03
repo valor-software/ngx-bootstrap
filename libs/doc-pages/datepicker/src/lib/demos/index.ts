@@ -43,6 +43,7 @@ import { DemoDatepickerClearButtonComponent } from './clear-button/clear-button'
 import { DemoDatepickerStartViewComponent } from "./start-view/start-view";
 import { DemoDatepickerPreventChangeToNextMonthComponent } from './prevent-change-to-next-month/prevent-change-to-next-month.component';
 import { DemoDatepickerWithTimepickerComponent } from './with-timepicker/with-timepicker';
+import { DatepickerCloseBehaviorComponent } from './closeBehaviour/datepicker-close-behavior';
 
 export const DEMO_COMPONENTS = [
   DemoDatePickerAdaptivePositionComponent,
@@ -87,5 +88,6 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerPreventChangeToNextMonthComponent,
   DemoDatePickerQuickSelectRangesComponent,
   DemoDatepickerStartViewComponent,
-  DemoDatepickerWithTimepickerComponent
+  DemoDatepickerWithTimepickerComponent,
+  DatepickerCloseBehaviorComponent
 ];

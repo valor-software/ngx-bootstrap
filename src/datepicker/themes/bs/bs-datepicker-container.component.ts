@@ -2,7 +2,7 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  EventEmitter,
+  EventEmitter, HostBinding,
   OnDestroy,
   OnInit,
   Renderer2,
@@ -32,24 +32,35 @@ import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
     class: 'bottom',
     '(click)': '_stopPropagation($event)',
     role: 'dialog',
-    'aria-label': 'calendar'
+    'aria-label': 'calendar',
   },
   animations: [datepickerAnimation]
 })
 export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponent
   implements OnInit, AfterViewInit, OnDestroy {
 
+  valueChange: EventEmitter<Date> = new EventEmitter<Date>();
+  animationState = 'void';
+  override isRangePicker = false;
+  _subs: Subscription[] = [];
+
+  @ViewChild('startTP') startTimepicker?: TimepickerComponent;
+
   set value(value: Date|undefined) {
     this._effects?.setValue(value);
   }
 
-  valueChange: EventEmitter<Date> = new EventEmitter<Date>();
-  animationState = 'void';
-  override isRangePicker = false;
+  get isDatePickerDisabled(): boolean {
+    return !!this._config.isDisabled;
+  }
 
-  _subs: Subscription[] = [];
+  @HostBinding ('attr.disabled') get isDatepickerDisabled() {
+    return this.isDatePickerDisabled ? '' : null;
+  }
 
-  @ViewChild('startTP') startTimepicker?: TimepickerComponent;
+  @HostBinding ('attr.readonly') get isDatepickerReadonly() {
+    return this.isDatePickerDisabled ? '' : null;
+  }
 
   constructor(
     _renderer: Renderer2,

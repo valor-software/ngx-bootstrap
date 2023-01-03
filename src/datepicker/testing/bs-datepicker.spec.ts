@@ -315,4 +315,28 @@ describe('datepicker:', () => {
     const timepickerZone = document.querySelector('.bs-timepicker-in-datepicker-container');
     expect(timepickerZone).not.toBeTruthy();
   });
+
+  it('should hide only if properties with timepicker and keepDatepickerOpened are set to true and only time is changed. Properties are true', () => {
+    const datepickerDirective = getDatepickerDirective(fixture);
+    datepickerDirective.bsConfig = {
+      withTimepicker: true,
+      keepDatepickerOpened: true
+    };
+    const datepicker = showDatepicker(fixture);
+    const currentDate = new Date();
+    const secondDate = new Date(new Date().setMinutes(currentDate.getMinutes() + 5));
+
+    const datepickerContainerInstance = getDatepickerContainer(datepicker);
+    datepickerContainerInstance.valueChange.emit(currentDate);
+    fixture.detectChanges();
+    const datepickerRef = document.querySelector('bs-datepicker-container');
+    expect(datepickerRef).not.toBeNull();
+
+    const datepicker2 = showDatepicker(fixture);
+    const datepickerContainerInstance2 = getDatepickerContainer(datepicker2);
+    datepickerContainerInstance2.valueChange.emit(secondDate);
+    fixture.detectChanges();
+    const datepickerRef2 = document.querySelector('bs-datepicker-container');
+    expect(datepickerRef2).not.toBeNull();
+  });
 });

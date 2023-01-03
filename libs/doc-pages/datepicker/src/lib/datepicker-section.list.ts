@@ -51,6 +51,7 @@ import { DemoDatepickerClearButtonComponent } from './demos/clear-button/clear-b
 import { DemoDatepickerStartViewComponent } from "./demos/start-view/start-view";
 import { DemoDatepickerPreventChangeToNextMonthComponent } from './demos/prevent-change-to-next-month/prevent-change-to-next-month.component';
 import { DemoDatepickerWithTimepickerComponent } from './demos/with-timepicker/with-timepicker';
+import { DatepickerCloseBehaviorComponent } from './demos/closeBehaviour/datepicker-close-behavior';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -461,6 +462,14 @@ export const demoComponentContent: ContentSection[] = [
         description: `You can enable timepicker via <code>withTimepicker</code> config option`,
         outlet: DemoDatepickerWithTimepickerComponent
       },
+      {
+        title: 'Close behavior with timepicker changes',
+        anchor: 'close-behavior',
+        component: require('!!raw-loader!./demos/closeBehaviour/datepicker-close-behavior'),
+        html: require('!!raw-loader!./demos/closeBehaviour/datepicker-close-behavior.html'),
+        description: `If you use datepicker with timepicker together, you are able to set <code>keepDatepickerOpened</code> config option and keep datepicker opened until date isn't changed`,
+        outlet: DatepickerCloseBehaviorComponent
+      },
     ]
   },
   {
@@ -708,6 +717,11 @@ export const demoComponentContent: ContentSection[] = [
         title: 'With timepicker',
         anchor: 'with-timepicker-ex',
         outlet: DemoDatepickerWithTimepickerComponent
+      },
+      {
+        title: 'datepicker close behavior with timepicker',
+        anchor: 'close-behavior',
+        outlet: DatepickerCloseBehaviorComponent
       },
     ]
   }
