@@ -14,27 +14,16 @@ import { PlacementForBs5, checkMargins, AvailbleBSPositions } from 'ngx-bootstra
     '[class.show]': '!_bsVersions.isBs3',
     '[class.bs3]': '_bsVersions.isBs3',
     role: 'tooltip',
-    style: 'display:block;'
+    style: 'display:block; position:absolute'
   },
   styles: [
     `
-    :host.bs3.popover-top {
-      margin-bottom: 10px;
-    }
-    :host.bs3.popover.top>.arrow {
-      margin-left: -2px;
-    }
-    :host.bs3.popover.top {
-      margin-bottom: 10px;
-    }
     :host.popover.bottom>.arrow {
       margin-left: -4px;
     }
-    :host.bs3.bs-popover-left {
-      margin-right: .5rem;
-    }
-    :host.bs3.bs-popover-right .arrow, :host.bs3.bs-popover-left .arrow{
-      margin: .3rem 0;
+
+    :host .popover-arrow {
+      position: absolute;
     }
     `
   ],
