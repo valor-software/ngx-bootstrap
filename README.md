@@ -6,8 +6,8 @@
 </a>
 
 <p align="center">
-The best way to quickly integrate <a href="https://getbootstrap.com/docs/5.1">Bootstrap 5</a> <a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> Components with <a href="https://angular.io/">Angular</a>
-The best way to quickly integrate <a href="https://getbootstrap.com/docs/5.1">Bootstrap 5</a>, 
+The best way to quickly integrate <a href="https://getbootstrap.com/docs/5.2">Bootstrap 5</a> <a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> Components with <a href="https://angular.io/">Angular</a>
+The best way to quickly integrate <a href="https://getbootstrap.com/docs/5.2">Bootstrap 5</a>, 
 <a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> components with <a href="https://angular.io/">Angular</a>
 <br/>
 <br/>
@@ -119,7 +119,7 @@ This can be done with the css file directly in the index.html, or alternatively 
 - `Bootstrap 5`
 ```
 <!--- index.html -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 ```
 
 - `Bootstrap 4`
@@ -143,7 +143,7 @@ import { setTheme } from 'ngx-bootstrap/utils';
 @Component({...})
 export class AppComponent {
   constructor() {
-    setTheme('bs3'); // or 'bs4'
+    setTheme('bs5'); // or 'bs4'
     ...
   }
 }
@@ -168,7 +168,7 @@ Here is the version compatibility list:
 
 | ngx-bootstrap | Angular         | Bootstrap CSS  |
 |---------------|-----------------|----------------|
-| 10.x.x        | 14.x.x - 15.x.x | 5.x.x or 4.x.x |
+| 10.x.x        | 15.x.x | 5.x.x or 4.x.x |
 | 9.0.0         | 14.x.x          | 5.x.x or 4.x.x or 3.x.x |
 | 8.0.0         | 12.x.x - 13.x.x | 5.x.x or 4.x.x or 3.x.x |
 | 7.1.0         | 11.x.x - 12.x.x | 5.x.x or 4.x.x or 3.x.x |
