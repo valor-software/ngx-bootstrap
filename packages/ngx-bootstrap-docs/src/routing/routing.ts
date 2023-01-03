@@ -12,12 +12,13 @@ import {RouteLocation, RouteParams, useLocation} from "@builder.io/qwik-city";
 let generalRoutesStructure: Partial<SidebarRoutesType>;
 let _location: {path: string, query: Record<string, string>};
 
+//add 'themes' in key if themes routing returns
 export type SidebarRoutesType = {
-  [key in "documentation" | "components" | "themes"]: Partial<SidebarRouteItemValueType>;
+  [key in "documentation" | "components"]: SidebarRouteItemValueType;
 };
 
 export type SidebarRouteItemValueType = {
-  nestedRoutes: Partial<NestedRouteType>[];
+  nestedRoutes: NestedRouteType[];
   isOpened: boolean;
   title: string;
   icon: string;
@@ -27,6 +28,7 @@ export type NestedRouteType = {
   parentRoute: string;
   path?: string;
   isOpened: boolean;
+  title: string;
   fragments: {
     title: string;
     path: string;
@@ -34,13 +36,13 @@ export type NestedRouteType = {
   }[] | [];
 };
 
-export const SidebarRoutesStructure: Partial<SidebarRoutesType> = {
+export const SidebarRoutesStructure: SidebarRoutesType = {
   documentation: {
-    nestedRoutes:[],
+    nestedRoutes: [],
     isOpened: false,
     title: 'DOCUMENTATION',
     icon: '/images/icons/icon-folder.svg',
-    path: '/documentation'
+    path: '/documentation',
   },
   components: {
     nestedRoutes: [],
@@ -58,21 +60,14 @@ export const SidebarRoutesStructure: Partial<SidebarRoutesType> = {
   // }
 };
 
-export const SideBarNestedRoutes = {
+export const SideBarNestedRoutes: {[key:string]: NestedRouteType} = {
   dropdown: {
-    sideBarParentTitle: 'components', parentRoute: 'components', title: 'Dropdowns'
+    parentRoute: 'components', title: 'Dropdowns',
+    path: '/components/dropdown',
+    isOpened: false,
+    fragments: []
   }
-}
-
-// export function initializeRouter(url?: string): RoutingState {
-//     // create a store and state
-//     const routingState = useStore<RoutingState>(
-//         getRoutingStateByPath(url)
-//     );
-//
-//     useContextProvider(ROUTING, routingState);
-//     return routingState;
-// }
+};
 
 export function refactorPathName(path: string): string {
   return path.split('/').join('').toString()
@@ -83,73 +78,22 @@ export function refactorPathsNames(path: string): string[] {
   return route;
 }
 
-// safely get the window object
-// export function getWindow(): Window | undefined {
-//     if (!isServer) {
-//         return typeof window === 'object' ? window : undefined
-//     }
-//     return undefined;
-// }
-//
-// export function navigateTo(path: string, routingState: RoutingState): void {
-//     if (!isServer) {
-//         // we don't actually navigate, we just push a new state to
-//         // the history object
-//         getWindow()?.history?.pushState({page: path}, path, path);
-//         setRoutingState(path, routingState);
-//     }
-// }
 
-// export function getRouteStructureKey(route: string, routesList: SidebarRoutesType) {
-//   return routesList[route as keyof SidebarRoutesType];
-// }
-
-export function setRoutesCollection(): SidebarRoutesType  {
-  let routesList: SidebarRoutesType = {documentation: {}, themes: {}, components: {}};
-  const mainRoutesItems = ['documentation', 'themes', 'components'];
-  let nestedRouts: {[key: string]: Partial<NestedRouteType>}  = {};
+export function initRouteColliction(): SidebarRoutesType {
   for (let link of cityPlan.routes) {
     const routesArr: string[] = link[3].split('/').filter((item: string) => item);
-    routesArr.map((item) => {
-      if (mainRoutesItems.includes(item)) {
-        const routeItem: Partial<SidebarRouteItemValueType> | null = createRouteItem(routesArr) || null;
-        // @ts-ignore
-        routesList[item] = routeItem;
-      } else {
-        if (SideBarNestedRoutes[item as keyof typeof SideBarNestedRoutes]) {
-          const data = SideBarNestedRoutes[item as keyof typeof SideBarNestedRoutes];
-          const nestedItem: Partial<NestedRouteType> = {
-            path: `/${data?.parentRoute}/${item}`,
-            isOpened: false,
-            fragments: data.parentRoute === 'components' ? initFragments() : []
-          };
-          const nestedRes = {...data, ...nestedItem}
-          nestedRouts ={...nestedRouts, [item]: nestedRes}
-        }
-      }
-
-    })
+    if (routesArr.length > 1) {
+      const nestedRoute = SideBarNestedRoutes[routesArr[1] as keyof typeof SideBarNestedRoutes];
+      nestedRoute.fragments = routesArr[0] === 'components' ? initFragments() : [];
+      SidebarRoutesStructure[routesArr[0] as keyof SidebarRoutesType].nestedRoutes.push(nestedRoute);
+    }
   }
-
-  Object.keys(nestedRouts).map((item) => {
-    const parentRoute = nestedRouts[item as keyof typeof nestedRouts]?.parentRoute;
-    if (routesList[parentRoute as keyof typeof routesList]) {
-      routesList[parentRoute as keyof typeof routesList].nestedRoutes?.push(nestedRouts[item as keyof typeof nestedRouts])
-    }
-  })
-  generalRoutesStructure = routesList;
-  return routesList;
+  generalRoutesStructure = SidebarRoutesStructure;
+  return SidebarRoutesStructure;
 }
 
-function createRouteItem(route: string[]): Partial<SidebarRouteItemValueType> | void {
-  let res: Partial<SidebarRouteItemValueType> | undefined;
-  route.map(item => {
-    if (item === 'documentation' || item === 'components' || item === 'themes') {
-        res = SidebarRoutesStructure[item];
-    }
-  });
-  return res;
-}
+
+
 
 function initFragments(): {title: string, path: string, isOpened: boolean}[] {
   return [
@@ -171,87 +115,15 @@ function initFragments(): {title: string, path: string, isOpened: boolean}[] {
   ];
 }
 
-// export function listenToRouteChanges(routingState: RoutingState): void {
-//     if (!isServer) {
-        // when the navigation buttons are being used
-        // we want to set the routing state
-        // getWindow()?.addEventListener('locationchange', (e) => {
-            // const path = e.state.page;
-            // setRoutingState(path, routingState);
-        // })
-    // }
-// }
-
-// export function setRoutingState(path: string, routingState: RoutingState): void {
-//     const oldUrl = new URL(routingState.url);
-//     const newUrl = new URL(oldUrl.origin + path);
-//     const {segments, url} = getRoutingStateByPath(newUrl.toString())
-//     routingState.segments = segments;
-//     routingState.url = url;
-// }
 
 
-// this will retrieve the routingstate by the path (the current url)
-// export function getRoutingStateByPath(path?: string): RoutingState {
-//     if (!path) {
-//       return {
-//         url: '',
-//         segments: []
-//       }
-//     }
-//
-//     const url = new URL(path);
-//     const segments = url.pathname.split('/');
-//     segments.splice(0, 1);
-//     return {
-//         url: path,
-//         segments: segments
-//     }
-// }
 
-// export function getMatchingConfig(segments: string[], config: RoutingConfig): RoutingConfigItem {
-//     const found = config.find(item => segmentsMatch(segments, item))
-//     if (found) {
-//         return found;
-//     }
-//     return null;
-// }
 
-// export function segmentsMatch(pathSegments: string[], configItem: RoutingConfigItem): boolean {
-//     const configItemSegments = configItem.path.split('/');
-//     if (configItemSegments.length !== pathSegments.length) {
-//         return false;
-//     }
-//     const matches = pathSegments.filter((segment, index) => {
 //         return segment === configItemSegments[index] || configItemSegments[index].indexOf(':') === 0
 //     });
 //     return matches.length === pathSegments.length;
 // }
 
-// export function getParams(routingState: RoutingState): { [key: string]: string } {
-//     const matchingConfig = getMatchingConfig(routingState.segments, routingConfig);
-//     const params = matchingConfig.path.split('/')
-//         .map((segment: string, index: number) => {
-//             if (segment.startsWith(':')) {
-//                 return {
-//                     index,
-//                     paramName: segment.replace(':', '')
-//                 }
-//             } else {
-//                 return undefined
-//             }
-//         })
-//         .filter(v => !!v);
-//     const returnObj: { [key: string]: string } = {};
-//     params.forEach(param => {
-//         returnObj[param.paramName] = routingState.segments[param.index]
-//     })
-//     return returnObj;
-// }
-
-// export function getSearchParams(routingState: RoutingState): URLSearchParams {
-//     return new URL(routingState.url).searchParams;
-// }
 
 
 
@@ -314,7 +186,7 @@ export function initBodyClass(property: boolean) {
 
 export function firstMenuIniting(location: string): Partial<SidebarRoutesType> {
   if (!generalRoutesStructure) {
-    setRoutesCollection();
+    initRouteColliction();
   }
 
   if (generalRoutesStructure) {
@@ -351,7 +223,7 @@ export function openMenuWithRoute(routePath: string, parentPath: string) {
   return generalRoutesStructure;
 }
 
-export function setMenuProperties(currentMenuItem?: Partial<NestedRouteType>) {
+export function setMenuProperties(currentMenuItem?: NestedRouteType) {
   if (!currentMenuItem || !_location) {
     return;
   }

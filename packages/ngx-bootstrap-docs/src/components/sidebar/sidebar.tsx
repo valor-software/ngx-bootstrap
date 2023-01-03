@@ -2,7 +2,6 @@ import {component$, $, useOn, useOnWindow, useClientEffect$, useStore} from '@bu
 import * as React from 'react';
 import SearchInput from "~/components/header/serach-input";
 import {
-  setRoutesCollection,
   SidebarRoutesType,
   SidebarRouteItemValueType,
   NestedRouteType,
@@ -11,19 +10,27 @@ import {
 import {useLocation, useNavigate} from "@builder.io/qwik-city";
 import {CustomLink} from "~/routing/link";
 
+export type AvailableBsVersions = 'bs4' | 'bs5';
+
 interface IState {
   menuIsOpened: boolean;
   routesStructure: Partial<SidebarRoutesType>,
+  currentTheme?: AvailableBsVersions;
 }
 
 export default component$(() => {
   const state = useStore<IState>({
     menuIsOpened: true,
     routesStructure: {},
+    currentTheme: undefined
   }, {recursive: true});
 
   const navigation = useNavigate();
   const location = useLocation();
+
+  // const currentTheme = themeFromUrl || this.themeStorage.getStoredTheme();
+
+
 
   useClientEffect$(() => {
     if (!Object.keys(state.routesStructure).length) {
