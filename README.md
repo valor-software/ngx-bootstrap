@@ -7,8 +7,6 @@
 
 <p align="center">
 The best way to quickly integrate <a href="https://getbootstrap.com/docs/5.2">Bootstrap 5</a> <a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> Components with <a href="https://angular.io/">Angular</a>
-The best way to quickly integrate <a href="https://getbootstrap.com/docs/5.2">Bootstrap 5</a>, 
-<a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> components with <a href="https://angular.io/">Angular</a>
 <br/>
 <br/>
 <i><strong>Note: </strong>ngx-bootstrap for <a href="https://getbootstrap.com/docs/3.3/">Bootstrap 3</a> is still available but is no longer maintained or updated.</i>
