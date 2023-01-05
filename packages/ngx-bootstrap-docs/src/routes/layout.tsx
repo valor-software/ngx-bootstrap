@@ -2,8 +2,8 @@ import {component$, Slot, useClientEffect$, useOnWindow, $, useStore} from '@bui
 import Header from '../components/header/header';
 import Footer from '../components/footer/footer';
 import Sidebar from "~/components/sidebar/sidebar";
-import {useLocation} from "@builder.io/qwik-city";
-import { setRoutesCollection, refactorPathName} from '../routing/routing';
+import { useLocation } from "@builder.io/qwik-city";
+import { refactorPathName } from '../routing/routing';
 
 export interface IState { routesList: string[]; showSideBar: boolean};
 

@@ -18,9 +18,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-//      "ngx-bootstrap/utils": [
-//        "packages/ngx-bootstrap/utils/src/index.ts"
-//      ]
+      "ngx-bootstrap": [
+        "packages/ngx-bootstrap/src/index.ts"
+      ]
     }
   },
   "exclude": [

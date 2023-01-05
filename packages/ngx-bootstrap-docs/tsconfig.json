@@ -18,7 +18,10 @@
     "noEmit": true,
     "types": ["node", "vite/client"],
     "paths": {
-      "~/*": ["./src/*"]
+      "~/*": ["./src/*"],
+      "ngx-bootstrap": [
+        "../ngx-bootstrap/src/index.ts"
+      ]
     }
   },
   "files": ["./.eslintrc.cjs"],

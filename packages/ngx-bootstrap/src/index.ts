@@ -1,2 +1,2 @@
-export { Logo } from './components/logo/logo';
-export { Counter } from './components/counter/counter';
+export { Tabset } from './components/tabs/tabs';
+export { Tab } from './components/tabs/tab';

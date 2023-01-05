@@ -1,5 +1,5 @@
 {
-  "name": "my-qwik-library-name",
+  "name": "ngx-bootstrap",
   "version": "0.0.1",
   "description": "Create a reusable Qwik component library",
   "main": "./lib/index.qwik.mjs",
@@ -16,6 +16,23 @@
     "lib",
     "lib-types"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/valor-software/ngx-bootstrap.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "tag": "next"
+  },
+  "keywords": [
+    "angular"
+  ],
+  "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/valor-software/ngx-bootstrap/issues"
+  },
+  "homepage": "https://github.com/valor-software/ngx-bootstrap",
   "engines": {
     "node": ">=15.0.0"
   },

@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "cd packages/ngx-bootstrap-docs && npm run start"
+    "start": "cd packages/ngx-bootstrap-docs && npm run start",
+    "build:lib": "cd packages/ngx-bootstrap && npm run build && npm run build.lib"
   },
   "private": true,
   "dependencies": {
