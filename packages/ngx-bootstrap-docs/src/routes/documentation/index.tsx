@@ -169,16 +169,16 @@ export default component$(() => {
             className="kwd"> TooltipModule </span><span
             className="pun">{'}'}</span><span className="pln"> from </span><span
             className="str">'ngx-bootstrap/tooltip'</span><span
-            className="pun">;</span>
+            className="pun">;</span><br/>
   <span className="pln">&nbsp;</span>
-  <span className="lit">@NgModule</span><span className="pun">({'{'}</span>
-  <span className="pln">  &hellip;</span>
+  <span className="lit">@NgModule</span><span className="pun">({'{'}</span><br/>
+  <span className="pln">  &hellip;</span><br/>
   <span className="pln">  imports:</span><span className="pln"> </span><span className="pln">[</span><span
             className="pln"> </span><span
             className="typ">TooltipModule<span className="pln">.forRoot(), &hellip;</span></span><span
             className="pln"> </span><span
-            className="pun">]</span>
-  <span className="pln">  &hellip;</span>
+            className="pun">]</span><br/>
+  <span className="pln">  &hellip;</span><br/>
   <span className="pun">{'}'})</span></pre>
 
           <p>Add component to your page:</p>
@@ -187,9 +187,9 @@ export default component$(() => {
   <span className="kwd">&lt;button</span><span className="pln"> </span><span className="atn">type</span><span
             className="pun">=</span><span className="atv">"button"</span><span className="pln"> </span><span
             className="atn">class</span><span className="pun">=</span><span className="atv">"btn btn-primary"</span>
-  <span className="atn">        tooltip</span><span className="pun">=</span><span className="atv">"Vivamus sagittis lacus vel augue laoreet rutrum faucibus."</span><span
+  <span className="atn"> tooltip</span><span className="pun">=</span><span className="atv">"Vivamus sagittis lacus vel augue laoreet rutrum faucibus."</span><span
             className="kwd">&gt;</span>
-  <span className="pln">  Simple demo</span>
+  <span className="pln">Simple demo</span>
   <span className="kwd">&lt;/button&gt;</span></pre>
 
           <p>You will need to add bootstrap css:</p>
@@ -197,7 +197,7 @@ export default component$(() => {
             <li><code>Bootstrap 5</code></li>
           </ul>
 
-          <pre className="prettyprint prettyprinted"><span className="com">&lt;!--- index.html --&gt;</span><span
+          <pre className="prettyprint prettyprinted"><span className="com">&lt;!--- index.html --&gt;</span><br/><span
             className="pln"></span>
 <span className="tag">&lt;link</span><span className="pln"> </span><span className="atn">href</span><span
               className="pun">=</span><span
@@ -213,7 +213,7 @@ export default component$(() => {
             <li><code>Bootstrap 4</code></li>
           </ul>
 
-          <pre className="prettyprint prettyprinted"><span className="com">&lt;!--- index.html --&gt;</span><span
+          <pre className="prettyprint prettyprinted"><span className="com">&lt;!--- index.html --&gt;</span><br/><span
             className="pln"></span>
 <span className="tag">&lt;link</span><span className="pln"> </span><span className="atn">href</span><span
               className="pun">=</span><span
@@ -247,19 +247,20 @@ export default component$(() => {
             className="pln"> setTheme </span><span className="pun">{'}'}</span><span
             className="pln"> from </span><span className="str">'ngx-bootstrap/utils'</span><span
             className="pun">;</span>
-  <span className="pln">&nbsp;</span>
+  <span className="pln">&nbsp;</span><br/>
   <span className="lit">@Component</span><span className="pun">({'{'}</span><span className="pln">&hellip;</span><span
-            className="pun">{'}'})</span>
+            className="pun">{'}'})</span><br/>
   <span className="kwd">export</span><span className="pln"> </span><span className="kwd">class</span><span
             className="pln"> </span><span
-            className="typ">AppComponent</span><span className="pln"> </span><span className="pun">{'{'}</span>
-  <span className="pln">  constructor</span><span className="pun">()</span><span className="pln"> </span><span
-            className="pun">{'{'}</span>
-  <span className="pln">    setTheme</span><span className="pun">(</span><span className="str">'bs3'</span><span
+            className="typ">AppComponent</span><span className="pln"> </span><span className="pun">{'{'}</span><br/>
+      <span className="pln">  constructor</span><span className="pun">()</span><span className="pln"> </span><span
+            className="pun">{'{'}</span><br/>
+  <span className="pln">    setTheme</span><span className="pun">(</span><span className="str">'bs5'</span><span
             className="pun">);</span><span
-            className="pln"> </span><span className="com">// or 'bs4'</span>
+            className="pln"> </span><span className="com">// or 'bs4'</span><br/>
   <span className="pln">    <span className="pln">&hellip;</span></span>
-  <span className="pln">  </span><span className="pun">{'}'}</span>
+  <span className="pln">  </span><br/>
+  <span className="pln">  </span><span className="pun">{'}'}</span><br/>
   <span className="pun">{'}'}</span></pre>
 
           <h3>How to build lib for development</h3>
@@ -267,10 +268,10 @@ export default component$(() => {
 
           <pre className="prettyprint lang-bash prettyprinted">
   <span className="pln">git clone</span><span
-            className="pln"> https://github.com/valor-software/ngx-bootstrap.git</span>
-  <span className="atn">cd</span><span className="pln"> ngx-bootstrap</span>
-  <span className="pln">npm ci</span>
-  <span className="pln">npm run build</span>
+            className="pln"> https://github.com/valor-software/ngx-bootstrap.git</span><br/>
+  <span className="atn">cd</span><span className="pln"> ngx-bootstrap</span><br/>
+  <span className="pln">npm ci</span><br/>
+  <span className="pln">npm run build</span><br/>
   <span className="pln">npm start</span></pre>
 
           <h2 id="compatibility">

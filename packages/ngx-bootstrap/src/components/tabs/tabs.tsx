@@ -1,8 +1,19 @@
-import {component$, useStore, Slot, $, createContext, useClientEffect$, useContext, useContextProvider} from '@builder.io/qwik';
+import {
+    component$,
+    useStore,
+    Slot,
+    $,
+    createContext,
+    useClientEffect$,
+    useContext,
+    useContextProvider,
+    render, useSignal, useTask$
+} from '@builder.io/qwik';
+import {isBrowser} from "@builder.io/qwik/build";
 
 export interface ITab {
     heading?: string;
-    id?: string;
+    id: string;
     disabled?: boolean;
     removable?: boolean;
     customClass?: string;
@@ -17,27 +28,48 @@ export interface ITabsSetProps {
 
 
 export interface IState {
-    tabs: ITab[];
+    _tabs: ITab[];
     classMap: { [key: string]: boolean };
     ariaLabel: string;
+    activeTab: ITab;
 }
 
 export const TabsContext = createContext<ITab[]>('tabs-context');
-export const TabsArrayContext = createContext<ITab[]>('tabs-array-context');
+export const ActiveTabContext = createContext<ITab>('active-tab-context');
+export const ActiveTabIdContext = createContext<any>('active-tab-id-context');
 
 export const Tabset = component$((props: ITabsSetProps) => {
     const state = useStore<IState>({
-        tabs: [],
+        _tabs: [],
         classMap: {},
-        ariaLabel: 'Tabs'
+        ariaLabel: 'Tabs',
+        // @ts-ignore
+        activeTab: {}
     }, {recursive: true});
+    let idContext = {
+        id: '1234'
+    }
 
-    useContextProvider(TabsContext, state.tabs);
-    // const tabsArr = useContext(TabsContext);
+    useContextProvider(TabsContext, state._tabs);
+    useContextProvider(ActiveTabContext, state.activeTab);
+    useContextProvider(ActiveTabIdContext, idContext);
 
+    useTask$(({ track }: { track: Function }) => {
+        track(() => state._tabs);
+        state._tabs.map(item => {
+            if (item.active) {
+                state.activeTab = item;
+                idContext.id = '456'
+            }
+        })
+
+        console.log('track active tab', state.activeTab)
+
+    });
+    // let tabs = useContext(TabsContext)
 
     useClientEffect$(() => {
-        console.log('tabsSet', state.tabs)
+
     })
 
     const keyNavActions = $((event: any, index: number) => {
@@ -46,27 +78,25 @@ export const Tabset = component$((props: ITabsSetProps) => {
     });
 
     const setActiveTab = $((tab: ITab) => {
-        const arr = JSON.parse(JSON.stringify(state.tabs));
-        // arr.map((item) => item.active = false);
-        arr.forEach((item: ITab) => {
+        const arr: ITab[] = [];
+        state._tabs.map(item => arr.push({...item}));
+        arr.map(item => {
             item.active = false;
-
-            if (item === tab) {
+            if (item.id === tab.id) {
                 item.active = true;
-                console.log('there', item)
+                state.activeTab = Object.assign(item);
             }
-
         });
-        state.tabs = arr;
-        console.log(arr);
+
+        state._tabs = Array.from(arr);
     });
 
     return (
         <div>
-            <ul className={`nav ${props.vertical ? 'nav-stacked' : ''} ${props.justified ? 'nav-justified' : ''} nav-${props.type || 'tabs'} `}
+            <ul className={`nav${props.vertical ? ' nav-stacked' : ''}${props.justified ? ' nav-justified' : ''} nav-${props.type || 'tabs'} `}
             aria-label={state.ariaLabel}
             role="tablist">
-                {state.tabs.map((tabz: ITab,index: number) => {
+                {state._tabs.map((tabz: ITab,index: number) => {
                     return <li className={`
                     ${tabz.active ? 'active' : ''} nav-item 
                     ${tabz.customClass || ''}
@@ -76,28 +106,18 @@ export const Tabset = component$((props: ITabsSetProps) => {
                     >
                         <a className={`nav-link ${tabz.active ? 'active' : ''} ${tabz.disabled ? 'disabled' : ''}`}
                            role="tab"
-                           aria-controls={tabz.id ? tabz.id : `tab-id-${index}`}
+                           aria-controls={tabz.id}
                            aria-selected={!!tabz.active}
-                           id={tabz.id ? tabz.id + '-link' : `tab-id-${index}`}
-                           onClick$={() => setActiveTab(tabz)}
+                           id={tabz.id}
+                           onClick$={() =>
+                               setActiveTab(tabz)
+                           }
                         >
                             <span>{ tabz.heading || index }</span>
                         </a>
                     </li>
                 })}
-{/*            <li *ngFor="let tabz of tabs; let i = index" [ngClass]="['nav-item', tabz.customClass || '']"*/}
-{/*            [class.active]="tabz.active" [class.disabled]="tabz.disabled" (keydown)="keyNavActions($event, i)">*/}
-{/*            <a href="javascript:void(0);" class="nav-link" role="tab"*/}
-{/*            [attr.aria-controls]="tabz.id ? tabz.id : ''"*/}
-{/*            [attr.aria-selected]="!!tabz.active"*/}
-{/*            [attr.id]="tabz.id ? tabz.id + '-link' : ''"*/}
-{/*            [class.active]="tabz.active" [class.disabled]="tabz.disabled"*/}
-{/*            (click)="tabz.active = true">*/}
-{/*            <span [ngTransclude]="tabz.headingRef">{{ tabz.heading }}</span>*/}
-{/*    <span *ngIf="tabz.removable" (click)="$event.preventDefault(); removeTab(tabz);" class="bs-remove-tab"> &#10060;</span>*/}
-{/*</a>*/}
-{/*</li>*/}
-</ul>
+    </ul>
     <div class="tab-content">
         <Slot></Slot>
     </div>

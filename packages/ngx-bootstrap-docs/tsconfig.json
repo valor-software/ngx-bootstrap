@@ -11,7 +11,7 @@
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "skipLibCheck": true,
+    "skipLibCheck": false,
     "incremental": true,
     "isolatedModules": true,
     "outDir": "tmp",

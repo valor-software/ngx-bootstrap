@@ -1,9 +1,9 @@
-import {component$, Slot, useClientEffect$, useContext, useContextProvider} from "@builder.io/qwik";
-import { TabsContext } from "./tabs";
+import { component$, Slot, useClientEffect$, useContext, useContextProvider, useTask$ } from "@builder.io/qwik";
+import {ActiveTabContext, ActiveTabIdContext, TabsContext} from "./tabs";
 
 export interface ITab {
     heading?: string;
-    id?: string;
+    id: string;
     disabled?: boolean;
     removable?: boolean;
     customClass?: string;
@@ -11,15 +11,22 @@ export interface ITab {
 }
 
 export const Tab = component$((props:ITab) => {
-    const tabsArr = useContext(TabsContext);
-    // useContextProvider(TabsContext, tabsArr);
+    let tab = useContext(ActiveTabContext);
+    let tabsArr = useContext(TabsContext);
+    let id = useContext(ActiveTabIdContext);
+
+    useTask$(({ track }: { track: Function }) => {
+        track(() => tab);
+    });
+
+    useTask$(({ track }: { track: Function }) => {
+        track(() => tabsArr);
+    });
 
     useClientEffect$(() => {
-        if (!tabsArr.includes(props)) {
-            tabsArr.push(props);
-        }
-
-        console.log('tab comp', tabsArr)
+            if (!tabsArr.includes(props)) {
+                tabsArr.push(props);
+            }
     })
 
     //todo test with more details such events for angular as ex
@@ -31,11 +38,19 @@ export const Tab = component$((props:ITab) => {
 // @Output() removed: EventEmitter<TabDirective> = new EventEmitter();
 
     return (
-        <div
-            id={props.id}
-            class={`${props.customClass}`}
-        >
-            <Slot></Slot>
-        </div>
+        <>
+            {!props.active && <div></div>}
+            <div
+                id={props.id}
+                class={`tab-pane ${props.customClass ? props.customClass : ''} ${props.active ? 'active' : ''} `}
+                role={'tab-panel'}
+                aria-labelledby={`${props.id}`}
+            >
+                {tab.heading}
+                <Slot></Slot>
+                {props.id}
+            </div>
+
+        </>
     )
 })
