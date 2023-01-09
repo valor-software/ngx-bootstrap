@@ -1,13 +1,5 @@
-// this one will be called by the <App/> component and initialize
-// the state once for the entire lifecycle of the application
-import {ROUTING, RoutingState} from './routing-state';
-import {$, useContextProvider, useStore} from '@builder.io/qwik';
-import {RoutingConfig, RoutingConfigItem} from './routing-types';
-// import {routingConfig} from '../routing-config';
-import {isServer} from '@builder.io/qwik/build';
 import cityPlan from "@qwik-city-plan";
 import documentation from "~/routes/documentation";
-import {RouteLocation, RouteParams, useLocation} from "@builder.io/qwik-city";
 
 let generalRoutesStructure: Partial<SidebarRoutesType>;
 let _location: {path: string, query: Record<string, string>};
@@ -56,7 +48,7 @@ export const SidebarRoutesStructure: SidebarRoutesType = {
   //   isOpened: false,
   //   title: 'THEMES',
   //   icon: 'assets/images/icons/icon-theme.svg',
-  //   path: 'themes'
+  //   path: '/themes'
   // }
 };
 
@@ -64,6 +56,12 @@ export const SideBarNestedRoutes: {[key:string]: NestedRouteType} = {
   dropdown: {
     parentRoute: 'components', title: 'Dropdowns',
     path: '/components/dropdown',
+    isOpened: false,
+    fragments: []
+  },
+  schematics: {
+    parentRoute: 'documentation', title: 'Schematics',
+    path: '/schematics',
     isOpened: false,
     fragments: []
   }
@@ -84,8 +82,16 @@ export function initRouteColliction(): SidebarRoutesType {
     const routesArr: string[] = link[3].split('/').filter((item: string) => item);
     if (routesArr.length > 1) {
       const nestedRoute = SideBarNestedRoutes[routesArr[1] as keyof typeof SideBarNestedRoutes];
-      nestedRoute.fragments = routesArr[0] === 'components' ? initFragments() : [];
-      SidebarRoutesStructure[routesArr[0] as keyof SidebarRoutesType].nestedRoutes.push(nestedRoute);
+      if (nestedRoute) {
+        nestedRoute.fragments = routesArr[0] === 'components' ? initFragments() : [];
+        SidebarRoutesStructure[routesArr[0] as keyof SidebarRoutesType].nestedRoutes.push(nestedRoute);
+      }
+    }
+
+    if (routesArr.length === 1 && SideBarNestedRoutes[routesArr[0]]?.parentRoute) {
+      const nestedRoute = SideBarNestedRoutes[routesArr[0]];
+      const parentRoute = SideBarNestedRoutes[routesArr[0]].parentRoute;
+      SidebarRoutesStructure[parentRoute as keyof typeof SidebarRoutesStructure].nestedRoutes.push(nestedRoute);
     }
   }
   generalRoutesStructure = SidebarRoutesStructure;
@@ -114,18 +120,6 @@ function initFragments(): {title: string, path: string, isOpened: boolean}[] {
     }
   ];
 }
-
-
-
-
-
-//         return segment === configItemSegments[index] || configItemSegments[index].indexOf(':') === 0
-//     });
-//     return matches.length === pathSegments.length;
-// }
-
-
-
 
 export function toggleMenuItem(value: string, routes: Partial<SidebarRoutesType>): Partial<SidebarRoutesType> {
   let routesStructure = {...generalRoutesStructure};
@@ -203,12 +197,6 @@ export function openMenuWithRoutePath(path: string[]): Partial<SidebarRoutesType
     return openMenuWithRoute(`/${path[0]}/${path[1]}`, path[0]) || generalRoutesStructure;
   }
 
-  const currentRoute = _location.path;
-  // if (!currentRoute?.length || (!currentRoute[0].data?.[1]?.sideBarParentTitle && !currentRoute[0].children?.length)) {
-  //   return;
-  // }
-  //
-  // const key = currentRoute[0].children?.length ? currentRoute[0].path : currentRoute[0].data?.[1]?.sideBarParentTitle;
   return openMenuWithRoute(path[0], path[0]);
 }
 
@@ -216,11 +204,34 @@ export function openMenuWithRoute(routePath: string, parentPath: string) {
   if (!generalRoutesStructure) {
     return;
   }
-  // @ts-ignore
-  generalRoutesStructure[parentPath as keyof typeof generalRoutesStructure].isOpened = true;
-  let currentMenuItem = generalRoutesStructure[parentPath as keyof typeof generalRoutesStructure]?.nestedRoutes?.find(route => route.path === routePath);
-  currentMenuItem = setMenuProperties(currentMenuItem) || currentMenuItem;
-  return generalRoutesStructure;
+
+  if (generalRoutesStructure[parentPath as keyof typeof generalRoutesStructure]) {
+    // @ts-ignore
+    generalRoutesStructure[parentPath as keyof typeof generalRoutesStructure].isOpened = true;
+    let currentMenuItem = generalRoutesStructure[parentPath as keyof typeof generalRoutesStructure]?.nestedRoutes?.find(route => route.path === routePath);
+    setMenuProperties(currentMenuItem);
+    return generalRoutesStructure;
+  }
+
+  if (SideBarNestedRoutes[routePath] && SideBarNestedRoutes[routePath].parentRoute) {
+    const parentRoute = SideBarNestedRoutes[routePath].parentRoute;
+    if (generalRoutesStructure[parentRoute as keyof typeof generalRoutesStructure]) {
+      // @ts-ignore
+      generalRoutesStructure[parentRoute as keyof typeof generalRoutesStructure].isOpened = true;
+      console.log(generalRoutesStructure[parentRoute as keyof typeof generalRoutesStructure])
+      let currentMenuItem = generalRoutesStructure[parentRoute as keyof typeof generalRoutesStructure]?.nestedRoutes?.find(route => {
+        const itemPath = route.path?.split('/').join('');
+        return itemPath === routePath
+      });
+      setMenuProperties(currentMenuItem);
+      return generalRoutesStructure;
+    }
+
+  }
+
+
+
+
 }
 
 export function setMenuProperties(currentMenuItem?: NestedRouteType) {
@@ -229,7 +240,6 @@ export function setMenuProperties(currentMenuItem?: NestedRouteType) {
   }
   let query = _location.query;
   const {tab} = query;
-
   currentMenuItem.isOpened = true;
   currentMenuItem?.fragments?.forEach((item: {title: string, path: string, isOpened: boolean}) => {
     item.isOpened = item.path === tab;
