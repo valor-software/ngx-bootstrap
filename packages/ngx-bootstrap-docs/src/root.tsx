@@ -27,7 +27,7 @@ export default component$(() => {
         <link rel="icon" type="image/png" sizes="16x16" href='/images/favicons/favicon-16x16.png'/>
         <link rel="author" href="https://github.com/valor-software/ngx-bootstrap/graphs/contributors"/>
         <link rel="stylesheet" className="style-manager-theme"
-        href='/css/bootstrap-5.1.0/css/bootstrap.min.css'/>
+        href='/css/bootstrap-5.2.3/css/bootstrap.min.css'/>
         <meta name="mobile-web-app-capable" content="yes"/>
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta name="application-name" content="ngx-bootstrap"/>

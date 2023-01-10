@@ -1,22 +1,18 @@
 import {component$, $, useOn, useOnWindow, useClientEffect$, useStore, useTask$} from '@builder.io/qwik';
-import * as React from 'react';
 import SearchInput from "~/components/header/serach-input";
 import {
   SidebarRoutesType,
-  SidebarRouteItemValueType,
-  NestedRouteType,
-  refactorPathName, refactorPathsNames, toggleMenuItem, resetSemiMenu, initBodyClass, firstMenuIniting, setLocationPath
+  initBodyClass, firstMenuIniting, setLocationPath
 } from "~/routing/routing";
 import { useLocation, useNavigate } from "@builder.io/qwik-city";
 import { CustomLink } from "~/routing/link";
-import {AvailableBsVersions, ThemeStorage} from "~/components/sidebar/theme-storage";
+import {AvailableBsVersions, getStoredTheme, storeTheme} from "~/components/sidebar/theme-storage";
 import { setTheme, currentBsVersion } from './theme-provider';
-import {StyleManager} from "~/components/sidebar/styleManager";
+import {setStyle} from "~/components/sidebar/styleManager";
 
 
 
-const _bs4Css = '/css/bootstrap-4.5.3/css/bootstrap.min.css';
-const _bs5Css = '/css/bootstrap-5.2.3/css/bootstrap.min.css';
+
 
 interface IState {
   menuIsOpened: boolean;
@@ -24,25 +20,36 @@ interface IState {
   currentTheme: AvailableBsVersions | null;
 }
 
-const themeStorage = new ThemeStorage();
-const styleManager = new StyleManager();
 
 export default component$(() => {
   const navigation = useNavigate();
   const location = useLocation();
+  const _bs4Css = '/css/bootstrap-4.5.3/css/bootstrap.min.css';
+  const _bs5Css = '/css/bootstrap-5.2.3/css/bootstrap.min.css';
 
   const state = useStore<IState>({
     menuIsOpened: true,
     routesStructure: {},
-    currentTheme: themeStorage.getStoredTheme()
+    currentTheme: getStoredTheme()
   }, {recursive: true});
 
+  const installTheme = $((theme: AvailableBsVersions) => {
+    setTheme(theme);
+    const currentTheme = currentBsVersion();
+    const cssAsset = currentTheme === 'bs5' ? _bs5Css : _bs4Css;
+    setStyle('theme', cssAsset);
+    if (currentTheme) {
+      storeTheme(currentTheme);
+    }
+  })
+
   useTask$(({track}) => {
-    const theme = track(() => state.currentTheme);
+    track(() => state.currentTheme);
     if (state.currentTheme) {
       installTheme(state.currentTheme);
     }
   })
+
 
   useClientEffect$(() => {
     if (!Object.keys(state.routesStructure).length) {
@@ -55,7 +62,7 @@ export default component$(() => {
     const listener = ()=> {
       setTimeout(() => {
         setLocationPath({path: location.pathname, query: location.query});
-        firstMenuIniting(location.pathname);
+        state.routesStructure = firstMenuIniting(location.pathname);
       },100)
     }
 
@@ -73,14 +80,6 @@ export default component$(() => {
     return '';
   }
 
-  function getBsCssFile(currentTheme?: AvailableBsVersions): string {
-    if (currentTheme === 'bs5') {
-      return _bs5Css;
-    }
-
-    return _bs4Css;
-  }
-
   const clickedMenuItem = $((value?: string) => {
     if (!value) {
       return;
@@ -96,14 +95,7 @@ export default component$(() => {
     }
   });
 
-  const installTheme = $((theme: AvailableBsVersions) => {
-    setTheme(theme);
-    const currentTheme = currentBsVersion();
-    styleManager.setStyle('theme', getBsCssFile(currentTheme));
-    if (currentTheme) {
-      themeStorage.storeTheme(currentTheme);
-    }
-  })
+
 
   return (
     <div id="sidebar" className={`sidebar ${state.menuIsOpened ? 'menuIsOpened' : ''}`}>
@@ -120,8 +112,8 @@ export default component$(() => {
         <div class="bootstrap-version transition-option">
           <span className={`transition-option ${!state.menuIsOpened ? 'hideText' : ''}`}>Bootstrap: </span>
           <div class="flex-nowrap d-flex">
-            {/*<button type="button" className={`btn ${state.currentTheme === 'bs4' ? 'selected' : ''}`} onClick$={(() => {installTheme('bs4')})}>4</button>*/}
-            {/*<button type="button" className={`btn ${state.currentTheme === 'bs5' ? 'selected' : ''}`} onClick$={(() => {installTheme('bs5')})}>5</button>*/}
+            <button type="button" className={`btn ${state.currentTheme === 'bs4' ? 'selected' : ''}`} onClick$={() => state.currentTheme = 'bs4'}>4</button>
+            <button type="button" className={`btn ${state.currentTheme === 'bs5' ? 'selected' : ''}`} onClick$={() => state.currentTheme = 'bs5'}>5</button>
           </div>
         </div>
       </div>

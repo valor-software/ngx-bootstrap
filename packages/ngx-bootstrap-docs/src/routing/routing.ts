@@ -21,6 +21,7 @@ export type NestedRouteType = {
   path?: string;
   isOpened: boolean;
   title: string;
+  order: number;
   fragments: {
     title: string;
     path: string;
@@ -57,14 +58,31 @@ export const SideBarNestedRoutes: {[key:string]: NestedRouteType} = {
     parentRoute: 'components', title: 'Dropdowns',
     path: '/components/dropdown',
     isOpened: false,
-    fragments: []
+    fragments: [],
+    order: 1
   },
   schematics: {
     parentRoute: 'documentation', title: 'Schematics',
     path: '/schematics',
     isOpened: false,
-    fragments: []
-  }
+    fragments: [],
+    order: 3
+  },
+  discover: {
+    parentRoute: 'documentation', title: 'Discover',
+    path: '/discover',
+    isOpened: false,
+    fragments: [],
+    order: 2
+  },
+  documentation: {
+    parentRoute: 'documentation', title: 'Documentation',
+    path: '/documentation',
+    isOpened: false,
+    fragments: [],
+    order: 1
+  },
+
 };
 
 export function refactorPathName(path: string): string {
@@ -94,6 +112,13 @@ export function initRouteColliction(): SidebarRoutesType {
       SidebarRoutesStructure[parentRoute as keyof typeof SidebarRoutesStructure].nestedRoutes.push(nestedRoute);
     }
   }
+
+   Object.keys(SidebarRoutesStructure).map(item => {
+    if (SidebarRoutesStructure[item as keyof typeof SidebarRoutesStructure]?.nestedRoutes.length) {
+      SidebarRoutesStructure[item as keyof typeof SidebarRoutesStructure]?.nestedRoutes.sort((a,b) => a.order - b.order)
+    }
+  })
+
   generalRoutesStructure = SidebarRoutesStructure;
   return SidebarRoutesStructure;
 }
@@ -186,18 +211,17 @@ export function firstMenuIniting(location: string): Partial<SidebarRoutesType> {
   if (generalRoutesStructure) {
     resetMenuItems();
   }
-
-  generalRoutesStructure = openMenuWithRoutePath(refactorPathsNames(location)) || generalRoutesStructure;
+  const pathArr = refactorPathsNames(location);
+  generalRoutesStructure = openMenuWithRoutePath([...pathArr]) || generalRoutesStructure;
   return generalRoutesStructure;
 }
 
-export function openMenuWithRoutePath(path: string[]): Partial<SidebarRoutesType> | undefined {
-
-  if (path.length > 1) {
-    return openMenuWithRoute(`/${path[0]}/${path[1]}`, path[0]) || generalRoutesStructure;
+export function openMenuWithRoutePath(pathValue: string[]): Partial<SidebarRoutesType> | undefined {
+  if (pathValue.length > 1) {
+    return openMenuWithRoute(`/${pathValue[0]}/${pathValue[1]}`, pathValue[0]) || generalRoutesStructure;
   }
 
-  return openMenuWithRoute(path[0], path[0]);
+  return openMenuWithRoute(pathValue[0], pathValue[0]);
 }
 
 export function openMenuWithRoute(routePath: string, parentPath: string) {
@@ -210,7 +234,6 @@ export function openMenuWithRoute(routePath: string, parentPath: string) {
     generalRoutesStructure[parentPath as keyof typeof generalRoutesStructure].isOpened = true;
     let currentMenuItem = generalRoutesStructure[parentPath as keyof typeof generalRoutesStructure]?.nestedRoutes?.find(route => route.path === routePath);
     setMenuProperties(currentMenuItem);
-    return generalRoutesStructure;
   }
 
   if (SideBarNestedRoutes[routePath] && SideBarNestedRoutes[routePath].parentRoute) {
@@ -218,20 +241,16 @@ export function openMenuWithRoute(routePath: string, parentPath: string) {
     if (generalRoutesStructure[parentRoute as keyof typeof generalRoutesStructure]) {
       // @ts-ignore
       generalRoutesStructure[parentRoute as keyof typeof generalRoutesStructure].isOpened = true;
-      console.log(generalRoutesStructure[parentRoute as keyof typeof generalRoutesStructure])
       let currentMenuItem = generalRoutesStructure[parentRoute as keyof typeof generalRoutesStructure]?.nestedRoutes?.find(route => {
         const itemPath = route.path?.split('/').join('');
         return itemPath === routePath
       });
+
       setMenuProperties(currentMenuItem);
-      return generalRoutesStructure;
     }
 
   }
-
-
-
-
+  return generalRoutesStructure;
 }
 
 export function setMenuProperties(currentMenuItem?: NestedRouteType) {

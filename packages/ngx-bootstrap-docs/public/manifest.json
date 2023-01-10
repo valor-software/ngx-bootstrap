@@ -10,7 +10,7 @@
   "external": {
     "urls": [
       {
-        "url": "/css/bootstrap-5.1.0/css/bootstrap.min.css"
+        "url": "/css/bootstrap-5.2.3/css/bootstrap.min.css"
       },
       {
         "url": "/css/bootstrap-4.5.3/css/bootstrap.min.css"

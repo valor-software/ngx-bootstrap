@@ -3,7 +3,7 @@ import Header from '../components/header/header';
 import Footer from '../components/footer/footer';
 import Sidebar from "~/components/sidebar/sidebar";
 import { useLocation } from "@builder.io/qwik-city";
-import {firstMenuIniting, refactorPathName, setLocationPath} from '../routing/routing';
+import { firstMenuIniting, refactorPathName, setLocationPath } from '../routing/routing';
 
 export interface IState { routesList: string[]; showSideBar: boolean};
 

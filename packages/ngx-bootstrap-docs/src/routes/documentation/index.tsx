@@ -201,7 +201,7 @@ export default component$(() => {
             className="pln"></span>
 <span className="tag">&lt;link</span><span className="pln"> </span><span className="atn">href</span><span
               className="pun">=</span><span
-              className="atv">"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"</span><span
+              className="atv">"https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"</span><span
               className="pln"> </span><span className="atn">rel</span><span className="pun">=</span><span
               className="atv">"stylesheet"</span> <span className="atn">crossorigin</span><span className="pun">=</span><span
               className="atv">"anonymous"</span> <span className="atn">integrity</span><span

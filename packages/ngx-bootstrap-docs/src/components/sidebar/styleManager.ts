@@ -2,32 +2,33 @@
  * Class for managing stylesheets. Stylesheets are loaded into named slots so
  * that they can be removed or changed later.
  */
-export class StyleManager {
-    /**
-     * Set the stylesheet with the specified key.
-     */
-    setStyle(key: string, href: string) {
-        const linkElement = getLinkElementForKey(key);
 
-        if (!linkElement) {
-            return;
-        }
+/**
+ * Set the stylesheet with the specified key.
+ */
 
-        linkElement.setAttribute('href', href);
+export function setStyle(key: string, href: string) {
+    const linkElement = getLinkElementForKey(key);
+
+    if (!linkElement) {
+        return;
     }
 
-    /**
-     * Remove the stylesheet with the specified key.
-     */
-    removeStyle(key: string) {
-        const existingLinkElement = getExistingLinkElementByKey(key);
+    linkElement.setAttribute('href', href);
+}
 
-        if (!existingLinkElement || !document.head) {
-            return;
-        }
+/**
+ * Remove the stylesheet with the specified key.
+ */
 
-        document.head.removeChild(existingLinkElement);
+export function removeStyle(key: string) {
+    const existingLinkElement = getExistingLinkElementByKey(key);
+
+    if (!existingLinkElement || !document.head) {
+        return;
     }
+
+    document.head.removeChild(existingLinkElement);
 }
 
 function getLinkElementForKey(key: string) {

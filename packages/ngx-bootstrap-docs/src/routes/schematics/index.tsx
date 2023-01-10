@@ -1,6 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import DemoSection from "~/components/demo-section/demo-section";
-import {CustomLink} from "~/routing/link";
+import { CustomLink } from "~/routing/link";
 
 export default component$(() => {
   return (
@@ -68,18 +68,18 @@ export default component$(() => {
                         extensions.</p>
                         <p>In case CSS extension - <code>angular.json</code> file will be updated.</p>
                         <pre className="prettyprint lang-js prettyprinted">
-<span className="kwd">"styles"</span><span className="pun">: [</span>
-    "<span className="lit">./node_modules/bootstrap/dist/css/bootstrap.min.css</span>",
-    "<span className="lit">./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css</span>",
-    <span className="pln">  &hellip;</span>
+<span className="kwd">"styles"</span><span className="pun">: [</span><br/>
+<span>  </span>"<span className="lit">./node_modules/bootstrap/dist/css/bootstrap.min.css</span>",<br/>
+<span>  </span>"<span className="lit">./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css</span>",<br/>
+<span>  </span><span className="pln">  &hellip;</span><br/>
 <span className="pun">]</span>
           </pre>
                         <p>In case SCSS extension - for updating will be used main style file (standard
                             ex. <code>styles.scss</code>).</p>
                         <pre className="prettyprint lang-js prettyprinted">
-/* Importing Bootstrap SCSS file. */
-<span className="kwd">@import</span>"<span className="lit">~bootstrap/scss/bootstrap</span>";
-/* Importing Datepicker SCSS file. */
+/* Importing Bootstrap SCSS file. */<br/>
+<span className="kwd">@import</span>"<span className="lit">~bootstrap/scss/bootstrap</span>";<br/>
+/* Importing Datepicker SCSS file. */<br/>
 <span className="kwd">@import</span>"<span className="lit">node_modules/ngx-bootstrap/datepicker/bs-datepicker</span>";
           </pre>
                         <p>If the project will not have any style file or project will not have style files with
@@ -89,22 +89,23 @@ export default component$(() => {
                         <p>The project's main module (standard ex. <code>app.module.ts</code>) will be updated with
                             import of <code>BrowserAnimationsModule</code>, if it has not been previously imported.</p>
                         <pre className="prettyprint lang-js prettyprinted">
-// added import of BrowserAnimationsModule to app.module.ts by ngx-bootstrap schematics
-<span className="kwd">import </span><span className="pun">{'{'}</span><span
-                            className="lit"> BrowserAnimationsModule </span><span className="pun">{'}'}</span><span
-                            className="kwd"> from </span><span>'@angular/platform-browser/animations';</span>
+// added import of BrowserAnimationsModule to app.module.ts by ngx-bootstrap schematics<br/>
+<span className="kwd">import </span><span className="pun">{'{'}</span>
+<span className="lit"> BrowserAnimationsModule </span>
+<span className="pun">{'}'}</span>
+<span className="kwd"> from </span><span>'@angular/platform-browser/animations';</span><br/>
 
-@NgModule(<span className="pun">{'{'}</span>
-    declarations: [
+@NgModule(<span className="pun">{'{'}</span><br/>
+<span>  </span>declarations: [
       AppComponent
-    ],
-    <span className="kwd">imports</span>: [
-        <span className="pln">  &hellip;</span>
-        <span className="lit">BrowserAnimationsModule</span>,
-    ],
-    providers: [],
-        bootstrap: [AppComponent]
-    <span className="pun">{'}'}</span>)
+    ],<br/>
+<span>  </span><span className="kwd">imports</span>: [<br/>
+        <span>      </span><span className="pln">&hellip;</span><br/>
+        <span>      </span><span className="lit">BrowserAnimationsModule</span>,<br/>
+    <span>  </span>],<br/>
+    <span>  </span>providers: [],<br/>
+        <span>  </span>bootstrap: [AppComponent]<br/>
+    <span className="pun">{'}'}</span>)<br/>
           </pre>
                     </li>
                 </ul>
@@ -120,20 +121,20 @@ export default component$(() => {
                         <p>If ngx-bootstrap has been installed previously, in this case will be updated only project's
                             main file (standard ex. <code>app.module.ts</code>)</p>
                         <pre className="prettyprint lang-js prettyprinted">
-// added import of AccordionModule to app.module.ts by ngx-bootstrap schematics
-<span className="kwd">import </span><span className="pun">{'{'}</span><span
-                            className="lit"> AccordionModule </span><span className="pun">{'}'}</span><span
-                            className="kwd"> from </span><span>'ngx-bootstrap/accordion';</span>
+// added import of AccordionModule to app.module.ts by ngx-bootstrap schematics<br/>
+<span className="kwd">import </span><span className="pun">{'{'}</span>
+                            <span className="lit"> AccordionModule </span><span className="pun">{'}'}</span><span
+                            className="kwd"> from </span><span>'ngx-bootstrap/accordion';</span><br/>
 
-@NgModule(<span className="pun">{'{'}</span>
-    declarations: [
-      AppComponent
-    ],
-    <span className="kwd">imports</span>: [
-        <span className="pln">  &hellip;</span>
-        <span className="lit">AccordionModule.forRoot()</span>,
-    ],
-        bootstrap: [AppComponent]
+@NgModule(<span className="pun">{'{'}</span><br/>
+    <span>  </span>declarations: [<br/>
+      <span>    </span>AppComponent<br/>
+    <span>  </span>],<br/>
+    <span>  </span><span className="kwd">imports</span>: [<br/>
+        <span>    </span><span className="pln">&hellip;</span><br/>
+        <span>    </span><span className="lit">AccordionModule.forRoot()</span>,<br/>
+    <span>  </span>],<br/>
+        <span>  </span>bootstrap: [AppComponent]<br/>
     <span className="pun">{'}'}</span>)
           </pre>
                     </li>
