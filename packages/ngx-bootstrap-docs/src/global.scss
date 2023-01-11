@@ -2,3 +2,11 @@
 @import "../public/css/style";
 @import "../public/css/adaptive";
 @import "../public/css/prettify-angulario.css";
+
+.anchor-elem {
+  scroll-margin-top: 70px;
+}
+
+:target {
+  scroll-margin-top: 70px;
+}

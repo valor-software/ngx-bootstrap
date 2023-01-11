@@ -1,39 +1,8 @@
-import {component$, $, useRef, useOnWindow, useClientEffect$} from '@builder.io/qwik';
-import { Link, useNavigate, useLocation } from '@builder.io/qwik-city';
+import {component$, $} from '@builder.io/qwik';
+import { Link } from '@builder.io/qwik-city';
 import DemoSection from '../../components/demo-section/demo-section';
-import * as React from 'react';
 
 export default component$(() => {
-  const nav = useNavigate();
-
-
-  useClientEffect$(() => {
-    // if (hash) {
-    //   // We want to reset if the hash has changed
-    //   if (hashRef.current !== hash) {
-    //     hashRef.current = hash;
-    //     scrolledRef.current = false;
-    //   }
-    //
-    //   // only attempt to scroll if we haven't yet (this could have just reset above if hash changed)
-    //   if (!scrolledRef.current) {
-    //     const id = hash.replace('#', '');
-    //     const element = document.getElementById(id);
-    //     if (element) {
-    //       element.scrollIntoView({ behavior: 'smooth' });
-    //       scrolledRef.current = true;
-    //     }
-    //   }
-    // }
-})
-
-  const anchorScroll = $((url: string, anchor: string) => {
-    window.history.replaceState(null, '', `#${anchor}`);
-  });
-
-  useClientEffect$(() => {
-
-  })
 
   return (
     <DemoSection>
@@ -92,7 +61,7 @@ export default component$(() => {
           <ol>
             <li>
               {/*todo make anchor dcroll in normal way, there are troubles now*/}
-              <Link href={'./#getting-started'} preventdefault:click onClick$={() => anchorScroll('documentation', 'usage--demo')}>Getting Started</Link>
+              <Link href={'./#getting-started'}>Getting Started</Link>
               {/*<a href="." preventdefault:click onClick$={() => anchorScroll('documentation', 'usage--demo')}>*/}
               {/*  click me!*/}
               {/*</a>*/}

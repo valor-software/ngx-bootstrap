@@ -396,6 +396,10 @@ header {
   display: flex;
   flex-wrap: wrap;
   padding-top: $header-height;
+  
+  .cursor-pointer {
+    cursor: pointer;
+  }
 
   .button-box {
     width: 450px;
