@@ -38,11 +38,9 @@ export default component$((opts: { url: string | undefined }) => {
     <>
       <Header />
       {state.showSideBar && (<Sidebar />)}
-      <main>
-        <section>
-          <Slot />
-        </section>
-      </main>
+        <div>
+            <Slot />
+        </div>
       <Footer>
       </Footer>
     </>

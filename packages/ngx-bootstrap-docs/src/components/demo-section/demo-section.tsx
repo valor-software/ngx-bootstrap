@@ -17,9 +17,9 @@ export default component$((props: {
 
 
               {(props.name || props.src) &&
-  (              <h1>{props.name}
+  (             <h1>{props.name}
                 <Link href={props.src} target="_blank" rel="noopener">
-                <img src="/images/link-doc.png" alt="component on github"/>
+                  <img src="/images/link-doc.png" alt="component on github"/>
                 </Link>
                 </h1>)
               }

@@ -24,6 +24,7 @@ export interface ITabsSetProps {
     vertical?: boolean;
     justified?: boolean;
     type?: string;
+    onChange?: (activeTabId: string) => void
 }
 
 
@@ -43,8 +44,9 @@ export const Tabset = component$((props: ITabsSetProps) => {
         classMap: {},
         ariaLabel: 'Tabs',
         tabsActiveId: null,
-        tabsCheck: {}
+        tabsCheck: {},
     }, {recursive: true});
+
 
     useContextProvider(TabsContext, state);
 
@@ -53,6 +55,9 @@ export const Tabset = component$((props: ITabsSetProps) => {
         track(() => state.tabsCheck);
         const activeTab = state._tabs.find(item => item.active);
         state.tabsActiveId = activeTab?.id || state._tabs[0]?.id;
+        if (props.onChange) {
+            props.onChange(state.tabsActiveId);
+        }
     });
 
 

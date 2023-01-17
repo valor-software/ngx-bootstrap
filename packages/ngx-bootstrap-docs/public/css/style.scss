@@ -533,7 +533,7 @@ header {
 .main-container {
   padding: 25px;
 
-  tabset {
+  .tabset {
 
     .nav-tabs {
 
@@ -655,7 +655,7 @@ header {
   }
 }
 
-docs-section {
+.docs-section {
   display: flex;
   justify-content: space-between;
   margin-top: 40px;
@@ -739,7 +739,7 @@ docs-section {
   padding: 15px;
 }
 
-tabset {
+.tabset {
   width: 100%;
   max-width: calc(100% - #{$add-nav-width + 50px});
 
