@@ -59,27 +59,41 @@ export default component$(() => {
 
           <h2>Table of contents</h2>
           <ol>
-            <li>
-              {/*todo make anchor dcroll in normal way, there are troubles now*/}
-              <Link href={'./#getting-started'}>Getting Started</Link>
-              {/*<a href="." preventdefault:click onClick$={() => anchorScroll('documentation', 'usage--demo')}>*/}
-              {/*  click me!*/}
-              {/*</a>*/}
+            <li
+                onClick$={() => {document.getElementById('getting-started')?.scrollIntoView()}} class='cursor-pointer'
+            >
+              <a href='' preventdefault:click>Getting Started</a>
             </li>
-            {/*<li><a routerLink="." fragment="usage--demo">Usage & Demo</a></li>*/}
-            {/*<li><a routerLink="." fragment="supporting-ngx-bootstrap">Supporting NGX-Bootstrap</a></li>*/}
-            {/*<li><a routerLink="." fragment="installation">Installation</a></li>*/}
-            {/*<li><a routerLink="." fragment="compatibility">Compatibility</a></li>*/}
-            {/*<li><a routerLink="." fragment="troubleshooting">Troubleshooting</a></li>*/}
-            {/*<li><a routerLink="." fragment="contribution">Contributing</a></li>*/}
-            {/*<li><a routerLink="." fragment="credits">Credits</a></li>*/}
-            {/*<li><a routerLink="." fragment="license">License</a></li>*/}
+            <li
+                onClick$={() => {document.getElementById('usage--demo')?.scrollIntoView()}} class='cursor-pointer'
+            ><a href='' preventdefault:click>Usage & Demo</a></li>
+            <li
+                onClick$={() => {document.getElementById('supporting-ngx-bootstrap')?.scrollIntoView()}} class='cursor-pointer'
+            ><a href='' preventdefault:click>Supporting NGX-Bootstrap</a></li>
+            <li
+                onClick$={() => {document.getElementById('installation')?.scrollIntoView()}} class='cursor-pointer'
+            ><a href='' preventdefault:click>Installation</a></li>
+            <li
+                onClick$={() => {document.getElementById('compatibility')?.scrollIntoView()}} class='cursor-pointer'
+            ><a href='' preventdefault:click>Compatibility</a></li>
+            <li
+                onClick$={() => {document.getElementById('troubleshooting')?.scrollIntoView()}} class='cursor-pointer'
+            ><a href='' preventdefault:click>Troubleshooting</a></li>
+            <li
+                onClick$={() => {document.getElementById('contribution')?.scrollIntoView()}} class='cursor-pointer'
+            ><a href='' preventdefault:click>Contributing</a></li>
+            <li
+                onClick$={() => {document.getElementById('credits')?.scrollIntoView()}} class='cursor-pointer'
+            ><a href='' preventdefault:click>Credits</a></li>
+            <li
+                onClick$={() => {document.getElementById('license')?.scrollIntoView()}} class='cursor-pointer'
+            ><a href='' preventdefault:click>License</a></li>
           </ol>
 
-          <h2 id="getting-started">
+          <h2 id="getting-started" class='anchor-elem'>
             Getting Started
-            <Link className="anchor-link" href={'.'}>#</Link>
-            {/*<a className="anchor-link" routerLink="." fragment="getting-started">#</a>*/}
+            <Link className="anchor-link" href={'./#getting-started'}>#</Link>
+            {/*<a className="anchor-link" href="./#getting-started">#</a>*/}
           </h2>
           <p>ngx-bootstrap provides Bootstrap components powered by Angular, so you don't need to include original JS
             components.</p>

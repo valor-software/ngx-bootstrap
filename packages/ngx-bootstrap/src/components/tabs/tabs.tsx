@@ -31,46 +31,30 @@ export interface IState {
     _tabs: ITab[];
     classMap: { [key: string]: boolean };
     ariaLabel: string;
-    activeTab: ITab;
+    tabsCheck: unknown;
+    tabsActiveId: string | null;
 }
 
-export const TabsContext = createContext<ITab[]>('tabs-context');
-export const ActiveTabContext = createContext<ITab>('active-tab-context');
-export const ActiveTabIdContext = createContext<any>('active-tab-id-context');
+export const TabsContext = createContext<IState>('tabs-context');
 
 export const Tabset = component$((props: ITabsSetProps) => {
     const state = useStore<IState>({
         _tabs: [],
         classMap: {},
         ariaLabel: 'Tabs',
-        // @ts-ignore
-        activeTab: {}
+        tabsActiveId: null,
+        tabsCheck: {}
     }, {recursive: true});
-    let idContext = {
-        id: '1234'
-    }
 
-    useContextProvider(TabsContext, state._tabs);
-    useContextProvider(ActiveTabContext, state.activeTab);
-    useContextProvider(ActiveTabIdContext, idContext);
+    useContextProvider(TabsContext, state);
 
     useTask$(({ track }: { track: Function }) => {
-        track(() => state._tabs);
-        state._tabs.map(item => {
-            if (item.active) {
-                state.activeTab = item;
-                idContext.id = '456'
-            }
-        })
-
-        console.log('track active tab', state.activeTab)
-
+        // Can't track state.tabs here because the pointer to that variable is the same each re-render
+        track(() => state.tabsCheck);
+        const activeTab = state._tabs.find(item => item.active);
+        state.tabsActiveId = activeTab?.id || state._tabs[0]?.id;
     });
-    // let tabs = useContext(TabsContext)
 
-    useClientEffect$(() => {
-
-    })
 
     const keyNavActions = $((event: any, index: number) => {
         //todo add keyboard implementation
@@ -84,7 +68,7 @@ export const Tabset = component$((props: ITabsSetProps) => {
             item.active = false;
             if (item.id === tab.id) {
                 item.active = true;
-                state.activeTab = Object.assign(item);
+                state.tabsCheck = {};
             }
         });
 

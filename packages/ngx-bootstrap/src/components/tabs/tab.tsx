@@ -1,5 +1,5 @@
-import { component$, Slot, useClientEffect$, useContext, useContextProvider, useTask$ } from "@builder.io/qwik";
-import {ActiveTabContext, ActiveTabIdContext, TabsContext} from "./tabs";
+import {component$, Slot, useClientEffect$, useContext, useContextProvider, useStore, useTask$} from "@builder.io/qwik";
+import { TabsContext} from "./tabs";
 
 export interface ITab {
     heading?: string;
@@ -11,23 +11,16 @@ export interface ITab {
 }
 
 export const Tab = component$((props:ITab) => {
-    let tab = useContext(ActiveTabContext);
-    let tabsArr = useContext(TabsContext);
-    let id = useContext(ActiveTabIdContext);
-
-    useTask$(({ track }: { track: Function }) => {
-        track(() => tab);
-    });
-
-    useTask$(({ track }: { track: Function }) => {
-        track(() => tabsArr);
-    });
+    let tabsState = useContext(TabsContext);
 
     useClientEffect$(() => {
-            if (!tabsArr.includes(props)) {
-                tabsArr.push(props);
-            }
-    })
+        tabsState._tabs.push(props);
+        tabsState.tabsCheck = {};
+    });
+
+    useTask$(({ track }: { track: Function }) => {
+        track(() => tabsState.tabsActiveId);
+    });
 
     //todo test with more details such events for angular as ex
 //     /** fired when tab became active, $event:Tab equals to selected instance of Tab component */
@@ -39,18 +32,20 @@ export const Tab = component$((props:ITab) => {
 
     return (
         <>
-            {!props.active && <div></div>}
-            <div
-                id={props.id}
-                class={`tab-pane ${props.customClass ? props.customClass : ''} ${props.active ? 'active' : ''} `}
-                role={'tab-panel'}
-                aria-labelledby={`${props.id}`}
-            >
-                {tab.heading}
-                <Slot></Slot>
-                {props.id}
-            </div>
-
+            {tabsState.tabsActiveId === props.id ? (
+                <div
+                    id={props.id}
+                    class={['tab-pane active', props.customClass]}
+                    role={'tab-panel'}
+                    aria-labelledby={`${props.id}`}
+                >
+                    <Slot></Slot>
+                    {props.id}
+                </div>
+            ) : (
+                // it is needed for component rendering, little workaround
+                <div></div>
+            )}
         </>
     )
 })

@@ -7,8 +7,8 @@ export default component$(() => {
       Components page
         <div style={'margin-top: 200px; margin-left: 400px;'}>
             <Tabset>
-                <Tab heading="Justified" id={'tab-1'} active={true}>Justified content</Tab>
-                <Tab heading="SJ" id={'tab-2'}>SJ</Tab>
+                <Tab heading="Justified" id={'tab-1'} >Justified content</Tab>
+                <Tab heading="SJ" id={'tab-2'} active={true}>SJ</Tab>
                 <Tab heading="Long Justified" id={'tab-3'}>Long Justifie</Tab>
             </Tabset>
         </div>
