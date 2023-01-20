@@ -61,6 +61,13 @@ export const SideBarNestedRoutes: {[key:string]: NestedRouteType} = {
     fragments: [],
     order: 1
   },
+  tabs: {
+    parentRoute: 'components', title: 'Tabs',
+    path: '/components/tabs',
+    isOpened: false,
+    fragments: [],
+    order: 1
+  },
   schematics: {
     parentRoute: 'documentation', title: 'Schematics',
     path: '/schematics',
@@ -272,5 +279,11 @@ export function setLocationPath(value: {path: string, query: Record<string, stri
     path: value.path,
     query: value.query,
   };
+}
+
+export function getQueryParams(key: string): string | null {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  return urlParams.get(key);
 }
 

@@ -1,4 +1,4 @@
-import {component$, $, useOn, useOnWindow, useClientEffect$, useStore, useTask$} from '@builder.io/qwik';
+import {component$, $, useClientEffect$, useStore, useTask$} from '@builder.io/qwik';
 import SearchInput from "~/components/header/serach-input";
 import {
   SidebarRoutesType,
@@ -10,16 +10,11 @@ import {AvailableBsVersions, getStoredTheme, storeTheme} from "~/components/side
 import { setTheme, currentBsVersion } from './theme-provider';
 import {setStyle} from "~/components/sidebar/styleManager";
 
-
-
-
-
 interface IState {
   menuIsOpened: boolean;
   routesStructure: Partial<SidebarRoutesType>,
   currentTheme: AvailableBsVersions | null;
 }
-
 
 export default component$(() => {
   const navigation = useNavigate();

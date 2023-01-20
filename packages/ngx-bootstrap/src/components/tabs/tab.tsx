@@ -16,6 +16,7 @@ export const Tab = component$((props:ITab) => {
     useClientEffect$(() => {
         tabsState._tabs.push(props);
         tabsState.tabsCheck = {};
+        console.log(props);
     });
 
     useTask$(({ track }: { track: Function }) => {
@@ -40,7 +41,6 @@ export const Tab = component$((props:ITab) => {
                     aria-labelledby={`${props.id}`}
                 >
                     <Slot></Slot>
-                    {props.id}
                 </div>
             ) : (
                 // it is needed for component rendering, little workaround

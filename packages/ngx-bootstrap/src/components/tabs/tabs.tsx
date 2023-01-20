@@ -27,7 +27,6 @@ export interface ITabsSetProps {
     onChange?: (activeTabId: string) => void
 }
 
-
 export interface IState {
     _tabs: ITab[];
     classMap: { [key: string]: boolean };
@@ -46,7 +45,6 @@ export const Tabset = component$((props: ITabsSetProps) => {
         tabsActiveId: null,
         tabsCheck: {},
     }, {recursive: true});
-
 
     useContextProvider(TabsContext, state);
 

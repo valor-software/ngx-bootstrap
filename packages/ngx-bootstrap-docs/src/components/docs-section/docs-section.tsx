@@ -1,6 +1,10 @@
-import {component$, useStore, $, useClientEffect$} from '@builder.io/qwik';
+import {component$, useStore, $, useClientEffect$, Slot, useContext, render, useSignal} from '@builder.io/qwik';
 import {Tab, Tabset} from "ngx-bootstrap";
 import {useNavigate} from "@builder.io/qwik-city";
+import {getQueryParams} from "~/routing/routing";
+import ExamplesComponent from '../examples-component/examples-component';
+import { ContentSection } from '~/models/content-section.model';
+
 
 export enum tabsNames {
     overview = 'overview',
@@ -14,59 +18,68 @@ export enum tabsNamesIds {
     'tab-examples' = 'examples'
 }
 
-export default component$(() => {
-    const state = useStore({
-        activeTab: tabsNames.overview
+export type IState = {
+    activeTab: null | tabsNames
+}
+
+export default component$((props: {section: ContentSection[]}) => {
+    const state = useStore<IState>({
+        activeTab: null
     });
 
     const navigate = useNavigate();
 
     useClientEffect$(() => {
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const tab = urlParams.get('tab');
-        state.activeTab = tabsNames[tab as keyof typeof tabsNames] || tabsNames.overview;
-        console.log('check activeTab', state.activeTab);
+        if (!state.activeTab) {
+            const tab = getQueryParams('tab');
+            state.activeTab = tabsNames[tab as keyof typeof tabsNames] || tabsNames.overview;
+        }
     });
 
     useClientEffect$(() => {
-        // const listener = ()=> {
-        //     setTimeout(() => {
-        //         const queryString = window.location.search;
-        //         const urlParams = new URLSearchParams(queryString);
-        //         const tab = urlParams.get('tab');
-        //         console.log('tab2', tab)
-        //     },100)
-        // }
-        //
-        // window.addEventListener('locationchange', listener);
-        // return ()=> {window.removeEventListener('locationchange',listener)}
+        const listener = ()=> {
+            setTimeout(() => {
+                const tab = getQueryParams('tab');
+                state.activeTab = tabsNames[tab as keyof typeof tabsNames] || tabsNames.overview;
+            },100)
+        }
+
+        window.addEventListener('locationchange', listener);
+        return ()=> {window.removeEventListener('locationchange',listener)}
     })
 
     const onChangeFunc = $((activeTabId: string) => {
-        // if (!state.activeTab) {
-            // navigate.path = `?tab=${tabsNamesIds[activeTabId as keyof typeof tabsNamesIds]}`;
-            // const key = tabsNamesIds[activeTabId as keyof typeof tabsNamesIds] === 'overview' ? tabsNames.overview :
-            //     tabsNamesIds[activeTabId as keyof typeof tabsNamesIds] === 'api' ? tabsNames.api : tabsNames.examples;
-
-
-
-            // console.log('onchange func', key);
-        // }
+        const urlTab = getQueryParams('tab');
+        const activeTab = tabsNamesIds[activeTabId as keyof typeof tabsNamesIds] === 'overview' ? tabsNames.overview :
+        tabsNamesIds[activeTabId as keyof typeof tabsNamesIds] === 'api' ? tabsNames.api : tabsNames.examples;
+        if (urlTab !== activeTab) {
+            window.dispatchEvent(new Event('locationchange'));
+            navigate.path = `?tab=${activeTab}`;
+        }
 
     })
 
     return (
         <div class="docs-section">
             <div className="example-tabset-box tabset">
-                <Tabset onChange={onChangeFunc}>
-                    <Tab heading="Overview" id={'tab-overview'} active={state.activeTab === tabsNames.overview}
-                         customClass={'example-tabset cursor-pointer'}>Justified content</Tab>
-                    <Tab heading="API" id={'tab-api'} active={state.activeTab === tabsNames.api}
-                         customClass={'example-tabset cursor-pointer'}>SJ</Tab>
-                    <Tab heading="Examples" id={'tab-examples'} active={state.activeTab === tabsNames.examples}
-                         customClass={'example-tabset cursor-pointer'}>Long Justifie</Tab>
-                </Tabset>
+                {!!state.activeTab && (
+                    <Tabset onChange={onChangeFunc}>
+                        <Tab heading="Overview" id={'tab-overview'} active={state.activeTab === tabsNames.overview}
+                             customClass={'example-tabset cursor-pointer'}>
+                            <ExamplesComponent section={props.section[0]}>
+                                <Slot name={'overview'}/>
+                            </ExamplesComponent>
+                        </Tab>
+                        <Tab heading="API" id={'tab-api'} active={state.activeTab === tabsNames.api}
+                             customClass={'example-tabset cursor-pointer'}>
+                            <Slot name={'api'}/>
+                        </Tab>
+                        <Tab heading="Examples" id={'tab-examples'} active={state.activeTab === tabsNames.examples}
+                             customClass={'example-tabset cursor-pointer'}>
+                            <Slot name={'examples'}/>
+                        </Tab>
+                    </Tabset>
+                )}
             </div>
         </div>
     );
