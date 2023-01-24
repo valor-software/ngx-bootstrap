@@ -21,6 +21,7 @@
 //   NgApiDocConfigComponent
 // } from '@ngx-bootstrap-doc/docs';
 import { ContentSection } from '~/models/content-section.model';
+import HtmlTag from './demos/basic.html?raw';
 
 
 export const demoComponentContent: ContentSection[] = [
@@ -32,7 +33,7 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Basic',
         anchor: 'basic',
-        // component: require('!!raw-loader!./demos/basic/basic'),
+        component: HtmlTag,
         // html: require('!!raw-loader!./demos/basic/basic.html'),
       },
   //     {

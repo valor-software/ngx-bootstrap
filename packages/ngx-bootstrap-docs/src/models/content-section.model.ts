@@ -10,7 +10,7 @@ export type ContentSection = {
     anchor?: string;
     outlet?: any;
     description?: string;
-    content?: ComponentExample[] | ComponentApi[];
+    content?: ComponentExample[];
     importInfo?: string;
     tabName?: 'overview' | 'api' | 'examples';
     usage?: SourceCodeModel;
@@ -24,7 +24,7 @@ export type ComponentExample = {
     anchor: string;
     title: string;
     description?: string;
-    component?: SourceCodeModel;
+    component?: string;
     html?: SourceCodeModel;
     style?: string;
     css?: string;

@@ -13,7 +13,6 @@ export default component$((props: {section:ContentSection}) => {
     useClientEffect$(() => {
         const key = tabsNames[getQueryParams('tab') as keyof typeof tabsNames]
         state.tabName = key || tabsNames.overview;
-        console.log(props.section)
     });
 
     // const openStackBlitzDemo = $((comp, html) => {

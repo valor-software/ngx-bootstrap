@@ -50,13 +50,18 @@ export default component$((props: {section: ContentSection[]}) => {
 
     const onChangeFunc = $((activeTabId: string) => {
         const urlTab = getQueryParams('tab');
-        const activeTab = tabsNamesIds[activeTabId as keyof typeof tabsNamesIds] === 'overview' ? tabsNames.overview :
-        tabsNamesIds[activeTabId as keyof typeof tabsNamesIds] === 'api' ? tabsNames.api : tabsNames.examples;
-        if (urlTab !== activeTab) {
-            window.dispatchEvent(new Event('locationchange'));
-            navigate.path = `?tab=${activeTab}`;
+        const key = tabsNamesIds[activeTabId as keyof typeof tabsNamesIds]
+
+        if (key && state.activeTab && state.activeTab.toString() !== key) {
+                window.dispatchEvent(new Event('locationchange'));
+                navigate.path = `?tab=${key}`;
+            console.log(urlTab, key)
         }
 
+        if (key && !urlTab) {
+            window.dispatchEvent(new Event('locationchange'));
+            navigate.path = `?tab=${tabsNames.overview}`;
+        }
     })
 
     return (

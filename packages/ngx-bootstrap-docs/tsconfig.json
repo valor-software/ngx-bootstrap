@@ -16,7 +16,7 @@
     "isolatedModules": true,
     "outDir": "tmp",
     "noEmit": true,
-    "types": ["node", "vite/client"],
+    "types": ["node", "vite/client", "raw-loader.d.ts"],
     "paths": {
       "~/*": ["./src/*"],
       "ngx-bootstrap": [
