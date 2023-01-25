@@ -1,3 +1,5 @@
+import {Component} from "@builder.io/qwik";
+
 export type ComponentApi = {
     title?: string;
     anchor?: string;
@@ -25,7 +27,7 @@ export type ComponentExample = {
     title: string;
     description?: string;
     component?: string;
-    html?: SourceCodeModel;
+    html: string;
     style?: string;
     css?: string;
     outlet?: any; // ToDo: Component<T>

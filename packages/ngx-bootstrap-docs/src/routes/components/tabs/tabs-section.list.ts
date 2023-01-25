@@ -21,7 +21,8 @@
 //   NgApiDocConfigComponent
 // } from '@ngx-bootstrap-doc/docs';
 import { ContentSection } from '~/models/content-section.model';
-import HtmlTag from './demos/basic.html?raw';
+import BasicCode from '../../../components/demos/tabs/basic/basic.html?raw';
+import BasicHtml from '../../../components/demos/tabs/basic/basic';
 
 
 export const demoComponentContent: ContentSection[] = [
@@ -33,8 +34,8 @@ export const demoComponentContent: ContentSection[] = [
       {
         title: 'Basic',
         anchor: 'basic',
-        component: HtmlTag,
-        // html: require('!!raw-loader!./demos/basic/basic.html'),
+        component: BasicCode,
+        html: '../../../components/demos/tabs/basic/basic',
       },
   //     {
   //       title: 'Manual selection',

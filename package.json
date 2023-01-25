@@ -11,6 +11,7 @@
   "dependencies": {
     "@types/fs-extra": "^11.0.1",
     "fs-extra": "^11.1.0",
+    "prismjs": "^1.29.0",
     "raw-loader": "^4.0.2",
     "tslib": "^2.3.0",
     "vite-plugin-require": "^1.1.10"

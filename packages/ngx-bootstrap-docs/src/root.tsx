@@ -28,6 +28,8 @@ export default component$(() => {
         <link rel="author" href="https://github.com/valor-software/ngx-bootstrap/graphs/contributors"/>
         <link rel="stylesheet" className="style-manager-theme"
         href='/css/bootstrap-5.2.3/css/bootstrap.min.css'/>
+        {/*<link href="themes/prism.css" rel="stylesheet" />*/}
+        <link href="/css/prism.css" rel="stylesheet" />
         <meta name="mobile-web-app-capable" content="yes"/>
         <meta name="apple-mobile-web-app-capable" content="yes"/>
         <meta name="application-name" content="ngx-bootstrap"/>
@@ -41,6 +43,7 @@ export default component$(() => {
       <body lang="en">
         <RouterOutlet />
         <ServiceWorkerRegister />
+        <script async src='/js/prism.js'></script>
       </body>
     </QwikCityProvider>
   );
