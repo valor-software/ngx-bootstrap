@@ -1,4 +1,4 @@
-.prettyprint {
+pre[class*=language-].prettyprint {
   white-space: pre-wrap;
   background: #F5F6F7;
   font-family: Monaco,"Lucida Console",monospace;
@@ -10,33 +10,32 @@
   line-height: 24px;
   margin-bottom: 24px;
   border-radius: 0 0 4px 4px;
-  padding: 16px 32px;
   border-top: none;
 }
 
-.prettyprint.linenums,.prettyprint[class^="linenums:"],.prettyprint[class*=" linenums:"] {
-  padding: 0
-}
+/*.prettyprint.linenums,.prettyprint[class^="linenums:"],.prettyprint[class*=" linenums:"] {*/
+/*  padding: 0*/
+/*}*/
 
-.prettyprint.is-showcase {
-  border: 4px solid #0273D4
-}
+/*.prettyprint.is-showcase {*/
+/*  border: 4px solid #0273D4*/
+/*}*/
 
-.prettyprint code {
+pre[class*=language-].prettyprint code {
   background: none;
   font-size: 13px;
   padding: 0
 }
 
-.prettyprint ol {
-  background: #FAFAFC;
-  padding: 16px 32px 16px 56px;
-  margin: 0;
-  overflow: auto;
-  font-size: 13px
-}
+/*.prettyprint ol {*/
+/*  background: #FAFAFC;*/
+/*  padding: 16px 32px 16px 56px;*/
+/*  margin: 0;*/
+/*  overflow: auto;*/
+/*  font-size: 13px*/
+/*}*/
 
-.prettyprint ol li,.prettyprint .tag {
+pre[class*=language-].prettyprint .tag {
   color: #7a8b94;
   background: none;
   margin-bottom: 5px;

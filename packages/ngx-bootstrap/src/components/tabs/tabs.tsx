@@ -53,6 +53,10 @@ export const Tabset = component$((props: ITabsSetProps) => {
         track(() => state.tabsCheck);
         const activeTab = state._tabs.find(item => item.active);
         state.tabsActiveId = activeTab?.id || state._tabs[0]?.id;
+        if (!activeTab && state._tabs[0]) {
+            state._tabs[0] = {...state._tabs[0], active: true};
+        }
+
         if (props.onChange) {
             props.onChange(state.tabsActiveId);
         }
@@ -104,7 +108,7 @@ export const Tabset = component$((props: ITabsSetProps) => {
                         </a>
                     </li>
                 })}
-    </ul>
+            </ul>
     <div class="tab-content">
         <Slot></Slot>
     </div>

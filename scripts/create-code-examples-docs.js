@@ -14,7 +14,7 @@ const demosGeneralPath = path.resolve(process.cwd(), 'packages/ngx-bootstrap-doc
                     const fileNameArray = file.name.toString().split('.');
                     if (fileNameArray[1] === 'tsx') {
                         const content = (await fs.readFile(`${demosGeneralPath}/${folder.name}/${componentsFolder.name}/${file.name}`, {encoding: 'utf8'}));
-                        let htmlCode = `${content}`
+                        let htmlCode = `${content}`;
                         htmlCode = prism.highlight(htmlCode, prism.languages.javascript, 'js');
                         await fs.writeFile(`${demosGeneralPath}/${folder.name}/${componentsFolder.name}/${fileNameArray[0]}.html`, htmlCode);
                     }

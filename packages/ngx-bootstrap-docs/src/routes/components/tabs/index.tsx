@@ -26,7 +26,7 @@ export default component$(() => {
                 section={demoComponentContent}>
                 <div q:slot="overview" id={'examples-box'}>
                     <BasicTabDemoComponent></BasicTabDemoComponent>
-                    <pre className="lang-js"><code dangerouslySetInnerHTML={useDidMount}></code></pre>
+                    <pre className="lang-js prettyprint"><code dangerouslySetInnerHTML={useDidMount}></code></pre>
                 </div>
                 <div q:slot="api">
                     api
