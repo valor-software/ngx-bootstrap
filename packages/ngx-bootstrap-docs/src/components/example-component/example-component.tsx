@@ -2,10 +2,10 @@ import {component$, useClientEffect$, $, Slot, useStore} from '@builder.io/qwik'
 import {getQueryParams} from "~/routing/routing";
 import {tabsNames} from "~/components/docs-section/docs-section";
 import SampleBox from '~/components/sample-box/sample-box';
-import { ContentSection } from '~/models/content-section.model';
+import {ComponentExample, ContentSection} from '~/models/content-section.model';
 
 
-export default component$((props: {section:ContentSection}) => {
+export default component$((props: {section:ComponentExample, code: string}) => {
     const state = useStore({
         tabName: tabsNames.overview
     })
@@ -15,38 +15,26 @@ export default component$((props: {section:ContentSection}) => {
         state.tabName = key || tabsNames.overview;
     });
 
-    // const openStackBlitzDemo = $((comp, html) => {
-    //     console.log(comp, html);
-    // })
-
     return (
+        <div className="example-section">
+            {!!props.section.title &&
+                (<h3 id={props.section.anchor} className="d-flex justify-content-between">
+                    {props.section.title}
 
-        <div class='examples'>
-        {!!props.section?.description && (<p dangerouslySetInnerHTML={props.section?.description}></p>)}
-
-        {props.section?.content?.map((item) => (
-            <div class="example-section">
-                {!!item.title &&
-                    (<h3 id={item.anchor} class="d-flex justify-content-between">
-                        { item.title }
-
-                        {// @ts-ignore
-                            !!(item?.component || state.tabName === 'examples') && (
-                            <p class="m-0">
-                                {!!(item.title !== 'Accessibility' && state.tabName !== 'examples') &&
-                                    (<a
+                    {
+                        !!props.section?.component && (
+                            <p className="m-0">
+                                <a
                                     title="Open this demo in StackBlitz"
                                     href="#"
-                                    class="stackblitz-link"
+                                    className="stackblitz-link"
                                     // onclick$={() => {
                                     //     // @ts-ignore
                                     //     openStackBlitzDemo(item?.component?.default, item?.html?.default)
                                     // }}
-                                    >
+                                >
                                     <img src="/images/stackblitz.png" alt="" width="20"/>
-                                    </a>
-                                    )
-                                }
+                                </a>
 
                                 {/*<a *ngIf="tabName !== 'examples'" class="anchor-link d-inline-block" routerLink="." [fragment]="item.anchor">#</a>*/}
                                 {/*<a *ngIf="item.title !== 'Accessibility' && tabName === 'examples'" [queryParams]="{tab: 'overview'}" routerLink="." [fragment]="initFragment(item.anchor)">*/}
@@ -55,30 +43,19 @@ export default component$((props: {section:ContentSection}) => {
                             </p>
                         )}
 
-                    </h3>)
-                }
+                </h3>)
+            }
 
-                {    // @ts-ignore
-                    !!item.description && (
+            {
+                !!props.section.description && (
                     <p
-                        // @ts-ignore
-                        dangerouslySetInnerHTML={item.description}></p>
+                        dangerouslySetInnerHTML={props.section.description}></p>
                 )}
 
-            <SampleBox
-                // @ts-ignore
-                html={item.html?.default} ts={item.component?.default} style={item.style}>
+            <SampleBox code={props.code}>
                 <Slot></Slot>
-            {/*<ng-container *ngComponentOutlet="item.outlet"></ng-container>*/}
             </SampleBox>
-            </div>
-
-
-        ))}
-
-
         </div>
-
     );
 });
 

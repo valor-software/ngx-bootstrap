@@ -1,8 +1,7 @@
-import {component$, useStore, $, useClientEffect$, Slot, useContext, render, useSignal} from '@builder.io/qwik';
+import {component$, useStore, $, useClientEffect$, Slot} from '@builder.io/qwik';
 import {Tab, Tabset} from "ngx-bootstrap";
 import {useNavigate} from "@builder.io/qwik-city";
 import {getQueryParams} from "~/routing/routing";
-import ExamplesComponent from '../examples-component/examples-component';
 import { ContentSection } from '~/models/content-section.model';
 
 
@@ -71,9 +70,7 @@ export default component$((props: {section: ContentSection[]}) => {
                     <Tabset onChange={onChangeFunc}>
                         <Tab heading="Overview" id={'tab-overview'} active={state.activeTab === tabsNames.overview}
                              customClass={'example-tabset cursor-pointer'}>
-                            <ExamplesComponent section={props.section[0]}>
-                                <Slot name={'overview'}/>
-                            </ExamplesComponent>
+                            <Slot name={'overview'}/>
                         </Tab>
                         <Tab heading="API" id={'tab-api'} active={state.activeTab === tabsNames.api}
                              customClass={'example-tabset cursor-pointer'}>

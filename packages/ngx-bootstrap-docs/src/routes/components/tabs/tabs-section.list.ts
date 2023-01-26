@@ -37,13 +37,12 @@ export const demoComponentContent: ContentSection[] = [
         component: BasicCode,
         html: '../../../components/demos/tabs/basic/basic',
       },
-  //     {
-  //       title: 'Manual selection',
-  //       anchor: 'tabs-manual-select',
-  //       component: require('!!raw-loader!./demos/manual-selection/manual-selection'),
-  //       html: require('!!raw-loader!./demos/manual-selection/manual-selection.html'),
-  //       outlet: DemoTabsManualSelectionComponent
-  //     },
+      // {
+      //   title: 'Manual selection',
+      //   anchor: 'tabs-manual-select',
+      //   component: BasicCode,
+      //   html: '../../../components/demos/tabs/basic/basic',
+      // },
   //     {
   //       title: 'Disabled tabs',
   //       anchor: 'disabled',
