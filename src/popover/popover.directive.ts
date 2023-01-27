@@ -14,7 +14,7 @@ let id = 0;
 /**
  * A lightweight, extensible directive for fancy popover creation.
  */
-@Directive({selector: '[popover]', exportAs: 'bs-popover'})
+@Directive({selector: '[popoverElement]', exportAs: 'bs-popover'})
 export class PopoverDirective implements OnInit, OnDestroy {
   /** unique id popover - use for aria-describedby */
   popoverId = id++;
@@ -26,7 +26,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
    * Content to be displayed as popover.
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  @Input() popover?: string | TemplateRef<any>;
+  @Input() popoverContent?: string | TemplateRef<any>;
   /**
    * Context to be used if popover is a template.
    */
@@ -151,7 +151,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
    * the popover.
    */
   show(): void {
-    if (this._popover.isShown || !this.popover || this._delayTimeoutId) {
+    if (this._popover.isShown || !this.popoverContent || this._delayTimeoutId) {
       return;
     }
 
@@ -162,7 +162,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
         },
         preventOverflow: {
           enabled: this.adaptivePosition,
-          boundariesElement: this.boundariesElement || 'scrollParent' 
+          boundariesElement: this.boundariesElement || 'scrollParent'
         }
       }
     });
@@ -177,7 +177,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
         .to(this.container)
         .position({attachment: this.placement})
         .show({
-          content: this.popover,
+          content: this.popoverContent,
           context: this.popoverContext,
           placement: this.placement,
           title: this.popoverTitle,
