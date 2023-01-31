@@ -308,7 +308,8 @@ export class BsDaterangepickerDirective
         ranges: checkRangesWithMaxDate(this.bsConfig && this.bsConfig.ranges, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
         maxDateRange: this.bsConfig && this.bsConfig.maxDateRange,
         initCurrentTime: this.bsConfig?.initCurrentTime,
-        keepDatepickerOpened: this.bsConfig?.keepDatepickerOpened
+        keepDatepickerOpened: this.bsConfig?.keepDatepickerOpened,
+        overwriteInvalidDate: this.bsConfig?.overwriteInvalidDate,
       }
     );
   }

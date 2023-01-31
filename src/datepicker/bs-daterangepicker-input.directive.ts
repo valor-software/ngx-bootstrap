@@ -184,7 +184,9 @@ export class BsDaterangepickerInputDirective
       errors.push({ bsDate: { maxDate: this._picker.maxDate } });
     }
     if (errors.length > 0) {
-      this.writeValue(_value);
+      if (this._picker._config.overwriteInvalidDate) {
+        this.writeValue(_value);
+      }
 
       return errors;
     }

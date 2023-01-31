@@ -52,6 +52,7 @@ import { DemoDatepickerStartViewComponent } from "./demos/start-view/start-view"
 import { DemoDatepickerPreventChangeToNextMonthComponent } from './demos/prevent-change-to-next-month/prevent-change-to-next-month.component';
 import { DemoDatepickerWithTimepickerComponent } from './demos/with-timepicker/with-timepicker';
 import { DatepickerCloseBehaviorComponent } from './demos/closeBehaviour/datepicker-close-behavior';
+import { DemoDatepickerOverwriteDateComponent } from './demos/overwrite-date/overwrite-date';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -470,6 +471,17 @@ export const demoComponentContent: ContentSection[] = [
         description: `If you use datepicker with timepicker together, you are able to set <code>keepDatepickerOpened</code> config option and keep datepicker opened until date isn't changed`,
         outlet: DatepickerCloseBehaviorComponent
       },
+      {
+        title: 'Overwrite out-of-range dates',
+        anchor: 'overwrite-date',
+        component: require('!!raw-loader!./demos/overwrite-date/overwrite-date'),
+        html: require('!!raw-loader!./demos/overwrite-date/overwrite-date.html'),
+        description: `
+          <p>If you want a date that is out of range to remain in the input, set <code>overwriteInvalidDate</code> to false. This is true by default.</p>
+          <p>In the following example <code>minDate</code> is set to yesterday and <code>maxDate</code>
+          to the current day in the next week</p>`,
+        outlet: DemoDatepickerOverwriteDateComponent
+      },
     ]
   },
   {
@@ -722,6 +734,11 @@ export const demoComponentContent: ContentSection[] = [
         title: 'datepicker close behavior with timepicker',
         anchor: 'close-behavior',
         outlet: DatepickerCloseBehaviorComponent
+      },
+      {
+        title: 'Overwrite out-of-range dates',
+        anchor: 'overwrite-date',
+        outlet: DemoDatepickerOverwriteDateComponent
       },
     ]
   }

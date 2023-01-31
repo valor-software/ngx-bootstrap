@@ -350,7 +350,8 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled,
       minMode: this.minMode || this.bsConfig && this.bsConfig.minMode,
       initCurrentTime: this.bsConfig?.initCurrentTime,
-      keepDatepickerOpened: this.bsConfig?.keepDatepickerOpened
+      keepDatepickerOpened: this.bsConfig?.keepDatepickerOpened,
+      overwriteInvalidDate: this.bsConfig?.overwriteInvalidDate,
     });
   }
 

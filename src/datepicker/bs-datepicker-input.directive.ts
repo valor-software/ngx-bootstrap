@@ -137,7 +137,7 @@ export class BsDatepickerInputDirective
   validate(c: AbstractControl): ValidationErrors | null {
     const _value: Date | string = c.value;
 
-        if (_value === null || _value === undefined || _value === '') {
+    if (_value === null || _value === undefined || _value === '') {
       return null;
     }
 
@@ -148,13 +148,17 @@ export class BsDatepickerInputDirective
       }
 
       if (this._picker && this._picker.minDate && isBefore(_value, this._picker.minDate, 'date')) {
-        this.writeValue(this._picker.minDate);
+        if (this._picker._config.overwriteInvalidDate) {
+          this.writeValue(this._picker.minDate);
+        }
 
         return { bsDate: { minDate: this._picker.minDate } };
       }
 
       if (this._picker && this._picker.maxDate && isAfter(_value, this._picker.maxDate, 'date')) {
-        this.writeValue(this._picker.maxDate);
+        if (this._picker._config.overwriteInvalidDate) {
+          this.writeValue(this._picker.maxDate);
+        }
 
         return { bsDate: { maxDate: this._picker.maxDate } };
       }
