@@ -191,4 +191,8 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Set rule for datepicker closing. If value is true datepicker closes only if date is changed, if user changes only time datepicker doesn't close. It is available only if property withTimepicker is set true
    * */
   keepDatepickerOpened = false;
+  /**
+   * Allows keep invalid dates in range. Can be used with minDate, maxDate
+   * */
+  keepDatesOutOfRules = false;
 }
