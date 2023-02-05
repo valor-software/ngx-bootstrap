@@ -476,7 +476,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'keep-dates-out-of-rules',
         component: require('!!raw-loader!./demos/keep-dates-out-of-rules/keep-dates-out-of-rules.component'),
         html: require('!!raw-loader!./demos/keep-dates-out-of-rules/keep-dates-out-of-rules.component.html'),
-        description: `If you use datepicker with rules (minDate, maxDate) you can set config property <code>keepDatesOutOfRules</code> to true to avoid overwriting invalid dates. Default value is false.`,
+        description: `<p>If you use datepicker with rules (minDate, maxDate) you can set config property <code>keepDatesOutOfRules</code> to true to avoid overwriting invalid dates. Default value is false.</p>`,
         outlet: KeepDatesOutOfRulesComponent
       }
     ]
@@ -731,6 +731,11 @@ export const demoComponentContent: ContentSection[] = [
         title: 'datepicker close behavior with timepicker',
         anchor: 'close-behavior',
         outlet: DatepickerCloseBehaviorComponent
+      },
+      {
+        title: "Don't overwrite dates out of rule",
+        anchor: 'keep-dates-out-of-rules',
+        outlet: KeepDatesOutOfRulesComponent
       },
     ]
   }
