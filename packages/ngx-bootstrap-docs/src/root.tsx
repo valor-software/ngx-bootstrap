@@ -1,4 +1,4 @@
-import { component$, useStyles$ } from '@builder.io/qwik';
+import {component$, useStyles$} from '@builder.io/qwik';
 import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from '@builder.io/qwik-city';
 import { RouterHead } from './components/router-head/router-head';
 
@@ -12,6 +12,7 @@ export default component$(() => {
    * Dont remove the `<head>` and `<body>` elements.
    */
   useStyles$(globalStyles);
+
 
   return (
     <QwikCityProvider>
@@ -28,6 +29,8 @@ export default component$(() => {
         <link rel="author" href="https://github.com/valor-software/ngx-bootstrap/graphs/contributors"/>
         <link rel="stylesheet" className="style-manager-theme"
         href='/css/bootstrap-5.2.3/css/bootstrap.min.css'/>
+        <link rel="stylesheet" className="style-manager-theme"
+              href='/css/prism.css'/>
         {/*<link href="themes/prism.css" rel="stylesheet" />*/}
         <link href="/css/prism.css" rel="stylesheet" />
         <meta name="mobile-web-app-capable" content="yes"/>

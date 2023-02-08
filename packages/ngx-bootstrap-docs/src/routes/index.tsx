@@ -12,13 +12,13 @@ export default component$(() => {
           <div class="row flex-column container-width text-center">
             <h1 data-cypress="sloganBs">Develop better. Faster.</h1>
             <div class="logo position-relative d-block d-lg-none mt-3">
-              <Link href="/components">
+              <CustomLink path={'/components'}>
                 <img src="/images/logos/ngx-bootstrap-logo.svg" alt="ngx-bootstrap logo"/>
-              </Link>
+              </CustomLink>
             </div>
             <div class="button-box d-flex justify-content-between">
                 <CustomLink path={'/documentation#getting-started'} class={'btn btn-primary text-white'}>Get started</CustomLink>
-            <Link href="/documentation" class="btn btn-outline-primary">Documentation</Link>
+                <CustomLink path={'/documentation'} class={'btn btn-outline-primary'}>Documentation</CustomLink>
           </div>
         </div>
         <div class="logo position-relative d-none d-lg-block">

@@ -54,7 +54,6 @@ export default component$((props: {section: ContentSection[]}) => {
         if (key && state.activeTab && state.activeTab.toString() !== key) {
                 window.dispatchEvent(new Event('locationchange'));
                 navigate.path = `?tab=${key}`;
-            console.log(urlTab, key)
         }
 
         if (key && !urlTab) {

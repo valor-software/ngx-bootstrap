@@ -2,7 +2,11 @@
  * Class for managing stylesheets. Stylesheets are loaded into named slots so
  * that they can be removed or changed later.
  */
+import {AvailableBsVersions, storeTheme} from "~/components/sidebar/theme-storage";
+import {currentBsVersion, setTheme} from "~/components/sidebar/theme-provider";
 
+const _bs4Css = '/css/bootstrap-4.5.3/css/bootstrap.min.css';
+const _bs5Css = '/css/bootstrap-5.2.3/css/bootstrap.min.css';
 /**
  * Set the stylesheet with the specified key.
  */
@@ -59,4 +63,14 @@ function createLinkElementWithKey(key: string): HTMLLinkElement | void {
 
 function getClassNameForKey(key: string) {
     return `style-manager-${key}`;
+}
+
+export function installBsTheme(theme: AvailableBsVersions) {
+    setTheme(theme);
+    const currentTheme = currentBsVersion();
+    const cssAsset = currentTheme === 'bs5' ? _bs5Css : _bs4Css;
+    setStyle('theme', cssAsset);
+    if (currentTheme) {
+        storeTheme(currentTheme);
+    }
 }

@@ -1,8 +1,8 @@
-import {component$, useClientEffect$, $, Slot, useStore} from '@builder.io/qwik';
+import {component$, useClientEffect$, Slot, useStore} from '@builder.io/qwik';
 import {getQueryParams} from "~/routing/routing";
 import {tabsNames} from "~/components/docs-section/docs-section";
 import SampleBox from '~/components/sample-box/sample-box';
-import {ComponentExample, ContentSection} from '~/models/content-section.model';
+import {ComponentExample} from '~/models/content-section.model';
 
 
 export default component$((props: {section:ComponentExample, code: string}) => {
@@ -53,6 +53,7 @@ export default component$((props: {section:ComponentExample, code: string}) => {
                 )}
 
             <SampleBox code={props.code}>
+                <div>check example</div>
                 <Slot></Slot>
             </SampleBox>
         </div>

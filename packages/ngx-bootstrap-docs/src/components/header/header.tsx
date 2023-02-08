@@ -1,7 +1,7 @@
 import {component$, useStore, useStylesScoped$, useResource$, useClientEffect$, $} from '@builder.io/qwik';
-import { Link } from '@builder.io/qwik-city';
 import  SearchInput from './serach-input';
 import styles from './header.css?inline';
+import { CustomLink } from "~/routing/link";
 
 export interface Istate {
   shadowRoutes: string[];
@@ -57,9 +57,9 @@ export default component$(() => {
   return (
     <header id="header" className={`header flex-nowrap ${state.initBoxShadow ? "box-shadow" : ""}`}>
       <div class="logo col-xl-2 col-lg-3" data-cypress="logoAtHeader">
-        <Link href="/">
+        <CustomLink path={"/"}>
           <img  alt="ngx-bootstrap" src="/images/logos/ngx-bootstrap-logo-red.svg"/>
-        </Link>
+        </CustomLink>
       </div>
       <div class="sidebar-search col-xl-8 col-lg-6 display-lg-none">
         <SearchInput showInput={true}></SearchInput>
