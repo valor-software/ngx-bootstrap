@@ -92,5 +92,5 @@ export enum PlacementForBs5 {
   'start top' = 'start top',
 }
 
-export type AvailbleBSPositions = 'top' | 'bottom' | 'left' | 'right' | 'auto' | 'top left' | 'top right' | 'right top' | 'right bottom' | 'bottom right' | 'bottom left' | 'left bottom' | 'left top' | 'start' | 'end' | 'top start' | 'top end' | 'end top' | 'end bottom' | 'bottom end' | 'bottom start' | 'start bottom' | 'start top';
+export type AvailableBSPositions = 'top' | 'bottom' | 'left' | 'right' | 'auto' | 'top left' | 'top right' | 'right top' | 'right bottom' | 'bottom right' | 'bottom left' | 'left bottom' | 'left top' | 'start' | 'end' | 'top start' | 'top end' | 'end top' | 'end bottom' | 'bottom end' | 'bottom start' | 'start bottom' | 'start top';
 

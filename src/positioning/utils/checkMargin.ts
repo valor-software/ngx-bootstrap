@@ -1,5 +1,5 @@
 import { getBsVer } from 'ngx-bootstrap/utils';
-import { AvailbleBSPositions } from '../models';
+import { AvailableBSPositions } from '../models';
 
 const availablePositions = {
   top: ['top', 'top start', 'top end'],
@@ -8,7 +8,7 @@ const availablePositions = {
   end: ['end', 'end top', 'end bottom']
 };
 
-export function checkPopoverMargin(placement: AvailbleBSPositions, checkPosition: 'top' | 'bottom' | 'start' | 'end'): boolean {
+export function checkPopoverMargin(placement: AvailableBSPositions, checkPosition: 'top' | 'bottom' | 'start' | 'end'): boolean {
   if (!getBsVer().isBs5) {
     return false;
   }
