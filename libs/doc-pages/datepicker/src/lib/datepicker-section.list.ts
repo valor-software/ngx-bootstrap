@@ -52,6 +52,7 @@ import { DemoDatepickerStartViewComponent } from "./demos/start-view/start-view"
 import { DemoDatepickerPreventChangeToNextMonthComponent } from './demos/prevent-change-to-next-month/prevent-change-to-next-month.component';
 import { DemoDatepickerWithTimepickerComponent } from './demos/with-timepicker/with-timepicker';
 import { DatepickerCloseBehaviorComponent } from './demos/closeBehaviour/datepicker-close-behavior';
+import { KeepDatesOutOfRulesComponent } from './demos/keep-dates-out-of-rules/keep-dates-out-of-rules.component';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -470,6 +471,14 @@ export const demoComponentContent: ContentSection[] = [
         description: `If you use datepicker with timepicker together, you are able to set <code>keepDatepickerOpened</code> config option and keep datepicker opened until date isn't changed`,
         outlet: DatepickerCloseBehaviorComponent
       },
+      {
+        title: "Don't overwrite dates out of rule",
+        anchor: 'keep-dates-out-of-rules',
+        component: require('!!raw-loader!./demos/keep-dates-out-of-rules/keep-dates-out-of-rules.component'),
+        html: require('!!raw-loader!./demos/keep-dates-out-of-rules/keep-dates-out-of-rules.component.html'),
+        description: `<p>If you use datepicker with rules (minDate, maxDate) you can set config property <code>keepDatesOutOfRules</code> to true to avoid overwriting invalid dates. Default value is false.</p>`,
+        outlet: KeepDatesOutOfRulesComponent
+      }
     ]
   },
   {
@@ -722,6 +731,11 @@ export const demoComponentContent: ContentSection[] = [
         title: 'datepicker close behavior with timepicker',
         anchor: 'close-behavior',
         outlet: DatepickerCloseBehaviorComponent
+      },
+      {
+        title: "Don't overwrite dates out of rule",
+        anchor: 'keep-dates-out-of-rules',
+        outlet: KeepDatesOutOfRulesComponent
       },
     ]
   }

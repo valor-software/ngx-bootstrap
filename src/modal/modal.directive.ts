@@ -82,6 +82,7 @@ export class ModalDirective implements OnDestroy, OnInit {
 
   private isNested = false;
   private clickStartedInContent = false;
+  private _focusEl: Element | null = null;
 
   constructor(
     private _element: ElementRef,
@@ -230,6 +231,10 @@ export class ModalDirective implements OnDestroy, OnInit {
       );
     } else {
       this.hideModal();
+    }
+
+    if (this._focusEl) {
+      (this._focusEl as HTMLElement).focus();
     }
   }
 
