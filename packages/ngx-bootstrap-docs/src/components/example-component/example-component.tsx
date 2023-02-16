@@ -53,7 +53,6 @@ export default component$((props: {section:ComponentExample, code: string}) => {
                 )}
 
             <SampleBox code={props.code}>
-                <div>check example</div>
                 <Slot></Slot>
             </SampleBox>
         </div>

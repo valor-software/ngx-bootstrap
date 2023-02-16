@@ -22,8 +22,9 @@
 // } from '@ngx-bootstrap-doc/docs';
 import { ContentSection } from '~/models/content-section.model';
 import BasicCode from '../../../components/demos/tabs/basic/basic.html?raw';
-import BasicHtml from '../../../components/demos/tabs/basic/basic';
-
+import DisabledTabs from '../../../components/demos/tabs/disabled/disabled.html?raw';
+import DynamicTabs from '../../../components/demos/tabs/dynamic/dynamic.html?raw';
+import ManualSelection from '../../../components/demos/tabs/manual-selection/manual-selection.html?raw';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -37,26 +38,24 @@ export const demoComponentContent: ContentSection[] = [
         component: BasicCode,
         html: '../../../components/demos/tabs/basic/basic',
       },
-      // {
-      //   title: 'Manual selection',
-      //   anchor: 'tabs-manual-select',
-      //   component: BasicCode,
-      //   html: '../../../components/demos/tabs/basic/basic',
-      // },
-  //     {
-  //       title: 'Disabled tabs',
-  //       anchor: 'disabled',
-  //       component: require('!!raw-loader!./demos/disabled/disabled'),
-  //       html: require('!!raw-loader!./demos/disabled/disabled.html'),
-  //       outlet: DemoTabsDisabledComponent
-  //     },
-  //     {
-  //       title: 'Dynamic tabs',
-  //       anchor: 'tabs-dynamic',
-  //       component: require('!!raw-loader!./demos/dynamic/dynamic'),
-  //       html: require('!!raw-loader!./demos/dynamic/dynamic.html'),
-  //       outlet: DemoTabsDynamicComponent
-  //     },
+      {
+        title: 'Manual selection',
+        anchor: 'tabs-manual-select',
+        component: ManualSelection,
+        html: '../../../components/demos/tabs/manual-selection/manual-selection',
+      },
+      {
+        title: 'Disabled tabs',
+        anchor: 'disabled',
+        component: DisabledTabs,
+        html: '../../../components/demos/tabs/basic/basic'
+      },
+      {
+        title: 'Dynamic tabs',
+        anchor: 'tabs-dynamic',
+        component: DynamicTabs,
+        html: '../../../components/demos/tabs/dynamic/dynamic',
+      },
   //     {
   //       title: 'Pills',
   //       anchor: 'tabs-Pills',

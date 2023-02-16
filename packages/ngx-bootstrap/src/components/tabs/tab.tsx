@@ -1,20 +1,27 @@
 import {component$, Slot, useClientEffect$, useContext, useContextProvider, useStore, useTask$} from "@builder.io/qwik";
 import { TabsContext} from "./tabs";
+import { ITab } from './models';
 
-export interface ITab {
-    heading?: string;
-    id: string;
-    disabled?: boolean;
-    removable?: boolean;
-    customClass?: string;
-    active?: boolean;
-}
+
 
 export const Tab = component$((props:ITab) => {
     let tabsState = useContext(TabsContext);
 
     useClientEffect$(() => {
-        tabsState._tabs.push(props);
+        const tab = {
+            heading: '',
+            id: '',
+            disabled: false,
+            removable: false,
+            customClass: '',
+            active: false
+        }
+        for (let key in tab) {
+            // @ts-ignore
+            tab[key as keyof typeof tab] = key in props ? props[key as keyof typeof tab] : tab[key as keyof typeof tab];
+        }
+
+        tabsState._tabs.push(tab);
         tabsState.tabsCheck = {};
     });
 

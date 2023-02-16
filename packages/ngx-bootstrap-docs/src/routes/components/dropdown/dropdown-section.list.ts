@@ -40,14 +40,14 @@ export const demoComponentContent: ContentSection[] = [
       <code>dropdown</code>. Dropdowns can be triggered from <code> &lt;a&gt;</code> or <code> &lt;button&gt;</code>
       elements to better fit your potential needs.</p>`,
     content: [
-      {
-        title: 'Basic',
-        anchor: 'basic',
-        // component: require('!!raw-loader!./demos/basic/basic.ts'),
-        // html: require('!!raw-loader!./demos/basic/basic.html'),
-        description: `<p>Any <code>&lt;button&gt;</code> can became a dropdown toggle with few markup changes.
-          Here’s how dropdown works with single button</p>`
-      },
+      // {
+      //   title: 'Basic',
+      //   anchor: 'basic',
+      //   // component: require('!!raw-loader!./demos/basic/basic.ts'),
+      //   // html: require('!!raw-loader!./demos/basic/basic.html'),
+      //   description: `<p>Any <code>&lt;button&gt;</code> can became a dropdown toggle with few markup changes.
+      //     Here’s how dropdown works with single button</p>`
+      // },
       // {
       //   title: 'With animation',
       //   anchor: 'animated',
