@@ -25,6 +25,9 @@ import BasicCode from '../../../components/demos/tabs/basic/basic.html?raw';
 import DisabledTabs from '../../../components/demos/tabs/disabled/disabled.html?raw';
 import DynamicTabs from '../../../components/demos/tabs/dynamic/dynamic.html?raw';
 import ManualSelection from '../../../components/demos/tabs/manual-selection/manual-selection.html?raw';
+import PillsComponent from '../../../components/demos/tabs/pills/pills.html?raw';
+import VerticalPillsComponent from '../../../components/demos/tabs/vertical-pills/vertical-pills.html?raw';
+import JustifiedTabs from '../../../components/demos/tabs/justified/justified.html?raw';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -56,28 +59,24 @@ export const demoComponentContent: ContentSection[] = [
         component: DynamicTabs,
         html: '../../../components/demos/tabs/dynamic/dynamic',
       },
-  //     {
-  //       title: 'Pills',
-  //       anchor: 'tabs-Pills',
-  //       component: require('!!raw-loader!./demos/pills/pills'),
-  //       html: require('!!raw-loader!./demos/pills/pills.html'),
-  //       outlet: DemoTabsPillsComponent
-  //     },
-  //     {
-  //       title: 'Vertical Pills',
-  //       anchor: 'tabs-vertical-pills',
-  //       component: require('!!raw-loader!./demos/vertical-pills/vertical-pills'),
-  //       html: require('!!raw-loader!./demos/vertical-pills/vertical-pills.html'),
-  //       outlet: DemoTabsVerticalPillsComponent
-  //     },
-  //     {
-  //       title: 'Justified',
-  //       anchor: 'tabs-justified',
-  //       component: require('!!raw-loader!./demos/justified/justified'),
-  //       html: require('!!raw-loader!./demos/justified/justified.html'),
-  //       description: '<p><i>Bootstrap 4 doesn\'t have justified classes</i></p>',
-  //       outlet: DemoTabsJustifiedComponent
-  //     },
+      {
+        title: 'Pills',
+        anchor: 'tabs-Pills',
+        component: PillsComponent,
+        html: '../../../components/demos/tabs/pills/pills'
+      },
+      {
+        title: 'Vertical Pills',
+        anchor: 'tabs-vertical-pills',
+        component: VerticalPillsComponent,
+        html: '../../../components/demos/tabs/vertical-pills/vertical-pills'
+      },
+      {
+        title: 'Justified',
+        anchor: 'tabs-justified',
+        component: JustifiedTabs,
+        html: '../../../components/demos/tabs/justified/justified',
+      },
   //     {
   //       title: 'Custom class',
   //       anchor: 'tabs-custom-class',

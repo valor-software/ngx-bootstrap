@@ -144,7 +144,6 @@ export const Tabset = component$((props: ITabsSetProps) => {
         $((ev: Event) => {
             if (!props.customId || props.customId === (ev as CustomEvent).detail?.tabsetId) {
                 state._tabs = [...state._tabs];
-                console.log(state._tabs)
             }
         })
 );
@@ -156,7 +155,12 @@ export const Tabset = component$((props: ITabsSetProps) => {
 
     return (
         <div data-state-id={state.ariaLabel}>
-                        <ul className={`nav${props.vertical ? ' nav-stacked' : ''}${props.justified ? ' nav-justified' : ''} nav-${props.type || 'tabs'} `}
+                        <ul className={`
+                            nav ${props.vertical ? 'nav-stacked' : ''} 
+                            ${props.justified ? 'nav-justified' : ''} 
+                            nav-${props.type || 'tabs'}
+                            ${props.vertical ? 'nav-stacked flex-column' : ''}
+                        `}
                             aria-label={state.ariaLabel}
                             role="tablist" id={props.customId}>
                             {state._tabs.map((tabz: ITab, index: number) => {
@@ -176,7 +180,7 @@ export const Tabset = component$((props: ITabsSetProps) => {
                                            setActiveTab(tabz)
                                        }
                                     >
-                                        <span>{tabz.heading || index} {tabz.removable?.toString()}</span>
+                                        <span>{tabz.heading || index}</span>
                                         {tabz.removable ?
                                             (
                                                 <span class="bs-remove-tab" onClick$={() => {removeTab(tabz.id)}}>&#10060;</span>

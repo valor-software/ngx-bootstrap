@@ -9,13 +9,24 @@ import BasicTabDemoComponent from '../../../components/demos/tabs/basic/basic';
 import DisabledTabComponent from "~/components/demos/tabs/disabled/disabled";
 import DynamicTabs from '~/components/demos/tabs/dynamic/dynamic';
 import ManualSelection from '~/components/demos/tabs/manual-selection/manual-selection';
+import Pills from '~/components/demos/tabs/pills/pills';
+import VerticalPills from "~/components/demos/tabs/vertical-pills/vertical-pills";
+import JustifiedTabs from "~/components/demos/tabs/justified/justified";
 
 
 export default component$(() => {
     const name = 'Tabs';
     const src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/tabs';
     // const componentTree = [BasicTabDemoComponent, DisabledTabComponent, DynamicTabs]
-    const componentTree = [BasicTabDemoComponent, ManualSelection, DisabledTabComponent, DynamicTabs]
+    const componentTree = [
+        BasicTabDemoComponent,
+        ManualSelection,
+        DisabledTabComponent,
+        DynamicTabs,
+        Pills,
+        VerticalPills,
+        JustifiedTabs
+    ]
 
     return (
         <DemoSection src={src} name={name}>
