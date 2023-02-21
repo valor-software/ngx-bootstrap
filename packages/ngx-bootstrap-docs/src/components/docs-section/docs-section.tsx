@@ -66,7 +66,7 @@ export default component$((props: {section: ContentSection[]}) => {
         <div class="docs-section">
             <div className="example-tabset-box tabset">
                 {!!state.activeTab && (
-                    <Tabset onChange={onChangeFunc}>
+                    <Tabset activeTabIsChanged={onChangeFunc}>
                         <Tab heading="Overview" id={'tab-overview'} active={state.activeTab === tabsNames.overview}
                              customClass={'example-tabset cursor-pointer'}>
                             <Slot name={'overview'}/>

@@ -56,11 +56,12 @@ export default component$(() => {
 
         return (
         <>
+            <p>Change quantity of tabs by manipulating tabs array</p>
             <button class="btn btn-primary" onClick$={() => addTab()}>Add tab</button>
             {state.tabsList.length > 1 ?
                 (<button className="btn btn-primary" onClick$={() => removeAllTabs()}> Remove all tabs </button>) : ''
             }
-
+            <hr/>
             <Tabset customId={customId}>
                 {state.tabsList.map((item: ITab, index) => {
                     return(

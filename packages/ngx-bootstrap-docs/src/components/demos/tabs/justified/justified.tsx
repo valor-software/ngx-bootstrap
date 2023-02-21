@@ -7,6 +7,7 @@ export default component$(() => {
 
     return (
         <>
+            <p><i>Bootstrap 4 doesn't have justified classes</i></p>
             <Tabset customId={customId} justified={true}>
                 <Tab heading="Basic title" id="tabs-disabled-1">Basic content</Tab>
                 <Tab heading="Basic Title 1" id="tabs-disabled-2">Basic content 1</Tab>

@@ -12,6 +12,9 @@ import ManualSelection from '~/components/demos/tabs/manual-selection/manual-sel
 import Pills from '~/components/demos/tabs/pills/pills';
 import VerticalPills from "~/components/demos/tabs/vertical-pills/vertical-pills";
 import JustifiedTabs from "~/components/demos/tabs/justified/justified";
+import CustomClassTabs from '~/components/demos/tabs/custom-class/custom-class';
+import SelectEventTabs from '../../../components/demos/tabs/select-event/select-event';
+import CustomTemplateTabs from '../../../components/demos/tabs/custom-template/custom-template';
 
 
 export default component$(() => {
@@ -25,7 +28,10 @@ export default component$(() => {
         DynamicTabs,
         Pills,
         VerticalPills,
-        JustifiedTabs
+        JustifiedTabs,
+        CustomClassTabs,
+        SelectEventTabs,
+        CustomTemplateTabs
     ]
 
     return (

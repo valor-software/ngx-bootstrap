@@ -28,6 +28,9 @@ import ManualSelection from '../../../components/demos/tabs/manual-selection/man
 import PillsComponent from '../../../components/demos/tabs/pills/pills.html?raw';
 import VerticalPillsComponent from '../../../components/demos/tabs/vertical-pills/vertical-pills.html?raw';
 import JustifiedTabs from '../../../components/demos/tabs/justified/justified.html?raw';
+import CustomClassTabs from '../../../components/demos/tabs/custom-class/custom-class.html?raw';
+import SelectEventTabs from '../../../components/demos/tabs/select-event/select-event.html?raw';
+import CustomTemplateTabs from '../../../components/demos/tabs/custom-template/custom-template.html?raw';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -77,35 +80,25 @@ export const demoComponentContent: ContentSection[] = [
         component: JustifiedTabs,
         html: '../../../components/demos/tabs/justified/justified',
       },
-  //     {
-  //       title: 'Custom class',
-  //       anchor: 'tabs-custom-class',
-  //       component: require('!!raw-loader!./demos/custom-class/custom-class'),
-  //       html: require('!!raw-loader!./demos/custom-class/custom-class.html'),
-  //       outlet: DemoTabsCustomClassComponent
-  //     },
-  //     {
-  //       title: 'Select event',
-  //       anchor: 'select-event',
-  //       component: require('!!raw-loader!./demos/select-event/select-event'),
-  //       html: require('!!raw-loader!./demos/select-event/select-event.html'),
-  //       description: '<p>You can subscribe to tab\'s <code>select</code> event</p>',
-  //       outlet: DemoTabsSelectEventComponent
-  //     },
-  //     {
-  //       title: 'Configuring defaults',
-  //       anchor: 'tabs-config-defaults',
-  //       component: require('!!raw-loader!./demos/config/config'),
-  //       html: require('!!raw-loader!./demos/config/config.html'),
-  //       outlet: DemoTabsConfigComponent
-  //     },
-  //     {
-  //       title: 'Custom template',
-  //       anchor: 'tabs-custom-template',
-  //       component: require('!!raw-loader!./demos/custom-template/custom-template'),
-  //       html: require('!!raw-loader!./demos/custom-template/custom-template.html'),
-  //       outlet: DemoTabsCustomComponent
-  //     },
+      {
+        title: 'Custom class',
+        anchor: 'tabs-custom-class',
+        component: CustomClassTabs,
+        html: '../../../components/demos/tabs/custom-class/custom-class',
+      },
+      {
+        title: 'Select event',
+        anchor: 'select-event',
+        component: SelectEventTabs,
+        html: '../../../components/demos/tabs/select-event/select-event',
+        description: '<p>You can subscribe to tab\'s <code>select</code> event</p>',
+      },
+      {
+        title: 'Custom template',
+        anchor: 'tabs-custom-template',
+        component: CustomTemplateTabs,
+        html: '../../../components/demos/tabs/custom-template/custom-template.html',
+      },
   //     {
   //       title: 'Dynamic content rendering',
   //       anchor: 'dynamic-content-rendering',

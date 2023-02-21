@@ -19,8 +19,10 @@ export default component$(() => {
 
     return (
         <>
+            <p>You can select tabs directly from component</p>
             <button class="btn btn-primary" onClick$={() => openTabManualy('tabs-manual-selection-2')}>Select second tab</button>
             <button class="btn btn-primary" onClick$={() => openTabManualy('tabs-manual-selection-3')}>Select third tab</button>
+            <hr/>
             <Tabset customId={customId}>
                 <Tab heading="Basic title" id="tabs-manual-selection-1">Basic content</Tab>
                 <Tab heading="Basic Title 1" id="tabs-manual-selection-2">Basic content 1</Tab>

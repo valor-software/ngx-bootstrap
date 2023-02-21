@@ -11,6 +11,7 @@ import {
 } from '@builder.io/qwik';
 import {isBrowser} from "@builder.io/qwik/build";
 import { TabsetCustomEvent } from './models';
+import type {ITab} from './models';
 
 /**
  * Custom events
@@ -19,21 +20,15 @@ import { TabsetCustomEvent } from './models';
  * addTab => tabsId, ITab obj with id
  * */
 
-export interface ITab {
-    heading?: string;
-    id: string;
-    disabled?: boolean;
-    removable?: boolean;
-    customClass?: string;
-    active?: boolean;
-}
+
 
 export interface ITabsSetProps {
     vertical?: boolean;
     justified?: boolean;
     type?: string;
-    onChange?: (activeTabId: string) => void;
+    activeTabIsChanged?: (activeTabId: string) => void;
     customId?: string;
+    // activeTab?: string;
 }
 
 export interface IState {
@@ -57,6 +52,10 @@ export const Tabset = component$((props: ITabsSetProps) => {
 
     useContextProvider(TabsContext, state);
 
+    // if (props.activeTab && props.activeTab !== state.tabsActiveId) {
+    //     console.log(props)
+    // }
+
     const setActiveTab = $((tab?: ITab) => {
         if (!state._tabs.length) {
             return;
@@ -67,8 +66,8 @@ export const Tabset = component$((props: ITabsSetProps) => {
             tabObj.active = true;
             state._tabs[0] = tabObj;
             state.tabsActiveId = state._tabs[0]?.id;
-            if (props.onChange) {
-                props.onChange(state.tabsActiveId);
+            if (props.activeTabIsChanged) {
+                props.activeTabIsChanged(state.tabsActiveId);
             }
 
             return
@@ -83,8 +82,8 @@ export const Tabset = component$((props: ITabsSetProps) => {
         });
         state.tabsActiveId = tab.id;
         state._tabs = Array.from(arr);
-        if (props.onChange) {
-            props.onChange(state.tabsActiveId);
+        if (props.activeTabIsChanged) {
+            props.activeTabIsChanged(state.tabsActiveId);
         }
     });
 
@@ -180,7 +179,9 @@ export const Tabset = component$((props: ITabsSetProps) => {
                                            setActiveTab(tabz)
                                        }
                                     >
-                                        <span>{tabz.heading || index}</span>
+                                        {tabz.hasCustomTemplate?.toString()}
+                                        {tabz.hasCustomTemplate ? ('') : (<span>{tabz.heading || index}</span>)}
+                                        <Slot name={tabz.id}></Slot>
                                         {tabz.removable ?
                                             (
                                                 <span class="bs-remove-tab" onClick$={() => {removeTab(tabz.id)}}>&#10060;</span>

@@ -20,6 +20,7 @@ export default component$(() => {
 
     return (
         <>
+            <p>Tabs can be enabled or disabled by changing <code>disabled</code> input property</p>
             <button class={'btn btn-primary'} onClick$={() =>(disableTab())}>Toggle disabled state</button>
             <hr/>
             <p>disabled state value: {(state.isTabDisabled).toString()}</p>

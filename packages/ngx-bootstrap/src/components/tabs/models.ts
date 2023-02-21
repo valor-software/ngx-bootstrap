@@ -10,5 +10,6 @@ export interface ITab {
     removable?: boolean;
     customClass?: string;
     active?: boolean;
+    hasCustomTemplate?: boolean;
 }
 
