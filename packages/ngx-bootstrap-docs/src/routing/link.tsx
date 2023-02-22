@@ -10,6 +10,7 @@ export const CustomLink = component$((opts: { path: string, class?: string }) =>
             className={opts.class}
             // set the correct class when the link is active
             href={opts.path} onClick$={(e) => {
+                console.log('there click event')
               window.dispatchEvent(new Event('locationchange'));
               navigation.path=opts.path
         }}><Slot/></a>

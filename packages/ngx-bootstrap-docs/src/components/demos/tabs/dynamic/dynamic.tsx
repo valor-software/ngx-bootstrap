@@ -1,4 +1,4 @@
-import {component$, useClientEffect$, useStore, useTask$, $} from '@builder.io/qwik';
+import {component$, useClientEffect$, useStore, useTask$, $, useSignal} from '@builder.io/qwik';
 import {Tabset, Tab, ITab} from 'ngx-bootstrap';
 import {demoComponentContent} from "~/routes/components/tabs/tabs-section.list";
 import ExampleComponent from "~/components/example-component/example-component";
@@ -13,6 +13,8 @@ export default component$(() => {
     });
 
     const customId = 'dynamicTabs';
+    const addedTabs = useSignal();
+    const removedTabs = useSignal();
 
     useTask$(() => {
         state.tabsList = [
@@ -39,22 +41,23 @@ export default component$(() => {
         }
         state.tabsList.push(tab);
         state.tabsList = Array.from(state.tabsList);
-        window.dispatchEvent(new CustomEvent('addTabBs', {'detail': {
-                tabsetId: customId,
-                tab
-        }}))
+        addedTabs.value = {
+            tabsetId: customId
+        }
     });
 
     const removeAllTabs = $(() => {
-        const removedTabs = state.tabsList.splice(1, state.tabsList.length - 1);
+        const removedItems = state.tabsList.splice(1, state.tabsList.length - 1);
+        const idsArr: string[] = [];
+        removedItems.map(item => idsArr.push(item.id));
         state.tabsList = Array.from(state.tabsList);
-        window.dispatchEvent(new CustomEvent('removeTabBs', {'detail': {
-                tabsetId: customId,
-                tabs: removedTabs || []
-            }}))
+        removedTabs.value = {
+            tabsIds: idsArr,
+            tabsetId: customId
+        };
     })
 
-        return (
+    return (
         <>
             <p>Change quantity of tabs by manipulating tabs array</p>
             <button class="btn btn-primary" onClick$={() => addTab()}>Add tab</button>
@@ -62,13 +65,15 @@ export default component$(() => {
                 (<button className="btn btn-primary" onClick$={() => removeAllTabs()}> Remove all tabs </button>) : ''
             }
             <hr/>
-            <Tabset customId={customId}>
+            {// @ts-ignore
+            <Tabset customId={customId} updateStore={addedTabs.value} removeTabs={removedTabs.value}>
                 {state.tabsList.map((item: ITab, index) => {
                     return(
                         <Tab heading={item.heading} id={item.id} key={`key-${item.id}`} removable={item.removable}>Basic content {index}</Tab>
                     )
                 })}
             </Tabset>
+            }
         </>
     );
 });

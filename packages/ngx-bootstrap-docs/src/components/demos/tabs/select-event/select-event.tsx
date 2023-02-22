@@ -9,12 +9,11 @@ export default component$(() => {
     const customId = 'selectEventTabs';
 
     const showSelectedEvent = $((data: any) => {
-        console.log(data);
+        state.activatedTab = data;
     })
 
     return (
         <>
-            <p>You can subscribe to tab's <code>select</code> event</p>
             {state.activatedTab ?
                 (
                     <div className="mb-3">

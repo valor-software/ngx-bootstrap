@@ -2,20 +2,23 @@ import {component$, Slot, useClientEffect$, useContext, useContextProvider, useS
 import { TabsContext} from "./tabs";
 import { ITab } from './models';
 
+export const defaultTab = {
+    heading: '',
+    id: '',
+    disabled: false,
+    removable: false,
+    customClass: '',
+    active: false,
+    hasCustomTemplate: false
+}
+
 
 
 export const Tab = component$((props:ITab) => {
     let tabsState = useContext(TabsContext);
 
     useClientEffect$(() => {
-        const tab = {
-            heading: '',
-            id: '',
-            disabled: false,
-            removable: false,
-            customClass: '',
-            active: false
-        }
+        const tab = Object.assign({}, defaultTab);
         for (let key in tab) {
             // @ts-ignore
             tab[key as keyof typeof tab] = key in props ? props[key as keyof typeof tab] : tab[key as keyof typeof tab];
@@ -28,14 +31,6 @@ export const Tab = component$((props:ITab) => {
     useTask$(({ track }: { track: Function }) => {
         track(() => tabsState.tabsActiveId);
     });
-
-    //todo test with more details such events for angular as ex
-//     /** fired when tab became active, $event:Tab equals to selected instance of Tab component */
-// @Output() selectTab: EventEmitter<TabDirective> = new EventEmitter();
-//     /** fired when tab became inactive, $event:Tab equals to deselected instance of Tab component */
-// @Output() deselect: EventEmitter<TabDirective> = new EventEmitter();
-//     /** fired before tab will be removed, $event:Tab equals to instance of removed tab */
-// @Output() removed: EventEmitter<TabDirective> = new EventEmitter();
 
     return (
         <>

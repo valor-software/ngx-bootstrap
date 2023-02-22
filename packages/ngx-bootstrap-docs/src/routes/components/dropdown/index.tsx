@@ -2,7 +2,7 @@ import {component$, JSXNode, render, useClientEffect$, useSignal} from '@builder
 import DemoSection from '../../../components/demo-section/demo-section';
 import DocsSection from '../../../components/docs-section/docs-section';
 import {demoComponentContent} from './dropdown-section.list';
-import BasicTabDemoComponent from './demos/basic';
+// import BasicTabDemoComponent from './demos/basic';
 
 export default component$(() => {
   const name = 'Dropdown';
@@ -23,7 +23,7 @@ export default component$(() => {
             section={demoComponentContent}>
             <div q:slot="overview" id={'examples-box'}>
                 {/*Stuck with dynamic rendering components, these list of components should be fixed*/}
-                <BasicTabDemoComponent></BasicTabDemoComponent>
+                {/*<BasicTabDemoComponent></BasicTabDemoComponent>*/}
             </div>
             <div q:slot="api">
                 api

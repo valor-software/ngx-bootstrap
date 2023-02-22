@@ -1,4 +1,4 @@
-import {component$, useStore, $, useClientEffect$, Slot} from '@builder.io/qwik';
+import {component$, useStore, $, useClientEffect$, Slot, useSignal} from '@builder.io/qwik';
 import {Tab, Tabset} from "ngx-bootstrap";
 import {useNavigate} from "@builder.io/qwik-city";
 import {getQueryParams} from "~/routing/routing";
@@ -27,20 +27,26 @@ export default component$((props: {section: ContentSection[]}) => {
     });
 
     const navigate = useNavigate();
-
-    useClientEffect$(() => {
-        if (!state.activeTab) {
-            const tab = getQueryParams('tab');
-            state.activeTab = tabsNames[tab as keyof typeof tabsNames] || tabsNames.overview;
-        }
-    });
+    const customId = 'docSectionTabset';
+    const activeTab = useSignal<{ tabsetId: string; id: string; active: boolean; }>();
 
     useClientEffect$(() => {
         const listener = ()=> {
             setTimeout(() => {
                 const tab = getQueryParams('tab');
                 state.activeTab = tabsNames[tab as keyof typeof tabsNames] || tabsNames.overview;
+                setTimeout(() => {
+                    activeTab.value = {
+                        tabsetId: customId,
+                        id: `docs-${state.activeTab}-tab`,
+                        active: true
+                    }
+                }, 200)
             },100)
+        }
+
+        if (!state.activeTab) {
+            listener();
         }
 
         window.addEventListener('locationchange', listener);
@@ -66,21 +72,21 @@ export default component$((props: {section: ContentSection[]}) => {
         <div class="docs-section">
             <div className="example-tabset-box tabset">
                 {!!state.activeTab && (
-                    <Tabset activeTabIsChanged={onChangeFunc}>
-                        <Tab heading="Overview" id={'tab-overview'} active={state.activeTab === tabsNames.overview}
+                    <Tabset activeTabIsChanged={onChangeFunc} updateTab={activeTab.value} customId={customId}>
+                        <Tab heading="Overview" id={'docs-overview-tab'}
                              customClass={'example-tabset cursor-pointer'}>
                             <Slot name={'overview'}/>
                         </Tab>
-                        <Tab heading="API" id={'tab-api'} active={state.activeTab === tabsNames.api}
+                        <Tab heading="API" id={'docs-api-tab'}
                              customClass={'example-tabset cursor-pointer'}>
                             <Slot name={'api'}/>
                         </Tab>
-                        <Tab heading="Examples" id={'tab-examples'} active={state.activeTab === tabsNames.examples}
+                        <Tab heading="Examples" id={'docs-examples-tab'}
                              customClass={'example-tabset cursor-pointer'}>
                             <Slot name={'examples'}/>
                         </Tab>
                     </Tabset>
-                )}
+                    )}
             </div>
         </div>
     );

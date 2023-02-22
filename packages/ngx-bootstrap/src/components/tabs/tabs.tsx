@@ -5,22 +5,10 @@ import {
     $,
     createContext,
     useClientEffect$,
-    useContext,
     useContextProvider,
-    render, useSignal, useTask$, useOnWindow, useOn, useOnDocument
+    useTask$
 } from '@builder.io/qwik';
-import {isBrowser} from "@builder.io/qwik/build";
-import { TabsetCustomEvent } from './models';
 import type {ITab} from './models';
-
-/**
- * Custom events
- * updateTab => tabsId, ITab obj with id
- * removeTab => tabsId, ITab obj with id
- * addTab => tabsId, ITab obj with id
- * */
-
-
 
 export interface ITabsSetProps {
     vertical?: boolean;
@@ -28,7 +16,14 @@ export interface ITabsSetProps {
     type?: string;
     activeTabIsChanged?: (activeTabId: string) => void;
     customId?: string;
-    // activeTab?: string;
+    updateTab?: Partial<IUpdatedTab>;
+    updateStore?: {
+        tabsetId: string;
+    };
+    removeTabs?: {
+        tabsetId: string;
+        tabsIds: string[];
+    }
 }
 
 export interface IState {
@@ -37,6 +32,10 @@ export interface IState {
     ariaLabel: string;
     tabsCheck: unknown;
     tabsActiveId: string | null;
+}
+
+export interface IUpdatedTab extends ITab {
+    tabsetId: string;
 }
 
 export const TabsContext = createContext<IState>('tabs-context');
@@ -51,10 +50,6 @@ export const Tabset = component$((props: ITabsSetProps) => {
     }, {recursive: true});
 
     useContextProvider(TabsContext, state);
-
-    // if (props.activeTab && props.activeTab !== state.tabsActiveId) {
-    //     console.log(props)
-    // }
 
     const setActiveTab = $((tab?: ITab) => {
         if (!state._tabs.length) {
@@ -87,6 +82,42 @@ export const Tabset = component$((props: ITabsSetProps) => {
         }
     });
 
+    useClientEffect$(({ track }) => {
+        const updateTab = track(() => props.updateTab);
+        if (props.customId === props.updateTab?.tabsetId) {
+            const index = state._tabs.findIndex(item => item.id === updateTab?.id);
+            const obj = Object.assign({}, state._tabs[index]);
+            for (let key in obj) {
+                //@ts-ignore
+                obj[key] = key in props.updateTab ? props.updateTab[key] : state._tabs[index][key];
+            }
+
+            if (obj.active && state.tabsActiveId !== obj.id) {
+                setActiveTab(obj);
+                return;
+            }
+
+            state._tabs[index] = Object.assign(obj);
+        }
+    });
+
+    useClientEffect$(({ track }) => {
+        const updateStore = track(() => props.updateStore);
+        if (props.customId === updateStore?.tabsetId) {
+            state._tabs = [...state._tabs];
+        }
+    });
+
+    useClientEffect$(({ track }) => {
+        const removeStore = track(() => props.removeTabs);
+        if (props.customId === removeStore?.tabsetId) {
+            state._tabs = state._tabs.filter(tab => !removeStore?.tabsIds.includes(tab.id));
+            if (!state._tabs.some(tab => tab.active)) {
+                setActiveTab();
+            }
+        }
+    });
+
     const removeTab = $((tabId: string) => {
         state._tabs = state._tabs.filter(item => item.id !== tabId);
         state.tabsCheck = {};
@@ -102,50 +133,6 @@ export const Tabset = component$((props: ITabsSetProps) => {
         const activeTab = state._tabs.find(item => item.active);
         setActiveTab(activeTab);
     });
-
-    useOnWindow(
-        'updateTabBs',
-        $((ev: Event) => {
-            if (!props.customId || props.customId === (ev as CustomEvent).detail?.tabsetId) {
-                const index = state._tabs.findIndex(item => item.id === (ev as CustomEvent).detail?.tab.id) || 0;
-                const obj = Object.assign({}, state._tabs[index]);
-                for (let key in obj) {
-                    // @ts-ignore
-                    obj[key] = key in Object((ev as CustomEvent).detail?.tab) ? (ev as CustomEvent).detail?.tab[key] : state._tabs[index][key];
-                }
-
-                state._tabs[index] = Object.assign(obj);
-                if (obj.active) {
-                    setActiveTab(obj);
-                }
-            }
-        })
-    );
-
-    useOnWindow(
-        'removeTabBs',
-        $((ev: Event) => {
-            if (!props.customId || props.customId === (ev as CustomEvent).detail?.tabsetId) {
-                const ids: string[] = [];
-                (ev as CustomEvent).detail?.tabs.map((item: ITab) => {
-                    ids.push(item.id);
-                })
-                state._tabs = state._tabs.filter(tab => !ids.includes(tab.id));
-                if (!state._tabs.some(tab => tab.active)) {
-                    setActiveTab();
-                }
-            }
-        })
-    );
-
-    useOnWindow(
-        'addTabBs',
-        $((ev: Event) => {
-            if (!props.customId || props.customId === (ev as CustomEvent).detail?.tabsetId) {
-                state._tabs = [...state._tabs];
-            }
-        })
-);
 
     const keyNavActions = $((event: any, index: number) => {
         //todo add keyboard implementation
@@ -179,7 +166,6 @@ export const Tabset = component$((props: ITabsSetProps) => {
                                            setActiveTab(tabz)
                                        }
                                     >
-                                        {tabz.hasCustomTemplate?.toString()}
                                         {tabz.hasCustomTemplate ? ('') : (<span>{tabz.heading || index}</span>)}
                                         <Slot name={tabz.id}></Slot>
                                         {tabz.removable ?
