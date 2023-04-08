@@ -1,4 +1,4 @@
-import { Injectable, StaticProvider, InjectionToken } from '@angular/core';
+import { ElementRef, Injectable, StaticProvider, InjectionToken } from '@angular/core';
 import { ClassName, CloseInterceptorFn, DismissReasons, Selector, TransitionDurations } from './models';
 
 @Injectable({providedIn: 'platform'})
@@ -30,6 +30,10 @@ export class ModalOptions<T = Record<string, unknown>> {
    * Css class for opened modal
    */
   class?: string;
+  /**
+   * CSS selector or ElementRef to which the modal is appended
+   */
+  container?: string | ElementRef;
   /**
    * Toggle animation
    */
@@ -63,6 +67,7 @@ export const modalConfigDefaults: ModalOptions = {
   show: false,
   ignoreBackdropClick: false,
   class: '',
+  container: 'body',
   animated: true,
   initialState: {},
   closeInterceptor: void 0
