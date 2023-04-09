@@ -4,7 +4,9 @@ import { pairwise, tap } from 'rxjs/operators';
 
 import { BsModalService, ModalModule } from '../index';
 
-@Component({ template: '<div>Dummy Component</div>' })
+@Component({
+  selector: 'dummy-component',
+  template: '<div>Dummy Component</div>' })
 class DummyComponent {
   // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
   constructor(modalService: BsModalService) { }
@@ -130,4 +132,20 @@ describe('Modal service', () => {
     jest.runAllTimers();
     expect(onHiddenSpy).toHaveBeenCalledWith({ id });
   });
+
+  it('should render in <body> element by default', done => {
+    modalService.onShown.subscribe((data) => {
+      expect(document.querySelector('dummy-component modal-container')).toBeDefined();
+      done();
+    })
+    modalService.show(TestModalComponent);
+  })
+
+  it('should render in the container selector provided', done => {
+    modalService.onShown.subscribe((data) => {
+      expect(document.querySelector('dummy-component modal-container')).toBeDefined();
+      done();
+    })
+    modalService.show(TestModalComponent, { container: 'dummy-component'});
+  })
 });

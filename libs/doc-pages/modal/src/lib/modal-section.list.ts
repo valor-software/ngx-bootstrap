@@ -60,6 +60,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'service-component',
         component: require('!!raw-loader!./demos/service-component/service-component.ts'),
         html: require('!!raw-loader!./demos/service-component/service-component.html'),
+        style: require('!!raw-loader!./demos/service-component/service-component.css'),
         description: `<p>Creating a modal with component just as easy as it is with template. Just pass your component
           in <code>.show()</code> method as in example, and don't forget to include your component to
           <code>entryComponents</code> of your <code>NgModule</code><br> If you passed a component
