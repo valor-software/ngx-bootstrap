@@ -66,5 +66,4 @@ export class ModalContentComponent {
     this.profitBtnPressed = true;
     this.list[this.list.length - 1] = 'PROFIT!!!';
   }
-
 }
