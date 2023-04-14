@@ -19,7 +19,7 @@
       </p>
     </h3>
     <p *ngIf="item.description" [innerHTML]="item.description"></p>
-    <ng-sample-box [ts]="item?.component?.default" [html]="item?.html?.default" [style]="item.style ">
+    <ng-sample-box [ts]="item?.component?.default" [html]="item?.html?.default" [style]="item.style?.default">
       <ng-container *ngComponentOutlet="item.outlet"></ng-container>
     </ng-sample-box>
   </div>

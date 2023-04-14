@@ -6,7 +6,7 @@ export interface ComponentExample {
   description?: string;
   component?: SourceCodeModel;
   html?: SourceCodeModel;
-  style?: string;
+  style?: SourceCodeModel;
   css?: string;
   outlet?: any; // ToDo: Component<T>
 }

@@ -12,12 +12,14 @@ export class DemoModalServiceFromComponent {
 
   openModalWithComponent() {
     const initialState: ModalOptions = {
+      container: 'bs-demo',
       initialState: {
         list: [
           'Open a modal with component',
           'Pass your data',
           'Do something else',
-          '...'
+          '...',
+          'Push button to find out!'
         ],
         title: 'Modal with component'
       }
@@ -32,6 +34,7 @@ export class DemoModalServiceFromComponent {
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'modal-content',
+  styleUrls: ['./service-component.css'],
   template: `
     <div class="modal-header">
       <h4 class="modal-title pull-left">{{title}}</h4>
@@ -41,23 +44,26 @@ export class DemoModalServiceFromComponent {
     </div>
     <div class="modal-body">
       <ul *ngIf="list.length">
-        <li *ngFor="let item of list">{{item}}</li>
+        <li *ngFor="let item of list" [ngClass]="{ 'profit' : item === 'PROFIT!!!'}">{{item}}</li>
       </ul>
     </div>
     <div class="modal-footer">
+      <button *ngIf="!profitBtnPressed" type="button" class="btn btn-default" (click)="showProfit()">Find Out</button>
       <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
     </div>
   `
 })
 
-export class ModalContentComponent implements OnInit {
+export class ModalContentComponent {
   title?: string;
+  profitBtnPressed: boolean = false;
   closeBtnName?: string;
   list: any[] = [];
 
   constructor(public bsModalRef: BsModalRef) {}
 
-  ngOnInit() {
-    this.list.push('PROFIT!!!');
+  showProfit() {
+    this.profitBtnPressed = true;
+    this.list[this.list.length - 1] = 'PROFIT!!!';
   }
 }

@@ -2747,6 +2747,11 @@ export const ngdoc: any = {
         "description": "<p>Css class for opened modal</p>\n"
       },
       {
+        "name": "container",
+        "type": "string | ElementRef",
+        "description": "<p>The CSS Selector or ElementRef for where the modal window will be injected into the page.</p>\n"
+      },
+      {
         "name": "closeInterceptor",
         "type": "CloseInterceptorFn",
         "description": "<p>Function to intercept the closure</p>\n"

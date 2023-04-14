@@ -337,7 +337,7 @@ export class ModalDirective implements OnDestroy, OnInit {
       this.removeBackdrop();
       this._backdrop
         .attach(ModalBackdropComponent)
-        .to('body')
+        .to(this._config.container)
         .show({ isAnimated: this._config.animated });
       this.backdrop = this._backdrop._componentRef;
 
