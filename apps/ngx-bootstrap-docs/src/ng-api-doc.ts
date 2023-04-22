@@ -3202,7 +3202,7 @@ export const ngdoc: any = {
     "inputs": [
       {
         "name": "placement",
-        "type": "AvailbleBSPositions",
+        "type": "AvailableBSPositions",
         "description": ""
       },
       {
@@ -3295,7 +3295,7 @@ export const ngdoc: any = {
       {
         "name": "placement",
         "defaultValue": "top",
-        "type": "AvailbleBSPositions",
+        "type": "AvailableBSPositions",
         "description": "<p>Placement of a popover. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;</p>\n"
       },
       {
@@ -4267,7 +4267,7 @@ export const ngdoc: any = {
       {
         "name": "placement",
         "defaultValue": "top",
-        "type": "AvailbleBSPositions",
+        "type": "AvailableBSPositions",
         "description": "<p>Placement of a tooltip. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;</p>\n"
       },
       {
@@ -4319,7 +4319,7 @@ export const ngdoc: any = {
       },
       {
         "name": "tooltipPlacement",
-        "type": "AvailbleBSPositions",
+        "type": "AvailableBSPositions",
         "description": ""
       },
       {
