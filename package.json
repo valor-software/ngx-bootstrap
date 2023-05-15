@@ -80,16 +80,15 @@
     "zone.js": "0.11.6"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "15.0.3",
+    "@angular-devkit/build-angular": "15.2.8",
     "@angular-eslint/eslint-plugin": "16.0.1",
     "@angular-eslint/eslint-plugin-template": "16.0.1",
     "@angular-eslint/template-parser": "16.0.1",
     "@angular/cli": "~15.0.0",
     "@angular/compiler-cli": "15.0.3",
     "@angular/language-service": "15.0.3",
-    "@applitools/eyes.cypress": "3.4.11",
+    "@applitools/eyes.cypress": "3.3.23",
     "@ngneat/spectator": "11.1.0",
-    "@nrwl/cli": "15.3.0",
     "@nrwl/cypress": "16.1.4",
     "@nrwl/devkit": "16.1.4",
     "@nrwl/eslint-plugin-nx": "16.1.4",
@@ -106,7 +105,7 @@
     "@typescript-eslint/eslint-plugin": "5.59.6",
     "@typescript-eslint/parser": "5.59.6",
     "conventional-changelog-cli": "2.2.2",
-    "conventional-github-releaser": "3.1.5",
+    "conventional-github-releaser": "1.1.7",
     "cypress": "9.7.0",
     "dotenv": "16.0.1",
     "eslint": "8.20.0",
@@ -134,4 +133,3 @@
     "webpack-bundle-analyzer": "4.5.0"
   }
 }
-
