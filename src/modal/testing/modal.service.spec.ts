@@ -17,7 +17,6 @@ export class TestModalComponent { }
 
 @NgModule({
   declarations: [TestModalComponent],
-  entryComponents: [TestModalComponent]
 })
 export class TestModule { }
 
