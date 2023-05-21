@@ -27,7 +27,7 @@ import { TypeaheadConfig } from './typeahead.config';
 
 // eslint-disable-next-line
 type TypeaheadOption = string | Record<string | number, any>;
-type TypeaheadOptionArr = TypeaheadOption[] | Observable<TypeaheadOption[]>;
+type TypeaheadOptionArr = TypeaheadOption[] | Observable<TypeaheadOption>;
 
 @Directive({
   selector: '[typeahead]',
@@ -199,7 +199,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       viewContainerRef,
       renderer
     )
-      .provide({ provide: TypeaheadConfig, useValue: config });
+      .provide({provide: TypeaheadConfig, useValue: config});
 
     Object.assign(this,
       {
@@ -254,8 +254,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       e.target.value !== undefined
         ? e.target.value
         : e.target.textContent !== undefined
-        ? e.target.textContent
-        : e.target.innerText;
+          ? e.target.textContent
+          : e.target.innerText;
 
     if (value != null && value.trim().length >= this.typeaheadMinLength) {
       this.typeaheadLoading.emit(true);
@@ -380,7 +380,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this._typeahead
       .attach(TypeaheadContainerComponent)
       .to(this.container)
-      .position({ attachment: `${this.dropup ? 'top' : 'bottom'} left` })
+      .position({attachment: `${this.dropup ? 'top' : 'bottom'} left`})
       .show({
         typeaheadRef: this,
         placement: this.placement,
@@ -486,8 +486,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
             return typeahead
               .pipe(
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore - mystery error: Error: src/typeahead/typeahead.directive.ts:489:17 - error TS2554: Expected 0 arguments, but got 2.
                 filter((option: TypeaheadOption) => {
                   return !!option && this.testMatch(this.normalizeOption(option), normalizedQuery);
                 }),
@@ -495,8 +493,6 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
               );
           })
         )
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore - builds successfully
         .subscribe((matches: TypeaheadOption[]) => {
           this.finalizeAsyncCall(matches);
         })
@@ -670,7 +666,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       return options;
     }
 
-    const { field, direction } = (this.typeaheadOrderBy || {});
+    const {field, direction} = (this.typeaheadOrderBy || {});
 
     if (!direction || !(direction === 'asc' || direction === 'desc')) {
       console.error('typeaheadOrderBy direction has to equal "asc" or "desc". Please follow the documentation.');
