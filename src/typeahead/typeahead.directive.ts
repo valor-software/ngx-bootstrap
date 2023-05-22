@@ -254,8 +254,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       e.target.value !== undefined
         ? e.target.value
         : e.target.textContent !== undefined
-          ? e.target.textContent
-          : e.target.innerText;
+        ? e.target.textContent
+        : e.target.innerText;
 
     if (value != null && value.trim().length >= this.typeaheadMinLength) {
       this.typeaheadLoading.emit(true);
@@ -380,7 +380,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this._typeahead
       .attach(TypeaheadContainerComponent)
       .to(this.container)
-      .position({attachment: `${this.dropup ? 'top' : 'bottom'} left`})
+      .position({ attachment: `${this.dropup ? 'top' : 'bottom'} left` })
       .show({
         typeaheadRef: this,
         placement: this.placement,
@@ -666,7 +666,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       return options;
     }
 
-    const {field, direction} = (this.typeaheadOrderBy || {});
+    const { field, direction } = (this.typeaheadOrderBy || {});
 
     if (!direction || !(direction === 'asc' || direction === 'desc')) {
       console.error('typeaheadOrderBy direction has to equal "asc" or "desc". Please follow the documentation.');
