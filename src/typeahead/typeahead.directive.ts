@@ -199,7 +199,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       viewContainerRef,
       renderer
     )
-      .provide({provide: TypeaheadConfig, useValue: config});
+      .provide({ provide: TypeaheadConfig, useValue: config });
 
     Object.assign(this,
       {
