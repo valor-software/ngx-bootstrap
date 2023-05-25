@@ -9,12 +9,11 @@
     <span class="token keyword">const</span> customId <span class="token operator">=</span> <span class="token string">'selectEventTabs'</span><span class="token punctuation">;</span>
 
     <span class="token keyword">const</span> showSelectedEvent <span class="token operator">=</span> <span class="token function">$</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter"><span class="token literal-property property">data</span><span class="token operator">:</span> any</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        state<span class="token punctuation">.</span>activatedTab <span class="token operator">=</span> data<span class="token punctuation">;</span>
     <span class="token punctuation">}</span><span class="token punctuation">)</span>
 
     <span class="token keyword">return</span> <span class="token punctuation">(</span>
         <span class="token operator">&lt;</span><span class="token operator">></span>
-            <span class="token operator">&lt;</span>p<span class="token operator">></span>You can subscribe to tab's <span class="token operator">&lt;</span>code<span class="token operator">></span>select<span class="token operator">&lt;</span><span class="token operator">/</span>code<span class="token operator">></span> event<span class="token operator">&lt;</span><span class="token operator">/</span>p<span class="token operator">></span>
             <span class="token punctuation">{</span>state<span class="token punctuation">.</span>activatedTab <span class="token operator">?</span>
                 <span class="token punctuation">(</span>
                     <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">"mb-3"</span><span class="token operator">></span>

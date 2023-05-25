@@ -1,25 +1,3 @@
-// import { DemoTabsBasicComponent } from './demos/basic/basic';
-// import { DemoTabsManualSelectionComponent } from './demos/manual-selection/manual-selection';
-// import { DemoTabsDynamicComponent } from './demos/dynamic/dynamic';
-// import { DemoTabsPillsComponent } from './demos/pills/pills';
-// import { DemoTabsVerticalPillsComponent } from './demos/vertical-pills/vertical-pills';
-// import { DemoTabsJustifiedComponent } from './demos/justified/justified';
-// import { DemoTabsCustomClassComponent } from './demos/custom-class/custom-class';
-// import { DemoTabsConfigComponent } from './demos/config/config';
-// import { DemoTabsDisabledComponent } from './demos/disabled/disabled';
-// import { DemoTabsCustomComponent } from './demos/custom-template/custom-template';
-// import { DemoTabsSelectEventComponent } from './demos/select-event/select-event';
-// import { DemoAccessibilityComponent } from './demos/accessibility/accessibility';
-// import { DynamicContentRenderingComponent } from './demos/dynamic-content-rendering/dynamic-content-rendering';
-// import { DemoDisabledKeyNavigationsComponent } from './demos/disabled-key-navigations/disabled-key-navigations';
-// import { ContentSection } from '@ngx-bootstrap-doc/docs';
-// import { ExamplesComponent } from '@ngx-bootstrap-doc/docs';
-// import { ApiSectionsComponent } from '@ngx-bootstrap-doc/docs';
-//
-// import {
-//   NgApiDocComponent,
-//   NgApiDocConfigComponent
-// } from '@ngx-bootstrap-doc/docs';
 import { ContentSection } from '~/models/content-section.model';
 import BasicCode from '../../../components/demos/tabs/basic/basic.html?raw';
 import DisabledTabs from '../../../components/demos/tabs/disabled/disabled.html?raw';

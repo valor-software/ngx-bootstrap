@@ -77,7 +77,7 @@ export default component$(() => {
       return;
     }
 
-    navigation.path = `${value}`;
+    navigation(`${value}`)
     window.dispatchEvent(new Event('locationchange'));
   });
 
