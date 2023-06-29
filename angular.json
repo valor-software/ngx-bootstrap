@@ -1478,16 +1478,18 @@
       ]
     },
     "ngx-bootstrap-docs-e2e": {
-      "$schema": "../../node_modules/nx/schemas/project-schema.json",
       "root": "apps/ngx-bootstrap-docs-e2e",
-      "sourceRoot": "apps/ngx-bootstrap-docs-e2e/src",
       "projectType": "application",
+      "sourceRoot": "apps/ngx-bootstrap-docs-e2e/src",
       "architect": {
         "e2e": {
-          "builder": "@nrwl/cypress:cypress",
+          "builder": "@nxkit/playwright:test",
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
-            "cypressConfig": "apps/ngx-bootstrap-docs-e2e/cypress.json",
-            "tsConfig": "apps/ngx-bootstrap-docs-e2e/tsconfig.e2e.json",
+            "outputPath": "dist/apps/ngx-bootstrap-docs-e2e/test-results",
+            "playwrightConfig": "apps/ngx-bootstrap-docs-e2e/playwright.config.ts",
             "devServerTarget": "ngx-bootstrap-docs:serve"
           },
           "configurations": {
@@ -1499,8 +1501,34 @@
             }
           }
         },
+        "debug": {
+          "builder": "@nxkit/playwright:test",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/ngx-bootstrap-docs-e2e/test-results",
+            "playwrightConfig": "apps/ngx-bootstrap-docs-e2e/playwright.config.ts",
+            "devServerTarget": "ngx-bootstrap-docs:serve",
+            "debug": true
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ngx-bootstrap-docs:serve:production"
+            }
+          }
+        },
+        "show-report": {
+          "builder": "@nxkit/playwright:show-report",
+          "options": {
+            "reportPath": "dist/apps/ngx-bootstrap-docs-e2e/playwright-report"
+          }
+        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
+          "outputs": [
+            "{options.outputFile}"
+          ],
           "options": {
             "lintFilePatterns": [
               "apps/ngx-bootstrap-docs-e2e/**/*.{js,ts}"
@@ -1508,6 +1536,7 @@
           }
         }
       },
+      "tags": [],
       "implicitDependencies": [
         "ngx-bootstrap-docs"
       ]

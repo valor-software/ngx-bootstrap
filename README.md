@@ -199,10 +199,10 @@ Please read our [contribution guidelines](https://github.com/valor-software/ngx-
 
 ### Credits
 Crossbrowser testing sponsored by [Saucelabs](https://saucelabs.com/)
-[<img src="https://avatars2.githubusercontent.com/u/88837?s=200&v=4" alt="Saucelabs" width="31" height="31">](https://saucelabs.com/)
+[<img src="https://avatars2.githubusercontent.com/u/88837?s=200&v=4" alt="Saucelabs" width="31" height="31" align="middle">](https://saucelabs.com/)
 
-End-to-end testing sponsored by [Cypress](https://www.cypress.io/)
-[<img src="https://raw.githubusercontent.com/cypress-io/cypress-icons/master/src/favicon/favicon.ico" alt="Cypress" width="31" height="31">](https://www.cypress.io/)
+End-to-end testing sponsored by [Playwright](https://playwright.dev)
+[<img src="https://avatars.githubusercontent.com/u/89237858?v=4" alt="Playwright" width="31" height="31" align="middle">](https://playwright.dev)
 
 ### License
 
