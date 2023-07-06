@@ -201,9 +201,6 @@ Please read our [contribution guidelines](https://github.com/valor-software/ngx-
 Crossbrowser testing sponsored by [Saucelabs](https://saucelabs.com/)
 [<img src="https://avatars2.githubusercontent.com/u/88837?s=200&v=4" alt="Saucelabs" width="31" height="31" align="middle">](https://saucelabs.com/)
 
-End-to-end testing sponsored by [Playwright](https://playwright.dev)
-[<img src="https://avatars.githubusercontent.com/u/89237858?v=4" alt="Playwright" width="31" height="31" align="middle">](https://playwright.dev)
-
 ### License
 
 [MIT](https://github.com/valor-software/ngx-bootstrap/blob/development/LICENSE)
