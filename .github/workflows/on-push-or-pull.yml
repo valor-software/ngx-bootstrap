@@ -14,6 +14,7 @@ env:
   SAUCE_USERNAME_PR: valorkinpr
   SAUCE_ACCESS_KEY_PR: e0a97bd3-4b74-4408-89bf-cce1b44a8bf1
   FIREBASE_CHANNEL: ${{ fromJSON('["", "live"]')[!github.base_ref] }}
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 0
 
   CACHE_NODE_MODULES_PATH: |
     ~/.npm
@@ -138,7 +139,9 @@ jobs:
           key: dist-${{ github.run_id }}
 
       - name: Install playwright browsers
-        run: npx playwright install-deps chromium
+        run: |
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npx playwright install
+          npx playwright install-deps chromium
 
       - name: smoke e2e on firebase
         if: ${{ needs.firebase_preview.outputs.output_url }}
