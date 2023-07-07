@@ -9,12 +9,11 @@
       "options": {
         "cacheableOperations": [
           "build",
-          "test",
           "lint",
+          "test",
           "e2e"
         ],
-        "canTrackAnalytics": false,
-        "showUsageWarnings": true
+        "accessToken": "ZjAyZjFlMDUtNTY4Zi00ZmUzLWEyMjUtNzdmYjFiMGRkM2VlfHJlYWQtd3JpdGU="
       }
     },
     "default": {
@@ -44,8 +43,7 @@
     "@nrwl/angular:application": {
       "style": "scss",
       "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
+      "unitTestRunner": "jest"
     },
     "@nrwl/angular:library": {
       "linter": "eslint",
