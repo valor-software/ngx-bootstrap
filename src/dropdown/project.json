@@ -1,0 +1,49 @@
+{
+  "name": "dropdown",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "src/dropdown",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": [
+        "{workspaceRoot}/dist/ngx-bootstrap/dropdown"
+      ],
+      "options": {
+        "tsConfig": "src/dropdown/tsconfig.lib.json",
+        "project": "src/dropdown/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "src/dropdown/tsconfig.lib.prod.json"
+        }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "src/dropdown/**/*.ts",
+          "src/dropdown/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/src/dropdown"
+      ],
+      "options": {
+        "jestConfig": "src/dropdown/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

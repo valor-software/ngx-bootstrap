@@ -1,0 +1,49 @@
+{
+  "name": "progressbar",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "src/progressbar",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": [
+        "{workspaceRoot}/dist/ngx-bootstrap/progressbar"
+      ],
+      "options": {
+        "tsConfig": "src/progressbar/tsconfig.lib.json",
+        "project": "src/progressbar/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "src/progressbar/tsconfig.lib.prod.json"
+        }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "src/progressbar/**/*.ts",
+          "src/progressbar/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/src/progressbar"
+      ],
+      "options": {
+        "jestConfig": "src/progressbar/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "common-docs",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/common-docs/src",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "options": {
+        "tsConfig": "libs/common-docs/tsconfig.lib.json",
+        "project": "libs/common-docs/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/common-docs/tsconfig.lib.prod.json"
+        }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/common-docs/src/**/*.ts",
+          "libs/common-docs/src/**/*.html"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "name": "accordion",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "src/accordion",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": [
+        "{workspaceRoot}/dist/ngx-bootstrap/accordion"
+      ],
+      "options": {
+        "tsConfig": "src/accordion/tsconfig.lib.json",
+        "project": "src/accordion/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "src/accordion/tsconfig.lib.prod.json"
+        }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "src/accordion/**/*.ts",
+          "src/accordion/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/src/accordion"
+      ],
+      "options": {
+        "jestConfig": "src/accordion/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

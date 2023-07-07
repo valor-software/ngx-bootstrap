@@ -1,0 +1,35 @@
+{
+  "name": "ngx-bootstrap-docs-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/ngx-bootstrap-docs-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/ngx-bootstrap-docs-e2e/cypress.json",
+        "tsConfig": "apps/ngx-bootstrap-docs-e2e/tsconfig.e2e.json",
+        "devServerTarget": "ngx-bootstrap-docs:serve"
+      },
+      "configurations": {
+        "firebase": {
+          "devServerTarget": ""
+        },
+        "production": {
+          "devServerTarget": "ngx-bootstrap-docs:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/ngx-bootstrap-docs-e2e/**/*.{js,ts}"
+        ]
+      }
+    }
+  },
+  "implicitDependencies": [
+    "ngx-bootstrap-docs"
+  ]
+}

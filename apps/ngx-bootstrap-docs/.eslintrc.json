@@ -1,15 +1,23 @@
 {
-  "extends": ["../../.eslintrc.json"],
-  "ignorePatterns": ["!**/*"],
+  "extends": [
+    "../../.eslintrc.json"
+  ],
+  "ignorePatterns": [
+    "!**/*"
+  ],
   "overrides": [
     {
-      "files": ["*.ts"],
+      "files": [
+        "*.ts"
+      ],
       "extends": [
-        "plugin:@nrwl/nx/angular",
+        "plugin:@nx/angular",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "parserOptions": {
-        "project": ["apps/ngx-bootstrap-docs/tsconfig.*?.json"]
+        "project": [
+          "apps/ngx-bootstrap-docs/tsconfig.*?.json"
+        ]
       },
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -34,8 +42,12 @@
       }
     },
     {
-      "files": ["*.html"],
-      "extends": ["plugin:@nrwl/nx/angular-template"],
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@nx/angular-template"
+      ],
       "rules": {}
     }
   ]
