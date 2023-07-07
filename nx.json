@@ -13,7 +13,7 @@
           "lint",
           "e2e"
         ],
-        "canTrackAnalytics": false,
+        "canTrackAnalytics": true,
         "showUsageWarnings": true
       }
     },
