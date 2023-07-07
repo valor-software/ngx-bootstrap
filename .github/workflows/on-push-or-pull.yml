@@ -178,6 +178,11 @@ jobs:
           path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
 
+      - name: Install playwright browsers
+        run: |
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npx playwright install
+          npx playwright install-deps chromium
+
       - name: full e2e on firebase
         if: ${{ needs.firebase_preview.outputs.output_url }}
         continue-on-error: true
