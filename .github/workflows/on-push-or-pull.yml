@@ -137,6 +137,9 @@ jobs:
           path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
 
+      - name: Install playwright browsers
+        run: npx playwright install-deps chromium
+
       - name: smoke e2e on firebase
         if: ${{ needs.firebase_preview.outputs.output_url }}
         run: npx nx run ngx-bootstrap-docs-e2e:e2e --pwProject=chromium-integration --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/ --skipServe --shard=${{ matrix.shard }}/${{ strategy.job-total }}
