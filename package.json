@@ -95,7 +95,7 @@
     "@nrwl/jest": "15.3.0",
     "@nrwl/js": "15.3.0",
     "@nrwl/linter": "15.3.0",
-    "@nrwl/nx-cloud": "15.0.2",
+    "@nrwl/nx-cloud": "16.0.5",
     "@nrwl/workspace": "15.3.0",
     "@nxkit/playwright": "2.1.1",
     "@types/fs-extra": "9.0.13",

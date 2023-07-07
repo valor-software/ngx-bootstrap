@@ -9,12 +9,11 @@
       "options": {
         "cacheableOperations": [
           "build",
-          "test",
           "lint",
+          "test",
           "e2e"
         ],
-        "canTrackAnalytics": true,
-        "showUsageWarnings": true
+        "accessToken": "ZjAyZjFlMDUtNTY4Zi00ZmUzLWEyMjUtNzdmYjFiMGRkM2VlfHJlYWQtd3JpdGU="
       }
     },
     "default": {
