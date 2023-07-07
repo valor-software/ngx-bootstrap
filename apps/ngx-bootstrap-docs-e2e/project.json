@@ -1,14 +1,16 @@
 {
   "name": "ngx-bootstrap-docs-e2e",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/ngx-bootstrap-docs-e2e/src",
   "projectType": "application",
   "targets": {
     "e2e": {
-      "executor": "@nx/cypress:cypress",
+      "executor": "@nxkit/playwright:test",
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
-        "cypressConfig": "apps/ngx-bootstrap-docs-e2e/cypress.json",
-        "tsConfig": "apps/ngx-bootstrap-docs-e2e/tsconfig.e2e.json",
+        "outputPath": "dist/apps/ngx-bootstrap-docs-e2e/test-results",
+        "playwrightConfig": "apps/ngx-bootstrap-docs-e2e/playwright.config.ts",
         "devServerTarget": "ngx-bootstrap-docs:serve"
       },
       "configurations": {
@@ -20,8 +22,34 @@
         }
       }
     },
+    "debug": {
+      "builder": "@nxkit/playwright:test",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/apps/ngx-bootstrap-docs-e2e/test-results",
+        "playwrightConfig": "apps/ngx-bootstrap-docs-e2e/playwright.config.ts",
+        "devServerTarget": "ngx-bootstrap-docs:serve",
+        "debug": true
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "ngx-bootstrap-docs:serve:production"
+        }
+      }
+    },
+    "show-report": {
+      "builder": "@nxkit/playwright:show-report",
+      "options": {
+        "reportPath": "dist/apps/ngx-bootstrap-docs-e2e/playwright-report"
+      }
+    },
     "lint": {
       "executor": "@nx/linter:eslint",
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "lintFilePatterns": [
           "apps/ngx-bootstrap-docs-e2e/**/*.{js,ts}"
@@ -29,6 +57,7 @@
       }
     }
   },
+  "tags": [],
   "implicitDependencies": [
     "ngx-bootstrap-docs"
   ]
