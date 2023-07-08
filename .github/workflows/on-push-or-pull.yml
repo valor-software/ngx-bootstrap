@@ -155,7 +155,7 @@ jobs:
         if: always()
         with:
           name: playwright-report-${{ matrix.shard }}_${{ strategy.job-total }}
-          path: playwright-report
+          path: apps/ngx-bootstrap-docs-e2e/playwright-report
           retention-days: 30
 
   e2e_full:
@@ -197,5 +197,5 @@ jobs:
         if: always()
         with:
           name: playwright-report-${{ matrix.shard }}_${{ strategy.job-total }}
-          path: playwright-report
+          path: apps/ngx-bootstrap-docs-e2e/playwright-report
           retention-days: 30
