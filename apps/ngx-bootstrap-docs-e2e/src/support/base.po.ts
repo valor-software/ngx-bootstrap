@@ -9,6 +9,10 @@ export class BasePo {
     this.page = page;
   }
 
+  getTabSelector(tabName: string) {
+    return `tab[heading="${tabName}"]`;
+  }
+
   async navigateTo() {
     const bsVersionRoute = process.env['bsVersion'] ? `?_bsVersion=bs${process.env['bsVersion']}` : '';
     await this.page.goto(this.pageUrl + bsVersionRoute);

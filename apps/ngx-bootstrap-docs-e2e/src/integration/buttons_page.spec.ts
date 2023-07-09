@@ -9,12 +9,10 @@ const test = base.extend<{ buttonsPo: ButtonsPo }>({
 });
 
 test.describe('Buttons page testing suite', () => {
-  let tabName: string;
   let tabSelector: string;
 
   test.beforeEach(async ({ buttonsPo }) => {
-    tabName = 'Overview';
-    tabSelector = `tab[heading="${tabName}"]`;
+    tabSelector = buttonsPo.getTabSelector('Overview');
     await buttonsPo.navigateTo();
   });
 
