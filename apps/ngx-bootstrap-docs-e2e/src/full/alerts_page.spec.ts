@@ -9,12 +9,10 @@ const test = base.extend<{ alertsPo: AlertsPo }>({
 });
 
 test.describe('Alerts page testing suite', () => {
-  let tabName: string;
   let tabSelector: string;
 
   test.beforeEach(async ({ alertsPo }) => {
-    tabName = 'Overview';
-    tabSelector = `tab[heading="${tabName}"]`;
+    tabSelector = alertsPo.getTabSelector('Overview');
     await alertsPo.navigateTo();
   });
 
