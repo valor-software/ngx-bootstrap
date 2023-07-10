@@ -9,12 +9,10 @@ const test = base.extend<{ accordionPo: AccordionPo }>({
 });
 
 test.describe('Accordion page testing suite', () => {
-  let tabName: string;
   let tabSelector: string;
 
   test.beforeEach(async ({ accordionPo }) => {
-    tabName = 'Overview';
-    tabSelector = `tab[heading="${tabName}"]`;
+    tabSelector = accordionPo.getTabSelector('Overview');
     await accordionPo.navigateTo();
   });
 

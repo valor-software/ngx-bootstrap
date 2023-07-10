@@ -9,6 +9,10 @@ export class BasePo {
     this.page = page;
   }
 
+  getTabSelector(tabName: string) {
+    return `tab[heading="${tabName}"]`;
+  }
+
   async navigateTo() {
     const bsVersionRoute = process.env['bsVersion'] ? `?_bsVersion=bs${process.env['bsVersion']}` : '';
     await this.page.goto(this.pageUrl + bsVersionRoute);
@@ -29,11 +33,26 @@ export class BasePo {
       .click();
   }
 
+  async clickByText(baseSelector: string, text: string, elemNumber?: number) {
+    await this.page
+      .locator(baseSelector)
+      .getByText(text, { exact: true })
+      .nth(elemNumber ? elemNumber : 0)
+      .click();
+  }
+
   async expectBtnTxtEqual(baseSelector: string, expectedBtnTxt: string, buttonIndex?: number) {
     const btn = await this.page
       .locator(baseSelector + ' button')
       .nth(buttonIndex ? buttonIndex : 0);
     await expect((await btn.innerText()).trim()).toEqual(expectedBtnTxt.trim());
+  }
+
+  async expectLabelTxtEqual(baseSelector: string, expectedLabelTxt: string, labelIndex?: number) {
+    const elem = await this.page
+      .locator(baseSelector + ' label')
+      .nth(labelIndex ? labelIndex : 0);
+    await expect(elem).toHaveText(expectedLabelTxt);
   }
 
   async clickOnBtn(baseSelector: string, buttonIndex?: number) {
@@ -64,11 +83,11 @@ export class BasePo {
     }
   }
 
-  async expectLabelTxtEqual(baseSelector: string, expectedLabelTxt: string, labelIndex?: number) {
+  async expectPreviewExist(baseSelector: string, previewText: string, previewNumber?: number) {
     const elem = await this.page
-      .locator(baseSelector + ' label')
-      .nth(labelIndex ? labelIndex : 0);
-    await expect(elem).toHaveText(expectedLabelTxt);
+      .locator(baseSelector + ' .card.card-block')
+      .nth(previewNumber ? previewNumber : 0);
+    await expect(elem).toContainText(previewText);
   }
 
   async setCheckboxState(baseSelector: string, shouldBeChecked: boolean) {
