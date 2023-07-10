@@ -89,7 +89,7 @@
     "@angular/compiler-cli": "16.1.4",
     "@angular/language-service": "16.1.4",
     "@ngneat/spectator": "11.1.0",
-    "@nxkit/playwright": "2.1.1",
+    "@nxkit/playwright": "3.0.2",
     "@types/fs-extra": "9.0.13",
     "@types/glob": "7.2.0",
     "@types/jest": "29.5.2",
@@ -132,3 +132,4 @@
     "@nx/jest": "16.5.0"
   }
 }
+
