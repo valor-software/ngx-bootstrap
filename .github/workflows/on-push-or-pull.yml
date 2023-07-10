@@ -145,7 +145,7 @@ jobs:
 
       - name: smoke e2e on firebase
         if: ${{ needs.firebase_preview.outputs.output_url }}
-        run: npx nx run ngx-bootstrap-docs-e2e:e2e --pwProject=chromium-integration --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/ --skipServe --shard=${{ matrix.shard }}/${{ strategy.job-total }}
+        run:  PLAYWRIGHT_TEST_BASE_URL="${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/" && npx nx run ngx-bootstrap-docs-e2e:e2e --pwProject=chromium-integration --skipServe --shard=${{ matrix.shard }}/${{ strategy.job-total }}
 
       - name: smoke e2e local
         if: ${{ !needs.firebase_preview.outputs.output_url }}
