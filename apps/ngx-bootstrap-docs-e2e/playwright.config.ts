@@ -1,14 +1,13 @@
 import { defineConfig, devices } from '@playwright/test';
 import * as process from "process";
 
-const BASE_URL = process.env['PLAYWRIGHT_TEST_BASE_URL'] || 'http://localhost:4200/ngx-bootstrap/';
 export default defineConfig({
   testMatch: '**/*.spec.ts',
   fullyParallel: true,
   workers: 3,
   reporter: [['html', { outputFolder: 'playwright-report', open: 'never' }]],
   use: {
-    baseURL: BASE_URL,
+    baseURL: process.env['PLAYWRIGHT_TEST_BASE_URL'] || 'http://localhost:4200/ngx-bootstrap/',
     headless: true
   },
 
