@@ -12,9 +12,7 @@ import { Change, InsertChange } from '@schematics/angular/utility/change';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
 import * as ts from 'typescript';
 import { getProjectMainFile } from './project-main-file';
-import { WorkspaceProject, WorkspaceSchema } from '@schematics/angular/utility/workspace-models';
 import { JsonArray, JsonObject, workspaces } from '@angular-devkit/core';
-
 
 export function getProjectTargetOptions(project: workspaces.ProjectDefinition, buildTarget: string):  Record<string, string | number | boolean | JsonArray | JsonObject> {
   if (project?.targets?.get(buildTarget)?.options) {
@@ -111,18 +109,3 @@ export function getSourceFile(host: Tree, path: string) {
 
   return ts.createSourceFile(path, content, ts.ScriptTarget.Latest, true);
 }
-
-export function getProjectFromWorkSpace(workspace: WorkspaceSchema, projectName?: string): WorkspaceProject {
-  const finalProjectName = projectName || workspace.defaultProject;
-  if (!finalProjectName) {
-    throw new Error(`Could not find project in workspace: ${projectName}`);
-  }
-
-  const project = workspace.projects[finalProjectName];
-  if (!project) {
-    throw new Error(`Could not find project in workspace: ${projectName}`);
-  }
-
-  return project;
-}
-

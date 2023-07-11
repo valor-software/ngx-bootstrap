@@ -1,0 +1,49 @@
+{
+  "name": "typeahead",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "src/typeahead",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": [
+        "{workspaceRoot}/dist/ngx-bootstrap/typeahead"
+      ],
+      "options": {
+        "tsConfig": "src/typeahead/tsconfig.lib.json",
+        "project": "src/typeahead/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "src/typeahead/tsconfig.lib.prod.json"
+        }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "src/typeahead/**/*.ts",
+          "src/typeahead/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/src/typeahead"
+      ],
+      "options": {
+        "jestConfig": "src/typeahead/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

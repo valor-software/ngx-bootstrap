@@ -1,0 +1,49 @@
+{
+  "name": "component-loader",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "src/component-loader",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": [
+        "{workspaceRoot}/dist/ngx-bootstrap/component-loader"
+      ],
+      "options": {
+        "tsConfig": "src/component-loader/tsconfig.lib.json",
+        "project": "src/component-loader/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "src/component-loader/tsconfig.lib.prod.json"
+        }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "src/component-loader/**/*.ts",
+          "src/component-loader/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/src/component-loader"
+      ],
+      "options": {
+        "jestConfig": "src/component-loader/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

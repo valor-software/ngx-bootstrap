@@ -1,0 +1,43 @@
+{
+  "name": "pagination",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "src/pagination",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": [
+        "{workspaceRoot}/dist/ngx-bootstrap/pagination"
+      ],
+      "options": {
+        "tsConfig": "src/pagination/tsconfig.lib.json",
+        "project": "src/pagination/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "src/pagination/tsconfig.lib.prod.json"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "src/pagination/**/*.ts",
+          "src/pagination/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/src/pagination"
+      ],
+      "options": {
+        "jestConfig": "src/pagination/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
