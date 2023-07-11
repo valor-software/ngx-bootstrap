@@ -38,6 +38,7 @@
 ### BREAKING CHANGES
 
 * **bootstrap 3:** dropped bootstrap 3 support
+* supporting only angular v16
 
 
 
