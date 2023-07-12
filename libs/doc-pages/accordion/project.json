@@ -1,0 +1,39 @@
+{
+  "name": "doc-pages-accordion",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/doc-pages/accordion/src",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "outputs": [
+        "{workspaceRoot}/dist/ngx-bootstrap/accordion"
+      ],
+      "options": {
+        "tsConfig": "libs/doc-pages/accordion/tsconfig.lib.json",
+        "project": "libs/doc-pages/accordion/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/doc-pages/accordion/tsconfig.lib.prod.json"
+        }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/doc-pages/accordion/src/**/*.ts",
+          "libs/doc-pages/accordion/src/**/*.html"
+        ]
+      }
+    }
+  }
+}

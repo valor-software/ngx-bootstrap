@@ -1,0 +1,111 @@
+{
+  "name": "ngx-bootstrap",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "src/root",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "outputs": [
+        "{workspaceRoot}/dist/ngx-bootstrap"
+      ],
+      "options": {
+        "commands": [
+          "nx run ngx-bootstrap:ng-build:production",
+          "nx run ngx-bootstrap:build-sass",
+          "nx run ngx-bootstrap:docs"
+        ]
+      },
+      "configurations": {
+        "production": {}
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "ng-build": {
+      "executor": "@nx/angular:package",
+      "options": {
+        "tsConfig": "src/root/tsconfig.lib.json",
+        "project": "src/root/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "src/root/tsconfig.lib.prod.json"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "src/root/**/*.ts",
+          "src/root/**/*.html"
+        ]
+      }
+    },
+    "build-sass": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "npx sass src:dist/ngx-bootstrap --source-map"
+      }
+    },
+    "docs": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "node ./scripts/docs/get-doc.js"
+      }
+    },
+    "version": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          "ts-node ./scripts/set-version.ts",
+          "conventional-changelog --preset angular --infile CHANGELOG.md --same-file --release-count 1",
+          "git add -A"
+        ],
+        "parallel": false
+      },
+      "configurations": {
+        "production": {}
+      }
+    },
+    "stats": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "webpack-bundle-analyzer dist/apps/ngx-bootstrap-docs/stats.json"
+      }
+    }
+  },
+  "implicitDependencies": [
+    "accordion",
+    "alert",
+    "buttons",
+    "carousel",
+    "chronos",
+    "collapse",
+    "datepicker",
+    "dropdown",
+    "focus-trap",
+    "locale",
+    "modal",
+    "pagination",
+    "popover",
+    "progressbar",
+    "rating",
+    "sortable",
+    "tabs",
+    "timepicker",
+    "tooltip",
+    "typeahead",
+    "schematics"
+  ]
+}

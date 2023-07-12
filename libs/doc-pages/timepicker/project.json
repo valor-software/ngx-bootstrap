@@ -1,0 +1,36 @@
+{
+  "name": "doc-pages-timepicker",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/doc-pages/timepicker/src",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "options": {
+        "tsConfig": "libs/doc-pages/timepicker/tsconfig.lib.json",
+        "project": "libs/doc-pages/timepicker/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/doc-pages/timepicker/tsconfig.lib.prod.json"
+        }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/doc-pages/timepicker/src/**/*.ts",
+          "libs/doc-pages/timepicker/src/**/*.html"
+        ]
+      }
+    }
+  }
+}

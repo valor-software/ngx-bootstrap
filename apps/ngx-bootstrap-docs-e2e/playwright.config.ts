@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import * as process from "process";
 
 export default defineConfig({
   testMatch: '**/*.spec.ts',
@@ -6,7 +7,7 @@ export default defineConfig({
   workers: 3,
   reporter: [['html', { outputFolder: 'playwright-report', open: 'never' }]],
   use: {
-    baseURL: 'http://localhost:4200/ngx-bootstrap/',
+    baseURL: process.env['PLAYWRIGHT_TEST_BASE_URL'] || 'http://localhost:4200/ngx-bootstrap/',
     headless: true
   },
 

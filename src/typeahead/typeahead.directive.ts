@@ -27,7 +27,7 @@ import { TypeaheadConfig } from './typeahead.config';
 
 // eslint-disable-next-line
 type TypeaheadOption = string | Record<string | number, any>;
-type TypeaheadOptionArr = TypeaheadOption[] | Observable<TypeaheadOption[]>;
+type TypeaheadOptionArr = TypeaheadOption[] | Observable<TypeaheadOption>;
 
 @Directive({
   selector: '[typeahead]',

@@ -1,0 +1,49 @@
+{
+  "name": "tooltip",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "src/tooltip",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": [
+        "{workspaceRoot}/dist/ngx-bootstrap/tooltip"
+      ],
+      "options": {
+        "tsConfig": "src/tooltip/tsconfig.lib.json",
+        "project": "src/tooltip/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "src/tooltip/tsconfig.lib.prod.json"
+        }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "src/tooltip/**/*.ts",
+          "src/tooltip/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/src/tooltip"
+      ],
+      "options": {
+        "jestConfig": "src/tooltip/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

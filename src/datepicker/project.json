@@ -1,0 +1,49 @@
+{
+  "name": "datepicker",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "src/datepicker",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": [
+        "{workspaceRoot}/dist/ngx-bootstrap/datepicker"
+      ],
+      "options": {
+        "tsConfig": "src/datepicker/tsconfig.lib.json",
+        "project": "src/datepicker/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "src/datepicker/tsconfig.lib.prod.json"
+        }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "src/datepicker/**/*.ts",
+          "src/datepicker/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/src/datepicker"
+      ],
+      "options": {
+        "jestConfig": "src/datepicker/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
