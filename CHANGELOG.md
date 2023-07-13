@@ -1,5 +1,12 @@
 
 
+## [11.0.2](https://github.com/valor-software/ngx-bootstrap/compare/v11.0.1...v11.0.2) (2023-07-13)
+
+
+### Bug Fixes
+
+* ng-packagr config ([a42ba25](https://github.com/valor-software/ngx-bootstrap/commit/a42ba251cdf0b94b4113536f3bb39d5d7c691b2e))
+
 ## [11.0.1](https://github.com/valor-software/ngx-bootstrap/compare/v11.0.0...v11.0.1) (2023-07-13)
 
 
