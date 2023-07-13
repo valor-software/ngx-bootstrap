@@ -62,26 +62,24 @@
         "command": "node ./scripts/docs/get-doc.js"
       }
     },
-    "version": {
-      "executor": "nx:run-commands",
-      "outputs": [],
-      "options": {
-        "commands": [
-          "ts-node ./scripts/set-version.ts",
-          "conventional-changelog --preset angular --infile CHANGELOG.md --same-file --release-count 1",
-          "git add -A"
-        ],
-        "parallel": false
-      },
-      "configurations": {
-        "production": {}
-      }
-    },
     "stats": {
       "executor": "nx:run-commands",
       "outputs": [],
       "options": {
         "command": "webpack-bundle-analyzer dist/apps/ngx-bootstrap-docs/stats.json"
+      }
+    },
+    "version": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "commands": [
+          "ts-node ./scripts/set-version.ts"
+        ],
+        "parallel": false
+      },
+      "configurations": {
+        "production": {}
       }
     }
   },

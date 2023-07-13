@@ -22,7 +22,6 @@
     "test:detectOpenHandles": "nx run-many --all --target=test --detectOpenHandles",
     "lint": "nx run-many --all --target=lint",
     "e2e": "ng e2e",
-    "version": "nx run ngx-bootstrap:version",
     "affected:apps": "nx affected:apps",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",
@@ -45,6 +44,7 @@
     "scully": "scully",
     "scully:serve": "scully serve",
     "prepare": "husky install",
+    "version": "nx run ngx-bootstrap:version",
     "release": "release-it"
   },
   "private": true,
