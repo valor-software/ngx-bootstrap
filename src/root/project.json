@@ -104,6 +104,10 @@
     "timepicker",
     "tooltip",
     "typeahead",
+    "utils",
+    "positioning",
+    "mini-ngrx",
+    "component-loader",
     "schematics"
   ]
 }

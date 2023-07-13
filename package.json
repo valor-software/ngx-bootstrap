@@ -44,7 +44,7 @@
     "scully": "scully",
     "scully:serve": "scully serve",
     "prepare": "husky install",
-    "version": "nx run ngx-bootstrap:version",
+    "version": "npx ts-node ./scripts/set-version.ts",
     "release": "release-it"
   },
   "private": true,
@@ -76,6 +76,7 @@
     "@schematics/angular": "16.1.4",
     "@stackblitz/sdk": "1.8.0",
     "ajv": "8.11.0",
+    "ngx-bootstrap": "file:dist/ngx-bootstrap",
     "raw-loader": "4.0.2",
     "rxjs": "7.8.1",
     "tslib": "^2.3.0",

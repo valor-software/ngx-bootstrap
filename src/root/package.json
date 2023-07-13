@@ -17,198 +17,150 @@
   },
   "exports": {
     "./accordion": {
-      "types": "./accordion/ngx-bootstrap-accordion.d.ts",
+      "types": "./accordion/index.d.ts",
       "esm2022": "./accordion/esm2022/ngx-bootstrap-accordion.mjs",
-      "es2022": "./accordion/fesm2022/ngx-bootstrap-accordion.mjs",
-      "es2015": "./accordion/fesm2015/ngx-bootstrap-accordion.mjs",
-      "node": "./accordion/fesm2015/ngx-bootstrap-accordion.mjs",
+      "esm": "./accordion/esm2022/ngx-bootstrap-accordion.mjs",
       "default": "./accordion/fesm2022/ngx-bootstrap-accordion.mjs"
     },
     "./alert": {
-      "types": "./alert/ngx-bootstrap-alert.d.ts",
+      "types": "./alert/index.d.ts",
       "esm2022": "./alert/esm2022/ngx-bootstrap-alert.mjs",
-      "es2022": "./alert/fesm2022/ngx-bootstrap-alert.mjs",
-      "es2015": "./alert/fesm2015/ngx-bootstrap-alert.mjs",
-      "node": "./alert/fesm2015/ngx-bootstrap-alert.mjs",
+      "esm": "./alert/esm2022/ngx-bootstrap-alert.mjs",
       "default": "./alert/fesm2022/ngx-bootstrap-alert.mjs"
     },
     "./buttons": {
-      "types": "./buttons/ngx-bootstrap-buttons.d.ts",
+      "types": "./buttons/index.d.ts",
       "esm2022": "./buttons/esm2022/ngx-bootstrap-buttons.mjs",
-      "es2022": "./buttons/fesm2022/ngx-bootstrap-buttons.mjs",
-      "es2015": "./buttons/fesm2015/ngx-bootstrap-buttons.mjs",
-      "node": "./buttons/fesm2015/ngx-bootstrap-buttons.mjs",
+      "esm": "./buttons/esm2022/ngx-bootstrap-buttons.mjs",
       "default": "./buttons/fesm2022/ngx-bootstrap-buttons.mjs"
     },
     "./carousel": {
-      "types": "./carousel/ngx-bootstrap-carousel.d.ts",
+      "types": "./carousel/index.d.ts",
       "esm2022": "./carousel/esm2022/ngx-bootstrap-carousel.mjs",
-      "es2022": "./carousel/fesm2022/ngx-bootstrap-carousel.mjs",
-      "es2015": "./carousel/fesm2015/ngx-bootstrap-carousel.mjs",
-      "node": "./carousel/fesm2015/ngx-bootstrap-carousel.mjs",
+      "esm": "./carousel/esm2022/ngx-bootstrap-carousel.mjs",
       "default": "./carousel/fesm2022/ngx-bootstrap-carousel.mjs"
     },
     "./chronos": {
-      "types": "./chronos/ngx-bootstrap-chronos.d.ts",
+      "types": "./chronos/index.d.ts",
       "esm2022": "./chronos/esm2022/ngx-bootstrap-chronos.mjs",
-      "es2022": "./chronos/fesm2022/ngx-bootstrap-chronos.mjs",
-      "es2015": "./chronos/fesm2015/ngx-bootstrap-chronos.mjs",
-      "node": "./chronos/fesm2015/ngx-bootstrap-chronos.mjs",
+      "esm": "./chronos/esm2022/ngx-bootstrap-chronos.mjs",
       "default": "./chronos/fesm2022/ngx-bootstrap-chronos.mjs"
     },
     "./collapse": {
-      "types": "./collapse/ngx-bootstrap-collapse.d.ts",
+      "types": "./collapse/index.d.ts",
       "esm2022": "./collapse/esm2022/ngx-bootstrap-collapse.mjs",
-      "es2022": "./collapse/fesm2022/ngx-bootstrap-collapse.mjs",
-      "es2015": "./collapse/fesm2015/ngx-bootstrap-collapse.mjs",
-      "node": "./collapse/fesm2015/ngx-bootstrap-collapse.mjs",
+      "esm": "./collapse/esm2022/ngx-bootstrap-collapse.mjs",
       "default": "./collapse/fesm2022/ngx-bootstrap-collapse.mjs"
     },
     "./component-loader": {
       "types": "./component-loader/ngx-bootstrap-component-loader.d.ts",
       "esm2022": "./component-loader/esm2022/ngx-bootstrap-component-loader.mjs",
-      "es2022": "./component-loader/fesm2022/ngx-bootstrap-component-loader.mjs",
-      "es2015": "./component-loader/fesm2015/ngx-bootstrap-component-loader.mjs",
-      "node": "./component-loader/fesm2015/ngx-bootstrap-component-loader.mjs",
+      "esm": "./component-loader/esm2022/ngx-bootstrap-component-loader.mjs",
       "default": "./component-loader/fesm2022/ngx-bootstrap-component-loader.mjs"
     },
     "./datepicker": {
-      "types": "./datepicker/ngx-bootstrap-datepicker.d.ts",
+      "types": "./datepicker/index.d.ts",
       "esm2022": "./datepicker/esm2022/ngx-bootstrap-datepicker.mjs",
-      "es2022": "./datepicker/fesm2022/ngx-bootstrap-datepicker.mjs",
-      "es2015": "./datepicker/fesm2015/ngx-bootstrap-datepicker.mjs",
-      "node": "./datepicker/fesm2015/ngx-bootstrap-datepicker.mjs",
+      "esm": "./datepicker/esm2022/ngx-bootstrap-datepicker.mjs",
       "default": "./datepicker/fesm2022/ngx-bootstrap-datepicker.mjs"
     },
     "./datepicker/bs-datepicker.css": {
       "style": "./datepicker/bs-datepicker.css"
     },
     "./dropdown": {
-      "types": "./dropdown/ngx-bootstrap-dropdown.d.ts",
+      "types": "./dropdown/index.d.ts",
       "esm2022": "./dropdown/esm2022/ngx-bootstrap-dropdown.mjs",
-      "es2022": "./dropdown/fesm2022/ngx-bootstrap-dropdown.mjs",
-      "es2015": "./dropdown/fesm2015/ngx-bootstrap-dropdown.mjs",
-      "node": "./dropdown/fesm2015/ngx-bootstrap-dropdown.mjs",
+      "esm": "./dropdown/esm2022/ngx-bootstrap-dropdown.mjs",
       "default": "./dropdown/fesm2022/ngx-bootstrap-dropdown.mjs"
     },
     "./focus-trap": {
       "types": "./focus-trap/ngx-bootstrap-focus-trap.d.ts",
       "esm2022": "./focus-trap/esm2022/ngx-bootstrap-focus-trap.mjs",
-      "es2022": "./focus-trap/fesm2022/ngx-bootstrap-focus-trap.mjs",
-      "es2015": "./focus-trap/fesm2015/ngx-bootstrap-focus-trap.mjs",
-      "node": "./focus-trap/fesm2015/ngx-bootstrap-focus-trap.mjs",
+      "esm": "./focus-trap/esm2022/ngx-bootstrap-focus-trap.mjs",
       "default": "./focus-trap/fesm2022/ngx-bootstrap-focus-trap.mjs"
     },
     "./locale": {
-      "types": "./locale/ngx-bootstrap-locale.d.ts",
+      "types": "./locale/index.d.ts",
       "esm2022": "./locale/esm2022/ngx-bootstrap-locale.mjs",
-      "es2022": "./locale/fesm2022/ngx-bootstrap-locale.mjs",
-      "es2015": "./locale/fesm2015/ngx-bootstrap-locale.mjs",
-      "node": "./locale/fesm2015/ngx-bootstrap-locale.mjs",
+      "esm": "./locale/esm2022/ngx-bootstrap-locale.mjs",
       "default": "./locale/fesm2022/ngx-bootstrap-locale.mjs"
     },
     "./mini-ngrx": {
       "types": "./mini-ngrx/ngx-bootstrap-mini-ngrx.d.ts",
       "esm2022": "./mini-ngrx/esm2022/ngx-bootstrap-mini-ngrx.mjs",
-      "es2022": "./mini-ngrx/fesm2022/ngx-bootstrap-mini-ngrx.mjs",
-      "es2015": "./mini-ngrx/fesm2015/ngx-bootstrap-mini-ngrx.mjs",
-      "node": "./mini-ngrx/fesm2015/ngx-bootstrap-mini-ngrx.mjs",
+      "esm": "./mini-ngrx/esm2022/ngx-bootstrap-mini-ngrx.mjs",
       "default": "./mini-ngrx/fesm2022/ngx-bootstrap-mini-ngrx.mjs"
     },
     "./modal": {
-      "types": "./modal/ngx-bootstrap-modal.d.ts",
+      "types": "./modal/index.d.ts",
       "esm2022": "./modal/esm2022/ngx-bootstrap-modal.mjs",
-      "es2022": "./modal/fesm2022/ngx-bootstrap-modal.mjs",
-      "es2015": "./modal/fesm2015/ngx-bootstrap-modal.mjs",
-      "node": "./modal/fesm2015/ngx-bootstrap-modal.mjs",
+      "esm": "./modal/esm2022/ngx-bootstrap-modal.mjs",
       "default": "./modal/fesm2022/ngx-bootstrap-modal.mjs"
     },
     "./pagination": {
-      "types": "./pagination/ngx-bootstrap-pagination.d.ts",
+      "types": "./pagination/index.d.ts",
       "esm2022": "./pagination/esm2022/ngx-bootstrap-pagination.mjs",
-      "es2022": "./pagination/fesm2022/ngx-bootstrap-pagination.mjs",
-      "es2015": "./pagination/fesm2015/ngx-bootstrap-pagination.mjs",
-      "node": "./pagination/fesm2015/ngx-bootstrap-pagination.mjs",
+      "esm": "./pagination/esm2022/ngx-bootstrap-pagination.mjs",
       "default": "./pagination/fesm2022/ngx-bootstrap-pagination.mjs"
     },
     "./popover": {
-      "types": "./popover/ngx-bootstrap-popover.d.ts",
+      "types": "./popover/index.d.ts",
       "esm2022": "./popover/esm2022/ngx-bootstrap-popover.mjs",
-      "es2022": "./popover/fesm2022/ngx-bootstrap-popover.mjs",
-      "es2015": "./popover/fesm2015/ngx-bootstrap-popover.mjs",
-      "node": "./popover/fesm2015/ngx-bootstrap-popover.mjs",
+      "esm": "./popover/esm2022/ngx-bootstrap-popover.mjs",
       "default": "./popover/fesm2022/ngx-bootstrap-popover.mjs"
     },
     "./positioning": {
-      "types": "./positioning/ngx-bootstrap-positioning.d.ts",
+      "types": "./positioning/index.d.ts",
       "esm2022": "./positioning/esm2022/ngx-bootstrap-positioning.mjs",
-      "es2022": "./positioning/fesm2022/ngx-bootstrap-positioning.mjs",
-      "es2015": "./positioning/fesm2015/ngx-bootstrap-positioning.mjs",
-      "node": "./positioning/fesm2015/ngx-bootstrap-positioning.mjs",
+      "esm": "./positioning/esm2022/ngx-bootstrap-positioning.mjs",
       "default": "./positioning/fesm2022/ngx-bootstrap-positioning.mjs"
     },
     "./progressbar": {
-      "types": "./progressbar/ngx-bootstrap-progressbar.d.ts",
+      "types": "./progressbar/index.d.ts",
       "esm2022": "./progressbar/esm2022/ngx-bootstrap-progressbar.mjs",
-      "es2022": "./progressbar/fesm2022/ngx-bootstrap-progressbar.mjs",
-      "es2015": "./progressbar/fesm2015/ngx-bootstrap-progressbar.mjs",
-      "node": "./progressbar/fesm2015/ngx-bootstrap-progressbar.mjs",
+      "esm": "./progressbar/esm2022/ngx-bootstrap-progressbar.mjs",
       "default": "./progressbar/fesm2022/ngx-bootstrap-progressbar.mjs"
     },
     "./rating": {
-      "types": "./rating/ngx-bootstrap-rating.d.ts",
+      "types": "./rating/index.d.ts",
       "esm2022": "./rating/esm2022/ngx-bootstrap-rating.mjs",
-      "es2022": "./rating/fesm2022/ngx-bootstrap-rating.mjs",
-      "es2015": "./rating/fesm2015/ngx-bootstrap-rating.mjs",
-      "node": "./rating/fesm2015/ngx-bootstrap-rating.mjs",
+      "esm": "./rating/esm2022/ngx-bootstrap-rating.mjs",
       "default": "./rating/fesm2022/ngx-bootstrap-rating.mjs"
     },
     "./sortable": {
-      "types": "./sortable/ngx-bootstrap-sortable.d.ts",
+      "types": "./sortable/index.d.ts",
       "esm2022": "./sortable/esm2022/ngx-bootstrap-sortable.mjs",
-      "es2022": "./sortable/fesm2022/ngx-bootstrap-sortable.mjs",
-      "es2015": "./sortable/fesm2015/ngx-bootstrap-sortable.mjs",
-      "node": "./sortable/fesm2015/ngx-bootstrap-sortable.mjs",
+      "esm": "./sortable/esm2022/ngx-bootstrap-sortable.mjs",
       "default": "./sortable/fesm2022/ngx-bootstrap-sortable.mjs"
     },
     "./tabs": {
-      "types": "./tabs/ngx-bootstrap-tabs.d.ts",
+      "types": "./tabs/index.d.ts",
       "esm2022": "./tabs/esm2022/ngx-bootstrap-tabs.mjs",
-      "es2022": "./tabs/fesm2022/ngx-bootstrap-tabs.mjs",
-      "es2015": "./tabs/fesm2015/ngx-bootstrap-tabs.mjs",
-      "node": "./tabs/fesm2015/ngx-bootstrap-tabs.mjs",
+      "esm": "./tabs/esm2022/ngx-bootstrap-tabs.mjs",
       "default": "./tabs/fesm2022/ngx-bootstrap-tabs.mjs"
     },
     "./timepicker": {
-      "types": "./timepicker/ngx-bootstrap-timepicker.d.ts",
+      "types": "./timepicker/index.d.ts",
       "esm2022": "./timepicker/esm2022/ngx-bootstrap-timepicker.mjs",
-      "es2022": "./timepicker/fesm2022/ngx-bootstrap-timepicker.mjs",
-      "es2015": "./timepicker/fesm2015/ngx-bootstrap-timepicker.mjs",
-      "node": "./timepicker/fesm2015/ngx-bootstrap-timepicker.mjs",
+      "esm": "./timepicker/esm2022/ngx-bootstrap-timepicker.mjs",
       "default": "./timepicker/fesm2022/ngx-bootstrap-timepicker.mjs"
     },
     "./tooltip": {
-      "types": "./tooltip/ngx-bootstrap-tooltip.d.ts",
+      "types": "./tooltip/index.d.ts",
       "esm2022": "./tooltip/esm2022/ngx-bootstrap-tooltip.mjs",
-      "es2022": "./tooltip/fesm2022/ngx-bootstrap-tooltip.mjs",
-      "es2015": "./tooltip/fesm2015/ngx-bootstrap-tooltip.mjs",
-      "node": "./tooltip/fesm2015/ngx-bootstrap-tooltip.mjs",
+      "esm": "./tooltip/esm2022/ngx-bootstrap-tooltip.mjs",
       "default": "./tooltip/fesm2022/ngx-bootstrap-tooltip.mjs"
     },
     "./typeahead": {
-      "types": "./typeahead/ngx-bootstrap-typeahead.d.ts",
+      "types": "./typeahead/index.d.ts",
       "esm2022": "./typeahead/esm2022/ngx-bootstrap-typeahead.mjs",
-      "es2022": "./typeahead/fesm2022/ngx-bootstrap-typeahead.mjs",
-      "es2015": "./typeahead/fesm2015/ngx-bootstrap-typeahead.mjs",
-      "node": "./typeahead/fesm2015/ngx-bootstrap-typeahead.mjs",
+      "esm": "./typeahead/esm2022/ngx-bootstrap-typeahead.mjs",
       "default": "./typeahead/fesm2022/ngx-bootstrap-typeahead.mjs"
     },
     "./utils": {
-      "types": "./utils/ngx-bootstrap-utils.d.ts",
+      "types": "./utils/index.d.ts",
       "esm2022": "./utils/esm2022/ngx-bootstrap-utils.mjs",
-      "es2022": "./utils/fesm2022/ngx-bootstrap-utils.mjs",
-      "es2015": "./utils/fesm2015/ngx-bootstrap-utils.mjs",
-      "node": "./utils/fesm2015/ngx-bootstrap-utils.mjs",
+      "esm": "./utils/esm2022/ngx-bootstrap-utils.mjs",
       "default": "./utils/fesm2022/ngx-bootstrap-utils.mjs"
     }
   },
