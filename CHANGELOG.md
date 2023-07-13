@@ -1,3 +1,12 @@
+
+
+## [11.0.1](https://github.com/valor-software/ngx-bootstrap/compare/v11.0.0...v11.0.1) (2023-07-13)
+
+
+### Bug Fixes
+
+* for issue 6596 ([#6599](https://github.com/valor-software/ngx-bootstrap/issues/6599)) ([cc5d58d](https://github.com/valor-software/ngx-bootstrap/commit/cc5d58dc89f0143839c0e64591507c631b74a29e)), closes [#6596](https://github.com/valor-software/ngx-bootstrap/issues/6596)
+
 # [11.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v10.3.0...v11.0.0) (2023-07-11)
 
 
@@ -2498,6 +2507,3 @@
 * **build:** works good with typescript@1.6 ([31c513b](https://github.com/valor-software/ngx-bootstrap/commit/31c513b4f4f084ae0eabe82b2d8bec028bb48572))
 * **ng 2.0.37:** ts errors fixed ([1e19f55](https://github.com/valor-software/ngx-bootstrap/commit/1e19f555da161f1f572ed6747eb6d72796060ed8))
 * **typeahead:** ts style fixes ([3eab1e4](https://github.com/valor-software/ngx-bootstrap/commit/3eab1e428ebe3ce2ddf1013d48693bc38e23c150))
-
-
-
