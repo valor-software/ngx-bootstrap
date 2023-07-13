@@ -54,16 +54,18 @@ jobs:
           npx ng build --runner=cloud --configuration=production
 
   # update release notes in github
-  update_release_draft:
-    needs: install
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2.3.4
-      - uses: actions/cache@v2.1.4
-        with:
-          path: node_modules
-          key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - run: npx conventional-github-releaser -p angular
+#  update_release_draft:
+#    needs: install
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v2.3.4
+#      - uses: actions/cache@v2.1.4
+#        with:
+#          path: node_modules
+#          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+#      - run: npm run release
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # update gh_pages
   gh_pages_deploy:
