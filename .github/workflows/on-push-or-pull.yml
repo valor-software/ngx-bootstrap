@@ -156,7 +156,7 @@ jobs:
         with:
           name: playwright-report-smoke-${{ matrix.shard }}_${{ strategy.job-total }}
           path: apps/ngx-bootstrap-docs-e2e/playwright-report
-          retention-days: 30
+          retention-days: 14
 
   e2e_full:
     name: e2e full
@@ -198,4 +198,4 @@ jobs:
         with:
           name: playwright-report-full-${{ matrix.shard }}_${{ strategy.job-total }}
           path: apps/ngx-bootstrap-docs-e2e/playwright-report
-          retention-days: 30
+          retention-days: 14
