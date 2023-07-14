@@ -1,6 +1,7 @@
 name: on-pull-request-or-push
 
 on:
+  workflow_dispatch:
   pull_request:
   push:
     branches:
