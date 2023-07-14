@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.0
+        uses: styfle/cancel-workflow-action@0.11.0
         with:
           access_token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -37,8 +37,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: one_run
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
         id: cache
         with:
           path: ${{ env.CACHE_NODE_MODULES_PATH }}
@@ -51,12 +51,12 @@ jobs:
     needs: install
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
         with:
           path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
@@ -70,12 +70,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
         with:
           path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
@@ -88,8 +88,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: install
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
         with:
           path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
@@ -102,8 +102,8 @@ jobs:
     outputs:
       output_url: ${{ steps.firebase_hosting_preview.outputs.details_url }}
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
         with:
           path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
@@ -128,12 +128,12 @@ jobs:
       matrix:
         shard: [1, 2]
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
         with:
           path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
@@ -156,7 +156,7 @@ jobs:
         with:
           name: playwright-report-smoke-${{ matrix.shard }}_${{ strategy.job-total }}
           path: apps/ngx-bootstrap-docs-e2e/playwright-report
-          retention-days: 30
+          retention-days: 14
 
   e2e_full:
     name: e2e full
@@ -168,12 +168,12 @@ jobs:
       matrix:
         shard: [1, 2]
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/cache@v2
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
         with:
           path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
           path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
@@ -198,4 +198,4 @@ jobs:
         with:
           name: playwright-report-full-${{ matrix.shard }}_${{ strategy.job-total }}
           path: apps/ngx-bootstrap-docs-e2e/playwright-report
-          retention-days: 30
+          retention-days: 14
