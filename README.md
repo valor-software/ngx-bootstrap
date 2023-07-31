@@ -93,7 +93,7 @@ npm install ngx-bootstrap --save
 ```
 
 Add wanted package to NgModule imports:
-```
+```ts
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
@@ -104,7 +104,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 ```
 
 Add component to your page:
-```
+```html
 <button type="button" class="btn btn-primary"
         tooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
   Simple demo
@@ -115,13 +115,13 @@ You will need to add bootstrap css:
 This can be done with the css file directly in the index.html, or alternatively through a styles import in the 
 `angular.json` file or via `styles.scss` import. However the latter two options require additionally installing bootstrap via npm.
 - `Bootstrap 5`
-```
+```html
 <!--- index.html -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 ```
 
 - `Bootstrap 4`
-```
+```html
 <!--- index.html -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2">
 ```
@@ -135,7 +135,7 @@ Sometimes, your project might contain some library that could interfere with the
 have a customized version of bootstrap. The consequence is that the process of determining bootstrap version might 
 be failed, which can break the UI. In that case, we can still set the bootstrap version manually in the bootstrapping 
 component (i.e. `AppComponent`):
-```
+```ts
 import { setTheme } from 'ngx-bootstrap/utils';
 
 @Component({...})
