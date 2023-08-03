@@ -10,26 +10,6 @@
     "unprefixedUrl": "old/1.9.3"
   },
   {
-    "version": "10.0.0",
-    "url": "ngx-bootstrap/old/10.0.0",
-    "unprefixedUrl": "old/10.0.0"
-  },
-  {
-    "version": "10.1.0",
-    "url": "ngx-bootstrap/old/10.1.0",
-    "unprefixedUrl": "old/10.1.0"
-  },
-  {
-    "version": "10.2.0",
-    "url": "ngx-bootstrap/old/10.2.0",
-    "unprefixedUrl": "old/10.2.0"
-  },
-  {
-    "version": "10.2.1",
-    "url": "ngx-bootstrap/old/10.2.1",
-    "unprefixedUrl": "old/10.2.1"
-  },
-  {
     "version": "10.3.0",
     "url": "ngx-bootstrap/old/10.3.0",
     "unprefixedUrl": "old/10.3.0"
