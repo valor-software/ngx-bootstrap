@@ -10,6 +10,7 @@ import {
   Output,
   ViewEncapsulation
 } from '@angular/core';
+import { getHours, getMinutes } from 'ngx-bootstrap/chronos';
 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -405,7 +406,8 @@ export class TimepickerComponent
     }
 
     const _hoursPerDayHalf = 12;
-    let _hours = _value.getHours();
+    let _hours = getHours(_value, this.config.useUtc);
+    const _minutes = getMinutes(_value, this.config.useUtc);
 
     if (this.showMeridian) {
       this.meridian = this.meridians[_hours >= _hoursPerDayHalf ? 1 : 0];
@@ -418,7 +420,7 @@ export class TimepickerComponent
     }
 
     this.hours = padNumber(_hours);
-    this.minutes = padNumber(_value.getMinutes());
+    this.minutes = padNumber(_minutes);
     this.seconds = padNumber(_value.getUTCSeconds());
   }
 }

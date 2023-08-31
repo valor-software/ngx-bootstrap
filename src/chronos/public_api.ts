@@ -10,7 +10,9 @@ isSameDay,
 isSameMonth,
 getFullYear,
 getFirstDayOfMonth,
-getMonth
+getMonth,
+getHours,
+getMinutes,
 } from './utils/date-getters';
 
 export { parseDate } from './create/local';

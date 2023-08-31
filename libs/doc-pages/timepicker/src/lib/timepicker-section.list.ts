@@ -25,6 +25,7 @@ import {
 } from '@ngx-bootstrap-doc/docs';
 import { DemoTimepickerIsValidComponent } from './demos/isvalid/isvalid';
 import { DemoTimepickerFormComponent } from './demos/form/form';
+import { DemoTimepickerUseUtcComponent } from './demos/use-utc/use-utc';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -161,6 +162,15 @@ export const demoComponentContent: ContentSection[] = [
         component: require('!!raw-loader!./demos/config/config'),
         html: require('!!raw-loader!./demos/config/config.html'),
         outlet: DemoTimepickerConfigComponent
+      },
+      {
+        title: 'Use utc',
+        anchor: 'use-utc',
+        component: require('!!raw-loader!./demos/use-utc/use-utc'),
+        html: require('!!raw-loader!./demos/use-utc/use-utc.html'),
+        description: `<p><code>useUtc</code> can be used to display utc
+        time instead of client time.`,
+        outlet: DemoTimepickerUseUtcComponent
       }
     ]
   },
