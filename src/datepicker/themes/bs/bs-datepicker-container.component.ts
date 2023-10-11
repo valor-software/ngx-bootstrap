@@ -112,6 +112,9 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     this.showClearBtn = this._config.showClearButton;
     this.clearBtnLbl = this._config.clearButtonLabel;
     this.clearPos = this._config.clearPosition;
+    this.customDateBtn = this._config.customDateButton;
+    this.customBtnLabel = this._config.customButtonLabel;
+    this.customBtnPos = this._config.customPosition;
     this.customRangeBtnLbl = this._config.customRangeButtonLabel;
     this.withTimepicker = this._config.withTimepicker;
     this._effects?.init(this._store)
@@ -219,6 +222,10 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
 
   override clearDate(): void {
     this._store.dispatch(this._actions.select(undefined));
+  }
+
+  setCustomDate(): void {
+    this._store.dispatch(this._actions.select(this.customDateBtn == null ? undefined : new Date(this.customDateBtn)));
   }
 
   ngOnDestroy(): void {
