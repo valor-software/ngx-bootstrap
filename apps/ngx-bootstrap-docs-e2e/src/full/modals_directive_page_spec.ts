@@ -9,7 +9,6 @@ describe('Modals demo page testing suite: Directive examples', () => {
 
     const staticModalDemo = modals.exampleDemosArr.directiveStatic;
     const btnText = 'Static modal';
-    const btnX = '×';
 
     it('example contains the button "Static modal"', () => {
       modals.isButtonExist(staticModalDemo, btnText);
@@ -134,8 +133,7 @@ describe('Modals demo page testing suite: Directive examples', () => {
 
     const eventsModalsDemo = modals.exampleDemosArr.directiveEvents;
     const btnText = 'Open a modal';
-    const btnX = '×';
-    const eventOnShowFired = 'event onShow is fired';
+        const eventOnShowFired = 'event onShow is fired';
     const eventOnShownFired = 'event onShown is fired';
     const eventOnHide = 'event onHide is fired';
     const eventOnHidden = 'event onHidden is fired';
@@ -188,7 +186,6 @@ describe('Modals demo page testing suite: Directive examples', () => {
 
     const autoDemo = modals.exampleDemosArr.directiveAutoShow;
     const btnText = 'Render auto-shown modal';
-    const btnX = '×';
 
     it('example contains the button "Render auto-shown modal"', () => {
       modals.isButtonExist(autoDemo, btnText);

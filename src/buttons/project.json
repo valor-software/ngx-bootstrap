@@ -21,7 +21,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": [
           "src/buttons/**/*.ts",
@@ -35,8 +35,7 @@
         "{workspaceRoot}/coverage/src/buttons"
       ],
       "options": {
-        "jestConfig": "src/buttons/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/buttons/jest.config.ts"
       }
     }
   }

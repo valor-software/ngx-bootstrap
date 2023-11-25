@@ -27,7 +27,7 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": [
           "src/datepicker/**/*.ts",
@@ -41,8 +41,7 @@
         "{workspaceRoot}/coverage/src/datepicker"
       ],
       "options": {
-        "jestConfig": "src/datepicker/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/datepicker/jest.config.ts"
       }
     }
   }

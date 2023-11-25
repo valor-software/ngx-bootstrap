@@ -27,7 +27,7 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": [
           "src/alert/**/*.ts",
@@ -41,8 +41,7 @@
         "{workspaceRoot}/coverage/src/alert"
       ],
       "options": {
-        "jestConfig": "src/alert/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/alert/jest.config.ts"
       }
     }
   }

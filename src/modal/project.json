@@ -27,7 +27,7 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": [
           "src/modal/**/*.ts",
@@ -41,8 +41,7 @@
         "{workspaceRoot}/coverage/src/modal"
       ],
       "options": {
-        "jestConfig": "src/modal/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/modal/jest.config.ts"
       }
     }
   }

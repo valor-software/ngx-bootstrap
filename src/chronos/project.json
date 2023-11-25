@@ -21,7 +21,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": [
           "src/chronos/**/*.ts",
@@ -35,8 +35,7 @@
         "{workspaceRoot}/coverage/src/chronos"
       ],
       "options": {
-        "jestConfig": "src/chronos/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/chronos/jest.config.ts"
       }
     }
   }

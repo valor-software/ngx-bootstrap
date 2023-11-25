@@ -21,7 +21,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": [
           "src/tabs/**/*.ts",
@@ -35,8 +35,7 @@
         "{workspaceRoot}/coverage/src/tabs"
       ],
       "options": {
-        "jestConfig": "src/tabs/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/tabs/jest.config.ts"
       }
     }
   }

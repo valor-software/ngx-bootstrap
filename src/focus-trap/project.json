@@ -21,7 +21,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": [
           "src/focus-trap/**/*.ts",
@@ -35,8 +35,7 @@
         "{workspaceRoot}/coverage/src/focus-trap"
       ],
       "options": {
-        "jestConfig": "src/focus-trap/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/focus-trap/jest.config.ts"
       }
     }
   }

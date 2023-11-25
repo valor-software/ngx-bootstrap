@@ -21,7 +21,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": [
           "src/rating/**/*.ts",
@@ -35,8 +35,7 @@
         "{workspaceRoot}/coverage/src/rating"
       ],
       "options": {
-        "jestConfig": "src/rating/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/rating/jest.config.ts"
       }
     }
   }

@@ -4,8 +4,7 @@ import {
   ComponentsPageComponent,
   DocumentationComponent,
   DiscoverComponent,
-  SchematicsComponent,
-  ConstructionPageComponent
+  SchematicsComponent
 } from "@ngx-bootstrap-doc/docs";
 
 export const routes: Routes = [

@@ -21,7 +21,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": [
           "src/pagination/**/*.ts",
@@ -35,8 +35,7 @@
         "{workspaceRoot}/coverage/src/pagination"
       ],
       "options": {
-        "jestConfig": "src/pagination/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/pagination/jest.config.ts"
       }
     }
   }

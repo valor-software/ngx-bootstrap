@@ -27,7 +27,7 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": [
           "src/component-loader/**/*.ts",
@@ -41,8 +41,7 @@
         "{workspaceRoot}/coverage/src/component-loader"
       ],
       "options": {
-        "jestConfig": "src/component-loader/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/component-loader/jest.config.ts"
       }
     }
   }

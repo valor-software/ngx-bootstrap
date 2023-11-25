@@ -27,7 +27,7 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": [
           "src/dropdown/**/*.ts",
@@ -41,8 +41,7 @@
         "{workspaceRoot}/coverage/src/dropdown"
       ],
       "options": {
-        "jestConfig": "src/dropdown/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/dropdown/jest.config.ts"
       }
     }
   }

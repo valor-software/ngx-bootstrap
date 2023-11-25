@@ -510,6 +510,7 @@ export class DatepickerPo extends BaseComponent {
     }
 
     if (actualMonthArr) {
+      // @eslint-disable-next-line @typescript-eslint/no-explicit-any
       actualMonthArr = Array.isArray(actualMonthArr) ? actualMonthArr : (actualMonthArr as any).standalone;
     }
 
@@ -518,6 +519,7 @@ export class DatepickerPo extends BaseComponent {
       .eq(0)
       .each((month, monthIndex) => {
       expect(month.text().toLowerCase()).to.contains(
+        // @eslint-disable-next-line @typescript-eslint/no-explicit-any
         actualMonthArr ? (actualMonthArr as any)[monthIndex].toLowerCase() :
           new Date(2017, monthIndex)
             .toLocaleDateString(expectedLocale, { month: 'long' })
@@ -534,6 +536,7 @@ export class DatepickerPo extends BaseComponent {
         Object.values(globalLocales).forEach(globalLocale => {
           if (globalLocale === expectedLocale) {
             expect(weekday.text().toLowerCase())
+              // @eslint-disable-next-line @typescript-eslint/no-explicit-any
               .to.contains((globalLocale?.weekdaysShort as any)[(globalLocale?.week?.dow ?? 0) + weekdayIndex]);
           }
         });

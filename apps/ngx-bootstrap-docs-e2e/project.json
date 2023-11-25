@@ -1,5 +1,6 @@
 {
   "name": "ngx-bootstrap-docs-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/ngx-bootstrap-docs-e2e/src",
   "projectType": "application",
   "targets": {
@@ -46,7 +47,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": [
         "{options.outputPath}"
       ],

@@ -27,7 +27,7 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": [
           "src/progressbar/**/*.ts",
@@ -41,8 +41,7 @@
         "{workspaceRoot}/coverage/src/progressbar"
       ],
       "options": {
-        "jestConfig": "src/progressbar/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/progressbar/jest.config.ts"
       }
     }
   }

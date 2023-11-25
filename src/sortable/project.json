@@ -21,7 +21,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": [
           "src/sortable/**/*.ts",
@@ -35,8 +35,7 @@
         "{workspaceRoot}/coverage/src/sortable"
       ],
       "options": {
-        "jestConfig": "src/sortable/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/sortable/jest.config.ts"
       }
     }
   }

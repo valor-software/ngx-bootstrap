@@ -138,7 +138,6 @@ describe('Modals demo page testing suite: Service examples', () => {
 
     const eventsDemo = modals.exampleDemosArr.serviceEvents;
     const btnText = 'Open modal';
-    const btnX = '×';
     const demoOnShowFired = 'onShow event has been fired';
     const demoOnShownFired = 'onShown event has been fired';
     const demoOnHideFired = 'onHide event has been fired';
@@ -243,7 +242,6 @@ describe('Modals demo page testing suite: Service examples', () => {
 
     const customCSSDemo = modals.exampleDemosArr.serviceCustomCSS;
     const btnText = 'Open modal with custom css class';
-    const btnX = '×';
 
     it('example contains the button "Open modal with custom css class"', () => {
       modals.isButtonExist(customCSSDemo, btnText);
@@ -268,7 +266,6 @@ describe('Modals demo page testing suite: Service examples', () => {
     const btnText = 'Open modal';
     const btnDisable = 'Disable animation';
     const btnEnable = 'Enable animation';
-    const btnX = '×';
 
     it('example contains the buttons "Open modal" and "Disable animation"', () => {
       modals.isButtonExist(animationDemo, btnText);

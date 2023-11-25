@@ -27,7 +27,7 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": [
           "src/accordion/**/*.ts",
@@ -41,8 +41,7 @@
         "{workspaceRoot}/coverage/src/accordion"
       ],
       "options": {
-        "jestConfig": "src/accordion/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/accordion/jest.config.ts"
       }
     }
   }

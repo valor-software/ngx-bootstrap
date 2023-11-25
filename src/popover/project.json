@@ -27,7 +27,7 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": [
           "src/popover/**/*.ts",
@@ -41,8 +41,7 @@
         "{workspaceRoot}/coverage/src/popover"
       ],
       "options": {
-        "jestConfig": "src/popover/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/popover/jest.config.ts"
       }
     }
   }

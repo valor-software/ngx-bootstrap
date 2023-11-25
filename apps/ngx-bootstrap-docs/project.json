@@ -74,25 +74,25 @@
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
       "options": {
-        "browserTarget": "ngx-bootstrap-docs:build"
+        "buildTarget": "ngx-bootstrap-docs:build"
       },
       "configurations": {
         "production": {
-          "browserTarget": "ngx-bootstrap-docs:build:production"
+          "buildTarget": "ngx-bootstrap-docs:build:production"
         },
         "development": {
-          "browserTarget": "ngx-bootstrap-docs:build:development"
+          "buildTarget": "ngx-bootstrap-docs:build:development"
         }
       }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "ngx-bootstrap-docs:build"
+        "buildTarget": "ngx-bootstrap-docs:build"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": [
           "apps/ngx-bootstrap-docs/src/**/*.ts",
