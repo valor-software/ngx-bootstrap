@@ -15,7 +15,7 @@ export class BreadCrumbsComponent implements OnDestroy{
   constructor(
     private router: Router
   ) {
-    this.routeSubscription = this.router.events.subscribe((event: any) => {
+    this.routeSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.routeArray = [];
         const tree:  UrlSegment[] = this.router.parseUrl(event.url).root.children["primary"].segments;

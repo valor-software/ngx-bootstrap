@@ -1,3 +1,5 @@
+// @TODO: remove this and fix types
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ChangeDetectorRef, Component, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { combineLatest, Subscription } from 'rxjs';
@@ -15,26 +17,26 @@ import { combineLatest, Subscription } from 'rxjs';
 })
 export class DemoModalRefEventsComponent {
   modalRef?: BsModalRef;
-  subscriptions: Subscription[] = [];
+  subscriptions = new Subscription();
   messages: string[] = [];
 
   constructor(private modalService: BsModalService, private changeDetection: ChangeDetectorRef) {
   }
 
-  openModal(template: TemplateRef<any>) {
+  openModal(template: TemplateRef<void>) {
     this.messages = [];
 
     this.modalRef = this.modalService.show(template);
     let _combine;
     if (this.modalRef?.onHide && this.modalRef?.onHidden) {
-        _combine = combineLatest(
+        _combine = combineLatest([
         this.modalRef.onHide,
         this.modalRef.onHidden
-      ).subscribe(() => this.changeDetection.markForCheck());
+      ]).subscribe(() => this.changeDetection.markForCheck());
     }
 
       if (this.modalRef?.onHide) {
-        this.subscriptions.push(
+        this.subscriptions.add(
           this.modalRef.onHide.subscribe((reason: string | any) => {
             if (typeof reason !== 'string') {
               reason = `onHide(), modalId is : ${reason.id}`;
@@ -46,7 +48,7 @@ export class DemoModalRefEventsComponent {
       }
 
       if  (this.modalRef?.onHidden) {
-        this.subscriptions.push(
+        this.subscriptions.add(
           this.modalRef.onHidden.subscribe((reason: string | any) => {
             if (typeof reason !== 'string') {
               reason = `onHide(), modalId is : ${reason.id}`;
@@ -59,14 +61,11 @@ export class DemoModalRefEventsComponent {
       }
 
       if (_combine) {
-        this.subscriptions.push(_combine);
+        this.subscriptions.add(_combine);
       }
   }
 
   unsubscribe() {
-    this.subscriptions.forEach((subscription: Subscription) => {
-      subscription.unsubscribe();
-    });
-    this.subscriptions = [];
+    this.subscriptions.unsubscribe();
   }
 }

@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
+// Todo: remove eslint-disable
+/* eslint-disable @typescript-eslint/ban-ts-comment,@typescript-eslint/no-explicit-any */
 import { BaseComponent } from './base.component';
 import * as globalLocales from 'ngx-bootstrap/locale';
 import * as moment from 'moment';
@@ -510,7 +511,6 @@ export class DatepickerPo extends BaseComponent {
     }
 
     if (actualMonthArr) {
-      // @eslint-disable-next-line @typescript-eslint/no-explicit-any
       actualMonthArr = Array.isArray(actualMonthArr) ? actualMonthArr : (actualMonthArr as any).standalone;
     }
 

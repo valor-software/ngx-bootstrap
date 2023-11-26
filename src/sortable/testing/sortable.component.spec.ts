@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, ComponentFixtureAutoDetect, inject, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
@@ -12,8 +13,7 @@ import {
 import { SpyObject } from "@ngneat/spectator";
 
 const HEROES: string[] = ['Windstorm', 'Bombasto', 'Magneta', 'Tornado'];
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const HEROES_OBJ: any[] = [
+const HEROES_OBJ: { id: number, name: string }[] = [
   { id: 1, name: 'Windstorm' },
   { id: 2, name: 'Bombasto' },
   { id: 3, name: 'Magneta' }
@@ -30,8 +30,7 @@ const HEROES_OBJ: any[] = [
 class TestSortableComponent {
   selectedState?: string;
   heroes: string[] = [...HEROES];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  heroesObj: any[] = [...HEROES_OBJ];
+  heroesObj = [...HEROES_OBJ];
 }
 
 xdescribe('Component: Sortable', () => {
@@ -49,13 +48,12 @@ xdescribe('Component: Sortable', () => {
 
       fixture.detectChanges();
 
-      const sortableComponents = fixture.debugElement
+      [sort1, sort2] = fixture.debugElement
         .queryAll(By.directive(SortableComponent))
         .map(
           (de: DebugElement) =>
             de.injector.get<SortableComponent>(SortableComponent)
         );
-      [sort1, sort2] = sortableComponents;
     }
   );
 
@@ -65,9 +63,7 @@ xdescribe('Component: Sortable', () => {
   });
 
   it('different zones should have different ids', () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((sort1 as any).currentZoneIndex).not.toBe(
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (sort2 as any).currentZoneIndex
     );
   });
@@ -87,7 +83,6 @@ xdescribe('Component: Sortable', () => {
       // act
       const renderedItems = getItemsByContainerId('sort2');
       // assert
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       expect(renderedItems).toEqual(HEROES_OBJ.map((h: any) => h.name));
     });
   });
@@ -134,7 +129,6 @@ xdescribe('Component: Sortable', () => {
           preventDefault: Function.prototype,
           dataTransfer: { setData: Function.prototype }
         } as DragEvent;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         sort1ZoneNumber = (sort1 as any).currentZoneIndex;
         draggableItem = getDraggableItem(item, event, sort1ZoneNumber);
         spyOnChanged = jest.spyOn(sort1, 'onChanged');
@@ -356,7 +350,6 @@ xdescribe('Component: Sortable', () => {
       transfer
         .onCaptureItem()
         .subscribe(() => {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           expect((sort1 as any).activeItem).toBe(-1);
           done();
         });
@@ -383,7 +376,6 @@ xdescribe('Component: Sortable', () => {
   function getItemsByContainerId(id = 'sort1'): string[] {
     return fixture.debugElement
       .queryAll(By.css(`#${id} div[draggable]`))
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .map((item: any) => item.nativeElement.innerText);
   }
 });

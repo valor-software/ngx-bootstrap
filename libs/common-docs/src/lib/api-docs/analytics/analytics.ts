@@ -7,7 +7,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { filter } from 'rxjs/operators';
 
-
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const ga: any;
 
 /**
@@ -37,7 +37,7 @@ export class Analytics {
     }
     this.router.events
       .pipe(
-        filter((event: any) => event instanceof NavigationEnd)
+        filter((event) => event instanceof NavigationEnd)
       )
       .subscribe(() => {
       if (typeof ga !== 'undefined') {

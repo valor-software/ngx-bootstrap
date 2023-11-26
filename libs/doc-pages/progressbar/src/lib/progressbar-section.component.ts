@@ -12,7 +12,6 @@ export class ProgressbarSectionComponent {
   name = 'Progressbar';
   src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/progressbar';
   componentContent: ContentSection[] = demoComponentContent;
-  content: any;
 
   _injectors = new Map<ContentSection, Injector>();
 

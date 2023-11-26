@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Input, Component } from '@angular/core';
 import { PopoverConfig } from './popover.config';
 import { getBsVer, IBsVersion } from 'ngx-bootstrap/utils';
-import { PlacementForBs5, checkMargins, AvailbleBSPositions } from 'ngx-bootstrap/positioning';
+import { PlacementForBs5, checkMargins, AvailableBSPositions } from 'ngx-bootstrap/positioning';
 
 @Component({
   selector: 'popover-container',
@@ -30,11 +30,11 @@ import { PlacementForBs5, checkMargins, AvailbleBSPositions } from 'ngx-bootstra
   templateUrl: './popover-container.component.html'
 })
 export class PopoverContainerComponent {
-  @Input() set placement(value: AvailbleBSPositions) {
+  @Input() set placement(value: AvailableBSPositions) {
     if (!this._bsVersions.isBs5) {
       this._placement = value;
     } else {
-      this._placement =  PlacementForBs5[value as keyof typeof PlacementForBs5];
+      this._placement = PlacementForBs5[value as keyof typeof PlacementForBs5];
     }
   };
 
@@ -42,7 +42,7 @@ export class PopoverContainerComponent {
 
   containerClass?: string;
   popoverId?: string;
-  _placement = 'top';
+  _placement: AvailableBSPositions = 'top';
 
   get _bsVersions(): IBsVersion {
     return getBsVer();

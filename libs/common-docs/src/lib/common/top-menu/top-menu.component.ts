@@ -1,15 +1,15 @@
-import { AfterViewInit, Component, Inject, OnDestroy, PLATFORM_ID } from "@angular/core";
+import { AfterViewInit, Component, DestroyRef, inject, Inject, PLATFORM_ID } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { isPlatformBrowser } from '@angular/common';
 import { NavigationEnd, Router } from '@angular/router';
-import { Subscription } from "rxjs";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'top-menu',
   templateUrl: './top-menu.component.html',
 })
-export class TopMenuComponent implements AfterViewInit, OnDestroy {
+export class TopMenuComponent implements AfterViewInit {
   shadowRoutes = ['/documentation', '/discover', '/schematics', '/'];
   appUrl?: string;
   appHash?: string;
@@ -18,7 +18,7 @@ export class TopMenuComponent implements AfterViewInit, OnDestroy {
   initBoxShadow = false;
   isLocalhost = false;
   needPrefix = false;
-  routeSubscription?: Subscription;
+  destroyRef = inject(DestroyRef);
   previousDocs: {
     url: string;
     version: string;
@@ -46,8 +46,8 @@ export class TopMenuComponent implements AfterViewInit, OnDestroy {
 
       this.appUrl = location.protocol + '//' + location.hostname + (this.isLocalhost ? ':' + location.port + '/' : '/');
 
-      this.http.get<any>('assets/json/versions.json')
-        .subscribe((data: { url: string; version: string; unprefixedUrl: string }[]) => {
+      this.http.get<{ url: string; version: string; unprefixedUrl: string }[]>('assets/json/versions.json')
+        .subscribe((data) => {
           this.previousDocs.push(data[0]);
           this.previousDocs = this.previousDocs
             .concat(data.reverse())
@@ -66,20 +66,18 @@ export class TopMenuComponent implements AfterViewInit, OnDestroy {
     };
 
     let _prev = getUrl(this.router);
-    this.routeSubscription = this.router.events.subscribe((event: any) => {
-      const _cur = getUrl(this.router);
-      this.initBoxShadow = this.shadowRoutes.includes(_cur);
-      if (typeof window !== 'undefined') {
-        this.appHash = location.hash === '#/' ? '' : location.hash;
-      }
+    this.router.events
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((event) => {
+        const _cur = getUrl(this.router);
+        this.initBoxShadow = this.shadowRoutes.includes(_cur);
+        if (typeof window !== 'undefined') {
+          this.appHash = location.hash === '#/' ? '' : location.hash;
+        }
 
-      if (event instanceof NavigationEnd && _cur !== _prev) {
-        _prev = _cur;
-      }
-    });
-  }
-
-  ngOnDestroy() {
-    this.routeSubscription?.unsubscribe();
+        if (event instanceof NavigationEnd && _cur !== _prev) {
+          _prev = _cur;
+        }
+      });
   }
 }

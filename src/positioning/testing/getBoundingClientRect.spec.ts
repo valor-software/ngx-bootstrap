@@ -1,7 +1,6 @@
 import { getBoundingClientRect } from '../utils/getBoundingClientRect';
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { resolve } from "@angular-devkit/core";
 
 @Component({
   selector: 'test-cmp',

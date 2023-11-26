@@ -46,7 +46,7 @@ export class DocsSectionComponent implements OnDestroy {
     private router: Router,
     private changeDetection: ChangeDetectorRef
   ) {
-    this.routeSubscription = this.router.events.subscribe((event: any) => {
+    this.routeSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const params = this.router.parseUrl(event.url).queryParams;
         this.initActiveTab(params["tab"]?.toString());

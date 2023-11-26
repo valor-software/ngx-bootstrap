@@ -3,7 +3,7 @@ import {
   Directive,
   ElementRef,
   forwardRef,
-  Host,
+  Host, HostListener,
   OnDestroy,
   OnInit,
   Provider,
@@ -37,32 +37,25 @@ import { distinctUntilChanged } from 'rxjs/operators';
 
 const BS_DATEPICKER_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => BsDatepickerInputDirective),
+  useExisting: forwardRef(() => BsDatepickerInputDirective),
   multi: true
 };
 
 const BS_DATEPICKER_VALIDATOR: Provider = {
   provide: NG_VALIDATORS,
-    useExisting: forwardRef(() => BsDatepickerInputDirective),
+  useExisting: forwardRef(() => BsDatepickerInputDirective),
   multi: true
 };
 
 @Directive({
   selector: `input[bsDatepicker]`,
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {
-    '(change)': 'onChange($event)',
-    '(keyup.esc)': 'hide()',
-    '(keydown)': 'onKeydownEvent($event)',
-    '(blur)': 'onBlur()'
-  },
   providers: [BS_DATEPICKER_VALUE_ACCESSOR, BS_DATEPICKER_VALIDATOR]
 })
 export class BsDatepickerInputDirective
   implements ControlValueAccessor, Validator, OnInit, OnDestroy {
   private _onChange = Function.prototype;
   private _onTouched = Function.prototype;
-    private _validatorChange = Function.prototype;
+  private _validatorChange = Function.prototype;
   private _value?: Date;
   private _subs = new Subscription();
 
@@ -70,7 +63,34 @@ export class BsDatepickerInputDirective
               private _localeService: BsLocaleService,
               private _renderer: Renderer2,
               private _elRef: ElementRef,
-              private changeDetection: ChangeDetectorRef) {}
+              private changeDetection: ChangeDetectorRef) {
+  }
+
+  @HostListener('change', ['$event'])
+  onChange(event: Event) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    this.writeValue((event.target as any).value);
+    this._onChange(this._value);
+    if (this._picker._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
+    }
+    this._onTouched();
+  }
+
+  @HostListener('blur')
+  onBlur() {
+    this._onTouched();
+  }
+
+  @HostListener('keyup.esc')
+  @HostListener('keydown.enter')
+  hide() {
+    this._picker.hide();
+    this._renderer.selectRootElement(this._elRef.nativeElement).blur();
+    if (this._picker._config.returnFocusToInput) {
+      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
+    }
+  }
 
   ngOnInit() {
     const setBsValue = (value: Date) => {
@@ -101,20 +121,14 @@ export class BsDatepickerInputDirective
     );
 
     this._subs.add(
-    this._picker.dateInputFormat$.pipe(distinctUntilChanged()).subscribe(() => {
-      this._setInputValue(this._value);
-    })
-  );
-}
+      this._picker.dateInputFormat$.pipe(distinctUntilChanged()).subscribe(() => {
+        this._setInputValue(this._value);
+      })
+    );
+  }
 
   ngOnDestroy() {
     this._subs.unsubscribe();
-  }
-
-  onKeydownEvent(event: KeyboardEvent): void {
-    if (event.keyCode === 13 || event.code === 'Enter') {
-      this.hide();
-    }
   }
 
   _setInputValue(value?: Date): void {
@@ -124,20 +138,10 @@ export class BsDatepickerInputDirective
     this._renderer.setProperty(this._elRef.nativeElement, 'value', initialDate);
   }
 
-  onChange(event: Event) {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    this.writeValue((event.target as any).value);
-    this._onChange(this._value);
-    if (this._picker._config.returnFocusToInput) {
-      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
-    }
-    this._onTouched();
-  }
-
   validate(c: AbstractControl): ValidationErrors | null {
     const _value: Date | string = c.value;
 
-        if (_value === null || _value === undefined || _value === '') {
+    if (_value === null || _value === undefined || _value === '') {
       return null;
     }
 
@@ -182,7 +186,8 @@ export class BsDatepickerInputDirective
       this._value = parseDate(value, this._picker._config.dateInputFormat, this._localeService.currentLocale);
 
       if (this._picker._config.useUtc) {
-        this._value = utcAsLocal(this._value);
+        const utcValue = utcAsLocal(this._value);
+        this._value = utcValue === null ? void 0 : utcValue;
       }
     }
 
@@ -205,17 +210,5 @@ export class BsDatepickerInputDirective
 
   registerOnTouched(fn: () => void): void {
     this._onTouched = fn;
-  }
-
-  onBlur() {
-    this._onTouched();
-  }
-
-  hide() {
-    this._picker.hide();
-    this._renderer.selectRootElement(this._elRef.nativeElement).blur();
-    if (this._picker._config.returnFocusToInput) {
-      this._renderer.selectRootElement(this._elRef.nativeElement).focus();
-    }
   }
 }

@@ -10,6 +10,7 @@ const defaultStyleFileRegex = /styles\.(c|le|sc|sa)ss/;
 // Regular expression that matches all files that have a proper stylesheet extension
 const validStyleFileRegex = /\.(c|le|sc|sa)ss/;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function getDependencies(host: Tree): { name: string, version: string }[] {
   return [
     { name: 'bootstrap', version: BOOTSTRAP_VERSION},

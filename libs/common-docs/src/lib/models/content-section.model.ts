@@ -7,7 +7,8 @@ import { SourceCodeModel } from "./source-code.model";
 export class ContentSection {
   name?: string;
   anchor?: string;
-  outlet: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  outlet: any; // @Todo fix type
   description?: string;
   content?: ComponentExample[] | ComponentApi[];
   importInfo?: string;

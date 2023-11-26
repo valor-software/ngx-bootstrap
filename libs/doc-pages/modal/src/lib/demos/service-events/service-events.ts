@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */ // TODO: remove this and fix types
 import { ChangeDetectorRef, Component, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { combineLatest, Subscription } from 'rxjs';
@@ -15,33 +16,33 @@ import { combineLatest, Subscription } from 'rxjs';
 })
 export class DemoModalServiceEventsComponent {
   modalRef?: BsModalRef;
-  subscriptions: Subscription[] = [];
+  subscriptions: Subscription = new Subscription();
   messages: string[] = [];
 
   constructor(private modalService: BsModalService, private changeDetection: ChangeDetectorRef) {
   }
 
-  openModal(template: TemplateRef<any>) {
+  openModal(template: TemplateRef<void>) {
     this.messages = [];
 
-    const _combine = combineLatest(
+    const _combine = combineLatest([
       this.modalService.onShow,
       this.modalService.onShown,
       this.modalService.onHide,
       this.modalService.onHidden
-    ).subscribe(() => this.changeDetection.markForCheck());
+    ]).subscribe(() => this.changeDetection.markForCheck());
 
-    this.subscriptions.push(
+    this.subscriptions.add(
       this.modalService.onShow.subscribe(() => {
         this.messages.push(`onShow event has been fired`);
       })
     );
-    this.subscriptions.push(
+    this.subscriptions.add(
       this.modalService.onShown.subscribe(() => {
         this.messages.push(`onShown event has been fired`);
       })
     );
-    this.subscriptions.push(
+    this.subscriptions.add(
       this.modalService.onHide.subscribe((reason: string | any) => {
         if (typeof reason !== 'string') {
           reason = `onHide(), modalId is : ${reason.id}`;
@@ -50,7 +51,7 @@ export class DemoModalServiceEventsComponent {
         this.messages.push(`onHide event has been fired${_reason}`);
       })
     );
-    this.subscriptions.push(
+    this.subscriptions.add(
       this.modalService.onHidden.subscribe((reason: string | any) => {
         if (typeof reason !== 'string') {
           reason = `onHide(), modalId is : ${reason.id}`;
@@ -61,15 +62,12 @@ export class DemoModalServiceEventsComponent {
       })
     );
 
-    this.subscriptions.push(_combine);
+    this.subscriptions.add(_combine);
 
     this.modalRef = this.modalService.show(template);
   }
 
   unsubscribe() {
-    this.subscriptions.forEach((subscription: Subscription) => {
-      subscription.unsubscribe();
-    });
-    this.subscriptions = [];
+    this.subscriptions.unsubscribe();
   }
 }

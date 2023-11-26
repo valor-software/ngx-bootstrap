@@ -41,7 +41,7 @@ class TestTypeaheadComponent {
     'Connecticut'
   ];
 
-  onBlurEvent(event: TypeaheadMatch) {
+  onBlurEvent(event?: TypeaheadMatch) {
     return event;
   }
 }
@@ -294,8 +294,8 @@ describe('Directive: Typeahead', () => {
       dispatchTouchEvent(inputElement, 'input');
       tick();
 
-      jest.spyOn(fixture.componentInstance, 'onBlurEvent').mockImplementation((param: TypeaheadMatch) => {
-        expect(param.item.id).toBe(1);
+      jest.spyOn(fixture.componentInstance, 'onBlurEvent').mockImplementation((param?: TypeaheadMatch) => {
+        expect(param?.item.id).toBe(1);
         return param;
       });
       directive.onBlur();

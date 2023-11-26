@@ -10,10 +10,10 @@ import {
   Output,
   Renderer2,
   ViewContainerRef
- } from '@angular/core';
+} from '@angular/core';
 import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
-import { ComponentLoader, ComponentLoaderFactory, BsComponentRef } from 'ngx-bootstrap/component-loader';
+import { BsComponentRef, ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 
 import { BsDropdownConfig } from './bs-dropdown.config';
 import { BsDropdownContainerComponent } from './bs-dropdown-container.component';
@@ -327,7 +327,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
   @HostListener('keydown.arrowDown', ['$event'])
   @HostListener('keydown.arrowUp', ['$event'])
-  navigationClick(event: any): void {
+  navigationClick(event: KeyboardEvent): void {
     const ref = this._elementRef.nativeElement.querySelector('.dropdown-menu');
 
     if (!ref) {

@@ -10,13 +10,13 @@ import { getAppModuleCode, NgxModuleData } from './stackblitz/app.module';
 import { getIndexHtmlCode } from './stackblitz/html';
 import {
   getComponentClassName,
+  getCSSCodeDatepickerCustomClass,
   getTagName,
-  getTemplateFileName,
-  getCSSCodeDatepickerCustomClass
+  getTemplateFileName
 } from './stackblitz/helpers';
 import { Utils } from 'ngx-bootstrap/utils';
-import { Subscription } from 'rxjs';
 import { AvailableTabsNames } from '../../models/common.models';
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -27,18 +27,19 @@ export class ExamplesComponent {
   examples: ComponentExample[];
   moduleData: NgxModuleData;
   tabName?: AvailableTabsNames;
-  routeSubscription: Subscription;
 
   constructor(public section: ContentSection, private route: ActivatedRoute, router: Router) {
     this.examples = section.content as ComponentExample[];
     this.moduleData = this.route.snapshot.data && this.route.snapshot.data[1];
     this.moduleData.moduleRoute = router.routerState.snapshot.url;
     this.tabName = router.parseUrl(router.url).queryParams?.['tab'];
-    this.routeSubscription = router.events.subscribe((event: any) => {
-      if (event instanceof NavigationEnd) {
-        this.tabName = router.parseUrl(router.url).queryParams?.['tab'];
-      }
-    });
+    router.events
+      .pipe(takeUntilDestroyed())
+      .subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          this.tabName = router.parseUrl(router.url).queryParams?.['tab'];
+        }
+      });
   }
 
   @HostListener('document:click', ['$event'])

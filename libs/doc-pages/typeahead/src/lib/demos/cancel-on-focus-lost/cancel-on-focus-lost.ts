@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, Observer, of } from 'rxjs';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { mergeMap, delay } from 'rxjs/operators';
 import { TypeaheadConfig } from 'ngx-bootstrap/typeahead';
@@ -18,8 +18,7 @@ export function getTypeaheadConfig(): TypeaheadConfig {
 export class DemoTypeaheadCancelRequestOnFocusLostComponent {
   asyncSelected?: string;
   typeaheadLoading?: boolean;
-  typeaheadNoResults?: boolean;
-  dataSource: Observable<any>;
+  dataSource: Observable<DataSourceType[]>;
   statesComplex: DataSourceType[] = [
     { id: 1, name: 'Alabama', region: 'South' },
     { id: 2, name: 'Alaska', region: 'West' },
@@ -74,7 +73,7 @@ export class DemoTypeaheadCancelRequestOnFocusLostComponent {
   ];
 
   constructor() {
-    this.dataSource = Observable.create((observer: any) => {
+    this.dataSource = new Observable((observer: Observer<string | undefined>) => {
       // Runs on every search
       observer.next(this.asyncSelected);
     })
@@ -84,11 +83,11 @@ export class DemoTypeaheadCancelRequestOnFocusLostComponent {
       );
   }
 
-  getStatesAsObservable(token: string): Observable<any> {
+  getStatesAsObservable(token: string): Observable<DataSourceType[]> {
     const query = new RegExp(token, 'i');
 
     return of(
-      this.statesComplex.filter((state: { id: number; name: string; region: string; }) => {
+      this.statesComplex.filter((state: DataSourceType) => {
         return query.test(state.name);
       })
     );

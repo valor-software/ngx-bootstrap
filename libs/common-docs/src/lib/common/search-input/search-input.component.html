@@ -11,7 +11,7 @@
 </form>
 
 <ul class="sidebar-list menu" *ngIf="search.text && routes.length" data-cypress="search-result">
-  <ng-container *ngFor="let route of routes | slice:4 | SearchFilter:search.text">
+  <ng-container *ngFor="let route of routes | slice :4 | SearchFilter : search.text">
     <li *ngIf="route.path"
         [routerLinkActive]="['active']"
         [routerLinkActiveOptions]="{exact: true}"

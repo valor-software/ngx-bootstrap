@@ -140,10 +140,12 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     this._subs.push(
       this._store
         .select(state => state.selectedTime)
-        .subscribe((time:any) => {
-          if ((!time[0] || !time[1]) ||
-             (!(time[0] instanceof Date) || !(time[1] instanceof Date)) ||
-             (currentDate && (time[0] === currentDate[0] && time[1] === currentDate[1]))
+        .subscribe((time) => {
+          if (
+            !time ||
+            (!time[0] || !time[1]) ||
+            (!(time[0] instanceof Date) || !(time[1] instanceof Date)) ||
+            (currentDate && (time[0] === currentDate[0] && time[1] === currentDate[1]))
           ) {
             return;
           }

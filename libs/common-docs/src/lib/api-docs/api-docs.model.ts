@@ -49,6 +49,7 @@ export type OutputDesc = PropertyDesc;
  * :D
  */
 export class NgApiDoc {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 }
 

@@ -1,19 +1,14 @@
 import { ActivatedRoute, NavigationEnd, Router, Routes, UrlSegment } from "@angular/router";
-import { Component, Inject, HostBinding, Renderer2 } from "@angular/core";
-import { DOCUMENT } from '@angular/common';
+import { Component, HostBinding, Inject, inject, Renderer2 } from "@angular/core";
 
-import { setTheme, getBsVer, currentBsVersion, IBsVersion, AvailableBsVersions } from 'ngx-bootstrap/utils';
+import { AvailableBsVersions, currentBsVersion, getBsVer, IBsVersion, setTheme } from 'ngx-bootstrap/utils';
 import { StyleManager } from '../../theme/style-manager';
 import { ThemeStorage } from '../../theme/theme-storage';
 import { DOCS_TOKENS } from '../../tokens/docs-routes-token';
-import {
-  SidebarRoutesType,
-  NestedRouteType,
-  SidebarRouteItemValueType
-} from "../../models/sidebar-routes.model";
+import { NestedRouteType, SidebarRouteItemValueType, SidebarRoutesType } from "../../models/sidebar-routes.model";
 import { SIDEBAR_ROUTES } from '../../tokens/docs-sidebar-routes-token';
 import { initNestedRoutes } from './helpers/sidebar-helpers';
-import { Subscription } from "rxjs";
+import { takeUntilDestroyed } from "@angular/core/rxjs-interop";
 
 const _bs4Css = 'assets/css/bootstrap-4.5.3/css/bootstrap.min.css';
 const _bs5Css = 'assets/css/bootstrap-5.2.3/css/bootstrap.min.css';
@@ -28,7 +23,6 @@ export class SidebarComponent {
 
   routesStructure?: SidebarRoutesType;
   objectKeys = Object.keys;
-  routeSubscription: Subscription;
   @HostBinding('class.menuIsOpened') menuIsOpened = true;
 
   get bsCssFile(): string {
@@ -44,24 +38,28 @@ export class SidebarComponent {
   }
   search = { text: '' };
   currentTheme?: AvailableBsVersions;
+  bodyElement: HTMLBodyElement;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private themeStorage: ThemeStorage,
     public styleManager: StyleManager,
-    private _renderer: Renderer2,
-    @Inject(DOCUMENT) private document: any,
     @Inject(DOCS_TOKENS) _routes: Routes,
     @Inject(SIDEBAR_ROUTES) sidebarRoutesStructure: SidebarRoutesType
   ) {
     if (innerWidth <= 991) {
       this.menuIsOpened = false;
     }
+    this.bodyElement = inject(Renderer2).selectRootElement('body', true);
     this.routesStructure = initNestedRoutes(_routes, sidebarRoutesStructure);
     this.initBodyClass();
     this.firstMenuIniting(_routes);
-    this.routeSubscription = this.router.events.subscribe((event: any) => {
+    this.router.events
+      .pipe(
+        takeUntilDestroyed()
+      )
+      .subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.firstMenuIniting(_routes);
       }
@@ -109,9 +107,9 @@ export class SidebarComponent {
 
   initBodyClass() {
     if (this.menuIsOpened) {
-      this._renderer.addClass(this.document.body, 'menuIsOpened');
+      this.bodyElement.classList.add('menuIsOpened');
     } else {
-      this._renderer.removeClass(this.document.body, 'menuIsOpened');
+      this.bodyElement.classList.remove('menuIsOpened');
     }
   }
 
@@ -208,10 +206,6 @@ export class SidebarComponent {
 
   getRouteStructureKey(value: string): SidebarRouteItemValueType | undefined {
     return this.routesStructure?.[value as keyof SidebarRoutesType];
-  }
-
-  ngOnDestroy() {
-    this.routeSubscription.unsubscribe();
   }
 }
 

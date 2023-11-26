@@ -123,18 +123,18 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
       .setEventHandlers(this)
       .registerDatepickerSideEffects();
 
-    let currentDate: Date;
+    let currentDate: Date | undefined;
     // todo: move it somewhere else
     // on selected date change
     this._subs.push(
-      this._store.select((state: any) => state.selectedDate).subscribe((date: any) => {
+      this._store.select((state) => state.selectedDate).subscribe((date) => {
         currentDate = date;
         this.valueChange.emit(date);
       })
     );
     this._subs.push(
-      this._store.select((state: any) => state.selectedTime).subscribe((time: any) => {
-        if (!time[0] || !(time[0] instanceof Date) || time[0] === currentDate) {
+      this._store.select((state) => state.selectedTime).subscribe((time) => {
+        if (!time || !time[0] || !(time[0] instanceof Date) || time[0] === currentDate) {
           return;
         }
 
@@ -151,7 +151,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
         this.startTimepicker?.writeValue(val[0]);
       }
     }));
-    this.startTimepicker?.registerOnChange((val: any) => {
+    this.startTimepicker?.registerOnChange((val) => {
       this.timeSelectHandler(val, 0);
     });
   }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { AlertComponent } from 'ngx-bootstrap/alert';
+
+type ExampleAlertType = { type: string; msg: string; timeout: number };
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -7,7 +8,7 @@ import { AlertComponent } from 'ngx-bootstrap/alert';
   templateUrl: './dismiss-on-timeout.html'
 })
 export class DemoAlertTimeoutComponent {
-  alerts: any[] = [{
+  alerts: ExampleAlertType[] = [{
     type: 'success',
     msg: `Well done! You successfully read this important alert message. (added: ${new Date().toLocaleTimeString()})`,
     timeout: 5000
@@ -21,7 +22,7 @@ export class DemoAlertTimeoutComponent {
     });
   }
 
-  onClosed(dismissedAlert: AlertComponent): void {
+  onClosed(dismissedAlert: ExampleAlertType): void {
     this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
   }
 }
