@@ -11,9 +11,6 @@ export class DemoModalServiceCustomCSSClassComponent {
   constructor(private modalService: BsModalService) {}
 
   openModalWithClass(template: TemplateRef<void>) {
-    this.modalRef = this.modalService.show(
-      template,
-      Object.assign({}, { class: 'gray modal-lg' })
-    );
+    this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'gray modal-lg' }));
   }
 }

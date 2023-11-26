@@ -19,17 +19,7 @@ export { SampleBoxComponent } from './sample-box/sample-box.component';
 
 @NgModule({
   imports: [CommonModule, TabsModule],
-  declarations: [
-    NgApiDocComponent,
-    NgApiDocClassComponent,
-    NgApiDocConfigComponent,
-    SampleBoxComponent
-  ],
-  exports: [
-    NgApiDocComponent,
-    NgApiDocClassComponent,
-    NgApiDocConfigComponent,
-    SampleBoxComponent
-  ]
+  declarations: [NgApiDocComponent, NgApiDocClassComponent, NgApiDocConfigComponent, SampleBoxComponent],
+  exports: [NgApiDocComponent, NgApiDocClassComponent, NgApiDocConfigComponent, SampleBoxComponent]
 })
 export class NgApiDocModule {}

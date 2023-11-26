@@ -48,14 +48,7 @@
     "release": "release-it"
   },
   "private": true,
-  "keywords": [
-    "angular",
-    "bootstrap",
-    "ng",
-    "ng2",
-    "angular2",
-    "twitter-bootstrap"
-  ],
+  "keywords": ["angular", "bootstrap", "ng", "ng2", "angular2", "twitter-bootstrap"],
   "dependencies": {
     "@angular-devkit/core": "17.0.3",
     "@angular-devkit/schematics": "17.0.3",

@@ -25,9 +25,11 @@ export class DemoAlertDynamicHtmlComponent {
         type: 'danger',
         msg: `<strong>Warning!</strong> Better check yourself, you're not looking too good.`
       }
-    ].map((alert): ExampleAlertType => ({
-      type: alert.type,
-      msg: sanitizer.bypassSecurityTrustHtml(alert.msg)
-    }));
+    ].map(
+      (alert): ExampleAlertType => ({
+        type: alert.type,
+        msg: sanitizer.bypassSecurityTrustHtml(alert.msg)
+      })
+    );
   }
 }

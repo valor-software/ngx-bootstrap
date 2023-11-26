@@ -2,7 +2,8 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  EventEmitter, HostBinding,
+  EventEmitter,
+  HostBinding,
   OnDestroy,
   OnInit,
   Renderer2,
@@ -32,13 +33,14 @@ import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
     class: 'bottom',
     '(click)': '_stopPropagation($event)',
     role: 'dialog',
-    'aria-label': 'calendar',
+    'aria-label': 'calendar'
   },
   animations: [datepickerAnimation]
 })
-export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponent
-  implements OnInit, AfterViewInit, OnDestroy {
-
+export class BsDatepickerContainerComponent
+  extends BsDatepickerAbstractComponent
+  implements OnInit, AfterViewInit, OnDestroy
+{
   valueChange: EventEmitter<Date> = new EventEmitter<Date>();
   animationState = 'void';
   override isRangePicker = false;
@@ -46,7 +48,7 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
 
   @ViewChild('startTP') startTimepicker?: TimepickerComponent;
 
-  set value(value: Date|undefined) {
+  set value(value: Date | undefined) {
     this._effects?.setValue(value);
   }
 
@@ -54,11 +56,11 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     return !!this._config.isDisabled;
   }
 
-  @HostBinding ('attr.disabled') get isDatepickerDisabled() {
+  @HostBinding('attr.disabled') get isDatepickerDisabled() {
     return this.isDatePickerDisabled ? '' : null;
   }
 
-  @HostBinding ('attr.readonly') get isDatepickerReadonly() {
+  @HostBinding('attr.readonly') get isDatepickerReadonly() {
     return this.isDatePickerDisabled ? '' : null;
   }
 
@@ -91,18 +93,17 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
       allowedPositions: this._config.allowedPositions
     });
 
-    this._positionService.event$?.pipe(take(1))
-      .subscribe(() => {
-        this._positionService.disable();
+    this._positionService.event$?.pipe(take(1)).subscribe(() => {
+      this._positionService.disable();
 
-        if (this._config.isAnimated) {
-          this.animationState = this.isTopPosition ? 'animated-up' : 'animated-down';
+      if (this._config.isAnimated) {
+        this.animationState = this.isTopPosition ? 'animated-up' : 'animated-down';
 
-          return;
-        }
+        return;
+      }
 
-        this.animationState = 'unanimated';
-      });
+      this.animationState = 'unanimated';
+    });
 
     this.isOtherMonthsActive = this._config.selectFromOtherMonth;
     this.containerClass = this._config.containerClass;
@@ -114,7 +115,8 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     this.clearPos = this._config.clearPosition;
     this.customRangeBtnLbl = this._config.customRangeButtonLabel;
     this.withTimepicker = this._config.withTimepicker;
-    this._effects?.init(this._store)
+    this._effects
+      ?.init(this._store)
       // intial state options
       .setOptions(this._config)
       // data binding view --> model
@@ -127,30 +129,36 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
     // todo: move it somewhere else
     // on selected date change
     this._subs.push(
-      this._store.select((state) => state.selectedDate).subscribe((date) => {
-        currentDate = date;
-        this.valueChange.emit(date);
-      })
+      this._store
+        .select((state) => state.selectedDate)
+        .subscribe((date) => {
+          currentDate = date;
+          this.valueChange.emit(date);
+        })
     );
     this._subs.push(
-      this._store.select((state) => state.selectedTime).subscribe((time) => {
-        if (!time || !time[0] || !(time[0] instanceof Date) || time[0] === currentDate) {
-          return;
-        }
+      this._store
+        .select((state) => state.selectedTime)
+        .subscribe((time) => {
+          if (!time || !time[0] || !(time[0] instanceof Date) || time[0] === currentDate) {
+            return;
+          }
 
           this.valueChange.emit(time[0]);
-      })
+        })
     );
 
     this._store.dispatch(this._actions.changeViewMode(this._config.startView));
   }
 
   ngAfterViewInit(): void {
-    this.selectedTimeSub.add(this.selectedTime?.subscribe((val) => {
-      if (Array.isArray(val) && val.length >= 1) {
-        this.startTimepicker?.writeValue(val[0]);
-      }
-    }));
+    this.selectedTimeSub.add(
+      this.selectedTime?.subscribe((val) => {
+        if (Array.isArray(val) && val.length >= 1) {
+          this.startTimepicker?.writeValue(val[0]);
+        }
+      })
+    );
     this.startTimepicker?.registerOnChange((val) => {
       this.timeSelectHandler(val, 0);
     });
@@ -170,10 +178,10 @@ export class BsDatepickerContainerComponent extends BsDatepickerAbstractComponen
 
   override daySelectHandler(day: DayViewModel): void {
     if (!day) {
-     return;
+      return;
     }
 
-    const isDisabled = this.isOtherMonthsActive ? day.isDisabled : (day.isOtherMonth || day.isDisabled);
+    const isDisabled = this.isOtherMonthsActive ? day.isDisabled : day.isOtherMonth || day.isDisabled;
 
     if (isDisabled) {
       return;

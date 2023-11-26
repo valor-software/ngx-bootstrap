@@ -8,7 +8,10 @@ const availablePositions = {
   end: ['end', 'end top', 'end bottom']
 };
 
-export function checkPopoverMargin(placement: AvailableBSPositions, checkPosition: 'top' | 'bottom' | 'start' | 'end'): boolean {
+export function checkPopoverMargin(
+  placement: AvailableBSPositions,
+  checkPosition: 'top' | 'bottom' | 'start' | 'end'
+): boolean {
   if (!getBsVer().isBs5) {
     return false;
   }

@@ -7,20 +7,21 @@ import { combineLatest, Subscription } from 'rxjs';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-modal-service-events',
   templateUrl: './service-events.html',
-  styles: [`
-    .card {
-      margin-bottom: 0.75rem;
-      padding: 8px;
-    }
-  `]
+  styles: [
+    `
+      .card {
+        margin-bottom: 0.75rem;
+        padding: 8px;
+      }
+    `
+  ]
 })
 export class DemoModalServiceEventsComponent {
   modalRef?: BsModalRef;
   subscriptions: Subscription = new Subscription();
   messages: string[] = [];
 
-  constructor(private modalService: BsModalService, private changeDetection: ChangeDetectorRef) {
-  }
+  constructor(private modalService: BsModalService, private changeDetection: ChangeDetectorRef) {}
 
   openModal(template: TemplateRef<void>) {
     this.messages = [];

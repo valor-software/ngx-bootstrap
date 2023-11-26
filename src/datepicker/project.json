@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/ngx-bootstrap/datepicker"
-      ],
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/datepicker"],
       "options": {
         "tsConfig": "src/datepicker/tsconfig.lib.json",
         "project": "src/datepicker/ng-package.json"
@@ -29,17 +27,12 @@
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "src/datepicker/**/*.ts",
-          "src/datepicker/**/*.html"
-        ]
+        "lintFilePatterns": ["src/datepicker/**/*.ts", "src/datepicker/**/*.html"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/src/datepicker"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/src/datepicker"],
       "options": {
         "jestConfig": "src/datepicker/jest.config.ts"
       }

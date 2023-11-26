@@ -11,7 +11,7 @@ export class SearchFilterPipe implements PipeTransform {
     const items = value;
     const newItems: Routes = [];
 
-    items.forEach(function(item: Route): void {
+    items.forEach(function (item: Route): void {
       if (!item.children?.length && item.data?.[0]?.toLowerCase().indexOf(text.toLowerCase()) !== -1) {
         newItems.push(item);
       }

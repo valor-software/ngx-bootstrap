@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/ngx-bootstrap/modal"
-      ],
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/modal"],
       "options": {
         "tsConfig": "src/modal/tsconfig.lib.json",
         "project": "src/modal/ng-package.json"
@@ -29,17 +27,12 @@
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "src/modal/**/*.ts",
-          "src/modal/**/*.html"
-        ]
+        "lintFilePatterns": ["src/modal/**/*.ts", "src/modal/**/*.html"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/src/modal"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/src/modal"],
       "options": {
         "jestConfig": "src/modal/jest.config.ts"
       }

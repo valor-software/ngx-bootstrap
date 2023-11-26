@@ -64,7 +64,7 @@ export enum MapPlacementInToRL {
   'bottom end' = 'bottom right',
   'bottom start' = 'bottom left',
   'start bottom' = 'start bottom',
-  'start top' = 'left top',
+  'start top' = 'left top'
 }
 
 export enum PlacementForBs5 {
@@ -90,14 +90,15 @@ export enum PlacementForBs5 {
   'bottom end' = 'bottom end',
   'bottom start' = 'bottom start',
   'start bottom' = 'start bottom',
-  'start top' = 'start top',
+  'start top' = 'start top'
 }
 
 type VerticalPosition = 'top' | 'bottom';
 type HorizontalPosition = 'left' | 'right';
 type RtlFriendlyHorizontalPosition = 'start' | 'end';
 
-export type AvailableBSPositions = VerticalPosition
+export type AvailableBSPositions =
+  | VerticalPosition
   | HorizontalPosition
   | RtlFriendlyHorizontalPosition
   | 'auto'

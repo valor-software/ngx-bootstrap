@@ -76,11 +76,10 @@ export class DemoTypeaheadCancelRequestOnFocusLostComponent {
     this.dataSource = new Observable((observer: Observer<string | undefined>) => {
       // Runs on every search
       observer.next(this.asyncSelected);
-    })
-      .pipe(
-        mergeMap((token: string) => this.getStatesAsObservable(token)),
-        delay(1000)
-      );
+    }).pipe(
+      mergeMap((token: string) => this.getStatesAsObservable(token)),
+      delay(1000)
+    );
   }
 
   getStatesAsObservable(token: string): Observable<DataSourceType[]> {

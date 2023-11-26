@@ -18,13 +18,13 @@ import { PlacementForBs5, checkMargins, AvailableBSPositions } from 'ngx-bootstr
   },
   styles: [
     `
-    :host.popover.bottom>.arrow {
-      margin-left: -4px;
-    }
+      :host.popover.bottom > .arrow {
+        margin-left: -4px;
+      }
 
-    :host .popover-arrow {
-      position: absolute;
-    }
+      :host .popover-arrow {
+        position: absolute;
+      }
     `
   ],
   templateUrl: './popover-container.component.html'
@@ -36,7 +36,7 @@ export class PopoverContainerComponent {
     } else {
       this._placement = PlacementForBs5[value as keyof typeof PlacementForBs5];
     }
-  };
+  }
 
   @Input() title?: string;
 

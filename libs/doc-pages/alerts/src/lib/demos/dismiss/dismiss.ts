@@ -30,6 +30,6 @@ export class DemoAlertDismissComponent {
   }
 
   onClosed(dismissedAlert: ExampleAlertType): void {
-    this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
+    this.alerts = this.alerts.filter((alert) => alert !== dismissedAlert);
   }
 }

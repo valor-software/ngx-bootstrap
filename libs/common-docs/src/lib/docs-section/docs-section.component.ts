@@ -1,16 +1,10 @@
 import { ContentSection } from '../models/content-section.model';
-import {
-  ChangeDetectorRef,
-  Component,
-  Injector,
-  Input,
-  OnDestroy
-} from "@angular/core";
-import { ActivatedRoute, NavigationEnd, Router, NavigationExtras } from "@angular/router";
-import { Subscription } from "rxjs";
+import { ChangeDetectorRef, Component, Injector, Input, OnDestroy } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router, NavigationExtras } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 const availableTabsPaths = ['overview', 'api', 'examples'] as const;
-type AvailableTabsPathsType = (typeof availableTabsPaths)[number];
+type AvailableTabsPathsType = typeof availableTabsPaths[number];
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -49,7 +43,7 @@ export class DocsSectionComponent implements OnDestroy {
     this.routeSubscription = this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const params = this.router.parseUrl(event.url).queryParams;
-        this.initActiveTab(params["tab"]?.toString());
+        this.initActiveTab(params['tab']?.toString());
       }
     });
   }
@@ -72,7 +66,10 @@ export class DocsSectionComponent implements OnDestroy {
 
   onSelect(tabName: string) {
     this.resetTabs();
-    const extras: NavigationExtras = {queryParams: {tab: tabName}, fragment: this.router.parseUrl(this.router.url).fragment || undefined};
+    const extras: NavigationExtras = {
+      queryParams: { tab: tabName },
+      fragment: this.router.parseUrl(this.router.url).fragment || undefined
+    };
     this.router.navigate([], extras);
     this[tabName as AvailableTabsPathsType] = true;
   }
@@ -82,10 +79,15 @@ export class DocsSectionComponent implements OnDestroy {
       return this._injectors.get(_content) as Injector;
     }
 
-    const _injector = Injector.create([{
-      provide: ContentSection,
-      useValue: _content
-    }], this.injector);
+    const _injector = Injector.create(
+      [
+        {
+          provide: ContentSection,
+          useValue: _content
+        }
+      ],
+      this.injector
+    );
     this._injectors.set(_content, _injector);
     return _injector;
   }

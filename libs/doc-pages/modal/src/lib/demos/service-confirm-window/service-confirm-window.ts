@@ -12,7 +12,7 @@ export class DemoModalServiceConfirmWindowComponent {
   constructor(private modalService: BsModalService) {}
 
   openModal(template: TemplateRef<void>) {
-    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
   confirm(): void {

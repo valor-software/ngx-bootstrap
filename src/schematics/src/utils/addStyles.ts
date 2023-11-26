@@ -7,42 +7,53 @@ import path = require('path');
 const DEFAULT_STYLE_EXTENSION = 'css';
 
 interface availablePaths {
-  'css': string[];
-  'scss': string[];
+  css: string[];
+  scss: string[];
 }
 
 type TargetOptions = workspaces.TargetDefinition['options'];
 
-export function addStyles(project: workspaces.ProjectDefinition, targetName: string, host: Tree, availableAssetPaths: availablePaths, projectName: string, extension?: string): Tree {
-    let targetOptions = getProjectTargetOptions(project, targetName);
-    const styles = (targetOptions.styles as JsonArray | undefined);
-    if (!styles || (styles instanceof Array && !styles.length)) {
-      targetOptions = addEmptyStyles(targetOptions, extension, availableAssetPaths);
-      return setUpdatedTargetOptions(host, project, targetOptions, targetName, projectName);
-    }
+export function addStyles(
+  project: workspaces.ProjectDefinition,
+  targetName: string,
+  host: Tree,
+  availableAssetPaths: availablePaths,
+  projectName: string,
+  extension?: string
+): Tree {
+  let targetOptions = getProjectTargetOptions(project, targetName);
+  const styles = targetOptions.styles as JsonArray | undefined;
+  if (!styles || (styles instanceof Array && !styles.length)) {
+    targetOptions = addEmptyStyles(targetOptions, extension, availableAssetPaths);
+    return setUpdatedTargetOptions(host, project, targetOptions, targetName, projectName);
+  }
 
-    const existingStyles = styles.map((s) => typeof s === 'string' ? s : s['input']);
-    const styleFilePath = getProjectStyleFile(existingStyles, extension) || '';
-    const styleFileExtension = normalizeExtension(path.extname(styleFilePath), extension, DEFAULT_STYLE_EXTENSION);
-    const styleFilePatch = availableAssetPaths[styleFileExtension]?.[0];
+  const existingStyles = styles.map((s) => (typeof s === 'string' ? s : s['input']));
+  const styleFilePath = getProjectStyleFile(existingStyles, extension) || '';
+  const styleFileExtension = normalizeExtension(path.extname(styleFilePath), extension, DEFAULT_STYLE_EXTENSION);
+  const styleFilePatch = availableAssetPaths[styleFileExtension]?.[0];
 
-    if (!styleFilePath && styleFileExtension !== 'css' && styleFileExtension !== 'scss') {
-      return host;
-    }
-
-    if (styleFileExtension === 'scss') {
-      return addImportToStylesFile(host, styleFilePath, styleFilePatch);
-    }
-
-    if (styleFileExtension === 'css') {
-      targetOptions = addStylesPathsToTargetOptions(targetOptions, existingStyles, styleFilePatch);
-      return setUpdatedTargetOptions(host, project, targetOptions, targetName, projectName);
-    }
+  if (!styleFilePath && styleFileExtension !== 'css' && styleFileExtension !== 'scss') {
     return host;
+  }
+
+  if (styleFileExtension === 'scss') {
+    return addImportToStylesFile(host, styleFilePath, styleFilePatch);
+  }
+
+  if (styleFileExtension === 'css') {
+    targetOptions = addStylesPathsToTargetOptions(targetOptions, existingStyles, styleFilePatch);
+    return setUpdatedTargetOptions(host, project, targetOptions, targetName, projectName);
+  }
+  return host;
 }
 
-function addStylesPathsToTargetOptions(targetOptions: TargetOptions, existingStyles: string[], stylePatch: string): TargetOptions {
-  if (!existingStyles.some(path => path === stylePatch)) {
+function addStylesPathsToTargetOptions(
+  targetOptions: TargetOptions,
+  existingStyles: string[],
+  stylePatch: string
+): TargetOptions {
+  if (!existingStyles.some((path) => path === stylePatch)) {
     Array.isArray(targetOptions['styles']) && targetOptions.styles?.unshift?.(stylePatch);
   }
   return targetOptions;
@@ -54,7 +65,7 @@ function addEmptyStyles(targetOptions: TargetOptions, extension: string, availab
 }
 
 function addImportToStylesFile(host: Tree, styleFilePath: string, styleFilePatch: string): Tree {
-  const styleContent = host.read(styleFilePath) !.toString('utf-8');
+  const styleContent = host.read(styleFilePath)!.toString('utf-8');
   if (!styleContent.includes(styleFilePatch)) {
     const recorder = host.beginUpdate(styleFilePath);
     recorder.insertRight(styleContent.length, styleFilePatch);
@@ -64,7 +75,13 @@ function addImportToStylesFile(host: Tree, styleFilePath: string, styleFilePatch
   return host;
 }
 
-function setUpdatedTargetOptions(host: Tree, project: workspaces.ProjectDefinition, targetOptions: TargetOptions, targetName: string, projectName: string): Tree {
+function setUpdatedTargetOptions(
+  host: Tree,
+  project: workspaces.ProjectDefinition,
+  targetOptions: TargetOptions,
+  targetName: string,
+  projectName: string
+): Tree {
   if (host.exists('angular.json')) {
     const currentAngular = JSON.parse(host.read('angular.json')!.toString('utf-8'));
     if (currentAngular['projects'][projectName].targets) {

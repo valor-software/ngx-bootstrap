@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/ngx-bootstrap/tooltip"
-      ],
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/tooltip"],
       "options": {
         "tsConfig": "src/tooltip/tsconfig.lib.json",
         "project": "src/tooltip/ng-package.json"
@@ -29,17 +27,12 @@
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "src/tooltip/**/*.ts",
-          "src/tooltip/**/*.html"
-        ]
+        "lintFilePatterns": ["src/tooltip/**/*.ts", "src/tooltip/**/*.html"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/src/tooltip"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/src/tooltip"],
       "options": {
         "jestConfig": "src/tooltip/jest.config.ts"
       }

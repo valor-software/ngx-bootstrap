@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/ngx-bootstrap/progressbar"
-      ],
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/progressbar"],
       "options": {
         "tsConfig": "src/progressbar/tsconfig.lib.json",
         "project": "src/progressbar/ng-package.json"
@@ -29,17 +27,12 @@
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "src/progressbar/**/*.ts",
-          "src/progressbar/**/*.html"
-        ]
+        "lintFilePatterns": ["src/progressbar/**/*.ts", "src/progressbar/**/*.html"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/src/progressbar"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/src/progressbar"],
       "options": {
         "jestConfig": "src/progressbar/jest.config.ts"
       }

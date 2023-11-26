@@ -15,7 +15,7 @@ export class ProgressbarSectionComponent {
 
   _injectors = new Map<ContentSection, Injector>();
 
-  constructor(private injector: Injector) { }
+  constructor(private injector: Injector) {}
 
   sectionInjections(content: ContentSection) {
     if (this._injectors.has(content)) {
@@ -29,7 +29,7 @@ export class ProgressbarSectionComponent {
           useValue: content
         }
       ],
-      parent: this.injector,
+      parent: this.injector
     });
 
     this._injectors.set(content, _injector);

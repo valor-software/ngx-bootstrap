@@ -1,5 +1,5 @@
-import { Route, Routes } from "@angular/router";
-import { Component, inject, Input } from "@angular/core";
+import { Route, Routes } from '@angular/router';
+import { Component, inject, Input } from '@angular/core';
 import { DOCS_TOKENS } from '../../tokens/docs-routes-token';
 
 @Component({
@@ -20,9 +20,7 @@ export class SearchInputComponent {
   }
 
   getRouteLink(path: string): string {
-    const result = this.routes.find(item => item.path === path);
+    const result = this.routes.find((item) => item.path === path);
     return result ? `/${path}` : `/components/${path}`;
   }
 }
-
-

@@ -15,7 +15,7 @@ declare const ga: any;
  * unless the app is deployed on ng-bootstrap.github.io. This avoids sending
  * events and page views during development.
  */
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class Analytics {
   private enabled: boolean;
   private location: Location;
@@ -35,11 +35,7 @@ export class Analytics {
     if (!this.enabled) {
       return;
     }
-    this.router.events
-      .pipe(
-        filter((event) => event instanceof NavigationEnd)
-      )
-      .subscribe(() => {
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
       if (typeof ga !== 'undefined') {
         ga('send', { hitType: 'pageview', page: this.location.path() });
       }

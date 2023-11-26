@@ -8,11 +8,13 @@ type ExampleAlertType = { type: string; msg: string; timeout: number };
   templateUrl: './dismiss-on-timeout.html'
 })
 export class DemoAlertTimeoutComponent {
-  alerts: ExampleAlertType[] = [{
-    type: 'success',
-    msg: `Well done! You successfully read this important alert message. (added: ${new Date().toLocaleTimeString()})`,
-    timeout: 5000
-  }];
+  alerts: ExampleAlertType[] = [
+    {
+      type: 'success',
+      msg: `Well done! You successfully read this important alert message. (added: ${new Date().toLocaleTimeString()})`,
+      timeout: 5000
+    }
+  ];
 
   add(): void {
     this.alerts.push({
@@ -23,6 +25,6 @@ export class DemoAlertTimeoutComponent {
   }
 
   onClosed(dismissedAlert: ExampleAlertType): void {
-    this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
+    this.alerts = this.alerts.filter((alert) => alert !== dismissedAlert);
   }
 }

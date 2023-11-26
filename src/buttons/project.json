@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/ngx-bootstrap/buttons"
-      ],
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/buttons"],
       "options": {
         "tsConfig": "src/buttons/tsconfig.lib.json",
         "project": "src/buttons/ng-package.json"
@@ -23,17 +21,12 @@
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "src/buttons/**/*.ts",
-          "src/buttons/**/*.html"
-        ]
+        "lintFilePatterns": ["src/buttons/**/*.ts", "src/buttons/**/*.html"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/src/buttons"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/src/buttons"],
       "options": {
         "jestConfig": "src/buttons/jest.config.ts"
       }

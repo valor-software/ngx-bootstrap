@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/ngx-bootstrap/component-loader"
-      ],
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/component-loader"],
       "options": {
         "tsConfig": "src/component-loader/tsconfig.lib.json",
         "project": "src/component-loader/ng-package.json"
@@ -29,17 +27,12 @@
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "src/component-loader/**/*.ts",
-          "src/component-loader/**/*.html"
-        ]
+        "lintFilePatterns": ["src/component-loader/**/*.ts", "src/component-loader/**/*.html"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/src/component-loader"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/src/component-loader"],
       "options": {
         "jestConfig": "src/component-loader/jest.config.ts"
       }

@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "executor": "nx:run-commands",
-      "outputs": [
-        "{workspaceRoot}/dist/ngx-bootstrap"
-      ],
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap"],
       "options": {
         "commands": [
           "nx run ngx-bootstrap:ng-build:production",
@@ -42,10 +40,7 @@
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "src/root/**/*.ts",
-          "src/root/**/*.html"
-        ]
+        "lintFilePatterns": ["src/root/**/*.ts", "src/root/**/*.html"]
       }
     },
     "build-sass": {
@@ -73,9 +68,7 @@
       "executor": "nx:run-commands",
       "outputs": [],
       "options": {
-        "commands": [
-          "ts-node ./scripts/set-version.ts"
-        ],
+        "commands": ["ts-node ./scripts/set-version.ts"],
         "parallel": false
       },
       "configurations": {

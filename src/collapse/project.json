@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/ngx-bootstrap/collapse"
-      ],
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/collapse"],
       "options": {
         "tsConfig": "src/collapse/tsconfig.lib.json",
         "project": "src/collapse/ng-package.json"
@@ -23,17 +21,12 @@
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "src/collapse/**/*.ts",
-          "src/collapse/**/*.html"
-        ]
+        "lintFilePatterns": ["src/collapse/**/*.ts", "src/collapse/**/*.html"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/src/collapse"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/src/collapse"],
       "options": {
         "jestConfig": "src/collapse/jest.config.ts"
       }

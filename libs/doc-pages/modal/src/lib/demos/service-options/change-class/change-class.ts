@@ -12,10 +12,7 @@ export class DemoModalServiceChangeClassComponent {
   constructor(private modalService: BsModalService) {}
 
   openModal(template: TemplateRef<void>) {
-    this.modalRef = this.modalService.show(
-      template,
-      Object.assign({}, { class: 'modal-sm' })
-    );
+    this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'modal-sm' }));
   }
 
   setModalClass() {

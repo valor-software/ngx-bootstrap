@@ -15,18 +15,13 @@
         "polyfills": "apps/ngx-bootstrap-docs/src/polyfills.ts",
         "tsConfig": "apps/ngx-bootstrap-docs/tsconfig.app.json",
         "aot": true,
-        "assets": [
-          "apps/ngx-bootstrap-docs/src/assets",
-          "apps/ngx-bootstrap-docs/src/404.html"
-        ],
+        "assets": ["apps/ngx-bootstrap-docs/src/assets", "apps/ngx-bootstrap-docs/src/404.html"],
         "styles": [
           "apps/ngx-bootstrap-docs/src/assets/css/style.scss",
           "apps/ngx-bootstrap-docs/src/assets/css/prettify-angulario.css"
         ],
         "stylePreprocessorOptions": {
-          "includePaths": [
-            "src/datepicker"
-          ]
+          "includePaths": ["src/datepicker"]
         }
       },
       "configurations": {
@@ -94,14 +89,9 @@
     "lint": {
       "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "apps/ngx-bootstrap-docs/src/**/*.ts",
-          "apps/ngx-bootstrap-docs/src/**/*.html"
-        ]
+        "lintFilePatterns": ["apps/ngx-bootstrap-docs/src/**/*.ts", "apps/ngx-bootstrap-docs/src/**/*.html"]
       }
     }
   },
-  "implicitDependencies": [
-    "ngx-bootstrap"
-  ]
+  "implicitDependencies": ["ngx-bootstrap"]
 }

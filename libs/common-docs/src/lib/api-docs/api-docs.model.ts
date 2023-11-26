@@ -54,8 +54,6 @@ export class NgApiDoc {
 }
 
 export function signature(method: MethodDesc): string {
-  const args = method.args
-    .map((arg: ArgumentDesc) => `${arg.name}: ${arg.type}`)
-    .join(', ');
+  const args = method.args.map((arg: ArgumentDesc) => `${arg.name}: ${arg.type}`).join(', ');
   return `${method.name}(${args})`;
 }

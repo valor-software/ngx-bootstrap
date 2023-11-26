@@ -3,7 +3,8 @@ import {
   Directive,
   ElementRef,
   forwardRef,
-  Host, HostListener,
+  Host,
+  HostListener,
   OnDestroy,
   OnInit,
   Provider,
@@ -51,20 +52,20 @@ const BS_DATEPICKER_VALIDATOR: Provider = {
   selector: `input[bsDatepicker]`,
   providers: [BS_DATEPICKER_VALUE_ACCESSOR, BS_DATEPICKER_VALIDATOR]
 })
-export class BsDatepickerInputDirective
-  implements ControlValueAccessor, Validator, OnInit, OnDestroy {
+export class BsDatepickerInputDirective implements ControlValueAccessor, Validator, OnInit, OnDestroy {
   private _onChange = Function.prototype;
   private _onTouched = Function.prototype;
   private _validatorChange = Function.prototype;
   private _value?: Date;
   private _subs = new Subscription();
 
-  constructor(@Host() private _picker: BsDatepickerDirective,
-              private _localeService: BsLocaleService,
-              private _renderer: Renderer2,
-              private _elRef: ElementRef,
-              private changeDetection: ChangeDetectorRef) {
-  }
+  constructor(
+    @Host() private _picker: BsDatepickerDirective,
+    private _localeService: BsLocaleService,
+    private _renderer: Renderer2,
+    private _elRef: ElementRef,
+    private changeDetection: ChangeDetectorRef
+  ) {}
 
   @HostListener('change', ['$event'])
   onChange(event: Event) {
@@ -109,9 +110,7 @@ export class BsDatepickerInputDirective
     }
 
     // update input value on datepicker value update
-    this._subs.add(
-      this._picker.bsValueChange.subscribe(setBsValue)
-    );
+    this._subs.add(this._picker.bsValueChange.subscribe(setBsValue));
 
     // update input value on locale change
     this._subs.add(
@@ -132,7 +131,8 @@ export class BsDatepickerInputDirective
   }
 
   _setInputValue(value?: Date): void {
-    const initialDate = !value ? ''
+    const initialDate = !value
+      ? ''
       : formatDate(value, this._picker._config.dateInputFormat, this._localeService.currentLocale);
 
     this._renderer.setProperty(this._elRef.nativeElement, 'value', initialDate);
@@ -178,9 +178,7 @@ export class BsDatepickerInputDirective
       const _localeKey = this._localeService.currentLocale;
       const _locale = getLocale(_localeKey);
       if (!_locale) {
-        throw new Error(
-          `Locale "${_localeKey}" is not defined, please add it with "defineLocale(...)"`
-        );
+        throw new Error(`Locale "${_localeKey}" is not defined, please add it with "defineLocale(...)"`);
       }
 
       this._value = parseDate(value, this._picker._config.dateInputFormat, this._localeService.currentLocale);

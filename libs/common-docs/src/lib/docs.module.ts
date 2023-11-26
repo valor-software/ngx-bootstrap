@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BsDropdownModule } from "ngx-bootstrap/dropdown";
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 
 /* common */
@@ -27,20 +27,9 @@ import { TopMenuComponent } from './common/top-menu/top-menu.component';
 import { RouterModule } from '@angular/router';
 
 /* export */
-export {
-  NgApiDocModule,
-  NgApiDocComponent,
-  NgApiDocClassComponent,
-  NgApiDocConfigComponent
-} from './api-docs/index';
-export {
-  ExamplesComponent,
-  ExamplesComponentModule
-} from './demo-section-components/demo-examples-section/index';
-export {
-  ApiSectionsComponent,
-  ApiSectionsComponentModule
-} from './demo-section-components/demo-api-section/index';
+export { NgApiDocModule, NgApiDocComponent, NgApiDocClassComponent, NgApiDocConfigComponent } from './api-docs/index';
+export { ExamplesComponent, ExamplesComponentModule } from './demo-section-components/demo-examples-section/index';
+export { ApiSectionsComponent, ApiSectionsComponentModule } from './demo-section-components/demo-api-section/index';
 export { DemoSectionComponent } from './demo-section/demo-section.component';
 export { DocsSectionComponent } from './docs-section/docs-section.component';
 export { SampleBoxComponent } from './api-docs/sample-box/sample-box.component';
