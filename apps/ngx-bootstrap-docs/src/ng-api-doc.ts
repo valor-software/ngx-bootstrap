@@ -2197,7 +2197,7 @@ export const ngdoc: any = {
       },
       {
         name: 'matches',
-        type: 'TypeaheadMatch[]',
+        type: 'TypeaheadMatch<any>[]',
         description: '<p>All matches</p>\n'
       },
       {
@@ -2226,7 +2226,7 @@ export const ngdoc: any = {
       },
       {
         name: 'match',
-        type: 'TypeaheadMatch',
+        type: 'TypeaheadMatch<any>',
         description: '<p>Typeahead match</p>\n'
       },
       {
@@ -2247,7 +2247,7 @@ export const ngdoc: any = {
         args: [
           {
             name: 'value',
-            type: 'TypeaheadMatch'
+            type: 'TypeaheadMatch<any>'
           },
           {
             name: 'e',
@@ -2262,7 +2262,7 @@ export const ngdoc: any = {
         args: [
           {
             name: 'value',
-            type: 'TypeaheadMatch'
+            type: 'TypeaheadMatch<any>'
           }
         ],
         returnType: 'void'
@@ -2273,7 +2273,7 @@ export const ngdoc: any = {
         args: [
           {
             name: 'value',
-            type: 'TypeaheadMatch'
+            type: 'TypeaheadMatch<any>'
           }
         ],
         returnType: 'boolean'
