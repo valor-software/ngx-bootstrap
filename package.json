@@ -48,7 +48,14 @@
     "release": "release-it"
   },
   "private": true,
-  "keywords": ["angular", "bootstrap", "ng", "ng2", "angular2", "twitter-bootstrap"],
+  "keywords": [
+    "angular",
+    "bootstrap",
+    "ng",
+    "ng2",
+    "angular2",
+    "twitter-bootstrap"
+  ],
   "dependencies": {
     "@angular-devkit/core": "17.0.3",
     "@angular-devkit/schematics": "17.0.3",
@@ -85,6 +92,7 @@
     "@ngneat/spectator": "11.1.0",
     "@nx/cypress": "17.1.3",
     "@nx/devkit": "17.1.3",
+    "@nx/eslint": "17.1.3",
     "@nx/eslint-plugin": "17.1.3",
     "@nx/jest": "17.1.3",
     "@nx/js": "17.1.3",
@@ -117,12 +125,11 @@
     "postcss-import": "14.1.0",
     "postcss-preset-env": "7.7.2",
     "postcss-url": "10.1.3",
-    "prettier": "2.7.1",
+    "prettier": "3.1.0",
     "release-it": "16.1.0",
     "ts-jest": "29.1.1",
     "ts-node": "10.9.1",
     "typescript": "5.2.2",
-    "webpack-bundle-analyzer": "4.5.0",
-    "@nx/eslint": "17.1.3"
+    "webpack-bundle-analyzer": "4.5.0"
   }
 }
