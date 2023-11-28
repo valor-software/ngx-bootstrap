@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/ngx-bootstrap/locale"
-      ],
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/locale"],
       "options": {
         "tsConfig": "src/locale/tsconfig.lib.json",
         "project": "src/locale/ng-package.json"
@@ -27,22 +25,16 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "src/locale/**/*.ts",
-          "src/locale/**/*.html"
-        ]
+        "lintFilePatterns": ["src/locale/**/*.ts", "src/locale/**/*.html"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/src/locale"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/src/locale"],
       "options": {
-        "jestConfig": "src/locale/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/locale/jest.config.ts"
       }
     }
   }

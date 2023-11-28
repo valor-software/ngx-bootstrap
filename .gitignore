@@ -57,3 +57,5 @@ scully.log
 **/playwright/.cache/
 
 migration.json
+
+.nx/cache

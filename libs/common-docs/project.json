@@ -24,12 +24,9 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "libs/common-docs/src/**/*.ts",
-          "libs/common-docs/src/**/*.html"
-        ]
+        "lintFilePatterns": ["libs/common-docs/src/**/*.ts", "libs/common-docs/src/**/*.html"]
       }
     }
   }

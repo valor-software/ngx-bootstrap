@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/ngx-bootstrap/sortable"
-      ],
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/sortable"],
       "options": {
         "tsConfig": "src/sortable/tsconfig.lib.json",
         "project": "src/sortable/ng-package.json"
@@ -21,22 +19,16 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "src/sortable/**/*.ts",
-          "src/sortable/**/*.html"
-        ]
+        "lintFilePatterns": ["src/sortable/**/*.ts", "src/sortable/**/*.html"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/src/sortable"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/src/sortable"],
       "options": {
-        "jestConfig": "src/sortable/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/sortable/jest.config.ts"
       }
     }
   }

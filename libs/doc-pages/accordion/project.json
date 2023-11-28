@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:ng-packagr-lite",
-      "outputs": [
-        "{workspaceRoot}/dist/ngx-bootstrap/accordion"
-      ],
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/accordion"],
       "options": {
         "tsConfig": "libs/doc-pages/accordion/tsconfig.lib.json",
         "project": "libs/doc-pages/accordion/ng-package.json"
@@ -27,12 +25,9 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "libs/doc-pages/accordion/src/**/*.ts",
-          "libs/doc-pages/accordion/src/**/*.html"
-        ]
+        "lintFilePatterns": ["libs/doc-pages/accordion/src/**/*.ts", "libs/doc-pages/accordion/src/**/*.html"]
       }
     }
   }

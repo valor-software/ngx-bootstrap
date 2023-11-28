@@ -1,5 +1,4 @@
 {
-  "npmScope": "ngx-bootstrap-base",
   "affected": {
     "defaultBase": "development"
   },
@@ -7,24 +6,14 @@
     "cloud": {
       "runner": "nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
         "accessToken": "ZjAyZjFlMDUtNTY4Zi00ZmUzLWEyMjUtNzdmYjFiMGRkM2VlfHJlYWQtd3JpdGU="
       }
     },
     "default": {
       "runner": "nx/tasks-runners/default",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
       }
     }
   },
@@ -56,14 +45,8 @@
   },
   "defaultProject": "ngx-bootstrap-docs",
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "cli": {
-    "defaultCollection": "@nx/angular"
-  },
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "sharedGlobals": [
       "{workspaceRoot}/angular.json",
       "{workspaceRoot}/tsconfig.base.json",
@@ -81,29 +64,26 @@
   },
   "targetDefaults": {
     "build": {
-      "inputs": [
-        "production",
-        "^production"
-      ]
+      "inputs": ["production", "^production"]
     },
     "e2e": {
-      "inputs": [
-        "default",
-        "^production"
-      ]
-    },
-    "test": {
-      "inputs": [
-        "default",
-        "^production",
-        "{workspaceRoot}/jest.preset.js"
-      ]
+      "inputs": ["default", "^production"]
     },
     "lint": {
-      "inputs": [
-        "default",
-        "{workspaceRoot}/.eslintrc.json"
-      ]
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
+    },
+    "@nx/jest:jest": {
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "cache": true,
+      "options": {
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
     }
   }
 }

@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/ngx-bootstrap/positioning"
-      ],
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/positioning"],
       "options": {
         "tsConfig": "src/positioning/tsconfig.lib.json",
         "project": "src/positioning/ng-package.json"
@@ -27,22 +25,16 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "src/positioning/**/*.ts",
-          "src/positioning/**/*.html"
-        ]
+        "lintFilePatterns": ["src/positioning/**/*.ts", "src/positioning/**/*.html"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/src/positioning"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/src/positioning"],
       "options": {
-        "jestConfig": "src/positioning/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/positioning/jest.config.ts"
       }
     }
   }

@@ -9,7 +9,6 @@ describe('Modals demo page testing suite: Directive examples', () => {
 
     const staticModalDemo = modals.exampleDemosArr.directiveStatic;
     const btnText = 'Static modal';
-    const btnX = '×';
 
     it('example contains the button "Static modal"', () => {
       modals.isButtonExist(staticModalDemo, btnText);
@@ -68,12 +67,11 @@ describe('Modals demo page testing suite: Directive examples', () => {
       modals.isButtonExist(childModalDemo, btnText);
     });
 
-    it('when user clicks on the "Open child modal" button then modal is opened from the parent component',
-      () => {
-        modals.clickByText(childModalDemo, btnText);
-        modals.isModalVisible(modals.modalDialog, true, 3);
-        modals.isChildElemExist(childModalDemo, modals.modalContent);
-      });
+    it('when user clicks on the "Open child modal" button then modal is opened from the parent component', () => {
+      modals.clickByText(childModalDemo, btnText);
+      modals.isModalVisible(modals.modalDialog, true, 3);
+      modals.isChildElemExist(childModalDemo, modals.modalContent);
+    });
   });
 
   describe('Nested modals', () => {
@@ -134,7 +132,6 @@ describe('Modals demo page testing suite: Directive examples', () => {
 
     const eventsModalsDemo = modals.exampleDemosArr.directiveEvents;
     const btnText = 'Open a modal';
-    const btnX = '×';
     const eventOnShowFired = 'event onShow is fired';
     const eventOnShownFired = 'event onShown is fired';
     const eventOnHide = 'event onHide is fired';
@@ -188,23 +185,20 @@ describe('Modals demo page testing suite: Directive examples', () => {
 
     const autoDemo = modals.exampleDemosArr.directiveAutoShow;
     const btnText = 'Render auto-shown modal';
-    const btnX = '×';
 
     it('example contains the button "Render auto-shown modal"', () => {
       modals.isButtonExist(autoDemo, btnText);
     });
 
-    it(`when user clicks on the "Render auto-shown modal" button, then modal is opened, it appeared in the DOM`,
-      () => {
-        modals.clickByText(autoDemo, btnText);
-        modals.isDirectModalVisible(autoDemo, true);
-      });
+    it(`when user clicks on the "Render auto-shown modal" button, then modal is opened, it appeared in the DOM`, () => {
+      modals.clickByText(autoDemo, btnText);
+      modals.isDirectModalVisible(autoDemo, true);
+    });
 
-    it(`when user closes the modal then modal is removed from the DOM`,
-      () => {
-        modals.clickByText(autoDemo, btnText);
-        modals.clickCloseBtn(autoDemo);
-        modals.isModalEnabled(autoDemo, false);
-      });
+    it(`when user closes the modal then modal is removed from the DOM`, () => {
+      modals.clickByText(autoDemo, btnText);
+      modals.clickCloseBtn(autoDemo);
+      modals.isModalEnabled(autoDemo, false);
+    });
   });
 });
