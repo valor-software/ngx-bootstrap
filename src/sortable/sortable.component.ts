@@ -4,11 +4,16 @@ import {
   Output,
   EventEmitter,
   forwardRef,
-  TemplateRef
+  TemplateRef,
+  OnDestroy,
+  HostListener,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { DraggableItem } from './draggable-item';
 import { DraggableItemService } from './draggable-item.service';
+
+import { takeUntil } from "rxjs/operators";
+import { Subject } from "rxjs";
 
 @Component({
   selector: 'bs-sortable',
@@ -53,8 +58,10 @@ import { DraggableItemService } from './draggable-item.service';
     }
   ]
 })
-export class SortableComponent implements ControlValueAccessor {
+export class SortableComponent implements ControlValueAccessor, OnDestroy {
   private static globalZoneIndex = 0;
+  private _destroy$: Subject<boolean> = new Subject<boolean>();
+
   /** field name if input array consists of objects */
   @Input() fieldName?: string;
 
@@ -121,6 +128,7 @@ export class SortableComponent implements ControlValueAccessor {
     this.currentZoneIndex = SortableComponent.globalZoneIndex++;
     this.transfer
       .onCaptureItem()
+      .pipe(takeUntil(this._destroy$))
       .subscribe((item: DraggableItem) => this.onDrop(item));
   }
 
@@ -247,8 +255,13 @@ export class SortableComponent implements ControlValueAccessor {
     // with IE
     event.dataTransfer?.setData('Text', 'placeholder');
   }
-}
 
+  @HostListener('unloaded')
+  public ngOnDestroy(): void {
+    this._destroy$.next(true);
+    this._destroy$.complete();
+  }
+}
 export declare interface SortableItem {
   id: number;
   value: string;
