@@ -12,6 +12,7 @@ export { esUsLocale } from 'ngx-bootstrap/chronos';
 export { etLocale } from 'ngx-bootstrap/chronos';
 export { fiLocale } from 'ngx-bootstrap/chronos';
 export { frLocale } from 'ngx-bootstrap/chronos';
+export {frCaLocale} from 'ngx-bootstrap/chronos';
 export { glLocale } from 'ngx-bootstrap/chronos';
 export { heLocale } from 'ngx-bootstrap/chronos';
 export { hiLocale } from 'ngx-bootstrap/chronos';
