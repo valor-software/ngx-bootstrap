@@ -226,6 +226,7 @@ export class ComponentLoader<T extends object> {
       );
     }
     this._contentRef?.viewRef?.destroy();
+    this._componentRef?.destroy();
 
     this._contentRef = void 0;
     this._componentRef = void 0;
@@ -312,12 +313,16 @@ export class ComponentLoader<T extends object> {
     if (!this._componentRef || !this._componentRef.location) {
       return;
     }
+
+    let unsubscribeOutsideClick = Function.prototype;
+    let unsubscribeEscClick = Function.prototype;
+
     // why: should run after first event bubble
     if (this._listenOpts.outsideClick) {
       const target = this._componentRef.location.nativeElement;
       setTimeout(() => {
         if (this._renderer && this._elementRef) {
-          this._globalListener = registerOutsideClick(this._renderer, {
+          unsubscribeOutsideClick = registerOutsideClick(this._renderer, {
             targets: [target, this._elementRef.nativeElement],
             outsideClick: this._listenOpts.outsideClick,
             hide: () => this._listenOpts.hide && this._listenOpts.hide()
@@ -327,11 +332,16 @@ export class ComponentLoader<T extends object> {
     }
     if (this._listenOpts.outsideEsc && this._renderer && this._elementRef) {
       const target = this._componentRef.location.nativeElement;
-      this._globalListener = registerEscClick(this._renderer, {
+      unsubscribeEscClick = registerEscClick(this._renderer, {
         targets: [target, this._elementRef.nativeElement],
         outsideEsc: this._listenOpts.outsideEsc,
         hide: () => this._listenOpts.hide && this._listenOpts.hide()
       });
+    }
+
+    this._globalListener = () => {
+      unsubscribeOutsideClick();
+      unsubscribeEscClick();
     }
   }
 
