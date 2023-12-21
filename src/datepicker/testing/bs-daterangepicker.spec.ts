@@ -7,6 +7,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { BsCustomDates } from '../themes/bs/bs-custom-dates-view.component';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
     selector: 'test-cmp',
@@ -87,7 +88,7 @@ describe('daterangepicker:', () => {
     expect(timepickerZone).not.toBeTruthy();
   });
 
-  it('should update time when time is changed in timepicker', () => {
+  it('should update time when time is changed in timepicker', (done) => {
     const directive = getDaterangepickerDirective(fixture);
     directive.bsConfig = {
       withTimepicker: true
@@ -119,6 +120,7 @@ describe('daterangepicker:', () => {
       .subscribe(view => {
         expect(view[0].getMinutes()).toEqual(ranges[1].value[0].getMinutes());
         expect(view[1].getMinutes()).toEqual(ranges[1].value[1].getMinutes());
+        done();
       });
   });
 
@@ -185,7 +187,7 @@ describe('daterangepicker:', () => {
         expect(getDaterangepickerContainer(datepicker)).toBeNull();
     });
 
-    it('should display correct date range in input when selected from ranges', () => {
+    it('should display correct date range in input when selected from ranges', (done) => {
         const datepicker = showDatepicker(fixture);
         const ranges = [
             {
@@ -207,6 +209,7 @@ describe('daterangepicker:', () => {
             .select(state => state.selectedRange)
             .subscribe(view => {
                 expect(view).toEqual(ranges[0].value);
+                done();
             });
     });
 
@@ -230,31 +233,6 @@ describe('daterangepicker:', () => {
 
         const rangesButton = document.querySelector('.bs-datepicker-predefined-btns');
         expect(rangesButton.childElementCount).toEqual(ranges.length);
-
-    });
-
-    it('should display correct date range in input when selected from ranges', () => {
-        const datepicker = showDatepicker(fixture);
-        const ranges = [
-            {
-                label: 'Last 7 days',
-                value: [new Date('12-10-2019'), new Date('12-16-2019')]
-            },
-            {
-                label: 'Next 7 days',
-                value: [new Date('12-16-2019'), new Date('12-22-2019')]
-            }
-        ];
-        datepicker.bsConfig.ranges = ranges;
-        const datepickerContainerInstance = getDaterangepickerContainer(datepicker);
-        datepickerContainerInstance.setRangeOnCalendar(ranges[0]);
-
-        fixture.detectChanges();
-        datepickerContainerInstance[`_store`]
-            .select(state => state.selectedRange)
-            .subscribe(view => {
-                expect(view).toEqual(ranges[0].value);
-            });
     });
 
     it('should correctly display the selected range button with active custom class', () => {
@@ -286,7 +264,7 @@ describe('daterangepicker:', () => {
         expect(activeRangeButton[0].innerHTML.trim()).toEqual(ranges[0].label);
     });
 
-  it('should not allow to select date behind max value', () => {
+  it('should not allow to select date behind max value', async () => {
     const datepicker = showDatepicker(fixture);
     datepicker.bsConfig.maxDate = new Date();
     datepicker.bsConfig.maxDateRange = 10;
@@ -300,15 +278,12 @@ describe('daterangepicker:', () => {
       value: [correctDateStart, correctDateEnd]
     };
 
-    datepickerContainerInstance.setMaxDateRangeOnCalendar(correctDateStart);
+    datepickerContainerInstance.setMaxDateRangeOnCalendar(correctDateEnd);
     datepickerContainerInstance.setRangeOnCalendar(selectedRange);
     fixture.detectChanges();
 
-    datepickerContainerInstance[`_store`]
-      .select(state => state)
-      .subscribe(view => {
-        expect(view.maxDate).toEqual(correctDateEnd);
-      });
+    let view = await firstValueFrom(datepickerContainerInstance[`_store`].select((state) => state));
+    expect(view.maxDate).toEqual(correctDateEnd);
 
     const incorrectCaseStart = new Date(new Date().setDate(new Date().getDate() - 5));
     const incorrectCaseEnd = new Date(new Date().setDate(new Date().getDate() + 15));
@@ -321,10 +296,7 @@ describe('daterangepicker:', () => {
     datepickerContainerInstance.setRangeOnCalendar(selectedRange1);
     fixture.detectChanges();
 
-    datepickerContainerInstance[`_store`]
-      .select(state => state)
-      .subscribe(view => {
-        expect(view.maxDate).not.toEqual(incorrectCaseEnd);
-      });
+    view = await firstValueFrom(datepickerContainerInstance[`_store`].select((state) => state));
+    expect(view.maxDate).not.toEqual(incorrectCaseEnd);
   });
-  });
+});
