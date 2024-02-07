@@ -42,6 +42,8 @@ export class BsDatepickerContainerComponent
   implements OnInit, AfterViewInit, OnDestroy
 {
   valueChange: EventEmitter<Date> = new EventEmitter<Date>();
+  valueApplied: EventEmitter<any> = new EventEmitter();
+  valueCancelled: EventEmitter<any> = new EventEmitter();
   animationState = 'void';
   override isRangePicker = false;
   _subs: Subscription[] = [];
@@ -113,6 +115,11 @@ export class BsDatepickerContainerComponent
     this.showClearBtn = this._config.showClearButton;
     this.clearBtnLbl = this._config.clearButtonLabel;
     this.clearPos = this._config.clearPosition;
+    this.showApplyBtn = this._config.showApplyButton;
+    this.showCancelBtn = this._config.showCancelButton;
+    this.applyBtnLbl = this._config.applyButtonLabel;
+    this.applyPos = this._config.applyPosition;
+    this.cancelBtnLbl = this._config.cancelButtonLabel;
     this.customRangeBtnLbl = this._config.customRangeButtonLabel;
     this.withTimepicker = this._config.withTimepicker;
     this._effects
@@ -227,6 +234,14 @@ export class BsDatepickerContainerComponent
 
   override clearDate(): void {
     this._store.dispatch(this._actions.select(undefined));
+  }
+
+  override apply(): void {
+    this.valueApplied.emit();
+  }
+
+  override cancel(): void {
+    this.valueCancelled.emit();
   }
 
   ngOnDestroy(): void {
