@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 
 import { take } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 import { getFullYear, getMonth } from 'ngx-bootstrap/chronos';
 import { PositioningService } from 'ngx-bootstrap/positioning';
@@ -42,8 +42,8 @@ export class BsDatepickerContainerComponent
   implements OnInit, AfterViewInit, OnDestroy
 {
   valueChange: EventEmitter<Date> = new EventEmitter<Date>();
-  valueApplied: EventEmitter<any> = new EventEmitter();
-  valueCancelled: EventEmitter<any> = new EventEmitter();
+  valueApplied: Subject<void> = new Subject();
+  valueCancelled: Subject<void> = new Subject();
   animationState = 'void';
   override isRangePicker = false;
   _subs: Subscription[] = [];
@@ -237,11 +237,11 @@ export class BsDatepickerContainerComponent
   }
 
   override apply(): void {
-    this.valueApplied.emit();
+    this.valueApplied.next();
   }
 
   override cancel(): void {
-    this.valueCancelled.emit();
+    this.valueCancelled.next();
   }
 
   ngOnDestroy(): void {
