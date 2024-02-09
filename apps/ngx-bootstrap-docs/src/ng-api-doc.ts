@@ -712,13 +712,14 @@ export const ngdoc: any = {
         name: 'showApplyButton',
         defaultValue: 'false',
         type: 'boolean',
-        description: '<p>Shows apply and cancel button. Selected date is not sent from view to model until the user selects apply. The picker will remain open until the selection is applied, cancelled, or the picker is dismissed.</p>\n'
+        description:
+          '<p>Shows &#39;apply&#39; and &#39;cancel&#39; button, date is not sent from view to model until user presses apply. Picker remains opened until applied, cancelled or dismissed (clicked off of)</p>\n'
       },
       {
         name: 'showCancelButton',
         defaultValue: 'true',
         type: 'boolean',
-        description: '<p>Shows or hides the cancel button. This only applies if showApplyButton is true.</p>\n'
+        description: '<p>Shows &#39;cancel&#39; button (only if showApplyButton is also true)</p>\n'
       },
       {
         name: 'showClearButton',
