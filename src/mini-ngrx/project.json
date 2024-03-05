@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/ngx-bootstrap/mini-ngrx"
-      ],
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/mini-ngrx"],
       "options": {
         "tsConfig": "src/mini-ngrx/tsconfig.lib.json",
         "project": "src/mini-ngrx/ng-package.json"
@@ -21,22 +19,16 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "src/mini-ngrx/**/*.ts",
-          "src/mini-ngrx/**/*.html"
-        ]
+        "lintFilePatterns": ["src/mini-ngrx/**/*.ts", "src/mini-ngrx/**/*.html"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/src/mini-ngrx"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/src/mini-ngrx"],
       "options": {
-        "jestConfig": "src/mini-ngrx/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/mini-ngrx/jest.config.ts"
       }
     }
   }

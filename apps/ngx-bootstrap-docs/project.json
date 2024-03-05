@@ -15,18 +15,13 @@
         "polyfills": "apps/ngx-bootstrap-docs/src/polyfills.ts",
         "tsConfig": "apps/ngx-bootstrap-docs/tsconfig.app.json",
         "aot": true,
-        "assets": [
-          "apps/ngx-bootstrap-docs/src/assets",
-          "apps/ngx-bootstrap-docs/src/404.html"
-        ],
+        "assets": ["apps/ngx-bootstrap-docs/src/assets", "apps/ngx-bootstrap-docs/src/404.html"],
         "styles": [
           "apps/ngx-bootstrap-docs/src/assets/css/style.scss",
           "apps/ngx-bootstrap-docs/src/assets/css/prettify-angulario.css"
         ],
         "stylePreprocessorOptions": {
-          "includePaths": [
-            "src/datepicker"
-          ]
+          "includePaths": ["src/datepicker"]
         }
       },
       "configurations": {
@@ -74,34 +69,29 @@
     "serve": {
       "executor": "@angular-devkit/build-angular:dev-server",
       "options": {
-        "browserTarget": "ngx-bootstrap-docs:build"
+        "buildTarget": "ngx-bootstrap-docs:build"
       },
       "configurations": {
         "production": {
-          "browserTarget": "ngx-bootstrap-docs:build:production"
+          "buildTarget": "ngx-bootstrap-docs:build:production"
         },
         "development": {
-          "browserTarget": "ngx-bootstrap-docs:build:development"
+          "buildTarget": "ngx-bootstrap-docs:build:development"
         }
       }
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "ngx-bootstrap-docs:build"
+        "buildTarget": "ngx-bootstrap-docs:build"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "apps/ngx-bootstrap-docs/src/**/*.ts",
-          "apps/ngx-bootstrap-docs/src/**/*.html"
-        ]
+        "lintFilePatterns": ["apps/ngx-bootstrap-docs/src/**/*.ts", "apps/ngx-bootstrap-docs/src/**/*.html"]
       }
     }
   },
-  "implicitDependencies": [
-    "ngx-bootstrap"
-  ]
+  "implicitDependencies": ["ngx-bootstrap"]
 }

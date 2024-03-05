@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerConfig, BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -11,7 +11,7 @@ export class DemoDatepickerColorThemingComponent {
 
   bsConfig?: Partial<BsDatepickerConfig>;
 
-  applyTheme(pop: any) {
+  applyTheme(pop: BsDatepickerDirective) {
     // create new object on each property change
     // so Angular can catch object reference change
     this.bsConfig = Object.assign({}, { containerClass: this.colorTheme });

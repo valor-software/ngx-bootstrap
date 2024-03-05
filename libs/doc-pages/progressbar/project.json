@@ -24,12 +24,9 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "libs/doc-pages/progressbar/src/**/*.ts",
-          "libs/doc-pages/progressbar/src/**/*.html"
-        ]
+        "lintFilePatterns": ["libs/doc-pages/progressbar/src/**/*.ts", "libs/doc-pages/progressbar/src/**/*.html"]
       }
     }
   }

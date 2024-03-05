@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/ngx-bootstrap/carousel"
-      ],
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/carousel"],
       "options": {
         "tsConfig": "src/carousel/tsconfig.lib.json",
         "project": "src/carousel/ng-package.json"
@@ -27,22 +25,16 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "src/carousel/**/*.ts",
-          "src/carousel/**/*.html"
-        ]
+        "lintFilePatterns": ["src/carousel/**/*.ts", "src/carousel/**/*.html"]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/src/carousel"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/src/carousel"],
       "options": {
-        "jestConfig": "src/carousel/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/carousel/jest.config.ts"
       }
     }
   }
