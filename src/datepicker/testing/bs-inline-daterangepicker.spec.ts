@@ -55,8 +55,8 @@ describe('daterangepicker inline:', () => {
   it('should select correct year when a month other than selected year chosen', () => {
     const datepicker = getDaterangepickerInlineDirective(fixture);
     const datepickerContainerInstance = getDatepickerInlineContainer(datepicker);
-    const yearSelection: CalendarCellViewModel = { date: new Date(2017, 1, 1), label: 'label' };
-    const monthSelection: CalendarCellViewModel = { date: new Date(2018, 1, 1), label: 'label' };
+    const yearSelection: CalendarCellViewModel = {date: new Date(2017, 1, 1), label: 'label'};
+    const monthSelection: CalendarCellViewModel = {date: new Date(2018, 1, 1), label: 'label'};
     datepickerContainerInstance.yearSelectHandler(yearSelection);
     datepickerContainerInstance.monthSelectHandler(monthSelection);
     fixture.detectChanges();
@@ -106,5 +106,20 @@ describe('daterangepicker inline:', () => {
         expect(view[0].getMinutes()).toEqual(ranges[1].value[0].getMinutes());
         expect(view[1].getMinutes()).toEqual(ranges[1].value[1].getMinutes());
       });
+  });
+
+  it('should emit an event when the first date in a range is selected', () => {
+    const datepicker = getDaterangepickerInlineDirective(fixture);
+    const datepickerContainerInstance = getDatepickerInlineContainer(datepicker);
+    fixture.detectChanges();
+
+    const valueBeginChangeSpy = jest.spyOn(datepicker.bsValueBeginChange, "emit");
+
+    const currentDate = new Date();
+    const range = [currentDate, undefined];
+    datepickerContainerInstance.valueChange.emit(range);
+    fixture.detectChanges();
+
+    expect(valueBeginChangeSpy).toHaveBeenCalledTimes(1);
   });
 });
