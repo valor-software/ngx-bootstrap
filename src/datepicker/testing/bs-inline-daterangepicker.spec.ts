@@ -55,8 +55,8 @@ describe('daterangepicker inline:', () => {
   it('should select correct year when a month other than selected year chosen', () => {
     const datepicker = getDaterangepickerInlineDirective(fixture);
     const datepickerContainerInstance = getDatepickerInlineContainer(datepicker);
-    const yearSelection: CalendarCellViewModel = {date: new Date(2017, 1, 1), label: 'label'};
-    const monthSelection: CalendarCellViewModel = {date: new Date(2018, 1, 1), label: 'label'};
+    const yearSelection: CalendarCellViewModel = { date: new Date(2017, 1, 1), label: 'label' };
+    const monthSelection: CalendarCellViewModel = { date: new Date(2018, 1, 1), label: 'label' };
     datepickerContainerInstance.yearSelectHandler(yearSelection);
     datepickerContainerInstance.monthSelectHandler(monthSelection);
     fixture.detectChanges();
