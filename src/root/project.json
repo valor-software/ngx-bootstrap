@@ -4,6 +4,33 @@
   "projectType": "library",
   "sourceRoot": "src/root",
   "prefix": "ngx-bootstrap-base",
+  "implicitDependencies": [
+    "accordion",
+    "alert",
+    "buttons",
+    "carousel",
+    "chronos",
+    "collapse",
+    "datepicker",
+    "dropdown",
+    "focus-trap",
+    "locale",
+    "modal",
+    "pagination",
+    "popover",
+    "progressbar",
+    "rating",
+    "sortable",
+    "tabs",
+    "timepicker",
+    "tooltip",
+    "typeahead",
+    "utils",
+    "positioning",
+    "mini-ngrx",
+    "component-loader",
+    "schematics"
+  ],
   "targets": {
     "build": {
       "executor": "nx:run-commands",
@@ -38,10 +65,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["src/root/**/*.ts", "src/root/**/*.html"]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "build-sass": {
       "executor": "nx:run-commands",
@@ -75,32 +99,5 @@
         "production": {}
       }
     }
-  },
-  "implicitDependencies": [
-    "accordion",
-    "alert",
-    "buttons",
-    "carousel",
-    "chronos",
-    "collapse",
-    "datepicker",
-    "dropdown",
-    "focus-trap",
-    "locale",
-    "modal",
-    "pagination",
-    "popover",
-    "progressbar",
-    "rating",
-    "sortable",
-    "tabs",
-    "timepicker",
-    "tooltip",
-    "typeahead",
-    "utils",
-    "positioning",
-    "mini-ngrx",
-    "component-loader",
-    "schematics"
-  ]
+  }
 }
