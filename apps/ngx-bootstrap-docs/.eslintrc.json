@@ -3,7 +3,8 @@
     "../../.eslintrc.json"
   ],
   "ignorePatterns": [
-    "!**/*"
+    "!**/*",
+    "**/assets/**"
   ],
   "overrides": [
     {
