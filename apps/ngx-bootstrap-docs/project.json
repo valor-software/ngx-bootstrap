@@ -4,6 +4,7 @@
   "projectType": "application",
   "sourceRoot": "apps/ngx-bootstrap-docs/src",
   "prefix": "ngx-bootstrap-base",
+  "implicitDependencies": ["ngx-bootstrap"],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
@@ -87,11 +88,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["apps/ngx-bootstrap-docs/src/**/*.ts", "apps/ngx-bootstrap-docs/src/**/*.html"]
-      }
+      "executor": "@nx/eslint:lint"
     }
-  },
-  "implicitDependencies": ["ngx-bootstrap"]
+  }
 }
