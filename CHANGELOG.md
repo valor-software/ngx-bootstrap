@@ -1,5 +1,10 @@
 
 
+## [18.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v11.0.2...v18.0.0) (2024-07-1)
+* Migration to Angular 18
+* Synced major version of the lib with major version of Angular
+
+
 ## [11.0.2](https://github.com/valor-software/ngx-bootstrap/compare/v11.0.1...v11.0.2) (2023-07-13)
 
 
