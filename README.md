@@ -178,8 +178,8 @@ The only two dependencies are [Angular](https://angular.io) and [Bootstrap](http
 Here is the version compatibility list:
 
 | ngx-bootstrap | Angular         | Bootstrap CSS           |
-| ------------- | --------------- | ----------------------- |
-| 13.x.x        | 18.x.x          | 5.x.x or 4.x.x          |
+|---------------| --------------- | ----------------------- |
+| 18.x.x        | 18.x.x          | 5.x.x or 4.x.x          |
 | 12.x.x        | 17.x.x          | 5.x.x or 4.x.x          |
 | 11.x.x        | 16.x.x          | 5.x.x or 4.x.x          |
 | 10.x.x        | 15.x.x          | 5.x.x or 4.x.x          |
