@@ -45,8 +45,8 @@ export class TopMenuComponent implements AfterViewInit {
         .get<{ url: string; version: string; unprefixedUrl: string }[]>('assets/json/versions.json')
         .subscribe((data) => {
           this.previousDocs = data.sort((versionA, versionB) => {
-            const versionAsNumberA = +versionA.version.split('.').join('');
-            const versionAsNumberB = +versionB.version.split('.').join('');
+            const versionAsNumberA = Number(versionA.version.split('.').join(''));
+            const versionAsNumberB = Number(versionB.version.split('.').join(''));
             return versionAsNumberB - versionAsNumberA;
           });
         });
