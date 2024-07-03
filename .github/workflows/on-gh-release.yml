@@ -34,5 +34,5 @@ jobs:
         uses: martinbeentjes/npm-get-version-action@v1.3.1
       - run: |
           npm config set registry https://registry.npmjs.org/
-          npm config set _authToken=${{ secrets.NPM_TOKEN }}
+          npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
           npm dist-tag add ngx-bootstrap@${{ steps.package-version.outputs.current-version}} latest
