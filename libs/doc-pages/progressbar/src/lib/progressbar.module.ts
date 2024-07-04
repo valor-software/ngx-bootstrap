@@ -12,18 +12,17 @@ import { routes } from './demo-progressbar.routes';
 export { ProgressbarSectionComponent } from './progressbar-section.component';
 
 @NgModule({
-  declarations: [
-    ProgressbarSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    DocsModule,
-    ProgressbarModule.forRoot(),
-    RouterModule.forChild(routes)
-  ],
-  exports: [ProgressbarSectionComponent],
-  entryComponents: [...DEMO_COMPONENTS]
+    declarations: [
+        ProgressbarSectionComponent,
+        ...DEMO_COMPONENTS
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        DocsModule,
+        ProgressbarModule.forRoot(),
+        RouterModule.forChild(routes)
+    ],
+    exports: [ProgressbarSectionComponent]
 })
 export class DemoProgressbarModule {}

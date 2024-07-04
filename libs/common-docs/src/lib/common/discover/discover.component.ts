@@ -1,5 +1,13 @@
 import { Component } from '@angular/core';
 
+interface ICompany {
+  logo: string;
+  name: string;
+  description: string;
+  link: string;
+  scale?: boolean;
+}
+
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'discover',
@@ -8,10 +16,10 @@ import { Component } from '@angular/core';
 })
 
 export class DiscoverComponent {
-  name = `Native Angular widgets for Bootstrap 3 and Bootstrap 4 - Discover more`;
+  name = `Native Angular widgets for Bootstrap 5 and Bootstrap 4 - Discover more`;
   src = 'https://github.com/valor-software/ngx-bootstrap';
 
-  companies = [
+  companies: ICompany[] = [
     {
       logo: 'https://www.lumeer.io/wp-content/themes/lumeer/assets/img/logo-big.svg',
       name: 'Lumeer',
@@ -25,10 +33,11 @@ export class DiscoverComponent {
       link: 'https://sustainablebuildings.nl'
     },
     {
-      logo: 'https://marketplace.vmware.com/resources/profiles/emc-corporation__1534778173832.png',
+      logo: 'https://dxc.scene7.com/is/image/dxc/DellTech_1050x1050?qlt=90&wid=1800&ts=1637166138311&$square_desktop$&dpr=off',
       name: 'Dell EMC US',
       description: 'Data Storage, Cloud, Converged and Data Protection',
-      link: 'https://www.dellemc.com/en-us/index.htm'
+      link: 'https://www.dellemc.com/en-us/index.htm',
+      scale: true
     },
     {
       logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Soci%C3%A9t%C3%A9_G%C3%A9n%C3%A9rale.svg/279px-Soci%C3%A9t%C3%A9_G%C3%A9n%C3%A9rale.svg.png',
@@ -43,10 +52,10 @@ export class DiscoverComponent {
       link: 'http://www.azerothcore.org/'
     },
     {
-      logo: 'https://res.cloudinary.com/developerhub/image/upload/v1561908888/1/gmoiyrndwsboeffgiz1x.svg',
+      logo: 'https://static.developerhub.io/landing/images/logo-92a931e8f4120d8a7246ea0247865ab5.svg',
       name: 'DeveloperHub',
       description: 'DeveloperHub.io - Hosted Documentation Portals for Product And API Docs',
-      link: 'https://developerhub.io'
+      link: 'https://developerhub.io',
     },
     {
       logo: 'https://www.inmopc.com/img/products/acuerdos-trovimap.jpg',

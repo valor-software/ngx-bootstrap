@@ -1,0 +1,38 @@
+{
+  "name": "timepicker",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "src/timepicker",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/timepicker"],
+      "options": {
+        "tsConfig": "src/timepicker/tsconfig.lib.json",
+        "project": "src/timepicker/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "src/timepicker/tsconfig.lib.prod.json"
+        }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/src/timepicker"],
+      "options": {
+        "jestConfig": "src/timepicker/jest.config.ts"
+      }
+    }
+  }
+}

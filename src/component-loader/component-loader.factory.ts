@@ -22,7 +22,7 @@ export class ComponentLoaderFactory {
    * @param _viewContainerRef
    * @param _renderer
    */
-  createLoader<T>(_elementRef?: ElementRef,
+  createLoader<T extends object>(_elementRef?: ElementRef,
                   _viewContainerRef?: ViewContainerRef,
                   _renderer?: Renderer2,
   ): ComponentLoader<T> {

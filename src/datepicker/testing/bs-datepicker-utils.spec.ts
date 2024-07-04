@@ -10,7 +10,6 @@ const ranges:  BsCustomDates[] = [{
   value: [new Date, new Date(new Date().setDate(new Date().getDate() + 7))]
 }];
 const values: Date[] = [new Date(), new Date(new Date().setDate(new Date().getDate() + 7))];
-const value: Date = new Date();
 
 describe('daterangepicker:', () => {
   beforeEach(

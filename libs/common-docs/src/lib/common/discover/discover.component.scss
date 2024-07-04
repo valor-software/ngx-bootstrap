@@ -8,6 +8,10 @@
 
   img {
     width: 125px;
+
+    &.img-scale {
+      transform: scale(1.5);
+    }
   }
 
   .company-info-wrapper {

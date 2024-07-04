@@ -37,13 +37,13 @@ export class ButtonRadioGroupDirective implements ControlValueAccessor {
   constructor(private cdr: ChangeDetectorRef) {
   }
 
-  private _value?: string;
+  private _value?: unknown;
 
   get value() {
     return this._value;
   }
 
-  set value(value: string | undefined) {
+  set value(value: unknown | undefined) {
     this._value = value;
     this.onChange(value);
   }

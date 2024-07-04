@@ -281,7 +281,32 @@ describe('datepicker:', () => {
     expect(timepickers.length).toEqual(1);
   });
 
-  it('should not display timepicker when withTimepicker is true', () => {
+  it('should display one timepicker when withTimepicker is true', () => {
+    const datepickerDirective = getDatepickerDirective(fixture);
+    datepickerDirective.bsConfig = {
+      withTimepicker: true
+    };
+    const currentDate = new Date();
+    const updatedDate = new Date(new Date().setMinutes(currentDate.getMinutes() + 5));
+    const datepicker = showDatepicker(fixture);
+    const datepickerContainerInstance = getDatepickerContainer(datepicker);
+    fixture.detectChanges();
+
+    datepickerContainerInstance.valueChange.emit(currentDate);
+    datepickerContainerInstance.timeSelectHandler(currentDate, 0);
+    fixture.detectChanges();
+
+    datepickerContainerInstance.valueChange.emit(updatedDate);
+    datepickerContainerInstance.timeSelectHandler(updatedDate, 0);
+
+    datepickerContainerInstance[`_store`]
+      .select(state => state.selectedTime)
+      .subscribe(view => {
+        expect(view[0].getMinutes()).toEqual(updatedDate.getMinutes());
+      });
+  });
+
+  it('should not display timepicker when withTimepicker is false', () => {
     const datepickerDirective = getDatepickerDirective(fixture);
     datepickerDirective.bsConfig = {
       withTimepicker: false
@@ -289,5 +314,29 @@ describe('datepicker:', () => {
     showDatepicker(fixture);
     const timepickerZone = document.querySelector('.bs-timepicker-in-datepicker-container');
     expect(timepickerZone).not.toBeTruthy();
+  });
+
+  it('should hide only if properties with timepicker and keepDatepickerOpened are set to true and only time is changed. Properties are true', () => {
+    const datepickerDirective = getDatepickerDirective(fixture);
+    datepickerDirective.bsConfig = {
+      withTimepicker: true,
+      keepDatepickerOpened: true
+    };
+    const datepicker = showDatepicker(fixture);
+    const currentDate = new Date();
+    const secondDate = new Date(new Date().setMinutes(currentDate.getMinutes() + 5));
+
+    const datepickerContainerInstance = getDatepickerContainer(datepicker);
+    datepickerContainerInstance.valueChange.emit(currentDate);
+    fixture.detectChanges();
+    const datepickerRef = document.querySelector('bs-datepicker-container');
+    expect(datepickerRef).not.toBeNull();
+
+    const datepicker2 = showDatepicker(fixture);
+    const datepickerContainerInstance2 = getDatepickerContainer(datepicker2);
+    datepickerContainerInstance2.valueChange.emit(secondDate);
+    fixture.detectChanges();
+    const datepickerRef2 = document.querySelector('bs-datepicker-container');
+    expect(datepickerRef2).not.toBeNull();
   });
 });

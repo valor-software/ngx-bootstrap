@@ -12,18 +12,17 @@ import { routes } from './demo-dropdown.routes';
 export { DropdownSectionComponent } from './dropdown-section.component';
 
 @NgModule({
-  declarations: [
-    DropdownSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
-  imports: [
-    BsDropdownModule.forRoot(),
-    CommonModule,
-    FormsModule,
-    DocsModule,
-    RouterModule.forChild(routes)
-  ],
-  exports: [DropdownSectionComponent],
-  entryComponents: [...DEMO_COMPONENTS]
+    declarations: [
+        DropdownSectionComponent,
+        ...DEMO_COMPONENTS
+    ],
+    imports: [
+        BsDropdownModule.forRoot(),
+        CommonModule,
+        FormsModule,
+        DocsModule,
+        RouterModule.forChild(routes)
+    ],
+    exports: [DropdownSectionComponent]
 })
 export class DemoDropdownModule {}

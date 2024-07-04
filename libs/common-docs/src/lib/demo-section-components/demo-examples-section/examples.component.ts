@@ -1,6 +1,6 @@
-import { Component, HostListener } from "@angular/core";
-import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
-import sdk from '@stackblitz/sdk';
+import { Component, HostListener } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import sdk, { Project } from '@stackblitz/sdk';
 
 import { ContentSection } from '../../models/content-section.model';
 import { ComponentExample } from '../../models/components-examples.model';
@@ -8,10 +8,16 @@ import { main } from './stackblitz/main';
 import { polyfills } from './stackblitz/polyfills';
 import { getAppModuleCode, NgxModuleData } from './stackblitz/app.module';
 import { getIndexHtmlCode } from './stackblitz/html';
-import { getComponentClassName, getTagName, getTemplateFileName, getCSSCodeDatepickerCustomClass } from './stackblitz/helpers';
+import {
+  getComponentClassName,
+  getCSSCodeDatepickerCustomClass,
+  getTagName,
+  getTemplateFileName
+} from './stackblitz/helpers';
 import { Utils } from 'ngx-bootstrap/utils';
-import { Subscription } from "rxjs";
-import { AvailableTabsNames } from "../../models/common.models";
+import { AvailableTabsNames } from '../../models/common.models';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'examples',
@@ -21,16 +27,15 @@ export class ExamplesComponent {
   examples: ComponentExample[];
   moduleData: NgxModuleData;
   tabName?: AvailableTabsNames;
-  routeSubscription: Subscription;
 
   constructor(public section: ContentSection, private route: ActivatedRoute, router: Router) {
     this.examples = section.content as ComponentExample[];
     this.moduleData = this.route.snapshot.data && this.route.snapshot.data[1];
     this.moduleData.moduleRoute = router.routerState.snapshot.url;
-    this.tabName = router.parseUrl(router.url).queryParams?.["tab"];
-    this.routeSubscription = router.events.subscribe((event: any) => {
+    this.tabName = router.parseUrl(router.url).queryParams?.['tab'];
+    router.events.pipe(takeUntilDestroyed()).subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.tabName = router.parseUrl(router.url).queryParams?.["tab"];
+        this.tabName = router.parseUrl(router.url).queryParams?.['tab'];
       }
     });
   }
@@ -68,12 +73,16 @@ export class ExamplesComponent {
     const tag = getTagName(ts);
     const templateName = getTemplateFileName(ts);
     if (tag && className) {
-      const project = {
-        files: <any>{
+      const project: Project = {
+        template: 'angular-cli',
+        title: `ngx-bootstrap stackblitz demo `,
+        description: 'stackblitz demo',
+        files: {
           'index.html': getIndexHtmlCode(tag, this.moduleData, Utils.stackOverflowConfig()),
           'styles.css': `body {padding: 30px; position: relative}
-        ${this.moduleData.moduleRoute === '/sortable' ?
-            `.sortable-item {
+        ${
+          this.moduleData.moduleRoute === '/sortable'
+            ? `.sortable-item {
       padding: 6px 12px;
       margin-bottom: 4px;
       font-size: 14px;
@@ -92,9 +101,12 @@ export class ExamplesComponent {
 
     .sortable-wrapper {
       min-height: 150px;
-    }` : ''}
-    ${this.moduleData.moduleRoute === '/accordion' ?
-            `.card.customClass,
+    }`
+            : ''
+        }
+    ${
+      this.moduleData.moduleRoute === '/accordion'
+        ? `.card.customClass,
 .card.customClass .card-header,
 .panel.customClass {
   background-color: #5bc0de;
@@ -102,7 +114,9 @@ export class ExamplesComponent {
 }
 .panel.customClass .panel-body {
   background-color: #337aa7;
-}` : ''}`,
+}`
+        : ''
+    }`,
           '.angular-cli.json': `{"apps": [{"styles": ["styles.css"]}]}`,
           'main.ts': main,
           'polyfills.ts': polyfills,
@@ -113,10 +127,7 @@ export class ExamplesComponent {
           '@angular/animations': 'latest',
           'web-animations-js': 'latest',
           'ngx-bootstrap': 'next'
-        },
-        title: 'stackblitz demo',
-        description: 'stackblitz demo',
-        template: 'angular-cli'
+        }
       };
       if (className === 'DemoDatepickerDateCustomClassesComponent') {
         project.files['app/date-custom-classes.scss'] = getCSSCodeDatepickerCustomClass();
@@ -128,18 +139,19 @@ export class ExamplesComponent {
   }
 
   initFragment(anchor: string) {
-    const spAnchor =  anchor.split('-');
-    return spAnchor.slice(0, spAnchor.length -1).join('-');
+    const spAnchor = anchor.split('-');
+    return spAnchor.slice(0, spAnchor.length - 1).join('-');
   }
 
   private getHtml(html: string): string {
-    return this.moduleData.moduleRoute === '/carousel' ?
-      html.replace(/src="/g, 'src="https://valor-software.com/ngx-bootstrap/') : html;
+    return this.moduleData.moduleRoute === '/carousel'
+      ? html.replace(/src="/g, 'src="https://valor-software.com/ngx-bootstrap/')
+      : html;
   }
 
   private getTs(ts: string): string {
-    return this.moduleData.moduleRoute === '/carousel' ?
-      ts.replace(/assets/g, 'https://valor-software.com/ngx-bootstrap/assets') : ts;
+    return this.moduleData.moduleRoute === '/carousel'
+      ? ts.replace(/assets/g, 'https://valor-software.com/ngx-bootstrap/assets')
+      : ts;
   }
 }
-

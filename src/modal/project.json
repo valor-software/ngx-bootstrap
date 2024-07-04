@@ -1,0 +1,38 @@
+{
+  "name": "modal",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "src/modal",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/modal"],
+      "options": {
+        "tsConfig": "src/modal/tsconfig.lib.json",
+        "project": "src/modal/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "src/modal/tsconfig.lib.prod.json"
+        }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/src/modal"],
+      "options": {
+        "jestConfig": "src/modal/jest.config.ts"
+      }
+    }
+  }
+}

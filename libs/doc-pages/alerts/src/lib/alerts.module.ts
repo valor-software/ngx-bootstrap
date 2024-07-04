@@ -10,18 +10,17 @@ import { routes } from './demo-alerts.routes';
 export { AlertsSectionComponent } from './alerts-section.component';
 
 @NgModule({
-  declarations: [
-    AlertsSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
-  imports: [
-    AlertModule.forRoot(),
-    CommonModule,
-    DocsModule,
-    RouterModule.forChild(routes)
-  ],
-  exports: [AlertsSectionComponent],
-  entryComponents: [...DEMO_COMPONENTS]
+    declarations: [
+        AlertsSectionComponent,
+        ...DEMO_COMPONENTS
+    ],
+    imports: [
+        AlertModule.forRoot(),
+        CommonModule,
+        DocsModule,
+        RouterModule.forChild(routes)
+    ],
+    exports: [AlertsSectionComponent]
 })
 export class DemoAlertsModule {
   static routes: Routes = routes;

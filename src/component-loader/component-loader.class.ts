@@ -26,7 +26,7 @@ import { Subscription } from 'rxjs';
 import { ContentRef } from './content-ref.class';
 import { ListenOptions } from './listen-options.model';
 
-export class ComponentLoader<T> {
+export class ComponentLoader<T extends object> {
   onBeforeShow = new EventEmitter();
   onShown = new EventEmitter();
   onBeforeHide = new EventEmitter();
@@ -408,6 +408,8 @@ export class ComponentLoader<T> {
       });
 
       const componentRef = contentCmptFactory.create(modalContentInjector);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       Object.assign(componentRef.instance, initialState);
       this._applicationRef.attachView(componentRef.hostView);
 

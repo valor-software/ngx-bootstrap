@@ -12,18 +12,17 @@ import { routes } from './demo-tooltip.routes';
 export { TooltipSectionComponent } from './tooltip-section.component';
 
 @NgModule({
-  declarations: [
-    TooltipSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    DocsModule,
-    TooltipModule.forRoot(),
-    RouterModule.forChild(routes)
-  ],
-  exports: [TooltipSectionComponent],
-  entryComponents: [...DEMO_COMPONENTS]
+    declarations: [
+        TooltipSectionComponent,
+        ...DEMO_COMPONENTS
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        DocsModule,
+        TooltipModule.forRoot(),
+        RouterModule.forChild(routes)
+    ],
+    exports: [TooltipSectionComponent]
 })
 export class DemoTooltipModule {}

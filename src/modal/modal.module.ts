@@ -12,14 +12,13 @@ import { BsModalService } from './bs-modal.service';
 export const focusTrapModule = FocusTrapModule.forRoot();
 
 @NgModule({
-  imports: [FocusTrapModule],
-  declarations: [
-    ModalBackdropComponent,
-    ModalDirective,
-    ModalContainerComponent
-  ],
-  exports: [ModalBackdropComponent, ModalDirective],
-  entryComponents: [ModalBackdropComponent, ModalContainerComponent]
+    imports: [FocusTrapModule],
+    declarations: [
+        ModalBackdropComponent,
+        ModalDirective,
+        ModalContainerComponent
+    ],
+    exports: [ModalBackdropComponent, ModalDirective]
 })
 export class ModalModule {
   static forRoot(): ModuleWithProviders<ModalModule> {

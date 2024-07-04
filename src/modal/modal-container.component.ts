@@ -13,7 +13,7 @@ import {
   TRANSITION_DURATIONS
 } from './modal-options.class';
 import { BsModalService } from './bs-modal.service';
-import { isBs3 } from 'ngx-bootstrap/utils';
+import { document } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'modal-container',
@@ -42,6 +42,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   level?: number;
   isAnimated = false;
   bsModalService?: BsModalService;
+  _focusEl: Element | null = null;
   private isModalHiding = false;
   private clickStartedInContent = false;
 
@@ -52,6 +53,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this._focusEl = document.activeElement;
     if (this.isAnimated) {
       this._renderer.addClass(
         this._element.nativeElement,
@@ -67,7 +69,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       this.isShown = true;
       this._renderer.addClass(
         this._element.nativeElement,
-        isBs3() ? CLASS_NAME.IN : CLASS_NAME.SHOW
+        CLASS_NAME.SHOW
       );
     }, this.isAnimated ? TRANSITION_DURATIONS.BACKDROP : 0);
     if (document && document.body) {
@@ -136,7 +138,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
 
   hide(): void {
-    if (this.isModalHiding || !this.isShown) {
+    if (this.isModalHiding) {
       return;
     }
 
@@ -155,7 +157,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     this.isModalHiding = true;
     this._renderer.removeClass(
       this._element.nativeElement,
-      isBs3() ? CLASS_NAME.IN : CLASS_NAME.SHOW
+      CLASS_NAME.SHOW
     );
     setTimeout(() => {
       this.isShown = false;
@@ -169,6 +171,9 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       }
       this.bsModalService?.hide(this.config.id);
       this.isModalHiding = false;
+      if (this._focusEl) {
+        (this._focusEl as HTMLElement).focus();
+      }
     }, this.isAnimated ? TRANSITION_DURATIONS.MODAL : 0);
   }
 }
