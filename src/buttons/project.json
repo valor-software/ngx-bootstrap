@@ -1,0 +1,32 @@
+{
+  "name": "buttons",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "src/buttons",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/buttons"],
+      "options": {
+        "tsConfig": "src/buttons/tsconfig.lib.json",
+        "project": "src/buttons/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "src/buttons/tsconfig.lib.prod.json"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/src/buttons"],
+      "options": {
+        "jestConfig": "src/buttons/jest.config.ts"
+      }
+    }
+  }
+}

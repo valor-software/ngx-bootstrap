@@ -1,8 +1,6 @@
 import { getBoundingClientRect } from './getBoundingClientRect';
 import { getClientRect } from './getClientRect';
-import { getScrollParent } from './getScrollParent';
 import { getStyleComputedProperty } from './getStyleComputedProperty';
-import { includeScroll } from './includeScroll';
 import { Offsets } from '../models';
 import { isNumber } from './isNumeric';
 
@@ -14,7 +12,6 @@ export function getOffsetRectRelativeToArbitraryNode(
   const isHTML = parent.nodeName === 'HTML';
   const childrenRect = getBoundingClientRect(children);
   const parentRect = getBoundingClientRect(parent);
-  const scrollParent = getScrollParent(children);
 
   const styles = getStyleComputedProperty(parent);
   const borderTopWidth = parseFloat(styles.borderTopWidth);

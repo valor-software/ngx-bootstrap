@@ -13,7 +13,7 @@ export class DemoModalServiceDisableAnimationComponent {
   };
   constructor(private modalService: BsModalService) {}
 
-  openModal(template: TemplateRef<any>) {
+  openModal(template: TemplateRef<void>) {
     this.modalRef = this.modalService.show(template, this.config);
   }
 }

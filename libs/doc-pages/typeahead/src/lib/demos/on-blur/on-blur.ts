@@ -9,7 +9,7 @@ import { TypeaheadMatch, TypeaheadConfig } from 'ngx-bootstrap/typeahead';
 })
 export class DemoTypeaheadOnBlurComponent {
   selected?: string;
-  optionOnBlur: any;
+  optionOnBlur?: string;
   states: string[] = [
     'Alabama',
     'Alaska',
@@ -63,7 +63,7 @@ export class DemoTypeaheadOnBlurComponent {
     'Wyoming'
   ];
 
-  typeaheadOnBlur(event: TypeaheadMatch): void {
-    this.optionOnBlur = event.item;
+  typeaheadOnBlur(event?: TypeaheadMatch<string>): void {
+    this.optionOnBlur = event?.item;
   }
 }
