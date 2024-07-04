@@ -1,6 +1,5 @@
-import { ActivatedRoute, Route, Router, Routes } from "@angular/router";
-import { Component, Inject, Input } from "@angular/core";
-import { DOCUMENT } from '@angular/common';
+import { Route, Routes } from '@angular/router';
+import { Component, inject, Input } from '@angular/core';
 import { DOCS_TOKENS } from '../../tokens/docs-routes-token';
 
 @Component({
@@ -11,17 +10,8 @@ import { DOCS_TOKENS } from '../../tokens/docs-routes-token';
 export class SearchInputComponent {
   @Input() showInput = true;
   isShown = false;
-  routes: Routes;
+  routes: Routes = inject(DOCS_TOKENS).filter((v: Route) => v.path !== '**');
   search = { text: '' };
-
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    @Inject(DOCUMENT) private document: any,
-    @Inject(DOCS_TOKENS) _routes: Routes,
-  ) {
-    this.routes = _routes.filter((v: Route) => v.path !== '**');
-  }
 
   preventReloading(event: KeyboardEvent) {
     if (event.keyCode === 13 || event.key === 'Enter') {
@@ -30,9 +20,7 @@ export class SearchInputComponent {
   }
 
   getRouteLink(path: string): string {
-    const result = this.routes.find(item => item.path === path);
+    const result = this.routes.find((item) => item.path === path);
     return result ? `/${path}` : `/components/${path}`;
   }
 }
-
-

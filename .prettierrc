@@ -6,5 +6,43 @@
   "singleQuote": true,
   "trailingComma": "none",
   "bracketSpacing": true,
-  "parser": "typescript"
+  "parser": "typescript",
+  "overrides": [
+    {
+      "files": "*.json",
+      "options": {
+        "parser": "json"
+      }
+    },
+    {
+      "files": "*.html",
+      "options": {
+        "parser": "html"
+      }
+    },
+    {
+      "files": ["*.components.html", "*.component.html"],
+      "options": {
+        "parser": "angular"
+      }
+    },
+    {
+      "files": "*.md",
+      "options": {
+        "parser": "markdown"
+      }
+    },
+    {
+      "files": "*.yml",
+      "options": {
+        "parser": "yaml"
+      }
+    },
+    {
+      "files": "*.scss",
+      "options": {
+        "parser": "scss"
+      }
+    }
+  ]
 }

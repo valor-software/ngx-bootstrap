@@ -192,6 +192,11 @@
           color: $font-color-01;
         }
 
+        span.selected.disabled,
+        &.selected.disabled span {
+          opacity: .3;
+        }
+
         span.is-other-month,
         &.is-other-month span {
           color: rgba(0, 0, 0, 0.25);
@@ -259,8 +264,8 @@
       &.days {
         td,
         span {
-          &.active:not(.select-start):before,
-          &.in-range:not(.select-start):before {
+          &.active:not(.select-start):not(.disabled):before,
+          &.in-range:not(.select-start):not(.disabled):before {
             background: $highlighted;
           }
         }

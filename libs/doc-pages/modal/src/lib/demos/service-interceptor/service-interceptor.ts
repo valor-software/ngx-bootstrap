@@ -16,13 +16,13 @@ export class DemoModalServiceWithInterceptorComponent {
 
   constructor(private modalService: BsModalService) {}
 
-  openModalWithInterceptor(confirmTemplate: TemplateRef<any>) {
+  openModalWithInterceptor(confirmTemplate: TemplateRef<void>) {
     const closeInterceptor = () => {
       this.confirmPromise = new Promise((resolve, reject) => {
         this.confirmResolve = resolve;
         this.confirmReject = reject;
       });
-      this.confirmModalRef = this.modalService.show(confirmTemplate, {class: 'modal-sm'});
+      this.confirmModalRef = this.modalService.show(confirmTemplate, { class: 'modal-sm' });
 
       return this.confirmPromise;
     };
@@ -61,7 +61,6 @@ export class DemoModalServiceWithInterceptorComponent {
     </div>
   `
 })
-
 export class ModalContentWithInterceptorComponent {
-  constructor(public bsModalRef: BsModalRef) { }
+  constructor(public bsModalRef: BsModalRef) {}
 }

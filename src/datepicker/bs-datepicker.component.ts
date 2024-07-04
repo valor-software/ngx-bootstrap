@@ -339,7 +339,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
    */
   setConfig(): void {
     this._config = Object.assign({}, this._config, this.bsConfig, {
-      value: checkBsValue(this._bsValue, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
+      value: this._config.keepDatesOutOfRules ? this._bsValue : checkBsValue(this._bsValue, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
       isDisabled: this.isDisabled,
       minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
       maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
@@ -350,7 +350,8 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled,
       minMode: this.minMode || this.bsConfig && this.bsConfig.minMode,
       initCurrentTime: this.bsConfig?.initCurrentTime,
-      keepDatepickerOpened: this.bsConfig?.keepDatepickerOpened
+      keepDatepickerOpened: this.bsConfig?.keepDatepickerOpened,
+      keepDatesOutOfRules: this.bsConfig?.keepDatesOutOfRules
     });
   }
 
