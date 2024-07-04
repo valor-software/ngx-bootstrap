@@ -1,19 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, ComponentFixtureAutoDetect, inject, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import {
-  DraggableItem,
-  DraggableItemService,
-  SortableComponent,
-  SortableItem,
-  SortableModule
-} from '../index';
-import { SpyObject } from "@ngneat/spectator";
+import { DraggableItem, DraggableItemService, SortableComponent, SortableItem, SortableModule } from '../index';
+import { SpyObject } from '@ngneat/spectator';
 
 const HEROES: string[] = ['Windstorm', 'Bombasto', 'Magneta', 'Tornado'];
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const HEROES_OBJ: any[] = [
+const HEROES_OBJ: { id: number; name: string }[] = [
   { id: 1, name: 'Windstorm' },
   { id: 2, name: 'Bombasto' },
   { id: 3, name: 'Magneta' }
@@ -21,17 +15,20 @@ const HEROES_OBJ: any[] = [
 
 @Component({
   template: `
-    <bs-sortable id="sort1" [(ngModel)]="heroes" [placeholderItem]="'empty'"
-                 [itemStyle]="{ 'background-color': 'white', margin: '10px' }"
-                 [itemActiveStyle]="{ 'background-color': 'lightgray' }"></bs-sortable>
+    <bs-sortable
+      id="sort1"
+      [(ngModel)]="heroes"
+      [placeholderItem]="'empty'"
+      [itemStyle]="{ 'background-color': 'white', margin: '10px' }"
+      [itemActiveStyle]="{ 'background-color': 'lightgray' }"
+    ></bs-sortable>
     <bs-sortable id="sort2" [(ngModel)]="heroesObj" [fieldName]="'name'" [placeholderItem]="'empty'"></bs-sortable>
   `
 })
 class TestSortableComponent {
   selectedState?: string;
   heroes: string[] = [...HEROES];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  heroesObj: any[] = [...HEROES_OBJ];
+  heroesObj = [...HEROES_OBJ];
 }
 
 xdescribe('Component: Sortable', () => {
@@ -39,25 +36,19 @@ xdescribe('Component: Sortable', () => {
   let sort1: SortableComponent;
   let sort2: SortableComponent;
 
-  beforeEach(
-    () => {
-      fixture = TestBed.configureTestingModule({
-        declarations: [TestSortableComponent],
-        imports: [SortableModule.forRoot(), FormsModule],
-        providers: [{ provide: ComponentFixtureAutoDetect, useValue: true }]
-      }).createComponent(TestSortableComponent);
+  beforeEach(() => {
+    fixture = TestBed.configureTestingModule({
+      declarations: [TestSortableComponent],
+      imports: [SortableModule.forRoot(), FormsModule],
+      providers: [{ provide: ComponentFixtureAutoDetect, useValue: true }]
+    }).createComponent(TestSortableComponent);
 
-      fixture.detectChanges();
+    fixture.detectChanges();
 
-      const sortableComponents = fixture.debugElement
-        .queryAll(By.directive(SortableComponent))
-        .map(
-          (de: DebugElement) =>
-            de.injector.get<SortableComponent>(SortableComponent)
-        );
-      [sort1, sort2] = sortableComponents;
-    }
-  );
+    [sort1, sort2] = fixture.debugElement
+      .queryAll(By.directive(SortableComponent))
+      .map((de: DebugElement) => de.injector.get<SortableComponent>(SortableComponent));
+  });
 
   it('should be defined on the testing component', () => {
     expect(sort1).not.toBeNull();
@@ -65,42 +56,32 @@ xdescribe('Component: Sortable', () => {
   });
 
   it('different zones should have different ids', () => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    expect((sort1 as any).currentZoneIndex).not.toBe(
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (sort2 as any).currentZoneIndex
-    );
+    expect((sort1 as any).currentZoneIndex).not.toBe((sort2 as any).currentZoneIndex);
   });
 
   describe('onChange', () => {
     it('should render list of strings', () => {
-        // arrange
-        // act
-        const renderedItems = getItemsByContainerId();
-        // assert
-        expect(renderedItems).toEqual(HEROES);
-      }
-    );
+      // arrange
+      // act
+      const renderedItems = getItemsByContainerId();
+      // assert
+      expect(renderedItems).toEqual(HEROES);
+    });
 
     it('should render list of complex models', () => {
       // arrange
       // act
       const renderedItems = getItemsByContainerId('sort2');
       // assert
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       expect(renderedItems).toEqual(HEROES_OBJ.map((h: any) => h.name));
     });
   });
 
   it('should apply active item style over item style', () => {
     // arrange
-    const activeItemStyle = Object.assign(
-      {},
-      sort1.itemStyle,
-      sort1.itemActiveStyle
-    );
+    const activeItemStyle = Object.assign({}, sort1.itemStyle, sort1.itemActiveStyle);
     // act
-        const style = sort1.getItemStyle(true);
+    const style = sort1.getItemStyle(true);
     // assert
     expect(style).toEqual(activeItemStyle);
   });
@@ -109,7 +90,7 @@ xdescribe('Component: Sortable', () => {
     // arrange
     const normalItemStyle = Object.assign({}, sort1.itemStyle);
     // act
-        const style = sort1.getItemStyle(false);
+    const style = sort1.getItemStyle(false);
     // assert
     expect(style).toEqual(normalItemStyle);
   });
@@ -126,26 +107,21 @@ xdescribe('Component: Sortable', () => {
     let spyPreventDefault: SpyObject<any>;
     let spyOnDrop: SpyObject<any>;
 
-    beforeEach(
-      inject([DraggableItemService], (service: DraggableItemService) => {
-        transfer = service;
-        item = getItemToDrag();
-                event = {
-          preventDefault: Function.prototype,
-          dataTransfer: { setData: Function.prototype }
-        } as DragEvent;
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        sort1ZoneNumber = (sort1 as any).currentZoneIndex;
-        draggableItem = getDraggableItem(item, event, sort1ZoneNumber);
-        spyOnChanged = jest.spyOn(sort1, 'onChanged');
-        spyGetItem = jest.spyOn(transfer, 'getItem').mockReturnValue(draggableItem);
-        spyCaptureItem = jest.spyOn(transfer, 'captureItem').mockReturnValue(
-          draggableItem
-        );
-        spyPreventDefault = jest.spyOn(event, 'preventDefault');
-        spyOnDrop = jest.spyOn(sort1, 'onDrop').mockImplementation();
-      })
-    );
+    beforeEach(inject([DraggableItemService], (service: DraggableItemService) => {
+      transfer = service;
+      item = getItemToDrag();
+      event = {
+        preventDefault: Function.prototype,
+        dataTransfer: { setData: Function.prototype }
+      } as DragEvent;
+      sort1ZoneNumber = (sort1 as any).currentZoneIndex;
+      draggableItem = getDraggableItem(item, event, sort1ZoneNumber);
+      spyOnChanged = jest.spyOn(sort1, 'onChanged');
+      spyGetItem = jest.spyOn(transfer, 'getItem').mockReturnValue(draggableItem);
+      spyCaptureItem = jest.spyOn(transfer, 'captureItem').mockReturnValue(draggableItem);
+      spyPreventDefault = jest.spyOn(event, 'preventDefault');
+      spyOnDrop = jest.spyOn(sort1, 'onDrop').mockImplementation();
+    }));
 
     it('should pass dragged item to transfer', () => {
       // arrange
@@ -153,9 +129,7 @@ xdescribe('Component: Sortable', () => {
       // act
       sort1.onItemDragstart(event, item, 0);
       // assert
-      expect(spy).toHaveBeenCalledWith(
-        getDraggableItem(item, event, sort1ZoneNumber)
-      );
+      expect(spy).toHaveBeenCalledWith(getDraggableItem(item, event, sort1ZoneNumber));
     });
 
     it('sould prevent event default when dragover item', () => {
@@ -198,11 +172,7 @@ xdescribe('Component: Sortable', () => {
       // act
       sort1.onDrop(draggableItem);
       // assert
-      expect(spyOnChanged).toHaveBeenCalledWith([
-        HEROES[1],
-        HEROES[2],
-        HEROES[3]
-      ]);
+      expect(spyOnChanged).toHaveBeenCalledWith([HEROES[1], HEROES[2], HEROES[3]]);
     });
 
     it('shouldn NOT remove item if it was dropped in the same continer', () => {
@@ -226,12 +196,7 @@ xdescribe('Component: Sortable', () => {
       // act
       sort1.onItemDragover(event, 1);
       // assert
-      expect(spyOnChanged).toHaveBeenCalledWith([
-        HEROES[1],
-        HEROES[0],
-        HEROES[2],
-        HEROES[3]
-      ]);
+      expect(spyOnChanged).toHaveBeenCalledWith([HEROES[1], HEROES[0], HEROES[2], HEROES[3]]);
     });
 
     it('should return unchanged array', () => {
@@ -247,12 +212,7 @@ xdescribe('Component: Sortable', () => {
       // act
       sort1.onItemDragover(event, 3);
       // assert
-      expect(spyOnChanged).toHaveBeenCalledWith([
-        HEROES[1],
-        HEROES[2],
-        HEROES[3],
-        HEROES[0]
-      ]);
+      expect(spyOnChanged).toHaveBeenCalledWith([HEROES[1], HEROES[2], HEROES[3], HEROES[0]]);
     });
 
     it('should move last item to the begining', () => {
@@ -263,12 +223,7 @@ xdescribe('Component: Sortable', () => {
       // act
       sort1.onItemDragover(event, 0);
       // assert
-      expect(spyOnChanged).toHaveBeenCalledWith([
-        HEROES[3],
-        HEROES[0],
-        HEROES[1],
-        HEROES[2]
-      ]);
+      expect(spyOnChanged).toHaveBeenCalledWith([HEROES[3], HEROES[0], HEROES[1], HEROES[2]]);
     });
 
     it('should insert a new item if was empty', () => {
@@ -290,7 +245,7 @@ xdescribe('Component: Sortable', () => {
       expect(spyOnChanged).toHaveBeenCalledWith(['new', ...HEROES]);
     });
 
-    it('should call onDrop when item is over an another container', done => {
+    it('should call onDrop when item is over an another container', (done) => {
       // arrange
       spyGetItem.and.callThrough();
       spyCaptureItem.and.callThrough();
@@ -298,54 +253,27 @@ xdescribe('Component: Sortable', () => {
       // act
       const capturedItem = transfer.captureItem(-1, 0);
       // assert
-      transfer
-        .onCaptureItem()
-        .subscribe(() => {
-          expect(spyOnDrop).toHaveBeenCalledWith(capturedItem);
-          done();
-        });
+      transfer.onCaptureItem().subscribe(() => {
+        expect(spyOnDrop).toHaveBeenCalledWith(capturedItem);
+        done();
+      });
     });
 
-    it('should remove item when it is over an another container', done => {
-        // arrange
-        spyGetItem.and.callThrough();
-        spyCaptureItem.and.callThrough();
-        sort1.onItemDragstart(event, item, 0);
-        // act
-        transfer.captureItem(-1, 0);
-        // assert
-        transfer
-          .onCaptureItem()
-          .subscribe(() => {
-              expect(spyOnChanged).toHaveBeenCalledWith([
-                HEROES[1],
-                HEROES[2],
-                HEROES[3]
-              ]);
-              done();
-            }
-          );
-      }
-    );
+    it('should remove item when it is over an another container', (done) => {
+      // arrange
+      spyGetItem.and.callThrough();
+      spyCaptureItem.and.callThrough();
+      sort1.onItemDragstart(event, item, 0);
+      // act
+      transfer.captureItem(-1, 0);
+      // assert
+      transfer.onCaptureItem().subscribe(() => {
+        expect(spyOnChanged).toHaveBeenCalledWith([HEROES[1], HEROES[2], HEROES[3]]);
+        done();
+      });
+    });
 
-    it('shouldn NOT remove item when it is dropped into the same container', done => {
-        // arrange
-        spyGetItem.and.callThrough();
-        spyCaptureItem.and.callThrough();
-        sort1.onItemDragstart(event, item, 0);
-        // act
-        transfer.captureItem(draggableItem.overZoneIndex, 4);
-        // assert
-        transfer
-          .onCaptureItem()
-          .subscribe(() => {
-            expect(spyOnChanged).toHaveBeenCalledWith([...HEROES]);
-            done();
-          });
-      }
-    );
-
-    it('should reset active item after drop', done => {
+    it('shouldn NOT remove item when it is dropped into the same container', (done) => {
       // arrange
       spyGetItem.and.callThrough();
       spyCaptureItem.and.callThrough();
@@ -353,22 +281,31 @@ xdescribe('Component: Sortable', () => {
       // act
       transfer.captureItem(draggableItem.overZoneIndex, 4);
       // assert
-      transfer
-        .onCaptureItem()
-        .subscribe(() => {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          expect((sort1 as any).activeItem).toBe(-1);
-          done();
-        });
+      transfer.onCaptureItem().subscribe(() => {
+        expect(spyOnChanged).toHaveBeenCalledWith([...HEROES]);
+        done();
+      });
+    });
+
+    it('should reset active item after drop', (done) => {
+      // arrange
+      spyGetItem.and.callThrough();
+      spyCaptureItem.and.callThrough();
+      sort1.onItemDragstart(event, item, 0);
+      // act
+      transfer.captureItem(draggableItem.overZoneIndex, 4);
+      // assert
+      transfer.onCaptureItem().subscribe(() => {
+        expect((sort1 as any).activeItem).toBe(-1);
+        done();
+      });
     });
 
     function getItemToDrag(): SortableItem {
       return { id: 0, value: HEROES[0], initData: HEROES[0] };
     }
 
-    function getDraggableItem(sortableItem: SortableItem,
-                              dragEvent: DragEvent,
-                              zone: number): DraggableItem {
+    function getDraggableItem(sortableItem: SortableItem, dragEvent: DragEvent, zone: number): DraggableItem {
       return {
         event: dragEvent,
         item: sortableItem,
@@ -383,7 +320,6 @@ xdescribe('Component: Sortable', () => {
   function getItemsByContainerId(id = 'sort1'): string[] {
     return fixture.debugElement
       .queryAll(By.css(`#${id} div[draggable]`))
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .map((item: any) => item.nativeElement.innerText);
   }
 });

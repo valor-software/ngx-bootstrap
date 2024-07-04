@@ -21,7 +21,7 @@ export type NestedRouteType = {
   }[] | [];
 };
 
-export const SidebarRoutesStructure: SidebarRoutesType = {
+export const SidebarRoutesStructure: Partial<SidebarRoutesType> = {
   documentation: {
     nestedRoutes:[],
     isOpened: false,
@@ -35,12 +35,12 @@ export const SidebarRoutesStructure: SidebarRoutesType = {
     title: 'COMPONENTS',
     icon: 'assets/images/icons/icon-components.svg',
     path: 'components'
-  },
-  themes: {
-    nestedRoutes:[],
-    isOpened: false,
-    title: 'THEMES',
-    icon: 'assets/images/icons/icon-theme.svg',
-    path: 'themes'
   }
+  // themes: {
+  //   nestedRoutes:[],
+  //   isOpened: false,
+  //   title: 'THEMES',
+  //   icon: 'assets/images/icons/icon-theme.svg',
+  //   path: 'themes'
+  // }
 };

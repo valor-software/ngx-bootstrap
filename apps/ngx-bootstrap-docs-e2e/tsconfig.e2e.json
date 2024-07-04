@@ -4,12 +4,11 @@
     "sourceMap": false,
     "outDir": "../../dist/out-tsc",
     "allowJs": true,
-    "types": ["cypress", "node"],
-    "forceConsistentCasingInFileNames": true,
-    "strict": false,
-    "noImplicitOverride": false,
-    "noImplicitReturns": false,
-    "noFallthroughCasesInSwitch": false
+    "types": ["node"]
   },
-  "include": ["src/**/*.ts", "src/**/*.js"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.js",
+    "playwright.config.ts"
+  ]
 }

@@ -17,7 +17,8 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitReturns": false,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "target": "es2022"
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormControl } from '@angular/forms';
+import { AbstractControl, UntypedFormControl } from '@angular/forms';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -9,7 +9,7 @@ import { AbstractControl, FormControl } from '@angular/forms';
 export class DemoTimepickerCustomValidationComponent {
   myTime?: Date;
 
-  ctrl = new FormControl('', (control: AbstractControl) => {
+  ctrl = new UntypedFormControl('', (control: AbstractControl) => {
     const value = control.value;
 
     if (!value) {

@@ -10,7 +10,7 @@ export class DemoAccessibilityComponent {
   modalRef?: BsModalRef;
   constructor(private modalService: BsModalService) {}
 
-  openModal(template: TemplateRef<any>) {
+  openModal(template: TemplateRef<void>) {
     this.modalRef = this.modalService.show(template, {
       ariaDescribedby: 'my-modal-description',
       ariaLabelledBy: 'my-modal-title'

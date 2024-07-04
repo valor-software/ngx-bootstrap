@@ -8,6 +8,7 @@
 
 # dependencies
 /node_modules
+src/root/node_modules
 
 # IDEs and editors
 /.idea
@@ -50,3 +51,12 @@ scully.log
 /schematics/**/*.js
 /schematics/**/*.js.map
 /schematics/**/*.d.ts
+
+# Playwright
+**/test-results/
+**/playwright-report/
+**/playwright/.cache/
+
+migration.json
+
+.nx/cache

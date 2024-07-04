@@ -12,6 +12,7 @@
             *ngFor="let calendar of daysCalendar$ | async"
             [class.bs-datepicker-multiple]="multipleCalendars"
             [calendar]="calendar"
+            [isDisabled]="isDatePickerDisabled"
             [options]="options$ | async"
             (onNavigate)="navigateTo($event)"
             (onViewMode)="setViewMode($event)"
@@ -21,8 +22,8 @@
           </bs-days-calendar-view>
         </div>
         <div *ngIf="withTimepicker" class="bs-timepicker-in-datepicker-container">
-          <timepicker #startTP></timepicker>
-          <timepicker #endTP *ngIf="isRangePicker"></timepicker>
+          <timepicker #startTP [disabled]="isDatePickerDisabled"></timepicker>
+          <timepicker #endTP *ngIf="isRangePicker" [disabled]="isDatePickerDisabled"></timepicker>
         </div>
       </ng-container>
 

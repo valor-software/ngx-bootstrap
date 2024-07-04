@@ -176,7 +176,7 @@ export class CollapseDirective implements AfterViewChecked {
       : this._factoryCollapseAnimation;
 
     if (this._player) {
-      this._player.destroy();
+      this._player.reset();
     }
 
     this._player = factoryAnimation.create(this._el.nativeElement);

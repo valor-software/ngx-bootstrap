@@ -10,14 +10,14 @@ import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/te
 import { addImportToModule } from '@schematics/angular/utility/ast-utils';
 import { Change, InsertChange } from '@schematics/angular/utility/change';
 import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
-import { getFileContent } from '@schematics/angular/utility/test';
 import * as ts from 'typescript';
 import { getProjectMainFile } from './project-main-file';
-import { WorkspaceProject, WorkspaceSchema } from '@schematics/angular/utility/workspace-models';
-import { JsonArray, JsonObject, workspaces } from '@angular-devkit/core';
+import { workspaces } from '@angular-devkit/core';
 
-
-export function getProjectTargetOptions(project: workspaces.ProjectDefinition, buildTarget: string):  Record<string, string | number | boolean | JsonArray | JsonObject> {
+export function getProjectTargetOptions(
+  project: workspaces.ProjectDefinition,
+  buildTarget: string
+): workspaces.TargetDefinition['options'] {
   if (project?.targets?.get(buildTarget)?.options) {
     return project.targets.get(buildTarget).options;
   }
@@ -25,13 +25,12 @@ export function getProjectTargetOptions(project: workspaces.ProjectDefinition, b
 }
 
 function sortObjectByKeys(obj: { [key: string]: string }) {
-  return Object
-    .keys(obj)
-    .sort()
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    .reduce((result: any, key: any) => (
-      result[key] = obj[key]
-    ) && result, {});
+  return (
+    Object.keys(obj)
+      .sort()
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .reduce((result: any, key: any) => (result[key] = obj[key]) && result, {})
+  );
 }
 
 export function addPackageToPackageJson(host: Tree, pkg: string, version: string): Tree {
@@ -51,33 +50,43 @@ export function addPackageToPackageJson(host: Tree, pkg: string, version: string
   return host;
 }
 
-export async function createTestApp(runner: SchematicTestRunner, appOptions = {}): Promise<UnitTestTree>  {
-  const workspaceTree = await runner
-    .runExternalSchematicAsync('@schematics/angular', 'workspace', {
-      name: 'workspace',
-      version: '8.2.0',
-      newProjectRoot: 'projects',
-    }).toPromise();
+export async function createTestApp(runner: SchematicTestRunner, appOptions = {}): Promise<UnitTestTree> {
+  const workspaceTree = await runner.runExternalSchematic('@schematics/angular', 'workspace', {
+    name: 'workspace',
+    version: '8.2.0',
+    newProjectRoot: 'projects'
+  });
 
-  return runner
-    .runExternalSchematicAsync(
-      '@schematics/angular',
-      'application',
-      {
-        ...appOptions,
-        name: 'ngx-bootstrap',
-      },
-      workspaceTree,
-    ).toPromise();
+  return runner.runExternalSchematic(
+    '@schematics/angular',
+    'application',
+    {
+      ...appOptions,
+      name: 'ngx-bootstrap'
+    },
+    workspaceTree
+  );
 }
 
 export function removePackageJsonDependency(tree: Tree, dependencyName: string) {
-  const packageContent = JSON.parse(getFileContent(tree, '/package.json'));
-  delete packageContent.dependencies[dependencyName];
-  tree.overwrite('/package.json', JSON.stringify(packageContent, null, 2));
+  if (tree.exists('package.json')) {
+    const packageContent = tree.read('/package.json')!.toString('utf-8');
+    const json = JSON.parse(packageContent);
+    delete json.dependencies[dependencyName];
+    tree.overwrite('/package.json', JSON.stringify(packageContent, null, 2));
+  }
+
+  if (!tree.exists('package.json')) {
+    throw new SchematicsException(`there is no package json`);
+  }
 }
 
-export function addModuleImportToRootModule(host: Tree, moduleName: string, src: string, project: workspaces.ProjectDefinition) {
+export function addModuleImportToRootModule(
+  host: Tree,
+  moduleName: string,
+  src: string,
+  project: workspaces.ProjectDefinition
+) {
   const modulePath = getAppModulePath(host, getProjectMainFile(project));
   const moduleSource = getSourceFile(host, modulePath);
   if (!moduleSource) {
@@ -105,18 +114,3 @@ export function getSourceFile(host: Tree, path: string) {
 
   return ts.createSourceFile(path, content, ts.ScriptTarget.Latest, true);
 }
-
-export function getProjectFromWorkSpace(workspace: WorkspaceSchema, projectName?: string): WorkspaceProject {
-  const finalProjectName = projectName || workspace.defaultProject;
-  if (!finalProjectName) {
-    throw new Error(`Could not find project in workspace: ${projectName}`);
-  }
-
-  const project = workspace.projects[finalProjectName];
-  if (!project) {
-    throw new Error(`Could not find project in workspace: ${projectName}`);
-  }
-
-  return project;
-}
-

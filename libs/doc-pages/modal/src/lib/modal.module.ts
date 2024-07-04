@@ -17,22 +17,21 @@ export { ModalSectionComponent } from './modal-section.component';
 
 
 @NgModule({
-  declarations: [
-    ModalSectionComponent,
-    ModalContentComponent,
-    ModalContentWithInterceptorComponent,
-    ...DEMO_COMPONENTS
-  ],
-  imports: [
-    ModalModule.forRoot(),
-    PopoverModule.forRoot(),
-    TooltipModule.forRoot(),
-    CommonModule,
-    FormsModule,
-    DocsModule,
-    RouterModule.forChild(routes)
-  ],
-  exports: [ModalSectionComponent],
-  entryComponents: [ModalContentComponent, ModalContentWithInterceptorComponent, ...DEMO_COMPONENTS]
+    declarations: [
+        ModalSectionComponent,
+        ModalContentComponent,
+        ModalContentWithInterceptorComponent,
+        ...DEMO_COMPONENTS
+    ],
+    imports: [
+        ModalModule.forRoot(),
+        PopoverModule.forRoot(),
+        TooltipModule.forRoot(),
+        CommonModule,
+        FormsModule,
+        DocsModule,
+        RouterModule.forChild(routes)
+    ],
+    exports: [ModalSectionComponent]
 })
 export class DemoModalModule {}

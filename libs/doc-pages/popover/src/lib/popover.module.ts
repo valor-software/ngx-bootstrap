@@ -12,18 +12,17 @@ import { routes } from './demo-popover.routes';
 export { PopoverSectionComponent } from './popover-section.component';
 
 @NgModule({
-  declarations: [
-    PopoverSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    DocsModule,
-    PopoverModule.forRoot(),
-    RouterModule.forChild(routes)
-  ],
-  exports: [PopoverSectionComponent],
-  entryComponents: [...DEMO_COMPONENTS]
+    declarations: [
+        PopoverSectionComponent,
+        ...DEMO_COMPONENTS
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        DocsModule,
+        PopoverModule.forRoot(),
+        RouterModule.forChild(routes)
+    ],
+    exports: [PopoverSectionComponent]
 })
 export class DemoPopoverModule {}

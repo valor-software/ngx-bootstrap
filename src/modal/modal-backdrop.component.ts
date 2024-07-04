@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 
 import { CLASS_NAME } from './modal-options.class';
-import { isBs3, Utils } from 'ngx-bootstrap/utils';
+import { Utils } from 'ngx-bootstrap/utils';
 
 
 /** This component will be added as background layout for modals if enabled */
@@ -29,26 +29,13 @@ export class ModalBackdropComponent implements OnInit {
     if (value) {
       this.renderer.addClass(
         this.element.nativeElement,
-        `${CLASS_NAME.IN}`
+        `${CLASS_NAME.SHOW}`
       );
     } else {
       this.renderer.removeClass(
         this.element.nativeElement,
-        `${CLASS_NAME.IN}`
+        `${CLASS_NAME.SHOW}`
       );
-    }
-    if (!isBs3()) {
-      if (value) {
-        this.renderer.addClass(
-          this.element.nativeElement,
-          `${CLASS_NAME.SHOW}`
-        );
-      } else {
-        this.renderer.removeClass(
-          this.element.nativeElement,
-          `${CLASS_NAME.SHOW}`
-        );
-      }
     }
   }
 
