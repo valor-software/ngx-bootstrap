@@ -25,10 +25,7 @@
       ]
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["libs/doc-pages/accordion/src/**/*.ts", "libs/doc-pages/accordion/src/**/*.html"]
-      }
+      "executor": "@nx/eslint:lint"
     }
   }
 }

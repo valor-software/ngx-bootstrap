@@ -1,15 +1,15 @@
 {
   "name": "ngx-bootstrap",
-  "version": "12.0.0",
+  "version": "18.0.0",
   "description": "Angular Bootstrap",
   "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
   "license": "MIT",
   "schematics": "./schematics/collection.json",
   "peerDependencies": {
-    "@angular/animations": "^17.0.0",
-    "@angular/core": "^17.0.0",
-    "@angular/common": "^17.0.0",
-    "@angular/forms": "^17.0.0",
+    "@angular/animations": "^18.0.1",
+    "@angular/common": "^18.0.1",
+    "@angular/core": "^18.0.1",
+    "@angular/forms": "^18.0.1",
     "rxjs": "^6.5.3 || ^7.4.0"
   },
   "dependencies": {

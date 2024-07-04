@@ -6,7 +6,7 @@ interface ICompany {
   description: string;
   link: string;
   scale?: boolean;
-};
+}
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
