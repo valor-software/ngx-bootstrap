@@ -3,6 +3,7 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  HostBinding,
   OnDestroy,
   OnInit,
   Renderer2,
@@ -38,10 +39,11 @@ import { dayInMilliseconds } from '../../reducer/_defaults';
   },
   animations: [datepickerAnimation]
 })
-export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractComponent
-  implements OnInit, OnDestroy, AfterViewInit {
-
-  set value(value: (Date|undefined)[] | undefined) {
+export class BsDaterangepickerContainerComponent
+  extends BsDatepickerAbstractComponent
+  implements OnInit, OnDestroy, AfterViewInit
+{
+  set value(value: (Date | undefined)[] | undefined) {
     this._effects?.setRangeValue(value);
   }
 
@@ -55,6 +57,18 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
 
   @ViewChild('startTP') startTimepicker?: TimepickerComponent;
   @ViewChild('endTP') endTimepicker?: TimepickerComponent;
+
+  get isDatePickerDisabled(): boolean {
+    return !!this._config.isDisabled;
+  }
+
+  @HostBinding('attr.disabled') get isDatepickerDisabled() {
+    return this.isDatePickerDisabled ? '' : null;
+  }
+
+  @HostBinding('attr.readonly') get isDatepickerReadonly() {
+    return this.isDatePickerDisabled ? '' : null;
+  }
 
   constructor(
     _renderer: Renderer2,
@@ -88,22 +102,22 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
       allowedPositions: this._config.allowedPositions
     });
 
-    this._positionService.event$?.pipe(take(1))
-      .subscribe(() => {
-        this._positionService.disable();
+    this._positionService.event$?.pipe(take(1)).subscribe(() => {
+      this._positionService.disable();
 
-        if (this._config.isAnimated) {
-          this.animationState = this.isTopPosition ? 'animated-up' : 'animated-down';
+      if (this._config.isAnimated) {
+        this.animationState = this.isTopPosition ? 'animated-up' : 'animated-down';
 
-          return;
-        }
+        return;
+      }
 
-        this.animationState = 'unanimated';
-      });
+      this.animationState = 'unanimated';
+    });
     this.containerClass = this._config.containerClass;
     this.isOtherMonthsActive = this._config.selectFromOtherMonth;
     this.withTimepicker = this._config.withTimepicker;
-    this._effects?.init(this._store)
+    this._effects
+      ?.init(this._store)
       // intial state options
       // todo: fix this, split configs
       .setOptions(this._config)
@@ -117,8 +131,8 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     // on selected date change
     this._subs.push(
       this._store
-        .select(state => state.selectedRange)
-        .subscribe(dateRange => {
+        .select((state) => state.selectedRange)
+        .subscribe((dateRange) => {
           currentDate = dateRange;
           this.valueChange.emit(dateRange);
           this.chosenRange = dateRange || [];
@@ -127,11 +141,15 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
 
     this._subs.push(
       this._store
-        .select(state => state.selectedTime)
-        .subscribe((time:any) => {
-          if ((!time[0] || !time[1]) ||
-             (!(time[0] instanceof Date) || !(time[1] instanceof Date)) ||
-             (currentDate && (time[0] === currentDate[0] && time[1] === currentDate[1]))
+        .select((state) => state.selectedTime)
+        .subscribe((time) => {
+          if (
+            !time ||
+            !time[0] ||
+            !time[1] ||
+            !(time[0] instanceof Date) ||
+            !(time[1] instanceof Date) ||
+            (currentDate && time[0] === currentDate[0] && time[1] === currentDate[1])
           ) {
             return;
           }
@@ -143,12 +161,14 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
   }
 
   ngAfterViewInit(): void {
-    this.selectedTimeSub.add(this.selectedTime?.subscribe((val) => {
-      if (Array.isArray(val) && val.length >= 2) {
-        this.startTimepicker?.writeValue(val[0]);
-        this.endTimepicker?.writeValue(val[1]);
-      }
-    }));
+    this.selectedTimeSub.add(
+      this.selectedTime?.subscribe((val) => {
+        if (Array.isArray(val) && val.length >= 2) {
+          this.startTimepicker?.writeValue(val[0]);
+          this.endTimepicker?.writeValue(val[1]);
+        }
+      })
+    );
     this.startTimepicker?.registerOnChange((val) => {
       this.timeSelectHandler(val, 0);
     });
@@ -173,7 +193,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     if (!day) {
       return;
     }
-    const isDisabled = this.isOtherMonthsActive ? day.isDisabled : (day.isOtherMonth || day.isDisabled);
+    const isDisabled = this.isOtherMonthsActive ? day.isDisabled : day.isOtherMonth || day.isDisabled;
 
     if (isDisabled) {
       return;
@@ -240,10 +260,7 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
     // than finish selection
 
     if (this._rangeStack.length === 1) {
-      this._rangeStack =
-        day.date >= this._rangeStack[0]
-          ? [this._rangeStack[0], day.date]
-          :  [day.date];
+      this._rangeStack = day.date >= this._rangeStack[0] ? [this._rangeStack[0], day.date] : [day.date];
     }
 
     if (this._config.maxDateRange) {
@@ -285,10 +302,12 @@ export class BsDaterangepickerContainerComponent extends BsDatepickerAbstractCom
 
     if (this._config.maxDate) {
       const maxDateValueInMilliseconds = this._config.maxDate.getTime();
-      const maxDateRangeInMilliseconds = currentSelection.getTime() + ((this._config.maxDateRange || 0) * dayInMilliseconds );
-      maxDateRange = maxDateRangeInMilliseconds > maxDateValueInMilliseconds ?
-        new Date(this._config.maxDate) :
-        new Date(maxDateRangeInMilliseconds);
+      const maxDateRangeInMilliseconds =
+        currentSelection.getTime() + (this._config.maxDateRange || 0) * dayInMilliseconds;
+      maxDateRange =
+        maxDateRangeInMilliseconds > maxDateValueInMilliseconds
+          ? new Date(this._config.maxDate)
+          : new Date(maxDateRangeInMilliseconds);
     } else {
       maxDateRange.setDate(currentSelection.getDate() + (this._config.maxDateRange || 0));
     }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-duplicate-enum-values */
 export interface Offsets {
   width: number;
   height: number;
@@ -63,7 +64,7 @@ export enum MapPlacementInToRL {
   'bottom end' = 'bottom right',
   'bottom start' = 'bottom left',
   'start bottom' = 'start bottom',
-  'start top' = 'left top',
+  'start top' = 'left top'
 }
 
 export enum PlacementForBs5 {
@@ -89,8 +90,22 @@ export enum PlacementForBs5 {
   'bottom end' = 'bottom end',
   'bottom start' = 'bottom start',
   'start bottom' = 'start bottom',
-  'start top' = 'start top',
+  'start top' = 'start top'
 }
 
-export type AvailbleBSPositions = 'top' | 'bottom' | 'left' | 'right' | 'auto' | 'top left' | 'top right' | 'right top' | 'right bottom' | 'bottom right' | 'bottom left' | 'left bottom' | 'left top' | 'start' | 'end' | 'top start' | 'top end' | 'end top' | 'end bottom' | 'bottom end' | 'bottom start' | 'start bottom' | 'start top';
+type VerticalPosition = 'top' | 'bottom';
+type HorizontalPosition = 'left' | 'right';
+type RtlFriendlyHorizontalPosition = 'start' | 'end';
 
+export type AvailableBSPositions =
+  | VerticalPosition
+  | HorizontalPosition
+  | RtlFriendlyHorizontalPosition
+  | 'auto'
+  | `${VerticalPosition} ${HorizontalPosition}`
+  | `${HorizontalPosition} ${VerticalPosition}`
+  | `${VerticalPosition} ${RtlFriendlyHorizontalPosition}`
+  | `${RtlFriendlyHorizontalPosition} ${VerticalPosition}`;
+
+/** @deprecated use AvailablePositions */
+export type AvailbleBSPositions = AvailableBSPositions;

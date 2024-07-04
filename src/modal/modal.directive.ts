@@ -7,7 +7,7 @@ import {
   OnDestroy, OnInit, Output, Renderer2, ViewContainerRef, Optional, Inject
 } from '@angular/core';
 
-import { document, window, isBs3, Utils } from 'ngx-bootstrap/utils';
+import { document, window, Utils } from 'ngx-bootstrap/utils';
 import { ModalBackdropComponent } from './modal-backdrop.component';
 import {
   CLASS_NAME, DISMISS_REASONS, modalConfigDefaults, ModalOptions, MODAL_CONFIG_DEFAULT_OVERRIDE
@@ -82,6 +82,7 @@ export class ModalDirective implements OnDestroy, OnInit {
 
   private isNested = false;
   private clickStartedInContent = false;
+  private _focusEl: Element | null = null;
 
   constructor(
     private _element: ElementRef,
@@ -221,11 +222,7 @@ export class ModalDirective implements OnDestroy, OnInit {
     window.clearTimeout(this.timerRmBackDrop);
 
     this._isShown = false;
-    this._renderer.removeClass(this._element.nativeElement, CLASS_NAME.IN);
-    if (!isBs3()) {
-      this._renderer.removeClass(this._element.nativeElement, CLASS_NAME.SHOW);
-    }
-    // this._addClassIn = false;
+    this._renderer.removeClass(this._element.nativeElement, CLASS_NAME.SHOW);
 
     if (this._config.animated) {
       this.timerHideModal = window.setTimeout(
@@ -234,6 +231,10 @@ export class ModalDirective implements OnDestroy, OnInit {
       );
     } else {
       this.hideModal();
+    }
+
+    if (this._focusEl) {
+      (this._focusEl as HTMLElement).focus();
     }
   }
 
@@ -282,11 +283,7 @@ export class ModalDirective implements OnDestroy, OnInit {
       Utils.reflow(this._element.nativeElement);
     }
 
-    // this._addClassIn = true;
-    this._renderer.addClass(this._element.nativeElement, CLASS_NAME.IN);
-    if (!isBs3()) {
-      this._renderer.addClass(this._element.nativeElement, CLASS_NAME.SHOW);
-    }
+    this._renderer.addClass(this._element.nativeElement, CLASS_NAME.SHOW);
 
     const transitionComplete = () => {
       if (this._config.focus) {

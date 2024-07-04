@@ -28,7 +28,8 @@ function initSideBarItem(key: string, route: Route, sideBarMenu: SidebarRoutesTy
       fragments: key === 'components' ? initFragments() : []
     };
 
-    if (!SidebarRoutesStructure[key as keyof SidebarRoutesType].nestedRoutes.filter( menuItem => menuItem.title === nestedItem.title).length) {
+    const sidebarRoutes = SidebarRoutesStructure[key as keyof SidebarRoutesType];
+    if (!!sidebarRoutes && !sidebarRoutes.nestedRoutes.filter( menuItem => menuItem.title === nestedItem.title).length) {
       sideBarItem.nestedRoutes.push(nestedItem);
     }
   }

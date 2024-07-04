@@ -1,5 +1,5 @@
 import { Component, TemplateRef } from '@angular/core';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -8,13 +8,13 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class DemoModalScrollingLongContentComponent {
   modalRef?: BsModalRef;
-  items: any[];
+  items: number[];
 
   constructor(private modalService: BsModalService) {
     this.items = Array(15).fill(0);
   }
 
-  openModal(template: TemplateRef<any>) {
+  openModal(template: TemplateRef<void>) {
     this.modalRef = this.modalService.show(template);
   }
 }

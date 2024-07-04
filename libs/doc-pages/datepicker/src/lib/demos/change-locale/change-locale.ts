@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BsLocaleService } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerDirective, BsDaterangepickerDirective, BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { listLocales } from 'ngx-bootstrap/chronos';
 
 @Component({
@@ -13,7 +13,7 @@ export class DemoDatepickerChangeLocaleComponent {
 
   constructor(private localeService: BsLocaleService) {}
 
-  applyLocale(pop: any) {
+  applyLocale(pop: BsDatepickerDirective | BsDaterangepickerDirective) {
     this.localeService.use(this.locale);
     pop.hide();
     pop.show();

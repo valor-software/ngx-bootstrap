@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { isBs3 } from 'ngx-bootstrap/utils';
-
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-templates',
@@ -32,7 +30,6 @@ import { isBs3 } from 'ngx-bootstrap/utils';
   `]
 })
 export class DemoTypeaheadListTemplateComponent {
-  isBs3 = isBs3();
   selected?: string;
   states: string[] = [
     'Alabama',

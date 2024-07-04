@@ -1,7 +1,6 @@
-function getSize(axis: string, body: HTMLElement, html: HTMLElement, computedStyle?: CSSStyleDeclaration) {
+function getSize(axis: string, body: HTMLElement, html: HTMLElement) {
   const _body = body as unknown as Record<string, number>;
   const _html = html as never;
-  const _computedStyle = computedStyle as unknown as Record<string, string>;
 
   return Math.max(
     _body[`offset${axis}`],
@@ -16,10 +15,9 @@ function getSize(axis: string, body: HTMLElement, html: HTMLElement, computedSty
 export function getWindowSizes(document: Document) {
   const body = document.body;
   const html = document.documentElement;
-  const computedStyle = void 0;
 
   return {
-    height: getSize('Height', body, html, computedStyle),
-    width: getSize('Width', body, html, computedStyle)
+    height: getSize('Height', body, html),
+    width: getSize('Width', body, html)
   };
 }

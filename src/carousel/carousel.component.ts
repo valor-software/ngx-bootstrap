@@ -20,7 +20,7 @@ import {
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
-import { isBs3, LinkedList, getBsVer, IBsVersion } from 'ngx-bootstrap/utils';
+import { LinkedList, getBsVer, IBsVersion } from 'ngx-bootstrap/utils';
 import { SlideComponent } from './slide.component';
 import { CarouselConfig } from './carousel.config';
 import { findLastIndex, chunkByNumber, isNumber } from './utils';
@@ -140,10 +140,6 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   protected destroyed = false;
   private customActiveSlide?: number;
   currentId = 0;
-
-  get isBs4(): boolean {
-    return !isBs3();
-  }
 
   get _bsVer(): IBsVersion {
     return getBsVer();

@@ -5,7 +5,8 @@ import { ComponentApi } from '../models/components-api.model';
 interface IContentSection {
   name?: string;
   anchor?: string;
-  outlet: any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  outlet: any; // @Todo fix type
   description?: string;
   content?: ComponentExample[] | ComponentApi[];
 }

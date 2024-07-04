@@ -6,7 +6,7 @@ buttons pagination rating timepicker \
 carousel datepicker popover sortable tooltip typeahead )
 for i in "${array[@]}"
 do
-  ng generate @nrwl/angular:library --name=$i --style=css --buildable --importPath=ngx-bootstrap/$i \
+  ng generate @nx/angular:library --name=$i --style=css --buildable --importPath=ngx-bootstrap/$i \
     --publishable --skipPackageJson --strict --no-interactive
 done
 
