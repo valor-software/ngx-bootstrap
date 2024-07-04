@@ -8,19 +8,23 @@ export abstract class BaseComponent {
   abstract pageUrl: string;
   titleDefaultExample = 'Usage';
 
+  // migrated copy in base.po = navigateTo()
   navigateTo() {
     const bsVersionRoute = Cypress.env('bsVersion') ? `?_bsVersion=bs${Cypress.env('bsVersion')}` : '';
     cy.visit(`${ this.pageUrl }${bsVersionRoute}`);
   }
 
+  // migrated copy in base.po = scrollToMenu(args)
   scrollToMenu(subMenu: string) {
     cy.get('examples h3').contains(subMenu).scrollIntoView();
   }
 
+  // migrated copy in base.po = clickOnDemoMenu(args)
   clickOnDemoMenu(subMenu: string) {
     cy.get('add-nav').contains('a', subMenu).click();
   }
 
+  // migrated copy in base.po = clickByText(args)
   clickByText(baseSelector: string, text: string) {
     cy.get(baseSelector).contains(text).click();
   }
@@ -29,6 +33,7 @@ export abstract class BaseComponent {
     cy.get(parent).contains(text).dblclick();
   }
 
+  // migrated copy in base.po = expectBtnTxtEqual(args)
   isBtnTxtEqual(baseSelector: string, expectedBtnTxt: string, buttonIndex?: number) {
     cy.get(`${ baseSelector } button`).eq(buttonIndex ? buttonIndex : 0).invoke('text')
       .should(btnTxt => expect(btnTxt.trim()).to.equal(expectedBtnTxt.trim()));
@@ -38,16 +43,18 @@ export abstract class BaseComponent {
     cy.get(`${ baseSelector } button`).eq(buttonIndex ? buttonIndex : 0)
       .should(disabled ? 'to.be.disabled' : 'not.to.be.disabled');
   }
-
+  // migrated copy in base.po = expectLabelTxtEqual(args)
   isLabelTxtEqual(baseSelector: string, expectedLabelTxt: string, labelIndex?: number) {
     cy.get(`${baseSelector} label`).eq(labelIndex ? labelIndex : 0).invoke('text')
       .should(labelTxt => expect(labelTxt).to.equal(expectedLabelTxt));
   }
 
+  // migrated copy in base.po = clickOnBtn(args)
   clickOnBtn(baseSelector: string, buttonIndex?: number) {
     cy.get(`${ baseSelector } button`).eq(buttonIndex ? buttonIndex : 0).click();
   }
 
+  // migrated copy in base.po = dblClickOnBtn(args)
   dblClickOnBtn(baseSelector: string, buttonIndex?: number) {
     cy.get(`${ baseSelector } button`).eq(buttonIndex ? buttonIndex : 0).dblclick();
   }
@@ -120,6 +127,7 @@ export abstract class BaseComponent {
       });
   }
 
+  // migrated copy in base.po = expectBtnExist(args)
   isButtonExist(baseSelector: string, buttonName: string, buttonNumber?: number, exist = true) {
     if (exist === true) {
       cy.get(`${baseSelector} button`).eq(buttonNumber ? buttonNumber : 0).invoke('text')
@@ -138,6 +146,7 @@ export abstract class BaseComponent {
     cy.get(`${baseSelector} select`).eq(selectNumber).select(selectToChose);
   }
 
+  // migrated copy in base.po = expectPreviewExist(args)
   isPreviewExist(baseSelector: string, previewText: string, previewNumber?: number) {
     cy.get(`${baseSelector} .card.card-block`).eq(previewNumber ? previewNumber : 0).invoke('text')
       .should(btnTxt => expect(btnTxt).to.contain(previewText));
@@ -151,6 +160,7 @@ export abstract class BaseComponent {
     cy.get(baseSelector).eq(0).trigger('click', { clientX: 100, clientY: 100 , force: true});
   }
 
+  // migrated copy in base.po = setCheckboxState(args)
   clickCheckbox(baseSelector: string, shouldBeChecked: boolean) {
     if (shouldBeChecked) {
       cy.get(`${baseSelector} input[type="checkbox"]`)
@@ -169,6 +179,7 @@ export abstract class BaseComponent {
     }
   }
 
+  // migrated copy in base.po = expectTemplateSrcContain(args)
   isTemplateSrcContain(demoName: string, expectedTxt: string) {
     cy.get('examples h3')
       .contains(demoName)
@@ -188,6 +199,7 @@ export abstract class BaseComponent {
     }
   }
 
+  // migrated copy in base.po = expectComponentSrcContain(args)
   isComponentSrcContain(demoName: string, expectedTxt: string) {
     cy.get('examples h3')
       .contains(demoName)

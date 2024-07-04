@@ -11,11 +11,8 @@ export class DemoModalServiceChangeClassComponent {
   valueWidth = false;
   constructor(private modalService: BsModalService) {}
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(
-      template,
-      Object.assign({}, { class: 'modal-sm' })
-    );
+  openModal(template: TemplateRef<void>) {
+    this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'modal-sm' }));
   }
 
   setModalClass() {

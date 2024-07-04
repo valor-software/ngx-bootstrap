@@ -1,7 +1,9 @@
 {
   "extends": "../../../tsconfig.base.json",
   "files": [],
-  "include": ["./typings.d.ts"],
+  "include": [
+    "./typings.d.ts"
+  ],
   "references": [
     {
       "path": "./tsconfig.lib.json"
@@ -14,7 +16,8 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "target": "es2022"
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,

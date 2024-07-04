@@ -12,18 +12,17 @@ import { routes } from './demo-sortable.routes';
 export { SortableSectionComponent } from './sortable-section.component';
 
 @NgModule({
-  declarations: [
-    SortableSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    DocsModule,
-    SortableModule.forRoot(),
-    RouterModule.forChild(routes)
-  ],
-  exports: [SortableSectionComponent],
-  entryComponents: [...DEMO_COMPONENTS]
+    declarations: [
+        SortableSectionComponent,
+        ...DEMO_COMPONENTS
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        DocsModule,
+        SortableModule.forRoot(),
+        RouterModule.forChild(routes)
+    ],
+    exports: [SortableSectionComponent]
 })
 export class DemoSortableModule {}

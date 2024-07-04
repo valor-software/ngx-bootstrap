@@ -1,5 +1,5 @@
 <!-- inject options list template -->
-<ng-template [ngTemplateOutlet]="optionsListTemplate || (isBs4 ? bs4Template : bs3Template)"
+<ng-template [ngTemplateOutlet]="optionsListTemplate || bs4Template"
              [ngTemplateOutletContext]="{
                matches: matches,
                itemTemplate: itemTemplate || bsItemTemplate,
@@ -11,33 +11,6 @@
 <!-- default options item template -->
 <ng-template #bsItemTemplate let-match="match" let-query="query">
   <span [innerHtml]="highlight(match, query)"></span>
-</ng-template>
-
-<!-- Bootstrap 3 options list template -->
-<ng-template #bs3Template>
-  <ul class="dropdown-menu"
-      #ulElement
-      role="listbox"
-      [style.overflow-y]="needScrollbar ? 'scroll': 'auto'"
-      [style.height]="needScrollbar ? guiHeight: 'auto'">
-    <ng-template ngFor let-match let-i="index" [ngForOf]="matches">
-      <li #liElements *ngIf="match.isHeader()" class="dropdown-header">{{ match }}</li>
-      <li #liElements
-          *ngIf="!match.isHeader()"
-          [id]="popupId + '-' + i"
-          role="option"
-          [@typeaheadAnimation]="animationState"
-          [class.active]="isActive(match)"
-          (mouseenter)="selectActive(match)">
-
-        <a href="#" (click)="selectMatch(match, $event)" tabindex="-1">
-          <ng-template [ngTemplateOutlet]="itemTemplate || bsItemTemplate"
-                       [ngTemplateOutletContext]="{item: match.item, index: i, match: match, query: query}">
-          </ng-template>
-        </a>
-      </li>
-    </ng-template>
-  </ul>
 </ng-template>
 
 <!-- Bootstrap 4 options list template -->

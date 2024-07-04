@@ -1,0 +1,38 @@
+{
+  "name": "positioning",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "src/positioning",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/positioning"],
+      "options": {
+        "tsConfig": "src/positioning/tsconfig.lib.json",
+        "project": "src/positioning/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "src/positioning/tsconfig.lib.prod.json"
+        }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/src/positioning"],
+      "options": {
+        "jestConfig": "src/positioning/jest.config.ts"
+      }
+    }
+  }
+}

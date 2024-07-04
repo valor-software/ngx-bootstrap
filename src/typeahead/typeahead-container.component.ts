@@ -13,7 +13,7 @@ import {
   EventEmitter
 } from '@angular/core';
 
-import { isBs3, Utils } from 'ngx-bootstrap/utils';
+import { Utils } from 'ngx-bootstrap/utils';
 import { PositioningService } from 'ngx-bootstrap/positioning';
 import { Subscription } from 'rxjs';
 
@@ -30,13 +30,12 @@ let nextWindowId = 0;
   templateUrl: './typeahead-container.component.html',
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
-    class: 'dropdown open bottom',
-    '[class.dropdown-menu]': 'isBs4',
-    '[style.height]': `isBs4 && needScrollbar ? guiHeight: 'auto'`,
+    class: 'dropdown open bottom dropdown-menu',
+    '[style.height]': `needScrollbar ? guiHeight: 'auto'`,
     '[style.visibility]': `'inherit'`,
     '[class.dropup]': 'dropup',
     style: 'position: absolute;display: block;',
-    '[attr.role]': `isBs4 ? 'listbox' : null `
+    '[attr.role]': `'listbox'`
   },
   styles: [
     `
@@ -71,10 +70,6 @@ export class TypeaheadContainerComponent implements OnDestroy {
   positionServiceSubscription = new Subscription();
   height = 0;
   popupId = `ngb-typeahead-${nextWindowId++}`;
-
-  get isBs4(): boolean {
-    return !isBs3();
-  }
 
   get typeaheadTemplateMethods(): TypeaheadTemplateMethods {
     return {
@@ -399,7 +394,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
     const elemBottom = elemTop + elem.offsetHeight;
 
     return ((elemBottom <= containerViewBottom) && (elemTop >= containerViewTop));
-  };
+  }
 
   private scrollToBottom(): void {
     if (!this.ulElement?.nativeElement) {

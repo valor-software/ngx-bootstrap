@@ -1,0 +1,38 @@
+{
+  "name": "carousel",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "src/carousel/src",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/carousel"],
+      "options": {
+        "tsConfig": "src/carousel/tsconfig.lib.json",
+        "project": "src/carousel/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "src/carousel/tsconfig.lib.prod.json"
+        }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/src/carousel"],
+      "options": {
+        "jestConfig": "src/carousel/jest.config.ts"
+      }
+    }
+  }
+}

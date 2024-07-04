@@ -35,7 +35,7 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnChanges {
   onTouched = Function.prototype;
 
   /** Radio button value, will be set to `ngModel` */
-  @Input() btnRadio?: string;
+  @Input() btnRadio?: unknown;
   /** If `true` — radio button can be unchecked */
   @Input() uncheckable = false;
   /** Current value of radio component or group */
@@ -44,7 +44,7 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnChanges {
     return this.group ? this.group.value : this._value;
   }
 
-  set value(value: string | undefined) {
+  set value(value: unknown | undefined) {
     if (this.group) {
       this.group.value = value;
 
@@ -99,7 +99,7 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnChanges {
     return this._hasFocus;
   }
 
-  private _value?: string;
+  private _value?: unknown;
   private _disabled = false;
   private _hasFocus = false;
 
@@ -156,7 +156,7 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnChanges {
     }
   }
 
-  _onChange(value?: string): void {
+  _onChange(value?: unknown): void {
     if (this.group) {
       this.group.value = value;
 
@@ -168,7 +168,7 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnChanges {
 
   // ControlValueAccessor
   // model -> view
-  writeValue(value: string): void {
+  writeValue(value: unknown): void {
     this.value = value;
     this.cdr.markForCheck();
   }

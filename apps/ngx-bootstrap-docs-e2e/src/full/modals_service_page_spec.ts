@@ -138,7 +138,6 @@ describe('Modals demo page testing suite: Service examples', () => {
 
     const eventsDemo = modals.exampleDemosArr.serviceEvents;
     const btnText = 'Open modal';
-    const btnX = '×';
     const demoOnShowFired = 'onShow event has been fired';
     const demoOnShownFired = 'onShown event has been fired';
     const demoOnHideFired = 'onHide event has been fired';
@@ -172,13 +171,13 @@ describe('Modals demo page testing suite: Service examples', () => {
 
     it(`when user closes modal by click outside the modal window then should be messages
     "onHide event has been fired" and "onHidden event has been fired"`, () => {
-        modals.clickByText(eventsDemo, btnText);
-        modals.isModalVisible(modals.modalContainer, true);
-        modals.clickOnModalCorner('topLeft');
-        modals.clickOutside(modals.modalContainer);
-        modals.isDemoContainsTxt(eventsDemo, demoOnHideFired);
-        modals.isDemoContainsTxt(eventsDemo, demoHideDismissed);
-        modals.isDemoContainsTxt(eventsDemo, demoHiddenDismissed);
+      modals.clickByText(eventsDemo, btnText);
+      modals.isModalVisible(modals.modalContainer, true);
+      modals.clickOnModalCorner('topLeft');
+      modals.clickOutside(modals.modalContainer);
+      modals.isDemoContainsTxt(eventsDemo, demoOnHideFired);
+      modals.isDemoContainsTxt(eventsDemo, demoHideDismissed);
+      modals.isDemoContainsTxt(eventsDemo, demoHiddenDismissed);
     });
 
     it(`when user closes modal by pressing ESC button then modal is closed and should be messages
@@ -209,13 +208,12 @@ describe('Modals demo page testing suite: Service examples', () => {
       modals.isPreviewExist(confirmDemo, emptyPreview);
     });
 
-    it('when user clicks on "Open modal" button then modal is opened, it contains two buttons: "Yes" and "No"',
-      () => {
-        modals.clickByText(confirmDemo, btnText);
-        modals.isModalVisible(modals.modalContainer, true);
-        modals.isButtonExist(modals.modalBody, btnYes, 2);
-        modals.isButtonExist(modals.modalBody, btnNo, 3);
-      });
+    it('when user clicks on "Open modal" button then modal is opened, it contains two buttons: "Yes" and "No"', () => {
+      modals.clickByText(confirmDemo, btnText);
+      modals.isModalVisible(modals.modalContainer, true);
+      modals.isButtonExist(modals.modalBody, btnYes, 2);
+      modals.isButtonExist(modals.modalBody, btnNo, 3);
+    });
 
     it('when user clicks on "Yes" button then modal is closed, message "Confirmed!" is displayed', () => {
       modals.clickByText(confirmDemo, btnText);
@@ -243,7 +241,6 @@ describe('Modals demo page testing suite: Service examples', () => {
 
     const customCSSDemo = modals.exampleDemosArr.serviceCustomCSS;
     const btnText = 'Open modal with custom css class';
-    const btnX = '×';
 
     it('example contains the button "Open modal with custom css class"', () => {
       modals.isButtonExist(customCSSDemo, btnText);
@@ -268,7 +265,6 @@ describe('Modals demo page testing suite: Service examples', () => {
     const btnText = 'Open modal';
     const btnDisable = 'Disable animation';
     const btnEnable = 'Enable animation';
-    const btnX = '×';
 
     it('example contains the buttons "Open modal" and "Disable animation"', () => {
       modals.isButtonExist(animationDemo, btnText);
@@ -280,11 +276,10 @@ describe('Modals demo page testing suite: Service examples', () => {
       modals.isModalVisible(modals.modalContainer, true);
     });
 
-    it('when user clicks on "Disable animation" button then title of the button is changed to "Enable animation"',
-      () => {
-        modals.clickByText(animationDemo, btnDisable);
-        modals.isButtonExist(animationDemo, btnEnable, 1);
-      });
+    it('when user clicks on "Disable animation" button then title of the button is changed to "Enable animation"', () => {
+      modals.clickByText(animationDemo, btnDisable);
+      modals.isButtonExist(animationDemo, btnEnable, 1);
+    });
 
     it('after that click on "Open modal" button, modal is opened without animations effects', () => {
       modals.clickByText(animationDemo, btnText);
@@ -319,11 +314,10 @@ describe('Modals demo page testing suite: Service examples', () => {
       modals.isModalVisible(modals.modalContainer, true);
     });
 
-    it(`when user clicks on "Disable Esc" button then title of the button is changed to "Enable animation"`,
-      () => {
-        modals.clickByText(escapeDemo, btnDisable);
-        modals.isButtonExist(escapeDemo, btnEnable, 1);
-      });
+    it(`when user clicks on "Disable Esc" button then title of the button is changed to "Enable animation"`, () => {
+      modals.clickByText(escapeDemo, btnDisable);
+      modals.isButtonExist(escapeDemo, btnEnable, 1);
+    });
 
     it(`after that click on "Open modal" button, modal popup is opened. when user press ESC button then modal
       is closed`, () => {
@@ -360,12 +354,11 @@ describe('Modals demo page testing suite: Service examples', () => {
       modals.isElementVisible('body', modals.modalPopup);
     });
 
-    it(`when user hover on "tooltip" button then a popup is shown`,
-      () => {
-        modals.clickByText(toolPopupDemo, btnText);
-        tooltip.focusOnBtn(modals.modalBody, 3);
-        modals.isModalTooltipVisible();
-      });
+    it(`when user hover on "tooltip" button then a popup is shown`, () => {
+      modals.clickByText(toolPopupDemo, btnText);
+      tooltip.focusOnBtn(modals.modalBody, 3);
+      modals.isModalTooltipVisible();
+    });
   });
 
   describe('Backdrop options', () => {
@@ -384,14 +377,13 @@ describe('Modals demo page testing suite: Service examples', () => {
       modals.isButtonExist(backdropDemo, btnDisableClick, 2);
     });
 
-    it('when user clicks on "Open modal" button then modal is opened, it can be closed by clicking on a backdrop',
-      () => {
-        modals.clickByText(backdropDemo, btnText);
-        modals.isModalVisible(modals.modalContainer, true);
-        modals.isBackdropExist(true);
-        modals.clickOnBackdrop();
-        modals.isModalEnabled(modals.modalContainer, false);
-      });
+    it('when user clicks on "Open modal" button then modal is opened, it can be closed by clicking on a backdrop', () => {
+      modals.clickByText(backdropDemo, btnText);
+      modals.isModalVisible(modals.modalContainer, true);
+      modals.isBackdropExist(true);
+      modals.clickOnBackdrop();
+      modals.isModalEnabled(modals.modalContainer, false);
+    });
 
     it(`when user clicks "Disable backdrop" then title of the button changes to "Enable background", after
       that click on "Open modal" button, modal is opened, backdrop is closed`, () => {
@@ -432,14 +424,13 @@ describe('Modals demo page testing suite: Service examples', () => {
     });
 
     it(`when user clicks on "Create template modal" button then modal is opened, "Change width" button
-       is present. the modal has width 300px and class "modal-dialog modal-sm"`,
-      () => {
-        modals.clickByText(classChangeDemo, btnText);
-        modals.isModalVisible(modals.modalContainer, true);
-        modals.isButtonExist(`${modals.modalContainer} div`, btnChangeWidth, 1);
-        modals.isModalWindowWidthEqual(modals.modalContainer, width300px);
-        modals.isModalHasChildClass(modalClassSM);
-      });
+       is present. the modal has width 300px and class "modal-dialog modal-sm"`, () => {
+      modals.clickByText(classChangeDemo, btnText);
+      modals.isModalVisible(modals.modalContainer, true);
+      modals.isButtonExist(`${modals.modalContainer} div`, btnChangeWidth, 1);
+      modals.isModalWindowWidthEqual(modals.modalContainer, width300px);
+      modals.isModalHasChildClass(modalClassSM);
+    });
 
     it(`when user click on the button "Change width" then width of the modal is changed to 800px and
       the modal class changed to "modal-dialog modal-lg"`, () => {
@@ -451,4 +442,3 @@ describe('Modals demo page testing suite: Service examples', () => {
     });
   });
 });
-
