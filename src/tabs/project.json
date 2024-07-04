@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/ngx-bootstrap/tabs"
-      ],
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/tabs"],
       "options": {
         "tsConfig": "src/tabs/tsconfig.lib.json",
         "project": "src/tabs/ng-package.json"
@@ -21,22 +19,13 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "src/tabs/**/*.ts",
-          "src/tabs/**/*.html"
-        ]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/src/tabs"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/src/tabs"],
       "options": {
-        "jestConfig": "src/tabs/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/tabs/jest.config.ts"
       }
     }
   }

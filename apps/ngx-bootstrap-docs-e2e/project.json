@@ -1,13 +1,14 @@
 {
   "name": "ngx-bootstrap-docs-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/ngx-bootstrap-docs-e2e/src",
   "projectType": "application",
+  "tags": [],
+  "implicitDependencies": ["ngx-bootstrap-docs"],
   "targets": {
     "e2e": {
       "executor": "@nxkit/playwright:test",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/ngx-bootstrap-docs-e2e/test-results",
         "playwrightConfig": "apps/ngx-bootstrap-docs-e2e/playwright.config.ts",
@@ -24,9 +25,7 @@
     },
     "debug": {
       "builder": "@nxkit/playwright:test",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/ngx-bootstrap-docs-e2e/test-results",
         "playwrightConfig": "apps/ngx-bootstrap-docs-e2e/playwright.config.ts",
@@ -46,19 +45,8 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputPath}"
-      ],
-      "options": {
-        "lintFilePatterns": [
-          "apps/ngx-bootstrap-docs-e2e/**/*.{js,ts}"
-        ]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputPath}"]
     }
-  },
-  "tags": [],
-  "implicitDependencies": [
-    "ngx-bootstrap-docs"
-  ]
+  }
 }

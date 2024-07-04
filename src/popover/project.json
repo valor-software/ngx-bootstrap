@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/ngx-bootstrap/popover"
-      ],
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/popover"],
       "options": {
         "tsConfig": "src/popover/tsconfig.lib.json",
         "project": "src/popover/ng-package.json"
@@ -27,22 +25,13 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "src/popover/**/*.ts",
-          "src/popover/**/*.html"
-        ]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/src/popover"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/src/popover"],
       "options": {
-        "jestConfig": "src/popover/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/popover/jest.config.ts"
       }
     }
   }

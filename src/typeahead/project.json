@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/ngx-bootstrap/typeahead"
-      ],
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/typeahead"],
       "options": {
         "tsConfig": "src/typeahead/tsconfig.lib.json",
         "project": "src/typeahead/ng-package.json"
@@ -27,22 +25,13 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "src/typeahead/**/*.ts",
-          "src/typeahead/**/*.html"
-        ]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/src/typeahead"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/src/typeahead"],
       "options": {
-        "jestConfig": "src/typeahead/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/typeahead/jest.config.ts"
       }
     }
   }

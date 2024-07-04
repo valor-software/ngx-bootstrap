@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BsDropdownModule } from "ngx-bootstrap/dropdown";
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 
 /* common */
@@ -15,32 +15,21 @@ import { ConstructionPageComponent } from './common/construction-page/constructi
 import { ThemesComponent } from './common/themes/themes.component';
 /* docs */
 import { DemoSectionComponent } from './demo-section/demo-section.component';
-import { ContentSection } from './models/content-section.model';
-import { ExamplesComponent, ExamplesComponentModule } from './demo-section-components/demo-examples-section/index';
-import { ApiSectionsComponent, ApiSectionsComponentModule } from './demo-section-components/demo-api-section/index';
+import { ExamplesComponentModule } from './demo-section-components/demo-examples-section';
+import { ApiSectionsComponentModule } from './demo-section-components/demo-api-section';
 import { DocsSectionComponent } from './docs-section/docs-section.component';
-import { NgApiDocClassComponent, NgApiDocComponent, NgApiDocConfigComponent, NgApiDocModule } from './api-docs/index';
+import { NgApiDocModule } from './api-docs';
 import { LandingComponent } from './common/landing/landing.component';
 import { DocumentationComponent } from './common/documentation/documentation.component';
 import { DiscoverComponent } from './common/discover/discover.component';
 import { SchematicsComponent } from './common/schematics/schematics.component';
 import { TopMenuComponent } from './common/top-menu/top-menu.component';
+import { RouterModule } from '@angular/router';
 
 /* export */
-export {
-  NgApiDocModule,
-  NgApiDocComponent,
-  NgApiDocClassComponent,
-  NgApiDocConfigComponent
-} from './api-docs/index';
-export {
-  ExamplesComponent,
-  ExamplesComponentModule
-} from './demo-section-components/demo-examples-section/index';
-export {
-  ApiSectionsComponent,
-  ApiSectionsComponentModule
-} from './demo-section-components/demo-api-section/index';
+export { NgApiDocModule, NgApiDocComponent, NgApiDocClassComponent, NgApiDocConfigComponent } from './api-docs/index';
+export { ExamplesComponent, ExamplesComponentModule } from './demo-section-components/demo-examples-section/index';
+export { ApiSectionsComponent, ApiSectionsComponentModule } from './demo-section-components/demo-api-section/index';
 export { DemoSectionComponent } from './demo-section/demo-section.component';
 export { DocsSectionComponent } from './docs-section/docs-section.component';
 export { SampleBoxComponent } from './api-docs/sample-box/sample-box.component';
@@ -65,7 +54,6 @@ export { SidebarRoutesStructure } from './models/sidebar-routes.model';
 export { ComponentsPageComponent } from './common/components-page/components-page.component';
 export { ConstructionPageComponent } from './common/construction-page/construction-page.component';
 export { ThemesComponent } from './common/themes/themes.component';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [

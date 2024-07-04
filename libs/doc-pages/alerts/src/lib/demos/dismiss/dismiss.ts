@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+type ExampleAlertType = { type: string; msg: string };
+
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-alert-dismiss',
@@ -7,7 +9,7 @@ import { Component } from '@angular/core';
 })
 export class DemoAlertDismissComponent {
   dismissible = true;
-  defaultAlerts: any[] = [
+  defaultAlerts: ExampleAlertType[] = [
     {
       type: 'success',
       msg: `You successfully read this important alert message.`
@@ -27,7 +29,7 @@ export class DemoAlertDismissComponent {
     this.alerts = this.defaultAlerts;
   }
 
-  onClosed(dismissedAlert: any): void {
-    this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
+  onClosed(dismissedAlert: ExampleAlertType): void {
+    this.alerts = this.alerts.filter((alert) => alert !== dismissedAlert);
   }
 }
