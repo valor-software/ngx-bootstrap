@@ -16,8 +16,7 @@ class DummyComponent {
 export class TestModalComponent { }
 
 @NgModule({
-  declarations: [TestModalComponent],
-  entryComponents: [TestModalComponent]
+  declarations: [TestModalComponent]
 })
 export class TestModule { }
 

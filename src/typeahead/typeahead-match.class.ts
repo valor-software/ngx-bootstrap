@@ -1,12 +1,11 @@
-export class TypeaheadMatch {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export class TypeaheadMatch<ItemType = any> {
   readonly value: string;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-  readonly item: any;
+  readonly item: ItemType;
   protected header: boolean;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-  constructor(item: any, value: string = item, header = false) {
+  constructor(item: ItemType, value = item as string, header = false) {
     this.item = item;
     this.value = value;
     this.header = header;

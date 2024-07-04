@@ -20,6 +20,7 @@ import {
   MODAL_CONFIG_DEFAULT_OVERRIDE
 } from './modal-options.class';
 import { BsModalRef } from './bs-modal-ref.service';
+import { document } from 'ngx-bootstrap/utils';
 
 let currentId = 1;
 
@@ -46,6 +47,7 @@ export class BsModalService {
   private loaders: ComponentLoader<ModalContainerComponent>[] = [];
 
   private _renderer: Renderer2;
+  private _focusEl: Element | null = null;
 
   constructor(
     rendererFactory: RendererFactory2,
@@ -64,6 +66,7 @@ export class BsModalService {
     content: string | TemplateRef<any> | { new(...args: any[]): T },
     config?: ModalOptions<T>
   ): BsModalRef<T> {
+    this._focusEl = document.activeElement;
     this.modalsCount++;
     this._createLoaders();
 
@@ -89,6 +92,10 @@ export class BsModalService {
       this._hideModal(id);
       this.removeLoaders(id);
     }, this.config.animated ? TRANSITION_DURATIONS.BACKDROP : 0);
+
+    if (this._focusEl) {
+      (this._focusEl as HTMLElement).focus();
+    }
   }
 
   _showBackdrop(): void {

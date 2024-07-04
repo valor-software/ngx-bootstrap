@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Injector, ReflectiveInjector } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Injector } from '@angular/core';
 import { demoComponentContent } from './progressbar-section.list';
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
 
@@ -12,22 +12,25 @@ export class ProgressbarSectionComponent {
   name = 'Progressbar';
   src = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/progressbar';
   componentContent: ContentSection[] = demoComponentContent;
-  content: any;
 
-  _injectors = new Map<ContentSection, ReflectiveInjector>();
+  _injectors = new Map<ContentSection, Injector>();
 
-  constructor(private injector: Injector) { }
+  constructor(private injector: Injector) {}
 
   sectionInjections(content: ContentSection) {
     if (this._injectors.has(content)) {
       return this._injectors.get(content);
     }
 
-    const _injector = ReflectiveInjector.resolveAndCreate([
-      {
-        provide: ContentSection,
-        useValue: content
-      }], this.injector);
+    const _injector = Injector.create({
+      providers: [
+        {
+          provide: ContentSection,
+          useValue: content
+        }
+      ],
+      parent: this.injector
+    });
 
     this._injectors.set(content, _injector);
 

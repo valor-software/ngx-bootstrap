@@ -1,0 +1,32 @@
+{
+  "name": "chronos",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "src/chronos",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/chronos"],
+      "options": {
+        "tsConfig": "src/chronos/tsconfig.lib.json",
+        "project": "src/chronos/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "src/chronos/tsconfig.lib.prod.json"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/src/chronos"],
+      "options": {
+        "jestConfig": "src/chronos/jest.config.ts"
+      }
+    }
+  }
+}

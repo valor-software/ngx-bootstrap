@@ -297,7 +297,7 @@ export class BsDaterangepickerDirective
       this._config,
       this.bsConfig,
       {
-        value: checkBsValue(this._bsValue, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
+        value: this.bsConfig?.keepDatesOutOfRules ? this._bsValue : checkBsValue(this._bsValue, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
         isDisabled: this.isDisabled,
         minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
         maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
@@ -308,7 +308,8 @@ export class BsDaterangepickerDirective
         ranges: checkRangesWithMaxDate(this.bsConfig && this.bsConfig.ranges, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
         maxDateRange: this.bsConfig && this.bsConfig.maxDateRange,
         initCurrentTime: this.bsConfig?.initCurrentTime,
-        keepDatepickerOpened: this.bsConfig?.keepDatepickerOpened
+        keepDatepickerOpened: this.bsConfig?.keepDatepickerOpened,
+        keepDatesOutOfRules: this.bsConfig?.keepDatesOutOfRules
       }
     );
   }

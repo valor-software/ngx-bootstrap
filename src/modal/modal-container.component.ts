@@ -13,6 +13,7 @@ import {
   TRANSITION_DURATIONS
 } from './modal-options.class';
 import { BsModalService } from './bs-modal.service';
+import { document } from 'ngx-bootstrap/utils';
 
 @Component({
   selector: 'modal-container',
@@ -41,6 +42,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   level?: number;
   isAnimated = false;
   bsModalService?: BsModalService;
+  _focusEl: Element | null = null;
   private isModalHiding = false;
   private clickStartedInContent = false;
 
@@ -51,6 +53,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this._focusEl = document.activeElement;
     if (this.isAnimated) {
       this._renderer.addClass(
         this._element.nativeElement,
@@ -168,6 +171,9 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       }
       this.bsModalService?.hide(this.config.id);
       this.isModalHiding = false;
+      if (this._focusEl) {
+        (this._focusEl as HTMLElement).focus();
+      }
     }, this.isAnimated ? TRANSITION_DURATIONS.MODAL : 0);
   }
 }

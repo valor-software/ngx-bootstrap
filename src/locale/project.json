@@ -1,0 +1,38 @@
+{
+  "name": "locale",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "src/locale",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/locale"],
+      "options": {
+        "tsConfig": "src/locale/tsconfig.lib.json",
+        "project": "src/locale/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "src/locale/tsconfig.lib.prod.json"
+        }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/src/locale"],
+      "options": {
+        "jestConfig": "src/locale/jest.config.ts"
+      }
+    }
+  }
+}

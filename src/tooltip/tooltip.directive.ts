@@ -19,7 +19,7 @@ import { OnChange, warnOnce, parseTriggers, Trigger } from 'ngx-bootstrap/utils'
 import { PositioningService } from 'ngx-bootstrap/positioning';
 
 import { timer, Subscription } from 'rxjs';
-import { AvailbleBSPositions } from 'ngx-bootstrap/positioning';
+import { AvailableBSPositions } from 'ngx-bootstrap/positioning';
 
 let id = 0;
 
@@ -44,7 +44,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /**
    * Placement of a tooltip. Accepts: "top", "bottom", "left", "right"
    */
-  @Input() placement: AvailbleBSPositions = 'top';
+  @Input() placement: AvailableBSPositions = 'top';
   /**
    * Specifies events that should trigger. Supports a space separated list of
    * event names.
@@ -58,7 +58,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
    * Css class for tooltip container
    */
   @Input() containerClass = '';
-  @Input() boundariesElement?: ('viewport' | 'scrollParent' | 'window');
+  @Input() boundariesElement?: 'viewport' | 'scrollParent' | 'window';
   /**
    * Returns whether or not the tooltip is currently being shown
    */
@@ -96,7 +96,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
   /** @deprecated - please use `tooltip` instead */
   @Input('tooltipHtml')
-    set htmlContent(value: string | TemplateRef<unknown>) {
+  set htmlContent(value: string | TemplateRef<unknown>) {
     warnOnce('tooltipHtml was deprecated, please use `tooltip` instead');
     this.tooltip = value;
   }
@@ -104,7 +104,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /** @deprecated - please use `placement` instead */
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('tooltipPlacement')
-  set _placement(value: AvailbleBSPositions) {
+  set _placement(value: AvailableBSPositions) {
     warnOnce('tooltipPlacement was deprecated, please use `placement` instead');
     this.placement = value;
   }
@@ -141,16 +141,12 @@ export class TooltipDirective implements OnInit, OnDestroy {
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('tooltipAppendToBody')
   set _appendToBody(value: boolean) {
-    warnOnce(
-      'tooltipAppendToBody was deprecated, please use `container="body"` instead'
-    );
+    warnOnce('tooltipAppendToBody was deprecated, please use `container="body"` instead');
     this.container = value ? 'body' : this.container;
   }
 
   get _appendToBody(): boolean {
-    warnOnce(
-      'tooltipAppendToBody was deprecated, please use `container="body"` instead'
-    );
+    warnOnce('tooltipAppendToBody was deprecated, please use `container="body"` instead');
 
     return this.container === 'body';
   }
@@ -214,14 +210,9 @@ export class TooltipDirective implements OnInit, OnDestroy {
     private _renderer: Renderer2,
     private _positionService: PositioningService
   ) {
-
     this._tooltip = cis
-      .createLoader<TooltipContainerComponent>(
-        this._elementRef,
-        _viewContainerRef,
-        this._renderer
-      )
-      .provide({provide: TooltipConfig, useValue: config});
+      .createLoader<TooltipContainerComponent>(this._elementRef, _viewContainerRef, this._renderer)
+      .provide({ provide: TooltipConfig, useValue: config });
 
     Object.assign(this, config);
     this.onShown = this._tooltip.onShown;
@@ -287,12 +278,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
       }
     });
 
-    if (
-      this.isOpen ||
-      this.isDisabled ||
-      this._delayTimeoutId ||
-      !this.tooltip
-    ) {
+    if (this.isOpen || this.isDisabled || this._delayTimeoutId || !this.tooltip) {
       return;
     }
 
@@ -304,7 +290,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
       this._tooltip
         .attach(TooltipContainerComponent)
         .to(this.container)
-        .position({attachment: this.placement})
+        .position({ attachment: this.placement })
         .show({
           content: this.tooltip,
           placement: this.placement,
@@ -329,20 +315,15 @@ export class TooltipDirective implements OnInit, OnDestroy {
       });
 
       if (this.triggers) {
-        parseTriggers(this.triggers)
-          .forEach((trigger: Trigger) => {
-            if (!trigger.close) {
-              return;
-            }
-            this._tooltipCancelShowFn = this._renderer.listen(
-              this._elementRef.nativeElement,
-              trigger.close,
-              () => {
-                this._delaySubscription?.unsubscribe();
-                cancelDelayedTooltipShowing();
-              }
-            );
+        parseTriggers(this.triggers).forEach((trigger: Trigger) => {
+          if (!trigger.close) {
+            return;
+          }
+          this._tooltipCancelShowFn = this._renderer.listen(this._elementRef.nativeElement, trigger.close, () => {
+            this._delaySubscription?.unsubscribe();
+            cancelDelayedTooltipShowing();
           });
+        });
       }
     } else {
       showTooltip();
@@ -364,7 +345,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
     }
 
     if (this._tooltip.instance?.classMap) {
-      this._tooltip.instance.classMap["in"] = false;
+      this._tooltip.instance.classMap['in'] = false;
     }
 
     setTimeout(() => {
