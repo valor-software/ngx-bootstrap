@@ -2,7 +2,7 @@
  * Update class for the given popper
  */
 import { Renderer2 } from '@angular/core';
-import { Data, PlacementForBs5 } from '../models';
+import { AvailableBSPositions, Data, PlacementForBs5 } from '../models';
 import { checkMargins } from './checkMargin';
 import { getBsVer } from 'ngx-bootstrap/utils';
 
@@ -11,7 +11,9 @@ export function updateContainerClass(data: Data, renderer?: Renderer2): void {
 
   let containerClass = target.className;
 
-  const dataPlacement = getBsVer().isBs5 ? PlacementForBs5[data.placement as keyof typeof PlacementForBs5] : data.placement;
+  const dataPlacement = getBsVer().isBs5
+    ? PlacementForBs5[data.placement as keyof typeof PlacementForBs5]
+    : data.placement;
   if (data.placementAuto) {
     containerClass = containerClass.replace(/bs-popover-auto/g, `bs-popover-${dataPlacement}`);
     containerClass = containerClass.replace(/ms-2|me-2|mb-2|mt-2/g, '');
@@ -19,14 +21,14 @@ export function updateContainerClass(data: Data, renderer?: Renderer2): void {
     containerClass = containerClass.replace(/\sauto/g, ` ${dataPlacement}`);
 
     if (containerClass.indexOf('popover') !== -1) {
-      containerClass = containerClass + ' ' + checkMargins(dataPlacement);
+      containerClass = containerClass + ' ' + checkMargins(dataPlacement as AvailableBSPositions);
     }
 
     if (containerClass.indexOf('popover') !== -1 && containerClass.indexOf('popover-auto') === -1) {
       containerClass += ' popover-auto';
     }
 
-    if (containerClass.indexOf('tooltip') !== -1  && containerClass.indexOf('tooltip-auto') === -1) {
+    if (containerClass.indexOf('tooltip') !== -1 && containerClass.indexOf('tooltip-auto') === -1) {
       containerClass += ' tooltip-auto';
     }
   }

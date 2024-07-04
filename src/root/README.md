@@ -166,7 +166,10 @@ Here is the version compatibility list:
 
 | ngx-bootstrap | Angular         | Bootstrap CSS  |
 |---------------|-----------------|----------------|
-| 10.x.x        | 15.x.x | 5.x.x or 4.x.x |
+| 18.x.x        | 18.x.x          | 5.x.x or 4.x.x |
+| 12.x.x        | 17.x.x          | 5.x.x or 4.x.x |
+| 11.x.x        | 16.x.x          | 5.x.x or 4.x.x |
+| 10.x.x        | 15.x.x          | 5.x.x or 4.x.x |
 | 9.0.0         | 14.x.x          | 5.x.x or 4.x.x or 3.x.x |
 | 8.0.0         | 12.x.x - 13.x.x | 5.x.x or 4.x.x or 3.x.x |
 | 7.1.0         | 11.x.x - 12.x.x | 5.x.x or 4.x.x or 3.x.x |
@@ -199,10 +202,7 @@ Please read our [contribution guidelines](https://github.com/valor-software/ngx-
 
 ### Credits
 Crossbrowser testing sponsored by [Saucelabs](https://saucelabs.com/)
-[<img src="https://avatars2.githubusercontent.com/u/88837?s=200&v=4" alt="Saucelabs" width="31" height="31">](https://saucelabs.com/)
-
-End-to-end testing sponsored by [Cypress](https://www.cypress.io/)
-[<img src="https://raw.githubusercontent.com/cypress-io/cypress-icons/master/src/favicon/favicon.ico" alt="Cypress" width="31" height="31">](https://www.cypress.io/)
+[<img src="https://avatars2.githubusercontent.com/u/88837?s=200&v=4" alt="Saucelabs" width="31" height="31" align="middle">](https://saucelabs.com/)
 
 ### License
 

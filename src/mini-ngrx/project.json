@@ -1,0 +1,32 @@
+{
+  "name": "mini-ngrx",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "src/mini-ngrx",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/mini-ngrx"],
+      "options": {
+        "tsConfig": "src/mini-ngrx/tsconfig.lib.json",
+        "project": "src/mini-ngrx/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "src/mini-ngrx/tsconfig.lib.prod.json"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/src/mini-ngrx"],
+      "options": {
+        "jestConfig": "src/mini-ngrx/jest.config.ts"
+      }
+    }
+  }
+}
