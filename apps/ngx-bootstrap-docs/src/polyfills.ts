@@ -26,6 +26,6 @@ import 'zone.js';
 // import 'intl/locale-data/jsonp/en';
 
 /***************************************************************************************************
-* SCULLY IMPORTS
-*/
-import 'zone.js/dist/task-tracking';
+ * SCULLY IMPORTS
+ */
+import 'zone.js/plugins/task-tracking';

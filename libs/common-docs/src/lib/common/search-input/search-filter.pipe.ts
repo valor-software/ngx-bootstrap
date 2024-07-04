@@ -1,17 +1,17 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Routes, Route } from '@angular/router';
+import { Route, Routes } from '@angular/router';
 
 @Pipe({ name: 'SearchFilter' })
 export class SearchFilterPipe implements PipeTransform {
-  transform(value: Routes, text: any): any {
+  transform(value: Routes, text?: string): Routes {
     if (!text) {
       return value;
     }
 
     const items = value;
-    const newItems: any = [];
+    const newItems: Routes = [];
 
-    items.forEach(function(item: any): void {
+    items.forEach(function (item: Route): void {
       if (!item.children?.length && item.data?.[0]?.toLowerCase().indexOf(text.toLowerCase()) !== -1) {
         newItems.push(item);
       }

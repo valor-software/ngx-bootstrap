@@ -5,18 +5,14 @@
   "projectType": "library",
   "targets": {
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
-        "lintFilePatterns": [
-          "src/schematics/**/*.ts"
-        ]
+        "lintFilePatterns": ["src/schematics/**/*.ts"]
       }
     },
     "build": {
       "executor": "@nx/js:tsc",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/ngx-bootstrap/schematics",
         "tsConfig": "src/schematics/tsconfig.lib.json",

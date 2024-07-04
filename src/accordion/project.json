@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/ngx-bootstrap/accordion"
-      ],
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/accordion"],
       "options": {
         "tsConfig": "src/accordion/tsconfig.lib.json",
         "project": "src/accordion/ng-package.json"
@@ -27,22 +25,13 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "src/accordion/**/*.ts",
-          "src/accordion/**/*.html"
-        ]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/src/accordion"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/src/accordion"],
       "options": {
-        "jestConfig": "src/accordion/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/accordion/jest.config.ts"
       }
     }
   }

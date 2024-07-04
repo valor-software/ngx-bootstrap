@@ -7,9 +7,7 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": [
-        "{workspaceRoot}/dist/ngx-bootstrap/timepicker"
-      ],
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/timepicker"],
       "options": {
         "tsConfig": "src/timepicker/tsconfig.lib.json",
         "project": "src/timepicker/ng-package.json"
@@ -27,22 +25,13 @@
       ]
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "options": {
-        "lintFilePatterns": [
-          "src/timepicker/**/*.ts",
-          "src/timepicker/**/*.html"
-        ]
-      }
+      "executor": "@nx/eslint:lint"
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/src/timepicker"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/src/timepicker"],
       "options": {
-        "jestConfig": "src/timepicker/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "src/timepicker/jest.config.ts"
       }
     }
   }
