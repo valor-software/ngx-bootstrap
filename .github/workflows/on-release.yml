@@ -1,5 +1,6 @@
 name: on-release
 on:
+  workflow_dispatch:
   push:
     tags:
       - v*
@@ -17,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.0
+        uses: styfle/cancel-workflow-action@0.11.0
         with:
           access_token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -26,8 +27,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: one_run
     steps:
-      - uses: actions/checkout@v2.3.4
-      - uses: actions/cache@v2.1.4
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
         id: cache
         with:
           path: node_modules
@@ -40,47 +41,49 @@ jobs:
     needs: install
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
-      - uses: actions/cache@v2.1.4
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
         with:
           path: node_modules
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - uses: actions/cache@v2.1.4
+      - uses: actions/cache@v3
         with:
           path: dist
           key: dist-${{ github.run_id }}
       - run: |
-          npx nx build ngx-bootstrap --runner cloud --configuration production
-          npx ng build --runner cloud --configuration production
+          npx nx build ngx-bootstrap --runner=cloud --configuration=production
+          npx ng build --runner=cloud --configuration=production
 
   # update release notes in github
-  update_release_draft:
-    needs: install
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2.3.4
-      - uses: actions/cache@v2.1.4
-        with:
-          path: node_modules
-          key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - run: npx conventional-github-releaser -p angular
+#  update_release_draft:
+#    needs: install
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v3
+#      - uses: actions/cache@v3
+#        with:
+#          path: node_modules
+#          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+#      - run: npm run release
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # update gh_pages
   gh_pages_deploy:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - uses: actions/checkout@v2.3.4
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           ref: 'gh-pages'
           path: 'gh-pages'
 
-      - uses: actions/cache@v2.1.4
+      - uses: actions/cache@v3
         with:
           path: node_modules
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - uses: actions/cache@v2.1.4
+      - uses: actions/cache@v3
         with:
           path: dist
           key: dist-${{ github.run_id }}
@@ -107,12 +110,12 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - uses: actions/checkout@v2.3.4
-      - uses: actions/cache@v2.1.4
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
         with:
           path: node_modules
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - uses: actions/cache@v2.1.4
+      - uses: actions/cache@v3
         with:
           path: dist
           key: dist-${{ github.run_id }}

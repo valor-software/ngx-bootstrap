@@ -12,18 +12,17 @@ import { routes } from './demo-tabs.routes';
 export { TabsSectionComponent } from './tabs-section.component';
 
 @NgModule({
-  declarations: [
-    TabsSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    DocsModule,
-    TabsModule.forRoot(),
-    RouterModule.forChild(routes)
-  ],
-  exports: [TabsSectionComponent],
-  entryComponents: [...DEMO_COMPONENTS]
+    declarations: [
+        TabsSectionComponent,
+        ...DEMO_COMPONENTS
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        DocsModule,
+        TabsModule.forRoot(),
+        RouterModule.forChild(routes)
+    ],
+    exports: [TabsSectionComponent]
 })
 export class DemoTabsModule {}

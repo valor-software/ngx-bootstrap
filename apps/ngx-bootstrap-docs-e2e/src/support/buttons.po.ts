@@ -1,7 +1,8 @@
-import { BaseComponent } from './base.component';
+import { expect } from '@playwright/test';
+import { BasePo } from './base.po';
 
-export class ButtonsPo extends BaseComponent {
-  pageUrl = '#/components/buttons';
+export class ButtonsPo extends BasePo {
+  override pageUrl = '#/components/buttons';
   pageTitle = 'Buttons';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/buttons';
 
@@ -16,34 +17,49 @@ export class ButtonsPo extends BaseComponent {
   btnRadioGroup = '[btnradiogroup]';
 
   exampleDemosArr = {
-    basic: 'tab[heading="Overview"] demo-buttons-basic',
-    checkbox: 'tab[heading="Overview"] demo-buttons-checkbox',
-    customCheckboxVal: 'tab[heading="Overview"] demo-custom-checkbox-value',
-    checkboxWithForms: 'tab[heading="Overview"] demo-buttons-checkbox-reactiveforms',
-    radioUnckeckable: 'tab[heading="Overview"] demo-buttons-radio-uncheckable',
-    radioBtn: 'tab[heading="Overview"] demo-buttons-radio',
-    radioBtnWithGroup: 'tab[heading="Overview"] demo-buttons-radio-with-group',
-    radioBtnWithForms: 'tab[heading="Overview"] demo-buttons-radio-reactiveforms',
-    disabled: 'tab[heading="Overview"] demo-buttons-disabled'
+    basic: ' demo-buttons-basic',
+    checkbox: ' demo-buttons-checkbox',
+    customCheckboxVal: ' demo-custom-checkbox-value',
+    checkboxWithForms: ' demo-buttons-checkbox-reactiveforms',
+    radioBtnWithRadioGroup: ' demo-buttons-radio-with-group',
+    radioBtnWithExplicitGroup: ' demo-buttons-radio',
+    radioUnckeckable: ' demo-buttons-radio-uncheckable',
+    radioBtnWithForms: ' demo-buttons-radio-reactiveforms',
+    disabled: ' demo-buttons-disabled'
   };
 
-  isButtonVisible(baseSelector: string, buttonName: string, btnSelector: string) {
-    cy.get(`${baseSelector} ${btnSelector}`).contains(buttonName).should('to.be.visible');
+  async expectBtnVisible(baseSelector: string, btnSelector: string, btnName: string, btnNumber?: number) {
+    await expect(await this.page
+      .locator(baseSelector + ` ${btnSelector}`)
+      .getByText(btnName)
+      .nth(btnNumber ? btnNumber : 0)
+    ).toBeVisible();
   }
 
-  isButtonEnabled(baseSelector: string, buttonName: string, enabled = true) {
-      cy.get(`${baseSelector}`).contains(buttonName).should(enabled ? 'not.to.have.attr' : 'to.have.attr', 'disabled');
+  async expectBtnEnabled(baseSelector: string, btnName: string, enabled = true, btnNumber?: number) {
+    const isDisabled = await this.page
+      .locator(baseSelector)
+      .getByText(btnName, { exact: true })
+      .nth(btnNumber ? btnNumber : 0)
+      .getAttribute('disabled');
+    const isEnabled = enabled ? isDisabled === null : isDisabled !== null;
+    await expect(isEnabled).toBeTruthy();
   }
 
-  isButtonClassActive(baseSelector: string, buttonName: string, result: string, btnSelector: string) {
-    cy.get(`${baseSelector} ${btnSelector}`).contains(buttonName).should('to.have.class', `${result}`);
+  async expectBtnHaveClass(baseSelector: string, btnSelector: string, btnName: string, expectedClass: string, isHaveClass = true, btnNumber?: number) {
+    const btnClass = await this.page
+      .locator(baseSelector + ` ${btnSelector}`)
+      .getByText(btnName)
+      .nth(btnNumber ? btnNumber : 0)
+      .getAttribute('class');
+    const isClassContain = btnClass.includes(expectedClass);
+    const checkBtnClass = isHaveClass ? isClassContain : !isClassContain;
+    await expect(checkBtnClass).toBeTruthy();
   }
 
-  isButtonHaveNoClass(baseSelector: string, buttonName: string, result: string, btnSelector: string) {
-    cy.get(`${baseSelector} ${btnSelector}`).contains(buttonName).should('not.to.have.class', `${result}`);
-  }
-
-  isBtnOutputSelected(baseSelector: string, buttonNumber: number, result: boolean) {
-    cy.get(`${baseSelector} ${this.output}`).should('to.contain', `"${ this.buttonNames[buttonNumber].toLowerCase() }": ${result}`);
+  async expectBtnOutputSelected(baseSelector: string, btnNumber: number, selected: boolean) {
+    await expect(await this.page
+      .locator(baseSelector + ` ${this.output}`)
+    ).toContainText(`"${this.buttonNames[btnNumber].toLowerCase()}": ${selected}`);
   }
 }

@@ -32,7 +32,7 @@ export class AddNavComponent implements OnChanges, AfterViewChecked, AfterViewIn
   @HostListener('window:scroll')
   onScrollEvent() {
     this.initActiveMenuTab();
-  };
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor(

@@ -1,0 +1,38 @@
+{
+  "name": "popover",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "src/popover",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/popover"],
+      "options": {
+        "tsConfig": "src/popover/tsconfig.lib.json",
+        "project": "src/popover/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "src/popover/tsconfig.lib.prod.json"
+        }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/src/popover"],
+      "options": {
+        "jestConfig": "src/popover/jest.config.ts"
+      }
+    }
+  }
+}

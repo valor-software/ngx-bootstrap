@@ -1,0 +1,32 @@
+{
+  "name": "tabs",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "src/tabs",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/tabs"],
+      "options": {
+        "tsConfig": "src/tabs/tsconfig.lib.json",
+        "project": "src/tabs/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "src/tabs/tsconfig.lib.prod.json"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/src/tabs"],
+      "options": {
+        "jestConfig": "src/tabs/jest.config.ts"
+      }
+    }
+  }
+}

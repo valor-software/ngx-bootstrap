@@ -1,19 +1,17 @@
 import { window } from './facade/browser';
 
-export type AvailableBsVersions = 'bs3' | 'bs4' | 'bs5';
+export type AvailableBsVersions = 'bs4' | 'bs5';
 
 interface IObjectKeys {
   [key: string]: boolean;
 }
 
 export interface IBsVersion extends IObjectKeys{
-  isBs3: boolean;
   isBs4: boolean;
   isBs5: boolean;
 }
 
 export enum BsVerions {
-  isBs3 = 'bs3',
   isBs4 = 'bs4',
   isBs5 = 'bs5'
 }
@@ -21,20 +19,12 @@ export enum BsVerions {
 let guessedVersion: AvailableBsVersions;
 
 function _guessBsVersion(): AvailableBsVersions {
-  if (typeof window.document === 'undefined') {
-    return 'bs4';
-  }
   const spanEl = window.document.createElement('span');
   spanEl.innerText = 'testing bs version';
   spanEl.classList.add('d-none');
   spanEl.classList.add('pl-1');
   window.document.head.appendChild(spanEl);
-  const rect = spanEl.getBoundingClientRect();
   const checkPadding = window.getComputedStyle(spanEl).paddingLeft;
-  if (!rect || (rect && rect.top !== 0)) {
-    window.document.head.removeChild(spanEl);
-    return 'bs3';
-  }
 
   if (checkPadding && parseFloat(checkPadding)) {
     window.document.head.removeChild(spanEl);
@@ -49,27 +39,7 @@ export function setTheme(theme: AvailableBsVersions): void {
   guessedVersion = theme;
 }
 
-// todo: in ngx-bootstrap, bs4 will became a default one
-export function isBs3(): boolean {
-  if (typeof window === 'undefined') {
-    return true;
-  }
-
-  if (typeof window.__theme === 'undefined') {
-    if (guessedVersion) {
-      return guessedVersion === 'bs3';
-    }
-    guessedVersion = _guessBsVersion();
-
-    return guessedVersion === 'bs3';
-  }
-
-  return window.__theme === 'bs3';
-}
-
 export function isBs4(): boolean {
-  if (isBs3()) return false;
-
   if (guessedVersion) return guessedVersion === 'bs4';
 
   guessedVersion = _guessBsVersion();
@@ -77,8 +47,6 @@ export function isBs4(): boolean {
 }
 
 export function isBs5(): boolean {
-  if (isBs3() || isBs4()) return false;
-
   if (guessedVersion) return guessedVersion === 'bs5';
 
   guessedVersion = _guessBsVersion();
@@ -87,7 +55,6 @@ export function isBs5(): boolean {
 
 export function getBsVer(): IBsVersion {
   return {
-    isBs3: isBs3(),
     isBs4: isBs4(),
     isBs5: isBs5()
   };

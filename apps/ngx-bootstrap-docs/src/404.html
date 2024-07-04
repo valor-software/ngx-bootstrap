@@ -4,7 +4,7 @@
   <title>Angular Bootstrap</title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="Bootstrap 3 and Bootstrap 4 widgets for Angular: autocomplete, accordion, alert, buttons, carousel, collapse, dropdown, pagination, popover, progressbar, rating, tabset, timepicker, tooltip, typeahead, sortable, tabs">
+  <meta name="description" content="Bootstrap 5 and Bootstrap 4 widgets for Angular: autocomplete, accordion, alert, buttons, carousel, collapse, dropdown, pagination, popover, progressbar, rating, tabset, timepicker, tooltip, typeahead, sortable, tabs">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png">
@@ -33,16 +33,13 @@
 </bs-demo>
 <noscript>Please enable JavaScript to view ngx-bootstrap documentation</noscript>
 <!-- Google analytics-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8Z0HMZ2FH4"></script>
 <script>
-  if (typeof window != 'undefined') {
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-    ga('create', 'UA-73071494-1', 'auto');
-    ga('send', 'pageview');
-  }
+  gtag('config', 'G-8Z0HMZ2FH4');
 </script>
 <script async="" src="assets/js/prettify.min.js"></script>
 <!-- script files will be inserted by html-webpack-plugin -->

@@ -23,11 +23,11 @@ const BOOTSTRAP_AVAILABLE_STYLES = {
   'css': [`./node_modules/bootstrap/dist/css/bootstrap.min.css`],
   'scss': [`
 /* Importing Bootstrap SCSS file. */
-@import "~bootstrap/scss/bootstrap";
+@import "./node_modules/bootstrap/scss/bootstrap";
 `]
 };
 const DATEPICKER_AVAILABLESTYLES = {
-  'css': [`./dist/ngx-bootstrap/datepicker/bs-datepicker.css`],
+  'css': [`./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css`],
   'scss': [`
 /* Importing Datepicker SCSS file. */
 @import "node_modules/ngx-bootstrap/datepicker/bs-datepicker";

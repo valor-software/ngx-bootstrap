@@ -1,0 +1,38 @@
+{
+  "name": "alert",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "src/alert",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:package",
+      "outputs": ["{workspaceRoot}/dist/ngx-bootstrap/alert"],
+      "options": {
+        "tsConfig": "src/alert/tsconfig.lib.json",
+        "project": "src/alert/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "src/alert/tsconfig.lib.prod.json"
+        }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/src/alert"],
+      "options": {
+        "jestConfig": "src/alert/jest.config.ts"
+      }
+    }
+  }
+}

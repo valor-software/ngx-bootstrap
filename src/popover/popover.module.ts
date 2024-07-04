@@ -7,10 +7,9 @@ import { PopoverDirective } from './popover.directive';
 import { PopoverContainerComponent } from './popover-container.component';
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [PopoverDirective, PopoverContainerComponent],
-  exports: [PopoverDirective],
-  entryComponents: [PopoverContainerComponent]
+    imports: [CommonModule],
+    declarations: [PopoverDirective, PopoverContainerComponent],
+    exports: [PopoverDirective]
 })
 export class PopoverModule {
   static forRoot(): ModuleWithProviders<PopoverModule> {

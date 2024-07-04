@@ -18,7 +18,6 @@ class TestModalComponent {}
 @NgModule({
   declarations: [TestModalComponent],
   providers: [{ provide: MODAL_CONFIG_DEFAULT_OVERRIDE, useValue: { ignoreBackdropClick: true, keyboard: false } }],
-  entryComponents: [TestModalComponent]
 })
 export class TestModule {}
 
