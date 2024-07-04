@@ -389,7 +389,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
     const elemBottom = elemTop + elem.offsetHeight;
 
     return ((elemBottom <= containerViewBottom) && (elemTop >= containerViewTop));
-  };
+  }
 
   private scrollToBottom(): void {
     if (!this.ulElement?.nativeElement) {

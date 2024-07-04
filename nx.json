@@ -1,7 +1,4 @@
 {
-  "affected": {
-    "defaultBase": "development"
-  },
   "tasksRunnerOptions": {
     "cloud": {
       "runner": "nx-cloud",
@@ -69,9 +66,6 @@
     "e2e": {
       "inputs": ["default", "^production"]
     },
-    "lint": {
-      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
-    },
     "@nx/jest:jest": {
       "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
       "cache": true,
@@ -84,6 +78,12 @@
           "codeCoverage": true
         }
       }
+    },
+    "@nx/eslint:lint": {
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
+      "cache": true
     }
-  }
+  },
+  "useInferencePlugins": false,
+  "defaultBase": "development"
 }
