@@ -1,0 +1,30 @@
+{
+  "name": "doc-pages-sortable",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/doc-pages/sortable/src",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "options": {
+        "tsConfig": "libs/doc-pages/sortable/tsconfig.lib.json",
+        "project": "libs/doc-pages/sortable/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/doc-pages/sortable/tsconfig.lib.prod.json"
+        }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}

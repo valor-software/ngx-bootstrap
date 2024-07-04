@@ -1,7 +1,8 @@
-import { BaseComponent } from './base.component';
+import { expect } from '@playwright/test';
+import { BasePo } from './base.po';
 
-export class AlertsPo extends BaseComponent {
-  pageUrl = '#/components/alerts';
+export class AlertsPo extends BasePo {
+  override pageUrl = '#/components/alerts';
   pageTitle = 'Alerts';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/alert';
 
@@ -9,71 +10,67 @@ export class AlertsPo extends BaseComponent {
   heading = '.alert-heading';
 
   exampleDemosArr = {
-    basic: 'tab[heading="Overview"] demo-alert-basic',
-    link: 'tab[heading="Overview"] demo-alert-link',
-    content: 'tab[heading="Overview"] demo-alert-content',
-    dismissing: 'tab[heading="Overview"] demo-alert-dismiss',
-    dynamicHtml: 'tab[heading="Overview"] demo-alert-dynamic-html',
-    dynamicContent: 'tab[heading="Overview"] demo-alert-content-html',
-    dismissTimeout: 'tab[heading="Overview"] demo-alert-timeout',
-    globalStyling: 'tab[heading="Overview"] demo-alert-styling-global',
-    componentStyling: 'tab[heading="Overview"] demo-alert-styling-local',
-    config: 'tab[heading="Overview"] demo-alert-config'
+    basic: ' demo-alert-basic',
+    link: ' demo-alert-link',
+    content: ' demo-alert-content',
+    dismissing: ' demo-alert-dismiss',
+    dynamicHtml: ' demo-alert-dynamic-html',
+    dynamicContent: ' demo-alert-content-html',
+    dismissTimeout: ' demo-alert-timeout',
+    globalStyling: ' demo-alert-styling-global',
+    componentStyling: ' demo-alert-styling-local',
+    config: ' demo-alert-config'
   };
 
-  isAlertVisible(baseSelector: string, alertType: string, exist = true) {
-    cy.get(`${baseSelector} ${this.getAlertClass(alertType)}`)
-      .should(exist ? 'be.visible' : 'not.exist');
+  alertType = {
+    success: '.alert-success',
+    info: '.alert-info',
+    warning: '.alert-warning',
+    danger: '.alert-danger',
+    colored: '.alert-md-color',
+    local: '.alert-md-local',
+  };
+
+  async expectAlertVisible(baseSelector: string, alertType: string, visible = true, timeout = 5000) {
+    await expect(await this.page
+      .locator(baseSelector + ` ${this.alertType[alertType]}`)
+    ).toBeVisible({ timeout: timeout, visible: visible });
   }
 
-  IsButtonDisappeared(baseSelector: string, buttonName: string) {
-    cy.get(`${baseSelector}`).contains(buttonName).should('not.exist');
+  async expectBtnNotExist(baseSelector: string, buttonName: string) {
+    const btn = this.page
+      .locator(baseSelector)
+      .getByText(buttonName);
+    await expect(btn).toHaveCount(0);
   }
 
-  isAlertHaveLink(baseSelector: string, alertType: string) {
-    cy.get(`${baseSelector} ${this.getAlertClass(alertType)}`)
-      .find(this.linkClass)
-      .should('have.attr', 'href', '#');
+  async expectAlertHaveLink(baseSelector: string, alertType: string) {
+    const alert = await this.page
+      .locator(baseSelector + ` ${this.alertType[alertType]} ` + this.linkClass);
+    await expect (await alert.getAttribute('href')).toBe('#');
   }
 
-  isAlertContentContains(baseSelector: string, alertType: string, expectedContentClass: string) {
-    cy.get(`${baseSelector} ${this.getAlertClass(alertType)}`)
-      .should('to.have.descendants', expectedContentClass);
+  async expectAlertHaveDescendants(baseSelector: string, alertType: string, expectedDescendantsClass: string) {
+    const descendants = this.page
+      .locator(baseSelector + ` ${this.alertType[alertType]} ` + expectedDescendantsClass);
+    await expect(descendants).not.toHaveCount(0);
   }
 
-  isAlertLengthEqual(baseSelector: string, expectedLength: number) {
-    cy.get(`${baseSelector} alert`)
-      .should('to.have.length', expectedLength);
+  async expectAlertCountEqual(baseSelector: string, expectedCount: number, timeout = 5000) {
+    await expect(this.page
+      .locator(baseSelector + ' alert')
+    ).toHaveCount(expectedCount, { timeout: timeout });
   }
 
-  isAlertHaveCss(baseSelector: string, nameCSS: string , valueCSS: string) {
-    cy.get(`${baseSelector} alert div`)
-        .should('to.have.css', nameCSS, valueCSS);
+  async expectAlertHaveCss(baseSelector: string, cssName: string , cssValue: string) {
+    const alert = await this.page
+      .locator(baseSelector + ' alert div');
+    await expect (alert).toHaveCSS(cssName, cssValue);
   }
 
-  isAlertTextContains(baseSelector: string, alertType: string, expectedText: string) {
-    cy.get(`${baseSelector} ${this.getAlertClass(alertType)}`)
-      .invoke('text')
-      .should('to.contains', expectedText);
-  }
-
-  getAlertClass(alertType: string) {
-    switch (alertType) {
-      case 'success':
-        return '.alert-success';
-      case 'info':
-        return '.alert-info';
-      case 'warning':
-        return '.alert-warning';
-      case 'danger':
-        return '.alert-danger';
-      case 'colored':
-        return '.alert-md-color';
-      case 'local':
-        return '.alert-md-local';
-
-      default:
-        throw new Error('Incorrect alert type, available: success, info, warning, danger, coloured, local');
-    }
+  async expectAlertTextContains(baseSelector: string, alertType: string, expectedTxt: string) {
+    await expect(await this.page
+      .locator(baseSelector + ` ${this.alertType[alertType]}`)
+    ).toContainText(expectedTxt);
   }
 }

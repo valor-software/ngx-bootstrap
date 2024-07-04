@@ -20,14 +20,11 @@ export function findLastIndex<T>(array: T[], predicate: (value: T, index: number
 
 export function chunkByNumber<T>(array: T[], size: number): T[][] {
   const out = [];
-  const n = Math.ceil((array.length) / size);
+  const n = Math.ceil(array.length / size);
   let i = 0;
 
   while (i < n) {
-    const chunk = array.splice(
-      0,
-      (i === n - 1) && size < array.length ? array.length : size
-    );
+    const chunk = array.splice(0, i === n - 1 && size < array.length ? array.length : size);
 
     out.push(chunk);
     i++;
@@ -36,6 +33,6 @@ export function chunkByNumber<T>(array: T[], size: number): T[][] {
   return out;
 }
 
-export function isNumber(value?: any): value is number {
+export function isNumber(value?: unknown): value is number {
   return typeof value === 'number' || Object.prototype.toString.call(value) === '[object Number]';
 }

@@ -1,0 +1,30 @@
+{
+  "name": "doc-pages-alerts",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/doc-pages/alerts/src",
+  "prefix": "ngx-bootstrap-base",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:ng-packagr-lite",
+      "options": {
+        "tsConfig": "libs/doc-pages/alerts/tsconfig.lib.json",
+        "project": "libs/doc-pages/alerts/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/doc-pages/alerts/tsconfig.lib.prod.json"
+        }
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
