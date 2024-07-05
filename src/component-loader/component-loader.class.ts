@@ -342,7 +342,7 @@ export class ComponentLoader<T extends object> {
     this._globalListener = () => {
       unsubscribeOutsideClick();
       unsubscribeEscClick();
-    }
+    };
   }
 
   getInnerComponent(): ComponentRef<T> | undefined {
