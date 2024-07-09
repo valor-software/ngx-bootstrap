@@ -92,6 +92,10 @@ export function addModuleImportToRootModule(
   if (!moduleSource) {
     throw new SchematicsException(`Module not found: ${modulePath}`);
   }
+  if (modulePath.includes('component')) {
+    throw new SchematicsException(`ngx-bootstrap doesn't support moduleless approach if we couldn't find
+    your starting *.module.ts learn more here https://valor-software.com/ngx-bootstrap/#/documentation#installation`);
+  }
 
   const changes: Change[] = addImportToModule(moduleSource, modulePath, moduleName, src);
   const recorder = host.beginUpdate(modulePath);
