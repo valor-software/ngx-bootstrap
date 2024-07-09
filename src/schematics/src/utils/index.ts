@@ -90,7 +90,7 @@ export function addModuleImportToRootModule(
   const modulePath = getAppModulePath(host, getProjectMainFile(project));
   const moduleSource = getSourceFile(host, modulePath);
   if (!moduleSource) {
-    throw new SchematicsException(`Module not found: ${modulePath}`);
+    throw new SchematicsException(`Module not found: ${modulePath}`); b
   }
   if (modulePath.includes('component')) {
     throw new SchematicsException(`ngx-bootstrap doesn't support moduleless approach if we couldn't find
