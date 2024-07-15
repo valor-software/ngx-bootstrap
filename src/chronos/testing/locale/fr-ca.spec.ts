@@ -52,11 +52,11 @@ describe('locale: fr-ca', () => {
         ['[le] Do [jour du mois]', 'le 14 jour du mois'],
         ['[le] DDDo [jour de l’année]', 'le 45e jour de l’année'],
         ['LTS', '15:25:50'],
-        ['L', '14/02/2010'],
+        ['L', '2010-02-14'],
         ['LL', '14 février 2010'],
         ['LLL', '14 février 2010 15:25'],
         ['LLLL', 'dimanche 14 février 2010 15:25'],
-        ['l', '14/2/2010'],
+        ['l', '2010-2-14'],
         ['ll', '14 févr. 2010'],
         ['lll', '14 févr. 2010 15:25'],
         ['llll', 'dim. 14 févr. 2010 15:25']
