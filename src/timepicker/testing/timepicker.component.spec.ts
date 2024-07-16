@@ -1197,7 +1197,7 @@ describe('Component: TimepickerComponent', () => {
       inputHours = getInputElements(fixture)[0];
       inputMinutes = getInputElements(fixture)[1];
       inputSeconds = getInputElements(fixture)[2];
-      buttonChanges = getElements(fixture, 'a.btn');
+      buttngOnChangess = getElements(fixture, 'a.btn');
       buttonMeridian = getElements(fixture, 'button')[0];
     });
 
