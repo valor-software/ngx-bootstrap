@@ -1,6 +1,6 @@
 import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
-  imports: [AlertModule.forRoot(),...]
+  imports: [AlertModule,...]
 })
 export class AppModule(){}
