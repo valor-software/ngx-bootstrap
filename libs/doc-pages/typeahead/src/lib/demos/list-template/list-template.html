@@ -5,7 +5,7 @@
        class="form-control">
 
 <ng-template #customListTemplate let-matches="matches" let-query="query" let-typeaheadTemplateMethods>
-  <ul class="custom-list-group" [class.dropdown-menu]="isBs3">
+  <ul class="custom-list-group">
     <li class="custom-list-group-item"
         *ngFor="let match of matches"
         [class.active]="typeaheadTemplateMethods.isActive(match)"

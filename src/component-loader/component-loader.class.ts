@@ -26,7 +26,7 @@ import { Subscription } from 'rxjs';
 import { ContentRef } from './content-ref.class';
 import { ListenOptions } from './listen-options.model';
 
-export class ComponentLoader<T> {
+export class ComponentLoader<T extends object> {
   onBeforeShow = new EventEmitter();
   onShown = new EventEmitter();
   onBeforeHide = new EventEmitter();
@@ -78,7 +78,8 @@ export class ComponentLoader<T> {
     private _componentFactoryResolver: ComponentFactoryResolver,
     private _ngZone: NgZone,
     private _applicationRef: ApplicationRef,
-    private _posService: PositioningService
+    private _posService: PositioningService,
+    private _document: Document,
   ) {
   }
 
@@ -163,9 +164,9 @@ export class ComponentLoader<T> {
         );
       }
 
-      if (typeof this.container === 'string' && typeof document !== 'undefined') {
-        const selectedElement = document.querySelector(this.container) ||
-          document.querySelector(this.containerDefaultSelector);
+      if (typeof this.container === 'string' && typeof this._document !== 'undefined') {
+        const selectedElement = this._document.querySelector(this.container) ||
+          this._document.querySelector(this.containerDefaultSelector);
 
         if (!selectedElement) {
           return;
@@ -225,6 +226,7 @@ export class ComponentLoader<T> {
       );
     }
     this._contentRef?.viewRef?.destroy();
+    this._componentRef?.destroy();
 
     this._contentRef = void 0;
     this._componentRef = void 0;
@@ -311,12 +313,16 @@ export class ComponentLoader<T> {
     if (!this._componentRef || !this._componentRef.location) {
       return;
     }
+
+    let unsubscribeOutsideClick = Function.prototype;
+    let unsubscribeEscClick = Function.prototype;
+
     // why: should run after first event bubble
     if (this._listenOpts.outsideClick) {
       const target = this._componentRef.location.nativeElement;
       setTimeout(() => {
         if (this._renderer && this._elementRef) {
-          this._globalListener = registerOutsideClick(this._renderer, {
+          unsubscribeOutsideClick = registerOutsideClick(this._renderer, {
             targets: [target, this._elementRef.nativeElement],
             outsideClick: this._listenOpts.outsideClick,
             hide: () => this._listenOpts.hide && this._listenOpts.hide()
@@ -326,12 +332,17 @@ export class ComponentLoader<T> {
     }
     if (this._listenOpts.outsideEsc && this._renderer && this._elementRef) {
       const target = this._componentRef.location.nativeElement;
-      this._globalListener = registerEscClick(this._renderer, {
+      unsubscribeEscClick = registerEscClick(this._renderer, {
         targets: [target, this._elementRef.nativeElement],
         outsideEsc: this._listenOpts.outsideEsc,
         hide: () => this._listenOpts.hide && this._listenOpts.hide()
       });
     }
+
+    this._globalListener = () => {
+      unsubscribeOutsideClick();
+      unsubscribeEscClick();
+    };
   }
 
   getInnerComponent(): ComponentRef<T> | undefined {
@@ -407,6 +418,8 @@ export class ComponentLoader<T> {
       });
 
       const componentRef = contentCmptFactory.create(modalContentInjector);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       Object.assign(componentRef.instance, initialState);
       this._applicationRef.attachView(componentRef.hostView);
 

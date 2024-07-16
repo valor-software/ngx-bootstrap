@@ -12,18 +12,17 @@ import { routes } from './demo-collapse.routes';
 export { CollapseSectionComponent } from './collapse-section.component';
 
 @NgModule({
-  declarations: [
-    CollapseSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
-  imports: [
-    CollapseModule.forRoot(),
-    CommonModule,
-    FormsModule,
-    DocsModule,
-    RouterModule.forChild(routes)
-  ],
-  exports: [CollapseSectionComponent],
-  entryComponents: [...DEMO_COMPONENTS]
+    declarations: [
+        CollapseSectionComponent,
+        ...DEMO_COMPONENTS
+    ],
+    imports: [
+        CollapseModule.forRoot(),
+        CommonModule,
+        FormsModule,
+        DocsModule,
+        RouterModule.forChild(routes)
+    ],
+    exports: [CollapseSectionComponent]
 })
 export class DemoCollapseModule {}

@@ -108,8 +108,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'disabled-item',
         component: require('!!raw-loader!./demos/disabled-item/disabled-item.ts'),
         html: require('!!raw-loader!./demos/disabled-item/disabled-item.html'),
-        description: `<p>Add a <code>disabled</code> class to <code>&lt;a&gt;</code> for bootstrap 4 to make it as disabled.</p>
-                      <p>Add a <code>disabled</code> class to <code>&lt;li&gt;</code>  for bootstrap 3 to make it as disabled.</p>`,
+        description: `<p>Add a <code>disabled</code> class to <code>&lt;a&gt;</code> to make it as disabled.</p>`,
         outlet: DemoDropdownDisabledItemComponent
       },
       {
@@ -167,7 +166,7 @@ export const demoComponentContent: ContentSection[] = [
         anchor: 'menu-dividers',
         component: require('!!raw-loader!./demos/menu-dividers/menu-dividers.ts'),
         html: require('!!raw-loader!./demos/menu-dividers/menu-dividers.html'),
-        description: `<p>Separate groups of related menu items with a <code>.divider</code> for bootstrap 3 and <code>.dropdown-divider</code> for bootstrap 4.</p>`,
+        description: `<p>Separate groups of related menu items with a <code>.dropdown-divider</code> for bootstrap 4.</p>`,
         outlet: DemoDropdownMenuDividersComponent
       },
       {

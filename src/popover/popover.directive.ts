@@ -1,11 +1,19 @@
 import {
-  Directive, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output,
-  Renderer2, TemplateRef, ViewContainerRef
+  Directive,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  Renderer2,
+  TemplateRef,
+  ViewContainerRef
 } from '@angular/core';
 import { PopoverConfig } from './popover.config';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { PopoverContainerComponent } from './popover-container.component';
-import { PositioningService, AvailbleBSPositions } from 'ngx-bootstrap/positioning';
+import { PositioningService, AvailableBSPositions } from 'ngx-bootstrap/positioning';
 import { timer } from 'rxjs';
 import { parseTriggers, Trigger } from 'ngx-bootstrap/utils';
 
@@ -14,12 +22,14 @@ let id = 0;
 /**
  * A lightweight, extensible directive for fancy popover creation.
  */
-@Directive({selector: '[popover]', exportAs: 'bs-popover'})
+@Directive({ selector: '[popover]', exportAs: 'bs-popover' })
 export class PopoverDirective implements OnInit, OnDestroy {
   /** unique id popover - use for aria-describedby */
   popoverId = id++;
   /** sets disable adaptive position */
   @Input() adaptivePosition = true;
+
+  @Input() boundariesElement?: 'viewport' | 'scrollParent' | 'window';
   /**
    * Content to be displayed as popover.
    */
@@ -37,7 +47,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /**
    * Placement of a popover. Accepts: "top", "bottom", "left", "right"
    */
-  @Input() placement: AvailbleBSPositions = 'top';
+  @Input() placement: AvailableBSPositions = 'top';
   /**
    * Close popover on outside click
    */
@@ -104,12 +114,8 @@ export class PopoverDirective implements OnInit, OnDestroy {
     private _positionService: PositioningService
   ) {
     this._popover = cis
-      .createLoader<PopoverContainerComponent>(
-        _elementRef,
-        _viewContainerRef,
-        _renderer
-      )
-      .provide({provide: PopoverConfig, useValue: _config});
+      .createLoader<PopoverContainerComponent>(_elementRef, _viewContainerRef, _renderer)
+      .provide({ provide: PopoverConfig, useValue: _config });
 
     Object.assign(this, _config);
 
@@ -159,7 +165,8 @@ export class PopoverDirective implements OnInit, OnDestroy {
           enabled: this.adaptivePosition
         },
         preventOverflow: {
-          enabled: this.adaptivePosition
+          enabled: this.adaptivePosition,
+          boundariesElement: this.boundariesElement || 'scrollParent'
         }
       }
     });
@@ -169,17 +176,13 @@ export class PopoverDirective implements OnInit, OnDestroy {
         this._delayTimeoutId = undefined;
       }
 
-      this._popover
-        .attach(PopoverContainerComponent)
-        .to(this.container)
-        .position({attachment: this.placement})
-        .show({
-          content: this.popover,
-          context: this.popoverContext,
-          placement: this.placement,
-          title: this.popoverTitle,
-          containerClass: this.containerClass
-        });
+      this._popover.attach(PopoverContainerComponent).to(this.container).position({ attachment: this.placement }).show({
+        content: this.popover,
+        context: this.popoverContext,
+        placement: this.placement,
+        title: this.popoverTitle,
+        containerClass: this.containerClass
+      });
 
       if (!this.adaptivePosition && this._popover._componentRef) {
         this._positionService.calcPosition();
@@ -203,21 +206,16 @@ export class PopoverDirective implements OnInit, OnDestroy {
       });
 
       if (this.triggers) {
-        parseTriggers(this.triggers)
-          .forEach((trigger: Trigger) => {
-            if (!trigger.close) {
-              return;
-            }
+        parseTriggers(this.triggers).forEach((trigger: Trigger) => {
+          if (!trigger.close) {
+            return;
+          }
 
-            this._popoverCancelShowFn = this._renderer.listen(
-              this._elementRef.nativeElement,
-              trigger.close,
-              () => {
-                _timer.unsubscribe();
-                cancelDelayedTooltipShowing();
-              }
-            );
+          this._popoverCancelShowFn = this._renderer.listen(this._elementRef.nativeElement, trigger.close, () => {
+            _timer.unsubscribe();
+            cancelDelayedTooltipShowing();
           });
+        });
       }
     } else {
       showPopover();

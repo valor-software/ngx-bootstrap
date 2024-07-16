@@ -4,13 +4,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { defineLocale, LocaleData } from 'ngx-bootstrap/chronos';
-import { BsDatepickerModule, DatepickerModule } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import {
   arLocale, bgLocale, caLocale, csLocale, daLocale, deLocale, enGbLocale, esDoLocale, esLocale, esPrLocale, esUsLocale, etLocale, frLocale, heLocale,
   hiLocale, hrLocale, fiLocale, glLocale, huLocale, idLocale, itLocale, jaLocale, kaLocale, kkLocale, koLocale, ltLocale, lvLocale, mnLocale, nbLocale,
   nlBeLocale, nlLocale, plLocale, ptBrLocale, ruLocale, roLocale, skLocale, slLocale, sqLocale, svLocale, thLocale, thBeLocale, trLocale, viLocale,
-  zhCnLocale, ukLocale
+  zhCnLocale, ukLocale, frCaLocale
 } from 'ngx-bootstrap/locale';
 
 import { TabsModule } from 'ngx-bootstrap/tabs';
@@ -24,7 +24,7 @@ const locales = [
   arLocale, bgLocale, caLocale, csLocale, daLocale, deLocale, enGbLocale, esDoLocale, esLocale, esPrLocale, esUsLocale, etLocale, frLocale,
   heLocale, hiLocale, hrLocale, fiLocale, glLocale, huLocale, idLocale, itLocale, jaLocale, kaLocale, kkLocale, koLocale, ltLocale, lvLocale, mnLocale,
   nbLocale, nlBeLocale, nlLocale, plLocale, ptBrLocale, ruLocale, roLocale, skLocale, slLocale, sqLocale, svLocale, thLocale, thBeLocale,
-  trLocale, ukLocale, viLocale, zhCnLocale
+  trLocale, ukLocale, viLocale, zhCnLocale, frCaLocale
 ];
 
 locales.forEach((locale: LocaleData) => {
@@ -36,20 +36,19 @@ locales.forEach((locale: LocaleData) => {
 });
 
 @NgModule({
-  declarations: [
-    DatepickerSectionComponent,
-    ...DEMO_COMPONENTS
-  ],
-  imports: [
-    BsDatepickerModule.forRoot(),
-    TabsModule.forRoot(),
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    DocsModule,
-    RouterModule.forChild(routes)
-  ],
-  exports: [DatepickerSectionComponent],
-  entryComponents: [...DEMO_COMPONENTS]
+    declarations: [
+        DatepickerSectionComponent,
+        ...DEMO_COMPONENTS
+    ],
+    imports: [
+        BsDatepickerModule.forRoot(),
+        TabsModule.forRoot(),
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        DocsModule,
+        RouterModule.forChild(routes)
+    ],
+    exports: [DatepickerSectionComponent]
 })
 export class DemoDatepickerModule {}

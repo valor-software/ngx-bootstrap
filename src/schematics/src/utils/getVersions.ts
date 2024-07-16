@@ -10,21 +10,26 @@ const defaultStyleFileRegex = /styles\.(c|le|sc|sa)ss/;
 // Regular expression that matches all files that have a proper stylesheet extension
 const validStyleFileRegex = /\.(c|le|sc|sa)ss/;
 
-export function getDependencies(host: Tree): { name: string, version: string }[] {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function getDependencies(host: Tree): { name: string; version: string }[] {
   return [
-    { name: 'bootstrap', version: BOOTSTRAP_VERSION},
-    { name: 'ngx-bootstrap', version: NGX_BOOTSTRAP_VERSION}
+    { name: 'bootstrap', version: BOOTSTRAP_VERSION },
+    { name: 'ngx-bootstrap', version: NGX_BOOTSTRAP_VERSION }
   ];
 }
 
 export function getProjectStyleFile(existingStyles: string[], extension?: string): string | null {
-  const defaultExtension = existingStyles.find((file) => extension ? file === `styles.${extension}` : defaultStyleFileRegex.test(file));
+  const defaultExtension = existingStyles.find((file) =>
+    extension ? file === `styles.${extension}` : defaultStyleFileRegex.test(file)
+  );
   if (defaultExtension) {
     return defaultExtension;
-  };
+  }
 
-  const fallbackStylePath = existingStyles.find((file) => extension ? file?.endsWith(`.${extension}`) : validStyleFileRegex.test(file));
+  const fallbackStylePath = existingStyles.find((file) =>
+    extension ? file?.endsWith(`.${extension}`) : validStyleFileRegex.test(file)
+  );
   if (fallbackStylePath) {
     return normalize(fallbackStylePath);
-  };
+  }
 }

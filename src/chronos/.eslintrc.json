@@ -1,14 +1,24 @@
 {
-  "extends": ["../../.eslintrc.json"],
-  "ignorePatterns": ["!**/*"],
+  "extends": [
+    "../../.eslintrc.json"
+  ],
+  "ignorePatterns": [
+    "!**/*"
+  ],
   "overrides": [
     {
-      "files": ["*.ts"],
+      "files": [
+        "*.ts"
+      ],
       "extends": [
-        "plugin:@nrwl/nx/angular",
+        "plugin:@nx/angular",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
-      "parserOptions": { "project": ["src/chronos/tsconfig.*?.json"] },
+      "parserOptions": {
+        "project": [
+          "src/chronos/tsconfig.*?.json"
+        ]
+      },
       "rules": {
         "no-var": "off",
         "no-useless-escape": "off",
@@ -20,8 +30,12 @@
       }
     },
     {
-      "files": ["*.html"],
-      "extends": ["plugin:@nrwl/nx/angular-template"],
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@nx/angular-template"
+      ],
       "rules": {}
     }
   ]

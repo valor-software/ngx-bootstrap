@@ -3,7 +3,7 @@ import {
   ComponentRef,
   Directive,
   ElementRef,
-  EventEmitter,
+  EventEmitter, HostBinding,
   Input,
   OnChanges,
   OnDestroy,
@@ -21,6 +21,8 @@ import { BsDatepickerViewMode, DatepickerDateCustomClasses, DatepickerDateToolti
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
 import { copyTime } from './utils/copy-time-utils';
 import { checkBsValue, setCurrentTimeOnDateSelect } from './utils/bs-calendar-utils';
+
+export let previousDate: Date | Date[] | undefined;
 
 @Directive({
   selector: '[bsDatepicker]',
@@ -96,6 +98,11 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
    * Emits when datepicker value has been changed
    */
   @Output() bsValueChange: EventEmitter<Date> = new EventEmitter();
+
+  @HostBinding ('attr.readonly') get readonlyValue () {
+    return this.isDisabled ? '' : null;
+  }
+
   protected _subs: Subscription[] = [];
   private _datepicker: ComponentLoader<BsDatepickerContainerComponent>;
   private _datepickerRef?: ComponentRef<BsDatepickerContainerComponent>;
@@ -150,6 +157,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       value = setCurrentTimeOnDateSelect(value);
     }
 
+    this.initPreviousValue();
     this._bsValue = value;
     this.bsValueChange.emit(value);
   }
@@ -171,11 +179,17 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       show: () => this.show()
     });
     this.setConfig();
+    this.initPreviousValue();
+  }
+
+  initPreviousValue() {
+    previousDate = this._bsValue;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes["bsConfig"]) {
       if (changes["bsConfig"].currentValue?.initCurrentTime && changes["bsConfig"].currentValue?.initCurrentTime !== changes["bsConfig"].previousValue?.initCurrentTime && this._bsValue) {
+        this.initPreviousValue();
         this._bsValue = setCurrentTimeOnDateSelect(this._bsValue);
         this.bsValueChange.emit(this._bsValue);
       }
@@ -209,9 +223,6 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
     }
 
     if (changes["isDisabled"]) {
-      if (this._elementRef?.nativeElement) {
-        this._elementRef.nativeElement.setAttribute('readonly', this.isDisabled);
-      }
       this._datepickerRef.instance.isDisabled = this.isDisabled;
     }
 
@@ -238,11 +249,31 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
     if (this._datepickerRef) {
       this._subs.push(
         this._datepickerRef.instance.valueChange.subscribe((value: Date) => {
+          this.initPreviousValue();
           this.bsValue = value;
+          if (this.keepDatepickerModalOpened()) {
+            return;
+          }
+
           this.hide();
         })
       );
     }
+  }
+
+  keepDatepickerModalOpened(): boolean {
+    if (!previousDate || !this.bsConfig?.keepDatepickerOpened || !this._config.withTimepicker) {
+      return false;
+    }
+
+    return this.isDateSame();
+  }
+
+  isDateSame(): boolean {
+    return (previousDate instanceof Date
+      && (this._bsValue?.getDate() === previousDate?.getDate())
+      && (this._bsValue?.getMonth() === previousDate?.getMonth())
+      && (this._bsValue?.getFullYear() === previousDate?.getFullYear()));
   }
 
   ngAfterViewInit(): void {
@@ -308,7 +339,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
    */
   setConfig(): void {
     this._config = Object.assign({}, this._config, this.bsConfig, {
-      value: checkBsValue(this._bsValue, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
+      value: this._config.keepDatesOutOfRules ? this._bsValue : checkBsValue(this._bsValue, this.maxDate || this.bsConfig && this.bsConfig.maxDate),
       isDisabled: this.isDisabled,
       minDate: this.minDate || this.bsConfig && this.bsConfig.minDate,
       maxDate: this.maxDate || this.bsConfig && this.bsConfig.maxDate,
@@ -318,7 +349,9 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
       datesDisabled: this.datesDisabled || this.bsConfig && this.bsConfig.datesDisabled,
       datesEnabled: this.datesEnabled || this.bsConfig && this.bsConfig.datesEnabled,
       minMode: this.minMode || this.bsConfig && this.bsConfig.minMode,
-      initCurrentTime: this.bsConfig?.initCurrentTime
+      initCurrentTime: this.bsConfig?.initCurrentTime,
+      keepDatepickerOpened: this.bsConfig?.keepDatepickerOpened,
+      keepDatesOutOfRules: this.bsConfig?.keepDatesOutOfRules
     });
   }
 
