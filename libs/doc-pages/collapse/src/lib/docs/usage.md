@@ -5,7 +5,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 @NgModule({
   imports: [
     BrowserAnimationsModule,
-    CollapseModule.forRoot(),
+    CollapseModule,
     ...
   ]
 })
