@@ -2,7 +2,7 @@ import {
   Component, HostBinding, Inject, Input, OnDestroy, OnInit, Output, EventEmitter
 } from '@angular/core';
 import { AccordionComponent } from './accordion.component';
-import { CollapseModule } from '../collapse/collapse.module';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { NgClass, NgIf } from '@angular/common';
 
 /**
