@@ -12,6 +12,7 @@ import { DemoTimepickerIsValidComponent } from './isvalid/isvalid';
 import { DemoTimepickerMeridianComponent } from './meridian/meridian';
 import { DemoTimepickerMinMaxComponent } from './min-max/min-max';
 import { DemoTimepickerMousewheelComponent } from './mousewheel/mousewheel';
+import { DemoTimepickerUseUtcComponent } from './use-utc/use-utc';
 import { DemoTimepickerPlaceholderComponent } from './placeholder/placeholder';
 import { DemoTimepickerReadonlyComponent } from './readonly/readonly';
 import { DemoTimepickerSpinnersComponent } from './spinners/spinners';
@@ -31,6 +32,7 @@ export const DEMO_COMPONENTS = [
   DemoTimepickerToggleMinutesSecondsComponent,
   DemoTimepickerArrowkeysComponent,
   DemoTimepickerMousewheelComponent,
+  DemoTimepickerUseUtcComponent,
   DemoTimepickerCustomValidationComponent,
   DemoTimepickerIsValidComponent,
   DemoTimepickerCustomValidationComponent,

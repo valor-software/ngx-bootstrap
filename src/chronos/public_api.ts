@@ -10,7 +10,9 @@ isSameDay,
 isSameMonth,
 getFullYear,
 getFirstDayOfMonth,
-getMonth
+getMonth,
+getHours,
+getMinutes,
 } from './utils/date-getters';
 
 export { parseDate } from './create/local';
@@ -48,7 +50,7 @@ export { esUsLocale } from './i18n/es-us';
 export { etLocale } from './i18n/et';
 export { fiLocale } from './i18n/fi';
 export { frLocale } from './i18n/fr';
-export {frCaLocale} from './i18n/fr-ca';
+export { frCaLocale } from './i18n/fr-ca';
 export { glLocale } from './i18n/gl';
 export { heLocale } from './i18n/he';
 export { hiLocale } from './i18n/hi';

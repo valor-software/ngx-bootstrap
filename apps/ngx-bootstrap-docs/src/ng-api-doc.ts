@@ -1903,6 +1903,143 @@ export const ngdoc: any = {
       }
     ]
   },
+  "TimepickerConfig": {
+    "fileName": "src/timepicker/timepicker.config.ts",
+    "className": "TimepickerConfig",
+    "description": "<p>Provides default configuration values for timepicker</p>\n",
+    "methods": [],
+    "properties": [
+      {
+        "name": "allowEmptyTime",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>if true emptyTime is not marked as invalid</p>\n"
+      },
+      {
+        "name": "ariaLabelHours",
+        "defaultValue": "hours",
+        "type": "string",
+        "description": "<p>hours aria label</p>\n"
+      },
+      {
+        "name": "ariaLabelMinutes",
+        "defaultValue": "minutes",
+        "type": "string",
+        "description": "<p>minutes aria label</p>\n"
+      },
+      {
+        "name": "ariaLabelSeconds",
+        "defaultValue": "seconds",
+        "type": "string",
+        "description": "<p>seconds aria label</p>\n"
+      },
+      {
+        "name": "arrowkeys",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>if true the values of hours and minutes can be changed using the up/down arrow keys on the keyboard</p>\n"
+      },
+      {
+        "name": "disabled",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>if true hours and minutes fields will be disabled</p>\n"
+      },
+      {
+        "name": "hoursPlaceholder",
+        "defaultValue": "HH",
+        "type": "string",
+        "description": "<p>placeholder for hours field in timepicker</p>\n"
+      },
+      {
+        "name": "hourStep",
+        "defaultValue": "1",
+        "type": "number",
+        "description": "<p>hours change step</p>\n"
+      },
+      {
+        "name": "max",
+        "type": "Date",
+        "description": "<p>maximum time user can select</p>\n"
+      },
+      {
+        "name": "meridians",
+        "type": "string[]",
+        "description": "<p>meridian labels based on locale</p>\n"
+      },
+      {
+        "name": "min",
+        "type": "Date",
+        "description": "<p>minimum time user can select</p>\n"
+      },
+      {
+        "name": "minutesPlaceholder",
+        "defaultValue": "MM",
+        "type": "string",
+        "description": "<p>placeholder for minutes field in timepicker</p>\n"
+      },
+      {
+        "name": "minuteStep",
+        "defaultValue": "5",
+        "type": "number",
+        "description": "<p>minutes change step</p>\n"
+      },
+      {
+        "name": "mousewheel",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>if true scroll inside hours and minutes inputs will change time</p>\n"
+      },
+      {
+        "name": "readonlyInput",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>if true hours and minutes fields will be readonly</p>\n"
+      },
+      {
+        "name": "secondsPlaceholder",
+        "defaultValue": "SS",
+        "type": "string",
+        "description": "<p>placeholder for seconds field in timepicker</p>\n"
+      },
+      {
+        "name": "secondsStep",
+        "defaultValue": "10",
+        "type": "number",
+        "description": "<p>seconds changes step</p>\n"
+      },
+      {
+        "name": "showMeridian",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>if true works in 12H mode and displays AM/PM. If false works in 24H mode and hides AM/PM</p>\n"
+      },
+      {
+        "name": "showMinutes",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>show minutes in timepicker</p>\n"
+      },
+      {
+        "name": "showSeconds",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>show seconds in timepicker</p>\n"
+      },
+      {
+        "name": "showSpinners",
+        "defaultValue": "true",
+        "type": "boolean",
+        "description": "<p>if true spinner arrows above and below the inputs will be shown</p>\n"
+      },
+      {
+        "name": "useUtc",
+        "defaultValue": "false",
+        "type": "boolean",
+        "description": "<p>if true displays utc time instead of client time</p>\n"
+      }
+    ]
+  },
   BarValue: {
     fileName: 'src/progressbar/progressbar-type.interface.ts',
     className: 'BarValue',
@@ -1979,138 +2116,6 @@ export const ngdoc: any = {
     description: '',
     methods: [],
     properties: []
-  },
-  TimepickerConfig: {
-    fileName: 'src/timepicker/timepicker.config.ts',
-    className: 'TimepickerConfig',
-    description: '<p>Provides default configuration values for timepicker</p>\n',
-    methods: [],
-    properties: [
-      {
-        name: 'allowEmptyTime',
-        defaultValue: 'false',
-        type: 'boolean',
-        description: '<p>if true emptyTime is not marked as invalid</p>\n'
-      },
-      {
-        name: 'ariaLabelHours',
-        defaultValue: 'hours',
-        type: 'string',
-        description: '<p>hours aria label</p>\n'
-      },
-      {
-        name: 'ariaLabelMinutes',
-        defaultValue: 'minutes',
-        type: 'string',
-        description: '<p>minutes aria label</p>\n'
-      },
-      {
-        name: 'ariaLabelSeconds',
-        defaultValue: 'seconds',
-        type: 'string',
-        description: '<p>seconds aria label</p>\n'
-      },
-      {
-        name: 'arrowkeys',
-        defaultValue: 'true',
-        type: 'boolean',
-        description:
-          '<p>if true the values of hours and minutes can be changed using the up/down arrow keys on the keyboard</p>\n'
-      },
-      {
-        name: 'disabled',
-        defaultValue: 'false',
-        type: 'boolean',
-        description: '<p>if true hours and minutes fields will be disabled</p>\n'
-      },
-      {
-        name: 'hoursPlaceholder',
-        defaultValue: 'HH',
-        type: 'string',
-        description: '<p>placeholder for hours field in timepicker</p>\n'
-      },
-      {
-        name: 'hourStep',
-        defaultValue: '1',
-        type: 'number',
-        description: '<p>hours change step</p>\n'
-      },
-      {
-        name: 'max',
-        type: 'Date',
-        description: '<p>maximum time user can select</p>\n'
-      },
-      {
-        name: 'meridians',
-        type: 'string[]',
-        description: '<p>meridian labels based on locale</p>\n'
-      },
-      {
-        name: 'min',
-        type: 'Date',
-        description: '<p>minimum time user can select</p>\n'
-      },
-      {
-        name: 'minutesPlaceholder',
-        defaultValue: 'MM',
-        type: 'string',
-        description: '<p>placeholder for minutes field in timepicker</p>\n'
-      },
-      {
-        name: 'minuteStep',
-        defaultValue: '5',
-        type: 'number',
-        description: '<p>minutes change step</p>\n'
-      },
-      {
-        name: 'mousewheel',
-        defaultValue: 'true',
-        type: 'boolean',
-        description: '<p>if true scroll inside hours and minutes inputs will change time</p>\n'
-      },
-      {
-        name: 'readonlyInput',
-        defaultValue: 'false',
-        type: 'boolean',
-        description: '<p>if true hours and minutes fields will be readonly</p>\n'
-      },
-      {
-        name: 'secondsPlaceholder',
-        defaultValue: 'SS',
-        type: 'string',
-        description: '<p>placeholder for seconds field in timepicker</p>\n'
-      },
-      {
-        name: 'secondsStep',
-        defaultValue: '10',
-        type: 'number',
-        description: '<p>seconds changes step</p>\n'
-      },
-      {
-        name: 'showMeridian',
-        defaultValue: 'true',
-        type: 'boolean',
-        description: '<p>if true works in 12H mode and displays AM/PM. If false works in 24H mode and hides AM/PM</p>\n'
-      },
-      {
-        name: 'showMinutes',
-        defaultValue: 'true',
-        type: 'boolean',
-        description: '<p>show minutes in timepicker</p>\n'
-      },
-      {
-        name: 'showSeconds',
-        defaultValue: 'false',
-        type: 'boolean',
-        description: '<p>show seconds in timepicker</p>\n'
-      },
-      {
-        name: 'showSpinners',
-        defaultValue: 'true',
-        type: 'boolean',
-        description: '<p>if true spinner arrows above and below the inputs will be shown</p>\n'
-      }
-    ]
   },
   Time: {
     fileName: 'src/timepicker/timepicker.models.ts',

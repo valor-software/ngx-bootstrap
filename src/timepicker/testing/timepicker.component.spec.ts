@@ -6,6 +6,7 @@ import { By } from '@angular/platform-browser';
 import { fireEvent } from '../../../scripts/helpers';
 import '../../../scripts/jest/toHaveCssClass';
 import { TimepickerActions, TimepickerComponent, TimepickerConfig, TimepickerModule } from '../index';
+import { padNumber } from '../timepicker.utils';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getInputElements(fixture: any) {
@@ -1076,7 +1077,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateHours(inputHours);
 
       expect(component.invalidHours).toEqual(false);
-            expect(component._updateTime).toHaveBeenCalled();
+      expect(component._updateTime).toHaveBeenCalled();
     });
 
     it('should clear model if minute input is invalid', () => {
@@ -1116,7 +1117,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateMinutes(inputMinutes);
 
       expect(component.invalidMinutes).toEqual(false);
-            expect(component._updateTime).toHaveBeenCalled();
+      expect(component._updateTime).toHaveBeenCalled();
     });
 
     it('should clear model if second input is invalid', () => {
@@ -1158,7 +1159,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateSeconds(inputSeconds);
 
       expect(component.invalidSeconds).toEqual(false);
-            expect(component._updateTime).toHaveBeenCalled();
+      expect(component._updateTime).toHaveBeenCalled();
     });
 
     it('should valid value in input fields', fakeAsync(() => {
@@ -1185,6 +1186,29 @@ describe('Component: TimepickerComponent', () => {
         expect(+inputSeconds.value).toBeLessThan(60);
       });
     }));
+  });
+
+  describe('use utc', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TimepickerComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+
+      inputHours = getInputElements(fixture)[0];
+      inputMinutes = getInputElements(fixture)[1];
+      inputSeconds = getInputElements(fixture)[2];
+      buttngOnChangess = getElements(fixture, 'a.btn');
+      buttonMeridian = getElements(fixture, 'button')[0];
+    });
+
+    it('should show utc values instead of client values', () => {
+      const time = testTime(12, 0, 0);
+      component.config.useUtc = true;
+      component.writeValue(time);
+      fixture.detectChanges();
+      expect(inputHours.value).toBe(padNumber(time.getUTCHours()));
+      expect(inputMinutes.value).toBe(padNumber(time.getUTCMinutes()));
+    });
   });
 
   describe('custom placeholders', () => {
