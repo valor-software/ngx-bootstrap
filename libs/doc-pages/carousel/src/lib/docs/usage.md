@@ -1,6 +1,6 @@
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 @NgModule({
-  imports: [CarouselModule.forRoot(),...]
+  imports: [CarouselModule,...]
 })
 export class AppModule(){}
