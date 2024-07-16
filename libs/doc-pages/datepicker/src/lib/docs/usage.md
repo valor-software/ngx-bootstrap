@@ -5,7 +5,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 @NgModule({
   imports: [
     BrowserAnimationsModule,
-    BsDatepickerModule.forRoot(),
+    BsDatepickerModule,
     ...
   ]
 })

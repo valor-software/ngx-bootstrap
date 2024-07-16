@@ -13,7 +13,8 @@ import { firstValueFrom } from 'rxjs';
     selector: 'test-cmp',
     template: `<input type="text"
     bsDaterangepicker
-    [bsConfig]="bsConfig">`
+    [bsConfig]="bsConfig">`,
+    standalone: true
 })
 class TestComponent {
     @ViewChild(BsDaterangepickerDirective, { static: false }) daterangepicker: BsDaterangepickerDirective;
@@ -54,12 +55,12 @@ describe('daterangepicker:', () => {
     let fixture: TestFixture;
     beforeEach(
       waitForAsync(() => TestBed.configureTestingModule({
-            declarations: [TestComponent],
-            imports: [
-                BsDatepickerModule.forRoot(),
-                BrowserAnimationsModule
-            ]
-        }).compileComponents()
+    imports: [
+        BsDatepickerModule,
+        BrowserAnimationsModule,
+        TestComponent
+    ]
+}).compileComponents()
         ));
     beforeEach(() => {
         fixture = TestBed.createComponent(TestComponent);

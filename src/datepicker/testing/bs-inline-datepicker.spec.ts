@@ -12,8 +12,9 @@ import { take } from 'rxjs/operators';
 import { getYearsCalendarInitialDate } from '../utils/bs-calendar-utils';
 
 @Component({
-  selector: 'test-cmp',
-  template: `<bs-datepicker-inline [bsConfig]="bsConfig"></bs-datepicker-inline>>`
+    selector: 'test-cmp',
+    template: `<bs-datepicker-inline [bsConfig]="bsConfig"></bs-datepicker-inline>>`,
+    standalone: true
 })
 class TestComponent {
   @ViewChild(BsDatepickerInlineDirective, { static: false }) datepicker: BsDatepickerInlineDirective;
@@ -39,12 +40,12 @@ describe('datepicker inline:', () => {
   let fixture: TestFixture;
   beforeEach(
     waitForAsync(() => TestBed.configureTestingModule({
-        declarations: [TestComponent],
-        imports: [
-          BsDatepickerModule.forRoot(),
-          BrowserAnimationsModule
-        ]
-    }).compileComponents()
+    imports: [
+        BsDatepickerModule,
+        BrowserAnimationsModule,
+        TestComponent
+    ]
+}).compileComponents()
     ));
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);

@@ -8,8 +8,9 @@ import { BsDatepickerDayDecoratorComponent } from '../themes/bs/bs-datepicker-da
 import '../../../scripts/jest/toHaveCssClass';
 
 @Component({
-  selector: 'test-cmp',
-  template: `<span bsDatepickerDayDecorator [day]='day'>{{ day.label }}</span>`
+    selector: 'test-cmp',
+    template: `<span bsDatepickerDayDecorator [day]='day'>{{ day.label }}</span>`,
+    standalone: true
 })
 class TestComponent {
   day: DayViewModel = { date: new Date(), label: '' };
@@ -32,9 +33,9 @@ describe('datepicker: [bsDatepickerDayDecorator]', () => {
 
   beforeEach(waitForAsync(() =>
     TestBed.configureTestingModule({
-      declarations: [TestComponent, BsDatepickerDayDecoratorComponent],
-      providers: [BsDatepickerConfig]
-    }).compileComponents()
+    imports: [TestComponent, BsDatepickerDayDecoratorComponent],
+    providers: [BsDatepickerConfig]
+}).compileComponents()
   ));
 
   beforeEach(() => {
