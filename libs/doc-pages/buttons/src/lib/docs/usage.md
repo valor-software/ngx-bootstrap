@@ -1,6 +1,6 @@
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 @NgModule({
-  imports: [ButtonsModule.forRoot(),...]
+  imports: [ButtonsModule,...]
 })
 export class AppModule(){}
