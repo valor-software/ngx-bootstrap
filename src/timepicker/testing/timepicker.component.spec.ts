@@ -1077,7 +1077,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateHours(inputHours);
 
       expect(component.invalidHours).toEqual(false);
-            expect(component._updateTime).toHaveBeenCalled();
+      expect(component._updateTime).toHaveBeenCalled();
     });
 
     it('should clear model if minute input is invalid', () => {
@@ -1117,7 +1117,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateMinutes(inputMinutes);
 
       expect(component.invalidMinutes).toEqual(false);
-            expect(component._updateTime).toHaveBeenCalled();
+      expect(component._updateTime).toHaveBeenCalled();
     });
 
     it('should clear model if second input is invalid', () => {
@@ -1159,7 +1159,7 @@ describe('Component: TimepickerComponent', () => {
       component.updateSeconds(inputSeconds);
 
       expect(component.invalidSeconds).toEqual(false);
-            expect(component._updateTime).toHaveBeenCalled();
+      expect(component._updateTime).toHaveBeenCalled();
     });
 
     it('should valid value in input fields', fakeAsync(() => {
