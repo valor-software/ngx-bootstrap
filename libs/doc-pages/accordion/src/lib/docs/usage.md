@@ -5,7 +5,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 @NgModule({
   imports: [
     BrowserAnimationsModule,
-    AccordionModule.forRoot(),
+    AccordionModule,
     ...
   ]
 })
