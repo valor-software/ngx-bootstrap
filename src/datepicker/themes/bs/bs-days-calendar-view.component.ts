@@ -17,8 +17,8 @@ import {
   DayViewModel, WeekViewModel
 } from '../../models';
 
-import { BsDatepickerConfig } from '../../bs-datepicker.config';
-import { TooltipModule } from '../../../tooltip/tooltip.module';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDatepickerDayDecoratorComponent } from './bs-datepicker-day-decorator.directive';
 import { NgIf, NgFor } from '@angular/common';
 import { BsDatepickerNavigationViewComponent } from './bs-datepicker-navigation-view.component';
