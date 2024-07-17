@@ -11,7 +11,7 @@ import { datepickerAnimation } from '../../datepicker-animations';
 import { BsCustomDatesViewComponent } from './bs-custom-dates-view.component';
 import { BsYearsCalendarViewComponent } from './bs-years-calendar-view.component';
 import { BsMonthCalendarViewComponent } from './bs-months-calendar-view.component';
-import { DemoTimepickerModule } from '@ngx-bootstrap-doc/timepicker';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { BsDaysCalendarViewComponent } from './bs-days-calendar-view.component';
 import { NgIf, NgClass, NgSwitch, NgSwitchCase, NgFor, AsyncPipe } from '@angular/common';
 
