@@ -150,19 +150,22 @@ export function createDate(
   minutes: number,
   seconds: number
 ): Date {
+  const year = value.getFullYear();
+  const month = value.getMonth();
+  const day = value.getDate();
+
   const newValue = new Date(
-    value.getFullYear(),
-    value.getMonth(),
-    value.getDate(),
+    year,
+    month,
+    day,
     hours,
     minutes,
     seconds,
     value.getMilliseconds()
   );
+  
   // #3139 ensure date part remains unchanged
-  newValue.setFullYear(value.getFullYear());
-  newValue.setMonth(value.getMonth());
-  newValue.setDate(value.getDate());
+  newValue.setFullYear(year, month, day);
 
   return newValue;
 }
