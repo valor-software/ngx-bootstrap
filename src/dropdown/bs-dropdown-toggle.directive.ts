@@ -18,7 +18,8 @@ import { BsDropdownDirective } from './bs-dropdown.directive';
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[attr.aria-haspopup]': 'true'
-  }
+  },
+  standalone: true
 })
 export class BsDropdownToggleDirective implements OnDestroy {
   @HostBinding('attr.disabled') isDisabled: undefined | true;

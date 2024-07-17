@@ -13,8 +13,7 @@ import { initialYearShift } from '../engine/format-years-calendar';
 @Component({
     selector: 'test-cmp',
     template: `
-    <bs-daterangepicker-inline [bsConfig]="bsConfig"></bs-daterangepicker-inline>`,
-    standalone: true
+    <bs-daterangepicker-inline [bsConfig]="bsConfig"></bs-daterangepicker-inline>`
 })
 class TestComponent {
   @ViewChild(BsDaterangepickerInlineDirective, { static: false }) datepicker: BsDaterangepickerInlineDirective;
@@ -41,13 +40,13 @@ describe('daterangepicker inline:', () => {
   let fixture: TestFixture;
   beforeEach(
     waitForAsync(() => TestBed.configureTestingModule({
-    imports: [
+      declarations: [TestComponent],
+      imports: [
         BsDatepickerModule,
-        BrowserAnimationsModule,
-        TestComponent
-    ]
-}).compileComponents()
-    ));
+        BrowserAnimationsModule
+      ]
+    }).compileComponents())
+  );
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
     fixture.detectChanges();

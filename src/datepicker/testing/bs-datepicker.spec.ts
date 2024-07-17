@@ -15,7 +15,6 @@ import { BsDatepickerContainerComponent } from '../themes/bs/bs-datepicker-conta
     template: `<input type='text'
                     bsDatepicker
                     [bsConfig]='bsConfig'>`,
-    standalone: true
 })
 class TestComponent {
   @ViewChild(BsDatepickerDirective, { static: false }) datepicker: BsDatepickerDirective;
@@ -56,10 +55,10 @@ describe('datepicker:', () => {
   let fixture: TestFixture;
   beforeEach(
     waitForAsync(() => TestBed.configureTestingModule({
-    imports: [
+      declarations: [TestComponent],
+      imports: [
         BsDatepickerModule,
-        BrowserAnimationsModule,
-        TestComponent
+        BrowserAnimationsModule
     ]
 }).compileComponents()
     ));

@@ -5,7 +5,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 @NgModule({
   imports: [
     BrowserAnimationsModule,
-    BsDropdownModule.forRoot()
+    BsDropdownModule
   ]
 })
 export class AppModule(){}

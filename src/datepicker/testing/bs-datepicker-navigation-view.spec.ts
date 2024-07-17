@@ -11,7 +11,6 @@ import { BsDatepickerNavigationViewComponent } from '../themes/bs/bs-datepicker-
       [calendar]="month"
       (onNavigate)="navTo($event)"
     ></bs-datepicker-navigation-view>`,
-    standalone: true
 })
 class TestComponent {
   month!: DaysCalendarViewModel;
@@ -55,9 +54,10 @@ describe('datepicker: bs-datepicker-navigation-view', () => {
   let fixture: TestFixture;
   beforeEach(
     waitForAsync(() => TestBed.configureTestingModule({
-    imports: [TestComponent, BsDatepickerNavigationViewComponent]
-}).compileComponents()
-    ));
+      declarations: [TestComponent],
+      imports: [BsDatepickerNavigationViewComponent]
+    }).compileComponents())
+  );
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
   });

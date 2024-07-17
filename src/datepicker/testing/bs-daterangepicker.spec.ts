@@ -14,7 +14,6 @@ import { firstValueFrom } from 'rxjs';
     template: `<input type="text"
     bsDaterangepicker
     [bsConfig]="bsConfig">`,
-    standalone: true
 })
 class TestComponent {
     @ViewChild(BsDaterangepickerDirective, { static: false }) daterangepicker: BsDaterangepickerDirective;
@@ -55,13 +54,13 @@ describe('daterangepicker:', () => {
     let fixture: TestFixture;
     beforeEach(
       waitForAsync(() => TestBed.configureTestingModule({
-    imports: [
-        BsDatepickerModule,
-        BrowserAnimationsModule,
-        TestComponent
-    ]
-}).compileComponents()
-        ));
+        declarations: [TestComponent],
+        imports: [
+          BsDatepickerModule,
+          BrowserAnimationsModule
+        ]
+      }).compileComponents())
+    );
     beforeEach(() => {
         fixture = TestBed.createComponent(TestComponent);
         fixture.detectChanges();

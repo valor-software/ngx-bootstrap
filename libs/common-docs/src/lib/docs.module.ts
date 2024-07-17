@@ -80,7 +80,7 @@ export { ThemesComponent } from './common/themes/themes.component';
     ExamplesComponentModule,
     ApiSectionsComponentModule,
     TabsModule.forRoot(),
-    BsDropdownModule.forRoot(),
+    BsDropdownModule,
     RouterModule
   ],
   exports: [
