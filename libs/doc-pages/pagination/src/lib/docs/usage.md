@@ -1,6 +1,6 @@
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 
 @NgModule({
-  imports: [PaginationModule.forRoot(),...]
+  imports: [PaginationModule,...]
 })
 export class AppModule(){}
