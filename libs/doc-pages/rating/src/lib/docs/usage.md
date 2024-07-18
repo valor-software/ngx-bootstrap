@@ -1,6 +1,6 @@
 import { RatingModule } from 'ngx-bootstrap/rating';
 
 @NgModule({
-  imports: [RatingModule.forRoot(),...]
+  imports: [RatingModule,...]
 })
 export class AppModule(){}
