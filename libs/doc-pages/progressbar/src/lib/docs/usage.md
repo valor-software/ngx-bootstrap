@@ -1,6 +1,6 @@
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 
 @NgModule({
-  imports: [ProgressbarModule.forRoot(),...]
+  imports: [ProgressbarModule,...]
 })
 export class AppModule(){}
