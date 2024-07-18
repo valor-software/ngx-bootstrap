@@ -44,7 +44,7 @@ locales.forEach((locale: LocaleData) => {
     ],
     imports: [
         BsDatepickerModule,
-        TabsModule.forRoot(),
+        TabsModule,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,

@@ -1,6 +1,6 @@
 import { TabsModule } from 'ngx-bootstrap/tabs';
 
 @NgModule({
-  imports: [TabsModule.forRoot(),...]
+  imports: [TabsModule,...]
 })
 export class AppModule(){}
