@@ -1,6 +1,6 @@
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
-  imports: [ModalModule.forRoot(),...]
+  imports: [ModalModule,...]
 })
 export class AppModule(){}

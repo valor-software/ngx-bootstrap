@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 
 import { DocsModule } from '@ngx-bootstrap-doc/docs';
 import { ModalSectionComponent } from './modal-section.component';
@@ -24,7 +24,7 @@ export { ModalSectionComponent } from './modal-section.component';
         ...DEMO_COMPONENTS
     ],
     imports: [
-        ModalModule.forRoot(),
+        ModalModule,
         PopoverModule.forRoot(),
         TooltipModule.forRoot(),
         CommonModule,
@@ -32,6 +32,7 @@ export { ModalSectionComponent } from './modal-section.component';
         DocsModule,
         RouterModule.forChild(routes)
     ],
-    exports: [ModalSectionComponent]
+    exports: [ModalSectionComponent],
+    providers: [BsModalService]
 })
 export class DemoModalModule {}
