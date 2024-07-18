@@ -1,6 +1,6 @@
 import { SortableModule } from 'ngx-bootstrap/sortable';
 
 @NgModule({
-  imports: [SortableModule.forRoot(),...]
+  imports: [SortableModule,...]
 })
 export class AppModule(){}
