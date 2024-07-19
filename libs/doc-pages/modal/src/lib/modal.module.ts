@@ -26,7 +26,7 @@ export { ModalSectionComponent } from './modal-section.component';
     imports: [
         ModalModule,
         PopoverModule,
-        TooltipModule.forRoot(),
+        TooltipModule,
         CommonModule,
         FormsModule,
         DocsModule,
