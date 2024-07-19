@@ -5,7 +5,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 @NgModule({
   imports: [
     BrowserAnimationsModule,
-    TypeaheadModule.forRoot(),
+    TypeaheadModule,
     ...
   ]
 })
