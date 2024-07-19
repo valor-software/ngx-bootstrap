@@ -5,10 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { RatingComponent, RatingConfig, RatingModule } from '../index';
 
 @Component({
-    selector: 'rating-test',
-    template: '',
-    standalone: true,
-    imports: [FormsModule]
+  selector: 'rating-test',
+  template: ''
 })
 class TestRatingComponent {
   max = 5;
@@ -28,9 +26,9 @@ describe('Component: Rating. Init:', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [RatingComponent],
-    providers: [RatingConfig]
-});
+      imports: [RatingComponent],
+      providers: [RatingConfig]
+    });
     fixture = TestBed.createComponent(RatingComponent);
     context = fixture.debugElement.componentInstance;
 
@@ -91,8 +89,9 @@ describe('Component: Rating. Custom template:', () => {
   beforeEach(
     fakeAsync(() => {
       TestBed.configureTestingModule({
-    imports: [RatingModule, FormsModule, TestRatingComponent]
-});
+        declarations: [TestRatingComponent],
+        imports: [RatingModule, FormsModule]
+      });
       TestBed.overrideComponent(TestRatingComponent, {
         set: { template: `
         <rating max="5" [customTemplate]="tt" style="font-size: 32px;"></rating>
@@ -126,8 +125,9 @@ describe('Component: Rating. Clicks:', () => {
   beforeEach(
     fakeAsync(() => {
       TestBed.configureTestingModule({
-    imports: [RatingModule, FormsModule, TestRatingComponent]
-});
+        declarations: [TestRatingComponent],
+        imports: [RatingModule, FormsModule]
+      });
       TestBed.overrideComponent(TestRatingComponent, {
         set: {template: tpl}
       });
