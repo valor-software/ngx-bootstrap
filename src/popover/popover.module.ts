@@ -9,10 +9,8 @@ import { PopoverContainerComponent } from './popover-container.component';
     exports: [PopoverDirective]
 })
 export class PopoverModule {
-  // static forRoot(): ModuleWithProviders<PopoverModule> {
-  //   return {
-  //     ngModule: PopoverModule,
-  //     providers: [ComponentLoaderFactory, PositioningService]
-  //   };
-  // }
+  // @deprecated method not required anymore, will be deleted in v19.0.0
+  static forRoot() {
+    return PopoverModule;
+  }
 }

@@ -6,4 +6,9 @@ import { CollapseDirective } from './collapse.directive';
     imports: [CollapseDirective],
     exports: [CollapseDirective]
 })
-export class CollapseModule {}
+export class CollapseModule {
+  // @deprecated method not required anymore, will be deleted in v19.0.0
+  static forRoot() {
+    return CollapseModule;
+  }
+}

@@ -63,4 +63,8 @@ import { BsYearsCalendarViewComponent } from './themes/bs/bs-years-calendar-view
     ]
 })
 export class BsDatepickerModule {
+  // @deprecated method not required anymore, will be deleted in v19.0.0
+  static forRoot() {
+    return BsDatepickerModule;
+  }
 }

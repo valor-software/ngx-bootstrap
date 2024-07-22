@@ -6,4 +6,9 @@ import { RatingComponent } from './rating.component';
     imports: [RatingComponent],
     exports: [RatingComponent]
 })
-export class RatingModule {}
+export class RatingModule {
+  // @deprecated method not required anymore, will be deleted in v19.0.0
+  static forRoot() {
+    return RatingModule;
+  }
+}

@@ -7,4 +7,9 @@ import { AccordionPanelComponent } from './accordion-group.component';
     imports: [AccordionComponent, AccordionPanelComponent],
     exports: [AccordionComponent, AccordionPanelComponent]
 })
-export class AccordionModule {}
+export class AccordionModule {
+  // @deprecated method not required anymore, will be deleted in v19.0.0
+  static forRoot() {
+    return AccordionModule;
+  }
+}

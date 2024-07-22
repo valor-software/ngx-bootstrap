@@ -8,4 +8,9 @@ import { PaginationComponent } from './pagination.component';
     imports: [CommonModule, PagerComponent, PaginationComponent],
     exports: [PagerComponent, PaginationComponent]
 })
-export class PaginationModule {}
+export class PaginationModule {
+  // @deprecated method not required anymore, will be deleted in v19.0.0
+  static forRoot() {
+    return PaginationModule;
+  }
+}

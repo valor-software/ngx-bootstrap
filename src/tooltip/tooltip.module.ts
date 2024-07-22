@@ -7,4 +7,9 @@ import { TooltipDirective } from './tooltip.directive';
     imports: [CommonModule, TooltipDirective, TooltipContainerComponent],
     exports: [TooltipDirective]
 })
-export class TooltipModule {}
+export class TooltipModule {
+  // @deprecated method not required anymore, will be deleted in v19.0.0
+  static forRoot() {
+    return TooltipModule;
+  }
+}

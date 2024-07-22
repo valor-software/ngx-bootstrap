@@ -7,4 +7,9 @@ import { ProgressbarComponent } from './progressbar.component';
     imports: [BarComponent, ProgressbarComponent],
     exports: [BarComponent, ProgressbarComponent]
 })
-export class ProgressbarModule {}
+export class ProgressbarModule {
+  // @deprecated method not required anymore, will be deleted in v19.0.0
+  static forRoot() {
+    return ProgressbarModule;
+  }
+}

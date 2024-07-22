@@ -6,4 +6,9 @@ import { SortableComponent } from './sortable.component';
     imports: [SortableComponent],
     exports: [SortableComponent]
 })
-export class SortableModule {}
+export class SortableModule {
+  // @deprecated method not required anymore, will be deleted in v19.0.0
+  static forRoot() {
+    return SortableModule;
+  }
+}

@@ -8,4 +8,9 @@ import { TypeaheadDirective } from './typeahead.directive';
     imports: [CommonModule, TypeaheadContainerComponent, TypeaheadDirective],
     exports: [TypeaheadContainerComponent, TypeaheadDirective]
 })
-export class TypeaheadModule {}
+export class TypeaheadModule {
+  // @deprecated method not required anymore, will be deleted in v19.0.0
+  static forRoot() {
+    return TypeaheadModule;
+  }
+}

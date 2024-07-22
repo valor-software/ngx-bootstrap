@@ -7,4 +7,8 @@ import { TimepickerComponent } from './timepicker.component';
     exports: [TimepickerComponent],
 })
 export class TimepickerModule {
+  // @deprecated method not required anymore, will be deleted in v19.0.0
+  static forRoot() {
+    return TimepickerModule;
+  }
 }

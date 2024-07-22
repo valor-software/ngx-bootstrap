@@ -8,4 +8,9 @@ import { ButtonRadioGroupDirective } from './button-radio-group.directive';
     imports: [ButtonCheckboxDirective, ButtonRadioDirective, ButtonRadioGroupDirective],
     exports: [ButtonCheckboxDirective, ButtonRadioDirective, ButtonRadioGroupDirective]
 })
-export class ButtonsModule {}
+export class ButtonsModule {
+  // @deprecated method not required anymore, will be deleted in v19.0.0
+  static forRoot() {
+    return ButtonsModule;
+  }
+}

@@ -8,4 +8,8 @@ import { SlideComponent } from './slide.component';
     exports: [SlideComponent, CarouselComponent]
 })
 export class CarouselModule {
+  // @deprecated method not required anymore, will be deleted in v19.0.0
+  static forRoot() {
+    return CarouselModule;
+  }
 }

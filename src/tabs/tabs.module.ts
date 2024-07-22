@@ -19,4 +19,8 @@ import { TabsetComponent } from './tabset.component';
     ]
 })
 export class TabsModule {
+  // @deprecated method not required anymore, will be deleted in v19.0.0
+  static forRoot() {
+    return TabsModule;
+  }
 }
