@@ -12,6 +12,7 @@ export class AppComponent(){}
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
-  imports: [ModalModule,...]
+  imports: [ModalModule,...],
+  providers: [BsModalService]
 })
 export class AppModule(){}
