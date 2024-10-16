@@ -21,12 +21,13 @@ import {
 } from './collapse-animations';
 
 @Directive({
-  selector: '[collapse]',
-  exportAs: 'bs-collapse',
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {
-    '[class.collapse]': 'true'
-  }
+    selector: '[collapse]',
+    exportAs: 'bs-collapse',
+    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+    host: {
+        '[class.collapse]': 'true'
+    },
+    standalone: true
 })
 export class CollapseDirective implements AfterViewChecked {
   /** This event fires as soon as content collapses */

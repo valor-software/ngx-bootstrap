@@ -26,7 +26,7 @@ describe('Component: Rating. Init:', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RatingComponent],
+      imports: [RatingComponent],
       providers: [RatingConfig]
     });
     fixture = TestBed.createComponent(RatingComponent);
@@ -90,7 +90,7 @@ describe('Component: Rating. Custom template:', () => {
     fakeAsync(() => {
       TestBed.configureTestingModule({
         declarations: [TestRatingComponent],
-        imports: [RatingModule.forRoot(), FormsModule]
+        imports: [RatingModule, FormsModule]
       });
       TestBed.overrideComponent(TestRatingComponent, {
         set: { template: `
@@ -126,7 +126,7 @@ describe('Component: Rating. Clicks:', () => {
     fakeAsync(() => {
       TestBed.configureTestingModule({
         declarations: [TestRatingComponent],
-        imports: [RatingModule.forRoot(), FormsModule]
+        imports: [RatingModule, FormsModule]
       });
       TestBed.overrideComponent(TestRatingComponent, {
         set: {template: tpl}

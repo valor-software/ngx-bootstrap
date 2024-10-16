@@ -17,7 +17,7 @@ export { CollapseSectionComponent } from './collapse-section.component';
         ...DEMO_COMPONENTS
     ],
     imports: [
-        CollapseModule.forRoot(),
+        CollapseModule,
         CommonModule,
         FormsModule,
         DocsModule,

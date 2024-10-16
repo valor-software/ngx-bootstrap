@@ -16,7 +16,7 @@ interface State {
 }
 
 @Component({
-  template: ` <input
+    template: `<input
     [(ngModel)]="selectedState"
     [typeahead]="states"
     [typeaheadOptionField]="'name'"
@@ -52,8 +52,9 @@ describe('Directive: Typeahead', () => {
   beforeEach(waitForAsync(() =>
     TestBed.configureTestingModule({
       declarations: [TestTypeaheadComponent],
-      imports: [TypeaheadModule.forRoot(), BrowserAnimationsModule, FormsModule]
-    }).compileComponents()));
+      imports: [TypeaheadModule, BrowserAnimationsModule, FormsModule]
+    }).compileComponents())
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestTypeaheadComponent);

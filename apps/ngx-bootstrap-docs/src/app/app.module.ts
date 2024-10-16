@@ -16,7 +16,7 @@ import { routes } from './app.routing';
     bootstrap: [AppComponent], imports: [BrowserAnimationsModule,
         DocsModule,
         RouterModule.forRoot(routes, { useHash: environment.useHash }),
-        BsDropdownModule.forRoot()], providers: [
+        BsDropdownModule], providers: [
         { provide: NgApiDoc, useValue: ngdoc },
         { provide: DOCS_TOKENS, useValue: routes },
         { provide: SIDEBAR_ROUTES, useValue: SidebarRoutesStructure },

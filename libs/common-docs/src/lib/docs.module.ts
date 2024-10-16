@@ -79,8 +79,8 @@ export { ThemesComponent } from './common/themes/themes.component';
     NgApiDocModule,
     ExamplesComponentModule,
     ApiSectionsComponentModule,
-    TabsModule.forRoot(),
-    BsDropdownModule.forRoot(),
+    TabsModule,
+    BsDropdownModule,
     RouterModule
   ],
   exports: [

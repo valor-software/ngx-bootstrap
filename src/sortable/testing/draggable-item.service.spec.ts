@@ -3,7 +3,8 @@ import { fakeAsync, inject, TestBed } from '@angular/core/testing';
 import { DraggableItem, DraggableItemService, SortableItem } from '../index';
 
 @Component({
-  template: `<h1>Test</h1>`
+    template: `<h1>Test</h1>`,
+    standalone: true
 })
 class TestComponent {}
 
@@ -14,9 +15,9 @@ describe('Service: DraggableItem', () => {
   beforeEach(
     fakeAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [TestComponent],
-        providers: [DraggableItemService]
-      }).createComponent(TestComponent);
+    imports: [TestComponent],
+    providers: [DraggableItemService]
+}).createComponent(TestComponent);
     })
   );
 

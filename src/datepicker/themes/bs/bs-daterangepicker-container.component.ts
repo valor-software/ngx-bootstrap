@@ -24,20 +24,39 @@ import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
 import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
 import { datepickerAnimation } from '../../datepicker-animations';
-import { BsCustomDates } from './bs-custom-dates-view.component';
+import { BsCustomDates, BsCustomDatesViewComponent } from './bs-custom-dates-view.component';
 import { dayInMilliseconds } from '../../reducer/_defaults';
+import { BsYearsCalendarViewComponent } from './bs-years-calendar-view.component';
+import { BsMonthCalendarViewComponent } from './bs-months-calendar-view.component';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { BsDaysCalendarViewComponent } from './bs-days-calendar-view.component';
+import { NgIf, NgClass, NgSwitch, NgSwitchCase, NgFor, AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'bs-daterangepicker-container',
-  providers: [BsDatepickerStore, BsDatepickerEffects],
-  templateUrl: './bs-datepicker-view.html',
-  host: {
-    class: 'bottom',
-    '(click)': '_stopPropagation($event)',
-    role: 'dialog',
-    'aria-label': 'calendar'
-  },
-  animations: [datepickerAnimation]
+    selector: 'bs-daterangepicker-container',
+    providers: [BsDatepickerStore, BsDatepickerEffects, BsDatepickerActions, PositioningService],
+    templateUrl: './bs-datepicker-view.html',
+    host: {
+        class: 'bottom',
+        '(click)': '_stopPropagation($event)',
+        role: 'dialog',
+        'aria-label': 'calendar'
+    },
+    animations: [datepickerAnimation],
+    standalone: true,
+    imports: [
+      NgIf,
+      NgClass,
+      NgSwitch,
+      NgSwitchCase,
+      NgFor,
+      BsDaysCalendarViewComponent,
+      TimepickerModule,
+      BsMonthCalendarViewComponent,
+      BsYearsCalendarViewComponent,
+      BsCustomDatesViewComponent,
+      AsyncPipe
+    ]
 })
 export class BsDaterangepickerContainerComponent
   extends BsDatepickerAbstractComponent
