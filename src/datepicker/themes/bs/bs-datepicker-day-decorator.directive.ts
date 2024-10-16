@@ -11,19 +11,20 @@ import { BsDatepickerConfig } from '../../bs-datepicker.config';
 import { DayViewModel } from '../../models';
 
 @Component({
-  selector: '[bsDatepickerDayDecorator]',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  host: {
-    '[class.disabled]': 'day.isDisabled',
-    '[class.is-highlighted]': 'day.isHovered',
-    '[class.is-other-month]': 'day.isOtherMonth',
-    '[class.is-active-other-month]': 'day.isOtherMonthHovered',
-    '[class.in-range]': 'day.isInRange',
-    '[class.select-start]': 'day.isSelectionStart',
-    '[class.select-end]': 'day.isSelectionEnd',
-    '[class.selected]': 'day.isSelected'
-  },
-  template: `{{ day && day.label || '' }}`
+    selector: '[bsDatepickerDayDecorator]',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    host: {
+        '[class.disabled]': 'day.isDisabled',
+        '[class.is-highlighted]': 'day.isHovered',
+        '[class.is-other-month]': 'day.isOtherMonth',
+        '[class.is-active-other-month]': 'day.isOtherMonthHovered',
+        '[class.in-range]': 'day.isInRange',
+        '[class.select-start]': 'day.isSelectionStart',
+        '[class.select-end]': 'day.isSelectionEnd',
+        '[class.selected]': 'day.isSelected'
+    },
+    template: `{{ day && day.label || '' }}`,
+    standalone: true
 })
 export class BsDatepickerDayDecoratorComponent implements OnInit {
   @Input() day: DayViewModel = { date: new Date(), label: '' };

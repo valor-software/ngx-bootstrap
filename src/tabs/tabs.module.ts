@@ -7,25 +7,20 @@ import { TabDirective } from './tab.directive';
 import { TabsetComponent } from './tabset.component';
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [
-    NgTranscludeDirective,
-    TabDirective,
-    TabsetComponent,
-    TabHeadingDirective
-  ],
-  exports: [
-    TabDirective,
-    TabsetComponent,
-    TabHeadingDirective,
-    NgTranscludeDirective
-  ]
+    imports: [CommonModule, NgTranscludeDirective,
+        TabDirective,
+        TabsetComponent,
+        TabHeadingDirective],
+    exports: [
+        TabDirective,
+        TabsetComponent,
+        TabHeadingDirective,
+        NgTranscludeDirective
+    ]
 })
 export class TabsModule {
-  static forRoot(): ModuleWithProviders<TabsModule> {
-    return {
-      ngModule: TabsModule,
-      providers: []
-    };
+  // @deprecated method not required anymore, will be deleted in v19.0.0
+  static forRoot() {
+    return TabsModule;
   }
 }

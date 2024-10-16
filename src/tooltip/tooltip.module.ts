@@ -1,20 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipDirective } from './tooltip.directive';
-import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
-import { PositioningService } from 'ngx-bootstrap/positioning';
 
 @NgModule({
-    imports: [CommonModule],
-    declarations: [TooltipDirective, TooltipContainerComponent],
+    imports: [CommonModule, TooltipDirective, TooltipContainerComponent],
     exports: [TooltipDirective]
 })
 export class TooltipModule {
-  static forRoot(): ModuleWithProviders<TooltipModule> {
-    return {
-      ngModule: TooltipModule,
-      providers: [ComponentLoaderFactory, PositioningService]
-    };
+  // @deprecated method not required anymore, will be deleted in v19.0.0
+  static forRoot() {
+    return TooltipModule;
   }
 }

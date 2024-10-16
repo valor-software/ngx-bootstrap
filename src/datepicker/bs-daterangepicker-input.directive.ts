@@ -49,15 +49,20 @@ const BS_DATERANGEPICKER_VALIDATOR: Provider = {
 
 
 @Directive({
-  selector: `input[bsDaterangepicker]`,
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {
-    '(change)': 'onChange($event)',
-    '(keyup.esc)': 'hide()',
-    '(keydown)': 'onKeydownEvent($event)',
-    '(blur)': 'onBlur()'
-  },
-  providers: [BS_DATERANGEPICKER_VALUE_ACCESSOR, BS_DATERANGEPICKER_VALIDATOR]
+    selector: `input[bsDaterangepicker]`,
+    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+    host: {
+        '(change)': 'onChange($event)',
+        '(keyup.esc)': 'hide()',
+        '(keydown)': 'onKeydownEvent($event)',
+        '(blur)': 'onBlur()'
+    },
+    providers: [
+      BsLocaleService,
+      BS_DATERANGEPICKER_VALUE_ACCESSOR,
+      BS_DATERANGEPICKER_VALIDATOR
+    ],
+    standalone: true
 })
 export class BsDaterangepickerInputDirective
   implements ControlValueAccessor, Validator, OnInit, OnDestroy {

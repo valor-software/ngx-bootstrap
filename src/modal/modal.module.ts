@@ -1,32 +1,33 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 
-import { PositioningService } from 'ngx-bootstrap/positioning';
-import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 import { FocusTrapModule } from 'ngx-bootstrap/focus-trap';
 
 import { ModalBackdropComponent } from './modal-backdrop.component';
 import { ModalDirective } from './modal.directive';
 import { ModalContainerComponent } from './modal-container.component';
 import { BsModalService } from './bs-modal.service';
-
-export const focusTrapModule = FocusTrapModule.forRoot();
+import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
+import { PositioningService } from 'ngx-bootstrap/positioning';
 
 @NgModule({
-    imports: [FocusTrapModule],
-    declarations: [
-        ModalBackdropComponent,
-        ModalDirective,
-        ModalContainerComponent
+    imports: [
+      FocusTrapModule,
+      ModalBackdropComponent,
+      ModalDirective,
+      ModalContainerComponent
     ],
     exports: [ModalBackdropComponent, ModalDirective]
 })
 export class ModalModule {
+  // @deprecated method not required anymore, will be deleted in v19.0.0
   static forRoot(): ModuleWithProviders<ModalModule> {
     return {
       ngModule: ModalModule,
       providers: [BsModalService, ComponentLoaderFactory, PositioningService]
     };
   }
+
+  // @deprecated method not required anymore, will be deleted in v19.0.0
   static forChild(): ModuleWithProviders<ModalModule> {
     return {
       ngModule: ModalModule,

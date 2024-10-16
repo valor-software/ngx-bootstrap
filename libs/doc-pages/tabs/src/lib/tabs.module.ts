@@ -20,7 +20,7 @@ export { TabsSectionComponent } from './tabs-section.component';
         CommonModule,
         FormsModule,
         DocsModule,
-        TabsModule.forRoot(),
+        TabsModule,
         RouterModule.forChild(routes)
     ],
     exports: [TabsSectionComponent]
