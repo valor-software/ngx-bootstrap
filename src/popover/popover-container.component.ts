@@ -2,22 +2,22 @@ import { ChangeDetectionStrategy, Input, Component } from '@angular/core';
 import { PopoverConfig } from './popover.config';
 import { getBsVer, IBsVersion } from 'ngx-bootstrap/utils';
 import { PlacementForBs5, checkMargins, AvailableBSPositions } from 'ngx-bootstrap/positioning';
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'popover-container',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {
-    '[attr.id]': 'popoverId',
-    '[class]':
-      '"popover in popover-" + _placement + " " + "bs-popover-" + _placement + " " + _placement + " " + containerClass + " " + checkMarginNecessity()',
-    '[class.show]': '!_bsVersions.isBs3',
-    '[class.bs3]': '_bsVersions.isBs3',
-    role: 'tooltip',
-    style: 'display:block; position:absolute'
-  },
-  styles: [
-    `
+    selector: 'popover-container',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+    host: {
+        '[attr.id]': 'popoverId',
+        '[class]': '"popover in popover-" + _placement + " " + "bs-popover-" + _placement + " " + _placement + " " + containerClass + " " + checkMarginNecessity()',
+        '[class.show]': '!_bsVersions.isBs3',
+        '[class.bs3]': '_bsVersions.isBs3',
+        role: 'tooltip',
+        style: 'display:block; position:absolute'
+    },
+    styles: [
+        `
       :host.popover.bottom > .arrow {
         margin-left: -4px;
       }
@@ -26,8 +26,10 @@ import { PlacementForBs5, checkMargins, AvailableBSPositions } from 'ngx-bootstr
         position: absolute;
       }
     `
-  ],
-  templateUrl: './popover-container.component.html'
+    ],
+    templateUrl: './popover-container.component.html',
+    standalone: true,
+    imports: [NgIf]
 })
 export class PopoverContainerComponent {
   @Input() set placement(value: AvailableBSPositions) {

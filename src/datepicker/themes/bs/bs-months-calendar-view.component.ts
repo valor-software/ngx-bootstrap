@@ -7,10 +7,13 @@ import {
   MonthsCalendarViewModel,
   CalendarCellViewModel
 } from '../../models';
+import { NgFor } from '@angular/common';
+import { BsDatepickerNavigationViewComponent } from './bs-datepicker-navigation-view.component';
+import { BsCalendarLayoutComponent } from './bs-calendar-layout.component';
 
 @Component({
-  selector: 'bs-month-calendar-view',
-  template: `
+    selector: 'bs-month-calendar-view',
+    template: `
     <bs-calendar-layout>
       <bs-datepicker-navigation-view
         [calendar]="calendar"
@@ -33,7 +36,9 @@ import {
         </tbody>
       </table>
     </bs-calendar-layout>
-  `
+  `,
+    standalone: true,
+    imports: [BsCalendarLayoutComponent, BsDatepickerNavigationViewComponent, NgFor]
 })
 export class BsMonthCalendarViewComponent {
   @Input() calendar!: MonthsCalendarViewModel;

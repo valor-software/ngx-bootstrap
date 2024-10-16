@@ -22,8 +22,9 @@ type AvailableValues = boolean | string | number;
  * Add checkbox functionality to any element
  */
 @Directive({
-  selector: '[btnCheckbox]',
-  providers: [CHECKBOX_CONTROL_VALUE_ACCESSOR]
+    selector: '[btnCheckbox]',
+    providers: [CHECKBOX_CONTROL_VALUE_ACCESSOR],
+    standalone: true
 })
 export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
   /** Truthy value, will be set to ngModel */

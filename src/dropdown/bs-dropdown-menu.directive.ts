@@ -3,7 +3,8 @@ import { BsDropdownState } from './bs-dropdown.state';
 
 @Directive({
   selector: '[bsDropdownMenu],[dropdownMenu]',
-  exportAs: 'bs-dropdown-menu'
+  exportAs: 'bs-dropdown-menu',
+  standalone: true
 })
 export class BsDropdownMenuDirective {
   constructor(

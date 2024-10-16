@@ -35,6 +35,7 @@ import {
   padNumber,
   parseTime
 } from './timepicker.utils';
+import { NgIf } from '@angular/common';
 
 export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: ControlValueAccessorModel = {
   provide: NG_VALUE_ACCESSOR,
@@ -43,11 +44,11 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: ControlValueAccessorModel = {
 };
 
 @Component({
-  selector: 'timepicker',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [TIMEPICKER_CONTROL_VALUE_ACCESSOR, TimepickerStore],
-  templateUrl: './timepicker.component.html',
-  styles: [`
+    selector: 'timepicker',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [TIMEPICKER_CONTROL_VALUE_ACCESSOR, TimepickerStore, TimepickerActions],
+    templateUrl: './timepicker.component.html',
+    styles: [`
     .bs-chevron {
       border-style: solid;
       display: block;
@@ -74,7 +75,9 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: ControlValueAccessorModel = {
       padding: .375rem .55rem;
     }
   `],
-  encapsulation: ViewEncapsulation.None
+    encapsulation: ViewEncapsulation.None,
+    standalone: true,
+    imports: [NgIf]
 })
 export class TimepickerComponent
   implements ControlValueAccessor,
