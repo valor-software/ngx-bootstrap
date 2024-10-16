@@ -11,10 +11,10 @@ import { BsDatepickerViewMode, CalendarCellViewModel, WeekViewModel } from '../m
 import { BsDatepickerContainerComponent } from '../themes/bs/bs-datepicker-container.component';
 
 @Component({
-  selector: 'test-cmp',
-  template: `<input type='text'
+    selector: 'test-cmp',
+    template: `<input type='text'
                     bsDatepicker
-                    [bsConfig]='bsConfig'>`
+                    [bsConfig]='bsConfig'>`,
 })
 class TestComponent {
   @ViewChild(BsDatepickerDirective, { static: false }) datepicker: BsDatepickerDirective;
@@ -55,12 +55,12 @@ describe('datepicker:', () => {
   let fixture: TestFixture;
   beforeEach(
     waitForAsync(() => TestBed.configureTestingModule({
-        declarations: [TestComponent],
-        imports: [
-          BsDatepickerModule.forRoot(),
-          BrowserAnimationsModule
-        ]
-      }).compileComponents()
+      declarations: [TestComponent],
+      imports: [
+        BsDatepickerModule,
+        BrowserAnimationsModule
+    ]
+}).compileComponents()
     ));
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);

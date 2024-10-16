@@ -1,14 +1,13 @@
-import { CommonModule } from '@angular/common';
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { AlertComponent } from './alert.component';
 
 @NgModule({
-    imports: [CommonModule],
-    declarations: [AlertComponent],
+    imports: [AlertComponent],
     exports: [AlertComponent]
 })
 export class AlertModule {
-  static forRoot(): ModuleWithProviders<AlertModule> {
-    return { ngModule: AlertModule, providers: [] };
+  // @deprecated method not required anymore, will be deleted in v19.0.0
+  static forRoot() {
+    return AlertModule;
   }
 }
