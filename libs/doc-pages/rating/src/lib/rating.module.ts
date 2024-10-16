@@ -20,7 +20,7 @@ export { RatingSectionComponent } from './rating-section.component';
         CommonModule,
         FormsModule,
         DocsModule,
-        RatingModule.forRoot(),
+        RatingModule,
         RouterModule.forChild(routes)
     ],
     exports: [RatingSectionComponent]

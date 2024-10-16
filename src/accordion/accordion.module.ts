@@ -1,17 +1,15 @@
-import { CommonModule } from '@angular/common';
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { AccordionComponent } from './accordion.component';
 import { AccordionPanelComponent } from './accordion-group.component';
-import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 @NgModule({
-  imports: [CommonModule, CollapseModule],
-  declarations: [AccordionComponent, AccordionPanelComponent],
-  exports: [AccordionComponent, AccordionPanelComponent]
+    imports: [AccordionComponent, AccordionPanelComponent],
+    exports: [AccordionComponent, AccordionPanelComponent]
 })
 export class AccordionModule {
-  static forRoot(): ModuleWithProviders<AccordionModule> {
-    return { ngModule: AccordionModule, providers: [] };
+  // @deprecated method not required anymore, will be deleted in v19.0.0
+  static forRoot() {
+    return AccordionModule;
   }
 }

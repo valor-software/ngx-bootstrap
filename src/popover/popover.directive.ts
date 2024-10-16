@@ -22,7 +22,12 @@ let id = 0;
 /**
  * A lightweight, extensible directive for fancy popover creation.
  */
-@Directive({ selector: '[popover]', exportAs: 'bs-popover' })
+@Directive({
+  selector: '[popover]',
+  exportAs: 'bs-popover',
+  standalone: true,
+  providers: [ PositioningService, ComponentLoaderFactory ]
+})
 export class PopoverDirective implements OnInit, OnDestroy {
   /** unique id popover - use for aria-describedby */
   popoverId = id++;

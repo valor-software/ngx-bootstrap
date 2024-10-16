@@ -24,8 +24,12 @@ import { AvailableBSPositions } from 'ngx-bootstrap/positioning';
 let id = 0;
 
 @Directive({
-  selector: '[tooltip], [tooltipHtml]',
-  exportAs: 'bs-tooltip'
+    selector: '[tooltip], [tooltipHtml]',
+    exportAs: 'bs-tooltip',
+    standalone: true,
+    providers: [
+      ComponentLoaderFactory, PositioningService
+    ]
 })
 export class TooltipDirective implements OnInit, OnDestroy {
   tooltipId = id++;

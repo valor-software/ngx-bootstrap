@@ -16,7 +16,7 @@ export { CarouselSectionComponent } from './carousel-section.component';
         ...DEMO_COMPONENTS
     ],
     imports: [
-        CarouselModule.forRoot(),
+        CarouselModule,
         CommonModule,
         FormsModule,
         DocsModule,

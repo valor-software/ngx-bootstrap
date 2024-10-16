@@ -34,8 +34,7 @@ describe('Component: TypeaheadContainer', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [TypeaheadContainerComponent],
-      imports: [BrowserAnimationsModule],
+      imports: [BrowserAnimationsModule, TypeaheadContainerComponent],
       providers: [
         {
           provide: TypeaheadOptions,

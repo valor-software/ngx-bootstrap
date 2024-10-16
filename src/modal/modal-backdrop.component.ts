@@ -6,10 +6,11 @@ import { Utils } from 'ngx-bootstrap/utils';
 
 /** This component will be added as background layout for modals if enabled */
 @Component({
-  selector: 'bs-modal-backdrop',
-  template: ' ',
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: { class: CLASS_NAME.BACKDROP }
+    selector: 'bs-modal-backdrop',
+    template: ' ',
+    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+    host: { class: CLASS_NAME.BACKDROP },
+    standalone: true
 })
 export class ModalBackdropComponent implements OnInit {
   get isAnimated(): boolean {

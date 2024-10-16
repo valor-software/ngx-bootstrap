@@ -20,7 +20,7 @@ export { SortableSectionComponent } from './sortable-section.component';
         CommonModule,
         FormsModule,
         DocsModule,
-        SortableModule.forRoot(),
+        SortableModule,
         RouterModule.forChild(routes)
     ],
     exports: [SortableSectionComponent]
