@@ -50,7 +50,7 @@ describe('Directive: Dropdown', () => {
     TestBed.configureTestingModule({
       declarations: [TestDropdownComponent],
       imports: [
-        BsDropdownModule.forRoot(),
+        BsDropdownModule,
         BrowserAnimationsModule
       ]
     });

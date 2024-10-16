@@ -42,6 +42,7 @@ export class BsModalService {
   protected backdropRef?: ComponentRef<ModalBackdropComponent>;
   private _backdropLoader: ComponentLoader<ModalBackdropComponent>;
   private modalsCount = 0;
+  private lastHiddenId: number | string | undefined = 0;
   private lastDismissReason?: string;
 
   private loaders: ComponentLoader<ModalContainerComponent>[] = [];
@@ -83,6 +84,10 @@ export class BsModalService {
   }
 
   hide(id?: number | string) {
+    if (this.lastHiddenId === id) {
+      return;
+    }
+    this.lastHiddenId = id;
     if (this.modalsCount === 1 || id == null) {
       this._hideBackdrop();
       this.resetScrollbar();

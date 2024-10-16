@@ -49,8 +49,13 @@ const BS_DATEPICKER_VALIDATOR: Provider = {
 };
 
 @Directive({
-  selector: `input[bsDatepicker]`,
-  providers: [BS_DATEPICKER_VALUE_ACCESSOR, BS_DATEPICKER_VALIDATOR]
+    selector: `input[bsDatepicker]`,
+    providers: [
+      BsLocaleService,
+      BS_DATEPICKER_VALUE_ACCESSOR,
+      BS_DATEPICKER_VALIDATOR
+    ],
+    standalone: true
 })
 export class BsDatepickerInputDirective implements ControlValueAccessor, Validator, OnInit, OnDestroy {
   private _onChange = Function.prototype;
@@ -190,6 +195,7 @@ export class BsDatepickerInputDirective implements ControlValueAccessor, Validat
     }
 
     this._picker.bsValue = this._value;
+    this._onChange(this._value);
   }
 
   setDisabledState(isDisabled: boolean): void {

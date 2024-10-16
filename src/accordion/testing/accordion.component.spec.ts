@@ -4,8 +4,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccordionConfig, AccordionModule } from '../index';
 
 @Component({
-  selector: 'accordion-test',
-  template: ''
+    selector: 'accordion-test',
+    template: ''
 })
 class TestAccordionComponent {
   oneAtATime = true;
@@ -77,10 +77,10 @@ describe('Component: Accordion', () => {
     TestBed.configureTestingModule({
       declarations: [TestAccordionComponent],
       imports: [
-        AccordionModule.forRoot(),
+        AccordionModule,
         BrowserAnimationsModule
       ]
-    });
+});
     TestBed.overrideComponent(TestAccordionComponent, {
       set: { template: html }
     });

@@ -20,8 +20,9 @@ const BACKDROP_TRANSITION_DURATION = 150;
 
 /** Mark any code with directive to show it's content in modal */
 @Directive({
-  selector: '[bsModal]',
-  exportAs: 'bs-modal'
+    selector: '[bsModal]',
+    exportAs: 'bs-modal',
+    standalone: true
 })
 export class ModalDirective implements OnDestroy, OnInit {
   /** allows to set modal configuration via element property */

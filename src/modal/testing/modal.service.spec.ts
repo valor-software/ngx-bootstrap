@@ -28,7 +28,7 @@ describe('Modal service', () => {
     TestBed.configureTestingModule({
       declarations: [DummyComponent],
       providers: [BsModalService],
-      imports: [ModalModule.forRoot(), TestModule]
+      imports: [ModalModule, TestModule]
     });
     fixture = TestBed.createComponent(DummyComponent);
     modalService = fixture.debugElement.injector.get(BsModalService);

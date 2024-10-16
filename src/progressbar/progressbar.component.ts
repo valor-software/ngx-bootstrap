@@ -1,21 +1,25 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { BarValue, ProgressbarType } from './progressbar-type.interface';
 import { ProgressbarConfig } from './progressbar.config';
+import { BarComponent } from './bar.component';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'progressbar',
-  templateUrl: './progressbar.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {
-    '[class.progress]': 'true',
-    '[attr.max]': 'max'
-  },
-  styles: [`
+    selector: 'progressbar',
+    templateUrl: './progressbar.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+    host: {
+        '[class.progress]': 'true',
+        '[attr.max]': 'max'
+    },
+    styles: [`
     :host {
       width: 100%;
       display: flex;
-    } `]
+    } `],
+    standalone: true,
+    imports: [NgIf, BarComponent, NgFor]
 })
 export class ProgressbarComponent {
   /** maximum total value of progress element */

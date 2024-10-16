@@ -4,8 +4,13 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testin
 import '../../../scripts/jest/toHaveCssClass';
 import { CarouselModule } from '../index';
 import { getBsVer, IBsVersion } from 'ngx-bootstrap/utils';
+import { CommonModule } from '@angular/common';
 
-@Component({ selector: 'carousel-test', template: '' })
+@Component({
+    selector: 'carousel-test', template: '',
+    standalone: true,
+    imports: [CommonModule, CarouselModule]
+})
 class TestCarouselComponent {
   myInterval = 5000;
   noWrapSlides = false;
@@ -84,9 +89,8 @@ describe('Component: Carousel', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestCarouselComponent],
-      imports: [CarouselModule]
-    });
+    imports: [CarouselModule, TestCarouselComponent]
+});
     TestBed.overrideComponent(TestCarouselComponent, {
       set: { template: html }
     });
