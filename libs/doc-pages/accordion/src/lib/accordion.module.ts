@@ -17,7 +17,7 @@ export { AccordionSectionComponent } from './accordion-section.component';
         ...DEMO_COMPONENTS
     ],
     imports: [
-        AccordionModule.forRoot(),
+        AccordionModule,
         CommonModule,
         FormsModule,
         DocsModule,

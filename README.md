@@ -106,7 +106,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
   ...
-  imports: [TooltipModule.forRoot(),...]
+  imports: [TooltipModule,...]
   ...
 })
 ```

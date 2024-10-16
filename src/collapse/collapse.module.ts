@@ -1,13 +1,14 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { CollapseDirective } from './collapse.directive';
 
 @NgModule({
-  declarations: [CollapseDirective],
-  exports: [CollapseDirective]
+    imports: [CollapseDirective],
+    exports: [CollapseDirective]
 })
 export class CollapseModule {
-  static forRoot(): ModuleWithProviders<CollapseModule> {
-    return { ngModule: CollapseModule, providers: [] };
+  // @deprecated method not required anymore, will be deleted in v19.0.0
+  static forRoot() {
+    return CollapseModule;
   }
 }

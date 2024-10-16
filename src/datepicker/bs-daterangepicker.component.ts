@@ -22,8 +22,12 @@ export let previousDate: (Date | undefined)[] | undefined;
 
 
 @Directive({
-  selector: '[bsDaterangepicker]',
-  exportAs: 'bsDaterangepicker'
+    selector: '[bsDaterangepicker]',
+    exportAs: 'bsDaterangepicker',
+    standalone: true,
+    providers: [
+      ComponentLoaderFactory
+    ]
 })
 export class BsDaterangepickerDirective
   implements OnInit, OnDestroy, OnChanges, AfterViewInit {

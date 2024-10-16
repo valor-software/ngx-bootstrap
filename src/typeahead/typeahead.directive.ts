@@ -24,21 +24,24 @@ import { TypeaheadMatch } from './typeahead-match.class';
 import { TypeaheadOrder } from './typeahead-order.class';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
 import { TypeaheadConfig } from './typeahead.config';
+import { PositioningService } from 'ngx-bootstrap/positioning';
 
 // eslint-disable-next-line
 type TypeaheadOption = string | Record<string | number, any>;
 type TypeaheadOptionArr = TypeaheadOption[] | Observable<TypeaheadOption>;
 
 @Directive({
-  selector: '[typeahead]',
-  exportAs: 'bs-typeahead',
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {
-    '[attr.aria-activedescendant]': 'activeDescendant',
-    '[attr.aria-owns]': 'isOpen ? this._container.popupId : null',
-    '[attr.aria-expanded]': 'isOpen',
-    '[attr.aria-autocomplete]': 'list'
-  }
+    selector: '[typeahead]',
+    exportAs: 'bs-typeahead',
+    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+    host: {
+        '[attr.aria-activedescendant]': 'activeDescendant',
+        '[attr.aria-owns]': 'isOpen ? this._container.popupId : null',
+        '[attr.aria-expanded]': 'isOpen',
+        '[attr.aria-autocomplete]': 'list'
+    },
+    standalone: true,
+    providers: [ComponentLoaderFactory, PositioningService]
 })
 export class TypeaheadDirective implements OnInit, OnDestroy {
   /** options source, can be Array of strings, objects or

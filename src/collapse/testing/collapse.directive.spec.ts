@@ -13,8 +13,10 @@ const template = `
 `;
 
 @Component({
-  selector: 'collapse-test',
-  template
+    selector: 'collapse-test',
+    template,
+    standalone: true,
+    imports: [CollapseModule]
 })
 class TestCollapseComponent {}
 
@@ -28,12 +30,12 @@ describe('Directive: Collapse', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TestCollapseComponent],
-      imports: [
+    imports: [
         CollapseModule,
-        BrowserAnimationsModule
-      ]
-    });
+        BrowserAnimationsModule,
+        TestCollapseComponent
+    ]
+});
     fixture = TestBed.createComponent(TestCollapseComponent);
     fixture.detectChanges();
     context = fixture.componentInstance;
