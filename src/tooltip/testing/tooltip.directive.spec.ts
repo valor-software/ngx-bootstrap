@@ -41,7 +41,7 @@ describe('Directives: Tooltips', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestTooltipComponent],
-      imports: [TooltipModule.forRoot(), FormsModule]
+      imports: [TooltipModule, FormsModule]
     });
     TestBed.overrideComponent(TestTooltipComponent, {
       set: {template: overTemplate}

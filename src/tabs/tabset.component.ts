@@ -2,12 +2,16 @@ import { Component, HostBinding, Input, OnDestroy, Renderer2, ElementRef } from 
 
 import { TabDirective } from './tab.directive';
 import { TabsetConfig } from './tabset.config';
+import { NgTranscludeDirective } from './ng-transclude.directive';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 // todo: add active event to tab
 // todo: fix? mixing static and dynamic tabs position tabs in order of creation
 @Component({
-  selector: 'tabset',
-  templateUrl: './tabset.component.html',
-  styleUrls: ['./tabs.scss']
+    selector: 'tabset',
+    templateUrl: './tabset.component.html',
+    styleUrls: ['./tabs.scss'],
+    standalone: true,
+    imports: [NgClass, NgFor, NgTranscludeDirective, NgIf]
 })
 export class TabsetComponent implements OnDestroy {
   /** if true tabs will be placed vertically */

@@ -14,6 +14,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { RatingResults } from './models';
 import { RatingConfig } from './rating.config';
+import { NgFor, NgTemplateOutlet } from '@angular/common';
 
 export const RATING_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
@@ -22,10 +23,12 @@ export const RATING_CONTROL_VALUE_ACCESSOR: Provider = {
 };
 
 @Component({
-  selector: 'rating',
-  templateUrl: './rating.component.html',
-  providers: [RATING_CONTROL_VALUE_ACCESSOR],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'rating',
+    templateUrl: './rating.component.html',
+    providers: [RATING_CONTROL_VALUE_ACCESSOR],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgFor, NgTemplateOutlet]
 })
 export class RatingComponent implements ControlValueAccessor, OnInit {
   /** number of icons */

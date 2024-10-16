@@ -16,7 +16,7 @@ describe('Component: Pager:', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [PaginationModule.forRoot()]
+      imports: [PaginationModule]
     });
     fixture = TestBed.createComponent(PagerComponent);
     context = fixture.debugElement.componentInstance;

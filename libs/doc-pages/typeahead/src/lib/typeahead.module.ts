@@ -21,7 +21,7 @@ export { TypeaheadSectionComponent } from './typeahead-section.component';
         FormsModule,
         ReactiveFormsModule,
         DocsModule,
-        TypeaheadModule.forRoot(),
+        TypeaheadModule,
         RouterModule.forChild(routes)
     ],
     exports: [TypeaheadSectionComponent]

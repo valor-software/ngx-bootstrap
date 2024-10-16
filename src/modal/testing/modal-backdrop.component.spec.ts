@@ -6,8 +6,8 @@ describe('ModalBackdropComponent tests', () => {
   let component: ModalBackdropComponent;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ModalBackdropComponent]
-    });
+    imports: [ModalBackdropComponent]
+});
     fixture = TestBed.createComponent(ModalBackdropComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -17,7 +17,7 @@ describe('BsDropdownContainerComponent tests', () => {
     };
     TestBed.configureTestingModule({
       imports: [
-        BsDropdownModule.forRoot(),
+        BsDropdownModule,
         BrowserAnimationsModule
       ],
       providers: [{ provide: BsDropdownState, useValue: fakeService }]
