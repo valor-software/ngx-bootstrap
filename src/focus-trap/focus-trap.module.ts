@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FocusTrapDirective } from './focus-trap';
@@ -9,7 +9,10 @@ import { FocusTrapDirective } from './focus-trap';
 })
 export class FocusTrapModule {
   // @deprecated method not required anymore, will be deleted in v19.0.0
-  static forRoot() {
-    return FocusTrapModule;
+  static forRoot(): ModuleWithProviders<FocusTrapModule> {
+    return {
+      ngModule: FocusTrapModule,
+      providers: []
+    };
   }
 }
