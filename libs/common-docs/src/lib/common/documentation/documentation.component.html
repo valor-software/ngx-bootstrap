@@ -112,6 +112,22 @@
         <a class="anchor-link" routerLink="." fragment="installation">#</a>
       </h2>
       <h4>Angular CLI way</h4>
+      <p>Make sure that your app uses modular approach and you have app.module.ts set as your starting point before you proceed</p>
+      <pre class="prettyprint lang-js prettyprinted">
+<span class="kwd">import</span><span class="pln"> </span><span class="pun">{{'{'}}</span><span class="kwd"> platformBrowser </span><span
+        class="pun">{{'}'}}</span><span class="pln"> from </span><span class="str">'&#64;angular/platform-browser'</span><span
+        class="pun">;</span>
+<span class="kwd">import</span><span class="pln"> </span><span class="pun">{{'{'}}</span><span class="kwd"> AppModule </span><span
+        class="pun">{{'}'}}</span><span class="pln"> from </span><span class="str">'./app.module'</span><span
+class="pun">;</span>
+<span class="pln">&nbsp;</span>
+<span class="pun">platformBrowser().bootstrapModule(AppModule).catch((err) => console.error(err));</span>
+      </pre>
+<!--          // main.ts-->
+<!--          import { platformBrowser } from '&#64;angular/platform-browser';-->
+<!--          import { AppModule } from './app.module';-->
+
+<!--          platformBrowser().bootstrapModule(AppModule).catch((err) => console.error(err));-->
       <p>Use the Angular CLI ng add command for updating your Angular project.</p>
       <pre class="prettyprint lang-bash prettyprinted"><span class="pln">ng add ngx-bootstrap</span></pre>
 
@@ -233,7 +249,7 @@
         </thead>
         <tbody>
           <tr>
-            <th>13.x.x</th>
+            <th>18.x.x</th>
             <th>18.x.x</th>
             <th>5.x.x or 4.x.x</th>
           </tr>

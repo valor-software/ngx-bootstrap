@@ -6,9 +6,9 @@
  * found in the LICENSE file at https://angular.io/license
  */
 import { workspaces } from '@angular-devkit/core';
-import { Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
+import { Rule, SchematicContext, SchematicsException, Tree } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
-import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
+import { getAppModulePath, isStandaloneApp } from '@schematics/angular/utility/ng-ast-utils';
 import { addModuleImportToRootModule, addPackageToPackageJson } from '../utils';
 import { hasNgModuleImport } from '../utils/ng-module-imports';
 import { getProjectMainFile } from '../utils/project-main-file';
@@ -83,6 +83,11 @@ export default function addBsToPackage(options: Schema): Rule {
 function addModuleOfComponent(project: workspaces.ProjectDefinition, host: Tree, context: SchematicContext, componentName: string): Rule {
   if (!project) {
     return;
+  }
+
+  if (isStandaloneApp(host, getProjectMainFile(project))) {
+    throw new SchematicsException(`ngx-bootstrap doesn't support moduleless approach if we couldn't find
+    your starting *.module.ts learn more here https://valor-software.com/ngx-bootstrap/#/documentation#installation`);
   }
 
   const appModulePath = getAppModulePath(host, getProjectMainFile(project));

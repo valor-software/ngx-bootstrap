@@ -9,18 +9,18 @@ import {
 import { CarouselComponent } from './carousel.component';
 
 @Component({
-  selector: 'slide',
-  template: `
+    selector: 'slide',
+    template: `
     <div [class.active]="active" class="item">
       <ng-content></ng-content>
     </div>
   `,
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {
-    '[attr.aria-hidden]': '!active',
-    '[class.multilist-margin]': 'multilist'
-  },
-  styles: [`
+    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+    host: {
+        '[attr.aria-hidden]': '!active',
+        '[class.multilist-margin]': 'multilist'
+    },
+    styles: [`
     :host.carousel-animation {
        transition: opacity 0.6s ease, visibility 0.6s ease;
        float: left;
@@ -41,7 +41,8 @@ import { CarouselComponent } from './carousel.component';
     :host.carousel-item {
       perspective: 1000px;
     }
-  `]
+  `],
+    standalone: true
 })
 export class SlideComponent implements OnInit, OnDestroy {
   /** Is current slide active */

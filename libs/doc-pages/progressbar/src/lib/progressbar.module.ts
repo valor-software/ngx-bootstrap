@@ -20,7 +20,7 @@ export { ProgressbarSectionComponent } from './progressbar-section.component';
         CommonModule,
         FormsModule,
         DocsModule,
-        ProgressbarModule.forRoot(),
+        ProgressbarModule,
         RouterModule.forChild(routes)
     ],
     exports: [ProgressbarSectionComponent]

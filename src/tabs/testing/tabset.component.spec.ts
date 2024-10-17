@@ -105,7 +105,7 @@ describe('Component: Tabs', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestTabsetComponent],
-      imports: [TabsModule.forRoot()]
+      imports: [TabsModule]
     });
     TestBed.overrideComponent(TestTabsetComponent, { set: { template: html } });
     fixture = TestBed.createComponent(TestTabsetComponent);

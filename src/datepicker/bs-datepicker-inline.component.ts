@@ -25,8 +25,10 @@ import { copyTime } from './utils/copy-time-utils';
 import { checkBsValue, setCurrentTimeOnDateSelect } from './utils/bs-calendar-utils';
 
 @Directive({
-  selector: 'bs-datepicker-inline',
-  exportAs: 'bsDatepickerInline'
+    selector: 'bs-datepicker-inline',
+    exportAs: 'bsDatepickerInline',
+    standalone: true,
+    providers: [ComponentLoaderFactory]
 })
 export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges {
   /**
