@@ -263,25 +263,20 @@ export class TypeaheadContainerComponent implements OnDestroy {
       ? latinize(itemStr)
       : itemStr).toLowerCase();
     let startIdx: number;
-    let tokenLen = 0;
+    let tokenLen: number;
     // Replaces the capture string with the same string inside of a "strong" tag
     if (typeof query === 'object') {
       const queryLen: number = query.length;
-      let indexOfTrimmedMatch:number;
       for (let i = 0; i < queryLen; i += 1) {
         // query[i] is already latinized and lower case
-        // When user type empty string as query, it always taking first index(0) instead of space after the query word.
-        // as result it adding the html markup, so to solve this issue we are trimming the match and find the index.
-        // If it is valid index adding token lenth to it
-        indexOfTrimmedMatch =  itemStrHelper.trim().indexOf(query[i]);
-        startIdx = query[i].trim() ? itemStrHelper.indexOf(query[i]) :  indexOfTrimmedMatch >= 0 ?  indexOfTrimmedMatch + tokenLen : -1;
+        startIdx = itemStrHelper.indexOf(query[i]);
         tokenLen = query[i].length;
         if (startIdx >= 0 && tokenLen > 0) {
           itemStr =
             `${itemStr.substring(0, startIdx)}<strong>${itemStr.substring(startIdx, startIdx + tokenLen)}</strong>` +
             `${itemStr.substring(startIdx + tokenLen)}`;
           itemStrHelper =
-            `${itemStrHelper.substring(0, startIdx)}        ${' '.repeat(tokenLen)}         ` +
+            `${itemStrHelper.substring(0, startIdx)}?????????${'??'.repeat(tokenLen)}???????????` +
             `${itemStrHelper.substring(startIdx + tokenLen)}`;
         }
       }
