@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
@@ -64,7 +64,10 @@ import { BsYearsCalendarViewComponent } from './themes/bs/bs-years-calendar-view
 })
 export class BsDatepickerModule {
   // @deprecated method not required anymore, will be deleted in v19.0.0
-  static forRoot() {
-    return BsDatepickerModule;
+  static forRoot(): ModuleWithProviders<BsDatepickerModule> {
+    return {
+      ngModule: BsDatepickerModule,
+      providers: []
+    };
   }
 }

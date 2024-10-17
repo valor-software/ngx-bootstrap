@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { SortableComponent } from './sortable.component';
 
@@ -8,7 +8,10 @@ import { SortableComponent } from './sortable.component';
 })
 export class SortableModule {
   // @deprecated method not required anymore, will be deleted in v19.0.0
-  static forRoot() {
-    return SortableModule;
+  static forRoot(): ModuleWithProviders<SortableModule> {
+    return {
+      ngModule: SortableModule,
+      providers: []
+    };
   }
 }

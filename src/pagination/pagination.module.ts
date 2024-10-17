@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { PagerComponent } from './pager.component';
 import { PaginationComponent } from './pagination.component';
@@ -10,7 +10,10 @@ import { PaginationComponent } from './pagination.component';
 })
 export class PaginationModule {
   // @deprecated method not required anymore, will be deleted in v19.0.0
-  static forRoot() {
-    return PaginationModule;
+  static forRoot(): ModuleWithProviders<PaginationModule> {
+    return {
+      ngModule: PaginationModule,
+      providers: []
+    };
   }
 }
