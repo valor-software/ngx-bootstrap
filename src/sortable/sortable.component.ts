@@ -9,11 +9,12 @@ import {
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { DraggableItem } from './draggable-item';
 import { DraggableItemService } from './draggable-item.service';
+import { NgClass, NgStyle, NgIf, NgFor, NgTemplateOutlet } from '@angular/common';
 
 @Component({
-  selector: 'bs-sortable',
-  exportAs: 'bs-sortable',
-  template: `
+    selector: 'bs-sortable',
+    exportAs: 'bs-sortable',
+    template: `
 <div
     [ngClass]="wrapperClass"
     [ngStyle]="wrapperStyle"
@@ -45,13 +46,16 @@ import { DraggableItemService } from './draggable-item.service';
 
 <ng-template #defItemTemplate let-item="item">{{item.value}}</ng-template>
 `,
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => SortableComponent),
-      multi: true
-    }
-  ]
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => SortableComponent),
+            multi: true
+        },
+      DraggableItemService
+    ],
+    standalone: true,
+    imports: [NgClass, NgStyle, NgIf, NgFor, NgTemplateOutlet]
 })
 export class SortableComponent implements ControlValueAccessor {
   private static globalZoneIndex = 0;

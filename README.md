@@ -101,19 +101,19 @@ npm install ngx-bootstrap --save
 
 Add wanted package to NgModule imports:
 
-```
+```ts
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
 @NgModule({
   ...
-  imports: [TooltipModule.forRoot(),...]
+  imports: [TooltipModule,...]
   ...
 })
 ```
 
 Add component to your page:
 
-```
+```html
 <button type="button" class="btn btn-primary"
         tooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
   Simple demo
@@ -126,14 +126,14 @@ This can be done with the css file directly in the index.html, or alternatively 
 
 - `Bootstrap 5`
 
-```
+```html
 <!--- index.html -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 ```
 
 - `Bootstrap 4`
 
-```
+```html
 <!--- index.html -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2">
 ```
@@ -148,7 +148,7 @@ have a customized version of bootstrap. The consequence is that the process of d
 be failed, which can break the UI. In that case, we can still set the bootstrap version manually in the bootstrapping
 component (i.e. `AppComponent`):
 
-```
+```ts
 import { setTheme } from 'ngx-bootstrap/utils';
 
 @Component({...})

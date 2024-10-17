@@ -18,11 +18,16 @@ import {
 } from '../../models';
 
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { BsDatepickerDayDecoratorComponent } from './bs-datepicker-day-decorator.directive';
+import { NgIf, NgFor } from '@angular/common';
+import { BsDatepickerNavigationViewComponent } from './bs-datepicker-navigation-view.component';
+import { BsCalendarLayoutComponent } from './bs-calendar-layout.component';
 
 @Component({
-  selector: 'bs-days-calendar-view',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
+    selector: 'bs-days-calendar-view',
+    // changeDetection: ChangeDetectionStrategy.OnPush,
+    template: `
     <bs-calendar-layout>
       <bs-datepicker-navigation-view
         [calendar]="calendar"
@@ -76,7 +81,9 @@ import { BsDatepickerConfig } from '../../bs-datepicker.config';
       </table>
 
     </bs-calendar-layout>
-  `
+  `,
+    standalone: true,
+    imports: [BsCalendarLayoutComponent, BsDatepickerNavigationViewComponent, NgIf, NgFor, BsDatepickerDayDecoratorComponent, TooltipModule]
 })
 export class BsDaysCalendarViewComponent  {
   @Input() calendar!: DaysCalendarViewModel;

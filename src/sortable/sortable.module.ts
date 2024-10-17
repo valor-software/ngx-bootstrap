@@ -1,16 +1,17 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { SortableComponent } from './sortable.component';
-import { DraggableItemService } from './draggable-item.service';
 
 @NgModule({
-  declarations: [SortableComponent],
-  imports: [CommonModule],
-  exports: [SortableComponent]
+    imports: [SortableComponent],
+    exports: [SortableComponent]
 })
 export class SortableModule {
+  // @deprecated method not required anymore, will be deleted in v19.0.0
   static forRoot(): ModuleWithProviders<SortableModule> {
-    return { ngModule: SortableModule, providers: [DraggableItemService] };
+    return {
+      ngModule: SortableModule,
+      providers: []
+    };
   }
 }

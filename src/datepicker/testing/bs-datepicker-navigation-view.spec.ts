@@ -5,12 +5,12 @@ import { BsDatepickerNavigationViewComponent } from '../themes/bs/bs-datepicker-
 
 
 @Component({
-  selector: 'test-cmp',
-  template: `
+    selector: 'test-cmp',
+    template: `
     <bs-datepicker-navigation-view
       [calendar]="month"
       (onNavigate)="navTo($event)"
-    ></bs-datepicker-navigation-view>`
+    ></bs-datepicker-navigation-view>`,
 })
 class TestComponent {
   month!: DaysCalendarViewModel;
@@ -54,9 +54,10 @@ describe('datepicker: bs-datepicker-navigation-view', () => {
   let fixture: TestFixture;
   beforeEach(
     waitForAsync(() => TestBed.configureTestingModule({
-        declarations: [TestComponent, BsDatepickerNavigationViewComponent]
-      }).compileComponents()
-    ));
+      declarations: [TestComponent],
+      imports: [BsDatepickerNavigationViewComponent]
+    }).compileComponents())
+  );
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
   });

@@ -12,7 +12,10 @@ import {
 } from '@angular/core';
 import { TabsetComponent } from './tabset.component';
 
-@Directive({ selector: 'tab, [tab]', exportAs: 'tab' })
+@Directive({
+    selector: 'tab, [tab]', exportAs: 'tab',
+    standalone: true
+})
 export class TabDirective implements OnInit, OnDestroy {
   /** tab header text */
   @Input() heading?: string;

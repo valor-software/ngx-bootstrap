@@ -14,10 +14,11 @@ import {
 } from './modal-options.class';
 import { BsModalService } from './bs-modal.service';
 import { document } from 'ngx-bootstrap/utils';
+import { FocusTrapDirective } from 'ngx-bootstrap/focus-trap';
 
 @Component({
-  selector: 'modal-container',
-  template: `
+    selector: 'modal-container',
+    template: `
     <div [class]="'modal-dialog' + (config.class ? ' ' + config.class : '')"
          role="document"
          focusTrap>
@@ -26,15 +27,18 @@ import { document } from 'ngx-bootstrap/utils';
       </div>
     </div>
   `,
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {
-    class: 'modal',
-    role: 'dialog',
-    tabindex: '-1',
-    '[attr.aria-modal]': 'true',
-    '[attr.aria-labelledby]': 'config.ariaLabelledBy',
-    '[attr.aria-describedby]': 'config.ariaDescribedby'
-  }
+    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+    host: {
+        class: 'modal',
+        role: 'dialog',
+        tabindex: '-1',
+        '[attr.aria-modal]': 'true',
+        '[attr.aria-labelledby]': 'config.ariaLabelledBy',
+        '[attr.aria-describedby]': 'config.ariaDescribedby'
+    },
+    standalone: true,
+    imports: [FocusTrapDirective],
+    providers: [BsModalService]
 })
 export class ModalContainerComponent implements OnInit, OnDestroy {
   config: ModalOptions;

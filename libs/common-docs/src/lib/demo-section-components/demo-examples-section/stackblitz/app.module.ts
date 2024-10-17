@@ -25,8 +25,8 @@ import { ${className === 'DemoModalServiceFromComponent' ? `${className}, ModalC
   declarations: [${className === 'DemoModalServiceFromComponent' ? `${className}, ModalContentComponent` : className}],
   imports: [
     ${moduleData.moduleName}.forRoot(),
-    ${className === 'DemoModalWithPopupsComponent' ? `TooltipModule.forRoot(),
-    PopoverModule.forRoot(),` : ''}
+    ${className === 'DemoModalWithPopupsComponent' ? `TooltipModule,
+    PopoverModule,` : ''}
     BrowserAnimationsModule,
     CommonModule,
     FormsModule,

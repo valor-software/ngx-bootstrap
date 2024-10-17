@@ -3,7 +3,11 @@ import { ComponentFixture, ComponentFixtureAutoDetect, fakeAsync, TestBed, tick 
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonsModule } from '../index';
 
-@Component({ selector: 'buttons-test', template: '' })
+@Component({
+    selector: 'buttons-test', template: '',
+    standalone: true,
+    imports: [ButtonsModule, FormsModule, ReactiveFormsModule]
+})
 class TestButtonsComponent implements OnInit {
   singleModel = '0';
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -136,10 +140,9 @@ describe('Directive: Buttons', () => {
   beforeEach(
     fakeAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [TestButtonsComponent],
-        imports: [ButtonsModule, FormsModule, ReactiveFormsModule],
-        providers: [{ provide: ComponentFixtureAutoDetect, useValue: true }]
-      });
+    imports: [ButtonsModule, FormsModule, ReactiveFormsModule, TestButtonsComponent],
+    providers: [{ provide: ComponentFixtureAutoDetect, useValue: true }]
+});
     })
   );
 
