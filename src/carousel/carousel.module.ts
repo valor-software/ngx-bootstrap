@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { CarouselComponent } from './carousel.component';
 import { SlideComponent } from './slide.component';
@@ -9,7 +9,10 @@ import { SlideComponent } from './slide.component';
 })
 export class CarouselModule {
   // @deprecated method not required anymore, will be deleted in v19.0.0
-  static forRoot() {
-    return CarouselModule;
+  static forRoot(): ModuleWithProviders<CarouselModule> {
+    return {
+      ngModule: CarouselModule,
+      providers: []
+    };
   }
 }

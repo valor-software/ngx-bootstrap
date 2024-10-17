@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipDirective } from './tooltip.directive';
 
@@ -9,7 +9,10 @@ import { TooltipDirective } from './tooltip.directive';
 })
 export class TooltipModule {
   // @deprecated method not required anymore, will be deleted in v19.0.0
-  static forRoot() {
-    return TooltipModule;
+  static forRoot(): ModuleWithProviders<TooltipModule> {
+    return {
+      ngModule: TooltipModule,
+      providers: []
+    };
   }
 }
