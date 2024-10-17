@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 
 import { TypeaheadContainerComponent } from './typeahead-container.component';
 import { TypeaheadDirective } from './typeahead.directive';
@@ -10,7 +10,10 @@ import { TypeaheadDirective } from './typeahead.directive';
 })
 export class TypeaheadModule {
   // @deprecated method not required anymore, will be deleted in v19.0.0
-  static forRoot() {
-    return TypeaheadModule;
+  static forRoot(): ModuleWithProviders<TypeaheadModule> {
+    return {
+      ngModule: TypeaheadModule,
+      providers: []
+    };
   }
 }
