@@ -4,15 +4,16 @@ import { AccordionConfig } from './accordion.config';
 
 /** Displays collapsible content panels for presenting information in a limited amount of space. */
 @Component({
-  selector: 'accordion',
-  template: `<ng-content></ng-content>`,
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {
-    '[attr.aria-multiselectable]': 'closeOthers',
-    role: 'tablist',
-    class: 'panel-group',
-    style: 'display: block'
-  }
+    selector: 'accordion',
+    template: `<ng-content></ng-content>`,
+    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+    host: {
+        '[attr.aria-multiselectable]': 'closeOthers',
+        role: 'tablist',
+        class: 'panel-group',
+        style: 'display: block'
+    },
+    standalone: true
 })
 export class AccordionComponent {
   /** turn on/off animation */

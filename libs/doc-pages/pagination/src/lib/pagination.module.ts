@@ -17,7 +17,7 @@ export { PaginationSectionComponent } from './pagination-section.component';
         ...DEMO_COMPONENTS
     ],
     imports: [
-        PaginationModule.forRoot(),
+        PaginationModule,
         CommonModule,
         FormsModule,
         DocsModule,

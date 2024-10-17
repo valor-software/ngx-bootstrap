@@ -11,22 +11,23 @@ import {
 import { ProgressbarType } from './progressbar-type.interface';
 
 @Component({
-  selector: 'bar',
-  templateUrl: './bar.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
-  host: {
-    role: 'progressbar',
-    'aria-valuemin': '0',
-    '[class.progress-bar]': 'true',
-    '[class.progress-bar-animated]': 'animate',
-    '[class.progress-bar-striped]': 'striped',
-    '[attr.aria-valuenow]': 'value',
-    '[attr.aria-valuetext]': 'percent ? percent.toFixed(0) + "%" : ""',
-    '[attr.aria-valuemax]': 'max',
-    '[style.height.%]': '"100"',
-    '[style.width.%]': 'percent'
-  }
+    selector: 'bar',
+    templateUrl: './bar.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
+    host: {
+        role: 'progressbar',
+        'aria-valuemin': '0',
+        '[class.progress-bar]': 'true',
+        '[class.progress-bar-animated]': 'animate',
+        '[class.progress-bar-striped]': 'striped',
+        '[attr.aria-valuenow]': 'value',
+        '[attr.aria-valuetext]': 'percent ? percent.toFixed(0) + "%" : ""',
+        '[attr.aria-valuemax]': 'max',
+        '[style.height.%]': '"100"',
+        '[style.width.%]': 'percent'
+    },
+    standalone: true
 })
 export class BarComponent implements OnChanges {
   /** maximum total value of progress element */

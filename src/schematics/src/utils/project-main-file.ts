@@ -13,10 +13,10 @@ import { workspaces } from '@angular-devkit/core';
 /** Looks for the main TypeScript file in the given project and returns its path. */
 export function getProjectMainFile(project: workspaces.ProjectDefinition): string {
   const buildOptions = getProjectTargetOptions(project, 'build');
-  if (!buildOptions.main) {
+  if (!buildOptions.main && !buildOptions.browser) {
     throw new SchematicsException(`Could not find the project main file inside of the ` +
       `workspace config (${project.sourceRoot})`);
   }
 
-  return buildOptions.main.toString();
+  return buildOptions.main?.toString() ?? buildOptions.browser.toString();
 }

@@ -21,7 +21,7 @@ export { TimepickerSectionComponent } from './timepicker-section.component';
         FormsModule,
         ReactiveFormsModule,
         DocsModule,
-        TimepickerModule.forRoot(),
+        TimepickerModule,
         RouterModule.forChild(routes)
     ],
     exports: [TimepickerSectionComponent]

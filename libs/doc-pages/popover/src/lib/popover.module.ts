@@ -20,7 +20,7 @@ export { PopoverSectionComponent } from './popover-section.component';
         CommonModule,
         FormsModule,
         DocsModule,
-        PopoverModule.forRoot(),
+        PopoverModule,
         RouterModule.forChild(routes)
     ],
     exports: [PopoverSectionComponent]
