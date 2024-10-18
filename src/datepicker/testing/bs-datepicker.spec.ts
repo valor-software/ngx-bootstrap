@@ -178,6 +178,72 @@ describe('datepicker:', () => {
     expect(buttonText.filter(button => button === clearBtnCustomLbl).length).toEqual(1);
   });
 
+
+  it('should show the apply button when showApplyButton config is true', fakeAsync(() => {
+    const datepickerDirective = getDatepickerDirective(fixture);
+    datepickerDirective.bsConfig = {
+      showApplyButton: true
+    };
+    showDatepicker(fixture);
+    tick();
+    fixture.whenStable().then(() => {
+      const buttonText: string[] = [];
+      Array.from(document.body.getElementsByTagName('button'))
+        .forEach(button => buttonText.push(button.textContent));
+      expect(buttonText.filter(button => button === 'Apply').length).toEqual(1);
+    });
+    expect(true).toBeTruthy();
+  }));
+
+  it('should hide the cancel button when showApplyButton config is true and showCancelbutton config is false', fakeAsync(() => {
+    const datepickerDirective = getDatepickerDirective(fixture);
+    datepickerDirective.bsConfig = {
+      showApplyButton: true,
+      showCancelButton: false
+    };
+    showDatepicker(fixture);
+    tick();
+    fixture.whenStable().then(() => {
+      const buttonText: string[] = [];
+      Array.from(document.body.getElementsByTagName('button'))
+        .forEach(button => buttonText.push(button.textContent));
+      expect(buttonText.filter(button => button === 'Cancel').length).toEqual(0);
+    });
+    expect(true).toBeTruthy();
+  }));
+
+  it('should show custom label for apply button if set in config', () => {
+    const applyBtnCustomLbl = 'Apply date';
+    const datepickerDirective = getDatepickerDirective(fixture);
+    datepickerDirective.bsConfig = {
+      applyButtonLabel: applyBtnCustomLbl,
+      showApplyButton: true
+    };
+    showDatepicker(fixture);
+
+    const buttonText: string[] = [];
+    // fixture.debugElement.queryAll(By.css('button'))
+    Array.from(document.body.getElementsByTagName('button'))
+      .forEach(button => buttonText.push(button.textContent));
+    expect(buttonText.filter(button => button === applyBtnCustomLbl).length).toEqual(1);
+  });
+
+  it('should show custom label for cancel button if set in config', () => {
+    const cancelBtnCustomLbl = 'Cancel selection';
+    const datepickerDirective = getDatepickerDirective(fixture);
+    datepickerDirective.bsConfig = {
+      cancelButtonLabel: cancelBtnCustomLbl,
+      showApplyButton: true,
+    };
+    showDatepicker(fixture);
+
+    const buttonText: string[] = [];
+    // fixture.debugElement.queryAll(By.css('button'))
+    Array.from(document.body.getElementsByTagName('button'))
+      .forEach(button => buttonText.push(button.textContent));
+    expect(buttonText.filter(button => button === cancelBtnCustomLbl).length).toEqual(1);
+  });
+
   describe('should start with', () => {
 
     const parameters = [
@@ -226,6 +292,33 @@ describe('datepicker:', () => {
         });
       });
     });
+  });
+
+  
+  it('should not emit date until applied', () => {
+
+    const datepickerDirective = getDatepickerDirective(fixture);
+    datepickerDirective.bsConfig = {
+      showApplyButton: true
+    };
+    const datepicker = showDatepicker(fixture);
+    const datepickerContainerInstance = getDatepickerContainer(datepicker);
+
+    let emitValue: Date;
+
+    const sub = datepicker.bsValueChange.subscribe(val => {
+      emitValue = val;
+    });
+
+    datepickerContainerInstance.setToday();
+    fixture.detectChanges();
+    expect(emitValue).toBe(undefined);
+
+    datepickerContainerInstance.apply();
+    fixture.detectChanges();
+    expect(emitValue).not.toBe(undefined);
+
+    sub.unsubscribe();
   });
 
   it('should set today date', () => {
