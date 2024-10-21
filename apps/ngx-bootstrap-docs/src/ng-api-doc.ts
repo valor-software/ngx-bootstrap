@@ -547,6 +547,24 @@ export const ngdoc: any = {
         description: '<p>Set allowed positions of container.</p>\n'
       },
       {
+        name: 'applyButtonLabel',
+        defaultValue: 'Apply',
+        type: 'string',
+        description: '<p>Label for &#39;apply&#39; button</p>\n'
+      },
+      {
+        name: 'applyPosition',
+        defaultValue: 'right',
+        type: 'string',
+        description: '<p>Positioning of &#39;apply&#39; buttons</p>\n'
+      },
+      {
+        name: 'cancelButtonLabel',
+        defaultValue: 'Cancel',
+        type: 'string',
+        description: '<p>Label for &#39;cancel&#39; button</p>\n'
+      },
+      {
         name: 'clearButtonLabel',
         defaultValue: 'Clear',
         type: 'string',
@@ -689,6 +707,19 @@ export const ngdoc: any = {
         type: 'boolean',
         description:
           '<p>Allows select daterange as first and last day of week by click on week number (dateRangePicker only)</p>\n'
+      },
+      {
+        name: 'showApplyButton',
+        defaultValue: 'false',
+        type: 'boolean',
+        description:
+          '<p>Shows &#39;apply&#39; and &#39;cancel&#39; button, date is not sent from view to model until user presses apply. Picker remains opened until applied, cancelled or dismissed (clicked off of)</p>\n'
+      },
+      {
+        name: 'showCancelButton',
+        defaultValue: 'true',
+        type: 'boolean',
+        description: '<p>Shows &#39;cancel&#39; button (only if showApplyButton is also true)</p>\n'
       },
       {
         name: 'showClearButton',

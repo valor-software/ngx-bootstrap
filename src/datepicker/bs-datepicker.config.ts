@@ -24,44 +24,54 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
   isAnimated = false;
   value?: Date | Date[];
   isDisabled?: boolean;
+  
   /**
    * Default min date for all date/range pickers
    */
   minDate?: Date;
+
   /**
    * Default max date for all date/range pickers
    */
   maxDate?: Date;
+
   /**
    * The view that the datepicker should start in
    */
   startView: BsDatepickerViewMode = 'day';
+
   /**
    * Default date custom classes for all date/range pickers
    */
   dateCustomClasses?: DatepickerDateCustomClasses[];
+
   /**
    * Default tooltip text for all date/range pickers
    */
   dateTooltipTexts?: DatepickerDateTooltipText[];
+
   /**
    * Disable specific days, e.g. [0,6] will disable all Saturdays and Sundays
    */
   daysDisabled?: number[];
+
   /**
    * Disable specific dates
    */
   datesDisabled?: Date[];
+
   /**
    * Show one months for special cases (only for dateRangePicker)
    * 1. maxDate is equal to today's date
    * 2. minDate's month is equal to maxDate's month
    */
   displayOneMonthRange?: boolean;
+
   /**
    * Enable specific dates
    */
   datesEnabled?: Date[];
+
   /**
    * Makes dates from other months active
    */
@@ -109,14 +119,17 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
 
   // DatepickerRenderOptions
   displayMonths = 1;
+  
   /**
    * Allows to hide week numbers in datepicker
    */
   showWeekNumbers = true;
 
   dateInputFormat = 'L';
+
   // range picker
   rangeSeparator = ' - ';
+
   /**
    * Date format for date range input field
    */
@@ -151,6 +164,16 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
   showClearButton = false;
 
   /**
+   * Shows 'apply' and 'cancel' button, date is not sent from view to model until user presses apply. Picker remains opened until applied, cancelled or dismissed (clicked off of)
+   */
+  showApplyButton = false;
+
+  /**
+   * Shows 'cancel' button this is only if showApplyButton is also true
+   */
+  showCancelButton = true;
+
+  /**
    * Positioning of 'today' button
    */
   todayPosition = 'center';
@@ -159,6 +182,11 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Positioning of 'clear' button
    */
   clearPosition = 'right';
+  
+  /**
+   * Positioning of 'apply' button
+   */
+  applyPosition = 'right';
 
   /**
    * Label for 'today' button
@@ -171,6 +199,16 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
   clearButtonLabel = 'Clear';
 
   /**
+   * Label for 'cancel' button
+   */
+  cancelButtonLabel = 'Cancel';
+
+  /**
+   * Label for 'apply' button
+   */
+  applyButtonLabel = 'Apply';
+
+  /**
    * Label for 'custom range' button
    */
   customRangeButtonLabel = 'Custom Range';
@@ -179,18 +217,22 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Shows timepicker under datepicker
    */
   withTimepicker = false;
+
   /**
    * Set current hours, minutes, seconds and milliseconds for bsValue
    */
   initCurrentTime?: boolean;
+
   /**
    * Set allowed positions of container.
    */
   allowedPositions = ['top', 'bottom'];
+
   /**
    * Set rule for datepicker closing. If value is true datepicker closes only if date is changed, if user changes only time datepicker doesn't close. It is available only if property withTimepicker is set true
    * */
   keepDatepickerOpened = false;
+
   /**
    * Allows keep invalid dates in range. Can be used with minDate, maxDate
    * */

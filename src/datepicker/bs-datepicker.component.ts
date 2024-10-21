@@ -109,6 +109,8 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
   private _datepicker: ComponentLoader<BsDatepickerContainerComponent>;
   private _datepickerRef?: ComponentRef<BsDatepickerContainerComponent>;
   private readonly _dateInputFormat$ = new Subject<string | undefined>();
+  private _externalValue?: Date;
+  private _unappliedValue?: Date;
 
   constructor(public _config: BsDatepickerConfig,
               private  _elementRef: ElementRef,
@@ -161,6 +163,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
 
     this.initPreviousValue();
     this._bsValue = value;
+
     this.bsValueChange.emit(value);
   }
 
@@ -242,6 +245,7 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
     this._subs.push(
       this.bsValueChange.subscribe((value: Date) => {
         if (this._datepickerRef) {
+          this._externalValue = value;
           this._datepickerRef.instance.value = value;
         }
       })
@@ -249,21 +253,54 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
 
     // if date changes from picker (view -> model)
     if (this._datepickerRef) {
-      this._subs.push(
-        this._datepickerRef.instance.valueChange.subscribe((value: Date) => {
-          this.initPreviousValue();
-          this.bsValue = value;
-          if (this.keepDatepickerModalOpened()) {
-            return;
-          }
 
-          this.hide();
-        })
-      );
+      if(!this.bsConfig?.showApplyButton){
+        this._subs.push(
+          this._datepickerRef.instance.valueChange.subscribe((value: Date) => {
+            this.initPreviousValue();
+            this.bsValue = value;
+            if (this.keepDatepickerModalOpened()) {
+              return;
+            }
+
+            this.hide();
+          })
+        );
+      }
+      
+      // if apply button is shown update unappliedValue
+      if(this.bsConfig?.showApplyButton){
+        this._subs.push(
+          this._datepickerRef.instance.valueChange.subscribe((value: Date) => {
+            this._unappliedValue = value;
+          })
+        );
+
+        // if apply button is pressed update external source (view -> model)
+        this._subs.push(
+          this._datepickerRef.instance.valueApplied.subscribe(() => {
+            this.bsValue = this._unappliedValue;
+            
+            this.hide();
+          })
+        );
+
+        // if cancel is pressed reset picker value to external value
+        this._subs.push(
+          this._datepickerRef.instance.valueCancelled.subscribe(() => {
+            if (this._datepickerRef) {
+              this._datepickerRef.instance.value = this._externalValue;
+            }          
+              
+            this.hide();
+          })
+        );
+      }
     }
   }
 
   keepDatepickerModalOpened(): boolean {
+
     if (!previousDate || !this.bsConfig?.keepDatepickerOpened || !this._config.withTimepicker) {
       return false;
     }
