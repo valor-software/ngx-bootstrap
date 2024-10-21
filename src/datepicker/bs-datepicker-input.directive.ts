@@ -51,7 +51,6 @@ const BS_DATEPICKER_VALIDATOR: Provider = {
 @Directive({
     selector: `input[bsDatepicker]`,
     providers: [
-      BsLocaleService,
       BS_DATEPICKER_VALUE_ACCESSOR,
       BS_DATEPICKER_VALIDATOR
     ],
