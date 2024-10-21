@@ -267,7 +267,6 @@ export class TypeaheadContainerComponent implements OnDestroy {
     // Replaces the capture string with the same string inside of a "strong" tag
     if (typeof query === 'object') {
       const queryLen: number = query.length;
-      let indexOfTrimmedMatch:number;
       for (let i = 0; i < queryLen; i += 1) {
         // query[i] is already latinized and lower case
         startIdx = itemStrHelper.indexOf(query[i]);
