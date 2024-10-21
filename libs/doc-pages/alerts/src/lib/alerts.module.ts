@@ -15,7 +15,7 @@ export { AlertsSectionComponent } from './alerts-section.component';
         ...DEMO_COMPONENTS
     ],
     imports: [
-        AlertModule.forRoot(),
+        AlertModule,
         CommonModule,
         DocsModule,
         RouterModule.forChild(routes)

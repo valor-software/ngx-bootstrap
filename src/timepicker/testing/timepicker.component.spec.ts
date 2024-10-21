@@ -54,7 +54,7 @@ describe('Component: TimepickerComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [TimepickerModule.forRoot(), FormsModule, ReactiveFormsModule],
+      imports: [TimepickerModule, FormsModule, ReactiveFormsModule],
       providers: [TimepickerConfig, TimepickerActions]
     });
   });

@@ -1,21 +1,19 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
-import { PositioningService } from 'ngx-bootstrap/positioning';
 import { PopoverDirective } from './popover.directive';
 import { PopoverContainerComponent } from './popover-container.component';
 
 @NgModule({
-    imports: [CommonModule],
-    declarations: [PopoverDirective, PopoverContainerComponent],
+    imports: [CommonModule, PopoverDirective, PopoverContainerComponent],
     exports: [PopoverDirective]
 })
 export class PopoverModule {
+  // @deprecated method not required anymore, will be deleted in v19.0.0
   static forRoot(): ModuleWithProviders<PopoverModule> {
     return {
       ngModule: PopoverModule,
-      providers: [ComponentLoaderFactory, PositioningService]
+      providers: []
     };
   }
 }

@@ -25,6 +25,8 @@ import {
 } from '@angular/core';
 import { take } from 'rxjs/operators';
 import { InteractivityChecker } from './interactivity-checker';
+import { FocusTrapManager } from './focus-trap-manager';
+import { Platform } from './platform';
 
 
 /**
@@ -386,8 +388,14 @@ export class FocusTrapFactory {
 
 /** Directive for trapping focus within a region. */
 @Directive({
-  selector: '[focusTrap]',
-  exportAs: 'focusTrap'
+    selector: '[focusTrap]',
+    exportAs: 'focusTrap',
+    standalone: true,
+    providers: [
+      FocusTrapManager,
+      Platform,
+      InteractivityChecker
+    ]
 })
 export class FocusTrapDirective implements OnDestroy, AfterContentInit, OnChanges, DoCheck {
   private _document: Document;
