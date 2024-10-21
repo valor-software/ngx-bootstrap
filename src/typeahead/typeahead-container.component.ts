@@ -120,6 +120,13 @@ export class TypeaheadContainerComponent implements OnDestroy {
 
   set active(active: TypeaheadMatch | undefined) {
     this._active = active;
+
+    let preview;
+    if (!(this._active == null || this._active.isHeader())) {
+      preview = active;
+    }
+    this.parent?.typeaheadOnPreview.emit(preview);
+
     this.activeChanged();
   }
 
@@ -144,7 +151,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
     }
 
     if (this.typeaheadIsFirstItemActive && this._matches.length > 0) {
-      this.setActive(this._matches[0]);
+      this.active = this._matches[0];
 
       if (this._active?.isHeader()) {
         this.nextActiveMatch();
@@ -224,9 +231,9 @@ export class TypeaheadContainerComponent implements OnDestroy {
     }
 
     const index = this.matches.indexOf(this._active);
-    this.setActive(this.matches[
+    this.active = this.matches[
       index - 1 < 0 ? this.matches.length - 1 : index - 1
-      ]);
+      ];
 
     if (this._active.isHeader()) {
       this.prevActiveMatch();
@@ -239,9 +246,9 @@ export class TypeaheadContainerComponent implements OnDestroy {
 
   nextActiveMatch(): void {
     const index = this._active ? this.matches.indexOf(this._active) : -1;
-    this.setActive(this.matches[
+    this.active = this.matches[
       index + 1 > this.matches.length - 1 ? 0 : index + 1
-      ]);
+      ];
 
     if (this._active?.isHeader()) {
       this.nextActiveMatch();
@@ -254,7 +261,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
 
   selectActive(value: TypeaheadMatch): void {
     this.isFocused = true;
-    this.setActive(value);
+    this.active = value;
   }
 
   highlight(match: TypeaheadMatch, query: string[] | string): string {
@@ -299,7 +306,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
   focusLost(): void {
     this.isFocused = false;
     if (!this.canSelectItemsOnBlur) {
-      this.setActive(void 0);
+      this.active = void 0;
     }
   }
 
@@ -372,15 +379,6 @@ export class TypeaheadContainerComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.positionServiceSubscription.unsubscribe();
-  }
-
-  protected setActive(value?: TypeaheadMatch): void {
-    this._active = value;
-    let preview;
-    if (!(this._active == null || this._active.isHeader())) {
-      preview = value;
-    }
-    this.parent?.typeaheadOnPreview.emit(preview);
   }
 
   private isScrolledIntoView(elem: HTMLElement): boolean {
