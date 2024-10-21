@@ -8,15 +8,23 @@ import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
 
 import { PositioningService } from 'ngx-bootstrap/positioning';
 import { datepickerAnimation } from '../../datepicker-animations';
+import { BsCustomDatesViewComponent } from './bs-custom-dates-view.component';
+import { BsYearsCalendarViewComponent } from './bs-years-calendar-view.component';
+import { BsMonthCalendarViewComponent } from './bs-months-calendar-view.component';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
+import { BsDaysCalendarViewComponent } from './bs-days-calendar-view.component';
+import { NgIf, NgClass, NgSwitch, NgSwitchCase, NgFor, AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'bs-daterangepicker-inline-container',
-  providers: [BsDatepickerStore, BsDatepickerEffects],
-  templateUrl: './bs-datepicker-view.html',
-  host: {
-    '(click)': '_stopPropagation($event)'
-  },
-  animations: [datepickerAnimation]
+    selector: 'bs-daterangepicker-inline-container',
+    providers: [BsDatepickerStore, BsDatepickerEffects, BsDatepickerActions, PositioningService],
+    templateUrl: './bs-datepicker-view.html',
+    host: {
+        '(click)': '_stopPropagation($event)'
+    },
+    animations: [datepickerAnimation],
+    standalone: true,
+    imports: [NgIf, NgClass, NgSwitch, NgSwitchCase, NgFor, BsDaysCalendarViewComponent, TimepickerModule, BsMonthCalendarViewComponent, BsYearsCalendarViewComponent, BsCustomDatesViewComponent, AsyncPipe]
 })
 export class BsDaterangepickerInlineContainerComponent extends BsDaterangepickerContainerComponent
   implements OnInit, OnDestroy {

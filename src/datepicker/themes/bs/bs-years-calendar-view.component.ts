@@ -8,10 +8,13 @@ import {
   CellHoverEvent,
   YearsCalendarViewModel
 } from '../../models';
+import { NgFor } from '@angular/common';
+import { BsDatepickerNavigationViewComponent } from './bs-datepicker-navigation-view.component';
+import { BsCalendarLayoutComponent } from './bs-calendar-layout.component';
 
 @Component({
-  selector: 'bs-years-calendar-view',
-  template: `
+    selector: 'bs-years-calendar-view',
+    template: `
     <bs-calendar-layout>
       <bs-datepicker-navigation-view
         [calendar]="calendar"
@@ -34,7 +37,9 @@ import {
         </tbody>
       </table>
     </bs-calendar-layout>
-  `
+  `,
+    standalone: true,
+    imports: [BsCalendarLayoutComponent, BsDatepickerNavigationViewComponent, NgFor]
 })
 export class BsYearsCalendarViewComponent {
   @Input() calendar!: YearsCalendarViewModel;

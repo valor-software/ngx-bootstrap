@@ -9,7 +9,7 @@ import { SchematicsException, Tree } from '@angular-devkit/schematics';
 import { SchematicTestRunner, UnitTestTree } from '@angular-devkit/schematics/testing';
 import { addImportToModule } from '@schematics/angular/utility/ast-utils';
 import { Change, InsertChange } from '@schematics/angular/utility/change';
-import { getAppModulePath } from '@schematics/angular/utility/ng-ast-utils';
+import { getAppModulePath, isStandaloneApp } from '@schematics/angular/utility/ng-ast-utils';
 import * as ts from 'typescript';
 import { getProjectMainFile } from './project-main-file';
 import { workspaces } from '@angular-devkit/core';
@@ -87,6 +87,11 @@ export function addModuleImportToRootModule(
   src: string,
   project: workspaces.ProjectDefinition
 ) {
+  if (isStandaloneApp(host, getProjectMainFile(project))) {
+    throw new SchematicsException(`ngx-bootstrap doesn't support moduleless approach if we couldn't find
+    your starting *.module.ts learn more here https://valor-software.com/ngx-bootstrap/#/documentation#installation`);
+  }
+
   const modulePath = getAppModulePath(host, getProjectMainFile(project));
   const moduleSource = getSourceFile(host, modulePath);
   if (!moduleSource) {

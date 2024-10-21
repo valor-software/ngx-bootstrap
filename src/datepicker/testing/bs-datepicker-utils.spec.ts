@@ -15,7 +15,7 @@ describe('daterangepicker:', () => {
   beforeEach(
     waitForAsync(() => TestBed.configureTestingModule({
         imports: [
-          BsDatepickerModule.forRoot(),
+          BsDatepickerModule,
           BrowserAnimationsModule
         ]
       }).compileComponents()

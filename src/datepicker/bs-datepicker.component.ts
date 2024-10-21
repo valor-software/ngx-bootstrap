@@ -25,8 +25,10 @@ import { checkBsValue, setCurrentTimeOnDateSelect } from './utils/bs-calendar-ut
 export let previousDate: Date | Date[] | undefined;
 
 @Directive({
-  selector: '[bsDatepicker]',
-  exportAs: 'bsDatepicker'
+    selector: '[bsDatepicker]',
+    exportAs: 'bsDatepicker',
+    providers: [ComponentLoaderFactory],
+    standalone: true
 })
 export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, AfterViewInit {
   /**

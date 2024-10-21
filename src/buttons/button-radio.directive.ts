@@ -27,8 +27,9 @@ export const RADIO_CONTROL_VALUE_ACCESSOR: Provider = {
  * A value of a selected button is bound to a variable specified via ngModel.
  */
 @Directive({
-  selector: '[btnRadio]',
-  providers: [RADIO_CONTROL_VALUE_ACCESSOR]
+    selector: '[btnRadio]',
+    providers: [RADIO_CONTROL_VALUE_ACCESSOR],
+    standalone: true
 })
 export class ButtonRadioDirective implements ControlValueAccessor, OnChanges {
   onChange = Function.prototype;

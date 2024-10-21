@@ -22,7 +22,7 @@ export { ButtonsSectionComponent } from './buttons-section.component';
         CommonModule,
         DocsModule,
         RouterModule.forChild(routes),
-        ButtonsModule.forRoot()
+        ButtonsModule
     ],
     exports: [ButtonsSectionComponent]
 })
