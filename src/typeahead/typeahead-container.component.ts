@@ -281,7 +281,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
             `${itemStr.substring(0, startIdx)}<strong>${itemStr.substring(startIdx, startIdx + tokenLen)}</strong>` +
             `${itemStr.substring(startIdx + tokenLen)}`;
           itemStrHelper =
-            `${itemStrHelper.substring(0, startIdx)}        ${' '.repeat(tokenLen)}         ` +
+            `${itemStrHelper.substring(0, startIdx)}????????${'??'.repeat(tokenLen)}??????????` +
             `${itemStrHelper.substring(startIdx + tokenLen)}`;
         }
       }
