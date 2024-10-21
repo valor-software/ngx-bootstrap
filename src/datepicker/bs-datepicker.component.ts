@@ -73,6 +73,10 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
    */
   @Input() maxDate?: Date;
   /**
+   * Ignore validation errors when you reset to minDate or maxDate
+   */
+  @Input() ignoreMinMaxErrors?: boolean;
+  /**
    * Minimum view mode : day, month, or year
    */
   @Input() minMode?: BsDatepickerViewMode;

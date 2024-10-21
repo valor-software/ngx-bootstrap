@@ -158,13 +158,13 @@ export class BsDatepickerInputDirective implements ControlValueAccessor, Validat
       if (this._picker && this._picker.minDate && isBefore(_value, this._picker.minDate, 'date')) {
         this.writeValue(this._picker.minDate);
 
-        return { bsDate: { minDate: this._picker.minDate } };
+        return this._picker.ignoreMinMaxErrors ? null : { bsDate: { minDate: this._picker.minDate } };
       }
 
       if (this._picker && this._picker.maxDate && isAfter(_value, this._picker.maxDate, 'date')) {
         this.writeValue(this._picker.maxDate);
 
-        return { bsDate: { maxDate: this._picker.maxDate } };
+        return this._picker.ignoreMinMaxErrors ? null : { bsDate: { maxDate: this._picker.maxDate } };
       }
     }
 
@@ -194,7 +194,6 @@ export class BsDatepickerInputDirective implements ControlValueAccessor, Validat
     }
 
     this._picker.bsValue = this._value;
-    this._onChange(this._value);
   }
 
   setDisabledState(isDisabled: boolean): void {
