@@ -32,7 +32,6 @@ import { NgClass } from '@angular/common';
          [class.open]="isOpen"><ng-content></ng-content>
     </div>
   `,
-  providers: [BsDropdownState]
 })
 export class BsDropdownContainerComponent implements OnDestroy {
   isOpen = false;

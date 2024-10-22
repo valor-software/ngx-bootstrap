@@ -58,7 +58,6 @@ const BS_DATERANGEPICKER_VALIDATOR: Provider = {
         '(blur)': 'onBlur()'
     },
     providers: [
-      BsLocaleService,
       BS_DATERANGEPICKER_VALUE_ACCESSOR,
       BS_DATERANGEPICKER_VALIDATOR
     ],
