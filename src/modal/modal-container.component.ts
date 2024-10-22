@@ -165,6 +165,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
     );
     setTimeout(() => {
       this.isShown = false;
+      this.bsModalService?.hide(this.config.id);
       if (
         document &&
         document.body &&
