@@ -168,7 +168,7 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
       if (
         document &&
         document.body &&
-        this.bsModalService?.getModalsCount() === 1
+        this.bsModalService?.getModalsCount() === 0
       ) {
         this._renderer.removeClass(document.body, CLASS_NAME.OPEN);
         this._renderer.setStyle(document.body, 'overflow-y', '');
