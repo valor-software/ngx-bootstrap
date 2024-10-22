@@ -69,6 +69,7 @@ export class BsModalService {
   ): BsModalRef<T> {
     this._focusEl = document.activeElement;
     this.modalsCount++;
+    this.lastHiddenId = undefined;
     this._createLoaders();
 
     // must be different per every show() call
