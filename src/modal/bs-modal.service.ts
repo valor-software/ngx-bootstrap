@@ -42,7 +42,7 @@ export class BsModalService {
   protected backdropRef?: ComponentRef<ModalBackdropComponent>;
   private _backdropLoader: ComponentLoader<ModalBackdropComponent>;
   private modalsCount = 0;
-  private lastHiddenId: number | string | undefined = 0;
+  private lastHiddenId: number | string | null | undefined = null;
   private lastDismissReason?: string;
 
   private loaders: ComponentLoader<ModalContainerComponent>[] = [];
@@ -69,6 +69,7 @@ export class BsModalService {
   ): BsModalRef<T> {
     this._focusEl = document.activeElement;
     this.modalsCount++;
+    this.lastHiddenId = null;
     this._createLoaders();
 
     // must be different per every show() call
@@ -146,7 +147,7 @@ export class BsModalService {
       .provide({ provide: BsModalRef, useValue: bsModalRef })
       .attach(ModalContainerComponent)
       .to('body');
-    bsModalRef.hide = () => this.hide(bsModalRef.id);
+    bsModalRef.hide = () => modalContainerRef.instance?.hide();
     bsModalRef.setClass = (newClass: string) => {
       if (modalContainerRef.instance) {
         modalContainerRef.instance.config.class = newClass;

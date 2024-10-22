@@ -994,6 +994,10 @@ footer {
   border-radius: 4px;
 }
 
+.modal-backdrop ~ .modal + .modal {
+  background-color: rgba(0,0,0,0.5);
+}
+
 /*Imported adaptive styles*/
 @import "adaptive";
 

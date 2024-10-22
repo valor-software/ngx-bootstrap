@@ -1,6 +1,6 @@
 {
   "name": "ngx-bootstrap-base",
-  "version": "18.1.2",
+  "version": "18.1.3",
   "license": "MIT",
   "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
   "schematics": "./schematics/src/collection.json",
