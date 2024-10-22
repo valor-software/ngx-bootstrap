@@ -12,12 +12,15 @@ import { BsDropdownState } from './bs-dropdown.state';
 import { dropdownAnimation } from './dropdown-animations';
 import { AnimationBuilder, AnimationFactory } from '@angular/animations';
 import { Subscription } from 'rxjs';
+import { NgClass } from '@angular/common';
 
 // todo: revert ngClass to [class] when false positive angular-cli issue is fixed
 //          [class.dropdown]="direction === 'down'"-->
 @Component({
   selector: 'bs-dropdown-container',
   changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [NgClass],
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     style: 'display:block;position: absolute;z-index: 1040'
@@ -28,7 +31,7 @@ import { Subscription } from 'rxjs';
          [class.show]="isOpen"
          [class.open]="isOpen"><ng-content></ng-content>
     </div>
-  `
+  `,
 })
 export class BsDropdownContainerComponent implements OnDestroy {
   isOpen = false;

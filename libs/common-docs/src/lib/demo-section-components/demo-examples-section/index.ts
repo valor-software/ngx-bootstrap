@@ -20,7 +20,7 @@ export { ExamplesComponent } from './examples.component';
     CommonModule,
     NgApiDocModule,
     RouterModule,
-    TabsModule.forRoot(),
+    TabsModule,
   ],
   exports: [
     ExamplesComponent,

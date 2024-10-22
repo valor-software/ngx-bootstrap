@@ -15,6 +15,7 @@ import { ConfigModel, PagesModel } from './models';
 
 import { PageChangedEvent } from './pagination.component';
 import { PaginationConfig } from './pagination.config';
+import { NgClass } from '@angular/common';
 
 export const PAGER_CONTROL_VALUE_ACCESSOR: Provider = {
   provide: NG_VALUE_ACCESSOR,
@@ -23,9 +24,11 @@ export const PAGER_CONTROL_VALUE_ACCESSOR: Provider = {
 };
 
 @Component({
-  selector: 'pager',
-  templateUrl: './pager.component.html',
-  providers: [PAGER_CONTROL_VALUE_ACCESSOR]
+    selector: 'pager',
+    templateUrl: './pager.component.html',
+    providers: [PAGER_CONTROL_VALUE_ACCESSOR],
+    standalone: true,
+    imports: [NgClass]
 })
 export class PagerComponent implements ControlValueAccessor, OnInit {
   config?: Partial<ConfigModel>;

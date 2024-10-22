@@ -1,7 +1,6 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { environment } from '../environments/environment';
@@ -15,8 +14,8 @@ import { routes } from './app.routing';
     ],
     bootstrap: [AppComponent], imports: [BrowserAnimationsModule,
         DocsModule,
-        RouterModule.forRoot(routes, { useHash: environment.useHash }),
-        BsDropdownModule.forRoot()], providers: [
+        RouterModule.forRoot(routes, { useHash: environment.useHash })
+        ], providers: [
         { provide: NgApiDoc, useValue: ngdoc },
         { provide: DOCS_TOKENS, useValue: routes },
         { provide: SIDEBAR_ROUTES, useValue: SidebarRoutesStructure },

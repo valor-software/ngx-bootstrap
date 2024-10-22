@@ -14,7 +14,7 @@ const HEROES_OBJ: { id: number; name: string }[] = [
 ];
 
 @Component({
-  template: `
+    template: `
     <bs-sortable
       id="sort1"
       [(ngModel)]="heroes"
@@ -23,7 +23,9 @@ const HEROES_OBJ: { id: number; name: string }[] = [
       [itemActiveStyle]="{ 'background-color': 'lightgray' }"
     ></bs-sortable>
     <bs-sortable id="sort2" [(ngModel)]="heroesObj" [fieldName]="'name'" [placeholderItem]="'empty'"></bs-sortable>
-  `
+  `,
+    standalone: true,
+    imports: [FormsModule]
 })
 class TestSortableComponent {
   selectedState?: string;
@@ -38,10 +40,9 @@ xdescribe('Component: Sortable', () => {
 
   beforeEach(() => {
     fixture = TestBed.configureTestingModule({
-      declarations: [TestSortableComponent],
-      imports: [SortableModule.forRoot(), FormsModule],
-      providers: [{ provide: ComponentFixtureAutoDetect, useValue: true }]
-    }).createComponent(TestSortableComponent);
+    imports: [SortableModule, FormsModule, TestSortableComponent],
+    providers: [{ provide: ComponentFixtureAutoDetect, useValue: true }]
+}).createComponent(TestSortableComponent);
 
     fixture.detectChanges();
 

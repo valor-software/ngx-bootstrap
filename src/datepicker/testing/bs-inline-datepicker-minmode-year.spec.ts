@@ -13,8 +13,9 @@ import { CalendarCellViewModel } from '../models';
 import { getYearsCalendarInitialDate } from '../utils/bs-calendar-utils';
 
 @Component({
-  selector: 'test-cmp',
-  template: `<bs-datepicker-inline [bsConfig]="bsConfig"></bs-datepicker-inline>>`
+    selector: 'test-cmp',
+    template: `<bs-datepicker-inline [bsConfig]="bsConfig"></bs-datepicker-inline>>`,
+    standalone: true
 })
 class TestComponent {
   @ViewChild(BsDatepickerInlineDirective, { static: false }) datepicker: BsDatepickerInlineDirective;
@@ -38,12 +39,12 @@ xdescribe('datepicker inline minMode="year":', () => {
   let fixture: TestFixture;
   beforeEach(
     waitForAsync(() => TestBed.configureTestingModule({
-        declarations: [TestComponent],
-        imports: [
-          BsDatepickerModule.forRoot(),
-          BrowserAnimationsModule
-        ]
-    }).compileComponents()
+    imports: [
+        BsDatepickerModule,
+        BrowserAnimationsModule,
+        TestComponent
+    ]
+}).compileComponents()
     ));
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);

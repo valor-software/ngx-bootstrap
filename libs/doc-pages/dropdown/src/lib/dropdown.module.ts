@@ -17,7 +17,7 @@ export { DropdownSectionComponent } from './dropdown-section.component';
         ...DEMO_COMPONENTS
     ],
     imports: [
-        BsDropdownModule.forRoot(),
+        BsDropdownModule,
         CommonModule,
         FormsModule,
         DocsModule,

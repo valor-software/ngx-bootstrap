@@ -1,10 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ModuleWithProviders, NgModule } from '@angular/core';
-import { ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
-import { PositioningService } from 'ngx-bootstrap/positioning';
 
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { TimepickerModule, TimepickerActions } from 'ngx-bootstrap/timepicker';
+import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 
 import { BsDatepickerInputDirective } from './bs-datepicker-input.directive';
 import { BsDatepickerDirective } from './bs-datepicker.component';
@@ -13,10 +11,6 @@ import { BsDaterangepickerDirective } from './bs-daterangepicker.component';
 
 import { BsDatepickerInlineDirective } from './bs-datepicker-inline.component';
 
-import { BsLocaleService } from './bs-locale.service';
-import { BsDatepickerActions } from './reducer/bs-datepicker.actions';
-import { BsDatepickerEffects } from './reducer/bs-datepicker.effects';
-import { BsDatepickerStore } from './reducer/bs-datepicker.store';
 import { BsDatepickerContainerComponent } from './themes/bs/bs-datepicker-container.component';
 import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepicker-container.component';
 
@@ -36,9 +30,7 @@ import { BsTimepickerViewComponent } from './themes/bs/bs-timepicker-view.compon
 import { BsYearsCalendarViewComponent } from './themes/bs/bs-years-calendar-view.component';
 
 @NgModule({
-    imports: [CommonModule, TooltipModule, TimepickerModule],
-    declarations: [
-        BsCalendarLayoutComponent,
+    imports: [CommonModule, TooltipModule, TimepickerModule, BsCalendarLayoutComponent,
         BsCurrentDateViewComponent,
         BsCustomDatesViewComponent,
         BsDatepickerDayDecoratorComponent,
@@ -56,8 +48,7 @@ import { BsYearsCalendarViewComponent } from './themes/bs/bs-years-calendar-view
         BsDaterangepickerDirective,
         BsDaterangepickerInlineContainerComponent,
         BsDaterangepickerInlineDirective,
-        BsDaterangepickerInputDirective
-    ],
+        BsDaterangepickerInputDirective],
     exports: [
         BsDatepickerContainerComponent,
         BsDatepickerDirective,
@@ -72,18 +63,11 @@ import { BsYearsCalendarViewComponent } from './themes/bs/bs-years-calendar-view
     ]
 })
 export class BsDatepickerModule {
+  // @deprecated method not required anymore, will be deleted in v19.0.0
   static forRoot(): ModuleWithProviders<BsDatepickerModule> {
     return {
       ngModule: BsDatepickerModule,
-      providers: [
-        ComponentLoaderFactory,
-        PositioningService,
-        BsDatepickerStore,
-        BsDatepickerActions,
-        BsDatepickerEffects,
-        BsLocaleService,
-        TimepickerActions
-      ]
+      providers: []
     };
   }
 }

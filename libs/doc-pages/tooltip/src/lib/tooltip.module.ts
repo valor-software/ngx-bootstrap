@@ -20,7 +20,7 @@ export { TooltipSectionComponent } from './tooltip-section.component';
         CommonModule,
         FormsModule,
         DocsModule,
-        TooltipModule.forRoot(),
+        TooltipModule,
         RouterModule.forChild(routes)
     ],
     exports: [TooltipSectionComponent]
