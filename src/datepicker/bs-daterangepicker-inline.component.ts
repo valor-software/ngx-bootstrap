@@ -6,7 +6,6 @@ import {
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 
 import { Subscription } from 'rxjs';
-import { filter } from 'rxjs/operators';
 
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { BsDaterangepickerInlineConfig } from './bs-daterangepicker-inline.config';
@@ -77,6 +76,10 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
      * Disable specific dates
      */
     @Input() datesEnabled?: Date[];
+    /**
+     * Emits when the first range value has been received.
+     */
+    @Output() bsValueBeginChange: EventEmitter<(Date|undefined)[] | undefined> = new EventEmitter();
     /**
      * Emits when daterangepicker value has been changed
      */
@@ -198,11 +201,16 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
     if (this._datepickerRef) {
       this._subs.push(
         this._datepickerRef.instance.valueChange
-          .pipe(
-            filter((range: Date[]) => range && range[0] && !!range[1])
-          )
           .subscribe((value: Date[]) => {
-            this.bsValue = value;
+            if (value && value[0]) {
+              if (value[1]) {
+                // We have a range
+                this.bsValue = value;
+              } else {
+                // We have the first selection of a range
+                this.bsValueBeginChange.emit(value);
+              }
+            }
           })
       );
     }
