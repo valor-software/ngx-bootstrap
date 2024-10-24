@@ -56,11 +56,11 @@ describe('locale: hr', () => {
         ['a A', 'pm PM'],
         ['[the] DDDo [day of the year]', 'the 45. day of the year'],
         ['LTS', '15:25:50'],
-        ['L', '14/02/2010'],
+        ['L', '14.02.2010.'],
         ['LL', '14 Veljača 2010'],
         ['LLL', '14 Veljača 2010 15:25'],
         ['LLLL', 'Nedjelja, 14 Veljača 2010 15:25'],
-        ['l', '14/2/2010'],
+        ['l', '14.2.2010.'],
         ['ll', '14 Velj 2010'],
         ['lll', '14 Velj 2010 15:25'],
         ['llll', 'Ned, 14 Velj 2010 15:25']
