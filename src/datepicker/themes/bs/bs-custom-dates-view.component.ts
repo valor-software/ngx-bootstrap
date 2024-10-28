@@ -14,7 +14,7 @@ export interface BsCustomDates {
         type="button"
         class="btn"
         (click)="selectFromRanges(range)"
-        [class.selected]="range.value === selectedRange">
+        [class.selected]="compareRanges(range)">
         {{ range.label }}
       </button>
     </div>
@@ -31,5 +31,9 @@ export class BsCustomDatesViewComponent {
 
   selectFromRanges(range?: BsCustomDates) {
     this.onSelect.emit(range);
+  }
+
+  compareRanges(range?: BsCustomDates) {
+    return JSON.stringify(range?.value) === JSON.stringify(this.selectedRange);
   }
 }
