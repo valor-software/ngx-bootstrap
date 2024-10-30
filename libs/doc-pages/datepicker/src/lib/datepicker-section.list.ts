@@ -48,11 +48,13 @@ import { DemoDateRangePickerMaxDateRangeComponent } from './demos/max-date-range
 import { DemoDateRangePickerDisplayOneMonth } from './demos/daterangepicker-display-one-month/display-one-month';
 import { DemoDatepickerTodayButtonComponent } from './demos/today-button/today-button';
 import { DemoDatepickerClearButtonComponent } from './demos/clear-button/clear-button';
+import { DemoDatepickerApplyButtonComponent } from './demos/apply-button/apply-button';
 import { DemoDatepickerStartViewComponent } from "./demos/start-view/start-view";
 import { DemoDatepickerPreventChangeToNextMonthComponent } from './demos/prevent-change-to-next-month/prevent-change-to-next-month.component';
 import { DemoDatepickerWithTimepickerComponent } from './demos/with-timepicker/with-timepicker';
 import { DatepickerCloseBehaviorComponent } from './demos/closeBehaviour/datepicker-close-behavior';
 import { KeepDatesOutOfRulesComponent } from './demos/keep-dates-out-of-rules/keep-dates-out-of-rules.component';
+
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -439,6 +441,14 @@ export const demoComponentContent: ContentSection[] = [
         outlet: DemoDatepickerClearButtonComponent
       },
       {
+        title: 'Show Apply Button',
+        anchor: 'datepicker-show-apply-button',
+        component: require('!!raw-loader!./demos/apply-button/apply-button.ts'),
+        html: require('!!raw-loader!./demos/apply-button/apply-button.html'),
+        description: `<p>Display an 'Apply' and 'Cancel' button. The datepicker will not update the model unless the 'Apply' button is pressed. If the 'Cancel' button is pressed the model value will not be updated and the datepicker will be closed. The datepicker will remain open until it is applied, cancelled, or dismissed.</p>`,
+        outlet: DemoDatepickerApplyButtonComponent
+      },
+      {
         title: 'Start view',
         anchor: 'start-view',
         component: require('!!raw-loader!./demos/start-view/start-view.ts'),
@@ -711,6 +721,11 @@ export const demoComponentContent: ContentSection[] = [
         title: 'Show Clear Button',
         anchor: 'datepicker-show-clear-button-ex',
         outlet: DemoDatepickerClearButtonComponent
+      },
+      {
+        title: 'Show Apply Button',
+        anchor: 'datepicker-show-apply-button-ex',
+        outlet: DemoDatepickerApplyButtonComponent
       },
       {
         title: 'Start view',

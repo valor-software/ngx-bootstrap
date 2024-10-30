@@ -427,6 +427,7 @@
 
   .bs-media-container {
     display: flex;
+    justify-content: center;
     @media(max-width: 768px) {
       flex-direction: column;
     }
@@ -470,28 +471,32 @@
     flex-flow: row wrap;
     justify-content: flex-end;
     padding-top: 10px;
-    border-top: 1px solid $border-color;
+    gap: 5px;
 
     .btn-default {
-      margin-left: 10px;
+      margin-right: 5px;
     }
 
-    .btn-today-wrapper {
+    .btn-today-wrapper,
+    .btn-apply-wrapper{
       display: flex;
       flex-flow: row wrap;
     }
 
     .clear-right,
-    .today-right {
+    .today-right,
+    .apply-right {
       flex-grow: 0;
     }
     .clear-left,
-    .today-left {
+    .today-left,
+    .apply-left {
       flex-grow: 1;
     }
 
     .clear-center,
-    .today-center {
+    .today-center,
+    .apply-center {
       flex-grow: 0.5;
     }
   }
