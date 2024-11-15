@@ -6,7 +6,7 @@
 </a>
 
 <p align="center">
-The best way to quickly integrate <a href="https://getbootstrap.com/docs/5.2">Bootstrap 5</a> <a href="https://getbootstrap.com/docs/4.0">Bootstrap 4</a> Components with <a href="https://angular.io/">Angular</a>
+The best way to quickly integrate <a href="https://getbootstrap.com/docs/5.3">Bootstrap 5</a> <a href="https://getbootstrap.com/docs/4.6">Bootstrap 4</a> Components with <a href="https://angular.dev/">Angular</a>
 <br/>
 <br/>
 <i><strong>Note: </strong>ngx-bootstrap for <a href="https://getbootstrap.com/docs/3.3/">Bootstrap 3</a> is still available but is no longer maintained or updated.</i>
@@ -128,14 +128,14 @@ This can be done with the css file directly in the index.html, or alternatively 
 
 ```html
 <!--- index.html -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 ```
 
 - `Bootstrap 4`
 
 ```html
 <!--- index.html -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 ```
 
 ### Setting up the bootstrap version manually
@@ -174,7 +174,7 @@ npm start
 
 ## Compatibility
 
-The only two dependencies are [Angular](https://angular.io) and [Bootstrap](https://getbootstrap.com) CSS.
+The only two dependencies are [Angular](https://angular.dev) and [Bootstrap](https://getbootstrap.com) CSS.
 Here is the version compatibility list:
 
 | ngx-bootstrap | Angular         | Bootstrap CSS           |
@@ -204,7 +204,7 @@ So if you are in trouble, here's where you can look for help.
 The best place to ask questions is on [StackOverflow (under the `ngx-bootstrap` tag)](https://stackoverflow.com/questions/tagged/ngx-bootstrap)
 where there is a strong community of individuals asking and answering questions.
 
-You can also join [our Slack channel](https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWVjZGU2MjI4MTVhMGVlMTc2OWRiMzA0NzBhNDU5YzQ0MDM3MWI5NzJjZTUzNzIxZmNjYmFlMjU2MzE0YmY0NWY) and link your stackoverflow question there. But try to avoid asking generic help questions directly on Slack since they can easily get lost in the chat. You can also [search among the existing GitHub issues](https://github.com/valor-software/ngx-bootstrap/issues?utf8=%E2%9C%93&q=is%3Aissue).
+You can also join [our Slack channel](https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWVjZGU2MjI4MTVhMGVlMTc2OWRiMzA0NzBhNDU5YzQ0MDM3MWI5NzJjZTUzNzIxZmNjYmFlMjU2MzE0YmY0NWY) and link your StackOverflow question there. But try to avoid asking generic help questions directly on Slack since they can easily get lost in the chat. You can also [search among the existing GitHub issues](https://github.com/valor-software/ngx-bootstrap/issues?utf8=%E2%9C%93&q=is%3Aissue).
 
 If none of the above helped, please feel free to open a [new issue](https://github.com/valor-software/ngx-bootstrap/issues/new).
 
