@@ -4,25 +4,32 @@
   "projectType": "application",
   "sourceRoot": "apps/ngx-bootstrap-docs/src",
   "prefix": "ngx-bootstrap-base",
-  "implicitDependencies": ["ngx-bootstrap"],
+  "implicitDependencies": [
+    "ngx-bootstrap"
+  ],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
       "options": {
         "baseHref": "/ngx-bootstrap/",
-        "outputPath": "dist/apps/ngx-bootstrap",
+        "outputPath": "dist/ngx-bootstrap-docs/browser",
         "index": "apps/ngx-bootstrap-docs/src/index.html",
         "main": "apps/ngx-bootstrap-docs/src/main.ts",
         "polyfills": "apps/ngx-bootstrap-docs/src/polyfills.ts",
         "tsConfig": "apps/ngx-bootstrap-docs/tsconfig.app.json",
         "aot": true,
-        "assets": ["apps/ngx-bootstrap-docs/src/assets", "apps/ngx-bootstrap-docs/src/404.html"],
+        "assets": [
+          "apps/ngx-bootstrap-docs/src/assets",
+          "apps/ngx-bootstrap-docs/src/404.html"
+        ],
         "styles": [
           "apps/ngx-bootstrap-docs/src/assets/css/style.scss",
           "apps/ngx-bootstrap-docs/src/assets/css/prettify-angulario.css"
         ],
         "stylePreprocessorOptions": {
-          "includePaths": ["src/datepicker"]
+          "includePaths": [
+            "src/datepicker"
+          ]
         }
       },
       "configurations": {
@@ -89,6 +96,76 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint"
+    },
+    "server": {
+      "executor": "@angular-devkit/build-angular:server",
+      "options": {
+        "outputPath": "dist/ngx-bootstrap-docs/server",
+        "main": "apps/ngx-bootstrap-docs/server.ts",
+        "tsConfig": "apps/ngx-bootstrap-docs/tsconfig.server.json",
+        "stylePreprocessorOptions": {
+          "includePaths": [
+            "src/datepicker"
+          ]
+        }
+      },
+      "configurations": {
+        "production": {
+          "buildOptimizer": true,
+          "outputHashing": "media",
+          "fileReplacements": [
+            {
+              "replace": "apps/ngx-bootstrap-docs/src/environments/environment.ts",
+              "with": "apps/ngx-bootstrap-docs/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "sourceMap": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "sourceMap": true,
+          "extractLicenses": false,
+          "vendorChunk": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve-ssr": {
+      "executor": "@angular-devkit/build-angular:ssr-dev-server",
+      "configurations": {
+        "development": {
+          "browserTarget": "ngx-bootstrap-docs:build:development",
+          "serverTarget": "ngx-bootstrap-docs:server:development"
+        },
+        "production": {
+          "browserTarget": "ngx-bootstrap-docs:build:production",
+          "serverTarget": "ngx-bootstrap-docs:server:production"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "prerender": {
+      "executor": "@angular-devkit/build-angular:prerender",
+      "options": {
+        "routes": [
+          "/"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "ngx-bootstrap-docs:build:production",
+          "serverTarget": "ngx-bootstrap-docs:server:production"
+        },
+        "development": {
+          "browserTarget": "ngx-bootstrap-docs:build:development",
+          "serverTarget": "ngx-bootstrap-docs:server:development"
+        }
+      },
+      "defaultConfiguration": "production"
     }
   }
 }

@@ -66,7 +66,7 @@ export class TopMenuComponent implements AfterViewInit {
       const _cur = getUrl(this.router);
       this.initBoxShadow = this.shadowRoutes.includes(_cur);
       if (typeof window !== 'undefined') {
-        this.appHash = location.hash === '#/' ? '' : location.hash;
+        this.appHash = '';
       }
 
       if (event instanceof NavigationEnd && _cur !== _prev) {

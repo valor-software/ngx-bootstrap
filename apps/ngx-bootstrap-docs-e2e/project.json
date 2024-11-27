@@ -4,11 +4,15 @@
   "sourceRoot": "apps/ngx-bootstrap-docs-e2e/src",
   "projectType": "application",
   "tags": [],
-  "implicitDependencies": ["ngx-bootstrap-docs"],
+  "implicitDependencies": [
+    "ngx-bootstrap-docs"
+  ],
   "targets": {
     "e2e": {
       "executor": "@nxkit/playwright:test",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/ngx-bootstrap-docs-e2e/test-results",
         "playwrightConfig": "apps/ngx-bootstrap-docs-e2e/playwright.config.ts",
@@ -24,8 +28,10 @@
       }
     },
     "debug": {
-      "builder": "@nxkit/playwright:test",
-      "outputs": ["{options.outputPath}"],
+      "executor": "@nxkit/playwright:test",
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/ngx-bootstrap-docs-e2e/test-results",
         "playwrightConfig": "apps/ngx-bootstrap-docs-e2e/playwright.config.ts",
@@ -39,14 +45,16 @@
       }
     },
     "show-report": {
-      "builder": "@nxkit/playwright:show-report",
+      "executor": "@nxkit/playwright:show-report",
       "options": {
         "reportPath": "dist/apps/ngx-bootstrap-docs-e2e/playwright-report"
       }
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputPath}"]
+      "outputs": [
+        "{options.outputPath}"
+      ]
     }
   }
 }
