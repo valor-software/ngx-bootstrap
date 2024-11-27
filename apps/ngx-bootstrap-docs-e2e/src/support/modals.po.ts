@@ -2,7 +2,7 @@ import { BaseComponent } from './base.component';
 import PositionType = Cypress.PositionType;
 
 export class ModalsPo extends BaseComponent {
-  pageUrl = '#/components/modals';
+  pageUrl = '/ngx-bootstrap/components/modals';
   pageTitle = 'Modals';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/modal';
 

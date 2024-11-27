@@ -1,7 +1,7 @@
 import { BaseComponent } from './base.component';
 
 export class RatingPo extends BaseComponent {
-  pageUrl = '#/components/rating';
+  pageUrl = '/ngx-bootstrap/components/rating';
   pageTitle = 'Rating';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/rating';
   tagRating = 'rating';

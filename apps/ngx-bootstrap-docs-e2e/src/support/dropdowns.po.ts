@@ -1,7 +1,7 @@
 import { BaseComponent } from './base.component';
 
 export class DropdownsPo extends BaseComponent {
-  pageUrl = '#/components/dropdowns';
+  pageUrl = '/ngx-bootstrap/components/dropdowns';
   pageTitle = 'Dropdowns';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/dropdown';
 

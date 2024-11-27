@@ -1,7 +1,7 @@
 import { BaseComponent } from './base.component';
 
 export class PaginationPo extends BaseComponent {
-  pageUrl = '#/components/pagination';
+  pageUrl = '/ngx-bootstrap/components/pagination';
   pageTitle = 'Pagination';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/pagination';
 

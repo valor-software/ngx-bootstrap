@@ -3,7 +3,7 @@ import ObjectLike = Cypress.ObjectLike;
 import TriggerOptions = Cypress.TriggerOptions;
 
 export class TimepickerPo extends BaseComponent {
-  pageUrl = '#/components/timepicker';
+  pageUrl = '/ngx-bootstrap/components/timepicker';
   pageTitle = 'Timepicker';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/timepicker';
 

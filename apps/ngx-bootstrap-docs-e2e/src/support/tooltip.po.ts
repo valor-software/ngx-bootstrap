@@ -1,7 +1,7 @@
 import { BaseComponent } from './base.component';
 
 export class TooltipPo extends BaseComponent {
-  pageUrl = '#/components/tooltip';
+  pageUrl = '/ngx-bootstrap/components/tooltip';
   pageTitle = 'Tooltip';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/tooltip';
 

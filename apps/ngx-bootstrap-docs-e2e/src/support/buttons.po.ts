@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { BasePo } from './base.po';
 
 export class ButtonsPo extends BasePo {
-  override pageUrl = '#/components/buttons';
+  override pageUrl = '/ngx-bootstrap/components/buttons';
   pageTitle = 'Buttons';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/buttons';
 

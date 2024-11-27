@@ -1,7 +1,7 @@
 import { BaseComponent } from './base.component';
 
 export class CarouselPo extends BaseComponent {
-  pageUrl = '#/components/carousel';
+  pageUrl = '/ngx-bootstrap/components/carousel';
   pageTitle = 'Carousel';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/carousel';
 

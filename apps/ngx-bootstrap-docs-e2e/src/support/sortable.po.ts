@@ -1,7 +1,7 @@
 import { BaseComponent } from './base.component';
 
 export class SortablePo extends BaseComponent {
-  pageUrl = '#/components/sortable';
+  pageUrl = '/ngx-bootstrap/components/sortable';
   pageTitle = 'Sortable';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/blob/development/src/sortable';
 

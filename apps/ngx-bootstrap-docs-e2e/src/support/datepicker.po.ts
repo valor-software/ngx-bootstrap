@@ -5,7 +5,7 @@ import * as globalLocales from 'ngx-bootstrap/locale';
 import * as moment from 'moment';
 
 export class DatepickerPo extends BaseComponent {
-  pageUrl = '#/components/datepicker';
+  pageUrl = '/ngx-bootstrap/components/datepicker';
   pageTitle = 'Datepicker';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/datepicker';
 

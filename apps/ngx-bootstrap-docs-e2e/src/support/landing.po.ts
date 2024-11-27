@@ -1,8 +1,8 @@
 import { BaseComponent } from './base.component';
 
 export class LandingPo extends BaseComponent {
-  pageUrl = '#/';
-  documentationUrl = '#/documentation/';
+  pageUrl = '/ngx-bootstrap/';
+  documentationUrl = '/ngx-bootstrap/documentation/';
 
   mainClass = '.main';
   logoAtHeader = '[data-cypress="logoAtHeader"]';

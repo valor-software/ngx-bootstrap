@@ -2,7 +2,7 @@ import { expect, ConsoleMessage } from '@playwright/test';
 import { BasePo } from './base.po';
 
 export class AccordionPo extends BasePo {
-  override pageUrl = '#/components/accordion';
+  override pageUrl = '/ngx-bootstrap/components/accordion';
   pageTitle = 'Accordion';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/accordion';
   additionalHtml = '.badge';

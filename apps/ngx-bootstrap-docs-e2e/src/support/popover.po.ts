@@ -1,7 +1,7 @@
 import { BaseComponent } from './base.component';
 
 export class PopoverPo extends BaseComponent {
-  pageUrl = '#/components/popover';
+  pageUrl = '/ngx-bootstrap/components/popover';
   pageTitle = 'Popover';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/popover';
 

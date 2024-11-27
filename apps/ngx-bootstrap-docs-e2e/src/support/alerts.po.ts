@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import { BasePo } from './base.po';
 
 export class AlertsPo extends BasePo {
-  override pageUrl = '#/components/alerts';
+  override pageUrl = '/ngx-bootstrap/components/alerts';
   pageTitle = 'Alerts';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/alert';
 

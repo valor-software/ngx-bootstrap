@@ -1,7 +1,7 @@
 import { BaseComponent } from './base.component';
 
 export class TabsPo extends BaseComponent {
-  pageUrl = '#/components/tabs';
+  pageUrl = '/ngx-bootstrap/components/tabs';
   pageTitle = 'Tabs';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/tabs';
 

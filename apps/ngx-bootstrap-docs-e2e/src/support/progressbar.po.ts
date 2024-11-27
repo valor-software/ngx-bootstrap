@@ -2,7 +2,7 @@ import { BaseComponent } from './base.component';
 import { AttrObj } from './interfaces';
 
 export class ProgressbarPo extends BaseComponent {
-  pageUrl = '#/components/progressbar';
+  pageUrl = '/ngx-bootstrap/components/progressbar';
   pageTitle = 'Progressbar';
   ghLinkToComponent = 'https://github.com/valor-software/ngx-bootstrap/tree/development/src/progressbar';
 
