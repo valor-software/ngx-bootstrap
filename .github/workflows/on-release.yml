@@ -52,7 +52,7 @@ jobs:
           key: dist-${{ github.run_id }}
       - run: |
           npx nx build ngx-bootstrap --runner=cloud --configuration=production
-          npx ng build --runner=cloud --configuration=production
+          npx nx prerender --runner=cloud --configuration=production
 
   # update release notes in github
 #  update_release_draft:
