@@ -84,7 +84,6 @@ export const DEMO_COMPONENTS = [
   DemoDatePickerVisibilityEventsComponent,
   DemoDatepickerTodayButtonComponent,
   DemoDatepickerClearButtonComponent,
-  DemoDateRangePickerShowPreviousMonth,
   DemoDateRangePickerMaxDateRangeComponent,
   DemoDatepickerPreventChangeToNextMonthComponent,
   DemoDatePickerQuickSelectRangesComponent,

@@ -11,6 +11,7 @@ export function getTabsetConfig(): TabsetConfig {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-tabs-config',
   templateUrl: './config.html',
-  providers: [{ provide: TabsetConfig, useFactory: getTabsetConfig }]
+  providers: [{ provide: TabsetConfig, useFactory: getTabsetConfig }],
+  standalone: false
 })
 export class DemoTabsConfigComponent {}

@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-timepicker-meridian',
-  templateUrl: './meridian.html'
+  templateUrl: './meridian.html',
+  standalone: false
 })
 export class DemoTimepickerMeridianComponent {
   ismeridian = true;

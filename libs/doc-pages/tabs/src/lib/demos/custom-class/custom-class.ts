@@ -12,7 +12,8 @@ interface ITab {
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-tabs-custom-class',
-  templateUrl: './custom-class.html'
+  templateUrl: './custom-class.html',
+  standalone: false
 })
 export class DemoTabsCustomClassComponent {
   tabs: ITab[] = [

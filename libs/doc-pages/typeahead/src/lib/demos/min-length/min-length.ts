@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-min-length',
-  templateUrl: './min-length.html'
+  templateUrl: './min-length.html',
+  standalone: false
 })
 export class DemoTypeaheadMinLengthComponent {
   selected?: string;

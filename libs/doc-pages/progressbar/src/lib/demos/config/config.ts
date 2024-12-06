@@ -11,6 +11,7 @@ export function getProgressbarConfig(): ProgressbarConfig {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-progressbar-config',
   templateUrl: './config.html',
-  providers: [{ provide: ProgressbarConfig, useFactory: getProgressbarConfig }]
+  providers: [{ provide: ProgressbarConfig, useFactory: getProgressbarConfig }],
+  standalone: false
 })
 export class DemoProgressbarConfigComponent {}

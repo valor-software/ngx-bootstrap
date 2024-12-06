@@ -14,7 +14,8 @@ interface IContentSection {
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-section',
-  templateUrl: './demo-section.component.html'
+  templateUrl: './demo-section.component.html',
+  standalone: false
 })
 export class DemoSectionComponent {
   @Input() name?: string;

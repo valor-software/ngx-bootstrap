@@ -85,5 +85,6 @@
     }
   },
   "useInferencePlugins": false,
-  "defaultBase": "development"
+  "defaultBase": "development",
+  "nxCloudAccessToken": "ZjAyZjFlMDUtNTY4Zi00ZmUzLWEyMjUtNzdmYjFiMGRkM2VlfHJlYWQtd3JpdGU="
 }

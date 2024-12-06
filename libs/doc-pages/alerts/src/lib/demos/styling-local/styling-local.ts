@@ -12,6 +12,7 @@ import { Component } from '@angular/core';
     color: #fff;
   }
   `
-  ]
+  ],
+  standalone: false
 })
 export class DemoAlertStylingLocalComponent {}

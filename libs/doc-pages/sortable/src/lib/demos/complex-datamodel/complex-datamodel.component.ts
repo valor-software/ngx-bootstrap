@@ -8,7 +8,8 @@ interface IItemObject {
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'complex-datamodel-demo',
-  templateUrl: './complex-datamodel.component.html'
+  templateUrl: './complex-datamodel.component.html',
+  standalone: false
 })
 export class ComplexDatamodelDemoComponent {
   itemObjectsLeft: IItemObject[] = [

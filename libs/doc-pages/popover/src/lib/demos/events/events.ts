@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-popover-events',
-  templateUrl: './events.html'
+  templateUrl: './events.html',
+  standalone: false
 })
 export class DemoPopoverEventsComponent {
   message?: string;

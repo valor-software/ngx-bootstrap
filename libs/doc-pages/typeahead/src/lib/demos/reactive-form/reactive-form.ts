@@ -4,7 +4,8 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-reactive-form',
-  templateUrl: './reactive-form.html'
+  templateUrl: './reactive-form.html',
+  standalone: false
 })
 export class DemoTypeaheadReactiveFormComponent {
   stateCtrl = new UntypedFormControl();

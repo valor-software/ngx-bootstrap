@@ -7,7 +7,8 @@ import { ContentSection } from '@ngx-bootstrap-doc/docs';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'tabs-section',
   templateUrl: './tabs-section.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class TabsSectionComponent {
   name = 'Tabs';

@@ -10,7 +10,8 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
       margin-bottom: 0.75rem;
       padding: 8px;
     }
-  `]
+  `],
+  standalone: false
 })
 export class DemoModalEventsComponent {
   @ViewChild(ModalDirective, { static: false }) modal?: ModalDirective;

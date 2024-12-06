@@ -5,7 +5,8 @@ import { Subscription } from 'rxjs';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'bread-crumbs',
-  templateUrl: 'breadCrumbs.component.html'
+  templateUrl: 'breadCrumbs.component.html',
+  standalone: false
 })
 export class BreadCrumbsComponent implements OnDestroy {
   routeSubscription: Subscription;

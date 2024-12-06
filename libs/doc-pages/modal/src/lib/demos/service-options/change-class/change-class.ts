@@ -4,7 +4,8 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-modal-change-class',
-  templateUrl: './change-class.html'
+  templateUrl: './change-class.html',
+  standalone: false
 })
 export class DemoModalServiceChangeClassComponent {
   modalRef?: BsModalRef;

@@ -25,7 +25,6 @@ export const DEMO_COMPONENTS = [
   DemoCarouseBasicComponent,
   DemoCarouselCaptionsComponent,
   DemoCarouselConfigComponent,
-  DemoCarouselConfigComponent,
   DemoCarouselCustomContentComponent,
   DemoCarouselDisableIndicatorComponent,
   DemoCarouselDisableLoopingComponent,

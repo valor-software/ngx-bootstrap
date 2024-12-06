@@ -10,7 +10,8 @@ import { ContentSection } from '@ngx-bootstrap-doc/docs';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'accordion-section',
   templateUrl: './accordion-section.components.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class AccordionSectionComponent {
   name = 'Accordion';

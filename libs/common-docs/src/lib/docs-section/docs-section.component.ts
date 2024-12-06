@@ -9,6 +9,7 @@ type AvailableTabsPathsType = typeof availableTabsPaths[number];
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'docs-section',
+  standalone: false,
   template: `
     <ng-container *ngIf="content">
       <tabset class="example-tabset-box">

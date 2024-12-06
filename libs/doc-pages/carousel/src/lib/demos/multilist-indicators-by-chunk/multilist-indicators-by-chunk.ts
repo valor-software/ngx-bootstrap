@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-carousel-multilist-indicators-by-chunk',
-  templateUrl: './multilist-indicators-by-chunk.html'
+  templateUrl: './multilist-indicators-by-chunk.html',
+  standalone: false
 })
 export class DemoCarouselMultilistIndicatorsByChunkComponent {
   itemsPerSlide = 3;

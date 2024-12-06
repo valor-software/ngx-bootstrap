@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-show-on-blur',
-  templateUrl: './show-on-blur.html'
+  templateUrl: './show-on-blur.html',
+  standalone: false
 })
 export class DemoTypeaheadShowOnBlurComponent {
   typeaheadHideResultsOnBlur = false;

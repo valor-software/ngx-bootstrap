@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-pagination-limit',
-  templateUrl: './limit.html'
+  templateUrl: './limit.html',
+  standalone: false
 })
 export class DemoPaginationLimitComponent {
   maxSize = 5;

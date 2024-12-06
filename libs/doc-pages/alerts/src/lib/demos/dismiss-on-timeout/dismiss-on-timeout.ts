@@ -5,7 +5,8 @@ type ExampleAlertType = { type: string; msg: string; timeout: number };
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-alert-timeout',
-  templateUrl: './dismiss-on-timeout.html'
+  templateUrl: './dismiss-on-timeout.html',
+  standalone: false
 })
 export class DemoAlertTimeoutComponent {
   alerts: ExampleAlertType[] = [

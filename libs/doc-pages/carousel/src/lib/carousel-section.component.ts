@@ -6,7 +6,8 @@ import { ContentSection } from '@ngx-bootstrap-doc/docs';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'carousel-section',
-  templateUrl: './carousel-section.component.html'
+  templateUrl: './carousel-section.component.html',
+  standalone: false
 })
 export class CarouselSectionComponent {
   name = 'Carousel';

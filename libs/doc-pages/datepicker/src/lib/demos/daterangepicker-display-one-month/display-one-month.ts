@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-daterangepicker-display-one-month',
-  templateUrl: './display-one-month.html'
+  templateUrl: './display-one-month.html',
+  standalone: false
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export class DemoDateRangePickerDisplayOneMonth {
