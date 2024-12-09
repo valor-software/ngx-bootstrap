@@ -8,7 +8,7 @@ import { ComponentApi } from '../../models/components-api.model';
   selector: 'api-sections',
   templateUrl: './api-sections.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  
+  standalone: false
 })
 export class ApiSectionsComponent {
   apiSectionsContent: ComponentApi[];

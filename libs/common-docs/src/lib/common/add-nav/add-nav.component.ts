@@ -22,7 +22,7 @@ interface IComponentContent {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'add-nav',
   templateUrl: './add-nav.component.html',
-  
+  standalone: false
 })
 export class AddNavComponent implements OnChanges, AfterViewChecked, AfterViewInit {
   @Input() componentContent?: ContentSection;
