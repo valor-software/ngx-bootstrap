@@ -3,7 +3,7 @@ import { Route, Routes } from '@angular/router';
 
 @Pipe({
   name: 'SearchFilter',
-  standalone: false
+  
 })
 export class SearchFilterPipe implements PipeTransform {
   transform(value: Routes, text?: string): Routes {

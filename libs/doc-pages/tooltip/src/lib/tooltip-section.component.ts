@@ -8,7 +8,7 @@ import { ContentSection } from '@ngx-bootstrap-doc/docs';
   selector: 'tooltip-section',
   templateUrl: './tooltip-section.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  
 })
 export class TooltipSectionComponent {
   name = 'Tooltip';

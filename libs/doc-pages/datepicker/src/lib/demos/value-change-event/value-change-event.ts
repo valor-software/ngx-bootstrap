@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-datepicker-value-change-event',
   templateUrl: './value-change-event.html',
-  standalone: false
+  
 })
 export class DemoDatepickerValueChangeEventComponent {
   data?: Date;

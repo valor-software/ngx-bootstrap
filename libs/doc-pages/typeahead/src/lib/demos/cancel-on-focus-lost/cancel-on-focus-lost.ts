@@ -14,7 +14,7 @@ export function getTypeaheadConfig(): TypeaheadConfig {
   selector: 'demo-typeahead-cancel-on-focus-lost',
   templateUrl: './cancel-on-focus-lost.html',
   providers: [{ provide: TypeaheadConfig, useFactory: getTypeaheadConfig }],
-  standalone: false
+  
 })
 export class DemoTypeaheadCancelRequestOnFocusLostComponent {
   asyncSelected?: string;

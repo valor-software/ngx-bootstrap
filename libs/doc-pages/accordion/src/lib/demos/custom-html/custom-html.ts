@@ -5,7 +5,7 @@ import { getBsVer, IBsVersion } from 'ngx-bootstrap/utils';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-accordion-custom-html',
   templateUrl: './custom-html.html',
-  standalone: false
+  
 })
 export class DemoAccordionCustomHTMLComponent {
   get _getBsVer(): IBsVersion {

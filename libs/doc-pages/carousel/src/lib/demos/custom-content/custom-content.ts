@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-carousel-custom-content',
   templateUrl: './custom-content.html',
-  standalone: false
+  
 })
 export class DemoCarouselCustomContentComponent {}

@@ -17,6 +17,6 @@ export function getPopoverConfig(): PopoverConfig {
   selector: 'demo-popover-config',
   templateUrl: './config.html',
   providers: [{ provide: PopoverConfig, useFactory: getPopoverConfig }],
-  standalone: false
+  
 })
 export class DemoPopoverConfigComponent {}

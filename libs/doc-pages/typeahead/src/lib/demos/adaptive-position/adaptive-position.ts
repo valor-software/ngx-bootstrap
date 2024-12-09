@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-adaptive-position',
   templateUrl: './adaptive-position.html',
-  standalone: false
+  
 })
 export class DemoTypeaheadAdaptivePositionComponent {
   selected?: string;

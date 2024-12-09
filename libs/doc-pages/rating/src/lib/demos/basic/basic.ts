@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-rating-basic',
   templateUrl: './basic.html',
-  standalone: false
+  
 })
 export class DemoRatingBasicComponent {
   max = 10;

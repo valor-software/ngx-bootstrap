@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-datepicker-forms',
   templateUrl: './forms.component.html',
-  standalone: false
+  
 })
 export class DemoDatepickerFormsComponent {
   datepickerModel?: Date;

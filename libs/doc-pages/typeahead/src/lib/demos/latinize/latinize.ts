@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-latinize',
   templateUrl: './latinize.html',
-  standalone: false
+  
 })
 export class DemoTypeaheadLatinizeComponent {
   selected?: string;

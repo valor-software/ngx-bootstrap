@@ -13,7 +13,7 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
       margin-bottom: 10px;
     }
   `],
-  standalone: false
+  
 })
 export class DemoPaginationContentSwitchingComponent implements OnInit {
   contentArray = new Array(90).fill('');

@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-tooltip-container',
   templateUrl: './container.html',
-  standalone: false
+  
 })
 export class DemoTooltipContainerComponent {}

@@ -8,7 +8,7 @@ import { switchMap } from 'rxjs/operators';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-ordering',
   templateUrl: './ordering.html',
-  standalone: false
+  
 })
 export class DemoTypeaheadOrderingComponent implements OnInit {
   selected1?: string;

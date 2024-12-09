@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'basic-demo',
   templateUrl: './basic.component.html',
-  standalone: false
+  
 })
 export class DemoBasicComponent {
   itemStringsLeft = [

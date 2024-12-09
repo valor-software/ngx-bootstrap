@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
   selector: 'demo-popover-adaptive-position-overflow-boundary',
   templateUrl: './adaptive-position-overflow-boundary.html',
   styleUrls: ['./adaptive-position-overflow-boundary.css'],
-  standalone: false
+  
 })
 export class DemoAdaptivePositionOverflowBoundaryComponent {}

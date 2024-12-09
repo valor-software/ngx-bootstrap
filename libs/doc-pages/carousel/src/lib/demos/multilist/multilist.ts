@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-carousel-multilist',
   templateUrl: './multilist.html',
-  standalone: false
+  
 })
 export class DemoCarouselMultilistComponent {
   itemsPerSlide = 3;

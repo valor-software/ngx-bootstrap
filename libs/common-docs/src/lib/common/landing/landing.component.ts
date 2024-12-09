@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'landing',
   templateUrl: './landing.component.html',
-  standalone: false
+  
 })
 export class LandingComponent implements AfterViewInit {
   currentVersion?: string;

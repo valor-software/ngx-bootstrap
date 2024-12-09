@@ -7,7 +7,7 @@ type ExampleAlertType = { type: string; msg: SafeHtml };
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-alert-dynamic-html',
   templateUrl: './dynamic-html.html',
-  standalone: false
+  
 })
 export class DemoAlertDynamicHtmlComponent {
   alerts: ExampleAlertType[];

@@ -5,7 +5,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-modal-service-confirm-window',
   templateUrl: './service-confirm-window.html',
-  standalone: false
+  
 })
 export class DemoModalServiceConfirmWindowComponent {
   modalRef?: BsModalRef;

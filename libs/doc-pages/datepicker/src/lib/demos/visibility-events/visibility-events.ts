@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-datepicker-visibility-events',
   templateUrl: './visibility-events.html',
-  standalone: false
+  
 })
 
 export class DemoDatePickerVisibilityEventsComponent {

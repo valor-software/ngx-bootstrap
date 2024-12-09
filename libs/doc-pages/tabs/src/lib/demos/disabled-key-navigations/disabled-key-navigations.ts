@@ -10,7 +10,7 @@ export function getTabsetConfig(): TabsetConfig {
   selector: 'demo-disabled-key-navigations',
   templateUrl: './disabled-key-navigations.html',
   providers: [{ provide: TabsetConfig, useFactory: getTabsetConfig }],
-  standalone: false
+  
 })
 export class DemoDisabledKeyNavigationsComponent {
 }

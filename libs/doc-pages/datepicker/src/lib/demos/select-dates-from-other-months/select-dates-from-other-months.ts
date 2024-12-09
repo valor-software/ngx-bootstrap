@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-datepicker-select-dates-from-other-months',
   templateUrl: './select-dates-from-other-months.html',
-  standalone: false
+  
 })
 export class DemoDatePickerSelectDatesFromOtherMonthsComponent {}

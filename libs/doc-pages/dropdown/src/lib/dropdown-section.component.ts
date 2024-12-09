@@ -8,7 +8,7 @@ import { ContentSection } from '@ngx-bootstrap-doc/docs';
   selector: 'dropdown-section',
   templateUrl: './dropdown-section.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  
 })
 export class DropdownSectionComponent {
   name = 'Dropdowns';

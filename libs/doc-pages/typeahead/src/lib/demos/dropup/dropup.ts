@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-dropup',
   templateUrl: './dropup.html',
-  standalone: false
+  
 })
 export class DemoTypeaheadDropupComponent {
   selected?: string;

@@ -5,6 +5,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
   selector: 'demo-popover-styling-global',
   templateUrl: './styling-global.html',
   encapsulation: ViewEncapsulation.None,
-  standalone: false
+  
 })
 export class DemoPopoverStylingGlobalComponent {}

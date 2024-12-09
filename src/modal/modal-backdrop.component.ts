@@ -8,7 +8,6 @@ import { Utils } from 'ngx-bootstrap/utils';
 @Component({
     selector: 'bs-modal-backdrop',
     template: ' ',
-    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
     host: { class: CLASS_NAME.BACKDROP },
     standalone: true
 })

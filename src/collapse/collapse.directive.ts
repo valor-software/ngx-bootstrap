@@ -23,7 +23,6 @@ import {
 @Directive({
     selector: '[collapse]',
     exportAs: 'bs-collapse',
-    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
     host: {
         '[class.collapse]': 'true'
     },

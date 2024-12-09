@@ -12,6 +12,6 @@ export function getProgressbarConfig(): ProgressbarConfig {
   selector: 'demo-progressbar-config',
   templateUrl: './config.html',
   providers: [{ provide: ProgressbarConfig, useFactory: getProgressbarConfig }],
-  standalone: false
+  
 })
 export class DemoProgressbarConfigComponent {}

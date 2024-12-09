@@ -23,7 +23,7 @@ export function getTimepickerConfig(): TimepickerConfig {
   selector: 'demo-timepicker-config',
   templateUrl: './config.html',
   providers: [{ provide: TimepickerConfig, useFactory: getTimepickerConfig }],
-  standalone: false
+  
 })
 export class DemoTimepickerConfigComponent {
   mytime?: string;

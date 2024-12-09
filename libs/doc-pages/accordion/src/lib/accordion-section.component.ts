@@ -11,7 +11,7 @@ import { ContentSection } from '@ngx-bootstrap-doc/docs';
   selector: 'accordion-section',
   templateUrl: './accordion-section.components.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  
 })
 export class AccordionSectionComponent {
   name = 'Accordion';

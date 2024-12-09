@@ -16,6 +16,6 @@ export function getAlertConfig(): TooltipConfig {
   selector: 'demo-tooltip-config',
   templateUrl: './config.html',
   providers: [{ provide: TooltipConfig, useFactory: getAlertConfig }],
-  standalone: false
+  
 })
 export class DemoTooltipConfigComponent {}

@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-prevent-change-to-next-month',
   templateUrl: './prevent-change-to-next-month.component.html',
-  standalone: false
+  
 })
 export class DemoDatepickerPreventChangeToNextMonthComponent {
   maxDate = new Date();

@@ -14,7 +14,7 @@ interface ITab {
   selector: 'demo-tabs-dynamic',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './dynamic.html',
-  standalone: false
+  
 })
 export class DemoTabsDynamicComponent {
   tabs: ITab[] = [

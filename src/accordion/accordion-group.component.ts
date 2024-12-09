@@ -14,7 +14,6 @@ import { NgClass, NgIf } from '@angular/common';
 @Component({
     selector: 'accordion-group, accordion-panel',
     templateUrl: './accordion-group.component.html',
-    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
     host: {
         class: 'panel',
         style: 'display: block'

@@ -16,7 +16,7 @@ import { combineLatest, Subscription } from 'rxjs';
       }
     `
   ],
-  standalone: false
+  
 })
 export class DemoModalRefEventsComponent {
   modalRef?: BsModalRef;

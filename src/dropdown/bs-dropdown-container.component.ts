@@ -21,7 +21,6 @@ import { NgClass } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   imports: [NgClass],
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     style: 'display:block;position: absolute;z-index: 1040'
   },

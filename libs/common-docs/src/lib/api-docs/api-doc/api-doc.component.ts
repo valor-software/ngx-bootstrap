@@ -22,7 +22,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   selector: 'ng-api-doc',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './api-doc.component.html',
-  standalone: false
+  
 })
 export class NgApiDocComponent {
   apiDocs?: DirectiveDesc;

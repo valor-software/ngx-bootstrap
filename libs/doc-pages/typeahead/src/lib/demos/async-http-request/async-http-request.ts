@@ -31,7 +31,7 @@ interface GitHubUser {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-async-http',
   templateUrl: './async-http-request.html',
-  standalone: false
+  
 })
 export class DemoTypeaheadAsyncHttpRequestComponent implements OnInit {
   search?: string;

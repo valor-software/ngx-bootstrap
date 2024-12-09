@@ -22,7 +22,7 @@ const CONFIG_SUFFIX_LENGTH = 'Config'.length;
   selector: 'ng-api-doc-config',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './api-doc-config.component.html',
-  standalone: false
+  
 })
 export class NgApiDocConfigComponent {
   apiDocs?: ClassDesc;

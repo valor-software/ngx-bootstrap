@@ -11,7 +11,7 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
       padding: 8px;
     }
   `],
-  standalone: false
+  
 })
 export class DemoModalEventsComponent {
   @ViewChild(ModalDirective, { static: false }) modal?: ModalDirective;

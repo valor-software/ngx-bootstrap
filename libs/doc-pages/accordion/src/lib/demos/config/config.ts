@@ -12,6 +12,6 @@ export function getAccordionConfig(): AccordionConfig {
   selector: 'demo-accordion-config',
   templateUrl: './config.html',
   providers: [{ provide: AccordionConfig, useFactory: getAccordionConfig }],
-  standalone: false
+  
 })
 export class DemoAccordionConfigComponent {}

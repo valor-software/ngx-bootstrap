@@ -8,7 +8,7 @@ import { ContentSection } from '@ngx-bootstrap-doc/docs';
   selector: 'alert-section',
   templateUrl: './alerts-section.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  
 })
 export class AlertsSectionComponent {
   name = 'Alerts';

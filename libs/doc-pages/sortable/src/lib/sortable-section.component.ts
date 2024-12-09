@@ -9,7 +9,7 @@ import { ContentSection } from '@ngx-bootstrap-doc/docs';
   templateUrl: './sortable-section.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  
 })
 export class SortableSectionComponent {
   name = 'Sortable';

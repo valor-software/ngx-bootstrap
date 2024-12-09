@@ -4,7 +4,7 @@ import {Component} from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-datepicker-max-date-range',
   templateUrl: './max-date-range.html',
-  standalone: false
+  
 })
 export class DemoDateRangePickerMaxDateRangeComponent {
   maxDate: Date;

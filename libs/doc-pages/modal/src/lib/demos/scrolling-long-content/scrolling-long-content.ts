@@ -5,7 +5,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-modal-scrolling-long-content',
   templateUrl: './scrolling-long-content.html',
-  standalone: false
+  
 })
 export class DemoModalScrollingLongContentComponent {
   modalRef?: BsModalRef;

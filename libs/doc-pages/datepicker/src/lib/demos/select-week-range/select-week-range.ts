@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-datepicker-select-week-range',
   templateUrl: './select-week-range.html',
-  standalone: false
+  
 })
 export class DemoDatePickerSelectWeekRangeComponent {}
