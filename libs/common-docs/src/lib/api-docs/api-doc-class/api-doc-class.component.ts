@@ -17,7 +17,7 @@ import { ComponentApi } from '../../models/components-api.model';
   selector: 'ng-api-doc-class',
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './api-doc-class.component.html',
-  
+  standalone: false
 })
 export class NgApiDocClassComponent {
   headerAnchor?: string;
