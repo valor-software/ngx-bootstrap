@@ -33,7 +33,10 @@
         "semi": "off",
         "@typescript-eslint/semi": ["error"],
         "@typescript-eslint/no-extra-semi": "error",
-        "no-extra-semi": "off"
+        "no-extra-semi": "off",
+        "@angular-eslint/prefer-standalone": [
+          "off"
+        ]
       }
     },
     {
