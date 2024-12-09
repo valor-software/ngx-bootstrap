@@ -8,7 +8,7 @@ import { ContentSection } from '@ngx-bootstrap-doc/docs';
   selector: 'rating-section',
   templateUrl: './rating-section.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  
+  standalone: false
 })
 export class RatingSectionComponent {
   name = 'Rating';

@@ -10,7 +10,7 @@ import { ContentSection } from '@ngx-bootstrap-doc/docs';
   selector: 'datepicker-section',
   templateUrl: './datepicker-section.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  
+  standalone: false
 })
 export class DatepickerSectionComponent {
   name = 'Datepicker';

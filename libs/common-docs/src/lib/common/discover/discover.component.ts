@@ -13,7 +13,7 @@ interface ICompany {
   selector: 'discover',
   templateUrl: './discover.component.html',
   styleUrls: ['discover.component.scss'],
-  
+  standalone: false
 })
 
 export class DiscoverComponent {

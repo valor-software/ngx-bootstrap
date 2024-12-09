@@ -8,7 +8,7 @@ import { ContentSection } from '@ngx-bootstrap-doc/docs';
   selector: 'buttons-section',
   templateUrl: './buttons-section.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  
+  standalone: false
 })
 export class ButtonsSectionComponent {
   name = 'Buttons';

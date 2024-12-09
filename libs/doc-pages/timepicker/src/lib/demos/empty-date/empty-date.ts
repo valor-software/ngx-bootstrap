@@ -12,7 +12,7 @@ export function getTimepickerConfig(): TimepickerConfig {
   selector: 'demo-timepicker-empty-date',
   templateUrl: './empty-date.html',
   providers: [{ provide: TimepickerConfig, useFactory: getTimepickerConfig }],
-  
+  standalone: false
 })
 export class DemoTimepickerEmptyDateComponent {
   allowEmptyTime = true;

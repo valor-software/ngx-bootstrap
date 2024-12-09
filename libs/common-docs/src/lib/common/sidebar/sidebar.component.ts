@@ -17,7 +17,7 @@ const _bs5Css = 'assets/css/bootstrap-5.2.3/css/bootstrap.min.css';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'sidebar',
   templateUrl: './sidebar.component.html',
-  standalone: true
+  standalone: false
 })
 export class SidebarComponent {
   isShown = false;

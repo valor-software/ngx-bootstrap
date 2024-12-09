@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-datepicker-min-max',
   templateUrl: './min-max.component.html',
-  
+  standalone: false
 })
 export class DemoDatepickerMinMaxComponent {
   minDate: Date;

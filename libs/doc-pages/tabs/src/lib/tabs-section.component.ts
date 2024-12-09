@@ -8,7 +8,7 @@ import { ContentSection } from '@ngx-bootstrap-doc/docs';
   selector: 'tabs-section',
   templateUrl: './tabs-section.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  
+  standalone: false
 })
 export class TabsSectionComponent {
   name = 'Tabs';

@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-timepicker-basic',
   templateUrl: './basic.html',
-  
+  standalone: false
 })
 export class DemoTimepickerBasicComponent {
   mytime: Date = new Date();

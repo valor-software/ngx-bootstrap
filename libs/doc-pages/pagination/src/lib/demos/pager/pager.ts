@@ -7,7 +7,7 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
   templateUrl: './pager.html',
   styles: ['.pager li.btn:active { box-shadow: none; }'],
   encapsulation: ViewEncapsulation.None,
-  
+  standalone: false
 })
 export class DemoPaginationPagerComponent {
   totalItems = 64;

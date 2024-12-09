@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-dropdown-state-change-event',
   templateUrl: './state-change-event.html',
-  
+  standalone: false
 })
 export class DemoDropdownStateChangeEventComponent {
   text?: string;

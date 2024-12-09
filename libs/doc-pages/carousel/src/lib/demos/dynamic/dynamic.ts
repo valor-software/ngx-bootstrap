@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-carousel-dynamic',
   templateUrl: './dynamic.html',
-  
+  standalone: false
 })
 export class DemoCarouselDynamicComponent {
   slides: { image: string; text?: string }[] = [];

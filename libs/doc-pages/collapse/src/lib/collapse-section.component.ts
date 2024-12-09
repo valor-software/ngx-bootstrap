@@ -8,7 +8,7 @@ import { ContentSection } from '@ngx-bootstrap-doc/docs';
   selector: 'collapse-section',
   templateUrl: './collapse-section.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  
+  standalone: false
 })
 export class CollapseSectionComponent {
   name = 'Collapse';

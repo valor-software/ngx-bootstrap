@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-timepicker-arrowkeys',
   templateUrl: './arrowkeys.html',
-  
+  standalone: false
 })
 export class DemoTimepickerArrowkeysComponent {
   allowArrowKeys = true;

@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-pagination-pages-count-changed',
   templateUrl: './pages-count-changed.html',
-  
+  standalone: false
 })
 export class DemoPaginationPagesCountChangedComponent {
   currentPage = 4;

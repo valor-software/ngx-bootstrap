@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-popover-outside-click',
   templateUrl: './outside-click.html',
-  
+  standalone: false
 })
 export class DemoPopoverOutsideClickComponent {}

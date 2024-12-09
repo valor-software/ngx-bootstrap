@@ -12,7 +12,7 @@ export function getTimepickerConfig(): TimepickerConfig {
   selector: 'demo-timepicker-dynamic',
   templateUrl: './dynamic.html',
   providers: [{ provide: TimepickerConfig, useFactory: getTimepickerConfig }],
-  
+  standalone: false
 })
 export class DemoTimepickerDynamicComponent {
   mytime: Date | undefined = new Date();

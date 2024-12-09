@@ -11,7 +11,7 @@ export function getRatingConfig(): RatingConfig {
   selector: 'demo-rating-config',
   templateUrl: './config.html',
   providers: [{ provide: RatingConfig, useFactory: getRatingConfig }],
-  
+  standalone: false
 })
 export class DemoRatingConfigComponent {
   max = 10;

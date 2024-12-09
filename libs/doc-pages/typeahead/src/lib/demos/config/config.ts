@@ -11,7 +11,7 @@ export function getTypeaheadConfig(): TypeaheadConfig {
   selector: 'demo-typeahead-config',
   templateUrl: './config.html',
   providers: [{ provide: TypeaheadConfig, useFactory: getTypeaheadConfig }],
-  
+  standalone: false
 })
 export class DemoTypeaheadConfigComponent {
   selected?: string;

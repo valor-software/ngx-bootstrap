@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'schematics',
   templateUrl: './schematics.component.html',
-  
+  standalone: false
 })
 export class SchematicsComponent {
   name = `Schematics of ngx-bootstrap`;

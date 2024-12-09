@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-no-result',
   templateUrl: './no-result.html',
-  
+  standalone: false
 })
 export class DemoTypeaheadNoResultComponent {
   selected?: string;

@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnI
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './sub-component.html',
   styleUrls: ['./sub-component.css'],
-  
+  standalone: false
 })
 export class SubComponent implements OnInit, OnDestroy {
   @Input()

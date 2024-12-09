@@ -12,6 +12,6 @@ export function getAlertConfig(): AlertConfig {
   selector: 'demo-alert-config',
   templateUrl: './config.html',
   providers: [{ provide: AlertConfig, useFactory: getAlertConfig }],
-  
+  standalone: false
 })
 export class DemoAlertConfigComponent {}

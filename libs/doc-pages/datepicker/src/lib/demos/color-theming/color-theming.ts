@@ -5,7 +5,7 @@ import { BsDatepickerConfig, BsDatepickerDirective } from 'ngx-bootstrap/datepic
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-datepicker-color-theming',
   templateUrl: './color-theming.html',
-  
+  standalone: false
 })
 export class DemoDatepickerColorThemingComponent {
   colorTheme = 'theme-green';

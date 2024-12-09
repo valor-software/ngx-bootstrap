@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-phrase-delimiters',
   templateUrl: './phrase-delimiters.html',
-  
+  standalone: false
 })
 export class DemoTypeaheadPhraseDelimitersComponent {
   selected?: string;

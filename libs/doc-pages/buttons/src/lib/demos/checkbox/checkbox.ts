@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-buttons-checkbox',
   templateUrl: './checkbox.html',
-  
+  standalone: false
 })
 export class DemoButtonsCheckboxComponent {
   checkModel: { left?: boolean; middle?: boolean; right?: boolean } = { left: false, middle: true, right: false };

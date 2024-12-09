@@ -12,6 +12,6 @@ export function getTabsetConfig(): TabsetConfig {
   selector: 'demo-tabs-config',
   templateUrl: './config.html',
   providers: [{ provide: TabsetConfig, useFactory: getTabsetConfig }],
-  
+  standalone: false
 })
 export class DemoTabsConfigComponent {}

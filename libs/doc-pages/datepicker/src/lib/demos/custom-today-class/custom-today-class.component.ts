@@ -4,6 +4,6 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-datepicker-custom-today-class',
   templateUrl: './custom-today-class.component.html',
-  
+  standalone: false
 })
 export class DemoDatepickerCustomTodayClassComponent { }

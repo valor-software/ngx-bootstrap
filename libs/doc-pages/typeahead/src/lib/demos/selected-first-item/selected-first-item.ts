@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-selected-first-item',
   templateUrl: './selected-first-item.html',
-  
+  standalone: false
 })
 export class DemotypeaheadSelectFirstItemComponent {
   selected?: string;

@@ -5,7 +5,7 @@ import { ModalDirective } from 'ngx-bootstrap/modal';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-modal-auto-shown',
   templateUrl: './auto-shown.html',
-  
+  standalone: false
 })
 export class DemoAutoShownModalComponent {
   @ViewChild('autoShownModal', { static: false }) autoShownModal?: ModalDirective;

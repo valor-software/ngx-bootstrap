@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-carousel-disable-indicator',
   templateUrl: './disable-indicator.html',
-  
+  standalone: false
 })
 export class DemoCarouselDisableIndicatorComponent {
   slides: {image: string; text?: string}[] =  [

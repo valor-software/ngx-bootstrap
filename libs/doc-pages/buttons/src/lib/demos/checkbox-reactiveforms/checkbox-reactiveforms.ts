@@ -5,7 +5,7 @@ import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-buttons-checkbox-reactiveforms',
   templateUrl: './checkbox-reactiveforms.html',
-  
+  standalone: false
 })
 export class DemoButtonsCheckboxReactiveFormsComponent implements OnInit {
   myForm?: UntypedFormGroup;

@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-pagination-manual-switching',
   templateUrl: './manual-switching.html',
-  
+  standalone: false
 })
 export class DemoPaginationManualSwitchingComponent {
   totalItems = 64;

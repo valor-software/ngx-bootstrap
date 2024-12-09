@@ -5,7 +5,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-modal-service-interceptor',
   templateUrl: './service-interceptor.html',
-  
+  standalone: false
 })
 export class DemoModalServiceWithInterceptorComponent {
   bsModalRef?: BsModalRef;
@@ -61,7 +61,7 @@ export class DemoModalServiceWithInterceptorComponent {
       <button type="button" class="btn btn-default" (click)="bsModalRef?.hide()">Close</button>
     </div>
   `,
-  
+  standalone: false
 })
 export class ModalContentWithInterceptorComponent {
   constructor(public bsModalRef: BsModalRef) {}

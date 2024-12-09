@@ -6,6 +6,6 @@ import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
   selector: 'demo-dropdown-animation',
   templateUrl: './animated.html',
   providers: [{ provide: BsDropdownConfig, useValue: { isAnimated: true, autoClose: true } }],
-  
+  standalone: false
 })
 export class DemoDropdownAnimatedComponent {}

@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-delay',
   templateUrl: './delay.html',
-  
+  standalone: false
 })
 export class DemoTypeaheadDelayComponent {
   selected?: string;

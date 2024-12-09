@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-dropdown-triggers-manual',
   templateUrl: './triggers-manual.html',
-  
+  standalone: false
 })
 export class DemoDropdownTriggersManualComponent {
 }

@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-timepicker-min-max',
   templateUrl: './min-max.html',
-  
+  standalone: false
 })
 export class DemoTimepickerMinMaxComponent {
   myTime: Date = new Date();

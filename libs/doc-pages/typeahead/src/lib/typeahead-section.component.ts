@@ -8,7 +8,7 @@ import { ContentSection } from '@ngx-bootstrap-doc/docs';
   selector: 'typeahead-section',
   templateUrl: './typeahead-section.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  
+  standalone: false
 })
 export class TypeaheadSectionComponent {
   name = 'Typeahead';

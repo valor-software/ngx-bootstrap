@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-carousel-disable-looping',
   templateUrl: './disable-looping.html',
-  
+  standalone: false
 })
 export class DemoCarouselDisableLoopingComponent {
   slides: {image: string; text?: string}[] = [

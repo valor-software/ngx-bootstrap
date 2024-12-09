@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-scrollable',
   templateUrl: './scrollable.html',
-  
+  standalone: false
 })
 export class DemoTypeaheadScrollableComponent {
   selected?: string;

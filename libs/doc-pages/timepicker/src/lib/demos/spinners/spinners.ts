@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-timepicker-spinners',
   templateUrl: './spinners.html',
-  
+  standalone: false
 })
 export class DemoTimepickerSpinnersComponent {
   isMeridian = false;

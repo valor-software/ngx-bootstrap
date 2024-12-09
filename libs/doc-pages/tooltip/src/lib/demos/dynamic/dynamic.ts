@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-tooltip-dynamic',
   templateUrl: './dynamic.html',
-  
+  standalone: false
 })
 export class DemoTooltipDynamicComponent {
   content = 'Vivamus sagittis lacus vel augue laoreet rutrum faucibus.';
