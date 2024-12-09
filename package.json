@@ -1,11 +1,16 @@
 {
   "name": "ngx-bootstrap-base",
-  "version": "18.1.3",
+  "version": "19.0.0",
   "license": "MIT",
   "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
   "schematics": "./schematics/src/collection.json",
-  "repository": { "type": "git", "url": "git+ssh://git@github.com/valor-software/ngx-bootstrap.git" },
-  "bugs": { "url": "https://github.com/valor-software/ngx-bootstrap/issues" },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/valor-software/ngx-bootstrap.git"
+  },
+  "bugs": {
+    "url": "https://github.com/valor-software/ngx-bootstrap/issues"
+  },
   "homepage": "https://github.com/valor-software/ngx-bootstrap#readme",
   "scripts": {
     "ng": "nx",
@@ -43,7 +48,14 @@
     "release": "release-it"
   },
   "private": true,
-  "keywords": ["angular", "bootstrap", "ng", "ng2", "angular2", "twitter-bootstrap"],
+  "keywords": [
+    "angular",
+    "bootstrap",
+    "ng",
+    "ng2",
+    "angular2",
+    "twitter-bootstrap"
+  ],
   "dependencies": {
     "@angular-devkit/core": "19.0.2",
     "@angular-devkit/schematics": "19.0.2",
