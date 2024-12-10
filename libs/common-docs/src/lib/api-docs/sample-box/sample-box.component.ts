@@ -3,7 +3,8 @@ import { Component, Input } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'ng-sample-box',
-  templateUrl: './sample-box.component.html'
+  templateUrl: './sample-box.component.html',
+  standalone: false
 })
 export class SampleBoxComponent {
   @Input() ts?: string;

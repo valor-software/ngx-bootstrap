@@ -27,7 +27,8 @@ import { Component } from '@angular/core';
       background-color: #FF4461;
       border-color: #FF4461;
     }
-  `]
+  `],
+  standalone: false
 })
 export class DemoTypeaheadListTemplateComponent {
   selected?: string;

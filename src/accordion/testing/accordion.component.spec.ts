@@ -5,7 +5,8 @@ import { AccordionConfig, AccordionModule } from '../index';
 
 @Component({
     selector: 'accordion-test',
-    template: ''
+    template: '',
+    standalone: false
 })
 class TestAccordionComponent {
   oneAtATime = true;

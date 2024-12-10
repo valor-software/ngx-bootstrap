@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-dropdown-anchor-trigger',
-  templateUrl: './anchor-trigger.html'
+  templateUrl: './anchor-trigger.html',
+  standalone: false
 })
 export class DemoDropdownAnchorTriggerComponent {
   items: string[] = [

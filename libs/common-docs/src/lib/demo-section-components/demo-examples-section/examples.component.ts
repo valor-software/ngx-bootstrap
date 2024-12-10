@@ -21,7 +21,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'examples',
-  templateUrl: './examples.component.html'
+  templateUrl: './examples.component.html',
+  standalone: false
 })
 export class ExamplesComponent {
   examples: ComponentExample[];

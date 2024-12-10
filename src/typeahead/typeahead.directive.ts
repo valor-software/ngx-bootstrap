@@ -33,7 +33,6 @@ type TypeaheadOptionArr = TypeaheadOption[] | Observable<TypeaheadOption>;
 @Directive({
     selector: '[typeahead]',
     exportAs: 'bs-typeahead',
-    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
     host: {
         '[attr.aria-activedescendant]': 'activeDescendant',
         '[attr.aria-owns]': 'isOpen ? this._container.popupId : null',

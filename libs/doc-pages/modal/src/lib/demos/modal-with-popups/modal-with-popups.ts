@@ -4,7 +4,8 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-modal-with-popups',
-  templateUrl: './modal-with-popups.html'
+  templateUrl: './modal-with-popups.html',
+  standalone: false
 })
 export class DemoModalWithPopupsComponent {
   modalRef?: BsModalRef;

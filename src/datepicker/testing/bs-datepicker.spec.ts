@@ -15,6 +15,7 @@ import { BsDatepickerContainerComponent } from '../themes/bs/bs-datepicker-conta
     template: `<input type='text'
                     bsDatepicker
                     [bsConfig]='bsConfig'>`,
+    standalone: false
 })
 class TestComponent {
   @ViewChild(BsDatepickerDirective, { static: false }) datepicker: BsDatepickerDirective;

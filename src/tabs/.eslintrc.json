@@ -19,7 +19,11 @@
           "src/tabs/tsconfig.*?.json"
         ]
       },
-      "rules": {}
+      "rules": {
+        "@angular-eslint/prefer-standalone": [
+          "off"
+        ]
+      }
     },
     {
       "files": [

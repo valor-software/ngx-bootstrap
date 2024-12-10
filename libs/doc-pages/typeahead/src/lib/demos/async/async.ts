@@ -6,7 +6,8 @@ import { DataSourceType } from '../interfaces/typeahead.interfaces';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-async',
-  templateUrl: './async.html'
+  templateUrl: './async.html',
+  standalone: false
 })
 export class DemoTypeaheadAsyncComponent {
   asyncSelected?: string;

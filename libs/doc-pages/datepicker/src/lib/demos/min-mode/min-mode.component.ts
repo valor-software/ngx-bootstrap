@@ -5,7 +5,8 @@ import { BsDatepickerConfig, BsDatepickerViewMode } from 'ngx-bootstrap/datepick
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-datepicker-min-mode',
-  templateUrl: './min-mode.component.html'
+  templateUrl: './min-mode.component.html',
+  standalone: false
 })
 export class DemoDatepickerMinModeComponent implements OnInit {
   datePickerValue: Date = new Date(2020, 7);

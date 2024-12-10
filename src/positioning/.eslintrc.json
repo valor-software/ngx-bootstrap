@@ -19,7 +19,11 @@
           "src/positioning/tsconfig.*?.json"
         ]
       },
-      "rules": {}
+      "rules": {
+        "@angular-eslint/prefer-standalone": [
+          "off"
+        ]
+      }
     },
     {
       "files": [

@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-multiple-search',
-  templateUrl: './multiple-search.html'
+  templateUrl: './multiple-search.html',
+  standalone: false
 })
 export class DemoTypeaheadMultipleSearchComponent {
   selected?: string;

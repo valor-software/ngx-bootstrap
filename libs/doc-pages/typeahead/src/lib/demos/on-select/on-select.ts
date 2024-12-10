@@ -5,7 +5,8 @@ import { DataSourceType } from '../interfaces/typeahead.interfaces';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-on-select',
-  templateUrl: './on-select.html'
+  templateUrl: './on-select.html',
+  standalone: false
 })
 export class DemoTypeaheadOnSelectComponent {
   selectedValue?: string;

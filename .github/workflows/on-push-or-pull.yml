@@ -61,9 +61,12 @@ jobs:
         with:
           path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
+#      - run: |
+#          npx nx build ngx-bootstrap --runner=cloud --configuration=production
+#          npx nx build --runner=cloud --configuration=production
       - run: |
-          npx nx build ngx-bootstrap --runner=cloud --configuration=production
-          npx nx build --runner=cloud --configuration=production
+          npx nx build ngx-bootstrap --configuration=production
+          npx nx build --configuration=production
 
 
   # run unit tests
@@ -80,7 +83,8 @@ jobs:
         with:
           path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
-      - run: npm test -- --runner=cloud --codeCoverage
+#      - run: npm test -- --runner=cloud --codeCoverage
+      - run: npm test -- --codeCoverage
       - run: npx codecov ./coverage/
         continue-on-error: true
 
@@ -94,7 +98,8 @@ jobs:
         with:
           path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - run: npm run lint -- --runner=cloud
+#      - run: npm run lint -- --runner=cloud
+      - run: npm run lint --
 
   # firebase deploy preview
   firebase_preview:

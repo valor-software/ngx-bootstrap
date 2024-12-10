@@ -6,7 +6,8 @@ import { TooltipModule } from '../index';
 
 @Component({
   selector: 'test-tooltip',
-  template: ''
+  template: '',
+  standalone: false
 })
 class TestTooltipComponent {
   delay = 0;

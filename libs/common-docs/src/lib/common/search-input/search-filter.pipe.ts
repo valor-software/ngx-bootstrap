@@ -1,7 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Route, Routes } from '@angular/router';
 
-@Pipe({ name: 'SearchFilter' })
+@Pipe({
+  name: 'SearchFilter',
+  standalone: false
+})
 export class SearchFilterPipe implements PipeTransform {
   transform(value: Routes, text?: string): Routes {
     if (!text) {

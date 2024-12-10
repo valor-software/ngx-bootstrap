@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-pagination-rotate',
-  templateUrl: './rotate.html'
+  templateUrl: './rotate.html',
+  standalone: false
 })
 export class DemoPaginationRotateComponent {
   rotate = true;

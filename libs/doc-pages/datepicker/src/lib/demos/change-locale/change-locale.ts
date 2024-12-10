@@ -5,7 +5,8 @@ import { listLocales } from 'ngx-bootstrap/chronos';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-datepicker-change-locale',
-  templateUrl: './change-locale.html'
+  templateUrl: './change-locale.html',
+  standalone: false
 })
 export class DemoDatepickerChangeLocaleComponent {
   locale = 'en';

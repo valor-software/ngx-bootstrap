@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-popover-corner-placement',
-  templateUrl: './corner-placement.html'
+  templateUrl: './corner-placement.html',
+  standalone: false
 })
 export class DemoPopoverCornerPlacementComponent {
   placements = [

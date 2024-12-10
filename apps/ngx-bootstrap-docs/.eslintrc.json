@@ -37,6 +37,9 @@
             "style": "kebab-case"
           }
         ],
+        "@angular-eslint/prefer-standalone": [
+          "off"
+        ],
         "@typescript-eslint/no-explicit-any": 0,
         "@angular-eslint/component-class-suffix": 0,
         "@angular-eslint/no-output-on-prefix": 0

@@ -11,7 +11,8 @@ interface IStack {
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-progressbar-stacked',
-  templateUrl: './stacked.html'
+  templateUrl: './stacked.html',
+  standalone: false
 })
 export class DemoProgressbarStackedComponent {
   type?: string;

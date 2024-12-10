@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-item-template',
-  templateUrl: './item-template.html'
+  templateUrl: './item-template.html',
+  standalone: false
 })
 export class DemoTypeaheadItemTemplateComponent {
   selected?: string;

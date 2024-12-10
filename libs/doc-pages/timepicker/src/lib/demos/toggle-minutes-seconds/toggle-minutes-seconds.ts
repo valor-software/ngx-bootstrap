@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-timepicker-seconds',
-  templateUrl: './toggle-minutes-seconds.html'
+  templateUrl: './toggle-minutes-seconds.html',
+  standalone: false
 })
 export class DemoTimepickerToggleMinutesSecondsComponent {
   myTime: Date = new Date();

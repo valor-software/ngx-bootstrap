@@ -4,7 +4,8 @@ import { TabDirective } from 'ngx-bootstrap/tabs';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-tabs-select-event',
-  templateUrl: './select-event.html'
+  templateUrl: './select-event.html',
+  standalone: false
 })
 export class DemoTabsSelectEventComponent {
   value?: string;

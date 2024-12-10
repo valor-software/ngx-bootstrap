@@ -21,7 +21,8 @@ import { DomSanitizer } from '@angular/platform-browser';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'ng-api-doc',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './api-doc.component.html'
+  templateUrl: './api-doc.component.html',
+  standalone: false
 })
 export class NgApiDocComponent {
   apiDocs?: DirectiveDesc;

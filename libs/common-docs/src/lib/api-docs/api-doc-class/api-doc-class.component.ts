@@ -16,7 +16,8 @@ import { ComponentApi } from '../../models/components-api.model';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'ng-api-doc-class',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './api-doc-class.component.html'
+  templateUrl: './api-doc-class.component.html',
+  standalone: false
 })
 export class NgApiDocClassComponent {
   headerAnchor?: string;

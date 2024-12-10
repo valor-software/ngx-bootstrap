@@ -11,7 +11,8 @@ export function getTimepickerConfig(): TimepickerConfig {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-timepicker-dynamic',
   templateUrl: './dynamic.html',
-  providers: [{ provide: TimepickerConfig, useFactory: getTimepickerConfig }]
+  providers: [{ provide: TimepickerConfig, useFactory: getTimepickerConfig }],
+  standalone: false
 })
 export class DemoTimepickerDynamicComponent {
   mytime: Date | undefined = new Date();

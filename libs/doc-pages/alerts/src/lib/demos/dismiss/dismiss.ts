@@ -5,7 +5,8 @@ type ExampleAlertType = { type: string; msg: string };
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-alert-dismiss',
-  templateUrl: './dismiss.html'
+  templateUrl: './dismiss.html',
+  standalone: false
 })
 export class DemoAlertDismissComponent {
   dismissible = true;

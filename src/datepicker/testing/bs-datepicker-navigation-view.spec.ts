@@ -11,6 +11,7 @@ import { BsDatepickerNavigationViewComponent } from '../themes/bs/bs-datepicker-
       [calendar]="month"
       (onNavigate)="navTo($event)"
     ></bs-datepicker-navigation-view>`,
+    standalone: false
 })
 class TestComponent {
   month!: DaysCalendarViewModel;

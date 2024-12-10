@@ -15,7 +15,6 @@ import { BsDropdownDirective } from './bs-dropdown.directive';
 @Directive({
   selector: '[bsDropdownToggle],[dropdownToggle]',
   exportAs: 'bs-dropdown-toggle',
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[attr.aria-haspopup]': 'true'
   },

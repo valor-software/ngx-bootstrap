@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-select-on-enter',
-  templateUrl: './select-on-enter.html'
+  templateUrl: './select-on-enter.html',
+  standalone: false
 })
 export class DemoRatingSelectOnEnterComponent {
   max = 10;

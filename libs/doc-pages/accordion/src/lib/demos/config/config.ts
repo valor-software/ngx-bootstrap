@@ -11,6 +11,7 @@ export function getAccordionConfig(): AccordionConfig {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-accordion-config',
   templateUrl: './config.html',
-  providers: [{ provide: AccordionConfig, useFactory: getAccordionConfig }]
+  providers: [{ provide: AccordionConfig, useFactory: getAccordionConfig }],
+  standalone: false
 })
 export class DemoAccordionConfigComponent {}

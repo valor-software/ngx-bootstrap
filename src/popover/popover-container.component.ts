@@ -7,7 +7,6 @@ import { NgIf } from '@angular/common';
 @Component({
     selector: 'popover-container',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
     host: {
         '[attr.id]': 'popoverId',
         '[class]': '"popover in popover-" + _placement + " " + "bs-popover-" + _placement + " " + _placement + " " + containerClass + " " + checkMarginNecessity()',
