@@ -19,7 +19,11 @@
           "src/progressbar/tsconfig.*?.json"
         ]
       },
-      "rules": {}
+      "rules": {
+        "@angular-eslint/prefer-standalone": [
+          "off"
+        ]
+      }
     },
     {
       "files": [
