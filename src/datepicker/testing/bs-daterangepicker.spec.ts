@@ -14,6 +14,7 @@ import { firstValueFrom } from 'rxjs';
     template: `<input type="text"
     bsDaterangepicker
     [bsConfig]="bsConfig">`,
+    standalone: false
 })
 class TestComponent {
     @ViewChild(BsDaterangepickerDirective, { static: false }) daterangepicker: BsDaterangepickerDirective;

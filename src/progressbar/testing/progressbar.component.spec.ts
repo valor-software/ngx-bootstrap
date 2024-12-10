@@ -4,7 +4,8 @@ import { ProgressbarComponent, ProgressbarModule } from '../index';
 
 @Component({
   selector: 'progressbar-test',
-  template: ''
+  template: '',
+  standalone: false
 })
 class TestProgressbarComponent extends ProgressbarComponent {}
 

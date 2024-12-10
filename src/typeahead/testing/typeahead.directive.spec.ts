@@ -22,7 +22,8 @@ interface State {
     [typeaheadOptionField]="'name'"
     [adaptivePosition]="false"
     (typeaheadOnBlur)="onBlurEvent($event)"
-  />`
+  />`,
+  standalone: false
 })
 class TestTypeaheadComponent {
   selectedState?: string;

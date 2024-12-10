@@ -7,7 +7,8 @@ import { BsDropdownConfig, BsDropdownDirective, BsDropdownModule } from '../inde
 
 @Component({
   selector: 'dropdown-test',
-  template: ''
+  template: '',
+  standalone: false
 })
 class TestDropdownComponent {
   isOpen = false;

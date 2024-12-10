@@ -4,14 +4,15 @@ import { pairwise, tap } from 'rxjs/operators';
 
 import { BsModalService, ModalModule } from '../index';
 
-@Component({ template: '<div>Dummy Component</div>' })
+@Component({ template: '<div>Dummy Component</div>', standalone: false })
 class DummyComponent {
   // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
   constructor(modalService: BsModalService) { }
 }
 
 @Component({
-  template: '<div>Test Component</div>'
+  template: '<div>Test Component</div>',
+  standalone: false
 })
 export class TestModalComponent { }
 

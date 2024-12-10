@@ -13,7 +13,8 @@ import { getYearsCalendarInitialDate } from '../utils/bs-calendar-utils';
 
 @Component({
     selector: 'test-cmp',
-    template: `<bs-datepicker-inline [bsConfig]="bsConfig"></bs-datepicker-inline>>`
+    template: `<bs-datepicker-inline [bsConfig]="bsConfig"></bs-datepicker-inline>>`,
+    standalone: false
 })
 class TestComponent {
   @ViewChild(BsDatepickerInlineDirective, { static: false }) datepicker: BsDatepickerInlineDirective;
