@@ -21,7 +21,10 @@
       },
       "rules": {
         "@angular-eslint/no-output-on-prefix": 0,
-        "@angular-eslint/no-host-metadata-property": 0
+        "@angular-eslint/no-host-metadata-property": 0,
+        "@angular-eslint/prefer-standalone": [
+          "off"
+        ]
       }
     },
     {
