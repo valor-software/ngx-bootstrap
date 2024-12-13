@@ -51,8 +51,7 @@ import { NgClass, NgStyle, NgIf, NgFor, NgTemplateOutlet } from '@angular/common
             provide: NG_VALUE_ACCESSOR,
             useExisting: forwardRef(() => SortableComponent),
             multi: true
-        },
-      DraggableItemService
+        }
     ],
     standalone: true,
     imports: [NgClass, NgStyle, NgIf, NgFor, NgTemplateOutlet]

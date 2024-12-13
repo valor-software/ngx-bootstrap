@@ -29,7 +29,6 @@ let nextWindowId = 0;
 @Component({
     selector: 'typeahead-container',
     templateUrl: './typeahead-container.component.html',
-    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
     host: {
         class: 'dropdown open bottom dropdown-menu',
         '[style.height]': `needScrollbar ? guiHeight: 'auto'`,

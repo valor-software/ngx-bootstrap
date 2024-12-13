@@ -4,7 +4,8 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-timepicker-form',
-  templateUrl: './form.html'
+  templateUrl: './form.html',
+  standalone: false
 })
 export class DemoTimepickerFormComponent {
   form = new UntypedFormGroup({

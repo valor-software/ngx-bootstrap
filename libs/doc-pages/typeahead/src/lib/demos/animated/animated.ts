@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-animated',
-  templateUrl: './animated.html'
+  templateUrl: './animated.html',
+  standalone: false
 })
 export class DemoTypeaheadAnimatedComponent {
   selected?: string;

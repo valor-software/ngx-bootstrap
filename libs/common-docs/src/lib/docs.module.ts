@@ -27,7 +27,10 @@ import { TopMenuComponent } from './common/top-menu/top-menu.component';
 import { RouterModule } from '@angular/router';
 
 /* export */
-export { NgApiDocModule, NgApiDocComponent, NgApiDocClassComponent, NgApiDocConfigComponent } from './api-docs/index';
+export { NgApiDocModule } from './api-docs/index';
+export { NgApiDocComponent } from './api-docs/api-doc/api-doc.component';
+export { NgApiDocClassComponent } from './api-docs/api-doc-class/api-doc-class.component';
+export { NgApiDocConfigComponent } from './api-docs/api-doc-config/api-doc-config.component';
 export { ExamplesComponent, ExamplesComponentModule } from './demo-section-components/demo-examples-section/index';
 export { ApiSectionsComponent, ApiSectionsComponentModule } from './demo-section-components/demo-api-section/index';
 export { DemoSectionComponent } from './demo-section/demo-section.component';

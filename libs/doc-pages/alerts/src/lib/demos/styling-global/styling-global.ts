@@ -4,6 +4,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-alert-styling-global',
   templateUrl: './styling-global.html',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class DemoAlertStylingGlobalComponent {}

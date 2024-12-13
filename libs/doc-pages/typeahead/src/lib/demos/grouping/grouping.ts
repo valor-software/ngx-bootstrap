@@ -4,7 +4,8 @@ import { DataSourceType } from '../interfaces/typeahead.interfaces';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-grouping',
-  templateUrl: './grouping.html'
+  templateUrl: './grouping.html',
+  standalone: false
 })
 export class DemoTypeaheadGroupingComponent {
   groupSelected?: string;

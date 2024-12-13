@@ -9,7 +9,8 @@ type Roman = {
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-pagination-custom-template',
-  templateUrl: './custom-template.html'
+  templateUrl: './custom-template.html',
+  standalone: false
 })
 export class DemoPaginationCustomTemplateComponent {
 

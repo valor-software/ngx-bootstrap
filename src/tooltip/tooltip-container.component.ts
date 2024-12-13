@@ -10,7 +10,6 @@ import { PlacementForBs5 } from 'ngx-bootstrap/positioning';
 @Component({
     selector: 'bs-tooltip-container',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
     host: {
         '[class]': '"show tooltip in tooltip-" + placement + " " + "bs-tooltip-" + placement + " " + placement + " " + containerClass',
         '[attr.id]': 'this.id',

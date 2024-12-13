@@ -11,7 +11,8 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
        background: #31b0d5;
     }
   `
-  ]
+  ],
+  standalone: false
 })
 export class DemoPaginationStylingComponent {
   totalItems = 64;

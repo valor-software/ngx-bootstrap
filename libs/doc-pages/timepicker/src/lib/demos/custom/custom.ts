@@ -9,7 +9,8 @@ interface IOptions {
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-timepicker-custom',
-  templateUrl: './custom.html'
+  templateUrl: './custom.html',
+  standalone: false
 })
 export class DemoTimepickerCustomComponent {
   hstep = 1;

@@ -4,7 +4,8 @@ import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-date-picker-hide-on-scroll',
-  templateUrl: './hide-on-scroll.html'
+  templateUrl: './hide-on-scroll.html',
+  standalone: false
 })
 export class DemoDatepickerHideOnScrollComponent {
   @ViewChild(BsDatepickerDirective, { static: false }) datepicker?: BsDatepickerDirective;

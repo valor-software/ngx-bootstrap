@@ -13,7 +13,8 @@ import { initialYearShift } from '../engine/format-years-calendar';
 @Component({
     selector: 'test-cmp',
     template: `
-    <bs-daterangepicker-inline [bsConfig]="bsConfig"></bs-daterangepicker-inline>`
+    <bs-daterangepicker-inline [bsConfig]="bsConfig"></bs-daterangepicker-inline>`,
+    standalone: false
 })
 class TestComponent {
   @ViewChild(BsDaterangepickerInlineDirective, { static: false }) datepicker: BsDaterangepickerInlineDirective;

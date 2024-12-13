@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-alert-content-html',
-  templateUrl: './dynamic-content.html'
+  templateUrl: './dynamic-content.html',
+  standalone: false
 })
 export class DemoAlertDynamicContentComponent {
   index = 0;

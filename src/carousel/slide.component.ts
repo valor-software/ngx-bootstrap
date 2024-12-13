@@ -15,7 +15,6 @@ import { CarouselComponent } from './carousel.component';
       <ng-content></ng-content>
     </div>
   `,
-    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
     host: {
         '[attr.aria-hidden]': '!active',
         '[class.multilist-margin]': 'multilist'

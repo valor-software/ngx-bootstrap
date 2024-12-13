@@ -19,7 +19,11 @@
           "src/typeahead/tsconfig.*?.json"
         ]
       },
-      "rules": {}
+      "rules": {
+        "@angular-eslint/prefer-standalone": [
+          "off"
+        ]
+      }
     },
     {
       "files": [

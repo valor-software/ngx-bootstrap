@@ -4,7 +4,8 @@ import { BsDaterangepickerDirective, BsDatepickerConfig } from 'ngx-bootstrap/da
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-datepicker-config-method',
-  templateUrl: './config-method.html'
+  templateUrl: './config-method.html',
+  standalone: false
 })
 export class DemoDatepickerConfigMethodComponent {
   @ViewChild('dp', { static: false }) datepicker?: BsDaterangepickerDirective;

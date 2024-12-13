@@ -13,7 +13,8 @@ export function getTypeaheadConfig(): TypeaheadConfig {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-cancel-on-focus-lost',
   templateUrl: './cancel-on-focus-lost.html',
-  providers: [{ provide: TypeaheadConfig, useFactory: getTypeaheadConfig }]
+  providers: [{ provide: TypeaheadConfig, useFactory: getTypeaheadConfig }],
+  standalone: false
 })
 export class DemoTypeaheadCancelRequestOnFocusLostComponent {
   asyncSelected?: string;

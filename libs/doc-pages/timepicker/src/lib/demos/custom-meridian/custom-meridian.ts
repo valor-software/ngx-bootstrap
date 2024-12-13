@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-timepicker-custom-meridian',
-  templateUrl: './custom-meridian.html'
+  templateUrl: './custom-meridian.html',
+  standalone: false
 })
 export class DemoTimepickerCustomMeridianComponent {
   mytime: Date = new Date();

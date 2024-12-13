@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-popover-dynamic',
-  templateUrl: './dynamic.html'
+  templateUrl: './dynamic.html',
+  standalone: false
 })
 export class DemoPopoverDynamicComponent {
   title = 'Welcome word';

@@ -6,7 +6,8 @@ import { Offsets } from '../models';
 
 @Component({
   selector: 'test-cmp',
-  template: `<span>Popover demo</span>`
+  template: `<span>Popover demo</span>`,
+  standalone: false
 })
 class TestComponent {}
 

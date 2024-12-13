@@ -4,7 +4,8 @@ import { TabsetComponent } from 'ngx-bootstrap/tabs';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-tabs-disabled',
-  templateUrl: './disabled.html'
+  templateUrl: './disabled.html',
+  standalone: false
 })
 export class DemoTabsDisabledComponent {
   @ViewChild('staticTabs', { static: false }) staticTabs?: TabsetComponent;

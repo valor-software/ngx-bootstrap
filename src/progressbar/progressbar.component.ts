@@ -8,7 +8,6 @@ import { NgIf, NgFor } from '@angular/common';
     selector: 'progressbar',
     templateUrl: './progressbar.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
     host: {
         '[class.progress]': 'true',
         '[attr.max]': 'max'

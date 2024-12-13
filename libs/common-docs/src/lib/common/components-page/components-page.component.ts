@@ -5,7 +5,8 @@ import { Routes } from "@angular/router";
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'components',
-  templateUrl: './components-page.component.html'
+  templateUrl: './components-page.component.html',
+  standalone: false
 })
 export class ComponentsPageComponent {
   componentsArray?:Routes;

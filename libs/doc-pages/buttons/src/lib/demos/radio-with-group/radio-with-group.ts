@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-buttons-radio-with-group',
-  templateUrl: './radio-with-group.html'
+  templateUrl: './radio-with-group.html',
+  standalone: false
 })
 export class DemoButtonsRadioWithGroupComponent {
   radioModel = 'Middle';

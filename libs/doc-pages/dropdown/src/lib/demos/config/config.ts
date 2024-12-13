@@ -5,6 +5,7 @@ import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-dropdown-config',
   templateUrl: './config.html',
-  providers: [{ provide: BsDropdownConfig, useValue: { autoClose: false } }]
+  providers: [{ provide: BsDropdownConfig, useValue: { autoClose: false } }],
+  standalone: false
 })
 export class DemoDropdownConfigComponent {}

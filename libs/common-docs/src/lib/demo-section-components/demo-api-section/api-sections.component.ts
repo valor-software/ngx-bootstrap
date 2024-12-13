@@ -7,7 +7,8 @@ import { ComponentApi } from '../../models/components-api.model';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'api-sections',
   templateUrl: './api-sections.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class ApiSectionsComponent {
   apiSectionsContent: ComponentApi[];

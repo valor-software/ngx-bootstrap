@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-form',
-  templateUrl: './form.html'
+  templateUrl: './form.html',
+  standalone: false
 })
 export class DemoTypeaheadFormComponent {
   model = {

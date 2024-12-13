@@ -9,6 +9,7 @@ type AvailableTabsPathsType = typeof availableTabsPaths[number];
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'docs-section',
+
   template: `
     <ng-container *ngIf="content">
       <tabset class="example-tabset-box">
@@ -24,7 +25,8 @@ type AvailableTabsPathsType = typeof availableTabsPaths[number];
       </tabset>
       <add-nav class="add-nav" [componentContent]="overview ? content[0] : api ? content[1] : content[2]"></add-nav>
     </ng-container>
-  `
+  `,
+  standalone: false
 })
 export class DocsSectionComponent implements OnDestroy {
   @Input() content: ContentSection[] | undefined;

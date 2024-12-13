@@ -4,7 +4,8 @@ import { TabsetConfig, TabsModule, TabsetComponent } from '../index';
 
 @Component({
   selector: 'tabs-test',
-  template: ''
+  template: '',
+  standalone: false
 })
 class TestTabsetComponent {
   isVertical = false;

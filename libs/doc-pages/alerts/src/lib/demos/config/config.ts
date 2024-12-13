@@ -11,6 +11,7 @@ export function getAlertConfig(): AlertConfig {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-alert-config',
   templateUrl: './config.html',
-  providers: [{ provide: AlertConfig, useFactory: getAlertConfig }]
+  providers: [{ provide: AlertConfig, useFactory: getAlertConfig }],
+  standalone: false
 })
 export class DemoAlertConfigComponent {}

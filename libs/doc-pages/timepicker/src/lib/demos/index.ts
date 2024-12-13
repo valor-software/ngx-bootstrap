@@ -31,7 +31,6 @@ export const DEMO_COMPONENTS = [
   DemoTimepickerToggleMinutesSecondsComponent,
   DemoTimepickerArrowkeysComponent,
   DemoTimepickerMousewheelComponent,
-  DemoTimepickerCustomValidationComponent,
   DemoTimepickerIsValidComponent,
   DemoTimepickerCustomValidationComponent,
   DemoTimepickerSpinnersComponent,

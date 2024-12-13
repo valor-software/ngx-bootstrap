@@ -14,7 +14,6 @@ import { ProgressbarType } from './progressbar-type.interface';
     selector: 'bar',
     templateUrl: './bar.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
     host: {
         role: 'progressbar',
         'aria-valuemin': '0',

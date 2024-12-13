@@ -6,7 +6,6 @@ import { AccordionConfig } from './accordion.config';
 @Component({
     selector: 'accordion',
     template: `<ng-content></ng-content>`,
-    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
     host: {
         '[attr.aria-multiselectable]': 'closeOthers',
         role: 'tablist',

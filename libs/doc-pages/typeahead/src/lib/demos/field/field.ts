@@ -4,7 +4,8 @@ import { DataSourceType } from '../interfaces/typeahead.interfaces';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-field',
-  templateUrl: './field.html'
+  templateUrl: './field.html',
+  standalone: false
 })
 export class DemoTypeaheadFieldComponent {
   customSelected?: string;

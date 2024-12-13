@@ -14,6 +14,7 @@ import { Component } from '@angular/core';
   border-top-color: #009688;
 }
   `
-  ]
+  ],
+  standalone: false
 })
 export class DemoPopoverStylingLocalComponent {}

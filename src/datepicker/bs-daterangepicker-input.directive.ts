@@ -50,7 +50,6 @@ const BS_DATERANGEPICKER_VALIDATOR: Provider = {
 
 @Directive({
     selector: `input[bsDaterangepicker]`,
-    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
     host: {
         '(change)': 'onChange($event)',
         '(keyup.esc)': 'hide()',

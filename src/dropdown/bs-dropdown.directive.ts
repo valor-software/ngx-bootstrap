@@ -27,7 +27,6 @@ import { dropdownAnimation } from './dropdown-animations';
   exportAs: 'bs-dropdown',
   providers: [BsDropdownState, ComponentLoaderFactory, BsDropdownConfig],
   standalone: true,
-  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     '[class.dropup]': 'dropup',
     '[class.open]': 'isOpen',

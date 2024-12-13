@@ -10,6 +10,7 @@ import '../../../scripts/jest/toHaveCssClass';
 @Component({
     selector: 'test-cmp',
     template: `<span bsDatepickerDayDecorator [day]='day'>{{ day.label }}</span>`,
+    standalone: false
 })
 class TestComponent {
   day: DayViewModel = { date: new Date(), label: '' };

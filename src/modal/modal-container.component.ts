@@ -27,7 +27,6 @@ import { FocusTrapDirective } from 'ngx-bootstrap/focus-trap';
       </div>
     </div>
   `,
-    // eslint-disable-next-line @angular-eslint/no-host-metadata-property
     host: {
         class: 'modal',
         role: 'dialog',

@@ -10,7 +10,8 @@ export function getRatingConfig(): RatingConfig {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-rating-config',
   templateUrl: './config.html',
-  providers: [{ provide: RatingConfig, useFactory: getRatingConfig }]
+  providers: [{ provide: RatingConfig, useFactory: getRatingConfig }],
+  standalone: false
 })
 export class DemoRatingConfigComponent {
   max = 10;

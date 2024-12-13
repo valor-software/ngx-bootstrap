@@ -6,7 +6,8 @@ import { RatingComponent, RatingConfig, RatingModule } from '../index';
 
 @Component({
   selector: 'rating-test',
-  template: ''
+  template: '',
+  standalone: false
 })
 class TestRatingComponent {
   max = 5;
