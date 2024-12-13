@@ -36,7 +36,7 @@ module.exports = function(projectConfig) {
       browsers: ['ChromeHeadless'],
       browserNoActivityTimeout: 20000,
       browserDisconnectTolerance: 2,
-      browserDisconnectTimeout: 10000,
+      browserDisconnectTimeout: 5000,
       singleRun: true,
       customLaunchers: {
         Chrome_travis_ci: {
