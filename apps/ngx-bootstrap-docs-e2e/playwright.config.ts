@@ -5,7 +5,9 @@ export default defineConfig({
   testMatch: '**/*.spec.ts',
   fullyParallel: true,
   workers: 3,
-  timeout: 30000,
+  expect: {
+    timeout: 30000
+  },
   reporter: [['html', { outputFolder: 'playwright-report', open: 'never' }]],
   use: {
     baseURL: process.env['PLAYWRIGHT_TEST_BASE_URL'] || 'http://localhost:4200/ngx-bootstrap/',
