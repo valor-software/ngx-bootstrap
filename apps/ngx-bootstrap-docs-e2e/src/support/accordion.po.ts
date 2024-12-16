@@ -40,6 +40,9 @@ export class AccordionPo extends BasePo {
   async clickOnAccordionGroup(baseSelector: string, itemIndex: number) {
     await this.page
       .locator(baseSelector + ' accordion-group button')
+      .nth(itemIndex).waitFor({state: 'visible'});
+    await this.page
+      .locator(baseSelector + ' accordion-group button')
       .nth(itemIndex)
       .click();
   }
