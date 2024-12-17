@@ -36,6 +36,7 @@ test.describe('Accordion page testing suite', () => {
     });
 
     test('when user click on each item, then any content inside shown', async ({ accordionPo }) => {
+      cy.viewport(1440, 900);
       await accordionPo.clickOnAccordionGroup(basic, 0);
       await accordionPo.expectAccordionItemExpanded(basic, 0, true);
       await accordionPo.expectItemContentVisible(basic, 0, true);
