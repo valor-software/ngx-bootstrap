@@ -7,7 +7,6 @@ import { ngdoc } from '../ng-api-doc';
 import { AppComponent } from './app.component';
 import { DOCS_TOKENS, DocsModule, NgApiDoc, SIDEBAR_ROUTES, SidebarRoutesStructure } from '@ngx-bootstrap-doc/docs';
 import { routes } from './app.routing';
-import { provideClientHydration } from '@angular/platform-browser';
 
 @NgModule({ declarations: [
         AppComponent
@@ -19,8 +18,7 @@ import { provideClientHydration } from '@angular/platform-browser';
         { provide: NgApiDoc, useValue: ngdoc },
         { provide: DOCS_TOKENS, useValue: routes },
         { provide: SIDEBAR_ROUTES, useValue: SidebarRoutesStructure },
-        provideHttpClient(withInterceptorsFromDi()),
-        provideClientHydration()
+        provideHttpClient(withInterceptorsFromDi())
     ] })
 export class AppModule {
 }
