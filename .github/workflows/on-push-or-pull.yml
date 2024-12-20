@@ -26,7 +26,7 @@ env:
 jobs:
   # one run
   one_run:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.11.0
