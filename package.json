@@ -1,6 +1,6 @@
 {
   "name": "ngx-bootstrap-base",
-  "version": "19.0.1",
+  "version": "19.0.2",
   "license": "MIT",
   "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
   "schematics": "./schematics/src/collection.json",
@@ -87,7 +87,6 @@
     "zone.js": "0.15.0"
   },
   "devDependencies": {
-
     "@angular-devkit/build-angular": "19.0.2",
     "@angular-eslint/eslint-plugin": "19.0.0",
     "@angular-eslint/eslint-plugin-template": "19.0.0",
