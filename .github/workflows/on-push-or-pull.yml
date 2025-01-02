@@ -26,7 +26,7 @@ env:
 jobs:
   # one run
   one_run:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Cancel Previous Runs
         uses: styfle/cancel-workflow-action@0.11.0
@@ -35,7 +35,7 @@ jobs:
 
   # install dependencies
   install:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: one_run
     steps:
       - uses: actions/checkout@v3
@@ -50,7 +50,7 @@ jobs:
   # build ngx-bootstrap
   build:
     needs: install
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
       - uses: actions/cache@v3
@@ -71,7 +71,7 @@ jobs:
 
   # run unit tests
   unit_tests_with_coverage:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: build
     steps:
       - uses: actions/checkout@v3
@@ -90,7 +90,7 @@ jobs:
 
   # run linting
   linting:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: install
     steps:
       - uses: actions/checkout@v3
@@ -103,7 +103,7 @@ jobs:
 
   # firebase deploy preview
   firebase_preview:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: build
     outputs:
       output_url: ${{ steps.firebase_hosting_preview.outputs.details_url }}
@@ -126,7 +126,7 @@ jobs:
   # run playwright
   e2e_smoke:
     name: e2e smoke (${{ matrix.shard }}/${{ strategy.job-total }})
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: [install, build, firebase_preview]
 
     strategy:
@@ -166,7 +166,7 @@ jobs:
 
   e2e_full:
     name: e2e full
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     needs: [e2e_smoke]
 
     strategy:
