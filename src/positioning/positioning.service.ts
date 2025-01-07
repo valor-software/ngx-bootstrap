@@ -1,11 +1,11 @@
 import { Injectable, ElementRef, RendererFactory2, Inject, PLATFORM_ID, NgZone } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { isPlatformBrowser } from '@angular/common';
 
 import { positionElements } from './ng-positioning';
 
 import { fromEvent, merge, of, animationFrameScheduler, Subject, Observable } from 'rxjs';
 import { Options } from './models';
-
 
 export interface PositioningOptions {
   /** The DOM element, ElementRef, or a selector string of an element which will be moved */
@@ -64,7 +64,7 @@ export class PositioningService {
           this.update$$
         );
 
-        this.triggerEvent$.subscribe(() => {
+        this.triggerEvent$.pipe(takeUntilDestroyed()).subscribe(() => {
           if (this.isDisabled) {
             return;
           }
