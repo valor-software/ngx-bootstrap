@@ -1,17 +1,4 @@
 {
-  "tasksRunnerOptions": {
-    "cloud": {
-      "runner": "nx-cloud",
-      "options": {
-        "accessToken": "ZjAyZjFlMDUtNTY4Zi00ZmUzLWEyMjUtNzdmYjFiMGRkM2VlfHJlYWQtd3JpdGU="
-      }
-    },
-    "default": {
-      "runner": "nx/tasks-runners/default",
-      "options": {
-      }
-    }
-  },
   "generators": {
     "@nx/angular:application": {
       "style": "scss",
