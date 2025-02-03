@@ -157,7 +157,7 @@ jobs:
         if: ${{ !needs.firebase_preview.outputs.output_url }}
         run: npx nx run ngx-bootstrap-docs-e2e:e2e --pwProject=chromium-integration --shard=${{ matrix.shard }}/${{ strategy.job-total }}
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: playwright-report-smoke-${{ matrix.shard }}_${{ strategy.job-total }}
@@ -199,7 +199,7 @@ jobs:
         continue-on-error: true
         run: npx nx run ngx-bootstrap-docs-e2e:e2e --pwProject=chromium-full --shard=${{ matrix.shard }}/${{ strategy.job-total }}
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: playwright-report-full-${{ matrix.shard }}_${{ strategy.job-total }}
