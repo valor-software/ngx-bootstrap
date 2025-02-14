@@ -53,7 +53,7 @@
       "default": "./collapse/fesm2022/ngx-bootstrap-collapse.mjs"
     },
     "./component-loader": {
-      "types": "./component-loader/ngx-bootstrap-component-loader.d.ts",
+      "types": "./component-loader/index.d.ts",
       "esm2022": "./component-loader/esm2022/ngx-bootstrap-component-loader.mjs",
       "esm": "./component-loader/esm2022/ngx-bootstrap-component-loader.mjs",
       "default": "./component-loader/fesm2022/ngx-bootstrap-component-loader.mjs"
