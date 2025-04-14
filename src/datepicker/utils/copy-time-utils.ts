@@ -1,5 +1,5 @@
 export function copyTime(sourceDate: Date, time: Date) {
-  if (!sourceDate || !isNaN(sourceDate.getTime())) {
+  if (!sourceDate || isNaN(sourceDate.getTime())) {
     return;
   }
 

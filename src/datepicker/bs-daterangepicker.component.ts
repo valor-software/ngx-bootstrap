@@ -85,7 +85,7 @@ export class BsDaterangepickerDirective
       return;
     }
 
-    if (value && this.bsConfig?.initCurrentTime) {
+    if (value && this._config?.initCurrentTime) {
       value = setDateRangesCurrentTimeOnDateSelect(value);
     }
     this.initPreviousValue();

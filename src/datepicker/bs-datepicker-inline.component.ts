@@ -98,14 +98,16 @@ export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges
       return;
     }
 
-     if (!this._bsValue && value && !this._config.withTimepicker) {
-       const now = new Date();
-       copyTime(value, now);
-     }
+    if (!this._bsValue && value && !this._config.withTimepicker) {
+      if (this._config.initCurrentTime) {
+        const now = new Date();
+        copyTime(value, now);
+      }
+    }
 
-    if (value && this.bsConfig?.initCurrentTime) {
+    if (value && this._config?.initCurrentTime) {
       value = setCurrentTimeOnDateSelect(value);
-     }
+    }
 
     this._bsValue = value;
     this.bsValueChange.emit(value);

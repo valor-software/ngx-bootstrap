@@ -37,7 +37,7 @@ export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnCh
         return;
       }
 
-      if (value && this.bsConfig?.initCurrentTime) {
+      if (value && this._config?.initCurrentTime) {
         value = setDateRangesCurrentTimeOnDateSelect(value);
       }
 
