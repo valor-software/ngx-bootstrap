@@ -1,5 +1,5 @@
-@import 'utils/scss/variables';
-@import 'utils/scss/mixins';
+@use 'utils/scss/variables' as *;
+@use 'utils/scss/mixins' as *;
 
 /* .bs-datepicker */
 .bs-datepicker {
