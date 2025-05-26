@@ -16,6 +16,13 @@ export class BasePo {
   async navigateTo() {
     const bsVersionRoute = process.env['bsVersion'] ? `?_bsVersion=bs${process.env['bsVersion']}` : '';
     await this.page.goto(this.pageUrl + bsVersionRoute);
+    await this.page.waitForLoadState('domcontentloaded');
+    // Ensure Overview tab is active by clicking on it
+    const overviewTab = this.page.locator('a[aria-selected="false"]').getByText('Overview');
+    if (await overviewTab.isVisible()) {
+      await overviewTab.click();
+      await this.page.waitForTimeout(1000); // Wait for tab content to load
+    }
   }
 
   async scrollToMenu(menuTxt: string) {
