@@ -79,8 +79,43 @@ export class TabsetComponent implements OnDestroy {
   }
 
   addTab(tab: TabDirective): void {
-    this.tabs.push(tab);
+    // If tab has a tabOrder, insert it in the correct position
+    if (tab.tabOrder !== undefined) {
+      this.insertTabByOrder(tab);
+    } else {
+      // Default behavior - add to end
+      this.tabs.push(tab);
+    }
+    
+    // Set active if it's the first tab and not already active
     tab.active = this.tabs.length === 1 && !tab.active;
+  }
+
+  private insertTabByOrder(tab: TabDirective): void {
+    let insertIndex = this.tabs.length; // Default to end
+    
+    // Find the correct position to insert the ordered tab
+    for (let i = 0; i < this.tabs.length; i++) {
+      const existingTab = this.tabs[i];
+      
+      // If the existing tab has an order and the new tab's order is less than it
+      if (existingTab.tabOrder !== undefined && 
+          tab.tabOrder !== undefined && 
+          tab.tabOrder < existingTab.tabOrder) {
+        insertIndex = i;
+        break;
+      }
+      
+      // If we reach an unordered tab, we want to insert before it
+      // (ordered tabs should come before unordered tabs)
+      if (existingTab.tabOrder === undefined) {
+        insertIndex = i;
+        break;
+      }
+    }
+    
+    // Insert at the found position
+    this.tabs.splice(insertIndex, 0, tab);
   }
 
   removeTab(
