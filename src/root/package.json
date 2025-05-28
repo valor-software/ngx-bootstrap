@@ -1,6 +1,6 @@
 {
   "name": "ngx-bootstrap",
-  "version": "19.0.3",
+  "version": "19.0.4",
   "description": "Angular Bootstrap",
   "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
   "license": "MIT",
@@ -53,7 +53,7 @@
       "default": "./collapse/fesm2022/ngx-bootstrap-collapse.mjs"
     },
     "./component-loader": {
-      "types": "./component-loader/ngx-bootstrap-component-loader.d.ts",
+      "types": "./component-loader/index.d.ts",
       "esm2022": "./component-loader/esm2022/ngx-bootstrap-component-loader.mjs",
       "esm": "./component-loader/esm2022/ngx-bootstrap-component-loader.mjs",
       "default": "./component-loader/fesm2022/ngx-bootstrap-component-loader.mjs"
@@ -74,7 +74,7 @@
       "default": "./dropdown/fesm2022/ngx-bootstrap-dropdown.mjs"
     },
     "./focus-trap": {
-      "types": "./focus-trap/ngx-bootstrap-focus-trap.d.ts",
+      "types": "./focus-trap/index.d.ts",
       "esm2022": "./focus-trap/esm2022/ngx-bootstrap-focus-trap.mjs",
       "esm": "./focus-trap/esm2022/ngx-bootstrap-focus-trap.mjs",
       "default": "./focus-trap/fesm2022/ngx-bootstrap-focus-trap.mjs"
@@ -86,7 +86,7 @@
       "default": "./locale/fesm2022/ngx-bootstrap-locale.mjs"
     },
     "./mini-ngrx": {
-      "types": "./mini-ngrx/ngx-bootstrap-mini-ngrx.d.ts",
+      "types": "./mini-ngrx/index.d.ts",
       "esm2022": "./mini-ngrx/esm2022/ngx-bootstrap-mini-ngrx.mjs",
       "esm": "./mini-ngrx/esm2022/ngx-bootstrap-mini-ngrx.mjs",
       "default": "./mini-ngrx/fesm2022/ngx-bootstrap-mini-ngrx.mjs"
