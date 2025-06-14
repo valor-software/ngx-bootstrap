@@ -7,19 +7,15 @@
   ],
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
+      "files": ["*.ts"],
       "extends": [
-        "plugin:@nx/angular",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "parserOptions": {
         "project": [
           "src/component-loader/tsconfig.*?.json"
         ]
-      },
-      "rules": {}
+      }
     },
     {
       "files": [
