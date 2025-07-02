@@ -17,6 +17,7 @@ export function isDateValid(date: Date): boolean {
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 export function isFunction(fn: any): fn is Function {
   return (
     fn instanceof Function ||
