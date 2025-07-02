@@ -16,7 +16,6 @@ export function isDateValid(date: Date): boolean {
   return date && date.getTime && !isNaN(date.getTime());
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types, @typescript-eslint/no-unsafe-function-type
 export function isFunction(fn: any): fn is Function {
   return (
     fn instanceof Function ||
