@@ -64,7 +64,7 @@
       }
     },
     "@nx/eslint:lint": {
-      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"],
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
     }
   },
   "useInferencePlugins": false,
