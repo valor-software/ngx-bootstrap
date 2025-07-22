@@ -65,7 +65,7 @@ export class DiscoverComponent {
       link: 'https://trovimap.com/'
     },
     {
-      logo: 'https://www.atmetis.nl/wp-content/uploads/2017/08/cropped-logo-atmetis-tagline-rgb1500px-1.png',
+      logo: 'https://atmetis.nl/templates/assets/img/logo/atmetis-color.svg',
       name: 'AtMetis',
       description: 'Internal web-application for AtMetis - assessment company from Netherlands',
       link: 'https://www.atmetis.nl/'
@@ -78,7 +78,7 @@ export class DiscoverComponent {
       link: 'https://www.pramati.com/'
     },
     {
-      logo: 'https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco/v1484678055/ectxiezxgzm3srv2jkvh.png',
+      logo: 'https://employes.nl/static/employes-1504611522217dfcf2c76b401d63c44e.svg',
       name: 'Employes',
       description: 'Employes is a dutch based payroll-provider that offers a unique modern way to pay employees.\n',
       link: 'https://app.employes.nl/'

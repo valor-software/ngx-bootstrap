@@ -26,6 +26,8 @@ export class TabDirective implements OnInit, OnDestroy {
   @Input() disabled = false;
   /** if true tab can be removable, additional button will appear */
   @Input() removable = false;
+  /** tab order for sorting when using dynamic tabs with *ngIf */
+  @Input() tabOrder?: number;
   /** if set, will be added to the tab's class attribute. Multiple classes are supported. */
   @Input()
   get customClass(): string | undefined {
@@ -102,11 +104,12 @@ export class TabDirective implements OnInit, OnDestroy {
     public renderer: Renderer2
   ) {
     this.tabset = tabset;
-    this.tabset.addTab(this);
   }
 
   ngOnInit(): void {
     this.removable = !!this.removable;
+    // Add tab to tabset after input properties are set
+    this.tabset.addTab(this);
   }
 
   ngOnDestroy(): void {
