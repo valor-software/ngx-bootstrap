@@ -11,7 +11,6 @@
         "*.ts"
       ],
       "extends": [
-        "plugin:@nx/angular",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "parserOptions": {
@@ -19,11 +18,7 @@
           "src/tabs/tsconfig.*?.json"
         ]
       },
-      "rules": {
-        "@angular-eslint/prefer-standalone": [
-          "off"
-        ]
-      }
+      "rules": {}
     },
     {
       "files": [

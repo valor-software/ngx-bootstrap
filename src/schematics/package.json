@@ -1,6 +1,6 @@
 {
   "name": "schematics",
-  "version": "19.0.4",
+  "version": "20.0.0",
   "schematics": "./collection.json",
   "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
   "license": "MIT"

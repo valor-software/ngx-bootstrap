@@ -51,8 +51,8 @@ jobs:
           path: dist
           key: dist-${{ github.run_id }}
       - run: |
-          npx nx build ngx-bootstrap --runner=cloud --configuration=production
-          npx nx prerender --runner=cloud --configuration=production
+          npx nx build ngx-bootstrap --configuration=production
+          npx nx prerender --configuration=production
 
   # update release notes in github
 #  update_release_draft:
@@ -89,7 +89,7 @@ jobs:
           key: dist-${{ github.run_id }}
 
       #      - run: npm run scully
-      - run: npx ts-node ./scripts/gh-pages-predeploy.ts
+      - run: npx tsx ./scripts/gh-pages-predeploy.ts
       - run: |
           cd gh-pages
           git config user.email gh-actions-${GITHUB_ACTOR}@github.com

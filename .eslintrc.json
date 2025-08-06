@@ -25,25 +25,22 @@
     },
     {
       "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nx/typescript"],
+      "extends": ["plugin:@nx/typescript", "plugin:@nx/angular"],
       "parserOptions": {
         "project": "./tsconfig.*?.json"
       },
       "rules": {
         "semi": "off",
-        "@typescript-eslint/semi": ["error"],
-        "@typescript-eslint/no-extra-semi": "error",
         "no-extra-semi": "off",
-        "@angular-eslint/prefer-standalone": [
-          "off"
-        ]
+        "@typescript-eslint/no-unused-expressions": "off",
+        "@angular-eslint/prefer-standalone": "off",
+        "@angular-eslint/prefer-inject": "off"
       }
     },
     {
       "files": ["*.js", "*.jsx"],
       "extends": ["plugin:@nx/javascript"],
       "rules": {
-        "@typescript-eslint/no-extra-semi": "error",
         "no-extra-semi": "off"
       }
     }
