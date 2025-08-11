@@ -44,7 +44,7 @@
     "scully": "scully",
     "scully:serve": "scully serve",
     "prepare": "husky install",
-    "version": "npx ts-node ./scripts/set-version.ts",
+    "version": "npx tsx ./scripts/set-version.ts",
     "release": "release-it",
     "dev:ssr": "ng run ngx-bootstrap-docs:serve-ssr",
     "serve:ssr": "node dist/ngx-bootstrap-docs/server/main.js",
@@ -133,7 +133,7 @@
     "prettier": "3.2.5",
     "release-it": "16.1.0",
     "ts-jest": "29.1.1",
-    "ts-node": "10.9.1",
+    "tsx": "4.20.3",
     "typescript": "5.8.2",
     "webpack-bundle-analyzer": "4.5.0"
   }
