@@ -19,7 +19,7 @@ interface ITab {
 export class DemoTabsDynamicComponent {
   tabs: ITab[] = [
     { title: 'Dynamic Title 1', content: 'Dynamic content 1', removable: false, disabled: false},
-    { title: 'Dynamic Title 2', content: 'Dynamic content 2', removable: false, disabled: false},
+    { title: 'Dynamic Title 2', content: 'Dynamic content 2', removable: false, disabled: false, active: true},
     { title: 'Dynamic Title 3', content: 'Dynamic content 3', removable: true, disabled: false}
   ];
 
