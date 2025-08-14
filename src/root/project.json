@@ -92,7 +92,7 @@
       "executor": "nx:run-commands",
       "outputs": [],
       "options": {
-        "commands": ["ts-node ./scripts/set-version.ts"],
+        "commands": ["tsx ./scripts/set-version.ts"],
         "parallel": false
       },
       "configurations": {
