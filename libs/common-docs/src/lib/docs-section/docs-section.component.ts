@@ -1,6 +1,6 @@
 import { ContentSection } from '../models/content-section.model';
 import { ChangeDetectorRef, Component, Injector, Input } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 
 const availableTabsPaths = ['overview', 'api', 'examples'] as const;
 type AvailableTabsPathsType = typeof availableTabsPaths[number];
@@ -36,9 +36,28 @@ export class DocsSectionComponent {
 
   constructor(
     private injector: Injector,
+    private activatedRoute: ActivatedRoute,
     private router: Router,
     private changeDetection: ChangeDetectorRef
   ) {
+    this.activatedRoute.queryParamMap.subscribe((params) => {
+      this.initActiveTab(params.get('tab')?.toString());
+    });
+  }
+
+  initActiveTab(activeTab?: string) {
+    this.resetTabs();
+    if (!activeTab || !this.checkActiveTab(activeTab)) {
+      this.overview = true;
+      this.onSelect('overview');
+      return;
+    }
+
+    this[activeTab as AvailableTabsPathsType] = true;
+  }
+
+  checkActiveTab(activeTab: string): boolean {
+    return activeTab === 'overview' || activeTab === 'api' || activeTab === 'examples';
   }
 
   onSelect(tabName: string) {
