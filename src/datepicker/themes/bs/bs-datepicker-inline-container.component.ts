@@ -17,7 +17,7 @@ import { NgIf, NgClass, NgSwitch, NgSwitchCase, NgFor, AsyncPipe } from '@angula
 
 @Component({
     selector: 'bs-datepicker-inline-container',
-    providers: [BsDatepickerStore, BsDatepickerEffects, PositioningService],
+    providers: [BsDatepickerStore, BsDatepickerEffects],
     templateUrl: './bs-datepicker-view.html',
     host: {
         '(click)': '_stopPropagation($event)'
