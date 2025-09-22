@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
+import { PositioningService } from 'ngx-bootstrap/positioning';
 
 import { Subscription } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -22,9 +23,7 @@ import {
     selector: 'bs-daterangepicker-inline',
     exportAs: 'bsDaterangepickerInline',
     standalone: true,
-    providers: [
-      ComponentLoaderFactory
-    ]
+    providers: [ComponentLoaderFactory, PositioningService]
 })
 export class BsDaterangepickerInlineDirective implements OnInit, OnDestroy, OnChanges {
     _bsValue?: (Date|undefined)[] | undefined;

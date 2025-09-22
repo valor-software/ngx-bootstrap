@@ -118,7 +118,10 @@ describe('Component: Tabs', () => {
     fixture.detectChanges();
   });
 
-  it('should select first tab as active by default', () => {
+  it('should select first tab as active by default', async () => {
+    // Default activation is deferred to a microtask; wait for it before asserting
+    await fixture.whenStable();
+    fixture.detectChanges();
     expectActiveTabs(element, [true, false, false, false]);
   });
 
