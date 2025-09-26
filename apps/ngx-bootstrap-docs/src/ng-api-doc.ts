@@ -739,6 +739,12 @@ export const ngdoc: any = {
         defaultValue: 'false',
         type: 'boolean',
         description: '<p>Shows timepicker under datepicker</p>\n'
+      },
+      {
+        name: 'unlinkedCalendars',
+        defaultValue: 'false',
+        type: 'boolean',
+        description: '<p>Allow date range picker to switch the calendars separately</p>\n'
       }
     ]
   },

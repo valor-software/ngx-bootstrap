@@ -45,6 +45,7 @@ import { DemoDatepickerPreventChangeToNextMonthComponent } from './prevent-chang
 import { DemoDatepickerWithTimepickerComponent } from './with-timepicker/with-timepicker';
 import { DatepickerCloseBehaviorComponent } from './closeBehaviour/datepicker-close-behavior';
 import { KeepDatesOutOfRulesComponent } from './keep-dates-out-of-rules/keep-dates-out-of-rules.component';
+import { UnlinkedCalendarsComponent } from './unlinked-calendar-views/unlinked-calendar-views.component';
 
 export const DEMO_COMPONENTS = [
   DemoDatePickerAdaptivePositionComponent,
@@ -90,5 +91,6 @@ export const DEMO_COMPONENTS = [
   DemoDatepickerStartViewComponent,
   DemoDatepickerWithTimepickerComponent,
   DatepickerCloseBehaviorComponent,
-  KeepDatesOutOfRulesComponent
+  KeepDatesOutOfRulesComponent,
+  UnlinkedCalendarsComponent
 ];
