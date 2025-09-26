@@ -11,6 +11,7 @@ export interface NavigationViewModel {
   hideRightArrow: boolean;
   disableLeftArrow: boolean;
   disableRightArrow: boolean;
+  unlinkedCalendars: boolean;
 }
 
 export interface CalendarCellViewModel {

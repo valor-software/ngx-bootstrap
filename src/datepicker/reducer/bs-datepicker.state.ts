@@ -80,6 +80,7 @@ export class BsDatepickerState
   yearLabel?: string;
 
   weekNumbers?: string;
+  unlinkedCalendars?: boolean;
 }
 
 const _initialView: BsDatepickerViewState = { date: new Date(), mode: 'day' };

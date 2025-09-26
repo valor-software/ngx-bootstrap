@@ -34,7 +34,8 @@ export function formatYearsCalendar(
     hideLeftArrow: false,
     hideRightArrow: false,
     disableLeftArrow: false,
-    disableRightArrow: false
+    disableRightArrow: false,
+    unlinkedCalendars: false,
   };
 }
 

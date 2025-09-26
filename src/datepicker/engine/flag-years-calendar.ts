@@ -13,6 +13,7 @@ export interface FlagYearsCalendarOptions {
   datesEnabled: Date[];
   displayMonths: number;
   yearIndex: number;
+  unlinkedCalendars: boolean;
 }
 
 export function flagYearsCalendar(
@@ -53,8 +54,10 @@ export function flagYearsCalendar(
 
   // todo: add check for linked calendars
   yearsCalendar.hideLeftArrow =
+    !options.unlinkedCalendars &&
     !!options.yearIndex && options.yearIndex > 0 && options.yearIndex !== options.displayMonths;
   yearsCalendar.hideRightArrow =
+    !options.unlinkedCalendars &&
     !!options.yearIndex && !!options.displayMonths &&
     options.yearIndex < options.displayMonths &&
     options.yearIndex + 1 !== options.displayMonths;

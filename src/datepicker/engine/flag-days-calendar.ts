@@ -31,6 +31,7 @@ export interface FlagDaysCalendarOptions {
   monthIndex: number;
   dateCustomClasses: DatepickerDateCustomClasses[];
   dateTooltipTexts: DatepickerDateTooltipText[];
+  unlinkedCalendars: boolean;
 }
 
 export function flagDaysCalendar(
@@ -119,12 +120,14 @@ export function flagDaysCalendar(
 
   // todo: add check for linked calendars
   formattedMonth.hideLeftArrow =
+    !options.unlinkedCalendars && (
     options.isDisabled ||
-    (!!options.monthIndex && options.monthIndex > 0 && options.monthIndex !== options.displayMonths);
+    (!!options.monthIndex && options.monthIndex > 0 && options.monthIndex !== options.displayMonths));
   formattedMonth.hideRightArrow =
+  !options.unlinkedCalendars && (
     options.isDisabled ||
     ((!!options.monthIndex || options.monthIndex === 0) && !!options.displayMonths && options.monthIndex < options.displayMonths &&
-      options.monthIndex + 1 !== options.displayMonths);
+      options.monthIndex + 1 !== options.displayMonths));
 
   formattedMonth.disableLeftArrow = isMonthDisabled(
     shiftDate(formattedMonth.month, { month: -1 }),

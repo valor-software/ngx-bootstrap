@@ -208,7 +208,6 @@ function calculateReducer(state: BsDatepickerState): BsDatepickerState {
   if (!state.view) {
     return state;
   }
-
   // how many calendars
   let displayMonths: number | undefined;
   if (state.displayOneMonthRange &&
@@ -379,7 +378,8 @@ function flagReducer(state: BsDatepickerState): BsDatepickerState {
           displayMonths,
           dateCustomClasses: state.dateCustomClasses,
           dateTooltipTexts: state.dateTooltipTexts,
-          monthIndex
+          monthIndex,
+          unlinkedCalendars: state.unlinkedCalendars,
         })
     );
 
@@ -399,7 +399,8 @@ function flagReducer(state: BsDatepickerState): BsDatepickerState {
           datesEnabled: state.datesEnabled,
           selectedRange: state.selectedRange,
           displayMonths,
-          monthIndex
+          monthIndex,
+          unlinkedCalendars: state.unlinkedCalendars,
         })
     );
 
@@ -419,7 +420,8 @@ function flagReducer(state: BsDatepickerState): BsDatepickerState {
           datesEnabled: state.datesEnabled,
           selectedRange: state.selectedRange,
           displayMonths,
-          yearIndex
+          yearIndex,
+          unlinkedCalendars: state.unlinkedCalendars,
         })
     );
 

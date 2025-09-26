@@ -34,6 +34,7 @@ export function formatMonthsCalendar(
     hideRightArrow: false,
     hideLeftArrow: false,
     disableRightArrow: false,
-    disableLeftArrow: false
+    disableLeftArrow: false,
+    unlinkedCalendars: false,
   };
 }
