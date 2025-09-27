@@ -138,6 +138,7 @@ export class BsDaterangepickerContainerComponent
     this.containerClass = this._config.containerClass;
     this.isOtherMonthsActive = this._config.selectFromOtherMonth;
     this.withTimepicker = this._config.withTimepicker;
+    this.unlinkedCalendars = this._config.unlinkedCalendars;
     this._effects
       ?.init(this._store)
       // intial state options

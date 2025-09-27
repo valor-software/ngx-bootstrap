@@ -8,7 +8,7 @@ import {
   DaysCalendarViewModel,
   MonthsCalendarViewModel,
   MonthViewOptions,
-  YearsCalendarViewModel
+  YearsCalendarViewModel,
 } from '../models';
 import { defaultMonthOptions } from './_defaults';
 import { BsDatepickerConfig } from '../bs-datepicker.config';
@@ -16,6 +16,8 @@ import { BsDatepickerConfig } from '../bs-datepicker.config';
 export interface BsDatepickerViewState {
   date: Date;
   mode: BsDatepickerViewMode;
+  source?: number;
+  direction?: number;
 }
 
 export class BsDatepickerState
@@ -29,6 +31,7 @@ export class BsDatepickerState
 
   // initial date of calendar, today by default
   view?: BsDatepickerViewState;
+  viewStates?: BsDatepickerViewState[];
 
   isDisabled?: boolean;
   // bounds
@@ -81,6 +84,7 @@ export class BsDatepickerState
 
   weekNumbers?: string;
   unlinkedCalendars?: boolean;
+
 }
 
 const _initialView: BsDatepickerViewState = { date: new Date(), mode: 'day' };

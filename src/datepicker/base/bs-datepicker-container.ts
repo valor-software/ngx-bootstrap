@@ -36,6 +36,7 @@ export abstract class BsDatepickerAbstractComponent {
 
   isRangePicker?: boolean;
   withTimepicker?: boolean;
+  unlinkedCalendars?: boolean;
 
   set minDate(value: Date|undefined) {
     this._effects?.setMinDate(value);
@@ -95,7 +96,7 @@ export abstract class BsDatepickerAbstractComponent {
   setViewMode(event: BsDatepickerViewMode): void {}
 
   // eslint-disable-next-line
-  navigateTo(event: BsNavigationEvent): void {}
+  navigateTo(event: BsNavigationEvent, source: number): void {}
 
   // eslint-disable-next-line
   dayHoverHandler(event: CellHoverEvent): void {}

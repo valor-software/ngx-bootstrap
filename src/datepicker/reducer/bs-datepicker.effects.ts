@@ -145,14 +145,15 @@ export class BsDatepickerEffects {
     return this;
   }
 
+
   /** event handlers */
   setEventHandlers(container: BsDatepickerAbstractComponent): BsDatepickerEffects {
     container.setViewMode = (event: BsDatepickerViewMode): void => {
       this._store?.dispatch(this._actions.changeViewMode(event));
     };
 
-    container.navigateTo = (event: BsNavigationEvent): void => {
-      this._store?.dispatch(this._actions.navigateStep(event.step));
+    container.navigateTo = (event: BsNavigationEvent, source: number): void => {
+      this._store?.dispatch(this._actions.navigateStep(event.step, source));
     };
 
     container.dayHoverHandler = (event: CellHoverEvent): void => {

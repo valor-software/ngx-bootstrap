@@ -7,7 +7,8 @@ import {
   CellHoverEvent,
   DatepickerRenderOptions,
   DatepickerDateCustomClasses,
-  DatepickerDateTooltipText
+  DatepickerDateTooltipText,
+  BsNavigationDirection
 } from '../models';
 
 @Injectable({providedIn: 'platform'})
@@ -64,7 +65,7 @@ export class BsDatepickerActions {
   changeViewMode(event: BsDatepickerViewMode): Action {
     return {
       type: BsDatepickerActions.CHANGE_VIEWMODE,
-      payload: event
+      payload: event,
     };
   }
 
@@ -75,10 +76,10 @@ export class BsDatepickerActions {
     };
   }
 
-  navigateStep(step?: TimeUnit): Action {
+  navigateStep(step?: TimeUnit, source?: number): Action {
     return {
       type: BsDatepickerActions.NAVIGATE_OFFSET,
-      payload: step
+      payload: { step, source }
     };
   }
 
