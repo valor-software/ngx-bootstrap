@@ -481,7 +481,7 @@ export const demoComponentContent: ContentSection[] = [
         outlet: KeepDatesOutOfRulesComponent
       },
       {
-        title: "Allow separately moving calendars in DateRangePicker",
+        title: "Unlinked calendars",
         anchor: 'unlinked-calendar-views',
         component: require('!!raw-loader!./demos/unlinked-calendar-views/unlinked-calendar-views.component'),
         html: require('!!raw-loader!./demos/unlinked-calendar-views/unlinked-calendar-views.component.html'),
@@ -747,7 +747,7 @@ export const demoComponentContent: ContentSection[] = [
         outlet: KeepDatesOutOfRulesComponent
       },
       {
-        title: "Allow separately moving calendars in DateRangePicker",
+        title: "Unlinked calendars",
         anchor: 'unlinked-calendar-views',
         outlet: UnlinkedCalendarsComponent
       },

@@ -239,7 +239,7 @@ function calculateReducer(state: BsDatepickerState): BsDatepickerState {
     const checkedMode = state.viewStates?.length > calendarIndex  ? state.viewStates[calendarIndex]?.mode ?? state.view.mode : state.view.mode;
     if (checkedMode === 'day' && state.monthViewOptions != null) {
       if (calendarIndex == 0) {
-        if (!state.unlinkedCalendars && state.showPreviousMonth && state.selectedRange && state.selectedRange.length === 0) {
+        if (state.showPreviousMonth && state.selectedRange && state.selectedRange.length === 0) {
           viewDate = shiftDate(viewDate, { month: -1 });
         }
         state.monthViewOptions.firstDayOfWeek = getLocale(state.locale).firstDayOfWeek();
