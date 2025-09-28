@@ -8,7 +8,6 @@ import {
   DatepickerRenderOptions,
   DatepickerDateCustomClasses,
   DatepickerDateTooltipText,
-  BsNavigationDirection
 } from '../models';
 
 @Injectable({providedIn: 'platform'})
@@ -62,17 +61,17 @@ export class BsDatepickerActions {
     };
   }
 
-  changeViewMode(event: BsDatepickerViewMode): Action {
+  changeViewMode(event: BsDatepickerViewMode, source?: number): Action {
     return {
       type: BsDatepickerActions.CHANGE_VIEWMODE,
-      payload: event,
+      payload: { event, source }
     };
   }
 
-  navigateTo(event: BsViewNavigationEvent): Action {
+  navigateTo(event: BsViewNavigationEvent, source?: number): Action {
     return {
       type: BsDatepickerActions.NAVIGATE_TO,
-      payload: event
+      payload: { event, source }
     };
   }
 

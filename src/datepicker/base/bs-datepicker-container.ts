@@ -14,7 +14,8 @@ import {
   DayViewModel,
   MonthsCalendarViewModel,
   WeekViewModel,
-  YearsCalendarViewModel
+  YearsCalendarViewModel,
+  ComplexCalendarViewModel
 } from '../models';
 
 export abstract class BsDatepickerAbstractComponent {
@@ -76,6 +77,8 @@ export abstract class BsDatepickerAbstractComponent {
   _daysCalendar$!: Observable<DaysCalendarViewModel[]|undefined>;
   _daysCalendarSub = new Subscription();
 
+  complexCalendar?: ComplexCalendarViewModel[]|undefined;
+
   set daysCalendar$(value: Observable<DaysCalendarViewModel[]|undefined>) {
     this._daysCalendar$ = value;
     this._daysCalendarSub.unsubscribe();
@@ -93,7 +96,7 @@ export abstract class BsDatepickerAbstractComponent {
 
   // todo: valorkin fix
   // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-empty-function
-  setViewMode(event: BsDatepickerViewMode): void {}
+  setViewMode(event: BsDatepickerViewMode, source: number): void {}
 
   // eslint-disable-next-line
   navigateTo(event: BsNavigationEvent, source: number): void {}
@@ -117,10 +120,10 @@ export abstract class BsDatepickerAbstractComponent {
   daySelectHandler(day: DayViewModel): void {}
 
   // eslint-disable-next-line
-  monthSelectHandler(event: CalendarCellViewModel): void {}
+  monthSelectHandler(event: CalendarCellViewModel, source: number): void {}
 
   // eslint-disable-next-line
-  yearSelectHandler(event: CalendarCellViewModel): void {}
+  yearSelectHandler(event: CalendarCellViewModel, source: number): void {}
 
   // eslint-disable-next-line
   setRangeOnCalendar(dates: BsCustomDates): void {}

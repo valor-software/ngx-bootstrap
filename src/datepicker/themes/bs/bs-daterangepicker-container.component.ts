@@ -224,11 +224,10 @@ export class BsDaterangepickerContainerComponent
     this.rangesProcessing(day);
   }
 
-  override monthSelectHandler(day: CalendarCellViewModel): void {
+  override monthSelectHandler(day: CalendarCellViewModel, source?: number): void {
     if (!day || day.isDisabled) {
       return;
     }
-
     day.isSelected = true;
 
     if (this._config.minMode !== 'month') {
@@ -242,7 +241,7 @@ export class BsDaterangepickerContainerComponent
             year: getFullYear(day.date)
           },
           viewMode: 'day'
-        })
+        }, source)
       );
 
       return;
@@ -250,11 +249,10 @@ export class BsDaterangepickerContainerComponent
     this.rangesProcessing(day);
   }
 
-  override yearSelectHandler(day: CalendarCellViewModel): void {
+  override yearSelectHandler(day: CalendarCellViewModel, source?: number): void {
     if (!day || day.isDisabled) {
       return;
     }
-
     day.isSelected = true;
 
     if (this._config.minMode !== 'year') {
@@ -267,7 +265,7 @@ export class BsDaterangepickerContainerComponent
             year: getFullYear(day.date)
           },
           viewMode: 'month'
-        })
+        }, source)
       );
 
       return;

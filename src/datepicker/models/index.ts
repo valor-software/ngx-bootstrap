@@ -53,6 +53,8 @@ export interface DaysCalendarViewModel extends NavigationViewModel {
   weekdays: string[];
 }
 
+export type ComplexCalendarViewModel = { mode: 'day', calendar: DaysCalendarViewModel } | { mode: 'month', calendar: MonthsCalendarViewModel} | { mode: 'year', calendar: YearsCalendarViewModel};
+
 /** *************** */
 // months calendar
 export interface MonthsCalendarViewModel extends NavigationViewModel {

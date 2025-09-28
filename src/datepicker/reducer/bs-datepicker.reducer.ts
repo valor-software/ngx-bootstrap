@@ -20,7 +20,7 @@ import { formatMonthsCalendar } from '../engine/format-months-calendar';
 import { flagMonthsCalendar } from '../engine/flag-months-calendar';
 import { formatYearsCalendar, initialYearShift, yearsPerCalendar } from '../engine/format-years-calendar';
 import { flagYearsCalendar } from '../engine/flag-years-calendar';
-import { BsViewNavigationEvent, DatepickerFormatOptions, BsDatepickerViewMode, BsNavigationDirection } from '../models';
+import { BsViewNavigationEvent, DatepickerFormatOptions, BsDatepickerViewMode, DaysCalendarViewModel, MonthsCalendarViewModel, YearsCalendarViewModel } from '../models';
 import { getYearsCalendarInitialDate } from '../utils/bs-calendar-utils';
 import { copyTime } from '../utils/copy-time-utils';
 
@@ -45,7 +45,7 @@ export function bsDatepickerReducer(state: BsDatepickerState = initialDatepicker
     }
 
     case BsDatepickerActions.NAVIGATE_TO: {
-      const payload: BsViewNavigationEvent = action.payload;
+      const payload: BsViewNavigationEvent = action.payload.event;
       if (!state.view || !payload.unit) {
         return state;
       }
@@ -55,23 +55,22 @@ export function bsDatepickerReducer(state: BsDatepickerState = initialDatepicker
       let mode: BsDatepickerViewMode;
       if (canSwitchMode(payload.viewMode, state.minMode)) {
         mode = payload.viewMode;
-        newState = { view: { date, mode } };
+        newState = { view: { date, mode, source: action.payload.source } };
       } else {
         mode = state.view.mode;
-        newState = { selectedDate: date, view: { date, mode } };
+        newState = { selectedDate: date, view: { date, mode, source: action.payload.source } };
       }
-
       return Object.assign({}, state, newState);
     }
 
     case BsDatepickerActions.CHANGE_VIEWMODE: {
-      if (!canSwitchMode(action.payload, state.minMode) || !state.view) {
+      if (!canSwitchMode(action.payload.event, state.minMode) || !state.view) {
         return state;
       }
 
       const date = state.view.date;
-      const mode = action.payload;
-      const newState = { view: { date, mode } };
+      const mode = action.payload.event;
+      const newState = { view: { date, mode, source: action.payload.source } };
       return Object.assign({}, state, newState);
     }
 
@@ -223,62 +222,65 @@ function calculateReducer(state: BsDatepickerState): BsDatepickerState {
   if (state.viewStates == null) {
     state.viewStates = new Array(displayMonths);
   }
-  if (state.view.mode === 'day' && state.monthViewOptions) {
-    if (!state.unlinkedCalendars && state.showPreviousMonth && state.selectedRange && state.selectedRange.length === 0) {
-      viewDate = shiftDate(viewDate, { month: -1 });
-    }
-
-    state.monthViewOptions.firstDayOfWeek = getLocale(state.locale).firstDayOfWeek();
-    let monthsModel = new Array(displayMonths);
-    for (let monthIndex = 0; monthIndex < displayMonths; monthIndex++) {
-      if (source != null && state.unlinkedCalendars) {
-        viewDate = state.viewStates[monthIndex].date;
-        if (monthIndex == source) {
-          viewDate = shiftDate(viewDate, { month: state.view.direction });
-          state.viewStates[monthIndex] = { date: viewDate, mode: 'day' };
+  let monthsModel = new Array(displayMonths);
+  const monthsCalendar = new Array(displayMonths);
+  const yearsCalendarModel = new Array(displayMonths);
+  for (let calendarIndex = 0; calendarIndex < displayMonths; calendarIndex++) {
+    if (source != null && state.viewStates?.length > calendarIndex && state.viewStates[calendarIndex] != null)  {
+      if(state.unlinkedCalendars) {
+        if (source == calendarIndex) {
+          state.viewStates[calendarIndex].mode = state.view.mode;
         }
-        monthsModel[monthIndex] = calcDaysCalendar(
+      } else {
+        state.viewStates[calendarIndex].mode = state.view.mode;
+      }
+    }
+    const checkedMode = state.viewStates?.length > calendarIndex  ? state.viewStates[calendarIndex]?.mode ?? state.view.mode : state.view.mode;
+    if (checkedMode === 'day' && state.monthViewOptions != null) {
+      if (calendarIndex == 0) {
+        if (!state.unlinkedCalendars && state.showPreviousMonth && state.selectedRange && state.selectedRange.length === 0) {
+        viewDate = shiftDate(viewDate, { month: -1 });
+        }
+        state.monthViewOptions.firstDayOfWeek = getLocale(state.locale).firstDayOfWeek();
+      }
+      if (source != null && state.unlinkedCalendars) {
+        viewDate = state.viewStates[calendarIndex].date;
+        if (calendarIndex == source) {
+          viewDate = shiftDate(viewDate, { month: state.view.direction });
+          state.viewStates[calendarIndex] = { date: viewDate, mode: 'day' };
+        }
+        monthsModel[calendarIndex] = calcDaysCalendar(
           viewDate,
           state.monthViewOptions
         );
       } else {
-        monthsModel[monthIndex] = calcDaysCalendar(
+        monthsModel[calendarIndex] = calcDaysCalendar(
           viewDate,
           state.monthViewOptions
         );
-        state.viewStates[monthIndex] = { date: viewDate, mode: 'day' };
+        state.viewStates[calendarIndex] = { date: viewDate, mode: 'day' };
         viewDate = shiftDate(viewDate, { month: 1 });
       }
-    }
-    // Check if parameter enabled and check if it's not months navigation event
-    if (!state.unlinkedCalendars && state.preventChangeToNextMonth && state.flaggedMonths && state.hoveredDate) {
-      const viewMonth = calcDaysCalendar(state.view.date, state.monthViewOptions);
-      // Check if viewed right month same as in flaggedMonths state, then override months model with flaggedMonths
-      if (state.flaggedMonths.length && state.flaggedMonths[1].month.getMonth() === viewMonth.month.getMonth()) {
-        monthsModel = state.flaggedMonths
-          .map(item => {
-            if (state.monthViewOptions) {
-              return calcDaysCalendar(
-                item.month,
-                state.monthViewOptions
-              );
-            }
-            return null;
-          })
-          .filter(item => item !== null);
+      // Check if parameter enabled and check if it's not months navigation event
+      if ((calendarIndex == displayMonths -1) && !state.unlinkedCalendars && state.preventChangeToNextMonth && state.flaggedMonths && state.hoveredDate) {
+        const viewMonth = calcDaysCalendar(state.view.date, state.monthViewOptions);
+        // Check if viewed right month same as in flaggedMonths state, then override months model with flaggedMonths
+        if (state.flaggedMonths.length && state.flaggedMonths[1].month.getMonth() === viewMonth.month.getMonth()) {
+          monthsModel = state.flaggedMonths
+            .map(item => {
+              if (state.monthViewOptions) {
+                return calcDaysCalendar(
+                  item.month,
+                  state.monthViewOptions
+                );
+              }
+              return null;
+            })
+            .filter(item => item !== null);
+        }
       }
     }
-
-    return Object.assign({}, state, { monthsModel });
-  }
-
-  if (state.view.mode === 'month') {
-    const monthsCalendar = new Array(displayMonths);
-    for (
-      let calendarIndex = 0;
-      calendarIndex < displayMonths;
-      calendarIndex++
-    ) {
+    if (checkedMode === 'month') {
       if (source != null && state.unlinkedCalendars) {
         viewDate = state.viewStates[calendarIndex].date;
         if (calendarIndex == source) {
@@ -298,18 +300,7 @@ function calculateReducer(state: BsDatepickerState): BsDatepickerState {
         viewDate = shiftDate(viewDate, { year: 1 });
       }
     }
-
-    return Object.assign({}, state, { monthsCalendar });
-  }
-
-  if (state.view.mode === 'year') {
-    const yearsCalendarModel = new Array(displayMonths);
-
-    for (
-      let calendarIndex = 0;
-      calendarIndex < displayMonths;
-      calendarIndex++
-    ) {
+    if (checkedMode === 'year') {
       if (source != null && state.unlinkedCalendars) {
         viewDate = state.viewStates[calendarIndex].date;
         if (calendarIndex == source) {
@@ -331,39 +322,34 @@ function calculateReducer(state: BsDatepickerState): BsDatepickerState {
         viewDate = shiftDate(viewDate, { year: yearsPerCalendar });
       }
     }
-
-    return Object.assign({}, state, { yearsCalendarModel });
   }
-
-  return state;
+  return Object.assign({}, state, { monthsModel, monthsCalendar, yearsCalendarModel });
 }
 
 function formatReducer(state: BsDatepickerState): BsDatepickerState {
   if (!state.view) {
     return state;
   }
-
-  if (state.view.mode === 'day' && state.monthsModel) {
-    const formattedMonths = state.monthsModel.map((month, monthIndex) =>
-      formatDaysCalendar(month, getFormatOptions(state), monthIndex)
-    );
-
-    return Object.assign({}, state, { formattedMonths });
-  }
-
-  // how many calendars
   const displayMonths = state.displayMonths || 1;
-  // check initial rendering
-  // use selected date on initial rendering if set
-  let viewDate = state.view.date;
 
-  if (state.view.mode === 'month') {
-    const monthsCalendar = new Array(displayMonths);
-    for (
-      let calendarIndex = 0;
-      calendarIndex < displayMonths;
-      calendarIndex++
-    ) {
+  const formattedMonths: DaysCalendarViewModel[] = new Array(displayMonths);
+  const monthsCalendar: MonthsCalendarViewModel[] = new Array(displayMonths);
+  const yearsCalendarModel: YearsCalendarViewModel[] = new Array(displayMonths);
+  for (
+    let calendarIndex = 0;
+    calendarIndex < displayMonths;
+    calendarIndex++
+  ) {
+    const viewState =  (state.viewStates != null && state.viewStates?.length > calendarIndex) ? state.viewStates[calendarIndex] : state.view;
+    const checkedMode = viewState.mode;
+    if (checkedMode === 'day' && state.monthsModel) {
+      formattedMonths[calendarIndex] = formatDaysCalendar(state.monthsModel[calendarIndex], getFormatOptions(state), calendarIndex)
+    }
+    // how many calendars
+    // check initial rendering
+    // use selected date on initial rendering if set
+    let viewDate = viewState.date;
+    if (checkedMode === 'month') {
       // todo: for unlinked calendars it will be harder
       monthsCalendar[calendarIndex] = formatMonthsCalendar(
         viewDate,
@@ -372,39 +358,38 @@ function formatReducer(state: BsDatepickerState): BsDatepickerState {
       viewDate = shiftDate(viewDate, { year: 1 });
     }
 
-    return Object.assign({}, state, { monthsCalendar });
-  }
-
-  if (state.view.mode === 'year') {
-    const yearsCalendarModel = new Array(displayMonths);
-    for (
-      let calendarIndex = 0;
-      calendarIndex < displayMonths;
-      calendarIndex++
-    ) {
-      // todo: for unlinked calendars it will be harder
+    if (checkedMode === 'year') {
       yearsCalendarModel[calendarIndex] = formatYearsCalendar(
         viewDate,
         getFormatOptions(state)
       );
       viewDate = shiftDate(viewDate, { year: 16 });
     }
-
-    return Object.assign({}, state, { yearsCalendarModel });
   }
 
-  return state;
+  const res = Object.assign({}, state, {
+    formattedMonths: formattedMonths,
+    monthsCalendar: monthsCalendar,
+    yearsCalendarModel: yearsCalendarModel
+  });
+  return res;
 }
 
 function flagReducer(state: BsDatepickerState): BsDatepickerState {
   if (!state.view) {
     return state;
   }
-
   const displayMonths = isDisplayOneMonth(state.view.date, state.minDate, state.maxDate) ? 1 : state.displayMonths;
-  if (state.formattedMonths && state.view.mode === 'day') {
-    const flaggedMonths = state.formattedMonths.map(
-      (formattedMonth, monthIndex) =>
+  const flaggedMonths: DaysCalendarViewModel[] = new Array(displayMonths);
+  const flaggedMonthsCalendar: MonthsCalendarViewModel[] = new Array(displayMonths);
+  const yearsCalendarFlagged: YearsCalendarViewModel[] = new Array(displayMonths);
+
+  for(let idx = 0; idx < displayMonths; idx++) {
+    const viewState =  (state.viewStates != null && state.viewStates?.length > idx) ? state.viewStates[idx] : state.view;
+    const checkedState = viewState.mode;
+    if (state.formattedMonths && checkedState === 'day') {
+      const formattedMonth = state.formattedMonths[idx];
+      flaggedMonths[idx] =
         flagDaysCalendar(formattedMonth, {
           isDisabled: state.isDisabled,
           minDate: state.minDate,
@@ -418,18 +403,13 @@ function flagReducer(state: BsDatepickerState): BsDatepickerState {
           displayMonths,
           dateCustomClasses: state.dateCustomClasses,
           dateTooltipTexts: state.dateTooltipTexts,
-          monthIndex,
+          monthIndex: idx,
           unlinkedCalendars: state.unlinkedCalendars,
-        })
-    );
-
-    return Object.assign({}, state, { flaggedMonths });
-  }
-
-  if (state.view.mode === 'month' && state.monthsCalendar) {
-    const flaggedMonthsCalendar = state.monthsCalendar.map(
-      (formattedMonth, monthIndex) =>
-        flagMonthsCalendar(formattedMonth, {
+        });
+    }
+    if (checkedState === 'month' && state.monthsCalendar) {
+      const formattedMonth = state.monthsCalendar[idx];
+      flaggedMonthsCalendar[idx] = flagMonthsCalendar(formattedMonth, {
           isDisabled: state.isDisabled,
           minDate: state.minDate,
           maxDate: state.maxDate,
@@ -439,36 +419,29 @@ function flagReducer(state: BsDatepickerState): BsDatepickerState {
           datesEnabled: state.datesEnabled,
           selectedRange: state.selectedRange,
           displayMonths,
-          monthIndex,
+          monthIndex: idx,
           unlinkedCalendars: state.unlinkedCalendars,
-        })
-    );
-
-    return Object.assign({}, state, { flaggedMonthsCalendar });
+        });
+    }
+    if (checkedState === 'year' && state.yearsCalendarModel) {
+      const formattedMonth = state.yearsCalendarModel[idx];
+      yearsCalendarFlagged[idx] = flagYearsCalendar(formattedMonth, {
+        isDisabled: state.isDisabled,
+        minDate: state.minDate,
+        maxDate: state.maxDate,
+        hoveredYear: state.hoveredYear,
+        selectedDate: state.selectedDate,
+        datesDisabled: state.datesDisabled,
+        datesEnabled: state.datesEnabled,
+        selectedRange: state.selectedRange,
+        displayMonths,
+        yearIndex: idx,
+        unlinkedCalendars: state.unlinkedCalendars,
+      });
+    }
   }
 
-  if (state.view.mode === 'year' && state.yearsCalendarModel) {
-    const yearsCalendarFlagged = state.yearsCalendarModel.map(
-      (formattedMonth, yearIndex) =>
-        flagYearsCalendar(formattedMonth, {
-          isDisabled: state.isDisabled,
-          minDate: state.minDate,
-          maxDate: state.maxDate,
-          hoveredYear: state.hoveredYear,
-          selectedDate: state.selectedDate,
-          datesDisabled: state.datesDisabled,
-          datesEnabled: state.datesEnabled,
-          selectedRange: state.selectedRange,
-          displayMonths,
-          yearIndex,
-          unlinkedCalendars: state.unlinkedCalendars,
-        })
-    );
-
-    return Object.assign({}, state, { yearsCalendarFlagged });
-  }
-
-  return state;
+  return Object.assign({}, state, { flaggedMonths, flaggedMonthsCalendar, yearsCalendarFlagged });
 }
 
 function navigateOffsetReducer(state: BsDatepickerState, action: Action): BsDatepickerState {
@@ -480,11 +453,12 @@ function navigateOffsetReducer(state: BsDatepickerState, action: Action): BsDate
   if (!date) {
     return state;
   }
+  const source = action.payload.source;
   const newState: {view: BsDatepickerViewState} = {
     view: {
-      mode: state.view.mode,
+      mode: source != null && state.viewStates != null ? state.viewStates[source].mode : state.view.mode,
       date,
-      source: action.payload.source,
+      source,
       direction: action.payload.step['month'] ?? action.payload.step['year'],
     },
 

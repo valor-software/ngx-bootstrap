@@ -31,7 +31,9 @@ import { BsYearsCalendarViewComponent } from './bs-years-calendar-view.component
 import { BsMonthCalendarViewComponent } from './bs-months-calendar-view.component';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { BsDaysCalendarViewComponent } from './bs-days-calendar-view.component';
+import { NgIf, NgClass, NgSwitch, NgSwitchCase, NgFor, AsyncPipe } from '@angular/common';
 import { NgClass, AsyncPipe } from '@angular/common';
+import { NgIf, NgClass, NgFor, AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'bs-datepicker-container',
@@ -205,7 +207,7 @@ export class BsDatepickerContainerComponent
     this._store.dispatch(this._actions.select(day.date));
   }
 
-  override monthSelectHandler(day: CalendarCellViewModel): void {
+  override monthSelectHandler(day: CalendarCellViewModel, source?: number): void {
     if (!day || day.isDisabled) {
       return;
     }
@@ -217,11 +219,11 @@ export class BsDatepickerContainerComponent
           year: getFullYear(day.date)
         },
         viewMode: 'day'
-      })
+      }, source)
     );
   }
 
-  override yearSelectHandler(day: CalendarCellViewModel): void {
+  override yearSelectHandler(day: CalendarCellViewModel, source?: number): void {
     if (!day || day.isDisabled) {
       return;
     }
@@ -232,7 +234,7 @@ export class BsDatepickerContainerComponent
           year: getFullYear(day.date)
         },
         viewMode: 'month'
-      })
+      }, source)
     );
   }
 
