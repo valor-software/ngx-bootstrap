@@ -5,6 +5,7 @@ describe('flag-days-calendar:', () => {
 
   it('should flag days as disabled when they are part of the datesDisabled', () => {
     const weekViewModel = {
+      unlinkedCalendars: false,
       month: new Date('2019-02-01'),
       weeks: [
         {
@@ -29,6 +30,7 @@ describe('flag-days-calendar:', () => {
       new Date('2019-02-09')
     ];
     const result = flagDaysCalendar(weekViewModel, {
+      unlinkedCalendars: false,
       datesDisabled,
       isDisabled: false,
       minDate: new Date('2019-01-01'),
@@ -51,6 +53,7 @@ describe('flag-days-calendar:', () => {
 
   it('should flag days as disabled when they are not part of the datesEnabled', () => {
     const weekViewModel = {
+      unlinkedCalendars: false,
       month: new Date('2020-02-01'),
       weeks: [
         {
@@ -75,6 +78,7 @@ describe('flag-days-calendar:', () => {
       new Date('2020-02-09')
     ];
     const result = flagDaysCalendar(weekViewModel, {
+      unlinkedCalendars: false,
       datesEnabled,
       isDisabled: false,
       minDate: new Date('2020-01-01'),

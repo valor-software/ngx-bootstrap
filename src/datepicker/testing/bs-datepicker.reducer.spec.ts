@@ -9,7 +9,7 @@ describe('BsDatepickerReducer.', () => {
     const state = initialDatepickerState;
     const action: Action = {
         type: BsDatepickerActions.NAVIGATE_TO,
-        payload: { unit: { year: 2017, month: 11 }, viewMode: 'month'}
+        payload: { event: { unit: { year: 2017, month: 11 }, viewMode: 'month'}}
     };
     const reducer = bsDatepickerReducer(state, action);
     expect(reducer.view.mode).toEqual('month');
@@ -24,7 +24,7 @@ describe('BsDatepickerReducer.', () => {
 
     const action: Action = {
       type: BsDatepickerActions.NAVIGATE_TO,
-      payload: { unit: { year: 2017, month: 11, day: 1}, viewMode: 'day' }
+      payload: { event: { unit: { year: 2017, month: 11, day: 1}, viewMode: 'day' }}
     };
 
     const reducer = bsDatepickerReducer(state, action);

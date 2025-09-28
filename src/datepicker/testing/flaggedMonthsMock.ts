@@ -6,6 +6,7 @@ export const mockFlaggedMonths: DaysCalendarViewModel[] = [{
   yearTitle: '2021',
   weekNumbers: ['10', '11', '12', '13', '14', '15'],
   weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  unlinkedCalendars: false,
   weeks: [{
     days: [{
       date: new Date('2021-02-28T13:36:16'),
@@ -701,6 +702,7 @@ export const mockFlaggedMonths: DaysCalendarViewModel[] = [{
   yearTitle: '2021',
   weekNumbers: ['14', '15', '16', '17', '18', '19'],
   weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  unlinkedCalendars: false,
   weeks: [{
     days: [{
       date: new Date('2021-03-28T12:36:16'),

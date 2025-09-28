@@ -96,10 +96,10 @@ export abstract class BsDatepickerAbstractComponent {
 
   // todo: valorkin fix
   // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-empty-function
-  setViewMode(event: BsDatepickerViewMode, source: number): void {}
+  setViewMode(event: BsDatepickerViewMode, source?: number): void {}
 
   // eslint-disable-next-line
-  navigateTo(event: BsNavigationEvent, source: number): void {}
+  navigateTo(event: BsNavigationEvent, source?: number): void {}
 
   // eslint-disable-next-line
   dayHoverHandler(event: CellHoverEvent): void {}
@@ -120,10 +120,10 @@ export abstract class BsDatepickerAbstractComponent {
   daySelectHandler(day: DayViewModel, source?: number): void {}
 
   // eslint-disable-next-line
-  monthSelectHandler(event: CalendarCellViewModel, source: number): void {}
+  monthSelectHandler(event: CalendarCellViewModel, source?: number): void {}
 
   // eslint-disable-next-line
-  yearSelectHandler(event: CalendarCellViewModel, source: number): void {}
+  yearSelectHandler(event: CalendarCellViewModel, source?: number): void {}
 
   // eslint-disable-next-line
   setRangeOnCalendar(dates: BsCustomDates): void {}
