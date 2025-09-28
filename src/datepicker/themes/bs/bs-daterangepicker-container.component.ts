@@ -208,11 +208,11 @@ export class BsDaterangepickerContainerComponent
     this._positionService.enable();
   }
 
-  override timeSelectHandler(date: Date, index: number): void {
-    this._store.dispatch(this._actions.selectTime(date, index));
+  override timeSelectHandler(date: Date, index: number, source?: number): void {
+    this._store.dispatch(this._actions.selectTime(date, index, source));
   }
 
-  override daySelectHandler(day: DayViewModel): void {
+  override daySelectHandler(day: DayViewModel, source?: number): void {
     if (!day) {
       return;
     }
@@ -221,7 +221,7 @@ export class BsDaterangepickerContainerComponent
     if (isDisabled) {
       return;
     }
-    this.rangesProcessing(day);
+    this.rangesProcessing(day, source);
   }
 
   override monthSelectHandler(day: CalendarCellViewModel, source?: number): void {
@@ -246,7 +246,7 @@ export class BsDaterangepickerContainerComponent
 
       return;
     }
-    this.rangesProcessing(day);
+    this.rangesProcessing(day, source);
   }
 
   override yearSelectHandler(day: CalendarCellViewModel, source?: number): void {
@@ -270,10 +270,10 @@ export class BsDaterangepickerContainerComponent
 
       return;
     }
-    this.rangesProcessing(day);
+    this.rangesProcessing(day, source);
   }
 
-  rangesProcessing(day: CalendarCellViewModel): void {
+  rangesProcessing(day: CalendarCellViewModel, source?: number): void {
     // if only one date is already selected
     // and user clicks on previous date
     // start selection from new date
@@ -296,7 +296,7 @@ export class BsDaterangepickerContainerComponent
       }
     }
 
-    this._store.dispatch(this._actions.selectRange(this._rangeStack));
+    this._store.dispatch(this._actions.selectRange(this._rangeStack, source));
 
     if (this._rangeStack.length === 2) {
       this._rangeStack = [];

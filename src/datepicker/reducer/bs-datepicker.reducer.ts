@@ -82,10 +82,11 @@ export function bsDatepickerReducer(state: BsDatepickerState = initialDatepicker
       if (!state.view) {
         return state;
       }
-
+      const source = action.payload.source;
       const newState = {
-        selectedDate: action.payload,
+        selectedDate: action.payload.date,
         view: state.view,
+        source: source,
       };
 
       if (Array.isArray(state.selectedTime)) {
@@ -95,8 +96,8 @@ export function bsDatepickerReducer(state: BsDatepickerState = initialDatepicker
         }
       }
 
-      const mode = state.view.mode;
-      const _date = action.payload || state.view.date;
+      const mode = state.viewStates != null && source != null ? state.viewStates[source].mode : state.view.mode;
+      const _date = action.payload.date || state.view.date;
       const date = getViewDate(_date, state.minDate, state.maxDate);
       newState.view = { mode, date };
 
@@ -104,10 +105,10 @@ export function bsDatepickerReducer(state: BsDatepickerState = initialDatepicker
     }
 
     case BsDatepickerActions.SELECT_TIME: {
-      const {date, index} = action.payload;
+      const {date, index, source} = action.payload;
       const selectedTime = state.selectedTime ? [...state.selectedTime] : [];
       selectedTime[index] = date;
-      return Object.assign({}, state, { selectedTime });
+      return Object.assign({}, state, { selectedTime, source });
     }
 
     case BsDatepickerActions.SET_OPTIONS: {
@@ -151,7 +152,7 @@ export function bsDatepickerReducer(state: BsDatepickerState = initialDatepicker
       }
 
       const newState = {
-        selectedRange: action.payload,
+        selectedRange: action.payload.value,
         view: state.view,
       };
       newState.selectedRange?.forEach((dte: Date, index: number) => {
@@ -162,11 +163,11 @@ export function bsDatepickerReducer(state: BsDatepickerState = initialDatepicker
           }
         }
       });
-
-      const mode = state.view.mode;
-      const _date = action.payload && action.payload[0] || state.view.date;
+      const source = action.payload.source;
+      const mode = state.viewStates != null && source != null ? state.viewStates[source].mode : state.view.mode;
+      const _date = action.payload.value && action.payload.value[0] || state.view.date;
       const date = getViewDate(_date, state.minDate, state.maxDate);
-      newState.view = { mode, date };
+      newState.view = { mode, date, source };
 
       return Object.assign({}, state, newState);
     }

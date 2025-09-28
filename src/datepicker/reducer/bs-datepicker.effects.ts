@@ -47,12 +47,12 @@ export class BsDatepickerEffects {
 
   /** setters */
 
-  setValue(value?: Date): void {
-    this._store?.dispatch(this._actions.select(value));
+  setValue(value?: Date, source?: number): void {
+    this._store?.dispatch(this._actions.select(value, source));
   }
 
-  setRangeValue(value?: (Date|undefined)[] | undefined): void {
-    this._store?.dispatch(this._actions.selectRange(value));
+  setRangeValue(value?: (Date|undefined)[] | undefined, source?: number): void {
+    this._store?.dispatch(this._actions.selectRange(value, source));
   }
 
   setMinDate(value?: Date): BsDatepickerEffects {

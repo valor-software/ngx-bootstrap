@@ -114,10 +114,10 @@ export abstract class BsDatepickerAbstractComponent {
   yearHoverHandler(event: CellHoverEvent): void {}
 
   // eslint-disable-next-line
-  timeSelectHandler(date: Date, index: number): void {}
+  timeSelectHandler(date: Date, index: number, source?: number): void {}
 
   // eslint-disable-next-line
-  daySelectHandler(day: DayViewModel): void {}
+  daySelectHandler(day: DayViewModel, source?: number): void {}
 
   // eslint-disable-next-line
   monthSelectHandler(event: CalendarCellViewModel, source: number): void {}

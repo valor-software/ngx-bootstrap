@@ -47,17 +47,17 @@ export class BsDatepickerActions {
     return { type: BsDatepickerActions.FLAG };
   }
 
-  select(date?: Date): Action {
+  select(date?: Date, source?: number): Action {
     return {
       type: BsDatepickerActions.SELECT,
-      payload: date
+      payload: { date, source }
     };
   }
 
-  selectTime(date: Date, index: number): Action {
+  selectTime(date: Date, index: number, source?: number): Action {
     return  {
       type: BsDatepickerActions.SELECT_TIME,
-      payload: { date, index },
+      payload: { date, index, source },
     };
   }
 
@@ -90,10 +90,10 @@ export class BsDatepickerActions {
   }
 
   // date range picker
-  selectRange(value?: (Date|undefined)[] | undefined): Action {
+  selectRange(value?: (Date|undefined)[] | undefined, source?: number): Action {
     return {
       type: BsDatepickerActions.SELECT_RANGE,
-      payload: value
+      payload: { value, source }
     };
   }
 
