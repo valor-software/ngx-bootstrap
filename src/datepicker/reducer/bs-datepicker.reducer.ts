@@ -240,7 +240,7 @@ function calculateReducer(state: BsDatepickerState): BsDatepickerState {
     if (checkedMode === 'day' && state.monthViewOptions != null) {
       if (calendarIndex == 0) {
         if (!state.unlinkedCalendars && state.showPreviousMonth && state.selectedRange && state.selectedRange.length === 0) {
-        viewDate = shiftDate(viewDate, { month: -1 });
+          viewDate = shiftDate(viewDate, { month: -1 });
         }
         state.monthViewOptions.firstDayOfWeek = getLocale(state.locale).firstDayOfWeek();
       }
@@ -255,6 +255,9 @@ function calculateReducer(state: BsDatepickerState): BsDatepickerState {
           state.monthViewOptions
         );
       } else {
+        if(calendarIndex == displayMonths -1 && state.unlinkedCalendars && (state.selectedRange ?? []).length == 2) {
+          viewDate = state.selectedRange![1];
+        }
         monthsModel[calendarIndex] = calcDaysCalendar(
           viewDate,
           state.monthViewOptions

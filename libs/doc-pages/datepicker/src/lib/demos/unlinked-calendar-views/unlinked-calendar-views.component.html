@@ -4,7 +4,8 @@
            placeholder="Daterangepicker"
            class="form-control"
            bsDaterangepicker
-           [bsConfig]="{unlinkedCalendars: true}"
+           [(bsValue)]="dateRangePickerValue"
+           [bsConfig]="{unlinkedCalendars: true, displayMonths: 2}"
     >
   </div>
 </div>
