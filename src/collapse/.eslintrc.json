@@ -11,7 +11,6 @@
         "*.ts"
       ],
       "extends": [
-        "plugin:@nx/angular",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "parserOptions": {

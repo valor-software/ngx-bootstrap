@@ -65,6 +65,7 @@ export class TabsetComponent implements OnDestroy {
   protected _justified = false;
   protected _type = 'tabs';
   protected _isKeysAllowed = true;
+  private defaultActivationScheduled = false;
 
   constructor(
     config: TabsetConfig,
@@ -79,8 +80,68 @@ export class TabsetComponent implements OnDestroy {
   }
 
   addTab(tab: TabDirective): void {
-    this.tabs.push(tab);
-    tab.active = this.tabs.length === 1 && !tab.active;
+    // If tab has a tabOrder, insert it in the correct position
+    if (tab.tabOrder !== undefined) {
+      this.insertTabByOrder(tab);
+    } else {
+      // Default behavior - add to end
+      this.tabs.push(tab);
+    }
+
+    // Activation logic
+    // - If the newly added tab is already active, set it active again to leverage
+    //   TabDirective's setter which will deactivate others.
+    // - Otherwise, schedule a single deferred default-first activation if none active.
+    if (tab.active) {
+      tab.active = true;
+      return;
+    }
+
+    if (!this.defaultActivationScheduled) {
+      this.defaultActivationScheduled = true;
+      // Defer default activation to avoid racing template-driven [active] inputs
+      Promise.resolve().then(() => {
+        this.defaultActivationScheduled = false;
+        // Guard in case the tabset changed meanwhile
+        if (!this.tabs.length) {
+          return;
+        }
+        if (this.tabs.some((t: TabDirective) => !!t.active)) {
+          return;
+        }
+        const firstEnabled = this.tabs.find((t: TabDirective) => !t.disabled);
+        if (firstEnabled) {
+          firstEnabled.active = true;
+        }
+      });
+    }
+  }
+
+  private insertTabByOrder(tab: TabDirective): void {
+    let insertIndex = this.tabs.length; // Default to end
+
+    // Find the correct position to insert the ordered tab
+    for (let i = 0; i < this.tabs.length; i++) {
+      const existingTab = this.tabs[i];
+
+      // If the existing tab has an order and the new tab's order is less than it
+      if (existingTab.tabOrder !== undefined &&
+          tab.tabOrder !== undefined &&
+          tab.tabOrder < existingTab.tabOrder) {
+        insertIndex = i;
+        break;
+      }
+
+      // If we reach an unordered tab, we want to insert before it
+      // (ordered tabs should come before unordered tabs)
+      if (existingTab.tabOrder === undefined) {
+        insertIndex = i;
+        break;
+      }
+    }
+
+    // Insert at the found position
+    this.tabs.splice(insertIndex, 0, tab);
   }
 
   removeTab(

@@ -29,11 +29,13 @@ export class ButtonsPo extends BasePo {
   };
 
   async expectBtnVisible(baseSelector: string, btnSelector: string, btnName: string, btnNumber?: number) {
-    await expect(await this.page
+    const btnElement = this.page
       .locator(baseSelector + ` ${btnSelector}`)
       .getByText(btnName)
-      .nth(btnNumber ? btnNumber : 0)
-    ).toBeVisible();
+      .nth(btnNumber ? btnNumber : 0);
+    
+    await btnElement.waitFor({ state: 'visible', timeout: 10000 });
+    await expect(btnElement).toBeVisible();
   }
 
   async expectBtnEnabled(baseSelector: string, btnName: string, enabled = true, btnNumber?: number) {

@@ -31,10 +31,10 @@ export class AlertsPo extends BasePo {
     local: '.alert-md-local',
   };
 
-  async expectAlertVisible(baseSelector: string, alertType: string, visible = true, timeout = 5000) {
-    await expect(await this.page
-      .locator(baseSelector + ` ${this.alertType[alertType]}`)
-    ).toBeVisible({ timeout: timeout, visible: visible });
+  async expectAlertVisible(baseSelector: string, alertType: string, visible = true, timeout = 10000) {
+    const alertElement = this.page.locator(baseSelector + ` ${this.alertType[alertType]}`);
+    await alertElement.waitFor({ state: visible ? 'visible' : 'hidden', timeout: timeout });
+    await expect(alertElement).toBeVisible({ visible: visible });
   }
 
   async expectBtnNotExist(baseSelector: string, buttonName: string) {

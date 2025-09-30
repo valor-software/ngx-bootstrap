@@ -10,6 +10,7 @@ import { BsDaterangepickerContainerComponent } from './themes/bs/bs-daterangepic
 import { Observable, Subscription, Subject, BehaviorSubject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { ComponentLoaderFactory, ComponentLoader } from 'ngx-bootstrap/component-loader';
+import { PositioningService } from 'ngx-bootstrap/positioning';
 import { BsDatepickerConfig } from './bs-datepicker.config';
 import { DatepickerDateCustomClasses } from './models';
 import {
@@ -25,9 +26,7 @@ export let previousDate: (Date | undefined)[] | undefined;
     selector: '[bsDaterangepicker]',
     exportAs: 'bsDaterangepicker',
     standalone: true,
-    providers: [
-      ComponentLoaderFactory
-    ]
+    providers: [ComponentLoaderFactory, PositioningService]
 })
 export class BsDaterangepickerDirective
   implements OnInit, OnDestroy, OnChanges, AfterViewInit {
