@@ -266,6 +266,8 @@ export class TypeaheadContainerComponent implements OnDestroy {
     // Replaces the capture string with the same string inside of a "strong" tag
     if (typeof query === 'object') {
       const queryLen: number = query.length;
+      const PLACEHOLDER_CHAR = '\u2063'; // Invisible Separator
+      const STRONG_PLACEHOLDER_COUNT = 17; // 8 + 9: strong tag length (opening and closing)
       for (let i = 0; i < queryLen; i += 1) {
         // query[i] is already latinized and lower case
         startIdx = itemStrHelper.indexOf(query[i]);
@@ -275,7 +277,8 @@ export class TypeaheadContainerComponent implements OnDestroy {
             `${itemStr.substring(0, startIdx)}<strong>${itemStr.substring(startIdx, startIdx + tokenLen)}</strong>` +
             `${itemStr.substring(startIdx + tokenLen)}`;
           itemStrHelper =
-            `${itemStrHelper.substring(0, startIdx)}????????${'??'.repeat(tokenLen)}??????????` +
+            `${itemStrHelper.substring(0, startIdx)}`+
+            `${PLACEHOLDER_CHAR.repeat(STRONG_PLACEHOLDER_COUNT + tokenLen)}`+
             `${itemStrHelper.substring(startIdx + tokenLen)}`;
         }
       }

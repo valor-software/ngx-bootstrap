@@ -34,7 +34,7 @@ import { NgIf, NgClass, NgSwitch, NgSwitchCase, NgFor, AsyncPipe } from '@angula
 
 @Component({
     selector: 'bs-daterangepicker-container',
-    providers: [BsDatepickerStore, BsDatepickerEffects, BsDatepickerActions, PositioningService],
+    providers: [BsDatepickerStore, BsDatepickerEffects, BsDatepickerActions],
     templateUrl: './bs-datepicker-view.html',
     host: {
         class: 'bottom',

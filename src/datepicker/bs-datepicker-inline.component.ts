@@ -14,6 +14,7 @@ import {
 } from '@angular/core';
 
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
+import { PositioningService } from 'ngx-bootstrap/positioning';
 
 import { Subscription } from 'rxjs';
 import { BsDatepickerInlineConfig } from './bs-datepicker-inline.config';
@@ -28,7 +29,7 @@ import { checkBsValue, setCurrentTimeOnDateSelect } from './utils/bs-calendar-ut
     selector: 'bs-datepicker-inline',
     exportAs: 'bsDatepickerInline',
     standalone: true,
-    providers: [ComponentLoaderFactory]
+    providers: [ComponentLoaderFactory, PositioningService]
 })
 export class BsDatepickerInlineDirective implements OnInit, OnDestroy, OnChanges {
   /**
