@@ -24,7 +24,9 @@
   </div>
   <div class="modal-body">
     This is nested modal.<br />
-    <button *ngIf="modalRef" type="button" class="btn btn-danger" (click)="closeFirstModal()">Close first modal</button>
+    @if (modalRef) {
+      <button type="button" class="btn btn-danger" (click)="closeFirstModal()">Close first modal</button>
+    }
     <button type="button" class="btn btn-danger" (click)="closeModal(2)">Close self</button>
     <button type="button" class="btn btn-danger" (click)="closeModal()">Close all modal</button>
   </div>
