@@ -115,16 +115,22 @@ export class ButtonRadioGroupDirective implements ControlValueAccessor {
 
   @HostListener('keydown.ArrowRight', ['$event'])
   @HostListener('keydown.ArrowDown', ['$event'])
-  selectNext(event: KeyboardEvent) {
+  selectNext(event: Event) {
+    const ke = event as KeyboardEvent;
     this.selectInDirection('next');
-    event.preventDefault();
+    if ('preventDefault' in ke) {
+      ke.preventDefault();
+    }
   }
 
   @HostListener('keydown.ArrowLeft', ['$event'])
   @HostListener('keydown.ArrowUp', ['$event'])
-  selectPrevious(event: KeyboardEvent) {
+  selectPrevious(event: Event) {
+    const ke = event as KeyboardEvent;
     this.selectInDirection('previous');
-    event.preventDefault();
+    if ('preventDefault' in ke) {
+      ke.preventDefault();
+    }
   }
 
   private selectInDirection(direction: 'next' | 'previous') {
