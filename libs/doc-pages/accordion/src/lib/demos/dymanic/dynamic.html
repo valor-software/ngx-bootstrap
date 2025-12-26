@@ -5,7 +5,9 @@
 </p>
 
 <accordion>
-  <accordion-group *ngFor="let group of groups" [heading]="group.title">
-    {{ group?.content }}
-  </accordion-group>
+  @for (group of groups; track group) {
+    <accordion-group [heading]="group.title">
+      {{ group?.content }}
+    </accordion-group>
+  }
 </accordion>
