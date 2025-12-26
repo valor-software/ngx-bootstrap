@@ -1,9 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
   "files": [],
-  "include": [
-    "./src/typings.d.ts"
-  ],
+  "include": ["./src/typings.d.ts"],
   "references": [
     {
       "path": "./tsconfig.app.json"
@@ -16,6 +14,8 @@
     }
   ],
   "compilerOptions": {
-    "target": "es2022"
+    "target": "es2022",
+    "module": "preserve",
+    "moduleResolution": "bundler"
   }
 }
