@@ -1,8 +1,10 @@
 <tabset>
   <tab heading="Static title" customClass="customClass">Static content</tab>
-  <tab *ngFor="let tabz of tabs"
-       [heading]="tabz.title"
-       [customClass]="tabz.customClass">
-    {{tabz?.content}}
-  </tab>
+  @for (tabz of tabs; track tabz) {
+    <tab
+      [heading]="tabz.title"
+      [customClass]="tabz.customClass">
+      {{tabz?.content}}
+    </tab>
+  }
 </tabset>
