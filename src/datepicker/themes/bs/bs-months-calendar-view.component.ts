@@ -7,7 +7,7 @@ import {
   MonthsCalendarViewModel,
   CalendarCellViewModel
 } from '../../models';
-import { NgFor } from '@angular/common';
+
 import { BsDatepickerNavigationViewComponent } from './bs-datepicker-navigation-view.component';
 import { BsCalendarLayoutComponent } from './bs-calendar-layout.component';
 

@@ -20,7 +20,7 @@ import {
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDatepickerDayDecoratorComponent } from './bs-datepicker-day-decorator.directive';
-import { NgIf, NgFor } from '@angular/common';
+
 import { BsDatepickerNavigationViewComponent } from './bs-datepicker-navigation-view.component';
 import { BsCalendarLayoutComponent } from './bs-calendar-layout.component';
 

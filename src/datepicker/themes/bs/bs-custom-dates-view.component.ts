@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { NgFor } from '@angular/common';
+
 
 export interface BsCustomDates {
   label: string;
