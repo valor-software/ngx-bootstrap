@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { BarValue, ProgressbarType } from './progressbar-type.interface';
 import { ProgressbarConfig } from './progressbar.config';
 import { BarComponent } from './bar.component';
-import { NgIf, NgFor } from '@angular/common';
+
 
 @Component({
     selector: 'progressbar',
@@ -18,7 +18,7 @@ import { NgIf, NgFor } from '@angular/common';
       display: flex;
     } `],
     standalone: true,
-    imports: [NgIf, BarComponent, NgFor]
+    imports: [BarComponent]
 })
 export class ProgressbarComponent {
   /** maximum total value of progress element */
