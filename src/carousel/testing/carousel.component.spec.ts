@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import '../../../scripts/jest/toHaveCssClass';
@@ -9,7 +10,7 @@ import { getBsVer, IBsVersion } from 'ngx-bootstrap/utils';
 @Component({
     selector: 'carousel-test', template: '',
     standalone: true,
-    imports: [CarouselModule]
+    imports: [CarouselModule, CommonModule]
 })
 class TestCarouselComponent {
   myInterval = 5000;
