@@ -6,7 +6,7 @@
      (focusout)="pauseFocusOut()"
      [id]="'carousel' + currentId"
      class="carousel slide" tabindex="0">
-  <ng-container *ngIf="!_bsVer.isBs5 && showIndicators && slides.length > 1">
+  <ng-container *ngIf="!_bsVer.isBs5 && showIndicators() && slides.length > 1">
     <ol class="carousel-indicators">
       <li *ngFor="let slide of indicatorsSlides(); let i = index;"
           [class.active]="slide.active === true"
@@ -14,7 +14,7 @@
       </li>
     </ol>
   </ng-container>
-  <ng-container *ngIf="_bsVer.isBs5 && showIndicators && slides.length > 1">
+  <ng-container *ngIf="_bsVer.isBs5 && showIndicators() && slides.length > 1">
     <div class="carousel-indicators">
       <button
         *ngFor="let slide of indicatorsSlides(); let i = index;"
