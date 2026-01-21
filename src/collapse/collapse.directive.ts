@@ -8,11 +8,11 @@ import {
   AfterViewChecked,
   Directive,
   ElementRef,
-  EventEmitter,
   HostBinding,
-  Input,
-  Output,
-  Renderer2
+  Renderer2,
+  effect,
+  input,
+  output
 } from '@angular/core';
 
 import {
@@ -30,13 +30,13 @@ import {
 })
 export class CollapseDirective implements AfterViewChecked {
   /** This event fires as soon as content collapses */
-  @Output() collapsed: EventEmitter<CollapseDirective> = new EventEmitter();
+  collapsed = output<CollapseDirective>();
   /** This event fires when collapsing is started */
-  @Output() collapses: EventEmitter<CollapseDirective> = new EventEmitter();
+  collapses = output<CollapseDirective>();
   /** This event fires as soon as content becomes visible */
-  @Output() expanded: EventEmitter<CollapseDirective> = new EventEmitter();
+  expanded = output<CollapseDirective>();
   /** This event fires when expansion is started */
-  @Output() expands: EventEmitter<CollapseDirective> = new EventEmitter();
+  expands = output<CollapseDirective>();
   // shown
   @HostBinding('class.in')
   @HostBinding('class.show')
@@ -50,32 +50,12 @@ export class CollapseDirective implements AfterViewChecked {
   // animation state
   @HostBinding('class.collapsing') isCollapsing = false;
 
-  @Input()
-  set display(value: string) {
-    this._display = value;
-    if (value === 'none') {
-      this.hide();
-      return;
-    }
-
-    this.isAnimated ? this.toggle() : this.show();
-  }
+  display = input<string>('block');
 
   /** turn on/off animation */
-  @Input() isAnimated = false;
+  isAnimated = input<boolean>(false);
   /** A flag indicating visibility of content (shown or hidden) */
-  @Input()
-  set collapse(value: boolean) {
-    this.collapseNewValue = value;
-    if (!this._player || this._isAnimationDone) {
-      this.isExpanded = value;
-      this.toggle();
-    }
-  }
-
-  get collapse(): boolean {
-    return this.isExpanded;
-  }
+  collapse = input<boolean>(false);
 
   private _display = 'block';
   private _isAnimationDone?: boolean;
@@ -95,6 +75,27 @@ export class CollapseDirective implements AfterViewChecked {
   ) {
     this._factoryCollapseAnimation = _builder.build(collapseAnimation);
     this._factoryExpandAnimation = _builder.build(expandAnimation);
+    
+    // Watch for display changes
+    effect(() => {
+      const displayValue = this.display();
+      this._display = displayValue;
+      if (displayValue === 'none') {
+        this.hide();
+        return;
+      }
+      this.isAnimated() ? this.toggle() : this.show();
+    });
+    
+    // Watch for collapse changes
+    effect(() => {
+      const collapseValue = this.collapse();
+      this.collapseNewValue = collapseValue;
+      if (!this._player || this._isAnimationDone) {
+        this.isExpanded = collapseValue;
+        this.toggle();
+      }
+    });
   }
 
   ngAfterViewChecked(): void {
@@ -128,9 +129,9 @@ export class CollapseDirective implements AfterViewChecked {
 
     this._isAnimationDone = false;
 
-    this.animationRun(this.isAnimated, this._COLLAPSE_ACTION_NAME)(() => {
+    this.animationRun(this.isAnimated(), this._COLLAPSE_ACTION_NAME)(() => {
       this._isAnimationDone = true;
-      if (this.collapseNewValue !== this.isCollapsed && this.isAnimated) {
+      if (this.collapseNewValue !== this.isCollapsed && this.isAnimated()) {
         this.show();
 
         return;
@@ -151,9 +152,9 @@ export class CollapseDirective implements AfterViewChecked {
     this.expands.emit(this);
 
     this._isAnimationDone = false;
-    this.animationRun(this.isAnimated, this._EXPAND_ACTION_NAME)(() => {
+    this.animationRun(this.isAnimated(), this._EXPAND_ACTION_NAME)(() => {
       this._isAnimationDone = true;
-      if (this.collapseNewValue !== this.isCollapsed && this.isAnimated) {
+      if (this.collapseNewValue !== this.isCollapsed && this.isAnimated()) {
         this.hide();
 
         return;
