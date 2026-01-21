@@ -10,18 +10,18 @@ import {
   EmbeddedViewRef,
   EventEmitter,
   Injector,
-  NgZone,
   Renderer2,
   StaticProvider,
   TemplateRef,
   Type,
-  ViewContainerRef
+  ViewContainerRef,
+  ChangeDetectorRef,
+  inject
 } from '@angular/core';
 
 import { PositioningOptions, PositioningService } from 'ngx-bootstrap/positioning';
 
 import { listenToTriggersV2, registerEscClick, registerOutsideClick } from 'ngx-bootstrap/utils';
-import { Subscription } from 'rxjs';
 
 import { ContentRef } from './content-ref.class';
 import { ListenOptions } from './listen-options.model';
@@ -38,7 +38,7 @@ export class ComponentLoader<T extends object> {
 
   private _providers: StaticProvider[] = [];
   private _componentFactory?: ComponentFactory<T>;
-  private _zoneSubscription?: Subscription;
+  private _positioningRafId?: number;
   private _contentRef?: ContentRef;
   private _innerComponent?: ComponentRef<T>;
 
@@ -76,7 +76,6 @@ export class ComponentLoader<T extends object> {
     private _elementRef: ElementRef | undefined,
     private _injector: Injector,
     private _componentFactoryResolver: ComponentFactoryResolver,
-    private _ngZone: NgZone,
     private _applicationRef: ApplicationRef,
     private _posService: PositioningService,
     private _document: Document,
@@ -350,7 +349,7 @@ export class ComponentLoader<T extends object> {
   }
 
   private _subscribePositioning(): void {
-    if (this._zoneSubscription || !this.attachment) {
+    if (this._positioningRafId || !this.attachment) {
       return;
     }
 
@@ -363,22 +362,26 @@ export class ComponentLoader<T extends object> {
       });
     });
 
-    this._zoneSubscription = this._ngZone.onStable.subscribe(() => {
+    // Use requestAnimationFrame for zoneless-compatible position updates
+    // This replaces the previous NgZone.onStable subscription
+    const schedulePositioning = () => {
       if (!this._componentRef) {
         return;
       }
 
       this._posService.calcPosition();
-    });
+      this._positioningRafId = requestAnimationFrame(schedulePositioning);
+    };
+
+    // Initial calculation after a short delay to ensure DOM is ready
+    this._positioningRafId = requestAnimationFrame(schedulePositioning);
   }
 
   private _unsubscribePositioning(): void {
-    if (!this._zoneSubscription) {
-      return;
+    if (this._positioningRafId) {
+      cancelAnimationFrame(this._positioningRafId);
+      this._positioningRafId = undefined;
     }
-
-    this._zoneSubscription.unsubscribe();
-    this._zoneSubscription = void 0;
   }
 
   private _getContentRef(

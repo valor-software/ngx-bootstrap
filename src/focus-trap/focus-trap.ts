@@ -17,13 +17,13 @@ import {
   Inject,
   Injectable,
   Input,
-  NgZone,
   OnDestroy,
   DoCheck,
   SimpleChanges,
-  OnChanges
+  OnChanges,
+  afterNextRender,
+  Injector
 } from '@angular/core';
-import { take } from 'rxjs/operators';
 import { InteractivityChecker } from './interactivity-checker';
 import { FocusTrapManager } from './focus-trap-manager';
 import { Platform } from './platform';
@@ -67,7 +67,7 @@ export class FocusTrap {
   constructor(
     readonly _element: HTMLElement,
     private _checker: InteractivityChecker,
-    readonly _ngZone: NgZone,
+    readonly _injector: Injector,
     readonly _document: Document,
     deferAnchors = false) {
 
@@ -113,17 +113,16 @@ export class FocusTrap {
       return true;
     }
 
-    this._ngZone.runOutsideAngular(() => {
-      if (!this._startAnchor) {
-        this._startAnchor = this._createAnchor();
-        this._startAnchor!.addEventListener('focus', this.startAnchorListener);
-      }
+    // Zoneless-compatible: No NgZone needed, event listeners don't need zone handling
+    if (!this._startAnchor) {
+      this._startAnchor = this._createAnchor();
+      this._startAnchor!.addEventListener('focus', this.startAnchorListener);
+    }
 
-      if (!this._endAnchor) {
-        this._endAnchor = this._createAnchor();
-        this._endAnchor!.addEventListener('focus', this.endAnchorListener);
-      }
-    });
+    if (!this._endAnchor) {
+      this._endAnchor = this._createAnchor();
+      this._endAnchor!.addEventListener('focus', this.endAnchorListener);
+    }
 
     if (this._element.parentNode) {
       this._element.parentNode.insertBefore(this._startAnchor!, this._element);
@@ -135,7 +134,7 @@ export class FocusTrap {
   }
 
   /**
-   * Waits for the zone to stabilize, then either focuses the first element that the
+   * Waits for the next render cycle, then either focuses the first element that the
    * user specified, or the first tabbable element.
    * @returns Returns a promise that resolves with a boolean, depending
    * on whether focus was moved successfully.
@@ -147,7 +146,7 @@ export class FocusTrap {
   }
 
   /**
-   * Waits for the zone to stabilize, then focuses
+   * Waits for the next render cycle, then focuses
    * the first tabbable element within the focus trap region.
    * @returns Returns a promise that resolves with a boolean, depending
    * on whether focus was moved successfully.
@@ -159,7 +158,7 @@ export class FocusTrap {
   }
 
   /**
-   * Waits for the zone to stabilize, then focuses
+   * Waits for the next render cycle, then focuses
    * the last tabbable element within the focus trap region.
    * @returns Returns a promise that resolves with a boolean, depending
    * on whether focus was moved successfully.
@@ -346,13 +345,10 @@ export class FocusTrap {
     }
   }
 
-  /** Executes a function when the zone is stable. */
+  /** Executes a function after the next render cycle (zoneless-compatible). */
   private _executeOnStable(fn: () => any): void {
-    if (this._ngZone.isStable) {
-      fn();
-    } else {
-      this._ngZone.onStable.pipe(take(1)).subscribe(fn);
-    }
+    // Zoneless-compatible: use afterNextRender instead of NgZone.onStable
+    afterNextRender(() => fn(), { injector: this._injector });
   }
 }
 
@@ -367,7 +363,7 @@ export class FocusTrapFactory {
 
   constructor(
     private _checker: InteractivityChecker,
-    private _ngZone: NgZone,
+    private _injector: Injector,
     @Inject(DOCUMENT) _document: any) {
 
     this._document = _document;
@@ -382,7 +378,7 @@ export class FocusTrapFactory {
    */
   create(element: HTMLElement, deferCaptureElements: boolean = false): FocusTrap {
     return new FocusTrap(
-      element, this._checker, this._ngZone, this._document, deferCaptureElements);
+      element, this._checker, this._injector, this._document, deferCaptureElements);
   }
 }
 

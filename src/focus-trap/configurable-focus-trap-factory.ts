@@ -13,7 +13,7 @@ import {
   Inject,
   Injectable,
   Optional,
-  NgZone
+  Injector
 } from '@angular/core';
 import { InteractivityChecker } from './interactivity-checker';
 import { ConfigurableFocusTrap } from './configurable-focus-trap';
@@ -30,7 +30,7 @@ export class ConfigurableFocusTrapFactory {
 
   constructor(
     private _checker: InteractivityChecker,
-    private _ngZone: NgZone,
+    private _injector: Injector,
     private _focusTrapManager: FocusTrapManager,
     @Inject(DOCUMENT) _document: any,
     @Optional() @Inject(FOCUS_TRAP_INERT_STRATEGY) _inertStrategy?: FocusTrapInertStrategy) {
@@ -64,7 +64,7 @@ export class ConfigurableFocusTrapFactory {
       configObject = config;
     }
     return new ConfigurableFocusTrap(
-      element, this._checker, this._ngZone, this._document, this._focusTrapManager,
+      element, this._checker, this._injector, this._document, this._focusTrapManager,
       this._inertStrategy, configObject);
   }
 }
