@@ -4,12 +4,12 @@ import {
   EmbeddedViewRef,
   EventEmitter,
   HostListener,
-  Input,
   OnDestroy,
   OnInit,
-  Output,
   Renderer2,
-  ViewContainerRef
+  ViewContainerRef,
+  input,
+  effect
 } from '@angular/core';
 import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
@@ -28,7 +28,7 @@ import { dropdownAnimation } from './dropdown-animations';
   providers: [BsDropdownState, ComponentLoaderFactory, BsDropdownConfig],
   standalone: true,
   host: {
-    '[class.dropup]': 'dropup',
+    '[class.dropup]': '_dropup',
     '[class.open]': 'isOpen',
     '[class.show]': 'isOpen'
   }
@@ -37,70 +37,45 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   /**
    * Placement of a popover. Accepts: "top", "bottom", "left", "right"
    */
-  @Input() placement?: string;
+  placement = input<string | undefined>();
   /**
    * Specifies events that should trigger. Supports a space separated list of
    * event names.
    */
-  @Input() triggers?: string;
+  triggers = input<string | undefined>();
   /**
    * A selector specifying the element the popover should be appended to.
    */
-  @Input() container?: string;
+  container = input<string | undefined>();
 
   /**
    * This attribute indicates that the dropdown should be opened upwards
    */
-  @Input() dropup = false;
+  dropup = input<boolean>(false);
+  
+  // Internal resolved value for dropup (for host binding)
+  _dropup = false;
 
   /**
    * Indicates that dropdown will be closed on item or document click,
    * and after pressing ESC
    */
-  @Input()
-  set autoClose(value: boolean) {
-    this._state.autoClose = value;
-  }
-
-  get autoClose(): boolean {
-    return this._state.autoClose;
-  }
+  autoClose = input<boolean | undefined>(undefined);
 
   /**
    * Indicates that dropdown will be animated
    */
-  @Input()
-  set isAnimated(value: boolean) {
-    this._state.isAnimated = value;
-  }
-
-  get isAnimated(): boolean {
-    return this._state.isAnimated;
-  }
+  isAnimated = input<boolean | undefined>(undefined);
 
   /**
    * This attribute indicates that the dropdown shouldn't close on inside click when autoClose is set to true
    */
-  @Input()
-  set insideClick(value: boolean) {
-    this._state.insideClick = value;
-  }
-
-  get insideClick(): boolean {
-    return this._state.insideClick;
-  }
+  insideClick = input<boolean | undefined>(undefined);
 
   /**
    * Disables dropdown toggle and hides dropdown menu if opened
    */
-  @Input()
-  set isDisabled(value: boolean) {
-    this._isDisabled = value;
-    this._state.isDisabledChange.emit(value);
-    if (value) {
-      this.hide();
-    }
-  }
+  isDisabledInput = input<boolean>(false, { alias: 'isDisabled' });
 
   get isDisabled(): boolean {
     return this._isDisabled;
@@ -109,7 +84,8 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   /**
    * Returns whether or not the popover is currently being shown
    */
-  @Input()
+  isOpenInput = input<boolean>(false, { alias: 'isOpen' });
+
   get isOpen(): boolean {
     if (this._showInline) {
       return this._isInlineOpen;
@@ -118,33 +94,25 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     return this._dropdown.isShown;
   }
 
-  set isOpen(value: boolean) {
-    if (value) {
-      this.show();
-    } else {
-      this.hide();
-    }
-  }
-
   /**
    * Emits an event when isOpen change
    */
-  @Output() isOpenChange: EventEmitter<boolean>;
+  isOpenChange: EventEmitter<boolean>;
 
   /**
    * Emits an event when the popover is shown
    */
-  @Output() onShown: EventEmitter<boolean>;
+  onShown: EventEmitter<boolean>;
 
   /**
    * Emits an event when the popover is hidden
    */
-  @Output() onHidden: EventEmitter<boolean>;
+  onHidden: EventEmitter<boolean>;
 
   private _dropdown: ComponentLoader<BsDropdownContainerComponent>;
 
   private get _showInline(): boolean {
-    return !this.container;
+    return !this.container();
   }
 
   // todo: move to component loader
@@ -181,6 +149,55 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     this.onShown = this._dropdown.onShown;
     this.onHidden = this._dropdown.onHidden;
     this.isOpenChange = this._state.isOpenChange;
+    
+    // Effect for dropup
+    effect(() => {
+      this._dropup = this.dropup();
+    });
+    
+    // Effect for autoClose
+    effect(() => {
+      const val = this.autoClose();
+      if (val !== undefined) {
+        this._state.autoClose = val;
+      }
+    });
+    
+    // Effect for isAnimated
+    effect(() => {
+      const val = this.isAnimated();
+      if (val !== undefined) {
+        this._state.isAnimated = val;
+      }
+    });
+    
+    // Effect for insideClick
+    effect(() => {
+      const val = this.insideClick();
+      if (val !== undefined) {
+        this._state.insideClick = val;
+      }
+    });
+    
+    // Effect for isDisabled
+    effect(() => {
+      const val = this.isDisabledInput();
+      this._isDisabled = val;
+      this._state.isDisabledChange.emit(val);
+      if (val) {
+        this.hide();
+      }
+    });
+    
+    // Effect for isOpen
+    effect(() => {
+      const val = this.isOpenInput();
+      if (val) {
+        this.show();
+      } else {
+        this.hide();
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -196,7 +213,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     this._dropdown.listen({
       // because of dropdown inline mode
       outsideClick: false,
-      triggers: this.triggers,
+      triggers: this.triggers(),
       show: () => this.show()
     });
 
@@ -250,14 +267,14 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     this._state.dropdownMenu
       .then((dropdownMenu) => {
         // check direction in which dropdown should be opened
-        const _dropup = this.dropup || (typeof this.dropup !== 'undefined' && this.dropup);
+        const _dropup = this._dropup || (typeof this._dropup !== 'undefined' && this._dropup);
         this._state.direction = _dropup ? 'up' : 'down';
-        const _placement = this.placement || (_dropup ? 'top start' : 'bottom start');
+        const _placement = this.placement() || (_dropup ? 'top start' : 'bottom start');
 
         // show dropdown
         this._dropdown
           .attach(BsDropdownContainerComponent)
-          .to(this.container)
+          .to(this.container())
           .position({ attachment: _placement })
           .show({
             content: dropdownMenu.templateRef,
