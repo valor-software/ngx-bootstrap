@@ -6,12 +6,13 @@ import {
   HostBinding,
   HostListener,
   Inject,
-  Input,
   OnChanges,
   Optional,
   Provider,
   Renderer2,
-  SimpleChanges
+  SimpleChanges,
+  input,
+  effect
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ButtonRadioGroupDirective } from './button-radio-group.directive';
@@ -36,11 +37,14 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnChanges {
   onTouched = Function.prototype;
 
   /** Radio button value, will be set to `ngModel` */
-  @Input() btnRadio?: unknown;
+  btnRadio = input<unknown>();
   /** If `true` — radio button can be unchecked */
-  @Input() uncheckable = false;
+  uncheckable = input<boolean>(false);
   /** Current value of radio component or group */
-  @Input()
+  valueInput = input<unknown | undefined>(undefined, { alias: 'value' });
+  /** If `true` — radio button is disabled */
+  disabledInput = input<boolean>(false, { alias: 'disabled' });
+
   get value() {
     return this.group ? this.group.value : this._value;
   }
@@ -54,14 +58,9 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnChanges {
     this._value = value;
     this._onChange(value);
   }
-  /** If `true` — radio button is disabled */
-  @Input()
+
   get disabled(): boolean {
     return this._disabled;
-  }
-
-  set disabled(disabled: boolean) {
-    this.setDisabledState(disabled);
   }
 
   @HostBinding('attr.aria-disabled')
@@ -79,7 +78,7 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnChanges {
   @HostBinding('class.active')
   @HostBinding('attr.aria-checked')
   get isActive(): boolean {
-    return this.btnRadio === this.value;
+    return this.btnRadio() === this.value;
   }
 
   @HostBinding('attr.role') readonly role: string = 'radio';
@@ -103,6 +102,7 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnChanges {
   private _value?: unknown;
   private _disabled = false;
   private _hasFocus = false;
+  private _uncheckable = false;
 
   constructor(
     private el: ElementRef,
@@ -111,7 +111,27 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnChanges {
     @Optional()
     @Inject(forwardRef(() => ButtonRadioGroupDirective))
     private group: ButtonRadioGroupDirective
-  ) {}
+  ) {
+    // Watch for value input changes
+    effect(() => {
+      const val = this.valueInput();
+      if (val !== undefined) {
+        this._value = val;
+      }
+    });
+    
+    // Watch for disabled input changes
+    effect(() => {
+      const disabled = this.disabledInput();
+      this.setDisabledState(disabled);
+    });
+    
+    // Watch for uncheckable input changes
+    effect(() => {
+      const val = this.uncheckable();
+      this._uncheckable = val !== false && typeof val !== 'undefined';
+    });
+  }
 
   @HostListener('click')
   toggleIfAllowed(): void {
@@ -119,10 +139,10 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnChanges {
       return;
     }
 
-    if (this.uncheckable && this.btnRadio === this.value) {
+    if (this._uncheckable && this.btnRadio() === this.value) {
       this.value = undefined;
     } else {
-      this.value = this.btnRadio;
+      this.value = this.btnRadio();
     }
   }
 
@@ -148,13 +168,11 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnChanges {
   }
 
   canToggle(): boolean {
-    return !this.controlOrGroupDisabled && (this.uncheckable || this.btnRadio !== this.value);
+    return !this.controlOrGroupDisabled && (this._uncheckable || this.btnRadio() !== this.value);
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if ('uncheckable' in changes) {
-      this.uncheckable = this.uncheckable !== false && typeof this.uncheckable !== 'undefined';
-    }
+    // Keep for compatibility
   }
 
   _onChange(value?: unknown): void {
@@ -170,7 +188,7 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnChanges {
   // ControlValueAccessor
   // model -> view
   writeValue(value: unknown): void {
-    this.value = value;
+    this._value = value;
     this.cdr.markForCheck();
   }
 
