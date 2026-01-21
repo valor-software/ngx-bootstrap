@@ -1,4 +1,4 @@
-import { Component, HostBinding, Input, OnDestroy, Renderer2, ElementRef } from '@angular/core';
+import { Component, HostBinding, OnDestroy, Renderer2, ElementRef, input, effect } from '@angular/core';
 
 import { TabDirective } from './tab.directive';
 import { TabsetConfig } from './tabset.config';
@@ -15,34 +15,13 @@ import { NgClass, NgFor, NgIf } from '@angular/common';
 })
 export class TabsetComponent implements OnDestroy {
   /** if true tabs will be placed vertically */
-  @Input()
-  get vertical(): boolean {
-    return this._vertical;
-  }
-  set vertical(value: boolean) {
-    this._vertical = value;
-    this.setClassMap();
-  }
+  vertical = input<boolean>(false);
 
   /** if true tabs fill the container and have a consistent width */
-  @Input()
-  get justified(): boolean {
-    return this._justified;
-  }
-  set justified(value: boolean) {
-    this._justified = value;
-    this.setClassMap();
-  }
+  justified = input<boolean>(false);
 
   /** navigation context class: 'tabs' or 'pills' */
-  @Input()
-  get type(): string {
-    return this._type;
-  }
-  set type(value: string) {
-    this._type = value;
-    this.setClassMap();
-  }
+  type = input<string>('tabs');
 
   get isKeysAllowed(): boolean {
     return this._isKeysAllowed;
@@ -61,9 +40,6 @@ export class TabsetComponent implements OnDestroy {
   ariaLabel = 'Tabs';
 
   protected isDestroyed = false;
-  protected _vertical = false;
-  protected _justified = false;
-  protected _type = 'tabs';
   protected _isKeysAllowed = true;
   private defaultActivationScheduled = false;
 
@@ -73,6 +49,12 @@ export class TabsetComponent implements OnDestroy {
     private elementRef: ElementRef
   ) {
     Object.assign(this, config);
+    
+    // Watch for input changes and update class map
+    effect(() => {
+      const _ = [this.vertical(), this.justified(), this.type()];
+      this.setClassMap();
+    });
   }
 
   ngOnDestroy(): void {
@@ -315,10 +297,10 @@ export class TabsetComponent implements OnDestroy {
 
   protected setClassMap(): void {
     this.classMap = {
-      'nav-stacked': this.vertical,
-      'flex-column': this.vertical,
-      'nav-justified': this.justified,
-      [`nav-${this.type}`]: true
+      'nav-stacked': this.vertical(),
+      'flex-column': this.vertical(),
+      'nav-justified': this.justified(),
+      [`nav-${this.type()}`]: true
     };
   }
 }
