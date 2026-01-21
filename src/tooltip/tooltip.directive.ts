@@ -2,20 +2,21 @@ import {
   Directive,
   ElementRef,
   EventEmitter,
-  Input,
   OnDestroy,
   OnInit,
-  Output,
   Renderer2,
   TemplateRef,
-  ViewContainerRef
+  ViewContainerRef,
+  input,
+  output,
+  model
 } from '@angular/core';
 
 import { TooltipContainerComponent } from './tooltip-container.component';
 import { TooltipConfig } from './tooltip.config';
 
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
-import { OnChange, warnOnce, parseTriggers, Trigger } from 'ngx-bootstrap/utils';
+import { warnOnce, parseTriggers, Trigger } from 'ngx-bootstrap/utils';
 import { PositioningService } from 'ngx-bootstrap/positioning';
 
 import { timer, Subscription } from 'rxjs';
@@ -34,39 +35,33 @@ let id = 0;
 export class TooltipDirective implements OnInit, OnDestroy {
   tooltipId = id++;
   /** sets disable adaptive position */
-  @Input() adaptivePosition = true;
+  readonly adaptivePosition = input(true);
   /**
    * Content to be displayed as tooltip.
    */
-  @OnChange()
-  @Input()
-  tooltip?: string | TemplateRef<unknown>;
-  /** Fired when tooltip content changes */
-  @Output()
-  tooltipChange: EventEmitter<string | TemplateRef<unknown>> = new EventEmitter();
+  readonly tooltip = model<string | TemplateRef<unknown> | undefined>();
 
   /**
    * Placement of a tooltip. Accepts: "top", "bottom", "left", "right"
    */
-  @Input() placement: AvailableBSPositions = 'top';
+  readonly placement = input<AvailableBSPositions>('top');
   /**
    * Specifies events that should trigger. Supports a space separated list of
    * event names.
    */
-  @Input() triggers = 'hover focus';
+  readonly triggers = input('hover focus');
   /**
    * A selector specifying the element the tooltip should be appended to.
    */
-  @Input() container?: string;
+  readonly container = input<string | undefined>();
   /**
    * Css class for tooltip container
    */
-  @Input() containerClass = '';
-  @Input() boundariesElement?: 'viewport' | 'scrollParent' | 'window';
+  readonly containerClass = input('');
+  readonly boundariesElement = input<'viewport' | 'scrollParent' | 'window' | undefined>();
   /**
    * Returns whether or not the tooltip is currently being shown
    */
-  @Input()
   get isOpen(): boolean {
     return this._tooltip.isShown;
   }
@@ -82,123 +77,57 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /**
    * Allows to disable tooltip
    */
-  @Input() isDisabled = false;
+  readonly isDisabled = input(false);
 
   /**
    * Delay before showing the tooltip
    */
-  @Input() delay = 0;
+  readonly delay = input(0);
 
   /**
    * Emits an event when the tooltip is shown
    */
-  @Output() onShown: EventEmitter<unknown>;
+  onShown: EventEmitter<unknown>;
   /**
    * Emits an event when the tooltip is hidden
    */
-  @Output() onHidden: EventEmitter<unknown>;
+  onHidden: EventEmitter<unknown>;
 
   /** @deprecated - please use `tooltip` instead */
-  @Input('tooltipHtml')
-  set htmlContent(value: string | TemplateRef<unknown>) {
-    warnOnce('tooltipHtml was deprecated, please use `tooltip` instead');
-    this.tooltip = value;
-  }
+  readonly tooltipHtml = input<string | TemplateRef<unknown> | undefined>(undefined, { alias: 'tooltipHtml' });
 
   /** @deprecated - please use `placement` instead */
-  // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('tooltipPlacement')
-  set _placement(value: AvailableBSPositions) {
-    warnOnce('tooltipPlacement was deprecated, please use `placement` instead');
-    this.placement = value;
-  }
+  readonly tooltipPlacement = input<AvailableBSPositions | undefined>(undefined, { alias: 'tooltipPlacement' });
 
   /** @deprecated - please use `isOpen` instead */
-  // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('tooltipIsOpen')
-  set _isOpen(value: boolean) {
-    warnOnce('tooltipIsOpen was deprecated, please use `isOpen` instead');
-    this.isOpen = value;
-  }
-
-  get _isOpen(): boolean {
-    warnOnce('tooltipIsOpen was deprecated, please use `isOpen` instead');
-
-    return this.isOpen;
-  }
+  readonly tooltipIsOpen = input<boolean | undefined>(undefined, { alias: 'tooltipIsOpen' });
 
   /** @deprecated - please use `isDisabled` instead */
-  // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('tooltipEnable')
-  set _enable(value: boolean) {
-    warnOnce('tooltipEnable was deprecated, please use `isDisabled` instead');
-    this.isDisabled = !value;
-  }
-
-  get _enable(): boolean {
-    warnOnce('tooltipEnable was deprecated, please use `isDisabled` instead');
-
-    return this.isDisabled;
-  }
+  readonly tooltipEnable = input<boolean | undefined>(undefined, { alias: 'tooltipEnable' });
 
   /** @deprecated - please use `container="body"` instead */
-  // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('tooltipAppendToBody')
-  set _appendToBody(value: boolean) {
-    warnOnce('tooltipAppendToBody was deprecated, please use `container="body"` instead');
-    this.container = value ? 'body' : this.container;
-  }
-
-  get _appendToBody(): boolean {
-    warnOnce('tooltipAppendToBody was deprecated, please use `container="body"` instead');
-
-    return this.container === 'body';
-  }
+  readonly tooltipAppendToBody = input<boolean | undefined>(undefined, { alias: 'tooltipAppendToBody' });
 
   /** @deprecated - removed, will be added to configuration */
-  @Input() tooltipAnimation = true;
+  readonly tooltipAnimation = input(true);
 
   /** @deprecated - will replaced with customClass */
-  // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('tooltipClass')
-  set _popupClass(value: string) {
-    warnOnce('tooltipClass deprecated');
-  }
+  readonly tooltipClass = input<string | undefined>(undefined, { alias: 'tooltipClass' });
 
   /** @deprecated - removed */
-  // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('tooltipContext')
-  set _tooltipContext(value: undefined) {
-    warnOnce('tooltipContext deprecated');
-  }
+  readonly tooltipContext = input<undefined>(undefined, { alias: 'tooltipContext' });
 
   /** @deprecated */
-  // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('tooltipPopupDelay')
-  set _tooltipPopupDelay(value: number) {
-    warnOnce('tooltipPopupDelay is deprecated, use `delay` instead');
-    this.delay = value;
-  }
+  readonly tooltipPopupDelay = input<number | undefined>(undefined, { alias: 'tooltipPopupDelay' });
 
   /** @deprecated */
-  @Input() tooltipFadeDuration = 150;
+  readonly tooltipFadeDuration = input(150);
 
   /** @deprecated -  please use `triggers` instead */
-  @Input('tooltipTrigger')
-  get _tooltipTrigger(): string | string[] {
-    warnOnce('tooltipTrigger was deprecated, please use `triggers` instead');
-
-    return this.triggers;
-  }
-
-  set _tooltipTrigger(value: string | string[]) {
-    warnOnce('tooltipTrigger was deprecated, please use `triggers` instead');
-    this.triggers = (value || '').toString();
-  }
+  readonly tooltipTrigger = input<string | string[] | undefined>(undefined, { alias: 'tooltipTrigger' });
 
   /** @deprecated */
-  @Output()
-  tooltipStateChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
+  readonly tooltipStateChanged = output<boolean>();
 
   protected _delayTimeoutId?: number;
   protected _tooltipCancelShowFn?: () => void;
@@ -206,6 +135,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   private _tooltip: ComponentLoader<TooltipContainerComponent>;
   private _delaySubscription?: Subscription;
   private _ariaDescribedby?: string;
+
   constructor(
     _viewContainerRef: ViewContainerRef,
     cis: ComponentLoaderFactory,
@@ -224,14 +154,57 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    // Handle deprecated inputs
+    const htmlContent = this.tooltipHtml();
+    if (htmlContent !== undefined) {
+      warnOnce('tooltipHtml was deprecated, please use `tooltip` instead');
+      this.tooltip.set(htmlContent);
+    }
+
+    const placementValue = this.tooltipPlacement();
+    if (placementValue !== undefined) {
+      warnOnce('tooltipPlacement was deprecated, please use `placement` instead');
+    }
+
+    const isOpenValue = this.tooltipIsOpen();
+    if (isOpenValue !== undefined) {
+      warnOnce('tooltipIsOpen was deprecated, please use `isOpen` instead');
+      this.isOpen = isOpenValue;
+    }
+
+    const enableValue = this.tooltipEnable();
+    if (enableValue !== undefined) {
+      warnOnce('tooltipEnable was deprecated, please use `isDisabled` instead');
+    }
+
+    const appendToBodyValue = this.tooltipAppendToBody();
+    if (appendToBodyValue !== undefined) {
+      warnOnce('tooltipAppendToBody was deprecated, please use `container="body"` instead');
+    }
+
+    const classValue = this.tooltipClass();
+    if (classValue !== undefined) {
+      warnOnce('tooltipClass deprecated');
+    }
+
+    const contextValue = this.tooltipContext();
+    if (contextValue !== undefined) {
+      warnOnce('tooltipContext deprecated');
+    }
+
+    const delayValue = this.tooltipPopupDelay();
+    if (delayValue !== undefined) {
+      warnOnce('tooltipPopupDelay is deprecated, use `delay` instead');
+    }
+
+    const triggerValue = this.tooltipTrigger();
+    if (triggerValue !== undefined) {
+      warnOnce('tooltipTrigger was deprecated, please use `triggers` instead');
+    }
+
     this._tooltip.listen({
-      triggers: this.triggers,
+      triggers: this.triggers(),
       show: () => this.show()
-    });
-    this.tooltipChange.subscribe((value) => {
-      if (!value) {
-        this._tooltip.hide();
-      }
     });
 
     this.onShown.subscribe(() => {
@@ -254,7 +227,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   /**
-   * Toggles an element’s tooltip. This is considered a “manual” triggering of
+   * Toggles an element's tooltip. This is considered a "manual" triggering of
    * the tooltip.
    */
   toggle(): void {
@@ -266,23 +239,30 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   /**
-   * Opens an element’s tooltip. This is considered a “manual” triggering of
+   * Opens an element's tooltip. This is considered a "manual" triggering of
    * the tooltip.
    */
   show(): void {
     this._positionService.setOptions({
       modifiers: {
         flip: {
-          enabled: this.adaptivePosition
+          enabled: this.adaptivePosition()
         },
         preventOverflow: {
-          enabled: this.adaptivePosition,
-          boundariesElement: this.boundariesElement || 'scrollParent'
+          enabled: this.adaptivePosition(),
+          boundariesElement: this.boundariesElement() || 'scrollParent'
         }
       }
     });
 
-    if (this.isOpen || this.isDisabled || this._delayTimeoutId || !this.tooltip) {
+    const tooltipValue = this.tooltip();
+    const isDisabledValue = this.isDisabled() || (this.tooltipEnable() !== undefined && !this.tooltipEnable());
+    const delayValue = this.tooltipPopupDelay() ?? this.delay();
+    const containerValue = this.tooltipAppendToBody() ? 'body' : this.container();
+    const placementValue = this.tooltipPlacement() ?? this.placement();
+    const triggersValue = this.tooltipTrigger()?.toString() ?? this.triggers();
+
+    if (this.isOpen || isDisabledValue || this._delayTimeoutId || !tooltipValue) {
       return;
     }
 
@@ -293,12 +273,12 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
       this._tooltip
         .attach(TooltipContainerComponent)
-        .to(this.container)
-        .position({ attachment: this.placement })
+        .to(containerValue)
+        .position({ attachment: placementValue })
         .show({
-          content: this.tooltip,
-          placement: this.placement,
-          containerClass: this.containerClass,
+          content: tooltipValue,
+          placement: placementValue,
+          containerClass: this.containerClass(),
           id: `tooltip-${this.tooltipId}`
         });
     };
@@ -308,18 +288,18 @@ export class TooltipDirective implements OnInit, OnDestroy {
       }
     };
 
-    if (this.delay) {
+    if (delayValue) {
       if (this._delaySubscription) {
         this._delaySubscription.unsubscribe();
       }
 
-      this._delaySubscription = timer(this.delay).subscribe(() => {
+      this._delaySubscription = timer(delayValue).subscribe(() => {
         showTooltip();
         cancelDelayedTooltipShowing();
       });
 
-      if (this.triggers) {
-        parseTriggers(this.triggers).forEach((trigger: Trigger) => {
+      if (triggersValue) {
+        parseTriggers(triggersValue).forEach((trigger: Trigger) => {
           if (!trigger.close) {
             return;
           }
@@ -335,7 +315,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   }
 
   /**
-   * Closes an element’s tooltip. This is considered a “manual” triggering of
+   * Closes an element's tooltip. This is considered a "manual" triggering of
    * the tooltip.
    */
   hide(): void {
@@ -354,12 +334,11 @@ export class TooltipDirective implements OnInit, OnDestroy {
 
     setTimeout(() => {
       this._tooltip.hide();
-    }, this.tooltipFadeDuration);
+    }, this.tooltipFadeDuration());
   }
 
   ngOnDestroy(): void {
     this._tooltip.dispose();
-    this.tooltipChange.unsubscribe();
     if (this._delaySubscription) {
       this._delaySubscription.unsubscribe();
     }

@@ -9,8 +9,7 @@ import {
   TemplateRef,
   ViewChild,
   ViewChildren,
-  Output,
-  EventEmitter
+  output
 } from '@angular/core';
 
 import { Utils } from 'ngx-bootstrap/utils';
@@ -57,7 +56,7 @@ let nextWindowId = 0;
 
 export class TypeaheadContainerComponent implements OnDestroy {
   // eslint-disable-next-line @angular-eslint/no-output-rename
-  @Output('activeChange') activeChangeEvent = new EventEmitter();
+  readonly activeChangeEvent = output<string>({ alias: 'activeChange' });
 
   parent?: TypeaheadDirective;
   query?: string[] | string;
@@ -168,31 +167,31 @@ export class TypeaheadContainerComponent implements OnDestroy {
   }
 
   get optionsListTemplate(): TemplateRef<TypeaheadOptionListContext> | undefined {
-    return this.parent ? this.parent.optionsListTemplate : undefined;
+    return this.parent ? this.parent.optionsListTemplate() : undefined;
   }
 
   get isAnimated(): boolean {
-    return this.parent ? this.parent.isAnimated : false;
+    return this.parent ? this.parent.isAnimated() : false;
   }
 
   get adaptivePosition(): boolean {
-    return this.parent ? this.parent.adaptivePosition : false;
+    return this.parent ? this.parent.adaptivePosition() : false;
   }
 
   get typeaheadScrollable(): boolean {
-    return this.parent ? this.parent.typeaheadScrollable : false;
+    return this.parent ? this.parent.typeaheadScrollable() : false;
   }
 
   get typeaheadOptionsInScrollableView(): number {
-    return this.parent ? this.parent.typeaheadOptionsInScrollableView : 5;
+    return this.parent ? this.parent.typeaheadOptionsInScrollableView() : 5;
   }
 
   get typeaheadIsFirstItemActive(): boolean {
-    return this.parent ? this.parent.typeaheadIsFirstItemActive : true;
+    return this.parent ? this.parent.typeaheadIsFirstItemActive() : true;
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   get itemTemplate(): TemplateRef<TypeaheadOptionItemContext> | undefined {
-    return this.parent ? this.parent.typeaheadItemTemplate : undefined;
+    return this.parent ? this.parent.typeaheadItemTemplate() : undefined;
   }
 
   get canSelectItemsOnBlur(): boolean {
@@ -200,11 +199,11 @@ export class TypeaheadContainerComponent implements OnDestroy {
   }
 
   selectActiveMatch(isActiveItemChanged?: boolean): void {
-    if (this._active && this.parent?.typeaheadSelectFirstItem) {
+    if (this._active && this.parent?.typeaheadSelectFirstItem()) {
       this.selectMatch(this._active);
     }
 
-    if (!this.parent?.typeaheadSelectFirstItem && isActiveItemChanged) {
+    if (!this.parent?.typeaheadSelectFirstItem() && isActiveItemChanged) {
       this.selectMatch(this._active);
     }
   }
@@ -258,7 +257,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
 
   highlight(match: TypeaheadMatch, query: string[] | string): string {
     let itemStr: string = match.value;
-    let itemStrHelper: string = (this.parent && this.parent.typeaheadLatinize
+    let itemStrHelper: string = (this.parent && this.parent.typeaheadLatinize()
       ? latinize(itemStr)
       : itemStr).toLowerCase();
     let startIdx: number;
