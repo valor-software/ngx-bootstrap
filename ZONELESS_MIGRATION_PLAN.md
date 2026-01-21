@@ -1,19 +1,20 @@
 # Zoneless Migration Plan for ngx-bootstrap
 
-This document outlines the comprehensive plan to migrate ngx-bootstrap to support Angular's zoneless change detection (experimental in Angular 18+, stable in Angular 20+).
+This document outlines the comprehensive plan to migrate ngx-bootstrap to Angular's zoneless change detection. This is a **breaking change migration** that will fully modernize the library to use Angular 20+ features.
 
 ## Table of Contents
 
 1. [Overview](#overview)
 2. [Current State Analysis](#current-state-analysis)
 3. [Migration Strategy](#migration-strategy)
-4. [Phase 1: Preparation](#phase-1-preparation)
-5. [Phase 2: Component Updates](#phase-2-component-updates)
-6. [Phase 3: Service Updates](#phase-3-service-updates)
-7. [Phase 4: Testing & Validation](#phase-4-testing--validation)
-8. [Phase 5: Documentation & Release](#phase-5-documentation--release)
-9. [Files Requiring Changes](#files-requiring-changes)
-10. [Risk Assessment](#risk-assessment)
+4. [Phase 1: Preparation & Docs App](#phase-1-preparation--docs-app)
+5. [Phase 2: Input/Output Migration](#phase-2-inputoutput-migration)
+6. [Phase 3: Component Updates](#phase-3-component-updates)
+7. [Phase 4: Service Updates](#phase-4-service-updates)
+8. [Phase 5: Testing & Validation](#phase-5-testing--validation)
+9. [Phase 6: Documentation & Release](#phase-6-documentation--release)
+10. [Files Requiring Changes](#files-requiring-changes)
+11. [Breaking Changes Summary](#breaking-changes-summary)
 
 ---
 
@@ -35,11 +36,19 @@ Zoneless Angular removes the dependency on `zone.js` for change detection. Inste
 - **Predictable Change Detection**: Explicit control over when updates happen
 - **Better Debugging**: Clearer async stack traces
 - **SSR Improvements**: Better server-side rendering performance
+- **Modern Angular APIs**: Using `input()`, `output()`, and signals
 
 ### ngx-bootstrap Current Version
 
 - **Angular**: 20.0.2
-- **zone.js**: 0.15.0 (listed in dependencies)
+- **zone.js**: 0.15.0 (to be removed from dependencies)
+
+### Scope
+
+This migration includes:
+- **Library components** (`src/` directory)
+- **Documentation app** (`apps/ngx-bootstrap-docs`)
+- All components, directives, and services
 
 ---
 
@@ -99,80 +108,264 @@ Files using `ChangeDetectorRef` for manual change detection:
 
 ## Migration Strategy
 
-### Approach: Gradual Migration with Backward Compatibility
+### Approach: Breaking Change Migration
 
-We recommend a **gradual migration approach** that:
+This is a **breaking change migration** that will:
 
-1. Maintains backward compatibility with zone.js-based applications
-2. Adds zoneless support incrementally
-3. Uses feature detection to work in both environments
-4. Leverages Angular's new primitives (signals, effects) where beneficial
+1. Remove support for zone.js-based change detection
+2. Migrate all `@Input()` decorators to `input()` function API
+3. Migrate all `@Output()` decorators to `output()` function API
+4. Update all components to use signals where appropriate
+5. Remove all NgZone dependencies
 
 ### Key Principles
 
-1. **Don't break existing users**: All changes must be backward compatible
-2. **Opt-in zoneless support**: Library should work seamlessly in both modes
-3. **Use Angular's recommended patterns**: Follow Angular's official zoneless migration guide
-4. **Test in both environments**: Ensure functionality in zone and zoneless modes
+1. **Full modernization**: Adopt all Angular 20+ features
+2. **No backward compatibility**: This is a major version bump with breaking changes
+3. **Consistent patterns**: Use the same modern patterns across all components
+4. **Zoneless-first**: Design all components for zoneless operation
 
 ---
 
-## Phase 1: Preparation
+## Phase 1: Preparation & Docs App
 
-### 1.1 Update Documentation App for Zoneless Testing
+### 1.1 Update Documentation App for Zoneless
 
-Add zoneless configuration to the documentation app for testing:
+Convert the documentation app (`apps/ngx-bootstrap-docs`) to zoneless:
 
 ```typescript
 // apps/ngx-bootstrap-docs/src/main.ts
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { AppComponent } from './app/app.component';
+import { appConfig } from './app/app.config';
 
 bootstrapApplication(AppComponent, {
+  ...appConfig,
   providers: [
     provideZonelessChangeDetection(),
-    // ... other providers
+    ...(appConfig.providers || []),
   ]
 });
 ```
 
-### 1.2 Create Feature Detection Utility
-
-Create a utility to detect the current change detection mode:
+### 1.2 Remove zone.js from Documentation App
 
 ```typescript
-// src/utils/zoneless-detection.ts
-import { inject, NgZone, ɵNoopNgZone } from '@angular/core';
+// apps/ngx-bootstrap-docs/src/polyfills.ts
+// Remove: import 'zone.js';
+// Remove: import 'zone.js/plugins/task-tracking';
+```
 
-export function isZoneless(): boolean {
-  const ngZone = inject(NgZone);
-  // In zoneless mode, Angular provides a NoopNgZone instance
-  return ngZone instanceof ɵNoopNgZone;
-}
+### 1.3 Update package.json
 
-// Alternative approach using zone.js detection
-export function hasZoneJs(): boolean {
-  return typeof Zone !== 'undefined' && Zone.current?.name !== 'angular';
+Remove zone.js from dependencies:
+
+```json
+{
+  "dependencies": {
+    // Remove: "zone.js": "0.15.0"
+  }
 }
 ```
 
-### 1.3 Set Up Dual Testing Infrastructure
+### 1.4 Update angular.json
 
-Configure Jest/testing utilities to run tests in both zone and zoneless modes.
+Remove zone.js polyfill from build configuration:
+
+```json
+{
+  "projects": {
+    "ngx-bootstrap-docs": {
+      "architect": {
+        "build": {
+          "options": {
+            "polyfills": [
+              // Remove: "zone.js"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
+```
 
 ---
 
-## Phase 2: Component Updates
+## Phase 2: Input/Output Migration
 
-### 2.1 Carousel Component
+This phase migrates all `@Input()` and `@Output()` decorators to the new function-based APIs.
+
+### 2.1 Input Migration
+
+Migrate all `@Input()` decorators to `input()` function per [Angular Input API](https://angular.dev/api/core/input):
+
+**Before**:
+```typescript
+import { Component, Input } from '@angular/core';
+
+@Component({...})
+export class AlertComponent {
+  @Input() type: string = 'warning';
+  @Input() dismissible: boolean = false;
+  @Input() dismissOnTimeout?: number;
+}
+```
+
+**After**:
+```typescript
+import { Component, input } from '@angular/core';
+
+@Component({...})
+export class AlertComponent {
+  type = input<string>('warning');
+  dismissible = input<boolean>(false);
+  dismissOnTimeout = input<number | undefined>();
+}
+```
+
+### 2.2 Required Inputs
+
+For required inputs, use `input.required()`:
+
+**Before**:
+```typescript
+@Input({ required: true }) items!: SortableItem[];
+```
+
+**After**:
+```typescript
+items = input.required<SortableItem[]>();
+```
+
+### 2.3 Input Transforms
+
+For inputs with transforms:
+
+**Before**:
+```typescript
+@Input({ transform: booleanAttribute }) disabled: boolean = false;
+```
+
+**After**:
+```typescript
+disabled = input(false, { transform: booleanAttribute });
+```
+
+### 2.4 Output Migration
+
+Migrate all `@Output()` decorators to `output()` function per [Angular Output API](https://angular.dev/api/core/output):
+
+**Before**:
+```typescript
+import { Component, Output, EventEmitter } from '@angular/core';
+
+@Component({...})
+export class AlertComponent {
+  @Output() closed = new EventEmitter<void>();
+  @Output() onClose = new EventEmitter<AlertComponent>();
+}
+```
+
+**After**:
+```typescript
+import { Component, output } from '@angular/core';
+
+@Component({...})
+export class AlertComponent {
+  closed = output<void>();
+  onClose = output<AlertComponent>();
+}
+```
+
+### 2.5 Files Requiring Input Migration
+
+The following files contain `@Input()` decorators that need to be migrated:
+
+| File | Input Count |
+|------|-------------|
+| `src/typeahead/typeahead.directive.ts` | 31 |
+| `src/datepicker/bs-datepicker.component.ts` | 18 |
+| `src/pagination/pagination.component.ts` | 18 |
+| `src/timepicker/timepicker.component.ts` | 17 |
+| `src/datepicker/bs-daterangepicker.component.ts` | 15 |
+| `src/pagination/pager.component.ts` | 13 |
+| `src/popover/popover.directive.ts` | 12 |
+| `src/tooltip/tooltip.directive.ts` | 12 |
+| `src/carousel/carousel.component.ts` | 11 |
+| `src/sortable/sortable.component.ts` | 11 |
+| `src/dropdown/bs-dropdown.directive.ts` | 9 |
+| `src/datepicker/bs-datepicker-inline.component.ts` | 9 |
+| `src/datepicker/bs-daterangepicker-inline.component.ts` | 9 |
+| `src/tabs/tab.directive.ts` | 7 |
+| `src/progressbar/bar.component.ts` | 5 |
+| `src/progressbar/progressbar.component.ts` | 5 |
+| `src/alert/alert.component.ts` | 4 |
+| `src/accordion/accordion-group.component.ts` | 4 |
+| `src/buttons/button-radio.directive.ts` | 4 |
+| `src/rating/rating.component.ts` | 4 |
+| `src/collapse/collapse.directive.ts` | 3 |
+| `src/tabs/tabset.component.ts` | 3 |
+| `src/datepicker/themes/bs/bs-custom-dates-view.component.ts` | 3 |
+| `src/datepicker/themes/bs/bs-days-calendar-view.component.ts` | 3 |
+| `src/accordion/accordion.component.ts` | 2 |
+| `src/buttons/button-checkbox.directive.ts` | 2 |
+| `src/modal/modal.directive.ts` | 2 |
+| `src/popover/popover-container.component.ts` | 2 |
+| `src/datepicker/themes/bs/bs-datepicker-navigation-view.component.ts` | 2 |
+| `src/carousel/slide.component.ts` | 1 |
+| `src/tabs/ng-transclude.directive.ts` | 1 |
+| `src/datepicker/themes/bs/bs-datepicker-day-decorator.directive.ts` | 1 |
+| `src/datepicker/themes/bs/bs-years-calendar-view.component.ts` | 1 |
+| `src/datepicker/themes/bs/bs-months-calendar-view.component.ts` | 1 |
+| `src/datepicker/themes/bs/bs-current-date-view.component.ts` | 1 |
+
+### 2.6 Files Requiring Output Migration
+
+The following files contain `@Output()` decorators that need to be migrated:
+
+| File | Output Count |
+|------|--------------|
+| `src/typeahead/typeahead.directive.ts` | 5 |
+| `src/datepicker/themes/bs/bs-days-calendar-view.component.ts` | 5 |
+| `src/datepicker/themes/bs/bs-years-calendar-view.component.ts` | 4 |
+| `src/datepicker/themes/bs/bs-months-calendar-view.component.ts` | 4 |
+| `src/modal/modal.directive.ts` | 4 |
+| `src/collapse/collapse.directive.ts` | 4 |
+| `src/tooltip/tooltip.directive.ts` | 4 |
+| `src/dropdown/bs-dropdown.directive.ts` | 3 |
+| `src/datepicker/bs-datepicker.component.ts` | 3 |
+| `src/datepicker/bs-daterangepicker.component.ts` | 3 |
+| `src/tabs/tab.directive.ts` | 3 |
+| `src/alert/alert.component.ts` | 2 |
+| `src/popover/popover.directive.ts` | 2 |
+| `src/carousel/carousel.component.ts` | 2 |
+| `src/timepicker/timepicker.component.ts` | 2 |
+| `src/rating/rating.component.ts` | 2 |
+| `src/pagination/pager.component.ts` | 2 |
+| `src/pagination/pagination.component.ts` | 2 |
+| `src/datepicker/themes/bs/bs-datepicker-navigation-view.component.ts` | 2 |
+| `src/accordion/accordion-group.component.ts` | 1 |
+| `src/sortable/sortable.component.ts` | 1 |
+| `src/datepicker/bs-datepicker-inline.component.ts` | 1 |
+| `src/datepicker/bs-daterangepicker-inline.component.ts` | 1 |
+| `src/datepicker/themes/bs/bs-custom-dates-view.component.ts` | 1 |
+
+---
+
+## Phase 3: Component Updates
+
+### 3.1 Carousel Component
 
 **File**: `src/carousel/carousel.component.ts`
 
 **Current Pattern**:
 ```typescript
+@Input() noWrap = false;
+@Output() activeSlideChange = new EventEmitter<number>();
+
 private restartTimer() {
-  // Uses NgZone to manage timer outside Angular
   this.currentInterval = this.ngZone.runOutsideAngular<number>(() => {
     return window.setInterval(() => {
       this.ngZone.run(() => {
@@ -185,7 +378,10 @@ private restartTimer() {
 
 **Zoneless Pattern**:
 ```typescript
-import { ChangeDetectorRef, inject } from '@angular/core';
+import { ChangeDetectorRef, inject, input, output } from '@angular/core';
+
+noWrap = input<boolean>(false);
+activeSlideChange = output<number>();
 
 private cdr = inject(ChangeDetectorRef);
 
@@ -193,57 +389,63 @@ private restartTimer() {
   this.currentInterval = window.setInterval(() => {
     if (this.isPlaying && this.slides.length) {
       this.nextSlideFromInterval();
-      this.cdr.markForCheck(); // Explicitly mark for check
+      this.cdr.markForCheck();
     }
   }, interval);
 }
 ```
 
 **Changes Required**:
-- Replace `NgZone.runOutsideAngular()` and `NgZone.run()` pattern with direct calls
+- Remove `NgZone` dependency completely
+- Migrate all `@Input()` to `input()`
+- Migrate all `@Output()` to `output()`
 - Add `ChangeDetectorRef.markForCheck()` after state changes
-- Consider using signals for reactive state management
 
-### 2.2 Alert Component
+### 3.2 Alert Component
 
 **File**: `src/alert/alert.component.ts`
 
-**Current State**: Already uses `OnPush` and `ChangeDetectorRef`
-
-**Recommended Updates**:
-- Convert to signals for state management
+**Changes Required**:
+- Migrate `@Input()` decorators to `input()`:
+  - `type`, `dismissible`, `dismissOnTimeout`, `isOpen`
+- Migrate `@Output()` decorators to `output()`:
+  - `closed`, `onClose`
 - Ensure all async operations trigger `markForCheck()`
 
-### 2.3 Timepicker Component
+### 3.3 Timepicker Component
 
 **File**: `src/timepicker/timepicker.component.ts`
 
-**Recommended Updates**:
-- Already uses `OnPush` strategy
-- Review async operations for proper change detection triggers
+**Changes Required**:
+- Migrate 17 `@Input()` decorators to `input()`
+- Migrate 2 `@Output()` decorators to `output()`
+- Already uses `OnPush` strategy - verify change detection
 
-### 2.4 Dropdown Component
+### 3.4 Dropdown Component
 
 **Files**: 
+- `src/dropdown/bs-dropdown.directive.ts`
 - `src/dropdown/bs-dropdown-container.component.ts`
 - `src/dropdown/bs-dropdown-toggle.directive.ts`
 
-**Recommended Updates**:
-- Review event handling for change detection
+**Changes Required**:
+- Migrate all inputs and outputs
 - Ensure `markForCheck()` is called after dropdown state changes
 
-### 2.5 All Other Components
+### 3.5 All Other Components
 
-For components **not** using `OnPush`:
-- Add `changeDetection: ChangeDetectionStrategy.OnPush` to component decorator
+For all components:
+- Migrate `@Input()` → `input()`
+- Migrate `@Output()` → `output()`
+- Add `changeDetection: ChangeDetectionStrategy.OnPush`
 - Inject `ChangeDetectorRef`
 - Call `markForCheck()` after any state changes
 
 ---
 
-## Phase 3: Service Updates
+## Phase 4: Service Updates
 
-### 3.1 Component Loader
+### 4.1 Component Loader
 
 **File**: `src/component-loader/component-loader.class.ts`
 
@@ -261,7 +463,7 @@ this._zoneSubscription = this._ngZone.onStable.subscribe(() => {
 ```typescript
 import { afterRenderEffect } from '@angular/core';
 
-// In component or service initialization
+// Replace onStable subscription with afterRenderEffect
 afterRenderEffect(() => {
   if (this._componentRef) {
     this._posService.calcPosition();
@@ -269,30 +471,12 @@ afterRenderEffect(() => {
 });
 ```
 
-**Alternative (Backward Compatible)**:
-```typescript
-private setupPositioning(): void {
-  if (this._ngZone) {
-    // Zone mode: use onStable
-    this._zoneSubscription = this._ngZone.onStable.subscribe(() => {
-      this._posService.calcPosition();
-    });
-  } else {
-    // Zoneless mode: use afterRenderEffect or requestAnimationFrame
-    this.schedulePositionUpdate();
-  }
-}
+**Changes Required**:
+- Remove `NgZone` dependency
+- Replace `onStable` subscription with `afterRenderEffect()`
+- Update factory to remove NgZone injection
 
-private schedulePositionUpdate(): void {
-  requestAnimationFrame(() => {
-    if (this._componentRef) {
-      this._posService.calcPosition();
-    }
-  });
-}
-```
-
-### 3.2 Positioning Service
+### 4.2 Positioning Service
 
 **File**: `src/positioning/positioning.service.ts`
 
@@ -303,44 +487,37 @@ constructor(ngZone: NgZone, ...) {
     this.triggerEvent$ = merge(
       fromEvent(window, 'scroll', { passive: true }),
       fromEvent(window, 'resize', { passive: true }),
-      // ...
     );
   });
 }
 ```
 
 **Zoneless Pattern**:
-The pattern of running event listeners outside Angular for performance remains valid in zoneless mode. However, the `runOutsideAngular` becomes a no-op. The service should:
-
-1. Continue to work with `runOutsideAngular` (it's harmless in zoneless mode)
-2. Ensure any callbacks that need UI updates call `markForCheck()`
-
-**Recommended Update**:
 ```typescript
 @Injectable({ providedIn: 'root' })
 export class PositioningService {
-  private ngZone = inject(NgZone, { optional: true });
-  
-  constructor(...) {
-    const setupEvents = () => {
+  constructor(rendererFactory: RendererFactory2, @Inject(PLATFORM_ID) platformId: number) {
+    if (isPlatformBrowser(platformId)) {
+      // No NgZone needed - event listeners work directly
       this.triggerEvent$ = merge(
         fromEvent(window, 'scroll', { passive: true }),
         fromEvent(window, 'resize', { passive: true }),
-        // ...
+        of(0, animationFrameScheduler),
+        this.update$$
       );
-    };
-    
-    // runOutsideAngular is a no-op in zoneless, but harmless
-    if (this.ngZone) {
-      this.ngZone.runOutsideAngular(setupEvents);
-    } else {
-      setupEvents();
+      
+      this.triggerEvent$.pipe(takeUntilDestroyed()).subscribe(() => {
+        // Position calculations don't need change detection
+        this.positionElements.forEach((positionElement) => {
+          positionElements(...);
+        });
+      });
     }
   }
 }
 ```
 
-### 3.3 Focus Trap
+### 4.3 Focus Trap
 
 **Files**:
 - `src/focus-trap/focus-trap.ts`
@@ -348,40 +525,30 @@ export class PositioningService {
 - `src/focus-trap/configurable-focus-trap-factory.ts`
 - `src/focus-trap/event-listener-inert-strategy.ts`
 
-**Current Pattern**: Uses `NgZone.runOutsideAngular()` for event listeners
-
-**Zoneless Pattern**: 
-The `runOutsideAngular` pattern for focus trapping event listeners is primarily for performance optimization. In zoneless mode:
-- Event listeners don't trigger change detection automatically
-- The `runOutsideAngular` call becomes unnecessary but harmless
-
-**Recommended Update**:
-- Make `NgZone` optional injection
-- Keep existing pattern for backward compatibility
-- Add null checks for NgZone
+**Changes Required**:
+- Remove all `NgZone` dependencies
+- Event listeners work directly without zone management
+- Remove `runOutsideAngular()` calls
 
 ---
 
-## Phase 4: Testing & Validation
+## Phase 5: Testing & Validation
 
-### 4.1 Unit Tests
+### 5.1 Unit Tests
 
-Create zoneless-specific test configurations:
+Update test configuration for zoneless mode:
 
 ```typescript
-// jest-zoneless.config.ts
-import baseConfig from './jest.config';
-
+// jest.config.ts - update for zoneless
 export default {
-  ...baseConfig,
   setupFilesAfterEnv: [
-    '<rootDir>/setup-jest-zoneless.ts'
+    '<rootDir>/setup-jest.ts'
   ],
 };
 ```
 
 ```typescript
-// setup-jest-zoneless.ts
+// setup-jest.ts
 import { TestBed } from '@angular/core/testing';
 import { provideZonelessChangeDetection } from '@angular/core';
 
@@ -392,51 +559,55 @@ beforeEach(() => {
 });
 ```
 
-### 4.2 E2E Tests
+### 5.2 E2E Tests
 
-Update Playwright tests to run against zoneless configuration:
+Update Playwright tests to work with zoneless app:
 
 ```typescript
-// Create a separate test app configuration for zoneless
-// apps/ngx-bootstrap-docs-zoneless/
+// apps/ngx-bootstrap-docs-e2e/playwright.config.ts
+// No zone.js specific configuration needed - tests work the same
 ```
 
-### 4.3 Test Scenarios
+### 5.3 Test Scenarios
 
-For each component, test:
+For each component, verify:
 
-1. **Initial rendering** in zoneless mode
-2. **User interactions** (clicks, inputs, keyboard events)
-3. **Async operations** (timers, HTTP, animations)
-4. **Dynamic content** (modals, dropdowns, tooltips)
-5. **Form interactions** (validation, value changes)
+1. **Initial rendering** works correctly
+2. **User interactions** (clicks, inputs, keyboard events) trigger updates
+3. **Async operations** (timers, HTTP, animations) update the UI
+4. **Input changes** via `input()` API are reflected
+5. **Output emissions** via `output()` API work correctly
 
-### 4.4 CI Pipeline Updates
-
-Add zoneless testing to CI:
+### 5.4 CI Pipeline Updates
 
 ```yaml
 # .github/workflows/ci.yml
 jobs:
-  test-zoneless:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Run zoneless tests
-        run: npm run test:zoneless
+      - name: Run unit tests
+        run: npm run test
+      - name: Run e2e tests
+        run: npm run e2e
 ```
 
 ---
 
-## Phase 5: Documentation & Release
+## Phase 6: Documentation & Release
 
-### 5.1 Update README
+### 6.1 Update README
 
-Add zoneless compatibility section:
+Update README with zoneless and new API information:
 
 ```markdown
-## Zoneless Support
+## Angular 21+ Requirements
 
-ngx-bootstrap fully supports Angular's zoneless change detection. To use zoneless mode:
+ngx-bootstrap v21+ requires:
+- Angular 20.0.2 or higher
+- Zoneless change detection (zone.js is not supported)
+
+### Usage
 
 ```typescript
 import { bootstrapApplication } from '@angular/platform-browser';
@@ -447,135 +618,237 @@ bootstrapApplication(AppComponent, {
 });
 ```
 
-### 5.2 Migration Guide for Users
+### Input/Output API
 
-Create a migration guide for library users who want to switch to zoneless.
+All components use Angular's new function-based APIs:
 
-### 5.3 Changelog
+```typescript
+// Inputs are signals
+myComponent.type(); // returns 'warning'
 
-Document all zoneless-related changes in CHANGELOG.md.
+// Outputs use OutputEmitterRef
+myComponent.closed.emit();
+```
 
-### 5.4 Version Bump
+### 6.2 Migration Guide for Users
 
-Consider this a minor version bump (e.g., 20.1.0) since it adds functionality without breaking existing usage.
+Create comprehensive migration guide covering:
+
+1. Updating to zoneless change detection
+2. Handling new input/output APIs
+3. Breaking changes from decorator-based APIs
+
+### 6.3 Changelog
+
+Document all breaking changes in CHANGELOG.md:
+
+```markdown
+## [21.0.0] - Breaking Changes
+
+### Zoneless
+- Removed zone.js dependency
+- All components now use `ChangeDetectionStrategy.OnPush`
+- Requires `provideZonelessChangeDetection()`
+
+### Input/Output API Migration
+- All `@Input()` decorators replaced with `input()` function
+- All `@Output()` decorators replaced with `output()` function
+- Input values are now signals (use `inputName()` to read)
+- Output emissions use `OutputEmitterRef.emit()`
+```
+
+### 6.4 Version Bump
+
+This is a **major version bump** (e.g., 21.0.0) due to breaking changes.
 
 ---
 
 ## Files Requiring Changes
 
-### High Priority (Core functionality)
+### Documentation App (`apps/ngx-bootstrap-docs`)
 
 | File | Changes | Effort |
 |------|---------|--------|
-| `src/carousel/carousel.component.ts` | Replace NgZone timer pattern | Medium |
-| `src/component-loader/component-loader.class.ts` | Replace onStable subscription | Medium |
-| `src/component-loader/component-loader.factory.ts` | Optional NgZone injection | Low |
-| `src/positioning/positioning.service.ts` | Optional NgZone, add markForCheck | Medium |
+| `apps/ngx-bootstrap-docs/src/main.ts` | Add `provideZonelessChangeDetection()` | Low |
+| `apps/ngx-bootstrap-docs/src/polyfills.ts` | Remove zone.js imports | Low |
+| `angular.json` | Remove zone.js polyfill | Low |
+| `package.json` | Remove zone.js dependency | Low |
 
-### Medium Priority (Focus trap)
-
-| File | Changes | Effort |
-|------|---------|--------|
-| `src/focus-trap/focus-trap.ts` | Optional NgZone injection | Low |
-| `src/focus-trap/configurable-focus-trap.ts` | Optional NgZone | Low |
-| `src/focus-trap/configurable-focus-trap-factory.ts` | Optional NgZone | Low |
-| `src/focus-trap/event-listener-inert-strategy.ts` | Handle missing NgZone | Low |
-
-### Lower Priority (Already using OnPush)
-
-These components already use `OnPush` but should be reviewed:
+### High Priority - Core Components with NgZone
 
 | File | Changes | Effort |
 |------|---------|--------|
-| `src/alert/alert.component.ts` | Review async operations | Low |
-| `src/progressbar/bar.component.ts` | Review async operations | Low |
-| `src/tooltip/tooltip-container.component.ts` | Review async operations | Low |
-| `src/popover/popover-container.component.ts` | Review async operations | Low |
-| `src/dropdown/bs-dropdown-container.component.ts` | Review async operations | Low |
-| `src/rating/rating.component.ts` | Review async operations | Low |
-| `src/timepicker/timepicker.component.ts` | Review async operations | Low |
+| `src/carousel/carousel.component.ts` | Remove NgZone, migrate inputs/outputs | High |
+| `src/component-loader/component-loader.class.ts` | Remove NgZone, use afterRenderEffect | High |
+| `src/component-loader/component-loader.factory.ts` | Remove NgZone injection | Medium |
+| `src/positioning/positioning.service.ts` | Remove NgZone dependency | Medium |
 
-### Components to Add OnPush
+### High Priority - Input/Output Heavy Components
 
-Components currently using default change detection should be updated to `OnPush`:
+| File | Inputs | Outputs | Effort |
+|------|--------|---------|--------|
+| `src/typeahead/typeahead.directive.ts` | 31 | 5 | High |
+| `src/datepicker/bs-datepicker.component.ts` | 18 | 3 | High |
+| `src/pagination/pagination.component.ts` | 18 | 2 | High |
+| `src/timepicker/timepicker.component.ts` | 17 | 2 | High |
+| `src/datepicker/bs-daterangepicker.component.ts` | 15 | 3 | High |
+| `src/popover/popover.directive.ts` | 12 | 2 | Medium |
+| `src/tooltip/tooltip.directive.ts` | 12 | 4 | Medium |
+| `src/carousel/carousel.component.ts` | 11 | 2 | Medium |
+| `src/sortable/sortable.component.ts` | 11 | 1 | Medium |
+| `src/dropdown/bs-dropdown.directive.ts` | 9 | 3 | Medium |
 
-| Directory | Components to Update |
-|-----------|---------------------|
-| `src/accordion/` | All components |
-| `src/buttons/` | Button directives |
-| `src/collapse/` | Collapse component |
-| `src/datepicker/` | Non-OnPush components |
-| `src/modal/` | Modal components |
-| `src/pagination/` | Pagination components |
-| `src/sortable/` | Sortable components |
-| `src/tabs/` | Tab components |
-| `src/typeahead/` | Typeahead components |
+### Medium Priority - Focus Trap
+
+| File | Changes | Effort |
+|------|---------|--------|
+| `src/focus-trap/focus-trap.ts` | Remove NgZone | Medium |
+| `src/focus-trap/configurable-focus-trap.ts` | Remove NgZone | Low |
+| `src/focus-trap/configurable-focus-trap-factory.ts` | Remove NgZone | Low |
+| `src/focus-trap/event-listener-inert-strategy.ts` | Remove NgZone | Low |
+
+### Medium Priority - Other Components
+
+| File | Inputs | Outputs | Effort |
+|------|--------|---------|--------|
+| `src/pagination/pager.component.ts` | 13 | 2 | Medium |
+| `src/datepicker/bs-datepicker-inline.component.ts` | 9 | 1 | Medium |
+| `src/datepicker/bs-daterangepicker-inline.component.ts` | 9 | 1 | Medium |
+| `src/tabs/tab.directive.ts` | 7 | 3 | Medium |
+| `src/progressbar/bar.component.ts` | 5 | 0 | Low |
+| `src/progressbar/progressbar.component.ts` | 5 | 0 | Low |
+| `src/alert/alert.component.ts` | 4 | 2 | Low |
+| `src/accordion/accordion-group.component.ts` | 4 | 1 | Low |
+| `src/rating/rating.component.ts` | 4 | 2 | Low |
+| `src/buttons/button-radio.directive.ts` | 4 | 0 | Low |
+| `src/modal/modal.directive.ts` | 2 | 4 | Low |
+| `src/collapse/collapse.directive.ts` | 3 | 4 | Low |
+
+### Lower Priority - Small Components
+
+| File | Inputs | Outputs | Effort |
+|------|--------|---------|--------|
+| `src/accordion/accordion.component.ts` | 2 | 0 | Low |
+| `src/buttons/button-checkbox.directive.ts` | 2 | 0 | Low |
+| `src/tabs/tabset.component.ts` | 3 | 0 | Low |
+| `src/popover/popover-container.component.ts` | 2 | 0 | Low |
+| `src/carousel/slide.component.ts` | 1 | 0 | Low |
+| `src/tabs/ng-transclude.directive.ts` | 1 | 0 | Low |
+| `src/datepicker/themes/bs/*` | Various | Various | Low |
 
 ---
 
-## Risk Assessment
+## Breaking Changes Summary
 
-### Low Risk
+### API Changes
 
-- Adding `OnPush` to components that already properly manage their state
-- Making `NgZone` optional with fallback behavior
-- Adding `markForCheck()` calls
+| Change | Before | After |
+|--------|--------|-------|
+| Inputs | `@Input() prop: string` | `prop = input<string>()` |
+| Required Inputs | `@Input({ required: true }) prop!: string` | `prop = input.required<string>()` |
+| Outputs | `@Output() event = new EventEmitter<T>()` | `event = output<T>()` |
+| Reading Inputs | `this.prop` | `this.prop()` (signal) |
+| Emitting Outputs | `this.event.emit(value)` | `this.event.emit(value)` |
 
-### Medium Risk
+### Consumer Code Changes
 
-- Replacing `NgZone.onStable` subscriptions (may affect timing)
-- Modifying timer management in carousel
-- Changes to positioning calculations timing
+Users of ngx-bootstrap will need to update their code:
 
-### High Risk
+**Before**:
+```html
+<alert [type]="'success'" (closed)="onClosed()">
+  Content
+</alert>
+```
 
-- Breaking existing applications that depend on zone.js behavior
-- Missing change detection triggers causing UI to not update
+**After** (same template syntax works):
+```html
+<alert [type]="'success'" (closed)="onClosed()">
+  Content
+</alert>
+```
 
-### Mitigation Strategies
+> **Note**: Template syntax remains the same. Only component implementation changes.
 
-1. **Feature flags**: Add configuration option to enable/disable zoneless optimizations
-2. **Thorough testing**: Test all components in both zone and zoneless modes
-3. **Gradual rollout**: Release as opt-in feature first
-4. **Documentation**: Clear migration guides and breaking change notices
+### Programmatic Access Changes
+
+**Before**:
+```typescript
+@ViewChild(AlertComponent) alert: AlertComponent;
+
+ngAfterViewInit() {
+  console.log(this.alert.type); // Direct property access
+}
+```
+
+**After**:
+```typescript
+@ViewChild(AlertComponent) alert: AlertComponent;
+
+ngAfterViewInit() {
+  console.log(this.alert.type()); // Signal read via function call
+}
+```
+
+### Dependencies
+
+| Dependency | Before | After |
+|------------|--------|-------|
+| zone.js | Required | Removed |
+| Angular | 20.0.0+ | 20.0.0+ |
 
 ---
 
 ## Implementation Timeline
 
-### Week 1-2: Phase 1 (Preparation)
-- Set up zoneless testing infrastructure
-- Create utility functions
-- Update documentation app configuration
+### Week 1: Phase 1 (Preparation & Docs App)
+- Update `apps/ngx-bootstrap-docs` to zoneless
+- Remove zone.js from dependencies
+- Verify docs app works in zoneless mode
 
-### Week 3-4: Phase 2 (Component Updates)
-- Update carousel component
-- Update alert, timepicker, dropdown components
-- Add OnPush to remaining components
+### Week 2-3: Phase 2 (Input/Output Migration)
+- Migrate all `@Input()` to `input()`
+- Migrate all `@Output()` to `output()`
+- Update component tests for new APIs
 
-### Week 5-6: Phase 3 (Service Updates)
-- Update component loader
-- Update positioning service
-- Update focus trap
+### Week 4-5: Phase 3 (Component Updates)
+- Remove NgZone from carousel component
+- Add OnPush to all components
+- Add `markForCheck()` calls where needed
 
-### Week 7-8: Phase 4 (Testing)
-- Run full test suite in zoneless mode
+### Week 6: Phase 4 (Service Updates)
+- Update component loader (remove NgZone.onStable)
+- Update positioning service (remove NgZone)
+- Update focus trap (remove NgZone)
+
+### Week 7-8: Phase 5 (Testing)
+- Run full test suite
 - Fix any discovered issues
 - Performance benchmarking
 
-### Week 9: Phase 5 (Documentation & Release)
+### Week 9: Phase 6 (Documentation & Release)
 - Update documentation
 - Create migration guide
-- Release new version
+- Release v21.0.0
 
 ---
 
 ## Conclusion
 
-The migration to zoneless Angular for ngx-bootstrap is achievable with careful planning and incremental changes. The key is maintaining backward compatibility while adding support for the new zoneless mode. By following this plan, ngx-bootstrap can fully support Angular's zoneless change detection while continuing to work seamlessly with traditional zone.js-based applications.
+This migration plan transforms ngx-bootstrap into a fully modern Angular library by:
+
+1. **Removing zone.js dependency** - Enabling zoneless change detection
+2. **Adopting `input()`/`output()` APIs** - Using Angular's modern reactive primitives
+3. **Updating the docs app** - Demonstrating zoneless usage
+
+This is a breaking change release that requires users to:
+- Use Angular 20.0.0 or higher
+- Enable zoneless change detection via `provideZonelessChangeDetection()`
+- Update any programmatic access to component inputs (use signal syntax)
 
 ## References
 
 - [Angular Zoneless Documentation](https://angular.dev/guide/experimental/zoneless)
-- [Angular Change Detection Guide](https://angular.dev/best-practices/runtime-performance)
+- [Angular Input API](https://angular.dev/api/core/input)
+- [Angular Output API](https://angular.dev/api/core/output)
 - [Angular Signals Guide](https://angular.dev/guide/signals)
