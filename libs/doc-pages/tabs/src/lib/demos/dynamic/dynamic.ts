@@ -37,4 +37,13 @@ export class DemoTabsDynamicComponent {
     this.tabs.splice(this.tabs.indexOf(tab), 1);
     console.log('Remove Tab handler');
   }
+
+  onTabSelect(tab: ITab): void {
+    this.tabs.forEach(t => t.active = false);
+    tab.active = true;
+  }
+
+  onTabDeselect(tab: ITab): void {
+    tab.active = false;
+  }
 }

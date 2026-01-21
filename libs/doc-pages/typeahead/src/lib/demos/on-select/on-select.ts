@@ -69,7 +69,7 @@ export class DemoTypeaheadOnSelectComponent {
     this.selectedOption = event.item;
   }
 
-  onPreview(event: TypeaheadMatch<DataSourceType>): void {
+  onPreview(event: TypeaheadMatch<DataSourceType> | undefined): void {
     if (event) {
       this.previewOption = event.item;
     } else {

@@ -8,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class InlineDisplayDemoComponent {
   isCollapsed = false;
+  displayValue = 'block';
+
+  setDisplay(value: string) {
+    this.displayValue = value;
+  }
 }

@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
   standalone: false
 })
 export class DemoDropdownByIsOpenPropComponent {
+  isOpenValue = false;
+
+  toggleDropdown() {
+    this.isOpenValue = !this.isOpenValue;
+  }
 }

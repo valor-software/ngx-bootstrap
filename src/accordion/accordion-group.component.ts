@@ -1,5 +1,5 @@
 import {
-  Component, HostBinding, Inject, OnDestroy, OnInit, output, input
+  Component, HostBinding, Inject, OnDestroy, OnInit, output, input, effect
 } from '@angular/core';
 import { AccordionComponent } from './accordion.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
@@ -26,7 +26,7 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
   /** turn on/off animation */
   isAnimated = false;
   /** Clickable text in accordion's group header, check `accordion heading` below for using html in header */
-  heading = input.required<string>();
+  heading = input<string>('');
   /** Provides an ability to use Bootstrap's contextual panel classes
    * (`panel-primary`, `panel-success`, `panel-info`, etc...).
    * List of all available classes [available here]
@@ -35,6 +35,8 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
   panelClass = input<string>('panel-default');
   /** if <code>true</code> — disables accordion group */
   isDisabled = input<boolean>(false);
+  /** Input to set initial open state */
+  isOpenInput = input<boolean>(false, { alias: 'isOpen' });
   /** Emits when the opened state changes */
   isOpenChange = output<boolean>();
 
@@ -63,6 +65,14 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
 
   constructor(@Inject(AccordionComponent) accordion: AccordionComponent) {
     this.accordion = accordion;
+
+    // Watch for isOpen input changes
+    effect(() => {
+      const isOpenValue = this.isOpenInput();
+      if (isOpenValue !== this._isOpen) {
+        this.isOpen = isOpenValue;
+      }
+    });
   }
 
   ngOnInit(): void {

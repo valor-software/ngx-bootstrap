@@ -314,7 +314,9 @@ export class TypeaheadContainerComponent implements OnDestroy {
       event.preventDefault();
     }
     this.parent?.changeModel(value);
-    setTimeout(() => this.parent?.typeaheadOnSelect.emit(value), 0);
+    if (value) {
+      setTimeout(() => this.parent?.typeaheadOnSelect.emit(value), 0);
+    }
 
     return false;
   }

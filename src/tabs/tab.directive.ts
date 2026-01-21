@@ -22,7 +22,7 @@ export class TabDirective implements OnInit, OnDestroy {
   /** tab id. The same id with suffix '-link' will be added to the corresponding &lt;li&gt; element  */
   @HostBinding('attr.id')
   id?: string;
-  
+
   idInput = input<string | undefined>(undefined, { alias: 'id' });
   /** if true tab can not be activated */
   disabled = false;
@@ -35,6 +35,8 @@ export class TabDirective implements OnInit, OnDestroy {
   tabOrderInput = input<number | undefined>(undefined, { alias: 'tabOrder' });
   /** if set, will be added to the tab's class attribute. Multiple classes are supported. */
   customClassInput = input<string | undefined>(undefined, { alias: 'customClass' });
+  /** tab active state - can be set via input */
+  activeInput = input<boolean | undefined>(undefined, { alias: 'active' });
 
   /** tab active state toggle */
   @HostBinding('class.active')
@@ -81,7 +83,7 @@ export class TabDirective implements OnInit, OnDestroy {
   headingRef?: TemplateRef<any>;
   tabset: TabsetComponent;
   protected _active? = false;
-  protected _customClass = '';
+  _customClass = '';
 
   constructor(
     tabset: TabsetComponent,
@@ -89,7 +91,7 @@ export class TabDirective implements OnInit, OnDestroy {
     public renderer: Renderer2
   ) {
     this.tabset = tabset;
-    
+
     // Watch for id input changes
     effect(() => {
       const idValue = this.idInput();
@@ -97,26 +99,26 @@ export class TabDirective implements OnInit, OnDestroy {
         this.id = idValue;
       }
     });
-    
+
     // Watch for disabled input changes
     effect(() => {
       this.disabled = this.disabledInput();
     });
-    
+
     // Watch for removable input changes
     effect(() => {
       this.removable = this.removableInput();
     });
-    
+
     // Watch for tabOrder input changes
     effect(() => {
       this.tabOrder = this.tabOrderInput();
     });
-    
+
     // Watch for customClass input changes
     effect(() => {
       const customClass = this.customClassInput();
-      
+
       if (this._customClass) {
         this._customClass.split(' ').forEach((cssClass: string) => {
           this.renderer.removeClass(this.elementRef.nativeElement, cssClass);
@@ -129,6 +131,14 @@ export class TabDirective implements OnInit, OnDestroy {
         this._customClass.split(' ').forEach((cssClass: string) => {
           this.renderer.addClass(this.elementRef.nativeElement, cssClass);
         });
+      }
+    });
+
+    // Watch for active input changes
+    effect(() => {
+      const activeValue = this.activeInput();
+      if (activeValue !== undefined) {
+        this.active = activeValue;
       }
     });
   }

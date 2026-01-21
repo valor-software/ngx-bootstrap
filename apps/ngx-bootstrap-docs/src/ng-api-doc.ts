@@ -9,7 +9,7 @@ export const ngdoc: any = {
     properties: [
       {
         name: 'heading',
-        type: 'string',
+        type: 'InputSignal<string>',
         description:
           '<p>Clickable text in accordion&#39;s group header, check <code>accordion heading</code> below for using html in header</p>\n'
       },
@@ -21,8 +21,7 @@ export const ngdoc: any = {
       },
       {
         name: 'isDisabled',
-        defaultValue: 'false',
-        type: 'boolean',
+        type: 'InputSignal<boolean>',
         description: '<p>if <code>true</code> — disables accordion group</p>\n'
       },
       {
@@ -32,13 +31,17 @@ export const ngdoc: any = {
       },
       {
         name: 'isOpenChange',
-        type: 'EventEmitter<boolean>',
+        type: 'OutputEmitterRef<boolean>',
         description: '<p>Emits when the opened state changes</p>\n'
       },
       {
+        name: 'isOpenInput',
+        type: 'InputSignal<boolean>',
+        description: '<p>Input to set initial open state</p>\n'
+      },
+      {
         name: 'panelClass',
-        defaultValue: 'panel-default',
-        type: 'string',
+        type: 'InputSignal<string>',
         description:
           '<p>Provides an ability to use Bootstrap&#39;s contextual panel classes\n(<code>panel-primary</code>, <code>panel-success</code>, <code>panel-info</code>, etc...).\nList of all available classes [available here]\n(<a href="https://getbootstrap.com/docs/3.3/components/#panels-alternatives" target="_blank" title="undefined">https://getbootstrap.com/docs/3.3/components/#panels-alternatives</a>)</p>\n'
       }
@@ -53,14 +56,12 @@ export const ngdoc: any = {
     properties: [
       {
         name: 'closeOthers',
-        defaultValue: 'false',
-        type: 'boolean',
+        type: 'InputSignal<boolean>',
         description: '<p>if <code>true</code> expanding one item will close all others</p>\n'
       },
       {
         name: 'isAnimated',
-        defaultValue: 'false',
-        type: 'boolean',
+        type: 'InputSignal<boolean>',
         description: '<p>turn on/off animation</p>\n'
       }
     ]
@@ -93,14 +94,12 @@ export const ngdoc: any = {
     properties: [
       {
         name: 'btnCheckboxFalse',
-        defaultValue: 'false',
-        type: 'AvailableValues',
+        type: 'InputSignal<AvailableValues>',
         description: '<p>Falsy value, will be set to ngModel</p>\n'
       },
       {
         name: 'btnCheckboxTrue',
-        defaultValue: 'true',
-        type: 'AvailableValues',
+        type: 'InputSignal<AvailableValues>',
         description: '<p>Truthy value, will be set to ngModel</p>\n'
       }
     ]
@@ -122,23 +121,22 @@ export const ngdoc: any = {
     properties: [
       {
         name: 'btnRadio',
-        type: 'unknown',
+        type: 'InputSignal<unknown>',
         description: '<p>Radio button value, will be set to <code>ngModel</code></p>\n'
       },
       {
-        name: 'disabled',
-        type: 'boolean',
+        name: 'disabledInput',
+        type: 'InputSignal<boolean>',
         description: '<p>If <code>true</code> — radio button is disabled</p>\n'
       },
       {
         name: 'uncheckable',
-        defaultValue: 'false',
-        type: 'boolean',
+        type: 'InputSignal<boolean>',
         description: '<p>If <code>true</code> — radio button can be unchecked</p>\n'
       },
       {
-        name: 'value',
-        type: 'unknown',
+        name: 'valueInput',
+        type: 'InputSignal<unknown>',
         description: '<p>Current value of radio component or group</p>\n'
       }
     ]
@@ -307,7 +305,7 @@ export const ngdoc: any = {
       },
       {
         name: 'restartTimer',
-        description: '<p>Starts loop of auto changing of slides</p>\n',
+        description: '<p>Starts loop of auto changing of slides - zoneless version</p>\n',
         args: [],
         returnType: 'void'
       },
@@ -320,31 +318,30 @@ export const ngdoc: any = {
     ],
     properties: [
       {
-        name: 'activeSlide',
-        type: 'number',
-        description: '<p>Index of currently displayed slide(started for 0)</p>\n'
-      },
-      {
         name: 'activeSlideChange',
-        type: 'EventEmitter<number>',
+        type: 'OutputEmitterRef<number>',
         description:
           '<p>Will be emitted when active slide has been changed. Part of two-way-bindable [(activeSlide)] property</p>\n'
       },
       {
+        name: 'activeSlideInput',
+        type: 'InputSignal<number>',
+        description: '<p>Index of currently displayed slide(started for 0)</p>\n'
+      },
+      {
         name: 'interval',
-        type: 'number',
+        type: 'InputSignal<number>',
         description:
           '<p>Delay of item cycling in milliseconds. If false, carousel won&#39;t cycle\nautomatically.</p>\n'
       },
       {
         name: 'isAnimated',
-        defaultValue: 'false',
-        type: 'boolean',
+        type: 'InputSignal<boolean>',
         description: '<p>Turn on/off animation. Animation doesn&#39;t work for multilist carousel</p>\n'
       },
       {
         name: 'slideRangeChange',
-        type: 'EventEmitter<void | number[]>',
+        type: 'OutputEmitterRef<void | number[]>',
         description: '<p>Will be emitted when active slides has been changed in multilist mode</p>\n'
       }
     ]
@@ -1051,7 +1048,7 @@ export const ngdoc: any = {
       {
         name: '_trapFocus',
         description:
-          '<p>Refocuses the first element in the FocusTrap if the focus event target was outside\nthe FocusTrap.</p>\n<p>This is an event listener callback. The event listener is added in runOutsideAngular,\nso all this code runs outside Angular as well.</p>\n',
+          '<p>Refocuses the first element in the FocusTrap if the focus event target was outside\nthe FocusTrap.</p>\n<p>This is an event listener callback. The event listener is added directly,\nso all this code runs outside Angular&#39;s change detection as well.</p>\n',
         args: [
           {
             name: 'focusTrap',
@@ -1166,21 +1163,21 @@ export const ngdoc: any = {
       {
         name: 'focusInitialElementWhenReady',
         description:
-          '<p>Waits for the zone to stabilize, then either focuses the first element that the\nuser specified, or the first tabbable element.</p>\n',
+          '<p>Waits for the next render cycle, then either focuses the first element that the\nuser specified, or the first tabbable element.</p>\n',
         args: [],
         returnType: 'Promise<boolean>'
       },
       {
         name: 'focusFirstTabbableElementWhenReady',
         description:
-          '<p>Waits for the zone to stabilize, then focuses\nthe first tabbable element within the focus trap region.</p>\n',
+          '<p>Waits for the next render cycle, then focuses\nthe first tabbable element within the focus trap region.</p>\n',
         args: [],
         returnType: 'Promise<boolean>'
       },
       {
         name: 'focusLastTabbableElementWhenReady',
         description:
-          '<p>Waits for the zone to stabilize, then focuses\nthe last tabbable element within the focus trap region.</p>\n',
+          '<p>Waits for the next render cycle, then focuses\nthe last tabbable element within the focus trap region.</p>\n',
         args: [],
         returnType: 'Promise<boolean>'
       },
@@ -1277,7 +1274,7 @@ export const ngdoc: any = {
       },
       {
         name: '_executeOnStable',
-        description: '<p>Executes a function when the zone is stable.</p>\n',
+        description: '<p>Executes a function after the next render cycle (zoneless-compatible).</p>\n',
         args: [
           {
             name: 'fn',
@@ -1538,12 +1535,12 @@ export const ngdoc: any = {
     properties: [
       {
         name: 'closeInterceptor',
-        type: 'CloseInterceptorFn',
+        type: 'InputSignal<CloseInterceptorFn>',
         description: '<p>allows to provide a callback to intercept the closure of the modal</p>\n'
       },
       {
-        name: 'config',
-        type: 'ModalOptions<Record<string, unknown>>',
+        name: 'configInput',
+        type: 'InputSignal<ModalOptions<Record<string, unknown>>>',
         description: '<p>allows to set modal configuration via element property</p>\n'
       },
       {
@@ -1554,23 +1551,23 @@ export const ngdoc: any = {
       },
       {
         name: 'onHidden',
-        type: 'EventEmitter<ModalDirective>',
+        type: 'OutputEmitterRef<ModalDirective>',
         description:
           '<p>This event is fired when the modal has finished being\nhidden from the user (will wait for CSS transitions to complete).</p>\n'
       },
       {
         name: 'onHide',
-        type: 'EventEmitter<ModalDirective>',
+        type: 'OutputEmitterRef<ModalDirective>',
         description: '<p>This event is fired immediately when\nthe hide instance method has been called.</p>\n'
       },
       {
         name: 'onShow',
-        type: 'EventEmitter<ModalDirective>',
+        type: 'OutputEmitterRef<ModalDirective>',
         description: '<p>This event fires immediately when the <code>show</code> instance method is called.</p>\n'
       },
       {
         name: 'onShown',
-        type: 'EventEmitter<ModalDirective>',
+        type: 'OutputEmitterRef<ModalDirective>',
         description:
           '<p>This event is fired when the modal has been made visible to the user\n(will wait for CSS transitions to complete)</p>\n'
       }
@@ -1739,19 +1736,22 @@ export const ngdoc: any = {
       },
       {
         name: 'show',
-        description: '<p>Opens an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n',
+        description:
+          '<p>Opens an element&#39;s popover. This is considered a &quot;manual&quot; triggering of\nthe popover.</p>\n',
         args: [],
         returnType: 'void'
       },
       {
         name: 'hide',
-        description: '<p>Closes an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n',
+        description:
+          '<p>Closes an element&#39;s popover. This is considered a &quot;manual&quot; triggering of\nthe popover.</p>\n',
         args: [],
         returnType: 'void'
       },
       {
         name: 'toggle',
-        description: '<p>Toggles an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n',
+        description:
+          '<p>Toggles an element&#39;s popover. This is considered a &quot;manual&quot; triggering of\nthe popover.</p>\n',
         args: [],
         returnType: 'void'
       }
@@ -1759,24 +1759,22 @@ export const ngdoc: any = {
     properties: [
       {
         name: 'adaptivePosition',
-        defaultValue: 'true',
-        type: 'boolean',
+        type: 'InputSignal<boolean>',
         description: '<p>sets disable adaptive position</p>\n'
       },
       {
         name: 'container',
-        type: 'string',
+        type: 'InputSignal<string>',
         description: '<p>A selector specifying the element the popover should be appended to.</p>\n'
       },
       {
         name: 'containerClass',
-        type: 'string',
+        type: 'InputSignal<string>',
         description: '<p>Css class for popover container</p>\n'
       },
       {
         name: 'delay',
-        defaultValue: '0',
-        type: 'number',
+        type: 'InputSignal<number>',
         description: '<p>Delay before showing the tooltip</p>\n'
       },
       {
@@ -1796,25 +1794,23 @@ export const ngdoc: any = {
       },
       {
         name: 'outsideClick',
-        defaultValue: 'false',
-        type: 'boolean',
+        type: 'InputSignal<boolean>',
         description: '<p>Close popover on outside click</p>\n'
       },
       {
         name: 'placement',
-        defaultValue: 'top',
-        type: 'AvailableBSPositions',
+        type: 'InputSignal<AvailableBSPositions>',
         description:
           '<p>Placement of a popover. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;</p>\n'
       },
       {
         name: 'popover',
-        type: 'string | TemplateRef<any>',
+        type: 'InputSignal<string | TemplateRef<any>>',
         description: '<p>Content to be displayed as popover.</p>\n'
       },
       {
         name: 'popoverContext',
-        type: 'any',
+        type: 'InputSignal<any>',
         description: '<p>Context to be used if popover is a template.</p>\n'
       },
       {
@@ -1824,13 +1820,12 @@ export const ngdoc: any = {
       },
       {
         name: 'popoverTitle',
-        type: 'string',
+        type: 'InputSignal<string>',
         description: '<p>Title of a popover.</p>\n'
       },
       {
         name: 'triggers',
-        defaultValue: 'click',
-        type: 'string',
+        type: 'InputSignal<string>',
         description: '<p>Specifies events that should trigger. Supports a space separated list of\nevent names.</p>\n'
       }
     ]

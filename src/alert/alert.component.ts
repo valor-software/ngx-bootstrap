@@ -39,18 +39,18 @@ export class AlertComponent implements OnInit {
   onClosed = output<AlertComponent>();
 
   classes = '';
-  private _isOpen = true;
+  _isOpen = true;
 
   constructor(_config: AlertConfig, private changeDetection: ChangeDetectorRef) {
     Object.assign(this, _config);
-    
+
     // Use effect to watch for dismissible changes
     effect(() => {
       const dismissibleValue = this.dismissible();
       this.classes = dismissibleValue ? 'alert-dismissible' : '';
       this.changeDetection.markForCheck();
     });
-    
+
     // Use effect to sync isOpen input with internal state
     effect(() => {
       this._isOpen = this.isOpen();

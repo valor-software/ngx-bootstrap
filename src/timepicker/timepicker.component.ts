@@ -80,7 +80,6 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: ControlValueAccessorModel = {
 })
 export class TimepickerComponent
   implements ControlValueAccessor,
-    TimepickerComponentState,
     TimepickerControls,
     OnChanges,
     OnDestroy {
@@ -151,6 +150,25 @@ export class TimepickerComponent
 
   config: TimepickerConfig;
 
+  // Helper method to convert input signals to TimepickerComponentState
+  private getComponentState(): TimepickerComponentState {
+    return {
+      hourStep: this.hourStep(),
+      minuteStep: this.minuteStep(),
+      secondsStep: this.secondsStep(),
+      readonlyInput: this.readonlyInput(),
+      disabled: this.disabled,
+      mousewheel: this.mousewheel(),
+      arrowkeys: this.arrowkeys(),
+      showSpinners: this.showSpinners(),
+      showMeridian: this.showMeridian(),
+      showSeconds: this.showSeconds(),
+      meridians: this.meridians(),
+      min: this.min(),
+      max: this.max()
+    };
+  }
+
   // control value accessor methods
   timepickerSub?: Subscription;
   constructor(
@@ -168,7 +186,7 @@ export class TimepickerComponent
         this.onChange(value);
 
         this._store.dispatch(
-          this._timepickerActions.updateControls(getControlsValue(this))
+          this._timepickerActions.updateControls(getControlsValue(this.getComponentState()))
         );
       });
 
@@ -213,7 +231,7 @@ export class TimepickerComponent
 
   ngOnChanges(): void {
     this._store.dispatch(
-      this._timepickerActions.updateControls(getControlsValue(this))
+      this._timepickerActions.updateControls(getControlsValue(this.getComponentState()))
     );
   }
 

@@ -52,7 +52,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
    * This attribute indicates that the dropdown should be opened upwards
    */
   dropup = input<boolean>(false);
-  
+
   // Internal resolved value for dropup (for host binding)
   _dropup = false;
 
@@ -97,17 +97,17 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   /**
    * Emits an event when isOpen change
    */
-  isOpenChange: EventEmitter<boolean>;
+  isOpenChange!: EventEmitter<boolean>;
 
   /**
    * Emits an event when the popover is shown
    */
-  onShown: EventEmitter<boolean>;
+  onShown!: EventEmitter<boolean>;
 
   /**
    * Emits an event when the popover is hidden
    */
-  onHidden: EventEmitter<boolean>;
+  onHidden!: EventEmitter<boolean>;
 
   private _dropdown: ComponentLoader<BsDropdownContainerComponent>;
 
@@ -149,12 +149,12 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     this.onShown = this._dropdown.onShown;
     this.onHidden = this._dropdown.onHidden;
     this.isOpenChange = this._state.isOpenChange;
-    
+
     // Effect for dropup
     effect(() => {
       this._dropup = this.dropup();
     });
-    
+
     // Effect for autoClose
     effect(() => {
       const val = this.autoClose();
@@ -162,7 +162,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         this._state.autoClose = val;
       }
     });
-    
+
     // Effect for isAnimated
     effect(() => {
       const val = this.isAnimated();
@@ -170,7 +170,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         this._state.isAnimated = val;
       }
     });
-    
+
     // Effect for insideClick
     effect(() => {
       const val = this.insideClick();
@@ -178,7 +178,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         this._state.insideClick = val;
       }
     });
-    
+
     // Effect for isDisabled
     effect(() => {
       const val = this.isDisabledInput();
@@ -188,7 +188,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         this.hide();
       }
     });
-    
+
     // Effect for isOpen
     effect(() => {
       const val = this.isOpenInput();
@@ -411,11 +411,11 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   private addDropupStyles(): void {
     if (this._inlinedMenu && this._inlinedMenu.rootNodes[0]) {
       // a little hack to not break support of bootstrap 4 beta
-      this._renderer.setStyle(this._inlinedMenu.rootNodes[0], 'top', this.dropup ? 'auto' : '100%');
+      this._renderer.setStyle(this._inlinedMenu.rootNodes[0], 'top', this.dropup() ? 'auto' : '100%');
       this._renderer.setStyle(
         this._inlinedMenu.rootNodes[0],
         'transform',
-        this.dropup ? 'translateY(-101%)' : 'translateY(0)'
+        this.dropup() ? 'translateY(-101%)' : 'translateY(0)'
       );
       this._renderer.setStyle(this._inlinedMenu.rootNodes[0], 'bottom', 'auto');
     }
