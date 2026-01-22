@@ -39,12 +39,12 @@ export class ProgressbarComponent {
   value = input<number | BarValue[]>(0);
 
   isStacked = computed(() => Array.isArray(this.value()));
-  
+
   _value = computed(() => {
     const val = this.value();
     return typeof val === 'number' ? val : undefined;
   });
-  
+
   _values = computed(() => {
     const val = this.value();
     return Array.isArray(val) ? val : undefined;
