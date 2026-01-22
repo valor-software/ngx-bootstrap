@@ -23,8 +23,7 @@ export class AccordionComponent {
   protected groups: AccordionPanelComponent[] = [];
 
   constructor(config: AccordionConfig) {
-    // Note: Cannot use Object.assign with signal inputs
-    // Config values should be passed as input bindings instead
+    Object.assign(this, config);
   }
 
   closeOtherPanels(openGroup: AccordionPanelComponent): void {
