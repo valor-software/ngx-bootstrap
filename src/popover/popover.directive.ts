@@ -32,9 +32,9 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /** unique id popover - use for aria-describedby */
   popoverId = id++;
   /** sets disable adaptive position */
-  readonly adaptivePosition = input(true);
+  readonly adaptivePosition = input(this._config.adaptivePosition);
 
-  readonly boundariesElement = input<'viewport' | 'scrollParent' | 'window' | undefined>();
+  readonly boundariesElement = input<'viewport' | 'scrollParent' | 'window' | undefined>(this._config.boundariesElement as 'viewport' | 'scrollParent' | 'window' | undefined);
   /**
    * Content to be displayed as popover.
    */
@@ -52,20 +52,20 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /**
    * Placement of a popover. Accepts: "top", "bottom", "left", "right"
    */
-  readonly placement = input<AvailableBSPositions>('top');
+  readonly placement = input<AvailableBSPositions>(this._config.placement as AvailableBSPositions);
   /**
    * Close popover on outside click
    */
-  readonly outsideClick = input(false);
+  readonly outsideClick = input(this._config.outsideClick);
   /**
    * Specifies events that should trigger. Supports a space separated list of
    * event names.
    */
-  readonly triggers = input('click');
+  readonly triggers = input(this._config.triggers);
   /**
    * A selector specifying the element the popover should be appended to.
    */
-  readonly container = input<string | undefined>();
+  readonly container = input<string | undefined>(this._config.container);
 
   /**
    * Css class for popover container
@@ -90,7 +90,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /**
    * Delay before showing the tooltip
    */
-  readonly delay = input(0);
+  readonly delay = input(this._config.delay);
 
   /**
    * Emits an event when the popover is shown
@@ -110,7 +110,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
   private _ariaDescribedby?: string;
 
   constructor(
-    _config: PopoverConfig,
+    private _config: PopoverConfig,
     private _elementRef: ElementRef,
     private _renderer: Renderer2,
     _viewContainerRef: ViewContainerRef,
@@ -120,8 +120,6 @@ export class PopoverDirective implements OnInit, OnDestroy {
     this._popover = cis
       .createLoader<PopoverContainerComponent>(_elementRef, _viewContainerRef, _renderer)
       .provide({ provide: PopoverConfig, useValue: _config });
-
-    Object.assign(this, _config);
 
     this.onShown = this._popover.onShown;
     this.onHidden = this._popover.onHidden;

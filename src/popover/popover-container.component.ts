@@ -33,7 +33,7 @@ import { NgIf } from '@angular/common';
 export class PopoverContainerComponent {
   readonly placementInput = input<AvailableBSPositions | undefined>(undefined, { alias: 'placement' });
 
-  readonly title = input<string | undefined>();
+  title?: string;
 
   containerClass?: string;
   popoverId?: string;
