@@ -230,6 +230,7 @@ export class ComponentLoader<T extends object> {
     this._contentRef = void 0;
     this._componentRef = void 0;
     this._removeGlobalListener();
+    this._unsubscribePositioning();
 
     this.onHidden.emit(id ? { id } : null);
 
