@@ -48,8 +48,9 @@ export class TabsetComponent implements OnDestroy {
     private renderer: Renderer2,
     private elementRef: ElementRef
   ) {
-    Object.assign(this, config);
-    
+    // Note: Cannot use Object.assign with signal inputs
+    // Config values should be passed as input bindings instead
+
     // Watch for input changes and update class map
     effect(() => {
       const _ = [this.vertical(), this.justified(), this.type()];

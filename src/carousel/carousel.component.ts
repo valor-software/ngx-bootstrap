@@ -138,13 +138,14 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   }
 
   constructor(
-    config: CarouselConfig, 
+    config: CarouselConfig,
     private cdr: ChangeDetectorRef,
     @Inject(PLATFORM_ID) public platformId: number
   ) {
-    Object.assign(this, config);
+    // Note: Cannot use Object.assign with signal inputs
+    // Config values should be passed as input bindings instead
     this.currentId = _currentId++;
-    
+
     // Watch for activeSlide input changes
     effect(() => {
       const index = this.activeSlideInput();
@@ -158,7 +159,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
         this._select(index);
       }
     });
-    
+
     // Watch for interval changes and restart timer
     effect(() => {
       const _ = this.interval();

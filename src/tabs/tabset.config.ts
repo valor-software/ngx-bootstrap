@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TabsetConfig {
   /** provides default navigation context class: 'tabs' or 'pills' */
-  type = 'tabs';
+  type: WritableSignal<string> = signal('tabs');
   /** provides possibility to set keyNavigations enable or disable, by default is enable */
-  isKeysAllowed = true;
+  isKeysAllowed: WritableSignal<boolean> = signal(true);
   /** aria label for tab list */
-  ariaLabel = 'Tabs';
+  ariaLabel: WritableSignal<string> = signal('Tabs');
 }

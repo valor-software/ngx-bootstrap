@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 
 /**
  * Configuration service, provides default values for the AccordionComponent.
@@ -8,7 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class AccordionConfig {
   /** Whether the other panels should be closed when a panel is opened */
-  closeOthers = false;
+  closeOthers: WritableSignal<boolean> = signal(false);
   /** turn on/off animation */
-  isAnimated = false;
+  isAnimated: WritableSignal<boolean> = signal(false);
 }

@@ -1,31 +1,31 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarouselConfig {
   /* Default interval of auto changing of slides */
-  interval = 5000;
+  interval: WritableSignal<number> = signal(5000);
 
   /* Is loop of auto changing of slides can be paused */
-  noPause = false;
+  noPause: WritableSignal<boolean> = signal(false);
 
   /* Is slides can wrap from the last to the first slide */
-  noWrap = false;
+  noWrap: WritableSignal<boolean> = signal(false);
 
   /* Show carousel-indicators */
-  showIndicators = true;
+  showIndicators: WritableSignal<boolean> = signal(true);
 
   /* Slides can be paused on focus */
-  pauseOnFocus = false;
+  pauseOnFocus: WritableSignal<boolean> = signal(false);
 
   /* If `true` - carousel indicators indicate slides chunks works ONLY if singleSlideOffset = FALSE */
-  indicatorsByChunk = false;
+  indicatorsByChunk: WritableSignal<boolean> = signal(false);
 
   /* If value more then 1 — carousel works in multilist mode */
-  itemsPerSlide = 1;
+  itemsPerSlide: WritableSignal<number> = signal(1);
 
   /* If `true` — carousel shifts by one element. By default carousel shifts by number
     of visible elements (itemsPerSlide field) */
-  singleSlideOffset = false;
+  singleSlideOffset: WritableSignal<boolean> = signal(false);
 }
