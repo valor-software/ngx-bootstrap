@@ -22,10 +22,10 @@ import { NgIf, NgFor } from '@angular/common';
 })
 export class ProgressbarComponent {
   /** maximum total value of progress element */
-  max = input<number>(100);
+  max = input<number>(this._config.max);
 
   /** if `true` changing value of progress bar will be animated */
-  animate = input<boolean>(false);
+  animate = input<boolean>(this._config.animate);
 
   /** If `true`, striped classes are applied */
   striped = input<boolean>(false);
@@ -50,7 +50,6 @@ export class ProgressbarComponent {
     return Array.isArray(val) ? val : undefined;
   });
 
-  constructor(config: ProgressbarConfig) {
-    Object.assign(this, config);
+  constructor(private _config: ProgressbarConfig) {
   }
 }
