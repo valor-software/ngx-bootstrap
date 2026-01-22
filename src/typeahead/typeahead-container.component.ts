@@ -154,12 +154,15 @@ export class TypeaheadContainerComponent implements OnDestroy {
 
       if (concurrency) {
         this.selectActive(concurrency);
+        this.changeDetectorRef.markForCheck();
 
         return;
       }
 
       this.active = void 0;
     }
+
+    this.changeDetectorRef.markForCheck();
   }
 
   get isTopPosition(): boolean {
@@ -384,6 +387,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
       preview = value;
     }
     this.parent?.typeaheadOnPreview.emit(preview);
+    this.changeDetectorRef.markForCheck();
   }
 
   private isScrolledIntoView(elem: HTMLElement): boolean {

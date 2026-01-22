@@ -582,6 +582,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
       this._container.query = this.tokenizeQuery(normalizedQuery);
       this._container.matches = this._matches;
+      this.changeDetection.markForCheck();
     } else {
       this.show();
     }
