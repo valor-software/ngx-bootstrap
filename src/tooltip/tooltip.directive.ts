@@ -35,7 +35,7 @@ let id = 0;
 export class TooltipDirective implements OnInit, OnDestroy {
   tooltipId = id++;
   /** sets disable adaptive position */
-  readonly adaptivePosition = input(true);
+  readonly adaptivePosition = input(this._config.adaptivePosition);
   /**
    * Content to be displayed as tooltip.
    */
@@ -44,16 +44,16 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /**
    * Placement of a tooltip. Accepts: "top", "bottom", "left", "right"
    */
-  readonly placement = input<AvailableBSPositions>('top');
+  readonly placement = input<AvailableBSPositions>(this._config.placement as AvailableBSPositions);
   /**
    * Specifies events that should trigger. Supports a space separated list of
    * event names.
    */
-  readonly triggers = input('hover focus');
+  readonly triggers = input(this._config.triggers);
   /**
    * A selector specifying the element the tooltip should be appended to.
    */
-  readonly container = input<string | undefined>();
+  readonly container = input<string | undefined>(this._config.container);
   /**
    * Css class for tooltip container
    */
@@ -82,7 +82,7 @@ export class TooltipDirective implements OnInit, OnDestroy {
   /**
    * Delay before showing the tooltip
    */
-  readonly delay = input(0);
+  readonly delay = input(this._config.delay);
 
   /**
    * Emits an event when the tooltip is shown
@@ -139,16 +139,15 @@ export class TooltipDirective implements OnInit, OnDestroy {
   constructor(
     _viewContainerRef: ViewContainerRef,
     cis: ComponentLoaderFactory,
-    config: TooltipConfig,
+    private _config: TooltipConfig,
     private _elementRef: ElementRef,
     private _renderer: Renderer2,
     private _positionService: PositioningService
   ) {
     this._tooltip = cis
       .createLoader<TooltipContainerComponent>(this._elementRef, _viewContainerRef, this._renderer)
-      .provide({ provide: TooltipConfig, useValue: config });
+      .provide({ provide: TooltipConfig, useValue: _config });
 
-    Object.assign(this, config);
     this.onShown = this._tooltip.onShown;
     this.onHidden = this._tooltip.onHidden;
   }

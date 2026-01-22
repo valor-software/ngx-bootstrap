@@ -84,39 +84,39 @@ export class TimepickerComponent
     OnChanges,
     OnDestroy {
   /** hours change step */
-  hourStep = input<number>(1);
+  hourStep = input<number>(this._config.hourStep);
   /** minutes change step */
-  minuteStep = input<number>(5);
+  minuteStep = input<number>(this._config.minuteStep);
   /** seconds change step */
-  secondsStep = input<number>(10);
+  secondsStep = input<number>(this._config.secondsStep);
   /** if true hours and minutes fields will be readonly */
-  readonlyInput = input<boolean>(false);
+  readonlyInput = input<boolean>(this._config.readonlyInput);
   /** if true hours and minutes fields will be disabled */
-  disabledInput = input<boolean>(false, { alias: 'disabled' });
+  disabledInput = input<boolean>(this._config.disabled, { alias: 'disabled' });
   /** if true scroll inside hours and minutes inputs will change time */
-  mousewheel = input<boolean>(true);
+  mousewheel = input<boolean>(this._config.mousewheel);
   /** if true the values of hours and minutes can be changed using the up/down arrow keys on the keyboard */
-  arrowkeys = input<boolean>(true);
+  arrowkeys = input<boolean>(this._config.arrowkeys);
   /** if true spinner arrows above and below the inputs will be shown */
-  showSpinners = input<boolean>(true);
+  showSpinners = input<boolean>(this._config.showSpinners);
   /** if true meridian button will be shown */
-  showMeridian = input<boolean>(true);
+  showMeridian = input<boolean>(this._config.showMeridian);
   /** show minutes in timepicker */
-  showMinutes = input<boolean>(true);
+  showMinutes = input<boolean>(this._config.showMinutes);
   /** show seconds in timepicker */
-  showSeconds = input<boolean>(false);
+  showSeconds = input<boolean>(this._config.showSeconds);
   /** meridian labels based on locale */
-  meridians = input<string[]>(['AM', 'PM']);
+  meridians = input<string[]>(this._config.meridians);
   /** minimum time user can select */
-  min = input<Date | undefined>();
+  min = input<Date | undefined>(this._config.min);
   /** maximum time user can select */
-  max = input<Date | undefined>();
+  max = input<Date | undefined>(this._config.max);
   /** placeholder for hours field in timepicker */
-  hoursPlaceholder = input<string>('HH');
+  hoursPlaceholder = input<string>(this._config.hoursPlaceholder);
   /** placeholder for minutes field in timepicker */
-  minutesPlaceholder = input<string>('MM');
+  minutesPlaceholder = input<string>(this._config.minutesPlaceholder);
   /** placeholder for seconds field in timepicker */
-  secondsPlaceholder = input<string>('SS');
+  secondsPlaceholder = input<string>(this._config.secondsPlaceholder);
   /** emits true if value is a valid date */
   isValid = output<boolean>();
   /** emits value of meridian*/
@@ -172,13 +172,12 @@ export class TimepickerComponent
   // control value accessor methods
   timepickerSub?: Subscription;
   constructor(
-    _config: TimepickerConfig,
+    private _config: TimepickerConfig,
     private _cd: ChangeDetectorRef,
     private _store: TimepickerStore,
     private _timepickerActions: TimepickerActions
   ) {
     this.config = _config;
-    Object.assign(this, this.config);
     this.timepickerSub = _store.select(state => state.value)
       .subscribe((value: Date | undefined) => {
         // update UI values if date changed
