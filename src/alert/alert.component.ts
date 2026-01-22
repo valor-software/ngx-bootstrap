@@ -22,11 +22,11 @@ export class AlertComponent implements OnInit {
    * Provides one of four bootstrap supported contextual classes:
    * `success`, `info`, `warning` and `danger`
    */
-  type = input<string>('warning');
+  type = input<string>(this._config.type);
   /** If set, displays an inline "Close" button */
-  dismissible = input<boolean>(false);
+  dismissible = input<boolean>(this._config.dismissible);
   /** Number in milliseconds, after which alert will be closed */
-  dismissOnTimeout = input<number | string | undefined>();
+  dismissOnTimeout = input<number | string | undefined>(this._config.dismissOnTimeout);
 
   /** Is alert visible */
   isOpen = input<boolean>(true);
@@ -41,8 +41,7 @@ export class AlertComponent implements OnInit {
   classes = '';
   _isOpen = true;
 
-  constructor(_config: AlertConfig, private changeDetection: ChangeDetectorRef) {
-    Object.assign(this, _config);
+  constructor(private _config: AlertConfig, private changeDetection: ChangeDetectorRef) {
 
     // Use effect to watch for dismissible changes
     effect(() => {

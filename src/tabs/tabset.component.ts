@@ -21,7 +21,7 @@ export class TabsetComponent implements OnDestroy {
   justified = input<boolean>(false);
 
   /** navigation context class: 'tabs' or 'pills' */
-  type = input<string>('tabs');
+  type = input<string>(this._config.type);
 
   get isKeysAllowed(): boolean {
     return this._isKeysAllowed;
@@ -44,12 +44,13 @@ export class TabsetComponent implements OnDestroy {
   private defaultActivationScheduled = false;
 
   constructor(
-    config: TabsetConfig,
+    private _config: TabsetConfig,
     private renderer: Renderer2,
     private elementRef: ElementRef
   ) {
-    Object.assign(this, config);
-    
+    this._isKeysAllowed = _config.isKeysAllowed;
+    this.ariaLabel = _config.ariaLabel;
+
     // Watch for input changes and update class map
     effect(() => {
       const _ = [this.vertical(), this.justified(), this.type()];

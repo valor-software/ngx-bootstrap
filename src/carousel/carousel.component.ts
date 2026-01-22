@@ -45,21 +45,21 @@ let _currentId = 1;
 })
 export class CarouselComponent implements AfterViewInit, OnDestroy {
   /* If `true` — carousel will not cycle continuously and will have hard stops (prevent looping) */
-  noWrap = input<boolean>(false);
+  noWrap = input<boolean>(this._config.noWrap);
   /*  If `true` — will disable pausing on carousel mouse hover */
-  noPause = input<boolean>(false);
+  noPause = input<boolean>(this._config.noPause);
   /*  If `true` — carousel-indicators are visible  */
-  showIndicators = input<boolean>(true);
+  showIndicators = input<boolean>(this._config.showIndicators);
   /*  If `true` - autoplay will be stopped on focus */
-  pauseOnFocus = input<boolean>(false);
+  pauseOnFocus = input<boolean>(this._config.pauseOnFocus);
   /* If `true` - carousel indicators indicate slides chunks
      works ONLY if singleSlideOffset = FALSE */
-  indicatorsByChunk = input<boolean>(false);
+  indicatorsByChunk = input<boolean>(this._config.indicatorsByChunk);
   /* If value more then 1 — carousel works in multilist mode */
-  itemsPerSlide = input<number>(1);
+  itemsPerSlide = input<number>(this._config.itemsPerSlide);
   /* If `true` — carousel shifts by one element. By default carousel shifts by number
      of visible elements (itemsPerSlide field) */
-  singleSlideOffset = input<boolean>(false);
+  singleSlideOffset = input<boolean>(this._config.singleSlideOffset);
   /** Turn on/off animation. Animation doesn't work for multilist carousel */
   isAnimated = input<boolean>(false);
 
@@ -79,7 +79,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
    * Delay of item cycling in milliseconds. If false, carousel won't cycle
    * automatically.
    */
-  interval = input<number>(5000);
+  interval = input<number>(this._config.interval);
 
   get slides(): SlideComponent[] {
     return this._slides.toArray();
@@ -138,13 +138,12 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   }
 
   constructor(
-    config: CarouselConfig, 
+    private _config: CarouselConfig,
     private cdr: ChangeDetectorRef,
     @Inject(PLATFORM_ID) public platformId: number
   ) {
-    Object.assign(this, config);
     this.currentId = _currentId++;
-    
+
     // Watch for activeSlide input changes
     effect(() => {
       const index = this.activeSlideInput();
@@ -158,7 +157,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
         this._select(index);
       }
     });
-    
+
     // Watch for interval changes and restart timer
     effect(() => {
       const _ = this.interval();

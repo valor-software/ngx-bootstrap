@@ -16,14 +16,13 @@ import { AccordionConfig } from './accordion.config';
 })
 export class AccordionComponent {
   /** turn on/off animation */
-  isAnimated = input<boolean>(false);
+  isAnimated = input<boolean>(this._config.isAnimated);
   /** if `true` expanding one item will close all others */
-  closeOthers = input<boolean>(false);
+  closeOthers = input<boolean>(this._config.closeOthers);
 
   protected groups: AccordionPanelComponent[] = [];
 
-  constructor(config: AccordionConfig) {
-    Object.assign(this, config);
+  constructor(private _config: AccordionConfig) {
   }
 
   closeOtherPanels(openGroup: AccordionPanelComponent): void {
