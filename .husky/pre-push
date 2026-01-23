@@ -1,6 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-# Note: Husky hook may exit with code 1 due to Nx Cloud connection issues
-# even when lint passes successfully. Re-enable after fixing Nx Cloud config.
-# npm run lint
+npm run lint

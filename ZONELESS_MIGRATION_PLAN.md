@@ -1,5 +1,7 @@
 # Zoneless Migration Plan for ngx-bootstrap
 
+> **⚠️ TEMPORARY DOCUMENT** - This migration plan can be **deleted after the zoneless migration PR is approved and merged**. It serves as a historical record of the migration process.
+
 > **✅ MIGRATION COMPLETE** - All phases have been successfully implemented and validated.
 
 This document outlines the comprehensive plan to migrate ngx-bootstrap to Angular's zoneless change detection. This is a **breaking change migration** that will fully modernize the library to use Angular 20+ features.
@@ -425,7 +427,7 @@ private restartTimer() {
 
 ### 3.4 Dropdown Component
 
-**Files**: 
+**Files**:
 - `src/dropdown/bs-dropdown.directive.ts`
 - `src/dropdown/bs-dropdown-container.component.ts`
 - `src/dropdown/bs-dropdown-toggle.directive.ts`
@@ -507,7 +509,7 @@ export class PositioningService {
         of(0, animationFrameScheduler),
         this.update$$
       );
-      
+
       this.triggerEvent$.pipe(takeUntilDestroyed()).subscribe(() => {
         // Position calculations don't need change detection
         this.positionElements.forEach((positionElement) => {
