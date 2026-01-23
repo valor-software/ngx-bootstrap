@@ -92,6 +92,7 @@ export class TimepickerComponent
   /** if true hours and minutes fields will be readonly */
   readonlyInput = input<boolean>(this._config.readonlyInput);
   /** if true hours and minutes fields will be disabled */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   disabledInput = input<boolean>(this._config.disabled, { alias: 'disabled' });
   /** if true scroll inside hours and minutes inputs will change time */
   mousewheel = input<boolean>(this._config.mousewheel);

@@ -70,6 +70,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   slideRangeChange = output<number[]|void>();
 
   /** Index of currently displayed slide(started for 0) */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   activeSlideInput = input<number>(0, { alias: 'activeSlide' });
 
   /* Index to start display slides from it */

@@ -31,6 +31,7 @@ import { NgIf } from '@angular/common';
     imports: [NgIf]
 })
 export class PopoverContainerComponent {
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   readonly placementInput = input<AvailableBSPositions | undefined>(undefined, { alias: 'placement' });
 
   title?: string;

@@ -70,10 +70,12 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
   customFirstTemplate = input<TemplateRef<PaginationLinkContext> | undefined>();
   /** custom template for last link */
   customLastTemplate = input<TemplateRef<PaginationLinkContext> | undefined>();
-  
+
   /** maximum number of items per page. If value less than 1 will display all items on one page */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   itemsPerPageInput = input<number>(10, { alias: 'itemsPerPage' });
   /** total number of items in all pages */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   totalItemsInput = input<number>(0, { alias: 'totalItems' });
 
   /** fired when total pages count changes, $event:number equals to total pages count */
@@ -97,13 +99,13 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     if (!this.config) {
       this.configureOptions(paginationConfig.main);
     }
-    
+
     // Watch for itemsPerPage changes
     effect(() => {
       this._itemsPerPage = this.itemsPerPageInput();
       this.totalPages = this.calculateTotalPages();
     });
-    
+
     // Watch for totalItems changes
     effect(() => {
       this._totalItems = this.totalItemsInput();
@@ -200,7 +202,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     this.pages = this.getPages(this.page, this.totalPages);
     this.inited = true;
   }
-  
+
   // Resolved configuration values
   protected _maxSize = 0;
   protected _rotate = true;

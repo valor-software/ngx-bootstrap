@@ -36,6 +36,7 @@ export class AccordionPanelComponent implements OnInit, OnDestroy {
   /** if <code>true</code> — disables accordion group */
   isDisabled = input<boolean>(false);
   /** Input to set initial open state */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   isOpenInput = input<boolean>(false, { alias: 'isOpen' });
   /** Emits when the opened state changes */
   isOpenChange = output<boolean>();

@@ -27,8 +27,9 @@ const BACKDROP_TRANSITION_DURATION = 150;
 })
 export class ModalDirective implements OnDestroy, OnInit {
   /** allows to set modal configuration via element property */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   configInput = input<ModalOptions | undefined>(undefined, { alias: 'config' });
-  
+
   /** allows to provide a callback to intercept the closure of the modal */
   closeInterceptor = input<CloseInterceptorFn | undefined>();
 
@@ -91,7 +92,7 @@ export class ModalDirective implements OnDestroy, OnInit {
       _renderer
     );
     this._config = modalDefaultOption || modalConfigDefaults;
-    
+
     // Effect for config input
     effect(() => {
       const conf = this.configInput();

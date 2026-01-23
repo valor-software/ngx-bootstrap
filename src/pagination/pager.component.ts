@@ -57,10 +57,12 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
 
   /** if true pagination component will be disabled */
   disabled = input<boolean>(false);
-  
+
   /** maximum number of items per page. If value less than 1 will display all items on one page */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   itemsPerPageInput = input<number>(15, { alias: 'itemsPerPage' });
   /** total number of items in all pages */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   totalItemsInput = input<number>(0, { alias: 'totalItems' });
 
   /** fired when total pages count changes, $event:number equals to total pages count */
@@ -84,13 +86,13 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
         Object.assign({}, paginationConfig.main, paginationConfig.pager)
       );
     }
-    
+
     // Watch for itemsPerPage changes
     effect(() => {
       this._itemsPerPage = this.itemsPerPageInput();
       this.totalPages = this.calculateTotalPages();
     });
-    
+
     // Watch for totalItems changes
     effect(() => {
       this._totalItems = this.totalItemsInput();

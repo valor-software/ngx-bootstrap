@@ -75,6 +75,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   /**
    * Disables dropdown toggle and hides dropdown menu if opened
    */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   isDisabledInput = input<boolean>(false, { alias: 'isDisabled' });
 
   get isDisabled(): boolean {
@@ -84,6 +85,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   /**
    * Returns whether or not the popover is currently being shown
    */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   isOpenInput = input<boolean>(false, { alias: 'isOpen' });
 
   get isOpen(): boolean {

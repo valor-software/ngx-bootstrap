@@ -41,8 +41,10 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnChanges {
   /** If `true` — radio button can be unchecked */
   uncheckable = input<boolean>(false);
   /** Current value of radio component or group */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   valueInput = input<unknown | undefined>(undefined, { alias: 'value' });
   /** If `true` — radio button is disabled */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   disabledInput = input<boolean>(false, { alias: 'disabled' });
 
   get value() {
@@ -119,13 +121,13 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnChanges {
         this._value = val;
       }
     });
-    
+
     // Watch for disabled input changes
     effect(() => {
       const disabled = this.disabledInput();
       this.setDisabledState(disabled);
     });
-    
+
     // Watch for uncheckable input changes
     effect(() => {
       const val = this.uncheckable();
@@ -171,6 +173,7 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnChanges {
     return !this.controlOrGroupDisabled && (this._uncheckable || this.btnRadio() !== this.value);
   }
 
+  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnChanges(changes: SimpleChanges) {
     // Keep for compatibility
   }

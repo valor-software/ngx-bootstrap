@@ -23,19 +23,25 @@ export class TabDirective implements OnInit, OnDestroy {
   @HostBinding('attr.id')
   id?: string;
 
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   idInput = input<string | undefined>(undefined, { alias: 'id' });
   /** if true tab can not be activated */
   disabled = false;
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   disabledInput = input<boolean>(false, { alias: 'disabled' });
   /** if true tab can be removable, additional button will appear */
   removable = false;
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   removableInput = input<boolean>(false, { alias: 'removable' });
   /** tab order for sorting when using dynamic tabs with *ngIf */
   tabOrder?: number;
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   tabOrderInput = input<number | undefined>(undefined, { alias: 'tabOrder' });
   /** if set, will be added to the tab's class attribute. Multiple classes are supported. */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   customClassInput = input<string | undefined>(undefined, { alias: 'customClass' });
   /** tab active state - can be set via input */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   activeInput = input<boolean | undefined>(undefined, { alias: 'active' });
 
   /** tab active state toggle */

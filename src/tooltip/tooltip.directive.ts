@@ -94,37 +94,37 @@ export class TooltipDirective implements OnInit, OnDestroy {
   onHidden: EventEmitter<unknown>;
 
   /** @deprecated - please use `tooltip` instead */
-  readonly tooltipHtml = input<string | TemplateRef<unknown> | undefined>(undefined, { alias: 'tooltipHtml' });
+  readonly tooltipHtml = input<string | TemplateRef<unknown> | undefined>(undefined);
 
   /** @deprecated - please use `placement` instead */
-  readonly tooltipPlacement = input<AvailableBSPositions | undefined>(undefined, { alias: 'tooltipPlacement' });
+  readonly tooltipPlacement = input<AvailableBSPositions | undefined>(undefined);
 
   /** @deprecated - please use `isOpen` instead */
-  readonly tooltipIsOpen = input<boolean | undefined>(undefined, { alias: 'tooltipIsOpen' });
+  readonly tooltipIsOpen = input<boolean | undefined>(undefined);
 
   /** @deprecated - please use `isDisabled` instead */
-  readonly tooltipEnable = input<boolean | undefined>(undefined, { alias: 'tooltipEnable' });
+  readonly tooltipEnable = input<boolean | undefined>(undefined);
 
   /** @deprecated - please use `container="body"` instead */
-  readonly tooltipAppendToBody = input<boolean | undefined>(undefined, { alias: 'tooltipAppendToBody' });
+  readonly tooltipAppendToBody = input<boolean | undefined>(undefined);
 
   /** @deprecated - removed, will be added to configuration */
   readonly tooltipAnimation = input(true);
 
   /** @deprecated - will replaced with customClass */
-  readonly tooltipClass = input<string | undefined>(undefined, { alias: 'tooltipClass' });
+  readonly tooltipClass = input<string | undefined>(undefined);
 
   /** @deprecated - removed */
-  readonly tooltipContext = input<undefined>(undefined, { alias: 'tooltipContext' });
+  readonly tooltipContext = input<undefined>(undefined);
 
   /** @deprecated */
-  readonly tooltipPopupDelay = input<number | undefined>(undefined, { alias: 'tooltipPopupDelay' });
+  readonly tooltipPopupDelay = input<number | undefined>(undefined);
 
   /** @deprecated */
   readonly tooltipFadeDuration = input(150);
 
   /** @deprecated -  please use `triggers` instead */
-  readonly tooltipTrigger = input<string | string[] | undefined>(undefined, { alias: 'tooltipTrigger' });
+  readonly tooltipTrigger = input<string | string[] | undefined>(undefined);
 
   /** @deprecated */
   readonly tooltipStateChanged = output<boolean>();
