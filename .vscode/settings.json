@@ -1,8 +1,0 @@
-{
-    "chat.tools.terminal.autoApprove": {
-        "/^cd /home/dl56431/angular/ngx-bootstrap && timeout 120 npm run build \\|\\| true$/": {
-            "approve": true,
-            "matchCommandLine": true
-        }
-    }
-}
