@@ -22,7 +22,7 @@
       class="w-100"
       (click)="search.text = ''"
     >
-      <a [routerLink]="getRouteLink(route.path)" class="text-white d-block w-100">{{route.data[0]}}</a>
+      <a [routerLink]="getRouteLink(route.path)" class="text-white d-block w-100">{{route.data?.[0]}}</a>
     </li>
   </ng-container>
 </ul>
