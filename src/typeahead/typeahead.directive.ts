@@ -35,9 +35,10 @@ type TypeaheadOptionArr = TypeaheadOption[] | Observable<TypeaheadOption>;
     exportAs: 'bs-typeahead',
     host: {
         '[attr.aria-activedescendant]': 'activeDescendant',
-        '[attr.aria-owns]': 'isOpen ? this._container.popupId : null',
+        '[attr.aria-controls]': 'isOpen ? this._container.popupId : null',
         '[attr.aria-expanded]': 'isOpen',
-        '[attr.aria-autocomplete]': 'list'
+        '[attr.aria-autocomplete]': 'list',
+        '[attr.role]': `'combobox'`
     },
     standalone: true,
     providers: [ComponentLoaderFactory, PositioningService]
@@ -427,6 +428,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       this._outsideClickListener();
       this._container = void 0;
       this.isOpen = false;
+      this.activeDescendant = void 0;
       this.changeDetection.markForCheck();
     }
     this.typeaheadOnPreview.emit();

@@ -187,6 +187,12 @@ describe('Directive: Typeahead', () => {
         expect(() => directive.onBlur()).not.toThrowError();
       });
     }));
+
+    it('should have appropriate aria attributes', () => {
+      expect(inputElement.getAttribute('role')).toEqual('combobox');
+      expect(inputElement.getAttribute('aria-expanded')).toEqual('false');
+      expect(inputElement.getAttribute('aria-autocomplete')).toEqual('list');
+    });
   });
 
   describe('onFocus', () => {
