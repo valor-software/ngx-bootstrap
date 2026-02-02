@@ -1,29 +1,37 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { TabsetComponent } from '../tabset.component';
 import { TabDirective } from '../tab.directive';
 import { TabsModule } from '../tabs.module';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, TabsModule],
+  imports: [TabsModule],
   template: `
     <tabset>
-      <tab heading="Tab 3" [tabOrder]="3" *ngIf="showTab3">
-        Tab 3 content
-      </tab>
-      <tab heading="Tab 1" [tabOrder]="1" *ngIf="showTab1">
-        Tab 1 content
-      </tab>
-      <tab heading="Tab 2" [tabOrder]="2" *ngIf="showTab2">
-        Tab 2 content
-      </tab>
-      <tab heading="No Order Tab" *ngIf="showNoOrderTab">
-        No order tab content
-      </tab>
+      @if (showTab3) {
+        <tab heading="Tab 3" [tabOrder]="3">
+          Tab 3 content
+        </tab>
+      }
+      @if (showTab1) {
+        <tab heading="Tab 1" [tabOrder]="1">
+          Tab 1 content
+        </tab>
+      }
+      @if (showTab2) {
+        <tab heading="Tab 2" [tabOrder]="2">
+          Tab 2 content
+        </tab>
+      }
+      @if (showNoOrderTab) {
+        <tab heading="No Order Tab">
+          No order tab content
+        </tab>
+      }
     </tabset>
-  `
+    `
 })
 class TestTabOrderingComponent {
   @ViewChild(TabsetComponent, { static: true }) tabset!: TabsetComponent;
@@ -36,7 +44,7 @@ class TestTabOrderingComponent {
 
 @Component({
   standalone: true,
-  imports: [CommonModule, TabsModule],
+  imports: [TabsModule],
   template: `
     <tabset>
       <tab heading="Default 1">
@@ -57,7 +65,7 @@ class TestDefaultOrderingComponent {
 
 @Component({
   standalone: true,
-  imports: [CommonModule, TabsModule],
+  imports: [TabsModule],
   template: `
     <tabset>
       <tab heading="Mixed 3" [tabOrder]="30">

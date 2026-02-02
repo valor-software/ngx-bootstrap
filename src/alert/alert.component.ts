@@ -9,14 +9,14 @@ import {
 } from '@angular/core';
 import { AlertConfig } from './alert.config';
 import { OnChange } from 'ngx-bootstrap/utils';
-import { NgIf, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
     selector: 'alert,bs-alert',
     templateUrl: './alert.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgIf, NgClass]
+    imports: [NgClass]
 })
 export class AlertComponent implements OnInit {
   /** Alert type.

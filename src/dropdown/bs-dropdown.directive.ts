@@ -305,17 +305,21 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   }
 
   /** @internal */
-  _contains(event: MouseEvent): boolean {
-    // todo: valorkin fix typings
+  _contains(event: Event): boolean {
+    // handle Event target typing
+    if (!(event.target instanceof Node)) {
+      return false;
+    }
     return (
-      this._elementRef.nativeElement.contains(event.target) ||
+      this._elementRef.nativeElement.contains(event.target as Node) ||
       (this._dropdown.instance && this._dropdown.instance._contains(event.target as unknown as HTMLElement))
     );
   }
 
   @HostListener('keydown.arrowDown', ['$event'])
   @HostListener('keydown.arrowUp', ['$event'])
-  navigationClick(event: KeyboardEvent): void {
+  navigationClick(event: Event): void {
+    const ke = event as KeyboardEvent;
     const ref = this._elementRef.nativeElement.querySelector('.dropdown-menu');
 
     if (!ref) {
@@ -324,7 +328,7 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
     const firstActive = this._elementRef.nativeElement.ownerDocument.activeElement;
     const allRef = ref.querySelectorAll('.dropdown-item');
-    switch (event.keyCode) {
+    switch (ke.keyCode) {
       case 38:
         if (this._state.counts > 0) {
           allRef[--this._state.counts].focus();
@@ -341,7 +345,9 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
         break;
       default:
     }
-    event.preventDefault();
+    if ('preventDefault' in ke) {
+      ke.preventDefault();
+    }
   }
 
   ngOnDestroy(): void {

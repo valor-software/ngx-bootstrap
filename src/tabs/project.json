@@ -25,7 +25,8 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/src/tabs"],
       "options": {
-        "jestConfig": "src/tabs/jest.config.ts"
+        "jestConfig": "src/tabs/jest.config.ts",
+        "tsConfig": "src/tabs/tsconfig.spec.json"
       }
     }
   }

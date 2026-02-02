@@ -25,7 +25,8 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/src/rating"],
       "options": {
-        "jestConfig": "src/rating/jest.config.ts"
+        "jestConfig": "src/rating/jest.config.ts",
+        "tsConfig": "src/rating/tsconfig.spec.json"
       }
     }
   }
