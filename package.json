@@ -4,8 +4,13 @@
   "license": "MIT",
   "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
   "schematics": "./schematics/src/collection.json",
-  "repository": { "type": "git", "url": "git+ssh://git@github.com/valor-software/ngx-bootstrap.git" },
-  "bugs": { "url": "https://github.com/valor-software/ngx-bootstrap/issues" },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/valor-software/ngx-bootstrap.git"
+  },
+  "bugs": {
+    "url": "https://github.com/valor-software/ngx-bootstrap/issues"
+  },
   "homepage": "https://github.com/valor-software/ngx-bootstrap#readme",
   "scripts": {
     "ng": "nx",
@@ -47,7 +52,14 @@
     "prerender": "ng run ngx-bootstrap-docs:prerender"
   },
   "private": true,
-  "keywords": ["angular", "bootstrap", "ng", "ng2", "angular2", "twitter-bootstrap"],
+  "keywords": [
+    "angular",
+    "bootstrap",
+    "ng",
+    "ng2",
+    "angular2",
+    "twitter-bootstrap"
+  ],
   "dependencies": {
     "@angular-devkit/core": "21.0.4",
     "@angular-devkit/schematics": "21.0.4",
@@ -113,6 +125,7 @@
     "jest-createspyobj": "2.0.0",
     "jest-environment-jsdom": "30.2.0",
     "jest-preset-angular": "16.0.0",
+    "jest-util": "30.0.5",
     "marked": "4.0.18",
     "moment": "2.29.4",
     "ng-packagr": "21.0.1",
@@ -121,9 +134,9 @@
     "prettier": "3.2.5",
     "release-it": "16.1.0",
     "ts-jest": "29.4.6",
+    "ts-node": "10.9.2",
     "tsx": "4.20.3",
     "typescript": "5.9.3",
-    "webpack-bundle-analyzer": "4.5.0",
-    "jest-util": "30.0.5"
+    "webpack-bundle-analyzer": "4.5.0"
   }
 }
