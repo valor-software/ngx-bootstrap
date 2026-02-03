@@ -4,11 +4,13 @@
     <div class="content-box">
       <div class="content w-100">
         <div class="content-header">
-          <h1 *ngIf="name || src">{{name}}
-            <a [href]="src" target="_blank" rel="noopener">
-              <img src="assets/images/link-doc.png" alt="component on github"/>
-            </a>
-          </h1>
+          @if (name || src) {
+            <h1>{{name}}
+              <a [href]="src" target="_blank" rel="noopener">
+                <img src="assets/images/link-doc.png" alt="component on github"/>
+              </a>
+            </h1>
+          }
         </div>
 
         <div id="content">

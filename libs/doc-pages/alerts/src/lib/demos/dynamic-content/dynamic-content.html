@@ -1,8 +1,9 @@
 <alert type="success">{{messages[index]}}</alert>
 
-<div *ngIf="index !== messages.length -1; else elseBlock">
-  <button class="btn btn-primary" (click)="changeText()">Change text</button>
-</div>
-<ng-template #elseBlock>
+@if (index !== messages.length -1) {
+  <div>
+    <button class="btn btn-primary" (click)="changeText()">Change text</button>
+  </div>
+} @else {
   <button class="btn btn-primary" (click)="index = 0">Reset</button>
-</ng-template>
+}

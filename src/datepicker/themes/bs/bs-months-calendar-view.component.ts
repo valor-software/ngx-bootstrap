@@ -7,7 +7,7 @@ import {
   MonthsCalendarViewModel,
   CalendarCellViewModel
 } from '../../models';
-import { NgFor } from '@angular/common';
+
 import { BsDatepickerNavigationViewComponent } from './bs-datepicker-navigation-view.component';
 import { BsCalendarLayoutComponent } from './bs-calendar-layout.component';
 
@@ -20,25 +20,29 @@ import { BsCalendarLayoutComponent } from './bs-calendar-layout.component';
         (onNavigate)="navigateTo($event)"
         (onViewMode)="changeViewMode($event)"
       ></bs-datepicker-navigation-view>
-
+    
       <table role="grid" class="months">
         <tbody>
-        <tr *ngFor="let row of calendar?.months">
-          <td *ngFor="let month of row" role="gridcell"
-              (click)="viewMonth(month)"
-              (mouseenter)="hoverMonth(month, true)"
-              (mouseleave)="hoverMonth(month, false)"
-              [class.disabled]="month.isDisabled"
-              [class.is-highlighted]="month.isHovered">
-            <span [class.selected]="month.isSelected">{{ month.label }}</span>
-          </td>
-        </tr>
+          @for (row of calendar?.months; track row) {
+            <tr>
+              @for (month of row; track month) {
+                <td role="gridcell"
+                  (click)="viewMonth(month)"
+                  (mouseenter)="hoverMonth(month, true)"
+                  (mouseleave)="hoverMonth(month, false)"
+                  [class.disabled]="month.isDisabled"
+                  [class.is-highlighted]="month.isHovered">
+                  <span [class.selected]="month.isSelected">{{ month.label }}</span>
+                </td>
+              }
+            </tr>
+          }
         </tbody>
       </table>
     </bs-calendar-layout>
-  `,
+    `,
     standalone: true,
-    imports: [BsCalendarLayoutComponent, BsDatepickerNavigationViewComponent, NgFor]
+    imports: [BsCalendarLayoutComponent, BsDatepickerNavigationViewComponent]
 })
 export class BsMonthCalendarViewComponent {
   @Input() calendar!: MonthsCalendarViewModel;

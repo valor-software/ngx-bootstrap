@@ -22,7 +22,7 @@ import { TypeaheadMatch } from './typeahead-match.class';
 import { TypeaheadDirective } from './typeahead.directive';
 import { typeaheadAnimation } from './typeahead-animations';
 import { TypeaheadOptionItemContext, TypeaheadOptionListContext, TypeaheadTemplateMethods } from './models';
-import { NgTemplateOutlet, NgFor, NgIf } from '@angular/common';
+import { NgTemplateOutlet } from '@angular/common';
 
 let nextWindowId = 0;
 
@@ -51,7 +51,7 @@ let nextWindowId = 0;
     ],
     animations: [typeaheadAnimation],
     standalone: true,
-    imports: [NgTemplateOutlet, NgFor, NgIf],
+    imports: [NgTemplateOutlet],
     providers: [PositioningService]
 })
 

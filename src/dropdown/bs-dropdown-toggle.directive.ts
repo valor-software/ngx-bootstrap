@@ -42,9 +42,15 @@ export class BsDropdownToggleDirective implements OnDestroy {
           this.isOpen = value;
 
           if (value) {
-            this._documentClickListener = this._renderer.listen('document', 'click', (event: MouseEvent) => {
-              if (this._state.autoClose && event.button !== 2 &&
-                !this._element.nativeElement.contains(event.target) &&
+            this._documentClickListener = this._renderer.listen('document', 'click', (event: Event) => {
+              if (!(event.target instanceof Node)) {
+                return;
+              }
+              const isPrimaryClick = event instanceof MouseEvent ? event.button !== 2 : true;
+              if (
+                this._state.autoClose &&
+                isPrimaryClick &&
+                !this._element.nativeElement.contains(event.target as Node) &&
                 !(this._state.insideClick && this._dropdown._contains(event))
               ) {
                 this._state.toggleClick.emit(false);
