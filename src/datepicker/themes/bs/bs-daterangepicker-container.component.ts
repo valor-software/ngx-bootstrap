@@ -30,7 +30,7 @@ import { BsYearsCalendarViewComponent } from './bs-years-calendar-view.component
 import { BsMonthCalendarViewComponent } from './bs-months-calendar-view.component';
 import { TimepickerModule } from 'ngx-bootstrap/timepicker';
 import { BsDaysCalendarViewComponent } from './bs-days-calendar-view.component';
-import { NgIf, NgClass, NgSwitch, NgSwitchCase, NgFor, AsyncPipe } from '@angular/common';
+import { NgClass, AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'bs-daterangepicker-container',
@@ -45,11 +45,7 @@ import { NgIf, NgClass, NgSwitch, NgSwitchCase, NgFor, AsyncPipe } from '@angula
     animations: [datepickerAnimation],
     standalone: true,
     imports: [
-      NgIf,
       NgClass,
-      NgSwitch,
-      NgSwitchCase,
-      NgFor,
       BsDaysCalendarViewComponent,
       TimepickerModule,
       BsMonthCalendarViewComponent,
