@@ -31,7 +31,8 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/src/carousel"],
       "options": {
-        "jestConfig": "src/carousel/jest.config.ts"
+        "jestConfig": "src/carousel/jest.config.ts",
+        "tsConfig": "src/carousel/tsconfig.spec.json"
       }
     }
   }

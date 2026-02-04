@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { NgFor } from '@angular/common';
+
 
 export interface BsCustomDates {
   label: string;
@@ -10,18 +10,20 @@ export interface BsCustomDates {
     selector: 'bs-custom-date-view',
     template: `
     <div class="bs-datepicker-predefined-btns">
-      <button *ngFor="let range of ranges"
-        type="button"
-        class="btn"
-        (click)="selectFromRanges(range)"
-        [class.selected]="compareRanges(range)">
-        {{ range.label }}
-      </button>
+      @for (range of ranges; track range) {
+        <button
+          type="button"
+          class="btn"
+          (click)="selectFromRanges(range)"
+          [class.selected]="compareRanges(range)">
+          {{ range.label }}
+        </button>
+      }
     </div>
-  `,
+    `,
     changeDetection: ChangeDetectionStrategy.OnPush,
     standalone: true,
-    imports: [NgFor]
+    imports: []
 })
 export class BsCustomDatesViewComponent {
   @Input() ranges?: BsCustomDates[];

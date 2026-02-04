@@ -1,3 +1,5 @@
 <top-menu></top-menu>
-<sidebar id="sidebar" *ngIf="showSidebar" class="sidebar"></sidebar>
+@if (showSidebar) {
+  <sidebar id="sidebar" class="sidebar"></sidebar>
+}
 <router-outlet></router-outlet>

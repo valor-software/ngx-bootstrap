@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 import { AccordionComponent } from './accordion.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 /**
  * ### Accordion heading
@@ -20,7 +20,7 @@ import { NgClass, NgIf } from '@angular/common';
     },
     styleUrls: ['./accordion.scss'],
     standalone: true,
-    imports: [NgClass, NgIf, CollapseModule]
+    imports: [NgClass, CollapseModule]
 })
 export class AccordionPanelComponent implements OnInit, OnDestroy {
   /** turn on/off animation */

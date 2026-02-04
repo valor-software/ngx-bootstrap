@@ -31,7 +31,8 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/src/dropdown"],
       "options": {
-        "jestConfig": "src/dropdown/jest.config.ts"
+        "jestConfig": "src/dropdown/jest.config.ts",
+        "tsConfig": "src/dropdown/tsconfig.spec.json"
       }
     }
   }

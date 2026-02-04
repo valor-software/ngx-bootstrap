@@ -37,14 +37,18 @@ export class DemoModalServiceFromComponent {
       </button>
     </div>
     <div class="modal-body">
-      <ul *ngIf="list.length">
-        <li *ngFor="let item of list">{{ item }}</li>
-      </ul>
+      @if (list.length) {
+        <ul>
+          @for (item of list; track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+      }
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">{{ closeBtnName }}</button>
     </div>
-  `,
+    `,
   standalone: false
 })
 export class ModalContentComponent implements OnInit {

@@ -89,12 +89,20 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('mousedown', ['$event'])
-  onClickStarted(event: MouseEvent): void {
+  onClickStarted(event: Event): void {
+    if (!(event.target instanceof Element)) {
+      this.clickStartedInContent = false;
+      return;
+    }
     this.clickStartedInContent = event.target !== this._element.nativeElement;
   }
 
   @HostListener('click', ['$event'])
-  onClickStop(event: MouseEvent): void {
+  onClickStop(event: Event): void {
+    if (!(event.target instanceof Element)) {
+      this.clickStartedInContent = false;
+      return;
+    }
     const clickedInBackdrop = event.target === this._element.nativeElement && !this.clickStartedInContent;
     if (
       this.config.ignoreBackdropClick ||
@@ -116,14 +124,19 @@ export class ModalContainerComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('window:keydown.esc', ['$event'])
-  onEsc(event: KeyboardEvent): void {
+  onEsc(event: Event): void {
     if (!this.isShown) {
       return;
     }
 
-    if (event.keyCode === 27 || event.key === 'Escape') {
-      event.preventDefault();
+    const keyboardEvent = event as KeyboardEvent;
+    const hasKeyCode = (e: Event): e is KeyboardEvent & { keyCode: number } => 'keyCode' in e;
+    const isEscape = keyboardEvent.key === 'Escape' || keyboardEvent.key === 'Esc' || (hasKeyCode(keyboardEvent) && keyboardEvent.keyCode === 27);
+    if (!isEscape) {
+      return;
     }
+
+    keyboardEvent.preventDefault();
 
     if (
       this.config.keyboard &&
