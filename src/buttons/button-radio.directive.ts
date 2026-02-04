@@ -149,9 +149,12 @@ export class ButtonRadioDirective implements ControlValueAccessor, OnChanges {
   }
 
   @HostListener('keydown.space', ['$event'])
-  onSpacePressed(event: KeyboardEvent) {
+  onSpacePressed(event: Event) {
+    const ke = event as KeyboardEvent;
     this.toggleIfAllowed();
-    event.preventDefault();
+    if ('preventDefault' in ke) {
+      ke.preventDefault();
+    }
   }
 
   focus() {

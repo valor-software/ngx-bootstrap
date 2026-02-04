@@ -35,7 +35,7 @@ type TypeaheadOptionArr = TypeaheadOption[] | Observable<TypeaheadOption>;
     exportAs: 'bs-typeahead',
     host: {
         '[attr.aria-activedescendant]': 'activeDescendant',
-        '[attr.aria-owns]': 'isOpen ? this._container.popupId : null',
+        '[attr.aria-owns]': 'isOpen ? this._container?.popupId : null',
         '[attr.aria-expanded]': 'isOpen',
         '[attr.aria-autocomplete]': 'list'
     },
@@ -382,12 +382,15 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
         dropup: this.dropup()
       });
 
-    this._outsideClickListener = this.renderer.listen('document', 'click', (event: MouseEvent) => {
-      if (this._typeaheadMinLengthValue === 0 && this.element.nativeElement.contains(event.target)) {
+    this._outsideClickListener = this.renderer.listen('document', 'click', (event: Event) => {
+      if (!(event.target instanceof Node)) {
+        return;
+      }
+      if (this._typeaheadMinLengthValue === 0 && this.element.nativeElement.contains(event.target as Node)) {
         return;
       }
       const hideResultsOnBlurValue = this.typeaheadHideResultsOnBlur();
-      if (!hideResultsOnBlurValue || this.element.nativeElement.contains(event.target)) {
+      if (!hideResultsOnBlurValue || this.element.nativeElement.contains(event.target as Node)) {
         return;
       }
       this.onOutsideClick();

@@ -10,16 +10,20 @@
   </div>
 
   <div class="social-info col-xl-2 col-lg-3">
-    <div class="prev-docs" dropdown *ngIf="previousDocs.length" container="body">
-      <div dropdownToggle class="dropdown-toggle">
-        {{currentVersion ? 'v' + currentVersion : ''}} <span class="caret"></span>
+    @if (previousDocs.length) {
+      <div class="prev-docs" dropdown container="body">
+        <div dropdownToggle class="dropdown-toggle">
+          {{currentVersion ? 'v' + currentVersion : ''}} <span class="caret"></span>
+        </div>
+        <ul *dropdownMenu class="dropdown-menu header-dropdown" role="menu" style="margin-top: 20px;">
+          @for (item of previousDocs; track item) {
+            <li role="menuitem">
+              <a class="dropdown-item" [href]="appUrl + (needPrefix ? item.url : item.unprefixedUrl) + (appHash ? '/' + appHash : '')">{{item.version}}</a>
+            </li>
+          }
+        </ul>
       </div>
-      <ul *dropdownMenu class="dropdown-menu header-dropdown" role="menu" style="margin-top: 20px;">
-        <li role="menuitem" *ngFor="let item of previousDocs">
-          <a class="dropdown-item" [href]="appUrl + (needPrefix ? item.url : item.unprefixedUrl) + (appHash ? '/' + appHash : '')">{{item.version}}</a>
-        </li>
-      </ul>
-    </div>
+    }
     <ul data-cypress="infoButtons">
       <li>
         <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/tagged/ngx-bootstrap">

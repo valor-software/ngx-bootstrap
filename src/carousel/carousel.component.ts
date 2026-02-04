@@ -18,7 +18,7 @@
 import {
   Component, OnDestroy, AfterViewInit, Inject, PLATFORM_ID, ChangeDetectorRef, input, output, effect
 } from '@angular/core';
-import { isPlatformBrowser, NgIf, NgFor, NgStyle } from '@angular/common';
+import { isPlatformBrowser, NgStyle } from '@angular/common';
 
 import { LinkedList, getBsVer, IBsVersion } from 'ngx-bootstrap/utils';
 import { SlideComponent } from './slide.component';
@@ -41,7 +41,7 @@ let _currentId = 1;
     selector: 'carousel',
     templateUrl: './carousel.component.html',
     standalone: true,
-    imports: [NgIf, NgFor, NgStyle]
+    imports: [NgStyle]
 })
 export class CarouselComponent implements AfterViewInit, OnDestroy {
   /* If `true` — carousel will not cycle continuously and will have hard stops (prevent looping) */

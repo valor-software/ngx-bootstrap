@@ -6,10 +6,7 @@
     "declaration": true,
     "declarationMap": true,
     "inlineSources": true,
-    "lib": [
-      "dom",
-      "es2018"
-    ],
+    "lib": ["dom", "es2022"],
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
@@ -17,11 +14,6 @@
     "strictMetadataEmit": true,
     "enableResourceInlining": true
   },
-  "exclude": [
-    "src/test-setup.ts",
-    "**/*.spec.ts"
-  ],
-  "include": [
-    "**/*.ts"
-  ]
+  "exclude": ["src/test-setup.ts", "**/*.spec.ts"],
+  "include": ["**/*.ts"]
 }
