@@ -20,7 +20,7 @@ import {
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDatepickerDayDecoratorComponent } from './bs-datepicker-day-decorator.directive';
-import { NgIf, NgFor } from '@angular/common';
+
 import { BsDatepickerNavigationViewComponent } from './bs-datepicker-navigation-view.component';
 import { BsCalendarLayoutComponent } from './bs-calendar-layout.component';
 
@@ -38,52 +38,70 @@ import { BsCalendarLayoutComponent } from './bs-calendar-layout.component';
       <!--days matrix-->
       <table role="grid" class="days weeks">
         <thead>
-        <tr>
-          <!--if show weeks-->
-          <th *ngIf="options && options.showWeekNumbers"></th>
-          <th *ngFor="let weekday of calendar.weekdays; let i = index"
-              aria-label="weekday">{{ calendar.weekdays[i] }}
-          </th>
-        </tr>
+          <tr>
+            <!--if show weeks-->
+            @if (options && options.showWeekNumbers) {
+              <th></th>
+            }
+            @for (weekday of calendar.weekdays; track weekday; let i = $index) {
+              <th
+                aria-label="weekday">{{ calendar.weekdays[i] }}
+              </th>
+            }
+          </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let week of calendar.weeks; let i = index">
-          <td class="week" [class.active-week]="isWeekHovered"  *ngIf="options && options.showWeekNumbers">
-            <span *ngIf="isiOS" (click)="selectWeek(week)">{{ calendar.weekNumbers[i] }}</span>
-            <span *ngIf="!isiOS"
-                (click)="selectWeek(week)"
-                (mouseenter)="weekHoverHandler(week, true)"
-                (mouseleave)="weekHoverHandler(week, false)">{{ calendar.weekNumbers[i] }}</span>
-          </td>
-          <td *ngFor="let day of week.days" role="gridcell">
-
-            <!-- When we want to show tooltips for dates -->
-            <span *ngIf="!isiOS && isShowTooltip" bsDatepickerDayDecorator
-                [day]="day"
-                (click)="selectDay(day)"
-                tooltip="{{day.tooltipText}}"
-                (mouseenter)="hoverDay(day, true)"
-                (mouseleave)="hoverDay(day, false)">{{ day.label }} 3</span>
-            <!-- When tooltips for dates are disabled -->
-            <span *ngIf="!isiOS && !isShowTooltip" bsDatepickerDayDecorator
-                  [day]="day"
-                  (click)="selectDay(day)"
-                  (mouseenter)="hoverDay(day, true)"
-                  (mouseleave)="hoverDay(day, false)">{{ day.label }} 2</span>
-
-            <!-- For mobile iOS view, tooltips are not needed -->
-            <span *ngIf="isiOS" bsDatepickerDayDecorator
-                  [day]="day"
-                  (click)="selectDay(day)">{{ day.label }} 1</span>
-          </td>
-        </tr>
+          @for (week of calendar.weeks; track week; let i = $index) {
+            <tr>
+              @if (options && options.showWeekNumbers) {
+                <td class="week" [class.active-week]="isWeekHovered" >
+                  @if (isiOS) {
+                    <span (click)="selectWeek(week)">{{ calendar.weekNumbers[i] }}</span>
+                  }
+                  @if (!isiOS) {
+                    <span
+                      (click)="selectWeek(week)"
+                      (mouseenter)="weekHoverHandler(week, true)"
+                    (mouseleave)="weekHoverHandler(week, false)">{{ calendar.weekNumbers[i] }}</span>
+                  }
+                </td>
+              }
+              @for (day of week.days; track day) {
+                <td role="gridcell">
+                  <!-- When we want to show tooltips for dates -->
+                  @if (!isiOS && isShowTooltip) {
+                    <span bsDatepickerDayDecorator
+                      [day]="day"
+                      (click)="selectDay(day)"
+                      tooltip="{{day.tooltipText}}"
+                      (mouseenter)="hoverDay(day, true)"
+                    (mouseleave)="hoverDay(day, false)">{{ day.label }} 3</span>
+                  }
+                  <!-- When tooltips for dates are disabled -->
+                  @if (!isiOS && !isShowTooltip) {
+                    <span bsDatepickerDayDecorator
+                      [day]="day"
+                      (click)="selectDay(day)"
+                      (mouseenter)="hoverDay(day, true)"
+                    (mouseleave)="hoverDay(day, false)">{{ day.label }} 2</span>
+                  }
+                  <!-- For mobile iOS view, tooltips are not needed -->
+                  @if (isiOS) {
+                    <span bsDatepickerDayDecorator
+                      [day]="day"
+                    (click)="selectDay(day)">{{ day.label }} 1</span>
+                  }
+                </td>
+              }
+            </tr>
+          }
         </tbody>
       </table>
-
+    
     </bs-calendar-layout>
-  `,
+    `,
     standalone: true,
-    imports: [BsCalendarLayoutComponent, BsDatepickerNavigationViewComponent, NgIf, NgFor, BsDatepickerDayDecoratorComponent, TooltipModule]
+    imports: [BsCalendarLayoutComponent, BsDatepickerNavigationViewComponent, BsDatepickerDayDecoratorComponent, TooltipModule]
 })
 export class BsDaysCalendarViewComponent  {
   @Input() calendar!: DaysCalendarViewModel;

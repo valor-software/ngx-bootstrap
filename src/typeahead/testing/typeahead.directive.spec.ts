@@ -16,7 +16,7 @@ interface State {
 }
 
 @Component({
-    template: `<input
+  template: `<input
     [(ngModel)]="selectedState"
     [typeahead]="states"
     [typeaheadOptionField]="'name'"
@@ -54,8 +54,7 @@ describe('Directive: Typeahead', () => {
     TestBed.configureTestingModule({
       declarations: [TestTypeaheadComponent],
       imports: [TypeaheadModule, BrowserAnimationsModule, FormsModule]
-    }).compileComponents())
-  );
+    }).compileComponents()));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestTypeaheadComponent);
@@ -184,7 +183,7 @@ describe('Directive: Typeahead', () => {
       fixture.detectChanges();
 
       fixture.whenStable().then(() => {
-        expect(() => directive.onBlur()).not.toThrowError();
+        expect(() => directive.onBlur()).not.toThrow();
       });
     }));
   });
@@ -676,21 +675,21 @@ describe('Directive: Typeahead', () => {
       directive.typeaheadWordDelimiters = ',';
       fixture.detectChanges();
       tick(100);
-      expect(() => directive.ngOnInit()).toThrowError();
+      expect(() => directive.ngOnInit()).toThrow();
     }));
 
     it('and use comma for typeaheadPhraseDelimiters, should throw error', fakeAsync(() => {
       directive.typeaheadPhraseDelimiters = ',';
       fixture.detectChanges();
       tick(100);
-      expect(() => directive.ngOnInit()).toThrowError();
+      expect(() => directive.ngOnInit()).toThrow();
     }));
 
     it('and use space for typeaheadMultipleSearchDelimiters, should throw error', fakeAsync(() => {
       directive.typeaheadMultipleSearchDelimiters = ' ';
       fixture.detectChanges();
       tick(100);
-      expect(() => directive.ngOnInit()).toThrowError();
+      expect(() => directive.ngOnInit()).toThrow();
     }));
 
     it("use space for typeaheadMultipleSearchDelimiters and ',' for typeaheadWordDelimiters, should not throw error", fakeAsync(() => {
@@ -698,7 +697,7 @@ describe('Directive: Typeahead', () => {
       directive.typeaheadWordDelimiters = ',';
       fixture.detectChanges();
       tick(100);
-      expect(() => directive.ngOnInit()).not.toThrowError();
+      expect(() => directive.ngOnInit()).not.toThrow();
     }));
 
     it('and use space for typeaheadMultipleSearchDelimiters and typeaheadSingleWords is false, should not throw error', fakeAsync(() => {
@@ -706,7 +705,7 @@ describe('Directive: Typeahead', () => {
       directive.typeaheadSingleWords = false;
       fixture.detectChanges();
       tick(100);
-      expect(() => directive.ngOnInit()).not.toThrowError();
+      expect(() => directive.ngOnInit()).not.toThrow();
     }));
   });
 });

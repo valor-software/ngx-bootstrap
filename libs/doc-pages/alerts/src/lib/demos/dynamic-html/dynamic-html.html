@@ -1,3 +1,5 @@
-<div *ngFor="let alert of alerts">
-  <alert [type]="alert.type"><span [innerHtml]="alert.msg"></span></alert>
-</div>
+@for (alert of alerts; track alert) {
+  <div>
+    <alert [type]="alert.type"><span [innerHtml]="alert.msg"></span></alert>
+  </div>
+}

@@ -14,7 +14,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ConfigModel, PagesModel, PaginationLinkContext, PaginationNumberLinkContext } from './models';
 
 import { PaginationConfig } from './pagination.config';
-import { NgClass, NgIf, NgTemplateOutlet, NgFor } from '@angular/common';
+import { NgClass, NgTemplateOutlet } from '@angular/common';
 
 export interface PageChangedEvent {
   itemsPerPage: number;
@@ -32,7 +32,7 @@ export const PAGINATION_CONTROL_VALUE_ACCESSOR: Provider = {
     templateUrl: './pagination.component.html',
     providers: [PAGINATION_CONTROL_VALUE_ACCESSOR],
     standalone: true,
-    imports: [NgClass, NgIf, NgTemplateOutlet, NgFor]
+    imports: [NgClass, NgTemplateOutlet]
 })
 export class PaginationComponent implements ControlValueAccessor, OnInit {
   config?: Partial<ConfigModel>;

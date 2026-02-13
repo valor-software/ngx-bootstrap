@@ -1,9 +1,11 @@
 <p>
   <select [(ngModel)]="placement" class="form-control">
-    <option *ngFor="let placement of placements"
-      [value]="placement">
-      {{ placement }}
-    </option>
+    @for (placement of placements; track placement) {
+      <option
+        [value]="placement">
+        {{ placement }}
+      </option>
+    }
   </select>
 </p>
 <button type="button" class="btn btn-default btn-secondary"

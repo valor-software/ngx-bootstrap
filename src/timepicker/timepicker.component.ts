@@ -35,7 +35,7 @@ import {
   padNumber,
   parseTime
 } from './timepicker.utils';
-import { NgIf } from '@angular/common';
+
 
 export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: ControlValueAccessorModel = {
   provide: NG_VALUE_ACCESSOR,
@@ -77,7 +77,7 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: ControlValueAccessorModel = {
   `],
     encapsulation: ViewEncapsulation.None,
     standalone: true,
-    imports: [NgIf]
+    imports: []
 })
 export class TimepickerComponent
   implements ControlValueAccessor,

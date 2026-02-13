@@ -31,7 +31,8 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/src/accordion"],
       "options": {
-        "jestConfig": "src/accordion/jest.config.ts"
+        "jestConfig": "src/accordion/jest.config.ts",
+        "tsConfig": "src/accordion/tsconfig.spec.json"
       }
     }
   }

@@ -100,12 +100,20 @@ export class ModalDirective implements OnDestroy, OnInit {
   }
 
   @HostListener('mousedown', ['$event'])
-  onClickStarted(event: MouseEvent): void {
+  onClickStarted(event: Event): void {
+    if (!(event.target instanceof Element)) {
+      this.clickStartedInContent = false;
+      return;
+    }
     this.clickStartedInContent = event.target !== this._element.nativeElement;
   }
 
   @HostListener('mouseup', ['$event'])
-  onClickStop(event: MouseEvent): void {
+  onClickStop(event: Event): void {
+    if (!(event.target instanceof Element)) {
+      this.clickStartedInContent = false;
+      return;
+    }
     const clickedInBackdrop = event.target === this._element.nativeElement && !this.clickStartedInContent;
     if (
       this.config.ignoreBackdropClick ||
@@ -120,15 +128,21 @@ export class ModalDirective implements OnDestroy, OnInit {
     this.hide(event);
   }
 
-  // todo: consider preventing default and stopping propagation
-  @HostListener('keydown.esc', ['$event'])
-  onEsc(event: KeyboardEvent): void {
+  // Handle Escape key: listen on document and cast event to KeyboardEvent.
+  @HostListener('document:keydown', ['$event'])
+  onEsc(event: Event): void {
     if (!this._isShown) {
       return;
     }
-    if (event.keyCode === 27 || event.key === 'Escape') {
-      event.preventDefault();
+
+    const keyboardEvent = event as KeyboardEvent;
+    const hasKeyCode = (e: Event): e is KeyboardEvent & { keyCode: number } => 'keyCode' in e;
+    const isEscape = keyboardEvent.key === 'Escape' || keyboardEvent.key === 'Esc' || (hasKeyCode(keyboardEvent) && keyboardEvent.keyCode === 27);
+    if (!isEscape) {
+      return;
     }
+
+    keyboardEvent.preventDefault();
 
     if (this.config.keyboard) {
       this.dismissReason = DISMISS_REASONS.ESC;
