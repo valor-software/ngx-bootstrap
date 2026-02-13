@@ -8,7 +8,7 @@ import {
   CellHoverEvent,
   YearsCalendarViewModel
 } from '../../models';
-import { NgFor } from '@angular/common';
+
 import { BsDatepickerNavigationViewComponent } from './bs-datepicker-navigation-view.component';
 import { BsCalendarLayoutComponent } from './bs-calendar-layout.component';
 
@@ -21,25 +21,29 @@ import { BsCalendarLayoutComponent } from './bs-calendar-layout.component';
         (onNavigate)="navigateTo($event)"
         (onViewMode)="changeViewMode($event)"
       ></bs-datepicker-navigation-view>
-
+    
       <table role="grid" class="years">
         <tbody>
-        <tr *ngFor="let row of calendar?.years">
-          <td *ngFor="let year of row" role="gridcell"
-              (click)="viewYear(year)"
-              (mouseenter)="hoverYear(year, true)"
-              (mouseleave)="hoverYear(year, false)"
-              [class.disabled]="year.isDisabled"
-              [class.is-highlighted]="year.isHovered">
-            <span [class.selected]="year.isSelected">{{ year.label }}</span>
-          </td>
-        </tr>
+          @for (row of calendar?.years; track row) {
+            <tr>
+              @for (year of row; track year) {
+                <td role="gridcell"
+                  (click)="viewYear(year)"
+                  (mouseenter)="hoverYear(year, true)"
+                  (mouseleave)="hoverYear(year, false)"
+                  [class.disabled]="year.isDisabled"
+                  [class.is-highlighted]="year.isHovered">
+                  <span [class.selected]="year.isSelected">{{ year.label }}</span>
+                </td>
+              }
+            </tr>
+          }
         </tbody>
       </table>
     </bs-calendar-layout>
-  `,
+    `,
     standalone: true,
-    imports: [BsCalendarLayoutComponent, BsDatepickerNavigationViewComponent, NgFor]
+    imports: [BsCalendarLayoutComponent, BsDatepickerNavigationViewComponent]
 })
 export class BsYearsCalendarViewComponent {
   @Input() calendar!: YearsCalendarViewModel;

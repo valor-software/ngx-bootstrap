@@ -31,7 +31,8 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/src/tooltip"],
       "options": {
-        "jestConfig": "src/tooltip/jest.config.ts"
+        "jestConfig": "src/tooltip/jest.config.ts",
+        "tsConfig": "src/tooltip/tsconfig.spec.json"
       }
     }
   }

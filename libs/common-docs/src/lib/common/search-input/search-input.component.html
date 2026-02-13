@@ -9,20 +9,23 @@
       [value]="search.text"
       (keyup)="search.text = searchInput.value"
       (keypress)="preventReloading($event)"
-    />
-  </div>
-</form>
+      />
+    </div>
+  </form>
 
-<ul class="sidebar-list menu" *ngIf="search.text && routes.length" data-cypress="search-result">
-  <ng-container *ngFor="let route of routes | slice :4 | SearchFilter : search.text">
-    <li
-      *ngIf="route.path"
-      [routerLinkActive]="['active']"
-      [routerLinkActiveOptions]="{exact: true}"
-      class="w-100"
-      (click)="search.text = ''"
-    >
-      <a [routerLink]="getRouteLink(route.path)" class="text-white d-block w-100">{{route.data[0]}}</a>
-    </li>
-  </ng-container>
-</ul>
+  @if (search.text && routes.length) {
+    <ul class="sidebar-list menu" data-cypress="search-result">
+      @for (route of routes | slice :4 | SearchFilter : search.text; track route) {
+        @if (route.path) {
+          <li
+            [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{exact: true}"
+            class="w-100"
+            (click)="search.text = ''"
+            >
+            <a [routerLink]="getRouteLink(route.path)" class="text-white d-block w-100">{{route.data[0]}}</a>
+          </li>
+        }
+      }
+    </ul>
+  }

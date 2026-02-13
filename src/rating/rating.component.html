@@ -1,20 +1,20 @@
 <span (mouseleave)="reset()" (keydown)="onKeydown($event)" tabindex="0"
-      role="slider" aria-valuemin="0"
-      [attr.aria-label]="ariaLabel"
-      [attr.aria-valuemax]="range.length"
-      [attr.aria-valuenow]="value">
+  role="slider" aria-valuemin="0"
+  [attr.aria-label]="ariaLabel"
+  [attr.aria-valuemax]="range.length"
+  [attr.aria-valuenow]="value">
   <ng-template #star let-value="value" let-index="index">{{ index < value ? '&#9733;' : '&#9734;' }}</ng-template>
-  <ng-template ngFor let-r [ngForOf]="range" let-index="index">
+  @for (r of range; track r; let index = $index) {
     <span class="sr-only visually-hidden">({{ index < value ? '*' : ' ' }})</span>
     <span class="bs-rating-star"
-          (mouseenter)="enter(index + 1)"
-          (click)="rate(index + 1)"
-          [title]="r.title"
-          [style.cursor]="readonly ? 'default' : 'pointer'"
-          [class.active]="index < value">
+      (mouseenter)="enter(index + 1)"
+      (click)="rate(index + 1)"
+      [title]="r.title"
+      [style.cursor]="readonly ? 'default' : 'pointer'"
+      [class.active]="index < value">
       <ng-template [ngTemplateOutlet]="customTemplate || star"
-                   [ngTemplateOutletContext]="{index: index, value: value}">
+        [ngTemplateOutletContext]="{index: index, value: value}">
       </ng-template>
     </span>
-  </ng-template>
+  }
 </span>

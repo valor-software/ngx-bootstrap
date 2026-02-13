@@ -6,19 +6,25 @@
   <div class="col-xs-6 col-6 col-md-3">
     Hours step is:
     <select class="form-control" [(ngModel)]="hstep">
-      <option *ngFor="let opt of options.hstep" [value]="opt">{{opt}}</option>
+      @for (opt of options.hstep; track opt) {
+        <option [value]="opt">{{opt}}</option>
+      }
     </select>
   </div>
   <div class="col-xs-6 col-6 col-md-3">
     Minutes step is:
     <select class="form-control" [(ngModel)]="mstep">
-      <option *ngFor="let opt of options.mstep" [value]="opt">{{opt}}</option>
+      @for (opt of options.mstep; track opt) {
+        <option [value]="opt">{{opt}}</option>
+      }
     </select>
   </div>
   <div class="col-xs-6 col-6 col-md-3">
     Seconds step is:
     <select class="form-control" [(ngModel)]="sstep">
-      <option *ngFor="let opt of options.sstep" [value]="opt">{{opt}}</option>
+      @for (opt of options.sstep; track opt) {
+        <option [value]="opt">{{opt}}</option>
+      }
     </select>
   </div>
 </div>

@@ -23,6 +23,7 @@ export class AppComponent implements AfterContentInit {
 
   // almost same logic exists in top-menu component
   ngAfterContentInit(): any {
+    if (typeof window === 'undefined') return;
     this.analytics.trackPageViews();
     const getUrl = (router: Router) =>
       router.routerState.snapshot.url.slice(0, router.routerState.snapshot.url.indexOf('#'));
