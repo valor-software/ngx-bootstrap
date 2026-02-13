@@ -5,8 +5,10 @@
 </div>
 
 <pre class="alert"
-     [class.alert-danger]="!ctrl.valid && !ctrl.pristine"
-     [class.alert-success]="(ctrl.valid && !ctrl.pristine) || ctrl.value === null">
+  [class.alert-danger]="!ctrl.valid && !ctrl.pristine"
+  [class.alert-success]="(ctrl.valid && !ctrl.pristine) || ctrl.value === null">
   Time is: {{myTime}}
 </pre>
-<div class="alert alert-danger" *ngIf="ctrl.errors && ctrl.errors['outOfRange']">Invalid time</div>
+@if (ctrl.errors && ctrl.errors['outOfRange']) {
+  <div class="alert alert-danger">Invalid time</div>
+}

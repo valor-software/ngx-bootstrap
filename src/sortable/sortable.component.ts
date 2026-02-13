@@ -9,39 +9,41 @@ import {
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { DraggableItem } from './draggable-item';
 import { DraggableItemService } from './draggable-item.service';
-import { NgClass, NgStyle, NgIf, NgFor, NgTemplateOutlet } from '@angular/common';
+import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
 
 @Component({
     selector: 'bs-sortable',
     exportAs: 'bs-sortable',
     template: `
 <div
-    [ngClass]="wrapperClass"
-    [ngStyle]="wrapperStyle"
-    (dragover)="cancelEvent($event)"
-    (dragenter)="cancelEvent($event)"
-    (drop)="resetActiveItem($event)"
-    (mouseleave)="resetActiveItem($event)">
-  <div
-        *ngIf="showPlaceholder"
-        [ngClass]="placeholderClass"
-        [ngStyle]="placeholderStyle"
-        (dragover)="onItemDragover($event, 0)"
-        (dragenter)="cancelEvent($event)"
-    >{{placeholderItem}}</div>
+  [ngClass]="wrapperClass"
+  [ngStyle]="wrapperStyle"
+  (dragover)="cancelEvent($event)"
+  (dragenter)="cancelEvent($event)"
+  (drop)="resetActiveItem($event)"
+  (mouseleave)="resetActiveItem($event)">
+  @if (showPlaceholder) {
     <div
-        *ngFor="let item of items; let i=index;"
-        [ngClass]="[ itemClass, i === activeItem ? itemActiveClass : '' ]"
-        [ngStyle]="getItemStyle(i === activeItem)"
-        draggable="true"
-        (dragstart)="onItemDragstart($event, item, i)"
-        (dragend)="resetActiveItem($event)"
-        (dragover)="onItemDragover($event, i)"
-        (dragenter)="cancelEvent($event)"
-        aria-dropeffect="move"
-        [attr.aria-grabbed]="i === activeItem"
-    ><ng-template [ngTemplateOutlet]="itemTemplate || defItemTemplate"
-  [ngTemplateOutletContext]="{item:item, index: i}"></ng-template></div>
+      [ngClass]="placeholderClass"
+      [ngStyle]="placeholderStyle"
+      (dragover)="onItemDragover($event, 0)"
+      (dragenter)="cancelEvent($event)"
+    >{{placeholderItem}}</div>
+  }
+  @for (item of items; track item; let i = $index) {
+    <div
+      [ngClass]="[ itemClass, i === activeItem ? itemActiveClass : '' ]"
+      [ngStyle]="getItemStyle(i === activeItem)"
+      draggable="true"
+      (dragstart)="onItemDragstart($event, item, i)"
+      (dragend)="resetActiveItem($event)"
+      (dragover)="onItemDragover($event, i)"
+      (dragenter)="cancelEvent($event)"
+      aria-dropeffect="move"
+      [attr.aria-grabbed]="i === activeItem"
+      ><ng-template [ngTemplateOutlet]="itemTemplate || defItemTemplate"
+    [ngTemplateOutletContext]="{item:item, index: i}"></ng-template></div>
+  }
 </div>
 
 <ng-template #defItemTemplate let-item="item">{{item.value}}</ng-template>
@@ -54,7 +56,7 @@ import { NgClass, NgStyle, NgIf, NgFor, NgTemplateOutlet } from '@angular/common
         }
     ],
     standalone: true,
-    imports: [NgClass, NgStyle, NgIf, NgFor, NgTemplateOutlet]
+    imports: [NgClass, NgStyle, NgTemplateOutlet]
 })
 export class SortableComponent implements ControlValueAccessor {
   private static globalZoneIndex = 0;

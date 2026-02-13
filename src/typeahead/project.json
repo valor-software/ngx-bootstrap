@@ -31,7 +31,8 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/src/typeahead"],
       "options": {
-        "jestConfig": "src/typeahead/jest.config.ts"
+        "jestConfig": "src/typeahead/jest.config.ts",
+        "tsConfig": "src/typeahead/tsconfig.spec.json"
       }
     }
   }

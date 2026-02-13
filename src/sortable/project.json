@@ -25,7 +25,8 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/src/sortable"],
       "options": {
-        "jestConfig": "src/sortable/jest.config.ts"
+        "jestConfig": "src/sortable/jest.config.ts",
+        "tsConfig": "src/sortable/tsconfig.spec.json"
       }
     }
   }

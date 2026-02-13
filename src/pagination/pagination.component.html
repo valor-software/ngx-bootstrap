@@ -1,54 +1,60 @@
 <ul class="pagination" [ngClass]="classMap">
-  <li class="pagination-first page-item"
-      *ngIf="boundaryLinks"
+  @if (boundaryLinks) {
+    <li class="pagination-first page-item"
       [class.disabled]="noPrevious() || disabled">
-    <a class="page-link" href (click)="selectPage(1, $event)">
-      <ng-container [ngTemplateOutlet]="customFirstTemplate || defaultFirstTemplate"
-                   [ngTemplateOutletContext]="{disabled: noPrevious() || disabled, currentPage: page}">
-      </ng-container>
-    </a>
-  </li>
+      <a class="page-link" href (click)="selectPage(1, $event)">
+        <ng-container [ngTemplateOutlet]="customFirstTemplate || defaultFirstTemplate"
+          [ngTemplateOutletContext]="{disabled: noPrevious() || disabled, currentPage: page}">
+        </ng-container>
+      </a>
+    </li>
+  }
 
-  <li class="pagination-prev page-item"
-      *ngIf="directionLinks"
+  @if (directionLinks) {
+    <li class="pagination-prev page-item"
       [class.disabled]="noPrevious() || disabled">
-    <a class="page-link" href (click)="selectPage(page - 1, $event)">
-      <ng-container [ngTemplateOutlet]="customPreviousTemplate || defaultPreviousTemplate"
-                   [ngTemplateOutletContext]="{disabled: noPrevious() || disabled, currentPage: page}">
-      </ng-container>
-    </a>
-  </li>
+      <a class="page-link" href (click)="selectPage(page - 1, $event)">
+        <ng-container [ngTemplateOutlet]="customPreviousTemplate || defaultPreviousTemplate"
+          [ngTemplateOutletContext]="{disabled: noPrevious() || disabled, currentPage: page}">
+        </ng-container>
+      </a>
+    </li>
+  }
 
-  <li *ngFor="let pg of pages"
+  @for (pg of pages; track pg) {
+    <li
       [class.active]="pg.active"
       [class.disabled]="disabled && !pg.active"
       class="pagination-page page-item">
-    <a class="page-link" href (click)="selectPage(pg.number, $event)">
-      <ng-container [ngTemplateOutlet]="customPageTemplate || defaultPageTemplate"
-                   [ngTemplateOutletContext]="{disabled: disabled, $implicit: pg, currentPage: page}">
-      </ng-container>
-    </a>
-  </li>
+      <a class="page-link" href (click)="selectPage(pg.number, $event)">
+        <ng-container [ngTemplateOutlet]="customPageTemplate || defaultPageTemplate"
+          [ngTemplateOutletContext]="{disabled: disabled, $implicit: pg, currentPage: page}">
+        </ng-container>
+      </a>
+    </li>
+  }
 
-  <li class="pagination-next page-item"
-      *ngIf="directionLinks"
+  @if (directionLinks) {
+    <li class="pagination-next page-item"
       [class.disabled]="noNext() || disabled">
-    <a class="page-link" href (click)="selectPage(page + 1, $event)">
-      <ng-container [ngTemplateOutlet]="customNextTemplate || defaultNextTemplate"
-                   [ngTemplateOutletContext]="{disabled: noNext() || disabled, currentPage: page}">
-      </ng-container>
-    </a>
-  </li>
+      <a class="page-link" href (click)="selectPage(page + 1, $event)">
+        <ng-container [ngTemplateOutlet]="customNextTemplate || defaultNextTemplate"
+          [ngTemplateOutletContext]="{disabled: noNext() || disabled, currentPage: page}">
+        </ng-container>
+      </a>
+    </li>
+  }
 
-  <li class="pagination-last page-item"
-      *ngIf="boundaryLinks"
+  @if (boundaryLinks) {
+    <li class="pagination-last page-item"
       [class.disabled]="noNext() || disabled">
-    <a class="page-link" href (click)="selectPage(totalPages, $event)">
-      <ng-container [ngTemplateOutlet]="customLastTemplate || defaultLastTemplate"
-                   [ngTemplateOutletContext]="{disabled: noNext() || disabled, currentPage: page}">
-      </ng-container>
-    </a>
-  </li>
+      <a class="page-link" href (click)="selectPage(totalPages, $event)">
+        <ng-container [ngTemplateOutlet]="customLastTemplate || defaultLastTemplate"
+          [ngTemplateOutletContext]="{disabled: noNext() || disabled, currentPage: page}">
+        </ng-container>
+      </a>
+    </li>
+  }
 </ul>
 
 <ng-template #defaultPageTemplate let-page>{{ page.text }}</ng-template>

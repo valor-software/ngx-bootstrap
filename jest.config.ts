@@ -1,6 +1,8 @@
-const { getJestProjects } = require('@nx/jest');
+import { getJestProjectsAsync } from '@nx/jest';
 
-export default {
-  setupFilesAfterEnv: ['<rootDir>/scripts/jest/toHaveCssClass.ts'],
-  projects: getJestProjects()
-};
+export default async () => ({
+  projects: [
+    ...(await getJestProjectsAsync()),
+  ],
+   setupFilesAfterEnv: ['<rootDir>/scripts/jest/toHaveCssClass.ts'],
+});
