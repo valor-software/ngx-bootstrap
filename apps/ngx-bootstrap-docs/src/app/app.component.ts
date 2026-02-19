@@ -1,5 +1,5 @@
-import { DOCUMENT } from '@angular/common';
-import { AfterContentInit, Component, Inject } from '@angular/core';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { AfterContentInit, Component, Inject, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, UrlSerializer } from '@angular/router';
 import { Analytics } from '@ngx-bootstrap-doc/docs';
 import { filter } from 'rxjs/operators';
@@ -18,7 +18,8 @@ export class AppComponent implements AfterContentInit {
     private router: Router,
     private urlSerializer: UrlSerializer,
     private analytics: Analytics,
-    @Inject(DOCUMENT) private document: any
+    @Inject(DOCUMENT) private document: any,
+    @Inject(PLATFORM_ID) private platformId: object
   ) {}
 
   // almost same logic exists in top-menu component
@@ -31,25 +32,28 @@ export class AppComponent implements AfterContentInit {
     const justDoIt = (): void => {
       const _cur = getUrl(this.router);
       this.showSidebar = !!getUrl(this.router);
-      if (typeof PR !== 'undefined' && _prev !== _cur) {
-        _prev = _cur;
-        // google code-prettify
-        PR.prettyPrint();
-      }
-
-      const hash = this.route.snapshot.fragment;
-      if (hash) {
-        const target: HTMLElement | null = this.document.getElementById(hash);
-        const header: HTMLElement | null = this.document.getElementById('header');
-        if (target && header) {
-          setTimeout(() => {
-            const sidebar: HTMLElement | null = this.document.getElementById('sidebar');
-            const targetPosY: number =  innerWidth <= 991 ? target.offsetTop - header.offsetHeight - 6 - (sidebar?.offsetHeight || 0) : target.offsetTop - header.offsetHeight - 6;
-            window.scrollTo({top: targetPosY, behavior: 'smooth'});
-          }, 100);
+      
+      if (isPlatformBrowser(this.platformId)) {
+        if (typeof (window as any).PR !== 'undefined' && _prev !== _cur) {
+          _prev = _cur;
+          // google code-prettify
+          (window as any).PR.prettyPrint();
         }
-      } else {
-        window.scrollTo({top: 0, behavior: 'smooth'});
+
+        const hash = this.route.snapshot.fragment;
+        if (hash) {
+          const target: HTMLElement | null = this.document.getElementById(hash);
+          const header: HTMLElement | null = this.document.getElementById('header');
+          if (target && header) {
+            setTimeout(() => {
+              const sidebar: HTMLElement | null = this.document.getElementById('sidebar');
+              const targetPosY: number = window.innerWidth <= 991 ? target.offsetTop - header.offsetHeight - 6 - (sidebar?.offsetHeight || 0) : target.offsetTop - header.offsetHeight - 6;
+              window.scrollTo({top: targetPosY, behavior: 'smooth'});
+            }, 100);
+          }
+        } else {
+          window.scrollTo({top: 0, behavior: 'smooth'});
+        }
       }
     };
 

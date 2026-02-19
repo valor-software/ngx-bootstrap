@@ -9,7 +9,8 @@ import {
   SimpleChanges,
   ViewChildren
 } from "@angular/core";
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { PLATFORM_ID } from '@angular/core';
 import { ContentSection } from '../../models/content-section.model';
 import { Router } from "@angular/router";
 interface IComponentContent {
@@ -38,6 +39,7 @@ export class AddNavComponent implements OnChanges, AfterViewChecked, AfterViewIn
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor(
     @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) private platformId: object,
     private _renderer: Renderer2,
     private router: Router,
   ){}
@@ -71,7 +73,7 @@ export class AddNavComponent implements OnChanges, AfterViewChecked, AfterViewIn
   }
 
   goToSectionWIthAnchor(anchor?: string | null) {
-    if (!anchor) {
+    if (!anchor || !isPlatformBrowser(this.platformId)) {
       return;
     }
 
@@ -86,28 +88,34 @@ export class AddNavComponent implements OnChanges, AfterViewChecked, AfterViewIn
   }
 
   initActiveMenuTab() {
-    if (this.scrollElementsList?.length) {
-      this.scrollElementsList.map(item => {
-        const min = item.nativeElement.getAttribute('data-min-scroll-value');
-        const max = item.nativeElement.getAttribute('data-max-scroll-value');
-        const position = window.pageYOffset;
-        if (position >= min && position <= max) {
-          this._renderer.addClass(item.nativeElement.parentElement, 'active');
-        } else {
-          this._renderer.removeClass(item.nativeElement.parentElement, 'active');
-        }
-      });
+    if (!isPlatformBrowser(this.platformId) || !this.scrollElementsList?.length) {
+      return;
     }
+    
+    this.scrollElementsList.map(item => {
+      const min = item.nativeElement.getAttribute('data-min-scroll-value');
+      const max = item.nativeElement.getAttribute('data-max-scroll-value');
+      const position = window.pageYOffset;
+      if (position >= min && position <= max) {
+        this._renderer.addClass(item.nativeElement.parentElement, 'active');
+      } else {
+        this._renderer.removeClass(item.nativeElement.parentElement, 'active');
+      }
+    });
   }
 
   setScrollAttributes() {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+    
     const header: number = this.document.querySelector('header')?.offsetHeight || 0;
     this.scrollElementsList?.map(item => {
       const id = item.nativeElement.getAttribute('data-anchor');
       const target: HTMLElement | null = this.document.getElementById(id);
-      if (target) {
+      if (target && target.parentElement) {
         const targetPosY: number = target.offsetTop - header - 10;
-        const parentHeight = (<HTMLElement>target.parentElement).getBoundingClientRect().height + 6 || 0;
+        const parentHeight = target.parentElement.getBoundingClientRect().height + 6 || 0;
         this._renderer.setAttribute(item.nativeElement, 'data-max-scroll-value', (targetPosY + parentHeight).toString());
         this._renderer.setAttribute(item.nativeElement, 'data-min-scroll-value', (targetPosY).toString());
       }

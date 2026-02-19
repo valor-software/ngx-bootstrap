@@ -33,6 +33,38 @@
         }
       },
       "configurations": {
+        "production-cf": {
+          "fileReplacements": [
+            {
+              "replace": "apps/ngx-bootstrap-docs/src/environments/environment.ts",
+              "with": "apps/ngx-bootstrap-docs/src/environments/environment.prod.ts"
+            }
+          ],
+          "baseHref": "",
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "buildOptimizer": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "2mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "6kb",
+              "maximumError": "10kb"
+            }
+          ],
+          "outputPath": "dist/apps/ngx-bootstrap",
+          "index": "apps/ngx-bootstrap-docs/src/index.html",
+          "main": "apps/ngx-bootstrap-docs/src/main.ts",
+          "tsConfig": "apps/ngx-bootstrap-docs/tsconfig.app.json"
+        },
         "production": {
           "fileReplacements": [
             {
@@ -166,6 +198,22 @@
         }
       },
       "defaultConfiguration": "production"
+    },
+    "fix-404": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "node scripts/fix-404.js"
+      }
+    },
+    "build-with-404-fix": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": [
+          "nx build ngx-bootstrap-docs --configuration=production-cf",
+          "nx run ngx-bootstrap-docs:fix-404"
+        ],
+        "parallel": false
+      }
     }
   }
 }

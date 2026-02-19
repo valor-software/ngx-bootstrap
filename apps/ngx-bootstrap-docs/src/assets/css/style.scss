@@ -1,5 +1,7 @@
-@import "sidebar";
-@import "bs-datepicker";
+@use "variables" as *;
+@use "sidebar";
+@use "bs-datepicker";
+@use "adaptive";
 
 /* HEADER */
 header {
@@ -997,5 +999,4 @@ footer {
 }
 
 /*Imported adaptive styles*/
-@import "adaptive";
 

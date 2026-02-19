@@ -1,8 +1,8 @@
-@import "manrope";
-@import "open-sans.css";
-@import "reboot";
-@import "variables";
-@import "common-styles.scss";
+@use "manrope";
+@use "open-sans.css";
+@use "reboot";
+@use "variables" as *;
+@use "common-styles.scss";
 
 /* sidebar */
 

@@ -19,6 +19,11 @@ export enum BsVerions {
 let guessedVersion: AvailableBsVersions;
 
 function _guessBsVersion(): AvailableBsVersions {
+  // Return default version during SSR or when document is not available
+  if (!window.document || !window.document.createElement) {
+    return 'bs5'; // default to bs5
+  }
+
   const spanEl = window.document.createElement('span');
   spanEl.innerText = 'testing bs version';
   spanEl.classList.add('d-none');

@@ -1,5 +1,7 @@
 import { ActivatedRoute, NavigationEnd, Router, Routes, UrlSegment } from '@angular/router';
 import { Component, HostBinding, Inject, inject, Renderer2 } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { PLATFORM_ID } from '@angular/core';
 
 import { AvailableBsVersions, currentBsVersion, getBsVer, IBsVersion, setTheme } from 'ngx-bootstrap/utils';
 import { StyleManager } from '../../theme/style-manager';
@@ -47,9 +49,10 @@ export class SidebarComponent {
     private themeStorage: ThemeStorage,
     public styleManager: StyleManager,
     @Inject(DOCS_TOKENS) _routes: Routes,
-    @Inject(SIDEBAR_ROUTES) sidebarRoutesStructure: SidebarRoutesType
+    @Inject(SIDEBAR_ROUTES) sidebarRoutesStructure: SidebarRoutesType,
+    @Inject(PLATFORM_ID) private platformId: object
   ) {
-    if (innerWidth <= 991) {
+    if (isPlatformBrowser(this.platformId) && innerWidth <= 991) {
       this.menuIsOpened = false;
     }
     this.bodyElement = inject(Renderer2).selectRootElement('body', true);
@@ -140,7 +143,7 @@ export class SidebarComponent {
   }
 
   closeAdaptiveMenu() {
-    if (innerWidth <= 991) {
+    if (isPlatformBrowser(this.platformId) && innerWidth <= 991) {
       this.menuIsOpened = false;
       this.toggleSideBar(false);
     }

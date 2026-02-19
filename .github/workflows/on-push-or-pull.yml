@@ -14,7 +14,6 @@ env:
   MOZ_HEALESS: 1
   SAUCE_USERNAME_PR: valorkinpr
   SAUCE_ACCESS_KEY_PR: e0a97bd3-4b74-4408-89bf-cce1b44a8bf1
-  FIREBASE_CHANNEL: ${{ fromJSON('["", "live"]')[!github.base_ref] }}
   PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 0
 
   CACHE_NODE_MODULES_PATH: |
@@ -29,7 +28,7 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.11.0
+        uses: styfle/cancel-workflow-action@0.12.1
         with:
           access_token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -38,8 +37,8 @@ jobs:
     runs-on: ubuntu-22.04
     needs: one_run
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/cache@v3
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         id: cache
         with:
           path: ${{ env.CACHE_NODE_MODULES_PATH }}
@@ -52,12 +51,12 @@ jobs:
     needs: install
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/cache@v3
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         with:
           path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
@@ -71,12 +70,12 @@ jobs:
     runs-on: ubuntu-22.04
     needs: build
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/cache@v3
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         with:
           path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
@@ -90,53 +89,96 @@ jobs:
     runs-on: ubuntu-22.04
     needs: install
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/cache@v3
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         with:
           path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
 #      - run: npm run lint -- --runner=cloud
       - run: npm run lint --
 
-  # firebase deploy preview
-  firebase_preview:
+    # deploy to cloudflare pages
+  cloudflare_deploy:
     runs-on: ubuntu-22.04
     needs: build
     outputs:
-      output_url: ${{ steps.firebase_hosting_preview.outputs.details_url }}
+      deployment_url: ${{ steps.cloudflare_deploy.outputs.deployment-url }}
+      preview_url: ${{ steps.extract_preview_url.outputs.preview_url }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/cache@v3
-        with:
-          path: ${{ env.CACHE_DIST_PATH }}
-          key: dist-${{ github.run_id }}
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        continue-on-error: true
-        id: firebase_hosting_preview
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NGX_BOOTSTRAP_DEMO }}'
-          projectId: ngx-bootstrap-demo
-          channelId: ${{ env.FIREBASE_CHANNEL }}
-          expires: 7d
+      - uses: actions/checkout@v4
+
+      # Wait for Cloudflare deployment with intelligent polling
+      - name: Wait for Cloudflare deployment
+        id: wait_deployment
+        run: |
+          echo "Waiting for Cloudflare deployment to complete..."
+          MAX_ATTEMPTS=30
+          ATTEMPT=0
+          BRANCH_NAME=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+
+          while [ $ATTEMPT -lt $MAX_ATTEMPTS ]; do
+            echo "Attempt $((ATTEMPT + 1))/$MAX_ATTEMPTS: Checking deployment status..."
+
+            # Get deployments for the project
+            RESPONSE=$(curl -s -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+              "https://api.cloudflare.com/client/v4/accounts/${{ secrets.CLOUDFLARE_ACCOUNT_ID }}/pages/projects/ngx-bootstrap/deployments")
+
+            # Check if we have a successful deployment for this branch/commit
+            DEPLOYMENT_URL=$(echo "$RESPONSE" | jq -r --arg branch "$BRANCH_NAME" --arg commit "$GITHUB_SHA" \
+              '.result[] | select(.deployment_trigger.metadata.branch == $branch and .deployment_trigger.metadata.commit_hash == $commit and .latest_stage.status == "success") | .url' | head -1)
+
+            if [ "$DEPLOYMENT_URL" != "null" ] && [ -n "$DEPLOYMENT_URL" ]; then
+              echo "✅ Deployment ready! URL: $DEPLOYMENT_URL"
+              echo "deployment_url=$DEPLOYMENT_URL" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+
+            # Check if deployment failed
+            FAILED=$(echo "$RESPONSE" | jq -r --arg branch "$BRANCH_NAME" --arg commit "$GITHUB_SHA" \
+              '.result[] | select(.deployment_trigger.metadata.branch == $branch and .deployment_trigger.metadata.commit_hash == $commit and .latest_stage.status == "failure") | .id' | head -1)
+
+            if [ "$FAILED" != "null" ] && [ -n "$FAILED" ]; then
+              echo "❌ Deployment failed!"
+              exit 1
+            fi
+
+            echo "⏳ Deployment still in progress, waiting 20 seconds..."
+            sleep 20
+            ATTEMPT=$((ATTEMPT + 1))
+          done
+
+          echo "❌ Timeout waiting for deployment"
+          exit 1
+
+      - name: Set preview URL output
+        id: get_preview_url
+        run: |
+          if [ -n "${{ steps.cloudflare_deploy.outputs.deployment-url }}" ]; then
+            # Extract just the hostname from the full URL
+            PREVIEW_URL=$(echo "${{ steps.cloudflare_deploy.outputs.deployment-url }}" | sed 's|https://||')
+            echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
+            echo "Preview URL: https://$PREVIEW_URL"
+          else
+            echo "No preview URL available"
+          fi
 
   # run playwright
   e2e_smoke:
     name: e2e smoke (${{ matrix.shard }}/${{ strategy.job-total }})
     runs-on: ubuntu-22.04
-    needs: [install, build, firebase_preview]
+    needs: [install, build, cloudflare_deploy]
 
     strategy:
       fail-fast: false
       matrix:
         shard: [1, 2]
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/cache@v3
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         with:
           path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
@@ -146,12 +188,12 @@ jobs:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npx playwright install
           npx playwright install-deps chromium
 
-      - name: smoke e2e on firebase
-        if: ${{ needs.firebase_preview.outputs.output_url }}
-        run: PLAYWRIGHT_TEST_BASE_URL="${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/" npx nx run ngx-bootstrap-docs-e2e:e2e --pwProject=chromium-integration --skipServe --shard=${{ matrix.shard }}/${{ strategy.job-total }}
+      - name: smoke e2e on cloudflare pages
+        if: ${{ needs.cloudflare_deploy.outputs.preview_url }}
+        run: PLAYWRIGHT_TEST_BASE_URL="https://${{ needs.cloudflare_deploy.outputs.preview_url }}" npx nx run ngx-bootstrap-docs-e2e:e2e --pwProject=chromium-integration --skipServe --shard=${{ matrix.shard }}/${{ strategy.job-total }}
 
       - name: smoke e2e local
-        if: ${{ !needs.firebase_preview.outputs.output_url }}
+        if: ${{ !needs.cloudflare_deploy.outputs.preview_url }}
         run: npx nx run ngx-bootstrap-docs-e2e:e2e --pwProject=chromium-integration --shard=${{ matrix.shard }}/${{ strategy.job-total }}
 
       - uses: actions/upload-artifact@v4
@@ -164,19 +206,19 @@ jobs:
   e2e_full:
     name: e2e full
     runs-on: ubuntu-22.04
-    needs: [e2e_smoke]
+    needs: [e2e_smoke, cloudflare_deploy]
 
     strategy:
       fail-fast: false
       matrix:
         shard: [1, 2]
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/cache@v3
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
         with:
           path: ${{ env.CACHE_NODE_MODULES_PATH }}
           key: node_modules-${{ hashFiles('**/package-lock.json') }}
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         with:
           path: ${{ env.CACHE_DIST_PATH }}
           key: dist-${{ github.run_id }}
@@ -186,13 +228,13 @@ jobs:
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 npx playwright install
           npx playwright install-deps chromium
 
-      - name: full e2e on firebase
-        if: ${{ needs.firebase_preview.outputs.output_url }}
+      - name: full e2e on cloudflare pages
+        if: ${{ needs.cloudflare_deploy.outputs.preview_url }}
         continue-on-error: true
-        run: npx nx run ngx-bootstrap-docs-e2e:e2e --pwProject=chromium-full --baseUrl=${{ needs.firebase_preview.outputs.output_url }}/ngx-bootstrap/ --skipServe --shard=${{ matrix.shard }}/${{ strategy.job-total }}
+        run: npx nx run ngx-bootstrap-docs-e2e:e2e --pwProject=chromium-full --baseUrl=https://${{ needs.cloudflare_deploy.outputs.preview_url }} --skipServe --shard=${{ matrix.shard }}/${{ strategy.job-total }}
 
       - name: full e2e on local
-        if: ${{ !needs.firebase_preview.outputs.output_url }}
+        if: ${{ !needs.cloudflare_deploy.outputs.preview_url }}
         continue-on-error: true
         run: npx nx run ngx-bootstrap-docs-e2e:e2e --pwProject=chromium-full --shard=${{ matrix.shard }}/${{ strategy.job-total }}
 
