@@ -152,6 +152,23 @@ export class TabsetComponent implements OnDestroy {
     if (index === -1 || this.isDestroyed) {
       return;
     }
+    
+    // Emit beforeRemove event and allow cancellation
+    if (options.emit) {
+      const beforeRemoveEvent = { tab, preventDefault: false };
+      // Create a preventDefault function
+      (beforeRemoveEvent as any).preventDefault = () => {
+        beforeRemoveEvent.preventDefault = true;
+      };
+      
+      tab.beforeRemove.emit(beforeRemoveEvent);
+      
+      // If removal was prevented, don't continue
+      if (beforeRemoveEvent.preventDefault) {
+        return;
+      }
+    }
+    
     // Select a new tab if the tab to be removed is selected and not destroyed
     if (options.reselect && tab.active && this.hasAvailableTabs(index)) {
       const newActiveIndex = this.getClosestTabIndex(index);

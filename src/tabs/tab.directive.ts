@@ -83,6 +83,8 @@ export class TabDirective implements OnInit, OnDestroy {
   @Output() selectTab: EventEmitter<TabDirective> = new EventEmitter();
   /** fired when tab became inactive, $event:Tab equals to deselected instance of Tab component */
   @Output() deselect: EventEmitter<TabDirective> = new EventEmitter();
+  /** fired before tab will be removed, can be canceled by calling event.preventDefault() */
+  @Output() beforeRemove: EventEmitter<any> = new EventEmitter();
   /** fired before tab will be removed, $event:Tab equals to instance of removed tab */
   @Output() removed: EventEmitter<TabDirective> = new EventEmitter();
 
