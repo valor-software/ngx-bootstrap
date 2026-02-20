@@ -154,6 +154,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
   /** This attribute indicates that the dropdown should be opened upwards */
   @Input() dropup = false;
+  /** custom filter function that takes (option: any, query: string) => boolean */
+  @Input() typeaheadFilterFunction?: (option: any, query: string) => boolean;
 
   // not yet implemented
   /** if false restrict model values to the ones selected from the popup only will be provided */
@@ -485,7 +487,16 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
             return typeahead.pipe(
               filter((option: TypeaheadOption) => {
-                return !!option && this.testMatch(this.normalizeOption(option), normalizedQuery);
+                if (!option) return false;
+                
+                // Use custom filter function if provided
+                if (this.typeaheadFilterFunction) {
+                  const query = typeof normalizedQuery === 'string' ? normalizedQuery : normalizedQuery.join(' ');
+                  return this.typeaheadFilterFunction(option, query);
+                }
+                
+                // Use default filtering logic
+                return this.testMatch(this.normalizeOption(option), normalizedQuery);
               }),
               toArray()
             );
