@@ -16,7 +16,7 @@ import { NgControl } from '@angular/forms';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
 
 import { EMPTY, from, isObservable, Observable, Subscription } from 'rxjs';
-import { debounceTime, filter, mergeMap, switchMap, tap, toArray } from 'rxjs/operators';
+import { debounceTime, filter, map, mergeMap, switchMap, tap, toArray } from 'rxjs/operators';
 import { TypeaheadOptionItemContext, TypeaheadOptionListContext } from './models';
 
 import { TypeaheadContainerComponent } from './typeahead-container.component';
@@ -24,6 +24,7 @@ import { TypeaheadMatch } from './typeahead-match.class';
 import { TypeaheadOrder } from './typeahead-order.class';
 import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
 import { TypeaheadConfig } from './typeahead.config';
+import { TypeaheadDataset } from './typeahead-dataset.interface';
 import { PositioningService } from 'ngx-bootstrap/positioning';
 
 // eslint-disable-next-line
@@ -154,6 +155,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
   /** This attribute indicates that the dropdown should be opened upwards */
   @Input() dropup = false;
+  /** array of datasets for multiple result sets */
+  @Input() typeaheadDatasets?: TypeaheadDataset[];
 
   // not yet implemented
   /** if false restrict model values to the ones selected from the popup only will be provided */
@@ -449,6 +452,73 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this._typeahead.dispose();
   }
 
+  protected processMultipleDatasets(normalizedQuery: string | string[]): Observable<TypeaheadOption[]> {
+    if (!this.typeaheadDatasets) {
+      return EMPTY;
+    }
+
+    const datasetResults = this.typeaheadDatasets.map(dataset => {
+      const source = isObservable(dataset.source) ? dataset.source : from(dataset.source);
+      const limit = dataset.limit || 5;
+
+      return source.pipe(
+        filter((option: TypeaheadOption) => {
+          if (!option) return false;
+          
+          // Use dataset-specific search field or fall back to display field
+          const searchField = dataset.searchField || dataset.displayField;
+          const searchValue = getValueFromObject(option, searchField);
+          const normalizedOption = this.typeaheadLatinize ? latinize(searchValue) : searchValue;
+          
+          return this.testMatch(normalizedOption.toLowerCase(), normalizedQuery);
+        }),
+        toArray(),
+        map((matches: TypeaheadOption[]) => {
+          // Limit results for this dataset
+          const limitedMatches = matches.slice(0, limit);
+          
+          // Add dataset info to matches
+          return limitedMatches.map(match => ({
+            ...match,
+            _dataset: dataset.name,
+            _datasetHeader: dataset.header,
+            _datasetClass: dataset.itemClass,
+            _displayField: dataset.displayField
+          }));
+        })
+      );
+    });
+
+    // Merge all dataset results
+    return from(datasetResults).pipe(
+      mergeMap(result => result),
+      toArray(),
+      map((allResults: TypeaheadOption[][]) => {
+        // Flatten and optionally add headers
+        const flatResults: TypeaheadOption[] = [];
+        
+        allResults.forEach((datasetResults, index) => {
+          if (datasetResults.length > 0) {
+            const dataset = this.typeaheadDatasets![index];
+            
+            // Add header if specified
+            if (dataset.header) {
+              flatResults.push({
+                _isHeader: true,
+                _headerText: dataset.header,
+                _dataset: dataset.name
+              });
+            }
+            
+            flatResults.push(...datasetResults);
+          }
+        });
+        
+        return flatResults;
+      })
+    );
+  }
+
   protected asyncActions(): void {
     this._subscriptions.push(
       this.keyUpEventEmitter
@@ -477,6 +547,12 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
             this._allEnteredValue = value;
             const normalizedQuery = this.normalizeQuery(value);
 
+            // Handle multiple datasets
+            if (this.typeaheadDatasets && this.typeaheadDatasets.length > 0) {
+              return this.processMultipleDatasets(normalizedQuery);
+            }
+
+            // Handle single dataset (backward compatibility)
             if (!this.typeahead) {
               return EMPTY;
             }
@@ -591,10 +667,24 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   protected prepareMatches(options: TypeaheadOption | TypeaheadOption[]): void {
-    const limited = options.slice(0, this.typeaheadOptionsLimit);
+    const optionsArray = Array.isArray(options) ? options : [options];
+    
+    // Handle multiple datasets - don't limit here as datasets already have their own limits
+    const limited = this.typeaheadDatasets ? optionsArray : optionsArray.slice(0, this.typeaheadOptionsLimit);
     const sorted = !this.typeaheadOrderBy ? limited : this.orderMatches(limited);
 
-    if (this.typeaheadGroupField) {
+    // Handle dataset headers and grouping
+    if (this.typeaheadDatasets) {
+      this._matches = sorted.map((option: any) => {
+        if (option._isHeader) {
+          return new TypeaheadMatch(option._headerText, option._headerText, true);
+        }
+        
+        const displayField = option._displayField || this.typeaheadOptionField;
+        const displayValue = getValueFromObject(option, displayField);
+        return new TypeaheadMatch(option, displayValue);
+      });
+    } else if (this.typeaheadGroupField) {
       let matches: TypeaheadMatch[] = [];
 
       // extract all group names
