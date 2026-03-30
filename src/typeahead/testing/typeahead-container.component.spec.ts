@@ -55,11 +55,17 @@ describe('Component: TypeaheadContainer', () => {
 
     component = fixture.componentInstance;
     component.parent = {
-      typeaheadSelectFirstItem: false,
-      typeaheadIsFirstItemActive: true
-    } as TypeaheadDirective;
-
-    component.parent.typeaheadOnPreview = new EventEmitter<TypeaheadMatch>();
+      typeaheadSelectFirstItem: () => false,
+      typeaheadIsFirstItemActive: () => true,
+      optionsListTemplate: () => undefined,
+      typeaheadItemTemplate: () => undefined,
+      isAnimated: () => false,
+      adaptivePosition: () => false,
+      typeaheadScrollable: () => false,
+      typeaheadOptionsInScrollableView: () => 5,
+      typeaheadLatinize: () => true,
+      typeaheadOnPreview: new EventEmitter<TypeaheadMatch>()
+    } as unknown as TypeaheadDirective;
 
     fixture.detectChanges();
     tick(1);
@@ -180,11 +186,17 @@ describe('Component: TypeaheadContainer', () => {
 
     beforeEach(() => {
       component.parent = {
-        typeaheadSelectFirstItem: true,
-        typeaheadIsFirstItemActive: true
-      } as TypeaheadDirective;
-
-      component.parent.typeaheadOnPreview = new EventEmitter<TypeaheadMatch>();
+        typeaheadSelectFirstItem: () => true,
+        typeaheadIsFirstItemActive: () => true,
+        optionsListTemplate: () => undefined,
+        typeaheadItemTemplate: () => undefined,
+        isAnimated: () => false,
+        adaptivePosition: () => false,
+        typeaheadScrollable: () => false,
+        typeaheadOptionsInScrollableView: () => 5,
+        typeaheadLatinize: () => true,
+        typeaheadOnPreview: new EventEmitter<TypeaheadMatch>()
+      } as unknown as TypeaheadDirective;
 
       component.query = 'fo';
       component.matches = [
@@ -320,10 +332,17 @@ describe('Component: TypeaheadContainer', () => {
 
     beforeEach(() => {
       component.parent = {
-        typeaheadSelectFirstItem: true,
-        typeaheadIsFirstItemActive: true
-      } as TypeaheadDirective;
-      component.parent.typeaheadOnPreview = new EventEmitter<TypeaheadMatch>();
+        typeaheadSelectFirstItem: () => true,
+        typeaheadIsFirstItemActive: () => true,
+        optionsListTemplate: () => undefined,
+        typeaheadItemTemplate: () => undefined,
+        isAnimated: () => false,
+        adaptivePosition: () => false,
+        typeaheadScrollable: () => false,
+        typeaheadOptionsInScrollableView: () => 5,
+        typeaheadLatinize: () => true,
+        typeaheadOnPreview: new EventEmitter<TypeaheadMatch>()
+      } as unknown as TypeaheadDirective;
 
       component.query = 'a';
       component.matches = [
@@ -382,11 +401,17 @@ describe('Component: TypeaheadContainer', () => {
       fixture = TestBed.createComponent(TypeaheadContainerComponent);
       component = fixture.componentInstance;
       component.parent = {
-        typeaheadOptionsInScrollableView: 3,
-        typeaheadScrollable: true,
-        typeaheadIsFirstItemActive: true
-      } as TypeaheadDirective;
-      component.parent.typeaheadOnPreview = new EventEmitter<TypeaheadMatch>();
+        typeaheadOptionsInScrollableView: () => 3,
+        typeaheadScrollable: () => true,
+        typeaheadIsFirstItemActive: () => true,
+        typeaheadSelectFirstItem: () => true,
+        optionsListTemplate: () => undefined,
+        typeaheadItemTemplate: () => undefined,
+        isAnimated: () => false,
+        adaptivePosition: () => false,
+        typeaheadLatinize: () => true,
+        typeaheadOnPreview: new EventEmitter<TypeaheadMatch>()
+      } as unknown as TypeaheadDirective;
 
       fixture.detectChanges();
 
@@ -526,9 +551,17 @@ describe('Component: TypeaheadContainer', () => {
 
     beforeEach(() => {
       component.parent = {
-        typeaheadIsFirstItemActive: false
-      } as TypeaheadDirective;
-      component.parent.typeaheadOnPreview = new EventEmitter<TypeaheadMatch>();
+        typeaheadIsFirstItemActive: () => false,
+        typeaheadSelectFirstItem: () => false,
+        optionsListTemplate: () => undefined,
+        typeaheadItemTemplate: () => undefined,
+        isAnimated: () => false,
+        adaptivePosition: () => false,
+        typeaheadScrollable: () => false,
+        typeaheadOptionsInScrollableView: () => 5,
+        typeaheadLatinize: () => true,
+        typeaheadOnPreview: new EventEmitter<TypeaheadMatch>()
+      } as unknown as TypeaheadDirective;
 
       component.query = 'fo';
       component.matches = [
