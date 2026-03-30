@@ -1,13 +1,14 @@
 import {
   Directive,
   ElementRef,
-  EventEmitter,
+  Input,
   OnDestroy,
   OnInit,
   Renderer2,
   TemplateRef,
   ViewContainerRef,
-  input,
+  effect,
+  model,
   output
 } from '@angular/core';
 import { PopoverConfig } from './popover.config';
@@ -32,74 +33,64 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /** unique id popover - use for aria-describedby */
   popoverId = id++;
   /** sets disable adaptive position */
-  readonly adaptivePosition = input(this._config.adaptivePosition);
+  @Input() adaptivePosition = true;
 
-  readonly boundariesElement = input<'viewport' | 'scrollParent' | 'window' | undefined>(this._config.boundariesElement as 'viewport' | 'scrollParent' | 'window' | undefined);
+  @Input() boundariesElement?: 'viewport' | 'scrollParent' | 'window';
   /**
    * Content to be displayed as popover.
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  readonly popover = input<string | TemplateRef<any> | undefined>();
+  @Input() popover?: string | TemplateRef<any>;
   /**
    * Context to be used if popover is a template.
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  readonly popoverContext = input<any>();
+  @Input() popoverContext: any;
   /**
    * Title of a popover.
    */
-  readonly popoverTitle = input<string | undefined>();
+  @Input() popoverTitle?: string;
   /**
    * Placement of a popover. Accepts: "top", "bottom", "left", "right"
    */
-  readonly placement = input<AvailableBSPositions>(this._config.placement as AvailableBSPositions);
+  @Input() placement: AvailableBSPositions = 'top';
   /**
    * Close popover on outside click
    */
-  readonly outsideClick = input(this._config.outsideClick);
+  @Input() outsideClick = false;
   /**
    * Specifies events that should trigger. Supports a space separated list of
    * event names.
    */
-  readonly triggers = input(this._config.triggers);
+  @Input() triggers = 'click';
   /**
    * A selector specifying the element the popover should be appended to.
    */
-  readonly container = input<string | undefined>(this._config.container);
+  @Input() container?: string;
 
   /**
    * Css class for popover container
    */
-  readonly containerClass = input('');
+  @Input() containerClass = '';
 
   /**
    * Returns whether or not the popover is currently being shown
    */
-  get isOpen(): boolean {
-    return this._popover.isShown;
-  }
-
-  set isOpen(value: boolean) {
-    if (value) {
-      this.show();
-    } else {
-      this.hide();
-    }
-  }
+  readonly isOpen = model(false);
 
   /**
    * Delay before showing the tooltip
    */
-  readonly delay = input(this._config.delay);
+  @Input() delay = 0;
 
   /**
    * Emits an event when the popover is shown
    */
-  onShown: EventEmitter<unknown>;
+  readonly onShown = output<unknown>();
   /**
    * Emits an event when the popover is hidden
    */
-  onHidden: EventEmitter<unknown>;
+  readonly onHidden = output<unknown>();
 
   protected _popoverCancelShowFn?: () => void;
 
@@ -110,7 +101,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
   private _ariaDescribedby?: string;
 
   constructor(
-    private _config: PopoverConfig,
+    _config: PopoverConfig,
     private _elementRef: ElementRef,
     private _renderer: Renderer2,
     _viewContainerRef: ViewContainerRef,
@@ -121,8 +112,19 @@ export class PopoverDirective implements OnInit, OnDestroy {
       .createLoader<PopoverContainerComponent>(_elementRef, _viewContainerRef, _renderer)
       .provide({ provide: PopoverConfig, useValue: _config });
 
-    this.onShown = this._popover.onShown;
-    this.onHidden = this._popover.onHidden;
+    Object.assign(this, _config);
+
+    this._popover.onShown.subscribe(() => this.onShown.emit(undefined));
+    this._popover.onHidden.subscribe(() => this.onHidden.emit(undefined));
+
+    effect(() => {
+      const open = this.isOpen();
+      if (open && !this._popover.isShown) {
+        this.show();
+      } else if (!open && this._popover.isShown) {
+        this.hide();
+      }
+    });
 
     // fix: no focus on button on Mac OS #1795
     if (typeof window !== 'undefined') {
@@ -141,7 +143,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
    * set id for the popover
    */
   setAriaDescribedBy(): void {
-    this._ariaDescribedby = this.isOpen ? `ngx-popover-${this.popoverId}` : void 0;
+    this._ariaDescribedby = this._popover.isShown ? `ngx-popover-${this.popoverId}` : void 0;
     if (this._ariaDescribedby) {
       if (this._popover.instance) {
         this._popover.instance.popoverId = this._ariaDescribedby;
@@ -153,23 +155,22 @@ export class PopoverDirective implements OnInit, OnDestroy {
   }
 
   /**
-   * Opens an element's popover. This is considered a "manual" triggering of
+   * Opens an element’s popover. This is considered a “manual” triggering of
    * the popover.
    */
   show(): void {
-    const popoverValue = this.popover();
-    if (this._popover.isShown || !popoverValue || this._delayTimeoutId) {
+    if (this._popover.isShown || !this.popover || this._delayTimeoutId) {
       return;
     }
 
     this._positionService.setOptions({
       modifiers: {
         flip: {
-          enabled: this.adaptivePosition()
+          enabled: this.adaptivePosition
         },
         preventOverflow: {
-          enabled: this.adaptivePosition(),
-          boundariesElement: this.boundariesElement() || 'scrollParent'
+          enabled: this.adaptivePosition,
+          boundariesElement: this.boundariesElement || 'scrollParent'
         }
       }
     });
@@ -179,20 +180,20 @@ export class PopoverDirective implements OnInit, OnDestroy {
         this._delayTimeoutId = undefined;
       }
 
-      this._popover.attach(PopoverContainerComponent).to(this.container()).position({ attachment: this.placement() }).show({
-        content: popoverValue,
-        context: this.popoverContext(),
-        placement: this.placement(),
-        title: this.popoverTitle(),
-        containerClass: this.containerClass()
+      this._popover.attach(PopoverContainerComponent).to(this.container).position({ attachment: this.placement }).show({
+        content: this.popover,
+        context: this.popoverContext,
+        placement: this.placement,
+        title: this.popoverTitle,
+        containerClass: this.containerClass
       });
 
-      if (!this.adaptivePosition() && this._popover._componentRef) {
+      if (!this.adaptivePosition && this._popover._componentRef) {
         this._positionService.calcPosition();
         this._positionService.deletePositionElement(this._popover._componentRef.location);
       }
 
-      this.isOpen = true;
+      this.isOpen.set(true);
       this.setAriaDescribedBy();
     };
 
@@ -202,16 +203,14 @@ export class PopoverDirective implements OnInit, OnDestroy {
       }
     };
 
-    const delayValue = this.delay();
-    if (delayValue) {
-      const _timer = timer(delayValue).subscribe(() => {
+    if (this.delay) {
+      const _timer = timer(this.delay).subscribe(() => {
         showPopover();
         cancelDelayedTooltipShowing();
       });
 
-      const triggersValue = this.triggers();
-      if (triggersValue) {
-        parseTriggers(triggersValue).forEach((trigger: Trigger) => {
+      if (this.triggers) {
+        parseTriggers(this.triggers).forEach((trigger: Trigger) => {
           if (!trigger.close) {
             return;
           }
@@ -228,7 +227,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
   }
 
   /**
-   * Closes an element's popover. This is considered a "manual" triggering of
+   * Closes an element’s popover. This is considered a “manual” triggering of
    * the popover.
    */
   hide(): void {
@@ -237,19 +236,19 @@ export class PopoverDirective implements OnInit, OnDestroy {
       this._delayTimeoutId = undefined;
     }
 
-    if (this.isOpen) {
+    if (this._popover.isShown) {
       this._popover.hide();
       this.setAriaDescribedBy();
-      this.isOpen = false;
+      this.isOpen.set(false);
     }
   }
 
   /**
-   * Toggles an element's popover. This is considered a "manual" triggering of
+   * Toggles an element’s popover. This is considered a “manual” triggering of
    * the popover.
    */
   toggle(): void {
-    if (this.isOpen) {
+    if (this._popover.isShown) {
       return this.hide();
     }
 
@@ -266,8 +265,8 @@ export class PopoverDirective implements OnInit, OnDestroy {
     this._isInited = true;
 
     this._popover.listen({
-      triggers: this.triggers(),
-      outsideClick: this.outsideClick(),
+      triggers: this.triggers,
+      outsideClick: this.outsideClick,
       show: () => this.show(),
       hide: () => this.hide()
     });
