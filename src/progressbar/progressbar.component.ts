@@ -28,7 +28,7 @@ export class ProgressbarComponent {
   animate = input<boolean>(this._config.animate);
 
   /** If `true`, striped classes are applied */
-  striped = input<boolean>(false);
+  striped = input<boolean>(this._config.striped);
 
   /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
   type = input<ProgressbarType | undefined>();
