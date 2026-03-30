@@ -82,11 +82,11 @@ describe('Directive: Dropdown', () => {
   });
 
   it('autoClose value should be true by default', () => {
-    expect(directive.autoClose).toBeTruthy();
+    expect(directive.autoClose()).toBeTruthy();
   });
 
   it('insideClick value should be true by default', () => {
-    expect(directive.insideClick).toBeFalsy();
+    expect(directive.insideClick()).toBeFalsy();
   });
 
   it('should be opened if isOpen === true and toggle on isOpen changes', () => {
