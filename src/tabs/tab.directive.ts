@@ -154,7 +154,9 @@ export class TabDirective implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.removable = !!this.removable;
+    this.removable = !!this.removableInput();
+    this.tabOrder = this.tabOrderInput();
+    this.disabled = this.disabledInput();
     // Add tab to tabset after input properties are set
     this.tabset.addTab(this);
   }

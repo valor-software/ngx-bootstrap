@@ -233,11 +233,9 @@ describe('Component: Tabs', () => {
     fixture.detectChanges();
 
     expect(context._deselect).toHaveBeenCalled();
-    expect(context._select).toHaveBeenCalledWith(
-      expect.objectContaining({
-        heading: 'tab1'
-      })
-    );
+    expect(context._select).toHaveBeenCalled();
+    const selectArg = (context._select as jest.Mock).mock.calls[0][0];
+    expect(selectArg.heading()).toBe('tab1');
   });
 
   it('should emit remove on remove tab', () => {
@@ -248,11 +246,9 @@ describe('Component: Tabs', () => {
     (el as HTMLSpanElement).click();
     fixture.detectChanges();
 
-    expect(context._removed).toHaveBeenCalledWith(
-      expect.objectContaining({
-        heading: 'tab3'
-      })
-    );
+    expect(context._removed).toHaveBeenCalled();
+    const removedArg = (context._removed as jest.Mock).mock.calls[0][0];
+    expect(removedArg.heading()).toBe('tab3');
   });
 
   it('should set class on a tab item through [customClass]', () => {
