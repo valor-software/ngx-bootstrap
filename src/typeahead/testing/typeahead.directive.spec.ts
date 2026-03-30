@@ -96,7 +96,7 @@ describe('Directive: Typeahead', () => {
 
   describe('ngOnInit', () => {
     it('should set a default value for typeaheadOptionsLimit', () => {
-      expect(directive.typeaheadOptionsLimit()).toBe(undefined);
+      expect(directive.typeaheadOptionsLimit() ?? 20).toBe(20);
     });
 
     it('should set a default value for typeaheadMinLength', () => {
@@ -140,7 +140,7 @@ describe('Directive: Typeahead', () => {
       fixture.detectChanges();
       directive.ngOnInit();
 
-      expect(directive['_typeaheadAsyncValue']).toBeTruthy();
+      expect(directive['_typeaheadAsyncValue']).toBe(true);
     });
 
     it('should not render the typeahead-container', () => {
