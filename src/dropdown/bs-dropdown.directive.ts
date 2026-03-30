@@ -6,6 +6,7 @@ import {
   HostListener,
   OnDestroy,
   OnInit,
+  Output,
   Renderer2,
   ViewContainerRef,
   input,
@@ -99,17 +100,17 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   /**
    * Emits an event when isOpen change
    */
-  isOpenChange!: EventEmitter<boolean>;
+  @Output() isOpenChange!: EventEmitter<boolean>;
 
   /**
    * Emits an event when the popover is shown
    */
-  onShown!: EventEmitter<boolean>;
+  @Output() onShown!: EventEmitter<boolean>;
 
   /**
    * Emits an event when the popover is hidden
    */
-  onHidden!: EventEmitter<boolean>;
+  @Output() onHidden!: EventEmitter<boolean>;
 
   private _dropdown: ComponentLoader<BsDropdownContainerComponent>;
 

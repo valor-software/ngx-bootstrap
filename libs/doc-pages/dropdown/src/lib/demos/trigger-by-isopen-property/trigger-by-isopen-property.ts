@@ -12,4 +12,8 @@ export class DemoDropdownByIsOpenPropComponent {
   toggleDropdown() {
     this.isOpenValue = !this.isOpenValue;
   }
+  
+  isOpenChange(event: boolean) {
+    this.isOpenValue = event;
+  }
 }
