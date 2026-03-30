@@ -124,7 +124,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   /** specifies number of options to show in scroll view  */
   readonly typeaheadOptionsInScrollableView = input(5);
   /** used to hide result on blur */
-  readonly typeaheadHideResultsOnBlur = input<boolean | undefined>();
+  readonly typeaheadHideResultsOnBlur = input<boolean>(true);
   /** fired when an options list was opened and the user clicked Tab
    * If a value equal true, it will be chosen first or active item in the list
    * If value equal false, it will be chosen an active item in the list or nothing
