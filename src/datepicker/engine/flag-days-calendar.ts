@@ -83,10 +83,7 @@ export function flagDaysCalendar(
 
       const tooltipText = options.dateTooltipTexts && options.dateTooltipTexts
           .map(tt => isSameDay(day.date, tt.date) ? tt.tooltipText : '')
-          .reduce((previousValue, currentValue) => {
-            previousValue.push(currentValue);
-            return previousValue;
-          }, [] as string[])
+          .filter(text => !!text)
           .join(' ')
         || '';
 
