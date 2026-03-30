@@ -2,15 +2,14 @@ import {
   Directive,
   ElementRef,
   EmbeddedViewRef,
-  EventEmitter,
   HostListener,
   OnDestroy,
   OnInit,
-  Output,
   Renderer2,
   ViewContainerRef,
   input,
-  effect
+  effect,
+  output
 } from '@angular/core';
 import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
@@ -100,17 +99,17 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   /**
    * Emits an event when isOpen change
    */
-  @Output() isOpenChange!: EventEmitter<boolean>;
+  readonly isOpenChange = output<boolean>();
 
   /**
    * Emits an event when the popover is shown
    */
-  @Output() onShown!: EventEmitter<boolean>;
+  readonly onShown = output<boolean>();
 
   /**
    * Emits an event when the popover is hidden
    */
-  @Output() onHidden!: EventEmitter<boolean>;
+  readonly onHidden = output<boolean>();
 
   private _dropdown: ComponentLoader<BsDropdownContainerComponent>;
 
@@ -149,9 +148,9 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
       .createLoader<BsDropdownContainerComponent>(this._elementRef, this._viewContainerRef, this._renderer)
       .provide({ provide: BsDropdownState, useValue: this._state });
 
-    this.onShown = this._dropdown.onShown;
-    this.onHidden = this._dropdown.onHidden;
-    this.isOpenChange = this._state.isOpenChange;
+    this._dropdown.onShown.subscribe((v: boolean) => this.onShown.emit(v));
+    this._dropdown.onHidden.subscribe((v: boolean) => this.onHidden.emit(v));
+    this._state.isOpenChange.subscribe((v: boolean) => this.isOpenChange.emit(v));
 
     // Effect for dropup
     effect(() => {
