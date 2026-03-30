@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Directive,
   HostBinding,
   TemplateRef,
@@ -58,12 +59,14 @@ export class TabDirective implements OnInit, OnDestroy {
       if (this._active && !active) {
         this.deselect.emit(this);
         this._active = active;
+        this._cdr.markForCheck();
       }
 
       return;
     }
 
     this._active = active;
+    this._cdr.markForCheck();
     this.selectTab.emit(this);
     this.tabset.tabs.forEach((tab: TabDirective) => {
       if (tab !== this) {
@@ -94,7 +97,8 @@ export class TabDirective implements OnInit, OnDestroy {
   constructor(
     tabset: TabsetComponent,
     public elementRef: ElementRef,
-    public renderer: Renderer2
+    public renderer: Renderer2,
+    private _cdr: ChangeDetectorRef
   ) {
     this.tabset = tabset;
 
