@@ -49,7 +49,7 @@ export class SlideComponent implements OnInit, OnDestroy {
   @HostBinding('class.active')
   active = false;
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  activeInput = input<boolean>(false, { alias: 'active' });
+  activeInput = input<boolean | undefined>(undefined, { alias: 'active' });
 
   @HostBinding('style.width') itemWidth = '100%';
   @HostBinding('style.order') order = 0;
@@ -66,9 +66,12 @@ export class SlideComponent implements OnInit, OnDestroy {
   constructor(carousel: CarouselComponent) {
     this.carousel = carousel;
 
-    // Watch for active input changes
+    // Watch for active input changes (only when explicitly bound)
     effect(() => {
-      this.active = this.activeInput();
+      const activeValue = this.activeInput();
+      if (activeValue !== undefined) {
+        this.active = activeValue;
+      }
     });
   }
 
