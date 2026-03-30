@@ -1,5 +1,5 @@
 <ul class="pagination" [ngClass]="classMap">
-  @if (_boundaryLinks) {
+  @if (boundaryLinks()) {
     <li class="pagination-first page-item"
       [class.disabled]="noPrevious() || disabled()">
       <a class="page-link" href (click)="selectPage(1, $event)">
@@ -10,7 +10,7 @@
     </li>
   }
 
-  @if (_directionLinks) {
+  @if (directionLinks()) {
     <li class="pagination-prev page-item"
       [class.disabled]="noPrevious() || disabled()">
       <a class="page-link" href (click)="selectPage(page - 1, $event)">
@@ -34,7 +34,7 @@
     </li>
   }
 
-  @if (_directionLinks) {
+  @if (directionLinks()) {
     <li class="pagination-next page-item"
       [class.disabled]="noNext() || disabled()">
       <a class="page-link" href (click)="selectPage(page + 1, $event)">
@@ -45,7 +45,7 @@
     </li>
   }
 
-  @if (_boundaryLinks) {
+  @if (boundaryLinks()) {
     <li class="pagination-last page-item"
       [class.disabled]="noNext() || disabled()">
       <a class="page-link" href (click)="selectPage(totalPages, $event)">

@@ -111,6 +111,18 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
       this._totalItems = this.totalItemsInput();
       this.totalPages = this.calculateTotalPages();
     });
+
+    // Watch for rotate/maxSize changes
+    effect(() => {
+      const rotateVal = this.rotate();
+      const maxSizeVal = this.maxSize();
+      this._rotate = typeof rotateVal === 'undefined' ? !!this.config?.rotate : rotateVal;
+      this._maxSize = typeof maxSizeVal === 'undefined' ? this.config?.maxSize || 0 : maxSizeVal;
+      if (this.inited) {
+        this.pages = this.getPages(this.page, this.totalPages);
+        this.changeDetection.markForCheck();
+      }
+    });
   }
 
   protected _itemsPerPage = 10;
@@ -266,6 +278,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     const pages: PagesModel[] = [];
     const maxSize = this._maxSize;
     const rotate = this._rotate;
+
 
     // Default page limits
     let startPage = 1;
