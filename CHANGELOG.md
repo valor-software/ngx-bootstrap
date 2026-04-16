@@ -1,5 +1,4 @@
 
-
 ## [21.2.0](https://github.com/valor-software/ngx-bootstrap/compare/v21.0.1...v21.2.0) (2025-04-13)
 
 ### BREAKING CHANGES
@@ -9,6 +8,8 @@
 * **inputs:** All `@Input()` decorators have been replaced with the `input()` signal function API. Programmatic access to component inputs now requires signal read syntax (e.g., `component.myInput()` instead of `component.myInput`).
 * **outputs:** All `@Output()` decorators have been replaced with the `output()` function API. Output emissions continue to use `.emit()`.
 * **services:** Removed `NgZone` dependency from carousel, component-loader, positioning service, and focus-trap. Replaced `NgZone.onStable` with `afterRenderEffect()`.
+* **modules:** Removed deprecated `forRoot()` static method from all 17 module classes (AccordionModule, AlertModule, ButtonsModule, CarouselModule, CollapseModule, BsDatepickerModule, BsDropdownModule, FocusTrapModule, PaginationModule, PopoverModule, ProgressbarModule, RatingModule, SortableModule, TabsModule, TimepickerModule, TooltipModule, TypeaheadModule). These methods were no-ops returning empty providers and were deprecated since v18. Simply use the module directly in imports (e.g., `TooltipModule` instead of `TooltipModule.forRoot()`).
+* **schematics:** `ng add` schematics now generate module imports without `.forRoot()`. 
 
 ### Features
 

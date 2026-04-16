@@ -23,8 +23,6 @@ import { typeaheadAnimation } from './typeahead-animations';
 import { TypeaheadOptionItemContext, TypeaheadOptionListContext, TypeaheadTemplateMethods } from './models';
 import { NgTemplateOutlet } from '@angular/common';
 
-let nextWindowId = 0;
-
 @Component({
     selector: 'typeahead-container',
     templateUrl: './typeahead-container.component.html',
@@ -71,7 +69,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
   animationState?: string;
   positionServiceSubscription = new Subscription();
   height = 0;
-  popupId = `ngb-typeahead-${nextWindowId++}`;
+  popupId = '';
 
   get typeaheadTemplateMethods(): TypeaheadTemplateMethods {
     return {
@@ -96,7 +94,6 @@ export class TypeaheadContainerComponent implements OnDestroy {
     public element: ElementRef,
     private changeDetectorRef: ChangeDetectorRef
   ) {
-    this.renderer.setAttribute(this.element.nativeElement, 'id', this.popupId);
     this.positionServiceSubscription.add(this.positionService.event$?.subscribe(
       () => {
         if (this.isAnimated) {

@@ -26,6 +26,8 @@ import { getValueFromObject, latinize, tokenize } from './typeahead-utils';
 import { TypeaheadConfig } from './typeahead.config';
 import { PositioningService } from 'ngx-bootstrap/positioning';
 
+let nextWindowId = 0;
+
 // eslint-disable-next-line
 type TypeaheadOption = string | Record<string | number, any>;
 type TypeaheadOptionArr = TypeaheadOption[] | Observable<TypeaheadOption>;
@@ -35,7 +37,7 @@ type TypeaheadOptionArr = TypeaheadOption[] | Observable<TypeaheadOption>;
     exportAs: 'bs-typeahead',
     host: {
         '[attr.aria-activedescendant]': 'activeDescendant',
-        '[attr.aria-owns]': 'isOpen ? this._container?.popupId : null',
+        '[attr.aria-owns]': 'isOpen ? popupId : null',
         '[attr.aria-expanded]': 'isOpen',
         '[attr.aria-autocomplete]': 'list'
     },
@@ -171,6 +173,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
 
   activeDescendant?: string;
   isOpen = false;
+  popupId = `ngb-typeahead-${nextWindowId++}`;
   list = 'list';
   _container?: TypeaheadContainerComponent;
   isActiveItemChanged = false;
@@ -401,6 +404,8 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
 
     this._container = this._typeahead.instance;
+    this._container.popupId = this.popupId;
+    this.renderer.setAttribute(this._container.element.nativeElement, 'id', this.popupId);
     this._container.parent = this;
     // This improves the speed as it won't have to be done for each list item
 

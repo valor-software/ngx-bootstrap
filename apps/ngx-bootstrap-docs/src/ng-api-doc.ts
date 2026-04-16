@@ -1736,22 +1736,19 @@ export const ngdoc: any = {
       },
       {
         name: 'show',
-        description:
-          '<p>Opens an element&#39;s popover. This is considered a &quot;manual&quot; triggering of\nthe popover.</p>\n',
+        description: '<p>Opens an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n',
         args: [],
         returnType: 'void'
       },
       {
         name: 'hide',
-        description:
-          '<p>Closes an element&#39;s popover. This is considered a &quot;manual&quot; triggering of\nthe popover.</p>\n',
+        description: '<p>Closes an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n',
         args: [],
         returnType: 'void'
       },
       {
         name: 'toggle',
-        description:
-          '<p>Toggles an element&#39;s popover. This is considered a &quot;manual&quot; triggering of\nthe popover.</p>\n',
+        description: '<p>Toggles an element’s popover. This is considered a “manual” triggering of\nthe popover.</p>\n',
         args: [],
         returnType: 'void'
       }
@@ -1759,58 +1756,62 @@ export const ngdoc: any = {
     properties: [
       {
         name: 'adaptivePosition',
-        type: 'InputSignal<boolean>',
+        defaultValue: 'true',
+        type: 'boolean',
         description: '<p>sets disable adaptive position</p>\n'
       },
       {
         name: 'container',
-        type: 'InputSignal<string>',
+        type: 'string',
         description: '<p>A selector specifying the element the popover should be appended to.</p>\n'
       },
       {
         name: 'containerClass',
-        type: 'InputSignal<string>',
+        type: 'string',
         description: '<p>Css class for popover container</p>\n'
       },
       {
         name: 'delay',
-        type: 'InputSignal<number>',
+        defaultValue: '0',
+        type: 'number',
         description: '<p>Delay before showing the tooltip</p>\n'
       },
       {
         name: 'isOpen',
-        type: 'boolean',
+        type: 'ModelSignal<boolean>',
         description: '<p>Returns whether or not the popover is currently being shown</p>\n'
       },
       {
         name: 'onHidden',
-        type: 'EventEmitter<unknown>',
+        type: 'OutputEmitterRef<unknown>',
         description: '<p>Emits an event when the popover is hidden</p>\n'
       },
       {
         name: 'onShown',
-        type: 'EventEmitter<unknown>',
+        type: 'OutputEmitterRef<unknown>',
         description: '<p>Emits an event when the popover is shown</p>\n'
       },
       {
         name: 'outsideClick',
-        type: 'InputSignal<boolean>',
+        defaultValue: 'false',
+        type: 'boolean',
         description: '<p>Close popover on outside click</p>\n'
       },
       {
         name: 'placement',
-        type: 'InputSignal<AvailableBSPositions>',
+        defaultValue: 'top',
+        type: 'AvailableBSPositions',
         description:
           '<p>Placement of a popover. Accepts: &quot;top&quot;, &quot;bottom&quot;, &quot;left&quot;, &quot;right&quot;</p>\n'
       },
       {
         name: 'popover',
-        type: 'InputSignal<string | TemplateRef<any>>',
+        type: 'string | TemplateRef<any>',
         description: '<p>Content to be displayed as popover.</p>\n'
       },
       {
         name: 'popoverContext',
-        type: 'InputSignal<any>',
+        type: 'any',
         description: '<p>Context to be used if popover is a template.</p>\n'
       },
       {
@@ -1820,12 +1821,13 @@ export const ngdoc: any = {
       },
       {
         name: 'popoverTitle',
-        type: 'InputSignal<string>',
+        type: 'string',
         description: '<p>Title of a popover.</p>\n'
       },
       {
         name: 'triggers',
-        type: 'InputSignal<string>',
+        defaultValue: 'click',
+        type: 'string',
         description: '<p>Specifies events that should trigger. Supports a space separated list of\nevent names.</p>\n'
       }
     ]
