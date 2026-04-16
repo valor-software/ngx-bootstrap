@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { NgTranscludeDirective } from './ng-transclude.directive';
 import { TabHeadingDirective } from './tab-heading.directive';
@@ -18,12 +18,4 @@ import { TabsetComponent } from './tabset.component';
         NgTranscludeDirective
     ]
 })
-export class TabsModule {
-  // @deprecated method not required anymore, will be deleted in v19.0.0
-  static forRoot(): ModuleWithProviders<TabsModule> {
-    return {
-      ngModule: TabsModule,
-      providers: []
-    };
-  }
-}
+export class TabsModule {}

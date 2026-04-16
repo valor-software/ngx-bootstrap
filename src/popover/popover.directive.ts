@@ -264,6 +264,10 @@ export class PopoverDirective implements OnInit, OnDestroy {
     }
     this._isInited = true;
 
+    // Remove native 'popover' attribute to prevent conflict with the HTML Popover API
+    // The Angular @Input() binding is managed via property binding and is unaffected
+    this._renderer.removeAttribute(this._elementRef.nativeElement, 'popover');
+
     this._popover.listen({
       triggers: this.triggers,
       outsideClick: this.outsideClick,

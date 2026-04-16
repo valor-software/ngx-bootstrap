@@ -97,7 +97,7 @@ function addModuleOfComponent(project: workspaces.ProjectDefinition, host: Tree,
       return;
     }
     addModuleImportToRootModule(
-      host, `${components[componentName].moduleName}.forRoot()`, components[componentName].link, project
+      host, components[componentName].moduleName, components[componentName].link, project
     );
   }
 }

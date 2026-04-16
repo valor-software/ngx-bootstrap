@@ -1,4 +1,4 @@
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { BsDropdownContainerComponent } from './bs-dropdown-container.component';
 import { BsDropdownMenuDirective } from './bs-dropdown-menu.directive';
@@ -19,12 +19,4 @@ import { BsDropdownDirective } from './bs-dropdown.directive';
         BsDropdownDirective
     ]
 })
-export class BsDropdownModule {
-  // @deprecated method not required anymore, will be deleted in v19.0.0
-  static forRoot(): ModuleWithProviders<BsDropdownModule> {
-    return {
-      ngModule: BsDropdownModule,
-      providers: []
-    };
-  }
-}
+export class BsDropdownModule {}
