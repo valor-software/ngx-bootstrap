@@ -1,15 +1,18 @@
 {
   "name": "ngx-bootstrap",
-  "version": "21.0.1",
+  "version": "21.2.0",
   "description": "Angular Bootstrap",
   "author": "Dmitriy Shekhovtsov <valorkin@gmail.com>",
   "license": "MIT",
   "schematics": "./schematics/collection.json",
+  "scripts": {
+    "postinstall": "node ./postinstall.js"
+  },
   "peerDependencies": {
-    "@angular/animations": "^21.0.0",
-    "@angular/common": "^21.0.0",
-    "@angular/core": "^21.0.0",
-    "@angular/forms": "^21.0.0",
+    "@angular/animations": "^21.2.0",
+    "@angular/common": "^21.2.0",
+    "@angular/core": "^21.2.0",
+    "@angular/forms": "^21.2.0",
     "rxjs": "^6.5.3 || ^7.4.0"
   },
   "dependencies": {

@@ -27,6 +27,8 @@ development
 
 </p>
 
+> **⚠️ BREAKING CHANGES in v21.2.0** — This version completes the migration to **zoneless change detection**. `zone.js` is no longer required. All `@Input()`/`@Output()` decorators have been replaced with Angular's `input()`/`output()` signal APIs. See the [Migration Guide](#migration-from-previous-versions) and [CHANGELOG](https://github.com/valor-software/ngx-bootstrap/blob/development/CHANGELOG.md) for details.
+
 ## Links
 
 - [Documentation](http://valor-software.com/ngx-bootstrap/)
@@ -79,6 +81,24 @@ for contributors. Valor Software employees and contractors are not eligible for 
 What's in it for you? Proper recognition and exposure of your name/logo/website on our page.
 Our main sponsors will be presented under this section! Be the first!
 
+## Prerequisites
+
+ngx-bootstrap v21.2.0+ requires:
+- **Angular 21.2.0** or higher
+- **Zoneless change detection** (`zone.js` is no longer supported)
+
+Your application must be bootstrapped with `provideZonelessChangeDetection()`:
+
+```ts
+import { bootstrapApplication } from '@angular/platform-browser';
+import { provideZonelessChangeDetection } from '@angular/core';
+import { AppComponent } from './app/app.component';
+
+bootstrapApplication(AppComponent, {
+  providers: [provideZonelessChangeDetection()]
+});
+```
+
 ## Installation
 
 You can see the below simple example working on [StackBlitz](https://stackblitz.com/edit/vs-ngx-bootstrap-tooltip?file=src%2Findex.html)
@@ -99,7 +119,7 @@ Install `ngx-bootstrap` from `npm`:
 npm install ngx-bootstrap --save
 ```
 
-Add wanted package to NgModule imports:
+Import the module you need (standalone or NgModule):
 
 ```ts
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
@@ -177,10 +197,11 @@ npm start
 The only two dependencies are [Angular](https://angular.io) and [Bootstrap](https://getbootstrap.com) CSS.
 Here is the version compatibility list:
 
-| ngx-bootstrap | Angular         | Bootstrap CSS           |
-|---------------|-----------------| ----------------------- |
-| 20.x.x        | 20.x.x          | 5.x.x or 4.x.x          |
-| 19.x.x        | 19.x.x          | 5.x.x or 4.x.x          |
+| ngx-bootstrap | Angular         | Bootstrap CSS           | Zoneless          |
+|---------------|-----------------|-------------------------|-------------------|
+| 21.2.x        | 21.2.x           | 5.x.x or 4.x.x          | **Required**       |
+| 20.x.x        | 20.x.x          | 5.x.x or 4.x.x          | Optional           |
+| 19.x.x        | 19.x.x          | 5.x.x or 4.x.x          | N/A                |
 | 18.x.x        | 18.x.x          | 5.x.x or 4.x.x          |
 | 12.x.x        | 17.x.x          | 5.x.x or 4.x.x          |
 | 11.x.x        | 16.x.x          | 5.x.x or 4.x.x          |
@@ -195,7 +216,19 @@ Here is the version compatibility list:
 | 4.x.x         | 6.x.x - 7.x.x   | 3.x.x or 4.x.x          |
 | 3.x.x         | 6.x.x - 7.x.x   | 3.x.x or 4.x.x          |
 | 2.x.x         | 2.x.x - 4.x.x   | 3.x.x or 4.x.x          |
-| 1.x.x         | 2.x.x           | 3.x.x or 4.x.x          |
+| 1.x.x         | 2.x.x           | 3.x.x or 4.x.x          | N/A                |
+
+## Migration from Previous Versions
+
+If you are upgrading from ngx-bootstrap v20 or earlier, be aware of the following **breaking changes** introduced by the zoneless migration:
+
+1. **Remove `zone.js`** from your polyfills and `package.json` dependencies
+2. **Bootstrap with `provideZonelessChangeDetection()`** (see [Prerequisites](#prerequisites))
+3. **Input signal syntax** — All `@Input()` properties are now `input()` signals. Programmatic access changes from `component.prop` to `component.prop()` (signal read). Template bindings (`[prop]="value"`) remain unchanged.
+4. **Output function syntax** — All `@Output()` properties are now `output()` functions. `(event)="handler()"` template syntax remains unchanged.
+5. **OnPush everywhere** — All components use `ChangeDetectionStrategy.OnPush`. Ensure async state changes call `ChangeDetectorRef.markForCheck()` or use signals.
+
+For the full migration plan, see [ZONELESS_MIGRATION_PLAN.md](https://github.com/valor-software/ngx-bootstrap/blob/development/ZONELESS_MIGRATION_PLAN.md).
 
 ## Troubleshooting
 
