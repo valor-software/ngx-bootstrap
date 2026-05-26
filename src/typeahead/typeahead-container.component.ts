@@ -98,11 +98,20 @@ export class TypeaheadContainerComponent implements OnDestroy {
     private changeDetectorRef: ChangeDetectorRef
   ) {
     this.renderer.setAttribute(this.element.nativeElement, 'id', this.popupId);
+    // Start hidden before the first paint; position-service event will reveal or animate it.
+    // Using max-height (not height) avoids conflict with the [style.height] host binding.
+    this.renderer.setStyle(this.element.nativeElement, 'max-height', '0');
+    this.renderer.setStyle(this.element.nativeElement, 'overflow', 'hidden');
     this.positionServiceSubscription.add(this.positionService.event$?.subscribe(
       () => {
-        if (this.isAnimated && !this._animationPlayed) {
+        if (!this._animationPlayed) {
           this._animationPlayed = true;
-          this._animateExpand(this.element.nativeElement);
+          if (this.isAnimated) {
+            this._animateExpand(this.element.nativeElement);
+          } else {
+            this.renderer.removeStyle(this.element.nativeElement, 'max-height');
+            this.renderer.removeStyle(this.element.nativeElement, 'overflow');
+          }
         }
       }
     ));
@@ -373,12 +382,10 @@ export class TypeaheadContainerComponent implements OnDestroy {
   }
 
   private _animateExpand(el: HTMLElement): void {
-    this.renderer.setStyle(el, 'display', 'block');
-    this.renderer.setStyle(el, 'overflow', 'hidden');
-    this.renderer.setStyle(el, 'transition', `height ${TYPEAHEAD_ANIMATION_TIMING}`);
-    this.renderer.setStyle(el, 'height', '0');
+    // el is already at max-height: 0; overflow: hidden (set in constructor).
+    // Animating max-height avoids conflict with the [style.height] host binding.
+    this.renderer.setStyle(el, 'transition', `max-height ${TYPEAHEAD_ANIMATION_TIMING}`);
 
-    // forced reflow
     // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     el.offsetHeight;
 
@@ -392,17 +399,16 @@ export class TypeaheadContainerComponent implements OnDestroy {
         clearTimeout(this._fallbackTimeoutId);
         this._fallbackTimeoutId = undefined;
       }
-      this.renderer.removeStyle(el, 'height');
+      this.renderer.removeStyle(el, 'max-height');
       this.renderer.removeStyle(el, 'overflow');
       this.renderer.removeStyle(el, 'transition');
-      this.renderer.removeStyle(el, 'display');
     };
 
     this._fallbackTimeoutId = setTimeout(finish, 270);
 
     this._rafId = requestAnimationFrame(() => {
       this._rafId = undefined;
-      this.renderer.setStyle(el, 'height', el.scrollHeight + 'px');
+      this.renderer.setStyle(el, 'max-height', el.scrollHeight + 'px');
       el.addEventListener('transitionend', finish, { once: true });
     });
   }
