@@ -1,6 +1,5 @@
 import { TestBed, ComponentFixture, tick, fakeAsync, waitForAsync } from '@angular/core/testing';
 import { asNativeElements, EventEmitter } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 
@@ -34,7 +33,7 @@ describe('Component: TypeaheadContainer', () => {
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [BrowserAnimationsModule, TypeaheadContainerComponent],
+      imports: [TypeaheadContainerComponent],
       providers: [
         {
           provide: TypeaheadOptions,

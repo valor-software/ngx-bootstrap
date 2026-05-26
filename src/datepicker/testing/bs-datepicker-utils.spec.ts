@@ -1,6 +1,5 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { BsDatepickerModule } from '../bs-datepicker.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsCustomDates } from '../themes/bs/bs-custom-dates-view.component';
 import { checkBsValue, checkRangesWithMaxDate } from '../utils/bs-calendar-utils';
 import { copyTime } from '../utils/copy-time-utils';
@@ -15,8 +14,7 @@ describe('daterangepicker:', () => {
   beforeEach(
     waitForAsync(() => TestBed.configureTestingModule({
         imports: [
-          BsDatepickerModule,
-          BrowserAnimationsModule
+          BsDatepickerModule
         ]
       }).compileComponents()
     ));

@@ -2,7 +2,6 @@ import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent } from '@ngneat/spectator';
 
 import { of } from 'rxjs';
@@ -53,7 +52,7 @@ describe('Directive: Typeahead', () => {
   beforeEach(waitForAsync(() =>
     TestBed.configureTestingModule({
       declarations: [TestTypeaheadComponent],
-      imports: [TypeaheadModule, BrowserAnimationsModule, FormsModule]
+      imports: [TypeaheadModule, FormsModule]
     }).compileComponents()));
 
   beforeEach(() => {

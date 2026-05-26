@@ -17,7 +17,7 @@ import { getFullYear, getMonth } from 'ngx-bootstrap/chronos';
 import { PositioningService } from 'ngx-bootstrap/positioning';
 import { TimepickerComponent } from 'ngx-bootstrap/timepicker';
 
-import { datepickerAnimation } from '../../datepicker-animations';
+import { DATEPICKER_ANIMATION_TIMING } from '../../datepicker-animations';
 import { BsDatepickerAbstractComponent } from '../../base/bs-datepicker-container';
 import { BsDatepickerConfig } from '../../bs-datepicker.config';
 import { CalendarCellViewModel, DayViewModel } from '../../models';
@@ -41,7 +41,6 @@ import { NgClass, AsyncPipe } from '@angular/common';
         role: 'dialog',
         'aria-label': 'calendar'
     },
-    animations: [datepickerAnimation],
     standalone: true,
     imports: [NgClass, BsDaysCalendarViewComponent, TimepickerModule, BsMonthCalendarViewComponent, BsYearsCalendarViewComponent, BsCustomDatesViewComponent, AsyncPipe]
 })
@@ -50,9 +49,10 @@ export class BsDatepickerContainerComponent
   implements OnInit, AfterViewInit, OnDestroy
 {
   valueChange: EventEmitter<Date> = new EventEmitter<Date>();
-  animationState = 'void';
   override isRangePicker = false;
   _subs: Subscription[] = [];
+  _rafId?: number;
+  _fallbackTimeoutId?: ReturnType<typeof setTimeout>;
 
   @ViewChild('startTP') startTimepicker?: TimepickerComponent;
 
@@ -73,7 +73,7 @@ export class BsDatepickerContainerComponent
   }
 
   constructor(
-    _renderer: Renderer2,
+    private _renderer: Renderer2,
     private _config: BsDatepickerConfig,
     private _store: BsDatepickerStore,
     private _element: ElementRef,
@@ -105,12 +105,17 @@ export class BsDatepickerContainerComponent
       this._positionService.disable();
 
       if (this._config.isAnimated) {
-        this.animationState = this.isTopPosition ? 'animated-up' : 'animated-down';
+        const containerEl = this._element.nativeElement.querySelector('.bs-datepicker-container') as HTMLElement;
+        if (containerEl) {
+          this._animateExpand(containerEl, () => this.positionServiceEnable());
+        } else {
+          this.positionServiceEnable();
+        }
 
         return;
       }
 
-      this.animationState = 'unanimated';
+      this.positionServiceEnable();
     });
 
     this.isOtherMonthsActive = this._config.selectFromOtherMonth;
@@ -237,7 +242,49 @@ export class BsDatepickerContainerComponent
     this._store.dispatch(this._actions.select(undefined));
   }
 
+  private _animateExpand(el: HTMLElement, onDone: () => void): void {
+    this._renderer.setStyle(el, 'display', 'block');
+    this._renderer.setStyle(el, 'overflow', 'hidden');
+    this._renderer.setStyle(el, 'transition', `height ${DATEPICKER_ANIMATION_TIMING}`);
+    this._renderer.setStyle(el, 'height', '0');
+
+    // forced reflow
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    el.offsetHeight;
+
+    let finished = false;
+    const finish = () => {
+      if (finished) {
+        return;
+      }
+      finished = true;
+      if (this._fallbackTimeoutId !== undefined) {
+        clearTimeout(this._fallbackTimeoutId);
+        this._fallbackTimeoutId = undefined;
+      }
+      this._renderer.removeStyle(el, 'height');
+      this._renderer.removeStyle(el, 'overflow');
+      this._renderer.removeStyle(el, 'transition');
+      this._renderer.removeStyle(el, 'display');
+      onDone();
+    };
+
+    this._fallbackTimeoutId = setTimeout(finish, 270);
+
+    this._rafId = requestAnimationFrame(() => {
+      this._rafId = undefined;
+      this._renderer.setStyle(el, 'height', el.scrollHeight + 'px');
+      el.addEventListener('transitionend', finish, { once: true });
+    });
+  }
+
   ngOnDestroy(): void {
+    if (this._rafId !== undefined) {
+      cancelAnimationFrame(this._rafId);
+    }
+    if (this._fallbackTimeoutId !== undefined) {
+      clearTimeout(this._fallbackTimeoutId);
+    }
     for (const sub of this._subs) {
       sub.unsubscribe();
     }

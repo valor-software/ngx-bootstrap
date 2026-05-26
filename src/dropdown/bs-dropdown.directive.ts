@@ -19,8 +19,7 @@ import { BsDropdownConfig } from './bs-dropdown.config';
 import { BsDropdownContainerComponent } from './bs-dropdown-container.component';
 import { BsDropdownState } from './bs-dropdown.state';
 import { BsDropdownMenuDirective } from './index';
-import { AnimationBuilder, AnimationFactory } from '@angular/animations';
-import { dropdownAnimation } from './dropdown-animations';
+import { DROPDOWN_ANIMATION_TIMING } from './dropdown-animations';
 
 @Directive({
   selector: '[bsDropdown], [dropdown]',
@@ -124,7 +123,8 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
   private _isDisabled = false;
   private _subscriptions: Subscription[] = [];
   private _isInited = false;
-  private _factoryDropDownAnimation: AnimationFactory;
+  private _rafId?: number;
+  private _fallbackTimeoutId?: ReturnType<typeof setTimeout>;
 
   constructor(
     private _elementRef: ElementRef,
@@ -132,16 +132,13 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     private _viewContainerRef: ViewContainerRef,
     private _cis: ComponentLoaderFactory,
     private _state: BsDropdownState,
-    private _config: BsDropdownConfig,
-    _builder: AnimationBuilder
+    private _config: BsDropdownConfig
   ) {
     // set initial dropdown state from config
     this._state.autoClose = this._config.autoClose;
     this._state.insideClick = this._config.insideClick;
     this._state.isAnimated = this._config.isAnimated;
     this._state.stopOnClickPropagation = this._config.stopOnClickPropagation;
-
-    this._factoryDropDownAnimation = _builder.build(dropdownAnimation);
 
     // create dropdown component loader
     this._dropdown = this._cis
@@ -374,6 +371,12 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
     for (const sub of this._subscriptions) {
       sub.unsubscribe();
     }
+    if (this._rafId !== undefined) {
+      cancelAnimationFrame(this._rafId);
+    }
+    if (this._fallbackTimeoutId !== undefined) {
+      clearTimeout(this._fallbackTimeoutId);
+    }
     this._dropdown.dispose();
   }
 
@@ -385,10 +388,41 @@ export class BsDropdownDirective implements OnInit, OnDestroy {
 
   private playAnimation(): void {
     if (this._state.isAnimated && this._inlinedMenu) {
-      setTimeout(() => {
-        if (this._inlinedMenu) {
-          this._factoryDropDownAnimation.create(this._inlinedMenu.rootNodes[0]).play();
+      const el = this._inlinedMenu.rootNodes[0] as HTMLElement;
+      if (!el) {
+        return;
+      }
+      this._renderer.setStyle(el, 'display', 'block');
+      this._renderer.setStyle(el, 'overflow', 'hidden');
+      this._renderer.setStyle(el, 'transition', `height ${DROPDOWN_ANIMATION_TIMING}`);
+      this._renderer.setStyle(el, 'height', '0');
+
+      // forced reflow
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      el.offsetHeight;
+
+      let finished = false;
+      const finish = () => {
+        if (finished) {
+          return;
         }
+        finished = true;
+        if (this._fallbackTimeoutId !== undefined) {
+          clearTimeout(this._fallbackTimeoutId);
+          this._fallbackTimeoutId = undefined;
+        }
+        this._renderer.removeStyle(el, 'height');
+        this._renderer.removeStyle(el, 'overflow');
+        this._renderer.removeStyle(el, 'transition');
+        this._renderer.removeStyle(el, 'display');
+      };
+
+      this._fallbackTimeoutId = setTimeout(finish, 270);
+
+      this._rafId = requestAnimationFrame(() => {
+        this._rafId = undefined;
+        this._renderer.setStyle(el, 'height', el.scrollHeight + 'px');
+        el.addEventListener('transitionend', finish, { once: true });
       });
     }
   }

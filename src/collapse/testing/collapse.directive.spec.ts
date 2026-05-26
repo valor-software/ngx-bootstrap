@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import '../../../scripts/jest/toHaveCssClass';
 import { CollapseModule } from '../index';
 
@@ -32,7 +31,6 @@ describe('Directive: Collapse', () => {
     TestBed.configureTestingModule({
     imports: [
         CollapseModule,
-        BrowserAnimationsModule,
         TestCollapseComponent
     ]
 });

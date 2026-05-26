@@ -1,9 +1,7 @@
 <!-- days calendar view mode -->
 @if (viewMode | async) {
   <div class="bs-datepicker" [ngClass]="containerClass">
-    <div class="bs-datepicker-container"
-      [@datepickerAnimation]="animationState"
-      (@datepickerAnimation.done)="positionServiceEnable()">
+    <div class="bs-datepicker-container">
       <!--calendars-->
       <div class="bs-calendar-container" role="application">
         @switch (viewMode | async) {

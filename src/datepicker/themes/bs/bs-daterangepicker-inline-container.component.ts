@@ -7,7 +7,6 @@ import { BsDatepickerEffects } from '../../reducer/bs-datepicker.effects';
 import { BsDatepickerStore } from '../../reducer/bs-datepicker.store';
 
 import { PositioningService } from 'ngx-bootstrap/positioning';
-import { datepickerAnimation } from '../../datepicker-animations';
 import { BsCustomDatesViewComponent } from './bs-custom-dates-view.component';
 import { BsYearsCalendarViewComponent } from './bs-years-calendar-view.component';
 import { BsMonthCalendarViewComponent } from './bs-months-calendar-view.component';
@@ -22,7 +21,6 @@ import { NgClass, AsyncPipe } from '@angular/common';
     host: {
         '(click)': '_stopPropagation($event)'
     },
-    animations: [datepickerAnimation],
     standalone: true,
     imports: [NgClass, BsDaysCalendarViewComponent, TimepickerModule, BsMonthCalendarViewComponent, BsYearsCalendarViewComponent, BsCustomDatesViewComponent, AsyncPipe]
 })
