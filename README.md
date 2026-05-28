@@ -1,7 +1,7 @@
 <a href="http://valor-software.com/ngx-bootstrap/#/">
 <div align="center">
     <img class="mx-auto center-block d-block" src="https://valor-software.com/ngx-bootstrap/assets/images/logos/ngx-bootstrap-logo.svg" alt="ngx-bootstrap" width="200" height="200" />
-    <h1>ngx-bootstrap w/o angular/animation</h1>
+    <h1>ngx-bootstrap</h1>
 </div>
 </a>
 
