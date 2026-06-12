@@ -23,7 +23,6 @@
       <button #liElements
         [id]="popupId + '-' + i"
         role="option"
-        [@typeaheadAnimation]="animationState"
         class="dropdown-item"
         (click)="selectMatch(match, $event)"
         (mouseenter)="selectActive(match)"

@@ -30,7 +30,7 @@ describe('Component: Pagination:', () => {
     const listItems = element.querySelectorAll('li');
     const links = element.querySelectorAll('a');
 
-    context.disabled = true;
+    fixture.componentRef.setInput('disabled', true);
     fixture.detectChanges();
 
     // <~Previous~> _1_ <~Next~>
@@ -46,11 +46,11 @@ describe('Component: Pagination:', () => {
   });
 
   it('checking of working with custom values(several pages)', () => {
-    context.totalItems = 10;
-    context.itemsPerPage = 4;
-    context.previousText = 'Prev';
-    context.nextText = 'New next';
-    context.align = true;
+    fixture.componentRef.setInput('totalItems', 10);
+    fixture.componentRef.setInput('itemsPerPage', 4);
+    fixture.componentRef.setInput('previousText', 'Prev');
+    fixture.componentRef.setInput('nextText', 'New next');
+    fixture.componentRef.setInput('align', true);
 
     context.ngOnInit();
     fixture.detectChanges();
@@ -73,8 +73,8 @@ describe('Component: Pagination:', () => {
   });
 
   it('checking of working with custom values(many pages)', () => {
-    context.totalItems = 30;
-    context.itemsPerPage = 4;
+    fixture.componentRef.setInput('totalItems', 30);
+    fixture.componentRef.setInput('itemsPerPage', 4);
 
     context.ngOnInit();
     fixture.detectChanges();
@@ -94,7 +94,7 @@ describe('Component: Pagination:', () => {
     expect(links[8].innerHTML.replace(/<!--[^>]*>/gm, '')).toEqual('8');
     expect(links[9].innerHTML.replace(/<!--[^>]*>/gm, '')).toEqual('Next');
 
-    context.maxSize = 3;
+    fixture.componentRef.setInput('maxSize', 3);
 
     context.ngOnInit();
     fixture.detectChanges();
@@ -122,8 +122,8 @@ describe('Component: Pagination:', () => {
   it(
     'check clicks(many page links)',
     fakeAsync(() => {
-      context.totalItems = 30;
-      context.itemsPerPage = 4;
+      fixture.componentRef.setInput('totalItems', 30);
+      fixture.componentRef.setInput('itemsPerPage', 4);
 
       context.ngOnInit();
       fixture.detectChanges();
@@ -168,9 +168,9 @@ describe('Component: Pagination:', () => {
   it(
     'check clicks(several page links)',
     fakeAsync(() => {
-      context.totalItems = 30;
-      context.itemsPerPage = 4;
-      context.maxSize = 3;
+      fixture.componentRef.setInput('totalItems', 30);
+      fixture.componentRef.setInput('itemsPerPage', 4);
+      fixture.componentRef.setInput('maxSize', 3);
 
       context.ngOnInit();
       fixture.detectChanges();
@@ -208,10 +208,10 @@ describe('Component: Pagination:', () => {
   it(
     'check clicks(boundary links)',
     fakeAsync(() => {
-      context.totalItems = 30;
-      context.itemsPerPage = 4;
-      context.maxSize = 5;
-      context.boundaryLinks = true;
+      fixture.componentRef.setInput('totalItems', 30);
+      fixture.componentRef.setInput('itemsPerPage', 4);
+      fixture.componentRef.setInput('maxSize', 5);
+      fixture.componentRef.setInput('boundaryLinks', true);
 
       context.ngOnInit();
       fixture.detectChanges();

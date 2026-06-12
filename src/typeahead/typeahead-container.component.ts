@@ -9,22 +9,19 @@ import {
   TemplateRef,
   ViewChild,
   ViewChildren,
-  Output,
-  EventEmitter
+  output
 } from '@angular/core';
 
-import { Utils } from 'ngx-bootstrap/utils';
+import { animateExpand, Utils } from 'ngx-bootstrap/utils';
 import { PositioningService } from 'ngx-bootstrap/positioning';
 import { Subscription } from 'rxjs';
 
 import { latinize } from './typeahead-utils';
 import { TypeaheadMatch } from './typeahead-match.class';
 import { TypeaheadDirective } from './typeahead.directive';
-import { typeaheadAnimation } from './typeahead-animations';
+import { TYPEAHEAD_ANIMATION_DURATION_MS, TYPEAHEAD_ANIMATION_TIMING } from './typeahead-animations';
 import { TypeaheadOptionItemContext, TypeaheadOptionListContext, TypeaheadTemplateMethods } from './models';
 import { NgTemplateOutlet } from '@angular/common';
-
-let nextWindowId = 0;
 
 @Component({
     selector: 'typeahead-container',
@@ -49,7 +46,6 @@ let nextWindowId = 0;
     }
   `
     ],
-    animations: [typeaheadAnimation],
     standalone: true,
     imports: [NgTemplateOutlet],
     providers: [PositioningService]
@@ -57,7 +53,7 @@ let nextWindowId = 0;
 
 export class TypeaheadContainerComponent implements OnDestroy {
   // eslint-disable-next-line @angular-eslint/no-output-rename
-  @Output('activeChange') activeChangeEvent = new EventEmitter();
+  readonly activeChangeEvent = output<string>({ alias: 'activeChange' });
 
   parent?: TypeaheadDirective;
   query?: string[] | string;
@@ -69,10 +65,11 @@ export class TypeaheadContainerComponent implements OnDestroy {
   dropup?: boolean;
   guiHeight?: string;
   needScrollbar?: boolean;
-  animationState?: string;
+  private _cancelExpandAnimation?: () => void;
+  private _animationPlayed = false;
   positionServiceSubscription = new Subscription();
   height = 0;
-  popupId = `ngb-typeahead-${nextWindowId++}`;
+  popupId = '';
 
   get typeaheadTemplateMethods(): TypeaheadTemplateMethods {
     return {
@@ -97,18 +94,21 @@ export class TypeaheadContainerComponent implements OnDestroy {
     public element: ElementRef,
     private changeDetectorRef: ChangeDetectorRef
   ) {
-    this.renderer.setAttribute(this.element.nativeElement, 'id', this.popupId);
+    // Start hidden before the first paint; position-service event will reveal or animate it.
+    // Using max-height (not height) avoids conflict with the [style.height] host binding.
+    this.renderer.setStyle(this.element.nativeElement, 'max-height', '0');
+    this.renderer.setStyle(this.element.nativeElement, 'overflow', 'hidden');
     this.positionServiceSubscription.add(this.positionService.event$?.subscribe(
       () => {
-        if (this.isAnimated) {
-          this.animationState = this.isTopPosition ? 'animated-up' : 'animated-down';
-          this.changeDetectorRef.detectChanges();
-
-          return;
+        if (!this._animationPlayed) {
+          this._animationPlayed = true;
+          if (this.isAnimated) {
+            this._animateExpand(this.element.nativeElement);
+          } else {
+            this.renderer.removeStyle(this.element.nativeElement, 'max-height');
+            this.renderer.removeStyle(this.element.nativeElement, 'overflow');
+          }
         }
-
-        this.animationState = 'unanimated';
-        this.changeDetectorRef.detectChanges();
       }
     ));
   }
@@ -155,12 +155,15 @@ export class TypeaheadContainerComponent implements OnDestroy {
 
       if (concurrency) {
         this.selectActive(concurrency);
+        this.changeDetectorRef.markForCheck();
 
         return;
       }
 
       this.active = void 0;
     }
+
+    this.changeDetectorRef.markForCheck();
   }
 
   get isTopPosition(): boolean {
@@ -168,31 +171,31 @@ export class TypeaheadContainerComponent implements OnDestroy {
   }
 
   get optionsListTemplate(): TemplateRef<TypeaheadOptionListContext> | undefined {
-    return this.parent ? this.parent.optionsListTemplate : undefined;
+    return this.parent ? this.parent.optionsListTemplate() : undefined;
   }
 
   get isAnimated(): boolean {
-    return this.parent ? this.parent.isAnimated : false;
+    return this.parent ? this.parent.isAnimated() : false;
   }
 
   get adaptivePosition(): boolean {
-    return this.parent ? this.parent.adaptivePosition : false;
+    return this.parent ? this.parent.adaptivePosition() : false;
   }
 
   get typeaheadScrollable(): boolean {
-    return this.parent ? this.parent.typeaheadScrollable : false;
+    return this.parent ? this.parent.typeaheadScrollable() : false;
   }
 
   get typeaheadOptionsInScrollableView(): number {
-    return this.parent ? this.parent.typeaheadOptionsInScrollableView : 5;
+    return this.parent ? this.parent.typeaheadOptionsInScrollableView() : 5;
   }
 
   get typeaheadIsFirstItemActive(): boolean {
-    return this.parent ? this.parent.typeaheadIsFirstItemActive : true;
+    return this.parent ? this.parent.typeaheadIsFirstItemActive() : true;
   }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   get itemTemplate(): TemplateRef<TypeaheadOptionItemContext> | undefined {
-    return this.parent ? this.parent.typeaheadItemTemplate : undefined;
+    return this.parent ? this.parent.typeaheadItemTemplate() : undefined;
   }
 
   get canSelectItemsOnBlur(): boolean {
@@ -200,11 +203,11 @@ export class TypeaheadContainerComponent implements OnDestroy {
   }
 
   selectActiveMatch(isActiveItemChanged?: boolean): void {
-    if (this.active && this.parent?.typeaheadSelectFirstItem) {
+    if (this.active && this.parent?.typeaheadSelectFirstItem()) {
       this.selectMatch(this.active);
     }
 
-    if (!this.parent?.typeaheadSelectFirstItem && isActiveItemChanged) {
+    if (!this.parent?.typeaheadSelectFirstItem() && isActiveItemChanged) {
       this.selectMatch(this.active);
     }
   }
@@ -259,7 +262,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
 
   highlight(match: TypeaheadMatch, query: string[] | string): string {
     let itemStr: string = match.value;
-    let itemStrHelper: string = (this.parent && this.parent.typeaheadLatinize
+    let itemStrHelper: string = (this.parent && this.parent.typeaheadLatinize()
       ? latinize(itemStr)
       : itemStr).toLowerCase();
     let startIdx: number;
@@ -316,7 +319,9 @@ export class TypeaheadContainerComponent implements OnDestroy {
       event.preventDefault();
     }
     this.parent?.changeModel(value);
-    setTimeout(() => this.parent?.typeaheadOnSelect.emit(value), 0);
+    if (value) {
+      setTimeout(() => this.parent?.typeaheadOnSelect.emit(value), 0);
+    }
 
     return false;
   }
@@ -373,7 +378,19 @@ export class TypeaheadContainerComponent implements OnDestroy {
     }
   }
 
+  private _animateExpand(el: HTMLElement): void {
+    // el is already at max-height: 0; overflow: hidden (set in constructor).
+    // Animating max-height avoids conflict with the [style.height] host binding.
+    this._cancelExpandAnimation?.();
+    this._cancelExpandAnimation = animateExpand(this.renderer, el, {
+      property: 'max-height',
+      timing: TYPEAHEAD_ANIMATION_TIMING,
+      durationMs: TYPEAHEAD_ANIMATION_DURATION_MS
+    });
+  }
+
   ngOnDestroy(): void {
+    this._cancelExpandAnimation?.();
     this.positionServiceSubscription.unsubscribe();
   }
 
@@ -384,6 +401,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
       preview = value;
     }
     this.parent?.typeaheadOnPreview.emit(preview);
+    this.changeDetectorRef.markForCheck();
   }
 
   private isScrolledIntoView(elem: HTMLElement): boolean {

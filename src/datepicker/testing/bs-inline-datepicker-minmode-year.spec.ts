@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component, ViewChild } from '@angular/core';
 
 import { take } from 'rxjs/operators';
@@ -41,7 +40,6 @@ xdescribe('datepicker inline minMode="year":', () => {
     waitForAsync(() => TestBed.configureTestingModule({
     imports: [
         BsDatepickerModule,
-        BrowserAnimationsModule,
         TestComponent
     ]
 }).compileComponents()

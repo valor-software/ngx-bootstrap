@@ -46,7 +46,8 @@ export class TooltipContainerComponent implements AfterViewInit {
   }
 
   constructor(config: TooltipConfig) {
-    Object.assign(this, config);
+    // Config properties don't apply to container component
+    // Container properties are set dynamically by the component loader
   }
 
   ngAfterViewInit(): void {

@@ -1,6 +1,7 @@
 import { DOCUMENT } from '@angular/common';
-import { AfterContentInit, Component, Inject } from '@angular/core';
+import { AfterContentInit, Component, Inject, signal } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, UrlSerializer } from '@angular/router';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Analytics } from '@ngx-bootstrap-doc/docs';
 import { filter } from 'rxjs/operators';
 
@@ -11,7 +12,7 @@ import { filter } from 'rxjs/operators';
   standalone: false
 })
 export class AppComponent implements AfterContentInit {
-  showSidebar = false;
+  showSidebar = signal(false);
 
   constructor(
     private route: ActivatedRoute,
@@ -19,7 +20,24 @@ export class AppComponent implements AfterContentInit {
     private urlSerializer: UrlSerializer,
     private analytics: Analytics,
     @Inject(DOCUMENT) private document: any
-  ) {}
+  ) {
+    const getUrl = () => {
+      const url = this.router.routerState.snapshot.url;
+      const idx = url.indexOf('#');
+      return idx === -1 ? url : url.slice(0, idx);
+    };
+
+    this.showSidebar.set(!!getUrl() && getUrl() !== '/');
+
+    this.router.events
+      .pipe(
+        filter(event => event instanceof NavigationEnd),
+        takeUntilDestroyed()
+      )
+      .subscribe(() => {
+        this.showSidebar.set(!!getUrl() && getUrl() !== '/');
+      });
+  }
 
   // almost same logic exists in top-menu component
   ngAfterContentInit(): any {
@@ -28,35 +46,33 @@ export class AppComponent implements AfterContentInit {
     const getUrl = (router: Router) =>
       router.routerState.snapshot.url.slice(0, router.routerState.snapshot.url.indexOf('#'));
     let _prev = getUrl(this.router);
-    const justDoIt = (): void => {
-      const _cur = getUrl(this.router);
-      this.showSidebar = !!getUrl(this.router);
-      if (typeof PR !== 'undefined' && _prev !== _cur) {
-        _prev = _cur;
-        // google code-prettify
-        PR.prettyPrint();
-      }
-
-      const hash = this.route.snapshot.fragment;
-      if (hash) {
-        const target: HTMLElement | null = this.document.getElementById(hash);
-        const header: HTMLElement | null = this.document.getElementById('header');
-        if (target && header) {
-          setTimeout(() => {
-            const sidebar: HTMLElement | null = this.document.getElementById('sidebar');
-            const targetPosY: number =  innerWidth <= 991 ? target.offsetTop - header.offsetHeight - 6 - (sidebar?.offsetHeight || 0) : target.offsetTop - header.offsetHeight - 6;
-            window.scrollTo({top: targetPosY, behavior: 'smooth'});
-          }, 100);
-        }
-      } else {
-        window.scrollTo({top: 0, behavior: 'smooth'});
-      }
-    };
 
     this.router.events
       .pipe(
         filter(event => event instanceof NavigationEnd)
       )
-      .subscribe(() => setTimeout(() => justDoIt(), 50));
+      .subscribe(() => setTimeout(() => {
+        const _cur = getUrl(this.router);
+        if (typeof PR !== 'undefined' && _prev !== _cur) {
+          _prev = _cur;
+          // google code-prettify
+          PR.prettyPrint();
+        }
+
+        const hash = this.route.snapshot.fragment;
+        if (hash) {
+          const target: HTMLElement | null = this.document.getElementById(hash);
+          const header: HTMLElement | null = this.document.getElementById('header');
+          if (target && header) {
+            setTimeout(() => {
+              const sidebar: HTMLElement | null = this.document.getElementById('sidebar');
+              const targetPosY: number =  innerWidth <= 991 ? target.offsetTop - header.offsetHeight - 6 - (sidebar?.offsetHeight || 0) : target.offsetTop - header.offsetHeight - 6;
+              window.scrollTo({top: targetPosY, behavior: 'smooth'});
+            }, 100);
+          }
+        } else {
+          window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+      }, 50));
   }
 }

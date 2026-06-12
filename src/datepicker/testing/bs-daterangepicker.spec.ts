@@ -4,7 +4,6 @@ import { BsDatepickerModule } from '../bs-datepicker.module';
 import { BsDaterangepickerConfig } from '../bs-daterangepicker.config';
 import { BsDaterangepickerContainerComponent } from '../themes/bs/bs-daterangepicker-container.component';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { BsCustomDates } from '../themes/bs/bs-custom-dates-view.component';
 import { firstValueFrom } from 'rxjs';
@@ -57,8 +56,7 @@ describe('daterangepicker:', () => {
       waitForAsync(() => TestBed.configureTestingModule({
         declarations: [TestComponent],
         imports: [
-          BsDatepickerModule,
-          BrowserAnimationsModule
+          BsDatepickerModule
         ]
       }).compileComponents())
     );

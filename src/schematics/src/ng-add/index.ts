@@ -34,14 +34,14 @@ const DATEPICKER_AVAILABLESTYLES = {
 `]
 };
 
-const components: { [key: string]: { moduleName: string; link: string; animated?: boolean } } = {
-  accordion: { moduleName: 'AccordionModule', link: `${bsName}/accordion`, animated: true },
+const components: { [key: string]: { moduleName: string; link: string } } = {
+  accordion: { moduleName: 'AccordionModule', link: `${bsName}/accordion` },
   alerts: { moduleName: 'AlertModule', link: `${bsName}/alert` },
   buttons: { moduleName: 'ButtonsModule', link: `${bsName}/buttons` },
   carousel: { moduleName: 'CarouselModule', link: `${bsName}/carousel` },
-  collapse: { moduleName: 'CollapseModule', link: `${bsName}/collapse`, animated: true },
-  datepicker: { moduleName: 'BsDatepickerModule', link: `${bsName}/datepicker`, animated: true },
-  dropdowns: { moduleName: 'BsDropdownModule', link: `${bsName}/dropdown`, animated: true },
+  collapse: { moduleName: 'CollapseModule', link: `${bsName}/collapse` },
+  datepicker: { moduleName: 'BsDatepickerModule', link: `${bsName}/datepicker` },
+  dropdowns: { moduleName: 'BsDropdownModule', link: `${bsName}/dropdown` },
   modals: { moduleName: 'ModalModule', link: `${bsName}/modal` },
   pagination: { moduleName: 'PaginationModule', link: `${bsName}/pagination` },
   popover: { moduleName: 'PopoverModule', link: `${bsName}/popover` },
@@ -51,7 +51,7 @@ const components: { [key: string]: { moduleName: string; link: string; animated?
   tabs: { moduleName: 'TabsModule', link: `${bsName}/tabs` },
   timepicker: { moduleName: 'TimepickerModule', link: `${bsName}/timepicker` },
   tooltip: { moduleName: 'TooltipModule', link: `${bsName}/tooltip` },
-  typeahead: { moduleName: 'TypeaheadModule', link: `${bsName}/typeahead`, animated: true }
+  typeahead: { moduleName: 'TypeaheadModule', link: `${bsName}/typeahead` }
 };
 
 export default function addBsToPackage(options: Schema): Rule {
@@ -75,8 +75,6 @@ export default function addBsToPackage(options: Schema): Rule {
     if (componentName) {
       addModuleOfComponent(project, tree, context, componentName);
     }
-
-    addAnimationModule(project, tree, context, componentName);
   };
 }
 
@@ -97,7 +95,7 @@ function addModuleOfComponent(project: workspaces.ProjectDefinition, host: Tree,
       return;
     }
     addModuleImportToRootModule(
-      host, `${components[componentName].moduleName}.forRoot()`, components[componentName].link, project
+      host, components[componentName].moduleName, components[componentName].link, project
     );
   }
 }
@@ -126,14 +124,6 @@ function insertCommonStyles(project: workspaces.ProjectDefinition, host: Tree, p
 
   insertBootstrapStyles(project, host, projectName, extension);
   return addStyles(project, 'build', host, DATEPICKER_AVAILABLESTYLES, projectName, extension);
-}
-
-function addAnimationModule(project: workspaces.ProjectDefinition, host: Tree, context: SchematicContext, componentName: string): Rule {
-  if (!project || !(!componentName || components[componentName]?.animated)) {
-    return;
-  }
-
-  addModuleImportToRootModule(host, 'BrowserAnimationsModule', '@angular/platform-browser/animations', project);
 }
 
 export function checkComponentName(componentName: string): boolean {

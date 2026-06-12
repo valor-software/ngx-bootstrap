@@ -8,7 +8,7 @@
 
 /* eslint-disable */
 
-import { NgZone } from '@angular/core';
+import { Injector } from '@angular/core';
 import { InteractivityChecker } from './interactivity-checker';
 import { FocusTrap } from './focus-trap';
 import { FocusTrapManager, ManagedFocusTrap } from './focus-trap-manager';
@@ -39,12 +39,12 @@ export class ConfigurableFocusTrap extends FocusTrap implements ManagedFocusTrap
   constructor(
     _element: HTMLElement,
     _checker: InteractivityChecker,
-    _ngZone: NgZone,
+    _injector: Injector,
     _document: Document,
     private _focusTrapManager: FocusTrapManager,
     private _inertStrategy: FocusTrapInertStrategy,
     config: ConfigurableFocusTrapConfig) {
-    super(_element, _checker, _ngZone, _document, config.defer);
+    super(_element, _checker, _injector, _document, config.defer);
     this._focusTrapManager.register(this);
   }
 

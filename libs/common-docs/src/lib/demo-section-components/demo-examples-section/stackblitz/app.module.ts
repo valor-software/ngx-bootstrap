@@ -24,7 +24,7 @@ import { ${className === 'DemoModalServiceFromComponent' ? `${className}, ModalC
 @NgModule({
   declarations: [${className === 'DemoModalServiceFromComponent' ? `${className}, ModalContentComponent` : className}],
   imports: [
-    ${moduleData.moduleName}.forRoot(),
+    ${moduleData.moduleName},
     ${className === 'DemoModalWithPopupsComponent' ? `TooltipModule,
     PopoverModule,` : ''}
     BrowserAnimationsModule,

@@ -2,12 +2,12 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  EventEmitter,
   forwardRef,
-  Input,
   OnInit,
-  Output,
-  Provider
+  Provider,
+  input,
+  output,
+  effect
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -33,38 +33,44 @@ export const PAGER_CONTROL_VALUE_ACCESSOR: Provider = {
 export class PagerComponent implements ControlValueAccessor, OnInit {
   config?: Partial<ConfigModel>;
   /** if `true` aligns each link to the sides of pager */
-  @Input() align = false;
+  align = input<boolean>(false);
   /** limit number for page links in pager */
-  @Input() maxSize?: number;
+  maxSize = input<number | undefined>();
   /** if false first and last buttons will be hidden */
-  @Input() boundaryLinks = false;
+  boundaryLinks = input<boolean>(false);
   /** if false previous and next buttons will be hidden */
-  @Input() directionLinks = true;
+  directionLinks = input<boolean>(true);
   // labels
   /** first button text */
-  @Input() firstText = 'First';
+  firstText = input<string>('First');
   /** previous button text */
-  @Input() previousText = '« Previous';
+  previousText = input<string>('« Previous');
   /** next button text */
-  @Input() nextText = 'Next »';
+  nextText = input<string>('Next »');
   /** last button text */
-  @Input() lastText = 'Last';
+  lastText = input<string>('Last');
   /** if true current page will in the middle of pages list */
-  @Input() rotate = true;
+  rotate = input<boolean>(true);
   // css
   /** add class to <code><li\></code> */
-  @Input() pageBtnClass = '';
+  pageBtnClass = input<string>('');
 
   /** if true pagination component will be disabled */
-  @Input() disabled = false;
+  disabled = input<boolean>(false);
+
+  /** maximum number of items per page. If value less than 1 will display all items on one page */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
+  itemsPerPageInput = input<number>(15, { alias: 'itemsPerPage' });
+  /** total number of items in all pages */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
+  totalItemsInput = input<number>(0, { alias: 'totalItems' });
 
   /** fired when total pages count changes, $event:number equals to total pages count */
-  @Output() numPages = new EventEmitter<number>();
+  numPages = output<number>();
   /** fired when page was changed, $event:{page, itemsPerPage} equals to
    * object with current page index and number of items per page
    */
-  @Output()
-  pageChanged = new EventEmitter<PageChangedEvent>();
+  pageChanged = output<PageChangedEvent>();
   onChange = Function.prototype;
   onTouched = Function.prototype;
   classMap = '';
@@ -80,32 +86,30 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
         Object.assign({}, paginationConfig.main, paginationConfig.pager)
       );
     }
+
+    // Watch for itemsPerPage changes
+    effect(() => {
+      this._itemsPerPage = this.itemsPerPageInput();
+      this.totalPages = this.calculateTotalPages();
+    });
+
+    // Watch for totalItems changes
+    effect(() => {
+      this._totalItems = this.totalItemsInput();
+      this.totalPages = this.calculateTotalPages();
+    });
   }
 
   protected _itemsPerPage = 15;
 
-  /** maximum number of items per page. If value less than 1 will display all items on one page */
-  @Input()
   get itemsPerPage(): number {
     return this._itemsPerPage;
   }
 
-  set itemsPerPage(v: number) {
-    this._itemsPerPage = v;
-    this.totalPages = this.calculateTotalPages();
-  }
-
   protected _totalItems = 0;
 
-  /** total number of items in all pages */
-  @Input()
   get totalItems(): number {
     return this._totalItems;
-  }
-
-  set totalItems(v: number) {
-    this._totalItems = v;
-    this.totalPages = this.calculateTotalPages();
   }
 
   protected _totalPages = 0;
@@ -147,35 +151,36 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
     this.config = Object.assign({}, config);
   }
 
+  // Resolved configuration values
+  protected _maxSize = 0;
+  protected _rotate = true;
+  protected _boundaryLinks = false;
+  protected _directionLinks = true;
+  protected _pageBtnClass = '';
+
   ngOnInit(): void {
     if (typeof window !== 'undefined') {
       this.classMap = this.elementRef.nativeElement.getAttribute('class') || '';
     }
     // watch for maxSize
-    if (typeof this.maxSize === 'undefined') {
-      this.maxSize = this.config?.maxSize || 0;
-    }
+    const maxSizeVal = this.maxSize();
+    this._maxSize = typeof maxSizeVal === 'undefined' ? this.config?.maxSize || 0 : maxSizeVal;
 
-    if (typeof this.rotate === 'undefined') {
-      this.rotate = !!this.config?.rotate;
-    }
+    const rotateVal = this.rotate();
+    this._rotate = typeof rotateVal === 'undefined' ? !!this.config?.rotate : rotateVal;
 
-    if (typeof this.boundaryLinks === 'undefined') {
-      this.boundaryLinks = !!this.config?.boundaryLinks;
-    }
+    const boundaryLinksVal = this.boundaryLinks();
+    this._boundaryLinks = typeof boundaryLinksVal === 'undefined' ? !!this.config?.boundaryLinks : boundaryLinksVal;
 
+    const directionLinksVal = this.directionLinks();
+    this._directionLinks = typeof directionLinksVal === 'undefined' ? !!this.config?.directionLinks : directionLinksVal;
 
-    if (typeof this.directionLinks === 'undefined') {
-      this.directionLinks = !!this.config?.directionLinks;
-    }
-
-    if (typeof this.pageBtnClass === 'undefined') {
-      this.pageBtnClass = this.config?.pageBtnClass || '';
-    }
+    const pageBtnClassVal = this.pageBtnClass();
+    this._pageBtnClass = typeof pageBtnClassVal === 'undefined' ? this.config?.pageBtnClass || '' : pageBtnClassVal;
 
     // base class
     if (typeof this.itemsPerPage === 'undefined') {
-      this.itemsPerPage = this.config?.itemsPerPage || 0;
+      this._itemsPerPage = this.config?.itemsPerPage || 0;
     }
 
     this.totalPages = this.calculateTotalPages();
@@ -191,7 +196,8 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
 
   getText(key: string): string {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return (this as any)[`${key}Text`] || (this as any).config[`${key}Text`];
+    const inputVal = (this as any)[`${key}Text`]?.();
+    return inputVal || (this as any).config[`${key}Text`];
   }
 
   noPrevious(): boolean {
@@ -215,7 +221,7 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
       event.preventDefault();
     }
 
-    if (!this.disabled) {
+    if (!this.disabled()) {
       if (event && event.target) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const target: any = event.target;
@@ -235,32 +241,34 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
 
   protected getPages(currentPage: number, totalPages: number): PagesModel[] {
     const pages: PagesModel[] = [];
+    const maxSize = this._maxSize;
+    const rotate = this._rotate;
 
     // Default page limits
     let startPage = 1;
     let endPage = totalPages;
     const isMaxSized =
-      typeof this.maxSize !== 'undefined' && this.maxSize < totalPages;
+      typeof maxSize !== 'undefined' && maxSize < totalPages;
 
     // recompute if maxSize
-    if (isMaxSized && this.maxSize) {
-      if (this.rotate) {
+    if (isMaxSized && maxSize) {
+      if (rotate) {
         // Current page is displayed in the middle of the visible ones
-        startPage = Math.max(currentPage - Math.floor(this.maxSize / 2), 1);
-        endPage = startPage + this.maxSize - 1;
+        startPage = Math.max(currentPage - Math.floor(maxSize / 2), 1);
+        endPage = startPage + maxSize - 1;
 
         // Adjust if limit is exceeded
         if (endPage > totalPages) {
           endPage = totalPages;
-          startPage = endPage - this.maxSize + 1;
+          startPage = endPage - maxSize + 1;
         }
       } else {
         // Visible pages are paginated with maxSize
         startPage =
-          (Math.ceil(currentPage / this.maxSize) - 1) * this.maxSize + 1;
+          (Math.ceil(currentPage / maxSize) - 1) * maxSize + 1;
 
         // Adjust last page if limit is exceeded
-        endPage = Math.min(startPage + this.maxSize - 1, totalPages);
+        endPage = Math.min(startPage + maxSize - 1, totalPages);
       }
     }
 
@@ -271,7 +279,7 @@ export class PagerComponent implements ControlValueAccessor, OnInit {
     }
 
     // Add links to move between page sets
-    if (isMaxSized && !this.rotate) {
+    if (isMaxSized && !rotate) {
       if (startPage > 1) {
         const previousPageSet = this.makePage(startPage - 1, '...', false);
         pages.unshift(previousPageSet);

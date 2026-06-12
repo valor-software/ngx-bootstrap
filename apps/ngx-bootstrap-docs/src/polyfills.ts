@@ -19,7 +19,8 @@
  */
 
 // import 'core-js/es/reflect';
-import 'zone.js';
+// Zone.js is no longer required for zoneless Angular
+// import 'zone.js';
 // import 'classlist-polyfill';
 // import 'web-animations-js';
 // import 'intl';
@@ -28,4 +29,5 @@ import 'zone.js';
 /***************************************************************************************************
  * SCULLY IMPORTS
  */
-import 'zone.js/plugins/task-tracking';
+// Zone.js task tracking is no longer required for zoneless Angular
+// import 'zone.js/plugins/task-tracking';

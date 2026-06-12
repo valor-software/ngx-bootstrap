@@ -1,6 +1,6 @@
-@if (isOpen) {
-  <div [class]="'alert alert-' + type" role="alert" [ngClass]="classes">
-    @if (dismissible) {
+@if (_isOpen) {
+  <div [class]="'alert alert-' + type()" role="alert" [ngClass]="classes">
+    @if (dismissible()) {
       <button type="button" class="close btn-close" aria-label="Close" (click)="close()">
         <span aria-hidden="true" class="visually-hidden">&times;</span>
         <span class="sr-only visually-hidden">Close</span>

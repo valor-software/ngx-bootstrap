@@ -3,8 +3,9 @@
 // todo: original modal had resize events
 
 import {
-  ComponentRef, Directive, ElementRef, EventEmitter, HostListener, Input,
-  OnDestroy, OnInit, Output, Renderer2, ViewContainerRef, Optional, Inject
+  ComponentRef, Directive, ElementRef, HostListener,
+  OnDestroy, OnInit, Renderer2, ViewContainerRef, Optional, Inject,
+  input, output, effect
 } from '@angular/core';
 
 import { document, window, Utils } from 'ngx-bootstrap/utils';
@@ -26,36 +27,30 @@ const BACKDROP_TRANSITION_DURATION = 150;
 })
 export class ModalDirective implements OnDestroy, OnInit {
   /** allows to set modal configuration via element property */
-  @Input()
-  set config(conf: ModalOptions) {
-    this._config = this.getConfig(conf);
-  }
+  // eslint-disable-next-line @angular-eslint/no-input-rename
+  configInput = input<ModalOptions | undefined>(undefined, { alias: 'config' });
+
+  /** allows to provide a callback to intercept the closure of the modal */
+  closeInterceptor = input<CloseInterceptorFn | undefined>();
+
+  /** This event fires immediately when the `show` instance method is called. */
+  onShow = output<ModalDirective>();
+  /** This event is fired when the modal has been made visible to the user
+   * (will wait for CSS transitions to complete)
+   */
+  onShown = output<ModalDirective>();
+  /** This event is fired immediately when
+   * the hide instance method has been called.
+   */
+  onHide = output<ModalDirective>();
+  /** This event is fired when the modal has finished being
+   * hidden from the user (will wait for CSS transitions to complete).
+   */
+  onHidden = output<ModalDirective>();
 
   get config(): ModalOptions {
     return this._config;
   }
-
-  /** allows to provide a callback to intercept the closure of the modal */
-  @Input() closeInterceptor?: CloseInterceptorFn;
-
-  /** This event fires immediately when the `show` instance method is called. */
-  @Output()
-  onShow: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
-  /** This event is fired when the modal has been made visible to the user
-   * (will wait for CSS transitions to complete)
-   */
-  @Output()
-  onShown: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
-  /** This event is fired immediately when
-   * the hide instance method has been called.
-   */
-  @Output()
-  onHide: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
-  /** This event is fired when the modal has finished being
-   * hidden from the user (will wait for CSS transitions to complete).
-   */
-  @Output()
-  onHidden: EventEmitter<ModalDirective> = new EventEmitter<ModalDirective>();
 
   /** This field contains last dismiss reason.
    * Possible values: `backdrop-click`, `esc` and `id: number`
@@ -97,6 +92,14 @@ export class ModalDirective implements OnDestroy, OnInit {
       _renderer
     );
     this._config = modalDefaultOption || modalConfigDefaults;
+
+    // Effect for config input
+    effect(() => {
+      const conf = this.configInput();
+      if (conf) {
+        this._config = this.getConfig(conf);
+      }
+    });
   }
 
   @HostListener('mousedown', ['$event'])

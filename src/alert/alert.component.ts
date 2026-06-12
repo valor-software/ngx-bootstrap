@@ -2,13 +2,12 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  EventEmitter,
-  Input,
   OnInit,
-  Output
+  effect,
+  input,
+  output
 } from '@angular/core';
 import { AlertConfig } from './alert.config';
-import { OnChange } from 'ngx-bootstrap/utils';
 import { NgClass } from '@angular/common';
 
 @Component({
@@ -23,40 +22,47 @@ export class AlertComponent implements OnInit {
    * Provides one of four bootstrap supported contextual classes:
    * `success`, `info`, `warning` and `danger`
    */
-  @Input() type = 'warning';
+  type = input<string>(this._config.type);
   /** If set, displays an inline "Close" button */
-  @OnChange()   @Input()   dismissible = false;
+  dismissible = input<boolean>(this._config.dismissible);
   /** Number in milliseconds, after which alert will be closed */
-  @Input() dismissOnTimeout?: number | string;
+  dismissOnTimeout = input<number | string | undefined>(this._config.dismissOnTimeout);
 
   /** Is alert visible */
-  @Input() isOpen = true;
+  isOpen = input<boolean>(true);
 
   /** This event fires immediately after close instance method is called,
    * $event is an instance of Alert component.
    */
-  @Output() onClose = new EventEmitter<AlertComponent>();
+  onClose = output<AlertComponent>();
   /** This event fires when alert closed, $event is an instance of Alert component */
-  @Output() onClosed = new EventEmitter<AlertComponent>();
-
+  onClosed = output<AlertComponent>();
 
   classes = '';
-  dismissibleChange = new EventEmitter<boolean>();
+  _isOpen = true;
 
-  constructor(_config: AlertConfig, private changeDetection: ChangeDetectorRef) {
-    Object.assign(this, _config);
-    this.dismissibleChange.subscribe((/*dismissible: boolean*/) => {
-      this.classes = this.dismissible ? 'alert-dismissible' : '';
+  constructor(private _config: AlertConfig, private changeDetection: ChangeDetectorRef) {
+
+    // Use effect to watch for dismissible changes
+    effect(() => {
+      const dismissibleValue = this.dismissible();
+      this.classes = dismissibleValue ? 'alert-dismissible' : '';
       this.changeDetection.markForCheck();
+    });
+
+    // Use effect to sync isOpen input with internal state
+    effect(() => {
+      this._isOpen = this.isOpen();
     });
   }
 
   ngOnInit(): void {
-    if (this.dismissOnTimeout) {
+    const timeout = this.dismissOnTimeout();
+    if (timeout) {
       // if dismissOnTimeout used as attr without binding, it will be a string
       setTimeout(
         () => this.close(),
-        parseInt(this.dismissOnTimeout as string, 10)
+        parseInt(timeout as string, 10)
       );
     }
   }
@@ -67,12 +73,12 @@ export class AlertComponent implements OnInit {
    * Closes an alert by removing it from the DOM.
    */
   close(): void {
-    if (!this.isOpen) {
+    if (!this._isOpen) {
       return;
     }
 
     this.onClose.emit(this);
-    this.isOpen = false;
+    this._isOpen = false;
     this.changeDetection.markForCheck();
     this.onClosed.emit(this);
   }

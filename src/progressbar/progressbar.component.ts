@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, computed } from '@angular/core';
 import { BarValue, ProgressbarType } from './progressbar-type.interface';
 import { ProgressbarConfig } from './progressbar.config';
 import { BarComponent } from './bar.component';
@@ -10,7 +10,7 @@ import { BarComponent } from './bar.component';
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
         '[class.progress]': 'true',
-        '[attr.max]': 'max'
+        '[attr.max]': 'max()'
     },
     styles: [`
     :host {
@@ -22,37 +22,34 @@ import { BarComponent } from './bar.component';
 })
 export class ProgressbarComponent {
   /** maximum total value of progress element */
-  @Input() max = 100;
+  max = input<number>(this._config.max);
 
   /** if `true` changing value of progress bar will be animated */
-  @Input() animate = false;
+  animate = input<boolean>(this._config.animate);
 
   /** If `true`, striped classes are applied */
-  @Input() striped = false;
+  striped = input<boolean>(this._config.striped);
 
   /** provide one of the four supported contextual classes: `success`, `info`, `warning`, `danger` */
-  @Input() type?: ProgressbarType;
+  type = input<ProgressbarType | undefined>();
 
   /** current value of progress bar. Could be a number or array of objects
    * like {"value":15,"type":"info","label":"15 %"}
    */
-  @Input()
-  set value(value: number | BarValue[]) {
-    this.isStacked = Array.isArray(value);
-    if (typeof value === 'number') {
-      this._value = value;
-      this._values = void 0;
-    } else {
-      this._value = void 0;
-      this._values = value;
-    }
-  }
+  value = input<number | BarValue[]>(0);
 
-  isStacked = false;
-  _value? = 0;
-  _values?: BarValue[];
+  isStacked = computed(() => Array.isArray(this.value()));
 
-  constructor(config: ProgressbarConfig) {
-    Object.assign(this, config);
+  _value = computed(() => {
+    const val = this.value();
+    return typeof val === 'number' ? val : undefined;
+  });
+
+  _values = computed(() => {
+    const val = this.value();
+    return Array.isArray(val) ? val : undefined;
+  });
+
+  constructor(private _config: ProgressbarConfig) {
   }
 }

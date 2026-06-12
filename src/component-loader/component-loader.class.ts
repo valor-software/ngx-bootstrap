@@ -3,25 +3,25 @@
 // todo: add global positioning configuration?
 import {
   ApplicationRef,
-  ComponentFactory,
-  ComponentFactoryResolver,
   ComponentRef,
+  createComponent,
   ElementRef,
   EmbeddedViewRef,
+  EnvironmentInjector,
   EventEmitter,
   Injector,
-  NgZone,
   Renderer2,
   StaticProvider,
   TemplateRef,
   Type,
-  ViewContainerRef
+  ViewContainerRef,
+  ChangeDetectorRef,
+  inject
 } from '@angular/core';
 
 import { PositioningOptions, PositioningService } from 'ngx-bootstrap/positioning';
 
 import { listenToTriggersV2, registerEscClick, registerOutsideClick } from 'ngx-bootstrap/utils';
-import { Subscription } from 'rxjs';
 
 import { ContentRef } from './content-ref.class';
 import { ListenOptions } from './listen-options.model';
@@ -37,8 +37,8 @@ export class ComponentLoader<T extends object> {
   _inlineViewRef?: EmbeddedViewRef<T>;
 
   private _providers: StaticProvider[] = [];
-  private _componentFactory?: ComponentFactory<T>;
-  private _zoneSubscription?: Subscription;
+  private _compType?: Type<T>;
+  private _positioningRafId?: number;
   private _contentRef?: ContentRef;
   private _innerComponent?: ComponentRef<T>;
 
@@ -75,8 +75,7 @@ export class ComponentLoader<T extends object> {
     private _renderer: Renderer2 | undefined,
     private _elementRef: ElementRef | undefined,
     private _injector: Injector,
-    private _componentFactoryResolver: ComponentFactoryResolver,
-    private _ngZone: NgZone,
+    private _environmentInjector: EnvironmentInjector,
     private _applicationRef: ApplicationRef,
     private _posService: PositioningService,
     private _document: Document,
@@ -92,8 +91,7 @@ export class ComponentLoader<T extends object> {
   }
 
   attach(compType: Type<T>): ComponentLoader<T> {
-    this._componentFactory = this._componentFactoryResolver
-      .resolveComponentFactory<T>(compType);
+    this._compType = compType;
 
     return this;
   }
@@ -140,16 +138,20 @@ export class ComponentLoader<T extends object> {
       this.onBeforeShow.emit();
       this._contentRef = this._getContentRef(opts.content, opts.context, opts.initialState);
 
-      const injector = Injector.create({
+      const elementInjector = Injector.create({
         providers: this._providers,
         parent: this._injector
       });
 
-      if (!this._componentFactory) {
+      if (!this._compType) {
         return;
       }
 
-      this._componentRef = this._componentFactory.create(injector, this._contentRef.nodes);
+      this._componentRef = createComponent(this._compType, {
+        environmentInjector: this._environmentInjector,
+        elementInjector,
+        projectableNodes: this._contentRef.nodes
+      });
 
       this._applicationRef.attachView(this._componentRef.hostView);
       // this._componentRef = this._viewContainerRef
@@ -231,6 +233,7 @@ export class ComponentLoader<T extends object> {
     this._contentRef = void 0;
     this._componentRef = void 0;
     this._removeGlobalListener();
+    this._unsubscribePositioning();
 
     this.onHidden.emit(id ? { id } : null);
 
@@ -350,7 +353,7 @@ export class ComponentLoader<T extends object> {
   }
 
   private _subscribePositioning(): void {
-    if (this._zoneSubscription || !this.attachment) {
+    if (this._positioningRafId || !this.attachment) {
       return;
     }
 
@@ -363,22 +366,26 @@ export class ComponentLoader<T extends object> {
       });
     });
 
-    this._zoneSubscription = this._ngZone.onStable.subscribe(() => {
+    // Use requestAnimationFrame for zoneless-compatible position updates
+    // This replaces the previous NgZone.onStable subscription
+    const schedulePositioning = () => {
       if (!this._componentRef) {
         return;
       }
 
       this._posService.calcPosition();
-    });
+      this._positioningRafId = requestAnimationFrame(schedulePositioning);
+    };
+
+    // Initial calculation after a short delay to ensure DOM is ready
+    this._positioningRafId = requestAnimationFrame(schedulePositioning);
   }
 
   private _unsubscribePositioning(): void {
-    if (!this._zoneSubscription) {
-      return;
+    if (this._positioningRafId) {
+      cancelAnimationFrame(this._positioningRafId);
+      this._positioningRafId = undefined;
     }
-
-    this._zoneSubscription.unsubscribe();
-    this._zoneSubscription = void 0;
   }
 
   private _getContentRef(
@@ -408,16 +415,15 @@ export class ComponentLoader<T extends object> {
     }
 
     if (typeof content === 'function') {
-      const contentCmptFactory = this._componentFactoryResolver.resolveComponentFactory(
-        content
-      );
-
       const modalContentInjector = Injector.create({
         providers: this._providers,
         parent: this._injector
       });
 
-      const componentRef = contentCmptFactory.create(modalContentInjector);
+      const componentRef = createComponent(content, {
+        environmentInjector: this._environmentInjector,
+        elementInjector: modalContentInjector,
+      });
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       Object.assign(componentRef.instance, initialState);

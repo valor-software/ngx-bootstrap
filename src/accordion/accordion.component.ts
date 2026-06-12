@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { AccordionPanelComponent } from './accordion-group.component';
 import { AccordionConfig } from './accordion.config';
 
@@ -7,7 +7,7 @@ import { AccordionConfig } from './accordion.config';
     selector: 'accordion',
     template: `<ng-content></ng-content>`,
     host: {
-        '[attr.aria-multiselectable]': 'closeOthers',
+        '[attr.aria-multiselectable]': 'closeOthers()',
         role: 'tablist',
         class: 'panel-group',
         style: 'display: block'
@@ -16,18 +16,17 @@ import { AccordionConfig } from './accordion.config';
 })
 export class AccordionComponent {
   /** turn on/off animation */
-  @Input() isAnimated = false;
+  isAnimated = input<boolean>(this._config.isAnimated);
   /** if `true` expanding one item will close all others */
-  @Input() closeOthers = false;
+  closeOthers = input<boolean>(this._config.closeOthers);
 
   protected groups: AccordionPanelComponent[] = [];
 
-  constructor(config: AccordionConfig) {
-    Object.assign(this, config);
+  constructor(private _config: AccordionConfig) {
   }
 
   closeOtherPanels(openGroup: AccordionPanelComponent): void {
-    if (!this.closeOthers) {
+    if (!this.closeOthers()) {
       return;
     }
 
@@ -39,7 +38,7 @@ export class AccordionComponent {
   }
 
   addGroup(group: AccordionPanelComponent): void {
-    group.isAnimated = this.isAnimated;
+    group.isAnimated = this.isAnimated();
     this.groups.push(group);
   }
 

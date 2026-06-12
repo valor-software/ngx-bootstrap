@@ -2,8 +2,9 @@ import {
   Component,
   HostBinding,
   OnDestroy,
-  Input,
-  OnInit
+  OnInit,
+  input,
+  effect
 } from '@angular/core';
 
 import { CarouselComponent } from './carousel.component';
@@ -46,8 +47,9 @@ import { CarouselComponent } from './carousel.component';
 export class SlideComponent implements OnInit, OnDestroy {
   /** Is current slide active */
   @HostBinding('class.active')
-  @Input()
   active = false;
+  // eslint-disable-next-line @angular-eslint/no-input-rename
+  activeInput = input<boolean | undefined>(undefined, { alias: 'active' });
 
   @HostBinding('style.width') itemWidth = '100%';
   @HostBinding('style.order') order = 0;
@@ -63,13 +65,21 @@ export class SlideComponent implements OnInit, OnDestroy {
   multilist = false;
   constructor(carousel: CarouselComponent) {
     this.carousel = carousel;
+
+    // Watch for active input changes (only when explicitly bound)
+    effect(() => {
+      const activeValue = this.activeInput();
+      if (activeValue !== undefined) {
+        this.active = activeValue;
+      }
+    });
   }
 
   /** Fires changes in container collection after adding a new slide instance */
   ngOnInit(): void {
     this.carousel.addSlide(this);
-    this.itemWidth = `${100 / this.carousel.itemsPerSlide}%`;
-    this.multilist = this.carousel?.itemsPerSlide > 1;
+    this.itemWidth = `${100 / this.carousel.itemsPerSlide()}%`;
+    this.multilist = this.carousel?.itemsPerSlide() > 1;
   }
 
   /** Fires changes in container collection after removing of this slide instance */

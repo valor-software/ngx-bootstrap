@@ -44,19 +44,21 @@ describe('Component: Alert', () => {
 
   it('should have a default type alert-warning', () => {
     context.ngOnInit();
-    expect(context.type).toEqual(`warning`);
+    expect(context.type()).toEqual(`warning`);
   });
 
   it('should have class dismissible if dismissible=true', () => {
-    context.dismissible = true;
+    fixture.componentRef.setInput('dismissible', true);
+    fixture.detectChanges();
     context.ngOnInit();
     expect(context.classes).toEqual(`alert-dismissible`);
   });
 
   it('should be dismissed by timeout', (done: () => void) => {
-    context.dismissOnTimeout = 1000;
+    fixture.componentRef.setInput('dismissOnTimeout', 1000);
+    fixture.detectChanges();
     context.onClosed.subscribe(() => {
-      expect(context.isOpen).toBeFalsy();
+      expect(context._isOpen).toBeFalsy();
       done();
     });
     context.ngOnInit();
@@ -64,8 +66,8 @@ describe('Component: Alert', () => {
 
   it('should be closed by public method onClose', () => {
     context.ngOnInit();
-    expect(context.isOpen).toBeTruthy();
+    expect(context._isOpen).toBeTruthy();
     context.close();
-    expect(context.isOpen).toBeFalsy();
+    expect(context._isOpen).toBeFalsy();
   });
 });

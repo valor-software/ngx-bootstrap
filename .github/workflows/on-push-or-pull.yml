@@ -39,6 +39,9 @@ jobs:
     needs: one_run
     steps:
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
       - uses: actions/cache@v3
         id: cache
         with:

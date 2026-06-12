@@ -44,12 +44,12 @@ describe('Component: Pager:', () => {
   });
 
   it('checking of working with custom values', () => {
-    context.totalItems = 10;
-    context.itemsPerPage = 4;
-    context.previousText = 'Prev';
-    context.nextText = 'New next';
-    context.pageBtnClass = 'btn';
-    context.align = true;
+    fixture.componentRef.setInput('totalItems', 10);
+    fixture.componentRef.setInput('itemsPerPage', 4);
+    fixture.componentRef.setInput('previousText', 'Prev');
+    fixture.componentRef.setInput('nextText', 'New next');
+    fixture.componentRef.setInput('pageBtnClass', 'btn');
+    fixture.componentRef.setInput('align', true);
 
     context.ngOnInit();
     fixture.detectChanges();
@@ -76,8 +76,8 @@ describe('Component: Pager:', () => {
   it(
     'check NgModel through click',
     fakeAsync(() => {
-      context.totalItems = 10;
-      context.itemsPerPage = 4;
+      fixture.componentRef.setInput('totalItems', 10);
+      fixture.componentRef.setInput('itemsPerPage', 4);
       fixture.detectChanges();
 
       const links = element.querySelectorAll('a');
@@ -108,8 +108,8 @@ describe('Component: Pager:', () => {
   );
 
   it('check NgModel through event', () => {
-    context.totalItems = 10;
-    context.itemsPerPage = 4;
+    fixture.componentRef.setInput('totalItems', 10);
+    fixture.componentRef.setInput('itemsPerPage', 4);
     fixture.detectChanges();
 
     const listItems = element.querySelectorAll('li');

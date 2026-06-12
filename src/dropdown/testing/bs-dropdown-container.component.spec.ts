@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Subject } from 'rxjs';
 
 import { BsDropdownContainerComponent, BsDropdownModule, BsDropdownState } from '../index';
@@ -17,8 +16,7 @@ describe('BsDropdownContainerComponent tests', () => {
     };
     TestBed.configureTestingModule({
       imports: [
-        BsDropdownModule,
-        BrowserAnimationsModule
+        BsDropdownModule
       ],
       providers: [{ provide: BsDropdownState, useValue: fakeService }]
     });

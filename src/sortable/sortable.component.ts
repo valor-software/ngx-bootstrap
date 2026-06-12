@@ -1,10 +1,9 @@
 import {
   Component,
-  Input,
-  Output,
-  EventEmitter,
   forwardRef,
-  TemplateRef
+  TemplateRef,
+  input,
+  output
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { DraggableItem } from './draggable-item';
@@ -16,23 +15,23 @@ import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
     exportAs: 'bs-sortable',
     template: `
 <div
-  [ngClass]="wrapperClass"
-  [ngStyle]="wrapperStyle"
+  [ngClass]="wrapperClass()"
+  [ngStyle]="wrapperStyle()"
   (dragover)="cancelEvent($event)"
   (dragenter)="cancelEvent($event)"
   (drop)="resetActiveItem($event)"
   (mouseleave)="resetActiveItem($event)">
   @if (showPlaceholder) {
     <div
-      [ngClass]="placeholderClass"
-      [ngStyle]="placeholderStyle"
+      [ngClass]="placeholderClass()"
+      [ngStyle]="placeholderStyle()"
       (dragover)="onItemDragover($event, 0)"
       (dragenter)="cancelEvent($event)"
-    >{{placeholderItem}}</div>
+    >{{placeholderItem()}}</div>
   }
   @for (item of items; track item; let i = $index) {
     <div
-      [ngClass]="[ itemClass, i === activeItem ? itemActiveClass : '' ]"
+      [ngClass]="[ itemClass(), i === activeItem ? itemActiveClass() : '' ]"
       [ngStyle]="getItemStyle(i === activeItem)"
       draggable="true"
       (dragstart)="onItemDragstart($event, item, i)"
@@ -41,7 +40,7 @@ import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
       (dragenter)="cancelEvent($event)"
       aria-dropeffect="move"
       [attr.aria-grabbed]="i === activeItem"
-      ><ng-template [ngTemplateOutlet]="itemTemplate || defItemTemplate"
+      ><ng-template [ngTemplateOutlet]="itemTemplate() || defItemTemplate"
     [ngTemplateOutletContext]="{item:item, index: i}"></ng-template></div>
   }
 </div>
@@ -61,42 +60,42 @@ import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
 export class SortableComponent implements ControlValueAccessor {
   private static globalZoneIndex = 0;
   /** field name if input array consists of objects */
-  @Input() fieldName?: string;
+  fieldName = input<string | undefined>();
 
   /** class name for items wrapper */
-  @Input() wrapperClass = '';
+  wrapperClass = input<string>('');
 
   /** style object for items wrapper */
-  @Input() wrapperStyle: Record<string, string> = {};
+  wrapperStyle = input<Record<string, string>>({});
 
   /** class name for item */
-  @Input() itemClass = '';
+  itemClass = input<string>('');
 
   /** style object for item */
-  @Input() itemStyle: Record<string, string> = {};
+  itemStyle = input<Record<string, string>>({});
 
   /** class name for active item */
-  @Input() itemActiveClass = '';
+  itemActiveClass = input<string>('');
 
   /** style object for active item */
-  @Input() itemActiveStyle: Record<string, string> = {};
+  itemActiveStyle = input<Record<string, string>>({});
 
   /** class name for placeholder */
-  @Input() placeholderClass = '';
+  placeholderClass = input<string>('');
 
   /** style object for placeholder */
-  @Input() placeholderStyle: Record<string, string> = {};
+  placeholderStyle = input<Record<string, string>>({});
 
   /** placeholder item which will be shown if collection is empty */
-  @Input() placeholderItem = '';
+  placeholderItem = input<string>('');
 
   /** used to specify a custom item template. Template variables: item and index; */
-  @Input() itemTemplate?: TemplateRef<unknown>;
+  itemTemplate = input<TemplateRef<unknown> | undefined>();
 
   /** fired on array change (reordering, insert, remove), same as <code>ngModelChange</code>.
    *  Returns new items collection as a payload.
    */
-  @Output() onChange: EventEmitter<unknown[]> = new EventEmitter<unknown[]>();
+  onChange = output<unknown[]>();
 
   showPlaceholder = false;
   activeItem = -1;
@@ -224,11 +223,12 @@ export class SortableComponent implements ControlValueAccessor {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   writeValue(value: any[]): void {
     if (value) {
+      const fieldNameValue = this.fieldName();
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       this.items = value.map((x: any, i: number) => ({
         id: i,
         initData: x,
-        value: this.fieldName ? x[this.fieldName] : x
+        value: fieldNameValue ? x[fieldNameValue] : x
       }));
     } else {
       this.items = [];
@@ -242,8 +242,8 @@ export class SortableComponent implements ControlValueAccessor {
 
   getItemStyle(isActive: boolean) {
     return isActive
-      ? Object.assign({}, this.itemStyle, this.itemActiveStyle)
-      : this.itemStyle;
+      ? Object.assign({}, this.itemStyle(), this.itemActiveStyle())
+      : this.itemStyle();
   }
 
   private initDragstartEvent(event: DragEvent): void {
