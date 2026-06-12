@@ -422,7 +422,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     this.element.nativeElement.focus();
 
     this._container.activeChangeEvent.subscribe((activeId: string) => {
-      this.activeDescendant = activeId;
+      this.activeDescendant = activeId || undefined;
       this.changeDetection.markForCheck();
     });
     this.isOpen = true;

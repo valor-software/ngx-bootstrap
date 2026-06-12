@@ -214,7 +214,7 @@ export class TypeaheadContainerComponent implements OnDestroy {
 
   activeChanged(): void {
     if (!this.active) {
-      this.activeChangeEvent.emit(void 0);
+      this.activeChangeEvent.emit('');
       return;
     }
     const index = this.matches.indexOf(this.active);
