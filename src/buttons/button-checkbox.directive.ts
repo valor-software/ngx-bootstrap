@@ -3,9 +3,10 @@ import {
   forwardRef,
   HostBinding,
   HostListener,
-  Input,
   OnInit,
-  Provider
+  Provider,
+  input,
+  effect
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -28,9 +29,9 @@ type AvailableValues = boolean | string | number;
 })
 export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
   /** Truthy value, will be set to ngModel */
-  @Input() btnCheckboxTrue:AvailableValues = true;
+  btnCheckboxTrue = input<AvailableValues>(true);
   /** Falsy value, will be set to ngModel */
-  @Input() btnCheckboxFalse:AvailableValues = false;
+  btnCheckboxFalse = input<AvailableValues>(false);
 
   @HostBinding('class.active')
   @HostBinding('attr.aria-pressed')
@@ -58,14 +59,16 @@ export class ButtonCheckboxDirective implements ControlValueAccessor, OnInit {
   }
 
   protected get trueValue(): AvailableValues {
-    return typeof this.btnCheckboxTrue !== 'undefined'
-      ? this.btnCheckboxTrue
+    const val = this.btnCheckboxTrue();
+    return typeof val !== 'undefined'
+      ? val
       : true;
   }
 
   protected get falseValue(): AvailableValues {
-    return typeof this.btnCheckboxFalse !== 'undefined'
-      ? this.btnCheckboxFalse
+    const val = this.btnCheckboxFalse();
+    return typeof val !== 'undefined'
+      ? val
       : false;
   }
 

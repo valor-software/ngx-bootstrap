@@ -1,12 +1,10 @@
-@if (!isStacked) {
-  <bar [type]="type" [value]="_value" [max]="max" [animate]="animate" [striped]="striped">
+@if (!isStacked()) {
+  <bar [type]="type()" [value]="_value()" [max]="max()" [animate]="animate()" [striped]="striped()">
     <ng-content></ng-content>
   </bar>
 } @else {
-  @for (item of _values; track item) {
+  @for (item of _values(); track item) {
     <bar
-    [type]="item.type" [value]="item.value" [max]="item.max || max" [animate]="animate" [striped]="striped">{{ item.label }}</bar>
+    [type]="item.type" [value]="item.value" [max]="item.max || max()" [animate]="animate()" [striped]="striped()">{{ item.label }}</bar>
   }
 }
-
-

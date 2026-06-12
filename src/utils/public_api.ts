@@ -20,3 +20,10 @@ export { Trigger } from './trigger.class';
 export { Utils } from './utils.class';
 export { window, document } from './facade/browser';
 export { warnOnce }from './warn-once';
+export {
+  animateExpand,
+  onTransitionFinished,
+  TRANSITION_FALLBACK_BUFFER_MS,
+  ExpandAnimationOptions,
+  TransitionFinishedRef
+} from './transition-animation';

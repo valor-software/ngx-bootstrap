@@ -1,6 +1,208 @@
 
+## [21.2.0](https://github.com/valor-software/ngx-bootstrap/compare/v21.0.1...v21.2.0) (2025-04-13)
 
-## [18.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v11.0.2...v18.0.0) (2024-07-1)
+### BREAKING CHANGES
+
+* **zoneless:** Completed migration to Angular's zoneless change detection. `zone.js` is no longer required and has been removed from dependencies.
+* **zoneless:** All components now use `ChangeDetectionStrategy.OnPush`. Applications must use `provideZonelessChangeDetection()` in their bootstrap configuration.
+* **inputs:** All `@Input()` decorators have been replaced with the `input()` signal function API. Programmatic access to component inputs now requires signal read syntax (e.g., `component.myInput()` instead of `component.myInput`).
+* **outputs:** All `@Output()` decorators have been replaced with the `output()` function API. Output emissions continue to use `.emit()`.
+* **services:** Removed `NgZone` dependency from carousel, component-loader, positioning service, and focus-trap. Replaced `NgZone.onStable` with `afterRenderEffect()`.
+* **modules:** Removed deprecated `forRoot()` static method from all 17 module classes (AccordionModule, AlertModule, ButtonsModule, CarouselModule, CollapseModule, BsDatepickerModule, BsDropdownModule, FocusTrapModule, PaginationModule, PopoverModule, ProgressbarModule, RatingModule, SortableModule, TabsModule, TimepickerModule, TooltipModule, TypeaheadModule). These methods were no-ops returning empty providers and were deprecated since v18. Simply use the module directly in imports (e.g., `TooltipModule` instead of `TooltipModule.forRoot()`).
+* **schematics:** `ng add` schematics now generate module imports without `.forRoot()`. 
+
+### Features
+
+* **core:** Migrated to Angular 21.2.x
+* **core:** Migrated 230+ `@Input()` decorators to `input()` across 35 files
+* **core:** Migrated 70+ `@Output()` decorators to `output()` across 24 files
+* **core:** All 17 component groups updated for zoneless operation
+* **core:** Added postinstall warning script for breaking change notifications on `npm install`
+
+### Migration Guide
+
+To upgrade from previous versions:
+
+1. Update Angular to `^21.2.0`
+2. Remove `zone.js` from your polyfills and dependencies
+3. Add `provideZonelessChangeDetection()` to your app bootstrap providers
+4. Update any programmatic input access from `component.prop` to `component.prop()` (signal read)
+5. See [ZONELESS_MIGRATION_PLAN.md](./ZONELESS_MIGRATION_PLAN.md) for the full migration guide
+
+
+## [21.0.1](https://github.com/valor-software/ngx-bootstrap/compare/v21.0.0...v21.0.1) (2026-02-04)
+
+
+### Bug Fixes
+
+* update package.json module exports structure ([#6794](https://github.com/valor-software/ngx-bootstrap/issues/6794)) ([2b60ddd](https://github.com/valor-software/ngx-bootstrap/commit/2b60ddd1))
+
+
+## [21.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v20.0.2...v21.0.0) (2026-02-03)
+
+* Migration to Angular 21 ([#6792](https://github.com/valor-software/ngx-bootstrap/issues/6792)) ([172ef1b](https://github.com/valor-software/ngx-bootstrap/commit/172ef1bb))
+
+
+## [20.0.2](https://github.com/valor-software/ngx-bootstrap/compare/v20.0.1...v20.0.2) (2025-09-10)
+
+
+### Bug Fixes
+
+* **datepicker:** share PositioningService instance ([#6775](https://github.com/valor-software/ngx-bootstrap/issues/6775)) ([0357a3a](https://github.com/valor-software/ngx-bootstrap/commit/0357a3a7))
+* **typeahead:** change highlight logic ([#6764](https://github.com/valor-software/ngx-bootstrap/issues/6764)) ([f34b773](https://github.com/valor-software/ngx-bootstrap/commit/f34b7736))
+
+
+## [20.0.1](https://github.com/valor-software/ngx-bootstrap/compare/v20.0.0...v20.0.1) (2025-08-20)
+
+
+### Bug Fixes
+
+* **tabset:** fixed tabset active input ([#6768](https://github.com/valor-software/ngx-bootstrap/issues/6768)) ([e89ca9e](https://github.com/valor-software/ngx-bootstrap/commit/e89ca9e5))
+* **ci:** use tsx instead of ts-node ([#6762](https://github.com/valor-software/ngx-bootstrap/issues/6762)) ([39d6967](https://github.com/valor-software/ngx-bootstrap/commit/39d69672))
+
+
+## [20.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v19.0.5...v20.0.0) (2025-07-15)
+
+* Migration to Angular 20 ([#6757](https://github.com/valor-software/ngx-bootstrap/issues/6757)) ([17b4330](https://github.com/valor-software/ngx-bootstrap/commit/17b4330c))
+
+
+## [19.0.5](https://github.com/valor-software/ngx-bootstrap/compare/v19.0.3...v19.0.5) (2025-05-28)
+
+
+### Bug Fixes
+
+* package.json types reference ([#6743](https://github.com/valor-software/ngx-bootstrap/issues/6743)) ([02208899](https://github.com/valor-software/ngx-bootstrap/commit/02208899))
+* **e2e:** improve reliability of Playwright tests ([#6753](https://github.com/valor-software/ngx-bootstrap/issues/6753)) ([4cea047](https://github.com/valor-software/ngx-bootstrap/commit/4cea047f))
+* **discover:** fix broken logos for companies on Discover page ([#6745](https://github.com/valor-software/ngx-bootstrap/issues/6745)) ([64471ee](https://github.com/valor-software/ngx-bootstrap/commit/64471ee9))
+
+
+### Features
+
+* **tabs:** add tabOrder property for dynamic tab ordering ([4cea047](https://github.com/valor-software/ngx-bootstrap/commit/64471ee9))
+
+
+## [19.0.3](https://github.com/valor-software/ngx-bootstrap/compare/v19.0.2...v19.0.3) (2025-02-05)
+
+
+### Bug Fixes
+
+* **positioning:** prevent memory leak in positioning service ([#6724](https://github.com/valor-software/ngx-bootstrap/issues/6724)) ([7d87cb4](https://github.com/valor-software/ngx-bootstrap/commit/7d87cb4e))
+* **docs:** replaced logo with a new one and added link to main site ([#6727](https://github.com/valor-software/ngx-bootstrap/issues/6727)) ([9ab37f7](https://github.com/valor-software/ngx-bootstrap/commit/9ab37f7a))
+
+
+## [19.0.2](https://github.com/valor-software/ngx-bootstrap/compare/v19.0.1...v19.0.2) (2025-01-02)
+
+
+### Bug Fixes
+
+* **adaptive-date:** fix adaptive date positioning ([#6717](https://github.com/valor-software/ngx-bootstrap/issues/6717)) ([eccb552](https://github.com/valor-software/ngx-bootstrap/commit/eccb5524))
+* **docs:** changed to non hash-based routing and SSR ([#6711](https://github.com/valor-software/ngx-bootstrap/issues/6711)) ([8d450d0](https://github.com/valor-software/ngx-bootstrap/commit/8d450d0f))
+
+
+## [19.0.1](https://github.com/valor-software/ngx-bootstrap/compare/v19.0.0...v19.0.1) (2024-12-11)
+
+
+### Bug Fixes
+
+* **deps:** fixed wrong peer dependencies ([#6713](https://github.com/valor-software/ngx-bootstrap/issues/6713)) ([c31c3ca](https://github.com/valor-software/ngx-bootstrap/commit/c31c3caf))
+
+
+## [19.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v18.1.3...v19.0.0) (2024-12-10)
+
+* Migration to Angular 19 ([#6712](https://github.com/valor-software/ngx-bootstrap/issues/6712)) ([e9e01f0](https://github.com/valor-software/ngx-bootstrap/commit/e9e01f0b))
+
+### Bug Fixes
+
+* **sortable:** fixed issue 6687 ([#6702](https://github.com/valor-software/ngx-bootstrap/issues/6702)) ([6fbbed3](https://github.com/valor-software/ngx-bootstrap/commit/6fbbed3c))
+
+
+## [18.1.3](https://github.com/valor-software/ngx-bootstrap/compare/v18.1.2...v18.1.3) (2024-10-28)
+
+
+### Bug Fixes
+
+* **modal:** nested modals backdrop added ([798fa5a](https://github.com/valor-software/ngx-bootstrap/commit/798fa5aa))
+* **modal:** fix for issue-6675 animation and issue-6547 ([1ec1e6a](https://github.com/valor-software/ngx-bootstrap/commit/1ec1e6ae))
+* **modal:** fix for issue-6683 body is scrollable if you close just one modal ([1555096](https://github.com/valor-software/ngx-bootstrap/commit/15550963))
+* **datepicker:** fixed infinite cycle behavior ([4741422](https://github.com/valor-software/ngx-bootstrap/commit/47414224))
+* **datepicker:** quick ranges button is not selected with maxDate ([#6670](https://github.com/valor-software/ngx-bootstrap/issues/6670)) ([#6696](https://github.com/valor-software/ngx-bootstrap/issues/6696)) ([1298c48](https://github.com/valor-software/ngx-bootstrap/commit/1298c48a))
+* **docs:** fixed typo in import ([9d32875](https://github.com/valor-software/ngx-bootstrap/commit/9d328758))
+
+
+## [18.1.2](https://github.com/valor-software/ngx-bootstrap/compare/v18.1.1...v18.1.2) (2024-10-21)
+
+* Release candidate fixes ([#6690](https://github.com/valor-software/ngx-bootstrap/issues/6690)) ([e77c928](https://github.com/valor-software/ngx-bootstrap/commit/e77c9285))
+
+
+## [18.1.1](https://github.com/valor-software/ngx-bootstrap/compare/v18.1.0...v18.1.1) (2024-10-17)
+
+
+### Features
+
+* **moduleless:** migrating to standalone modules support ([#6669](https://github.com/valor-software/ngx-bootstrap/issues/6669)) ([2c7d6f0](https://github.com/valor-software/ngx-bootstrap/commit/2c7d6f01))
+* **locale:** add Persian locale ([#6560](https://github.com/valor-software/ngx-bootstrap/issues/6560)) ([9968df4](https://github.com/valor-software/ngx-bootstrap/commit/9968df42))
+
+### Bug Fixes
+
+* **typescript:** some Angular setups can't handle `.forRoot()` return type ([#6689](https://github.com/valor-software/ngx-bootstrap/issues/6689)) ([b15cea2](https://github.com/valor-software/ngx-bootstrap/commit/b15cea22))
+
+
+## [18.1.0](https://github.com/valor-software/ngx-bootstrap/compare/v18.0.2...v18.1.0) (2024-10-16)
+
+
+### Features
+
+* **accordion:** migrated to standalone ([24bfd94](https://github.com/valor-software/ngx-bootstrap/commit/24bfd94c))
+* **alert:** migrated to standalone ([c8a4b16](https://github.com/valor-software/ngx-bootstrap/commit/c8a4b16c))
+* **buttons:** migrated to standalone ([2b1deef](https://github.com/valor-software/ngx-bootstrap/commit/2b1deef6))
+* **carousel:** migrated to standalone ([95475c4](https://github.com/valor-software/ngx-bootstrap/commit/95475c4a))
+* **collapse:** migrated to standalone ([aaef99a](https://github.com/valor-software/ngx-bootstrap/commit/aaef99a4))
+* **datepicker:** migrated to standalone ([ae1862d](https://github.com/valor-software/ngx-bootstrap/commit/ae1862dc))
+* **dropdown:** added moduleless support ([68c3016](https://github.com/valor-software/ngx-bootstrap/commit/68c3016f))
+* **focustrap:** added moduleless support ([17978bd](https://github.com/valor-software/ngx-bootstrap/commit/17978bd2))
+* **modal:** added moduleless support ([abbead9](https://github.com/valor-software/ngx-bootstrap/commit/abbead97))
+* **pagination:** added moduleless support ([c5dcf6c](https://github.com/valor-software/ngx-bootstrap/commit/c5dcf6ca))
+* **popover:** added moduleless support ([76a1b15](https://github.com/valor-software/ngx-bootstrap/commit/76a1b153))
+* **progressbar:** added moduleless support ([6b58679](https://github.com/valor-software/ngx-bootstrap/commit/6b58679b))
+* **rating:** added moduleless support ([326a2b7](https://github.com/valor-software/ngx-bootstrap/commit/326a2b76))
+* **sortable:** added moduleless support ([a0d1021](https://github.com/valor-software/ngx-bootstrap/commit/a0d10212))
+* **tabs:** added moduleless support ([2a822c7](https://github.com/valor-software/ngx-bootstrap/commit/2a822c72))
+* **timepicker:** added moduleless support ([d04f7bb](https://github.com/valor-software/ngx-bootstrap/commit/d04f7bb5))
+* **typeahead:** added moduleless support ([9ac1735](https://github.com/valor-software/ngx-bootstrap/commit/9ac17354))
+* **locale:** FR-CA integration ([#6598](https://github.com/valor-software/ngx-bootstrap/issues/6598)) ([d210ca6](https://github.com/valor-software/ngx-bootstrap/commit/d210ca6d))
+
+### Bug Fixes
+
+* **modal:** fixed nested backdrop issue ([f82fee9](https://github.com/valor-software/ngx-bootstrap/commit/f82fee9d))
+* **accordion:** fixed tests ([b21af22](https://github.com/valor-software/ngx-bootstrap/commit/b21af228))
+* **carousel:** fixed tests ([aeaa4e7](https://github.com/valor-software/ngx-bootstrap/commit/aeaa4e74))
+* **progressbar:** tests adjust to moduleless ([a532cef](https://github.com/valor-software/ngx-bootstrap/commit/a532cef0))
+* **rating:** tests adjust to moduleless ([2876b79](https://github.com/valor-software/ngx-bootstrap/commit/2876b793))
+
+
+## [18.0.2](https://github.com/valor-software/ngx-bootstrap/compare/v18.0.1...v18.0.2) (2024-07-15)
+
+
+### Features
+
+* **ng-add:** added warning for applications without modules ([#6664](https://github.com/valor-software/ngx-bootstrap/issues/6664)) ([740a10f](https://github.com/valor-software/ngx-bootstrap/commit/740a10f9))
+
+### Bug Fixes
+
+* **ComponentLoader:** loader leaks memory in multiple places ([#6625](https://github.com/valor-software/ngx-bootstrap/issues/6625)) ([876f20d](https://github.com/valor-software/ngx-bootstrap/commit/876f20d2))
+* fix for issue 6640 ([#6641](https://github.com/valor-software/ngx-bootstrap/issues/6641)) ([48d9655](https://github.com/valor-software/ngx-bootstrap/commit/48d9655a))
+
+
+## [18.0.1](https://github.com/valor-software/ngx-bootstrap/compare/v18.0.0...v18.0.1) (2024-07-03)
+
+
+### Bug Fixes
+
+* **gh-release:** changed from _authToken to //registry.npmjs.org/:_authToken ([#6661](https://github.com/valor-software/ngx-bootstrap/issues/6661)) ([b1b1f54](https://github.com/valor-software/ngx-bootstrap/commit/b1b1f547))
+* **gh-release:** fixed needs action, added explicit branch name ([#6660](https://github.com/valor-software/ngx-bootstrap/issues/6660)) ([83d80fe](https://github.com/valor-software/ngx-bootstrap/commit/83d80fef))
+
+
+## [18.0.0](https://github.com/valor-software/ngx-bootstrap/compare/v11.0.2...v18.0.0) (2024-07-01)
 * Migration to Angular 18
 * Synced major version of the lib with major version of Angular
 

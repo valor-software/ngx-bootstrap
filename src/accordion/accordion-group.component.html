@@ -1,15 +1,15 @@
-<div class="panel card" [ngClass]="panelClass">
+<div class="panel card" [ngClass]="panelClass()">
   <div
     class="panel-heading card-header"
     role="tab"
     (click)="toggleOpen()"
-    [ngClass]="isDisabled ? 'panel-disabled' : 'panel-enabled'"
+    [ngClass]="isDisabled() ? 'panel-disabled' : 'panel-enabled'"
     >
     <div class="panel-title">
       <div role="button" class="accordion-toggle" [attr.aria-expanded]="isOpen">
-        @if (heading) {
-          <button class="btn btn-link" [ngClass]="{ 'text-muted': isDisabled }" type="button">
-            {{ heading }}
+        @if (heading()) {
+          <button class="btn btn-link" [ngClass]="{ 'text-muted': isDisabled() }" type="button">
+            {{ heading() }}
           </button>
         }
         <ng-content select="[accordion-heading]"></ng-content>

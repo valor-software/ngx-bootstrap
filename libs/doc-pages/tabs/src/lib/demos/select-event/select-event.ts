@@ -10,6 +10,6 @@ import { TabDirective } from 'ngx-bootstrap/tabs';
 export class DemoTabsSelectEventComponent {
   value?: string;
   onSelect(data: TabDirective): void {
-    this.value = data.heading;
+    this.value = data.heading();
   }
 }

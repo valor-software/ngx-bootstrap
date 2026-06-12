@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Component, ViewChild } from '@angular/core';
 
 import { BsDatepickerModule } from '../bs-datepicker.module';
@@ -42,8 +41,7 @@ describe('datepicker inline:', () => {
     waitForAsync(() => TestBed.configureTestingModule({
       declarations: [TestComponent],
       imports: [
-        BsDatepickerModule,
-        BrowserAnimationsModule
+        BsDatepickerModule
       ]}).compileComponents())
   );
   beforeEach(() => {

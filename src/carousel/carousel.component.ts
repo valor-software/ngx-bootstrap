@@ -16,7 +16,7 @@
  */
 
 import {
-  Component, EventEmitter, Input, NgZone, OnDestroy, Output, AfterViewInit, Inject, PLATFORM_ID
+  Component, OnDestroy, AfterViewInit, Inject, PLATFORM_ID, ChangeDetectorRef, input, output, effect
 } from '@angular/core';
 import { isPlatformBrowser, NgStyle } from '@angular/common';
 
@@ -45,69 +45,42 @@ let _currentId = 1;
 })
 export class CarouselComponent implements AfterViewInit, OnDestroy {
   /* If `true` — carousel will not cycle continuously and will have hard stops (prevent looping) */
-  @Input() noWrap = false;
+  noWrap = input<boolean>(this._config.noWrap);
   /*  If `true` — will disable pausing on carousel mouse hover */
-  @Input() noPause = false;
+  noPause = input<boolean>(this._config.noPause);
   /*  If `true` — carousel-indicators are visible  */
-  @Input() showIndicators = true;
+  showIndicators = input<boolean>(this._config.showIndicators);
   /*  If `true` - autoplay will be stopped on focus */
-  @Input() pauseOnFocus = false;
+  pauseOnFocus = input<boolean>(this._config.pauseOnFocus);
   /* If `true` - carousel indicators indicate slides chunks
      works ONLY if singleSlideOffset = FALSE */
-  @Input() indicatorsByChunk = false;
+  indicatorsByChunk = input<boolean>(this._config.indicatorsByChunk);
   /* If value more then 1 — carousel works in multilist mode */
-  @Input() itemsPerSlide = 1;
+  itemsPerSlide = input<number>(this._config.itemsPerSlide);
   /* If `true` — carousel shifts by one element. By default carousel shifts by number
      of visible elements (itemsPerSlide field) */
-  @Input() singleSlideOffset = false;
+  singleSlideOffset = input<boolean>(this._config.singleSlideOffset);
   /** Turn on/off animation. Animation doesn't work for multilist carousel */
-  @Input() isAnimated = false;
+  isAnimated = input<boolean>(false);
 
   /** Will be emitted when active slide has been changed. Part of two-way-bindable [(activeSlide)] property */
-  @Output()
-  activeSlideChange = new EventEmitter<number>(false);
+  activeSlideChange = output<number>();
 
   /** Will be emitted when active slides has been changed in multilist mode */
-  @Output()
-  slideRangeChange = new EventEmitter<number[]|void>();
+  slideRangeChange = output<number[]|void>();
 
   /** Index of currently displayed slide(started for 0) */
-  @Input()
-  set activeSlide(index: number) {
-    if (this.multilist) {
-      return;
-    }
-
-    if (isNumber(index)) {
-      this.customActiveSlide = index;
-    }
-
-    if (this._slides.length && index !== this._currentActiveSlide) {
-      this._select(index);
-    }
-  }
-
-  get activeSlide(): number {
-    return this._currentActiveSlide || 0;
-  }
+  // eslint-disable-next-line @angular-eslint/no-input-rename
+  activeSlideInput = input<number>(0, { alias: 'activeSlide' });
 
   /* Index to start display slides from it */
-  @Input()
-  startFromIndex = 0;
+  startFromIndex = input<number>(0);
 
   /**
    * Delay of item cycling in milliseconds. If false, carousel won't cycle
    * automatically.
    */
-  @Input()
-  get interval(): number {
-    return this._interval;
-  }
-
-  set interval(value: number) {
-    this._interval = value;
-    this.restartTimer();
-  }
+  interval = input<number>(this._config.interval);
 
   get slides(): SlideComponent[] {
     return this._slides.toArray();
@@ -131,9 +104,26 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     return indexes.includes(this._slides.length -1);
   }
 
+  get activeSlide(): number {
+    return this._currentActiveSlide || 0;
+  }
+
+  set activeSlide(index: number) {
+    if (this.multilist) {
+      return;
+    }
+
+    if (isNumber(index)) {
+      this.customActiveSlide = index;
+    }
+
+    if (this._slides.length && index !== this._currentActiveSlide) {
+      this._select(index);
+    }
+  }
+
   protected currentInterval?: number;
   protected _currentActiveSlide?: number;
-  protected _interval = 5000;
   protected _slides: LinkedList<SlideComponent> = new LinkedList<SlideComponent>();
   protected _chunkedSlides?: SlideWithIndex[][];
   protected _slidesWithIndexes?: SlideWithIndex[];
@@ -141,26 +131,52 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   protected isPlaying = false;
   protected destroyed = false;
   private customActiveSlide?: number;
+  private _indicatorsByChunk = false;
   currentId = 0;
 
   get _bsVer(): IBsVersion {
     return getBsVer();
   }
 
-  constructor(config: CarouselConfig, private ngZone: NgZone, @Inject(PLATFORM_ID) public platformId: number) {
-    Object.assign(this, config);
+  constructor(
+    private _config: CarouselConfig,
+    private cdr: ChangeDetectorRef,
+    @Inject(PLATFORM_ID) public platformId: number
+  ) {
     this.currentId = _currentId++;
+
+    // Watch for activeSlide input changes
+    effect(() => {
+      const index = this.activeSlideInput();
+      if (this.multilist) {
+        return;
+      }
+      if (isNumber(index)) {
+        this.customActiveSlide = index;
+      }
+      if (this._slides.length && index !== this._currentActiveSlide) {
+        this._select(index);
+      }
+    });
+
+    // Watch for interval changes and restart timer
+    effect(() => {
+      const _ = this.interval();
+      this.restartTimer();
+    });
   }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      if (this.singleSlideOffset) {
-        this.indicatorsByChunk = false;
+      if (this.singleSlideOffset()) {
+        this._indicatorsByChunk = false;
+      } else {
+        this._indicatorsByChunk = this.indicatorsByChunk();
       }
       if (this.multilist) {
         this._chunkedSlides = chunkByNumber(
           this.mapSlidesAndIndexes(),
-          this.itemsPerSlide
+          this.itemsPerSlide()
         );
         this.selectInitialSlides();
       }
@@ -173,6 +189,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.destroyed = true;
+    this.resetTimer();
   }
 
   /**
@@ -183,11 +200,11 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   addSlide(slide: SlideComponent): void {
     this._slides.add(slide);
 
-    if (this.multilist && this._slides.length <= this.itemsPerSlide) {
+    if (this.multilist && this._slides.length <= this.itemsPerSlide()) {
       slide.active = true;
     }
 
-    if (!this.multilist && this.isAnimated) {
+    if (!this.multilist && this.isAnimated()) {
       slide.isAnimated = true;
     }
 
@@ -199,7 +216,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       this.play();
     }
 
-    if (this.multilist && this._slides.length > this.itemsPerSlide) {
+    if (this.multilist && this._slides.length > this.itemsPerSlide()) {
       this.play();
     }
   }
@@ -221,7 +238,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
         // middle of collection, index of next slide is same to removed
         nextSlideIndex = !this.isLast(remIndex)
           ? remIndex
-          : this.noWrap ? remIndex - 1 : 0;
+          : this.noWrap() ? remIndex - 1 : 0;
       }
       this._slides.remove(remIndex);
 
@@ -280,7 +297,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     const firstVisibleIndex = this.getFirstVisibleIndex();
     const lastVisibleIndex = this.getLastVisibleIndex();
 
-    if (this.noWrap) {
+    if (this.noWrap()) {
       if (
         direction === Direction.NEXT &&
         this.isLast(lastVisibleIndex) ||
@@ -328,7 +345,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
    * @internal
    */
   onMouseLeave(): void {
-    if (!this.pauseOnFocus) {
+    if (!this.pauseOnFocus()) {
       this.play();
     }
   }
@@ -338,7 +355,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
    * @internal
    */
   onMouseUp(): void {
-    if (!this.pauseOnFocus) {
+    if (!this.pauseOnFocus()) {
       this.play();
     }
   }
@@ -348,7 +365,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
    * @internal
    */
   pauseFocusIn(): void {
-    if (this.pauseOnFocus) {
+    if (this.pauseOnFocus()) {
       this.isPlaying = false;
       this.resetTimer();
     }
@@ -372,9 +389,9 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     }
 
     if (!this.multilist) {
-      this.activeSlide = this.indicatorsByChunk ? index * this.itemsPerSlide : index;
+      this.activeSlide = this._indicatorsByChunk ? index * this.itemsPerSlide() : index;
     } else {
-      this.selectSlideRange(this.indicatorsByChunk ? index * this.itemsPerSlide : index);
+      this.selectSlideRange(this._indicatorsByChunk ? index * this.itemsPerSlide() : index);
     }
   }
 
@@ -392,7 +409,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
    * Stops a auto changing of slides
    */
   pause(): void {
-    if (!this.noPause) {
+    if (!this.noPause()) {
       this.isPlaying = false;
       this.resetTimer();
     }
@@ -423,21 +440,21 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
 
   indicatorsSlides(): SlideComponent[] {
     return this.slides.filter(
-      (slide: SlideComponent, index: number) => !this.indicatorsByChunk || index % this.itemsPerSlide === 0
+      (slide: SlideComponent, index: number) => !this._indicatorsByChunk || index % this.itemsPerSlide() === 0
     );
   }
 
   private selectInitialSlides(): void {
-    const startIndex = this.startFromIndex <= this._slides.length
-      ? this.startFromIndex
+    const startIndex = this.startFromIndex() <= this._slides.length
+      ? this.startFromIndex()
       : 0;
 
     this.hideSlides();
 
-    if (this.singleSlideOffset) {
+    if (this.singleSlideOffset()) {
       this._slidesWithIndexes = this.mapSlidesAndIndexes();
 
-      if (this._slides.length - startIndex < this.itemsPerSlide) {
+      if (this._slides.length - startIndex < this.itemsPerSlide()) {
         const slidesToAppend = this._slidesWithIndexes.slice(0, startIndex);
 
         this._slidesWithIndexes = [
@@ -445,11 +462,11 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
           ...slidesToAppend
         ]
           .slice(slidesToAppend.length)
-          .slice(0, this.itemsPerSlide);
+          .slice(0, this.itemsPerSlide());
       } else {
         this._slidesWithIndexes = this._slidesWithIndexes.slice(
           startIndex,
-          startIndex + this.itemsPerSlide
+          startIndex + this.itemsPerSlide()
         );
       }
 
@@ -475,7 +492,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       !force &&
       (this.isLast(this.activeSlide) &&
         direction !== Direction.PREV &&
-        this.noWrap)
+        this.noWrap())
     ) {
       return;
     }
@@ -492,7 +509,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
           nextSlideIndex = this._currentActiveSlide + 1;
           break;
         }
-        nextSlideIndex = !force && this.noWrap ? this._currentActiveSlide : 0;
+        nextSlideIndex = !force && this.noWrap() ? this._currentActiveSlide : 0;
         break;
       case Direction.PREV:
         // if this is first slide, not force, looping is disabled
@@ -505,7 +522,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
           nextSlideIndex = this._currentActiveSlide - 1;
           break;
         }
-        if (!force && this.noWrap) {
+        if (!force && this.noWrap()) {
           nextSlideIndex = this._currentActiveSlide;
           break;
         }
@@ -537,15 +554,15 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
 
     this.hideSlides();
 
-    if (!this.singleSlideOffset) {
+    if (!this.singleSlideOffset()) {
       this.selectRangeByNestedIndex(index);
     } else {
       const startIndex = this.isIndexOnTheEdges(index)
         ? index
-        : index - this.itemsPerSlide + 1;
+        : index - this.itemsPerSlide() + 1;
 
       const endIndex = this.isIndexOnTheEdges(index)
-        ? index + this.itemsPerSlide
+        ? index + this.itemsPerSlide()
         : index + 1;
 
       this._slidesWithIndexes = this.mapSlidesAndIndexes().slice(startIndex, endIndex);
@@ -588,13 +605,13 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
 
   private isIndexOnTheEdges(index: number): boolean {
     return (
-      index + 1 - this.itemsPerSlide <= 0 ||
-      index + this.itemsPerSlide <= this._slides.length
+      index + 1 - this.itemsPerSlide() <= 0 ||
+      index + this.itemsPerSlide() <= this._slides.length
     );
   }
 
   private isIndexInRange(index: number): boolean {
-    if (this.singleSlideOffset && this._slidesWithIndexes) {
+    if (this.singleSlideOffset() && this._slidesWithIndexes) {
       const visibleIndexes = this._slidesWithIndexes.map((slide: SlideWithIndex) => slide.index);
 
       return visibleIndexes.indexOf(index) >= 0;
@@ -628,7 +645,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     let indexToHide: number;
     let indexToShow: number;
 
-    if (this.noWrap) {
+    if (this.noWrap()) {
       firstVisibleIndex = this.getFirstVisibleIndex();
       lastVisibleIndex = this.getLastVisibleIndex();
 
@@ -656,7 +673,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
       );
 
       this.makeSlidesConsistent(slidesToReorder);
-      if (this.singleSlideOffset) {
+      if (this.singleSlideOffset()) {
         this._slidesWithIndexes = slidesToReorder;
       }
 
@@ -712,12 +729,12 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   };
 
   private moveMultilist(direction: Direction): void {
-    if (this.singleSlideOffset) {
+    if (this.singleSlideOffset()) {
       this.moveSliderByOneItem(direction);
     } else {
       this.hideSlides();
 
-      if (this.noWrap) {
+      if (this.noWrap()) {
         this._currentVisibleSlidesIndex = direction === Direction.NEXT
           ? this._currentVisibleSlidesIndex + 1
           : this._currentVisibleSlidesIndex - 1;
@@ -745,7 +762,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   }
 
   private getVisibleIndexes(): number[] | void {
-    if (!this.singleSlideOffset && this._chunkedSlides) {
+    if (!this.singleSlideOffset() && this._chunkedSlides) {
       return this._chunkedSlides[this._currentVisibleSlidesIndex]
         .map((slide: SlideWithIndex) => slide.index);
     }
@@ -778,40 +795,37 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
     if (typeof nextSlide !== 'undefined') {
       this._currentActiveSlide = index;
       nextSlide.active = true;
-      this.activeSlide = index;
       this.activeSlideChange.emit(index);
+      this.cdr.markForCheck();
     }
   }
 
   /**
-   * Starts loop of auto changing of slides
+   * Starts loop of auto changing of slides - zoneless version
    */
   private restartTimer() {
     this.resetTimer();
-    const interval = +this.interval;
-    if (!isNaN(interval) && interval > 0 && isPlatformBrowser(this.platformId)) {
-      this.currentInterval = this.ngZone.runOutsideAngular<number>(() => {
-        return window.setInterval(() => {
-          const nInterval = +this.interval;
-          this.ngZone.run(() => {
-            if (
-              this.isPlaying &&
-              !isNaN(this.interval) &&
-              nInterval > 0 &&
-              this.slides.length
-            ) {
-              this.nextSlideFromInterval();
-            } else {
-              this.pause();
-            }
-          });
-        }, interval);
-      });
+    const intervalValue = +this.interval();
+    if (!isNaN(intervalValue) && intervalValue > 0 && isPlatformBrowser(this.platformId)) {
+      this.currentInterval = window.setInterval(() => {
+        const nInterval = +this.interval();
+        if (
+          this.isPlaying &&
+          !isNaN(nInterval) &&
+          nInterval > 0 &&
+          this.slides.length
+        ) {
+          this.nextSlideFromInterval();
+          this.cdr.markForCheck();
+        } else {
+          this.pause();
+        }
+      }, intervalValue);
     }
   }
 
   get multilist(): boolean {
-    return this.itemsPerSlide > 1;
+    return this.itemsPerSlide() > 1;
   }
 
   /**
@@ -826,9 +840,9 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
 
   checkDisabledClass(buttonType: 'prev' | 'next'): boolean {
     if (buttonType === 'prev') {
-      return (this.activeSlide === 0 && this.noWrap && !this.multilist) || (this.isFirstSlideVisible && this.noWrap && this.multilist);
+      return (this.activeSlide === 0 && this.noWrap() && !this.multilist) || (this.isFirstSlideVisible && this.noWrap() && this.multilist);
     }
 
-    return (this.isLast(this.activeSlide) && this.noWrap && !this.multilist) || (this.isLastSlideVisible && this.noWrap && this.multilist);
+    return (this.isLast(this.activeSlide) && this.noWrap() && !this.multilist) || (this.isLastSlideVisible && this.noWrap() && this.multilist);
   }
 }

@@ -1,4 +1,4 @@
-<div class="btn-group" dropdown #dropdown="bs-dropdown" [autoClose]="false">
+<div class="btn-group" dropdown [isOpen]="isOpenValue" (isOpenChange)="isOpenChange($event)" #dropdown="bs-dropdown" [autoClose]="false">
   <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
     Button dropdown <span class="caret"></span>
   </button>
@@ -10,4 +10,4 @@
       here</a></li>
   </ul>
 </div>
-<button type="button" class="btn btn-primary" (click)="dropdown.isOpen = !dropdown.isOpen">Toggle</button>
+<button type="button" class="btn btn-primary" (click)="toggleDropdown()">Toggle</button>

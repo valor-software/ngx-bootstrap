@@ -62,8 +62,8 @@ describe('Component: Rating. Init:', () => {
   });
 
   it('checking of working with changed values', () => {
-    context.max = 3;
-    context.titles = ['one', 'two', 'new title'];
+    fixture.componentRef.setInput('max', 3);
+    fixture.componentRef.setInput('titles', ['one', 'two', 'new title']);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (context as any).changeDetection.markForCheck();
     context.ngOnInit();

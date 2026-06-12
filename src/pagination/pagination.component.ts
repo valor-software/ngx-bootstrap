@@ -2,13 +2,13 @@ import {
   ChangeDetectorRef,
   Component,
   ElementRef,
-  EventEmitter,
   forwardRef,
-  Input,
   OnInit,
-  Output,
   Provider,
-  TemplateRef
+  TemplateRef,
+  input,
+  output,
+  effect
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ConfigModel, PagesModel, PaginationLinkContext, PaginationNumberLinkContext } from './models';
@@ -37,46 +37,53 @@ export const PAGINATION_CONTROL_VALUE_ACCESSOR: Provider = {
 export class PaginationComponent implements ControlValueAccessor, OnInit {
   config?: Partial<ConfigModel>;
   /** if `true` aligns each link to the sides of pager */
-  @Input() align = true;
+  align = input<boolean>(true);
   /** limit number for page links in pager */
-  @Input() maxSize?: number;
+  maxSize = input<number | undefined>();
   /** if false first and last buttons will be hidden */
-  @Input() boundaryLinks = false;
+  boundaryLinks = input<boolean>(false);
   /** if false previous and next buttons will be hidden */
-  @Input() directionLinks = true;
+  directionLinks = input<boolean>(true);
   // labels
   /** first button text */
-  @Input() firstText?: string;
+  firstText = input<string | undefined>();
   /** previous button text */
-  @Input() previousText?: string;
+  previousText = input<string | undefined>();
   /** next button text */
-  @Input() nextText?: string;
+  nextText = input<string | undefined>();
   /** last button text */
-  @Input() lastText?: string;
+  lastText = input<string | undefined>();
   /** if true current page will in the middle of pages list */
-  @Input() rotate = true;
+  rotate = input<boolean>(true);
   // css
   /** add class to <code><li\></code> */
-  @Input() pageBtnClass = '';
+  pageBtnClass = input<string>('');
   /** if true pagination component will be disabled */
-  @Input() disabled = false;
+  disabled = input<boolean>(false);
   /** custom template for page link */
-  @Input() customPageTemplate?: TemplateRef<PaginationNumberLinkContext>;
+  customPageTemplate = input<TemplateRef<PaginationNumberLinkContext> | undefined>();
   /** custom template for next link */
-  @Input() customNextTemplate?: TemplateRef<PaginationLinkContext>;
+  customNextTemplate = input<TemplateRef<PaginationLinkContext> | undefined>();
   /** custom template for previous link */
-  @Input() customPreviousTemplate?: TemplateRef<PaginationLinkContext>;
+  customPreviousTemplate = input<TemplateRef<PaginationLinkContext> | undefined>();
   /** custom template for first link */
-  @Input() customFirstTemplate?: TemplateRef<PaginationLinkContext>;
+  customFirstTemplate = input<TemplateRef<PaginationLinkContext> | undefined>();
   /** custom template for last link */
-  @Input() customLastTemplate?: TemplateRef<PaginationLinkContext>;
+  customLastTemplate = input<TemplateRef<PaginationLinkContext> | undefined>();
+
+  /** maximum number of items per page. If value less than 1 will display all items on one page */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
+  itemsPerPageInput = input<number>(10, { alias: 'itemsPerPage' });
+  /** total number of items in all pages */
+  // eslint-disable-next-line @angular-eslint/no-input-rename
+  totalItemsInput = input<number>(0, { alias: 'totalItems' });
 
   /** fired when total pages count changes, $event:number equals to total pages count */
-  @Output() numPages = new EventEmitter<number>();
+  numPages = output<number>();
   /** fired when page was changed, $event:{page, itemsPerPage} equals to object
    * with current page index and number of items per page
    */
-  @Output() pageChanged = new EventEmitter<PageChangedEvent>();
+  pageChanged = output<PageChangedEvent>();
   onChange = Function.prototype;
   onTouched = Function.prototype;
   classMap = '';
@@ -92,32 +99,42 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     if (!this.config) {
       this.configureOptions(paginationConfig.main);
     }
+
+    // Watch for itemsPerPage changes
+    effect(() => {
+      this._itemsPerPage = this.itemsPerPageInput();
+      this.totalPages = this.calculateTotalPages();
+    });
+
+    // Watch for totalItems changes
+    effect(() => {
+      this._totalItems = this.totalItemsInput();
+      this.totalPages = this.calculateTotalPages();
+    });
+
+    // Watch for rotate/maxSize changes
+    effect(() => {
+      const rotateVal = this.rotate();
+      const maxSizeVal = this.maxSize();
+      this._rotate = typeof rotateVal === 'undefined' ? !!this.config?.rotate : rotateVal;
+      this._maxSize = typeof maxSizeVal === 'undefined' ? this.config?.maxSize || 0 : maxSizeVal;
+      if (this.inited) {
+        this.pages = this.getPages(this.page, this.totalPages);
+        this.changeDetection.markForCheck();
+      }
+    });
   }
 
   protected _itemsPerPage = 10;
 
-  /** maximum number of items per page. If value less than 1 will display all items on one page */
-  @Input()
   get itemsPerPage(): number {
     return this._itemsPerPage;
   }
 
-  set itemsPerPage(v: number) {
-    this._itemsPerPage = v;
-    this.totalPages = this.calculateTotalPages();
-  }
-
   protected _totalItems = 0;
 
-  /** total number of items in all pages */
-  @Input()
   get totalItems(): number {
     return this._totalItems;
-  }
-
-  set totalItems(v: number) {
-    this._totalItems = v;
-    this.totalPages = this.calculateTotalPages();
   }
 
   protected _totalPages = 0;
@@ -165,30 +182,31 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     }
 
     // watch for maxSize
-    if (typeof this.maxSize === 'undefined') {
-      this.maxSize = this.config?.maxSize || 0;
-    }
+    const maxSizeVal = this.maxSize();
+    const _maxSize = typeof maxSizeVal === 'undefined' ? this.config?.maxSize || 0 : maxSizeVal;
 
-    if (typeof this.rotate === 'undefined') {
-      this.rotate = !!this.config?.rotate;
-    }
+    const rotateVal = this.rotate();
+    const _rotate = typeof rotateVal === 'undefined' ? !!this.config?.rotate : rotateVal;
 
-    if (typeof this.boundaryLinks === 'undefined') {
-      this.boundaryLinks = !!this.config?.boundaryLinks;
-    }
+    const boundaryLinksVal = this.boundaryLinks();
+    const _boundaryLinks = typeof boundaryLinksVal === 'undefined' ? !!this.config?.boundaryLinks : boundaryLinksVal;
 
+    const directionLinksVal = this.directionLinks();
+    const _directionLinks = typeof directionLinksVal === 'undefined' ? !!this.config?.directionLinks : directionLinksVal;
 
-    if (typeof this.directionLinks === 'undefined') {
-      this.directionLinks = !!this.config?.directionLinks;
-    }
+    const pageBtnClassVal = this.pageBtnClass();
+    const _pageBtnClass = typeof pageBtnClassVal === 'undefined' ? this.config?.pageBtnClass || '' : pageBtnClassVal;
 
-    if (typeof this.pageBtnClass === 'undefined') {
-      this.pageBtnClass = this.config?.pageBtnClass || '';
-    }
+    // Store resolved values for use
+    this._maxSize = _maxSize;
+    this._rotate = _rotate;
+    this._boundaryLinks = _boundaryLinks;
+    this._directionLinks = _directionLinks;
+    this._pageBtnClass = _pageBtnClass;
 
     // base class
     if (typeof this.itemsPerPage === 'undefined') {
-      this.itemsPerPage = this.config?.itemsPerPage || 0;
+      this._itemsPerPage = this.config?.itemsPerPage || 0;
     }
 
     this.totalPages = this.calculateTotalPages();
@@ -197,6 +215,13 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     this.inited = true;
   }
 
+  // Resolved configuration values
+  protected _maxSize = 0;
+  protected _rotate = true;
+  protected _boundaryLinks = false;
+  protected _directionLinks = true;
+  protected _pageBtnClass = '';
+
   writeValue(value: number): void {
     this.page = value;
     this.pages = this.getPages(this.page, this.totalPages);
@@ -204,7 +229,8 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
 
   getText(key: string): string {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    return (this as any)[`${key}Text`] || (this as any).config[`${key}Text`];
+    const inputVal = (this as any)[`${key}Text`]?.();
+    return inputVal || (this as any).config[`${key}Text`];
   }
 
   noPrevious(): boolean {
@@ -228,7 +254,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
       event.preventDefault();
     }
 
-    if (!this.disabled) {
+    if (!this.disabled()) {
       if (event && event.target) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const target: any = event.target;
@@ -250,32 +276,35 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
 
   protected getPages(currentPage: number, totalPages: number): PagesModel[] {
     const pages: PagesModel[] = [];
+    const maxSize = this._maxSize;
+    const rotate = this._rotate;
+
 
     // Default page limits
     let startPage = 1;
     let endPage = totalPages;
     const isMaxSized =
-      typeof this.maxSize !== 'undefined' && this.maxSize < totalPages;
+      typeof maxSize !== 'undefined' && maxSize < totalPages;
 
     // recompute if maxSize
-    if (isMaxSized && this.maxSize) {
-      if (this.rotate) {
+    if (isMaxSized && maxSize) {
+      if (rotate) {
         // Current page is displayed in the middle of the visible ones
-        startPage = Math.max(currentPage - Math.floor(this.maxSize / 2), 1);
-        endPage = startPage + this.maxSize - 1;
+        startPage = Math.max(currentPage - Math.floor(maxSize / 2), 1);
+        endPage = startPage + maxSize - 1;
 
         // Adjust if limit is exceeded
         if (endPage > totalPages) {
           endPage = totalPages;
-          startPage = endPage - this.maxSize + 1;
+          startPage = endPage - maxSize + 1;
         }
       } else {
         // Visible pages are paginated with maxSize
         startPage =
-          (Math.ceil(currentPage / this.maxSize) - 1) * this.maxSize + 1;
+          (Math.ceil(currentPage / maxSize) - 1) * maxSize + 1;
 
         // Adjust last page if limit is exceeded
-        endPage = Math.min(startPage + this.maxSize - 1, totalPages);
+        endPage = Math.min(startPage + maxSize - 1, totalPages);
       }
     }
 
@@ -286,7 +315,7 @@ export class PaginationComponent implements ControlValueAccessor, OnInit {
     }
 
     // Add links to move between page sets
-    if (isMaxSized && !this.rotate) {
+    if (isMaxSized && !rotate) {
       if (startPage > 1) {
         const previousPageSet = this.makePage(startPage - 1, '...', false);
         pages.unshift(previousPageSet);

@@ -10,9 +10,9 @@
       (mouseenter)="enter(index + 1)"
       (click)="rate(index + 1)"
       [title]="r.title"
-      [style.cursor]="readonly ? 'default' : 'pointer'"
+      [style.cursor]="readonly() ? 'default' : 'pointer'"
       [class.active]="index < value">
-      <ng-template [ngTemplateOutlet]="customTemplate || star"
+      <ng-template [ngTemplateOutlet]="customTemplate() || star"
         [ngTemplateOutletContext]="{index: index, value: value}">
       </ng-template>
     </span>

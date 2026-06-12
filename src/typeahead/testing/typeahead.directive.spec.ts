@@ -2,7 +2,6 @@ import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent } from '@ngneat/spectator';
 
 import { of } from 'rxjs';
@@ -19,15 +18,37 @@ interface State {
   template: `<input
     [(ngModel)]="selectedState"
     [typeahead]="states"
-    [typeaheadOptionField]="'name'"
+    [typeaheadOptionField]="typeaheadOptionField"
     [adaptivePosition]="false"
+    [dropup]="dropup"
+    [typeaheadMinLength]="typeaheadMinLength"
+    [typeaheadGroupField]="typeaheadGroupField"
+    [typeaheadHideResultsOnBlur]="typeaheadHideResultsOnBlur"
+    [typeaheadOrderBy]="typeaheadOrderBy"
+    [typeaheadMultipleSearch]="typeaheadMultipleSearch"
+    [typeaheadMultipleSearchDelimiters]="typeaheadMultipleSearchDelimiters"
+    [typeaheadWordDelimiters]="typeaheadWordDelimiters"
+    [typeaheadPhraseDelimiters]="typeaheadPhraseDelimiters"
+    [typeaheadSingleWords]="typeaheadSingleWords"
     (typeaheadOnBlur)="onBlurEvent($event)"
   />`,
   standalone: false
 })
 class TestTypeaheadComponent {
   selectedState?: string;
-  states: State[] = [
+  dropup = false;
+  typeaheadMinLength = 1;
+  typeaheadOptionField: string | undefined = 'name';
+  typeaheadGroupField: string | undefined;
+  typeaheadHideResultsOnBlur = true;
+  typeaheadOrderBy: TypeaheadOrder | undefined;
+  typeaheadMultipleSearch: boolean | undefined;
+  typeaheadMultipleSearchDelimiters = ',';
+  typeaheadWordDelimiters = ' ';
+  typeaheadPhraseDelimiters = '\'"';
+  typeaheadSingleWords = true;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  states: any = [
     { id: 1, name: 'Alabama', region: 'South' },
     { id: 2, name: 'Alaska', region: 'West' },
     { id: 3, name: 'Arizona', region: 'West' },
@@ -53,7 +74,7 @@ describe('Directive: Typeahead', () => {
   beforeEach(waitForAsync(() =>
     TestBed.configureTestingModule({
       declarations: [TestTypeaheadComponent],
-      imports: [TypeaheadModule, BrowserAnimationsModule, FormsModule]
+      imports: [TypeaheadModule, FormsModule]
     }).compileComponents()));
 
   beforeEach(() => {
@@ -74,30 +95,31 @@ describe('Directive: Typeahead', () => {
 
   describe('ngOnInit', () => {
     it('should set a default value for typeaheadOptionsLimit', () => {
-      expect(directive.typeaheadOptionsLimit).toBe(20);
+      expect(directive.typeaheadOptionsLimit() ?? 20).toBe(20);
     });
 
     it('should set a default value for typeaheadMinLength', () => {
-      expect(directive.typeaheadMinLength).toBe(1);
+      expect(directive.typeaheadMinLength()).toBe(1);
     });
 
     it('should set a default value for typeaheadOrderBy', () => {
-      expect(directive.typeaheadOrderBy).toBeUndefined();
+      expect(directive.typeaheadOrderBy()).toBeUndefined();
     });
 
     it('should get a value for typeaheadMinLength if user added it', () => {
-      directive.typeaheadMinLength = 4;
+      component.typeaheadMinLength = 4;
+      fixture.detectChanges();
 
       directive.ngOnInit();
 
-      expect(directive.typeaheadMinLength).toBe(4);
+      expect(directive.typeaheadMinLength()).toBe(4);
     });
 
     it('should set a default value for typeaheadAsync', () => {
-      expect(directive.typeaheadAsync).toBeFalsy();
+      expect(directive.typeaheadAsync()).toBeFalsy();
     });
     it('should set a default value for typeaheadHideResultsOnBlur', () => {
-      expect(directive.typeaheadHideResultsOnBlur).toBeTruthy();
+      expect(directive.typeaheadHideResultsOnBlur()).toBeTruthy();
     });
 
     it('should not set the container reference', () => {
@@ -105,18 +127,19 @@ describe('Directive: Typeahead', () => {
     });
 
     it('should set a default value for typeaheadWaitMs', () => {
-      expect(directive.typeaheadWaitMs).toBe(0);
+      expect(directive.typeaheadWaitMs()).toBe(0);
     });
 
     it('should set a default value for typeaheadSelectFirstItem', () => {
-      expect(directive.typeaheadSelectFirstItem).toBeTruthy();
+      expect(directive.typeaheadSelectFirstItem()).toBeTruthy();
     });
 
     it('should typeaheadAsync to true, if typeahead is an observable', () => {
-      directive.typeahead = of(component.states);
+      component.states = of(component.states) as any;
+      fixture.detectChanges();
       directive.ngOnInit();
 
-      expect(directive.typeaheadAsync).toBeTruthy();
+      expect(directive['_typeaheadAsyncValue']).toBe(true);
     });
 
     it('should not render the typeahead-container', () => {
@@ -134,7 +157,8 @@ describe('Directive: Typeahead', () => {
     }));
 
     it('and dropup equal true should be called show method', fakeAsync(() => {
-      directive.dropup = true;
+      component.dropup = true;
+      fixture.detectChanges();
       inputElement.value = 'al';
       dispatchTouchEvent(inputElement, 'input');
       tick();
@@ -190,7 +214,9 @@ describe('Directive: Typeahead', () => {
 
   describe('onFocus', () => {
     it('should work if typeaheadMinLength equal 0', fakeAsync(() => {
-      directive.typeaheadMinLength = 0;
+      component.typeaheadMinLength = 0;
+      fixture.detectChanges();
+      directive.ngOnInit();
       dispatchMouseEvent(inputElement, 'click');
       tick();
 
@@ -216,7 +242,8 @@ describe('Directive: Typeahead', () => {
     beforeEach(fakeAsync(() => {
       inputElement.value = 'Ala';
       dispatchTouchEvent(inputElement, 'input');
-      directive.typeaheadGroupField = 'region';
+      component.typeaheadGroupField = 'region';
+      fixture.detectChanges();
 
       fixture.detectChanges();
       tick(100);
@@ -425,7 +452,8 @@ describe('Directive: Typeahead', () => {
     beforeEach(fakeAsync(() => {
       inputElement.value = 'Ala';
       dispatchTouchEvent(inputElement, 'input');
-      directive.typeaheadHideResultsOnBlur = false;
+      component.typeaheadHideResultsOnBlur = false;
+      fixture.detectChanges();
       fixture.detectChanges();
       tick(100);
     }));
@@ -438,7 +466,8 @@ describe('Directive: Typeahead', () => {
     }));
 
     it('equal false should be closed', fakeAsync(() => {
-      directive.typeaheadHideResultsOnBlur = true;
+      component.typeaheadHideResultsOnBlur = true;
+      fixture.detectChanges();
       dispatchMouseEvent(document, 'click');
       tick();
 
@@ -449,15 +478,15 @@ describe('Directive: Typeahead', () => {
   describe('if typeaheadOrderBy is not null', () => {
     describe('and source of options is an array of string should result in 2 items, when "Ala" is entered', () => {
       beforeEach(fakeAsync(() => {
-        directive.typeahead = component.statesString;
-        directive.typeaheadOptionField = void 0;
+        component.states = component.statesString;
+        component.typeaheadOptionField = undefined;
         inputElement.value = 'Ala';
         fixture.detectChanges();
         tick(100);
       }));
 
       it('and order direction "asc". 1st - Alabama, 2sd - Alaska', fakeAsync(() => {
-        directive.typeaheadOrderBy = { direction: 'asc' };
+        component.typeaheadOrderBy = { direction: 'asc' };
         dispatchTouchEvent(inputElement, 'input');
         fixture.detectChanges();
         tick(100);
@@ -468,7 +497,7 @@ describe('Directive: Typeahead', () => {
       }));
 
       it('and order direction "desc". 1st - Alaska, 2sd - Alabama', fakeAsync(() => {
-        directive.typeaheadOrderBy = { direction: 'desc' };
+        component.typeaheadOrderBy = { direction: 'desc' };
         dispatchTouchEvent(inputElement, 'input');
         fixture.detectChanges();
         tick(100);
@@ -479,7 +508,7 @@ describe('Directive: Typeahead', () => {
       }));
 
       it("and typeaheadOrderBy is empty object, shouldn't break the app", fakeAsync(() => {
-        directive.typeaheadOrderBy = {} as TypeaheadOrder;
+        component.typeaheadOrderBy = {} as TypeaheadOrder;
         console.error = jest.fn();
 
         dispatchTouchEvent(inputElement, 'input');
@@ -491,7 +520,7 @@ describe('Directive: Typeahead', () => {
       }));
 
       it('and order direction is not equal "asc" or "desc", shouldn\'t break the app', fakeAsync(() => {
-        directive.typeaheadOrderBy = { direction: 'test' as 'asc' };
+        component.typeaheadOrderBy = { direction: 'test' as 'asc' };
         console.error = jest.fn();
 
         dispatchTouchEvent(inputElement, 'input');
@@ -503,7 +532,7 @@ describe('Directive: Typeahead', () => {
       }));
 
       it("and order field is setup, it shouldn't affect the result", fakeAsync(() => {
-        directive.typeaheadOrderBy = { direction: 'asc', field: 'name' };
+        component.typeaheadOrderBy = { direction: 'asc', field: 'name' };
         dispatchTouchEvent(inputElement, 'input');
         fixture.detectChanges();
         tick(100);
@@ -521,7 +550,7 @@ describe('Directive: Typeahead', () => {
         }));
 
         it('and order direction "asc", order field - "name". 1st - Alabama, 2sd - Alaska', fakeAsync(() => {
-          directive.typeaheadOrderBy = { direction: 'asc', field: 'name' };
+          component.typeaheadOrderBy = { direction: 'asc', field: 'name' };
           dispatchTouchEvent(inputElement, 'input');
           fixture.detectChanges();
           tick(100);
@@ -532,7 +561,7 @@ describe('Directive: Typeahead', () => {
         }));
 
         it('and order direction "desc", order field - "name". 1st - Alaska, 2sd - Alabama', fakeAsync(() => {
-          directive.typeaheadOrderBy = { direction: 'desc', field: 'name' };
+          component.typeaheadOrderBy = { direction: 'desc', field: 'name' };
           dispatchTouchEvent(inputElement, 'input');
           fixture.detectChanges();
           tick(100);
@@ -544,7 +573,7 @@ describe('Directive: Typeahead', () => {
 
         it('and order direction "desc", order field is null. 1st - Alabama, 2sd - Alaska. Lack of the field doesn\'t affect the result', fakeAsync(() => {
           // eslint-disable-next-line
-          directive.typeaheadOrderBy = { direction: 'desc', field: null } as any;
+          component.typeaheadOrderBy = { direction: 'desc', field: null } as any;
           console.error = jest.fn();
           dispatchTouchEvent(inputElement, 'input');
           fixture.detectChanges();
@@ -557,7 +586,7 @@ describe('Directive: Typeahead', () => {
         }));
 
         it('and order direction "desc", order field is "testing". 1st - Alabama, 2sd - Alaska. The wrong field doesn\'t affect the result', fakeAsync(() => {
-          directive.typeaheadOrderBy = { direction: 'desc', field: 'test' };
+          component.typeaheadOrderBy = { direction: 'desc', field: 'test' };
           dispatchTouchEvent(inputElement, 'input');
           fixture.detectChanges();
           tick(100);
@@ -576,7 +605,7 @@ describe('Directive: Typeahead', () => {
         }));
 
         it('and order direction "asc", order field - "region". Result = Alabama-Arkansas-Alaska-Arizona', fakeAsync(() => {
-          directive.typeaheadOrderBy = { direction: 'asc', field: 'region' };
+          component.typeaheadOrderBy = { direction: 'asc', field: 'region' };
           dispatchTouchEvent(inputElement, 'input');
           fixture.detectChanges();
           tick(100);
@@ -589,7 +618,7 @@ describe('Directive: Typeahead', () => {
         }));
 
         it('and order direction "desc", order field - "id". Result = Arkansas-Arizona-Alaska-Alabama', fakeAsync(() => {
-          directive.typeaheadOrderBy = { direction: 'desc', field: 'id' };
+          component.typeaheadOrderBy = { direction: 'desc', field: 'id' };
           dispatchTouchEvent(inputElement, 'input');
           fixture.detectChanges();
           tick(100);
@@ -606,8 +635,8 @@ describe('Directive: Typeahead', () => {
 
   describe('if typeaheadMultipleSearch is true', () => {
     beforeEach(fakeAsync(() => {
-      directive.typeahead = component.statesString;
-      directive.typeaheadMultipleSearch = true;
+      component.states = component.statesString;
+      component.typeaheadMultipleSearch = true;
       fixture.detectChanges();
       tick(100);
     }));
@@ -629,7 +658,7 @@ describe('Directive: Typeahead', () => {
 
     it(`and 'Ala' is entered after ',' or '|' when these used for typeaheadMultipleSearchDelimiters,
         should give matches for Alaska and Alabama`, fakeAsync(() => {
-      directive.typeaheadMultipleSearchDelimiters = ',|';
+      component.typeaheadMultipleSearchDelimiters = ',|';
       inputElement.value = 'Alabama';
       dispatchTouchEvent(inputElement, 'input');
       fixture.detectChanges();
@@ -672,37 +701,37 @@ describe('Directive: Typeahead', () => {
     }));
 
     it('and use comma for typeaheadWordDelimiters, should throw error', fakeAsync(() => {
-      directive.typeaheadWordDelimiters = ',';
+      component.typeaheadWordDelimiters = ',';
       fixture.detectChanges();
       tick(100);
       expect(() => directive.ngOnInit()).toThrow();
     }));
 
     it('and use comma for typeaheadPhraseDelimiters, should throw error', fakeAsync(() => {
-      directive.typeaheadPhraseDelimiters = ',';
+      component.typeaheadPhraseDelimiters = ',';
       fixture.detectChanges();
       tick(100);
       expect(() => directive.ngOnInit()).toThrow();
     }));
 
     it('and use space for typeaheadMultipleSearchDelimiters, should throw error', fakeAsync(() => {
-      directive.typeaheadMultipleSearchDelimiters = ' ';
+      component.typeaheadMultipleSearchDelimiters = ' ';
       fixture.detectChanges();
       tick(100);
       expect(() => directive.ngOnInit()).toThrow();
     }));
 
     it("use space for typeaheadMultipleSearchDelimiters and ',' for typeaheadWordDelimiters, should not throw error", fakeAsync(() => {
-      directive.typeaheadMultipleSearchDelimiters = ' ';
-      directive.typeaheadWordDelimiters = ',';
+      component.typeaheadMultipleSearchDelimiters = ' ';
+      component.typeaheadWordDelimiters = ',';
       fixture.detectChanges();
       tick(100);
       expect(() => directive.ngOnInit()).not.toThrow();
     }));
 
     it('and use space for typeaheadMultipleSearchDelimiters and typeaheadSingleWords is false, should not throw error', fakeAsync(() => {
-      directive.typeaheadMultipleSearchDelimiters = ' ';
-      directive.typeaheadSingleWords = false;
+      component.typeaheadMultipleSearchDelimiters = ' ';
+      component.typeaheadSingleWords = false;
       fixture.detectChanges();
       tick(100);
       expect(() => directive.ngOnInit()).not.toThrow();

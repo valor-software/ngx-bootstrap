@@ -1,12 +1,12 @@
 <div (mouseenter)="pause()"
-  (mouseleave)="onMouseLeave()"
-  (mouseup)="onMouseUp()"
-  (keydown)="keydownPress($event)"
-  (focusin)="pauseFocusIn()"
-  (focusout)="pauseFocusOut()"
-  [id]="'carousel' + currentId"
-  class="carousel slide" tabindex="0">
-  @if (!_bsVer.isBs5 && showIndicators && slides.length > 1) {
+     (mouseleave)="onMouseLeave()"
+     (mouseup)="onMouseUp()"
+     (keydown)="keydownPress($event)"
+     (focusin)="pauseFocusIn()"
+     (focusout)="pauseFocusOut()"
+     [id]="'carousel' + currentId"
+     class="carousel slide" tabindex="0">
+  @if (!_bsVer.isBs5 && showIndicators() && slides.length > 1) {
     <ol class="carousel-indicators">
       @for (slide of indicatorsSlides(); track slide; let i = $index) {
         <li
@@ -16,7 +16,7 @@
       }
     </ol>
   }
-  @if (_bsVer.isBs5 && showIndicators && slides.length > 1) {
+  @if (_bsVer.isBs5 && showIndicators() && slides.length > 1) {
     <div class="carousel-indicators">
       @for (slide of indicatorsSlides(); track slide; let i = $index) {
         <button

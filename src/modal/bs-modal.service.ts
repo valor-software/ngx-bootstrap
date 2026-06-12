@@ -24,7 +24,7 @@ import { document } from 'ngx-bootstrap/utils';
 
 let currentId = 1;
 
-@Injectable({providedIn: 'platform'})
+@Injectable({providedIn: 'root'})
 export class BsModalService {
   // constructor props
   config: ModalOptions;

@@ -1,7 +1,6 @@
 import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { BsDropdownConfig, BsDropdownDirective, BsDropdownModule } from '../index';
 
@@ -51,8 +50,7 @@ describe('Directive: Dropdown', () => {
     TestBed.configureTestingModule({
       declarations: [TestDropdownComponent],
       imports: [
-        BsDropdownModule,
-        BrowserAnimationsModule
+        BsDropdownModule
       ]
     });
     TestBed.overrideComponent(TestDropdownComponent, {
@@ -82,11 +80,11 @@ describe('Directive: Dropdown', () => {
   });
 
   it('autoClose value should be true by default', () => {
-    expect(directive.autoClose).toBeTruthy();
+    expect(directive.autoClose()).toBeTruthy();
   });
 
   it('insideClick value should be true by default', () => {
-    expect(directive.insideClick).toBeFalsy();
+    expect(directive.insideClick()).toBeFalsy();
   });
 
   it('should be opened if isOpen === true and toggle on isOpen changes', () => {

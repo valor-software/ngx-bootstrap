@@ -15,11 +15,11 @@ export class DemoModalServiceFromComponent {
     const initialState: ModalOptions = {
       initialState: {
         list: ['Open a modal with component', 'Pass your data', 'Do something else', '...'],
-        title: 'Modal with component'
+        title: 'Modal with component',
+        closeBtnName: 'Close'
       }
     };
     this.bsModalRef = this.modalService.show(ModalContentComponent, initialState);
-    this.bsModalRef.content.closeBtnName = 'Close';
   }
 }
 

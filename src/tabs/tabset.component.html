@@ -1,9 +1,9 @@
 <ul class="nav" [ngClass]="classMap"
-  (click)="$event.preventDefault()"
-  [attr.aria-label]="ariaLabel"
-  role="tablist">
+    (click)="$event.preventDefault()"
+    [attr.aria-label]="ariaLabel"
+    role="tablist">
   @for (tabz of tabs; track tabz; let i = $index) {
-    <li [ngClass]="['nav-item', tabz.customClass || '']"
+    <li [ngClass]="['nav-item', tabz._customClass || '']"
       [class.active]="tabz.active" [class.disabled]="tabz.disabled" (keydown)="keyNavActions($event, i)">
       <a href="javascript:void(0);" class="nav-link" role="tab"
         [attr.aria-controls]="tabz.id ? tabz.id : ''"
@@ -11,7 +11,7 @@
         [attr.id]="tabz.id ? tabz.id + '-link' : ''"
         [class.active]="tabz.active" [class.disabled]="tabz.disabled"
         (click)="tabz.active = true">
-        <span [ngTransclude]="tabz.headingRef">{{ tabz.heading }}</span>
+        <span [ngTransclude]="tabz.headingRef">{{ tabz.heading() }}</span>
         @if (tabz.removable) {
           <span (click)="$event.preventDefault(); removeTab(tabz);" class="bs-remove-tab"> &#10060;</span>
         }

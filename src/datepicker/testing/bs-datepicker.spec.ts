@@ -1,6 +1,5 @@
 import { Component, Renderer2, ViewChild } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { dispatchKeyboardEvent } from '@ngneat/spectator';
 import { registerEscClick } from 'ngx-bootstrap/utils';
 import { BsDatepickerDirective } from '../bs-datepicker.component';
@@ -58,8 +57,7 @@ describe('datepicker:', () => {
     waitForAsync(() => TestBed.configureTestingModule({
       declarations: [TestComponent],
       imports: [
-        BsDatepickerModule,
-        BrowserAnimationsModule
+        BsDatepickerModule
     ]
 }).compileComponents()
     ));

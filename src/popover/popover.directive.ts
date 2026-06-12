@@ -1,14 +1,15 @@
 import {
   Directive,
   ElementRef,
-  EventEmitter,
   Input,
   OnDestroy,
   OnInit,
-  Output,
   Renderer2,
   TemplateRef,
-  ViewContainerRef
+  ViewContainerRef,
+  effect,
+  model,
+  output
 } from '@angular/core';
 import { PopoverConfig } from './popover.config';
 import { ComponentLoader, ComponentLoaderFactory } from 'ngx-bootstrap/component-loader';
@@ -75,18 +76,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /**
    * Returns whether or not the popover is currently being shown
    */
-  @Input()
-  get isOpen(): boolean {
-    return this._popover.isShown;
-  }
-
-  set isOpen(value: boolean) {
-    if (value) {
-      this.show();
-    } else {
-      this.hide();
-    }
-  }
+  readonly isOpen = model(false);
 
   /**
    * Delay before showing the tooltip
@@ -96,11 +86,11 @@ export class PopoverDirective implements OnInit, OnDestroy {
   /**
    * Emits an event when the popover is shown
    */
-  @Output() onShown: EventEmitter<unknown>;
+  readonly onShown = output<unknown>();
   /**
    * Emits an event when the popover is hidden
    */
-  @Output() onHidden: EventEmitter<unknown>;
+  readonly onHidden = output<unknown>();
 
   protected _popoverCancelShowFn?: () => void;
 
@@ -124,8 +114,17 @@ export class PopoverDirective implements OnInit, OnDestroy {
 
     Object.assign(this, _config);
 
-    this.onShown = this._popover.onShown;
-    this.onHidden = this._popover.onHidden;
+    this._popover.onShown.subscribe(() => this.onShown.emit(undefined));
+    this._popover.onHidden.subscribe(() => this.onHidden.emit(undefined));
+
+    effect(() => {
+      const open = this.isOpen();
+      if (open && !this._popover.isShown) {
+        this.show();
+      } else if (!open && this._popover.isShown) {
+        this.hide();
+      }
+    });
 
     // fix: no focus on button on Mac OS #1795
     if (typeof window !== 'undefined') {
@@ -144,7 +143,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
    * set id for the popover
    */
   setAriaDescribedBy(): void {
-    this._ariaDescribedby = this.isOpen ? `ngx-popover-${this.popoverId}` : void 0;
+    this._ariaDescribedby = this._popover.isShown ? `ngx-popover-${this.popoverId}` : void 0;
     if (this._ariaDescribedby) {
       if (this._popover.instance) {
         this._popover.instance.popoverId = this._ariaDescribedby;
@@ -194,7 +193,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
         this._positionService.deletePositionElement(this._popover._componentRef.location);
       }
 
-      this.isOpen = true;
+      this.isOpen.set(true);
       this.setAriaDescribedBy();
     };
 
@@ -237,10 +236,10 @@ export class PopoverDirective implements OnInit, OnDestroy {
       this._delayTimeoutId = undefined;
     }
 
-    if (this.isOpen) {
+    if (this._popover.isShown) {
       this._popover.hide();
       this.setAriaDescribedBy();
-      this.isOpen = false;
+      this.isOpen.set(false);
     }
   }
 
@@ -249,7 +248,7 @@ export class PopoverDirective implements OnInit, OnDestroy {
    * the popover.
    */
   toggle(): void {
-    if (this.isOpen) {
+    if (this._popover.isShown) {
       return this.hide();
     }
 
@@ -264,6 +263,10 @@ export class PopoverDirective implements OnInit, OnDestroy {
       return;
     }
     this._isInited = true;
+
+    // Remove native 'popover' attribute to prevent conflict with the HTML Popover API
+    // The Angular @Input() binding is managed via property binding and is unaffected
+    this._renderer.removeAttribute(this._elementRef.nativeElement, 'popover');
 
     this._popover.listen({
       triggers: this.triggers,

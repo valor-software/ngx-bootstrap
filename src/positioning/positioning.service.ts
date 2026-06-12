@@ -1,4 +1,4 @@
-import { Injectable, ElementRef, RendererFactory2, Inject, PLATFORM_ID, NgZone } from '@angular/core';
+import { Injectable, ElementRef, RendererFactory2, Inject, PLATFORM_ID } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -50,38 +50,37 @@ export class PositioningService {
   private isDisabled = false;
 
   constructor(
-    ngZone: NgZone,
     rendererFactory: RendererFactory2,
     @Inject(PLATFORM_ID) platformId: number
   ) {
 
     if (isPlatformBrowser(platformId)) {
-      ngZone.runOutsideAngular(() => {
-        this.triggerEvent$ = merge(
-          fromEvent(window, 'scroll', { passive: true }),
-          fromEvent(window, 'resize', { passive: true }),
-                    of(0, animationFrameScheduler),
-          this.update$$
-        );
+      // Zoneless-compatible: no NgZone dependency needed
+      // Event listeners run without triggering change detection
+      this.triggerEvent$ = merge(
+        fromEvent(window, 'scroll', { passive: true }),
+        fromEvent(window, 'resize', { passive: true }),
+        of(0, animationFrameScheduler),
+        this.update$$
+      );
 
-        this.triggerEvent$.pipe(takeUntilDestroyed()).subscribe(() => {
-          if (this.isDisabled) {
-            return;
-          }
+      this.triggerEvent$.pipe(takeUntilDestroyed()).subscribe(() => {
+        if (this.isDisabled) {
+          return;
+        }
 
-          this.positionElements
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            .forEach((positionElement: any) => {
-              positionElements(
-                _getHtmlElement(positionElement.target),
-                _getHtmlElement(positionElement.element),
-                positionElement.attachment,
-                positionElement.appendToBody,
-                this.options,
-                rendererFactory.createRenderer(null, null)
-              );
-            });
-        });
+        this.positionElements
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          .forEach((positionElement: any) => {
+            positionElements(
+              _getHtmlElement(positionElement.target),
+              _getHtmlElement(positionElement.element),
+              positionElement.attachment,
+              positionElement.appendToBody,
+              this.options,
+              rendererFactory.createRenderer(null, null)
+            );
+          });
       });
     }
   }

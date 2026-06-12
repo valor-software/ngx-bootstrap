@@ -1,0 +1,119 @@
+name: release-test
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (skip actual npm publish)'
+        required: false
+        default: false
+        type: boolean
+
+env:
+  NX_BRANCH: ${{ github.event.number }}
+  NX_RUN_GROUP: ${{ github.run_id }}
+  NX_CLOUD_AUTH_TOKEN: ${{ secrets.NX_CLOUD_AUTH_TOKEN }}
+
+jobs:
+  # verify the actor is an org member, not just a contributor
+  check_permissions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check org membership
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data } = await github.rest.repos.getCollaboratorPermissionLevel({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              username: context.actor,
+            });
+            const permission = data.permission;
+            if (permission === 'admin' || permission === 'write') {
+              core.info(`✅ ${context.actor} has '${permission}' access to ${context.repo.owner}/${context.repo.repo}`);
+            } else {
+              core.setFailed(
+                `❌ ${context.actor} does not have write access to ${context.repo.owner}/${context.repo.repo}. Only org members with write access can trigger test releases.`
+              );
+            }
+
+  # install dependencies
+  install:
+    runs-on: ubuntu-latest
+    needs: check_permissions
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+      - uses: actions/cache@v3
+        id: cache
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+      - run: npm ci
+        if: steps.cache.outputs.cache-hit != 'true'
+
+  # build ngx-bootstrap
+  build:
+    needs: install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+      - uses: actions/cache@v3
+        with:
+          path: dist
+          key: dist-${{ github.run_id }}
+      - run: npx nx build ngx-bootstrap --configuration=production
+
+  # publish to npm with "test" dist-tag
+  npm_publish_test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: node_modules-${{ hashFiles('**/package-lock.json') }}
+      - uses: actions/cache@v3
+        with:
+          path: dist
+          key: dist-${{ github.run_id }}
+
+      - name: Stamp test version
+        run: |
+          CURRENT_VERSION=$(node -p "require('./package.json').version")
+          TIMESTAMP=$(date -u +%Y%m%d%H%M%S)
+          TEST_VERSION="${CURRENT_VERSION}-test.${TIMESTAMP}.${GITHUB_RUN_NUMBER}"
+          echo "Publishing test version: ${TEST_VERSION}"
+          echo "TEST_VERSION=${TEST_VERSION}" >> $GITHUB_ENV
+          node -e "
+            const fs = require('fs');
+            const pkgPath = 'dist/ngx-bootstrap/package.json';
+            const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+            pkg.version = '${TEST_VERSION}';
+            fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2));
+            console.log('Updated dist package version to', pkg.version);
+          "
+
+      - name: Publish to npm (test tag)
+        if: ${{ !inputs.dry_run }}
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          package: "dist/ngx-bootstrap/package.json"
+          token: ${{ secrets.NPM_TOKEN }}
+          tag: test
+
+      - name: Dry run summary
+        if: ${{ inputs.dry_run }}
+        run: |
+          echo "🏷️ DRY RUN — would have published:"
+          echo "  Version: ${{ env.TEST_VERSION }}"
+          echo "  Tag: test"
+          echo "  Package: dist/ngx-bootstrap/package.json"
+          cat dist/ngx-bootstrap/package.json | head -5

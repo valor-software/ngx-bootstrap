@@ -28,9 +28,8 @@ export class EventListenerFocusTrapInertStrategy implements FocusTrapInertStrate
     }
 
     this._listener = (e: FocusEvent) => this._trapFocus(focusTrap, e);
-    focusTrap._ngZone.runOutsideAngular(() => {
-      focusTrap._document.addEventListener('focus', this._listener!, true);
-    });
+    // Zoneless-compatible: Event listeners don't need NgZone handling
+    focusTrap._document.addEventListener('focus', this._listener!, true);
   }
 
   /** Removes the event listener added in preventFocus. */
@@ -46,8 +45,8 @@ export class EventListenerFocusTrapInertStrategy implements FocusTrapInertStrate
    * Refocuses the first element in the FocusTrap if the focus event target was outside
    * the FocusTrap.
    *
-   * This is an event listener callback. The event listener is added in runOutsideAngular,
-   * so all this code runs outside Angular as well.
+   * This is an event listener callback. The event listener is added directly,
+   * so all this code runs outside Angular's change detection as well.
    */
   private _trapFocus(focusTrap: ConfigurableFocusTrap, event: FocusEvent) {
     const target = event.target as HTMLElement;

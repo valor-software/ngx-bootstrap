@@ -1,6 +1,6 @@
 import {
-  ApplicationRef, ComponentFactoryResolver, ElementRef, Inject, Injectable, Injector,
-  NgZone, Renderer2, ViewContainerRef
+  ApplicationRef, ElementRef, EnvironmentInjector, Inject, Injectable, Injector,
+  Renderer2, ViewContainerRef
 } from '@angular/core';
 import { ComponentLoader } from './component-loader.class';
 import { PositioningService } from 'ngx-bootstrap/positioning';
@@ -8,8 +8,7 @@ import { DOCUMENT } from '@angular/common';
 
 @Injectable({providedIn: 'root'})
 export class ComponentLoaderFactory {
-  constructor(private _componentFactoryResolver: ComponentFactoryResolver,
-              private _ngZone: NgZone,
+  constructor(private _environmentInjector: EnvironmentInjector,
               private _injector: Injector,
               private _posService: PositioningService,
               private _applicationRef: ApplicationRef,
@@ -31,8 +30,7 @@ export class ComponentLoaderFactory {
       _renderer,
       _elementRef,
       this._injector,
-      this._componentFactoryResolver,
-      this._ngZone,
+      this._environmentInjector,
       this._applicationRef,
       this._posService,
       this._document

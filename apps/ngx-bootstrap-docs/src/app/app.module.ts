@@ -1,5 +1,5 @@
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, provideZonelessChangeDetection } from '@angular/core';
 import { provideRouter, withEnabledBlockingInitialNavigation  } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -14,6 +14,7 @@ import { routes } from './app.routing';
     bootstrap: [AppComponent], imports: [BrowserAnimationsModule,
         DocsModule,
         ], providers: [
+        provideZonelessChangeDetection(),
         provideRouter(routes, withEnabledBlockingInitialNavigation()),
         { provide: NgApiDoc, useValue: ngdoc },
         { provide: DOCS_TOKENS, useValue: routes },

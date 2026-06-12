@@ -1,4 +1,4 @@
-import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, TemplateRef, ViewContainerRef, input, effect } from '@angular/core';
 
 @Directive({
     selector: '[ngTransclude]',
@@ -10,21 +10,18 @@ export class NgTranscludeDirective {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected _ngTransclude?: TemplateRef<any>;
 
-  @Input()
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  set ngTransclude(templateRef: TemplateRef<any> | undefined) {
-    this._ngTransclude = templateRef;
-    if (templateRef) {
-      this.viewRef.createEmbeddedView(templateRef);
-    }
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  get ngTransclude(): TemplateRef<any> | undefined {
-    return this._ngTransclude;
-  }
+  ngTransclude = input<TemplateRef<any> | undefined>();
 
   constructor(viewRef: ViewContainerRef) {
     this.viewRef = viewRef;
+    
+    effect(() => {
+      const templateRef = this.ngTransclude();
+      this._ngTransclude = templateRef;
+      if (templateRef) {
+        this.viewRef.createEmbeddedView(templateRef);
+      }
+    });
   }
 }
