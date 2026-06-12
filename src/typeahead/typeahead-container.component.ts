@@ -145,13 +145,13 @@ export class TypeaheadContainerComponent implements OnDestroy {
     if (this.typeaheadIsFirstItemActive && this._matches.length > 0) {
       this.setActive(this._matches[0]);
 
-      if (this._active?.isHeader()) {
+      if (this.active?.isHeader()) {
         this.nextActiveMatch();
       }
     }
 
-    if (this._active && !this.typeaheadIsFirstItemActive) {
-      const concurrency = this._matches.find(match => match.value === this._active?.value);
+    if (this.active && !this.typeaheadIsFirstItemActive) {
+      const concurrency = this._matches.find(match => match.value === this.active?.value);
 
       if (concurrency) {
         this.selectActive(concurrency);
@@ -203,34 +203,35 @@ export class TypeaheadContainerComponent implements OnDestroy {
   }
 
   selectActiveMatch(isActiveItemChanged?: boolean): void {
-    if (this._active && this.parent?.typeaheadSelectFirstItem()) {
-      this.selectMatch(this._active);
+    if (this.active && this.parent?.typeaheadSelectFirstItem()) {
+      this.selectMatch(this.active);
     }
 
     if (!this.parent?.typeaheadSelectFirstItem() && isActiveItemChanged) {
-      this.selectMatch(this._active);
+      this.selectMatch(this.active);
     }
   }
 
   activeChanged(): void {
-    if (!this._active) {
+    if (!this.active) {
+      this.activeChangeEvent.emit('');
       return;
     }
-    const index = this.matches.indexOf(this._active);
+    const index = this.matches.indexOf(this.active);
     this.activeChangeEvent.emit(`${this.popupId}-${index}`);
   }
 
   prevActiveMatch(): void {
-    if (!this._active) {
+    if (!this.active) {
       return;
     }
 
-    const index = this.matches.indexOf(this._active);
+    const index = this.matches.indexOf(this.active);
     this.setActive(this.matches[
       index - 1 < 0 ? this.matches.length - 1 : index - 1
       ]);
 
-    if (this._active.isHeader()) {
+    if (this.active.isHeader()) {
       this.prevActiveMatch();
     }
 
@@ -240,12 +241,12 @@ export class TypeaheadContainerComponent implements OnDestroy {
   }
 
   nextActiveMatch(): void {
-    const index = this._active ? this.matches.indexOf(this._active) : -1;
+    const index = this.active ? this.matches.indexOf(this.active) : -1;
     this.setActive(this.matches[
       index + 1 > this.matches.length - 1 ? 0 : index + 1
       ]);
 
-    if (this._active?.isHeader()) {
+    if (this.active?.isHeader()) {
       this.nextActiveMatch();
     }
 
@@ -394,9 +395,9 @@ export class TypeaheadContainerComponent implements OnDestroy {
   }
 
   protected setActive(value?: TypeaheadMatch): void {
-    this._active = value;
+    this.active = value;
     let preview;
-    if (!(this._active == null || this._active.isHeader())) {
+    if (!(this.active == null || this.active.isHeader())) {
       preview = value;
     }
     this.parent?.typeaheadOnPreview.emit(preview);
