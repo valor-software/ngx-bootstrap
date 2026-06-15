@@ -187,6 +187,11 @@ export class ComponentLoader<T extends object> {
         );
       }
 
+      // Hide element initially when positioning is active to prevent flash in zoneless mode
+      if (this.attachment) {
+        this._componentRef.location.nativeElement.style.visibility = 'hidden';
+      }
+
       // we need to manually invoke change detection since events registered
       // via
       // Renderer::listen() are not picked up by change detection with the
@@ -368,12 +373,24 @@ export class ComponentLoader<T extends object> {
 
     // Use requestAnimationFrame for zoneless-compatible position updates
     // This replaces the previous NgZone.onStable subscription
+    let isFirstPositioning = true;
     const schedulePositioning = () => {
       if (!this._componentRef) {
         return;
       }
 
       this._posService.calcPosition();
+      
+      // Show popover after first positioning is complete to prevent flash
+      if (isFirstPositioning) {
+        isFirstPositioning = false;
+        requestAnimationFrame(() => {
+          if (this._componentRef?.location) {
+            this._componentRef.location.nativeElement.style.visibility = 'visible';
+          }
+        });
+      }
+      
       this._positioningRafId = requestAnimationFrame(schedulePositioning);
     };
 
@@ -408,7 +425,7 @@ export class ComponentLoader<T extends object> {
 
         return new ContentRef([_viewRef.rootNodes], _viewRef);
       }
-      const viewRef = content.createEmbeddedView({});
+      const viewRef = content.createEmbeddedView(context || {});
       this._applicationRef.attachView(viewRef);
 
       return new ContentRef([viewRef.rootNodes], viewRef);
