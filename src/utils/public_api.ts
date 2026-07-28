@@ -20,6 +20,7 @@ export { Trigger } from './trigger.class';
 export { Utils } from './utils.class';
 export { window, document } from './facade/browser';
 export { warnOnce }from './warn-once';
+export { runInZoneRootIfPresent } from './zone-root';
 export {
   animateExpand,
   onTransitionFinished,
