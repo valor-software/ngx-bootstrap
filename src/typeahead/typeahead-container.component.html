@@ -26,7 +26,8 @@
         class="dropdown-item"
         (click)="selectMatch(match, $event)"
         (mouseenter)="selectActive(match)"
-        [class.active]="isActive(match)">
+        [class.active]="isActive(match)"
+        [attr.aria-selected]="isActive(match)">
         <ng-template [ngTemplateOutlet]="itemTemplate || bsItemTemplate"
           [ngTemplateOutletContext]="{item: match.item, index: i, match: match, query: query}">
         </ng-template>
