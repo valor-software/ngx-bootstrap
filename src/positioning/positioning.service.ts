@@ -2,6 +2,8 @@ import { Injectable, ElementRef, RendererFactory2, Inject, PLATFORM_ID } from '@
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { isPlatformBrowser } from '@angular/common';
 
+import { runInZoneRootIfPresent } from 'ngx-bootstrap/utils';
+
 import { positionElements } from './ng-positioning';
 
 import { fromEvent, merge, of, animationFrameScheduler, Subject, Observable } from 'rxjs';
@@ -55,8 +57,6 @@ export class PositioningService {
   ) {
 
     if (isPlatformBrowser(platformId)) {
-      // Zoneless-compatible: no NgZone dependency needed
-      // Event listeners run without triggering change detection
       this.triggerEvent$ = merge(
         fromEvent(window, 'scroll', { passive: true }),
         fromEvent(window, 'resize', { passive: true }),
@@ -64,23 +64,25 @@ export class PositioningService {
         this.update$$
       );
 
-      this.triggerEvent$.pipe(takeUntilDestroyed()).subscribe(() => {
-        if (this.isDisabled) {
-          return;
-        }
+      runInZoneRootIfPresent(() => {
+        this.triggerEvent$?.pipe(takeUntilDestroyed()).subscribe(() => {
+          if (this.isDisabled) {
+            return;
+          }
 
-        this.positionElements
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          .forEach((positionElement: any) => {
-            positionElements(
-              _getHtmlElement(positionElement.target),
-              _getHtmlElement(positionElement.element),
-              positionElement.attachment,
-              positionElement.appendToBody,
-              this.options,
-              rendererFactory.createRenderer(null, null)
-            );
-          });
+          this.positionElements
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            .forEach((positionElement: any) => {
+              positionElements(
+                _getHtmlElement(positionElement.target),
+                _getHtmlElement(positionElement.element),
+                positionElement.attachment,
+                positionElement.appendToBody,
+                this.options,
+                rendererFactory.createRenderer(null, null)
+              );
+            });
+        });
       });
     }
   }

@@ -21,7 +21,7 @@ import {
 
 import { PositioningOptions, PositioningService } from 'ngx-bootstrap/positioning';
 
-import { listenToTriggersV2, registerEscClick, registerOutsideClick } from 'ngx-bootstrap/utils';
+import { listenToTriggersV2, registerEscClick, registerOutsideClick, runInZoneRootIfPresent } from 'ngx-bootstrap/utils';
 
 import { ContentRef } from './content-ref.class';
 import { ListenOptions } from './listen-options.model';
@@ -394,8 +394,10 @@ export class ComponentLoader<T extends object> {
       this._positioningRafId = requestAnimationFrame(schedulePositioning);
     };
 
-    // Initial calculation after a short delay to ensure DOM is ready
-    this._positioningRafId = requestAnimationFrame(schedulePositioning);
+    // The loop re-schedules itself every frame while the component is attached, so in
+    // zone.js apps it must start outside the Angular zone or every frame triggers
+    // app-wide change detection. Re-scheduled frames inherit the root zone from here.
+    this._positioningRafId = runInZoneRootIfPresent(() => requestAnimationFrame(schedulePositioning));
   }
 
   private _unsubscribePositioning(): void {
