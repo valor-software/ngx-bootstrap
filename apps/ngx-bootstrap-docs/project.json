@@ -87,9 +87,6 @@
         "buildTarget": "ngx-bootstrap-docs:build"
       }
     },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    },
     "server": {
       "executor": "@angular-devkit/build-angular:server",
       "defaultConfiguration": "production",

@@ -64,9 +64,6 @@
         }
       }
     },
-    "lint": {
-      "executor": "@nx/eslint:lint"
-    },
     "build-sass": {
       "executor": "nx:run-commands",
       "outputs": [],

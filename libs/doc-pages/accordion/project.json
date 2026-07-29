@@ -23,9 +23,6 @@
           "tsConfig": "libs/doc-pages/accordion/tsconfig.lib.prod.json"
         }
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
     }
   }
 }

@@ -22,9 +22,6 @@
           "tsConfig": "libs/doc-pages/timepicker/tsconfig.lib.prod.json"
         }
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
     }
   }
 }

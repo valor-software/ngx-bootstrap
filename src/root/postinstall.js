@@ -28,8 +28,8 @@ ${YELLOW}  2. @Input() / @Output() decorators replaced${RESET}
      All ${CYAN}@Output()${RESET} decorators are now ${CYAN}output()${RESET} functions.
      Programmatic access to inputs requires signal read syntax: ${CYAN}component.myInput()${RESET}
 
-${YELLOW}  3. Angular 21.2.0+ required${RESET}
-     This version requires ${CYAN}Angular ^21.2.0${RESET}. Older Angular versions are not supported.
+${YELLOW}  3. Angular 22.0.0+ required${RESET}
+     This version requires ${CYAN}Angular ^22.0.0${RESET}. Older Angular versions are not supported.
 
 ${YELLOW}  4. ChangeDetectionStrategy.OnPush everywhere${RESET}
      All components now use ${CYAN}OnPush${RESET} change detection.
