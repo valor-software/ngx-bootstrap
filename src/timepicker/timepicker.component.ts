@@ -3,11 +3,12 @@ import {
   ChangeDetectorRef,
   Component,
   forwardRef,
-  OnChanges,
   OnDestroy,
   ViewEncapsulation,
+  effect,
   input,
-  output
+  output,
+  signal
 } from '@angular/core';
 
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -81,7 +82,6 @@ export const TIMEPICKER_CONTROL_VALUE_ACCESSOR: ControlValueAccessorModel = {
 export class TimepickerComponent
   implements ControlValueAccessor,
     TimepickerControls,
-    OnChanges,
     OnDestroy {
   /** hours change step */
   hourStep = input<number>(this._config.hourStep);
@@ -127,7 +127,16 @@ export class TimepickerComponent
   minutes = '';
   seconds = '';
   meridian = '';
-  disabled = false;
+  /** disabled state set through the ControlValueAccessor (forms API) */
+  private readonly _cvaDisabled = signal(false);
+
+  get disabled(): boolean {
+    return this.disabledInput() || this._cvaDisabled();
+  }
+
+  set disabled(value: boolean) {
+    this._cvaDisabled.set(value);
+  }
   // min\max validation for input fields
   invalidHours = false;
   invalidMinutes = false;
@@ -179,6 +188,15 @@ export class TimepickerComponent
     private _timepickerActions: TimepickerActions
   ) {
     this.config = _config;
+
+    // re-sync the store config whenever any input signal or the CVA disabled state changes
+    // (signal inputs do not trigger ngOnChanges)
+    effect(() => {
+      this._store.dispatch(
+        this._timepickerActions.updateControls(getControlsValue(this.getComponentState()))
+      );
+    });
+
     this.timepickerSub = _store.select(state => state.value)
       .subscribe((value: Date | undefined) => {
         // update UI values if date changed
@@ -227,12 +245,6 @@ export class TimepickerComponent
 
   wheelSign($event: WheelEventInit): number {
     return Math.sign($event.deltaY || 0) * -1;
-  }
-
-  ngOnChanges(): void {
-    this._store.dispatch(
-      this._timepickerActions.updateControls(getControlsValue(this.getComponentState()))
-    );
   }
 
   changeHours(step: number, source: TimeChangeSource = ''): void {
@@ -402,7 +414,7 @@ export class TimepickerComponent
    * @param isDisabled
    */
   setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    this._cvaDisabled.set(isDisabled);
     this._cd.markForCheck();
   }
 

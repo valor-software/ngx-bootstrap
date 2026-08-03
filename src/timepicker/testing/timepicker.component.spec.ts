@@ -470,6 +470,79 @@ describe('Component: TimepickerComponent', () => {
     }));
   });
 
+  describe('when disabled state changes at runtime', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TimepickerComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should ignore meridian toggle while disabled input is true and apply it after being enabled', () => {
+      fixture.componentRef.setInput('disabled', true);
+      fixture.detectChanges();
+      component.writeValue(testTime(18, 0, 0));
+      fixture.detectChanges();
+
+      expect(component.meridian).toBe('PM');
+
+      component.toggleMeridian();
+      fixture.detectChanges();
+
+      expect(component.meridian).toBe('PM');
+
+      fixture.componentRef.setInput('disabled', false);
+      fixture.detectChanges();
+
+      component.toggleMeridian();
+      fixture.detectChanges();
+
+      expect(component.meridian).toBe('AM');
+    });
+
+    it('should toggle meridian after being enabled through the forms API', () => {
+      component.setDisabledState(true);
+      fixture.detectChanges();
+      component.writeValue(testTime(18, 0, 0));
+      fixture.detectChanges();
+
+      component.toggleMeridian();
+      fixture.detectChanges();
+
+      expect(component.meridian).toBe('PM');
+
+      component.setDisabledState(false);
+      fixture.detectChanges();
+
+      component.toggleMeridian();
+      fixture.detectChanges();
+
+      expect(component.meridian).toBe('AM');
+    });
+
+    it('should apply typed hours after being enabled through the forms API', () => {
+      const onChangeSpy = jest.fn();
+      component.registerOnChange(onChangeSpy);
+      component.setDisabledState(true);
+      fixture.detectChanges();
+      component.writeValue(testTime(18, 30, 0));
+      fixture.detectChanges();
+
+      component.setDisabledState(false);
+      fixture.detectChanges();
+
+      inputHours = getInputElements(fixture)[0];
+      inputHours.value = '03';
+      fireEvent(inputHours, 'change');
+      fixture.detectChanges();
+
+      expect(component.hours).toBe('03');
+
+      const lastChange = onChangeSpy.mock.calls[onChangeSpy.mock.calls.length - 1][0];
+      expect(lastChange instanceof Date).toBe(true);
+      expect((lastChange as Date).getHours()).toBe(15);
+    });
+  });
+
   describe('input fields hour with property of hourStep', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TimepickerComponent);
@@ -1008,9 +1081,10 @@ describe('Component: TimepickerComponent', () => {
       component.minutes = '99';
       fixture.detectChanges();
 
-      const methodSpy = jest.spyOn(component, 'ngOnChanges');
+      const onChangeSpy = jest.fn();
+      component.registerOnChange(onChangeSpy);
       component._updateTime();
-      expect(methodSpy).not.toHaveBeenCalled();
+      expect(onChangeSpy).not.toHaveBeenCalledWith(null);
     });
 
     it('should clear model if values are invalid', () => {
@@ -1023,46 +1097,48 @@ describe('Component: TimepickerComponent', () => {
       expect(inputMinutes.value).toBe('12');
       expect(inputSeconds.value).toBe('12');
 
-      const methodSpy = jest.spyOn(component, 'ngOnChanges').mockImplementation(() => {
-        component.hours = '99';
-        component.minutes = '99';
-        component.seconds = '99';
-        component._updateTime();
-        fixture.detectChanges();
+      const onChangeSpy = jest.fn();
+      component.registerOnChange(onChangeSpy);
+      jest.spyOn(component.isValid, 'emit');
+      component.hours = '99';
+      component.minutes = '99';
+      component.seconds = '99';
+      component._updateTime();
 
-        expect(methodSpy).toHaveBeenCalledWith(null);
-      });
+      expect(onChangeSpy).toHaveBeenCalledWith(null);
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
     });
 
     it('should clear model if hour input is invalid', () => {
-      const methodSpy = jest.spyOn(component, 'ngOnChanges').mockImplementation(() => {
-        jest.spyOn(component.isValid, 'emit');
-        component.hours = '10';
-        fixture.componentRef.setInput('showMeridian', false);
+      jest.spyOn(component.isValid, 'emit');
+      const onChangeSpy = jest.fn();
+      component.registerOnChange(onChangeSpy);
+      component.hours = '10';
+      fixture.componentRef.setInput('showMeridian', false);
+      fixture.detectChanges();
 
-        inputHours = getInputElements(fixture)[0];
-        (inputHours as HTMLInputElement).value = '99';
-        component.updateHours(inputHours);
+      inputHours = getInputElements(fixture)[0];
+      (inputHours as HTMLInputElement).value = '99';
+      component.updateHours(inputHours);
 
-        expect(methodSpy).toHaveBeenCalledWith(null);
-        expect(component.isValid.emit).toHaveBeenCalledWith(false);
-        expect(component.invalidHours).toEqual(true);
-      });
+      expect(onChangeSpy).toHaveBeenCalledWith(null);
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
+      expect(component.invalidHours).toEqual(true);
     });
 
     it('should clear model if hour limits are invalid', () => {
-      const methodSpy = jest.spyOn(component, 'ngOnChanges').mockImplementation(() => {
-        jest.spyOn(component.isValid, 'emit');
-        jest.spyOn(component, 'isValidLimit').mockReturnValue(false);
+      jest.spyOn(component.isValid, 'emit');
+      jest.spyOn(component, 'isValidLimit').mockReturnValue(false);
+      const onChangeSpy = jest.fn();
+      component.registerOnChange(onChangeSpy);
 
-        inputHours = getInputElements(fixture)[0];
-        (inputHours as HTMLInputElement).value = '19';
-        component.updateHours(inputHours);
+      inputHours = getInputElements(fixture)[0];
+      (inputHours as HTMLInputElement).value = '19';
+      component.updateHours(inputHours);
 
-        expect(methodSpy).toHaveBeenCalledWith(null);
-        expect(component.isValid.emit).toHaveBeenCalledWith(false);
-        expect(component.invalidHours).toEqual(true);
-      });
+      expect(onChangeSpy).toHaveBeenCalledWith(null);
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
+      expect(component.invalidHours).toEqual(true);
     });
 
     it('should update time if hour is valid', () => {
@@ -1079,31 +1155,31 @@ describe('Component: TimepickerComponent', () => {
     });
 
     it('should clear model if minute input is invalid', () => {
-      const methodSpy = jest.spyOn(component, 'ngOnChanges').mockImplementation(() => {
-        jest.spyOn(component.isValid, 'emit');
-        component.minutes = '10';
+      jest.spyOn(component.isValid, 'emit');
+      const onChangeSpy = jest.fn();
+      component.registerOnChange(onChangeSpy);
+      component.minutes = '10';
 
-        inputMinutes = getInputElements(fixture)[1];
-        (inputMinutes as HTMLInputElement).value = '99';
-        component.updateMinutes(inputMinutes);
+      inputMinutes = getInputElements(fixture)[1];
+      (inputMinutes as HTMLInputElement).value = '99';
+      component.updateMinutes(inputMinutes);
 
-        expect(methodSpy).toHaveBeenCalledWith(null);
-        expect(component.isValid.emit).toHaveBeenCalledWith(false);
-      });
+      expect(onChangeSpy).toHaveBeenCalledWith(null);
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
     });
 
     it('should clear model if minute limits are invalid', () => {
-      const methodSpy = jest.spyOn(component, 'ngOnChanges').mockImplementation(() => {
-        jest.spyOn(component.isValid, 'emit');
-        jest.spyOn(component, 'isValidLimit').mockReturnValue(false);
+      jest.spyOn(component.isValid, 'emit');
+      jest.spyOn(component, 'isValidLimit').mockReturnValue(false);
+      const onChangeSpy = jest.fn();
+      component.registerOnChange(onChangeSpy);
 
-        inputMinutes = getInputElements(fixture)[1];
-        (inputMinutes as HTMLInputElement).value = '30';
-        component.updateMinutes(inputMinutes);
+      inputMinutes = getInputElements(fixture)[1];
+      (inputMinutes as HTMLInputElement).value = '30';
+      component.updateMinutes(inputMinutes);
 
-        expect(methodSpy).toHaveBeenCalledWith(null);
-        expect(component.isValid.emit).toHaveBeenCalledWith(false);
-      });
+      expect(onChangeSpy).toHaveBeenCalledWith(null);
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
     });
 
     it('should update time if minute is valid', () => {
@@ -1119,33 +1195,31 @@ describe('Component: TimepickerComponent', () => {
     });
 
     it('should clear model if second input is invalid', () => {
-      const methodSpy = jest.spyOn(component, 'ngOnChanges').mockImplementation(() => {
-        jest.spyOn(component.isValid, 'emit');
-        fixture.componentRef.setInput('showSeconds', true);
-        component.seconds = '10';
+      jest.spyOn(component.isValid, 'emit');
+      const onChangeSpy = jest.fn();
+      component.registerOnChange(onChangeSpy);
+      component.seconds = '10';
 
-        inputSeconds = getInputElements(fixture)[2];
-        (inputSeconds as HTMLInputElement).value = '99';
-        component.updateSeconds(inputSeconds);
+      inputSeconds = getInputElements(fixture)[2];
+      (inputSeconds as HTMLInputElement).value = '99';
+      component.updateSeconds(inputSeconds);
 
-        expect(methodSpy).toHaveBeenCalledWith(null);
-        expect(component.isValid.emit).toHaveBeenCalledWith(false);
-      });
+      expect(onChangeSpy).toHaveBeenCalledWith(null);
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
     });
 
     it('should clear model if second limits are invalid', () => {
-      const methodSpy = jest.spyOn(component, 'ngOnChanges').mockImplementation(() => {
-        jest.spyOn(component.isValid, 'emit');
-        jest.spyOn(component, 'isValidLimit').mockReturnValue(false);
+      jest.spyOn(component.isValid, 'emit');
+      jest.spyOn(component, 'isValidLimit').mockReturnValue(false);
+      const onChangeSpy = jest.fn();
+      component.registerOnChange(onChangeSpy);
 
+      inputSeconds = getInputElements(fixture)[2];
+      (inputSeconds as HTMLInputElement).value = '50';
+      component.updateSeconds(inputSeconds);
 
-        inputSeconds = getInputElements(fixture)[2];
-        (inputSeconds as HTMLInputElement).value = '50';
-        component.updateSeconds(inputSeconds);
-
-        expect(methodSpy).toHaveBeenCalledWith(null);
-        expect(component.isValid.emit).toHaveBeenCalledWith(false);
-      });
+      expect(onChangeSpy).toHaveBeenCalledWith(null);
+      expect(component.isValid.emit).toHaveBeenCalledWith(false);
     });
 
     it('should update time if second is valid', () => {
