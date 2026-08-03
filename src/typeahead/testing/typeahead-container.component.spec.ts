@@ -139,6 +139,14 @@ describe('Component: TypeaheadContainer', () => {
       it('should not set the "active" class on other matches', () => {
         expect(matches[1].classList.contains('active')).toBeFalsy();
       });
+
+      it('should set aria-selected="true" on the active match', () => {
+        expect(matches[0].getAttribute('aria-selected')).toBe('true');
+      });
+
+      it('should set aria-selected="false" on other matches', () => {
+        expect(matches[1].getAttribute('aria-selected')).toBe('false');
+      });
     });
 
     describe('nextActiveMatch', () => {
