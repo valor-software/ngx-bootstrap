@@ -1,0 +1,1 @@
+(self.webpackChunkngx_bootstrap_docs=self.webpackChunkngx_bootstrap_docs||[]).push([[461],{12798(){}},s=>{s(s.s=12798)}]);
