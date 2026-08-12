@@ -156,11 +156,13 @@ export class BsDatepickerDirective implements OnInit, OnDestroy, OnChanges, Afte
     }
 
     if (!this._bsValue && value && !this._config.withTimepicker) {
-      const now = new Date();
-      copyTime(value, now);
+      if (this._config.initCurrentTime) {
+        const now = new Date();
+        copyTime(value, now);
+      }
     }
 
-    if (value && this.bsConfig?.initCurrentTime) {
+    if (value && this._config?.initCurrentTime) {
       value = setCurrentTimeOnDateSelect(value);
     }
 
