@@ -1,4 +1,4 @@
-<pre class="card card-block card-header">{{ myForm?.value | json }}</pre>
+<pre class="card card-block card-header">{{ $safeNavigationMigration(myForm?.value) | json }}</pre>
 @if (myForm) {
   <form [formGroup]="myForm" class="form-inline d-flex align-items-center">
     <div class="form-group mb-3">

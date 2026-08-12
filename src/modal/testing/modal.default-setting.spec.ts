@@ -1,10 +1,11 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, ChangeDetectionStrategy } from '@angular/core';
 import { TestBed, ComponentFixture } from '@angular/core/testing';
 
 import { BsModalService, ModalModule } from '../index';
 import { MODAL_CONFIG_DEFAULT_OVERRIDE } from '../modal-options.class';
 
-@Component({ template: '<div>Dummy Component</div>', standalone: false })
+@Component({ template: '<div>Dummy Component</div>', changeDetection: ChangeDetectionStrategy.Eager,
+ standalone: false })
 class DummyComponent {
   // eslint-disable-next-line @typescript-eslint/no-empty-function,@typescript-eslint/no-unused-vars
   constructor(modalService: BsModalService) {}
@@ -12,6 +13,7 @@ class DummyComponent {
 
 @Component({
   template: '<div>Test Component</div>',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 class TestModalComponent {}

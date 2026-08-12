@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { fireEvent } from '../../../scripts/helpers';
@@ -7,6 +7,7 @@ import { TooltipModule } from '../index';
 @Component({
   selector: 'test-tooltip',
   template: '',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 class TestTooltipComponent {

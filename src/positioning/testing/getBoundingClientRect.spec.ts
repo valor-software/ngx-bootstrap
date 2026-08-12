@@ -1,10 +1,11 @@
 import { getBoundingClientRect } from '../utils/getBoundingClientRect';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 @Component({
   selector: 'test-cmp',
   template: `<span>Popover demo</span>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 class TestComponent {}

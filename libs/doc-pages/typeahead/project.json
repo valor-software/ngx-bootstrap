@@ -7,6 +7,12 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:ng-packagr-lite",
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ],
       "options": {
         "tsConfig": "libs/doc-pages/typeahead/tsconfig.lib.json",
         "project": "libs/doc-pages/typeahead/ng-package.json"
@@ -15,16 +21,7 @@
         "production": {
           "tsConfig": "libs/doc-pages/typeahead/tsconfig.lib.prod.json"
         }
-      },
-      "dependsOn": [
-        {
-          "target": "build",
-          "dependencies": true
-        }
-      ]
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
+      }
     }
   }
 }

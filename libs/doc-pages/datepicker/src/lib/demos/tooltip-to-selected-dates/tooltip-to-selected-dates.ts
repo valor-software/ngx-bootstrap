@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DatepickerDateTooltipText } from 'ngx-bootstrap/datepicker';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-datepicker-tooltip-to-selected-dates',
   templateUrl: './tooltip-to-selected-dates.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix

@@ -63,7 +63,9 @@
       "ngx-bootstrap/tooltip": ["src/tooltip/index.ts"],
       "ngx-bootstrap/typeahead": ["src/typeahead/index.ts"],
       "ngx-bootstrap/utils": ["src/utils/index.ts"]
-    }
+    },
+    "ignoreDeprecations": "6.0",
+    "noUncheckedSideEffectImports": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

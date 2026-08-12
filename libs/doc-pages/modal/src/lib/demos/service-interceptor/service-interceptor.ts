@@ -1,10 +1,11 @@
-import { Component, TemplateRef } from '@angular/core';
+import { Component, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-modal-service-interceptor',
   templateUrl: './service-interceptor.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoModalServiceWithInterceptorComponent {
@@ -61,6 +62,7 @@ export class DemoModalServiceWithInterceptorComponent {
       <button type="button" class="btn btn-default" (click)="bsModalRef?.hide()">Close</button>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class ModalContentWithInterceptorComponent {

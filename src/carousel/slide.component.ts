@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   HostBinding,
   OnDestroy,
@@ -11,6 +12,7 @@ import { CarouselComponent } from './carousel.component';
 
 @Component({
     selector: 'slide',
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `
     <div [class.active]="active" class="item">
       <ng-content></ng-content>

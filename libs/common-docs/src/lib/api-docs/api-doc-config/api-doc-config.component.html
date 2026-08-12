@@ -3,7 +3,7 @@
     <a href="https://github.com/valor-software/ngx-bootstrap/tree/development/{{ apiDocs?.fileName }}"
     target="_blank" rel="noopener">{{ apiDocs?.className }}</a>
   </h3>
-  <p [innerHTML]="apiDocs?.description"></p>
+  <p [innerHTML]="$safeNavigationMigration(apiDocs?.description)"></p>
 
   @if (apiDocs?.properties && apiDocs?.properties?.length) {
     <section>

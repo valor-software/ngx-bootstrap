@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-no-result',
   templateUrl: './no-result.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoTypeaheadNoResultComponent {

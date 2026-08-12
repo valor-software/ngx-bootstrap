@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { BsDatepickerConfig, BsDatepickerViewMode } from 'ngx-bootstrap/datepicker';
 
@@ -6,6 +6,7 @@ import { BsDatepickerConfig, BsDatepickerViewMode } from 'ngx-bootstrap/datepick
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-datepicker-min-mode',
   templateUrl: './min-mode.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoDatepickerMinModeComponent implements OnInit {

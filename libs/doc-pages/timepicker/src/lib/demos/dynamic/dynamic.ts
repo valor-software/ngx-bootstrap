@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TimepickerConfig } from 'ngx-bootstrap/timepicker';
 
 export function getTimepickerConfig(): TimepickerConfig {
@@ -12,6 +12,7 @@ export function getTimepickerConfig(): TimepickerConfig {
   selector: 'demo-timepicker-dynamic',
   templateUrl: './dynamic.html',
   providers: [{ provide: TimepickerConfig, useFactory: getTimepickerConfig }],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoTimepickerDynamicComponent {

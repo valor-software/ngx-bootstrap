@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentExample } from '../models/components-examples.model';
 import { ComponentApi } from '../models/components-api.model';
 
@@ -15,6 +15,7 @@ interface IContentSection {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-section',
   templateUrl: './demo-section.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoSectionComponent {

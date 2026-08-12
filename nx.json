@@ -40,7 +40,7 @@
       "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
       "!{projectRoot}/tsconfig.spec.json",
       "!{projectRoot}/jest.config.[jt]s",
-      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/eslint.config.mjs",
       "!{projectRoot}/src/test-setup.[jt]s"
     ]
   },
@@ -62,12 +62,65 @@
           "codeCoverage": true
         }
       }
-    },
-    "@nx/eslint:lint": {
-      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
     }
   },
   "useInferencePlugins": false,
   "defaultBase": "development",
-  "nxCloudAccessToken": "ZjAyZjFlMDUtNTY4Zi00ZmUzLWEyMjUtNzdmYjFiMGRkM2VlfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "ZjAyZjFlMDUtNTY4Zi00ZmUzLWEyMjUtNzdmYjFiMGRkM2VlfHJlYWQtd3JpdGU=",
+  "plugins": [
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      },
+      "include": [
+        "apps/ngx-bootstrap-docs/**/*",
+        "apps/ngx-bootstrap-docs-e2e/**/*",
+        "libs/common-docs/**/*",
+        "libs/doc-pages/accordion/**/*",
+        "libs/doc-pages/alerts/**/*",
+        "libs/doc-pages/buttons/**/*",
+        "libs/doc-pages/carousel/**/*",
+        "libs/doc-pages/collapse/**/*",
+        "libs/doc-pages/datepicker/**/*",
+        "libs/doc-pages/dropdown/**/*",
+        "libs/doc-pages/modal/**/*",
+        "libs/doc-pages/pagination/**/*",
+        "libs/doc-pages/popover/**/*",
+        "libs/doc-pages/progressbar/**/*",
+        "libs/doc-pages/rating/**/*",
+        "libs/doc-pages/sortable/**/*",
+        "libs/doc-pages/tabs/**/*",
+        "libs/doc-pages/timepicker/**/*",
+        "libs/doc-pages/tooltip/**/*",
+        "libs/doc-pages/typeahead/**/*",
+        "src/accordion/**/*",
+        "src/alert/**/*",
+        "src/buttons/**/*",
+        "src/carousel/**/*",
+        "src/chronos/**/*",
+        "src/collapse/**/*",
+        "src/component-loader/**/*",
+        "src/datepicker/**/*",
+        "src/dropdown/**/*",
+        "src/focus-trap/**/*",
+        "src/locale/**/*",
+        "src/mini-ngrx/**/*",
+        "src/modal/**/*",
+        "src/pagination/**/*",
+        "src/popover/**/*",
+        "src/positioning/**/*",
+        "src/progressbar/**/*",
+        "src/rating/**/*",
+        "src/root/**/*",
+        "src/schematics/src/**/*",
+        "src/sortable/**/*",
+        "src/tabs/**/*",
+        "src/timepicker/**/*",
+        "src/tooltip/**/*",
+        "src/typeahead/**/*",
+        "src/utils/**/*"
+      ]
+    }
+  ]
 }

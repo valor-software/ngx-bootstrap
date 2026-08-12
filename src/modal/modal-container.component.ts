@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   HostListener,
@@ -18,6 +19,7 @@ import { FocusTrapDirective } from 'ngx-bootstrap/focus-trap';
 
 @Component({
     selector: 'modal-container',
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `
     <div [class]="'modal-dialog' + (config.class ? ' ' + config.class : '')"
          role="document"

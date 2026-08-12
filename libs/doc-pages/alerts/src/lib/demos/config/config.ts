@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AlertConfig } from 'ngx-bootstrap/alert';
 
 // such override allows to keep some initial values
@@ -12,6 +12,7 @@ export function getAlertConfig(): AlertConfig {
   selector: 'demo-alert-config',
   templateUrl: './config.html',
   providers: [{ provide: AlertConfig, useFactory: getAlertConfig }],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoAlertConfigComponent {}

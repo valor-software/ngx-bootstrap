@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 type ExampleAlertType = { type: string; msg: string };
 
@@ -6,6 +6,7 @@ type ExampleAlertType = { type: string; msg: string };
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-alert-dismiss',
   templateUrl: './dismiss.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoAlertDismissComponent {

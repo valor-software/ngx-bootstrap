@@ -2,7 +2,8 @@ import {
   Component,
   EventEmitter,
   Input,
-  Output
+  Output,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 import { isSameDay } from 'ngx-bootstrap/chronos';
@@ -101,6 +102,7 @@ import { BsCalendarLayoutComponent } from './bs-calendar-layout.component';
     </bs-calendar-layout>
     `,
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [BsCalendarLayoutComponent, BsDatepickerNavigationViewComponent, BsDatepickerDayDecoratorComponent, TooltipModule]
 })
 export class BsDaysCalendarViewComponent  {

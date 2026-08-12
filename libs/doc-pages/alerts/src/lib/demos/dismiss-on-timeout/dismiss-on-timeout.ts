@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 type ExampleAlertType = { type: string; msg: string; timeout: number };
 
@@ -6,6 +6,7 @@ type ExampleAlertType = { type: string; msg: string; timeout: number };
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-alert-timeout',
   templateUrl: './dismiss-on-timeout.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoAlertTimeoutComponent {

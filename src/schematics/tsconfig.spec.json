@@ -6,6 +6,9 @@
     "module": "commonjs",
     "types": ["jest", "node"]
   },
+  // Clear the base tsconfig's `exclude: ["./src/**/*.spec.ts"]`, which would
+  // otherwise cancel out every path in `include` and leave zero inputs (TS18003).
+  "exclude": [],
   "include": [
     "**/*.spec.ts",
     "**/*.spec.tsx",

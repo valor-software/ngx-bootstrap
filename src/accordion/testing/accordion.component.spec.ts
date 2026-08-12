@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccordionConfig, AccordionModule } from '../index';
@@ -6,6 +6,7 @@ import { AccordionConfig, AccordionModule } from '../index';
 @Component({
     selector: 'accordion-test',
     template: '',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestAccordionComponent {

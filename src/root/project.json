@@ -35,6 +35,12 @@
     "build": {
       "executor": "nx:run-commands",
       "outputs": ["{workspaceRoot}/dist/ngx-bootstrap"],
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ],
       "options": {
         "commands": [
           "nx run ngx-bootstrap:ng-build:production",
@@ -44,13 +50,7 @@
       },
       "configurations": {
         "production": {}
-      },
-      "dependsOn": [
-        {
-          "target": "build",
-          "dependencies": true
-        }
-      ]
+      }
     },
     "ng-build": {
       "executor": "@nx/angular:package",
@@ -63,9 +63,6 @@
           "tsConfig": "src/root/tsconfig.lib.prod.json"
         }
       }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
     },
     "build-sass": {
       "executor": "nx:run-commands",

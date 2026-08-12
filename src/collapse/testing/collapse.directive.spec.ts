@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import '../../../scripts/jest/toHaveCssClass';
@@ -18,6 +18,7 @@ const template = `
     selector: 'collapse-test',
     template,
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [CollapseModule]
 })
 class TestCollapseComponent {}
@@ -180,6 +181,7 @@ describe('Directive: Collapse', () => {
   selector: 'collapse-animated-test',
   template: `<div [collapse]="isCollapsed" [isAnimated]="true" style="height: 300px;">collapse directive</div>`,
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.Eager,
   imports: [CollapseModule]
 })
 class TestAnimatedCollapseComponent {

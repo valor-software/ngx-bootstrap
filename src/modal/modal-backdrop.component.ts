@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 
 import { CLASS_NAME } from './modal-options.class';
 import { Utils } from 'ngx-bootstrap/utils';
@@ -7,6 +7,7 @@ import { Utils } from 'ngx-bootstrap/utils';
 /** This component will be added as background layout for modals if enabled */
 @Component({
     selector: 'bs-modal-backdrop',
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: ' ',
     host: { class: CLASS_NAME.BACKDROP },
     standalone: true

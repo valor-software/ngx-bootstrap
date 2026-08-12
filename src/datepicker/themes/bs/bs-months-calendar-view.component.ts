@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   BsDatepickerViewMode,
   BsNavigationDirection,
@@ -13,6 +13,7 @@ import { BsCalendarLayoutComponent } from './bs-calendar-layout.component';
 
 @Component({
     selector: 'bs-month-calendar-view',
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `
     <bs-calendar-layout>
       <bs-datepicker-navigation-view

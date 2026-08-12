@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 interface IRange {
   value: Date[];
@@ -9,6 +9,7 @@ interface IRange {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-datepicker-quick-select-ranges',
   templateUrl: './quick-select-ranges.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoDatePickerQuickSelectRangesComponent {

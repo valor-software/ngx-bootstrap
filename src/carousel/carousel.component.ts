@@ -16,7 +16,7 @@
  */
 
 import {
-  Component, OnDestroy, AfterViewInit, Inject, PLATFORM_ID, ChangeDetectorRef, input, output, effect
+  ChangeDetectionStrategy, Component, OnDestroy, AfterViewInit, Inject, PLATFORM_ID, ChangeDetectorRef, input, output, effect
 } from '@angular/core';
 import { isPlatformBrowser, NgStyle } from '@angular/common';
 
@@ -39,6 +39,7 @@ let _currentId = 1;
  */
 @Component({
     selector: 'carousel',
+    changeDetection: ChangeDetectionStrategy.Eager,
     templateUrl: './carousel.component.html',
     standalone: true,
     imports: [NgStyle]

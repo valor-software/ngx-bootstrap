@@ -7,6 +7,12 @@
   "targets": {
     "build": {
       "executor": "@nx/angular:ng-packagr-lite",
+      "dependsOn": [
+        {
+          "target": "build",
+          "dependencies": true
+        }
+      ],
       "options": {
         "tsConfig": "libs/common-docs/tsconfig.lib.json",
         "project": "libs/common-docs/ng-package.json"
@@ -15,16 +21,7 @@
         "production": {
           "tsConfig": "libs/common-docs/tsconfig.lib.prod.json"
         }
-      },
-      "dependsOn": [
-        {
-          "target": "build",
-          "dependencies": true
-        }
-      ]
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint"
+      }
     }
   }
 }

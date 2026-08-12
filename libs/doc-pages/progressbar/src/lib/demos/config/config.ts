@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ProgressbarConfig } from 'ngx-bootstrap/progressbar';
 
 // such override allows to keep some initial values
@@ -12,6 +12,7 @@ export function getProgressbarConfig(): ProgressbarConfig {
   selector: 'demo-progressbar-config',
   templateUrl: './config.html',
   providers: [{ provide: ProgressbarConfig, useFactory: getProgressbarConfig }],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoProgressbarConfigComponent {}

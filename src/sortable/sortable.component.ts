@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   forwardRef,
   TemplateRef,
@@ -12,6 +13,7 @@ import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
 
 @Component({
     selector: 'bs-sortable',
+    changeDetection: ChangeDetectionStrategy.Eager,
     exportAs: 'bs-sortable',
     template: `
 <div

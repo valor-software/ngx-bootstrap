@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TabsetConfig } from 'ngx-bootstrap/tabs';
 
 // such override allows to keep some initial values
@@ -12,6 +12,7 @@ export function getTabsetConfig(): TabsetConfig {
   selector: 'demo-tabs-config',
   templateUrl: './config.html',
   providers: [{ provide: TabsetConfig, useFactory: getTabsetConfig }],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoTabsConfigComponent {}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Observable, of, Subscriber } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 import { DataSourceType } from '../interfaces/typeahead.interfaces';
@@ -7,6 +7,7 @@ import { DataSourceType } from '../interfaces/typeahead.interfaces';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-async',
   templateUrl: './async.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoTypeaheadAsyncComponent {

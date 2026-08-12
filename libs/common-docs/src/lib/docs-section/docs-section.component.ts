@@ -1,5 +1,5 @@
 import { ContentSection } from '../models/content-section.model';
-import { ChangeDetectorRef, Component, Injector, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, Injector, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 
 const availableTabsPaths = ['overview', 'api', 'examples'] as const;
@@ -25,6 +25,7 @@ type AvailableTabsPathsType = typeof availableTabsPaths[number];
       <add-nav class="add-nav" [componentContent]="overview ? content[0] : api ? content[1] : content[2]"></add-nav>
     }
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DocsSectionComponent {

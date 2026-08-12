@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DatepickerDateCustomClasses } from 'ngx-bootstrap/datepicker';
 
 @Component({
@@ -6,6 +6,7 @@ import { DatepickerDateCustomClasses } from 'ngx-bootstrap/datepicker';
   selector: 'demo-datepicker-date-custom-classes',
   templateUrl: './date-custom-classes.html',
   styleUrls: ['./date-custom-classes.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoDatepickerDateCustomClassesComponent {

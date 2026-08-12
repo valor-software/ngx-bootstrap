@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 
 import { TypeaheadOrder } from 'ngx-bootstrap/typeahead';
 import { Observable, of, Subscriber } from 'rxjs';
@@ -8,6 +8,7 @@ import { switchMap } from 'rxjs/operators';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-ordering',
   templateUrl: './ordering.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoTypeaheadOrderingComponent implements OnInit {

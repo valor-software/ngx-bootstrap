@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CarouselConfig } from 'ngx-bootstrap/carousel';
 
 @Component({
@@ -8,6 +8,7 @@ import { CarouselConfig } from 'ngx-bootstrap/carousel';
   providers: [
     { provide: CarouselConfig, useValue: { interval: 1500, noPause: true, showIndicators: true } }
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoCarouselConfigComponent {}

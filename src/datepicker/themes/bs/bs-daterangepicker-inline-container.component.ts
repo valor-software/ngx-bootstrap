@@ -1,4 +1,4 @@
-import {OnInit, OnDestroy, ElementRef, Component, Renderer2, HostBinding} from '@angular/core';
+import {OnInit, OnDestroy, ElementRef, ChangeDetectionStrategy, Component, Renderer2, HostBinding} from '@angular/core';
 import { BsDaterangepickerContainerComponent } from './bs-daterangepicker-container.component';
 
 import { BsDatepickerActions } from '../../reducer/bs-datepicker.actions';
@@ -16,6 +16,7 @@ import { NgClass, AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'bs-daterangepicker-inline-container',
+    changeDetection: ChangeDetectionStrategy.Eager,
     providers: [BsDatepickerStore, BsDatepickerEffects, BsDatepickerActions],
     templateUrl: './bs-datepicker-view.html',
     host: {

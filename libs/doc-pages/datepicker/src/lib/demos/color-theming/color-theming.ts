@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BsDatepickerConfig, BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-datepicker-color-theming',
   templateUrl: './color-theming.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoDatepickerColorThemingComponent {

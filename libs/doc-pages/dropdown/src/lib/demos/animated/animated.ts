@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 
 @Component({
@@ -6,6 +6,7 @@ import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
   selector: 'demo-dropdown-animation',
   templateUrl: './animated.html',
   providers: [{ provide: BsDropdownConfig, useValue: { isAnimated: true, autoClose: true } }],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoDropdownAnimatedComponent {}

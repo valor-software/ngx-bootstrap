@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   EventEmitter,
@@ -34,6 +35,7 @@ import { NgClass, AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'bs-datepicker-container',
+    changeDetection: ChangeDetectionStrategy.Eager,
     providers: [BsDatepickerStore, BsDatepickerEffects, BsDatepickerActions],
     templateUrl: './bs-datepicker-view.html',
     host: {

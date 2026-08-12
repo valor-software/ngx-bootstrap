@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TimepickerConfig } from 'ngx-bootstrap/timepicker';
 
 // such override allows to keep some initial values
@@ -23,6 +23,7 @@ export function getTimepickerConfig(): TimepickerConfig {
   selector: 'demo-timepicker-config',
   templateUrl: './config.html',
   providers: [{ provide: TimepickerConfig, useFactory: getTimepickerConfig }],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoTimepickerConfigComponent {

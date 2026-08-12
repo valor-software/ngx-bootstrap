@@ -1,10 +1,11 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AlertComponent, AlertConfig, AlertModule  } from '../index';
 
 @Component({
     selector: 'alert-test', template: '',
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: true
 })
 class TestAlertComponent extends AlertComponent {

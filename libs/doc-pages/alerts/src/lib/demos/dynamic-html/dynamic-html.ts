@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 type ExampleAlertType = { type: string; msg: SafeHtml };
@@ -7,6 +7,7 @@ type ExampleAlertType = { type: string; msg: SafeHtml };
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-alert-dynamic-html',
   templateUrl: './dynamic-html.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoAlertDynamicHtmlComponent {

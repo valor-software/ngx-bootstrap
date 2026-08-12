@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RatingConfig } from 'ngx-bootstrap/rating';
 
 // such override allows to keep some initial values
@@ -11,6 +11,7 @@ export function getRatingConfig(): RatingConfig {
   selector: 'demo-rating-config',
   templateUrl: './config.html',
   providers: [{ provide: RatingConfig, useFactory: getRatingConfig }],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoRatingConfigComponent {

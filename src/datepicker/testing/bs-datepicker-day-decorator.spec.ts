@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { BsDatepickerConfig } from '../bs-datepicker.config';
@@ -10,6 +10,7 @@ import '../../../scripts/jest/toHaveCssClass';
 @Component({
     selector: 'test-cmp',
     template: `<span bsDatepickerDayDecorator [day]='day'>{{ day.label }}</span>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestComponent {

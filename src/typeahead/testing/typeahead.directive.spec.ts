@@ -1,4 +1,4 @@
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -32,6 +32,7 @@ interface State {
     [typeaheadSingleWords]="typeaheadSingleWords"
     (typeaheadOnBlur)="onBlurEvent($event)"
   />`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 class TestTypeaheadComponent {

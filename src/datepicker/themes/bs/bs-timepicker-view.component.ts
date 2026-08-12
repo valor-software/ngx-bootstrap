@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
     selector: 'bs-timepicker',
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `
     <div class="bs-timepicker-container">
       <div class="bs-timepicker-controls">

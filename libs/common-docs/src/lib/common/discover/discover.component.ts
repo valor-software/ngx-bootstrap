@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 interface ICompany {
   logo: string;
@@ -13,6 +13,7 @@ interface ICompany {
   selector: 'discover',
   templateUrl: './discover.component.html',
   styleUrls: ['discover.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 

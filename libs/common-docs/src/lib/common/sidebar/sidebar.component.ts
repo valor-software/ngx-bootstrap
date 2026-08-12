@@ -1,5 +1,5 @@
 import { ActivatedRoute, NavigationEnd, Router, Routes, UrlSegment } from '@angular/router';
-import { Component, HostBinding, Inject, inject, Renderer2 } from '@angular/core';
+import { Component, HostBinding, Inject, inject, Renderer2, ChangeDetectionStrategy } from '@angular/core';
 
 import { AvailableBsVersions, currentBsVersion, getBsVer, IBsVersion, setTheme } from 'ngx-bootstrap/utils';
 import { StyleManager } from '../../theme/style-manager';
@@ -17,6 +17,7 @@ const _bs5Css = 'assets/css/bootstrap-5.2.3/css/bootstrap.min.css';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'sidebar',
   templateUrl: './sidebar.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class SidebarComponent {

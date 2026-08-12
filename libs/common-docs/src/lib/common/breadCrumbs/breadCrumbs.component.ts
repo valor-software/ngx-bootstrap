@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { NavigationEnd, Router, UrlSegment } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'bread-crumbs',
   templateUrl: 'breadCrumbs.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class BreadCrumbsComponent implements OnDestroy {

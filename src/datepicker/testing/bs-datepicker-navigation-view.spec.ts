@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BsNavigationDirection, DaysCalendarViewModel } from '../models';
 import { BsDatepickerNavigationViewComponent } from '../themes/bs/bs-datepicker-navigation-view.component';
@@ -11,6 +11,7 @@ import { BsDatepickerNavigationViewComponent } from '../themes/bs/bs-datepicker-
       [calendar]="month"
       (onNavigate)="navTo($event)"
     ></bs-datepicker-navigation-view>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: false
 })
 class TestComponent {

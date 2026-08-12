@@ -1,5 +1,5 @@
 import {
-  Component, HostBinding, Inject, OnDestroy, OnInit, output, input, effect
+  ChangeDetectionStrategy, Component, HostBinding, Inject, OnDestroy, OnInit, output, input, effect
 } from '@angular/core';
 import { AccordionComponent } from './accordion.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
@@ -13,6 +13,7 @@ import { NgClass } from '@angular/common';
  */
 @Component({
     selector: 'accordion-group, accordion-panel',
+    changeDetection: ChangeDetectionStrategy.Eager,
     templateUrl: './accordion-group.component.html',
     host: {
         class: 'panel',

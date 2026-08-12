@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-modal-service-component',
   templateUrl: './service-component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoModalServiceFromComponent {
@@ -49,6 +50,7 @@ export class DemoModalServiceFromComponent {
       <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">{{ closeBtnName }}</button>
     </div>
     `,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class ModalContentComponent implements OnInit {

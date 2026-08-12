@@ -4,7 +4,7 @@
       <div class="col-xs-12 col-12 col-sm-6 col-md-4 form-group mb-3">
         <input type="text" class="form-control mb-3" placeholder="Datepicker" bsDatepicker formControlName="date" />
         @if (myForm?.value?.date) {
-          <pre class="code-preview">{{myForm?.value?.date | date}}</pre>
+          <pre class="code-preview">{{$safeNavigationMigration(myForm?.value?.date) | date}}</pre>
         }
       </div>
       <div class="col-xs-12 col-12 col-sm-6 col-md-4 form-group mb-3">
@@ -12,7 +12,7 @@
           placeholder="Daterangepicker" bsDaterangepicker formControlName="range" />
           @if (myForm?.value?.range) {
             <pre
-            class="code-preview">from {{myForm?.value?.range[0] | date}} to {{myForm?.value?.range[1] | date}}</pre>
+            class="code-preview">from {{$safeNavigationMigration(myForm?.value?.range[0]) | date}} to {{$safeNavigationMigration(myForm?.value?.range[1]) | date}}</pre>
           }
         </div>
       </div>

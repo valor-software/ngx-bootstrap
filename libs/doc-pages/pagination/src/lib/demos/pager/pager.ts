@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 
 @Component({
@@ -7,6 +7,7 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
   templateUrl: './pager.html',
   styles: ['.pager li.btn:active { box-shadow: none; }'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoPaginationPagerComponent {

@@ -1,10 +1,11 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { AccordionPanelComponent } from './accordion-group.component';
 import { AccordionConfig } from './accordion.config';
 
 /** Displays collapsible content panels for presenting information in a limited amount of space. */
 @Component({
     selector: 'accordion',
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `<ng-content></ng-content>`,
     host: {
         '[attr.aria-multiselectable]': 'closeOthers()',

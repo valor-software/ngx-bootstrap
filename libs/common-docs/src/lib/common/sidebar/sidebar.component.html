@@ -24,7 +24,7 @@
               class="sidebar-item-main "
               >
               <div class="sidebar-list-box">
-                <img [src]="getRouteStructureKey(route)?.icon" alt="sidebar icon">
+                <img [src]="$safeNavigationMigration(getRouteStructureKey(route)?.icon)" alt="sidebar icon">
                 @if (!getRouteStructureKey(route)?.path) {
                   <span [class.hideText]="!menuIsOpened" [class.m-0]="!menuIsOpened" class="transition-option">
                     {{getRouteStructureKey(route)?.title}}

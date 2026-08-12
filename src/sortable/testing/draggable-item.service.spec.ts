@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { fakeAsync, inject, TestBed } from '@angular/core/testing';
 import { DraggableItem, DraggableItemService, SortableItem } from '../index';
 
 @Component({
     template: `<h1>Test</h1>`,
+    changeDetection: ChangeDetectionStrategy.Eager,
     standalone: true
 })
 class TestComponent {}

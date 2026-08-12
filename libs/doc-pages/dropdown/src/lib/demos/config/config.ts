@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
 
 @Component({
@@ -6,6 +6,7 @@ import { BsDropdownConfig } from 'ngx-bootstrap/dropdown';
   selector: 'demo-dropdown-config',
   templateUrl: './config.html',
   providers: [{ provide: BsDropdownConfig, useValue: { autoClose: false } }],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoDropdownConfigComponent {}

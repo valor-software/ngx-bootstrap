@@ -4,5 +4,13 @@
     "declarationMap": false,
     "target": "ES2022",
     "useDefineForClassFields": false
+  },
+  "angularCompilerOptions": {
+    "extendedDiagnostics": {
+      "checks": {
+        "nullishCoalescingNotNullable": "suppress",
+        "optionalChainNotNullable": "suppress"
+      }
+    }
   }
 }

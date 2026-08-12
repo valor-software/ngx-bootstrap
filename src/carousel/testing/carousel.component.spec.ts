@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 
@@ -10,6 +10,7 @@ import { getBsVer, IBsVersion } from 'ngx-bootstrap/utils';
 @Component({
     selector: 'carousel-test', template: '',
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [CarouselModule, CommonModule]
 })
 class TestCarouselComponent {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { PopoverConfig } from 'ngx-bootstrap/popover';
 
 // such override allows to keep some initial values
@@ -17,6 +17,7 @@ export function getPopoverConfig(): PopoverConfig {
   selector: 'demo-popover-config',
   templateUrl: './config.html',
   providers: [{ provide: PopoverConfig, useFactory: getPopoverConfig }],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoPopoverConfigComponent {}

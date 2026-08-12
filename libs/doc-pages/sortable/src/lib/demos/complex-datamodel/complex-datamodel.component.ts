@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 interface IItemObject {
   id: number;
@@ -9,6 +9,7 @@ interface IItemObject {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'complex-datamodel-demo',
   templateUrl: './complex-datamodel.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class ComplexDatamodelDemoComponent {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TooltipConfig } from 'ngx-bootstrap/tooltip';
 
 // such override allows to keep some initial values
@@ -16,6 +16,7 @@ export function getAlertConfig(): TooltipConfig {
   selector: 'demo-tooltip-config',
   templateUrl: './config.html',
   providers: [{ provide: TooltipConfig, useFactory: getAlertConfig }],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoTooltipConfigComponent {}

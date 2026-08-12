@@ -1,12 +1,13 @@
 import * as getBoundariesModule from '../utils/getBoundaries';
 import { computeAutoPlacement } from '../utils/computeAutoPlacement';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Offsets } from '../models';
 
 @Component({
   selector: 'test-cmp',
   template: `<span>Popover demo</span>`,
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 class TestComponent {}

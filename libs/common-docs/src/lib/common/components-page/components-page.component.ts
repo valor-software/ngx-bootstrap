@@ -1,4 +1,4 @@
-import { Component, Inject } from "@angular/core";
+import { Component, Inject, ChangeDetectionStrategy } from "@angular/core";
 import { DOCS_TOKENS } from "../../tokens/docs-routes-token";
 import { Routes } from "@angular/router";
 
@@ -6,6 +6,7 @@ import { Routes } from "@angular/router";
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'components',
   templateUrl: './components-page.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class ComponentsPageComponent {

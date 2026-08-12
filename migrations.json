@@ -1,210 +1,322 @@
 {
   "migrations": [
     {
-      "version": "22.0.0-beta.1",
-      "description": "Updates release version config based on the breaking changes in Nx v22",
-      "implementation": "./src/migrations/update-22-0-0/release-version-config-changes",
+      "cli": "nx",
+      "version": "22.6.0-beta.10",
+      "description": "Adds .claude/worktrees to .gitignore",
+      "implementation": "./dist/src/migrations/update-22-6-0/add-claude-worktrees-to-git-ignore",
       "package": "nx",
-      "name": "22-0-0-release-version-config-changes"
+      "name": "22-6-1-add-claude-worktrees-to-git-ignore"
     },
     {
-      "version": "22.0.0-beta.2",
-      "description": "Consolidates releaseTag* options into nested releaseTag object structure",
-      "implementation": "./src/migrations/update-22-0-0/consolidate-release-tag-config",
+      "cli": "nx",
+      "version": "22.7.0-beta.0",
+      "description": "Adds .nx/polygraph to .gitignore",
+      "implementation": "./dist/src/migrations/update-22-7-0/add-polygraph-to-git-ignore",
       "package": "nx",
-      "name": "22-0-0-consolidate-release-tag-config"
+      "name": "22-7-0-add-polygraph-to-git-ignore"
     },
     {
       "cli": "nx",
-      "version": "22.1.0-beta.5",
-      "description": "Updates the nx wrapper.",
-      "implementation": "./src/migrations/update-22-1-0/update-nx-wrapper",
+      "version": "22.6.0-rc.0",
+      "description": "Adds .claude/settings.local.json to .gitignore",
+      "implementation": "./dist/src/migrations/update-17-3-0/update-nxw",
       "package": "nx",
-      "name": "22-1-0-update-nx-wrapper"
-    },
-    {
-      "version": "21.5.0-beta.2",
-      "description": "Migrate the legacy 'development' custom condition to a workspace-unique custom condition name.",
-      "factory": "./src/migrations/update-21-5-0/migrate-development-custom-condition",
-      "package": "@nx/js",
-      "name": "migrate-development-custom-condition"
-    },
-    {
-      "version": "22.0.0-beta.0",
-      "description": "Remove the deprecated `external` and `externalBuildTargets` options from the `@nx/js:swc` and `@nx/js:tsc` executors.",
-      "factory": "./src/migrations/update-22-0-0/remove-external-options-from-js-executors",
-      "package": "@nx/js",
-      "name": "remove-external-options-from-js-executors"
-    },
-    {
-      "version": "22.1.0-rc.1",
-      "description": "Removes redundant TypeScript project references from project's tsconfig.json files when runtime tsconfig files (e.g., tsconfig.lib.json, tsconfig.app.json) exist.",
-      "factory": "./src/migrations/update-22-1-0/remove-redundant-ts-project-references",
-      "package": "@nx/js",
-      "name": "remove-redundant-ts-project-references"
-    },
-    {
-      "version": "21.3.0-beta.3",
-      "description": "Rename the CLI option `testPathPattern` to `testPathPatterns`.",
-      "implementation": "./src/migrations/update-21-3-0/rename-test-path-pattern",
-      "package": "@nx/jest",
-      "name": "rename-test-path-pattern"
-    },
-    {
-      "version": "21.3.0-beta.3",
-      "requires": { "jest": ">=30.0.0" },
-      "description": "Replace removed matcher aliases in Jest v30 with their corresponding matcher",
-      "implementation": "./src/migrations/update-21-3-0/replace-removed-matcher-aliases",
-      "package": "@nx/jest",
-      "name": "replace-removed-matcher-aliases"
-    },
-    {
-      "version": "22.2.0-beta.2",
-      "description": "Convert jest.config.ts files from ESM to CJS syntax (export default -> module.exports, import -> require) for projects using CommonJS resolution to ensure correct loading under Node.js type-stripping.",
-      "implementation": "./src/migrations/update-22-2-0/convert-jest-config-to-cjs",
-      "package": "@nx/jest",
-      "name": "convert-jest-config-to-cjs"
-    },
-    {
-      "version": "22.3.2-beta.0",
-      "requires": { "jest": ">=30.0.0" },
-      "description": "Replace removed matcher aliases in Jest v30 with their corresponding matcher",
-      "implementation": "./src/migrations/update-21-3-0/replace-removed-matcher-aliases",
-      "package": "@nx/jest",
-      "name": "replace-removed-matcher-aliases-v22-3"
+      "name": "22-6-0-add-claude-settings-local-to-git-ignore"
     },
     {
       "cli": "nx",
-      "version": "21.3.0-beta.4",
-      "requires": { "@angular/core": ">=20.1.0" },
-      "description": "Update the @angular/cli package version to ~20.1.0.",
-      "factory": "./src/migrations/update-21-3-0/update-angular-cli",
-      "package": "@nx/angular",
-      "name": "update-angular-cli-version-20-1-0"
+      "version": "22.7.0-beta.0",
+      "description": "Adds .nx/self-healing to .gitignore",
+      "implementation": "./dist/src/migrations/update-22-2-0/add-self-healing-to-gitignore",
+      "documentation": "./dist/src/migrations/update-22-2-0/add-self-healing-to-gitignore.md",
+      "package": "nx",
+      "name": "22-7-0-add-self-healing-to-gitignore"
     },
     {
-      "version": "21.5.0-beta.0",
-      "description": "Set the 'tsConfig' option to build and test targets to help with Angular migration issues.",
-      "factory": "./src/migrations/update-21-5-0/set-tsconfig-option",
-      "package": "@nx/angular",
-      "name": "set-tsconfig-option"
+      "version": "23.0.0-beta.16",
+      "description": "Consolidates any remaining legacy releaseTag* flat properties into the nested releaseTag object. The flat properties were removed in Nx 23.",
+      "implementation": "./dist/src/migrations/update-23-0-0/consolidate-release-tag-config",
+      "package": "nx",
+      "name": "23-0-0-consolidate-release-tag-config"
     },
     {
-      "cli": "nx",
-      "version": "21.5.0-beta.2",
-      "requires": { "@angular/core": ">=20.2.0" },
-      "description": "Update the @angular/cli package version to ~20.2.0.",
-      "factory": "./src/migrations/update-21-5-0/update-angular-cli",
-      "package": "@nx/angular",
-      "name": "update-angular-cli-version-20-2-0"
+      "version": "23.0.0-beta.18",
+      "description": "Adds .nx/migrate-runs to .gitignore",
+      "implementation": "./dist/src/migrations/update-23-0-0/add-migrate-runs-to-git-ignore",
+      "package": "nx",
+      "name": "23-0-0-add-migrate-runs-to-git-ignore"
     },
     {
-      "version": "21.5.0-beta.2",
-      "requires": { "@angular/core": ">=20.2.0" },
-      "description": "Remove any Karma configuration files that only contain the default content. The default configuration is automatically available without a specific project configurationfile.",
-      "factory": "./src/migrations/update-21-5-0/remove-default-karma-configuration-files",
+      "version": "23.0.0-beta.0",
+      "description": "Update the @nx/angular/module-federation import to use @nx/module-federation/angular.",
+      "factory": "./dist/src/migrations/update-23-0-0/migrate-with-mf-import-to-new-package",
+      "documentation": "./dist/src/migrations/update-23-0-0/migrate-with-mf-import-to-new-package.md",
       "package": "@nx/angular",
-      "name": "remove-default-karma-configuration-files"
+      "name": "update-23-0-0-update-with-module-federation-import"
     },
     {
-      "cli": "nx",
-      "version": "21.6.1-beta.2",
-      "requires": { "@angular/core": ">=20.3.0" },
-      "description": "Update the @angular/cli package version to ~20.3.0.",
-      "factory": "./src/migrations/update-21-6-1/update-angular-cli",
+      "version": "23.0.0-beta.7",
+      "description": "Split @nx/angular:ngrx generator defaults in nx.json across the @nx/angular:ngrx-root-store and @nx/angular:ngrx-feature-store generators.",
+      "factory": "./dist/src/migrations/update-23-0-0/migrate-ngrx-generator-defaults",
+      "documentation": "./dist/src/migrations/update-23-0-0/migrate-ngrx-generator-defaults.md",
       "package": "@nx/angular",
-      "name": "update-angular-cli-version-20-3-0"
+      "name": "update-23-0-0-migrate-ngrx-generator-defaults"
     },
     {
-      "version": "22.3.0-beta.0",
-      "requires": { "@angular/core": ">=21.0.0" },
-      "description": "Updates webpack-based SSR configuration to use preserve module format and bundler module resolution.",
-      "factory": "./src/migrations/update-22-3-0/update-ssr-webpack-config",
+      "version": "23.0.0-beta.24",
+      "description": "Rename imports of `createNodesV2` from `@nx/angular/plugin` to the canonical `createNodes` export.",
+      "implementation": "./dist/src/migrations/update-23-0-0/migrate-create-nodes-v2-to-create-nodes",
+      "documentation": "./dist/src/migrations/update-23-0-0/migrate-create-nodes-v2-to-create-nodes.md",
       "package": "@nx/angular",
-      "name": "update-ssr-webpack-config-22-2-0"
+      "name": "update-23-0-0-migrate-create-nodes-v2-import"
     },
     {
-      "version": "22.3.0-beta.0",
-      "requires": { "@angular/core": ">=21.0.0-rc.3" },
-      "description": "Update 'module' to 'preserve' and 'moduleResolution' to 'bundler' in TypeScript configurations for Angular projects.",
-      "factory": "./src/migrations/update-22-3-0/update-module-resolution",
+      "version": "23.0.0-beta.25",
+      "description": "Rewrites the now-removed deep `@nx/angular/src/utils`, `@nx/angular/src/generators/utils` and `@nx/angular/src/generators/move/move-impl` subpath imports to the new `@nx/angular/internal` entry. The executor/builder/generator schema and impl subpaths remain available and are left untouched.",
+      "implementation": "./dist/src/migrations/update-23-0-0/rewrite-internal-subpath-imports",
       "package": "@nx/angular",
-      "name": "update-module-resolution-22-2-0"
+      "name": "rewrite-angular-internal-subpath-imports"
     },
     {
-      "version": "22.3.0-beta.0",
-      "requires": { "@angular/core": ">=21.0.0" },
-      "description": "Updates the 'lib' property in tsconfig files to use 'es2022' or a more modern version.",
-      "factory": "./src/migrations/update-22-3-0/update-typescript-lib",
+      "version": "23.1.0-beta.0",
+      "requires": {
+        "@angular/core": ">=22.0.0"
+      },
+      "description": "Rename the `ssr.experimentalPlatform` option to `ssr.platform` in `@angular/build:application`, `@angular-devkit/build-angular:application`, and `@nx/angular:application` targets, matching the Angular v22 rename.",
+      "factory": "./dist/src/migrations/update-23-1-0/rename-ssr-experimental-platform",
+      "documentation": "./dist/src/migrations/update-23-1-0/rename-ssr-experimental-platform.md",
       "package": "@nx/angular",
-      "name": "update-typescript-lib-22-2-0"
+      "name": "update-23-1-0-rename-ssr-experimental-platform"
     },
     {
-      "version": "22.3.0-beta.0",
-      "requires": { "@angular/core": ">=21.0.0" },
-      "description": "Update 'vitest' unit test runner option to 'vitest-analog' in generator defaults.",
-      "factory": "./src/migrations/update-22-3-0/update-unit-test-runner-option",
+      "version": "23.1.0-beta.0",
+      "requires": {
+        "@angular/core": ">=22.0.0"
+      },
+      "description": "Add `istanbul-lib-instrument` to `devDependencies` when a project runs unit tests with Karma (the `@angular-devkit/build-angular:karma` / `@angular/build:karma` builders, or `@angular/build:unit-test` / `@nx/angular:unit-test` with `runner: karma`), matching the Angular v22 `add-istanbul-instrumenter` migration.",
+      "factory": "./dist/src/migrations/update-23-1-0/add-istanbul-instrumenter",
+      "documentation": "./dist/src/migrations/update-23-1-0/add-istanbul-instrumenter.md",
       "package": "@nx/angular",
-      "name": "update-unit-test-runner-option"
+      "name": "update-23-1-0-add-istanbul-instrumenter"
     },
     {
-      "version": "22.3.0-beta.3",
-      "requires": { "@angular/core": ">=21.0.0" },
-      "description": "Set 'isolatedModules' to 'true' in TypeScript test configurations for Angular projects.",
-      "factory": "./src/migrations/update-22-3-0/set-isolated-modules",
+      "version": "23.1.0-beta.0",
+      "requires": {
+        "@angular/core": ">=22.0.0"
+      },
+      "description": "Add the `trustProxyHeaders` option to `AngularNodeAppEngine` and `AngularAppEngine` instantiations in SSR server files, matching the Angular v22 `trust-proxy-headers` migration.",
+      "factory": "./dist/src/migrations/update-23-1-0/add-trust-proxy-headers",
+      "documentation": "./dist/src/migrations/update-23-1-0/add-trust-proxy-headers.md",
       "package": "@nx/angular",
-      "name": "set-isolated-modules-22-3-0"
+      "name": "update-23-1-0-add-trust-proxy-headers"
     },
     {
-      "version": "22.3.0-beta.3",
-      "requires": { "@angular/core": ">=21.0.0" },
-      "description": "Replace 'jest-preset-angular/setup-jest' imports with the new 'setupZoneTestEnv' function.",
-      "factory": "./src/migrations/update-22-3-0/update-jest-preset-angular-setup",
-      "package": "@nx/angular",
-      "name": "update-jest-preset-angular-setup"
+      "version": "23.0.0-beta.25",
+      "description": "Rewrites `@nx/node/src/*` subpath imports now that the `./src/*` subpath is no longer exposed by `@nx/node`'s exports map. Named imports/exports of public symbols are routed to `@nx/node` and the rest to the new `@nx/node/internal` entry; `require`, dynamic `import` and `jest.mock` calls reference the whole module and are routed to `@nx/node/internal`.",
+      "implementation": "./dist/src/migrations/update-23-0-0/rewrite-internal-subpath-imports",
+      "package": "@nx/node",
+      "name": "rewrite-node-internal-subpath-imports"
     },
     {
-      "version": "21.0.0",
-      "description": "Converts the entire application to block control flow syntax",
-      "factory": "./bundles/control-flow-migration.cjs#migrate",
+      "version": "23.0.0-beta.14",
+      "description": "Rewrites `@nx/js/src/*` subpath imports to the new `@nx/js/internal` entry. The `./src/*` wildcard has been removed from `@nx/js`'s exports map; `@nx/js/src/release/version-actions` is preserved as a non-wildcard entry for back-compat with existing nx.json release configs. If a rewritten import resolves to a symbol that lives on the public `@nx/js` entry (e.g. `libraryGenerator`, `extractTsConfigBase`, `resolvePathsBaseUrl`), change the specifier to `@nx/js`.",
+      "factory": "./dist/src/migrations/update-23-0-0/rewrite-internal-subpath-imports",
+      "package": "@nx/js",
+      "name": "23-0-0-rewrite-internal-subpath-imports"
+    },
+    {
+      "version": "23.0.0-beta.24",
+      "description": "Rename imports of `createNodesV2` from `@nx/js/typescript` to the canonical `createNodes` export.",
+      "implementation": "./dist/src/migrations/update-23-0-0/migrate-create-nodes-v2-to-create-nodes",
+      "documentation": "./dist/src/migrations/update-23-0-0/migrate-create-nodes-v2-to-create-nodes.md",
+      "package": "@nx/js",
+      "name": "update-23-0-0-migrate-create-nodes-v2-import"
+    },
+    {
+      "version": "23.1.0-beta.0",
+      "description": "Adds `\"ignoreDeprecations\": \"6.0\"` to tsconfig files whose compilerOptions (or ts-node.compilerOptions) directly carry a TypeScript 6 deprecated option value (e.g. moduleResolution node/node10/classic, baseUrl, target es5, esModuleInterop false, outFile, module amd/umd/system/none, alwaysStrict false, allowSyntheticDefaultImports false, downlevelIteration set). Also pins `\"strict\": false` and `\"noUncheckedSideEffectImports\": false` in chain-root tsconfigs (no \"extends\") that lack each key, preserving pre-TS6 behavior where their defaults were less strict.",
+      "requires": {
+        "typescript": ">=6.0.0"
+      },
+      "factory": "./dist/src/migrations/update-23-1-0/add-ignore-deprecations-for-ts6",
+      "documentation": "./dist/src/migrations/update-23-1-0/add-ignore-deprecations-for-ts6.md",
+      "package": "@nx/js",
+      "name": "23-1-0-add-ignore-deprecations-for-ts6"
+    },
+    {
+      "version": "23.0.0-beta.10",
+      "description": "Rewrites imports of `@nx/workspace/src/utilities/typescript/compilation` to `@nx/js/internal`, where the module now lives.",
+      "implementation": "./dist/src/migrations/update-23-0-0/move-typescript-compilation-import",
+      "package": "@nx/workspace",
+      "name": "23-0-0-move-typescript-compilation-import"
+    },
+    {
+      "version": "22.7.0-beta.12",
+      "description": "Add missing inputs to @nx/eslint:lint executor target defaults",
+      "implementation": "./dist/src/migrations/update-21-6-0/update-executor-lint-inputs",
+      "package": "@nx/eslint",
+      "name": "update-executor-lint-inputs"
+    },
+    {
+      "version": "23.0.0-beta.17",
+      "description": "Rewrites `@nx/eslint/src/*` subpath imports now that the `./src/*` subpath is no longer exposed by `@nx/eslint`'s exports map. Named imports/exports of public symbols are routed to `@nx/eslint` and the rest to the new `@nx/eslint/internal` entry; `require`, dynamic `import` and `jest.mock` calls reference the whole module and are routed to `@nx/eslint/internal`.",
+      "implementation": "./dist/src/migrations/update-23-0-0/rewrite-internal-subpath-imports",
+      "package": "@nx/eslint",
+      "name": "rewrite-eslint-internal-subpath-imports"
+    },
+    {
+      "version": "23.0.0-beta.24",
+      "description": "Rename imports of `createNodesV2` from `@nx/eslint/plugin` to the canonical `createNodes` export.",
+      "implementation": "./dist/src/migrations/update-23-0-0/migrate-create-nodes-v2-to-create-nodes",
+      "documentation": "./dist/src/migrations/update-23-0-0/migrate-create-nodes-v2-to-create-nodes.md",
+      "package": "@nx/eslint",
+      "name": "update-23-0-0-migrate-create-nodes-v2-import"
+    },
+    {
+      "version": "23.1.0-beta.0",
+      "requires": {
+        "eslint": ">=9.0.0"
+      },
+      "description": "Convert remaining ESLint configs to flat config for ESLint v9 and keep the workspace lint-passing, disabling rules whose preset defaults changed.",
+      "implementation": "./dist/src/migrations/update-23-1-0/convert-to-flat-config",
+      "prompt": "tools/ai-migrations/@nx/eslint/23.1.0-beta.1/convert-to-flat-config.md",
+      "package": "@nx/eslint",
+      "name": "update-23-1-0-convert-to-flat-config"
+    },
+    {
+      "version": "23.0.0-beta.19",
+      "description": "Rewrites imports from `@nx/cypress/src/*` to either the public `@nx/cypress` entry (for re-exported symbols) or `@nx/cypress/internal` (for everything else). The `./src/*` wildcard was removed from the package's exports map.",
+      "implementation": "./dist/src/migrations/update-23-0-0/rewrite-internal-subpath-imports",
+      "package": "@nx/cypress",
+      "name": "rewrite-internal-subpath-imports"
+    },
+    {
+      "version": "23.0.0-beta.24",
+      "description": "Rename imports of `createNodesV2` from `@nx/cypress/plugin` to the canonical `createNodes` export.",
+      "implementation": "./dist/src/migrations/update-23-0-0/migrate-create-nodes-v2-to-create-nodes",
+      "documentation": "./dist/src/migrations/update-23-0-0/migrate-create-nodes-v2-to-create-nodes.md",
+      "package": "@nx/cypress",
+      "name": "update-23-0-0-migrate-create-nodes-v2-import"
+    },
+    {
+      "version": "23.0.0-beta.6",
+      "description": "Rewrite imports from `@nx/devkit/src/...` to `@nx/devkit` (for public symbols) or `@nx/devkit/internal` (for the rest), since deep imports are no longer reachable through the package's `exports` map.",
+      "implementation": "./dist/src/migrations/update-23-0-0/update-deep-imports",
+      "documentation": "./dist/src/migrations/update-23-0-0/update-deep-imports.md",
+      "package": "@nx/devkit",
+      "name": "update-devkit-deep-imports"
+    },
+    {
+      "version": "23.0.0-beta.24",
+      "description": "Rename deprecated CreateNodes `V2` type imports (CreateNodesV2, CreateNodesContextV2, CreateNodesResultV2, CreateNodesFunctionV2, NxPluginV2) from `@nx/devkit` to their canonical names.",
+      "implementation": "./dist/src/migrations/update-23-0-0/rename-create-nodes-v2-types",
+      "documentation": "./dist/src/migrations/update-23-0-0/rename-create-nodes-v2-types.md",
+      "package": "@nx/devkit",
+      "name": "update-23-0-0-rename-create-nodes-v2-types"
+    },
+    {
+      "version": "23.0.0-beta.10",
+      "requires": {
+        "jest": ">=30.0.0"
+      },
+      "description": "Update the Jest snapshot guide link in `.snap` files from the legacy `https://goo.gl/fbAQLP` URL to `https://jestjs.io/docs/snapshot-testing`, which Jest v30 now requires.",
+      "implementation": "./dist/src/migrations/update-23-0-0/update-snapshot-guide-link",
+      "documentation": "./dist/src/migrations/update-23-0-0/update-snapshot-guide-link.md",
+      "package": "@nx/jest",
+      "name": "update-snapshot-guide-link"
+    },
+    {
+      "version": "23.0.0-beta.16",
+      "description": "Rewrites `@nx/jest/src/*` subpath imports now that the `./src/*` subpath is no longer exposed by `@nx/jest`'s exports map. Named imports/exports of public symbols are routed to `@nx/jest` and the rest to the new `@nx/jest/internal` entry; `require`, dynamic `import` and `jest.mock` calls reference the whole module and are routed to `@nx/jest/internal`.",
+      "implementation": "./dist/src/migrations/update-23-0-0/rewrite-internal-subpath-imports",
+      "package": "@nx/jest",
+      "name": "rewrite-jest-internal-subpath-imports"
+    },
+    {
+      "version": "23.0.0-beta.16",
+      "description": "Replaces the removed `jestProjectGenerator` export from `@nx/jest` with its replacement `configurationGenerator`.",
+      "implementation": "./dist/src/migrations/update-23-0-0/rewrite-jest-project-generator",
+      "package": "@nx/jest",
+      "name": "rewrite-jest-project-generator"
+    },
+    {
+      "version": "23.0.0-beta.22",
+      "description": "Migrate the deprecated `setupFile` option of the `@nx/jest:jest` executor: push the file path into `setupFilesAfterEnv` in the project's Jest config and remove the option from `project.json` and `nx.json` target defaults.",
+      "implementation": "./dist/src/migrations/update-23-0-0/migrate-jest-executor-setup-file",
+      "package": "@nx/jest",
+      "name": "migrate-jest-executor-setup-file"
+    },
+    {
+      "version": "23.0.0-beta.22",
+      "description": "Migrate the deprecated `skipSetupFile` option of the `@nx/jest:configuration` generator stored as a default in `nx.json` or per-project `project.json` to `setupFile: 'none'` (when `true`) or remove it (when `false`).",
+      "implementation": "./dist/src/migrations/update-23-0-0/migrate-jest-configuration-skip-setup-file",
+      "package": "@nx/jest",
+      "name": "migrate-jest-configuration-skip-setup-file"
+    },
+    {
+      "version": "23.0.0-beta.24",
+      "description": "Rename imports of `createNodesV2` from `@nx/jest/plugin` to the canonical `createNodes` export.",
+      "implementation": "./dist/src/migrations/update-23-0-0/migrate-create-nodes-v2-to-create-nodes",
+      "documentation": "./dist/src/migrations/update-23-0-0/migrate-create-nodes-v2-to-create-nodes.md",
+      "package": "@nx/jest",
+      "name": "update-23-0-0-migrate-create-nodes-v2-import"
+    },
+    {
+      "version": "22.0.0",
+      "description": "Adds `ChangeDetectionStrategy.Eager` to all components.",
+      "factory": "./bundles/change-detection-eager.cjs#migrate",
       "package": "@angular/core",
-      "name": "control-flow-migration"
+      "name": "change-detection-eager"
     },
     {
-      "version": "21.0.0",
-      "description": "Replaces usages of the deprecated Router.getCurrentNavigation method with the Router.currentNavigation signal",
-      "factory": "./bundles/router-current-navigation.cjs#migrate",
-      "optional": true,
+      "version": "22.0.0",
+      "description": "Adds 'withXhr' to 'provideHttpClient' function calls when the 'HttpXhrBackend' is used. For more information see: https://angular.dev/api/common/http/withXhr",
+      "factory": "./bundles/http-xhr-backend.cjs#migrate",
       "package": "@angular/core",
-      "name": "router-current-navigation"
+      "name": "http-xhr-backend"
     },
     {
-      "version": "21.0.0",
-      "description": "Ensures that the Router.lastSuccessfulNavigation signal is now invoked",
-      "factory": "./bundles/router-last-successful-navigation.cjs#migrate",
+      "version": "22.0.0",
+      "description": "Adds 'strictTemplates: false' in tsconfig.json when not set.",
+      "factory": "./bundles/strict-templates-default.cjs#migrate",
       "package": "@angular/core",
-      "name": "router-last-successful-navigation"
+      "name": "strict-templates-default"
     },
     {
-      "version": "21.0.0",
-      "description": "Moves imports of `ApplicationConfig` from `@angular/platform-browser` to `@angular/core`",
-      "factory": "./bundles/application-config-core.cjs#migrate",
+      "version": "22.0.0",
+      "description": "Adds the required third argument to canMatch callsites.",
+      "factory": "./bundles/can-match-snapshot-required.cjs#migrate",
       "package": "@angular/core",
-      "name": "application-config-core"
+      "name": "can-match-snapshot-required"
     },
     {
-      "version": "21.0.0",
-      "description": "Adds `BootstrapContext` to `bootstrapApplication` calls in `main.server.ts` to support server rendering.",
-      "factory": "./bundles/add-bootstrap-context-to-server-main.cjs#migrate",
+      "version": "22.0.0",
+      "description": "Adds withNoIncrementalHydration() opt out to provideClientHydration() when incremental hydration is not enabled to retain pre-v22 behavior-.",
+      "factory": "./bundles/incremental-hydration.cjs#migrate",
       "package": "@angular/core",
-      "name": "add-bootstrap-context-to-server-main"
+      "name": "incremental-hydration"
     },
     {
-      "version": "21.0.0",
-      "description": "Migrates deprecated bootstrap options to providers.",
-      "factory": "./bundles/bootstrap-options-migration.cjs#migrate",
+      "version": "22.0.0",
+      "description": "Disables the 'nullishCoalescingNotNullable & optionalChainNotNullable extended diagnostics.",
+      "factory": "./bundles/strict-safe-navigation-narrow.cjs#migrate",
       "package": "@angular/core",
-      "name": "bootstrap-options-migration"
+      "name": "strict-safe-navigation-narrow"
+    },
+    {
+      "version": "22.0.0",
+      "description": "Migrate broken duplicate outputs",
+      "factory": "./bundles/model-output.cjs#migrate",
+      "package": "@angular/core",
+      "name": "model-output"
+    },
+    {
+      "version": "22.0.0",
+      "description": "Wraps optional chaining expressions in $safeNavigationMigration().",
+      "factory": "./bundles/safe-optional-chaining.cjs#migrate",
+      "package": "@angular/core",
+      "name": "safe-optional-chaining"
     }
   ]
 }

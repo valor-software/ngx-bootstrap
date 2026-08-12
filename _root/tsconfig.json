@@ -10,13 +10,11 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": ["es2017", "dom"]
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2017", "dom"],
+    "ignoreDeprecations": "6.0",
+    "strict": false,
+    "noUncheckedSideEffectImports": false
   },
-  "exclude": [
-    "../scripts",
-    "cypress"
-  ]
+  "exclude": ["../scripts", "cypress"]
 }

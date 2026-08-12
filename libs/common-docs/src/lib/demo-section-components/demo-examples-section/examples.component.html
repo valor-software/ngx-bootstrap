@@ -14,7 +14,7 @@
                   title="Open this demo in StackBlitz"
                   href="#"
                   class="stackblitz-link"
-                  (click)="openStackBlitzDemo(item?.component?.default, item?.html?.default)">
+                  (click)="openStackBlitzDemo($safeNavigationMigration(item?.component?.default), $safeNavigationMigration(item?.html?.default))">
                   <img src="assets/images/stackblitz.png" alt="" width="20">
                 </a>
               }
@@ -33,7 +33,7 @@
       @if (item.description) {
         <p [innerHTML]="item.description"></p>
       }
-      <ng-sample-box [ts]="item?.component?.default" [html]="item?.html?.default" [style]="item.style ">
+      <ng-sample-box [ts]="$safeNavigationMigration(item?.component?.default)" [html]="$safeNavigationMigration(item?.html?.default)" [style]="item.style ">
         <ng-container *ngComponentOutlet="item.outlet"></ng-container>
       </ng-sample-box>
     </div>

@@ -6,6 +6,7 @@ import { ButtonsModule } from '../index';
 @Component({
     selector: 'buttons-test', template: '',
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [ButtonsModule, FormsModule, ReactiveFormsModule]
 })
 class TestButtonsComponent implements OnInit {

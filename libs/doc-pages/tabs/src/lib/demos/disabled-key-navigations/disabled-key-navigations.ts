@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TabsetConfig } from 'ngx-bootstrap/tabs';
 
 export function getTabsetConfig(): TabsetConfig {
@@ -10,6 +10,7 @@ export function getTabsetConfig(): TabsetConfig {
   selector: 'demo-disabled-key-navigations',
   templateUrl: './disabled-key-navigations.html',
   providers: [{ provide: TabsetConfig, useFactory: getTabsetConfig }],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoDisabledKeyNavigationsComponent {

@@ -7,7 +7,8 @@ import {
   OnChanges,
   QueryList, Renderer2,
   SimpleChanges,
-  ViewChildren
+  ViewChildren,
+  ChangeDetectionStrategy
 } from "@angular/core";
 import { DOCUMENT } from '@angular/common';
 import { ContentSection } from '../../models/content-section.model';
@@ -22,6 +23,7 @@ interface IComponentContent {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'add-nav',
   templateUrl: './add-nav.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class AddNavComponent implements OnChanges, AfterViewChecked, AfterViewInit {

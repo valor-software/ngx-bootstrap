@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-carousel-multilist-indicators-by-chunk',
   templateUrl: './multilist-indicators-by-chunk.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoCarouselMultilistIndicatorsByChunkComponent {

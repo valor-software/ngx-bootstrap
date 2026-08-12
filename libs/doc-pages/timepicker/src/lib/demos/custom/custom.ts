@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 interface IOptions {
   hstep: number[];
@@ -10,6 +10,7 @@ interface IOptions {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-timepicker-custom',
   templateUrl: './custom.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoTimepickerCustomComponent {

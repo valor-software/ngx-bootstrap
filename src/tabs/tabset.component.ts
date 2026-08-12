@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnDestroy, Renderer2, ElementRef, input, effect } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, OnDestroy, Renderer2, ElementRef, input, effect } from '@angular/core';
 
 import { TabDirective } from './tab.directive';
 import { TabsetConfig } from './tabset.config';
@@ -8,6 +8,7 @@ import { NgClass } from '@angular/common';
 // todo: fix? mixing static and dynamic tabs position tabs in order of creation
 @Component({
     selector: 'tabset',
+    changeDetection: ChangeDetectionStrategy.Eager,
     templateUrl: './tabset.component.html',
     styleUrls: ['./tabs.scss'],
     standalone: true,

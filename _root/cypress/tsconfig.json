@@ -4,13 +4,11 @@
     "sourceMap": true,
     "noEmitHelpers": false,
     "moduleResolution": "node",
-    "typeRoots": [
-      "../node_modules/@types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ]
+    "typeRoots": ["../node_modules/@types"],
+    "lib": ["es2017", "dom"],
+    "ignoreDeprecations": "6.0",
+    "strict": false,
+    "noUncheckedSideEffectImports": false
   },
   "include": [
     "integration/*.ts",

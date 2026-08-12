@@ -8,7 +8,8 @@ import {
   TemplateRef,
   input,
   output,
-  effect
+  effect,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ConfigModel, PagesModel, PaginationLinkContext, PaginationNumberLinkContext } from './models';
@@ -32,6 +33,7 @@ export const PAGINATION_CONTROL_VALUE_ACCESSOR: Provider = {
     templateUrl: './pagination.component.html',
     providers: [PAGINATION_CONTROL_VALUE_ACCESSOR],
     standalone: true,
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [NgClass, NgTemplateOutlet]
 })
 export class PaginationComponent implements ControlValueAccessor, OnInit {

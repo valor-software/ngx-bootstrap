@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BsTimepickerViewComponent } from './bs-timepicker-view.component';
 import { BsCurrentDateViewComponent } from './bs-current-date-view.component';
 
 
 @Component({
     selector: 'bs-calendar-layout',
+    changeDetection: ChangeDetectionStrategy.Eager,
     template: `
     <!-- current date, will be added in nearest releases -->
     @if (false) {

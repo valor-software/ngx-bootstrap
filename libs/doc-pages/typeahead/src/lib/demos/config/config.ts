@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TypeaheadConfig } from 'ngx-bootstrap/typeahead';
 
 // such override allows to keep some initial values
@@ -11,6 +11,7 @@ export function getTypeaheadConfig(): TypeaheadConfig {
   selector: 'demo-typeahead-config',
   templateUrl: './config.html',
   providers: [{ provide: TypeaheadConfig, useFactory: getTypeaheadConfig }],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoTypeaheadConfigComponent {

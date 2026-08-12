@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { noop, Observable, Observer, of } from 'rxjs';
@@ -31,6 +31,7 @@ interface GitHubUser {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-async-http',
   templateUrl: './async-http-request.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoTypeaheadAsyncHttpRequestComponent implements OnInit {

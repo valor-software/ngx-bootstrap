@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { DataSourceType } from '../interfaces/typeahead.interfaces';
 
@@ -6,6 +6,7 @@ import { DataSourceType } from '../interfaces/typeahead.interfaces';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-typeahead-on-select',
   templateUrl: './on-select.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoTypeaheadOnSelectComponent {

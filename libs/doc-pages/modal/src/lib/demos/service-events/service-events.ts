@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */ // TODO: remove this and fix types
-import { ChangeDetectorRef, Component, TemplateRef } from '@angular/core';
+import { ChangeDetectorRef, Component, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { combineLatest, Subscription } from 'rxjs';
 
@@ -15,6 +15,7 @@ import { combineLatest, Subscription } from 'rxjs';
       }
     `
   ],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoModalServiceEventsComponent {

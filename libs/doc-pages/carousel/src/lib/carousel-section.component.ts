@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { demoComponentContent } from './carousel-section.list';
 import { ContentSection } from '@ngx-bootstrap-doc/docs';
@@ -7,6 +7,7 @@ import { ContentSection } from '@ngx-bootstrap-doc/docs';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'carousel-section',
   templateUrl: './carousel-section.component.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class CarouselSectionComponent {

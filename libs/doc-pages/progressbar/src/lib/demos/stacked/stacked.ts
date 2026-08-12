@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ProgressbarType } from 'ngx-bootstrap/progressbar';
 
 interface IStack {
@@ -12,6 +12,7 @@ interface IStack {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-progressbar-stacked',
   templateUrl: './stacked.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoProgressbarStackedComponent {

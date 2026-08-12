@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 
 @Component({
@@ -13,6 +13,7 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
       margin-bottom: 10px;
     }
   `],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoPaginationContentSwitchingComponent implements OnInit {

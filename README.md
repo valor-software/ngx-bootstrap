@@ -83,8 +83,8 @@ Our main sponsors will be presented under this section! Be the first!
 
 ## Prerequisites
 
-ngx-bootstrap v21.2.0+ requires:
-- **Angular 21.2.0** or higher
+ngx-bootstrap v22.0.0+ requires:
+- **Angular 22.0.0** or higher
 - **Zoneless change detection** (`zone.js` is no longer supported)
 
 Your application must be bootstrapped with `provideZonelessChangeDetection()`:

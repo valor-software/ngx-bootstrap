@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ElementRef,
@@ -25,6 +26,7 @@ import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
     selector: 'typeahead-container',
+    changeDetection: ChangeDetectionStrategy.Eager,
     templateUrl: './typeahead-container.component.html',
     host: {
         class: 'dropdown open bottom dropdown-menu',

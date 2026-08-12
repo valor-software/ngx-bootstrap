@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AccordionConfig } from 'ngx-bootstrap/accordion';
 
 // such override allows to keep some initial values
@@ -12,6 +12,7 @@ export function getAccordionConfig(): AccordionConfig {
   selector: 'demo-accordion-config',
   templateUrl: './config.html',
   providers: [{ provide: AccordionConfig, useFactory: getAccordionConfig }],
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoAccordionConfigComponent {}

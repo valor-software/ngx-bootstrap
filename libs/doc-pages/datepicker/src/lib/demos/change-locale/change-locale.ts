@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { BsDatepickerDirective, BsDaterangepickerDirective, BsLocaleService } from 'ngx-bootstrap/datepicker';
 import { listLocales } from 'ngx-bootstrap/chronos';
 
@@ -6,6 +6,7 @@ import { listLocales } from 'ngx-bootstrap/chronos';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-datepicker-change-locale',
   templateUrl: './change-locale.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoDatepickerChangeLocaleComponent {

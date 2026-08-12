@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 import { TabsetComponent } from '../tabset.component';
 import { TabDirective } from '../tab.directive';
@@ -8,6 +8,7 @@ import { TabsModule } from '../tabs.module';
 @Component({
   standalone: true,
   imports: [TabsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <tabset>
       @if (showTab3) {
@@ -45,6 +46,7 @@ class TestTabOrderingComponent {
 @Component({
   standalone: true,
   imports: [TabsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <tabset>
       <tab heading="Default 1">
@@ -66,6 +68,7 @@ class TestDefaultOrderingComponent {
 @Component({
   standalone: true,
   imports: [TabsModule],
+  changeDetection: ChangeDetectionStrategy.Eager,
   template: `
     <tabset>
       <tab heading="Mixed 3" [tabOrder]="30">

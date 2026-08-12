@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 interface ITab {
   title: string;
@@ -13,6 +13,7 @@ interface ITab {
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'demo-tabs-custom-class',
   templateUrl: './custom-class.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: false
 })
 export class DemoTabsCustomClassComponent {
