@@ -1,0 +1,1138 @@
+<!DOCTYPE html><html lang="en" data-beasties-container><head><base href="/ngx-bootstrap/">
+  <title>Angular Bootstrap</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Bootstrap 5 and Bootstrap 4 widgets for Angular: accordion, alerts, buttons, carousel, collapse, datepicker, dropdowns, modals, pagination, popover, progressbar, rating, sortable, tabs, timepicker, tooltip, typeahead">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png">
+  <link rel="author" href="https://github.com/valor-software/ngx-bootstrap/graphs/contributors">
+
+  <!--link to bootstrap.css-->
+  <style>:root{--bs-blue:#0d6efd;--bs-indigo:#6610f2;--bs-purple:#6f42c1;--bs-pink:#d63384;--bs-red:#dc3545;--bs-orange:#fd7e14;--bs-yellow:#ffc107;--bs-green:#198754;--bs-teal:#20c997;--bs-cyan:#0dcaf0;--bs-black:#000;--bs-white:#fff;--bs-gray:#6c757d;--bs-gray-dark:#343a40;--bs-gray-100:#f8f9fa;--bs-gray-200:#e9ecef;--bs-gray-300:#dee2e6;--bs-gray-400:#ced4da;--bs-gray-500:#adb5bd;--bs-gray-600:#6c757d;--bs-gray-700:#495057;--bs-gray-800:#343a40;--bs-gray-900:#212529;--bs-primary:#0d6efd;--bs-secondary:#6c757d;--bs-success:#198754;--bs-info:#0dcaf0;--bs-warning:#ffc107;--bs-danger:#dc3545;--bs-light:#f8f9fa;--bs-dark:#212529;--bs-primary-rgb:13,110,253;--bs-secondary-rgb:108,117,125;--bs-success-rgb:25,135,84;--bs-info-rgb:13,202,240;--bs-warning-rgb:255,193,7;--bs-danger-rgb:220,53,69;--bs-light-rgb:248,249,250;--bs-dark-rgb:33,37,41;--bs-white-rgb:255,255,255;--bs-black-rgb:0,0,0;--bs-body-color-rgb:33,37,41;--bs-body-bg-rgb:255,255,255;--bs-font-sans-serif:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--bs-font-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--bs-gradient:linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));--bs-body-font-family:var(--bs-font-sans-serif);--bs-body-font-size:1rem;--bs-body-font-weight:400;--bs-body-line-height:1.5;--bs-body-color:#212529;--bs-body-bg:#fff;--bs-border-width:1px;--bs-border-style:solid;--bs-border-color:#dee2e6;--bs-border-color-translucent:rgba(0, 0, 0, 0.175);--bs-border-radius:0.375rem;--bs-border-radius-sm:0.25rem;--bs-border-radius-lg:0.5rem;--bs-border-radius-xl:1rem;--bs-border-radius-2xl:2rem;--bs-border-radius-pill:50rem;--bs-link-color:#0d6efd;--bs-link-hover-color:#0a58ca;--bs-code-color:#d63384;--bs-highlight-bg:#fff3cd}*,::after,::before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:var(--bs-body-font-family);font-size:var(--bs-body-font-size);font-weight:var(--bs-body-font-weight);line-height:var(--bs-body-line-height);color:var(--bs-body-color);text-align:var(--bs-body-text-align);background-color:var(--bs-body-bg);-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}</style><style>:root{--bs-blue:#0d6efd;--bs-indigo:#6610f2;--bs-purple:#6f42c1;--bs-pink:#d63384;--bs-red:#dc3545;--bs-orange:#fd7e14;--bs-yellow:#ffc107;--bs-green:#198754;--bs-teal:#20c997;--bs-cyan:#0dcaf0;--bs-black:#000;--bs-white:#fff;--bs-gray:#6c757d;--bs-gray-dark:#343a40;--bs-gray-100:#f8f9fa;--bs-gray-200:#e9ecef;--bs-gray-300:#dee2e6;--bs-gray-400:#ced4da;--bs-gray-500:#adb5bd;--bs-gray-600:#6c757d;--bs-gray-700:#495057;--bs-gray-800:#343a40;--bs-gray-900:#212529;--bs-primary:#0d6efd;--bs-secondary:#6c757d;--bs-success:#198754;--bs-info:#0dcaf0;--bs-warning:#ffc107;--bs-danger:#dc3545;--bs-light:#f8f9fa;--bs-dark:#212529;--bs-primary-rgb:13,110,253;--bs-secondary-rgb:108,117,125;--bs-success-rgb:25,135,84;--bs-info-rgb:13,202,240;--bs-warning-rgb:255,193,7;--bs-danger-rgb:220,53,69;--bs-light-rgb:248,249,250;--bs-dark-rgb:33,37,41;--bs-white-rgb:255,255,255;--bs-black-rgb:0,0,0;--bs-body-color-rgb:33,37,41;--bs-body-bg-rgb:255,255,255;--bs-font-sans-serif:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--bs-font-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;--bs-gradient:linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));--bs-body-font-family:var(--bs-font-sans-serif);--bs-body-font-size:1rem;--bs-body-font-weight:400;--bs-body-line-height:1.5;--bs-body-color:#212529;--bs-body-bg:#fff;--bs-border-width:1px;--bs-border-style:solid;--bs-border-color:#dee2e6;--bs-border-color-translucent:rgba(0, 0, 0, 0.175);--bs-border-radius:0.375rem;--bs-border-radius-sm:0.25rem;--bs-border-radius-lg:0.5rem;--bs-border-radius-xl:1rem;--bs-border-radius-2xl:2rem;--bs-border-radius-pill:50rem;--bs-link-color:#0d6efd;--bs-link-hover-color:#0a58ca;--bs-code-color:#d63384;--bs-highlight-bg:#fff3cd}*,::after,::before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:var(--bs-body-font-family);font-size:var(--bs-body-font-size);font-weight:var(--bs-body-font-weight);line-height:var(--bs-body-line-height);color:var(--bs-body-color);text-align:var(--bs-body-text-align);background-color:var(--bs-body-bg);-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}h1,h2,h3,h4{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2}h1{font-size:calc(1.375rem + 1.5vw)}@media (min-width:1200px){h1{font-size:2.5rem}}h2{font-size:calc(1.325rem + .9vw)}@media (min-width:1200px){h2{font-size:2rem}}h3{font-size:calc(1.3rem + .6vw)}@media (min-width:1200px){h3{font-size:1.75rem}}h4{font-size:calc(1.275rem + .3vw)}@media (min-width:1200px){h4{font-size:1.5rem}}p{margin-top:0;margin-bottom:1rem}ul{padding-left:2rem}ul{margin-top:0;margin-bottom:1rem}b{font-weight:bolder}a{color:var(--bs-link-color);text-decoration:underline}a:hover{color:var(--bs-link-hover-color)}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}code,pre{font-family:var(--bs-font-monospace);font-size:1em}pre{display:block;margin-top:0;margin-bottom:1rem;overflow:auto;font-size:.875em}code{font-size:.875em;color:var(--bs-code-color);word-wrap:break-word}img{vertical-align:middle}table{caption-side:bottom;border-collapse:collapse}tbody,td,tr{border-color:inherit;border-style:solid;border-width:0}button{border-radius:0}button:focus:not(:focus-visible){outline:0}button,input{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button{text-transform:none}[type=button],button{-webkit-appearance:button}[type=button]:not(:disabled),button:not(:disabled){cursor:pointer}@media (min-width:992px){.col-lg-3{flex:0 0 auto;width:25%}.col-lg-6{flex:0 0 auto;width:50%}}@media (min-width:1200px){.col-xl-2{flex:0 0 auto;width:16.66666667%}.col-xl-8{flex:0 0 auto;width:66.66666667%}}.table{--bs-table-color:var(--bs-body-color);--bs-table-bg:transparent;--bs-table-border-color:var(--bs-border-color);--bs-table-accent-bg:transparent;--bs-table-striped-color:var(--bs-body-color);--bs-table-striped-bg:rgba(0, 0, 0, 0.05);--bs-table-active-color:var(--bs-body-color);--bs-table-active-bg:rgba(0, 0, 0, 0.1);--bs-table-hover-color:var(--bs-body-color);--bs-table-hover-bg:rgba(0, 0, 0, 0.075);width:100%;margin-bottom:1rem;color:var(--bs-table-color);vertical-align:top;border-color:var(--bs-table-border-color)}.table>:not(caption)>*>*{padding:.5rem .5rem;background-color:var(--bs-table-bg);border-bottom-width:1px;box-shadow:inset 0 0 0 9999px var(--bs-table-accent-bg)}.table>tbody{vertical-align:inherit}.table-bordered>:not(caption)>*{border-width:1px 0}.table-bordered>:not(caption)>*>*{border-width:0 1px}.table-responsive{overflow-x:auto;-webkit-overflow-scrolling:touch}.btn{--bs-btn-padding-x:0.75rem;--bs-btn-padding-y:0.375rem;--bs-btn-font-family: ;--bs-btn-font-size:1rem;--bs-btn-font-weight:400;--bs-btn-line-height:1.5;--bs-btn-color:#212529;--bs-btn-bg:transparent;--bs-btn-border-width:1px;--bs-btn-border-color:transparent;--bs-btn-border-radius:0.375rem;--bs-btn-hover-border-color:transparent;--bs-btn-box-shadow:inset 0 1px 0 rgba(255, 255, 255, 0.15),0 1px 1px rgba(0, 0, 0, 0.075);--bs-btn-disabled-opacity:0.65;--bs-btn-focus-box-shadow:0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5);display:inline-block;padding:var(--bs-btn-padding-y) var(--bs-btn-padding-x);font-family:var(--bs-btn-font-family);font-size:var(--bs-btn-font-size);font-weight:var(--bs-btn-font-weight);line-height:var(--bs-btn-line-height);color:var(--bs-btn-color);text-align:center;text-decoration:none;vertical-align:middle;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;user-select:none;border:var(--bs-btn-border-width) solid var(--bs-btn-border-color);border-radius:var(--bs-btn-border-radius);background-color:var(--bs-btn-bg);transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out}@media (prefers-reduced-motion:reduce){.btn{transition:none}}.btn:hover{color:var(--bs-btn-hover-color);background-color:var(--bs-btn-hover-bg);border-color:var(--bs-btn-hover-border-color)}.btn:focus-visible{color:var(--bs-btn-hover-color);background-color:var(--bs-btn-hover-bg);border-color:var(--bs-btn-hover-border-color);outline:0;box-shadow:var(--bs-btn-focus-box-shadow)}.btn:first-child:active{color:var(--bs-btn-active-color);background-color:var(--bs-btn-active-bg);border-color:var(--bs-btn-active-border-color)}.btn:first-child:active:focus-visible{box-shadow:var(--bs-btn-focus-box-shadow)}.btn:disabled{color:var(--bs-btn-disabled-color);pointer-events:none;background-color:var(--bs-btn-disabled-bg);border-color:var(--bs-btn-disabled-border-color);opacity:var(--bs-btn-disabled-opacity)}.btn-primary{--bs-btn-color:#fff;--bs-btn-bg:#0d6efd;--bs-btn-border-color:#0d6efd;--bs-btn-hover-color:#fff;--bs-btn-hover-bg:#0b5ed7;--bs-btn-hover-border-color:#0a58ca;--bs-btn-focus-shadow-rgb:49,132,253;--bs-btn-active-color:#fff;--bs-btn-active-bg:#0a58ca;--bs-btn-active-border-color:#0a53be;--bs-btn-active-shadow:inset 0 3px 5px rgba(0, 0, 0, 0.125);--bs-btn-disabled-color:#fff;--bs-btn-disabled-bg:#0d6efd;--bs-btn-disabled-border-color:#0d6efd}.btn-sm{--bs-btn-padding-y:0.25rem;--bs-btn-padding-x:0.5rem;--bs-btn-font-size:0.875rem;--bs-btn-border-radius:0.25rem}.fade{transition:opacity .15s linear}@media (prefers-reduced-motion:reduce){.fade{transition:none}}.fade:not(.show){opacity:0}.nav{--bs-nav-link-padding-x:1rem;--bs-nav-link-padding-y:0.5rem;--bs-nav-link-font-weight: ;--bs-nav-link-color:var(--bs-link-color);--bs-nav-link-hover-color:var(--bs-link-hover-color);--bs-nav-link-disabled-color:#6c757d;display:flex;flex-wrap:wrap;padding-left:0;margin-bottom:0;list-style:none}.nav-link{display:block;padding:var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);font-size:var(--bs-nav-link-font-size);font-weight:var(--bs-nav-link-font-weight);color:var(--bs-nav-link-color);text-decoration:none;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out}@media (prefers-reduced-motion:reduce){.nav-link{transition:none}}.nav-link:focus,.nav-link:hover{color:var(--bs-nav-link-hover-color)}.nav-tabs{--bs-nav-tabs-border-width:1px;--bs-nav-tabs-border-color:#dee2e6;--bs-nav-tabs-border-radius:0.375rem;--bs-nav-tabs-link-hover-border-color:#e9ecef #e9ecef #dee2e6;--bs-nav-tabs-link-active-color:#495057;--bs-nav-tabs-link-active-bg:#fff;--bs-nav-tabs-link-active-border-color:#dee2e6 #dee2e6 #fff;border-bottom:var(--bs-nav-tabs-border-width) solid var(--bs-nav-tabs-border-color)}.nav-tabs .nav-link{margin-bottom:calc(-1 * var(--bs-nav-tabs-border-width));background:0 0;border:var(--bs-nav-tabs-border-width) solid transparent;border-top-left-radius:var(--bs-nav-tabs-border-radius);border-top-right-radius:var(--bs-nav-tabs-border-radius)}.nav-tabs .nav-link:focus,.nav-tabs .nav-link:hover{isolation:isolate;border-color:var(--bs-nav-tabs-link-hover-border-color)}.nav-tabs .nav-link:disabled{color:var(--bs-nav-link-disabled-color);background-color:transparent;border-color:transparent}.nav-tabs .nav-link.active{color:var(--bs-nav-tabs-link-active-color);background-color:var(--bs-nav-tabs-link-active-bg);border-color:var(--bs-nav-tabs-link-active-border-color)}.tab-content>.tab-pane{display:none}.tab-content>.active{display:block}.card{--bs-card-spacer-y:1rem;--bs-card-spacer-x:1rem;--bs-card-title-spacer-y:0.5rem;--bs-card-border-width:1px;--bs-card-border-color:var(--bs-border-color-translucent);--bs-card-border-radius:0.375rem;--bs-card-box-shadow: ;--bs-card-inner-border-radius:calc(0.375rem - 1px);--bs-card-cap-padding-y:0.5rem;--bs-card-cap-padding-x:1rem;--bs-card-cap-bg:rgba(0, 0, 0, 0.03);--bs-card-cap-color: ;--bs-card-height: ;--bs-card-color: ;--bs-card-bg:#fff;--bs-card-img-overlay-padding:1rem;--bs-card-group-margin:0.75rem;position:relative;display:flex;flex-direction:column;min-width:0;height:var(--bs-card-height);word-wrap:break-word;background-color:var(--bs-card-bg);background-clip:border-box;border:var(--bs-card-border-width) solid var(--bs-card-border-color);border-radius:var(--bs-card-border-radius)}.card-header{padding:var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);margin-bottom:0;color:var(--bs-card-cap-color);background-color:var(--bs-card-cap-bg);border-bottom:var(--bs-card-border-width) solid var(--bs-card-border-color)}.card-header:first-child{border-radius:var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius) 0 0}.btn-close{box-sizing:content-box;width:1em;height:1em;padding:.25em .25em;color:#000;background:transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat;border:0;border-radius:.375rem;opacity:.5}.btn-close:hover{color:#000;text-decoration:none;opacity:.75}.btn-close:focus{outline:0;box-shadow:0 0 0 .25rem rgba(13,110,253,.25);opacity:1}.btn-close:disabled{pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none;opacity:.25}.modal{--bs-modal-zindex:1055;--bs-modal-width:500px;--bs-modal-padding:1rem;--bs-modal-margin:0.5rem;--bs-modal-color: ;--bs-modal-bg:#fff;--bs-modal-border-color:var(--bs-border-color-translucent);--bs-modal-border-width:1px;--bs-modal-border-radius:0.5rem;--bs-modal-box-shadow:0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);--bs-modal-inner-border-radius:calc(0.5rem - 1px);--bs-modal-header-padding-x:1rem;--bs-modal-header-padding-y:1rem;--bs-modal-header-padding:1rem 1rem;--bs-modal-header-border-color:var(--bs-border-color);--bs-modal-header-border-width:1px;--bs-modal-title-line-height:1.5;--bs-modal-footer-gap:0.5rem;--bs-modal-footer-bg: ;--bs-modal-footer-border-color:var(--bs-border-color);--bs-modal-footer-border-width:1px;position:fixed;top:0;left:0;z-index:var(--bs-modal-zindex);display:none;width:100%;height:100%;overflow-x:hidden;overflow-y:auto;outline:0}.modal-dialog{position:relative;width:auto;margin:var(--bs-modal-margin);pointer-events:none}.modal.fade .modal-dialog{transition:transform .3s ease-out;transform:translate(0,-50px)}@media (prefers-reduced-motion:reduce){.modal.fade .modal-dialog{transition:none}}.modal-content{position:relative;display:flex;flex-direction:column;width:100%;color:var(--bs-modal-color);pointer-events:auto;background-color:var(--bs-modal-bg);background-clip:padding-box;border:var(--bs-modal-border-width) solid var(--bs-modal-border-color);border-radius:var(--bs-modal-border-radius);outline:0}.modal-header{display:flex;flex-shrink:0;align-items:center;justify-content:space-between;padding:var(--bs-modal-header-padding);border-bottom:var(--bs-modal-header-border-width) solid var(--bs-modal-header-border-color);border-top-left-radius:var(--bs-modal-inner-border-radius);border-top-right-radius:var(--bs-modal-inner-border-radius)}.modal-header .btn-close{padding:calc(var(--bs-modal-header-padding-y) * .5) calc(var(--bs-modal-header-padding-x) * .5);margin:calc(-.5 * var(--bs-modal-header-padding-y)) calc(-.5 * var(--bs-modal-header-padding-x)) calc(-.5 * var(--bs-modal-header-padding-y)) auto}.modal-title{margin-bottom:0;line-height:var(--bs-modal-title-line-height)}.modal-body{position:relative;flex:1 1 auto;padding:var(--bs-modal-padding)}@media (min-width:576px){.modal{--bs-modal-margin:1.75rem;--bs-modal-box-shadow:0 0.5rem 1rem rgba(0, 0, 0, 0.15)}.modal-dialog{max-width:var(--bs-modal-width);margin-right:auto;margin-left:auto}.modal-sm{--bs-modal-width:300px}}@media (min-width:992px){.modal-lg{--bs-modal-width:800px}}.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}.d-inline-block{display:inline-block!important}.d-flex{display:flex!important}.w-100{width:100%!important}.flex-nowrap{flex-wrap:nowrap!important}.justify-content-between{justify-content:space-between!important}.align-items-center{align-items:center!important}.m-0{margin:0!important}.m-auto{margin:auto!important}.text-center{text-align:center!important}.text-white{--bs-text-opacity:1;color:rgba(var(--bs-white-rgb),var(--bs-text-opacity))!important}</style><link rel="stylesheet" class="style-manager-theme" href="assets/css/bootstrap-5.2.3/css/bootstrap.min.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" class="style-manager-theme" href="assets/css/bootstrap-5.2.3/css/bootstrap.min.css" media="all"></noscript>
+  <!--<link rel="stylesheet" href="assets/css/style.css">-->
+  <!--<link rel="stylesheet" href="assets/css/prettify-angulario.css">-->
+
+  <!--<link rel="manifest" href="ngsw-manifest.json">-->
+
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="ngx-bootstrap">
+  <meta name="apple-mobile-web-app-title" content="ngx-bootstrap">
+  <meta name="theme-color" content="#1d1d2b">
+  <meta name="msapplication-navbutton-color" content="#1d1d2b">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="msapplication-starturl" content="/">
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "i9gy181ywq");
+  </script>
+
+<style>@font-face{font-family:Manrope;src:url(Manrope-Regular.024ff424dd39f72c.eot);src:url(Manrope-Regular.024ff424dd39f72c.eot?#iefix) format("embedded-opentype"),url(Manrope-Regular.1826eaedf65cbb56.woff2) format("woff2"),url(Manrope-Regular.8883d0c447153918.woff) format("woff"),url(Manrope-Regular.308c6c8e866b8c65.ttf) format("truetype")}html{box-sizing:border-box;font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-ms-overflow-style:scrollbar;-webkit-tap-highlight-color:rgba(0,0,0,0)}*,*:before,*:after{box-sizing:inherit}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff}html{touch-action:manipulation;-webkit-touch-callout:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:inherit}body{min-width:320px;font-family:Manrope,Roboto,Helvetica Neue,Arial,sans-serif}</style><style>@font-face{font-family:Open Sans;src:url(OpenSans-Regular.1fc216ed2ddbb878.eot);src:url(OpenSans-Regular.1fc216ed2ddbb878.eot?#iefix) format("embedded-opentype"),url(OpenSans-Regular.24ad19f2b469f156.woff2) format("woff2"),url(OpenSans-Regular.cc18dc67e0707c64.woff) format("woff"),url(OpenSans-Regular.1734d4ea39041394.ttf) format("truetype")}@font-face{font-family:Manrope;src:url(Manrope-Regular.024ff424dd39f72c.eot);src:url(Manrope-Regular.024ff424dd39f72c.eot?#iefix) format("embedded-opentype"),url(Manrope-Regular.1826eaedf65cbb56.woff2) format("woff2"),url(Manrope-Regular.8883d0c447153918.woff) format("woff"),url(Manrope-Regular.308c6c8e866b8c65.ttf) format("truetype")}html{box-sizing:border-box;font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-ms-overflow-style:scrollbar;-webkit-tap-highlight-color:rgba(0,0,0,0)}*,*:before,*:after{box-sizing:inherit}footer,header,main,section{display:block}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;font-size:1rem;font-weight:400;line-height:1.5;color:#212529;background-color:#fff}[tabindex="-1"]:focus{outline:none!important}h1,h2,h3,h4{margin-top:0;margin-bottom:.5rem}p{margin-top:0;margin-bottom:1rem}ul{margin-top:0;margin-bottom:1rem}b{font-weight:bolder}a{color:#007bff;text-decoration:none;background-color:transparent;-webkit-text-decoration-skip:objects}a:hover{color:#0056b3;text-decoration:underline}a:not([href]):not([tabindex]){text-decoration:none}a:not([href]):not([tabindex]):hover,a:not([href]):not([tabindex]):focus{text-decoration:none}a:not([href]):not([tabindex]):focus{outline:0}pre,code{font-family:monospace,monospace;font-size:1em}pre{margin-top:0;margin-bottom:1rem;overflow:auto}img{vertical-align:middle;border-style:none}a,button,input{touch-action:manipulation}table{border-collapse:collapse}button:focus{outline:1px dotted;outline:5px auto -webkit-focus-ring-color}input,button{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button,input{overflow:visible}button{text-transform:none}button,html [type=button]{-webkit-appearance:button}button::-moz-focus-inner,[type=button]::-moz-focus-inner{padding:0;border-style:none}html{touch-action:manipulation;-webkit-touch-callout:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-size:inherit}body{min-width:320px;font-family:Manrope,Roboto,Helvetica Neue,Arial,sans-serif}h1:focus,h2:focus,h3:focus,h4:focus{outline:none}p{font-family:Open Sans}h1{font-family:Open Sans;font-weight:600;font-size:22px;line-height:36px;color:#000;margin-bottom:15px}h1 img{width:20px}h2{font-family:Open Sans;font-weight:600;font-size:18px;line-height:32px;color:#000}h3{font-family:Open Sans;font-weight:600;font-size:16px;line-height:24px}h3 a{color:#000}.item>p{display:inline;margin:0;font-family:Open Sans;font-size:14px;line-height:20px;color:#393d41}code{word-break:normal;color:#fe5aab}a:hover{text-decoration:none}.container-width{width:1110px;max-width:100%}.transition-option{transition:all ease .2s}add-nav::-webkit-scrollbar{width:1px;height:20px}add-nav::-webkit-scrollbar-track{background:transparent}add-nav::-webkit-scrollbar-thumb{background-color:#b4c5d5;border-radius:10%;border:0px solid transparent}header{padding:10px 50px 10px 30px;height:64px;display:flex;flex-wrap:nowrap;background-color:#152337;width:100vw;font-size:16px;line-height:21px;margin:0}header .logo,header .social-info{min-width:16.7%}header .social-info{color:#c3c7c8;display:flex;justify-content:space-between;align-items:center}header .social-info ul{display:flex;justify-content:center;align-items:center;list-style:none;margin:0;padding:0}header .social-info ul li:not(:last-child){margin-right:15px}.sidebar-search{position:relative;min-width:66.67%}.sidebar-search .icon .input-container:after{content:" ";position:absolute;top:50%;left:15px;width:20px;height:20px;background-image:url(search.a9a179937193978e.svg);background-repeat:no-repeat;background-position:center center;transform:translateY(-50%)}.sidebar-search input::placeholder{color:#b4c5d5}.sidebar-search .input-container{width:100%;position:relative}.sidebar-search input{outline-offset:-2px;-webkit-appearance:none;margin:0;display:block;width:100%;padding:10px 15px 10px 45px;font-size:1rem;line-height:1.25;color:#495057;background-color:#fff;background-clip:padding-box;border:1px solid rgba(0,0,0,.15);border-radius:.25rem;transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;position:relative}.sidebar-search input:focus-visible{outline:none}.main{display:flex;flex-wrap:wrap;padding-top:64px}.main-container,app-footer{flex:0 0 calc(100% - 90px);max-width:calc(100% - 90px);margin-left:90px}.main-container{padding:25px}.main-container tabset .nav-tabs .example-tabset.active .nav-link{font-weight:600;border-color:#2595ff}.main-container tabset .nav-tabs .example-tabset .nav-link{border:0;color:#25282b;transition:border-color ease .4s;border-bottom:2px solid transparent;border-radius:2px}.main-container tabset .nav-tabs .code-tab.active{border:none}.main-container tabset .nav-tabs .code-tab.active .nav-link{color:#6c757d;border-color:#dee2e6 #dee2e6 #fff}.main-container tabset .nav-tabs .code-tab .nav-link{font-size:14px;line-height:21px;font-weight:500;color:#7749f8;border-radius:4px 4px 0 0;border-color:#dee2e6}.main-container .content-box{display:flex;justify-content:space-between;padding-left:30px;padding-right:30px}docs-section{display:flex;justify-content:space-between;margin-top:40px}.example-section>p,.api-doc-component>p{font-size:14px;line-height:20px;color:#393d41;margin-bottom:0}.content ng-sample-box{position:relative}.content .example-section{margin-top:40px}.content h3[id] .anchor-link{display:none;color:#2595ff}.content h3[id]:hover .anchor-link{display:inline-block}.content ng-sample-box .section.bd-example{margin:15px 0}.api-doc-component>h3{margin-top:20px}.api-doc-component .table td{padding:1rem}tabset{width:100%;max-width:calc(100% - 270px)}tabset h2{margin:15px 0}.add-nav{width:100%;max-width:220px;padding-right:5px;right:0;max-height:calc(100vh - 104px);overflow-y:auto;overflow-x:hidden;position:sticky;top:70px;margin-top:35px;transition:all ease .3s}.add-nav .add-nav-container{font-family:Open Sans;padding-left:20px;border-left:1px solid #F3F4F4}.add-nav .add-nav-container>a{line-height:20px;color:#6e7880;cursor:pointer;font-size:11px;padding-bottom:10px}.add-nav ul{margin:0;padding:0;font-size:14px;list-style:none;direction:ltr}.add-nav ul li{position:relative}.add-nav ul li a{word-break:break-word;display:block;padding:5px 0;line-height:20px;color:#393d41}.add-nav ul li a:hover{font-weight:700}footer{background-color:#152337;padding:10px 0}footer a{cursor:pointer}footer .footer-text p{margin:0;font-weight:400;color:#d9dbe1}.bd-example{position:relative}.bd-example:after{content:"";display:table;clear:both}@media(min-width:768px){.header{position:fixed;top:0;z-index:1090}.modal{z-index:2001}}@media(max-width:1199px){header{justify-content:space-between}header .logo,header .social-info{min-width:auto;width:auto}.add-nav{display:none}tabset{max-width:100%}.content{width:100%;max-width:100%}.content h3[id] .anchor-link{display:inline-block}footer .container-width{flex-wrap:wrap}.footer-logo,.footer-text{width:100%;text-align:center;margin-bottom:15px}.footer-social{width:100%;max-width:30%;margin:auto}}@media(min-width:992px){.sidebar-search{min-width:50%}}@media(max-width:991px){.main{padding-top:0}.main .content{margin-top:30px}.display-lg-none{display:none}.header{padding:15px}.main-container{flex:0 0 100%;max-width:100%;width:100%;min-height:calc(100vh - 62px)}.main-container{margin-left:0;padding:25px}.main-container .content-box{padding-left:0;padding-right:0}app-footer{margin-left:0;max-width:100%;flex:0 0 100%}.content{width:100%;max-width:100%}.main{overflow:hidden}.content{padding:20px 15px 90px}.content h2[id]{margin-top:43px}.api-doc-component h3{word-break:break-all}}@media(max-width:767px){h4{font-size:20px}p{font-size:14px}header,top-menu{position:fixed;z-index:10}.prettyprint{z-index:-1}}@media(max-width:575px){.container-width{width:fit-content}.main-container{padding:10px}}.prettyprint{white-space:pre-wrap;background:#f5f6f7;font-family:Monaco,Lucida Console,monospace;color:#5c707a;width:auto;overflow:auto;position:relative;font-size:13px;line-height:24px;margin-bottom:24px;border-radius:0 0 4px 4px;padding:16px 32px;border-top:none}.prettyprint.linenums{padding:0}.prettyprint .pun{color:#7a8b94}.prettyprint .pln{color:#5c707a}@media print{.prettyprint{background:#f5f6f7;border:none;box-shadow:none}.prettyprint .pun{color:#7a8b94}.prettyprint .pln{color:#5c707a}}</style><link rel="stylesheet" href="styles.34637160052b4d02.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="styles.34637160052b4d02.css" media="all"></noscript><style ng-app-id="ng">[_nghost-ng-c3683641848]   .nav-tabs[_ngcontent-ng-c3683641848]   .nav-item.disabled[_ngcontent-ng-c3683641848]   a.disabled[_ngcontent-ng-c3683641848]{cursor:default}</style><style ng-app-id="ng">.card[_ngcontent-ng-c3592498730]{margin-bottom:.75rem;padding:8px}</style><style ng-app-id="ng">.card[_ngcontent-ng-c3547520780]{margin-bottom:.75rem;padding:8px}</style><style ng-app-id="ng">.card[_ngcontent-ng-c2998414489]{margin-bottom:.75rem;padding:8px}</style></head>
+<body>
+<bs-demo ng-version="21.2.0" ng-server-context="ssg"><top-menu><header id="header" class="header flex-nowrap"><div data-cypress="logoAtHeader" class="logo col-xl-2 col-lg-3"><a routerlink="['']" href="/ngx-bootstrap/%5B''%5D"><img alt="ngx-bootstrap" src="assets/images/logos/ngx-bootstrap-logo-red.svg"></a></div><div class="sidebar-search col-xl-8 col-lg-6 display-lg-none"><search-input class="w-100 icon"><form><div class="input-container"><input type="text" aria-label="Search in docs" name="search" placeholder="Search..." value></div></form><!----></search-input></div><div class="social-info col-xl-2 col-lg-3"><!----><ul data-cypress="infoButtons"><li><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/tagged/ngx-bootstrap"><img src="assets/images/icons/stackoverflow.svg" alt="stackoverflow"></a></li><li><a target="_blank" rel="noopener" href="https://github.com/valor-software/ngx-bootstrap"><img src="assets/images/icons/icon-git.svg" alt="ngx on github"></a></li><li><a target="_blank" rel="noopener" href="https://join.slack.com/t/ngx-home/shared_invite/enQtNTExMTY5MzcwMTM0LWVjZGU2MjI4MTVhMGVlMTc2OWRiMzA0NzBhNDU5YzQ0MDM3MWI5NzJjZTUzNzIxZmNjYmFlMjU2MzE0YmY0NWY"><img src="assets/images/icons/icon-slack.svg" alt="ngx on slack"></a></li></ul></div></header></top-menu><!----><router-outlet></router-outlet><modal-section><demo-section><main class="main"><section class="main-container transition-option"><bread-crumbs><!----></bread-crumbs><div class="content-box"><div class="content w-100"><div class="content-header"><h1>Modals <a target="_blank" rel="noopener" href="https://github.com/valor-software/ngx-bootstrap/tree/development/src/modal"><img src="assets/images/link-doc.png" alt="component on github"></a></h1><!----></div><div id="content"><div id="example" class="section"><div class="item"><p>Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.</p><p>The easiest way to add the modals component to your app (will be added to the root module)</p><docs-section><tabset class="example-tabset-box tab-container" _nghost-ng-c3683641848><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="active nav-item example-tabset"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>Overview</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item example-tabset"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>API</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item example-tabset"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>Examples</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="Overview" class="example-tabset active tab-pane" role="tabpanel" aria-labelledby><examples><!----><div class="example-section"><h3 class="d-flex justify-content-between" id="service-section"> Service examples <!----></h3><!----><p></p><p>Open a modal from service.</p>
+      <p>To be able to open modals from service, inject <code>BsModalService</code> to your constructor.<br>Then, call
+      <code>.show()</code> method of modal service. Pass a <code>TemplateRef</code> or a component as a first argument and
+      config as a second (optionally). <br> <code>.show()</code> method returns an instance of <code>BsModalRef</code>
+      class with <code>.hide()</code> method and <code>content</code> property where you'll find a component
+      which you've passed to service.</p><p></p><!----><ng-sample-box><div class="section bd-example"><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="service-template"> Template <p class="m-0"><a title="Open this demo in StackBlitz" href="#" class="stackblitz-link"><img src="assets/images/stackblitz.png" alt width="20"></a><!----><a routerlink="." class="anchor-link d-inline-block" href="/ngx-bootstrap/components/modals#service-template">#</a><!----><!----></p><!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-service-static><button type="button" class="btn btn-primary">Create template modal</button><!----></demo-modal-service-static><!----></div><div class="section"><div class="item"><tabset _nghost-ng-c3683641848 class="tab-container"><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="nav-item code-tab active"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>template</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item code-tab"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>component</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="template" class="code-tab tab-pane active" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-html">&lt;button type="button" class="btn btn-primary" (click)="openModal(template)"&gt;Create template modal&lt;/button&gt;
+
+&lt;ng-template #template&gt;
+  &lt;div class="modal-header"&gt;
+    &lt;h4 class="modal-title pull-left"&gt;Modal&lt;/h4&gt;
+    &lt;button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()"&gt;
+      &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="modal-body"&gt;
+    This is a modal.
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+</pre></tab><!----><tab heading="component" class="code-tab tab-pane" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-js">import { Component, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-modal-service-static',
+  templateUrl: './service-template.html',
+  standalone: false
+})
+export class DemoModalServiceStaticComponent {
+  modalRef?: BsModalRef;
+  constructor(private modalService: BsModalService) {}
+
+  openModal(template: TemplateRef&lt;void&gt;) {
+    this.modalRef = this.modalService.show(template);
+  }
+}
+</pre></tab><!----><!----><!----></div></tabset><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="service-component"> Component <p class="m-0"><a title="Open this demo in StackBlitz" href="#" class="stackblitz-link"><img src="assets/images/stackblitz.png" alt width="20"></a><!----><a routerlink="." class="anchor-link d-inline-block" href="/ngx-bootstrap/components/modals#service-component">#</a><!----><!----></p><!----></h3><!----><p></p><p>Creating a modal with component just as easy as it is with template. Just pass your component
+          in <code>.show()</code> method as in example, and don't forget to include your component to
+          <code>entryComponents</code> of your <code>NgModule</code><br> If you passed a component
+          to <code>.show()</code> you can get access to opened modal by injecting <code>BsModalRef</code>. Also you can pass data
+          in your modal by adding <code>initialState</code> field in config. See example for more info</p><p></p><!----><ng-sample-box><div class="section bd-example"><demo-modal-service-component><button type="button" class="btn btn-primary">Create modal with component</button></demo-modal-service-component><!----></div><div class="section"><div class="item"><tabset _nghost-ng-c3683641848 class="tab-container"><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="nav-item code-tab active"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>template</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item code-tab"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>component</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="template" class="code-tab tab-pane active" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-html">&lt;button type="button" class="btn btn-primary" (click)="openModalWithComponent()"&gt;Create modal with component&lt;/button&gt;
+</pre></tab><!----><tab heading="component" class="code-tab tab-pane" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-js">import { Component, OnInit } from '@angular/core';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-modal-service-component',
+  templateUrl: './service-component.html',
+  standalone: false
+})
+export class DemoModalServiceFromComponent {
+  bsModalRef?: BsModalRef;
+  constructor(private modalService: BsModalService) {}
+
+  openModalWithComponent() {
+    const initialState: ModalOptions = {
+      initialState: {
+        list: ['Open a modal with component', 'Pass your data', 'Do something else', '...'],
+        title: 'Modal with component',
+        closeBtnName: 'Close'
+      }
+    };
+    this.bsModalRef = this.modalService.show(ModalContentComponent, initialState);
+  }
+}
+
+/* This is a component which we pass in modal*/
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'modal-content',
+
+  template: `
+    &lt;div class="modal-header"&gt;
+      &lt;h4 class="modal-title pull-left"&gt;{{ title }}&lt;/h4&gt;
+      &lt;button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()"&gt;
+        &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="modal-body"&gt;
+      @if (list.length) {
+        &lt;ul&gt;
+          @for (item of list; track item) {
+            &lt;li&gt;{{ item }}&lt;/li&gt;
+          }
+        &lt;/ul&gt;
+      }
+    &lt;/div&gt;
+    &lt;div class="modal-footer"&gt;
+      &lt;button type="button" class="btn btn-default" (click)="bsModalRef.hide()"&gt;{{ closeBtnName }}&lt;/button&gt;
+    &lt;/div&gt;
+    `,
+  standalone: false
+})
+export class ModalContentComponent implements OnInit {
+  title?: string;
+  closeBtnName?: string;
+  list: string[] = [];
+
+  constructor(public bsModalRef: BsModalRef) {}
+
+  ngOnInit() {
+    this.list.push('PROFIT!!!');
+  }
+}
+</pre></tab><!----><!----><!----></div></tabset><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="service-nested"> Nested <p class="m-0"><a title="Open this demo in StackBlitz" href="#" class="stackblitz-link"><img src="assets/images/stackblitz.png" alt width="20"></a><!----><a routerlink="." class="anchor-link d-inline-block" href="/ngx-bootstrap/components/modals#service-nested">#</a><!----><!----></p><!----></h3><!----><p></p><p>Nested modals are supported</p><p></p><!----><ng-sample-box><div class="section bd-example"><demo-modal-service-nested><button type="button" class="btn btn-primary">Open first modal</button><!----><!----></demo-modal-service-nested><!----></div><div class="section"><div class="item"><tabset _nghost-ng-c3683641848 class="tab-container"><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="nav-item code-tab active"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>template</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item code-tab"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>component</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="template" class="code-tab tab-pane active" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-html">&lt;button type="button" class="btn btn-primary" (click)="openModal(template)"&gt;Open first modal&lt;/button&gt;
+
+&lt;ng-template #template&gt;
+  &lt;div class="modal-header"&gt;
+    &lt;h4 class="modal-title pull-left"&gt;First modal&lt;/h4&gt;
+    &lt;button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()"&gt;
+      &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="modal-body"&gt;
+    This is a first modal&lt;br /&gt;
+    &lt;button type="button" class="btn btn-primary" (click)="openModal2(templateNested)"&gt;Open second modal&lt;/button&gt;
+    &lt;button type="button" class="btn btn-primary" (click)="closeModal(1)"&gt;Close self&lt;/button&gt;
+    &lt;button type="button" class="btn btn-primary" (click)="closeModal()"&gt;Close all modal&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+
+&lt;ng-template #templateNested&gt;
+  &lt;div class="modal-header"&gt;
+    &lt;h4 class="modal-title pull-left"&gt;Second modal&lt;/h4&gt;
+    &lt;button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef2?.hide()"&gt;
+      &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="modal-body"&gt;
+    This is nested modal.&lt;br /&gt;
+    @if (modalRef) {
+      &lt;button type="button" class="btn btn-danger" (click)="closeFirstModal()"&gt;Close first modal&lt;/button&gt;
+    }
+    &lt;button type="button" class="btn btn-danger" (click)="closeModal(2)"&gt;Close self&lt;/button&gt;
+    &lt;button type="button" class="btn btn-danger" (click)="closeModal()"&gt;Close all modal&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+</pre></tab><!----><tab heading="component" class="code-tab tab-pane" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-js">import { Component, TemplateRef } from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-modal-service-nested',
+  templateUrl: './service-nested.html',
+  standalone: false
+})
+export class DemoModalServiceNestedComponent {
+  modalRef?: BsModalRef | null;
+  modalRef2?: BsModalRef;
+  constructor(private modalService: BsModalService) {}
+
+  openModal(template: TemplateRef&lt;void&gt;) {
+    this.modalRef = this.modalService.show(template, { id: 1, class: 'modal-lg' });
+  }
+  openModal2(template: TemplateRef&lt;void&gt;) {
+    this.modalRef2 = this.modalService.show(template, { id: 2, class: 'second' });
+  }
+  closeFirstModal() {
+    if (!this.modalRef) {
+      return;
+    }
+
+    this.modalRef.hide();
+    this.modalRef = null;
+  }
+  closeModal(modalId?: number) {
+    this.modalService.hide(modalId);
+  }
+}
+</pre></tab><!----><!----><!----></div></tabset><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="scrolling-long-content"> Scrolling long content <p class="m-0"><a title="Open this demo in StackBlitz" href="#" class="stackblitz-link"><img src="assets/images/stackblitz.png" alt width="20"></a><!----><a routerlink="." class="anchor-link d-inline-block" href="/ngx-bootstrap/components/modals#scrolling-long-content">#</a><!----><!----></p><!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-scrolling-long-content><button type="button" class="btn btn-primary">Open modal</button><br><!----></demo-modal-scrolling-long-content><!----></div><div class="section"><div class="item"><tabset _nghost-ng-c3683641848 class="tab-container"><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="nav-item code-tab active"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>template</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item code-tab"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>component</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="template" class="code-tab tab-pane active" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-html">&lt;button type="button" class="btn btn-primary" (click)="openModal(template)"&gt;Open modal&lt;/button&gt;
+&lt;br&gt;
+
+  &lt;ng-template #template&gt;
+    &lt;div class="modal-header"&gt;
+      &lt;h4 class="modal-title pull-left"&gt;Modal&lt;/h4&gt;
+      &lt;button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()"&gt;
+        &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="modal-body"&gt;
+      @for (item of items; track item) {
+        &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque delectus enim esse excepturi, impedit,
+        iste magnam officia optio, quam quis quisquam saepe sint unde velit vitae! Animi in iusto ut?&lt;/p&gt;
+      }
+    &lt;/div&gt;
+  &lt;/ng-template&gt;
+</pre></tab><!----><tab heading="component" class="code-tab tab-pane" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-js">import { Component, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-modal-scrolling-long-content',
+  templateUrl: './scrolling-long-content.html',
+  standalone: false
+})
+export class DemoModalScrollingLongContentComponent {
+  modalRef?: BsModalRef;
+  items: number[];
+
+  constructor(private modalService: BsModalService) {
+    this.items = Array(15).fill(0);
+  }
+
+  openModal(template: TemplateRef&lt;void&gt;) {
+    this.modalRef = this.modalService.show(template);
+  }
+}
+</pre></tab><!----><!----><!----></div></tabset><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="service-events"> Events <p class="m-0"><a title="Open this demo in StackBlitz" href="#" class="stackblitz-link"><img src="assets/images/stackblitz.png" alt width="20"></a><!----><a routerlink="." class="anchor-link d-inline-block" href="/ngx-bootstrap/components/modals#service-events">#</a><!----><!----></p><!----></h3><!----><p>
+          </p><p>Modal service events. Modal service exposes 4 events: <code>onShow</code>, <code>onShown</code>,
+          <code>onHide</code>, <code>onHidden</code>.
+          See usage example below.</p>
+          <p><code>onHide</code> and <code>onHidden</code> events emit dismiss reason. Possible values are
+          <code>backdrop-click</code>, <code>esc</code> or <code>{id: number | string}</code> if modal was closed by direct call of
+          <code>hide()</code> method</p><p></p><!----><ng-sample-box><div class="section bd-example"><demo-modal-service-events _nghost-ng-c3592498730><button _ngcontent-ng-c3592498730 type="button" class="btn btn-primary">Open modal</button><br _ngcontent-ng-c3592498730><br _ngcontent-ng-c3592498730><!----><!----></demo-modal-service-events><!----></div><div class="section"><div class="item"><tabset _nghost-ng-c3683641848 class="tab-container"><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="nav-item code-tab active"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>template</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item code-tab"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>component</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="template" class="code-tab tab-pane active" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-html">&lt;button type="button" class="btn btn-primary" (click)="openModal(template)"&gt;Open modal&lt;/button&gt;
+&lt;br&gt;&lt;br&gt;
+@for (message of messages; track message) {
+  &lt;pre class="card card-block card-header"&gt;{{message}}&lt;/pre&gt;
+}
+&lt;ng-template #template&gt;
+  &lt;div class="modal-header"&gt;
+    &lt;h4 class="modal-title pull-left"&gt;Modal&lt;/h4&gt;
+    &lt;button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()"&gt;
+      &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="modal-body"&gt;
+    This is a modal
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+</pre></tab><!----><tab heading="component" class="code-tab tab-pane" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-js">/* eslint-disable @typescript-eslint/no-explicit-any */ // TODO: remove this and fix types
+import { ChangeDetectorRef, Component, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { combineLatest, Subscription } from 'rxjs';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-modal-service-events',
+  templateUrl: './service-events.html',
+  styles: [
+    `
+      .card {
+        margin-bottom: 0.75rem;
+        padding: 8px;
+      }
+    `
+  ],
+  standalone: false
+})
+export class DemoModalServiceEventsComponent {
+  modalRef?: BsModalRef;
+  subscriptions: Subscription = new Subscription();
+  messages: string[] = [];
+
+  constructor(private modalService: BsModalService, private changeDetection: ChangeDetectorRef) {}
+
+  openModal(template: TemplateRef&lt;void&gt;) {
+    this.messages = [];
+
+    const _combine = combineLatest([
+      this.modalService.onShow,
+      this.modalService.onShown,
+      this.modalService.onHide,
+      this.modalService.onHidden
+    ]).subscribe(() =&gt; this.changeDetection.markForCheck());
+
+    this.subscriptions.add(
+      this.modalService.onShow.subscribe(() =&gt; {
+        this.messages.push(`onShow event has been fired`);
+      })
+    );
+    this.subscriptions.add(
+      this.modalService.onShown.subscribe(() =&gt; {
+        this.messages.push(`onShown event has been fired`);
+      })
+    );
+    this.subscriptions.add(
+      this.modalService.onHide.subscribe((reason: string | any) =&gt; {
+        if (typeof reason !== 'string') {
+          reason = `onHide(), modalId is : ${reason.id}`;
+        }
+        const _reason = reason ? `, dismissed by ${reason}` : '';
+        this.messages.push(`onHide event has been fired${_reason}`);
+      })
+    );
+    this.subscriptions.add(
+      this.modalService.onHidden.subscribe((reason: string | any) =&gt; {
+        if (typeof reason !== 'string') {
+          reason = `onHide(), modalId is : ${reason.id}`;
+        }
+        const _reason = reason ? `, dismissed by ${reason}` : '';
+        this.messages.push(`onHidden event has been fired${_reason}`);
+        this.unsubscribe();
+      })
+    );
+
+    this.subscriptions.add(_combine);
+
+    this.modalRef = this.modalService.show(template);
+  }
+
+  unsubscribe() {
+    this.subscriptions.unsubscribe();
+  }
+}
+</pre></tab><!----><!----><!----></div></tabset><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="modal-ref-events"> ModalRef Events <p class="m-0"><a title="Open this demo in StackBlitz" href="#" class="stackblitz-link"><img src="assets/images/stackblitz.png" alt width="20"></a><!----><a routerlink="." class="anchor-link d-inline-block" href="/ngx-bootstrap/components/modals#modal-ref-events">#</a><!----><!----></p><!----></h3><!----><p>
+          </p><p>Modal ref events. ModalRef exposes 2 events: <code>onHide</code> and <code>onHidden</code>. Note,
+          <code>onShow</code> and <code>onShown</code> are not options because they have already fired by the time
+          the ModalRef is created.
+          See usage example below.</p>
+          <p><code>onHide</code> and <code>onHidden</code> events emit dismiss reason. Possible values are
+          <code>backdrop-click</code>, <code>esc</code> or <code>{id: number | string}</code> if modal was closed by direct call of
+          <code>hide()</code> method</p><p></p><!----><ng-sample-box><div class="section bd-example"><demo-modal-ref-events _nghost-ng-c3547520780><button _ngcontent-ng-c3547520780 type="button" class="btn btn-primary">Open modal</button><br _ngcontent-ng-c3547520780><br _ngcontent-ng-c3547520780><!----><!----></demo-modal-ref-events><!----></div><div class="section"><div class="item"><tabset _nghost-ng-c3683641848 class="tab-container"><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="nav-item code-tab active"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>template</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item code-tab"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>component</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="template" class="code-tab tab-pane active" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-html">&lt;button type="button" class="btn btn-primary" (click)="openModal(template)"&gt;Open modal&lt;/button&gt;
+&lt;br&gt;&lt;br&gt;
+@for (message of messages; track message) {
+  &lt;pre class="card card-block card-header"&gt;{{message}}&lt;/pre&gt;
+}
+&lt;ng-template #template&gt;
+  &lt;div class="modal-header"&gt;
+    &lt;h4 class="modal-title pull-left"&gt;Modal&lt;/h4&gt;
+    &lt;button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()"&gt;
+      &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="modal-body"&gt;
+    This is a modal
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+</pre></tab><!----><tab heading="component" class="code-tab tab-pane" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-js">// @TODO: remove this and fix types
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ChangeDetectorRef, Component, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { combineLatest, Subscription } from 'rxjs';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-modal-ref-events',
+  templateUrl: './modal-ref-events.html',
+  styles: [
+    `
+      .card {
+        margin-bottom: 0.75rem;
+        padding: 8px;
+      }
+    `
+  ],
+  standalone: false
+})
+export class DemoModalRefEventsComponent {
+  modalRef?: BsModalRef;
+  subscriptions = new Subscription();
+  messages: string[] = [];
+
+  constructor(private modalService: BsModalService, private changeDetection: ChangeDetectorRef) {}
+
+  openModal(template: TemplateRef&lt;void&gt;) {
+    this.messages = [];
+
+    this.modalRef = this.modalService.show(template);
+    let _combine;
+    if (this.modalRef?.onHide &amp;&amp; this.modalRef?.onHidden) {
+      _combine = combineLatest([this.modalRef.onHide, this.modalRef.onHidden]).subscribe(() =&gt;
+        this.changeDetection.markForCheck()
+      );
+    }
+
+    if (this.modalRef?.onHide) {
+      this.subscriptions.add(
+        this.modalRef.onHide.subscribe((reason: string | any) =&gt; {
+          if (typeof reason !== 'string') {
+            reason = `onHide(), modalId is : ${reason.id}`;
+          }
+          const _reason = reason ? `, dismissed by ${reason}` : '';
+          this.messages.push(`onHide event has been fired${_reason}`);
+        })
+      );
+    }
+
+    if (this.modalRef?.onHidden) {
+      this.subscriptions.add(
+        this.modalRef.onHidden.subscribe((reason: string | any) =&gt; {
+          if (typeof reason !== 'string') {
+            reason = `onHide(), modalId is : ${reason.id}`;
+          }
+          const _reason = reason ? `, dismissed by ${reason}` : '';
+          this.messages.push(`onHidden event has been fired${_reason}`);
+          this.unsubscribe();
+        })
+      );
+    }
+
+    if (_combine) {
+      this.subscriptions.add(_combine);
+    }
+  }
+
+  unsubscribe() {
+    this.subscriptions.unsubscribe();
+  }
+}
+</pre></tab><!----><!----><!----></div></tabset><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="confirm-window"> Confirm Window <p class="m-0"><a title="Open this demo in StackBlitz" href="#" class="stackblitz-link"><img src="assets/images/stackblitz.png" alt width="20"></a><!----><a routerlink="." class="anchor-link d-inline-block" href="/ngx-bootstrap/components/modals#confirm-window">#</a><!----><!----></p><!----></h3><!----><p></p><p>Modal with opportunity to <code>confirm</code> or <code>decline</code>.</p><p></p><!----><ng-sample-box><div class="section bd-example"><demo-modal-service-confirm-window><button type="button" class="btn btn-primary">Open modal</button><br><br><pre class="card card-block card-header"></pre><!----></demo-modal-service-confirm-window><!----></div><div class="section"><div class="item"><tabset _nghost-ng-c3683641848 class="tab-container"><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="nav-item code-tab active"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>template</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item code-tab"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>component</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="template" class="code-tab tab-pane active" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-html">&lt;button type="button" class="btn btn-primary" (click)="openModal(template)"&gt;Open modal&lt;/button&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;pre class="card card-block card-header"&gt;{{message}}&lt;/pre&gt;
+&lt;ng-template #template&gt;
+  &lt;div class="modal-body text-center"&gt;
+    &lt;p&gt;Do you want to confirm?&lt;/p&gt;
+    &lt;button type="button" class="btn btn-default" (click)="confirm()" &gt;Yes&lt;/button&gt;
+    &lt;button type="button" class="btn btn-primary" (click)="decline()" &gt;No&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+</pre></tab><!----><tab heading="component" class="code-tab tab-pane" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-js">import { Component, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-modal-service-confirm-window',
+  templateUrl: './service-confirm-window.html',
+  standalone: false
+})
+export class DemoModalServiceConfirmWindowComponent {
+  modalRef?: BsModalRef;
+  message?: string;
+  constructor(private modalService: BsModalService) {}
+
+  openModal(template: TemplateRef&lt;void&gt;) {
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
+  }
+
+  confirm(): void {
+    this.message = 'Confirmed!';
+    this.modalRef?.hide();
+  }
+
+  decline(): void {
+    this.message = 'Declined!';
+    this.modalRef?.hide();
+  }
+}
+</pre></tab><!----><!----><!----></div></tabset><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="service-custom-css-class"> Сustom css class <p class="m-0"><a title="Open this demo in StackBlitz" href="#" class="stackblitz-link"><img src="assets/images/stackblitz.png" alt width="20"></a><!----><a routerlink="." class="anchor-link d-inline-block" href="/ngx-bootstrap/components/modals#service-custom-css-class">#</a><!----><!----></p><!----></h3><!----><p></p><p>There is possibility to add custom css class to a modal.
+          See the demo below to learn how to use it</p><p></p><!----><ng-sample-box><div class="section bd-example"><demo-modal-service-custom-css-class><button type="button" class="btn btn-primary">Open modal with custom css class</button><br><!----></demo-modal-service-custom-css-class><!----></div><div class="section"><div class="item"><tabset _nghost-ng-c3683641848 class="tab-container"><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="nav-item code-tab active"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>template</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item code-tab"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>component</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="template" class="code-tab tab-pane active" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-html">&lt;button type="button" class="btn btn-primary" (click)="openModalWithClass(template)"&gt;Open modal with custom css class&lt;/button&gt;
+&lt;br&gt;
+
+&lt;ng-template #template&gt;
+  &lt;div class="modal-header"&gt;
+    &lt;h4 class="modal-title pull-left"&gt;Modal&lt;/h4&gt;
+    &lt;button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()"&gt;
+      &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="modal-body"&gt;
+    Just a modal with a bunch of words inside, nothing serious.
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+</pre></tab><!----><tab heading="component" class="code-tab tab-pane" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-js">import { Component, TemplateRef } from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-modal-service-custom-css-class',
+  templateUrl: './custom-css-class.html',
+  standalone: false
+})
+export class DemoModalServiceCustomCSSClassComponent {
+  modalRef?: BsModalRef;
+  constructor(private modalService: BsModalService) {}
+
+  openModalWithClass(template: TemplateRef&lt;void&gt;) {
+    this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'gray modal-lg' }));
+  }
+}
+</pre></tab><!----><!----><!----></div></tabset><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="service-disable-animation"> Animation option <p class="m-0"><a title="Open this demo in StackBlitz" href="#" class="stackblitz-link"><img src="assets/images/stackblitz.png" alt width="20"></a><!----><a routerlink="." class="anchor-link d-inline-block" href="/ngx-bootstrap/components/modals#service-disable-animation">#</a><!----><!----></p><!----></h3><!----><p></p><p>There is animation option that you can configure.</p><p></p><!----><ng-sample-box><div class="section bd-example"><demo-modal-service-disable-animation><button type="button" class="btn btn-primary">Open modal</button><br><br><button type="button" class="btn btn-primary btn-sm">Disable animation</button><!----></demo-modal-service-disable-animation><!----></div><div class="section"><div class="item"><tabset _nghost-ng-c3683641848 class="tab-container"><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="nav-item code-tab active"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>template</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item code-tab"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>component</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="template" class="code-tab tab-pane active" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-html">&lt;button type="button" class="btn btn-primary" (click)="openModal(template)"&gt;Open modal&lt;/button&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;button type="button" class="btn btn-primary btn-sm" (click)="config.animated = !config.animated"&gt;{{config.animated ? 'Disable' : 'Enable'}} animation&lt;/button&gt;
+
+&lt;ng-template #template&gt;
+  &lt;div class="modal-header"&gt;
+    &lt;h4 class="modal-title pull-left"&gt;Modal&lt;/h4&gt;
+    &lt;button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()"&gt;
+      &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="modal-body"&gt;
+    Just a modal with a bunch of words inside, nothing serious.
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+</pre></tab><!----><tab heading="component" class="code-tab tab-pane" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-js">import { Component, TemplateRef } from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-modal-service-disable-animation',
+  templateUrl: './disable-animation.html',
+  standalone: false
+})
+export class DemoModalServiceDisableAnimationComponent {
+  modalRef?: BsModalRef;
+  config = {
+    animated: true
+  };
+  constructor(private modalService: BsModalService) {}
+
+  openModal(template: TemplateRef&lt;void&gt;) {
+    this.modalRef = this.modalService.show(template, this.config);
+  }
+}
+</pre></tab><!----><!----><!----></div></tabset><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="service-disable-esc-closing"> Esc closing option <p class="m-0"><a title="Open this demo in StackBlitz" href="#" class="stackblitz-link"><img src="assets/images/stackblitz.png" alt width="20"></a><!----><a routerlink="." class="anchor-link d-inline-block" href="/ngx-bootstrap/components/modals#service-disable-esc-closing">#</a><!----><!----></p><!----></h3><!----><p></p><p>There is closing by Esc button option that you can configure.</p><p></p><!----><ng-sample-box><div class="section bd-example"><demo-modal-service-disable-esc-closing><button type="button" class="btn btn-primary">Open modal</button><br><br><button type="button" class="btn btn-primary btn-sm">Disable Esc</button><!----></demo-modal-service-disable-esc-closing><!----></div><div class="section"><div class="item"><tabset _nghost-ng-c3683641848 class="tab-container"><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="nav-item code-tab active"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>template</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item code-tab"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>component</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="template" class="code-tab tab-pane active" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-html">&lt;button type="button" class="btn btn-primary" (click)="openModal(template)"&gt;Open modal&lt;/button&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;button type="button" class="btn btn-primary btn-sm" (click)="config.keyboard = !config.keyboard"&gt;{{config.keyboard ? 'Disable' : 'Enable'}} Esc&lt;/button&gt;
+
+&lt;ng-template #template&gt;
+  &lt;div class="modal-header"&gt;
+    &lt;h4 class="modal-title pull-left"&gt;Modal&lt;/h4&gt;
+    &lt;button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()"&gt;
+      &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="modal-body"&gt;
+    Just a modal with a bunch of words inside, nothing serious.
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+</pre></tab><!----><tab heading="component" class="code-tab tab-pane" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-js">import { Component, TemplateRef } from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-modal-service-disable-esc-closing',
+  templateUrl: './disable-esc-closing.html',
+  standalone: false
+})
+export class DemoModalServiceDisableEscClosingComponent {
+  modalRef?: BsModalRef;
+  config = {
+    keyboard: true
+  };
+  constructor(private modalService: BsModalService) {}
+
+  openModal(template: TemplateRef&lt;void&gt;) {
+    this.modalRef = this.modalService.show(template, this.config);
+  }
+}
+</pre></tab><!----><!----><!----></div></tabset><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="modal-with-popups"> Modal window with tooltip and popover <p class="m-0"><a title="Open this demo in StackBlitz" href="#" class="stackblitz-link"><img src="assets/images/stackblitz.png" alt width="20"></a><!----><a routerlink="." class="anchor-link d-inline-block" href="/ngx-bootstrap/components/modals#modal-with-popups">#</a><!----><!----></p><!----></h3><!----><p></p><p><code>Tooltips</code> and <code>popovers</code> can be placed within modals as needed. When modals are closed, any <code>tooltips</code> and <code>popovers</code> within are also automatically dismissed.</p><p></p><!----><ng-sample-box><div class="section bd-example"><demo-modal-with-popups><button type="button" class="btn btn-primary">Open modal</button><!----></demo-modal-with-popups><!----></div><div class="section"><div class="item"><tabset _nghost-ng-c3683641848 class="tab-container"><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="nav-item code-tab active"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>template</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item code-tab"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>component</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="template" class="code-tab tab-pane active" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-html">&lt;button type="button" class="btn btn-primary" (click)="openModal(template)"&gt;Open modal&lt;/button&gt;
+&lt;ng-template #template&gt;
+  &lt;div class="modal-header"&gt;
+    &lt;h4 class="modal-title pull-left"&gt;Modal&lt;/h4&gt;
+    &lt;button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()"&gt;
+      &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="modal-body"&gt;
+    &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque delectus enim esse excepturi, impedit,
+      iste magnam officia optio, quam quis quisquam saepe sint unde velit vitae! Animi in iusto ut?&lt;/p&gt;
+      &lt;button type="button" class="btn btn-primary" popover="Vivamus sagittis"&gt;popover&lt;/button&gt;
+      &lt;button type="button" class="btn btn-primary" tooltip="Vivamus sagittis"&gt;tooltip&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+</pre></tab><!----><tab heading="component" class="code-tab tab-pane" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-js">import { Component, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-modal-with-popups',
+  templateUrl: './modal-with-popups.html',
+  standalone: false
+})
+export class DemoModalWithPopupsComponent {
+  modalRef?: BsModalRef;
+
+  constructor(private modalService: BsModalService) {}
+
+  openModal(template: TemplateRef&lt;void&gt;) {
+    this.modalRef = this.modalService.show(template);
+  }
+}
+</pre></tab><!----><!----><!----></div></tabset><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="service-disable-backdrop"> Backdrop options <p class="m-0"><a title="Open this demo in StackBlitz" href="#" class="stackblitz-link"><img src="assets/images/stackblitz.png" alt width="20"></a><!----><a routerlink="." class="anchor-link d-inline-block" href="/ngx-bootstrap/components/modals#service-disable-backdrop">#</a><!----><!----></p><!----></h3><!----><p></p><p>There is backdrop options that you can configure.</p><p></p><!----><ng-sample-box><div class="section bd-example"><demo-modal-service-disable-backdrop><button type="button" class="btn btn-primary">Open modal</button><br><br><button type="button" class="btn btn-primary btn-sm">Disable backdrop</button><button type="button" class="btn btn-primary btn-sm">Disable backdrop click</button><!----></demo-modal-service-disable-backdrop><!----></div><div class="section"><div class="item"><tabset _nghost-ng-c3683641848 class="tab-container"><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="nav-item code-tab active"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>template</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item code-tab"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>component</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="template" class="code-tab tab-pane active" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-html">&lt;button type="button" class="btn btn-primary" (click)="openModal(template)"&gt;Open modal&lt;/button&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;button type="button" class="btn btn-primary btn-sm" (click)="config.backdrop = !config.backdrop"&gt;{{config.backdrop ? 'Disable' : 'Enable'}} backdrop&lt;/button&gt;
+&lt;button type="button" class="btn btn-primary btn-sm" (click)="config.ignoreBackdropClick = !config.ignoreBackdropClick"&gt;{{!config.ignoreBackdropClick ? 'Disable' : 'Enable'}} backdrop click&lt;/button&gt;
+
+&lt;ng-template #template&gt;
+  &lt;div class="modal-header"&gt;
+    &lt;h4 class="modal-title pull-left"&gt;Modal&lt;/h4&gt;
+    &lt;button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()"&gt;
+      &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="modal-body"&gt;
+    Just a modal with a bunch of words inside, nothing serious.
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+</pre></tab><!----><tab heading="component" class="code-tab tab-pane" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-js">import { Component, TemplateRef } from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-modal-service-disable-backdrop',
+  templateUrl: './disable-backdrop.html',
+  standalone: false
+})
+export class DemoModalServiceDisableBackdropComponent {
+  modalRef?: BsModalRef;
+  config = {
+    backdrop: true,
+    ignoreBackdropClick: false
+  };
+  constructor(private modalService: BsModalService) {}
+
+  openModal(template: TemplateRef&lt;void&gt;) {
+    this.modalRef = this.modalService.show(template, this.config);
+  }
+}
+</pre></tab><!----><!----><!----></div></tabset><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="change-class"> Change class <p class="m-0"><a title="Open this demo in StackBlitz" href="#" class="stackblitz-link"><img src="assets/images/stackblitz.png" alt width="20"></a><!----><a routerlink="." class="anchor-link d-inline-block" href="/ngx-bootstrap/components/modals#change-class">#</a><!----><!----></p><!----></h3><!----><p></p><p>Calling setClass method to change modal's window class</p><p></p><!----><ng-sample-box><div class="section bd-example"><demo-modal-change-class><button type="button" class="btn btn-primary">Create template modal</button><!----></demo-modal-change-class><!----></div><div class="section"><div class="item"><tabset _nghost-ng-c3683641848 class="tab-container"><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="nav-item code-tab active"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>template</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item code-tab"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>component</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="template" class="code-tab tab-pane active" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-html">&lt;button type="button" class="btn btn-primary" (click)="openModal(template)"&gt;Create template modal&lt;/button&gt;
+
+&lt;ng-template #template&gt;
+  &lt;div class="modal-header"&gt;
+    &lt;h4 class="modal-title pull-left"&gt;Modal&lt;/h4&gt;
+    &lt;button type="button" class="close btn-close pull-right" aria-label="Close" (click)="modalRef?.hide()"&gt;
+      &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="modal-body"&gt;
+    This is a modal.
+  &lt;/div&gt;
+  &lt;button type="button" class="btn" (click)="setModalClass()"&gt;Change width&lt;/button&gt;
+&lt;/ng-template&gt;
+</pre></tab><!----><tab heading="component" class="code-tab tab-pane" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-js">import { Component, TemplateRef } from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-modal-change-class',
+  templateUrl: './change-class.html',
+  standalone: false
+})
+export class DemoModalServiceChangeClassComponent {
+  modalRef?: BsModalRef;
+  valueWidth = false;
+  constructor(private modalService: BsModalService) {}
+
+  openModal(template: TemplateRef&lt;void&gt;) {
+    this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'modal-sm' }));
+  }
+
+  setModalClass() {
+    this.valueWidth = !this.valueWidth;
+    const modalWidth = this.valueWidth ? 'modal-lg' : 'modal-sm';
+    this.modalRef?.setClass(modalWidth);
+  }
+}
+</pre></tab><!----><!----><!----></div></tabset><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="service-with-interceptor"> Close interceptor <p class="m-0"><a title="Open this demo in StackBlitz" href="#" class="stackblitz-link"><img src="assets/images/stackblitz.png" alt width="20"></a><!----><a routerlink="." class="anchor-link d-inline-block" href="/ngx-bootstrap/components/modals#service-with-interceptor">#</a><!----><!----></p><!----></h3><!----><p></p><p>When opening a modal with a component, you can provide an interceptor which will be triggered
+          whenever the modal try to close, allowing you to block the disappearance of a modal.</p><p></p><!----><ng-sample-box><div class="section bd-example"><demo-modal-service-interceptor><button type="button" class="btn btn-primary">Create modal with close interceptor</button><!----></demo-modal-service-interceptor><!----></div><div class="section"><div class="item"><tabset _nghost-ng-c3683641848 class="tab-container"><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="nav-item code-tab active"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>template</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item code-tab"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>component</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="template" class="code-tab tab-pane active" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-html">&lt;button type="button" class="btn btn-primary" (click)="openModalWithInterceptor(template)"&gt;Create modal with close interceptor&lt;/button&gt;
+
+&lt;ng-template #template&gt;
+  &lt;div class="modal-body text-center"&gt;
+    &lt;p&gt;Do you really want to close?&lt;/p&gt;
+    &lt;button type="button" class="btn btn-default" (click)="confirm()" &gt;Yes&lt;/button&gt;
+    &lt;button type="button" class="btn btn-primary" (click)="decline()" &gt;No&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+
+</pre></tab><!----><tab heading="component" class="code-tab tab-pane" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-js">import { Component, TemplateRef } from '@angular/core';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-modal-service-interceptor',
+  templateUrl: './service-interceptor.html',
+  standalone: false
+})
+export class DemoModalServiceWithInterceptorComponent {
+  bsModalRef?: BsModalRef;
+
+  confirmModalRef?: BsModalRef;
+  confirmResolve?: () =&gt; void;
+  confirmReject?: () =&gt; void;
+  confirmPromise?: Promise&lt;void&gt;;
+
+  constructor(private modalService: BsModalService) {}
+
+  openModalWithInterceptor(confirmTemplate: TemplateRef&lt;void&gt;) {
+    const closeInterceptor = () =&gt; {
+      this.confirmPromise = new Promise((resolve, reject) =&gt; {
+        this.confirmResolve = resolve;
+        this.confirmReject = reject;
+      });
+      this.confirmModalRef = this.modalService.show(confirmTemplate, { class: 'modal-sm' });
+
+      return this.confirmPromise;
+    };
+    this.bsModalRef = this.modalService.show(ModalContentWithInterceptorComponent, { closeInterceptor });
+    this.bsModalRef.content.closeBtnName = 'Close';
+  }
+
+  confirm(): void {
+    if (this.confirmResolve) {
+      this.confirmResolve();
+    }
+    this.confirmModalRef?.hide();
+  }
+
+  decline(): void {
+    if (this.confirmReject) {
+      this.confirmReject();
+    }
+    this.confirmModalRef?.hide();
+  }
+}
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'modal-content-with-interceptor',
+  template: `
+    &lt;div class="modal-header"&gt;
+      &lt;h4 class="modal-title pull-left"&gt;Modal with interceptor&lt;/h4&gt;
+      &lt;button type="button" class="close btn-close pull-right" aria-label="Close" (click)="bsModalRef?.hide()"&gt;
+        &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="modal-body"&gt;This modal has closing interceptor&lt;/div&gt;
+    &lt;div class="modal-footer"&gt;
+      &lt;button type="button" class="btn btn-default" (click)="bsModalRef?.hide()"&gt;Close&lt;/button&gt;
+    &lt;/div&gt;
+  `,
+  standalone: false
+})
+export class ModalContentWithInterceptorComponent {
+  constructor(public bsModalRef: BsModalRef) {}
+}
+</pre></tab><!----><!----><!----></div></tabset><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="directive-section"> Directive examples <!----></h3><!----><p></p><p>Also you can use directive instead of service. See the demos below </p><p></p><!----><ng-sample-box><div class="section bd-example"><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="directive-static"> Static modal <p class="m-0"><a title="Open this demo in StackBlitz" href="#" class="stackblitz-link"><img src="assets/images/stackblitz.png" alt width="20"></a><!----><a routerlink="." class="anchor-link d-inline-block" href="/ngx-bootstrap/components/modals#directive-static">#</a><!----><!----></p><!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-static><button type="button" class="btn btn-primary">Static modal</button><div bsmodal tabindex="-1" role="dialog" aria-labelledby="dialog-static-name" class="modal fade"><div class="modal-dialog modal-sm"><div class="modal-content"><div class="modal-header"><h4 id="dialog-static-name" class="modal-title pull-left">Static modal</h4><button type="button" aria-label="Close" class="btn-close close pull-right"><span aria-hidden="true" class="visually-hidden">×</span></button></div><div class="modal-body"> This is static modal, backdrop click will not close it. Click <b>×</b> to close modal. </div></div></div></div><!----></demo-modal-static><!----></div><div class="section"><div class="item"><tabset _nghost-ng-c3683641848 class="tab-container"><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="nav-item code-tab active"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>template</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item code-tab"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>component</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="template" class="code-tab tab-pane active" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-html">&lt;button type="button" class="btn btn-primary" (click)="staticModal.show()"&gt;Static modal&lt;/button&gt;
+
+&lt;div class="modal fade" bsModal #staticModal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="dialog-static-name"&gt;
+  &lt;div class="modal-dialog modal-sm"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;h4 id="dialog-static-name" class="modal-title pull-left"&gt;Static modal&lt;/h4&gt;
+        &lt;button type="button" class="btn-close close pull-right" aria-label="Close" (click)="staticModal.hide()"&gt;
+          &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;
+        This is static modal, backdrop click will not close it.
+        Click &lt;b&gt;&amp;times;&lt;/b&gt; to close modal.
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre></tab><!----><tab heading="component" class="code-tab tab-pane" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-js">import { Component } from '@angular/core';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-modal-static',
+  templateUrl: './static.html',
+  standalone: false
+})
+export class DemoModalStaticComponent {}
+</pre></tab><!----><!----><!----></div></tabset><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="directive-sizes"> Optional sizes <p class="m-0"><a title="Open this demo in StackBlitz" href="#" class="stackblitz-link"><img src="assets/images/stackblitz.png" alt width="20"></a><!----><a routerlink="." class="anchor-link d-inline-block" href="/ngx-bootstrap/components/modals#directive-sizes">#</a><!----><!----></p><!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-sizes><p>Small modal window have small width on screens only above 768px(boostrap3) and 576px(bootstrap4)</p><button class="btn btn-primary">Large modal</button><div bsmodal tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1" class="modal fade"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h4 id="dialog-sizes-name1" class="modal-title pull-left">Large modal</h4><button type="button" aria-label="Close" class="btn-close close pull-right"><span aria-hidden="true" class="visually-hidden">×</span></button></div><div class="modal-body"> ... </div></div></div></div><!----><button type="button" class="btn btn-primary">Small modal</button><div bsmodal tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name2" class="modal fade"><div class="modal-dialog modal-sm"><div class="modal-content"><div class="modal-header"><h4 id="dialog-sizes-name2" class="modal-title pull-left">Small modal</h4><button type="button" aria-label="Close" class="btn-close close pull-right"><span aria-hidden="true" class="visually-hidden">×</span></button></div><div class="modal-body"> ... </div></div></div></div><!----></demo-modal-sizes><!----></div><div class="section"><div class="item"><tabset _nghost-ng-c3683641848 class="tab-container"><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="nav-item code-tab active"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>template</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item code-tab"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>component</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="template" class="code-tab tab-pane active" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-html">&lt;!--Large modal--&gt;
+&lt;p&gt;Small modal window have small width on screens only above 768px(boostrap3) and 576px(bootstrap4)&lt;/p&gt;
+&lt;button class="btn btn-primary" (click)="lgModal.show()"&gt;Large modal&lt;/button&gt;
+
+&lt;div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1"
+     role="dialog" aria-labelledby="dialog-sizes-name1"&gt;
+  &lt;div class="modal-dialog modal-lg"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;h4 id="dialog-sizes-name1" class="modal-title pull-left"&gt;Large modal&lt;/h4&gt;
+        &lt;button type="button" class="btn-close close pull-right" (click)="lgModal.hide()" aria-label="Close"&gt;
+          &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;
+        ...
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+
+&lt;!--Small modal--&gt;
+&lt;button type="button" class="btn btn-primary" (click)="smModal.show()"&gt;Small modal&lt;/button&gt;
+
+&lt;div bsModal #smModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name2"&gt;
+  &lt;div class="modal-dialog modal-sm"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;h4 id="dialog-sizes-name2" class="modal-title pull-left"&gt;Small modal&lt;/h4&gt;
+        &lt;button type="button" class="btn-close close pull-right" aria-label="Close" (click)="smModal.hide()"&gt;
+          &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;
+        ...
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre></tab><!----><tab heading="component" class="code-tab tab-pane" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-js">import { Component } from '@angular/core';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-modal-sizes',
+  templateUrl: './sizes.html',
+  standalone: false
+})
+export class DemoModalSizesComponent {}
+</pre></tab><!----><!----><!----></div></tabset><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="directive-child"> Child modal <p class="m-0"><a title="Open this demo in StackBlitz" href="#" class="stackblitz-link"><img src="assets/images/stackblitz.png" alt width="20"></a><!----><a routerlink="." class="anchor-link d-inline-block" href="/ngx-bootstrap/components/modals#directive-child">#</a><!----><!----></p><!----></h3><!----><p></p><p>Control modal from parent component</p><p></p><!----><ng-sample-box><div class="section bd-example"><demo-modal-child><button type="button" class="btn btn-primary">Open child modal</button><div bsmodal tabindex="-1" role="dialog" aria-labelledby="dialog-child-name" class="modal fade"><div class="modal-dialog modal-sm"><div class="modal-content"><div class="modal-header"><h4 id="dialog-child-name" class="modal-title pull-left">Child modal</h4><button type="button" aria-label="Close" class="close pull-right btn-close"><span aria-hidden="true" class="visually-hidden">×</span></button></div><div class="modal-body"> I am a child modal, opened from parent component! </div></div></div></div><!----></demo-modal-child><!----></div><div class="section"><div class="item"><tabset _nghost-ng-c3683641848 class="tab-container"><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="nav-item code-tab active"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>template</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item code-tab"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>component</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="template" class="code-tab tab-pane active" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-html">&lt;button type="button" class="btn btn-primary" (click)="showChildModal()"&gt;Open child modal&lt;/button&gt;
+&lt;div bsModal #childModal="bs-modal" class="modal fade" tabindex="-1"
+     role="dialog" aria-labelledby="dialog-child-name"&gt;
+  &lt;div class="modal-dialog modal-sm"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;h4 id="dialog-child-name" class="modal-title pull-left"&gt;Child modal&lt;/h4&gt;
+        &lt;button type="button" class="close pull-right btn-close" aria-label="Close" (click)="hideChildModal()"&gt;
+          &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;
+        I am a child modal, opened from parent component!
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre></tab><!----><tab heading="component" class="code-tab tab-pane" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-js">import { Component, ViewChild } from '@angular/core';
+import { ModalDirective } from 'ngx-bootstrap/modal';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-modal-child',
+  templateUrl: './child.html',
+  standalone: false
+})
+export class DemoModalChildComponent {
+  @ViewChild('childModal', { static: false }) childModal?: ModalDirective;
+
+  showChildModal(): void {
+    this.childModal?.show();
+  }
+
+  hideChildModal(): void {
+    this.childModal?.hide();
+  }
+}
+</pre></tab><!----><!----><!----></div></tabset><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="directive-nested"> Nested modals <p class="m-0"><a title="Open this demo in StackBlitz" href="#" class="stackblitz-link"><img src="assets/images/stackblitz.png" alt width="20"></a><!----><a routerlink="." class="anchor-link d-inline-block" href="/ngx-bootstrap/components/modals#directive-nested">#</a><!----><!----></p><!----></h3><!----><p></p><p>Open a modal from another modal</p><p></p><!----><ng-sample-box><div class="section bd-example"><demo-modal-nested><button type="button" class="btn btn-primary">Open parent modal</button><div bsmodal tabindex="-1" role="dialog" aria-labelledby="dialog-nested-name1" class="modal fade"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h4 id="dialog-nested-name1" class="modal-title pull-left">First modal</h4><button type="button" aria-label="Close" class="btn-close close pull-right"><span aria-hidden="true" class="visually-hidden">×</span></button></div><div class="modal-body"><button type="button" class="btn btn-primary">Open second modal</button></div></div></div></div><!----><div bsmodal tabindex="-1" role="dialog" aria-labelledby="dialog-nested-name2" class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 id="dialog-nested-name2" class="modal-title pull-left">Second modal</h4><button type="button" aria-label="Close" class="btn-close close pull-right"><span aria-hidden="true" class="visually-hidden">×</span></button></div><div class="modal-body"> This is second modal <br><button type="button" class="btn btn-primary">Open third modal</button></div></div></div></div><!----><div bsmodal tabindex="-1" role="dialog" aria-labelledby="dialog-nested-name3" class="modal fade"><div class="modal-dialog modal-sm"><div class="modal-content"><div class="modal-header"><h4 id="dialog-nested-name3" class="modal-title pull-left">Third modal</h4><button type="button" aria-label="Close" class="btn-close close pull-right"><span aria-hidden="true" class="visually-hidden">×</span></button></div><div class="modal-body"> This is third modal <br> Click <b>×</b> to close modal. </div></div></div></div><!----></demo-modal-nested><!----></div><div class="section"><div class="item"><tabset _nghost-ng-c3683641848 class="tab-container"><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="nav-item code-tab active"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>template</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item code-tab"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>component</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="template" class="code-tab tab-pane active" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-html">&lt;button type="button" class="btn btn-primary" (click)="parentModal.show()"&gt;Open parent modal&lt;/button&gt;
+&lt;div class="modal fade" bsModal #parentModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-nested-name1"&gt;
+  &lt;div class="modal-dialog modal-lg"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;h4 id="dialog-nested-name1" class="modal-title pull-left"&gt;First modal&lt;/h4&gt;
+        &lt;button type="button" class="btn-close close pull-right" aria-label="Close" (click)="parentModal.hide()"&gt;
+          &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;
+        &lt;button type="button" class="btn btn-primary" (click)="childModal.show()"&gt;Open second modal&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="modal fade" bsModal #childModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-nested-name2"&gt;
+  &lt;div class="modal-dialog"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;h4 id="dialog-nested-name2" class="modal-title pull-left"&gt;Second modal&lt;/h4&gt;
+        &lt;button type="button" class="btn-close close pull-right" aria-label="Close" (click)="childModal.hide()"&gt;
+          &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;
+        This is second modal &lt;br&gt;
+        &lt;button type="button" class="btn btn-primary" (click)="thirdModal.show()"&gt;Open third modal&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="modal fade" bsModal #thirdModal="bs-modal" tabindex="-1" role="dialog" aria-labelledby="dialog-nested-name3"&gt;
+  &lt;div class="modal-dialog modal-sm"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;h4 id="dialog-nested-name3" class="modal-title pull-left"&gt;Third modal&lt;/h4&gt;
+        &lt;button type="button" class="btn-close close pull-right" aria-label="Close" (click)="thirdModal.hide()"&gt;
+          &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;
+        This is third modal &lt;br&gt;
+        Click &lt;b&gt;&amp;times;&lt;/b&gt; to close modal.
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre></tab><!----><tab heading="component" class="code-tab tab-pane" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-js">import { Component } from '@angular/core';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-modal-nested',
+  templateUrl: './nested.html',
+  standalone: false
+})
+export class DemoModalNestedComponent {}
+</pre></tab><!----><!----><!----></div></tabset><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="directive-events"> Modal events <p class="m-0"><a title="Open this demo in StackBlitz" href="#" class="stackblitz-link"><img src="assets/images/stackblitz.png" alt width="20"></a><!----><a routerlink="." class="anchor-link d-inline-block" href="/ngx-bootstrap/components/modals#directive-events">#</a><!----><!----></p><!----></h3><!----><p></p><p><code>ModalDirective</code> exposes 4 events: <code>onShow</code>, <code>onShown</code>,
+          <code>onHide</code>, <code>onHidden</code>. See usage example below.<br>
+          <code>$event</code> is an instance of <code>ModalDirective</code>. There you may
+          find some useful properties like <code>isShown</code>, <code>dismissReason</code>, etc.
+          <br>For example, you may want to know which one of user's actions caused closing of a modal.
+          Just get the value of <code>dismissReason</code>,<br> possible values are <code>backdrop-click</code>,
+          <code>esc</code> or <code>null</code> if modal was closed by direct call of <code>hide()</code> method</p><p></p><!----><ng-sample-box><div class="section bd-example"><demo-modal-events _nghost-ng-c2998414489><button _ngcontent-ng-c2998414489 type="button" class="btn btn-primary">Open a modal</button><br _ngcontent-ng-c2998414489><br _ngcontent-ng-c2998414489><!----><div _ngcontent-ng-c2998414489 bsmodal tabindex="-1" role="dialog" aria-labelledby="dialog-events-name" class="modal fade"><div _ngcontent-ng-c2998414489 class="modal-dialog modal-sm"><div _ngcontent-ng-c2998414489 class="modal-content"><div _ngcontent-ng-c2998414489 class="modal-header"><h4 _ngcontent-ng-c2998414489 id="dialog-events-name" class="modal-title pull-left">Modal</h4><button _ngcontent-ng-c2998414489 type="button" aria-label="Close" class="close pull-right btn-close"><span _ngcontent-ng-c2998414489 aria-hidden="true" class="visually-hidden">×</span></button></div><div _ngcontent-ng-c2998414489 class="modal-body"> Just another modal <br _ngcontent-ng-c2998414489> Click <b _ngcontent-ng-c2998414489>×</b>, press <code _ngcontent-ng-c2998414489>Esc</code> or click on backdrop to close modal. </div></div></div></div><!----></demo-modal-events><!----></div><div class="section"><div class="item"><tabset _nghost-ng-c3683641848 class="tab-container"><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="nav-item code-tab active"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>template</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item code-tab"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>component</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="template" class="code-tab tab-pane active" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-html">&lt;button type="button" class="btn btn-primary" (click)="showModal()"&gt;Open a modal&lt;/button&gt;
+&lt;br&gt;&lt;br&gt;
+@for (message of messages; track message) {
+  &lt;pre class="card card-block card-header"&gt;{{message}}&lt;/pre&gt;
+}
+
+&lt;div class="modal fade" bsModal #modal="bs-modal"
+  tabindex="-1" role="dialog" aria-labelledby="dialog-events-name"
+  (onShow)="handler('onShow', $event)"
+  (onShown)="handler('onShown', $event)"
+  (onHide)="handler('onHide', $event)"
+  (onHidden)="handler('onHidden', $event)"&gt;
+  &lt;div class="modal-dialog modal-sm"&gt;
+    &lt;div class="modal-content"&gt;
+      &lt;div class="modal-header"&gt;
+        &lt;h4 id="dialog-events-name" class="modal-title pull-left"&gt;Modal&lt;/h4&gt;
+        &lt;button type="button" class="close pull-right btn-close" aria-label="Close" (click)="modal.hide()"&gt;
+          &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+        &lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class="modal-body"&gt;
+        Just another modal &lt;br&gt;
+        Click &lt;b&gt;&amp;times;&lt;/b&gt;, press &lt;code&gt;Esc&lt;/code&gt; or click on backdrop to close modal.
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre></tab><!----><tab heading="component" class="code-tab tab-pane" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-js">import { Component, ViewChild } from '@angular/core';
+import { ModalDirective } from 'ngx-bootstrap/modal';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-modal-events',
+  templateUrl: './events.html',
+  styles: [`
+    .card {
+      margin-bottom: 0.75rem;
+      padding: 8px;
+    }
+  `],
+  standalone: false
+})
+export class DemoModalEventsComponent {
+  @ViewChild(ModalDirective, { static: false }) modal?: ModalDirective;
+  messages?: string[];
+
+  showModal() {
+    this.messages = [];
+    this.modal?.show();
+  }
+  handler(type: string, $event: ModalDirective) {
+    this.messages?.push(
+      `event ${type} is fired${$event.dismissReason
+        ? ', dismissed by ' + $event.dismissReason
+        : ''}`
+    );
+  }
+}
+</pre></tab><!----><!----><!----></div></tabset><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="directive-auto-shown"> Auto shown modal <p class="m-0"><a title="Open this demo in StackBlitz" href="#" class="stackblitz-link"><img src="assets/images/stackblitz.png" alt width="20"></a><!----><a routerlink="." class="anchor-link d-inline-block" href="/ngx-bootstrap/components/modals#directive-auto-shown">#</a><!----><!----></p><!----></h3><!----><p>
+          </p><p>Show modal right after it has been initialized. This allows you to keep DOM clean by only
+          appending visible modals to the DOM using <code>*ngIf</code> directive.</p>
+          <p>It can also be useful if you want your modal component to perform some initialization operations, but
+          want to defer that until user actually sees modal content. I.e. for a "Select e-mail recipient" modal
+          you might want to defer recipient list loading until the modal is shown.</p><p></p><!----><ng-sample-box><div class="section bd-example"><demo-modal-auto-shown><button type="button" class="btn btn-primary">Render auto-shown modal</button><!----></demo-modal-auto-shown><!----></div><div class="section"><div class="item"><tabset _nghost-ng-c3683641848 class="tab-container"><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="nav-item code-tab active"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>template</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item code-tab"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>component</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="template" class="code-tab tab-pane active" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-html">&lt;button type="button" class="btn btn-primary" (click)="showModal()"&gt;Render auto-shown modal&lt;/button&gt;
+@if (isModalShown) {
+  &lt;div [config]="{ show: true }" (onHidden)="onHidden()" bsModal #autoShownModal="bs-modal"
+    class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-auto-name"&gt;
+    &lt;div class="modal-dialog modal-sm"&gt;
+      &lt;div class="modal-content"&gt;
+        &lt;div class="modal-header"&gt;
+          &lt;h4 id="dialog-auto-name" class="modal-title pull-left"&gt;Auto shown modal&lt;/h4&gt;
+          &lt;button type="button" class="btn-close close pull-right" aria-label="Close" (click)="hideModal()"&gt;
+            &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+          &lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="modal-body"&gt;
+          &lt;p&gt;I am a modal that is shown right after initialization!&lt;/p&gt;
+          &lt;p&gt;I wasn't present in DOM until you clicked the button&lt;/p&gt;
+          &lt;p&gt;When you close me, I'll be removed from the DOM&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+}
+</pre></tab><!----><tab heading="component" class="code-tab tab-pane" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-js">import { Component, ViewChild } from '@angular/core';
+import { ModalDirective } from 'ngx-bootstrap/modal';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-modal-auto-shown',
+  templateUrl: './auto-shown.html',
+  standalone: false
+})
+export class DemoAutoShownModalComponent {
+  @ViewChild('autoShownModal', { static: false }) autoShownModal?: ModalDirective;
+  isModalShown = false;
+
+  showModal(): void {
+    this.isModalShown = true;
+  }
+
+  hideModal(): void {
+    this.autoShownModal?.hide();
+  }
+
+  onHidden(): void {
+    this.isModalShown = false;
+  }
+}
+</pre></tab><!----><!----><!----></div></tabset><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="accessibility"> Accessibility <p class="m-0"><!----><a routerlink="." class="anchor-link d-inline-block" href="/ngx-bootstrap/components/modals#accessibility">#</a><!----><!----></p><!----></h3><!----><p>
+        </p><p>
+          Be sure to add <code class="highlighter-rouge">id=""</code> attribute to your title and description
+          in the template to make your modal works according to accessibility. The <code class="highlighter-rouge">aria-labelledby</code>
+          attribute establishes relationships between the modal and its title (only if the title has id attribute). The element
+          containing the modal's description is referenced by <code class="highlighter-rouge">aria-describedby</code> attribute.
+          The dialog does not need <code class="highlighter-rouge">aria-describedby</code> since there is no static
+          text that describes it.
+        </p>
+        <p>
+        Use modal options to set <code class="highlighter-rouge">aria-labelledby</code> and
+        <code class="highlighter-rouge">aria-describedby</code> attributes.
+        </p>
+        <p></p><!----><ng-sample-box><div class="section bd-example"><demo-accessibility><button type="button" class="btn btn-primary">Create template modal</button><!----></demo-accessibility><!----></div><div class="section"><div class="item"><tabset _nghost-ng-c3683641848 class="tab-container"><ul _ngcontent-ng-c3683641848 role="tablist" class="nav nav-tabs" aria-label="Tabs"><li _ngcontent-ng-c3683641848 class="nav-item code-tab active"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link active" aria-controls aria-selected="true" id><span _ngcontent-ng-c3683641848>template</span><!----><!----></a></li><li _ngcontent-ng-c3683641848 class="nav-item code-tab"><a _ngcontent-ng-c3683641848 href="javascript:void(0);" role="tab" class="nav-link" aria-controls aria-selected="false" id><span _ngcontent-ng-c3683641848>component</span><!----><!----></a></li><!----></ul><div _ngcontent-ng-c3683641848 class="tab-content"><tab heading="template" class="code-tab tab-pane active" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-html">&lt;button type="button" class="btn btn-primary" (click)="openModal(template)"&gt;Create template modal&lt;/button&gt;
+
+&lt;ng-template #template&gt;
+  &lt;div class="modal-header"&gt;
+    &lt;h4 class="modal-title pull-left" id="my-modal-title"&gt;Modal title&lt;/h4&gt;
+    &lt;button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()"&gt;
+      &lt;span aria-hidden="true" class="visually-hidden"&gt;&amp;times;&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class="modal-body"&gt;
+    &lt;div id="my-modal-description"&gt;
+      This is a modal.
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/ng-template&gt;
+</pre></tab><!----><tab heading="component" class="code-tab tab-pane" role="tabpanel" aria-labelledby><pre class="prettyprint linenums lang-js">import { Component, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'demo-accessibility',
+  templateUrl: './accessibility.html',
+  standalone: false
+})
+export class DemoAccessibilityComponent {
+  modalRef?: BsModalRef;
+  constructor(private modalService: BsModalService) {}
+
+  openModal(template: TemplateRef&lt;void&gt;) {
+    this.modalRef = this.modalService.show(template, {
+      ariaDescribedby: 'my-modal-description',
+      ariaLabelledBy: 'my-modal-title'
+    });
+  }
+}
+</pre></tab><!----><!----><!----></div></tabset><!----></div></div></ng-sample-box></div><!----><!----></examples><!----></tab><tab heading="API" class="example-tabset tab-pane" role="tabpanel" aria-labelledby><api-sections><h2 id="api-reference">Installation</h2><pre class="prettyprint lang-bash prettyprinted"><span class="pln">ng add ngx</span><span class="pun">-</span><span class="pln">bootstrap </span> --component <span class="pln">modals</span></pre><!----><pre class="prettyprint lang-typescript">### Standalone component usage
+import { ModalModule, BsModalService } from 'ngx-bootstrap/modal';
+
+@Component({
+  standalone: true,
+  imports: [ModalModule,...], // module can be optional
+  providers: [BsModalService]
+})
+export class AppComponent(){}
+
+### Module usage
+import { ModalModule } from 'ngx-bootstrap/modal';
+
+@NgModule({
+  imports: [ModalModule,...],
+  providers: [BsModalService]
+})
+export class AppModule(){}
+</pre><!----><ng-api-doc><div class="api-doc-component"><h3 id="modal-directive"><a target="_blank" rel="noopener" href="https://github.com/valor-software/ngx-bootstrap/tree/development/src/modal/modal.directive.ts">ModalDirective</a></h3><p></p><p>Mark any code with directive to show it's content in modal</p>
+<p></p><div class="table-responsive"><table class="table table-bordered"><tbody><tr><td class="col-xs-3">Selector</td><td class="col-xs-9"><code></code></td></tr><!----></tbody></table></div><!----><!----><!----></div></ng-api-doc><!----><ng-api-doc><div class="api-doc-component"><h3 id="modal-backdrop-component"><a target="_blank" rel="noopener" href="https://github.com/valor-software/ngx-bootstrap/tree/development/src/modal/modal-backdrop.component.ts">ModalBackdropComponent</a></h3><p></p><p>This component will be added as background layout for modals if enabled</p>
+<p></p><div class="table-responsive"><table class="table table-bordered"><tbody><tr><td class="col-xs-3">Selector</td><td class="col-xs-9"><code></code></td></tr><!----></tbody></table></div><!----><!----><!----></div></ng-api-doc><!----><ng-api-doc-class><div class="api-doc-component"><h3 id="bs-modal-service"><a target="_blank" rel="noopener" href="https://github.com/valor-software/ngx-bootstrap/tree/development/"></a></h3><p></p><!----><!----></div></ng-api-doc-class><!----><ng-api-doc-class><div class="api-doc-component"><h3 id="bs-modal-ref"><a target="_blank" rel="noopener" href="https://github.com/valor-software/ngx-bootstrap/tree/development/"></a></h3><p></p><!----><!----></div></ng-api-doc-class><!----><ng-api-doc-config><div class="api-doc-component"><h3 id="modal-options"><a target="_blank" rel="noopener" href="https://github.com/valor-software/ngx-bootstrap/tree/development/"></a></h3><p></p><!----><!----></div></ng-api-doc-config><!----><!----><!----></api-sections><!----></tab><tab heading="Examples" class="example-tabset tab-pane" role="tabpanel" aria-labelledby><examples><!----><div class="example-section"><h3 class="d-flex justify-content-between" id="service-template-ex"> Template <!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-service-static><button type="button" class="btn btn-primary">Create template modal</button><!----></demo-modal-service-static><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="service-component-ex"> Component <!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-service-component><button type="button" class="btn btn-primary">Create modal with component</button></demo-modal-service-component><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="service-nested-ex"> Nested <!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-service-nested><button type="button" class="btn btn-primary">Open first modal</button><!----><!----></demo-modal-service-nested><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="scrolling-long-content-ex"> Scrolling long content <!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-scrolling-long-content><button type="button" class="btn btn-primary">Open modal</button><br><!----></demo-modal-scrolling-long-content><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="service-events-ex"> Events <!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-service-events _nghost-ng-c3592498730><button _ngcontent-ng-c3592498730 type="button" class="btn btn-primary">Open modal</button><br _ngcontent-ng-c3592498730><br _ngcontent-ng-c3592498730><!----><!----></demo-modal-service-events><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="modal-ref-events-ex"> ModalRef Events <!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-ref-events _nghost-ng-c3547520780><button _ngcontent-ng-c3547520780 type="button" class="btn btn-primary">Open modal</button><br _ngcontent-ng-c3547520780><br _ngcontent-ng-c3547520780><!----><!----></demo-modal-ref-events><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="confirm-window-ex"> Confirm Window <!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-service-confirm-window><button type="button" class="btn btn-primary">Open modal</button><br><br><pre class="card card-block card-header"></pre><!----></demo-modal-service-confirm-window><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="service-custom-css-class-ex"> Сustom css class <!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-service-custom-css-class><button type="button" class="btn btn-primary">Open modal with custom css class</button><br><!----></demo-modal-service-custom-css-class><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="service-disable-animation-ex"> Animation option <!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-service-disable-animation><button type="button" class="btn btn-primary">Open modal</button><br><br><button type="button" class="btn btn-primary btn-sm">Disable animation</button><!----></demo-modal-service-disable-animation><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="service-disable-esc-closing-ex"> Esc closing option <!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-service-disable-esc-closing><button type="button" class="btn btn-primary">Open modal</button><br><br><button type="button" class="btn btn-primary btn-sm">Disable Esc</button><!----></demo-modal-service-disable-esc-closing><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="modal-with-popups-ex"> Modal window with tooltip and popover <!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-with-popups><button type="button" class="btn btn-primary">Open modal</button><!----></demo-modal-with-popups><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="service-disable-backdrop-ex"> Backdrop options <!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-service-disable-backdrop><button type="button" class="btn btn-primary">Open modal</button><br><br><button type="button" class="btn btn-primary btn-sm">Disable backdrop</button><button type="button" class="btn btn-primary btn-sm">Disable backdrop click</button><!----></demo-modal-service-disable-backdrop><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="change-class-ex"> Change class <!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-change-class><button type="button" class="btn btn-primary">Create template modal</button><!----></demo-modal-change-class><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="service-with-interceptor-ex"> Close interceptor <!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-service-interceptor><button type="button" class="btn btn-primary">Create modal with close interceptor</button><!----></demo-modal-service-interceptor><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="directive-static-ex"> Static modal <!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-static><button type="button" class="btn btn-primary">Static modal</button><div bsmodal tabindex="-1" role="dialog" aria-labelledby="dialog-static-name" class="modal fade"><div class="modal-dialog modal-sm"><div class="modal-content"><div class="modal-header"><h4 id="dialog-static-name" class="modal-title pull-left">Static modal</h4><button type="button" aria-label="Close" class="btn-close close pull-right"><span aria-hidden="true" class="visually-hidden">×</span></button></div><div class="modal-body"> This is static modal, backdrop click will not close it. Click <b>×</b> to close modal. </div></div></div></div><!----></demo-modal-static><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="directive-sizes-ex"> Optional sizes <!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-sizes><p>Small modal window have small width on screens only above 768px(boostrap3) and 576px(bootstrap4)</p><button class="btn btn-primary">Large modal</button><div bsmodal tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1" class="modal fade"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h4 id="dialog-sizes-name1" class="modal-title pull-left">Large modal</h4><button type="button" aria-label="Close" class="btn-close close pull-right"><span aria-hidden="true" class="visually-hidden">×</span></button></div><div class="modal-body"> ... </div></div></div></div><!----><button type="button" class="btn btn-primary">Small modal</button><div bsmodal tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name2" class="modal fade"><div class="modal-dialog modal-sm"><div class="modal-content"><div class="modal-header"><h4 id="dialog-sizes-name2" class="modal-title pull-left">Small modal</h4><button type="button" aria-label="Close" class="btn-close close pull-right"><span aria-hidden="true" class="visually-hidden">×</span></button></div><div class="modal-body"> ... </div></div></div></div><!----></demo-modal-sizes><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="directive-child-ex"> Child modal <!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-child><button type="button" class="btn btn-primary">Open child modal</button><div bsmodal tabindex="-1" role="dialog" aria-labelledby="dialog-child-name" class="modal fade"><div class="modal-dialog modal-sm"><div class="modal-content"><div class="modal-header"><h4 id="dialog-child-name" class="modal-title pull-left">Child modal</h4><button type="button" aria-label="Close" class="close pull-right btn-close"><span aria-hidden="true" class="visually-hidden">×</span></button></div><div class="modal-body"> I am a child modal, opened from parent component! </div></div></div></div><!----></demo-modal-child><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="directive-nested-ex"> Nested modals <!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-nested><button type="button" class="btn btn-primary">Open parent modal</button><div bsmodal tabindex="-1" role="dialog" aria-labelledby="dialog-nested-name1" class="modal fade"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><h4 id="dialog-nested-name1" class="modal-title pull-left">First modal</h4><button type="button" aria-label="Close" class="btn-close close pull-right"><span aria-hidden="true" class="visually-hidden">×</span></button></div><div class="modal-body"><button type="button" class="btn btn-primary">Open second modal</button></div></div></div></div><!----><div bsmodal tabindex="-1" role="dialog" aria-labelledby="dialog-nested-name2" class="modal fade"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h4 id="dialog-nested-name2" class="modal-title pull-left">Second modal</h4><button type="button" aria-label="Close" class="btn-close close pull-right"><span aria-hidden="true" class="visually-hidden">×</span></button></div><div class="modal-body"> This is second modal <br><button type="button" class="btn btn-primary">Open third modal</button></div></div></div></div><!----><div bsmodal tabindex="-1" role="dialog" aria-labelledby="dialog-nested-name3" class="modal fade"><div class="modal-dialog modal-sm"><div class="modal-content"><div class="modal-header"><h4 id="dialog-nested-name3" class="modal-title pull-left">Third modal</h4><button type="button" aria-label="Close" class="btn-close close pull-right"><span aria-hidden="true" class="visually-hidden">×</span></button></div><div class="modal-body"> This is third modal <br> Click <b>×</b> to close modal. </div></div></div></div><!----></demo-modal-nested><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="directive-events-ex"> Modal events <!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-events _nghost-ng-c2998414489><button _ngcontent-ng-c2998414489 type="button" class="btn btn-primary">Open a modal</button><br _ngcontent-ng-c2998414489><br _ngcontent-ng-c2998414489><!----><div _ngcontent-ng-c2998414489 bsmodal tabindex="-1" role="dialog" aria-labelledby="dialog-events-name" class="modal fade"><div _ngcontent-ng-c2998414489 class="modal-dialog modal-sm"><div _ngcontent-ng-c2998414489 class="modal-content"><div _ngcontent-ng-c2998414489 class="modal-header"><h4 _ngcontent-ng-c2998414489 id="dialog-events-name" class="modal-title pull-left">Modal</h4><button _ngcontent-ng-c2998414489 type="button" aria-label="Close" class="close pull-right btn-close"><span _ngcontent-ng-c2998414489 aria-hidden="true" class="visually-hidden">×</span></button></div><div _ngcontent-ng-c2998414489 class="modal-body"> Just another modal <br _ngcontent-ng-c2998414489> Click <b _ngcontent-ng-c2998414489>×</b>, press <code _ngcontent-ng-c2998414489>Esc</code> or click on backdrop to close modal. </div></div></div></div><!----></demo-modal-events><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><div class="example-section"><h3 class="d-flex justify-content-between" id="directive-auto-shown-ex"> Auto shown modal <!----></h3><!----><!----><ng-sample-box><div class="section bd-example"><demo-modal-auto-shown><button type="button" class="btn btn-primary">Render auto-shown modal</button><!----></demo-modal-auto-shown><!----></div><div class="section"><div class="item"><!----></div></div></ng-sample-box></div><!----><!----></examples><!----></tab></div></tabset><add-nav class="add-nav"><div class="add-nav-container"><a href="/ngx-bootstrap/components">components</a><ul><li><a routerlink="." data-anchor="service-section" href="/ngx-bootstrap/components/modals?tab=overview#service-section">Service examples</a></li><li><a routerlink="." data-anchor="service-template" href="/ngx-bootstrap/components/modals?tab=overview#service-template">Template</a></li><li><a routerlink="." data-anchor="service-component" href="/ngx-bootstrap/components/modals?tab=overview#service-component">Component</a></li><li><a routerlink="." data-anchor="service-nested" href="/ngx-bootstrap/components/modals?tab=overview#service-nested">Nested</a></li><li><a routerlink="." data-anchor="scrolling-long-content" href="/ngx-bootstrap/components/modals?tab=overview#scrolling-long-content">Scrolling long content</a></li><li><a routerlink="." data-anchor="service-events" href="/ngx-bootstrap/components/modals?tab=overview#service-events">Events</a></li><li><a routerlink="." data-anchor="modal-ref-events" href="/ngx-bootstrap/components/modals?tab=overview#modal-ref-events">ModalRef Events</a></li><li><a routerlink="." data-anchor="confirm-window" href="/ngx-bootstrap/components/modals?tab=overview#confirm-window">Confirm Window</a></li><li><a routerlink="." data-anchor="service-custom-css-class" href="/ngx-bootstrap/components/modals?tab=overview#service-custom-css-class">Сustom css class</a></li><li><a routerlink="." data-anchor="service-disable-animation" href="/ngx-bootstrap/components/modals?tab=overview#service-disable-animation">Animation option</a></li><li><a routerlink="." data-anchor="service-disable-esc-closing" href="/ngx-bootstrap/components/modals?tab=overview#service-disable-esc-closing">Esc closing option</a></li><li><a routerlink="." data-anchor="modal-with-popups" href="/ngx-bootstrap/components/modals?tab=overview#modal-with-popups">Modal window with tooltip and popover</a></li><li><a routerlink="." data-anchor="service-disable-backdrop" href="/ngx-bootstrap/components/modals?tab=overview#service-disable-backdrop">Backdrop options</a></li><li><a routerlink="." data-anchor="change-class" href="/ngx-bootstrap/components/modals?tab=overview#change-class">Change class</a></li><li><a routerlink="." data-anchor="service-with-interceptor" href="/ngx-bootstrap/components/modals?tab=overview#service-with-interceptor">Close interceptor</a></li><li><a routerlink="." data-anchor="directive-section" href="/ngx-bootstrap/components/modals?tab=overview#directive-section">Directive examples</a></li><li><a routerlink="." data-anchor="directive-static" href="/ngx-bootstrap/components/modals?tab=overview#directive-static">Static modal</a></li><li><a routerlink="." data-anchor="directive-sizes" href="/ngx-bootstrap/components/modals?tab=overview#directive-sizes">Optional sizes</a></li><li><a routerlink="." data-anchor="directive-child" href="/ngx-bootstrap/components/modals?tab=overview#directive-child">Child modal</a></li><li><a routerlink="." data-anchor="directive-nested" href="/ngx-bootstrap/components/modals?tab=overview#directive-nested">Nested modals</a></li><li><a routerlink="." data-anchor="directive-events" href="/ngx-bootstrap/components/modals?tab=overview#directive-events">Modal events</a></li><li><a routerlink="." data-anchor="directive-auto-shown" href="/ngx-bootstrap/components/modals?tab=overview#directive-auto-shown">Auto shown modal</a></li><li><a routerlink="." data-anchor="accessibility" href="/ngx-bootstrap/components/modals?tab=overview#accessibility">Accessibility</a></li><!----></ul><!----></div><!----></add-nav><!----></docs-section></div></div></div></div></div></section><app-footer class="w-full transition-option"><footer><div class="container-width m-auto d-flex justify-content-between align-items-center"><div class="footer-logo"><a routerlink="['']" href="/ngx-bootstrap/components/modals/%5B''%5D"><img alt="ngx-bootstrap" src="assets/images/logos/ngx-bootstrap-logo-red.svg"></a></div><div class="footer-text text-center"><p>© Designed and built by the ng-team at Valor Software with the help of our contributors.</p><p>Code licensed under <a href="https://github.com/valor-software/ngx-bootstrap/blob/development/LICENSE" target="_blank" rel="noopener" class="text-white" style="font-weight: 500;">MIT license conditions</a>, <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener" class="text-white" style="font-weight: 500;"> docs CC BY 3.0</a></p></div><div class="footer-social col-xl-2 d-flex justify-content-between"><a href="https://www.instagram.com/valor.software/" target="_blank" class="img-holder"><img src="assets/images/icons/icon-inst.svg" alt="instagram icon"></a><a href="https://dribbble.com/valor-labs" target="_blank" class="img-holder"><img src="assets/images/icons/icon-dribble.svg" alt="dribble icon"></a><a href="https://twitter.com/ValorSoft" target="_blank" class="img-holder"><img src="assets/images/icons/icon-twiter.svg" alt="twiter icon"></a><a href="https://www.facebook.com/valorsoftware" target="_blank" class="img-holder"><img src="assets/images/icons/icon-facebook.svg" alt="facebook icon"></a></div></div></footer></app-footer></main></demo-section></modal-section><!----></bs-demo>
+<noscript>Please enable JavaScript to view ngx-bootstrap documentation</noscript>
+<!-- Google analytics-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8Z0HMZ2FH4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8Z0HMZ2FH4');
+</script>
+<script async src="assets/js/prettify.min.js"></script>
+<!-- script files will be inserted by html-webpack-plugin -->
+<script src="runtime.bd9b575a47da9c3a.js" type="module"></script><script src="polyfills.d732cd15067a06d1.js" type="module"></script><script src="main.97b0ea0c14510a22.js" type="module"></script>
+
+</body></html>
