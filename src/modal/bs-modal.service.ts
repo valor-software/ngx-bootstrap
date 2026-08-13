@@ -116,7 +116,7 @@ export class BsModalService {
       if (isBackdropEnabled && isBackdropInDOM) {
         this._backdropLoader
           .attach(ModalBackdropComponent)
-          .to('body')
+          .to(this.config.container || 'body')
           .show({ isAnimated: this.config.animated });
         this.backdropRef = this._backdropLoader._componentRef;
       }
@@ -146,7 +146,7 @@ export class BsModalService {
       .provide({ provide: ModalOptions, useValue: this.config })
       .provide({ provide: BsModalRef, useValue: bsModalRef })
       .attach(ModalContainerComponent)
-      .to('body');
+      .to(this.config.container || 'body');
     bsModalRef.hide = () => modalContainerRef.instance?.hide();
     bsModalRef.setClass = (newClass: string) => {
       if (modalContainerRef.instance) {

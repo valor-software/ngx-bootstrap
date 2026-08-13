@@ -54,6 +54,11 @@ export class ModalOptions<T = Record<string, unknown>> {
    * aria-describedby attribute value to set on the modal window
    */
   ariaDescribedby?: string;
+  /**
+   * Container element or selector where the modal should be appended.
+   * Defaults to 'body'.
+   */
+  container?: string | Element;
 }
 
 export const modalConfigDefaults: ModalOptions = {
@@ -65,7 +70,8 @@ export const modalConfigDefaults: ModalOptions = {
   class: '',
   animated: true,
   initialState: {},
-  closeInterceptor: void 0
+  closeInterceptor: void 0,
+  container: 'body'
 };
 
 export const MODAL_CONFIG_DEFAULT_OVERRIDE: InjectionToken<ModalOptions> =
