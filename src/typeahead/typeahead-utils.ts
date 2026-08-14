@@ -61,7 +61,19 @@ function tokenizeWordsAndPhrases(str: string, wordRegexDelimiters: string, phras
 
 // eslint-disable-next-line
 export function getValueFromObject(object: string | Record<string | number, any>, option?: string): string {
-  if (!option || typeof object !== 'object') {
+  if (typeof object !== 'object') {
+    return object.toString();
+  }
+  
+  // If no option specified, try common display field names
+  if (!option) {
+    const commonFields = ['name', 'label', 'title', 'text', 'value', 'display'];
+    for (const field of commonFields) {
+      if (field in object && object[field] != null) {
+        return object[field].toString();
+      }
+    }
+    // Fallback to object.toString() which will show [object Object]
     return object.toString();
   }
 

@@ -237,6 +237,9 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     }
 
     this.checkDelimitersConflict();
+    
+    // Handle initial object value display
+    setTimeout(() => this.handleInitialObjectValue());
   }
 
   @HostListener('input', ['$event'])
@@ -452,6 +455,20 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
       sub.unsubscribe();
     }
     this._typeahead.dispose();
+  }
+
+  protected handleInitialObjectValue(): void {
+    const currentValue = this.ngControl.control?.value;
+    
+    // Check if current value is an object and we have an option field specified
+    if (currentValue && typeof currentValue === 'object' && this.typeaheadOptionField) {
+      const displayValue = getValueFromObject(currentValue, this.typeaheadOptionField);
+      
+      // Update the input element's display value if it's different
+      if (this.element.nativeElement.value !== displayValue) {
+        this.renderer.setProperty(this.element.nativeElement, 'value', displayValue);
+      }
+    }
   }
 
   protected asyncActions(): void {
