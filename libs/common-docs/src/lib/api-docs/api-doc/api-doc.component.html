@@ -37,7 +37,7 @@
                     <div>
                       <span><i>Default value: </i><code>{{ defaultInputValue(input) || '-' }}</code></span>
                       @if (hasConfigProperty(input)) {
-                        <span>&mdash; initialized from {{ configServiceName }} service</span>
+                        <span> &mdash; initialized from {{ configServiceName }} service</span>
                       }
                     </div>
                   }
@@ -69,7 +69,7 @@
     </section>
   }
 
-  @if (apiDocs?.methods?.length && apiDocs?.exportAs) {
+  @if (apiDocs?.methods?.length) {
     <section>
       <h3 id="methods">Methods</h3>
       <div class="table-responsive">

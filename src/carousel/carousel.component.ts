@@ -45,20 +45,20 @@ let _currentId = 1;
     imports: [NgStyle]
 })
 export class CarouselComponent implements AfterViewInit, OnDestroy {
-  /* If `true` — carousel will not cycle continuously and will have hard stops (prevent looping) */
+  /** If `true` — carousel will not cycle continuously and will have hard stops (prevent looping) */
   noWrap = input<boolean>(this._config.noWrap);
-  /*  If `true` — will disable pausing on carousel mouse hover */
+  /**  If `true` — will disable pausing on carousel mouse hover */
   noPause = input<boolean>(this._config.noPause);
-  /*  If `true` — carousel-indicators are visible  */
+  /**  If `true` — carousel-indicators are visible  */
   showIndicators = input<boolean>(this._config.showIndicators);
-  /*  If `true` - autoplay will be stopped on focus */
+  /**  If `true` - autoplay will be stopped on focus */
   pauseOnFocus = input<boolean>(this._config.pauseOnFocus);
-  /* If `true` - carousel indicators indicate slides chunks
+  /** If `true` - carousel indicators indicate slides chunks
      works ONLY if singleSlideOffset = FALSE */
   indicatorsByChunk = input<boolean>(this._config.indicatorsByChunk);
-  /* If value more then 1 — carousel works in multilist mode */
+  /** If value more then 1 — carousel works in multilist mode */
   itemsPerSlide = input<number>(this._config.itemsPerSlide);
-  /* If `true` — carousel shifts by one element. By default carousel shifts by number
+  /** If `true` — carousel shifts by one element. By default carousel shifts by number
      of visible elements (itemsPerSlide field) */
   singleSlideOffset = input<boolean>(this._config.singleSlideOffset);
   /** Turn on/off animation. Animation doesn't work for multilist carousel */
@@ -74,7 +74,7 @@ export class CarouselComponent implements AfterViewInit, OnDestroy {
   // eslint-disable-next-line @angular-eslint/no-input-rename
   activeSlideInput = input<number>(0, { alias: 'activeSlide' });
 
-  /* Index to start display slides from it */
+  /** Index to start display slides from it */
   startFromIndex = input<number>(0);
 
   /**

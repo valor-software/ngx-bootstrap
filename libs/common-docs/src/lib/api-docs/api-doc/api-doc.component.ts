@@ -15,7 +15,7 @@ import { DomSanitizer } from '@angular/platform-browser';
  * The default values of its inputs are looked for in the directive api doc itself, or in the matching property
  * of associated Config service, if any.
  *
- * The config service of a directive NgbFoo is, by convention, named NgbFooConfig.
+ * The config service of FooComponent / FooDirective is, by convention, named FooConfig.
  */
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -45,14 +45,15 @@ export class NgApiDocComponent {
     this.headerAnchor = content.anchor;
     if (content?.title) {
       this.apiDocs = this.docs[content.title];
-      this.configServiceName = `${content.title}Config`;
-      const configApiDocs = this.docs[this.configServiceName];
+      const configApiDocs = this.findConfigService(content.title);
       this.configProperties = {};
       if (configApiDocs) {
-        this.apiDocs?.inputs.forEach(
+        this.configServiceName = configApiDocs.className;
+        this.apiDocs?.inputs?.forEach(
           (input: InputDesc) => {
-            if (this.configProperties && this.configProperties[input.name]) {
-              this.configProperties[input.name] = this.findInputConfigProperty(configApiDocs, input);
+            const configProperty = this.findInputConfigProperty(configApiDocs, input);
+            if (this.configProperties && configProperty) {
+              this.configProperties[input.name] = configProperty;
             }
           }
         );
@@ -86,8 +87,21 @@ export class NgApiDocComponent {
     this.analytics.trackEvent('Source File View', this.apiDocs?.className);
   }
 
-  private findInputConfigProperty(configApiDocs: ClassDesc, input: InputDesc): PropertyDesc {
+  private findInputConfigProperty(configApiDocs: ClassDesc, input: InputDesc): PropertyDesc | undefined {
     return configApiDocs.properties.filter((prop: PropertyDesc) => prop.name === input.name)[0];
+  }
+
+  /**
+   * Looks up the Config service of a directive: `AccordionComponent` is configured by `AccordionConfig`,
+   * so the `Component` / `Directive` suffix has to be dropped before appending `Config`.
+   */
+  private findConfigService(className: string): ClassDesc | undefined {
+    const candidates = [
+      `${className}Config`,
+      `${className.replace(/(Component|Directive)$/, '')}Config`
+    ];
+
+    return candidates.map((name: string) => this.docs[name]).filter(Boolean)[0];
   }
 
   checkSecurApiDocs(): void {

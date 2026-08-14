@@ -8,6 +8,7 @@ import { ConfigModel, PagerModel } from './models';
   providedIn: 'root'
 })
 export class PaginationConfig {
+  /** Default values for the `pagination` component */
   main: Partial<ConfigModel> = {
     itemsPerPage: 10,
     boundaryLinks: false,
@@ -19,6 +20,7 @@ export class PaginationConfig {
     pageBtnClass: '',
     rotate: true
   };
+  /** Default values for the `pager` component */
   pager: PagerModel = {
     itemsPerPage: 15,
     previousText: '« Previous',
