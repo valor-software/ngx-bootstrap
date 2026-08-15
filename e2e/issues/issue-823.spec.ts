@@ -13,18 +13,18 @@ test.describe('Issue #823: Tab ordering with ngIf/dynamic directives', () => {
     // Check that tabs exist and are in some order
     const tabs = page.locator('.nav-item');
     const tabCount = await tabs.count();
-    
-    if (tabCount > 0) {
-      // Tabs should be visible and clickable
-      expect(await tabs.first().isVisible()).toBe(true);
-      
-      // Should be able to click on tabs
-      await tabs.first().click();
-      
-      // Active tab should have active class
-      const activeTab = page.locator('.nav-item.active, .nav-link.active');
-      expect(await activeTab.count()).toBeGreaterThan(0);
-    }
+
+    expect(tabCount).toBeGreaterThan(0);
+
+    // Tabs should be visible and clickable
+    expect(await tabs.first().isVisible()).toBe(true);
+
+    // Should be able to click on tabs
+    await tabs.first().click();
+
+    // Active tab should have active class
+    const activeTab = page.locator('.nav-item.active, .nav-link.active');
+    expect(await activeTab.count()).toBeGreaterThan(0);
   });
 
   test('should maintain tab functionality with ordered tabs', async ({ page }) => {
@@ -79,15 +79,16 @@ test.describe('Issue #823: Tab ordering with ngIf/dynamic directives', () => {
     
     const tabs = page.locator('.nav-link');
     const tabContent = page.locator('.tab-content, .tab-pane');
-    
-    if (await tabs.count() > 0 && await tabContent.count() > 0) {
-      // Click on different tabs and verify content shows
-      for (let i = 0; i < Math.min(await tabs.count(), 3); i++) {
-        await tabs.nth(i).click();
-        
-        // Content should be visible
-        expect(await tabContent.first().isVisible()).toBe(true);
-      }
+
+    expect(await tabs.count()).toBeGreaterThan(0);
+    expect(await tabContent.count()).toBeGreaterThan(0);
+
+    // Click on different tabs and verify content shows
+    for (let i = 0; i < Math.min(await tabs.count(), 3); i++) {
+      await tabs.nth(i).click();
+
+      // Content should be visible
+      expect(await tabContent.first().isVisible()).toBe(true);
     }
   });
 
@@ -100,14 +101,14 @@ test.describe('Issue #823: Tab ordering with ngIf/dynamic directives', () => {
     
     // Basic functionality should work even with conditional rendering
     const tabs = page.locator('.nav-link');
-    if (await tabs.count() > 0) {
-      // Should be able to navigate between tabs
-      await tabs.first().click();
-      
-      // Tab should become active
-      const activeClass = await tabs.first().getAttribute('class');
-      expect(activeClass).toContain('active');
-    }
+    expect(await tabs.count()).toBeGreaterThan(0);
+
+    // Should be able to navigate between tabs
+    await tabs.first().click();
+
+    // Tab should become active
+    const activeClass = await tabs.first().getAttribute('class');
+    expect(activeClass).toContain('active');
   });
 
   test('should maintain accessibility with ordered tabs', async ({ page }) => {
@@ -115,24 +116,24 @@ test.describe('Issue #823: Tab ordering with ngIf/dynamic directives', () => {
     await page.waitForSelector('.nav-tabs');
     
     const tabs = page.locator('.nav-link');
-    
-    if (await tabs.count() > 0) {
-      // Check for proper ARIA attributes
-      const firstTab = tabs.first();
-      
-      // Should have proper role
-      const role = await firstTab.getAttribute('role');
-      expect(role).toBe('tab');
-      
-      // Should have aria-selected
-      const ariaSelected = await firstTab.getAttribute('aria-selected');
-      expect(ariaSelected).toBeTruthy();
-      
-      // Should be focusable
-      await firstTab.focus();
-      const focusedElement = page.locator(':focus');
-      expect(await focusedElement.count()).toBe(1);
-    }
+
+    expect(await tabs.count()).toBeGreaterThan(0);
+
+    // Check for proper ARIA attributes
+    const firstTab = tabs.first();
+
+    // Should have proper role
+    const role = await firstTab.getAttribute('role');
+    expect(role).toBe('tab');
+
+    // Should have aria-selected
+    const ariaSelected = await firstTab.getAttribute('aria-selected');
+    expect(ariaSelected).toBeTruthy();
+
+    // Should be focusable
+    await firstTab.focus();
+    const focusedElement = page.locator(':focus');
+    expect(await focusedElement.count()).toBe(1);
   });
 
   test('should handle keyboard navigation with ordered tabs', async ({ page }) => {
@@ -196,14 +197,14 @@ test.describe('Issue #823: Tab ordering with ngIf/dynamic directives', () => {
     
     // Test basic functionality regardless of layout
     const anyTabs = page.locator('.nav-link');
-    
-    if (await anyTabs.count() > 0) {
-      // Should work in any layout
-      await anyTabs.first().click();
-      
-      // Should have active state
-      const activeTab = page.locator('.nav-link.active');
-      expect(await activeTab.count()).toBe(1);
-    }
+
+    expect(await anyTabs.count()).toBeGreaterThan(0);
+
+    // Should work in any layout
+    await anyTabs.first().click();
+
+    // Should have active state
+    const activeTab = page.locator('.nav-link.active');
+    expect(await activeTab.count()).toBe(1);
   });
 });
