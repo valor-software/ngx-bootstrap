@@ -15,7 +15,7 @@
 
 <!-- Bootstrap 4 options list template -->
 <ng-template #bs4Template>
-  @for (match of matches; track match; let i = $index) {
+  @for (match of matches; track $index; let i = $index) {
     @if (match.isHeader()) {
       <h6 class="dropdown-header">{{ match }}</h6>
     }

@@ -44,7 +44,7 @@ import { BsCalendarLayoutComponent } from './bs-calendar-layout.component';
             @if (options && options.showWeekNumbers) {
               <th></th>
             }
-            @for (weekday of calendar.weekdays; track weekday; let i = $index) {
+            @for (weekday of calendar.weekdays; track $index; let i = $index) {
               <th
                 aria-label="weekday">{{ calendar.weekdays[i] }}
               </th>
@@ -52,7 +52,7 @@ import { BsCalendarLayoutComponent } from './bs-calendar-layout.component';
           </tr>
         </thead>
         <tbody>
-          @for (week of calendar.weeks; track week; let i = $index) {
+          @for (week of calendar.weeks; track $index; let i = $index) {
             <tr>
               @if (options && options.showWeekNumbers) {
                 <td class="week" [class.active-week]="isWeekHovered" >
@@ -67,7 +67,7 @@ import { BsCalendarLayoutComponent } from './bs-calendar-layout.component';
                   }
                 </td>
               }
-              @for (day of week.days; track day) {
+              @for (day of week.days; track day.date.getTime()) {
                 <td role="gridcell">
                   <!-- When we want to show tooltips for dates -->
                   @if (!isiOS && isShowTooltip) {
