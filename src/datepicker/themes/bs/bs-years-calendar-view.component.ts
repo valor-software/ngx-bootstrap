@@ -25,9 +25,9 @@ import { BsCalendarLayoutComponent } from './bs-calendar-layout.component';
     
       <table role="grid" class="years">
         <tbody>
-          @for (row of calendar?.years; track row) {
+          @for (row of calendar?.years; track $index) {
             <tr>
-              @for (year of row; track year) {
+              @for (year of row; track year.date.getTime()) {
                 <td role="gridcell"
                   (click)="viewYear(year)"
                   (mouseenter)="hoverYear(year, true)"
