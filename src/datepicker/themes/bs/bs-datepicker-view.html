@@ -3,66 +3,56 @@
   <div class="bs-datepicker" [ngClass]="containerClass">
     <div class="bs-datepicker-container">
       <!--calendars-->
-      <div class="bs-calendar-container" role="application">
-        @switch (viewMode | async) {
-          <!--days calendar-->
-          @case ('day') {
-            <div class="bs-media-container">
-              @for (calendar of daysCalendar$ | async; track calendar) {
-                <bs-days-calendar-view
-                  [class.bs-datepicker-multiple]="multipleCalendars"
-                  [calendar]="calendar"
-                  [isDisabled]="isDatePickerDisabled"
-                  [options]="options$ | async"
-                  (onNavigate)="navigateTo($event)"
-                  (onViewMode)="setViewMode($event)"
-                  (onHover)="dayHoverHandler($event)"
-                  (onHoverWeek)="weekHoverHandler($event)"
-                  (onSelect)="daySelectHandler($event)">
-                </bs-days-calendar-view>
-              }
-            </div>
-            @if (withTimepicker) {
-              <div class="bs-timepicker-in-datepicker-container">
-                <timepicker #startTP [disabled]="isDatePickerDisabled"></timepicker>
-                @if (isRangePicker) {
-                  <timepicker #endTP [disabled]="isDatePickerDisabled"></timepicker>
-                }
-              </div>
+      <div class="bs-calendar-container d-flex flex-row" role="application" >
+        @for (state of complexCalendar; track state; let idx = $index) {
+          <div class="bs-media-container" >
+            <!--days calendar-->
+            @if (state.mode === 'day') {
+              <bs-days-calendar-view
+                [class.bs-datepicker-multiple]="multipleCalendars"
+                [calendar]="state.calendar"
+                [isDisabled]="isDatePickerDisabled"
+                [options]="options$ | async"
+                (onNavigate)="navigateTo($event, idx)"
+                (onViewMode)="setViewMode($event, idx)"
+                (onHover)="dayHoverHandler($event)"
+                (onHoverWeek)="weekHoverHandler($event)"
+                (onSelect)="daySelectHandler($event, idx)">
+              </bs-days-calendar-view>
             }
-          }
-          <!--months calendar-->
-          @case ('month') {
-            <div class="bs-media-container">
-              @for (calendar of monthsCalendar | async; track calendar) {
-                <bs-month-calendar-view
-                  [class.bs-datepicker-multiple]="multipleCalendars"
-                  [calendar]="calendar"
-                  (onNavigate)="navigateTo($event)"
-                  (onViewMode)="setViewMode($event)"
-                  (onHover)="monthHoverHandler($event)"
-                  (onSelect)="monthSelectHandler($event)">
-                </bs-month-calendar-view>
-              }
-            </div>
-          }
-          <!--years calendar-->
-          @case ('year') {
-            <div class="bs-media-container">
-              @for (calendar of yearsCalendar | async; track calendar) {
-                <bs-years-calendar-view
-                  [class.bs-datepicker-multiple]="multipleCalendars"
-                  [calendar]="calendar"
-                  (onNavigate)="navigateTo($event)"
-                  (onViewMode)="setViewMode($event)"
-                  (onHover)="yearHoverHandler($event)"
-                  (onSelect)="yearSelectHandler($event)">
-                </bs-years-calendar-view>
-              }
-            </div>
-          }
+            <!--months calendar-->
+            @if (state.mode === 'month') {
+              <bs-month-calendar-view
+                [class.bs-datepicker-multiple]="multipleCalendars"
+                [calendar]="state.calendar"
+                (onNavigate)="navigateTo($event, idx)"
+                (onViewMode)="setViewMode($event, idx)"
+                (onHover)="monthHoverHandler($event)"
+                (onSelect)="monthSelectHandler($event, idx)">
+              </bs-month-calendar-view>
+            }
+            <!--years calendar-->
+            @if (state.mode === 'year') {
+              <bs-years-calendar-view
+                [class.bs-datepicker-multiple]="multipleCalendars"
+                [calendar]="state.calendar"
+                (onNavigate)="navigateTo($event, idx)"
+                (onViewMode)="setViewMode($event, idx)"
+                (onHover)="yearHoverHandler($event)"
+                (onSelect)="yearSelectHandler($event, idx)">
+              </bs-years-calendar-view>
+            }
+          </div>
         }
       </div>
+      @if (withTimepicker) {
+        <div class="bs-timepicker-in-datepicker-container d-flex justify-content-around">
+          <timepicker #startTP [disabled]="isDatePickerDisabled"></timepicker>
+          @if (isRangePicker) {
+            <timepicker #endTP [disabled]="isDatePickerDisabled"></timepicker>
+          }
+        </div>
+      }
       <!--applycancel buttons-->
       @if (false) {
         <div class="bs-datepicker-buttons">

@@ -1,5 +1,5 @@
 // Todo: remove eslint-disable
-/* eslint-disable @typescript-eslint/ban-ts-comment,@typescript-eslint/no-explicit-any */
+ 
 import { BasePo } from './base.po';
 import { expect } from '@playwright/test';
 
