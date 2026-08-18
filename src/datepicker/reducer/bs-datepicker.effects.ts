@@ -11,6 +11,7 @@ import {
   BsDatepickerViewMode,
   BsNavigationEvent,
   CellHoverEvent,
+  ComplexCalendarViewModel,
   DatepickerDateCustomClasses,
   DatepickerDateTooltipText,
   DatepickerRenderOptions,
@@ -46,12 +47,12 @@ export class BsDatepickerEffects {
 
   /** setters */
 
-  setValue(value?: Date): void {
-    this._store?.dispatch(this._actions.select(value));
+  setValue(value?: Date, source?: number): void {
+    this._store?.dispatch(this._actions.select(value, source));
   }
 
-  setRangeValue(value?: (Date|undefined)[] | undefined): void {
-    this._store?.dispatch(this._actions.selectRange(value));
+  setRangeValue(value?: (Date|undefined)[] | undefined, source?: number): void {
+    this._store?.dispatch(this._actions.selectRange(value, source));
   }
 
   setMinDate(value?: Date): BsDatepickerEffects {
@@ -116,6 +117,7 @@ export class BsDatepickerEffects {
       return this;
     }
 
+
     container.selectedTime = this._store.select(state => state.selectedTime)
       .pipe(filter(times => !!times));
 
@@ -142,17 +144,69 @@ export class BsDatepickerEffects {
         })
       ));
 
+    this._subs.push(
+      combineLatest([
+        this._store.select(state => state.viewStates?.map(state => state.mode)),
+        this._store.select(state => state.flaggedMonths),
+        this._store.select(state => state.flaggedMonthsCalendar),
+        this._store.select(state => state.yearsCalendarFlagged),
+      ]).pipe(map(([modes, days, months, years])  => {
+        if (modes == null) {
+          return undefined;
+        }
+        const calendars: ComplexCalendarViewModel[] = [];
+        for(let idx = 0; idx < modes.length; idx++) {
+          const flaggedMonth = days != null && days.length > idx ? days[idx] : undefined;
+          const flaggedMonthsCalendar = months != null && months.length > idx ? months[idx] : undefined;
+          const yearsCalendarFlagged = years != null && years.length > idx ? years[idx] : undefined;
+          let complex: ComplexCalendarViewModel | undefined;
+          switch (modes[idx]) {
+              case 'day':
+                complex = flaggedMonth != null ? { mode: 'day', calendar: flaggedMonth } : undefined;
+              break;
+              case 'month':
+                complex = flaggedMonthsCalendar != null ? { mode: 'month', calendar: flaggedMonthsCalendar } : undefined;
+              break;
+              case 'year':
+                complex = yearsCalendarFlagged != null ? { mode: 'year', calendar: yearsCalendarFlagged } : undefined;
+              break;
+          }
+          if (complex) {
+            calendars[idx] = complex;
+          }
+        }
+        return calendars;
+      })
+      ).subscribe(complex => {
+        if(complex == null){
+          return;
+        }
+        if ((container.complexCalendar?? []).length != complex.length) {
+          container.complexCalendar = new Array(complex.length);
+        }
+        complex.forEach((vm, idx) => {
+          if (container.complexCalendar![idx] == null) {
+            container.complexCalendar![idx] = vm;
+          } else {
+            const act = container.complexCalendar![idx];
+            act.mode = vm.mode;
+            act.calendar = vm.calendar;
+          }
+        })
+      })
+    );
     return this;
   }
 
+
   /** event handlers */
   setEventHandlers(container: BsDatepickerAbstractComponent): BsDatepickerEffects {
-    container.setViewMode = (event: BsDatepickerViewMode): void => {
-      this._store?.dispatch(this._actions.changeViewMode(event));
+    container.setViewMode = (event: BsDatepickerViewMode, source?: number): void => {
+      this._store?.dispatch(this._actions.changeViewMode(event, source));
     };
 
-    container.navigateTo = (event: BsNavigationEvent): void => {
-      this._store?.dispatch(this._actions.navigateStep(event.step));
+    container.navigateTo = (event: BsNavigationEvent, source: number): void => {
+      this._store?.dispatch(this._actions.navigateStep(event.step, source));
     };
 
     container.dayHoverHandler = (event: CellHoverEvent): void => {

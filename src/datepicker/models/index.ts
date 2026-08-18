@@ -11,6 +11,7 @@ export interface NavigationViewModel {
   hideRightArrow: boolean;
   disableLeftArrow: boolean;
   disableRightArrow: boolean;
+  unlinkedCalendars: boolean;
 }
 
 export interface CalendarCellViewModel {
@@ -51,6 +52,8 @@ export interface DaysCalendarViewModel extends NavigationViewModel {
   weekNumbers: string[];
   weekdays: string[];
 }
+
+export type ComplexCalendarViewModel = { mode: 'day', calendar: DaysCalendarViewModel } | { mode: 'month', calendar: MonthsCalendarViewModel} | { mode: 'year', calendar: YearsCalendarViewModel};
 
 /** *************** */
 // months calendar

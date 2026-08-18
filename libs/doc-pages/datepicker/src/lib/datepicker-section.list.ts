@@ -53,6 +53,7 @@ import { DemoDatepickerPreventChangeToNextMonthComponent } from './demos/prevent
 import { DemoDatepickerWithTimepickerComponent } from './demos/with-timepicker/with-timepicker';
 import { DatepickerCloseBehaviorComponent } from './demos/closeBehaviour/datepicker-close-behavior';
 import { KeepDatesOutOfRulesComponent } from './demos/keep-dates-out-of-rules/keep-dates-out-of-rules.component';
+import { UnlinkedCalendarsComponent } from './demos/unlinked-calendar-views/unlinked-calendar-views.component';
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -478,6 +479,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/keep-dates-out-of-rules/keep-dates-out-of-rules.component.html'),
         description: `<p>If you use datepicker with rules (minDate, maxDate) you can set config property <code>keepDatesOutOfRules</code> to true to avoid overwriting invalid dates. Default value is false.</p>`,
         outlet: KeepDatesOutOfRulesComponent
+      },
+      {
+        title: "Unlinked calendars",
+        anchor: 'unlinked-calendar-views',
+        component: require('!!raw-loader!./demos/unlinked-calendar-views/unlinked-calendar-views.component'),
+        html: require('!!raw-loader!./demos/unlinked-calendar-views/unlinked-calendar-views.component.html'),
+        description: `<p>If you use daterangepicker and don't want the calendars to move together you can set config property <code>unlinkedCalendars</code> to true. Default value is false.</p>`,
+        outlet: UnlinkedCalendarsComponent
       }
     ]
   },
@@ -736,6 +745,11 @@ export const demoComponentContent: ContentSection[] = [
         title: "Don't overwrite dates out of rule",
         anchor: 'keep-dates-out-of-rules',
         outlet: KeepDatesOutOfRulesComponent
+      },
+      {
+        title: "Unlinked calendars",
+        anchor: 'unlinked-calendar-views',
+        outlet: UnlinkedCalendarsComponent
       },
     ]
   }

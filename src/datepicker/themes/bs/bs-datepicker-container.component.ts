@@ -187,11 +187,11 @@ export class BsDatepickerContainerComponent
     this._positionService.enable();
   }
 
-  override timeSelectHandler(date: Date, index: number) {
-    this._store.dispatch(this._actions.selectTime(date, index));
+  override timeSelectHandler(date: Date, index: number, source?: number) {
+    this._store.dispatch(this._actions.selectTime(date, index, source));
   }
 
-  override daySelectHandler(day: DayViewModel): void {
+  override daySelectHandler(day: DayViewModel, source?: number): void {
     if (!day) {
       return;
     }
@@ -202,10 +202,10 @@ export class BsDatepickerContainerComponent
       return;
     }
 
-    this._store.dispatch(this._actions.select(day.date));
+    this._store.dispatch(this._actions.select(day.date, source));
   }
 
-  override monthSelectHandler(day: CalendarCellViewModel): void {
+  override monthSelectHandler(day: CalendarCellViewModel, source?: number): void {
     if (!day || day.isDisabled) {
       return;
     }
@@ -217,11 +217,11 @@ export class BsDatepickerContainerComponent
           year: getFullYear(day.date)
         },
         viewMode: 'day'
-      })
+      }, source)
     );
   }
 
-  override yearSelectHandler(day: CalendarCellViewModel): void {
+  override yearSelectHandler(day: CalendarCellViewModel, source?: number): void {
     if (!day || day.isDisabled) {
       return;
     }
@@ -232,7 +232,7 @@ export class BsDatepickerContainerComponent
           year: getFullYear(day.date)
         },
         viewMode: 'month'
-      })
+      }, source)
     );
   }
 

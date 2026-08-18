@@ -195,4 +195,8 @@ export class BsDatepickerConfig implements DatepickerRenderOptions {
    * Allows keep invalid dates in range. Can be used with minDate, maxDate
    * */
   keepDatesOutOfRules = false;
+  /**
+   * If true calendar views can be changed separately (dateRangePicker only)
+   */
+  unlinkedCalendars = false;
 }

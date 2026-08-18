@@ -7,7 +7,7 @@ import {
   CellHoverEvent,
   DatepickerRenderOptions,
   DatepickerDateCustomClasses,
-  DatepickerDateTooltipText
+  DatepickerDateTooltipText,
 } from '../models';
 
 @Injectable({providedIn: 'platform'})
@@ -47,38 +47,38 @@ export class BsDatepickerActions {
     return { type: BsDatepickerActions.FLAG };
   }
 
-  select(date?: Date): Action {
+  select(date?: Date, source?: number): Action {
     return {
       type: BsDatepickerActions.SELECT,
-      payload: date
+      payload: { date, source }
     };
   }
 
-  selectTime(date: Date, index: number): Action {
+  selectTime(date: Date, index: number, source?: number): Action {
     return  {
       type: BsDatepickerActions.SELECT_TIME,
-      payload: { date, index },
+      payload: { date, index, source },
     };
   }
 
-  changeViewMode(event: BsDatepickerViewMode): Action {
+  changeViewMode(event: BsDatepickerViewMode, source?: number): Action {
     return {
       type: BsDatepickerActions.CHANGE_VIEWMODE,
-      payload: event
+      payload: { event, source }
     };
   }
 
-  navigateTo(event: BsViewNavigationEvent): Action {
+  navigateTo(event: BsViewNavigationEvent, source?: number): Action {
     return {
       type: BsDatepickerActions.NAVIGATE_TO,
-      payload: event
+      payload: { event, source }
     };
   }
 
-  navigateStep(step?: TimeUnit): Action {
+  navigateStep(step?: TimeUnit, source?: number): Action {
     return {
       type: BsDatepickerActions.NAVIGATE_OFFSET,
-      payload: step
+      payload: { step, source }
     };
   }
 
@@ -90,10 +90,10 @@ export class BsDatepickerActions {
   }
 
   // date range picker
-  selectRange(value?: (Date|undefined)[] | undefined): Action {
+  selectRange(value?: (Date|undefined)[] | undefined, source?: number): Action {
     return {
       type: BsDatepickerActions.SELECT_RANGE,
-      payload: value
+      payload: { value, source }
     };
   }
 

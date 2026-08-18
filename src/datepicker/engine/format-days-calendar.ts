@@ -38,7 +38,8 @@ export function formatDaysCalendar(daysCalendar: DaysCalendarModel,
     hideLeftArrow: false,
     hideRightArrow: false,
     disableLeftArrow: false,
-    disableRightArrow: false
+    disableRightArrow: false,
+    unlinkedCalendars: false,
   };
 }
 
