@@ -3,7 +3,7 @@ import { getOffsetRectRelativeToArbitraryNode } from './getOffsetRectRelativeToA
 import { getScroll } from './getScroll';
 import { Offsets } from '../models';
 
-export function getViewportOffsetRectRelativeToArtbitraryNode(element: HTMLElement, excludeScroll = false): Offsets {
+export function getViewportOffsetRectRelativeToArbitraryNode(element: HTMLElement, excludeScroll = false): Offsets {
   const html = element.ownerDocument.documentElement;
   const relativeOffset = getOffsetRectRelativeToArbitraryNode(element, html);
   const width = Math.max(html.clientWidth, window.innerWidth || 0);
