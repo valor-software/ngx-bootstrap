@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="pr-3 pb-3 pe-3 w-auto">
+    <bs-daterangepicker-inline
+      (bsValueBeginChange)="valueBeginChange($event)"
+      (bsValueChange)="valueChange($event)"
+    ></bs-daterangepicker-inline>
+  </div>
+  <div class="mb-3">
+    <pre class="card card-block card-header" *ngIf="startDate">Start date is {{startDate | date}}</pre>
+    <pre class="card card-block card-header" *ngIf="endDate">End date is {{endDate | date}}</pre>
+  </div>
+</div>
+

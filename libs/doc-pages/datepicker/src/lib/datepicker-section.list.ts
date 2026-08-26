@@ -53,6 +53,7 @@ import { DemoDatepickerPreventChangeToNextMonthComponent } from './demos/prevent
 import { DemoDatepickerWithTimepickerComponent } from './demos/with-timepicker/with-timepicker';
 import { DatepickerCloseBehaviorComponent } from './demos/closeBehaviour/datepicker-close-behavior';
 import { KeepDatesOutOfRulesComponent } from './demos/keep-dates-out-of-rules/keep-dates-out-of-rules.component';
+import { InlineRangeBeginSelectionEventComponent } from "./demos/inline-range-begin-selection-event/inline-range-begin-selection-event";
 
 export const demoComponentContent: ContentSection[] = [
   {
@@ -478,6 +479,14 @@ export const demoComponentContent: ContentSection[] = [
         html: require('!!raw-loader!./demos/keep-dates-out-of-rules/keep-dates-out-of-rules.component.html'),
         description: `<p>If you use datepicker with rules (minDate, maxDate) you can set config property <code>keepDatesOutOfRules</code> to true to avoid overwriting invalid dates. Default value is false.</p>`,
         outlet: KeepDatesOutOfRulesComponent
+      },
+      {
+        title: "Range begin selection event in inline date range picker",
+        anchor: 'inline-range-begin-selection-event',
+        component: require('!!raw-loader!./demos/inline-range-begin-selection-event/inline-range-begin-selection-event'),
+        html: require('!!raw-loader!./demos/inline-range-begin-selection-event/inline-range-begin-selection-event.html'),
+        description: `<p>You can subscribe to the inline date range picker's begin value change event (<code>bsValueBeginChange</code>) to be notified when a user begins selecting a range.</p>`,
+        outlet: InlineRangeBeginSelectionEventComponent
       }
     ]
   },

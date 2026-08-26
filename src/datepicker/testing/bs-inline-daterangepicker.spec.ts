@@ -107,4 +107,19 @@ describe('daterangepicker inline:', () => {
         expect(view[1].getMinutes()).toEqual(ranges[1].value[1].getMinutes());
       });
   });
+
+  it('should emit an event when the first date in a range is selected', () => {
+    const datepicker = getDaterangepickerInlineDirective(fixture);
+    const datepickerContainerInstance = getDatepickerInlineContainer(datepicker);
+    fixture.detectChanges();
+
+    const valueBeginChangeSpy = jest.spyOn(datepicker.bsValueBeginChange, "emit");
+
+    const currentDate = new Date();
+    const range = [currentDate, undefined];
+    datepickerContainerInstance.valueChange.emit(range);
+    fixture.detectChanges();
+
+    expect(valueBeginChangeSpy).toHaveBeenCalledTimes(1);
+  });
 });
