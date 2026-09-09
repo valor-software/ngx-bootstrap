@@ -106,7 +106,7 @@
     <!-- meridian -->
     @if (showMeridian()) {
       <td>
-        <button type="button" class="btn btn-default text-center"
+        <button type="button" class="btn btn-secondary text-center"
                 [disabled]="!isEditable || !canToggleMeridian"
                 [class.disabled]="!isEditable || !canToggleMeridian"
                 (click)="toggleMeridian()"
