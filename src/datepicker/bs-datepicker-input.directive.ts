@@ -75,7 +75,7 @@ export class BsDatepickerInputDirective implements ControlValueAccessor, Validat
   onChange(event: Event) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     this.writeValue((event.target as any).value);
-    this._onChange(this._value);
+    this._onChange(this._value ?? null);
     if (this._picker._config.returnFocusToInput) {
       this._renderer.selectRootElement(this._elRef.nativeElement).focus();
     }
@@ -102,7 +102,7 @@ export class BsDatepickerInputDirective implements ControlValueAccessor, Validat
       this._setInputValue(value);
       if (this._value !== value) {
         this._value = value;
-        this._onChange(value);
+        this._onChange(value ?? null);
         this._onTouched();
       }
       this.changeDetection.markForCheck();
