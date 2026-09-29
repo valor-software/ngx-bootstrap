@@ -399,7 +399,8 @@ function flagReducer(state: BsDatepickerState): BsDatepickerState {
           datesEnabled: state.datesEnabled,
           selectedRange: state.selectedRange,
           displayMonths,
-          monthIndex
+          monthIndex,
+          minMode: state.minMode
         })
     );
 
@@ -419,7 +420,8 @@ function flagReducer(state: BsDatepickerState): BsDatepickerState {
           datesEnabled: state.datesEnabled,
           selectedRange: state.selectedRange,
           displayMonths,
-          yearIndex
+          yearIndex,
+          minMode: state.minMode
         })
     );
 

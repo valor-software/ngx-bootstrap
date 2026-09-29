@@ -1,5 +1,6 @@
 import { isSameMonth, shiftDate } from 'ngx-bootstrap/chronos';
 import {
+  BsDatepickerViewMode,
   MonthsCalendarViewModel,
   CalendarCellViewModel
 } from '../models';
@@ -16,6 +17,7 @@ export interface FlagMonthCalendarOptions {
   datesEnabled: Date[];
   displayMonths: number;
   monthIndex: number;
+  minMode: BsDatepickerViewMode;
 }
 
 export function flagMonthsCalendar(
@@ -27,9 +29,11 @@ export function flagMonthsCalendar(
       months.forEach((month: CalendarCellViewModel, monthIndex: number) => {
         let isSelected: boolean;
         const isHovered = isSameMonth(month.date, options.hoveredMonth);
+        // a single disabled date only disables the whole month when months are what the user picks,
+        // otherwise the month cell is just navigation to a day view that still has selectable days
         const isDisabled =
           options.isDisabled ||
-          isDisabledDate(month.date, options.datesDisabled) ||
+          (options.minMode === 'month' && isDisabledDate(month.date, options.datesDisabled)) ||
           isEnabledDate(month.date, options.datesEnabled, 'month') ||
           isMonthDisabled(month.date, options.minDate, options.maxDate);
 
