@@ -1,7 +1,8 @@
 import { bsDatepickerReducer } from '../reducer/bs-datepicker.reducer';
 import { BsDatepickerActions } from '../reducer/bs-datepicker.actions';
 import { Action } from 'ngx-bootstrap/mini-ngrx';
-import { initialDatepickerState } from '../reducer/bs-datepicker.state';
+import { BsDatepickerState, initialDatepickerState } from '../reducer/bs-datepicker.state';
+import { BsDatepickerViewMode } from '../models';
 import { mockFlaggedMonths } from './flaggedMonthsMock';
 
 describe('BsDatepickerReducer.', () => {
@@ -83,5 +84,49 @@ describe('BsDatepickerReducer.', () => {
     const reducer = bsDatepickerReducer(state, action);
     expect(reducer.selectedTime.length).toEqual(2);
     expect(reducer.selectedTime[1].getTime()).toEqual(1630298176000);
+  });
+
+  describe('datesDisabled in month and year views', () => {
+    function disabledCells(mode: BsDatepickerViewMode, extra: Partial<BsDatepickerState>): string[] {
+      let state: BsDatepickerState = Object.assign({}, initialDatepickerState, extra, {
+        view: { date: new Date(2023, 4, 15), mode }
+      });
+      [BsDatepickerActions.CALCULATE, BsDatepickerActions.FORMAT, BsDatepickerActions.FLAG]
+        .forEach(type => state = bsDatepickerReducer(state, { type }));
+
+      const cells = mode === 'month'
+        ? state.flaggedMonthsCalendar?.[0].months
+        : state.yearsCalendarFlagged?.[0].years;
+
+      return (cells || []).flat().filter(cell => cell.isDisabled).map(cell => cell.label);
+    }
+
+    it('should not disable a month when only its first day is disabled and days are selectable', () => {
+      expect(disabledCells('month', { datesDisabled: [new Date(2023, 4, 1)] })).toEqual([]);
+    });
+
+    it('should disable a month from datesDisabled when minMode is "month"', () => {
+      expect(disabledCells('month', { minMode: 'month', datesDisabled: [new Date(2023, 4, 1)] })).toEqual(['May']);
+    });
+
+    it('should keep disabling months without enabled dates when days are selectable', () => {
+      const disabled = disabledCells('month', { datesEnabled: [new Date(2023, 4, 1), new Date(2023, 4, 20)] });
+
+      expect(disabled.length).toEqual(11);
+      expect(disabled).not.toContain('May');
+    });
+
+    // year cells are dated on the view date's day of each year, so the disabled date sits on a year cell
+    it('should not disable a year when one of its days is disabled and days are selectable', () => {
+      expect(disabledCells('year', { datesDisabled: [new Date(2023, 4, 15)] })).toEqual([]);
+    });
+
+    it('should not disable a year when one of its months is disabled and minMode is "month"', () => {
+      expect(disabledCells('year', { minMode: 'month', datesDisabled: [new Date(2023, 4, 15)] })).toEqual([]);
+    });
+
+    it('should disable a year from datesDisabled when minMode is "year"', () => {
+      expect(disabledCells('year', { minMode: 'year', datesDisabled: [new Date(2023, 4, 15)] })).toEqual(['2023']);
+    });
   });
 });

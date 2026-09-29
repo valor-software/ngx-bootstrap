@@ -1,5 +1,5 @@
 import { isSameYear, shiftDate } from 'ngx-bootstrap/chronos';
-import { YearsCalendarViewModel, CalendarCellViewModel } from '../models';
+import { BsDatepickerViewMode, YearsCalendarViewModel, CalendarCellViewModel } from '../models';
 import { isDisabledDate, isEnabledDate, isYearDisabled } from '../utils/bs-calendar-utils';
 
 export interface FlagYearsCalendarOptions {
@@ -13,6 +13,7 @@ export interface FlagYearsCalendarOptions {
   datesEnabled: Date[];
   displayMonths: number;
   yearIndex: number;
+  minMode: BsDatepickerViewMode;
 }
 
 export function flagYearsCalendar(
@@ -24,9 +25,10 @@ export function flagYearsCalendar(
       years.forEach((year: CalendarCellViewModel, yearIndex: number) => {
         let isSelected: boolean;
         const isHovered = isSameYear(year.date, options.hoveredYear);
+        // a single disabled date only disables the whole year when years are what the user picks
         const isDisabled =
           options.isDisabled ||
-          isDisabledDate(year.date, options.datesDisabled, 'year') ||
+          (options.minMode === 'year' && isDisabledDate(year.date, options.datesDisabled, 'year')) ||
           isEnabledDate(year.date, options.datesEnabled, 'year') ||
           isYearDisabled(year.date, options.minDate, options.maxDate);
 
