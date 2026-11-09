@@ -238,6 +238,23 @@ describe('Directive: Typeahead', () => {
     }));
   });
 
+  it('preserves the input when a suggestion is clicked after disabling', fakeAsync(() => {
+    inputElement.value = 'Al';
+    dispatchTouchEvent(inputElement, 'input');
+    tick();
+    fixture.detectChanges();
+    const option = (fixture.nativeElement as HTMLElement).querySelector<HTMLButtonElement>('[role="option"]');
+    const selected = jest.spyOn(directive.typeaheadOnSelect, 'emit');
+    expect(option).not.toBeNull();
+
+    inputElement.disabled = true;
+    option?.click();
+    tick();
+
+    expect(component.selectedState).toBe('Al');
+    expect(selected).not.toHaveBeenCalled();
+  }));
+
   describe('changeModel tests', () => {
     it('should set the selectedState value', () => {
       directive.changeModel(new TypeaheadMatch({ id: 1, name: 'Alabama', region: 'South' }, 'Alabama'));

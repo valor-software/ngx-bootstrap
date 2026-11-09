@@ -320,6 +320,11 @@ export class TypeaheadContainerComponent implements OnDestroy {
       event.stopPropagation();
       event.preventDefault();
     }
+    if (this.parent?.isDisabled) {
+      this.parent.hide();
+      return false;
+    }
+
     this.parent?.changeModel(value);
     if (value) {
       setTimeout(() => this.parent?.typeaheadOnSelect.emit(value), 0);

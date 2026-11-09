@@ -17,3 +17,4 @@ Main success scenario:
 Variations:
 -----------
 2*. User scrolls to Reactive forms sub-menu
+3*. If the form control is disabled while suggestions are visible, activating a suggestion dismisses the list without changing the form value.
