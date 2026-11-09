@@ -211,6 +211,11 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
     });
   }
 
+  /** Whether the input or its Angular form control is disabled. */
+  get isDisabled(): boolean {
+    return this.ngControl.disabled === true || this.element.nativeElement.matches(':disabled');
+  }
+
   get matches(): TypeaheadMatch[] {
     return this._matches;
   }
@@ -354,7 +359,7 @@ export class TypeaheadDirective implements OnInit, OnDestroy {
   }
 
   changeModel(match?: TypeaheadMatch): void {
-    if (!match) {
+    if (!match || this.isDisabled) {
       return;
     }
     let valueStr: string;
