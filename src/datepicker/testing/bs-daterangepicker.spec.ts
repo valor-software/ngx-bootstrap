@@ -1,5 +1,6 @@
 import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { BsDaterangepickerDirective } from '../bs-daterangepicker.component';
+import { BsDaterangepickerInputDirective } from '../bs-daterangepicker-input.directive';
 import { BsDatepickerModule } from '../bs-datepicker.module';
 import { BsDaterangepickerConfig } from '../bs-daterangepicker.config';
 import { BsDaterangepickerContainerComponent } from '../themes/bs/bs-daterangepicker-container.component';
@@ -65,6 +66,17 @@ describe('daterangepicker:', () => {
         fixture = TestBed.createComponent(TestComponent);
         fixture.detectChanges();
     });
+
+  it('should close the open picker when the input is disabled', () => {
+    const picker = showDatepicker(fixture);
+    const input = fixture.debugElement.query(By.directive(BsDaterangepickerInputDirective)).injector.get(BsDaterangepickerInputDirective);
+    expect(picker.isOpen).toBe(true);
+
+    input.setDisabledState(true);
+    fixture.detectChanges();
+
+    expect(picker.isOpen).toBe(false);
+  });
 
   it('should display timepicker when withTimepicker is true', () => {
     const directive = getDaterangepickerDirective(fixture);
