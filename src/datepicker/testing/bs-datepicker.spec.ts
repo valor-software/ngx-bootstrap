@@ -1,10 +1,12 @@
 import { Component, Renderer2, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { dispatchKeyboardEvent } from '@ngneat/spectator';
 import { registerEscClick } from 'ngx-bootstrap/utils';
 import { BsDatepickerDirective } from '../bs-datepicker.component';
 import { BsDatepickerConfig } from '../bs-datepicker.config';
 
+import { BsDatepickerInputDirective } from '../bs-datepicker-input.directive';
 import { BsDatepickerModule } from '../bs-datepicker.module';
 import { BsDatepickerViewMode, CalendarCellViewModel, WeekViewModel } from '../models';
 import { BsDatepickerContainerComponent } from '../themes/bs/bs-datepicker-container.component';
@@ -72,6 +74,17 @@ describe('datepicker:', () => {
     tick(10);
     expect(getDatepickerContainer(datepicker)).toBeDefined();
   }));
+
+  it('should close the open picker when the input is disabled', () => {
+    const picker = showDatepicker(fixture);
+    const input = fixture.debugElement.query(By.directive(BsDatepickerInputDirective)).injector.get(BsDatepickerInputDirective);
+    expect(picker.isOpen).toBe(true);
+
+    input.setDisabledState(true);
+    fixture.detectChanges();
+
+    expect(picker.isOpen).toBe(false);
+  });
 
   it('should hide datepicker on hide', () => {
     const datepicker = hideDatepicker(fixture);

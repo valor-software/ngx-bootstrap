@@ -200,6 +200,9 @@ export class BsDatepickerInputDirective implements ControlValueAccessor, Validat
     this._picker.isDisabled = isDisabled;
     if (isDisabled) {
       this._renderer.setAttribute(this._elRef.nativeElement, 'disabled', 'disabled');
+      if (this._picker.isOpen) {
+        this._picker.hide();
+      }
 
       return;
     }
