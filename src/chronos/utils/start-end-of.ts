@@ -1,15 +1,16 @@
-import { TimeUnit, UnitOfTime } from '../types';
-import {
-  setDate, setFullDate, setHours, setMilliseconds, setMinutes, setMonth, setSeconds,
-  shiftDate
-} from './date-setters';
+import { UnitOfTime } from '../types';
+import { setDate, setHours, setMonth, setTime } from './date-setters';
 import { cloneDate } from '../create/clone';
 import { setISODayOfWeek, setLocaleDayOfWeek } from '../units/day-of-week';
-import { getMonth } from './date-getters';
+import { getMilliseconds, getMinutes, getMonth, getSeconds, getTime } from './date-getters';
 import { add, subtract } from '../moment/add-subtract';
 
 // units that are added as an exact amount of milliseconds
 const timeUnits: UnitOfTime[] = ['hours', 'minutes', 'seconds', 'milliseconds'];
+
+function rewind(date: Date, milliseconds: number): void {
+  setTime(date, getTime(date) - milliseconds);
+}
 
 export function startOf(date: Date, unit: UnitOfTime, isUTC?: boolean): Date {
   const _date = cloneDate(date);
@@ -39,15 +40,17 @@ export function startOf(date: Date, unit: UnitOfTime, isUTC?: boolean): Date {
     case 'day':
     case 'date':
       setHours(_date, 0, isUTC);
+    // below an hour the elapsed part is subtracted instead of set to 0: a setter resolves the wall clock
+    // time again, and inside the hour repeated when DST ends that jumps back to its first pass
     /* falls through */
     case 'hours':
-      setMinutes(_date, 0, isUTC);
+      rewind(_date, getMinutes(_date, isUTC) * 60000);
     /* falls through */
     case 'minutes':
-      setSeconds(_date, 0, isUTC);
+      rewind(_date, getSeconds(_date, isUTC) * 1000);
     /* falls through */
     case 'seconds':
-      setMilliseconds(_date, 0, isUTC);
+      rewind(_date, getMilliseconds(_date, isUTC));
   }
 
   // quarters are also special
