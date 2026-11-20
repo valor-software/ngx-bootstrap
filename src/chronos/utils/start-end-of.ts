@@ -8,8 +8,22 @@ import { setISODayOfWeek, setLocaleDayOfWeek } from '../units/day-of-week';
 import { getMonth } from './date-getters';
 import { add, subtract } from '../moment/add-subtract';
 
+// units that are added as an exact amount of milliseconds
+const timeUnits: UnitOfTime[] = ['hours', 'minutes', 'seconds', 'milliseconds'];
+
 export function startOf(date: Date, unit: UnitOfTime, isUTC?: boolean): Date {
   const _date = cloneDate(date);
+
+  // weeks are a special case
+  // the weekday is shifted before the time is stripped: on a day whose midnight is skipped by DST
+  // the stripped time is 01:00, and shifting it afterwards would carry 01:00 to the first day of the week
+  if (unit === 'week') {
+    setLocaleDayOfWeek(_date, 0, {isUTC});
+  }
+  if (unit === 'isoWeek') {
+    setISODayOfWeek(_date, 1);
+  }
+
   // the following switch intentionally omits break keywords
   // to utilize falling through the cases.
   switch (unit) {
@@ -36,14 +50,6 @@ export function startOf(date: Date, unit: UnitOfTime, isUTC?: boolean): Date {
       setMilliseconds(_date, 0, isUTC);
   }
 
-  // weeks are a special case
-  if (unit === 'week') {
-    setLocaleDayOfWeek(_date, 0, {isUTC});
-  }
-  if (unit === 'isoWeek') {
-    setISODayOfWeek(_date, 1);
-  }
-
   // quarters are also special
   if (unit === 'quarter') {
     setMonth(_date, Math.floor(getMonth(_date, isUTC) / 3) * 3, isUTC);
@@ -61,7 +67,10 @@ export function endOf(date: Date, unit: UnitOfTime, isUTC?: boolean): Date {
 
   const start = startOf(date, _unit, isUTC);
   const _step = add(start, 1, _unit === 'isoWeek' ? 'week' : _unit, isUTC);
-  const res = subtract(_step, 1, 'milliseconds', isUTC);
+  // a calendar unit is added by wall clock time, so when `start` is not midnight
+  // (DST skipped it) the step has to be moved back to the start of its own unit
+  const next = timeUnits.includes(_unit) ? _step : startOf(_step, _unit, isUTC);
+  const res = subtract(next, 1, 'milliseconds', isUTC);
 
   return res;
 }
