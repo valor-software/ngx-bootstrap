@@ -103,6 +103,24 @@ describe('Component: TimepickerComponent', () => {
     });
   });
 
+  describe('input field markup', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(TimepickerComponent);
+      fixture.componentRef.setInput('showSeconds', true);
+      fixture.detectChanges();
+    });
+
+    it('should style hours, minutes and seconds inputs as bootstrap form controls', () => {
+      const inputs = Array.from(getInputElements(fixture));
+
+      expect(inputs.length).toBe(3);
+      inputs.forEach((input) => {
+        expect(input.classList.contains('form-control')).toBe(true);
+        expect(input.classList.contains('bs-timepicker-field')).toBe(true);
+      });
+    });
+  });
+
   describe('validate input fields with default state', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TimepickerComponent);
