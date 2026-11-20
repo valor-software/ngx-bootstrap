@@ -31,7 +31,7 @@ import { NgClass, NgStyle, NgTemplateOutlet } from '@angular/common';
       (dragenter)="cancelEvent($event)"
     >{{placeholderItem()}}</div>
   }
-  @for (item of items; track item; let i = $index) {
+  @for (item of items; track $index; let i = $index) {
     <div
       [ngClass]="[ itemClass(), i === activeItem ? itemActiveClass() : '' ]"
       [ngStyle]="getItemStyle(i === activeItem)"
