@@ -24,9 +24,9 @@ import { BsCalendarLayoutComponent } from './bs-calendar-layout.component';
     
       <table role="grid" class="months">
         <tbody>
-          @for (row of calendar?.months; track row) {
+          @for (row of calendar?.months; track $index) {
             <tr>
-              @for (month of row; track month) {
+              @for (month of row; track month.date.getTime()) {
                 <td role="gridcell"
                   (click)="viewMonth(month)"
                   (mouseenter)="hoverMonth(month, true)"

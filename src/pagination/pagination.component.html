@@ -21,7 +21,7 @@
     </li>
   }
 
-  @for (pg of pages; track pg) {
+  @for (pg of pages; track pg.number) {
     <li
       [class.active]="pg.active"
       [class.disabled]="disabled() && !pg.active"

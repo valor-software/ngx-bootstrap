@@ -3,7 +3,7 @@
     <ng-content></ng-content>
   </bar>
 } @else {
-  @for (item of _values(); track item) {
+  @for (item of _values(); track $index) {
     <bar
     [type]="item.type" [value]="item.value" [max]="item.max || max()" [animate]="animate()" [striped]="striped()">{{ item.label }}</bar>
   }
