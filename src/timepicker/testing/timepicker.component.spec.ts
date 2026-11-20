@@ -119,6 +119,13 @@ describe('Component: TimepickerComponent', () => {
         expect(input.classList.contains('bs-timepicker-field')).toBe(true);
       });
     });
+
+    it('should ask virtual keyboards for a digits-only keypad on hours, minutes and seconds inputs', () => {
+      const inputs = Array.from(getInputElements(fixture));
+
+      expect(inputs.map((input) => input.getAttribute('inputmode'))).toEqual(['numeric', 'numeric', 'numeric']);
+      expect(inputs.map((input) => input.getAttribute('type'))).toEqual(['text', 'text', 'text']);
+    });
   });
 
   describe('validate input fields with default state', () => {

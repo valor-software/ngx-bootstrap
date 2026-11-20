@@ -58,7 +58,7 @@
       <td class="form-group mb-3" [class.has-error]="invalidHours">
         <input
           type="text"
-          inputmode="decimal"
+          inputmode="numeric"
           [class.is-invalid]="invalidHours"
           class="form-control text-center bs-timepicker-field"
           [placeholder]="hoursPlaceholder()"
@@ -85,7 +85,7 @@
         <td class="form-group mb-3" [class.has-error]="invalidMinutes">
           <input
             type="text"
-            inputmode="decimal"
+            inputmode="numeric"
             [class.is-invalid]="invalidMinutes"
             class="form-control text-center bs-timepicker-field"
             [placeholder]="minutesPlaceholder()"
@@ -113,7 +113,7 @@
         <td class="form-group mb-3" [class.has-error]="invalidSeconds">
           <input
             type="text"
-            inputmode="decimal"
+            inputmode="numeric"
             [class.is-invalid]="invalidSeconds"
             class="form-control text-center bs-timepicker-field"
             [placeholder]="secondsPlaceholder()"
