@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AvailableBsVersions, setTheme } from 'ngx-bootstrap/utils';
-import { PopoverModule } from '../index';
+import { PopoverContainerComponent, PopoverModule } from '../index';
 
 @Component({
   selector: 'test-popover',
@@ -18,7 +18,7 @@ import { PopoverModule } from '../index';
 class TestPopoverComponent {}
 
 describe('Directives: Popover placement', () => {
-  let fixture: ComponentFixture<TestPopoverComponent>;
+  let fixture: ComponentFixture<unknown>;
 
   function openPopover(theme: AvailableBsVersions, triggerId: string): HTMLElement {
     setTheme(theme);
@@ -78,5 +78,17 @@ describe('Directives: Popover placement', () => {
 
     expect(popover.querySelector('.popover-header')?.textContent).toBe('title');
     expect(popover.querySelector('.popover-body')?.textContent?.trim()).toBe('content');
+  });
+
+  it('bs5: container bound through its placement input gets the matching classes', () => {
+    setTheme('bs5');
+    const containerFixture = TestBed.createComponent(PopoverContainerComponent);
+    containerFixture.componentRef.setInput('placement', 'left');
+    containerFixture.detectChanges();
+    fixture = containerFixture;
+
+    const popover: HTMLElement = containerFixture.nativeElement;
+    expect(popover.classList).toContain('bs-popover-start');
+    expect(popover.classList).toContain('me-2');
   });
 });
