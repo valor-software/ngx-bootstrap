@@ -1,6 +1,8 @@
 import { assertEq, assertDeepEq, assertOk, assertNotEqual } from '../test-helpers';
 import { Khronos, moment } from '../chain';
 import { ruLocale } from '../../i18n/ru';
+import { parseDate } from '../../index';
+import { RFC_2822 } from '../../create/from-string-and-format';
 
 describe('create', () => {
 
@@ -523,6 +525,34 @@ describe('create', () => {
     }
   });
 
+
+  it('parseDate keeps parsing RFC 2822 strings with balanced comments', function () {
+    const expected = Date.UTC(2016, 10, 1, 1, 23, 45);
+
+    assertEq(parseDate('Tue, 01 Nov 2016 01:23:45 +0000 (UTC)').valueOf(), expected, 'without format');
+    assertEq(parseDate('Tue, 01 Nov 2016 01:23:45 +0000 (UTC)', RFC_2822).valueOf(), expected, 'with RFC_2822 format');
+    assertEq(parseDate('(a) Tue, 01 Nov 2016 (b) 01:23:45 +0000 (c)', RFC_2822).valueOf(), expected, 'several comments');
+  });
+
+  // CVE-2022-31129 (moment 2.29.4): a comment starts at the innermost "(", so an unclosed outer "(" is not a comment
+  it('parseDate rejects RFC 2822 string with an unclosed outer comment', function () {
+    const unbalanced = 'Tue, 01 Nov 2016 01:23:45 +0000 (a (b)';
+
+    assertOk(isNaN(parseDate(unbalanced).valueOf()), 'without format');
+    assertOk(isNaN(parseDate(unbalanced, RFC_2822).valueOf()), 'with RFC_2822 format');
+  });
+
+  // CVE-2022-31129: stripping comments must stay linear on input with many unclosed "("
+  it('parseDate handles long run of unclosed parens in linear time', function () {
+    const adversarial = '('.repeat(200000);
+
+    const start = Date.now();
+    const result = parseDate(adversarial, RFC_2822);
+    const elapsed = Date.now() - start;
+
+    assertOk(isNaN(result.valueOf()), 'is invalid');
+    assertOk(elapsed < 2000, `took ${elapsed}ms, expected less than 2000ms`);
+  }, 120000);
 
   it('non RFC 2822 strings', function () {
     const testCases = {
