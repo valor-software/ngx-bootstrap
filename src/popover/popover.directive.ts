@@ -100,6 +100,11 @@ export class PopoverDirective implements OnInit, OnDestroy {
   private _isInited = false;
   private _ariaDescribedby?: string;
 
+  /** id of the popover element, the value aria-describedby refers to */
+  private get _containerId(): string {
+    return `ngx-popover-${this.popoverId}`;
+  }
+
   constructor(
     _config: PopoverConfig,
     private _elementRef: ElementRef,
@@ -139,15 +144,12 @@ export class PopoverDirective implements OnInit, OnDestroy {
   }
 
   /**
-   * Set attribute aria-describedBy for element directive and
-   * set id for the popover
+   * Set attribute aria-describedBy for element directive,
+   * it refers to the id the popover is rendered with
    */
   setAriaDescribedBy(): void {
-    this._ariaDescribedby = this._popover.isShown ? `ngx-popover-${this.popoverId}` : void 0;
+    this._ariaDescribedby = this._popover.isShown ? this._containerId : void 0;
     if (this._ariaDescribedby) {
-      if (this._popover.instance) {
-        this._popover.instance.popoverId = this._ariaDescribedby;
-      }
       this._renderer.setAttribute(this._elementRef.nativeElement, 'aria-describedby', this._ariaDescribedby);
     } else {
       this._renderer.removeAttribute(this._elementRef.nativeElement, 'aria-describedby');
@@ -185,7 +187,8 @@ export class PopoverDirective implements OnInit, OnDestroy {
         context: this.popoverContext,
         placement: this.placement,
         title: this.popoverTitle,
-        containerClass: this.containerClass
+        containerClass: this.containerClass,
+        popoverId: this._containerId
       });
 
       if (!this.adaptivePosition && this._popover._componentRef) {
