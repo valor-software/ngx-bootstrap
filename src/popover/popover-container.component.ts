@@ -48,14 +48,20 @@ export class PopoverContainerComponent {
     Object.assign(this, config);
   }
 
+  /**
+   * ComponentLoader hands the placement over by assigning this property,
+   * it does not go through the `placement` input binding
+   */
+  set placement(value: AvailableBSPositions) {
+    this._placement = this._bsVersions.isBs5
+      ? PlacementForBs5[value as keyof typeof PlacementForBs5]
+      : value;
+  }
+
   ngOnInit(): void {
     const placementValue = this.placementInput();
     if (placementValue) {
-      if (!this._bsVersions.isBs5) {
-        this._placement = placementValue;
-      } else {
-        this._placement = PlacementForBs5[placementValue as keyof typeof PlacementForBs5];
-      }
+      this.placement = placementValue;
     }
   }
 
