@@ -9,7 +9,7 @@ import { PlacementForBs5, checkMargins, AvailableBSPositions } from 'ngx-bootstr
     changeDetection: ChangeDetectionStrategy.OnPush,
     host: {
         '[attr.id]': 'popoverId',
-        '[class]': '"popover in popover-" + _placement + " " + "bs-popover-" + _placement + " " + _placement + " " + containerClass + " " + checkMarginNecessity()',
+        '[class]': '"popover in popover-" + _side + " " + "bs-popover-" + _side + " " + _side + " " + containerClass + " " + checkMarginNecessity()',
         '[class.show]': '!_bsVersions["isBs3"]',
         '[class.bs3]': '_bsVersions["isBs3"]',
         role: 'tooltip',
@@ -42,6 +42,17 @@ export class PopoverContainerComponent {
 
   get _bsVersions(): IBsVersion {
     return getBsVer();
+  }
+
+  /**
+   * Side of the target the popover sits on, the part of the placement the css classes are named after.
+   * `auto` has no side of its own: it starts on top and positioning rewrites the side classes once resolved.
+   * A placement unknown to the theme falls back to top as well
+   */
+  get _side(): string {
+    const side = this._placement?.split(' ')[0];
+
+    return !side || side === 'auto' ? 'top' : side;
   }
 
   constructor(config: PopoverConfig) {

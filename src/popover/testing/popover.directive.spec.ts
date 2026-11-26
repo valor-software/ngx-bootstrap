@@ -91,4 +91,40 @@ describe('Directives: Popover placement', () => {
     expect(popover.classList).toContain('bs-popover-start');
     expect(popover.classList).toContain('me-2');
   });
+
+  function containerWithPlacement(theme: AvailableBsVersions, placement: string): HTMLElement {
+    setTheme(theme);
+    const containerFixture = TestBed.createComponent(PopoverContainerComponent);
+    containerFixture.componentRef.setInput('placement', placement);
+    containerFixture.detectChanges();
+    fixture = containerFixture;
+
+    return containerFixture.nativeElement;
+  }
+
+  it.each([
+    ['bs5', 'top left', 'top', 'start', 'mb-2'],
+    ['bs5', 'right bottom', 'end', 'bottom', 'ms-2'],
+    ['bs4', 'left top', 'left', 'top', undefined]
+  ] as const)('%s: corner placement="%s" is classed by its side %s only', (theme, placement, side, alignment, margin) => {
+    const popover = containerWithPlacement(theme, placement);
+
+    expect(popover.classList).toContain(`bs-popover-${side}`);
+    expect(popover.classList).toContain(`popover-${side}`);
+    expect(popover.classList).toContain(side);
+    expect(popover.classList).not.toContain(alignment);
+    if (margin) {
+      expect(popover.classList).toContain(margin);
+    }
+  });
+
+  it.each(['bs5', 'bs4'] as const)('%s: placement="auto" starts on top until positioning resolves it', (theme) => {
+    const popover = containerWithPlacement(theme, 'auto');
+
+    expect(popover.classList).toContain('bs-popover-top');
+    expect(popover.classList).toContain('popover-top');
+    expect(popover.classList).toContain('top');
+    expect(popover.classList).not.toContain('auto');
+    expect(popover.classList).not.toContain('bs-popover-auto');
+  });
 });
