@@ -8,7 +8,7 @@
           <!--days calendar-->
           @case ('day') {
             <div class="bs-media-container">
-              @for (calendar of daysCalendar$ | async; track calendar) {
+              @for (calendar of daysCalendar$ | async; track $index) {
                 <bs-days-calendar-view
                   [class.bs-datepicker-multiple]="multipleCalendars"
                   [calendar]="calendar"
@@ -34,7 +34,7 @@
           <!--months calendar-->
           @case ('month') {
             <div class="bs-media-container">
-              @for (calendar of monthsCalendar | async; track calendar) {
+              @for (calendar of monthsCalendar | async; track $index) {
                 <bs-month-calendar-view
                   [class.bs-datepicker-multiple]="multipleCalendars"
                   [calendar]="calendar"
@@ -49,7 +49,7 @@
           <!--years calendar-->
           @case ('year') {
             <div class="bs-media-container">
-              @for (calendar of yearsCalendar | async; track calendar) {
+              @for (calendar of yearsCalendar | async; track $index) {
                 <bs-years-calendar-view
                   [class.bs-datepicker-multiple]="multipleCalendars"
                   [calendar]="calendar"
